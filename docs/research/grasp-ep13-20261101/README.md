@@ -127,3 +127,40 @@ B: +0.024 / −0.027, both within noise); its gains appear only on nominal repla
 design needs far larger archives (2,000 particles, ≤ 64 stages × 5 moves per window in the paper; here 32 × 8 batches).
 Keep the code (default off); revisit only at GPU scale (1,024–4,096 worlds, as G2 for our solver) and only behind a new
 pre-registered gate. The bit-identical replay check and the fixed-noise robust cost carry over to any solver.
+
+## 8. Making our perceived motion physically possible (proposal, 1 Nov ~19:55 UTC; nothing run yet)
+**The gap, measured on ep13 [M].** Same two-hand construction, same solver budget; only the object track differs:
+jittered zero-action sim_vs_ref of the input 0.344 (our perceived track) vs 0.604 (mocap track); after either solver
+0.39–0.42 vs 0.62–0.65. The reference itself is close to mocap by AUC (0.940 vs 0.964), so the loss is not "where" the
+cup is but motions a robot cannot produce. Earlier results point the same way: eval 10's twin ep11 O − P +0.345 in RL
+(perception-limited, "our reference nests the beige cup deeper than the shapes allow").
+
+**What is already falsified (do not repeat as is):** generic smoothing (zero-lag RTS on tracks, kit gate −0.00011),
+projecting rest poses onto the support (ΔAUC −0.0107, 17 / 20 worse; overlaps were mostly mesh shape), re-tracking.
+
+**Four GT-free repairs, each with a public falsification test** ([H]; order = expected value per cost):
+1. **Symmetry-axis spin canonicalisation.** For rotationally symmetric objects (cups; mesh PCA with two near-equal
+   axes, or a rotational self-registration check), split each frame's rotation into swing (tilt, observable) and twist
+   (about the symmetry axis, unobservable). Keep the swing; hold the twist constant while the object rests and let it
+   follow the holding hand's twist while held. ep13: our track twists 140° by f30 with no cause [M]; ADD (not ADD-S)
+   charges it in both sim_vs_ref and the leaderboard AUC. Test ($0, CPU): blue / beige cup twins (ep11, 12, 13, 21, 22):
+   reference AUC vs mocap must not drop (registered, as score_registered), zero-action jittered sim_vs_ref should rise.
+   Caveat: a cup with a visible handle has an observable twist; apply only where the twist is unobservable.
+2. **No mover, no motion.** An object may move only while an assigned hand is in contact (or it is supported by a moving
+   object, or falling). Outside those windows hold the pose; inside a hold, express the object in the holding hand's frame,
+   keep that relative pose near-constant (low-pass in the hand frame) and recompose. This removes perception jitter the
+   hand cannot produce while keeping the hand-driven motion. Different from the falsified rest projection (that moved
+   rest heights onto the support; this freezes motion in time and ties held motion to the hand). Test: as in 1, on all
+   20 public episodes.
+3. **Hand assignment that matches the object's motion.** The carrier must be the hand in contact when the object starts
+   moving; hand-overs need an overlap window. ep13's `--single_hand 1` picked the hand with the most hold frames (right,
+   f46), after the cup had risen at ~f20 [M]; eval 14's packed lock kept its first picker (left) but then carries the cup
+   one-handed through the human's two-hand hand-over (keen-heisenberg's videos: all three replays fail at f42–46).
+   Options: a first-picker rule, or two-hand holds only inside hand-over windows. Test: the single- vs two-hand RL test in §7.
+4. **Feasibility preflight on every reference.** Replay each reference with the object welded to its assigned hand
+   (FlashCHORD's virtual object controller at full assist) and flag frames where the object would pass through the table
+   / rack / another object, or moves with no hand in reach; repair with the smallest pose change. Our solver's zero-action
+   jitter check is the score: a physically possible reference keeps the cup within 3 cm under 0.5 mm noise.
+
+Suggested first step ($0, CPU, this container, after the ep13 arms finish ~21:00 UTC): repair 1 on ep13's P2 and the
+zero-action jitter check (P2 0.344 → ?), then the ref-vs-mocap AUC on the cup twins (needs the public dataset download).
