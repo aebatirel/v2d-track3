@@ -98,9 +98,16 @@ def main():
             d = mujoco.MjData(m)
             mujoco.mj_forward(m, d)
             n0 = dict(ncon=int(d.ncon), nefc=int(d.nefc))          # the start pose's collision pass (mj_forward)
+            q_start = np.array(d.qpos, float).copy()
             r = CG.count_copy(m, d, steps, opt)
             r['copy'] = ci                                       # 0 = nominal, 1..16 = draws 0..15
             r['at_forward'] = n0
+            q_end = np.array(d.qpos, float)                      # free joints: H qpos[0:7], G qpos[7:14]
+            r['end'] = {o: dict(dz_mm=round(float(q_end[7 * i + 2] - q_start[7 * i + 2]) * 1e3, 2),
+                                drift_mm=round(float(np.linalg.norm(q_end[7 * i:7 * i + 3] - q_start[7 * i:7 * i + 3]))
+                                               * 1e3, 2))
+                        for i, o in enumerate((host, guest))}
+            r['end_ncon'], r['end_nefc'] = int(d.ncon), int(d.nefc)
             rows.append(r)
             print(name, ci, r['max_ncon'], r['max_nefc'], r['overflow'], round(time.time() - t0, 1), flush=True)
         jit = [r for r in rows if r['copy'] > 0]
