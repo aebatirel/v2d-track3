@@ -6218,3 +6218,26 @@ arm and a no-policy replay floor to stage B.
     (~$7, needs a go); solver v2 / synergy B not done (recommends skip).
   - Their top 3: (1) eval 10 (done via pack 10; the 1024 route waits on the organisers); (2) rest-pose fix, which is
     outdated (falsified at 05:48); (3) ep2 / ep12 njmax-1024, of low eval transfer.
+- 08:57 UTC 1 Nov bold-albattani FINAL REPORT (mesh lane; 6493fbb; nothing running; STATUS wrap-up at top).
+  - Finished:
+    - 9a+ CD-O 0.402 → 0.332 (rank 18 → 14);
+    - ev10cs4 / 5 (0 overflow; nest 0.14 vs 1.02 cm);
+    - eval-20 pitcher b1 (f0 fall 195 → 8.5 mm) and eval-19 sweeper support_fill (89° → 0.01°), both frozen by md5;
+    - the mesh review artifact.
+  - Open:
+    - eval 20 / eval 19 retrains (credit permitting; eval 19 needs budget.py first);
+    - ev10 beige start wobble 6.5 mm / 4°: a pre-registered beige-base clip [H], CPU;
+    - owner calls on the C0 blue cup, E0b compliance and the $1 grey-template re-track.
+    - Closed with no delivery: board slot, collision carve, rack slots, posefix, re-base, PUBOWN, C2, C0b.
+  - Their top 3:
+    1. a CD-O-only variant, $0;
+    2. collision-shape retrains for SR, ~$3.5–6 each [E] (eval 10 done; then 20, 19);
+    3. better own-video meshes (SAM-style video masks; a generated pitcher ~−0.014 CD-O [E], ~$1–2).
+  - CD-O variant:
+    - Minimal = 9a+ + C0 blue cup: public CD-O 0.523 → 0.291 [D] on 5 / 36 pairs, so the board would go ~0.332 →
+      ~0.300 [E] (~11th).
+    - Its selector (obs_fidelity.py) was written after the 12 blue-cup lathes were scored against the public scan.
+      That is a GT-informed PUBLIC selection, the compliance point for the owner.
+    - Upper bound: best public-scored mesh per object, ~0.263 [E] (~6th). Caveats: winner's curse, provenance flags,
+      the Hunyuan licence (excludes EU / UK / KR). For discussion only.
+    - Neither variant can hurt AUC (best per board).
