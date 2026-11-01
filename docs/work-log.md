@@ -5826,3 +5826,7 @@ Advice given:
   31 at explicit frames; packed none for the cup). [H] the carve removed pitcher fill that held the cup up. I asked for a
   blue-cup settle check at f152 / 183 / 192 (CPU, $0) before the launch; passed the observation to the build agent for
   the PREREG disclosure.
+- 06:44 UTC ev10cs5 retrain interim [M, exec; not a reading]: seed 42 train.log at 28.0 % (19.6 M / 70 M steps) has 303
+  "nefc overflow" lines (max requested 555), 0 broadphase — vs e10v's ~6 M per seed on the packed ev10 pieces. [E]
+  ~1,100 at 100 % if the rate holds: near the PREREG's 1,000-line "not clean in training" label (reported only; the rule
+  still applies). Matches determined-wright's thin-headroom warning (503 / 504 of 512).
