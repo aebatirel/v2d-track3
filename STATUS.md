@@ -7,8 +7,11 @@ Branch `claude/perfect-following-20261101`; report `docs/analysis/perfect-follow
   - eval 14: the human hands the cup over (L → R → L); our reference carries it with the left hand only (f42–46);
   - eval 32: our perceived cup jumps 15 cm sideways and back inside the hold (f15–36);
   - eval 16 / 25 / 30 / 1: an object keeps moving with no robot hand on it (after release, or outside holds).
-- Next: public ep13 test (single vs two-hand) + eval-14 two-hand retrain on GPU; the GRASP session asked to build the
-  "no mover, no motion" reference repair with its public gate. Spend so far $0 of $110.
+- 20:31 UTC GPU batch 1 running (pre-registered, docs/research/work/pf-hands-20261101/PREREG.md), ≈ $10–11 [E]:
+  - pfA: public ep13 (eval 14's twin), single-hand vs two-hand reference, 2 seeds each, scored vs mocap;
+  - pfB: evals 14 and 16 retrained on two-hand references, 2 seeds, 10 fresh draws, swap rule + ≥ +0.02 bar.
+  - Results ≈ 00:00–01:00 UTC. The GRASP session is asked for the "no mover, no motion" reference repair (for evals 32,
+    16, 25) with its public gate.
 
 ## 2026-11-01 ~11:44 UTC: PACK 11 UPLOADED: AUC 0.83921, our best on every board (MP-SR 0.70, RPE 3.179, MPPE 2.545, SP-SR 0.85)
 - Pack 11 = pack 10 with eval 10's policy trained at njmax 1024 (training-only) and evaluated at stock 512 / 256
