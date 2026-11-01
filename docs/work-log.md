@@ -6046,3 +6046,25 @@ arm and a no-policy replay floor to stage B.
     move only the beige at rest, 0.88 cm median); piece-derived inertia moves the blue COM 16.1 mm (second variable).
   - Cost: $3.50 planned (2.4 / 3.1 / 5.6). Credit $28.94 at launch. Result ~08:30 UTC [E]; then confirmation if it
     passes the gate. The 10:30 check (and its own follow-up) covers "pack 10 ready".
+- 06:32 UTC 1 Nov bold-albattani: **re-base result** (rules 0b8291f + A1 ea025f3 before building; results 9c0bc0c;
+  CPU, $0; visual meshes unchanged).
+  - (1) No pot re-base needed [M]. The sim's pot collision is FlashCHORD's CoACD of the library_v3 pot (31 hulls), not
+    the C0 visual mesh. At H30 rest frames it already sits on the table: median −0.14 to +0.05 mm, worst 0.48–1.26 mm
+    (ep2 mass0, evals 1, 3, 5, 6, 8; eval 28 has no clean rest frames). The ~7.5 mm low base is C0-visual only, and
+    registration absorbs it. My "pot in the table" [H] does not apply to the sim.
+  - (2) ep2's conflict is lid-in-pot hull fill: 53.0 cm³ (max 56.2) at 45 lid-rest frames. In a hands-free settle the
+    lid is thrown 188–448 mm and the pot knocked 42–50 mm / 32–45°.
+    - Revised [H]: this causes ep2's early lid failures (same falsifier).
+    - The matching treatment exists (P2mck carve, 53.8 → 0 cm³); eval 1 already carries the eval-side cure (ev01).
+  - (3) Eval-20 pitcher: the packed pitcher fails the settle gate at f183 / f192 (3.2–3.3 mm / 6.4–7.5°) and falls
+    over in a hands-free settle at f0 (195 mm / 94.6°).
+    - b1 (clip one hull corner, −0.03 cm³): G1 0 / 0 mm; G3 1.59 mm / 0.38° and 1.62 mm / 0.55°; f0 8.5 mm / 3.2°.
+    - Plain-MuJoCo contacts 316 vs 304, no overflow (indicative).
+    - Apply with placement_carve.py assets on refs/sf/ep20/assets, SF=0.
+- 06:36 UTC decisions (owner's 02:50 permission):
+  - skip the ep2 P2mck A/B (public-only; eval 1 already carries the cure);
+  - eval-20 b1 retrain cleared for focused-pascal, conditional on determined-wright's budget.py at 32×60 being clean,
+    under the same conditions as ev10cs5 (PREREG, swap rule, 2 seeds, ≥ +0.02 rule, stock limits). It may run in
+    parallel only if credit stays ≥ $10 after both runs and confirmations.
+  - Asked determined-wright for that budget.py run, and bold-albattani to freeze b1 and list other eval objects that
+    are unstable in a hands-free settle at f0 (report only).
