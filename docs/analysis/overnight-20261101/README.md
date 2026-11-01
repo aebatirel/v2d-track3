@@ -97,3 +97,13 @@ Claude-Session: https://claude.ai/code/session_01D9UJC7JP3bbasvhFUrxyf7" && git 
 | Evals 1 / 30 overlaps; eval 19 / 20 starts | small (already 0.89–0.92) | ~$3 each | [H] |
 
 Skip: robot-side tweaks (all negative tonight), the public ep2 / ep12 njmax-1024 test, solver v2, synergy B.
+
+### Added 11:45 UTC: GRASP (Harvard, 2026) as a next-block item
+- **What it is [L]:** gradient-guided sampling for physics-based retargeting (archive-fitted quadratic models,
+  guided proposals, Metropolis–Hastings acceptance). Sharpa bimanual OakInk2 success 94.2 % vs Do-as-I-Do 81.0 % vs
+  SPIDER 71.4 %. MIT, MuJoCo Warp; parts come from SPIDER, which is non-commercial.
+- **Best target [I]:** eval 14 / public ep13. Its hand-over fails even with the true object motion, so it is
+  control-limited, not perception-limited.
+- **Test [H]:** a CPU-first port of the algorithm into our FlashCHORD solver. Gate: zero-action sim_vs_ref ≥ +0.05
+  over our solver on ep13, then RL under the swap rule.
+- **Caveat [M]:** our references are noisy, and our solver's gain vanished under 0.5 mm target noise.

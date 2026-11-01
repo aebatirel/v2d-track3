@@ -6277,3 +6277,24 @@ arm and a no-policy replay floor to stage B.
   - Unblock: the owner's own approval in focused-pascal's session. Then a CPU-only build, $0, ~10 min.
   - This session does not make that change either (it would route around their guard). Owner asked to post in that
     session.
+- ~11:45 UTC 1 Nov owner asked about GRASP (Liu, Wang, Bao, Yang, Harvard, 2026 preprint; "Gradient-Guided Sampling
+  for Contact-Rich Physics-Based Motion Retargeting"; code github.com/ComputationalRobotics/GRASP_code, MIT, with
+  third-party code from SPIDER (CC BY-NC 4.0), Do As I Do and TopoRetarget; MuJoCo Warp).
+  - Method [L]: sampling in the simulator, with local quadratic cost models fitted to an archive of all rollouts to
+    recover gradients (no differentiable sim). Gradient-guided proposals with Metropolis–Hastings acceptance on true
+    sim costs. Variants: TO (tempered SMC) and MPC (warm-started receding horizon).
+  - Reported [L]: OakInk2 bimanual, Sharpa 94.2 % success vs Do-as-I-Do 81.0 % vs SPIDER 71.4 % (0.03 m / 0.12 rad);
+    Wuji 92.4 %, XHand 95.0 %. GRASP-refined references improve PPO tracking (curves only).
+  - Relevance: it is a stronger version of our own physics solver (a Do-as-I-Do / SPIDER-style annealed sampling MPC
+    built inside FlashCHORD; arm S gave no signal).
+  - Caveats:
+    - their references are clean mocap (OakInk2); ours are perception-derived with 1–6 mm noise and constant offsets,
+      and our solver's gain vanished under 0.5 mm target noise [M, 30 Oct];
+    - plans must be made in FlashCHORD (condim 3, kp 1.7), not Do-as-I-Do's MJCF (condim 6, kp 300);
+    - SPIDER-derived parts are non-commercial.
+  - Best target [I]: eval 14 / public ep13. Its hand-over + flip fails even with the true object motion (oracle twin
+    0.544 with either reference [M]), so it is limited by control feasibility, not perception.
+  - Proposed next-block test [H] (not started; CPU-first port of the algorithm, no code copied from NC parts): on
+    public ep13 (oracle and our reference), a GRASP-style sampler in FlashCHORD vs our solver.
+    - Gate: zero-action sim_vs_ref gain ≥ +0.05 over our solver's on our reference.
+    - Then RL from the solved reference under the swap rule for eval 14.
