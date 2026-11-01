@@ -71,7 +71,8 @@ worst of the 32 worlds exceeds 512 rows. Runs are in `runs_32x60/` and `runs_8x3
 | eval 14 + rack c2-ev14 (54 pieces) | 499 / 337 / 0 % | 356 | 216 | 5 / 0 | **not clean** (worse than packed) |
 | eval 10 packed (`meshes/carve/ev10`) | 661 / 599 / 100 % | 654 | 1,680 | 380 / 9,723 | overflow |
 | eval 10 + ev10cs (v1) | 598 / 548 / 75 % | 566 | 699 | 104 / 7,086 | overflow |
-| eval 10 + ev10cs3 (v3, 32 / 33 pieces) | 534 / 495 / 15 % | 603 | 533 | 110 / 576 | **not clean** (best eval-10 set) |
+| eval 10 + ev10cs3 (v3, 32 / 33 pieces) | 534 / 495 / 15 % | 603 | 533 | 110 / 576 | **not clean**  |
+| eval 10 + **ev10cs4** (v4, 24 / 21 pieces; 7e4bc6a) | 448 / 432 / 0 % | 457 | 459 | **0 / 0** | **clean** (passes the budget gate) |
 
 - Explicit frames: eval 10 f0/111/116/124/142/160; eval 14 f0/140/144/149/153/157; eval 30 f0/66/132/197/262.
 - The eval-14 rack candidates were built from the packed eval-14 assets: the refs/sf rack mesh plus the candidate
@@ -79,6 +80,8 @@ worst of the 32 worlds exceeds 512 rows. Runs are in `runs_32x60/` and `runs_8x3
 - **Verdicts (rule "no overflow at 512" at 32 × 60):**
   - eval 14: keep the packed rack; c1 and c2 add overflow.
   - eval 30: keep the packed configuration; it is clean.
-  - eval 10: no candidate is clean. ev10cs3 cuts the overflow lines 3–17× vs packed but is not a retrain candidate
-    by the rule.
+  - eval 10: ev10cs4 (05:04 UTC) is the first clean candidate: 0 / 0 lines, hold max 448, overall max 459, at the
+    level of the clean eval-14 control. This is the budget gate only. Geometry and settle (floor crossing, deeper
+    settling) are bold-albattani's gates and the FlashCHORD rest/nest test. ev10cs3 cuts the overflow lines 3–17×
+    vs packed but is not clean.
 
