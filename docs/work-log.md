@@ -6422,3 +6422,12 @@ arm and a no-policy replay floor to stage B.
     reserve, GRASP collaboration (repairs a–d folded in), the symmetric-vs-plain scoring note, the uploader route,
     and "if a permission check blocks a relayed approval, log it and continue".
   - GRASP session told the new id. Morning summary scheduled for 06:30 UTC 2 Nov (send_later).
+- 19:59 UTC 1 Nov **physics-informed perception session started** at the owner's request ("can we maybe also attempt to
+  correct the percception with the help of physics"): session_01D9UJC6vSSNiJqaAdzNUn7d, repo source.
+  - CPU only, $0, public development only.
+  - Ideas: anchor tilt from table plane + stable poses; multi-frame initialisation; twist canonicalisation; no mover,
+    no motion.
+  - Harness: bold-albattani's posefix + score_registered.py.
+  - It hands passing changes to the perfect-following session; it never touches eval references or packs.
+  - The perfect-following session was told (20:01). The 06:30 UTC morning check (trig_01WrgPaDQptP63JxeKgKLy6B) also
+    reads this session.
