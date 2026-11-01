@@ -5792,3 +5792,8 @@ arm and a no-policy replay floor to stage B.
   - usual box rules (cost stated, self-destroy, stall watchdog);
   - falsifier 2 (a reference with no piece overlap at the nested rest, at 512) is the submission-legal fix if 1
     supports the hypothesis. It is not covered by this go; its plan and cost go to the owner.
+- 02:46 UTC 1 Nov focused-pascal acknowledged the njmax-1024 diagnostic under the stated conditions; not launched yet.
+  - Build: one seed on e10v's stored V4p reference, plus a guard in tools/no_oracle.py that refuses the run's tag so
+    pack tools cannot take it.
+  - Cost [E]: ~$2.5–3.5 for ~2.3 h of box time, to be stated in the PREREG before launch.
+  - Order: launches after the D confirmation box, which stays first.
