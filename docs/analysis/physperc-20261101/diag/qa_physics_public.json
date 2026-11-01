@@ -1,0 +1,238 @@
+{
+ "0": {
+  "white_pot": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "white_pot_lid": {
+   "flags": [
+    {
+     "kind": "PEN",
+     "a": 0,
+     "b": 81,
+     "gap_mm": -59.3
+    },
+    {
+     "kind": "PEN",
+     "a": 100,
+     "b": 372,
+     "gap_mm": -60.9
+    }
+   ],
+   "frac_pen": 0.962
+  }
+ },
+ "2": {
+  "white_pot": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "white_pot_lid": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "11": {
+  "blue_cup": {
+   "flags": [
+    {
+     "kind": "FLOAT",
+     "a": 103,
+     "b": 136,
+     "gap_mm": 23.1
+    }
+   ],
+   "frac_pen": 0.0
+  },
+  "beige_cup": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "12": {
+  "blue_cup": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "plastic_dish_rack": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "13": {
+  "blue_cup": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "plastic_dish_rack": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "18": {
+  "mini_sweeper": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "mini_dust_pan": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "21": {
+  "blue_cup": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "water_pitcher": {
+   "flags": [
+    {
+     "kind": "JUMP",
+     "a": 91,
+     "b": 92,
+     "mm": 31.7,
+     "deg": 6.1
+    }
+   ],
+   "frac_pen": 0.0
+  }
+ },
+ "22": {
+  "blue_cup": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "water_pitcher": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "23": {
+  "wooden_piece_1": {
+   "flags": [
+    {
+     "kind": "JUMP",
+     "a": 147,
+     "b": 148,
+     "mm": 58.8,
+     "deg": 21.5
+    },
+    {
+     "kind": "JUMP",
+     "a": 148,
+     "b": 149,
+     "mm": 36.1,
+     "deg": 9.1
+    },
+    {
+     "kind": "JUMP",
+     "a": 153,
+     "b": 154,
+     "mm": 48.7,
+     "deg": 10.0
+    }
+   ],
+   "frac_pen": 0.006
+  },
+  "wooden_piece_2": {
+   "flags": [
+    {
+     "kind": "PEN",
+     "a": 284,
+     "b": 324,
+     "gap_mm": -136.8
+    }
+   ],
+   "frac_pen": 0.126
+  }
+ },
+ "24": {
+  "wooden_piece_1": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "wooden_piece_2": {
+   "flags": [
+    {
+     "kind": "FLOAT",
+     "a": 245,
+     "b": 274,
+     "gap_mm": 16.6
+    }
+   ],
+   "frac_pen": 0.0
+  }
+ },
+ "26": {
+  "plastic_dish_rack": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "white_pot": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "27": {
+  "plastic_dish_rack": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "white_pot": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "31": {
+  "mini_sweeper": {
+   "flags": [],
+   "frac_pen": 0.0
+  },
+  "plastic_dish_rack": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "39": {
+  "mini_dust_pan": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "40": {
+  "mini_dust_pan": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "41": {
+  "white_pot": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "42": {
+  "white_pot": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "43": {
+  "white_pot": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "44": {
+  "white_pot": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ },
+ "45": {
+  "white_pot": {
+   "flags": [],
+   "frac_pen": 0.0
+  }
+ }
+}

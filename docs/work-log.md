@@ -6476,3 +6476,12 @@ arm and a no-policy replay floor to stage B.
   - **F1P1 (T1 P1 fused anchor tilt + F1): +0.00298, 14 better / 0 worse, min 0.0000, ΔMPPE −0.028, ΔRPE −0.011.
     FAILS the +0.003 mean clause by 0.00002.** Not rounded into a pass. Thresholds of F1 were chosen in-sample
     (disclosed in the PREREG).
+- 21:35 UTC 1 Nov physperc **pitcher prior and physics QA audit** [D, 20 public].
+  - Candidate pitcher meshes (C1 t3fit, C2 ep22 g1_a2) do not give a usable rest prior: stable / contact facets
+    6.2–10.4 deg off vs the tracker's 6.1–6.3; they sit 7.7–8.7 mm (chamfer) from the v3 template frame. [H] The
+    pitcher tilt needs a complete-base pitcher geometry (re-scan / generation, GPU); not available tonight.
+  - **`scripts/qa_physics.py`** (GT-free, flags only): table penetration > 30 mm with no hand, static low floats,
+    one-frame jumps > 30 mm / 20 deg with no hand within 100 mm. Public: flags the two catastrophic failures (ep0 lid
+    PEN 96 % of frames; ep23 board JUMPs + PEN −137 mm, the identity swap) and one false positive (ep21 pitcher
+    jump during a pour with the hand missed); the other 17 episodes clean. Output diag/qa_physics_public.json.
+    Offered to perfect-following as a read-only QA of eval references (this session does not touch eval).
