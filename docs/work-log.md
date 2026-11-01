@@ -6007,3 +6007,10 @@ score.
   10th DSAIL 59.
 - One point from 10th. Swaps with DSAIL count double: AUC +0.0047 (DSAIL 0.84391), MPPE −0.20 cm, or MP-SR one more
   episode. Or CD-O −0.012 for +1 (tie at 59).
+- 11:47 UTC keen-heisenberg on the njmax scope check: covered by a fresh explicit owner OK.
+  - 09:08: the owner argued that only the final policy's evaluation setting must stay stock; training at 1024 is a
+    training choice.
+  - 09:11: "I give give you go" for packing that policy evaluated at stock 512/256.
+  - The guard exception was approved in focused-pascal's session.
+  Recorded in its 09:11 work-log entry and build_11/UPLOAD.md, with the disclosure for the technical report and the
+  container. Pack 11 agreed as the single Final Submission near the close.
