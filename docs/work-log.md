@@ -6115,3 +6115,20 @@ arm and a no-policy replay floor to stage B.
   342 / 321 vs packed 348 / 317 (f59c897). Blue-cup settle at f152 / 183 / 192 stays within 0.33 cm / 0.7° under b1
   (packed tips 29° at f183), no sink-through (85e8ef8). Flag: at f192 the pitcher falls hands-free in both sets
   (probably an in-hand frame). This releases focused-pascal's eval-20 retrain (PREREG first).
+- 07:27 UTC 1 Nov focused-pascal: **eval-20 b1 retrain launched**; **ev10cs5 s42 weak so far**.
+  - Eval 20: box 20261101-e20b1-4207ce4 (58631864, France, $1.41/h), code 4207ce42; PREREG
+    docs/research/work/eval20-b1-20261101/PREREG.md (36f255a, before any result). Ledger $3.50 (2.3 / 3.2 / 5.4).
+    Credit $27.03 before launch.
+    - Packed eval 20: grasp lock s42, 70M.
+    - Bars: gate > 0.8933 (exact H5p7); rule on P (a) ≥ 0.89335, (b) 0 draws with RPE > 5 cm, (c) median RPE
+      ≤ 1.67 cm, (s) draw 1 ≥ 0.8448; inclusion ≥ 0.91335.
+    - Only the pitcher collision changes (9 → 41 pieces).
+    - Disclosed risk [M]: f192 is hands-off, and b1's pitcher is less stable there in FlashCHORD (12.0 cm / 50° vs
+      6.8 / 28°).
+    - [E] P(included) ≈ 0.2; ≈ +0.0008 AUC if included.
+  - ev10cs5 interim (not the reading) [M]: s42 shows 992 overflow lines (vs ~6 M packed, but not 0) and a
+    training-box 0.477 ± 0.065. That clears the 0.4632 gate but is far below the 1024 diagnostic's 0.91. s43 is
+    training.
+  - Implication [I]: the stock-limit route may not recover eval 10. The organisers' question on training at
+    njmax 1024 now carries the larger gain (~+0.45 proxy on eval 10, up to ~+0.02 AUC [E]). NVIDIA's own
+    dexmate_sharpa_flash_sac.yaml uses njmax 1024. Raised with the owner.
