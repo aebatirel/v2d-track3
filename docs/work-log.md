@@ -6019,3 +6019,17 @@ arm and a no-policy replay floor to stage B.
     unless the CD-O guard applies. Linked to the ep2 drawdiv. [H] A re-based pot cuts the early lid failures;
     falsifier: an ep2 A/B still shows ≥ 8 early lid onsets per 20 draws. That is a GPU test after ev10cs5, credit
     permitting. drawdiv README updated.
+- 05:50 UTC 1 Nov bold-albattani: **pot / pitcher re-base build started** (CPU, $0; collision-only; folder
+  docs/research/mesh-2026-10-26/rebase/; GATES.md committed before measuring).
+  - The visual mesh (object_mesh_b64) stays byte-identical, checked by md5, so CD-O and kit scoring are untouched.
+  - Rules stated before measuring: (a) translate all pot / pitcher collision pieces up by the median rest
+    penetration; (b) clip only the base slab. For (a), the lid-on-pot overlap is also measured.
+  - Gates:
+    - G1 rest penetration median ≤ 1 / max ≤ 3 mm at H30 frames;
+    - G2 pot–lid overlap ≤ packed + 0.5 cm³;
+    - G3 settle within 4 mm / 5°;
+    - G4 plain-MuJoCo contacts indicative, budget.py 32×60 binding;
+    - G5 visual md5 unchanged;
+    - G6 piece count ≤ packed.
+  - Delivery order: public ep2 set (for the ep2 A/B, credit permitting); eval pot sets 1, 3, 5, 6, 8, 28 (eval 1
+    from the ev01 carve); pitcher, eval 20.
