@@ -10765,3 +10765,14 @@ score.
 - 20:50 UTC 1 Nov CPU zero-action (one replay each, GT-free, reported only): eval 32 single-hand 0.414 vs bridged 0.372
   (each vs its own reference). Zero-action replays do not reliably predict the fine-tuned order (approach-3 §11.3); the
   GPU rule decides.
+- ~20:58 UTC 1 Nov coordination:
+  - keen-heisenberg: GPU budget now **$102** (the perception / GRASP sessions may rent CPU boxes up to $8); method name
+    "KURSAD"; owner target board AUC > 0.9.
+  - GRASP: twist canon (a) not recommended (ep13: score up, cup followed worse); hold_filter.py (b, glitch mode) built,
+    public gate running on 4 episodes (no full 20-episode public reference set exists); `--single_hand 2` (first picker)
+    in grasp_lock.py @ 660b5af: ep13 oracle zero-action 0.672 (best), perceived 0.323 — candidate batch-3 arm.
+  - hold_filter on the 20 eval bases (run here, CPU) [M]: catches eval 32's flipped f21–33 (runs 15–35), edits eval 14
+    f28–52 (wider than the drift), not eval 33's f91 jump; large spoon edits (up to 29.6 cm) also on near-perfect evals 35 /
+    36 — needs its public gate.
+  - physics-perception session (session_01D9UJC6vSSNiJqaAdzNUn7d) told what this lane changes (guard_bridge on the base,
+    GL_ARGS) so its transforms compose.
