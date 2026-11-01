@@ -1,0 +1,620 @@
+{
+ "mode": "glock",
+ "run": "20261031-drG-a1a7e25",
+ "arm": "dr",
+ "episodes": {
+  "14": {
+   "status": "VERIFIED",
+   "failures": [],
+   "missing": [],
+   "thin": [],
+   "main_eval_timeout": [],
+   "unchecked": [],
+   "retrain_seeds": [],
+   "cells": {
+    "42": {
+     "eval_timeouts": {
+      "best": {
+       "cut": 0,
+       "runs": 10,
+       "rc": {
+        "0": 10
+       },
+       "without_rc": 0
+      },
+      "curve": {
+       "cut": 0,
+       "runs": 21,
+       "rc": {
+        "0": 21
+       },
+       "without_rc": 0
+      }
+     },
+     "checkpoint": "/content/results/drs42_glock_public/ep14/best/policy.safetensors",
+     "checkpoint_steps": "40001536",
+     "reference_file": "/workspace/refs/drs42_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "reference_md5": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+     "traj_fingerprint": "71fa181ba92c320a47450c2e42561222",
+     "loaded_urdfs": {
+      "blue_cup": {
+       "urdf": "/content/refs/sf/ep14/assets/urdf/blue_cup_rigid.urdf",
+       "md5": "31cd001d2618ee2972dc922b77109b9f",
+       "mass": 0.3,
+       "collisions": 1
+      },
+      "plastic_dish_rack": {
+       "urdf": "/content/refs/sf/ep14/assets/urdf/plastic_dish_rack_rigid.urdf",
+       "md5": "ae549ee0201ce085c71a7164806047f6",
+       "mass": 0.3,
+       "collisions": 1
+      }
+     },
+     "support_stage": {
+      "file": "/workspace/refs/drs42_glockt/ep14/reconstructed_stage/t3_ep014_support.usda",
+      "md5": "85d27bbd5fb872770be430cf513852fd",
+      "packed": "/content/refs/glockt/ep14/reconstructed_stage/t3_ep014_support.usda",
+      "packed_md5": "85d27bbd5fb872770be430cf513852fd"
+     },
+     "total_environment_steps": 70004736,
+     "reset_seed": 42,
+     "dr_log": {
+      "log": "/content/runs/drs42_glock/ep14-s42/train.log",
+      "ok": true,
+      "lines": [
+       "v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42"
+      ],
+      "n_lines": 1,
+      "skip_expected": false
+     },
+     "checkpoint_sha256": "051df4aa4966d385fe52bb1784dad781d1ec9e67ffc4211ee4574bd785e66ea6",
+     "stats": {
+      "n": 10,
+      "mean": 0.5689,
+      "sd": 0.2127,
+      "min": 0.2816,
+      "values": [
+       0.4331,
+       0.9068,
+       0.3396,
+       0.752,
+       0.2816,
+       0.713,
+       0.358,
+       0.5554,
+       0.5791,
+       0.77
+      ]
+     },
+     "packed_config_diff": {
+      "output_dir": [
+       "/content/runs/glock/ep14-s42",
+       "/content/runs/drs42_glock/ep14-s42"
+      ],
+      "reference.parquet": [
+       "/workspace/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs42_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ],
+      "task.parquet": [
+       "/workspace/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs42_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ]
+     }
+    },
+    "43": {
+     "eval_timeouts": {
+      "best": {
+       "cut": 0,
+       "runs": 10,
+       "rc": {
+        "0": 10
+       },
+       "without_rc": 0
+      },
+      "curve": {
+       "cut": 0,
+       "runs": 21,
+       "rc": {
+        "0": 21
+       },
+       "without_rc": 0
+      }
+     },
+     "checkpoint": "/content/results/drs43_glock_public/ep14/best/policy.safetensors",
+     "checkpoint_steps": "60002304",
+     "reference_file": "/workspace/refs/drs43_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "reference_md5": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+     "traj_fingerprint": "71fa181ba92c320a47450c2e42561222",
+     "loaded_urdfs": {
+      "blue_cup": {
+       "urdf": "/content/refs/sf/ep14/assets/urdf/blue_cup_rigid.urdf",
+       "md5": "31cd001d2618ee2972dc922b77109b9f",
+       "mass": 0.3,
+       "collisions": 1
+      },
+      "plastic_dish_rack": {
+       "urdf": "/content/refs/sf/ep14/assets/urdf/plastic_dish_rack_rigid.urdf",
+       "md5": "ae549ee0201ce085c71a7164806047f6",
+       "mass": 0.3,
+       "collisions": 1
+      }
+     },
+     "support_stage": {
+      "file": "/workspace/refs/drs43_glockt/ep14/reconstructed_stage/t3_ep014_support.usda",
+      "md5": "85d27bbd5fb872770be430cf513852fd",
+      "packed": "/content/refs/glockt/ep14/reconstructed_stage/t3_ep014_support.usda",
+      "packed_md5": "85d27bbd5fb872770be430cf513852fd"
+     },
+     "total_environment_steps": 70004736,
+     "reset_seed": 43,
+     "dr_log": {
+      "log": "/content/runs/drs43_glock/ep14-s43/train.log",
+      "ok": true,
+      "lines": [
+       "v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 43"
+      ],
+      "n_lines": 1,
+      "skip_expected": false
+     },
+     "checkpoint_sha256": "332d549cd885474c2ec425a58060b16e1fd675bd1e22be5adf6e52e9dce02fd2",
+     "stats": {
+      "n": 10,
+      "mean": 0.6973,
+      "sd": 0.0949,
+      "min": 0.556,
+      "values": [
+       0.7822,
+       0.8356,
+       0.6527,
+       0.556,
+       0.6782,
+       0.7991,
+       0.6701,
+       0.6828,
+       0.5631,
+       0.7528
+      ]
+     },
+     "packed_config_diff": {
+      "env.reset.seed": [
+       "42",
+       "43"
+      ],
+      "output_dir": [
+       "/content/runs/glock/ep14-s42",
+       "/content/runs/drs43_glock/ep14-s43"
+      ],
+      "reference.parquet": [
+       "/workspace/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs43_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ],
+      "reset.seed": [
+       "42",
+       "43"
+      ],
+      "task.parquet": [
+       "/workspace/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs43_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ],
+      "training.seed": [
+       "42",
+       "43"
+      ]
+     }
+    }
+   }
+  },
+  "16": {
+   "status": "VERIFIED",
+   "failures": [],
+   "missing": [],
+   "thin": [],
+   "main_eval_timeout": [],
+   "unchecked": [],
+   "retrain_seeds": [],
+   "cells": {
+    "42": {
+     "eval_timeouts": {
+      "best": {
+       "cut": 0,
+       "runs": 10,
+       "rc": {
+        "0": 10
+       },
+       "without_rc": 0
+      },
+      "curve": {
+       "cut": 0,
+       "runs": 21,
+       "rc": {
+        "0": 21
+       },
+       "without_rc": 0
+      }
+     },
+     "checkpoint": "/content/results/drs42_glock_public/ep16/best/policy.safetensors",
+     "checkpoint_steps": "40001536",
+     "reference_file": "/workspace/refs/drs42_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "reference_md5": "f7e2ea9260106425be6163553aac5af9",
+     "traj_fingerprint": "ade67fc96f0d73b16b4d5f36109f10ae",
+     "loaded_urdfs": {
+      "plastic_dish_rack": {
+       "urdf": "/content/refs/sf/ep16/assets/urdf/plastic_dish_rack_rigid.urdf",
+       "md5": "ae549ee0201ce085c71a7164806047f6",
+       "mass": 0.3,
+       "collisions": 1
+      },
+      "wooden_spoon": {
+       "urdf": "/content/refs/sf/ep16/assets/urdf/wooden_spoon_rigid.urdf",
+       "md5": "59f7268c34f1fd07dbb24fb80d9fd907",
+       "mass": 0.3,
+       "collisions": 1
+      }
+     },
+     "support_stage": {
+      "file": "/workspace/refs/drs42_glockt/ep16/reconstructed_stage/t3_ep016_support.usda",
+      "md5": "3e0a32942213aa7bbd1431f1cf14c6e1",
+      "packed": "/content/refs/glockt/ep16/reconstructed_stage/t3_ep016_support.usda",
+      "packed_md5": "3e0a32942213aa7bbd1431f1cf14c6e1"
+     },
+     "total_environment_steps": 70004736,
+     "reset_seed": 42,
+     "dr_log": {
+      "log": "/content/runs/drs42_glock/ep16-s42/train.log",
+      "ok": true,
+      "lines": [
+       "v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42"
+      ],
+      "n_lines": 1,
+      "skip_expected": false
+     },
+     "checkpoint_sha256": "f51947b72ce362129ecdcc46b6b29e425346e94809a74c9edfbf3e84397f0ed8",
+     "stats": {
+      "n": 10,
+      "mean": 0.8228,
+      "sd": 0.0874,
+      "min": 0.6761,
+      "values": [
+       0.8262,
+       0.8457,
+       0.8905,
+       0.7112,
+       0.9124,
+       0.8969,
+       0.6761,
+       0.7198,
+       0.8678,
+       0.8815
+      ]
+     },
+     "packed_config_diff": {
+      "env.reset.seed": [
+       "43",
+       "42"
+      ],
+      "output_dir": [
+       "/content/runs/glock/ep16-s43",
+       "/content/runs/drs42_glock/ep16-s42"
+      ],
+      "reference.parquet": [
+       "/workspace/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs42_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ],
+      "reset.seed": [
+       "43",
+       "42"
+      ],
+      "task.parquet": [
+       "/workspace/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs42_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ],
+      "training.seed": [
+       "43",
+       "42"
+      ]
+     }
+    },
+    "43": {
+     "eval_timeouts": {
+      "best": {
+       "cut": 0,
+       "runs": 10,
+       "rc": {
+        "0": 10
+       },
+       "without_rc": 0
+      },
+      "curve": {
+       "cut": 0,
+       "runs": 21,
+       "rc": {
+        "0": 21
+       },
+       "without_rc": 0
+      }
+     },
+     "checkpoint": "/content/results/drs43_glock_public/ep16/best/policy.safetensors",
+     "checkpoint_steps": "10002432",
+     "reference_file": "/workspace/refs/drs43_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "reference_md5": "f7e2ea9260106425be6163553aac5af9",
+     "traj_fingerprint": "ade67fc96f0d73b16b4d5f36109f10ae",
+     "loaded_urdfs": {
+      "plastic_dish_rack": {
+       "urdf": "/content/refs/sf/ep16/assets/urdf/plastic_dish_rack_rigid.urdf",
+       "md5": "ae549ee0201ce085c71a7164806047f6",
+       "mass": 0.3,
+       "collisions": 1
+      },
+      "wooden_spoon": {
+       "urdf": "/content/refs/sf/ep16/assets/urdf/wooden_spoon_rigid.urdf",
+       "md5": "59f7268c34f1fd07dbb24fb80d9fd907",
+       "mass": 0.3,
+       "collisions": 1
+      }
+     },
+     "support_stage": {
+      "file": "/workspace/refs/drs43_glockt/ep16/reconstructed_stage/t3_ep016_support.usda",
+      "md5": "3e0a32942213aa7bbd1431f1cf14c6e1",
+      "packed": "/content/refs/glockt/ep16/reconstructed_stage/t3_ep016_support.usda",
+      "packed_md5": "3e0a32942213aa7bbd1431f1cf14c6e1"
+     },
+     "total_environment_steps": 70004736,
+     "reset_seed": 43,
+     "dr_log": {
+      "log": "/content/runs/drs43_glock/ep16-s43/train.log",
+      "ok": true,
+      "lines": [
+       "v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 43"
+      ],
+      "n_lines": 1,
+      "skip_expected": false
+     },
+     "checkpoint_sha256": "8356f94274b777e4da485b6f9522ef2002fe09e3e749fa037d840a39f19ca40c",
+     "stats": {
+      "n": 10,
+      "mean": 0.8411,
+      "sd": 0.0734,
+      "min": 0.7063,
+      "values": [
+       0.8376,
+       0.9016,
+       0.851,
+       0.8728,
+       0.8358,
+       0.8842,
+       0.7159,
+       0.8893,
+       0.9167,
+       0.7063
+      ]
+     },
+     "packed_config_diff": {
+      "output_dir": [
+       "/content/runs/glock/ep16-s43",
+       "/content/runs/drs43_glock/ep16-s43"
+      ],
+      "reference.parquet": [
+       "/workspace/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs43_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ],
+      "task.parquet": [
+       "/workspace/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs43_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ]
+     }
+    }
+   }
+  },
+  "33": {
+   "status": "VERIFIED",
+   "failures": [],
+   "missing": [],
+   "thin": [],
+   "main_eval_timeout": [],
+   "unchecked": [],
+   "retrain_seeds": [],
+   "cells": {
+    "42": {
+     "eval_timeouts": {
+      "best": {
+       "cut": 0,
+       "runs": 10,
+       "rc": {
+        "0": 10
+       },
+       "without_rc": 0
+      },
+      "curve": {
+       "cut": 0,
+       "runs": 21,
+       "rc": {
+        "0": 21
+       },
+       "without_rc": 0
+      }
+     },
+     "checkpoint": "/content/results/drs42_glock_public/ep33/best/policy.safetensors",
+     "checkpoint_steps": "60002304",
+     "reference_file": "/workspace/refs/drs42_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "reference_md5": "2a7173ab1d4248433bd049bc43f6878a",
+     "traj_fingerprint": "e45b81792154fa1e9987e56b6c41bbcc",
+     "loaded_urdfs": {
+      "blue_cup": {
+       "urdf": "/content/refs/sf/ep33/assets/urdf/blue_cup_rigid.urdf",
+       "md5": "31cd001d2618ee2972dc922b77109b9f",
+       "mass": 0.3,
+       "collisions": 1
+      },
+      "wooden_spoon": {
+       "urdf": "/content/refs/sf/ep33/assets/urdf/wooden_spoon_rigid.urdf",
+       "md5": "59f7268c34f1fd07dbb24fb80d9fd907",
+       "mass": 0.3,
+       "collisions": 1
+      }
+     },
+     "support_stage": {
+      "file": "/workspace/refs/drs42_glockt/ep33/reconstructed_stage/t3_ep033_support.usda",
+      "md5": "2cf9765ce63793028bbe83da3db15a24",
+      "packed": "/content/refs/glockt/ep33/reconstructed_stage/t3_ep033_support.usda",
+      "packed_md5": "2cf9765ce63793028bbe83da3db15a24"
+     },
+     "total_environment_steps": 70004736,
+     "reset_seed": 42,
+     "dr_log": {
+      "log": "/content/runs/drs42_glock/ep33-s42/train.log",
+      "ok": true,
+      "lines": [
+       "v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42"
+      ],
+      "n_lines": 1,
+      "skip_expected": false
+     },
+     "checkpoint_sha256": "7c5eb060b8a390ae83ebdcf414e5759393077b3addcd7c8729358e24e8dd6332",
+     "stats": {
+      "n": 10,
+      "mean": 0.9428,
+      "sd": 0.0063,
+      "min": 0.9331,
+      "values": [
+       0.9331,
+       0.943,
+       0.9476,
+       0.9478,
+       0.9503,
+       0.9493,
+       0.9342,
+       0.9364,
+       0.9427,
+       0.9435
+      ]
+     },
+     "packed_config_diff": {
+      "env.reset.seed": [
+       "43",
+       "42"
+      ],
+      "output_dir": [
+       "/content/runs/glock/ep33-s43",
+       "/content/runs/drs42_glock/ep33-s42"
+      ],
+      "reference.parquet": [
+       "/workspace/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs42_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ],
+      "reset.seed": [
+       "43",
+       "42"
+      ],
+      "task.parquet": [
+       "/workspace/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs42_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ],
+      "training.seed": [
+       "43",
+       "42"
+      ]
+     }
+    },
+    "43": {
+     "eval_timeouts": {
+      "best": {
+       "cut": 0,
+       "runs": 10,
+       "rc": {
+        "0": 10
+       },
+       "without_rc": 0
+      },
+      "curve": {
+       "cut": 0,
+       "runs": 21,
+       "rc": {
+        "0": 21
+       },
+       "without_rc": 0
+      }
+     },
+     "checkpoint": "/content/results/drs43_glock_public/ep33/best/policy.safetensors",
+     "checkpoint_steps": "70004736",
+     "reference_file": "/workspace/refs/drs43_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "reference_md5": "2a7173ab1d4248433bd049bc43f6878a",
+     "traj_fingerprint": "e45b81792154fa1e9987e56b6c41bbcc",
+     "loaded_urdfs": {
+      "blue_cup": {
+       "urdf": "/content/refs/sf/ep33/assets/urdf/blue_cup_rigid.urdf",
+       "md5": "31cd001d2618ee2972dc922b77109b9f",
+       "mass": 0.3,
+       "collisions": 1
+      },
+      "wooden_spoon": {
+       "urdf": "/content/refs/sf/ep33/assets/urdf/wooden_spoon_rigid.urdf",
+       "md5": "59f7268c34f1fd07dbb24fb80d9fd907",
+       "mass": 0.3,
+       "collisions": 1
+      }
+     },
+     "support_stage": {
+      "file": "/workspace/refs/drs43_glockt/ep33/reconstructed_stage/t3_ep033_support.usda",
+      "md5": "2cf9765ce63793028bbe83da3db15a24",
+      "packed": "/content/refs/glockt/ep33/reconstructed_stage/t3_ep033_support.usda",
+      "packed_md5": "2cf9765ce63793028bbe83da3db15a24"
+     },
+     "total_environment_steps": 70004736,
+     "reset_seed": 43,
+     "dr_log": {
+      "log": "/content/runs/drs43_glock/ep33-s43/train.log",
+      "ok": true,
+      "lines": [
+       "v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 43"
+      ],
+      "n_lines": 1,
+      "skip_expected": false
+     },
+     "checkpoint_sha256": "46b4022fe7b880ea6c30c83635e7fc90d38b97d593cced9d2e936a603b8b77b5",
+     "stats": {
+      "n": 10,
+      "mean": 0.9219,
+      "sd": 0.0705,
+      "min": 0.7223,
+      "values": [
+       0.941,
+       0.9419,
+       0.9464,
+       0.7223,
+       0.9507,
+       0.9447,
+       0.9468,
+       0.9494,
+       0.9266,
+       0.9491
+      ]
+     },
+     "packed_config_diff": {
+      "output_dir": [
+       "/content/runs/glock/ep33-s43",
+       "/content/runs/drs43_glock/ep33-s43"
+      ],
+      "reference.parquet": [
+       "/workspace/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs43_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ],
+      "task.parquet": [
+       "/workspace/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+       "/workspace/refs/drs43_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+      ]
+     }
+    }
+   }
+  }
+ },
+ "patch_md5": "570a7f47793d02ba5b0bf3d5e6fd6eac",
+ "rule": "docs/research/work/pack9b-20261031/PREREG.md sections 1.2, 1.3, 2",
+ "hook": {
+  "expected_md5": "d92ed77113adfd1aadeedda70a9d7bde",
+  "patch_run": "installed: /tmp/drhook_vh3wtf_a/src/flash_chord/lifecycle/v2d_dr.py\npatched: /tmp/drhook_vh3wtf_a/src/flash_chord/lifecycle/reset.py\n",
+  "installed_md5": "d92ed77113adfd1aadeedda70a9d7bde",
+  "reset_tagged": true
+ },
+ "other_training_logs": [],
+ "ok": true
+}

@@ -5626,3 +5626,15 @@ Advice given:
   unchanged for THIS session — my upload attempt was blocked by the permission guard on a relayed approval, so I do not
   upload or route an upload elsewhere; I publish each pack record and the upload stays with the session where the owner
   gave the word (or the owner's own word here).
+- 03:01 UTC **D G (20261031-drG-a1a7e25, 58587687): VERIFIED on all three** [M]: ep14 s42 0.5689 ± 0.2127 (min 0.2816),
+  s43 0.6973 ± 0.0949 (min 0.556) → candidate 43; ep16 s42 0.8228 ± 0.0874, s43 0.8411 ± 0.0734 → 43; ep33 s42 0.9428 ±
+  0.0063, s43 0.9219 ± 0.0705 → 42. Cut 0/0 and D-line ok on all six cells; hook md5 = expected; no stray training logs.
+  run_job.log: RTX PRO 6000 Max-Q driver 595.91.07 (32 cpu / 123 GB), env restored, job rc 0 after 240 min, pushed.
+  Ledger actual $5.57. All five D training boxes: $17.24 measured (plan $19.50).
+- 03:02 UTC **merge** (`tools/dr_eval_merge.py --table …packed_refs.json`, five summaries; c_merge.json committed under
+  pack9b-20261031/results/): CANDIDATES ep14 s43 (sha 332d549c…), ep16 s43 (8356f942…), ep25 s42 (1369113f…), ep30 s42
+  (d1bcdaec…, policy_200007680), ep33 s42 (7c5eb060…). Job string printed by the merge and used verbatim (checked: ends
+  in `bash ops/jobs/h5_reeval.sh`, no FC_DR_*).
+- 03:03 UTC **C launched**: `ops/vast.sh V2D_COMMIT=a1a7e258bd90… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 28784861
+  20261101-drC-a1a7e25 '<c_merge.json job>'` → instance 58608674 (Spain, $1.377/h; the France offer had gone: no_such_ask);
+  ledger planned $1.75. Credit $33.89 before the launch.
