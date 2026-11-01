@@ -6200,3 +6200,12 @@ diagnostic; nothing is picked for submission.
 - Background agent: rebase/ folder; GATES.md before measuring; rules (a) translate collision up by median rest
   penetration, (b) clip base slab only; gates G1-G6; delivery order ep2 public set, eval pot sets (1, 3, 5, 6, 8, 28;
   eval 1 from ev01), pitcher eval 20. CPU, $0.
+
+### 2026-11-01 06:35 UTC — re-base: not needed for any pot set; ep2 conflict is lid-in-pot hull fill; eval-20 pitcher b1 delivered
+- Agent report (rebase/; rules 0b8291f, A1 ea025f3, results 9c0bc0c; CPU $0): the simulator's pot collision is
+  FlashCHORD CoACD of the library_v3 pot (31 hulls), which already rests on the table at H30 rest frames (median
+  -0.14..+0.05 mm on ep2 mass0 and evals 1, 3, 5, 6, 8; eval 28 no clean rest frames). The C0 base offset is visual-only
+  (absorbed by scoring registration). ep2: packed lid 53.0 cm3 inside the pot's CoACD hulls at 45 lid-rest frames; the
+  revised [H] (lid-in-hull fill causes early lid failures) matches focused-pascal's P2mck placement carve (53.8 -> 0).
+  Eval-20 pitcher: packed fails settle G3 (3.2-3.3 mm / 6.4-7.5 deg); b1 clip (0.03 cm3) passes (1.6 mm / <0.6 deg),
+  plain-MuJoCo rows 316 vs 304 (indicative). Relayed; budget.py on eval 20 requested from determined-wright.
