@@ -5589,3 +5589,13 @@ Advice given:
   phase [M]; [H] a contributor to the floor. Their cheapest variant: training with sim.njmax=1024 (stored in the
   checkpoint config, so the evaluator rebuilds with it — note for any later use: that changes the evaluated sim config of
   that one policy; to be cleared against the rules before it enters a pack). D cells unaffected (no ev10 pieces).
+- ~02:44 UTC determined-wright answers [M, their contact_budget/njmax_cfg_test.py + README on claude/determined-wright-3joens]:
+  (1) `sim.njmax=1024 sim.nconmax=512` is a training override stored in the resolved config (env.sim), survives
+  harness.apply_evaluation_composition, and the evaluator's SolverMuJoCo is built with njmax 1024 / naconmax 512 for 1
+  world (stock 512 / 256): no evaluator code change; only constraint-array GPU memory grows (not measured).
+  (2) packed eval-10 run 20261026-gl10A2-5e0e100 runs/glock/ep10-s42/train.log: 8,368,544 overflow lines. (3) its 5 scored
+  draws (results/glock_public/ep10/best/r1–r5/eval.log): 0 overflow lines. (4) budget.py packed config: sampled training
+  resets nefc max 536 (median 473), 13 % of world-steps > 512; explicit resets at f0/124/142/160 max 441.
+  Falsifier proposal stands (one eval-10 training at njmax 1024 / nconmax 512, same V4p reference + recipe; first check =
+  overflow-line count); needs the owner's go. Open question for the owner: is a per-policy sim.njmax change acceptable
+  under the challenge rules (the evaluator inherits it from the checkpoint config)?
