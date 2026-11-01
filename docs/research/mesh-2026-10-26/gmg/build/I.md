@@ -1705,3 +1705,9 @@ Results: `build/I/results/ev10-cavsafe/`. Work dir `<scratch>/cavsafe`.
   changed the SUBMITTED beige mesh (C1/T1 obs-lathe) only; the packed policy's simulator copy is library_v3 + ev10.
 - 02:49 Profiles regenerated with approach2-scripts/lathe_fit2.py from library_v3 (trimesh 5.2.0 here; sha256 differ
   from ev10w's 4.12.2 profiles: blue e8dfcff6..., beige d10d8eae...). Next: check they rebuild ev10's wall pieces.
+- 02:51 [M] Rebuild check: carve.json's ev10 commands on the regenerated profiles reproduce all 49 beige pieces and
+  the 36 blue wall pieces at vertex Hausdorff 0.0 mm (blue base = 17 FlashCHORD CoACD hulls, not rebuildable here: no
+  flash_chord; the candidate copies them byte for byte).
+- 02:55 Orchestrator added gates (owner approved collision-overlap fixes 02:50 UTC). Wrote
+  `build/I/results/ev10-cavsafe/GATES.md` (gates 1-4 with definitions, the candidate design R1 / R2 / G1, expected
+  outcomes) BEFORE building or measuring the candidate; committed now.
