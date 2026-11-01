@@ -5569,3 +5569,12 @@ Advice given:
   recipe, one seed): overflow lines → 0 and the cup still never lifted ⇒ not the main cause. Not run (needs the owner's
   go; ~1.3–1.6 h, ~$2–3). Not checked yet: whether the packed eval-10 policy's training overflowed the same way, and
   whether the official evaluator's eval-10 rollouts overflow (scoring path).
+- 02:50 UTC **eval 10 vs ep11 contact budget [M]** (store train.logs, single-file pulls): the ep11 gate's treatment
+  trainings (run 20261031-e11g-663b7df, same ev10 pieces, same V4p method; RESULT s42 0.6226, s43 0.8564) logged 62 (s42)
+  and 123 (s43) "nefc overflow" lines, requested njmax median 517 / 518, p95 532 / 539, max 547 / 559 — vs 6.0 M / 5.8 M
+  lines, median 580, p95 752, max ~1,050 on eval 10 (e10v). ~5×10⁴ times more overflow on eval 10.
+  [H, strengthened] Eval 10's reference holds the cups deeper in each other (bold-albattani: packed pieces overlap at the
+  nested hands-off rest f124–f160, 3.4–32.7 cm³) than ep11's, so eval-10 training drops constraint rows all the time;
+  this would explain why the ep11 gate's gain did not transfer and why the cup is never lifted. Falsifiers: (1) one
+  eval-10 training at njmax 1024 / nconmax 512; (2) or a reference whose nested rest has no piece overlap (overflow → ~0
+  in a one-world rollout). Either needs the owner's go; nothing launched.
