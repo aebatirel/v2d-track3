@@ -6218,3 +6218,13 @@ diagnostic; nothing is picked for submission.
   within 3.3 mm / 5.1 deg. FlashCHORD rest-check failures for pots (evals 3/5/6/8) and spoons (16/33) are not geometry:
   [H] hands/arm contact during the approach. Relayed to keen-heisenberg / focused-pascal / determined-wright; offered
   a pre-registered eval-19 support_fill test.
+
+### 2026-11-01 07:30 UTC — ev10cs5 f0 settle (report-only) and eval-19 support_fill result
+- ev10cs5 f0 (rebase/ev10cs5_f0.md, 01d7cc3): beige start wobble unchanged vs packed (6.54 mm / 3.98 deg vs 6.50 /
+  3.98: low corner of the beige pieces); blue steadier (0.86 vs 2.35 mm); nest rows 136-288 vs packed 556-948; no copy
+  falls. [H] beige clip at the support band would remove the corner (separate step).
+- Eval-19 sweeper (rebase/ev19; GATES a0ffceb before the tool ran; result 4fa6ec4; frozen 64338be): focused-pascal's
+  support_fill.py 22fb399 on reference 201f338a certified the sweeper by fill (0.5 cm, 4.2 cm3 slab, margin 5.5 mm).
+  E1 f0: 90.2 mm / 88.8 deg (16/16 fall) -> 0.01 mm / 0.01 deg; E1 f2: 92.4 / 90.1 -> 1.70 / 1.53; E2 visual md5
+  unchanged; 23 pieces vs 19; plain-MuJoCo rows 160 vs 196. Collision-only overlay; eval 30 shares mini_sweeper, so
+  eval 19 needs its own asset copy. Relayed; budget.py requested; retrain only with the owner's go and credit.
