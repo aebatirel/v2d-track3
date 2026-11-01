@@ -5607,3 +5607,8 @@ Advice given:
   checkpoint at njmax 512; usual box rules. Falsifier 2 (no-overlap pieces at 512) is NOT covered.
   Build delegated to a subagent in its own worktree (opt-in job reusing e10v's stored V4p reference, a no_oracle guard
   on the run tag, PREREG, CPU mock, JOBS/BUILD). Nothing launched. Pack 9b unchanged (9a+ + passing D cells).
+- ~02:45 UTC bold-albattani starts a CPU-only ($0, GT-free) candidate for falsifier 2: eval-10 cup pieces with no
+  overlap at the nested rest (blue cup inner faces tangent at mid-sector, beige pieces inside its outer surface, ≤ 53 /
+  49 pieces), gated by piece / visual overlap at f124–f160, plain-MuJoCo nefc / ncon and kept volume; output
+  gmg/build/I/results/ev10-cavsafe/; then determined-wright's budget.py. Any GPU test of it needs its own owner go
+  (keen-heisenberg collects plan + cost). Nothing changes in any pack.
