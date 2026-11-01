@@ -90,7 +90,12 @@ Report-only readings:
   does NOT charge this twist. Our GT-free proxy sim_vs_ref (pipeline/qa.py, plain ADD) does, and so does any training
   reward that tracks full orientation. So the twist (1) asks the robot to spin a resting cup, which it cannot do without
   disturbing it, and (2) makes our proxy pessimistic on cup episodes (it may mislead swap decisions). The "lost at f15"
-  readings above are partly this proxy charge. Symmetric-error sim_vs_ref per arm (report only): SYM_TABLE_PENDING.
+  readings above are partly this proxy charge. Symmetric-error sim_vs_ref per arm (report only, `scripts/sym_score.py`):
+  P2 input / anneal / GRASP 0.377 / 0.417 / 0.435 (plain 0.344 / 0.394 / 0.418); O2 0.606 / 0.653 / 0.626; P 0.571 for
+  all three (plain 0.554); symmetric floors P 0.574, O 0.573. The verdicts do not change (symmetric d_b +0.019), and the
+  twist explains only ~0.02–0.03 of P2's score: on the symmetric metric P2 still loses the cup physically at the pick
+  (f32: 5.1 cm and 32° of tilt error; O2 2.6 cm / 8°), where our perceived cup is within 0.4–1.0 cm and 3–8° of mocap but
+  the left wrist–cup distance differs (f24: 17.7 vs 14.1 cm).
 
 ## 6. Cost
 $0: everything ran on this container's 4 CPUs (setup ~20 min; dev sweep ~45 min; eight ep13 arms ~8 h). No GPU was
@@ -131,7 +136,7 @@ design needs far larger archives (2,000 particles, ≤ 64 stages × 5 moves per 
 Keep the code (default off); revisit only at GPU scale (1,024–4,096 worlds, as G2 for our solver) and only behind a new
 pre-registered gate. The bit-identical replay check and the fixed-noise robust cost carry over to any solver.
 
-## 8. Making our perceived motion physically possible (proposal, 1 Nov ~19:55 UTC; nothing run yet)
+## 8. Making our perceived motion physically possible (proposal, 1 Nov ~19:55 UTC; results in §9)
 **The gap, measured on ep13 [M].** Same two-hand construction, same solver budget; only the object track differs:
 jittered zero-action sim_vs_ref of the input 0.344 (our perceived track) vs 0.604 (mocap track); after either solver
 0.39–0.42 vs 0.62–0.65 (plain-ADD proxy; part of the perceived-track gap is the proxy charging the cup's twist, see §5).
@@ -170,3 +175,18 @@ projecting rest poses onto the support (ΔAUC −0.0107, 17 / 20 worse; overlaps
 
 Suggested first step ($0, CPU, this container, after the ep13 arms finish ~21:00 UTC): repair 1 on ep13's P2 and the
 zero-action jitter check (P2 0.344 → ?), then the ref-vs-mocap AUC on the cup twins (needs the public dataset download).
+
+## 9. What was tried from §8 tonight (CPU, $0) [M]
+| repair | tool | test | result |
+|---|---|---|---|
+| (a) twist canonicalisation | `pipeline/twist_canon.py` (+ tests) | ep13: canon before the two-hand lock, re-lock, 16-copy jitter | P2T symmetric 0.521 vs P2 0.377, but the cup is followed WORSE (within 3 cm 5 % vs 16 % of frames, lost at f10–12 vs f22–52): the re-lock pushes the cup early instead of flinging it later; still below the floor (0.574). O2T 0.572 vs O2 0.606. **Not useful**; the leaderboard is symmetric for cups anyway |
+| (b) "no mover, no motion" | `pipeline/hold_filter.py` (+ tests) | first design tied the object to the MANO wrist: ep13 cup vs mocap 1.26 → 2.54 cm (the hand track, not the cup, is off there). Default `--mode glitch` (object's own depart-and-return excursions the hand does not follow; rest jitter frozen). Pre-registered public gate (work log 20:31; 4 public episodes with clean pre-lock trees, set fixed before scoring) | **FAIL**: M1 ref vs mocap mean +0.0017 (min −0.0075, no harm); M2 zero-action jittered mean −0.018 (ep2 +0.024, ep12 −0.062, ep13 −0.004, ep31 −0.029). On eval refs (perfect-following's run) it catches eval 32's flipped segment but over-edits eval 14 and spoons. **Not used**; perfect-following's event-triggered `tools/guard_bridge.py` covers evals 14 / 32 / 33 |
+| (c) hand assignment | `pipeline/grasp_lock.py --single_hand 2` (first picker; mode 1 unchanged) | ep13 re-lock + 16-copy jitter | oracle motion **0.672 ± 0.062** (best ep13 reference measured; single 0.571, two-hand 0.604, two-hand + our solver 0.651); perceived 0.323 (below the floor, like every perceived construction). Handed to perfect-following for a batch-3 RL arm |
+| (d) feasibility preflight | perfect-following's `preflight.py` (eval refs) | — | theirs |
+
+**Overall reading [I].** On eval 14's public twin the construction is not the limiter once the hands match the motion
+(first picker with mocap motion is followable), and the cup's world track from our perception is accurate (within ~1 cm
+and 3–8° of mocap at the pick). What breaks the perceived references is the hand–object relation at the pick (~3–4 cm
+off) and, on some eval tracks, perception re-acquisition jumps (perfect-following: eval 14 f46 19 cm, eval 32 f21–33
+flipped). The next CPU lever on ep13 would be the lock's hand placement at the pick (approach and hold-from timing), not
+another object-track filter.
