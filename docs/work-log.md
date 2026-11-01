@@ -6401,3 +6401,18 @@ arm and a no-policy replay floor to stage B.
   - The GRASP session was told to expect it (19:35): finish test A, share the two-hand rebuilds and scripts, rent
     nothing.
   - The owner pastes the prompt directly, so its approvals are the owner's own words in that session.
+- 19:57 UTC 1 Nov GRASP session report (a844888).
+  - Verdict (pre-registered): no GPU step. Test A 0.000; test B +0.024 / −0.027 vs a +0.05 bar.
+  - [M] ep13 jittered zero-action sim_vs_ref of the two-hand input: 0.344 perceived vs 0.604 mocap track; after either
+    solver 0.39–0.42 vs 0.62–0.65.
+  - Cause [M]: our perceived blue cup TWISTS about its symmetry axis while resting (12° f8 → 140° f30); mocap 0–9° until
+    f24.
+  - Proposed GT-free repairs (README §8): (a) symmetry-axis twist canonicalisation; (b) "no mover, no motion";
+    (c) hand assignment matching the motion; (d) a welded-hand feasibility preflight.
+  - The fair RL test (single / first-picker / two-hand arms, ≥ 2 seeds) is ≈ $5.5–7.5 [E]. Do (a) first.
+- 20:02 UTC checked in the kit (metric_code/track_3/AUC.py):
+  - the leaderboard path is `_score_registered_track3` (`_REGISTER_OBJECT_MESH = True`), using `_symmetry_point_errors`,
+    so cup spin is NOT charged on the board;
+  - sim_vs_ref (pipeline/qa.py) uses plain `_object_add`, so it IS charged there.
+  - So the twist hurts physics feasibility and makes our proxy pessimistic on cup episodes, not the board directly.
+  - Correction sent to the GRASP session, with a request for a symmetric sim_vs_ref line next to the plain one.
