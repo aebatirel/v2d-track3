@@ -1,0 +1,18 @@
+capture_time per episode: file, frames, mean dt ms, sd dt ms, sd of offset from a uniform grid ms, lag-1 corr of dt
+  ep0.parquet     373  50.000  1.32  0.95  -0.53
+  ep11.parquet    137  50.003  1.03  0.77  -0.47
+  ep12.parquet    181  50.002  1.30  0.97  -0.49
+  ep13.parquet    190  49.991  4.25  3.18  -0.47
+  ep18.parquet    353  49.999  1.50  1.09  -0.42
+  ep2.parquet     343  49.996  1.39  1.08  -0.45
+  ep21.parquet    186  49.995  1.11  0.89  -0.48
+  ep22.parquet    189  50.029  3.18  2.83  -0.50
+mean sd(dt) over 21 episodes: 1.63 ms
+(1) uniform grid, 24 of 40 samples kept, fit quality at 7 / 13 / 27 / 33 Hz: [1. 1. 1. 1.]
+(1) uniform grid, 24 of 40 samples kept, fit quality at 7 / 13 / 27 / 33 Hz: [1. 1. 1. 1.]
+(1) uniform grid, 24 of 40 samples kept, fit quality at 7 / 13 / 27 / 33 Hz: [1. 1. 1. 1.]
+(2) jittered real times, 63 Hz, amplitude/noise = 10.0: true peak found in 50 / 50 trials
+(2) jittered real times, 63 Hz, amplitude/noise = 2.0: true peak found in 27 / 50 trials
+(2) jittered real times, 63 Hz, amplitude/noise = 1.0: true peak found in 11 / 50 trials
+(2) jittered real times, 63 Hz, amplitude/noise = 0.5: true peak found in 4 / 50 trials
+(2) jittered real times, 63 Hz, amplitude/noise = 0.2: true peak found in 0 / 50 trials
