@@ -1,5 +1,19 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~21:20 UTC: physics-perception lane (KURSAD perception half), CPU, $0: no gate passed yet; best stack +0.00298
+Branch claude/physics-perception-20261101, folder docs/analysis/physperc-20261101/. Public episodes only; mocap read
+only by scoring and diagnostics; each test pre-registered and pushed before scoring. Gate: mean ΔAUC >= +0.003, no
+episode < −0.01, MPPE / RPE not worse.
+- Baseline harness reproduces posefix runs/before 20 / 20 exactly (mean AUC 0.8769).
+- Ideas 1+2 had been tested as refine.py S3 (−0.0013); D1 shows why: a stable facet of our mesh is a ~2 deg tilt
+  sensor, no better than the tracker, and wrong where the object does not sit on a facet (dust pan, pitcher).
+- [D] T1 P1 fused anchor tilt +0.00156 (13 / 0) FAIL; T2 revolution-axis prior +0.00067 FAIL (falsifier fired);
+  T3 F1 "resting objects do not float" +0.00142 (2 / 0) FAIL; **stack F1P1 +0.00298, 14 better / 0 worse, MPPE
+  −0.028, RPE −0.011: FAILS the mean clause by 0.00002** (not rounded up). Nothing handed to perfect-following.
+- [D, oracle] exact anchor tilt +0.0164, 70 % from the pitcher (ep21/22, our mesh lacks half its base: systematic
+  6 deg; needs a complete-base pitcher mesh). Translation offset after alignment +0.030 (+0.0195 after the tilt
+  oracle), concentrated in ep24 / ep31 / ep11.
+
 ## 2026-11-01 ~11:44 UTC: PACK 11 UPLOADED: AUC 0.83921, our best on every board (MP-SR 0.70, RPE 3.179, MPPE 2.545, SP-SR 0.85)
 - Pack 11 = pack 10 with eval 10's policy trained at njmax 1024 (training-only) and evaluated at stock 512 / 256
   (disclosed).
