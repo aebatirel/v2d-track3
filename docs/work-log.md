@@ -6098,3 +6098,16 @@ arm and a no-policy replay floor to stage B.
   - determined-wright runs a FlashCHORD zero-action replay with the hands parked away (falsifier: objects within
     5 mm / 2°), after the eval-20 budget.py.
   - Eval 30 sweeper-in-rack parked (no usable rack set).
+- 07:07 UTC 1 Nov determined-wright: **rest probe** (docs/research/physics-2026-10-30/rest_probe/, 2a809d6; CPU,
+  FlashCHORD at the pin). Hands-replay vs hands-parked:
+  - eval 5 pot 25.7 mm / 9.0° vs 3.3 / 1.7 (left index DP touches at f3);
+  - eval 8 pot 41.7 / 15.4 vs 8.9 / 8.2 (left pinky DP at f13);
+  - eval 33 spoon 87.0 / 31.5 vs 10.6 / 19.5 (right palm C_MC at f24);
+  - **[H] supported** for 5 / 8 / 33: robot distal phalanges, or the palm on 33, reach the object before the MANO
+    hold phase.
+  - Not the hands for eval 16 (the spoon rotates more when parked, 29°); eval 6 spoon falls when parked (needs support);
+    eval 3 is not reproducible on CPU (chaotic replay).
+  - Decision 07:09: parked, no reference rebuild. Evals 5 / 8 / 33 already score 0.966 / 0.969 / 0.936, so a fix can't
+    clear the ≥ +0.02 rule, and the hands don't explain evals 3 and 16.
+  - Noted for a later reference version: a contact-aware approach constraint in mkref (finger links ≥ a few mm from
+    objects until hold onset).
