@@ -6589,7 +6589,7 @@ Background agent, CPU only, $0, no ground truth read.
   GPU). Plan and gate sent (pipeline/hold_filter.py; gate on the 20 public episodes: registered ref-vs-mocap AUC mean
   Δ ≥ −0.002 and no episode < −0.01, AND zero-action jittered sim_vs_ref mean Δ ≥ +0.02); the gate will be written here
   before any result. Waiting for its answer on which public reference set to use.
-- 20:30 UTC: **repair (b) tool `pipeline/hold_filter.py` + `pipeline/test_hold_filter.py` (8 checks PASS)** (GT-free; only
+- 20:28 UTC: **repair (b) tool `pipeline/hold_filter.py` + `pipeline/test_hold_filter.py` (8 checks PASS)** (GT-free; only
   object_body_position / _wxyz change; holds from hold_phases.py; MANO wrist as the hand).
   - First design (`--mode rigid`: tie the object to the MANO wrist in every hold, Hampel + moving median, freeze at rest)
     **made ep13 worse vs mocap [M]** (public diagnostic, the oracle reference's object track): cup centre error mean
@@ -6606,10 +6606,10 @@ Background agent, CPU only, $0, no ground truth read.
   - Next: the public gate on all 20 public episodes (pre-registered below before any result), once the perfect-following
     session names the reference set. Public dataset downloaded for scoring only (HF nvidia/video_to_data_challenge
     track_3, 1.5 GB, scratchpad content/t3).
-- 20:36 UTC: scoring path for repair (b) checked [M]: `scripts/ref_to_npz.py` (reference object track → perception npz)
+- 20:31 UTC: scoring path for repair (b) checked [M]: `scripts/ref_to_npz.py` (reference object track → perception npz)
   + `pipeline/score_registered.py` (kit functions, our assets' meshes, public mocap) reproduces the box's ep13 P value
   exactly: registered AUC 0.9395 (cup 0.9414, rack 0.9375).
-- **20:36 UTC PRE-REGISTRATION, repair (b) public gate (written before any (b) result on a public reference set):**
+- **20:31 UTC PRE-REGISTRATION, repair (b) public gate (written before any (b) result on a public reference set):**
   - Set: the 20 public episodes' current-recipe references (the set the perfect-following session names; fallback: each
     episode's newest stored grasp-lock reference and its pre-lock input; the list is logged before scoring).
   - Arms per episode: U = the pre-lock input as is; F = `pipeline/hold_filter.py` defaults (`--mode glitch`) on it. Both
