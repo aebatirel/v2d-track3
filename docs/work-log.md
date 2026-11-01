@@ -10789,3 +10789,7 @@ score.
   over). Not run on eval here: this lane's jump scan already covers JUMP-type flags (14 / 32 / 33 only).
 - 21:53 UTC 1 Nov pfB seed 42 (training box, NREP 10, sim_vs_ref vs P) [M]: eval 14 two-hand 0.603 ± 0.105 (packed H5p7
   0.727); eval 16 two-hand 0.713 ± 0.037 (packed 0.850). Both below the packed policy; seed 43 running (68 min per seed wave).
+- 22:12 UTC 1 Nov pfA seed 42 (public ep13, NREP 10) [M]: single-hand AUC vs mocap 0.378 ± 0.110 (sim_vs_ref 0.373);
+  two-hand AUC **0.587 ± 0.156** (sim_vs_ref 0.614); paired Δ +0.209 on this seed. Rule needs both seeds (seed 43 running).
+  Caveat [I]: public ep13's single lock carries with the RIGHT hand (from f46), eval 14's packed lock with the first picker
+  (left), so the public control is weaker than eval 14's packed construction; eval 14 two-hand seed 42 is 0.603 vs packed 0.727.
