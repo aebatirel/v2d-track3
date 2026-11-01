@@ -1,14 +1,24 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-01 ~12:30 UTC: GRASP-mode test on public ep13 (branch `claude/grasp-ep13-20261101`, CPU, $0): built, dev sweep running
-- Goal (owner): can a GRASP-style sampler make ep13 (eval 14's twin: hand-over + flip, control-limited) feasible?
-- Built and checked: `solve.py --method grasp` + `tools/physics_solve/grasp_window.py` (GRASP's own MIT optimiser maths,
-  no SPIDER code). The default path is bit-identical to the old solver; GRASP-mode output replays bit-identically to its
-  committed trajectory [M].
-- Next: freeze the GRASP settings from the ep31 dev sweep, commit `docs/research/grasp-ep13-20261101/PREREG.md`, then the
-  four ep13 solves ({anneal, grasp} × {oracle, perceived}), jitter-checked (16 copies). Gate: grasp − anneal ≥ +0.05 on
-  the perceived reference, neither reference worse by > 0.05.
-- No GPU, nothing rented, nothing sent to Kaggle. Other lanes' state: see keen-heisenberg's STATUS (pack 11 uploaded).
+## 2026-11-01 ~21:10 UTC: GRASP-mode test on public ep13 — FAIL, no GPU step; reference-side findings (branch `claude/grasp-ep13-20261101`, CPU, $0)
+Report: `docs/research/grasp-ep13-20261101/README.md`; PREREG frozen at d8544cf before any ep13 solve.
+- **GRASP mode built** (`solve.py --method grasp`, `tools/physics_solve/grasp_window.py`; GRASP's own MIT optimiser maths, no
+  SPIDER code). Default path bit-identical to the old solver; outputs replay bit-identically to the committed trajectory [M].
+- **Gate [M]** (jittered sim_vs_ref, 16 copies): test A (twins' references, the owner's gate) d_b = 0.000 (neither solver
+  changes a frame: the left hand is parked); test B (two-hand rebuild) d_b = +0.024 (CI −0.07..+0.12), d_a −0.027. Bar
+  +0.05: **both FAIL, no GPU step proposed.** The last test-A oracle arm cannot change it.
+- **Findings [M]:**
+  - the ep13 twin references (single-hand lock) park the left hand; the right hand holds only after the cup has risen.
+    Eval 14's packed lock keeps its first picker (left) instead;
+  - with mocap motion the first-picker lock (`grasp_lock.py --single_hand 2`, new) is the most followable ep13 reference
+    (0.672 vs floor 0.573); with our perceived motion every construction is below the floor;
+  - our perceived cup is close to mocap at the pick (≤ 1 cm, 3–8°); the hand–cup relation is ~3–4 cm off. The cup's
+    symmetry-axis twist (up to 140°) costs only our plain-ADD proxy (the leaderboard is symmetric for cups);
+  - repairs tried: twist canon (score up, cup followed worse: not useful); hold_filter (public gate FAIL: accuracy
+    +0.0017 OK, followability −0.018); both not used. Tools stay in `pipeline/` for reference.
+- **Coordination:** the owner's "perfect following" session (session_01D9UJC8Nz9EEFNmz2yzimzN) owns all GPU; it runs ep13
+  single vs two-hand RL (pfA) and eval 14 / 16 / 32 / 33 / 15 retrains, results ≈ 00:00–01:00 UTC; first picker is its
+  batch-3 option. No rentals from this session; nothing sent to Kaggle.
 
 ## 2026-11-01 ~08:56 UTC: WRAP-UP (keen-heisenberg relayed the owner: start nothing new). Nothing of mine is running.
 - **Done (31 Oct 12:00 – 1 Nov 09:00 UTC):**
