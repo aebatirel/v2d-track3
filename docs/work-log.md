@@ -5999,3 +5999,23 @@ arm and a no-policy replay floor to stage B.
     (determined-wright be1e893: 0 / 0 overflow, byte identity). If it passes the swap rule, it goes into pack 10.
   - My recommendation to the owner: wait for ev10cs5; in parallel, optionally ask the organisers (paste-ready
     question given).
+- 05:48 UTC 1 Nov bold-albattani: **public pose-fix test FAILS its gate** [D].
+  - PREREG df60ff2 before scoring; output sha 4ef1305 committed before the ground truth was staged; results e3b1fcd;
+    CPU, $0.
+  - Rule A: mean ΔAUC −0.0107 (gate +0.002), min −0.0342 (ep41); 17 / 20 worse; MPPE +0.128 cm, RPE +0.087 cm. The
+    before scores reproduce the stored 9a+ runs.
+  - Variants also negative: no frame-0 shift −0.0051; pair overlaps only −0.0024; with support drop −0.0106.
+  - Direction check falsified: on 28 / 50 segments the push does not point toward the truth (pair pushes right on
+    11 / 16 but overshoot ~5.7×; table lifts wrong or orthogonal on 23 / 34).
+  - **Correction:** with our meshes at the TRUE mocap poses the overlaps persist (ep11 cups 65 cm³, ep31 sweeper–rack
+    11.1, ep24 boards 9.9, ep2 lid–pot 5.9). Only the cup in the rack is mostly pose (ep12 2.2 → 0.7, ep13 4.1 → 1.9).
+    So "the poses are the problem" was too strong; a large part is mesh shape. Container openings may be counted as
+    solid.
+  - The C0 pot's lowest point sits 6.9–8.3 mm below the real base in all 9 pot episodes (library_v3 pitcher 7–11 mm).
+    Scoring registration absorbs it, but [H] in sim it puts the pot into the table.
+  - No rest-projection shift on any eval reference. Eval 10: pieces (ev10cs4 / 5). Evals 1 / 30: mesh-side. Eval 14:
+    about half pose (untested rule).
+  - 05:52 reply: yes to re-basing the pot / pitcher collision bases on CPU, with pre-registered gates and collision-only
+    unless the CD-O guard applies. Linked to the ep2 drawdiv. [H] A re-based pot cuts the early lid failures;
+    falsifier: an ep2 A/B still shows ≥ 8 early lid onsets per 20 draws. That is a GPU test after ev10cs5, credit
+    permitting. drawdiv README updated.

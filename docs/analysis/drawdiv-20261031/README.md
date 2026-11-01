@@ -89,3 +89,11 @@ Reading:
   pot+lid episode (sd 0.239 → 0.017). bold-albattani's precheck finds our public rest poses interpenetrate. If so, a
   pose fix that separates lid and pot at rest should cut ep2's early lid failures.
   - Falsifier: ep2 rollouts on a pose-fixed reference keep ≥ 8 early lid onsets per 20 draws.
+
+**Update 05:52 UTC 1 Nov:** bold-albattani's public pose-fix test falsified the rest-projection cure.
+- PREREG df60ff2, results e3b1fcd: mean ΔAUC −0.0107, 17 / 20 worse; pushes point toward the truth on only 22 of 50
+  segments.
+- With our meshes placed at the true mocap poses, ep2's lid and pot still overlap (5.9 cm³; uncertain for container
+  openings). The C0 pot's lowest point sits 6.9–8.3 mm below the real base.
+- So the [H] above changes from "pose fix" to "mesh fix": a pot re-based so it rests on the table, not in it, should cut
+  ep2's early lid failures. Same falsifier (≥ 8 early lid onsets per 20 draws on an ep2 A/B).
