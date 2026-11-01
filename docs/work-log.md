@@ -5518,3 +5518,9 @@ Advice given:
 - ~01:00 UTC pre-staged the packed side of the D verdict (single-file downloads, no listing; 60/60): H5p7 r1..r10 for
   evals 14 16 25 30 33 (50), the old packed draws (pack6 ×4, c33B ep33), and the five packed references P (md5 = the
   packed_refs.json table on all five). Not scored yet; dr_score runs once C's draws exist (same call scores all sets).
+- 00:47 UTC bold-albattani (their INTERLOCK 20.15, commit 3fce701): **eval-25 board slot verdict NO** for pack 10.
+  Round-3 body (5 slotted boxes per board) slots both boards on public ep24 and passes P2–P7 (P3 0.074 cm / 0.68°; 124
+  constraint rows, 31 contacts, no overflow) but fails the pre-registered ratio clause vs a one-box control (3.9x > 2x);
+  not changed post hoc. [M] Their relative board pose at assembly differs from our packed eval-25 reference (md5
+  71ac95f3) by 9.8 mm / 2.5° vs a 1 mm slot clearance; [H] any future slot must be cut in the frame of the replayed poses.
+  → meshes/carve/ev25 stays; no eval-25 rollout re-run. Pack 10 Tier 1 is now only the D cells (eval 10 NO-SWAP).
