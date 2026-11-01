@@ -1,0 +1,83 @@
+{
+ "cup_axis_body": [
+  0.011,
+  -0.036,
+  0.999
+ ],
+ "O2_anneal": {
+  "plain_nominal": 0.6957,
+  "plain_jit": 0.6507,
+  "sym_nominal": 0.6964,
+  "sym_jit": 0.6528,
+  "sym_jit_sd": 0.0917
+ },
+ "O2_grasp": {
+  "plain_nominal": 0.6929,
+  "plain_jit": 0.6241,
+  "sym_nominal": 0.6962,
+  "sym_jit": 0.6262,
+  "sym_jit_sd": 0.107
+ },
+ "O2_input": {
+  "plain_nominal": 0.6474,
+  "plain_jit": 0.6041,
+  "sym_nominal": 0.6503,
+  "sym_jit": 0.6064,
+  "sym_jit_sd": 0.0931
+ },
+ "O_input": {
+  "plain_nominal": 0.5724,
+  "plain_jit": 0.5707,
+  "sym_nominal": 0.5725,
+  "sym_jit": 0.5708,
+  "sym_jit_sd": 0.003
+ },
+ "P2_anneal": {
+  "plain_nominal": 0.527,
+  "plain_jit": 0.3935,
+  "sym_nominal": 0.5414,
+  "sym_jit": 0.4165,
+  "sym_jit_sd": 0.1439
+ },
+ "P2_grasp": {
+  "plain_nominal": 0.6266,
+  "plain_jit": 0.4176,
+  "sym_nominal": 0.6507,
+  "sym_jit": 0.4354,
+  "sym_jit_sd": 0.1585
+ },
+ "P2_input": {
+  "plain_nominal": 0.5268,
+  "plain_jit": 0.3435,
+  "sym_nominal": 0.5424,
+  "sym_jit": 0.3766,
+  "sym_jit_sd": 0.154
+ },
+ "P_anneal": {
+  "plain_nominal": 0.5406,
+  "plain_jit": 0.5542,
+  "sym_nominal": 0.5472,
+  "sym_jit": 0.5707,
+  "sym_jit_sd": 0.0063
+ },
+ "P_grasp": {
+  "plain_nominal": 0.5406,
+  "plain_jit": 0.5542,
+  "sym_nominal": 0.5472,
+  "sym_jit": 0.5707,
+  "sym_jit_sd": 0.0063
+ },
+ "P_input": {
+  "plain_nominal": 0.5406,
+  "plain_jit": 0.5542,
+  "sym_nominal": 0.5472,
+  "sym_jit": 0.5707,
+  "sym_jit_sd": 0.0063
+ },
+ "floor_P": {
+  "sym": 0.5737
+ },
+ "floor_O": {
+  "sym": 0.5729
+ }
+}

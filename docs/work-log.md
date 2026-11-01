@@ -6549,3 +6549,20 @@ Background agent, CPU only, $0, no ground truth read.
   full-orientation training reward. Repair (a) still matters: the reference asks for an impossible spin of a resting cup,
   and the proxy is pessimistic on cup episodes. README §5 / §8 corrected. Report-only: sim_vs_ref with the kit's
   symmetric errors per arm (`scripts/sym_score.py`), running.
+- 20:20 UTC: symmetric re-scoring (kit `_symmetry_point_errors`, blue cup symmetric about our mesh's PCA axis; report
+  only; `scripts/sym_score.py`) [M], jittered means: P2 input / anneal / grasp 0.377 / 0.417 / 0.435 (plain 0.344 /
+  0.394 / 0.418); O2 0.606 / 0.653 / 0.626 (plain 0.604 / 0.651 / 0.624); P all 0.571 (plain 0.554); symmetric floors
+  P 0.574, O 0.573. Verdicts unchanged (symmetric d_b +0.019). **Correction of my 19:36 reading:** the twist accounts for
+  only ~0.02–0.03 of the P2 score; P2 stays far below the floor on the symmetric metric too. Per-frame symmetric error
+  (median of 16 copies): P2 input loses the cup physically at the pick (f32: 5.1 cm, 32° tilt error), O2 at f32 2.6 cm /
+  8°, and O2 + our solver carries it within 1–3 cm until ~f80 (lost by f88, in the right-hand carry). During the pick
+  (f16–48) the perceived cup is close to the oracle cup in everything observable (axis within 3–8°, centre within
+  0.4–1.0 cm, same heights), but the left wrist–cup distance differs (f24: 17.7 vs 14.1 cm). [H-lock-twist]: the grasp
+  lock fixes the hand in the object frame, so the spurious twist drags the locked hand around the cup; falsified if
+  twist canonicalisation before the lock does not raise P2's jittered symmetric score by ≥ +0.05 (running,
+  `scripts/twist_ep13.sh`).
+- 20:20 UTC: `pipeline/twist_canon.py` (repair (a), GT-free; parallel transport of the symmetry axis, twist follows the
+  holding wrist while held and moving) + `pipeline/test_twist_canon.py` (3 checks PASS). Messages: perfect-following
+  session (split accepted: I do (a) + tool + cup-twin gate, it owns GPU, (c) and the ep13 RL test; store paths sent);
+  physics-perception session (tool path; it will reuse it for the all-20 sweep). I am renting nothing: the relayed
+  "rent cheap Vast CPU" permission came via another session, not from the owner in this chat, and CPU here suffices.
