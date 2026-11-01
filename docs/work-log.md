@@ -5842,3 +5842,9 @@ Advice given:
   the ≥ +0.02 rule (packed mean already 0.921). ev10cs5: settle at f0 in progress (survey: packed ev10 beige corner below
   the support 6.5 mm / 4°; report-only for the s42 / s43 reading). Pots evals 3/5/6/8 and spoons 16/33 move in the
   zero-action rest checks but not hands-free; determined-wright tests whether the replayed hands touch them.
+- 06:56 UTC bold-albattani asked for an OK to run support_fill on the eval-19 reference (CPU, $0, their folder; gates
+  pre-registered in their rebase/ev19/GATES.md: tips < 5° in ≥ 15/16 hands-free copies at f0 and the first H30 frame,
+  visual md5 unchanged, piece count, budget.py binding). OK given with the call (pipeline/support_fill.py at 22fb399f,
+  default settings as glock_public SF=1, packed perc2mcks reference of 20261025-std1928-ee7ba8e) and the ep18 history:
+  the first fill did not stop the brush falling (fill bug: a slab for one rest pose under another, fixed — a fill may not
+  reach below any other resting pose), so the tool may add nothing if eval 19 has several resting poses.
