@@ -17,6 +17,11 @@ the old tool's, vertex for vertex (checked: rebuild of meshes/carve/ev10, Hausdo
                 at r / cos(pi / SEG) at the sector edges, so the wall polygon circumscribes the lathe wall on both faces
                 (the mirror of ev10, which inscribes both). Needed because with the outer points unchanged the
                 mid-sector wall r cos(pi / SEG) - f is negative at 2 bins (mouth lip -1.30 mm, bottom corner -0.30 mm).
+  --floor_plate (receiver, with --base_pieces; amendment A2 of GATES.md, post hoc on v1's gate-2 trace) the cavity
+                floor becomes ONE convex piece, the hull of the circumscribed SEG-gon rings r(h) / cos(pi / SEG) at
+                h_floor = h_base - t and at the profile bins in (h_floor, h_base] (the tool's own base plate span), and
+                the base pieces are clipped to h >= h_base with pipeline/interaction_carve.clip (drops pieces thinner
+                than a 0.2 mm inscribed ball), so a single piece faces the cavity floor
   --base_pieces DIR --base_first K  (receiver) instead of --base_from_hulls (which needs flash_chord's CoACD): copy
                 DIR/piece_K.. byte for byte as the base (meshes/carve/ev10/blue_cup: piece_36..piece_52, FlashCHORD
                 CoACD hulls of library_v3 clipped to the base side of the inner floor).
@@ -39,7 +44,7 @@ ap.add_argument('--solid', action='store_true'); ap.add_argument('--mass', type=
 ap.add_argument('--wall', type=float, default=0.0)
 ap.add_argument('--base_to_mesh'); ap.add_argument('--ext_max', type=float, default=1.0)
 ap.add_argument('--inner_circ', action='store_true'); ap.add_argument('--outer_insc', action='store_true')
-ap.add_argument('--outer_circ', action='store_true')
+ap.add_argument('--outer_circ', action='store_true'); ap.add_argument('--floor_plate', action='store_true')
 ap.add_argument('--base_pieces'); ap.add_argument('--base_first', type=int, default=0)
 a = ap.parse_args()
 z = np.load(a.profile); fit = json.load(open(a.fit))
@@ -125,10 +130,30 @@ for b0, b1 in zip(edges[:-1], edges[1:]):
         ring = np.linspace(0, 2 * np.pi, 2 * a.seg, endpoint=False)
         V = np.array([P(hh, rr, an) for hh, rr in zip(hb_, rb_) for an in ring])
         pieces.append(trimesh.convex.convex_hull(V)); srcs.append(None)
+floor_rep = None
 if hollow and a.base_pieces:
     bp = sorted(glob.glob(os.path.join(a.base_pieces, 'piece_*.obj')))[a.base_first:]
-    for f in bp:
-        pieces.append(trimesh.load(f, force='mesh')); srcs.append(f)
+    if a.floor_plate:
+        assert base_hi
+        import sys
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), *['..'] * 9, 'pipeline'))   # repo
+        from interaction_carve import clip
+        hfl = hb - t
+        hh_ = np.r_[hfl, h[(h > hfl) & (h <= hb)]]
+        rr_ = np.interp(hh_, h, r) * sec
+        plate = trimesh.convex.convex_hull(np.array([P(x, y, an) for x, y in zip(hh_, rr_) for an in angs[:-1]]))
+        pieces.append(plate); srcs.append(None)
+        kept = 0
+        for f in bp:
+            Vc = clip(np.asarray(trimesh.load(f, force='mesh').vertices, float), [(-d, float(d @ c0 + hb))])
+            if Vc is not None:
+                pieces.append(trimesh.convex.convex_hull(Vc)); srcs.append(None); kept += 1
+        floor_rep = dict(plate_h_mm=[round(float(hfl) * 1e3, 2), round(float(hb) * 1e3, 2)],
+                         plate_ring_r_mm=np.round(rr_ * 1e3, 2).tolist(), plate_cm3=round(float(plate.volume) * 1e6, 3),
+                         base_hulls_in=len(bp), base_hulls_kept=kept, clip_plane_h_mm=round(float(hb) * 1e3, 2))
+    else:
+        for f in bp:
+            pieces.append(trimesh.load(f, force='mesh')); srcs.append(f)
 elif hollow:                                                # ring base, exactly as lathe_collision.py
     rbase = float(r[np.argmax(h)] if base_hi else r[np.argmin(h)])
     hs = (hb - t, hb) if base_hi else (hb, hb + t)
@@ -157,8 +182,9 @@ rep = dict(tool='lathe_cavsafe (lathe_collision.py blob 680cc2f9 + opt-in cavity
            wall_fitted_mm=round(float(z['t']) * 1e3, 2), base_extended_mm=round(ext * 1e3, 2),
            max_piece_vertices=int(max(len(p.vertices) for p in pieces)),
            inner_circ=a.inner_circ, outer_insc=a.outer_insc, outer_circ=a.outer_circ,
-           base=(f'{a.base_pieces} piece_{a.base_first:02d}.. copied byte for byte' if a.base_pieces else 'ring base'),
-           bands=band_rep)
+           base=((f'one floor plate + {a.base_pieces} piece_{a.base_first:02d}.. clipped to h >= h_base' if a.floor_plate else
+                  f'{a.base_pieces} piece_{a.base_first:02d}.. copied byte for byte') if a.base_pieces else 'ring base'),
+           bands=band_rep, floor_plate=floor_rep)
 json.dump(dict(mass=a.mass, com=com.tolist(), inertia=I.tolist(), source='lathe_collision uniform solid pieces'),
           open(f'{a.out}/inertia.json', 'w'), indent=1)
 json.dump(rep, open(f'{a.out}/lathe_collision.json', 'w'), indent=1)

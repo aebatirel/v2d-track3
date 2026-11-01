@@ -1745,6 +1745,13 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   no eval bundle, no r0, no deliveries line** (`build/I/results/collcarve2-eval/README.md`, with a hand-off text for
   determined-wright / focused-pascal, not sent). No rental, $0.
 <!-- cc2eval-end -->
+<!-- cc2report-start -->
+- 03:13 (Report step, collision-carve round-2 workflow) started. Read STATUS, CLAUDE.md, INTERLOCK 21.12-21.14.9,
+  PREREG F-I5.15-F-I5.18, verify_cc2_0 / verify_cc2_1, the collcarve2-public, collcarve2-evalcheck, collcarve2-eval
+  and t_i17_c1 READMEs and corrections, this section to 03:13. Task: INTERLOCK result section for round 2 (21.13 /
+  21.14), PREREG F-I5.19 outcomes and dated corrections (no rule change), a dated work-log entry, a short STATUS
+  section; three hand-off texts returned to the orchestrator (not sent). No code, no run, no rental, $0.
+<!-- cc2report-end -->
 
 ## ev10 cavity-safe pieces (agent of the orchestrator, started 1 Nov 02:47 UTC)
 Task: a CANDIDATE eval-10 collision set (blue cup = receiver, beige cup = guest) whose pieces do not overlap at the
@@ -1837,3 +1844,9 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   cavity (the blue mesh fills its own cavity) + 33.8 outside it (the beige mesh crosses the blue's lathe wall / base:
   pose and mesh size); exact-lathe design floor (shrunk beige body outside the cavity) 6.68 cm3 (1.26-21.28), above
   the candidate's 1.92 because inscribed chords sit inside the exact body.
+- 03:11 [M] v2 (A2, post hoc) built: `lathe_cavsafe.py ... --inner_circ --outer_circ --floor_plate`; blue 44 pieces
+  (36 wall + 1 floor plate [75.39, 78.39] mm, rings 35.16 / 34.66 / 32.66 mm, 10.46 cm3 + 7 of the 17 ev10 base hulls
+  clipped to h >= 78.39 mm; the other 10 lie wholly above the plane or leave a slab thinner than the clip's 0.2 mm ball), 132.1 cm3; beige = v1. The footing is the same 7
+  hulls whose bottoms reach 79.1-80.0 mm (the ev10 hulls that end at 76.5-78.5 mm never touch a level table). v1
+  rebuild with the edited script byte-identical. evalcheck / contacts / settle on v2 running; gate 3 v2: 0.0 mm,
+  0.0 cm3 PASS.
