@@ -5931,3 +5931,6 @@ score.
   - Sim flags if E0b is ever used: 17 of the pot's 32 marker balls sit below its base; the beige has three inside-out
     shells. Lid, rack and blue cup not adopted. Eval 8's v3 vs v3x frame still open.
   - Pack 9b keeps 9a+'s meshes unless the owner picks E0b.
+- 00:05 UTC (1 Nov) determined-wright: arm V (actor sees object velocity) inconclusive, not used (mean Δ −0.024: ep2
+  −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007). Recipe screen complete: K, D and V inconclusive; S no signal. No
+  recipe change for pack 10 from that lane. Its 31 Oct GPU spend ≈ $30.15 [E] over 6 boxes; none running.
