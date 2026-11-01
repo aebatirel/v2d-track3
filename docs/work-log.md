@@ -6048,3 +6048,13 @@ diagnostic; nothing is picked for submission.
 - Orchestrator: background agent building a cavity-safe ev10 piece candidate (receiver inner faces tangent, guest
   inscribed, <= 53 / 49 pieces) with GT-free overlap / nefc / kept-volume numbers vs packed ev10, folder
   `gmg/build/I/results/ev10-cavsafe/`; CPU, $0. FlashCHORD budget.py on it would be determined-wright's step.
+
+### 2026-11-01 03:00 UTC — owner permission for collision-overlap fixes (relayed); queue started
+- keen-heisenberg relayed the owner, verbatim 02:50 UTC: "I give you permission for everything" (answer to fixing the
+  collision overlaps behind the biggest losses: eval 10 never lifted; eval 30 sd 0.255; eval 14 sd 0.199; eval 1 cured
+  0.239 -> 0.017). Limits unchanged: competition rules, CLAUDE.md integrity.
+- Queue: (1) ev10 cavity-safe pieces (agent running; gates added before measuring: overlap median <= 1 / max <= 3 cm3,
+  sim=rl no overflow, intrusion <= 0, kept >= 80 %); (2) eval-30 rack slot then (3) eval-14 (agent started; gates
+  committed first: overlap, rack fill beyond mesh <= 1 cm3, sim=rl, settle 4 mm / 5 deg, kept >= 90 %; eval-14 cup in
+  table flagged as reference issue); (4) evals 32, 15/16 if time allows. Path per candidate: our gates -> determined-
+  wright budget.py -> focused-pascal retrain under the swap rule. CPU, $0.
