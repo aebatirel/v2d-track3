@@ -5836,3 +5836,9 @@ Advice given:
   final lowest point within 1 mm of the table, transient dips ≤ 4.1 mm; no overflow / NaN. Flag: at f192 the pitcher
   falls hands-free in both (packed 6.8 cm / 28°, b1 12.0 cm / 50°); stable at f152 / f183. [H] f192 is a pour / in-hand
   frame; the build agent checks hands-off status (H30, our tracks) and discloses. Not a blocker for the launch.
+- 06:57 UTC keen-heisenberg, from bold-albattani's f0 survey (a6923c5): eval 19 sweeper falls in 16/16 hands-free
+  settles at f0 (std-mode reference, support_fill never ran) → a pre-registered CPU support_fill test on the eval-19
+  reference (coordinate with bold-albattani; my tool); a GPU retrain only after ev10cs5 + eval 20 are funded and under
+  the ≥ +0.02 rule (packed mean already 0.921). ev10cs5: settle at f0 in progress (survey: packed ev10 beige corner below
+  the support 6.5 mm / 4°; report-only for the s42 / s43 reading). Pots evals 3/5/6/8 and spoons 16/33 move in the
+  zero-action rest checks but not hands-free; determined-wright tests whether the replayed hands touch them.
