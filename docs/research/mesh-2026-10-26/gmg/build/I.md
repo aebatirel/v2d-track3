@@ -1758,3 +1758,7 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   packed ev10 54.2 cm3 (the 12 inscribed chords alone account for about 36 cm3 [E]), candidate 0.0 cm3. Guest: ev10
   beige reaches 2.71 mm beyond its shrunk profile (and stays >= 5.29 mm inside the unshrunk lathe profile); candidate
   0.00 / 8.0 mm.
+- 03:03 [M] evalcheck done (202 s each). Packed rerun = precheck exactly (V_packed f124-160 median 11.856, max 32.67).
+  **Gate 1, candidate: V_packed f124-f160 median 1.92 cm3, min 0.16, max 6.82 (f124) -> FAIL** (needs <= 1.0 / 3.0);
+  -84 % median, -79 % max vs packed. Faithful visual overlap (pose floor as defined) unchanged, median 80.6 cm3.
+  Piece union volumes: blue 130.06 cm3 (ev10 152.51), beige 264.29 (303.08). Contacts (gate 2) started 03:03.
