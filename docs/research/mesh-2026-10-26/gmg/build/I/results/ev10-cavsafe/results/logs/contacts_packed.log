@@ -1,0 +1,6 @@
+packed f111 (gate): max nefc 1252 ncon 313 step0 nefc 1004 overflow 16/16 classes {'guest_receiver': 313, 'guest_table': 0, 'receiver_table': 0} disp [33.5, 30.65] 7.9 s
+packed f142 (gate): max nefc 656 ncon 164 step0 nefc 568 overflow 16/16 classes {'guest_receiver': 164, 'guest_table': 0, 'receiver_table': 0} disp [17.8, 16.65] 4.7 s
+packed f116 (gate): max nefc 1296 ncon 324 step0 nefc 1280 overflow 16/16 classes {'guest_receiver': 324, 'guest_table': 0, 'receiver_table': 0} disp [34.3, 31.85] 7.7 s
+packed f124 (report): max nefc 876 ncon 219 step0 nefc 588 overflow 16/16 classes {'guest_receiver': 219, 'guest_table': 0, 'receiver_table': 0} disp [26.2, 25.1] 7.9 s
+packed f160 (report): max nefc 580 ncon 145 step0 nefc 512 overflow 4/16 classes {'guest_receiver': 127, 'guest_table': 0, 'receiver_table': 18} disp [3.25, 13.5] 3.7 s
+gate2 {"frames": [111, 142, 116], "max_nefc": 1296, "max_ncon": 324, "overflow_copies": 48, "pass": false}

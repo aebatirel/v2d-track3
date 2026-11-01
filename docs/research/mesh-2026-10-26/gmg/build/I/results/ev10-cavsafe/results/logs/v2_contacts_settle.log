@@ -1,0 +1,13 @@
+03:13:09 epcand2 done in 81.4 s: H0 52 / 161, H30 33, receiver blue_cup
+cand2 f111 (gate): max nefc 468 ncon 117 step0 nefc 416 overflow 0/16 classes {'guest_receiver': 117, 'guest_table': 0, 'receiver_table': 0} disp [33.1, 33.1] 1.9 s
+cand2 f142 (gate): max nefc 548 ncon 137 step0 nefc 296 overflow 1/16 classes {'guest_receiver': 131, 'guest_table': 0, 'receiver_table': 6} disp [17.1, 28.2] 1.4 s
+cand2 f116 (gate): max nefc 544 ncon 136 step0 nefc 544 overflow 4/16 classes {'guest_receiver': 136, 'guest_table': 0, 'receiver_table': 0} disp [33.9, 34.4] 1.4 s
+cand2 f124 (report): max nefc 612 ncon 153 step0 nefc 372 overflow 2/16 classes {'guest_receiver': 133, 'guest_table': 0, 'receiver_table': 20} disp [25.8, 29.8] 1.4 s
+cand2 f160 (report): max nefc 388 ncon 97 step0 nefc 284 overflow 0/16 classes {'guest_receiver': 77, 'guest_table': 0, 'receiver_table': 20} disp [1.95, 28.05] 1.4 s
+cand2 f117 (report_rule_not_static_in_hand): max nefc 504 ncon 126 step0 nefc 504 overflow 0/16 classes {'guest_receiver': 126, 'guest_table': 0, 'receiver_table': 0} disp [37.3, 36.4] 1.8 s
+gate2 {"frames": [111, 142, 116], "max_nefc": 548, "max_ncon": 137, "overflow_copies": 5, "pass": false}
+cand2 124 {"frame": 124, "max": {"step": 0, "nefc": 332, "ncon": 83, "guest_receiver_by_guest_group_band1_2_3_base": [8, 12, 34, 29]}, "nefc_step0": 332, "nefc_last_0p5s_median": 212.0, "ncon_last_0p5s_median": 53.0, "guest_rel_disp_end_mm": [-3.86, -0.22, 4.28], "receiver_tilt_end_deg": 2.11}
+cand2 142 {"frame": 142, "max": {"step": 0, "nefc": 256, "ncon": 64, "guest_receiver_by_guest_group_band1_2_3_base": [0, 4, 36, 24]}, "nefc_step0": 256, "nefc_last_0p5s_median": 212.0, "ncon_last_0p5s_median": 53.0, "guest_rel_disp_end_mm": [-4.41, -0.59, 11.97], "receiver_tilt_end_deg": 4.08}
+cand2 160 {"frame": 160, "max": {"step": 22, "nefc": 284, "ncon": 71, "guest_receiver_by_guest_group_band1_2_3_base": [19, 14, 36, 0]}, "nefc_step0": 224, "nefc_last_0p5s_median": 212.0, "ncon_last_0p5s_median": 53.0, "guest_rel_disp_end_mm": [-1.93, 2.03, 27.48], "receiver_tilt_end_deg": 0.97}
+
+[exited with code 0]

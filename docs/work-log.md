@@ -6105,3 +6105,13 @@ diagnostic; nothing is picked for submission.
   > 3. At every hands-off test frame on public episodes our tracked poses are impossible (overlapping, or inside the table), so poses must be fixed before a carve can be judged.
   > 4. On the eval references the pack's collision pieces never block a possible pose; where they overlap at rest, the visual meshes overlap too: the poses are the problem.
   > 5. Our contact counter flags pieces the evaluator handles, so our contact numbers are indicative only. Next decisions: a ring rule for rough walls, and pose fixes.
+
+### 2026-11-01 03:50 UTC — orchestrator: collision carve round 2 closed; corrections relayed
+- Workflow collision-carve-2 done (report 2d9bfc5, INTERLOCK 21.15, PREREG F-I5.19). Nothing carved or delivered; no
+  eval pair qualified. Verifiers: cavity-safe rings cannot keep a 1.5 mm wall on our rough SHELLs (B1 stands); c1
+  validity check fails, so plain-MuJoCo contact counts are indicative only; eval-precheck hands-off must be H30.
+- Corrections relayed to focused-pascal, determined-wright and keen-heisenberg: (1) the 656-1,296 rows for eval 10 are
+  plain-MuJoCo only (the eval-10 overflow stands on FlashCHORD 536 / 13 % and the training logs); (2) eval 14 "16.6 mm
+  into the table" and eval 32 "19.5 mm" were H0 frames with a hand 3 mm away; under H30 max 3.9 mm, no frame fails.
+  Round-2 hand-offs (pose-fix list, keep packed carves) and the owner summary sent. Rack-slot agent told to use H30
+  frames, report the visual-mesh pose floor, and label plain-MuJoCo counts indicative.
