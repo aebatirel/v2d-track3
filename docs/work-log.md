@@ -5748,3 +5748,8 @@ Advice given:
   (nothing launched; design-test numbers only, no eval result): prefer ev10cs5, pre-stated in the PREREG — used if it
   arrives with every other piece byte-identical to ev10cs4 by md5 and determined-wright's 32×60 recheck shows 0 / 0
   overflow, both by 06:30 UTC; else ev10cs4 (fa2ec41). Build agent told to parameterise the pieces; recheck requested.
+- 05:14 UTC determined-wright [M]: packed meshes/carve/ev10 also carries inertia.json; make_assets.py reads it. ev10cs4
+  vs packed (0.3 kg each): blue COM z 2.99 → 15.77 mm (12.8 mm toward the floor plate), inertia +0.4 / +0.4 / +4 %;
+  beige COM 1.4 mm, izz −10 %, ixx/iyy +1.6 %. Decision: keep piece-derived inertia (the pipeline's way, as packed);
+  disclosed as a second changed variable; the job records the inertials and md5s it used. determined-wright will run
+  the 32×60 budget + byte-identity checks on ev10cs5 ~20–25 min after it lands.
