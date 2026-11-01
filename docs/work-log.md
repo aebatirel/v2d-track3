@@ -6441,3 +6441,13 @@ arm and a no-policy replay floor to stage B.
   - policy tracking ≈ 0.083 of AUC loss;
   - reference bias: constant offset +0.050 and frame-0 tilt +0.040, overlapping.
   - From 0.839, 0.9 needs ≈ +0.06, i.e. most of both halves realised without ground truth.
+- 21:20 UTC 1 Nov physics-perception report (claude/physics-perception-20261101 @ e09b524d; CPU, $0): **no
+  pre-registered gate passed** on the 20 public episodes.
+  - Best: stack F1P1 (physics-fused anchor tilt + "resting objects don't float") ΔAUC +0.00298, 14 better / 0 worse,
+    MPPE −0.028, RPE −0.011, CI [+0.0008, +0.0059]. It misses the +0.003 clause by 0.00002, so it is not handed over.
+  - Ideas 1 / 2 ≈ refine S3 (−0.0013). The stable-pose prior is only a ~2° sensor.
+  - Exact-tilt oracle +0.016, 70 % from the pitcher (ep21 / 22: systematic 6°; our mesh lacks half its base). A
+    complete-base pitcher geometry is needed (GPU ~$1–3).
+  - Twist: GRASP's canonicaliser is worse vs mocap on 5 / 6 cups; a rest-only hold is better on 6 / 6 and AUC-neutral.
+  - qa_physics.py (GT-free audit) flags both catastrophic public failures (ep0 lid, ep23 swap) plus 1 false positive;
+    offered to perfect-following.
