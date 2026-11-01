@@ -1,5 +1,15 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~20:08 UTC: method name "KURSAD"; overnight push toward AUC 0.9
+- The owner names our method **KURSAD** (perception → physics-consistent reference → learned tracking). Use the name
+  in reports and the technical write-up.
+- Overnight sessions:
+  - perfect following of the perceived trajectory (session_01D9UJC8Nz9EEFNmz2yzimzN, GPU $102);
+  - physics-informed perception (session_01D9UJC6vSSNiJqaAdzNUn7d, CPU);
+  - GRASP / ep13 (session_01D9UJC8CjzgvbaFYA5wbvPg, CPU).
+  - Cheap Vast CPU rentals are allowed for the two CPU sessions ($8 combined).
+- Morning check at 06:30 UTC 2 Nov (keen-heisenberg).
+
 ## 2026-11-01 ~11:44 UTC: PACK 11 UPLOADED: AUC 0.83921, our best on every board (MP-SR 0.70, RPE 3.179, MPPE 2.545, SP-SR 0.85)
 - Pack 11 = pack 10 with eval 10's policy trained at njmax 1024 (training-only) and evaluated at stock 512 / 256
   (disclosed).

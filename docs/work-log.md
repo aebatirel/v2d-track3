@@ -6436,3 +6436,8 @@ arm and a no-policy replay floor to stage B.
     first, labelled, self-destroy + watchdog, never touch other sessions' instances.
   - To keep the ≥ $10 reserve on $122.85 of credit, the perfect-following GPU budget moved from $110 to $102 (told to
     that session).
+- 20:08 UTC 1 Nov owner names the method **"KURSAD"** (the full pipeline: perception, physics-consistent reference,
+  learned tracking). Owner's target: AUC above 0.9 with the perception fixes. Headroom [E, public upper bounds]:
+  - policy tracking ≈ 0.083 of AUC loss;
+  - reference bias: constant offset +0.050 and frame-0 tilt +0.040, overlapping.
+  - From 0.839, 0.9 needs ≈ +0.06, i.e. most of both halves realised without ground truth.
