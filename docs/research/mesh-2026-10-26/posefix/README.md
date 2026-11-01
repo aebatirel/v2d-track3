@@ -7,7 +7,7 @@ All numbers are [D]: public episodes, our perception tracks, public scans standi
 
 Labels: [M] measured, [D] diagnostic (scored against public ground truth), [E] estimate, [H] hypothesis.
 Pre-registration: `PREREG.md`, pushed as df60ff2 (04:53:42 UTC) before any scoring step. The transformed tracks'
-sha256 were pushed as 4ef1305 (05:14:39 UTC) before the scoring inputs were staged.
+sha256 were pushed as 4ef1305 (05:14:39 UTC) before the scoring inputs were staged. Results: e3b1fcd.
 
 ## 1. In plain words
 
@@ -19,8 +19,7 @@ On public data it makes the poses **worse**, not better.
   correction is <= 0 on 28 of 50 shifted segments, so the prediction is falsified as the brief wrote it.
   - For segments with a pair overlap, the direction is mostly right (11 of 16 positive).
   - But the shifts are too large: a median 5.7 times the error component along them (where that is positive). The
-    position error fell on
-    only 3 of 50 segments.
+    position error fell on only 3 of 50 segments.
 - **Mesh check.** It shows why the shifts are too large. The overlaps come mostly from our meshes, not from our poses.
   - Placed exactly at the true (mocap) poses, our meshes still overlap: the ep11 cups by 65 cm3, the ep2 lid and pot
     by 5.9 cm3, the ep31 sweeper and rack by 11.1 cm3 (more than at our own poses), and the ep24 boards by 9.9 cm3.
