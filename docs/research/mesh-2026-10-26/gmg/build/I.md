@@ -1691,3 +1691,17 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   -7.0 mm; ep12 -4.6 mm; ep2 lid pushed up 1.2-6.1 mm; ep11 9.3-9.9 mm lateral). The precheck's verdicts agree with
   faithful S at every frame (verify_cc_1 B2 at round 1's frames likewise). README table filled. T-I16 step done:
   code 88f49df (runs), results 4023e4f + this commit. No rental, $0.
+
+## ev10 cavity-safe pieces (agent of the orchestrator, started 1 Nov 02:47 UTC)
+Task: a CANDIDATE eval-10 collision set (blue cup = receiver, beige cup = guest) whose pieces do not overlap at the
+packed reference's hands-off nested rest; measured GT-free against the packed `meshes/carve/ev10` (53 / 49) with the
+collcarve2-evalcheck method. Delivered to the pack lane as a measured candidate only; no pack is changed; no rental.
+Results: `build/I/results/ev10-cavsafe/`. Work dir `<scratch>/cavsafe`.
+- 02:47 Read STATUS.md, CLAUDE.md, collcarve2-evalcheck (README + scripts), meshes/carve/ev10 (carve.json,
+  lathe_collision.json), focused-pascal's pipeline/lathe_collision.py and ev10w README (31 Oct: the f100-160 intrusion is
+  a relative-pose offset, beige axis 4-7 mm off the blue cavity axis; widening the cavity failed both gates).
+  Eval 10 packs (packed_refs.json at focused-pascal 68f1421): run 20261026-gl10A2-5e0e100, reference ref_gl_ilc.parquet
+  md5 1a5003d9..., lib library_v3 (blue md5 75426314..., beige md5 6226281f...), pieces meshes/carve/ev10. Pack 9a+
+  changed the SUBMITTED beige mesh (C1/T1 obs-lathe) only; the packed policy's simulator copy is library_v3 + ev10.
+- 02:49 Profiles regenerated with approach2-scripts/lathe_fit2.py from library_v3 (trimesh 5.2.0 here; sha256 differ
+  from ev10w's 4.12.2 profiles: blue e8dfcff6..., beige d10d8eae...). Next: check they rebuild ev10's wall pieces.
