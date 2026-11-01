@@ -205,3 +205,21 @@ read. Markers: [M] measured, [E] estimate, [H] hypothesis.
    rollout kept, the pack-6 meshes). Pack 9b is assembled on CPU from pack 9a+ plus the PASS episodes' draw-1 rollout
    files (`verdict.json` pack9b[N].path), with every other episode byte-identical. That CPU repack (pack 9a's B7 method)
    is not built here.
+
+## Pack 9b CPU repack (added 1 Nov 2026 ~01:20 UTC, orchestrator; closes item 8)
+- Tool: `tools/pack_swap_rollouts.py` (sibling of pack_swap_meshes.py: swaps rollouts, refuses any mesh change).
+  Inputs = pack 9a+'s own packer inputs (scratchpad `pack9ap/pack9ap2/results` + `meshes`), base = build_9aplus parquet.
+- Per PASS episode N: `--swap N=<verdict.json pack9b[N].path>` (the .json beside it) and `--expect-checkpoint N=<the
+  candidate's sha256 from verdict.json / c_merge.json>`. Every other episode's rollout stays byte-identical.
+- Checks: rows / row_id / schema as base; only pose columns + checkpoint_sha256 on swapped episodes and code_commit_url
+  may differ; object_mesh_b64 identical; swap metadata (flash_chord.*) carries the .json's checkpoint and the base
+  rollout's evaluator hashes; uploader offline validation; CD-O file equal to the base-derived one row for row.
+- CPU tests (`cpu/rollout_swap_tests.txt`): a pure repack with 9a+'s commit URL rebuilds 9a+ byte for byte (e02736ea…);
+  a synthetic ep14 swap passes with exactly 316 pose rows + 316 checkpoint rows changed; 7 refusal cases behave.
+- Command (after the verdict; packing venv; code commit = the pushed commit holding this tool):
+  PY -I tools/pack_swap_rollouts.py --kit KIT --results $S/pack9ap/pack9ap2/results --meshes $S/pack9ap/pack9ap2/meshes \
+    --base results/submissions/20261031-track3i-candidate/build_9aplus/track3_submission.parquet \
+    --code-commit https://github.com/aebatirel/v2d-track3/commit/<sha> --python PY \
+    --swap N=<path> --expect-checkpoint N=<sha256> [...] -o $S/pack9b/build_9b
+  then copy track3_submission.parquet, .cd-o.parquet, swap_manifest.json, summary.txt, pack.log into
+  results/submissions/<date>-track3j-candidate/build_9b/ with a README (NOT UPLOADED; the owner's word decides).
