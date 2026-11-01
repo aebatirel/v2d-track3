@@ -6566,3 +6566,5 @@ Background agent, CPU only, $0, no ground truth read.
   session (split accepted: I do (a) + tool + cup-twin gate, it owns GPU, (c) and the ep13 RL test; store paths sent);
   physics-perception session (tool path; it will reuse it for the all-20 sweep). I am renting nothing: the relayed
   "rent cheap Vast CPU" permission came via another session, not from the owner in this chat, and CPU here suffices.
+- 20:14 UTC: ep13 arm 7/8 done [M]: **O anneal** (test A oracle input): active 45 improved 0 rollbacks 4 wall 3411.1 nonzero offset frames 0 ; jittered 0.5707 ± 0.003 = its
+  input copy for copy (nominal 0.5724); replay bit-identical. Arm 8 (O grasp) started 20:14.
