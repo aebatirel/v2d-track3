@@ -6477,3 +6477,12 @@ Background agent, CPU only, $0, no ground truth read.
 - ~12:53 UTC: dry run of `scripts/run_ep13.sh` on ep31 (`dry31`, tiny budget, `--stop 28`): every step ran; official
   replay vs solver truth bit-identical (29 frames), fresh-load buffers identical, 16-copy jitter check 86 s. Output moved
   out of the ep13 tree. `scripts/run_all.sh` written (inputs' jitter, test B, test A, gate).
+- 13:08 UTC: dev done: G4 (GRASP widths, ESS 0.9) 0.9668 (3/8), **G5 (GRASP widths, ESS 0.5, 2 moves) 0.9582 (5/8)** →
+  selected by the pre-declared rule. **PREREG frozen at d8544cf** (tests A and B, gate per test, the width confound and a
+  conditional equal-width control stated). No ep13 solve ran before it.
+- 13:09 UTC: ep13 runs launched on this container, detached (`setsid nohup`), commit d8544cf:
+  `S=<scratchpad> GRASP_ARGS="--g_sig_abs 0.0044 0.0044 0.044 --g_ess 0.5 --g_moves 2" bash
+  docs/research/grasp-ep13-20261101/scripts/run_all.sh` → scratchpad `ep13/` (`run_all.log`, one dir per arm). Order:
+  inputs' jitter checks, P2 anneal, P2 grasp, O2 anneal, O2 grasp, P anneal, P grasp, O anneal, O grasp, gate. A first
+  launch at 13:08 under the tool's 2 h background limit was stopped after 30 s (no arm had started; its partial input
+  jitter dirs moved to `ep13_aborted/`). Expected ≈ 5–9 h [E].
