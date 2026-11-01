@@ -1,0 +1,24 @@
+Masses v2 CPU mock, end to end (cpu/mock/run_all_v2.sh WORK OUT, 2026-10-31T16:04:01Z); mock scores are synthetic (MOCK_EFF +0.05 on every episode): they test the plumbing, not masses.
+
+A: ALL CHECKS PASS (37 checks)
+A rc=0 box line: PARTIAL: box reading over 2 of 4 episodes; the v2 verdict needs both boxes merged | mean delta +0.0510; ep24 mass0 0.6957 mass1 0.7462 delta 0.0504 per seed {'42': 0.0497, '43': 0.0511}; ep13 mass0 0.6952 mass1 0.7467 delta 0.0515 per seed {'42': 0.0524, '43':
+B: ALL CHECKS PASS (37 checks)
+B rc=0 box line: PARTIAL: box reading over 2 of 4 episodes; the v2 verdict needs both boxes merged | mean delta +0.0550; ep11 mass0 0.695 mass1 0.749 delta 0.054 per seed {'42': 0.0555, '43': 0.0524}; ep31 mass0 0.6945 mass1 0.7504 delta 0.056 per seed {'42': 0.056, '43': 0.05
+merge AB: ADOPT: mean delta +0.0530 >= +0.03, 4 of 4 delta > 0, no delta <= -0.05 | mean delta +0.0530; ep24 mass0 0.6957 mass1 0.7462 delta 0.0504 per seed {'42': 0.0497, '43': 0.0511}; ep11 mass0 0.695 mass1 0.749 delta 0.054 per seed {'42': 0.0555, '43': 0.0524}; ep13 mass0 0.6952 mass1 0.7467 delta 0.0515 per seed {'42': 0.0524, '43': 0.0506}; ep31 mass0 0.6945 mass1 0.7504 delta 0.056 per seed {'42': 0
+F: ALL CHECKS PASS (34 checks)
+F rc=0 box line: INCOMPLETE: missing or < 8 scored rollouts: ['ep13/mass1/s43'] | mean delta +0.0504; ep24 mass0 0.6957 mass1 0.7462 delta 0.0504 per seed {'42': 0.0497, '43': 0.0511}; ep13 mass0 0.6952 mass1 0.749 delta 0.0538 per seed {'42': 0.0524}
+merge FB: INCOMPLETE: missing or < 8 scored rollouts: ['ep13/mass1/s43'] | mean delta +0.0535; ep24 mass0 0.6957 mass1 0.7462 delta 0.0504 per seed {'42': 0.0497, '43': 0.0511}; ep11 mass0 0.695 mass1 0.749 delta 0.054 per seed {'42': 0.0555, '43': 0.0524}; ep13 mass0 0.6952 mass1 0.749 delta 0.0538 per seed {'42': 0.0524}; ep31 mass0 0.6945 mass1 0.7504 delta 0.056 per seed {'42': 0.056, '43': 0.0559} rc=0
+R: ALL CHECKS PASS (18 checks)
+R rc=0 box line: PARTIAL: box reading over 1 of 4 episodes; the v2 verdict needs both boxes merged | mean delta +0.0506; ep13 mass0 0.6938 mass1 0.7444 delta 0.0506 per seed {'43': 0.0506}
+merge FBR: ADOPT: mean delta +0.0530 >= +0.03, 4 of 4 delta > 0, no delta <= -0.05 | mean delta +0.0530; ep24 mass0 0.6957 mass1 0.7462 delta 0.0504 per seed {'42': 0.0497, '43': 0.0511}; ep11 mass0 0.695 mass1 0.749 delta 0.054 per seed {'42': 0.0555, '43': 0.0524}; ep13 mass0 0.6952 mass1 0.7467 delta 0.0515 per seed {'42': 0.0524, '43': 0.0506}; ep31 mass0 0.6945 mass1 0.7504 delta 0.056 per seed {'42': 0
+merge ABR_ambiguous: REFUSED (no verdict): pair(s) qualify in more than one box: ["ep13/s43 in ['STORE/runs/20261031-mv2a-mocksha', 'STORE/runs/20261031-mv2r-mocksha']"] rc=2 
+tampered 20261024-ev30rp-07eef1a/refs/glockt/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/ref_gl_ilc.parquet
+T rc=0: 4 trainings; mass_check v2 ep31: REFUSED (pull-files failed for []; box line: INCOMPLETE: missing or < 8 scored rollouts: ['ep31/mass0/s42', 'ep31/mass0/s43', 'ep31/mass1/s42', 'ep31/mass1/s43'] | mean delta +0.0540; ep11 mass0 0.695 mass1 0.749 delta 0.054 per seed {'42': 0.05
+G_mv2bad rc=1: [2026-10-31T16:03:42Z] mass_check v2: RUN_ID '20261031-mass-mocksha' must contain -mv2  downloads 
+G_dflt rc=1: [2026-10-31T16:03:42Z] mass_check: RUN_ID '20261031-mv2a-mocksha' must contain -mass-  downloads 
+G_ep2 rc=1: [2026-10-31T16:03:42Z] mass_check v2: episode 2 is not one of the table's episodes  downloads 
+G_props rc=1: [2026-10-31T16:03:42Z] mass_check v2: MR/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json md5 is not the table's props_md5  downloads 
+
+real	17m13.612s
+user	24m19.261s
+sys	3m0.580s

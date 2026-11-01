@@ -1,0 +1,34 @@
+PASS only the intended files differ from the base 7bac1b53 (glock_public.sh, ev20_b1.sh, e20b1.py, meshes/carve/ev20b1, the work folder)
+PASS unchanged since 7bac1b53: pipeline/placement_carve.py
+PASS unchanged since 7bac1b53: pipeline/make_assets.py
+PASS unchanged since 7bac1b53: tools/no_oracle.py
+PASS unchanged since 7bac1b53: tools/dr_score.py
+PASS unchanged since 7bac1b53: tools/dr_verdict.py
+PASS unchanged since 7bac1b53: tools/e10v_score.py
+PASS unchanged since 7bac1b53: tools/e10cs.py
+PASS unchanged since 7bac1b53: tools/e10cs_pieces.py
+PASS unchanged since 7bac1b53: tools/e10nj.py
+PASS unchanged since 7bac1b53: tools/mass_verify.py
+PASS unchanged since 7bac1b53: tools/mass_arm.py
+PASS unchanged since 7bac1b53: tools/e11g_verify.py
+PASS unchanged since 7bac1b53: ops/jobs/ev10_cs.sh
+PASS unchanged since 7bac1b53: ops/jobs/ev10_v4p.sh
+PASS unchanged since 7bac1b53: ops/jobs/mass_eval.sh
+PASS unchanged since 7bac1b53: ops/box/lib.sh
+PASS unchanged since 7bac1b53: ops/box/store.sh
+PASS unchanged since 7bac1b53: ops/box/run_job.sh
+PASS unchanged since 7bac1b53: meshes/library_v3
+PASS unchanged since 7bac1b53: docs/research/work/masses-eval-20261031/packed_refs.json
+PASS glock_public.sh: 1 code line added (the EVAL_E20B1 guard), 0 removed (got +1 / -0)
+PASS the added line is the EVAL_E20B1 / e20b1s<seed> / ep 20 / local / REQUIRE_REUSE=1 guard
+PASS bash -n ev20_b1.sh, glock_public.sh
+PASS py_compile e20b1.py and the CPU scripts
+PASS ev20_b1.sh names no sim.* override and no TRAIN_ARGS of its own (stock limits; fc_patches sets TRAIN_ARGS)
+PASS ev20_b1.sh never calls make_assets.py --pieces and unsets PIECES
+PASS ev20_b1.sh applies the pieces with placement_carve.py assets on refs/sf/ep20/assets (A=/content/refs/sf/ep$EP/assets)
+PASS ev20_b1.sh exports SF=0 and the packed GL_ARGS / REPLAN 1 / EVOLVE 0 / STEPS 70004736 / CURVE_REP 3
+PASS confirm() is ev10_cs.sh's verbatim but for names (raw differing lines: 12; job name, label, kit key '10' -> '20')
+PASS the piece set passes tools/e20b1.py pieces (pinned MD5SUMS / FROZEN.md)
+PASS no_oracle accepts the piece set
+PASS the piece set's 41 files are byte-identical at bold-albattani 9c0bc0c and 83d18d0
+ALL PASS (33 pass, 0 fail)

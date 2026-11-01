@@ -1,0 +1,1 @@
+C1 meshes for the optional pack 9a+ (31 Oct 2026): byte copies from bold-albattani 3e12ad1 docs/research/mesh-2026-10-26/cdo-sprint/C1/ (beige_cup = T1-beige-lathe/meshes/ep11_beige_cup_sep_g1.glb sha256 60e398b0...0078; mini_dust_pan = T2-probe-picks/meshes/mini_dust_pan_k297_s42_lib.glb sha256 2fb147b5...7d02). Packed meshes only.

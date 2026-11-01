@@ -1,0 +1,1 @@
+GATE MET (bar > 0.8933 vs P) :: s42 VERIFIED n 10 mean 0.9998 margin 0.1065; s43 VERIFIED n 10 mean 0.9989 margin 0.1056

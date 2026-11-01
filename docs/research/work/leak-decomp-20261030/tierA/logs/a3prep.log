@@ -1,0 +1,26 @@
+ep0: a3prep P_base snap [-0.17, 0.0] ok True, P_S2 snap [-0.16, 0.0] ok True, O_base snap [0.38, 0.0] ok True, O_S2 snap [0.38, 0.0] ok True (6.7 s)
+ep2: a3prep P_base snap [0.18, 0.0] ok True, P_S2 snap [0.25, 0.0] ok True, O_base snap [0.43, 0.0] ok True, O_S2 snap [0.43, 0.0] ok True (7.4 s)
+ep11: a3prep P_base snap [-0.04, 0.04] ok True, P_S2 snap [-0.04, 0.03] ok True, O_base snap [-0.75, 1.05] ok True, O_S2 snap [-0.74, 1.05] ok True (5.8 s)
+ep12: a3prep P_base snap [0.34, 1.34] ok True, P_S2 snap [0.32, 1.39] ok True, O_base snap [0.17, 0.62] ok True, O_S2 snap [0.17, 0.62] ok True (161.2 s)
+ep13: a3prep P_base snap [-0.0, 1.27] ok True, P_S2 snap [-0.02, 1.33] ok True, O_base snap [0.06, 0.37] ok True, O_S2 snap [0.06, 0.37] ok True (167.6 s)
+ep18: a3prep P_base snap [0.57, 0.65] ok True, P_S2 snap [0.51, 0.63] ok True, O_base snap [0.73, 0.63] ok True, O_S2 snap [0.73, 0.63] ok True (23.9 s)
+ep21: a3prep P_base snap [-0.0, 0.93] ok True, P_S2 snap [-0.04, 0.98] ok True, O_base snap [-0.64, 1.8] ok True, O_S2 snap [-0.64, 1.8] ok True (120.8 s)
+ep22: a3prep P_base snap [0.35, 0.79] ok True, P_S2 snap [0.43, 0.83] ok True, O_base snap [-0.59, 1.89] ok True, O_S2 snap [-0.59, 1.89] ok True (120.2 s)
+ep23: a3prep P_base snap [1.15, 1.59] ok True, P_S2 snap [1.34, 1.6] ok True, O_base snap [1.48, 0.79] ok True, O_S2 snap [1.47, 0.79] ok True (17.4 s)
+ep24: a3prep P_base snap [1.29, 1.1] ok True, P_S2 snap [1.33, 1.01] ok True, O_base snap [1.51, 0.81] ok True, O_S2 snap [1.51, 0.81] ok True (15.5 s)
+ep26: a3prep P_base snap [1.39, -1.54] ok True, P_S2 snap [1.2, -1.54] ok True, O_base snap [1.13, -1.58] ok True, O_S2 snap [1.13, -1.58] ok True (17.9 s)
+/home/user/v2d-track3/pipeline/refine.py:225: RuntimeWarning: divide by zero encountered in scalar divide
+  Vi = np.eye(3) - 0.5 * W + (1.0 / th ** 2) * (1 - th * np.sin(th) / (2 * (1 - np.cos(th)))) * (W @ W)
+/home/user/v2d-track3/pipeline/refine.py:226: RuntimeWarning: invalid value encountered in matmul
+  return w, Vi @ T[:3, 3]
+ep27: a3prep P_base snap [1.03, 0.89] ok True, P_S2 snap [0.96, 0.63] ok True, O_base snap [0.63, 0.4] ok True, O_S2 snap [0.63, 0.4] ok True (17.3 s)
+ep31: a3prep P_base snap [-0.14, 0.95] ok True, P_S2 snap [-0.12, 0.89] ok True, O_base snap [-0.29, 0.56] ok True, O_S2 snap [-0.29, 0.56] ok True (18.0 s)
+ep40: a3prep P_base snap [0.28] ok True, P_S2 snap [0.27] ok True, O_base snap [0.29] ok True, O_S2 snap [0.29] ok True (3.8 s)
+ep39: a3prep P_base snap [0.44] ok True, P_S2 snap [0.45] ok True, O_base snap [0.39] ok True, O_S2 snap [0.41] ok True (13.4 s)
+ep42: a3prep P_base snap [0.15] ok True, P_S2 snap [0.13] ok True, O_base snap [0.1] ok True, O_S2 snap [0.1] ok True (11.4 s)
+ep41: a3prep P_base snap [-0.04] ok True, P_S2 snap [0.05] ok True, O_base snap [-0.1] ok True, O_S2 snap [-0.1] ok True (15.5 s)
+ep43: a3prep P_base snap [0.62] ok True, P_S2 snap [0.69] ok True, O_base snap [0.41] ok True, O_S2 snap [0.41] ok True (13.9 s)
+ep44: a3prep P_base snap [0.19] ok True, P_S2 snap [0.14] ok True, O_base snap [0.09] ok True, O_S2 snap [0.09] ok True (13.3 s)
+ep45: a3prep P_base snap [0.11] ok True, P_S2 snap [0.13] ok True, O_base snap [0.01] ok True, O_S2 snap [0.01] ok True (11.4 s)
+{}
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a3prep.json (395.7 s)

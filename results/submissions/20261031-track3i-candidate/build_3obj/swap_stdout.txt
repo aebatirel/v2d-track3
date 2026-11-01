@@ -1,0 +1,18 @@
+no_oracle: 6 inputs checked, none oracle-derived
+pack_swap_meshes: <SCRATCH>/pack9a/pack9a_C0
+swapped 12 (episode, object) pairs of 36: white_pot -> eps [1, 3, 5, 6, 8, 28], white_pot_lid -> eps [1], plastic_dish_rack -> eps [14, 15, 16, 28, 30]
+file md5 changed: 1:white_pot b97d460a->0264da83, 1:white_pot_lid a1e89f0b->35727a10, 3:white_pot b97d460a->0264da83, 5:white_pot b97d460a->0264da83, 6:white_pot b97d460a->0264da83, 8:white_pot b97d460a->0264da83, 14:plastic_dish_rack e6835614->bbca8ec0, 15:plastic_dish_rack e6835614->bbca8ec0, 16:plastic_dish_rack e6835614->bbca8ec0, 28:plastic_dish_rack e6835614->bbca8ec0, 28:white_pot b97d460a->0264da83, 30:plastic_dish_rack e6835614->bbca8ec0
+frame report (mm; base = the mesh being replaced):
+  white_pot          eps [1, 3, 5, 6, 8, 28] base library_v3 | centroid offset 5.44 | AABB centre offset 7.64 | extent base [130.98, 190.41, 362.26] new [135.7, 197.46, 358.06] | surface median/p95/max 2.719/11.53/35.539 (spacing 0.887) | ICP 2.92 mm 1.102 deg (median after 2.978) | kit proxy 4.95 mm 1.067 deg (symmetry none) | FLAG: surface centroid moved 5.44 mm > 5.0
+  white_pot_lid      eps [1] base library_v3 | centroid offset 7.31 | AABB centre offset 6.39 | extent base [51.88, 189.49, 184.99] new [45.04, 183.22, 183.23] | surface median/p95/max 2.378/10.997/16.695 (spacing 0.552) | ICP 2.59 mm 1.276 deg (median after 1.81) | kit proxy 12.12 mm 162.103 deg (symmetry half-turn) | FLAG: surface centroid moved 7.31 mm > 5.0; kit-registration proxy moves the body 12.12 mm > 5.0; extent ratio [0.8682, 0.9669, 0.9905] outside +-15% (scale or axis order?)
+  plastic_dish_rack  eps [14, 15, 16, 28, 30] base library_v3 | centroid offset 11.46 | AABB centre offset 5.78 | extent base [109.43, 159.12, 495.98] new [123.81, 153.93, 486.77] | surface median/p95/max 3.538/12.618/38.375 (spacing 1.197) | ICP 1.86 mm 2.134 deg (median after 3.474) | kit proxy 4.74 mm 2.144 deg (symmetry none) | FLAG: surface centroid moved 11.46 mm > 5.0
+parquet: 1335354 B sha256 9c19bb0c85901de46113483c9df5a2927ae626f1094a87ad3f77725aa22ea662 | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 12}
+mesh payloads changed: ['1:white_pot', '1:white_pot_lid', '3:white_pot', '5:white_pot', '6:white_pot', '8:white_pot', '14:plastic_dish_rack', '15:plastic_dish_rack', '16:plastic_dish_rack', '28:plastic_dish_rack', '28:white_pot', '30:plastic_dish_rack'] | unchanged: []
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 fefe8fdefca0e14a... | CD-O pairs changed vs base: ['1:white_pot', '1:white_pot_lid', '3:white_pot', '5:white_pot', '6:white_pot', '8:white_pot', '14:plastic_dish_rack', '15:plastic_dish_rack', '16:plastic_dish_rack', '28:plastic_dish_rack', '28:white_pot', '30:plastic_dish_rack']
+pack.log MESH WARNINGs: 0
+FLAG: white_pot (episodes [1, 3, 5, 6, 8, 28]): surface centroid moved 5.44 mm > 5.0
+FLAG: white_pot_lid (episodes [1]): surface centroid moved 7.31 mm > 5.0
+FLAG: white_pot_lid (episodes [1]): kit-registration proxy moves the body 12.12 mm > 5.0
+FLAG: white_pot_lid (episodes [1]): extent ratio [0.8682, 0.9669, 0.9905] outside +-15% (scale or axis order?)
+FLAG: plastic_dish_rack (episodes [14, 15, 16, 28, 30]): surface centroid moved 11.46 mm > 5.0
+STATUS NEEDS REVIEW (flags) (exit 2)

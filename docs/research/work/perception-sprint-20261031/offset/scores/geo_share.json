@@ -1,0 +1,1848 @@
+{
+ "summary": {
+  "Po_V1": {
+   "n": 23,
+   "median_recovered": -0.013,
+   "share_closer": 0.435,
+   "mean_d0": 1.459,
+   "mean_d1": 1.469,
+   "falsified": true
+  },
+  "Po_V2": {
+   "n": 24,
+   "median_recovered": -0.01,
+   "share_closer": 0.458,
+   "mean_d0": 1.303,
+   "mean_d1": 1.372,
+   "falsified": true
+  },
+  "Po_V3": {
+   "n": 24,
+   "median_recovered": -0.01,
+   "share_closer": 0.458,
+   "mean_d0": 1.303,
+   "mean_d1": 1.372,
+   "falsified": true
+  },
+  "refineP_V1": {
+   "n": 24,
+   "median_recovered": -0.021,
+   "share_closer": 0.417,
+   "mean_d0": 1.48,
+   "mean_d1": 1.501,
+   "falsified": true
+  },
+  "refineP_V2": {
+   "n": 25,
+   "median_recovered": -0.045,
+   "share_closer": 0.4,
+   "mean_d0": 1.32,
+   "mean_d1": 1.398,
+   "falsified": true
+  },
+  "refineP_V3": {
+   "n": 25,
+   "median_recovered": -0.045,
+   "share_closer": 0.4,
+   "mean_d0": 1.32,
+   "mean_d1": 1.398,
+   "falsified": true
+  }
+ },
+ "rows": {
+  "Po_V1": [
+   {
+    "ep": 0,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 2.871,
+    "dC": 0.2,
+    "d1": 2.895,
+    "recovered": -0.008
+   },
+   {
+    "ep": 0,
+    "obj": "white_pot_lid",
+    "applied": true,
+    "d0": 3.119,
+    "dC": 0.231,
+    "d1": 3.158,
+    "recovered": -0.013
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.23,
+    "dC": 0.151,
+    "d1": 1.302,
+    "recovered": -0.059
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot_lid",
+    "applied": true,
+    "d0": 1.54,
+    "dC": 0.263,
+    "d1": 1.628,
+    "recovered": -0.057
+   },
+   {
+    "ep": 11,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.691,
+    "dC": 0.409,
+    "d1": 1.547,
+    "recovered": 0.085
+   },
+   {
+    "ep": 11,
+    "obj": "beige_cup",
+    "applied": true,
+    "d0": 0.725,
+    "dC": 0.437,
+    "d1": 0.9,
+    "recovered": -0.24
+   },
+   {
+    "ep": 12,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.491,
+    "dC": 0.244,
+    "d1": 0.535,
+    "recovered": -0.089
+   },
+   {
+    "ep": 12,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.491,
+    "dC": 0.462,
+    "d1": 1.397,
+    "recovered": 0.063
+   },
+   {
+    "ep": 13,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.066,
+    "dC": 0.632,
+    "d1": 0.756,
+    "recovered": 0.291
+   },
+   {
+    "ep": 13,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.339,
+    "dC": 0.47,
+    "d1": 1.431,
+    "recovered": -0.069
+   },
+   {
+    "ep": 18,
+    "obj": "mini_sweeper",
+    "applied": false,
+    "d0": 0.787,
+    "dC": 0.0,
+    "d1": 0.787,
+    "recovered": 0.0
+   },
+   {
+    "ep": 18,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.392,
+    "dC": 0.291,
+    "d1": 0.396,
+    "recovered": -0.011
+   },
+   {
+    "ep": 21,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.49,
+    "dC": 0.288,
+    "d1": 0.722,
+    "recovered": -0.475
+   },
+   {
+    "ep": 21,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 1.855,
+    "dC": 0.382,
+    "d1": 2.144,
+    "recovered": -0.156
+   },
+   {
+    "ep": 22,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.941,
+    "dC": 0.415,
+    "d1": 1.131,
+    "recovered": -0.202
+   },
+   {
+    "ep": 22,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 2.228,
+    "dC": 0.395,
+    "d1": 2.533,
+    "recovered": -0.137
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_1",
+    "applied": true,
+    "d0": 0.0,
+    "dC": 0.3,
+    "d1": 0.3,
+    "recovered": null
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_2",
+    "applied": true,
+    "d0": 0.0,
+    "dC": 0.406,
+    "d1": 0.406,
+    "recovered": null
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_1",
+    "applied": true,
+    "d0": 1.812,
+    "dC": 0.168,
+    "d1": 1.656,
+    "recovered": 0.086
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_2",
+    "applied": true,
+    "d0": 1.325,
+    "dC": 0.277,
+    "d1": 1.544,
+    "recovered": -0.166
+   },
+   {
+    "ep": 26,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.224,
+    "dC": 0.428,
+    "d1": 1.415,
+    "recovered": -0.156
+   },
+   {
+    "ep": 26,
+    "obj": "white_pot",
+    "applied": false,
+    "d0": 1.038,
+    "dC": 0.0,
+    "d1": 1.038,
+    "recovered": 0.0
+   },
+   {
+    "ep": 27,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.001,
+    "dC": 0.333,
+    "d1": 0.958,
+    "recovered": 0.042
+   },
+   {
+    "ep": 27,
+    "obj": "white_pot",
+    "applied": false,
+    "d0": 0.61,
+    "dC": 0.0,
+    "d1": 0.61,
+    "recovered": 0.0
+   },
+   {
+    "ep": 31,
+    "obj": "mini_sweeper",
+    "applied": false,
+    "d0": 0.941,
+    "dC": 0.0,
+    "d1": 0.941,
+    "recovered": 0.0
+   },
+   {
+    "ep": 31,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.382,
+    "dC": 0.637,
+    "d1": 0.874,
+    "recovered": 0.367
+   },
+   {
+    "ep": 39,
+    "obj": "mini_dust_pan",
+    "applied": false,
+    "d0": 0.41,
+    "dC": 0.0,
+    "d1": 0.41,
+    "recovered": 0.0
+   },
+   {
+    "ep": 40,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 1.078,
+    "dC": 0.363,
+    "d1": 0.935,
+    "recovered": 0.132
+   },
+   {
+    "ep": 41,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.992,
+    "dC": 0.223,
+    "d1": 0.839,
+    "recovered": 0.155
+   },
+   {
+    "ep": 42,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.215,
+    "dC": 0.256,
+    "d1": 1.295,
+    "recovered": -0.066
+   },
+   {
+    "ep": 43,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.914,
+    "dC": 0.148,
+    "d1": 0.829,
+    "recovered": 0.093
+   },
+   {
+    "ep": 44,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.767,
+    "dC": 0.117,
+    "d1": 1.725,
+    "recovered": 0.024
+   },
+   {
+    "ep": 45,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.751,
+    "dC": 0.305,
+    "d1": 0.905,
+    "recovered": -0.206
+   }
+  ],
+  "Po_V2": [
+   {
+    "ep": 0,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 2.871,
+    "dC": 0.341,
+    "d1": 3.008,
+    "recovered": -0.048
+   },
+   {
+    "ep": 0,
+    "obj": "white_pot_lid",
+    "applied": false,
+    "d0": 3.119,
+    "dC": 0.0,
+    "d1": 3.119,
+    "recovered": 0.0
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.23,
+    "dC": 0.216,
+    "d1": 1.252,
+    "recovered": -0.018
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot_lid",
+    "applied": true,
+    "d0": 1.54,
+    "dC": 0.072,
+    "d1": 1.52,
+    "recovered": 0.013
+   },
+   {
+    "ep": 11,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.691,
+    "dC": 0.4,
+    "d1": 1.582,
+    "recovered": 0.065
+   },
+   {
+    "ep": 11,
+    "obj": "beige_cup",
+    "applied": true,
+    "d0": 0.725,
+    "dC": 0.106,
+    "d1": 0.709,
+    "recovered": 0.022
+   },
+   {
+    "ep": 12,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.491,
+    "dC": 0.286,
+    "d1": 0.529,
+    "recovered": -0.077
+   },
+   {
+    "ep": 12,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.491,
+    "dC": 0.472,
+    "d1": 1.448,
+    "recovered": 0.029
+   },
+   {
+    "ep": 13,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.066,
+    "dC": 0.286,
+    "d1": 1.32,
+    "recovered": -0.239
+   },
+   {
+    "ep": 13,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.339,
+    "dC": 0.533,
+    "d1": 1.621,
+    "recovered": -0.211
+   },
+   {
+    "ep": 18,
+    "obj": "mini_sweeper",
+    "applied": true,
+    "d0": 0.787,
+    "dC": 0.456,
+    "d1": 0.688,
+    "recovered": 0.126
+   },
+   {
+    "ep": 18,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.392,
+    "dC": 0.465,
+    "d1": 0.397,
+    "recovered": -0.011
+   },
+   {
+    "ep": 21,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.49,
+    "dC": 0.212,
+    "d1": 0.591,
+    "recovered": -0.207
+   },
+   {
+    "ep": 21,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 1.855,
+    "dC": 0.86,
+    "d1": 2.546,
+    "recovered": -0.373
+   },
+   {
+    "ep": 22,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.941,
+    "dC": 0.326,
+    "d1": 1.063,
+    "recovered": -0.13
+   },
+   {
+    "ep": 22,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 2.228,
+    "dC": 0.378,
+    "d1": 2.379,
+    "recovered": -0.067
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_1",
+    "applied": false,
+    "d0": 0.0,
+    "dC": 0.0,
+    "d1": 0.0,
+    "recovered": null
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_2",
+    "applied": true,
+    "d0": 0.0,
+    "dC": 1.205,
+    "d1": 1.205,
+    "recovered": null
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_1",
+    "applied": true,
+    "d0": 1.812,
+    "dC": 0.255,
+    "d1": 1.756,
+    "recovered": 0.031
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_2",
+    "applied": false,
+    "d0": 1.325,
+    "dC": 0.0,
+    "d1": 1.325,
+    "recovered": 0.0
+   },
+   {
+    "ep": 26,
+    "obj": "plastic_dish_rack",
+    "applied": false,
+    "d0": 1.224,
+    "dC": 0.0,
+    "d1": 1.224,
+    "recovered": 0.0
+   },
+   {
+    "ep": 26,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.038,
+    "dC": 0.575,
+    "d1": 1.223,
+    "recovered": -0.179
+   },
+   {
+    "ep": 27,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.001,
+    "dC": 0.353,
+    "d1": 0.954,
+    "recovered": 0.046
+   },
+   {
+    "ep": 27,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.61,
+    "dC": 0.623,
+    "d1": 1.13,
+    "recovered": -0.853
+   },
+   {
+    "ep": 31,
+    "obj": "mini_sweeper",
+    "applied": true,
+    "d0": 0.941,
+    "dC": 0.422,
+    "d1": 0.709,
+    "recovered": 0.246
+   },
+   {
+    "ep": 31,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.382,
+    "dC": 0.344,
+    "d1": 1.181,
+    "recovered": 0.145
+   },
+   {
+    "ep": 39,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.41,
+    "dC": 0.726,
+    "d1": 0.721,
+    "recovered": -0.76
+   },
+   {
+    "ep": 40,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 1.078,
+    "dC": 0.388,
+    "d1": 1.003,
+    "recovered": 0.07
+   },
+   {
+    "ep": 41,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.992,
+    "dC": 0.294,
+    "d1": 0.79,
+    "recovered": 0.204
+   },
+   {
+    "ep": 42,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.215,
+    "dC": 0.37,
+    "d1": 1.323,
+    "recovered": -0.089
+   },
+   {
+    "ep": 43,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.914,
+    "dC": 0.884,
+    "d1": 1.156,
+    "recovered": -0.265
+   },
+   {
+    "ep": 44,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.767,
+    "dC": 0.195,
+    "d1": 1.772,
+    "recovered": -0.003
+   },
+   {
+    "ep": 45,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.751,
+    "dC": 0.16,
+    "d1": 0.784,
+    "recovered": -0.045
+   }
+  ],
+  "Po_V3": [
+   {
+    "ep": 0,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 2.871,
+    "dC": 0.341,
+    "d1": 3.008,
+    "recovered": -0.048
+   },
+   {
+    "ep": 0,
+    "obj": "white_pot_lid",
+    "applied": false,
+    "d0": 3.119,
+    "dC": 0.0,
+    "d1": 3.119,
+    "recovered": 0.0
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.23,
+    "dC": 0.216,
+    "d1": 1.252,
+    "recovered": -0.018
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot_lid",
+    "applied": true,
+    "d0": 1.54,
+    "dC": 0.072,
+    "d1": 1.52,
+    "recovered": 0.013
+   },
+   {
+    "ep": 11,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.691,
+    "dC": 0.4,
+    "d1": 1.582,
+    "recovered": 0.065
+   },
+   {
+    "ep": 11,
+    "obj": "beige_cup",
+    "applied": true,
+    "d0": 0.725,
+    "dC": 0.106,
+    "d1": 0.709,
+    "recovered": 0.022
+   },
+   {
+    "ep": 12,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.491,
+    "dC": 0.286,
+    "d1": 0.529,
+    "recovered": -0.077
+   },
+   {
+    "ep": 12,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.491,
+    "dC": 0.472,
+    "d1": 1.448,
+    "recovered": 0.029
+   },
+   {
+    "ep": 13,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.066,
+    "dC": 0.286,
+    "d1": 1.32,
+    "recovered": -0.239
+   },
+   {
+    "ep": 13,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.339,
+    "dC": 0.533,
+    "d1": 1.621,
+    "recovered": -0.211
+   },
+   {
+    "ep": 18,
+    "obj": "mini_sweeper",
+    "applied": true,
+    "d0": 0.787,
+    "dC": 0.456,
+    "d1": 0.688,
+    "recovered": 0.126
+   },
+   {
+    "ep": 18,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.392,
+    "dC": 0.465,
+    "d1": 0.397,
+    "recovered": -0.011
+   },
+   {
+    "ep": 21,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.49,
+    "dC": 0.212,
+    "d1": 0.591,
+    "recovered": -0.207
+   },
+   {
+    "ep": 21,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 1.855,
+    "dC": 0.86,
+    "d1": 2.546,
+    "recovered": -0.373
+   },
+   {
+    "ep": 22,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.941,
+    "dC": 0.326,
+    "d1": 1.063,
+    "recovered": -0.13
+   },
+   {
+    "ep": 22,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 2.228,
+    "dC": 0.378,
+    "d1": 2.379,
+    "recovered": -0.067
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_1",
+    "applied": false,
+    "d0": 0.0,
+    "dC": 0.0,
+    "d1": 0.0,
+    "recovered": null
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_2",
+    "applied": true,
+    "d0": 0.0,
+    "dC": 1.205,
+    "d1": 1.205,
+    "recovered": null
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_1",
+    "applied": true,
+    "d0": 1.812,
+    "dC": 0.255,
+    "d1": 1.756,
+    "recovered": 0.031
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_2",
+    "applied": false,
+    "d0": 1.325,
+    "dC": 0.0,
+    "d1": 1.325,
+    "recovered": 0.0
+   },
+   {
+    "ep": 26,
+    "obj": "plastic_dish_rack",
+    "applied": false,
+    "d0": 1.224,
+    "dC": 0.0,
+    "d1": 1.224,
+    "recovered": 0.0
+   },
+   {
+    "ep": 26,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.038,
+    "dC": 0.575,
+    "d1": 1.223,
+    "recovered": -0.179
+   },
+   {
+    "ep": 27,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.001,
+    "dC": 0.353,
+    "d1": 0.954,
+    "recovered": 0.046
+   },
+   {
+    "ep": 27,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.61,
+    "dC": 0.623,
+    "d1": 1.13,
+    "recovered": -0.853
+   },
+   {
+    "ep": 31,
+    "obj": "mini_sweeper",
+    "applied": true,
+    "d0": 0.941,
+    "dC": 0.422,
+    "d1": 0.709,
+    "recovered": 0.246
+   },
+   {
+    "ep": 31,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.382,
+    "dC": 0.344,
+    "d1": 1.181,
+    "recovered": 0.145
+   },
+   {
+    "ep": 39,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.41,
+    "dC": 0.726,
+    "d1": 0.721,
+    "recovered": -0.76
+   },
+   {
+    "ep": 40,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 1.078,
+    "dC": 0.388,
+    "d1": 1.003,
+    "recovered": 0.07
+   },
+   {
+    "ep": 41,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.992,
+    "dC": 0.294,
+    "d1": 0.79,
+    "recovered": 0.204
+   },
+   {
+    "ep": 42,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.215,
+    "dC": 0.37,
+    "d1": 1.323,
+    "recovered": -0.089
+   },
+   {
+    "ep": 43,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.914,
+    "dC": 0.884,
+    "d1": 1.156,
+    "recovered": -0.265
+   },
+   {
+    "ep": 44,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.767,
+    "dC": 0.195,
+    "d1": 1.772,
+    "recovered": -0.003
+   },
+   {
+    "ep": 45,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.751,
+    "dC": 0.16,
+    "d1": 0.784,
+    "recovered": -0.045
+   }
+  ],
+  "refineP_V1": [
+   {
+    "ep": 0,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 2.539,
+    "dC": 0.205,
+    "d1": 2.598,
+    "recovered": -0.023
+   },
+   {
+    "ep": 0,
+    "obj": "white_pot_lid",
+    "applied": true,
+    "d0": 3.287,
+    "dC": 0.233,
+    "d1": 3.348,
+    "recovered": -0.019
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.724,
+    "dC": 0.154,
+    "d1": 1.815,
+    "recovered": -0.053
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot_lid",
+    "applied": true,
+    "d0": 2.57,
+    "dC": 0.264,
+    "d1": 2.772,
+    "recovered": -0.079
+   },
+   {
+    "ep": 11,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.694,
+    "dC": 0.409,
+    "d1": 1.549,
+    "recovered": 0.086
+   },
+   {
+    "ep": 11,
+    "obj": "beige_cup",
+    "applied": true,
+    "d0": 0.755,
+    "dC": 0.437,
+    "d1": 0.93,
+    "recovered": -0.232
+   },
+   {
+    "ep": 12,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.561,
+    "dC": 0.244,
+    "d1": 0.566,
+    "recovered": -0.01
+   },
+   {
+    "ep": 12,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.49,
+    "dC": 0.461,
+    "d1": 1.389,
+    "recovered": 0.068
+   },
+   {
+    "ep": 13,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.073,
+    "dC": 0.632,
+    "d1": 0.759,
+    "recovered": 0.293
+   },
+   {
+    "ep": 13,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.373,
+    "dC": 0.471,
+    "d1": 1.461,
+    "recovered": -0.064
+   },
+   {
+    "ep": 18,
+    "obj": "mini_sweeper",
+    "applied": false,
+    "d0": 0.877,
+    "dC": 0.0,
+    "d1": 0.877,
+    "recovered": 0.0
+   },
+   {
+    "ep": 18,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.432,
+    "dC": 0.291,
+    "d1": 0.26,
+    "recovered": 0.398
+   },
+   {
+    "ep": 21,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.489,
+    "dC": 0.288,
+    "d1": 0.722,
+    "recovered": -0.476
+   },
+   {
+    "ep": 21,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 1.855,
+    "dC": 0.382,
+    "d1": 2.145,
+    "recovered": -0.156
+   },
+   {
+    "ep": 22,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.999,
+    "dC": 0.415,
+    "d1": 1.188,
+    "recovered": -0.189
+   },
+   {
+    "ep": 22,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 2.204,
+    "dC": 0.39,
+    "d1": 2.503,
+    "recovered": -0.136
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_1",
+    "applied": true,
+    "d0": 0.0,
+    "dC": 0.318,
+    "d1": 0.318,
+    "recovered": null
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_2",
+    "applied": true,
+    "d0": 0.0,
+    "dC": 0.351,
+    "d1": 0.351,
+    "recovered": null
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_1",
+    "applied": true,
+    "d0": 1.812,
+    "dC": 0.168,
+    "d1": 1.656,
+    "recovered": 0.086
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_2",
+    "applied": true,
+    "d0": 1.325,
+    "dC": 0.277,
+    "d1": 1.544,
+    "recovered": -0.166
+   },
+   {
+    "ep": 26,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.222,
+    "dC": 0.446,
+    "d1": 1.429,
+    "recovered": -0.169
+   },
+   {
+    "ep": 26,
+    "obj": "white_pot",
+    "applied": false,
+    "d0": 0.966,
+    "dC": 0.0,
+    "d1": 0.966,
+    "recovered": 0.0
+   },
+   {
+    "ep": 27,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.018,
+    "dC": 0.339,
+    "d1": 0.978,
+    "recovered": 0.039
+   },
+   {
+    "ep": 27,
+    "obj": "white_pot",
+    "applied": false,
+    "d0": 0.61,
+    "dC": 0.0,
+    "d1": 0.61,
+    "recovered": 0.0
+   },
+   {
+    "ep": 31,
+    "obj": "mini_sweeper",
+    "applied": false,
+    "d0": 0.852,
+    "dC": 0.0,
+    "d1": 0.852,
+    "recovered": 0.0
+   },
+   {
+    "ep": 31,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.43,
+    "dC": 0.636,
+    "d1": 0.963,
+    "recovered": 0.327
+   },
+   {
+    "ep": 39,
+    "obj": "mini_dust_pan",
+    "applied": false,
+    "d0": 0.409,
+    "dC": 0.0,
+    "d1": 0.409,
+    "recovered": 0.0
+   },
+   {
+    "ep": 40,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 1.078,
+    "dC": 0.363,
+    "d1": 0.935,
+    "recovered": 0.132
+   },
+   {
+    "ep": 41,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.992,
+    "dC": 0.223,
+    "d1": 0.839,
+    "recovered": 0.155
+   },
+   {
+    "ep": 42,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.101,
+    "dC": 0.248,
+    "d1": 1.184,
+    "recovered": -0.076
+   },
+   {
+    "ep": 43,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.91,
+    "dC": 0.144,
+    "d1": 0.836,
+    "recovered": 0.081
+   },
+   {
+    "ep": 44,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.767,
+    "dC": 0.117,
+    "d1": 1.725,
+    "recovered": 0.024
+   },
+   {
+    "ep": 45,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.751,
+    "dC": 0.305,
+    "d1": 0.905,
+    "recovered": -0.206
+   }
+  ],
+  "refineP_V2": [
+   {
+    "ep": 0,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 2.539,
+    "dC": 0.127,
+    "d1": 2.57,
+    "recovered": -0.012
+   },
+   {
+    "ep": 0,
+    "obj": "white_pot_lid",
+    "applied": false,
+    "d0": 3.287,
+    "dC": 0.0,
+    "d1": 3.287,
+    "recovered": 0.0
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.724,
+    "dC": 0.222,
+    "d1": 1.879,
+    "recovered": -0.09
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot_lid",
+    "applied": true,
+    "d0": 2.57,
+    "dC": 0.07,
+    "d1": 2.547,
+    "recovered": 0.009
+   },
+   {
+    "ep": 11,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.694,
+    "dC": 0.4,
+    "d1": 1.584,
+    "recovered": 0.065
+   },
+   {
+    "ep": 11,
+    "obj": "beige_cup",
+    "applied": true,
+    "d0": 0.755,
+    "dC": 0.106,
+    "d1": 0.743,
+    "recovered": 0.016
+   },
+   {
+    "ep": 12,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.561,
+    "dC": 0.286,
+    "d1": 0.614,
+    "recovered": -0.096
+   },
+   {
+    "ep": 12,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.49,
+    "dC": 0.474,
+    "d1": 1.44,
+    "recovered": 0.034
+   },
+   {
+    "ep": 13,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.073,
+    "dC": 0.286,
+    "d1": 1.327,
+    "recovered": -0.237
+   },
+   {
+    "ep": 13,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.373,
+    "dC": 0.531,
+    "d1": 1.654,
+    "recovered": -0.205
+   },
+   {
+    "ep": 18,
+    "obj": "mini_sweeper",
+    "applied": true,
+    "d0": 0.877,
+    "dC": 0.449,
+    "d1": 0.947,
+    "recovered": -0.081
+   },
+   {
+    "ep": 18,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.432,
+    "dC": 0.465,
+    "d1": 0.177,
+    "recovered": 0.591
+   },
+   {
+    "ep": 21,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.489,
+    "dC": 0.212,
+    "d1": 0.591,
+    "recovered": -0.207
+   },
+   {
+    "ep": 21,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 1.855,
+    "dC": 0.86,
+    "d1": 2.546,
+    "recovered": -0.373
+   },
+   {
+    "ep": 22,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.999,
+    "dC": 0.326,
+    "d1": 1.118,
+    "recovered": -0.119
+   },
+   {
+    "ep": 22,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 2.204,
+    "dC": 0.373,
+    "d1": 2.355,
+    "recovered": -0.069
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_1",
+    "applied": false,
+    "d0": 0.0,
+    "dC": 0.0,
+    "d1": 0.0,
+    "recovered": null
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_2",
+    "applied": true,
+    "d0": 0.0,
+    "dC": 1.205,
+    "d1": 1.205,
+    "recovered": null
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_1",
+    "applied": true,
+    "d0": 1.812,
+    "dC": 0.255,
+    "d1": 1.756,
+    "recovered": 0.031
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_2",
+    "applied": false,
+    "d0": 1.325,
+    "dC": 0.0,
+    "d1": 1.325,
+    "recovered": 0.0
+   },
+   {
+    "ep": 26,
+    "obj": "plastic_dish_rack",
+    "applied": false,
+    "d0": 1.222,
+    "dC": 0.0,
+    "d1": 1.222,
+    "recovered": 0.0
+   },
+   {
+    "ep": 26,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.966,
+    "dC": 0.575,
+    "d1": 1.147,
+    "recovered": -0.187
+   },
+   {
+    "ep": 27,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.018,
+    "dC": 0.366,
+    "d1": 0.954,
+    "recovered": 0.064
+   },
+   {
+    "ep": 27,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.61,
+    "dC": 0.623,
+    "d1": 1.13,
+    "recovered": -0.852
+   },
+   {
+    "ep": 31,
+    "obj": "mini_sweeper",
+    "applied": true,
+    "d0": 0.852,
+    "dC": 0.395,
+    "d1": 0.64,
+    "recovered": 0.248
+   },
+   {
+    "ep": 31,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.43,
+    "dC": 0.362,
+    "d1": 1.217,
+    "recovered": 0.149
+   },
+   {
+    "ep": 39,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.409,
+    "dC": 0.726,
+    "d1": 0.721,
+    "recovered": -0.764
+   },
+   {
+    "ep": 40,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 1.078,
+    "dC": 0.388,
+    "d1": 1.003,
+    "recovered": 0.07
+   },
+   {
+    "ep": 41,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.992,
+    "dC": 0.294,
+    "d1": 0.79,
+    "recovered": 0.204
+   },
+   {
+    "ep": 42,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.101,
+    "dC": 0.347,
+    "d1": 1.278,
+    "recovered": -0.161
+   },
+   {
+    "ep": 43,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.91,
+    "dC": 0.876,
+    "d1": 1.161,
+    "recovered": -0.277
+   },
+   {
+    "ep": 44,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.767,
+    "dC": 0.195,
+    "d1": 1.772,
+    "recovered": -0.003
+   },
+   {
+    "ep": 45,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.751,
+    "dC": 0.16,
+    "d1": 0.784,
+    "recovered": -0.045
+   }
+  ],
+  "refineP_V3": [
+   {
+    "ep": 0,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 2.539,
+    "dC": 0.127,
+    "d1": 2.57,
+    "recovered": -0.012
+   },
+   {
+    "ep": 0,
+    "obj": "white_pot_lid",
+    "applied": false,
+    "d0": 3.287,
+    "dC": 0.0,
+    "d1": 3.287,
+    "recovered": 0.0
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.724,
+    "dC": 0.222,
+    "d1": 1.879,
+    "recovered": -0.09
+   },
+   {
+    "ep": 2,
+    "obj": "white_pot_lid",
+    "applied": true,
+    "d0": 2.57,
+    "dC": 0.07,
+    "d1": 2.547,
+    "recovered": 0.009
+   },
+   {
+    "ep": 11,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.694,
+    "dC": 0.4,
+    "d1": 1.584,
+    "recovered": 0.065
+   },
+   {
+    "ep": 11,
+    "obj": "beige_cup",
+    "applied": true,
+    "d0": 0.755,
+    "dC": 0.106,
+    "d1": 0.743,
+    "recovered": 0.016
+   },
+   {
+    "ep": 12,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.561,
+    "dC": 0.286,
+    "d1": 0.614,
+    "recovered": -0.096
+   },
+   {
+    "ep": 12,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.49,
+    "dC": 0.474,
+    "d1": 1.44,
+    "recovered": 0.034
+   },
+   {
+    "ep": 13,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 1.073,
+    "dC": 0.286,
+    "d1": 1.327,
+    "recovered": -0.237
+   },
+   {
+    "ep": 13,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.373,
+    "dC": 0.531,
+    "d1": 1.654,
+    "recovered": -0.205
+   },
+   {
+    "ep": 18,
+    "obj": "mini_sweeper",
+    "applied": true,
+    "d0": 0.877,
+    "dC": 0.449,
+    "d1": 0.947,
+    "recovered": -0.081
+   },
+   {
+    "ep": 18,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.432,
+    "dC": 0.465,
+    "d1": 0.177,
+    "recovered": 0.591
+   },
+   {
+    "ep": 21,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.489,
+    "dC": 0.212,
+    "d1": 0.591,
+    "recovered": -0.207
+   },
+   {
+    "ep": 21,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 1.855,
+    "dC": 0.86,
+    "d1": 2.546,
+    "recovered": -0.373
+   },
+   {
+    "ep": 22,
+    "obj": "blue_cup",
+    "applied": true,
+    "d0": 0.999,
+    "dC": 0.326,
+    "d1": 1.118,
+    "recovered": -0.119
+   },
+   {
+    "ep": 22,
+    "obj": "water_pitcher",
+    "applied": true,
+    "d0": 2.204,
+    "dC": 0.373,
+    "d1": 2.355,
+    "recovered": -0.069
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_1",
+    "applied": false,
+    "d0": 0.0,
+    "dC": 0.0,
+    "d1": 0.0,
+    "recovered": null
+   },
+   {
+    "ep": 23,
+    "obj": "wooden_piece_2",
+    "applied": true,
+    "d0": 0.0,
+    "dC": 1.205,
+    "d1": 1.205,
+    "recovered": null
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_1",
+    "applied": true,
+    "d0": 1.812,
+    "dC": 0.255,
+    "d1": 1.756,
+    "recovered": 0.031
+   },
+   {
+    "ep": 24,
+    "obj": "wooden_piece_2",
+    "applied": false,
+    "d0": 1.325,
+    "dC": 0.0,
+    "d1": 1.325,
+    "recovered": 0.0
+   },
+   {
+    "ep": 26,
+    "obj": "plastic_dish_rack",
+    "applied": false,
+    "d0": 1.222,
+    "dC": 0.0,
+    "d1": 1.222,
+    "recovered": 0.0
+   },
+   {
+    "ep": 26,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.966,
+    "dC": 0.575,
+    "d1": 1.147,
+    "recovered": -0.187
+   },
+   {
+    "ep": 27,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.018,
+    "dC": 0.366,
+    "d1": 0.954,
+    "recovered": 0.064
+   },
+   {
+    "ep": 27,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.61,
+    "dC": 0.623,
+    "d1": 1.13,
+    "recovered": -0.852
+   },
+   {
+    "ep": 31,
+    "obj": "mini_sweeper",
+    "applied": true,
+    "d0": 0.852,
+    "dC": 0.395,
+    "d1": 0.64,
+    "recovered": 0.248
+   },
+   {
+    "ep": 31,
+    "obj": "plastic_dish_rack",
+    "applied": true,
+    "d0": 1.43,
+    "dC": 0.362,
+    "d1": 1.217,
+    "recovered": 0.149
+   },
+   {
+    "ep": 39,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 0.409,
+    "dC": 0.726,
+    "d1": 0.721,
+    "recovered": -0.764
+   },
+   {
+    "ep": 40,
+    "obj": "mini_dust_pan",
+    "applied": true,
+    "d0": 1.078,
+    "dC": 0.388,
+    "d1": 1.003,
+    "recovered": 0.07
+   },
+   {
+    "ep": 41,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.992,
+    "dC": 0.294,
+    "d1": 0.79,
+    "recovered": 0.204
+   },
+   {
+    "ep": 42,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.101,
+    "dC": 0.347,
+    "d1": 1.278,
+    "recovered": -0.161
+   },
+   {
+    "ep": 43,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.91,
+    "dC": 0.876,
+    "d1": 1.161,
+    "recovered": -0.277
+   },
+   {
+    "ep": 44,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 1.767,
+    "dC": 0.195,
+    "d1": 1.772,
+    "recovered": -0.003
+   },
+   {
+    "ep": 45,
+    "obj": "white_pot",
+    "applied": true,
+    "d0": 0.751,
+    "dC": 0.16,
+    "d1": 0.784,
+    "recovered": -0.045
+   }
+  ]
+ }
+}

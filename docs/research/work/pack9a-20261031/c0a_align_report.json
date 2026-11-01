@@ -1,0 +1,42 @@
+{
+ "white_pot": {
+  "rot_deg": 0.264,
+  "trans_mm": 1.7,
+  "vertex_move_mm_median": 1.62,
+  "vertex_move_mm_max": 2.79,
+  "chamfer_mm_before": 4.483,
+  "chamfer_mm_after": 4.508,
+  "same_faces": true,
+  "n_vertices": 8237
+ },
+ "white_pot_lid": {
+  "rot_deg": 2.064,
+  "trans_mm": 1.08,
+  "vertex_move_mm_median": 1.39,
+  "vertex_move_mm_max": 3.5,
+  "chamfer_mm_before": 4.121,
+  "chamfer_mm_after": 4.006,
+  "same_faces": true,
+  "n_vertices": 4777
+ },
+ "plastic_dish_rack": {
+  "rot_deg": 1.892,
+  "trans_mm": 2.77,
+  "vertex_move_mm_median": 3.83,
+  "vertex_move_mm_max": 9.64,
+  "chamfer_mm_before": 5.191,
+  "chamfer_mm_after": 4.898,
+  "same_faces": true,
+  "n_vertices": 1184
+ },
+ "blue_cup": {
+  "rot_deg": 1.534,
+  "trans_mm": 4.12,
+  "vertex_move_mm_median": 4.48,
+  "vertex_move_mm_max": 5.99,
+  "chamfer_mm_before": 3.704,
+  "chamfer_mm_after": 3.31,
+  "same_faces": true,
+  "n_vertices": 15472
+ }
+}

@@ -1,0 +1,475 @@
+{
+ "ok": true,
+ "failures": [],
+ "missing": [],
+ "allowed_config_differences": [
+  "output_dir",
+  "reference.parquet",
+  "task.parquet"
+ ],
+ "pair_config_differences": {
+  "ep2/s42": {
+   "ep2/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep2/s43": {
+   "ep2/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s42": {
+   "ep12/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s43": {
+   "ep12/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "pair_config_equal_after_arm_name": {
+  "ep2/s42": {
+   "ep2/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep2/s43": {
+   "ep2/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s42": {
+   "ep12/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s43": {
+   "ep12/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "eval_timeouts": {
+  "ep2/mass1/s42": {
+   "best": 1,
+   "best_runs": 10,
+   "best_rc": {
+    "0": 9,
+    "124": 1
+   },
+   "best_without_rc": 0,
+   "curve": 0,
+   "curve_runs": 21,
+   "curve_rc": {
+    "0": 21
+   },
+   "curve_without_rc": 0
+  },
+  "ep2/mass1/s43": {
+   "best": 0,
+   "best_runs": 10,
+   "best_rc": {
+    "0": 10
+   },
+   "best_without_rc": 0,
+   "curve": 1,
+   "curve_runs": 21,
+   "curve_rc": {
+    "0": 20,
+    "124": 1
+   },
+   "curve_without_rc": 0
+  },
+  "ep12/mass0/s43": {
+   "best": 1,
+   "best_runs": 10,
+   "best_rc": {
+    "0": 9,
+    "137": 1
+   },
+   "best_without_rc": 0,
+   "curve": 0,
+   "curve_runs": 21,
+   "curve_rc": {
+    "0": 21
+   },
+   "curve_without_rc": 0
+  }
+ },
+ "cells": {
+  "ep2/mass0/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass0s42_glock/ep2-s42/policy_70004736.safetensors",
+   "checkpoint_steps": "70004736",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "78c30bb78076ada7acd1a076bc546c20",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00279907252
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.00124525615
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "e58ee22f39a6f7e485a1fd543ef5c61f6ed49f2da4b9630b710a34d0ae6f337d"
+  },
+  "ep2/mass0/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass0s43_glock/ep2-s43/policy_9998336.safetensors",
+   "checkpoint_steps": "9998336",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "78c30bb78076ada7acd1a076bc546c20",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00279907252
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.00124525615
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "e0b4c7039a41c5272544344e4e8b6880a008b3ad40db200223d9ee2c02a405fd"
+  },
+  "ep2/mass1/s42": {
+   "eval_timeouts": {
+    "best": 1,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 9,
+     "124": 1
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass1s42_glock/ep2-s42/policy_20000768.safetensors",
+   "checkpoint_steps": "20000768",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "c33b8751deca6240b4975dbfb0d23259",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.2771,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00258540998
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.0882,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.000366105308
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 9,
+   "checkpoint_sha256": "f2e45f649a842136ae23b2dc73b9fb93bfa956063145fc0d4366310f649cb440"
+  },
+  "ep2/mass1/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 1,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 20,
+     "124": 1
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass1s43_glock/ep2-s43/policy_9998336.safetensors",
+   "checkpoint_steps": "9998336",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "c33b8751deca6240b4975dbfb0d23259",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.2771,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00258540998
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.0882,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.000366105308
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "d134bfcb731a89704cdf9e0f4f201b5a45e006114709847f22bc9073586a23af"
+  },
+  "ep12/mass0/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass0s42_glock/ep12-s42/policy_40001536.safetensors",
+   "checkpoint_steps": "40001536",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "3f42eb4fc65ba64c5f7e0792df76aa4b",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000915149943
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00770560679
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "2993240d8835f565040049f2b8501f957c99ac76a171119e5d8aa542da55c2fd"
+  },
+  "ep12/mass0/s43": {
+   "eval_timeouts": {
+    "best": 1,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 9,
+     "137": 1
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass0s43_glock/ep12-s43/policy_40001536.safetensors",
+   "checkpoint_steps": "40001536",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "3f42eb4fc65ba64c5f7e0792df76aa4b",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000915149943
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00770560679
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 9,
+   "checkpoint_sha256": "8c086674b2e66fb686cb73618a1e264aa5f89233897a348453d5c9608b901513"
+  },
+  "ep12/mass1/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass1s42_glock/ep12-s42/policy_49999872.safetensors",
+   "checkpoint_steps": "49999872",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "1e89d4951512566b77bee49390e2e4f0",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.128,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000390463976
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3865,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00992739008
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "c5631f16aeebf51bdf62d3c4d618d48189c7af8c4ad798f8e568c268cd35a945"
+  },
+  "ep12/mass1/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass1s43_glock/ep12-s43/policy_49999872.safetensors",
+   "checkpoint_steps": "49999872",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "1e89d4951512566b77bee49390e2e4f0",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.128,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000390463976
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3865,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00992739008
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "015b5068d328b98e8179722b89fcc28c85786fa4d1382a58afa8d48af1343e0e"
+  }
+ },
+ "rule": "docs/research/work/masses-transfer-20261031/PREREG.md"
+}

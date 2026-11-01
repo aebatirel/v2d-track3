@@ -1,0 +1,132 @@
+{
+ "note": "ORACLE scoring vs public mocap, after inference (T5 first stage, ep24)",
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "recompose_check_maxdiff_base": 2.220446049250313e-16,
+ "runs": {
+  "z2latest:rvo": {
+   "Po_star": 0.8974,
+   "Po_lib": 0.897,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.8534,
+    "wooden_piece_2": 0.9414
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.8532,
+    "wooden_piece_2": 0.9409
+   },
+   "Ps_star": 0.9277,
+   "Po_common": {
+    "common_cm_med": 1.84,
+    "common_cm_p90": 1.99,
+    "common_cm_phase": {
+     "A": 0.31,
+     "B": 1.62,
+     "C": 1.88,
+     "D": 1.8,
+     "E": 1.86,
+     "F": 1.87
+    },
+    "common_cm_end": 1.87,
+    "common_vec_cm_f100": [
+     0.78,
+     0.4,
+     1.68
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 2.14,
+     "wooden_piece_2": 1.57
+    },
+    "diff_cm_med": 0.77,
+    "auc_common_removed": 0.9988
+   },
+   "Ps_common": {
+    "common_cm_med": 1.67,
+    "common_cm_p90": 1.93,
+    "common_cm_phase": {
+     "A": 0.37,
+     "B": 1.4,
+     "C": 1.52,
+     "D": 1.63,
+     "E": 1.77,
+     "F": 1.91
+    },
+    "common_cm_end": 1.91,
+    "common_vec_cm_f100": [
+     0.61,
+     0.67,
+     1.24
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 1.78,
+     "wooden_piece_2": 1.57
+    },
+    "diff_cm_med": 0.45,
+    "auc_common_removed": 0.9989
+   }
+  },
+  "z2:rvo": {
+   "Po_star": 0.8257,
+   "Po_lib": 0.8232,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.8089,
+    "wooden_piece_2": 0.8425
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.8043,
+    "wooden_piece_2": 0.842
+   },
+   "Ps_star": 0.8386,
+   "Po_common": {
+    "common_cm_med": 2.62,
+    "common_cm_p90": 2.8,
+    "common_cm_phase": {
+     "A": 0.25,
+     "B": 1.76,
+     "C": 2.61,
+     "D": 2.58,
+     "E": 2.67,
+     "F": 2.71
+    },
+    "common_cm_end": 2.63,
+    "common_vec_cm_f100": [
+     2.32,
+     0.97,
+     0.57
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 2.84,
+     "wooden_piece_2": 2.41
+    },
+    "diff_cm_med": 0.84,
+    "auc_common_removed": 0.9984
+   },
+   "Ps_common": {
+    "common_cm_med": 2.65,
+    "common_cm_p90": 2.84,
+    "common_cm_phase": {
+     "A": 0.33,
+     "B": 1.65,
+     "C": 2.51,
+     "D": 2.61,
+     "E": 2.74,
+     "F": 2.82
+    },
+    "common_cm_end": 2.69,
+    "common_vec_cm_f100": [
+     2.15,
+     1.24,
+     0.13
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 2.72,
+     "wooden_piece_2": 2.58
+    },
+    "diff_cm_med": 0.5,
+    "auc_common_removed": 0.9984
+   }
+  }
+ }
+}

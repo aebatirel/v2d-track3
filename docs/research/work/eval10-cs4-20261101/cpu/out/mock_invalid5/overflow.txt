@@ -1,0 +1,9 @@
+overflow train_s42: 1 files, 1 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow train_oom_s42: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow curve_s42: 21 files, 525 lines; nefc 525 (requested median 540.0 p95 540.0 max 540), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow best_s42: 10 files, 250 lines; nefc 250 (requested median 540.0 p95 540.0 max 540), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow train_s43: 1 files, 1 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow train_oom_s43: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow curve_s43: 21 files, 525 lines; nefc 525 (requested median 540.0 p95 540.0 max 540), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow best_s43: 10 files, 250 lines; nefc 250 (requested median 540.0 p95 540.0 max 540), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow conf: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0

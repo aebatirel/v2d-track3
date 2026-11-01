@@ -1,0 +1,930 @@
+{
+ "rule": "docs/research/work/eval10-njmax-20261101/PREREG.md section 4 (O = nefc + broadphase + narrowphase lines of the 1024 training train.log)",
+ "groups": {
+  "train_s42": {
+   "glob": "/content/runs/e20b1s42_glock/ep20-s42/train.log",
+   "files": 1,
+   "lines_total": 1411,
+   "counts": {
+    "nefc": 1236,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 1236,
+   "njmax_requested": {
+    "n": 1236,
+    "median": 532.0,
+    "p95": 565.75,
+    "p99": 587.3000000000002,
+    "max": 604,
+    "min": 513
+   },
+   "per_file": {
+    "/content/runs/e20b1s42_glock/ep20-s42/train.log": {
+     "lines_total": 1411,
+     "nefc": 1236,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {
+      "nefc": 75
+     },
+     "last_line": {
+      "nefc": 1409
+     }
+    }
+   }
+  },
+  "train_oom_s42": {
+   "glob": "/content/runs/e20b1s42_glock/ep20-s42.oom*/train.log",
+   "files": 0,
+   "lines_total": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {}
+  },
+  "curve_s42": {
+   "glob": "/content/results/e20b1s42_glock_public/ep20/curve/policy_*/r*/eval.log,/content/results/e20b1s42_glock_public/ep20/curve/policy_*/eval.log",
+   "files": 21,
+   "lines_total": 1974,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_10002432/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_10002432/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_10002432/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_20000768/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_20000768/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_20000768/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_30003200/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_30003200/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_30003200/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_40001536/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_40001536/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_40001536/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_50003968/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_50003968/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_50003968/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_60002304/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_60002304/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_60002304/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_70004736/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_70004736/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/curve/policy_70004736/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    }
+   }
+  },
+  "best_s42": {
+   "glob": "/content/results/e20b1s42_glock_public/ep20/best/r*/eval.log",
+   "files": 10,
+   "lines_total": 940,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {
+    "/content/results/e20b1s42_glock_public/ep20/best/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/best/r10/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/best/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/best/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/best/r4/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/best/r5/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/best/r6/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/best/r7/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/best/r8/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s42_glock_public/ep20/best/r9/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    }
+   }
+  },
+  "train_s43": {
+   "glob": "/content/runs/e20b1s43_glock/ep20-s43/train.log",
+   "files": 1,
+   "lines_total": 1511,
+   "counts": {
+    "nefc": 1334,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 1334,
+   "njmax_requested": {
+    "n": 1334,
+    "median": 528.0,
+    "p95": 556.0,
+    "p99": 572.0,
+    "max": 600,
+    "min": 513
+   },
+   "per_file": {
+    "/content/runs/e20b1s43_glock/ep20-s43/train.log": {
+     "lines_total": 1511,
+     "nefc": 1334,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {
+      "nefc": 75
+     },
+     "last_line": {
+      "nefc": 1509
+     }
+    }
+   }
+  },
+  "train_oom_s43": {
+   "glob": "/content/runs/e20b1s43_glock/ep20-s43.oom*/train.log",
+   "files": 0,
+   "lines_total": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {}
+  },
+  "curve_s43": {
+   "glob": "/content/results/e20b1s43_glock_public/ep20/curve/policy_*/r*/eval.log,/content/results/e20b1s43_glock_public/ep20/curve/policy_*/eval.log",
+   "files": 21,
+   "lines_total": 1974,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_10002432/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_10002432/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_10002432/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_20000768/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_20000768/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_20000768/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_30003200/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_30003200/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_30003200/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_40001536/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_40001536/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_40001536/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_50003968/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_50003968/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_50003968/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_60002304/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_60002304/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_60002304/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_70004736/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_70004736/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/curve/policy_70004736/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    }
+   }
+  },
+  "best_s43": {
+   "glob": "/content/results/e20b1s43_glock_public/ep20/best/r*/eval.log",
+   "files": 10,
+   "lines_total": 940,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {
+    "/content/results/e20b1s43_glock_public/ep20/best/r1/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/best/r10/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/best/r2/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/best/r3/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/best/r4/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/best/r5/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/best/r6/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/best/r7/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/best/r8/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/e20b1s43_glock_public/ep20/best/r9/eval.log": {
+     "lines_total": 94,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    }
+   }
+  },
+  "conf": {
+   "glob": "/content/results/ev20_b1/conf/r*/eval.log",
+   "files": 0,
+   "lines_total": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {}
+  }
+ }
+}

@@ -1,0 +1,132 @@
+{
+ "ok": true,
+ "failures": [],
+ "dr_eps": [
+  "14",
+  "16",
+  "25",
+  "30",
+  "33"
+ ],
+ "evaluated": [
+  "14",
+  "16",
+  "25",
+  "30",
+  "33"
+ ],
+ "episodes": {
+  "14": {
+   "checkpoint": "/content/pick/20261031-drG-a1a7e25/runs/20261031-drG-a1a7e25/results/drs43_glock_public/ep14/best/policy.safetensors",
+   "dr_candidate": true,
+   "reference": "/workspace/refs/drs43_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "traj_fingerprint": "71fa181ba92c320a47450c2e42561222",
+   "reference_md5": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+   "loaded": {
+    "blue_cup": {
+     "urdf": "/content/refs/sf/ep14/assets/urdf/blue_cup_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "31cd001d2618ee2972dc922b77109b9f"
+    },
+    "plastic_dish_rack": {
+     "urdf": "/content/refs/sf/ep14/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "ae549ee0201ce085c71a7164806047f6"
+    }
+   },
+   "checkpoint_sha256": "332d549cd885474c2ec425a58060b16e1fd675bd1e22be5adf6e52e9dce02fd2"
+  },
+  "16": {
+   "checkpoint": "/content/pick/20261031-drG-a1a7e25/runs/20261031-drG-a1a7e25/results/drs43_glock_public/ep16/best/policy.safetensors",
+   "dr_candidate": true,
+   "reference": "/workspace/refs/drs43_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "traj_fingerprint": "ade67fc96f0d73b16b4d5f36109f10ae",
+   "reference_md5": "f7e2ea9260106425be6163553aac5af9",
+   "loaded": {
+    "plastic_dish_rack": {
+     "urdf": "/content/refs/sf/ep16/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "ae549ee0201ce085c71a7164806047f6"
+    },
+    "wooden_spoon": {
+     "urdf": "/content/refs/sf/ep16/assets/urdf/wooden_spoon_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "59f7268c34f1fd07dbb24fb80d9fd907"
+    }
+   },
+   "checkpoint_sha256": "8356f94274b777e4da485b6f9522ef2002fe09e3e749fa037d840a39f19ca40c"
+  },
+  "25": {
+   "checkpoint": "/content/pick/20261031-drS25s42-a1a7e25/runs/20261031-drS25s42-a1a7e25/runs/perc2mckdr/ep25-s42/policy_250003456.safetensors",
+   "dr_candidate": true,
+   "reference": "/workspace/refs/perc2mckdr/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+   "traj_fingerprint": "6f70983787fdf07a26079508400e8fed",
+   "reference_md5": "71ac95f3764170f29f02fa657e7c057c",
+   "loaded": {
+    "wooden_piece_1": {
+     "urdf": "/content/assets/urdf/wooden_piece_1_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "3f877a01c97fe39a26eb418fbfca5497",
+     "collisions": 21
+    },
+    "wooden_piece_2": {
+     "urdf": "/content/assets/urdf/wooden_piece_2_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "8ee8fe77cb73582a4ed8ccc2c090371f",
+     "collisions": 11
+    }
+   },
+   "checkpoint_sha256": "1369113ff968fe8e6a5c95f4cec4f100257bf0e9a7f10471361040c732d1c81e"
+  },
+  "30": {
+   "checkpoint": "/content/pick/20261031-drS30s42-a1a7e25/runs/20261031-drS30s42-a1a7e25/runs/perc2mckdr/ep30-s42/policy_200007680.safetensors",
+   "dr_candidate": true,
+   "reference": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+   "traj_fingerprint": "c3510178ff08a2743da889514bd21240",
+   "reference_md5": "dd464c96184e84400e62ffcfa17a6ac4",
+   "loaded": {
+    "mini_sweeper": {
+     "urdf": "/content/assets/urdf/mini_sweeper_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "68762128a0acdcc36e8b4c2d6cf2b635"
+    },
+    "plastic_dish_rack": {
+     "urdf": "/content/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "216eb08d51a9f8c29185e4fb9cf3f63c"
+    }
+   },
+   "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01"
+  },
+  "33": {
+   "checkpoint": "/content/pick/20261031-drG-a1a7e25/runs/20261031-drG-a1a7e25/results/drs42_glock_public/ep33/best/policy.safetensors",
+   "dr_candidate": true,
+   "reference": "/workspace/refs/drs42_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "traj_fingerprint": "e45b81792154fa1e9987e56b6c41bbcc",
+   "reference_md5": "2a7173ab1d4248433bd049bc43f6878a",
+   "loaded": {
+    "blue_cup": {
+     "urdf": "/content/refs/sf/ep33/assets/urdf/blue_cup_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "31cd001d2618ee2972dc922b77109b9f"
+    },
+    "wooden_spoon": {
+     "urdf": "/content/refs/sf/ep33/assets/urdf/wooden_spoon_rigid.urdf",
+     "mass": 0.3,
+     "how": "verbatim",
+     "md5": "59f7268c34f1fd07dbb24fb80d9fd907"
+    }
+   },
+   "checkpoint_sha256": "7c5eb060b8a390ae83ebdcf414e5759393077b3addcd7c8729358e24e8dd6332"
+  }
+ }
+}

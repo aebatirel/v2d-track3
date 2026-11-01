@@ -98,6 +98,166 @@ Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-30 ~13:05 UTC: oracle-twin test built and checked on CPU; ready to launch option B (owner's choice), NOT launched
+- Diagnostic on public twins of the hardest eval episodes: ep11 (eval 10), ep13 (eval 14), ep31 (eval 30).
+  - P = our perceived reference; O = mocap object motion; same grasp-lock recipe, box and seed; scored vs mocap.
+  - Readings fixed in `docs/research/work/oracle-twins-20261030/PREREG.md`; job string in `JOBS.txt` there
+    (`ops/jobs/oracle_twins.sh`, run id `<date>-orcB-<sha>`).
+- CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
+- Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
+
+## 2026-11-01 19:28 UTC: robot-hand videos of evals 14 (×3), 25, 30 delivered (store runs/20261101-vid3-b96ae95/results/sub_videos/)
+- Eval-14 replays 0.560 / 0.285 / 0.749 (none in the good mode); eval 25 0.897; eval 30 0.901. Cost $0.70. Nothing running.
+
+## 2026-11-01 11:44 UTC: PACK 11 UPLOADED (keen-heisenberg's session) — new bests AUC 0.83921, MP-SR 0.70, RPE 3.179, MPPE 2.545
+- vs pack 10: AUC +0.020, SP-SR 0.85 (back from 0.80), MP-SR 0.70 (from 0.65), RPE −0.50, MPPE −0.30; CD-O unchanged.
+- Only eval 10 changed: the policy trained with njmax 1024 (training only), evaluated at stock 512 / 256.
+- Nothing running; credit $23.63; ledger closed.
+
+## 2026-11-01 11:50 UTC: PACK 11 READY — results/submissions/20261101-track3l-candidate/build_11/ (not uploaded here)
+- sha256 3c428350…055ec, code 50312319: pack 10 with eval 10 = the njmax-1024-trained policy evaluated at stock 512/256
+  (ck512 aaa077eb…); vs pack 10's eval-10 policy +0.371 (V) / +0.361 (P), 0/10 vs 10/10 fails; only ep10 rows differ.
+- Guard: the owner approved in this session a single sha-specific exception in tools/no_oracle.py (tests 17/17).
+
+## 2026-11-01 11:25 UTC: pack-11 verdict INCLUDE (njmax-1024-trained eval-10 policy at stock limits) — pack NOT built
+- Owner's go (relayed by keen-heisenberg, 09:11): pack the 1024-trained eval-10 policy scored at stock 512 / 256.
+- Verdict (amendment 998385b0, standing rule on already-seen draws): vs pack 10's eval-10 policy 0.9034 vs 0.5322 (V,
+  +0.371) / 0.873 vs 0.5116 (P, +0.361),
+  fail rate 0/10 vs 10/10; stock evaluation proven (stored config 512/256; solver built 512/256; 0 overflow in all draws).
+- (11:25) The sha-specific exception was first denied by this session's permission check on the relayed go; the owner
+  then approved it here directly (11:40) and it was added.
+
+## 2026-11-01 09:00 UTC: wrap-up — nothing running; credit $23.63; ledger closed ($200.12 actual)
+- Eval-20 b1 retrain NO-SWAP (gate missed: s43 0.8929 vs > 0.8933; overflow 1.2–1.3 k lines) → no pack 10b.
+- Best board: pack 10 (AUC 0.81915, RPE 3.683, MPPE 2.848) + 9a+ (SP-SR 0.85, MP-SR 0.65, CD-O 0.332).
+- Open: (1) eval-10 nest completion (njmax-1024 diagnostic 0.913 vs legal 0.532; owner / organiser question on 1024
+  training; legal route = overflow → 0 at 512, e.g. clip the beige low corner [H]); (2) store.sh push race (fix described
+  in the work log, 00:50 entry; not built); (3) eval-19 sweeper support fill certified on CPU, retrain not run.
+
+## 2026-11-01 08:43 UTC: PACK 10 UPLOADED (keen-heisenberg's session) — new bests on AUC 0.81915, RPE 3.683, MPPE 2.848
+- vs 9a+: AUC +0.0016, RPE −0.196, MPPE −0.049; SP-SR 0.80 (board keeps 9a+'s 0.85); MP-SR / CD-O unchanged.
+- Only eval 10 changed (legal ev10cs5 retrain). [H] SP-SR dropped because the new eval-10 policy moves the cup without
+  completing the nest. Next lever there: an eval-10 policy that completes the nest (overflow → 0 at stock limits).
+
+## 2026-11-01 08:13 UTC: eval-10 legal retrain (ev10cs5, stock limits) SWAP-ELIGIBLE → INCLUDE in pack 10
+- Official draws vs V 0.532 (packed 0.463), vs P 0.512 (0.453); gain +0.069 / +0.059 ≥ +0.02 on both; all clauses hold;
+  every draw still fails RPE > 5 cm (equal floor) but draw 1 beats the packed rollout on sim_vs_ref, RPE and MPPE.
+- Overflow 992 / 660 lines (e10v ~6 M); chosen seed 43 (ca7c4e3a…). Cost $2.85.
+- **PACK 10 READY** (08:20): results/submissions/20261101-track3k-candidate/build_10/track3_submission.parquet, sha256
+  e1bef1e5…0e2a, code a187a8c9 — 9a+ with eval 10's draw-1 rollout; all checks pass; NOT uploaded here.
+
+## 2026-11-01 05:45 UTC: eval-10 njmax-1024 diagnostic SUPPORTED — the floor was training-time contact overflow
+- Overflow 0 lines (e10v ~6 M); beige cup lifted 23.9 cm; official sim_vs_ref vs V 0.913 at 1024 (e10v 0.459); the same
+  checkpoint at stock 512 scores 0.903 vs V / 0.873 vs P. DIAGNOSTIC ONLY, NEVER PACKED (guard refuses it).
+- Legal route LAUNCHED 06:10: eval-10 retrain on ev10cs5 at stock 512/256, `20261101-e10cs-50c2d90` (58625218), PREREG
+  eval10-cs4-20261101 (13c4133); swap rule + pack-10 inclusion ≥ +0.02 on V and P; result ~08:30 UTC [E].
+- Owner question: is a policy trained at njmax 1024 but evaluated at stock limits acceptable? (organisers' call).
+- Also running: eval-20 b1 pitcher retrain `20261101-e20b1-4207ce4` (58631864), PREREG eval20-b1-20261101 (36f255a);
+  gate > 0.8933, inclusion ≥ 0.91335 on P. ev10cs5 s42 interim: 992 overflow lines, training box 0.477 (s43 running).
+
+## 2026-11-01 05:03 UTC: pack 9b UPLOADED (by keen-heisenberg's session) — AUC 0.81677 vs 9a+ 0.81757; 9a+ stays best
+- Board: SP-SR / MP-SR / CD-O unchanged; RPE 3.88283 (9a+ 3.87853), MPPE 2.90186 (2.89663). The eval-33 swap's GT-free
+  proxy gain (+0.0018) was noise vs mocap (≈ −0.016 on that episode). Receipt on claude/keen-heisenberg-engcwz (157ed61).
+
+## 2026-11-01 04:56 UTC: PACK 9b READY — results/submissions/20261101-track3j-candidate/build_9b/ (not uploaded here)
+- `track3_submission.parquet`, 9,120 rows, sha256 a6c4105abb4a6a85…44e4a, code https://github.com/aebatirel/v2d-track3/commit/dd24ed412714ecc12cbda275be9b45180a00744e.
+- D-arm swap rule: **eval 33 PASS** (0.936 vs packed 0.923, 0 fails each); 14 / 16 / 25 / 30 NO-SWAP. Pack 9b = 9a+ with
+  eval 33's D draw-1 rollout; expected effect ≈ +0.0001 AUC [E] (robustness: official min 0.903 vs 0.847). D arm $19.41.
+- Checks: only ep33 rows differ from 9a+; meshes and CD-O identical; uploader offline validation; no_oracle. Upload stays
+  with the session where the owner gave the word.
+- Running: eval-10 njmax-1024 diagnostic `20261101-e10nj-451b82d` (never packed).
+
+## 2026-11-01 ~04:20 UTC: D confirmation running; eval-10 njmax-1024 diagnostic launched (never packed)
+- D arm: all five training boxes VERIFIED ($17.24); merge chose 14 s43, 16 s43, 25 s42, 30 s42, 33 s42; confirmation box
+  `20261101-drC-a1a7e25` (58608674) on draw 3 of 10 at 04:16; then after_c.sh → verdict → pack 9b record (~05:00–05:30).
+- Eval 10: training overflows the 512 constraint rows ~6 M times per run (packed run 8.37 M; ep11 gate ~100); scoring
+  never overflows. Owner's go (relayed): one diagnostic at njmax 1024, DIAGNOSTIC ONLY (changed evaluation physics; guard
+  in tools/no_oracle.py). Box `20261101-e10nj-451b82d` (58615195, India $1.392/h), PREREG eval10-njmax-20261101 (086de63).
+- Owner (relayed, 02:50): "I give you permission for everything" — score-serving GPU batches go ahead with plan + cost +
+  PREREG first; uploads stay with the session where the owner gave the word. Carve round 2: no new pieces; overlaps at
+  evals 10/1/14/30 are reference-pose problems. Credit $31.95 at 04:16.
+
+## 2026-10-31 ~23:35 UTC: eval-10 V4p retrain NO-SWAP; masses v2 NOT ADOPTED; D arm running (5 boxes)
+- **Eval-10 V4p retrain** (`20261031-e10v-caf38fb`, VERIFIED, 10/10 confirmation draws rc 0): **NO-SWAP**, equal floor.
+  The moved (beige) cup is never lifted: curve.json beige r1 lift 0.0–0.3 cm at 13 of 14 checkpoints, 2.5 cm once (a knock);
+  the job log's "blue_cup: lift 0" label tracks the blue cup, which stays on the table by design (correction 1 Nov, 04:20). The new policy scores 0.459 vs the
+  packed 0.463 on V and 0.449 vs 0.453 on P. Failure rate is 10/10 on both, RPE ~15.9 cm. The ep11 gate's transfer
+  (+0.142 on the public twin) did not carry to eval 10. Eval 10 stays as packed. Cost $3.25.
+- **Masses v2** (boxes mv2a2 + mv2b, both VERIFIED, no eval timeouts): **NOT ADOPTED**. Mean delta +0.0034 (bar +0.03);
+  1/4 episodes > 0 (needs 3). ep24 +0.038, ep11 −0.014, ep13 −0.002, ep31 −0.009. The placeholder 0.3 kg stays.
+  Record: `docs/research/work/masses-v2-20261031/results/`.
+- **D arm** (pack 9b): G (evals 14/16/33 grasp lock), S25 s42/s43, S30 s42 running; S30 s43 at ~23:45. Canary and
+  std-path D lines verified. Reading after all five + one confirmation box (`dr_eval_merge.py`).
+- Pack 9b = 9a+ plus any D cell that passes the rule (eval 10 is now out). Nothing is uploaded from this session.
+
+## 2026-10-31 ~23:00 UTC: re-track test FAIL (P_o' per-episode C0b/E0b templates vs stored P_o, 20 public eps)
+- Pre-registered verdict (`docs/research/work/retrack-20261031/verdict.txt`): mean dR −0.170 (bar ≥ +0.01), dR > 0 on
+  3/20 (bar ≥ 12), min dR −0.973 (bar ≥ −0.03), mean dRPE +1.32 cm (bar ≤ 0). Raw mean dR −0.169. Fails every clause.
+- Worst: white_pot templates (ep45 0.980 → 0.006, ep0 0.962 → 0.037 with RPE 1.4 → 17.3 cm, ep26 −0.47, ep2 −0.26)
+  and ep11's two cups (−0.71). Blue-cup-only episodes 13/21/22 +0.010 to +0.015 (post-hoc subset, not a result).
+- Boxes clean (exit 0, env pt2.11-cu130-py313-20261020, RTX PRO 6000); cost $1.54 measured. No eval re-track.
+
+## 2026-10-31 20:51 UTC: ep11 gate PASS (Δ +0.142 vs mocap) — eval-10 V4p retrain launching
+- Seed 42 +0.013, seed 43 +0.271 (T 0.861); control stays at its static floor. Verified, no timeouts.
+- Eval-10 retrain (ops/jobs/ev10_v4p.sh, 2 seeds + 10 confirmation draws, swap rule on both references) next.
+
+## 2026-10-31 18:13 UTC: PACK 9a+ UPLOADED — AUC 0.81757 (best), CD-O 0.332 (from 0.402); rank sum 60, 11th
+- Uploaded by the score-status session (owner's word there) from `results/submissions/20261031-track3i-candidate/build_9aplus/`.
+- RPE 3.879, MPPE 2.897; SP-SR / MP-SR unchanged. Next levers: eval 10 (ep11 gate result ~19:30–21:00), pack 10.
+
+## 2026-10-31 ~17:20 UTC: 6 boxes running; pack 9a / 9a+ built and signed off, waiting for the owner's own upload word
+- Running (all past setup): ep11 gate 58552489 (`20261031-e11g-663b7df`, result ~19:30–21:00); Masses v2 boxes
+  `20261031-mv2a2-b5043ce` (ep24+13) and `20261031-mv2b-b5043ce` (ep11+31), verdict ~23:00–01:00; pack-10 comparison set
+  `20261031-h5p7-1a7cdff` and `20261031-h5e1-1a7cdff`. Embodiment recipe screen (2 boxes) and mesh E0 box also running.
+- Pack 9a (pack 8 + C0 pot/lid/rack; `results/submissions/20261031-track3i-candidate/build_3obj`, sha256 9c19bb0c…) and
+  9a+ (+ C1 beige cup and dust pan; `build_9aplus` both beige pairs e02736ea… / `build_9aplus_e10` eval-10 beige only
+  6743f01d…) are built, validated offline and signed off by the mesh session (eval-8 beige conditional, unmeasured).
+  Provenance flags (scan-derived ball radius etc.) disclosed; owner chose "Ship 9a, flagged" in the mesh session.
+  **Upload blocked** until the owner says it in this chat (standing rule: nothing to Kaggle without the owner's word).
+- Pack 10 inputs: swap rule agreed (fresh-draw mean vs packed H5 mean, failure rate GT-free RPE > 5 cm, median RPE,
+  packed-draw guard); eval 10 is the only clear failing eval (GT-free audit); no eval reference fix besides V4p.
+
+## 2026-10-31 ~14:00 UTC: realistic masses NOT ADOPTED; eval-10 cavity widening falsified; ep11 gate prep running (CPU)
+- Mass transfer check (run 20261031-mass-2ed46ea, VERIFIED, no eval timeouts; registered AUC vs mocap, 10 draws/cell):
+  - ep2 (pot + lid): 0.567 → 0.723, Δ +0.157 (seeds +0.081 / +0.233; SE 0.105).
+  - ep12 (cup into rack): 0.924 → 0.911, Δ −0.013 (seeds −0.006 / −0.019; SE 0.007). Bar +0.03 on both → NOT ADOPTED.
+  - The eval pipeline keeps the 0.3 kg placeholder; masses eval retrain (O1–O3) is off. Box cost ≈ $9.10 (ledger).
+- Eval-10 lane: H-nest-a (widened blue-cup cavity, meshes/carve/ev10w) FAILED both pre-registered gates (334393e):
+  the intrusion is the beige ~5 mm off the blue axis (one-sided in 60/61 frames), not a narrow cavity; widening makes
+  the beige sink ~11 mm. ev10 stays. V4p with ev10 is near intrusion-free on hands-off frames.
+  Next: ep11 rollout gate, control vs V4p (ev10 unchanged), seeds 42/43, NREP 10; CPU prep + reviews running
+  (workflow wf_0f7cb69b-fa2); launch (~$4–6) needs the owner's go.
+
+## 2026-10-31 ~11:20 UTC: perception sprint — only the eval-10 cup-nest fix passes; owner topped up $100 (lean plan)
+- Offset fix (S11) and held-pose fix (S10) FAILED their pre-registered rules on 20 public episodes → dropped.
+- Cup-nest fix (S12) passes on ep11 (0.901 → 0.969–0.978 reference); eval-10 version V4p needs an ep11 rollout gate
+  (≈ $10 with the eval-10 retrain), value ≈ +0.007 LB central [E].
+- Mass transfer check (58502738) result ≈ 12:30–14:00 UTC decides the masses eval retrain (O2, ≈ $16–26).
+- Credit $128.43 after the owner's $100 top-up; lean-budget lanes agreed with the Embodiment and mesh sessions.
+
+## 2026-10-31 ~06:35 UTC: tracker fixes measured on CPU; mass check in final fixes; coordination with other sessions
+- S6 static hold: fails its no-harm rule by 0.0003 and does nothing on eval 10 (the cup really slides in our track) →
+  dropped. Robust VO fixes ep24 (0.81 → 0.994) but no eval has that failure. Eval screen: the only remaining eval target
+  for perception fixes is eval 10 (masking re-track, one GPU box ≈ $1–2 + rollout gate).
+- Realistic masses (Embodiment session, +0.090 vs mocap on 4 public eps with scans) → transfer check on our meshes built,
+  two reviews' fixes being applied; ≈ $6.5–11; launch after GO. Eval retrain with masses ≈ $20–25 if it passes.
+- Sessions coordinated (Embodiment: rlloop box running, R5-lite done; mesh: gmg build, its own G0 launch). Credit ≈ $33.
+
+## 2026-10-30 ~19:00 UTC: oracle twins done — eval 10 is perception-limited, eval 14 is a robot/learner limit
+- ep11 (eval 10, cup stacking): true motion 0.940 vs our perceived 0.595 → **C2 perception-limited**. Biggest lever
+  found: make eval 10's reference physically consistent (cup nest), ≤ +0.017 LB if it transfers [E].
+- ep13 (eval 14, hand-over + flip): 0.544 vs 0.543 → **C1**: not perception; robot/learner limit.
+- ep31 (eval 30): +0.086 → inconclusive at one seed.
+- Running: leak plan Phase 1 (3 perception boxes, orcP1a/b/c, ≈ $4.4); Tier A CPU audits. Credit ≈ $30, burn ≈ $6/h.
+  Phase 2 (≈ $200) needs a top-up.
+
+## 2026-10-30 ~08:50 UTC: eval-1 carve CONFIRMED on the official evaluator; pack-8 candidate ready (NOT uploaded)
+- Eval 1 (placement carve, seed 43): 20 official draws 0.924 ± 0.017 (min 0.884) vs packed policy 0.822 ± 0.239.
+- Pack 8 = pack 7 + fresh eval-1 rollout (0.9232): `results/submissions/20261030-track3h-candidate/`. Expected
+  ≈ +0.0002 AUC as scored [estimate]; mainly robustness if checkpoints are re-run. **Owner decides the upload.**
+- Depth audit falsified (no GT-free reference-error detector). Videos of the worst 5 still rendering (HF 429s).
+- Spend this session ≈ $28.2 actual + video box running (≈ $2) of $45.
+
 ## 2026-10-30 ~06:45 UTC: PACK 7 UPLOADED (owner-approved) — AUC 0.81460, our best, but 7th: the field moved
 - Pack 7 = pack 6 + eval 33 from arm B. AUC 0.81460 (+0.0007), RPE 3.932, MPPE 2.921, SP-SR 0.85, MP-SR 0.65.
 - AUC board: 0.940 / 0.931 (DDD) / 0.883 / 0.870 / 0.860 / 0.856 / **0.8146 us** / 0.773. 5th needs ≈ +0.046.

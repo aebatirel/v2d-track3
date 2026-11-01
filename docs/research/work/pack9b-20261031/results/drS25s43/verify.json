@@ -1,0 +1,129 @@
+{
+ "mode": "std",
+ "run": "20261031-drS25s43-a1a7e25",
+ "arm": "dr",
+ "episodes": {
+  "25": {
+   "status": "VERIFIED",
+   "failures": [],
+   "missing": [],
+   "thin": [],
+   "main_eval_timeout": [],
+   "unchecked": [],
+   "retrain_seeds": [],
+   "cells": {
+    "43": {
+     "eval_timeouts": {
+      "best": {
+       "cut": 0,
+       "runs": 10,
+       "rc": {
+        "0": 10
+       },
+       "without_rc": 0
+      },
+      "curve": {
+       "cut": 0,
+       "runs": 4,
+       "rc": {
+        "0": 4
+       },
+       "without_rc": 0
+      }
+     },
+     "checkpoint": "/content/runs/perc2mckdr/ep25-s43/policy_250003456.safetensors",
+     "checkpoint_steps": "250003456",
+     "reference_file": "/workspace/refs/perc2mckdr/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+     "reference_md5": "71ac95f3764170f29f02fa657e7c057c",
+     "traj_fingerprint": "6f70983787fdf07a26079508400e8fed",
+     "loaded_urdfs": {
+      "wooden_piece_1": {
+       "urdf": "/content/assets/urdf/wooden_piece_1_rigid.urdf",
+       "md5": "3f877a01c97fe39a26eb418fbfca5497",
+       "mass": 0.3,
+       "collisions": 21
+      },
+      "wooden_piece_2": {
+       "urdf": "/content/assets/urdf/wooden_piece_2_rigid.urdf",
+       "md5": "8ee8fe77cb73582a4ed8ccc2c090371f",
+       "mass": 0.3,
+       "collisions": 11
+      }
+     },
+     "support_stage": {
+      "file": "/workspace/refs/perc2mckdr/ep25/reconstructed_stage/t3_ep025_support.usda",
+      "md5": "b39c9287bc8b1f643a4af940e2d4d5ea",
+      "packed": "/content/refs/perc2mck/ep25/reconstructed_stage/t3_ep025_support.usda",
+      "packed_md5": "b39c9287bc8b1f643a4af940e2d4d5ea"
+     },
+     "total_environment_steps": 250003456,
+     "reset_seed": 43,
+     "dr_log": {
+      "log": "/content/runs/perc2mckdr/ep25-s43/train.log",
+      "ok": true,
+      "lines": [
+       "v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 43; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)"
+      ],
+      "n_lines": 1,
+      "skip_expected": true
+     },
+     "checkpoint_sha256": "33149bfa964edd01271ccdecee4628722381a882664ac49eadaf8647d1ecd784",
+     "stats": {
+      "n": 10,
+      "mean": 0.4816,
+      "sd": 0.0245,
+      "min": 0.4601,
+      "values": [
+       0.4882,
+       0.5427,
+       0.4692,
+       0.4756,
+       0.4644,
+       0.4657,
+       0.4896,
+       0.4601,
+       0.4939,
+       0.467
+      ]
+     },
+     "packed_config_diff": {
+      "env.reset.seed": [
+       "42",
+       "43"
+      ],
+      "output_dir": [
+       "/content/runs/perc2mcks/ep25-s42",
+       "/content/runs/perc2mckdr/ep25-s43"
+      ],
+      "reference.parquet": [
+       "/workspace/refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+       "/workspace/refs/perc2mckdr/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet"
+      ],
+      "reset.seed": [
+       "42",
+       "43"
+      ],
+      "task.parquet": [
+       "/workspace/refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+       "/workspace/refs/perc2mckdr/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet"
+      ],
+      "training.seed": [
+       "42",
+       "43"
+      ]
+     }
+    }
+   }
+  }
+ },
+ "patch_md5": "570a7f47793d02ba5b0bf3d5e6fd6eac",
+ "rule": "docs/research/work/pack9b-20261031/PREREG.md sections 1.2, 1.3, 2",
+ "hook": {
+  "expected_md5": "d92ed77113adfd1aadeedda70a9d7bde",
+  "patch_run": "installed: /tmp/drhook_9p3fw7ih/src/flash_chord/lifecycle/v2d_dr.py\npatched: /tmp/drhook_9p3fw7ih/src/flash_chord/lifecycle/reset.py\n",
+  "installed_md5": "d92ed77113adfd1aadeedda70a9d7bde",
+  "reset_tagged": true
+ },
+ "other_training_logs": [],
+ "ok": true
+}

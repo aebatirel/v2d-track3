@@ -1,0 +1,38 @@
+mass_eval code mocksha0000000, mode std, episodes [1], seeds [42], props MS/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json (d55089307ff2ced3e3244c95be22c9d6), LIB MS/box/content/v2d-track3/meshes/library_v3, PIECES MS/box/content/v2d-track3/meshes/carve/ev01, table MS/box/content/v2d-track3/docs/research/work/masses-eval-20261031/packed_refs.json (61e16a4f7fe6)
+mass_eval ep1: pulled 25 files of 20261024-pack-31ef267 (pull_files, no store listing)
+pulled runs/20261030-c01s43-328139c/runs/perc2mcks/ep1-s43/policy_250003456.safetensors
+mass_eval: packed references checked for (ep1 std 20261024-pack-31ef267 cb514adbaa3d0152eed2087d34a14fd7 c94d59eb700a2290b23fc453fbfdbeb5 MS/box/content/refs/perc2mck/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet;)
+mass_eval: std seed 42, PAIRS [1:local:mck]
+hard_ab code mocksha0000000, pairs [1:local:mck], suffix s seed 42 CR 0, NREP 10, TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2]
+hard_ab: EVAL_TIMEOUT 1200, NO_PUSH 1
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.137 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.128 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.044 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.045 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.387 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.503 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.277 kg, com [ 0.46 -0.65 -0.46] cm, 53 collision pieces
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.088 kg, com [-0.38 -0.33  0.79] cm, 107 collision pieces
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.139 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.141 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.050 kg, com [-0.   -0.    0.07] cm
+assets: collision copy from convex pieces MS/box/content/v2d-track3/meshes/carve/ev01 (carve.json white_pot white_pot_lid )
+patched FlashCHORD (ops/box/patch_flashchord.py): object keypoints 1 m, deployment-exact starts p 0.25 (job-wide; per-episode values in ENV_EP<N>)
+patched FlashCHORD (FDR rewards): object points 1 (radius true, top-k 3), fingertip bound 1 (sigma 0.01 m)
+patched FlashCHORD (VOC with the full inertia tensor)
+ab ep1 mcks s42: pipeline rc=0 qa_policy: {"sim_vs_ref":0.8977,"floor_vs_ref":0.3} 
+chosen checkpoint missing; using 
+ab ep1 mcks-s42 (policy_250003456.safetensors): n 10 sim_vs_ref {'mean': 0.9019, 'std': 0.0104, 'min': 0.8836, 'max': 0.9152} registered AUC None
+hard_ab summary: {"ep1":{"mcks-s42":{"checkpoint":"MS/box/content/runs/perc2mcks/ep1-s42/policy_250003456.safetensors","n":10,"sim_vs_ref":{"mean":0.9019,"std":0.0104,"min":0.8836,"max":0.9152}}}}
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm, 53 collision pieces
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm, 107 collision pieces
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+mass_eval RESULT: ep1 VERIFIED :: s42 n 10 mean 0.9019 sd 0.0109 min 0.8836 cut 0/0 :: candidate 42 :: loads s42 white_pot 0.2771,white_pot_lid 0.0882 confirmation: {"RUNS_EXTRA": "20261101-mevS1s42-mocksha@refs/perc2mcks/ep1", "PICK_EXTRA": "1:20261101-mevS1s42-mocksha:ck=runs/perc2mcks/ep1-s42/policy_250003456.safetensors", "MASS_EPS": "1", "EVAL_ONLY": "1", "EPS_ONLY": "1", "MA_ARGS": "--physics MS/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json", "ASSET_PIECES_EXTRA": "MS/box/content/v2d-track3/meshes/carve/ev01"} 

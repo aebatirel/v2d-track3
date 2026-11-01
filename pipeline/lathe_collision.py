@@ -16,6 +16,8 @@ Pieces, in the mesh frame (point = c0 + h d + r (cos a e1 + sin a e2)):
 Also writes inertia.json (uniform density over the pieces, mass MASS): make_assets.py --pieces then uses this centre of
 mass and inertia instead of the open-shell surface estimate.
 Usage: python lathe_collision.py PROFILE.npz FIT.json OUT_DIR [--seg 16] [--band 0.03] [--shrink 0] [--solid] [--mass 0.3]
+       [--inner INNER.npz]  (opt-in, 31 Oct, eval-10 ev10w: per-height cavity radius and band edges; without it the
+       output is byte-identical to the earlier tool)
        PROFILE.npz / FIT.json: approach2-scripts/lathe_fit2.py outputs (<name>_profile.npz, <name>.json)."""
 import argparse, json, os
 
@@ -34,6 +36,10 @@ ap.add_argument('--ext_max', type=float, default=1.0, help='cap (m) on the base 
 ap.add_argument('--base_from_hulls', help='our mesh: the base is FlashCHORD\'s own CoACD hulls of this mesh clipped to the '
                 'base side of the inner floor (keeps the footing that stands in the simulator today; the walls above the '
                 'floor come from the lathe, so the cavity is empty)')
+ap.add_argument('--inner', help='opt-in (hollow only): npz with h, r_in (profile coordinate along d, m): the inner (cavity) '
+                'radius of the wall pieces where r_in is finite (elsewhere r - wall), e.g. a widened lower cavity; optional '
+                'band_edges (m, profile h) replace the --band edges, so that a widened band is not bridged by a convex piece '
+                'that also spans unwidened heights')
 a = ap.parse_args()
 z = np.load(a.profile); fit = json.load(open(a.fit))
 c0, d, e1, e2 = (np.asarray(z[k], float) for k in ('c0', 'd', 'e1', 'e2'))
@@ -64,7 +70,25 @@ edges = np.arange(hw.min(), hw.max() + 1e-9, a.band)
 if edges[-1] < hw.max() - 1e-6:
     edges = np.r_[edges, hw.max()]
 edges[-1] = hw.max()
+INNER = np.load(a.inner) if a.inner else None
+if INNER is not None and 'band_edges' in INNER.files:
+    be = np.asarray(INNER['band_edges'], float)
+    edges = np.unique(np.r_[hw.min(), be[(be > hw.min()) & (be < hw.max())], hw.max()])
 angs = np.linspace(0, 2 * np.pi, a.seg + 1)
+if INNER is None:
+    def r_in(hh, rr):
+        return rr - t
+else:
+    ih, ir = np.asarray(INNER['h'], float), np.asarray(INNER['r_in'], float); io = np.argsort(ih); ih, ir = ih[io], ir[io]
+    wmin = [np.inf, None]                                         # thinnest wall where r_in is used (m, at h)
+
+    def r_in(hh, rr):
+        v = float(np.interp(hh, ih, ir, left=np.nan, right=np.nan)) if ih.min() <= hh <= ih.max() else np.nan
+        if not np.isfinite(v):
+            return rr - t
+        if rr - v < wmin[0]:
+            wmin[0], wmin[1] = rr - v, hh
+        return v
 for b0, b1 in zip(edges[:-1], edges[1:]):
     k = (hw >= b0 - 1e-9) & (hw <= b1 + 1e-9)
     if k.sum() < 2:
@@ -73,7 +97,7 @@ for b0, b1 in zip(edges[:-1], edges[1:]):
     if hollow:
         for a0, a1 in zip(angs[:-1], angs[1:]):
             V = np.array([P(hh, rr, an) for hh, rr in zip(hb_, rb_) for an in (a0, a1)]
-                         + [P(hh, max(rr - t, 1e-3), an) for hh, rr in zip(hb_, rb_) for an in (a0, a1)])
+                         + [P(hh, max(r_in(hh, rr), 1e-3), an) for hh, rr in zip(hb_, rb_) for an in (a0, a1)])
             pieces.append(trimesh.convex.convex_hull(V))
     else:
         ring = np.linspace(0, 2 * np.pi, 2 * a.seg, endpoint=False)
@@ -112,6 +136,10 @@ rep = dict(tool='lathe_collision', profile=a.profile, name=fit.get('name'), holl
            r_out_cm=[round(float(r.min() * 100), 2), round(float(r.max() * 100), 2)], base_end='hi' if base_hi else 'lo',
            wall_fitted_mm=round(float(z['t']) * 1e3, 2), base_extended_mm=round(ext * 1e3, 2),
            max_piece_vertices=int(max(len(p.vertices) for p in pieces)))
+if INNER is not None:
+    rep.update(inner=a.inner, band_edges_mm=np.round(edges * 1e3, 2).tolist(),
+               inner_min_wall_mm=round(float(wmin[0]) * 1e3, 2) if np.isfinite(wmin[0]) else None,
+               inner_min_wall_at_h_mm=round(float(wmin[1]) * 1e3, 2) if wmin[1] is not None else None)
 json.dump(dict(mass=a.mass, com=com.tolist(), inertia=I.tolist(), source='lathe_collision uniform solid pieces'),
           open(f'{a.out}/inertia.json', 'w'), indent=1)
 json.dump(rep, open(f'{a.out}/lathe_collision.json', 'w'), indent=1)

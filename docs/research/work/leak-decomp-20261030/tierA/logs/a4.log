@@ -1,0 +1,87 @@
+ep2: white_pot segs 1 gap 0.23 (ours 0.21) lags [(-40, 34, 0, -8)]; white_pot_lid segs 2 gap 1.2 (ours 0.75) lags [(-5, -4, 1, 0), (-13, 37, 1, 0)]  (0.5 s)
+ep0: white_pot segs 1 gap 0.39 (ours 0.24) lags [(-40, 40, 1, 0)]; white_pot_lid segs 2 gap 1.24 (ours 0.17) lags [(-8, 28, 1, 1), (-12, 19, 0, 1)]  (0.6 s)
+ep12: blue_cup segs 2 gap 0.18 (ours 0.24) lags [(-13, 10, -7, 3), (-11, 36, -11, 39)]; plastic_dish_rack segs 0 gap None (ours None) lags []  (0.3 s)
+ep11: blue_cup segs 0 gap None (ours None) lags []; beige_cup segs 1 gap 0.19 (ours 0.16) lags [(-11, 34, -8, -1)]  (0.3 s)
+ep13: blue_cup segs 3 gap 0.75 (ours 0.62) lags [(-5, 11, -19, 11), (-11, 40, -11, 40), (-40, 0, -40, 25)]; plastic_dish_rack segs 0 gap None (ours None) lags []  (0.5 s)
+ep18: mini_sweeper segs 5 gap 0.27 (ours 0.29) lags [(-10, 30, 1, 1), (-29, 40, 0, 0), (-40, 14, 0, 1)]; mini_dust_pan segs 3 gap 0.16 (ours 0.18) lags [(-7, 14, 0, 1), (-14, 40, -14, 0), (-40, 32, -25, 12)]  (0.6 s)
+ep21: blue_cup segs 4 gap 0.49 (ours 0.3) lags [(-6, 26, -3, 1), (-26, 10, -26, 2), (-10, 10, -10, -11)]; water_pitcher segs 2 gap 16.95 (ours 16.3) lags [(-32, -27, 1, 0), (17, 40, 0, 0)]  (0.4 s)
+ep22: blue_cup segs 2 gap 0.72 (ours 0.22) lags [(-35, 40, 1, 25), (-40, 32, -33, -33)]; water_pitcher segs 1 gap 14.95 (ours 15.35) lags [(-14, 38, 0, -2)]  (0.4 s)
+ep23: wooden_piece_1 segs 3 gap 20.71 (ours 16.24) lags [(None, None, None, None), (None, None, None, None), (None, None, 26, 22)]; wooden_piece_2 segs 1 gap 7.0 (ours 1.47) lags [(27, 15, -40, 34)]  (0.3 s)
+ep24: wooden_piece_1 segs 2 gap 0.22 (ours 0.24) lags [(-10, 13, 0, 0), (-13, 14, 2, 2)]; wooden_piece_2 segs 2 gap 0.93 (ours 0.9) lags [(-9, 40, -38, 28), (-40, 29, -32, 0)]  (0.4 s)
+ep26: plastic_dish_rack segs 0 gap None (ours None) lags []; white_pot segs 1 gap 0.23 (ours 0.23) lags [(-14, 30, 1, 0)]  (0.3 s)
+ep27: plastic_dish_rack segs 0 gap None (ours None) lags []; white_pot segs 2 gap 0.21 (ours 0.24) lags [(12, 12, 0, 2), (-11, 40, -12, 1)]  (0.6 s)
+ep39: mini_dust_pan segs 1 gap 0.69 (ours 0.74) lags [(-15, 26, 1, 1)]  (0.4 s)
+ep31: mini_sweeper segs 2 gap 0.22 (ours 0.28) lags [(-27, 22, -27, 1), (-22, 40, -22, 40)]; plastic_dish_rack segs 0 gap None (ours None) lags []  (0.9 s)
+ep40: mini_dust_pan segs 2 gap 0.34 (ours 0.72) lags [(-23, 21, 0, 2), (-21, 29, -21, 1)]  (0.3 s)
+ep41: white_pot segs 6 gap 0.22 (ours 0.19) lags [(-15, 15, 0, -10), (-15, 11, 0, 1), (-11, 13, -11, 0)]  (0.4 s)
+ep42: white_pot segs 3 gap 0.24 (ours 0.23) lags [(-19, 19, 1, 19), (-19, 11, -1, 0), (-11, 40, 1, 1)]  (0.3 s)
+ep43: white_pot segs 4 gap 0.25 (ours 0.23) lags [(-13, 19, 1, 0), (-19, 9, 0, 10), (-4, 12, -1, 3)]  (0.3 s)
+ep44: white_pot segs 4 gap 0.21 (ours 0.24) lags [(-40, 12, 1, 1), (-12, 12, -12, 0), (-12, 13, 0, 2)]  (0.2 s)
+ep45: white_pot segs 4 gap 0.26 (ours 0.35) lags [(-34, 11, 0, 2), (-11, 10, -11, 2), (-10, 9, -10, 10)]  (0.1 s)
+{
+ "note": "ep23 (identity swap) excluded",
+ "segments": 62,
+ "segments_without_hand": 0,
+ "leave_capped": 35,
+ "arrival_lag_all": {
+  "n": 62,
+  "median": -13.0,
+  "p25": -25.25,
+  "p75": -11.0
+ },
+ "leave_lag_all": {
+  "n": 62,
+  "median": 21.5,
+  "p25": 12.0,
+  "p75": 36.75
+ },
+ "arrival_lag_first": {
+  "n": 25,
+  "median": -14.0,
+  "p25": -27.0,
+  "p75": -9.0
+ },
+ "leave_lag_last": {
+  "n": 25,
+  "median": 34.0,
+  "p25": 29.0,
+  "p75": 40.0
+ },
+ "perc_onset_lag_all": {
+  "n": 62,
+  "median": 0.0,
+  "p25": -12.0,
+  "p75": 0.0
+ },
+ "perc_end_lag_all": {
+  "n": 62,
+  "median": 1.0,
+  "p25": 0.0,
+  "p75": 2.0
+ },
+ "perc_onset_lag_first": {
+  "n": 25,
+  "median": 0.0,
+  "p25": 0.0,
+  "p75": 1.0
+ },
+ "perc_end_lag_last": {
+  "n": 25,
+  "median": 0.0,
+  "p25": 0.0,
+  "p75": 1.0
+ },
+ "gap_true_cm_median_over_objects": {
+  "n": 25,
+  "median": 0.26,
+  "p25": 0.22,
+  "p75": 0.72
+ },
+ "gap_perc_cm_median_over_objects": {
+  "n": 25,
+  "median": 0.24,
+  "p25": 0.23,
+  "p75": 0.62
+ }
+}
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a4.json (127.2 s)

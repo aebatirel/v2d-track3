@@ -1,0 +1,36 @@
+EG rc: IDENTICAL (1 lines)
+EG joblog: IDENTICAL (81 lines)
+EG audit: IDENTICAL (136 lines)
+EG files: DIFFERS
+814c814
+< results/mass_eval/arms_ep15.json 21a2d37dd2d40c7d4e5521dd48ae041c
+---
+> results/mass_eval/arms_ep15.json 89fa174eabc481fc21d806d7142f03ae
+816c816
+< results/mass_eval/arms_ep33.json 7df81f72dc3e1d6d5bb69636229a1ccb
+---
+> results/mass_eval/arms_ep33.json 95bb059cb1815181affabfe769df4814
+EG hf: IDENTICAL (63 lines)
+EG dline: IDENTICAL (1 lines)
+EG: trainings 4, evaluations 124, patch calls 4, uploads 1; D line: 4 training logs, 0 with a v2d FC_DR_RESET line
+ES rc: IDENTICAL (1 lines)
+ES joblog: IDENTICAL (38 lines)
+ES audit: IDENTICAL (19 lines)
+ES files: IDENTICAL (307 lines)
+ES hf: IDENTICAL (27 lines)
+ES dline: IDENTICAL (1 lines)
+ES: trainings 1, evaluations 14, patch calls 3, uploads 1; D line: 1 training logs, 0 with a v2d FC_DR_RESET line
+E2 rc: IDENTICAL (1 lines)
+E2 joblog: IDENTICAL (20 lines)
+E2 audit: IDENTICAL (12 lines)
+E2 files: IDENTICAL (78 lines)
+E2 hf: IDENTICAL (3 lines)
+E2 dline: IDENTICAL (1 lines)
+E2: trainings 1, evaluations 7, patch calls 3, uploads 1; D line: 1 training logs, 0 with a v2d FC_DR_RESET line
+E3 rc: IDENTICAL (1 lines)
+E3 joblog: IDENTICAL (39 lines)
+E3 audit: IDENTICAL (4 lines)
+E3 files: IDENTICAL (575 lines)
+E3 hf: IDENTICAL (41 lines)
+E3 dline: IDENTICAL (1 lines)
+E3: trainings 0, evaluations 4, patch calls 0, uploads 4; D line: 0 training logs, 0 with a v2d FC_DR_RESET line

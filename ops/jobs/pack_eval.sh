@@ -16,8 +16,12 @@
 # same names; the policy must be evaluated on the reference it was trained on).
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; F=/content/results/final_eval; mkdir -p $F
-pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit packer budget_mesh (2026-10-24: missing, pack failed)
+python $REPO_DIR/tools/no_oracle.py ${RUNS:-} ${PICK:-} ${KEEP_RESULTS:-} ${ASSET_PIECES:-} ${EP_LIB:-} ${ASSET_LIB:-} >> $J 2>&1 \
+  || { log "pack_eval: REFUSED: an input is an oracle twin (mocap-derived; tools/no_oracle.py)" >> $J; exit 1; }
+pip install -q fast_simplification==0.2.0 manifold3d >> $J 2>&1 || true   # kit packer budget_mesh (2026-10-24: missing, pack failed); pinned 31 Oct: the version the CD-O scores used
 # Standard-learner references (hard_ab.sh, refs/perc2mcks) name /content/assets/... (make_assets.py on the training box);
+# MA_ARGS (2026-10-31): the same make_assets.py arguments the standard learners were trained with, e.g. --physics
+# docs/research/physics-2026-10-30/props_masses_only.json (realistic masses); unset = the 0.3 kg placeholder.
 # grasp-lock references carry their own copies (refs/sf/ep<N>/assets). Rebuild the same assets from ASSET_LIB, the
 # library the standard learners were trained with (2026-10-25: the first pack with standard-learner policies).
 # ASSET_PIECES (2026-10-26): the collision pieces a carved standard learner was trained with (pipeline/interaction_carve.py,
@@ -30,7 +34,7 @@ if [ -n "${ASSET_PIECES:-}" ] && [ "$(echo $ASSET_PIECES | wc -w)" -gt 1 ]; then
   log "pack_eval: merged collision pieces: $(ls $PM | tr '\n' ' ')" >> $J; ASSET_PIECES=$PM
 fi
 [ -d /content/assets ] || python $REPO_DIR/pipeline/make_assets.py ${ASSET_LIB:-$REPO_DIR/meshes/library_v3} /content/assets \
-  ${ASSET_PIECES:+--pieces $ASSET_PIECES} >> $J 2>&1 || { log "pack_eval: make_assets FAILED" >> $J; exit 1; }
+  ${ASSET_PIECES:+--pieces $ASSET_PIECES} ${MA_ARGS:-} >> $J 2>&1 || { log "pack_eval: make_assets FAILED" >> $J; exit 1; }
 # record of the collision copy the evaluated episodes saw (2026-10-30; the head of job.log can be overwritten)
 ( cd /content/assets && find . -type f | sort | xargs md5sum; grep -c "<collision>" urdf/*_rigid.urdf ) > $F/assets_md5.txt 2>&1 || true
 for x in ${RUNS:?RUNS missing}; do             # RUN or RUN@sub1,sub2 (2026-10-25: only those sub-folders, e.g. RUN@refs)
@@ -106,6 +110,35 @@ if [ -n "${EVAL_ONLY:-}" ]; then   # EVAL_ONLY="EP ..." (2026-10-30, h5_reeval.s
   # evaluated episode with the same object (eval 28), so stop before the evaluator instead.
   python -c "import json, sys; x = sorted(set(json.load(open(sys.argv[1]))) - set(sys.argv[2:]), key=int); print(f'pack_eval: EVAL_ONLY {sys.argv[2:]}, other episodes to evaluate: {x}'); sys.exit(1 if x else 0)" \
     $CK_EVAL $EVAL_ONLY >> $J 2>&1 || { log "pack_eval: episodes outside EVAL_ONLY would be evaluated; stopped" >> $J; exit 1; }
+fi
+# MASS_EPS="EP ..." (2026-10-31, masses eval retrain, docs/research/work/masses-eval-20261031/BUILD.md): the episodes
+# whose policies trained with the realistic masses of MASS_PROPS (default props_masses_only.json). Before the evaluator,
+# tools/mass_pack_check.py follows each to-be-evaluated checkpoint's saved config -> task.parquet -> URDFs (what the
+# kit evaluator loads; a missing URDF would be silently re-rooted onto FlashCHORD's assets) and refuses unless MASS_EPS
+# episodes load the props masses and every other evaluated episode the 0.3 kg placeholder. A grasp-lock retrain names
+# its own refs/mass1_sf/ep<N>/assets (pull RUN@refs/mass1_sf/ep<N>,refs/mass1s<seed>_glockt/ep<N>); a standard-learner
+# retrain names the shared /content/assets (MA_ARGS="--physics <props>" + its pieces, with KEEP_RESULTS and EVAL_ONLY).
+# Without MASS_EPS nothing changes, except that a masses run in PICK (run id "-mev") or --physics in MA_ARGS is refused.
+if [ -n "${MASS_EPS:-}" ]; then
+  python $REPO_DIR/tools/mass_pack_check.py --checkpoints $CK_EVAL --all $F/checkpoints.json \
+    --props ${MASS_PROPS:-$REPO_DIR/docs/research/physics-2026-10-30/props_masses_only.json} --mass-eps "$MASS_EPS" \
+    --table $REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json --out $F/mass_pack_check.json > $F/mass_pack_check.txt 2>&1
+  rc_=$?; log "pack_eval: $(cut -c1-1500 $F/mass_pack_check.txt)" >> $J
+  [ $rc_ = 0 ] || { log "pack_eval: REFUSED: an evaluated episode would not load the masses it trained with (MASS_EPS $MASS_EPS)" >> $J; exit 1; }
+else
+  case " ${PICK:-} ${MA_ARGS:-}" in *-mev*|*--physics*)
+    log "pack_eval: REFUSED: a masses run (-mev) or --physics needs MASS_EPS (the episodes trained with the realistic masses)" >> $J; exit 1 ;;
+  esac
+fi
+# DR_EPS="EP ..." (2026-10-31, pack 9b D arm, docs/research/work/pack9b-20261031/PREREG.md section 3; opt-in, unset =
+# nothing runs): tools/dr_pack_check.py before the evaluator: every evaluated episode resolves its URDFs verbatim at the
+# 0.3 kg placeholder; each DR_EPS episode loads the packed reference (md5 + fingerprint) and its table pieces, and is not
+# the packed checkpoint.
+if [ -n "${DR_EPS:-}" ]; then
+  python $REPO_DIR/tools/dr_pack_check.py --checkpoints $CK_EVAL --all $F/checkpoints.json --dr-eps "$DR_EPS" \
+    --table $REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json --out $F/dr_pack_check.json > $F/dr_pack_check.txt 2>&1
+  rc_=$?; log "pack_eval: $(cut -c1-1500 $F/dr_pack_check.txt)" >> $J
+  [ $rc_ = 0 ] || { log "pack_eval: REFUSED: a D candidate or an evaluated episode would not load what it trained with (DR_EPS $DR_EPS)" >> $J; exit 1; }
 fi
 # 2026-10-26 (forensics): a pulled pack run brings its own results/submission; submit_pack.sh copies KEPT rollouts with
 # cp -n, so pack 3 silently kept the FIRST pack's seed-42 rollouts for 3/5/15/16 instead of pack 2's seed-43 ones.

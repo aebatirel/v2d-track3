@@ -1,0 +1,3729 @@
+{
+ "note": "ORACLE SCORING (public mocap, X*_geom) of the T1 reference part; inference ran before, in t1_run.sh. Rule: tracker-fix/PLAN.md \u00a73 T1.",
+ "rule": {
+  "static_cm": 1.0,
+  "min_delta": -0.002
+ },
+ "verdict": {
+  "refineP": {
+   "frozen_equals_static": "20/20",
+   "min_delta": {
+    "lib": -0.0008,
+    "star": -0.0002
+   },
+   "mean_delta": {
+    "lib": 0.00389,
+    "star": 0.00424
+   },
+   "better_worse": {
+    "lib": [
+     4,
+     2
+    ],
+    "star": [
+     5,
+     1
+    ]
+   },
+   "mean_S2": {
+    "lib": 0.8982,
+    "star": 0.8934
+   },
+   "mean_S6S2": {
+    "lib": 0.9021,
+    "star": 0.8976
+   },
+   "mean_input": {
+    "lib": 0.8921,
+    "star": 0.8892
+   },
+   "passed": true
+  },
+  "Po": {
+   "frozen_equals_static": "20/20",
+   "min_delta": {
+    "lib": -0.002,
+    "star": -0.0023
+   },
+   "mean_delta": {
+    "lib": 0.0043,
+    "star": 0.00419
+   },
+   "better_worse": {
+    "lib": [
+     4,
+     2
+    ],
+    "star": [
+     4,
+     2
+    ]
+   },
+   "mean_S2": {
+    "lib": 0.8944,
+    "star": 0.8906
+   },
+   "mean_S6S2": {
+    "lib": 0.8987,
+    "star": 0.8948
+   },
+   "mean_input": {
+    "lib": 0.8899,
+    "star": 0.8854
+   },
+   "passed": false
+  }
+ },
+ "episodes": {
+  "0": {
+   "names": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "mocap_anchor_travel_cm": {
+    "white_pot": 17.237,
+    "white_pot_lid": 23.06
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9641,
+       "per_obj_AUC": {
+        "white_pot": 0.9918,
+        "white_pot_lid": 0.9363
+       }
+      },
+      "star": {
+       "AUC": 0.9612,
+       "per_obj_AUC": {
+        "white_pot": 0.9926,
+        "white_pot_lid": 0.9298
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9672,
+       "per_obj_AUC": {
+        "white_pot": 0.9951,
+        "white_pot_lid": 0.9392
+       }
+      },
+      "star": {
+       "AUC": 0.9657,
+       "per_obj_AUC": {
+        "white_pot": 0.9956,
+        "white_pot_lid": 0.9357
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9672,
+       "per_obj_AUC": {
+        "white_pot": 0.9951,
+        "white_pot_lid": 0.9392
+       }
+      },
+      "star": {
+       "AUC": 0.9657,
+       "per_obj_AUC": {
+        "white_pot": 0.9956,
+        "white_pot_lid": 0.9357
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 9.526,
+       "vmax_cm": 17.268,
+       "v_peak_cm": 17.268,
+       "v_peak_frame": 159,
+       "v_end_cm": 0.131,
+       "rmax_deg": 15.248,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "white_pot_lid": {
+       "hmax_cm": 22.175,
+       "vmax_cm": 9.115,
+       "v_peak_cm": -9.115,
+       "v_peak_frame": 93,
+       "v_end_cm": -0.024,
+       "rmax_deg": 15.972,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0,
+       "white_pot_lid": 0.0
+      },
+      "star": {
+       "white_pot": 0.0,
+       "white_pot_lid": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.962,
+       "per_obj_AUC": {
+        "white_pot": 0.9904,
+        "white_pot_lid": 0.9335
+       }
+      },
+      "star": {
+       "AUC": 0.9476,
+       "per_obj_AUC": {
+        "white_pot": 0.9928,
+        "white_pot_lid": 0.9025
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9669,
+       "per_obj_AUC": {
+        "white_pot": 0.9956,
+        "white_pot_lid": 0.9382
+       }
+      },
+      "star": {
+       "AUC": 0.9629,
+       "per_obj_AUC": {
+        "white_pot": 0.9956,
+        "white_pot_lid": 0.9301
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9669,
+       "per_obj_AUC": {
+        "white_pot": 0.9956,
+        "white_pot_lid": 0.9382
+       }
+      },
+      "star": {
+       "AUC": 0.9629,
+       "per_obj_AUC": {
+        "white_pot": 0.9956,
+        "white_pot_lid": 0.9301
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 9.489,
+       "vmax_cm": 17.013,
+       "v_peak_cm": 17.013,
+       "v_peak_frame": 159,
+       "v_end_cm": -0.124,
+       "rmax_deg": 15.084,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "white_pot_lid": {
+       "hmax_cm": 22.175,
+       "vmax_cm": 9.115,
+       "v_peak_cm": -9.115,
+       "v_peak_frame": 93,
+       "v_end_cm": -0.024,
+       "rmax_deg": 15.972,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0,
+       "white_pot_lid": 0.0
+      },
+      "star": {
+       "white_pot": 0.0,
+       "white_pot_lid": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 22.0
+  },
+  "2": {
+   "names": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "mocap_anchor_travel_cm": {
+    "white_pot": 12.698,
+    "white_pot_lid": 26.699
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9823,
+       "per_obj_AUC": {
+        "white_pot": 0.9923,
+        "white_pot_lid": 0.9723
+       }
+      },
+      "star": {
+       "AUC": 0.9792,
+       "per_obj_AUC": {
+        "white_pot": 0.9929,
+        "white_pot_lid": 0.9656
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9871,
+       "per_obj_AUC": {
+        "white_pot": 0.9949,
+        "white_pot_lid": 0.9792
+       }
+      },
+      "star": {
+       "AUC": 0.9823,
+       "per_obj_AUC": {
+        "white_pot": 0.9951,
+        "white_pot_lid": 0.9696
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9871,
+       "per_obj_AUC": {
+        "white_pot": 0.9949,
+        "white_pot_lid": 0.9792
+       }
+      },
+      "star": {
+       "AUC": 0.9823,
+       "per_obj_AUC": {
+        "white_pot": 0.9951,
+        "white_pot_lid": 0.9696
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 9.734,
+       "vmax_cm": 10.503,
+       "v_peak_cm": 10.503,
+       "v_peak_frame": 162,
+       "v_end_cm": -0.17,
+       "rmax_deg": 12.553,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "white_pot_lid": {
+       "hmax_cm": 26.581,
+       "vmax_cm": 9.109,
+       "v_peak_cm": -9.109,
+       "v_peak_frame": 104,
+       "v_end_cm": 0.081,
+       "rmax_deg": 29.95,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0,
+       "white_pot_lid": 0.0
+      },
+      "star": {
+       "white_pot": 0.0,
+       "white_pot_lid": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9866,
+       "per_obj_AUC": {
+        "white_pot": 0.9925,
+        "white_pot_lid": 0.9807
+       }
+      },
+      "star": {
+       "AUC": 0.9805,
+       "per_obj_AUC": {
+        "white_pot": 0.9933,
+        "white_pot_lid": 0.9677
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9911,
+       "per_obj_AUC": {
+        "white_pot": 0.9949,
+        "white_pot_lid": 0.9872
+       }
+      },
+      "star": {
+       "AUC": 0.9824,
+       "per_obj_AUC": {
+        "white_pot": 0.9949,
+        "white_pot_lid": 0.9699
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9911,
+       "per_obj_AUC": {
+        "white_pot": 0.9949,
+        "white_pot_lid": 0.9872
+       }
+      },
+      "star": {
+       "AUC": 0.9824,
+       "per_obj_AUC": {
+        "white_pot": 0.9949,
+        "white_pot_lid": 0.9699
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 9.709,
+       "vmax_cm": 10.527,
+       "v_peak_cm": 10.527,
+       "v_peak_frame": 162,
+       "v_end_cm": -0.158,
+       "rmax_deg": 12.64,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "white_pot_lid": {
+       "hmax_cm": 26.581,
+       "vmax_cm": 9.109,
+       "v_peak_cm": -9.109,
+       "v_peak_frame": 104,
+       "v_end_cm": 0.081,
+       "rmax_deg": 29.95,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0,
+       "white_pot_lid": 0.0
+      },
+      "star": {
+       "white_pot": 0.0,
+       "white_pot_lid": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 20.4
+  },
+  "11": {
+   "names": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "mocap_anchor_travel_cm": {
+    "blue_cup": 0.492,
+    "beige_cup": 25.202
+   },
+   "mocap_static": [
+    "blue_cup"
+   ],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.8978,
+       "per_obj_AUC": {
+        "blue_cup": 0.8622,
+        "beige_cup": 0.9334
+       }
+      },
+      "star": {
+       "AUC": 0.8739,
+       "per_obj_AUC": {
+        "blue_cup": 0.8618,
+        "beige_cup": 0.8859
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9012,
+       "per_obj_AUC": {
+        "blue_cup": 0.865,
+        "beige_cup": 0.9375
+       }
+      },
+      "star": {
+       "AUC": 0.8814,
+       "per_obj_AUC": {
+        "blue_cup": 0.8636,
+        "beige_cup": 0.8992
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9688,
+       "per_obj_AUC": {
+        "blue_cup": 1.0,
+        "beige_cup": 0.9375
+       }
+      },
+      "star": {
+       "AUC": 0.9523,
+       "per_obj_AUC": {
+        "blue_cup": 1.0,
+        "beige_cup": 0.9047
+       }
+      }
+     },
+     "frozen": [
+      "blue_cup"
+     ],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 0.961,
+       "vmax_cm": 5.39,
+       "v_peak_cm": 5.39,
+       "v_peak_frame": 67,
+       "v_end_cm": 2.447,
+       "rmax_deg": 32.834,
+       "axisymmetric": true,
+       "frozen": true
+      },
+      "beige_cup": {
+       "hmax_cm": 17.401,
+       "vmax_cm": 20.551,
+       "v_peak_cm": 20.551,
+       "v_peak_frame": 37,
+       "v_end_cm": 2.68,
+       "rmax_deg": 22.39,
+       "axisymmetric": true,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0676,
+      "star": 0.0709
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": 0.135,
+       "beige_cup": 0.0
+      },
+      "star": {
+       "blue_cup": 0.1364,
+       "beige_cup": 0.0055
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.8978,
+       "per_obj_AUC": {
+        "blue_cup": 0.8622,
+        "beige_cup": 0.9334
+       }
+      },
+      "star": {
+       "AUC": 0.8739,
+       "per_obj_AUC": {
+        "blue_cup": 0.8618,
+        "beige_cup": 0.8859
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9012,
+       "per_obj_AUC": {
+        "blue_cup": 0.865,
+        "beige_cup": 0.9375
+       }
+      },
+      "star": {
+       "AUC": 0.8814,
+       "per_obj_AUC": {
+        "blue_cup": 0.8636,
+        "beige_cup": 0.8992
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9688,
+       "per_obj_AUC": {
+        "blue_cup": 1.0,
+        "beige_cup": 0.9375
+       }
+      },
+      "star": {
+       "AUC": 0.9523,
+       "per_obj_AUC": {
+        "blue_cup": 1.0,
+        "beige_cup": 0.9047
+       }
+      }
+     },
+     "frozen": [
+      "blue_cup"
+     ],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 0.961,
+       "vmax_cm": 5.39,
+       "v_peak_cm": 5.39,
+       "v_peak_frame": 67,
+       "v_end_cm": 2.447,
+       "rmax_deg": 32.834,
+       "axisymmetric": true,
+       "frozen": true
+      },
+      "beige_cup": {
+       "hmax_cm": 17.401,
+       "vmax_cm": 20.551,
+       "v_peak_cm": 20.551,
+       "v_peak_frame": 37,
+       "v_end_cm": 2.68,
+       "rmax_deg": 22.39,
+       "axisymmetric": true,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0676,
+      "star": 0.0709
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": 0.135,
+       "beige_cup": 0.0
+      },
+      "star": {
+       "blue_cup": 0.1364,
+       "beige_cup": 0.0055
+      }
+     }
+    }
+   },
+   "seconds": 414.8
+  },
+  "12": {
+   "names": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "mocap_anchor_travel_cm": {
+    "blue_cup": 22.226,
+    "plastic_dish_rack": 0.413
+   },
+   "mocap_static": [
+    "plastic_dish_rack"
+   ],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9662,
+       "per_obj_AUC": {
+        "blue_cup": 0.9327,
+        "plastic_dish_rack": 0.9997
+       }
+      },
+      "star": {
+       "AUC": 0.9738,
+       "per_obj_AUC": {
+        "blue_cup": 0.991,
+        "plastic_dish_rack": 0.9565
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.976,
+       "per_obj_AUC": {
+        "blue_cup": 0.952,
+        "plastic_dish_rack": 1.0
+       }
+      },
+      "star": {
+       "AUC": 0.9739,
+       "per_obj_AUC": {
+        "blue_cup": 0.9941,
+        "plastic_dish_rack": 0.9537
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9757,
+       "per_obj_AUC": {
+        "blue_cup": 0.9513,
+        "plastic_dish_rack": 1.0
+       }
+      },
+      "star": {
+       "AUC": 0.9812,
+       "per_obj_AUC": {
+        "blue_cup": 0.9965,
+        "plastic_dish_rack": 0.9658
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 18.519,
+       "vmax_cm": 17.501,
+       "v_peak_cm": 17.501,
+       "v_peak_frame": 87,
+       "v_end_cm": -0.258,
+       "rmax_deg": 179.975,
+       "axisymmetric": true,
+       "frozen": false
+      },
+      "plastic_dish_rack": {
+       "hmax_cm": 0.639,
+       "vmax_cm": 0.561,
+       "v_peak_cm": -0.561,
+       "v_peak_frame": 51,
+       "v_end_cm": 0.083,
+       "rmax_deg": 3.327,
+       "axisymmetric": false,
+       "frozen": true
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": -0.0003,
+      "star": 0.0073
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": -0.0007,
+       "plastic_dish_rack": 0.0
+      },
+      "star": {
+       "blue_cup": 0.0024,
+       "plastic_dish_rack": 0.0121
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9662,
+       "per_obj_AUC": {
+        "blue_cup": 0.9327,
+        "plastic_dish_rack": 0.9997
+       }
+      },
+      "star": {
+       "AUC": 0.9734,
+       "per_obj_AUC": {
+        "blue_cup": 0.991,
+        "plastic_dish_rack": 0.9558
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9763,
+       "per_obj_AUC": {
+        "blue_cup": 0.9527,
+        "plastic_dish_rack": 1.0
+       }
+      },
+      "star": {
+       "AUC": 0.9739,
+       "per_obj_AUC": {
+        "blue_cup": 0.9941,
+        "plastic_dish_rack": 0.9537
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9757,
+       "per_obj_AUC": {
+        "blue_cup": 0.9513,
+        "plastic_dish_rack": 1.0
+       }
+      },
+      "star": {
+       "AUC": 0.9812,
+       "per_obj_AUC": {
+        "blue_cup": 0.9965,
+        "plastic_dish_rack": 0.9658
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 18.519,
+       "vmax_cm": 17.501,
+       "v_peak_cm": 17.501,
+       "v_peak_frame": 87,
+       "v_end_cm": -0.258,
+       "rmax_deg": 179.975,
+       "axisymmetric": true,
+       "frozen": false
+      },
+      "plastic_dish_rack": {
+       "hmax_cm": 0.665,
+       "vmax_cm": 0.585,
+       "v_peak_cm": -0.585,
+       "v_peak_frame": 56,
+       "v_end_cm": 0.087,
+       "rmax_deg": 3.275,
+       "axisymmetric": false,
+       "frozen": true
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": -0.0006,
+      "star": 0.0073
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": -0.0014,
+       "plastic_dish_rack": 0.0
+      },
+      "star": {
+       "blue_cup": 0.0024,
+       "plastic_dish_rack": 0.0121
+      }
+     }
+    }
+   },
+   "seconds": 284.6
+  },
+  "13": {
+   "names": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "mocap_anchor_travel_cm": {
+    "blue_cup": 28.078,
+    "plastic_dish_rack": 0.088
+   },
+   "mocap_static": [
+    "plastic_dish_rack"
+   ],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9605,
+       "per_obj_AUC": {
+        "blue_cup": 0.9329,
+        "plastic_dish_rack": 0.9882
+       }
+      },
+      "star": {
+       "AUC": 0.9036,
+       "per_obj_AUC": {
+        "blue_cup": 0.8697,
+        "plastic_dish_rack": 0.9375
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9648,
+       "per_obj_AUC": {
+        "blue_cup": 0.9388,
+        "plastic_dish_rack": 0.9908
+       }
+      },
+      "star": {
+       "AUC": 0.9038,
+       "per_obj_AUC": {
+        "blue_cup": 0.8701,
+        "plastic_dish_rack": 0.9375
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9696,
+       "per_obj_AUC": {
+        "blue_cup": 0.9391,
+        "plastic_dish_rack": 1.0
+       }
+      },
+      "star": {
+       "AUC": 0.9041,
+       "per_obj_AUC": {
+        "blue_cup": 0.8707,
+        "plastic_dish_rack": 0.9375
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 26.81,
+       "vmax_cm": 18.255,
+       "v_peak_cm": 18.255,
+       "v_peak_frame": 63,
+       "v_end_cm": 0.161,
+       "rmax_deg": 177.315,
+       "axisymmetric": true,
+       "frozen": false
+      },
+      "plastic_dish_rack": {
+       "hmax_cm": 0.477,
+       "vmax_cm": 0.537,
+       "v_peak_cm": -0.537,
+       "v_peak_frame": 42,
+       "v_end_cm": 0.002,
+       "rmax_deg": 1.791,
+       "axisymmetric": false,
+       "frozen": true
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0048,
+      "star": 0.0003
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": 0.0003,
+       "plastic_dish_rack": 0.0092
+      },
+      "star": {
+       "blue_cup": 0.0006,
+       "plastic_dish_rack": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9595,
+       "per_obj_AUC": {
+        "blue_cup": 0.9329,
+        "plastic_dish_rack": 0.9862
+       }
+      },
+      "star": {
+       "AUC": 0.9039,
+       "per_obj_AUC": {
+        "blue_cup": 0.8704,
+        "plastic_dish_rack": 0.9375
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9623,
+       "per_obj_AUC": {
+        "blue_cup": 0.9385,
+        "plastic_dish_rack": 0.9862
+       }
+      },
+      "star": {
+       "AUC": 0.9051,
+       "per_obj_AUC": {
+        "blue_cup": 0.8727,
+        "plastic_dish_rack": 0.9375
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9696,
+       "per_obj_AUC": {
+        "blue_cup": 0.9391,
+        "plastic_dish_rack": 1.0
+       }
+      },
+      "star": {
+       "AUC": 0.9041,
+       "per_obj_AUC": {
+        "blue_cup": 0.8707,
+        "plastic_dish_rack": 0.9375
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 26.81,
+       "vmax_cm": 18.255,
+       "v_peak_cm": 18.255,
+       "v_peak_frame": 63,
+       "v_end_cm": 0.161,
+       "rmax_deg": 177.315,
+       "axisymmetric": true,
+       "frozen": false
+      },
+      "plastic_dish_rack": {
+       "hmax_cm": 0.518,
+       "vmax_cm": 0.514,
+       "v_peak_cm": -0.514,
+       "v_peak_frame": 42,
+       "v_end_cm": 0.019,
+       "rmax_deg": 1.832,
+       "axisymmetric": false,
+       "frozen": true
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0073,
+      "star": -0.001
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": 0.0006,
+       "plastic_dish_rack": 0.0138
+      },
+      "star": {
+       "blue_cup": -0.002,
+       "plastic_dish_rack": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 300.1
+  },
+  "18": {
+   "names": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "mocap_anchor_travel_cm": {
+    "mini_sweeper": 13.902,
+    "mini_dust_pan": 19.534
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9642,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9952,
+        "mini_dust_pan": 0.9333
+       }
+      },
+      "star": {
+       "AUC": 0.968,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9956,
+        "mini_dust_pan": 0.9403
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.968,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9975,
+        "mini_dust_pan": 0.9386
+       }
+      },
+      "star": {
+       "AUC": 0.9718,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9975,
+        "mini_dust_pan": 0.9462
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.968,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9975,
+        "mini_dust_pan": 0.9386
+       }
+      },
+      "star": {
+       "AUC": 0.9718,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9975,
+        "mini_dust_pan": 0.9462
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "mini_sweeper": {
+       "hmax_cm": 13.843,
+       "vmax_cm": 7.923,
+       "v_peak_cm": 7.923,
+       "v_peak_frame": 119,
+       "v_end_cm": 0.004,
+       "rmax_deg": 50.601,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "mini_dust_pan": {
+       "hmax_cm": 11.097,
+       "vmax_cm": 16.229,
+       "v_peak_cm": 16.229,
+       "v_peak_frame": 148,
+       "v_end_cm": 0.115,
+       "rmax_deg": 64.92,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "mini_sweeper": 0.0,
+       "mini_dust_pan": 0.0
+      },
+      "star": {
+       "mini_sweeper": 0.0,
+       "mini_dust_pan": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9144,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.8978,
+        "mini_dust_pan": 0.9309
+       }
+      },
+      "star": {
+       "AUC": 0.9168,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.8994,
+        "mini_dust_pan": 0.9341
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9162,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.8993,
+        "mini_dust_pan": 0.9331
+       }
+      },
+      "star": {
+       "AUC": 0.9217,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9003,
+        "mini_dust_pan": 0.9432
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9162,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.8993,
+        "mini_dust_pan": 0.9331
+       }
+      },
+      "star": {
+       "AUC": 0.9217,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9003,
+        "mini_dust_pan": 0.9432
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "mini_sweeper": {
+       "hmax_cm": 13.831,
+       "vmax_cm": 7.743,
+       "v_peak_cm": 7.743,
+       "v_peak_frame": 94,
+       "v_end_cm": -0.014,
+       "rmax_deg": 108.305,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "mini_dust_pan": {
+       "hmax_cm": 11.097,
+       "vmax_cm": 16.229,
+       "v_peak_cm": 16.229,
+       "v_peak_frame": 148,
+       "v_end_cm": 0.115,
+       "rmax_deg": 64.92,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "mini_sweeper": 0.0,
+       "mini_dust_pan": 0.0
+      },
+      "star": {
+       "mini_sweeper": 0.0,
+       "mini_dust_pan": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 20.3
+  },
+  "21": {
+   "names": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "mocap_anchor_travel_cm": {
+    "blue_cup": 9.936,
+    "water_pitcher": 31.999
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.8325,
+       "per_obj_AUC": {
+        "blue_cup": 0.9815,
+        "water_pitcher": 0.6835
+       }
+      },
+      "star": {
+       "AUC": 0.8313,
+       "per_obj_AUC": {
+        "blue_cup": 0.9926,
+        "water_pitcher": 0.67
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.8389,
+       "per_obj_AUC": {
+        "blue_cup": 0.9849,
+        "water_pitcher": 0.6929
+       }
+      },
+      "star": {
+       "AUC": 0.8438,
+       "per_obj_AUC": {
+        "blue_cup": 0.998,
+        "water_pitcher": 0.6895
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.8389,
+       "per_obj_AUC": {
+        "blue_cup": 0.9849,
+        "water_pitcher": 0.6929
+       }
+      },
+      "star": {
+       "AUC": 0.8438,
+       "per_obj_AUC": {
+        "blue_cup": 0.998,
+        "water_pitcher": 0.6895
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 7.672,
+       "vmax_cm": 8.511,
+       "v_peak_cm": 8.511,
+       "v_peak_frame": 90,
+       "v_end_cm": -0.135,
+       "rmax_deg": 37.909,
+       "axisymmetric": true,
+       "frozen": false
+      },
+      "water_pitcher": {
+       "hmax_cm": 11.644,
+       "vmax_cm": 30.267,
+       "v_peak_cm": 30.267,
+       "v_peak_frame": 71,
+       "v_end_cm": 0.567,
+       "rmax_deg": 90.553,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": 0.0,
+       "water_pitcher": 0.0
+      },
+      "star": {
+       "blue_cup": 0.0,
+       "water_pitcher": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.8325,
+       "per_obj_AUC": {
+        "blue_cup": 0.9815,
+        "water_pitcher": 0.6835
+       }
+      },
+      "star": {
+       "AUC": 0.8313,
+       "per_obj_AUC": {
+        "blue_cup": 0.9926,
+        "water_pitcher": 0.67
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.8389,
+       "per_obj_AUC": {
+        "blue_cup": 0.9849,
+        "water_pitcher": 0.6929
+       }
+      },
+      "star": {
+       "AUC": 0.8438,
+       "per_obj_AUC": {
+        "blue_cup": 0.998,
+        "water_pitcher": 0.6895
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.8389,
+       "per_obj_AUC": {
+        "blue_cup": 0.9849,
+        "water_pitcher": 0.6929
+       }
+      },
+      "star": {
+       "AUC": 0.8438,
+       "per_obj_AUC": {
+        "blue_cup": 0.998,
+        "water_pitcher": 0.6895
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 7.672,
+       "vmax_cm": 8.511,
+       "v_peak_cm": 8.511,
+       "v_peak_frame": 90,
+       "v_end_cm": -0.135,
+       "rmax_deg": 37.909,
+       "axisymmetric": true,
+       "frozen": false
+      },
+      "water_pitcher": {
+       "hmax_cm": 11.644,
+       "vmax_cm": 30.267,
+       "v_peak_cm": 30.267,
+       "v_peak_frame": 71,
+       "v_end_cm": 0.567,
+       "rmax_deg": 90.553,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": 0.0,
+       "water_pitcher": 0.0
+      },
+      "star": {
+       "blue_cup": 0.0,
+       "water_pitcher": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 295.7
+  },
+  "22": {
+   "names": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "mocap_anchor_travel_cm": {
+    "blue_cup": 9.368,
+    "water_pitcher": 32.266
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.871,
+       "per_obj_AUC": {
+        "blue_cup": 0.9924,
+        "water_pitcher": 0.7497
+       }
+      },
+      "star": {
+       "AUC": 0.871,
+       "per_obj_AUC": {
+        "blue_cup": 0.9997,
+        "water_pitcher": 0.7424
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.8704,
+       "per_obj_AUC": {
+        "blue_cup": 0.9917,
+        "water_pitcher": 0.749
+       }
+      },
+      "star": {
+       "AUC": 0.8598,
+       "per_obj_AUC": {
+        "blue_cup": 0.9997,
+        "water_pitcher": 0.7199
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.8704,
+       "per_obj_AUC": {
+        "blue_cup": 0.9917,
+        "water_pitcher": 0.749
+       }
+      },
+      "star": {
+       "AUC": 0.8598,
+       "per_obj_AUC": {
+        "blue_cup": 0.9997,
+        "water_pitcher": 0.7199
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 8.243,
+       "vmax_cm": 8.36,
+       "v_peak_cm": 8.36,
+       "v_peak_frame": 52,
+       "v_end_cm": -0.236,
+       "rmax_deg": 29.374,
+       "axisymmetric": true,
+       "frozen": false
+      },
+      "water_pitcher": {
+       "hmax_cm": 7.701,
+       "vmax_cm": 29.763,
+       "v_peak_cm": 29.763,
+       "v_peak_frame": 75,
+       "v_end_cm": 0.016,
+       "rmax_deg": 92.09,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": 0.0,
+       "water_pitcher": 0.0
+      },
+      "star": {
+       "blue_cup": 0.0,
+       "water_pitcher": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.8707,
+       "per_obj_AUC": {
+        "blue_cup": 0.9924,
+        "water_pitcher": 0.749
+       }
+      },
+      "star": {
+       "AUC": 0.8684,
+       "per_obj_AUC": {
+        "blue_cup": 0.9997,
+        "water_pitcher": 0.7371
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.8704,
+       "per_obj_AUC": {
+        "blue_cup": 0.9917,
+        "water_pitcher": 0.749
+       }
+      },
+      "star": {
+       "AUC": 0.8618,
+       "per_obj_AUC": {
+        "blue_cup": 0.9997,
+        "water_pitcher": 0.7239
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.8704,
+       "per_obj_AUC": {
+        "blue_cup": 0.9917,
+        "water_pitcher": 0.749
+       }
+      },
+      "star": {
+       "AUC": 0.8618,
+       "per_obj_AUC": {
+        "blue_cup": 0.9997,
+        "water_pitcher": 0.7239
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "blue_cup": {
+       "hmax_cm": 8.243,
+       "vmax_cm": 8.36,
+       "v_peak_cm": 8.36,
+       "v_peak_frame": 52,
+       "v_end_cm": -0.236,
+       "rmax_deg": 29.374,
+       "axisymmetric": true,
+       "frozen": false
+      },
+      "water_pitcher": {
+       "hmax_cm": 7.688,
+       "vmax_cm": 29.772,
+       "v_peak_cm": 29.772,
+       "v_peak_frame": 75,
+       "v_end_cm": -0.015,
+       "rmax_deg": 92.056,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "blue_cup": 0.0,
+       "water_pitcher": 0.0
+      },
+      "star": {
+       "blue_cup": 0.0,
+       "water_pitcher": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 209.5
+  },
+  "23": {
+   "names": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "mocap_anchor_travel_cm": {
+    "wooden_piece_1": 15.86,
+    "wooden_piece_2": 23.009
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.0414,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.0829,
+        "wooden_piece_2": 0.0
+       }
+      },
+      "star": {
+       "AUC": 0.0418,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.0837,
+        "wooden_piece_2": 0.0
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.0425,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.085,
+        "wooden_piece_2": 0.0
+       }
+      },
+      "star": {
+       "AUC": 0.0429,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.0858,
+        "wooden_piece_2": 0.0
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.0425,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.085,
+        "wooden_piece_2": 0.0
+       }
+      },
+      "star": {
+       "AUC": 0.0429,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.0858,
+        "wooden_piece_2": 0.0
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "wooden_piece_1": {
+       "hmax_cm": 22.91,
+       "vmax_cm": 13.895,
+       "v_peak_cm": 13.895,
+       "v_peak_frame": 145,
+       "v_end_cm": 7.155,
+       "rmax_deg": 119.742,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "wooden_piece_2": {
+       "hmax_cm": 14.828,
+       "vmax_cm": 13.463,
+       "v_peak_cm": 13.463,
+       "v_peak_frame": 54,
+       "v_end_cm": 6.931,
+       "rmax_deg": 102.279,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "wooden_piece_1": 0.0,
+       "wooden_piece_2": 0.0
+      },
+      "star": {
+       "wooden_piece_1": 0.0,
+       "wooden_piece_2": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.0414,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.0829,
+        "wooden_piece_2": 0.0
+       }
+      },
+      "star": {
+       "AUC": 0.0418,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.0837,
+        "wooden_piece_2": 0.0
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.0425,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.085,
+        "wooden_piece_2": 0.0
+       }
+      },
+      "star": {
+       "AUC": 0.0429,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.0858,
+        "wooden_piece_2": 0.0
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.0425,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.085,
+        "wooden_piece_2": 0.0
+       }
+      },
+      "star": {
+       "AUC": 0.0429,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.0858,
+        "wooden_piece_2": 0.0
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "wooden_piece_1": {
+       "hmax_cm": 22.91,
+       "vmax_cm": 13.895,
+       "v_peak_cm": 13.895,
+       "v_peak_frame": 145,
+       "v_end_cm": 7.154,
+       "rmax_deg": 122.308,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "wooden_piece_2": {
+       "hmax_cm": 14.828,
+       "vmax_cm": 13.463,
+       "v_peak_cm": 13.463,
+       "v_peak_frame": 54,
+       "v_end_cm": 6.931,
+       "rmax_deg": 102.279,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "wooden_piece_1": 0.0,
+       "wooden_piece_2": 0.0
+      },
+      "star": {
+       "wooden_piece_1": 0.0,
+       "wooden_piece_2": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 15.2
+  },
+  "24": {
+   "names": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "mocap_anchor_travel_cm": {
+    "wooden_piece_1": 23.986,
+    "wooden_piece_2": 27.34
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.8117,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.7764,
+        "wooden_piece_2": 0.847
+       }
+      },
+      "star": {
+       "AUC": 0.8105,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.7736,
+        "wooden_piece_2": 0.8473
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.8091,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.775,
+        "wooden_piece_2": 0.8432
+       }
+      },
+      "star": {
+       "AUC": 0.8069,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.7714,
+        "wooden_piece_2": 0.8425
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.8091,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.775,
+        "wooden_piece_2": 0.8432
+       }
+      },
+      "star": {
+       "AUC": 0.8069,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.7714,
+        "wooden_piece_2": 0.8425
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "wooden_piece_1": {
+       "hmax_cm": 15.068,
+       "vmax_cm": 22.67,
+       "v_peak_cm": 22.67,
+       "v_peak_frame": 61,
+       "v_end_cm": 8.267,
+       "rmax_deg": 106.883,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "wooden_piece_2": {
+       "hmax_cm": 16.101,
+       "vmax_cm": 26.376,
+       "v_peak_cm": 26.376,
+       "v_peak_frame": 143,
+       "v_end_cm": 9.181,
+       "rmax_deg": 101.566,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "wooden_piece_1": 0.0,
+       "wooden_piece_2": 0.0
+      },
+      "star": {
+       "wooden_piece_1": 0.0,
+       "wooden_piece_2": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.8117,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.7764,
+        "wooden_piece_2": 0.847
+       }
+      },
+      "star": {
+       "AUC": 0.8105,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.7736,
+        "wooden_piece_2": 0.8473
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.8091,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.775,
+        "wooden_piece_2": 0.8432
+       }
+      },
+      "star": {
+       "AUC": 0.8069,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.7714,
+        "wooden_piece_2": 0.8425
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.8091,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.775,
+        "wooden_piece_2": 0.8432
+       }
+      },
+      "star": {
+       "AUC": 0.8069,
+       "per_obj_AUC": {
+        "wooden_piece_1": 0.7714,
+        "wooden_piece_2": 0.8425
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "wooden_piece_1": {
+       "hmax_cm": 15.068,
+       "vmax_cm": 22.67,
+       "v_peak_cm": 22.67,
+       "v_peak_frame": 61,
+       "v_end_cm": 8.267,
+       "rmax_deg": 106.883,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "wooden_piece_2": {
+       "hmax_cm": 16.101,
+       "vmax_cm": 26.376,
+       "v_peak_cm": 26.376,
+       "v_peak_frame": 143,
+       "v_end_cm": 9.181,
+       "rmax_deg": 101.566,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "wooden_piece_1": 0.0,
+       "wooden_piece_2": 0.0
+      },
+      "star": {
+       "wooden_piece_1": 0.0,
+       "wooden_piece_2": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 15.7
+  },
+  "26": {
+   "names": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "mocap_anchor_travel_cm": {
+    "plastic_dish_rack": 0.433,
+    "white_pot": 20.491
+   },
+   "mocap_static": [
+    "plastic_dish_rack"
+   ],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9652,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 0.9937,
+        "white_pot": 0.9367
+       }
+      },
+      "star": {
+       "AUC": 0.9565,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 0.9945,
+        "white_pot": 0.9185
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9678,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 0.9956,
+        "white_pot": 0.9399
+       }
+      },
+      "star": {
+       "AUC": 0.961,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 0.9964,
+        "white_pot": 0.9256
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9731,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.9462
+       }
+      },
+      "star": {
+       "AUC": 0.9648,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.9296
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "plastic_dish_rack": {
+       "hmax_cm": 0.754,
+       "vmax_cm": 0.806,
+       "v_peak_cm": -0.806,
+       "v_peak_frame": 58,
+       "v_end_cm": -0.173,
+       "rmax_deg": 4.258,
+       "axisymmetric": false,
+       "frozen": true
+      },
+      "white_pot": {
+       "hmax_cm": 19.997,
+       "vmax_cm": 18.929,
+       "v_peak_cm": 18.929,
+       "v_peak_frame": 63,
+       "v_end_cm": -3.037,
+       "rmax_deg": 179.996,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0053,
+      "star": 0.0038
+     },
+     "delta_per_obj": {
+      "lib": {
+       "plastic_dish_rack": 0.0044,
+       "white_pot": 0.0063
+      },
+      "star": {
+       "plastic_dish_rack": 0.0036,
+       "white_pot": 0.004
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9717,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 0.9953,
+        "white_pot": 0.9482
+       }
+      },
+      "star": {
+       "AUC": 0.9602,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 0.9964,
+        "white_pot": 0.9241
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9717,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 0.9968,
+        "white_pot": 0.9466
+       }
+      },
+      "star": {
+       "AUC": 0.9652,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 0.9968,
+        "white_pot": 0.9335
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9786,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.9573
+       }
+      },
+      "star": {
+       "AUC": 0.9684,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.9367
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "plastic_dish_rack": {
+       "hmax_cm": 0.748,
+       "vmax_cm": 0.817,
+       "v_peak_cm": -0.817,
+       "v_peak_frame": 58,
+       "v_end_cm": -0.162,
+       "rmax_deg": 4.272,
+       "axisymmetric": false,
+       "frozen": true
+      },
+      "white_pot": {
+       "hmax_cm": 19.997,
+       "vmax_cm": 18.929,
+       "v_peak_cm": 18.929,
+       "v_peak_frame": 63,
+       "v_end_cm": -3.037,
+       "rmax_deg": 179.996,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0069,
+      "star": 0.0032
+     },
+     "delta_per_obj": {
+      "lib": {
+       "plastic_dish_rack": 0.0032,
+       "white_pot": 0.0107
+      },
+      "star": {
+       "plastic_dish_rack": 0.0032,
+       "white_pot": 0.0032
+      }
+     }
+    }
+   },
+   "seconds": 19.1
+  },
+  "27": {
+   "names": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "mocap_anchor_travel_cm": {
+    "plastic_dish_rack": 0.279,
+    "white_pot": 38.939
+   },
+   "mocap_static": [
+    "plastic_dish_rack"
+   ],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9611,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.9223
+       }
+      },
+      "star": {
+       "AUC": 0.9376,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.8753
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9627,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.9253
+       }
+      },
+      "star": {
+       "AUC": 0.9339,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.8679
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9619,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.9238
+       }
+      },
+      "star": {
+       "AUC": 0.9337,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.8674
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "plastic_dish_rack": {
+       "hmax_cm": 0.423,
+       "vmax_cm": 0.58,
+       "v_peak_cm": 0.58,
+       "v_peak_frame": 62,
+       "v_end_cm": -0.119,
+       "rmax_deg": 1.813,
+       "axisymmetric": false,
+       "frozen": true
+      },
+      "white_pot": {
+       "hmax_cm": 27.17,
+       "vmax_cm": 29.023,
+       "v_peak_cm": 29.023,
+       "v_peak_frame": 120,
+       "v_end_cm": 2.957,
+       "rmax_deg": 177.337,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": -0.0008,
+      "star": -0.0002
+     },
+     "delta_per_obj": {
+      "lib": {
+       "plastic_dish_rack": 0.0,
+       "white_pot": -0.0015
+      },
+      "star": {
+       "plastic_dish_rack": 0.0,
+       "white_pot": -0.0005
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9605,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.921
+       }
+      },
+      "star": {
+       "AUC": 0.9378,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.8755
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9634,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.9268
+       }
+      },
+      "star": {
+       "AUC": 0.9362,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.8725
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9614,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.9228
+       }
+      },
+      "star": {
+       "AUC": 0.9339,
+       "per_obj_AUC": {
+        "plastic_dish_rack": 1.0,
+        "white_pot": 0.8679
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "plastic_dish_rack": {
+       "hmax_cm": 0.419,
+       "vmax_cm": 0.621,
+       "v_peak_cm": 0.621,
+       "v_peak_frame": 62,
+       "v_end_cm": -0.138,
+       "rmax_deg": 1.769,
+       "axisymmetric": false,
+       "frozen": true
+      },
+      "white_pot": {
+       "hmax_cm": 27.17,
+       "vmax_cm": 29.023,
+       "v_peak_cm": 29.023,
+       "v_peak_frame": 120,
+       "v_end_cm": 2.957,
+       "rmax_deg": 177.337,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": -0.002,
+      "star": -0.0023
+     },
+     "delta_per_obj": {
+      "lib": {
+       "plastic_dish_rack": 0.0,
+       "white_pot": -0.004
+      },
+      "star": {
+       "plastic_dish_rack": 0.0,
+       "white_pot": -0.0046
+      }
+     }
+    }
+   },
+   "seconds": 18.5
+  },
+  "31": {
+   "names": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "mocap_anchor_travel_cm": {
+    "mini_sweeper": 15.589,
+    "plastic_dish_rack": 0.153
+   },
+   "mocap_static": [
+    "plastic_dish_rack"
+   ],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.7999,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9119,
+        "plastic_dish_rack": 0.6879
+       }
+      },
+      "star": {
+       "AUC": 0.8391,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9248,
+        "plastic_dish_rack": 0.7534
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.855,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9293,
+        "plastic_dish_rack": 0.7806
+       }
+      },
+      "star": {
+       "AUC": 0.8723,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9373,
+        "plastic_dish_rack": 0.8073
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.8562,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9293,
+        "plastic_dish_rack": 0.7832
+       }
+      },
+      "star": {
+       "AUC": 0.8749,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9373,
+        "plastic_dish_rack": 0.8125
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "mini_sweeper": {
+       "hmax_cm": 15.866,
+       "vmax_cm": 10.464,
+       "v_peak_cm": 10.464,
+       "v_peak_frame": 194,
+       "v_end_cm": -0.143,
+       "rmax_deg": 34.554,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "plastic_dish_rack": {
+       "hmax_cm": 0.648,
+       "vmax_cm": 1.0,
+       "v_peak_cm": 1.0,
+       "v_peak_frame": 59,
+       "v_end_cm": -0.03,
+       "rmax_deg": 3.675,
+       "axisymmetric": false,
+       "frozen": true
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0012,
+      "star": 0.0026
+     },
+     "delta_per_obj": {
+      "lib": {
+       "mini_sweeper": 0.0,
+       "plastic_dish_rack": 0.0026
+      },
+      "star": {
+       "mini_sweeper": 0.0,
+       "plastic_dish_rack": 0.0052
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.7998,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9121,
+        "plastic_dish_rack": 0.6875
+       }
+      },
+      "star": {
+       "AUC": 0.8351,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9259,
+        "plastic_dish_rack": 0.7444
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.8239,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9224,
+        "plastic_dish_rack": 0.7254
+       }
+      },
+      "star": {
+       "AUC": 0.8673,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9334,
+        "plastic_dish_rack": 0.8013
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.8308,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9224,
+        "plastic_dish_rack": 0.7392
+       }
+      },
+      "star": {
+       "AUC": 0.873,
+       "per_obj_AUC": {
+        "mini_sweeper": 0.9334,
+        "plastic_dish_rack": 0.8125
+       }
+      }
+     },
+     "frozen": [
+      "plastic_dish_rack"
+     ],
+     "s6_objects": {
+      "mini_sweeper": {
+       "hmax_cm": 15.852,
+       "vmax_cm": 10.466,
+       "v_peak_cm": 10.466,
+       "v_peak_frame": 194,
+       "v_end_cm": -0.138,
+       "rmax_deg": 33.848,
+       "axisymmetric": false,
+       "frozen": false
+      },
+      "plastic_dish_rack": {
+       "hmax_cm": 0.645,
+       "vmax_cm": 0.989,
+       "v_peak_cm": 0.989,
+       "v_peak_frame": 59,
+       "v_end_cm": -0.053,
+       "rmax_deg": 3.624,
+       "axisymmetric": false,
+       "frozen": true
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0069,
+      "star": 0.0057
+     },
+     "delta_per_obj": {
+      "lib": {
+       "mini_sweeper": 0.0,
+       "plastic_dish_rack": 0.0138
+      },
+      "star": {
+       "mini_sweeper": 0.0,
+       "plastic_dish_rack": 0.0112
+      }
+     }
+    }
+   },
+   "seconds": 18.8
+  },
+  "39": {
+   "names": [
+    "mini_dust_pan"
+   ],
+   "mocap_anchor_travel_cm": {
+    "mini_dust_pan": 39.1
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9602,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9602
+       }
+      },
+      "star": {
+       "AUC": 0.9804,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9804
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9759,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9759
+       }
+      },
+      "star": {
+       "AUC": 0.9914,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9914
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9759,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9759
+       }
+      },
+      "star": {
+       "AUC": 0.9914,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9914
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "mini_dust_pan": {
+       "hmax_cm": 29.119,
+       "vmax_cm": 27.137,
+       "v_peak_cm": 27.137,
+       "v_peak_frame": 240,
+       "v_end_cm": -0.795,
+       "rmax_deg": 110.932,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "mini_dust_pan": 0.0
+      },
+      "star": {
+       "mini_dust_pan": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9602,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9602
+       }
+      },
+      "star": {
+       "AUC": 0.9804,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9804
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9759,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9759
+       }
+      },
+      "star": {
+       "AUC": 0.9914,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9914
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9759,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9759
+       }
+      },
+      "star": {
+       "AUC": 0.9914,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9914
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "mini_dust_pan": {
+       "hmax_cm": 29.119,
+       "vmax_cm": 27.137,
+       "v_peak_cm": 27.137,
+       "v_peak_frame": 240,
+       "v_end_cm": -0.795,
+       "rmax_deg": 110.932,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "mini_dust_pan": 0.0
+      },
+      "star": {
+       "mini_dust_pan": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 10.7
+  },
+  "40": {
+   "names": [
+    "mini_dust_pan"
+   ],
+   "mocap_anchor_travel_cm": {
+    "mini_dust_pan": 27.274
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.957,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.957
+       }
+      },
+      "star": {
+       "AUC": 0.974,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.974
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9584,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9584
+       }
+      },
+      "star": {
+       "AUC": 0.9784,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9784
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9584,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9584
+       }
+      },
+      "star": {
+       "AUC": 0.9784,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9784
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "mini_dust_pan": {
+       "hmax_cm": 4.316,
+       "vmax_cm": 27.12,
+       "v_peak_cm": 27.12,
+       "v_peak_frame": 107,
+       "v_end_cm": -0.015,
+       "rmax_deg": 76.546,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "mini_dust_pan": 0.0
+      },
+      "star": {
+       "mini_dust_pan": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.957,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.957
+       }
+      },
+      "star": {
+       "AUC": 0.974,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.974
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9584,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9584
+       }
+      },
+      "star": {
+       "AUC": 0.9784,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9784
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9584,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9584
+       }
+      },
+      "star": {
+       "AUC": 0.9784,
+       "per_obj_AUC": {
+        "mini_dust_pan": 0.9784
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "mini_dust_pan": {
+       "hmax_cm": 4.316,
+       "vmax_cm": 27.12,
+       "v_peak_cm": 27.12,
+       "v_peak_frame": 107,
+       "v_end_cm": -0.015,
+       "rmax_deg": 76.546,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "mini_dust_pan": 0.0
+      },
+      "star": {
+       "mini_dust_pan": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 10.5
+  },
+  "41": {
+   "names": [
+    "white_pot"
+   ],
+   "mocap_anchor_travel_cm": {
+    "white_pot": 20.462
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.991,
+       "per_obj_AUC": {
+        "white_pot": 0.991
+       }
+      },
+      "star": {
+       "AUC": 0.9881,
+       "per_obj_AUC": {
+        "white_pot": 0.9881
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9927,
+       "per_obj_AUC": {
+        "white_pot": 0.9927
+       }
+      },
+      "star": {
+       "AUC": 0.9893,
+       "per_obj_AUC": {
+        "white_pot": 0.9893
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9927,
+       "per_obj_AUC": {
+        "white_pot": 0.9927
+       }
+      },
+      "star": {
+       "AUC": 0.9893,
+       "per_obj_AUC": {
+        "white_pot": 0.9893
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 10.866,
+       "vmax_cm": 19.732,
+       "v_peak_cm": 19.732,
+       "v_peak_frame": 155,
+       "v_end_cm": 0.135,
+       "rmax_deg": 68.557,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.991,
+       "per_obj_AUC": {
+        "white_pot": 0.991
+       }
+      },
+      "star": {
+       "AUC": 0.9881,
+       "per_obj_AUC": {
+        "white_pot": 0.9881
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9927,
+       "per_obj_AUC": {
+        "white_pot": 0.9927
+       }
+      },
+      "star": {
+       "AUC": 0.9893,
+       "per_obj_AUC": {
+        "white_pot": 0.9893
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9927,
+       "per_obj_AUC": {
+        "white_pot": 0.9927
+       }
+      },
+      "star": {
+       "AUC": 0.9893,
+       "per_obj_AUC": {
+        "white_pot": 0.9893
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 10.866,
+       "vmax_cm": 19.732,
+       "v_peak_cm": 19.732,
+       "v_peak_frame": 155,
+       "v_end_cm": 0.135,
+       "rmax_deg": 68.557,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 9.6
+  },
+  "42": {
+   "names": [
+    "white_pot"
+   ],
+   "mocap_anchor_travel_cm": {
+    "white_pot": 17.967
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9915,
+       "per_obj_AUC": {
+        "white_pot": 0.9915
+       }
+      },
+      "star": {
+       "AUC": 0.974,
+       "per_obj_AUC": {
+        "white_pot": 0.974
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9993,
+       "per_obj_AUC": {
+        "white_pot": 0.9993
+       }
+      },
+      "star": {
+       "AUC": 0.9784,
+       "per_obj_AUC": {
+        "white_pot": 0.9784
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9993,
+       "per_obj_AUC": {
+        "white_pot": 0.9993
+       }
+      },
+      "star": {
+       "AUC": 0.9784,
+       "per_obj_AUC": {
+        "white_pot": 0.9784
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 10.234,
+       "vmax_cm": 17.277,
+       "v_peak_cm": 17.277,
+       "v_peak_frame": 169,
+       "v_end_cm": 0.075,
+       "rmax_deg": 98.548,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9903,
+       "per_obj_AUC": {
+        "white_pot": 0.9903
+       }
+      },
+      "star": {
+       "AUC": 0.9638,
+       "per_obj_AUC": {
+        "white_pot": 0.9638
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.999,
+       "per_obj_AUC": {
+        "white_pot": 0.999
+       }
+      },
+      "star": {
+       "AUC": 0.9708,
+       "per_obj_AUC": {
+        "white_pot": 0.9708
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.999,
+       "per_obj_AUC": {
+        "white_pot": 0.999
+       }
+      },
+      "star": {
+       "AUC": 0.9708,
+       "per_obj_AUC": {
+        "white_pot": 0.9708
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 10.18,
+       "vmax_cm": 17.308,
+       "v_peak_cm": 17.308,
+       "v_peak_frame": 169,
+       "v_end_cm": 0.097,
+       "rmax_deg": 97.965,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 8.8
+  },
+  "43": {
+   "names": [
+    "white_pot"
+   ],
+   "mocap_anchor_travel_cm": {
+    "white_pot": 23.722
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9482,
+       "per_obj_AUC": {
+        "white_pot": 0.9482
+       }
+      },
+      "star": {
+       "AUC": 0.9429,
+       "per_obj_AUC": {
+        "white_pot": 0.9429
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9479,
+       "per_obj_AUC": {
+        "white_pot": 0.9479
+       }
+      },
+      "star": {
+       "AUC": 0.9469,
+       "per_obj_AUC": {
+        "white_pot": 0.9469
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9479,
+       "per_obj_AUC": {
+        "white_pot": 0.9479
+       }
+      },
+      "star": {
+       "AUC": 0.9469,
+       "per_obj_AUC": {
+        "white_pot": 0.9469
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 13.954,
+       "vmax_cm": 21.671,
+       "v_peak_cm": 21.671,
+       "v_peak_frame": 144,
+       "v_end_cm": -0.492,
+       "rmax_deg": 179.969,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9477,
+       "per_obj_AUC": {
+        "white_pot": 0.9477
+       }
+      },
+      "star": {
+       "AUC": 0.9425,
+       "per_obj_AUC": {
+        "white_pot": 0.9425
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9486,
+       "per_obj_AUC": {
+        "white_pot": 0.9486
+       }
+      },
+      "star": {
+       "AUC": 0.9465,
+       "per_obj_AUC": {
+        "white_pot": 0.9465
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9486,
+       "per_obj_AUC": {
+        "white_pot": 0.9486
+       }
+      },
+      "star": {
+       "AUC": 0.9465,
+       "per_obj_AUC": {
+        "white_pot": 0.9465
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 13.959,
+       "vmax_cm": 21.684,
+       "v_peak_cm": 21.684,
+       "v_peak_frame": 144,
+       "v_end_cm": -0.503,
+       "rmax_deg": 179.98,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 9.7
+  },
+  "44": {
+   "names": [
+    "white_pot"
+   ],
+   "mocap_anchor_travel_cm": {
+    "white_pot": 21.944
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9967,
+       "per_obj_AUC": {
+        "white_pot": 0.9967
+       }
+      },
+      "star": {
+       "AUC": 0.9982,
+       "per_obj_AUC": {
+        "white_pot": 0.9982
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.997,
+       "per_obj_AUC": {
+        "white_pot": 0.997
+       }
+      },
+      "star": {
+       "AUC": 0.9995,
+       "per_obj_AUC": {
+        "white_pot": 0.9995
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.997,
+       "per_obj_AUC": {
+        "white_pot": 0.997
+       }
+      },
+      "star": {
+       "AUC": 0.9995,
+       "per_obj_AUC": {
+        "white_pot": 0.9995
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 4.419,
+       "vmax_cm": 21.496,
+       "v_peak_cm": 21.496,
+       "v_peak_frame": 95,
+       "v_end_cm": -0.115,
+       "rmax_deg": 25.203,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9967,
+       "per_obj_AUC": {
+        "white_pot": 0.9967
+       }
+      },
+      "star": {
+       "AUC": 0.9982,
+       "per_obj_AUC": {
+        "white_pot": 0.9982
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.997,
+       "per_obj_AUC": {
+        "white_pot": 0.997
+       }
+      },
+      "star": {
+       "AUC": 0.9995,
+       "per_obj_AUC": {
+        "white_pot": 0.9995
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.997,
+       "per_obj_AUC": {
+        "white_pot": 0.997
+       }
+      },
+      "star": {
+       "AUC": 0.9995,
+       "per_obj_AUC": {
+        "white_pot": 0.9995
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 4.419,
+       "vmax_cm": 21.496,
+       "v_peak_cm": 21.496,
+       "v_peak_frame": 95,
+       "v_end_cm": -0.115,
+       "rmax_deg": 25.203,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 9.6
+  },
+  "45": {
+   "names": [
+    "white_pot"
+   ],
+   "mocap_anchor_travel_cm": {
+    "white_pot": 28.856
+   },
+   "mocap_static": [],
+   "arms": {
+    "refineP": {
+     "input": {
+      "lib": {
+       "AUC": 0.9795,
+       "per_obj_AUC": {
+        "white_pot": 0.9795
+       }
+      },
+      "star": {
+       "AUC": 0.9789,
+       "per_obj_AUC": {
+        "white_pot": 0.9789
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9823,
+       "per_obj_AUC": {
+        "white_pot": 0.9823
+       }
+      },
+      "star": {
+       "AUC": 0.9843,
+       "per_obj_AUC": {
+        "white_pot": 0.9843
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9823,
+       "per_obj_AUC": {
+        "white_pot": 0.9823
+       }
+      },
+      "star": {
+       "AUC": 0.9843,
+       "per_obj_AUC": {
+        "white_pot": 0.9843
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 4.753,
+       "vmax_cm": 27.588,
+       "v_peak_cm": 27.588,
+       "v_peak_frame": 103,
+       "v_end_cm": 0.455,
+       "rmax_deg": 94.709,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    },
+    "Po": {
+     "input": {
+      "lib": {
+       "AUC": 0.9795,
+       "per_obj_AUC": {
+        "white_pot": 0.9795
+       }
+      },
+      "star": {
+       "AUC": 0.9789,
+       "per_obj_AUC": {
+        "white_pot": 0.9789
+       }
+      }
+     },
+     "S2": {
+      "lib": {
+       "AUC": 0.9823,
+       "per_obj_AUC": {
+        "white_pot": 0.9823
+       }
+      },
+      "star": {
+       "AUC": 0.9843,
+       "per_obj_AUC": {
+        "white_pot": 0.9843
+       }
+      }
+     },
+     "S6S2": {
+      "lib": {
+       "AUC": 0.9823,
+       "per_obj_AUC": {
+        "white_pot": 0.9823
+       }
+      },
+      "star": {
+       "AUC": 0.9843,
+       "per_obj_AUC": {
+        "white_pot": 0.9843
+       }
+      }
+     },
+     "frozen": [],
+     "s6_objects": {
+      "white_pot": {
+       "hmax_cm": 4.753,
+       "vmax_cm": 27.588,
+       "v_peak_cm": 27.588,
+       "v_peak_frame": 103,
+       "v_end_cm": 0.455,
+       "rmax_deg": 94.709,
+       "axisymmetric": false,
+       "frozen": false
+      }
+     },
+     "s6_plane_source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+     "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+     "match": true,
+     "delta": {
+      "lib": 0.0,
+      "star": 0.0
+     },
+     "delta_per_obj": {
+      "lib": {
+       "white_pot": 0.0
+      },
+      "star": {
+       "white_pot": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 8.8
+  }
+ }
+}

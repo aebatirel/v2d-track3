@@ -1,0 +1,127 @@
+{
+ "kind": "score",
+ "rule": "R = registered ADD-AUC vs mocap, lib convention (kit registration of the mesh the arm tracked with onto the public scan); RPE / MPPE (cm) on the same chain. ORACLE scoring (reads mocap), public episodes, after inference.",
+ "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po",
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "lib_ep_dir": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/partial",
+ "episodes": {
+  "2": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep2/poses_world_vo.npz",
+   "track_md5": "1ac3c32a5d6ad9c7c31896f05c5d0c23",
+   "frames": 343,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "AUC": 0.9626,
+   "per_obj_AUC": {
+    "white_pot": 0.9911,
+    "white_pot_lid": 0.934
+   },
+   "RPE_cm": 2.1069,
+   "MPPE_cm": 0.9858,
+   "meshes": {
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/partial/ep2/white_pot.glb",
+     "md5": "cd5bf99ec5e701508d64011dc0040d5c",
+     "source": "episode"
+    },
+    "white_pot_lid": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/partial/ep2/white_pot_lid.glb",
+     "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+     "source": "episode"
+    }
+   }
+  },
+  "11": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep11/poses_world_vo.npz",
+   "track_md5": "6e2c2ff5fd0ea38c0b0f21b4783048a4",
+   "frames": 137,
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "AUC": 0.8978,
+   "per_obj_AUC": {
+    "blue_cup": 0.8622,
+    "beige_cup": 0.9334
+   },
+   "RPE_cm": 1.739,
+   "MPPE_cm": 1.6375,
+   "meshes": {
+    "blue_cup": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/partial/ep11/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "episode"
+    },
+    "beige_cup": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/beige_cup.glb",
+     "md5": "6226281f120192c52bffec7680fa9d8f",
+     "source": "library"
+    }
+   }
+  },
+  "13": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep13/poses_world_vo.npz",
+   "track_md5": "75eb0008b7ce02e47f97ee1fd21330f6",
+   "frames": 190,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "AUC": 0.9283,
+   "per_obj_AUC": {
+    "blue_cup": 0.9329,
+    "plastic_dish_rack": 0.9237
+   },
+   "RPE_cm": 1.9127,
+   "MPPE_cm": 1.534,
+   "meshes": {
+    "blue_cup": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/partial/ep13/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "episode"
+    },
+    "plastic_dish_rack": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/partial/ep13/plastic_dish_rack.glb",
+     "md5": "dd5fbcaaa6ec1951db4cbc4065f4753c",
+     "source": "episode"
+    }
+   }
+  },
+  "18": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep18/poses_world_vo.npz",
+   "track_md5": "b21f81a203f6451276a41f968bed2b28",
+   "frames": 353,
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "AUC": 0.9144,
+   "per_obj_AUC": {
+    "mini_sweeper": 0.8978,
+    "mini_dust_pan": 0.9309
+   },
+   "RPE_cm": 4.0676,
+   "MPPE_cm": 1.6322,
+   "meshes": {
+    "mini_sweeper": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/mini_sweeper.glb",
+     "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+     "source": "library"
+    },
+    "mini_dust_pan": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/mini_dust_pan.glb",
+     "md5": "c33fa41118944a7da340cc82fc6449d8",
+     "source": "library"
+    }
+   }
+  }
+ },
+ "mean": {
+  "AUC": 0.92578,
+  "RPE_cm": 2.45655,
+  "MPPE_cm": 1.44738,
+  "n": 4
+ }
+}

@@ -1,0 +1,5 @@
+ep20 conf (own P): 0 rollouts, 0 scored; 
+ep20 old (own P): 1 rollouts, 1 scored; r1 P s_v_r 0.8948 RPE 1.30
+ep20 packed (own P): 10 rollouts, 10 scored; r1 P s_v_r 0.8968 RPE 1.96; r2 P s_v_r 0.9112 RPE 1.87; r3 P s_v_r 0.9146 RPE 1.73; r4 P s_v_r 0.8945 RPE 1.56; r5 P s_v_r 0.8193 RPE 4.10; r6 P s_v_r 0.9058 RPE 1.37; r7 P s_v_r 0.9076 RPE 1.51; r8 P s_v_r 0.8922 RPE 1.61; r9 P s_v_r 0.8815 RPE 1.99; r10 P s_v_r 0.9100 RPE 1.31
+ep20 train42 (own P): 10 rollouts, 10 scored; r1 P s_v_r 0.3642 RPE 14.44; r2 P s_v_r 0.3651 RPE 14.45; r3 P s_v_r 0.3654 RPE 14.44; r4 P s_v_r 0.3649 RPE 14.44; r5 P s_v_r 0.3649 RPE 14.45; r6 P s_v_r 0.3654 RPE 14.44; r7 P s_v_r 0.3657 RPE 14.45; r8 P s_v_r 0.3656 RPE 14.45; r9 P s_v_r 0.3663 RPE 14.44; r10 P s_v_r 0.3654 RPE 14.44
+ep20 train43 (own P): 10 rollouts, 10 scored; r1 P s_v_r 0.3656 RPE 14.44; r2 P s_v_r 0.3662 RPE 14.45; r3 P s_v_r 0.3656 RPE 14.44; r4 P s_v_r 0.3639 RPE 14.45; r5 P s_v_r 0.3651 RPE 14.45; r6 P s_v_r 0.3654 RPE 14.44; r7 P s_v_r 0.3660 RPE 14.44; r8 P s_v_r 0.3643 RPE 14.45; r9 P s_v_r 0.3646 RPE 14.44; r10 P s_v_r 0.3653 RPE 14.44

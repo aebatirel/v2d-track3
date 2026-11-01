@@ -19,6 +19,8 @@ elif [ ! -s /content/t3/ep$EP.parquet ]; then
   echo "episode $EP has no public parquet (an eval episode needs SPLIT=eval)"; exit 1
 fi
 # PERC=oracle (public episodes only) swaps in mocap object poses on top of perc2's camera trajectory: oracle_poses.py
+# (2026-10-30 v2: with MESH_DIR the mocap poses are converted to our meshes' body frames and aligned to the perceived
+# table by gravity; ORACLE_ARGS is passed through, e.g. "--align anchor0" for the 20 Oct rule)
 case $PERC in perc2|oracle) PSCRIPT=$S/perc2.py ;; perc4) PSCRIPT=$S/perc.py ;; *) echo "unknown PERC=$PERC"; exit 1 ;; esac
 # VARIANT (e.g. "v") keeps a variant's refs, runs and results apart (refs/perc2v/...); PDIR overrides the perception
 # folder (e.g. /content/perc2c/epN from DET_PRIOR=compact); HANDS_ARGS is passed to hands_mp.py (e.g. "--linker greedy").
@@ -32,7 +34,8 @@ echo "[$(date +%T)] ep$EP start ($SPLIT, perception $PERC, steps $STEPS, seed $S
 # 1) perception (uses a cached depth if present)
 if [ $PERC = oracle ] && [ ! -s $P/poses.npz ]; then
   [ -s /content/perc2/ep$EP/poses.npz ] || PERC=perc2 SEED=$SEED STEPS=0 STOP_AFTER=perception bash $0 $EP || exit 1
-  python $S/oracle_poses.py $EP /content/perc2/ep$EP $P > $P.oracle_log.txt 2>&1 || { echo "oracle FAILED"; cat $P.oracle_log.txt; exit 1; }
+  python $S/oracle_poses.py $EP /content/perc2/ep$EP $P ${MESH_DIR:+--meshes $MESH_DIR} ${ORACLE_ARGS:-} > $P.oracle_log.txt 2>&1 \
+    || { echo "oracle FAILED"; tail -5 $P.oracle_log.txt; exit 1; }
   cp /content/perc2/ep$EP/log.txt $P/log.txt
 fi
 if [ ! -s $P/poses.npz ]; then
@@ -107,11 +110,15 @@ CK=$(ls -v $RUN/policy_*.safetensors | tail -1)
 echo "[$(date +%T)] trained: $CK (code $(git -C $S rev-parse --short HEAD 2>/dev/null))"
 
 # 5) official evaluator, 1 world, trajectory export
-cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
+#    EVAL_TIMEOUT=<s> (2026-10-31, opt-in; hard_ab.sh exports it): cut an evaluation that runs longer (timeout -k 60) and
+#    write its exit code to eval_rc.txt (124 cut, 137 killed after the grace); unset = unchanged
+cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false ${EVAL_TIMEOUT:+timeout -k 60 $EVAL_TIMEOUT} .venv/bin/python scripts/evaluate_policy.py \
   evaluation.checkpoint=$CK evaluation.world_count=1 evaluation.reset_mode=explicit \
   evaluation.metrics_output=$RES/episode_$(printf %06d $EP).json \
   evaluation.object_trajectories_output=$RES/episode_$(printf %06d $EP).parquet \
-  hydra.run.dir=$RES/hydra logging.mode=disabled > $RES/eval.log 2>&1 || { echo "eval FAILED"; tail -15 $RES/eval.log; exit 1; }
+  hydra.run.dir=$RES/hydra logging.mode=disabled > $RES/eval.log 2>&1; rc_=$?
+[ -n "${EVAL_TIMEOUT:-}" ] && echo $rc_ > $RES/eval_rc.txt
+[ $rc_ = 0 ] || { echo "eval FAILED"; tail -15 $RES/eval.log; exit 1; }
 echo "[$(date +%T)] evaluated"
 # 5b) checkpoint sweep (CK_SWEEP = fractions of training, e.g. "0.4 0.6 0.8"; default off): evaluate earlier policies
 #     and keep the one that tracks OUR reference best (qa.py policy; no ground truth). The chosen rollout is copied
@@ -126,10 +133,12 @@ if [ -n "${CK_SWEEP:-}" ]; then
       C2=$(ls $RUN/policy_*.safetensors | python -c "import sys; L=[l.strip() for l in sys.stdin]; print(min(L, key=lambda f: abs(int(f.rsplit('_',1)[1].split('.')[0]) - $want)))")
       case "$seen" in *" $C2 "*) continue ;; esac; seen="$seen$C2 "
       D2=$RES/sweep/$(basename $C2 .safetensors); mkdir -p $D2
-      (cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
+      (cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false ${EVAL_TIMEOUT:+timeout -k 60 $EVAL_TIMEOUT} .venv/bin/python scripts/evaluate_policy.py \
         evaluation.checkpoint=$C2 evaluation.world_count=1 evaluation.reset_mode=explicit \
         evaluation.metrics_output=$D2/episode_$E6.json evaluation.object_trajectories_output=$D2/episode_$E6.parquet \
-        hydra.run.dir=$D2/hydra logging.mode=disabled > $D2/eval.log 2>&1) || continue
+        hydra.run.dir=$D2/hydra logging.mode=disabled > $D2/eval.log 2>&1); rc_=$?
+      [ -n "${EVAL_TIMEOUT:-}" ] && echo $rc_ > $D2/eval_rc.txt
+      [ $rc_ = 0 ] || continue
       v=$(python $S/qa.py policy $D2 $EP 2>/dev/null | python -c "import json,sys; print(json.loads(sys.stdin.read())['sim_vs_ref'])")
       echo "[$(date +%T)] sweep $(basename $C2): sim_vs_ref $v (best so far $best, floor $floor)"
       if python -c "import sys; sys.exit(0 if float('$v') > float('$best') else 1)"; then best=$v; bestck=$C2; fi

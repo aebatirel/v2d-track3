@@ -1,0 +1,1 @@
+no_oracle: 22 inputs checked, none oracle-derived

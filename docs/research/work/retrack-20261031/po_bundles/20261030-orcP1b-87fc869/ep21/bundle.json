@@ -1,0 +1,155 @@
+{
+ "episode": 21,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "T": 186,
+ "run_id": "20261030-orcP1b-87fc869",
+ "commit": "87fc869c24cec3cd1b90864ef3924b8e373639f3",
+ "oracle": [
+  "perc2scan (scan templates = ground-truth geometry)"
+ ],
+ "inputs": {
+  "episode": 21,
+  "objects": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "T": 186,
+  "depth": {
+   "store": "cache/depth/public/ep21/depths_fs0.5.npy",
+   "path": "/workspace/hfstore/cache/depth/public/ep21/depths_fs0.5.npy",
+   "bytes": 1190400128,
+   "bytes_expected": 1190400128,
+   "shape": [
+    186,
+    1000,
+    1600
+   ],
+   "dtype": "float32",
+   "stat": "1179356285 1190400128 1793386492",
+   "usable": true,
+   "frame0_sha256": "5f4f92b32b6631ec6ae87bbc11fa086512862bbca34d1737deae1fa269c9a2ce",
+   "frame0_sha256_expected": "5f4f92b32b6631ec6ae87bbc11fa086512862bbca34d1737deae1fa269c9a2ce",
+   "frame0_valid_frac": 0.6693,
+   "depth0_npy_md5": "bd140b7cccb3a3d6d1c2b1bd898e85be",
+   "matches_refine_inputs": true
+  },
+  "hands": {
+   "store_dir": "runs/20261025-g1-022fece/refs/perc2m/ep21",
+   "hands.npz": {
+    "store": "runs/20261025-g1-022fece/refs/perc2m/ep21/hands.npz",
+    "md5_expected": "0363984bc9554083a1cb82666dde85ab",
+    "md5": "0363984bc9554083a1cb82666dde85ab",
+    "md5_ok": true,
+    "frames": [
+     186,
+     186
+    ]
+   },
+   "hands_refined.npz": {
+    "store": "runs/20261025-g1-022fece/refs/perc2m/ep21/hands_refined.npz",
+    "md5_expected": "3cd6e94e01aa0b39c83ec93e060948b8",
+    "md5": "3cd6e94e01aa0b39c83ec93e060948b8",
+    "md5_ok": true,
+    "frames": [
+     186,
+     186
+    ]
+   }
+  },
+  "ok": true,
+  "problems": []
+ },
+ "arms": {
+  "perc2": {
+   "arm": "o",
+   "folder": "perc2",
+   "rc": 0,
+   "seconds": 66,
+   "mesh_dir": "/content/v2d-track3/meshes/library_v3",
+   "templates": {
+    "blue_cup": {
+     "path": "/content/v2d-track3/meshes/library_v3/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "scan": false
+    },
+    "water_pitcher": {
+     "path": "/content/v2d-track3/meshes/library_v3/water_pitcher.glb",
+     "md5": "fc824fc5b0a9325c91b630c19ba32677",
+     "scan": false
+    }
+   },
+   "template_kind": "library",
+   "gdino": true,
+   "depth_ready_s": 11.5,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true
+  },
+  "perc2scan": {
+   "arm": "s",
+   "folder": "perc2scan",
+   "rc": 0,
+   "seconds": 59,
+   "mesh_dir": "<unset>",
+   "templates": {
+    "blue_cup": {
+     "path": "/content/t3/mesh/blue_cup/blue_cup.glb",
+     "md5": "7a080a80ace57acc5655ea1385da3b31",
+     "scan": true
+    },
+    "water_pitcher": {
+     "path": "/content/t3/mesh/water_pitcher/water_pitcher.glb",
+     "md5": "11f0e687f6f48eed07ecca5e190c2b6e",
+     "scan": true
+    }
+   },
+   "template_kind": "scan",
+   "gdino": true,
+   "depth_ready_s": 0.9,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true,
+   "camera_maxdiff_vs_perc2": 0.0
+  },
+  "perc2rep": {
+   "arm": "o2",
+   "folder": "perc2rep",
+   "rc": 0,
+   "seconds": 53,
+   "mesh_dir": "/content/v2d-track3/meshes/library_v3",
+   "templates": {
+    "blue_cup": {
+     "path": "/content/v2d-track3/meshes/library_v3/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "scan": false
+    },
+    "water_pitcher": {
+     "path": "/content/v2d-track3/meshes/library_v3/water_pitcher.glb",
+     "md5": "fc824fc5b0a9325c91b630c19ba32677",
+     "scan": false
+    }
+   },
+   "template_kind": "library",
+   "gdino": true,
+   "depth_ready_s": 1.1,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true,
+   "camera_maxdiff_vs_perc2": 0.0
+  }
+ },
+ "gt_files": "result.json and log.txt of every arm hold mocap scores (perc2 scoring block); poses.npz, poses_world_vo.npz, vo.json, perc_log_inference.txt do not; bundle_ep<N>_oracle.tar leaves both out (they stay in the folder push for diagnostics)",
+ "ok": true
+}

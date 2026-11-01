@@ -1,0 +1,1 @@
+VERIFY FAILED (5): pieces.json missing or not ok: ["md5 differs from MD5SUMS: ['water_pitcher/piece_07.obj']"] | inputs.json missing or not ok: None | assets.json missing or not ok: None | arms.json missing or not ok: None | cells.json missing :: set ev20b1 :: chosen None :: confirmation draws 0 (rc None) :: own-reference checks 0/0

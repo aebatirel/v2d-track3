@@ -1,0 +1,50 @@
+{
+ "mass_kg": [
+  0.3,
+  0.3
+ ],
+ "com_mm": {
+  "ev10": [
+   0.73,
+   1.55,
+   2.99
+  ],
+  "ev10w": [
+   0.88,
+   1.79,
+   -4.46
+  ]
+ },
+ "com_shift_mm": [
+  0.15,
+  0.24,
+  -7.45
+ ],
+ "com_shift_note": "file frame; world up ~ -z, so a negative z shift = the COM moves UP",
+ "inertia_diag_kgm2": {
+  "ev10": [
+   0.0009849,
+   0.0009838,
+   0.0004405
+  ],
+  "ev10w": [
+   0.0009228,
+   0.0009217,
+   0.000454
+  ]
+ },
+ "inertia_diag_rel_change": [
+  -0.063,
+  -0.0631,
+  0.0308
+ ],
+ "pieces": [
+  53,
+  89
+ ],
+ "volume_cm3": [
+  152.9,
+  136.6
+ ],
+ "note": "lathe_collision uniform solid of the pieces, mass 0.3 kg placeholder (make_assets.py --pieces uses this COM and inertia)"
+}

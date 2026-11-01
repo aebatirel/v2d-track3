@@ -1,0 +1,11 @@
+ok   no store listing (single-file downloads only)  [11]
+ok   every download succeeded (files hidden by MOCK_HIDE excepted)
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e10v-mocksha', 'dst': 'runs/20261031-e10v-mocksha', 'msg': 'run 20261031-e10v-mocksha: 2026-10-31T19:32:56Z'}]]
+ok   hands_mp / hand_refine / perc2 / score_registered never ran
+ok   nothing written under the packed names refs/glockt/ep10, refs/perc2mck/ep10, results/glock_public/ep10
+ok   rc 1 (stopped)  [rc=1]
+ok   stopped for: B0 MISMATCH  [B0 MISMATCH: the rebuilt V4p track is not the pre-registered one (b0.json); no reference built]
+ok   no reference built
+ok   no training
+ok   push holds the stop reason
+10/10 checks pass

@@ -1,0 +1,1 @@
+INVALID: invalid ['43'], missing / thin [] :: s42 VERIFIED n 10 mean 0.9996 sd 0.0007; s43 INVALID n 10 mean 0.9995 sd 0.0008

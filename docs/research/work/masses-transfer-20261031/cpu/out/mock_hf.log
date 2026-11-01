@@ -1,0 +1,6 @@
+hf download mock/store --repo-type dataset --include runs/20261024-ev3-2c1e4dd/refs/perc2mck/ep2/* --local-dir MR/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261024-ev2-2c1e4dd/refs/perc2mc/ep12/* --local-dir MR/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261024-ev2-2c1e4dd/refs/sf/ep12/* --local-dir MR/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261024-ev2-2c1e4dd/refs/glockt/ep12/* --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/rest_check.json --repo-type dataset --local-dir MR/content/hfstore
+hf upload mock/store MR/content/push/20261031-mass-mocksha runs/20261031-mass-mocksha --repo-type dataset --commit-message run 20261031-mass-mocksha: 2026-10-31T06:20:49Z

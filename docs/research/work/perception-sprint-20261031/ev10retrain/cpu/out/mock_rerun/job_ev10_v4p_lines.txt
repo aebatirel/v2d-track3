@@ -1,0 +1,16 @@
+[2026-10-31T18:42:26Z] ev10_v4p: seed 43, PAIRS [10:local:mck:perc2e10vs43]
+[2026-10-31T18:42:59Z] ev10_v4p choice: CHOSEN seed 43 :: s42 n 10 mean 0.9995 sd 0.0015 min 0.9953; s43 n 10 mean 0.9995 sd 0.0008 min 0.9973
+[2026-10-31T18:42:59Z] ev10_v4p: confirmation of <MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors (sha256 bc902eeb995e) on the clean evaluator mocksha0000000, modified files 0
+[2026-10-31T18:43:00Z] ev10_v4p: confirmation draw 1 rc 0 sim_vs_ref 0.9996
+[2026-10-31T18:43:02Z] ev10_v4p: confirmation draw 2 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:43:03Z] ev10_v4p: confirmation draw 3 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:43:05Z] ev10_v4p: confirmation draw 4 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:43:06Z] ev10_v4p: confirmation draw 5 rc 0 sim_vs_ref 0.995
+[2026-10-31T18:43:08Z] ev10_v4p: confirmation draw 6 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:43:09Z] ev10_v4p: confirmation draw 7 rc 0 sim_vs_ref 0.9994
+[2026-10-31T18:43:11Z] ev10_v4p: confirmation draw 8 rc 0 sim_vs_ref 0.9998
+[2026-10-31T18:43:12Z] ev10_v4p: confirmation draw 9 rc 0 sim_vs_ref 0.9984
+[2026-10-31T18:43:13Z] ev10_v4p: confirmation draw 10 rc 0 sim_vs_ref 0.9988
+[2026-10-31T18:50:38Z] ev10_v4p scores: conf (own V): 10 rollouts, 10 scored; r1 V s_v_r 0.9996 RPE 0.36 P s_v_r 0.9641 RPE 1.07; r2 V s_v_r 1.0000 RPE 0.33 P s_v_r 0.9604 RPE 1.06; r3 V s_v_r 1.0000 RPE 0.33 P s_v_r 0.9606 RPE 1.07; r4 V s_v_r 1.0000 RPE 0.34 P s_v_r 0.9620 RPE 1.05; r5 V s_v_r 0.9950 RPE 0.37 P s_v_r 0.9455 RPE 1.08; r6 V s_v_r 1.0000 RPE 0.34 P s_v_r 0.9647 RPE 1.08; r7 V s_v_r 0.9994 RPE 0.35 P s_v_r 0.9703 RPE 1.09; r8 V s_v_r 0.9998 RPE 0.32 P s_v_r 0.9596 RPE 1.07; r9 V s_v_r 0.9984 RPE 0.34 P s_v_r 0.9530 RPE 1.07; r10 V s_v_r 0.9988 RPE 0.36 P s_v_r 0.9503 RPE 1.10 old (own P): 1 rollouts, 1 scored; r1 V s_v_r 0.4715 RPE 15.77 P s_v_r 0.4563 RPE 15.76 packed (own P)
+[2026-10-31T18:50:39Z] ev10_v4p verify: VERIFIED :: B0 IDENTICAL :: identity e2s {'V4p_track': 0.007, 'stored_track': 1.751} :: chosen 43 :: confirmation draws 10 (rc {'0': 10}) :: own-reference checks 41/41
+[2026-10-31T18:50:39Z] ev10_v4p RESULT: SWAP-ELIGIBLE (eval rc of the confirmation draws: {'0': 10}) :: every clause holds on both references :: a_V ok new_mean 0.9991 packed_mean 0.4555 margin 0.5436 | b_V ok new_fail_rate 0.0 packed_fail_rate 1.0 margin 1.0 | c_V ok new_median_rpe 0.3391 packed_median_rpe 15.8355 margin 15.4964 | s_V ok new_draw1 0.9996 old_packed_draw 0.4715 bar 0.4215 margin 0.5781 | a_P ok new_mean 0.9591 packed_mean 0.4474 margin 0.5116 | b_P ok new_fail_rate 0.0 packed_fail_rate 1.0 margin 1.0 | c_P ok new_median_rpe 1.0726 packed_median_rpe 15.799 margin 14.7264 | s_P ok new_draw1 0.9641 old_packed_draw 0.4563 bar 0.4063 margin 0.5578 :: V: new 0.9991 (n 10, RPE med 

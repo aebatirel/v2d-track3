@@ -1,0 +1,75 @@
+{
+ "as_is": {
+  "lib": {
+   "AUC": 0.962,
+   "per_obj_AUC": {
+    "white_pot": 0.9904,
+    "white_pot_lid": 0.9335
+   }
+  },
+  "star": {
+   "AUC": 0.9476,
+   "per_obj_AUC": {
+    "white_pot": 0.9928,
+    "white_pot_lid": 0.9025
+   }
+  }
+ },
+ "onpot_frames_mocap": 169,
+ "oracle_seat_onpot": {
+  "lib": {
+   "AUC": 0.9635,
+   "per_obj_AUC": {
+    "white_pot": 0.9904,
+    "white_pot_lid": 0.9365
+   }
+  },
+  "star": {
+   "AUC": 0.9658,
+   "per_obj_AUC": {
+    "white_pot": 0.9928,
+    "white_pot_lid": 0.9388
+   }
+  }
+ },
+ "seat_vs_mocap_f0(lib frames)": {
+  "lid_centroid_cm": [
+   2.34,
+   2.66,
+   -6.59
+  ],
+  "along_up_cm": 1.98,
+  "rot_deg": 7.44
+ },
+ "perceived_vs_mocap_f0(lib frames)": {
+  "lid_centroid_cm": [
+   -1.1,
+   1.27,
+   -0.27
+  ],
+  "along_up_cm": -1.0,
+  "rot_deg": 5.11
+ },
+ "gtfree_onpot_detect": {
+  "n": 0,
+  "agree_with_mocap": 204,
+  "false_pos": 0,
+  "false_neg": 169
+ },
+ "gtfree_seat": {
+  "lib": {
+   "AUC": 0.962,
+   "per_obj_AUC": {
+    "white_pot": 0.9904,
+    "white_pot_lid": 0.9335
+   }
+  },
+  "star": {
+   "AUC": 0.9476,
+   "per_obj_AUC": {
+    "white_pot": 0.9928,
+    "white_pot_lid": 0.9025
+   }
+  }
+ }
+}

@@ -1,0 +1,74 @@
+{
+ "packed": "packed_sf_assets",
+ "carved": "sf20_b1",
+ "pieces": "<R>/meshes/carve/ev20b1",
+ "n_pieces": 41,
+ "changed": [
+  "urdf/water_pitcher_rigid.urdf"
+ ],
+ "removed": [],
+ "added": 41,
+ "col_byte_copies": true,
+ "urdfs": {
+  "water_pitcher": {
+   "packed_md5": "6772f95462e0554cfac39de97bdf2253",
+   "md5": "77b395a5aa46b2eeab1f02e20bf04348",
+   "collisions_packed": 9,
+   "collisions": 41,
+   "inertial_equal": true,
+   "visual_equal": true,
+   "non_collision_equal": true,
+   "inertial": {
+    "mass": 0.3,
+    "com": "-0.003263 0.013687 0.019474",
+    "inertia": {
+     "ixx": 0.00304711634,
+     "ixy": 9.55662969e-05,
+     "ixz": 0.000158035691,
+     "iyy": 0.00234535497,
+     "iyz": 0.000367367535,
+     "izz": 0.00153347609
+    }
+   },
+   "glb_md5": "adb315f3250d90072c385b8dfd8bf49c"
+  },
+  "blue_cup": {
+   "packed_md5": "31cd001d2618ee2972dc922b77109b9f",
+   "md5": "31cd001d2618ee2972dc922b77109b9f",
+   "collisions_packed": 1,
+   "collisions": 1,
+   "inertial_equal": true,
+   "visual_equal": true,
+   "non_collision_equal": true,
+   "inertial": {
+    "mass": 0.3,
+    "com": "-0.000345 -0.000144 0.001723",
+    "inertia": {
+     "ixx": 0.000915149943,
+     "ixy": 1.0916164e-05,
+     "ixz": -7.60036011e-06,
+     "iyy": 0.000883003304,
+     "iyz": 1.75801256e-05,
+     "izz": 0.00042019712
+    }
+   },
+   "glb_md5": "d2be7e3decad003dab41fe0009541912"
+  }
+ },
+ "pinned": {
+  "packed": {
+   "water_pitcher": "6772f95462e0554cfac39de97bdf2253",
+   "blue_cup": "31cd001d2618ee2972dc922b77109b9f"
+  },
+  "b1": {
+   "water_pitcher": "77b395a5aa46b2eeab1f02e20bf04348",
+   "blue_cup": "31cd001d2618ee2972dc922b77109b9f"
+  },
+  "glb": {
+   "water_pitcher": "adb315f3250d90072c385b8dfd8bf49c",
+   "blue_cup": "d2be7e3decad003dab41fe0009541912"
+  }
+ },
+ "ok": true,
+ "failures": []
+}

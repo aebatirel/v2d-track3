@@ -1,0 +1,20 @@
+0 white_pot 0-1 0.16cm/4.30d  1-6 max 0.29cm/2.39d | white_pot_li 0-1 0.06cm/1.06d  1-6 max 0.09cm/1.06d
+2 white_pot 0-1 0.45cm/2.28d  1-6 max 0.16cm/0.99d | white_pot_li 0-1 0.01cm/0.20d  1-6 max 0.13cm/0.50d
+11 blue_cup 0-1 0.04cm/0.30d  1-6 max 0.12cm/1.22d | beige_cup 0-1 0.02cm/0.39d  1-6 max 0.16cm/0.77d
+12 blue_cup 0-1 0.02cm/0.38d  1-6 max 0.25cm/1.03d | plastic_dish 0-1 0.33cm/7.77d  1-6 max 0.17cm/0.30d
+13 blue_cup 0-1 0.02cm/1.35d  1-6 max 0.27cm/0.53d | plastic_dish 0-1 0.09cm/1.01d  1-6 max 0.05cm/0.17d
+18 mini_sweeper 0-1 0.20cm/0.46d  1-6 max 0.18cm/0.91d | mini_dust_pa 0-1 0.08cm/1.14d  1-6 max 0.10cm/0.77d
+21 blue_cup 0-1 0.19cm/0.27d  1-6 max 0.25cm/0.70d | water_pitche 0-1 0.01cm/0.66d  1-6 max 0.43cm/0.75d
+22 blue_cup 0-1 0.12cm/0.26d  1-6 max 0.13cm/1.09d | water_pitche 0-1 0.12cm/0.79d  1-6 max 0.24cm/0.84d
+23 wooden_piece 0-1 0.04cm/0.23d  1-6 max 0.13cm/0.93d | wooden_piece 0-1 0.02cm/0.14d  1-6 max 0.12cm/0.40d
+24 wooden_piece 0-1 0.07cm/0.58d  1-6 max 0.12cm/0.50d | wooden_piece 0-1 0.09cm/0.98d  1-6 max 0.25cm/0.53d
+26 plastic_dish 0-1 0.36cm/1.30d  1-6 max 0.16cm/0.55d | white_pot 0-1 0.09cm/0.72d  1-6 max 0.33cm/0.46d
+27 plastic_dish 0-1 0.11cm/0.59d  1-6 max 0.17cm/0.79d | white_pot 0-1 0.06cm/0.64d  1-6 max 0.27cm/0.99d
+31 mini_sweeper 0-1 0.05cm/1.89d  1-6 max 0.12cm/1.26d | plastic_dish 0-1 0.10cm/0.39d  1-6 max 0.16cm/0.61d
+39 mini_dust_pa 0-1 0.03cm/0.30d  1-6 max 0.15cm/0.37d
+40 mini_dust_pa 0-1 0.05cm/0.37d  1-6 max 0.24cm/1.00d
+41 white_pot 0-1 0.03cm/0.19d  1-6 max 0.13cm/0.45d
+42 white_pot 0-1 0.11cm/1.64d  1-6 max 0.13cm/0.34d
+43 white_pot 0-1 0.08cm/0.62d  1-6 max 0.17cm/0.89d
+44 white_pot 0-1 0.06cm/0.62d  1-6 max 0.22cm/0.27d
+45 white_pot 0-1 0.51cm/3.90d  1-6 max 0.12cm/0.29d

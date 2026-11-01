@@ -1,0 +1,2 @@
+ep1 VERIFIED :: s43 n 10 mean 0.8925 sd 0.0117 min 0.8759 cut 0/0 :: candidate 43 :: loads s43 white_pot 0.2771,white_pot_lid 0.0882
+confirmation: {"RUNS_EXTRA": "20261101-mevS1s43-mocksha@refs/perc2mcks/ep1", "PICK_EXTRA": "1:20261101-mevS1s43-mocksha:ck=runs/perc2mcks/ep1-s43/policy_214286336.safetensors", "MASS_EPS": "1", "EVAL_ONLY": "1", "EPS_ONLY": "1", "MA_ARGS": "--physics MS/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json", "ASSET_PIECES_EXTRA": "MS/box/content/v2d-track3/meshes/carve/ev01"}

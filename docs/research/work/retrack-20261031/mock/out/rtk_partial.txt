@@ -1,0 +1,42 @@
+== partial: EPS="2 11 13 18" ARMS=o LIB_EP_DIR=meshes/rtk_partial (E0-like scope; ep2 white_pot and ep13 rack moved)
+ep2: bundle ok True; white_pot=episode, white_pot_lid=episode; tracks: white_pot != P_o (template differs); white_pot_lid = P_o
+ep11: bundle ok True; blue_cup=episode, beige_cup=library; tracks: blue_cup = P_o; beige_cup = P_o
+ep13: bundle ok True; blue_cup=episode, plastic_dish_rack=episode; tracks: blue_cup = P_o; plastic_dish_rack != P_o (template differs)
+ep18: bundle ok True; mini_sweeper=library, mini_dust_pan=library; tracks: mini_sweeper = P_o; mini_dust_pan = P_o
+store: 12 single-file downloads, 0 listings, 1 upload; push 71 files (65 under results/leak_p1, all refused by the guard by store path: True); other pushed files not refused (no tracks in them): ['COMMIT', 'job.log', 'run_state/p1_11.ok', 'run_state/p1_13.ok', 'run_state/p1_18.ok', 'run_state/p1_2.ok']
+tracks vs P_o: 6 objects identical, 2 different
+RESULT: ALL CHECKS PASS
+check rc=0
+-- job.log (LIB_EP_DIR, bundle, RESULT lines)
+rtk_mesh_check verify <MR>/content/v2d-track3/meshes/rtk_partial: OK (21 meshes, status flagged, validated 2026-10-31T18:49:40Z at e618f5c)
+[2026-10-31T18:58:06Z] perc_leak LIB_EP_DIR ep2 templates (<MR>/content/rtk_templates/ep2): white_pot=episode white_pot_lid=episode
+[2026-10-31T18:58:06Z] perc_leak LIB_EP_DIR ep11 templates (<MR>/content/rtk_templates/ep11): blue_cup=episode beige_cup=library
+[2026-10-31T18:58:06Z] perc_leak LIB_EP_DIR ep13 templates (<MR>/content/rtk_templates/ep13): blue_cup=episode plastic_dish_rack=episode
+[2026-10-31T18:58:06Z] perc_leak LIB_EP_DIR ep18 templates (<MR>/content/rtk_templates/ep18): mini_sweeper=library mini_dust_pan=library
+[2026-10-31T18:58:06Z] perc_leak LIB_EP_DIR <MR>/content/v2d-track3/meshes/rtk_partial (VALIDATION.json verified): arms o/o2 track with it; run id 20261031-rtkP-abc1234
+[2026-10-31T18:58:17Z] perc_leak ep2 o rc=0 0 s: [    1.0s] depth ready 343 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked white_pot sec 7.0 guard {} [   60.0s] tracked white_pot_lid sec 7.0 guard {} 
+[leak_p1] ep2 bundle OK: o rc 0 0 s library ep-mesh 2/2 depth reused True poses True
+[2026-10-31T18:58:18Z] perc_leak ep11 o rc=0 0 s: [    1.0s] depth ready 137 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked beige_cup sec 7.0 guard {} 
+[leak_p1] ep11 bundle OK: o rc 0 0 s library ep-mesh 1/2 depth reused True poses True
+[2026-10-31T18:58:19Z] perc_leak ep13 o rc=0 0 s: [    1.0s] depth ready 190 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked plastic_dish_rack sec 7.0 guard {} 
+[leak_p1] ep13 bundle OK: o rc 0 0 s library ep-mesh 2/2 depth reused True poses True
+[2026-10-31T18:58:20Z] perc_leak ep18 o rc=0 0 s: [    1.0s] depth ready 353 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked mini_sweeper sec 7.0 guard {} [   60.0s] tracked mini_dust_pan sec 7.0 guard {} 
+[leak_p1] ep18 bundle OK: o rc 0 0 s library ep-mesh 0/2 depth reused True poses True
+[2026-10-31T18:58:20Z] perc_leak RESULT ep2: OK o ok rc 0 0 s library ep-mesh 2/2 | P_s vo AUC (scan frame, unregistered) None
+[2026-10-31T18:58:20Z] perc_leak RESULT ep11: OK o ok rc 0 0 s library ep-mesh 1/2 | P_s vo AUC (scan frame, unregistered) None
+[2026-10-31T18:58:20Z] perc_leak RESULT ep13: OK o ok rc 0 0 s library ep-mesh 2/2 | P_s vo AUC (scan frame, unregistered) None
+[2026-10-31T18:58:20Z] perc_leak RESULT ep18: OK o ok rc 0 0 s library ep-mesh 0/2 | P_s vo AUC (scan frame, unregistered) None
+[2026-10-31T18:58:20Z] perc_leak RESULT all bundles ok: True (4/4); every arm ran (rc 0, tracks written): True
+[2026-10-31T18:58:20Z] perc_leak: guard refuses runs/20261031-rtkP-abc1234/results/leak_p1/... (leak_p1 folder name)
+-- ep2 bundle templates (perc2):
+  white_pot episode cd5bf99ec5e701508d64011dc0040d5c <MR>/content/v2d-track3/meshes/rtk_partial/ep2/white_pot.glb
+  white_pot_lid episode a1e89f0ba08dfe568e64f7cbb275c671 <MR>/content/v2d-track3/meshes/rtk_partial/ep2/white_pot_lid.glb
+  template_sources {'perc2': {'white_pot': 'episode', 'white_pot_lid': 'episode'}}
+
+== partial with the repeat arm: EPS="2 18" REPEAT="2" ARMS=o,o2
+ep2: bundle ok True; white_pot=episode, white_pot_lid=episode, white_pot=episode, white_pot_lid=episode; tracks: white_pot != P_o (template differs); white_pot_lid = P_o
+ep18: bundle ok True; mini_sweeper=library, mini_dust_pan=library; tracks: mini_sweeper = P_o; mini_dust_pan = P_o
+store: 6 single-file downloads, 0 listings, 1 upload; push 47 files (43 under results/leak_p1, all refused by the guard by store path: True); other pushed files not refused (no tracks in them): ['COMMIT', 'job.log', 'run_state/p1_18.ok', 'run_state/p1_2.ok']
+tracks vs P_o: 3 objects identical, 1 different
+RESULT: ALL CHECKS PASS
+check rc=0

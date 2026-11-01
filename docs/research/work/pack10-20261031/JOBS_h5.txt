@@ -1,0 +1,23 @@
+PACK-10 COMPARISON SET: fresh official draws of the PACKED policies with rollouts kept (31 Oct 2026 ~16:20 UTC)
+Why: the pack-10 per-episode swap rule (to be pre-registered in PREREG.md here before any retrain result) compares each
+retrained policy with the packed policy on >= 10 fresh draws: (a) mean sim_vs_ref, (b) failure rate (GT-free RPE vs our
+reference > 5 cm), (c) median GT-free RPE. The 29 Oct H5 kept no rollout files, so (b)/(c) need new draws; h5_reeval.sh
+keeps rollouts by default since ab55e8c. The rule reads these fresh draws for (a)-(c); the 29 Oct H5 means are a cross-check.
+Owner: "budget is available" (15:20 UTC, via the score-status session); cost stated to the owner in chat.
+
+H5p7: pack 7's 20 policies (pack 6 + eval 33 arm B), N=10, every episode evaluated fresh (no KEEP_RESULTS).
+  LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-h5p7-$S7 3.00 "pack-10 comparison set: 10 fresh draws of pack 7's 20 policies, rollouts kept" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> $D-h5p7-$S7 \
+    'N=10 PICK_EXTRA=33:20261029-rcB-34bf6ae PACKED_TXT=/content/v2d-track3/results/submissions/20261030-track3g-candidate/summary.txt bash ops/jobs/h5_reeval.sh'
+  Cost [E]: 29 Oct H5 (same job, pack 6) 1.35 h, $2.45 -> ~$1.6-3.0.
+
+H5e1: pack 8's eval-1 policy (carved s43, ev01 pieces), N=10, eval 1 only (EVAL_ONLY guard: the carved pot must not
+  reach evals 3/5/6/8/28 in the shared /content/assets). Same job string as e1conf2 (20261030-e1conf2-d41382e run_job.log)
+  with N=10 instead of 20.
+  LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-h5e1-$S7 1.50 "pack-10 comparison set: 10 fresh draws of pack 8's eval-1 carve policy, rollouts kept" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> $D-h5e1-$S7 \
+    'PULL_SUB="refs/perc2mcks/ep1" bash ops/box/store.sh pull-run 20261025-std0116-ee7ba8e >> /content/prepull.log 2>&1; R=/workspace/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet; [ "$(md5sum < $R | cut -c1-32)" = 7f2304663b4e3c55a0a1ad12503174c1 ] && [ "$(ls $(dirname $R) | wc -l)" = 1 ] || { echo "[$(date -u +%FT%TZ)] h5e1: eval-1 reference missing or md5 mismatch at $R" >> /content/job.log; exit 1; }; echo "[$(date -u +%FT%TZ)] h5e1: eval-1 reference md5 7f230466 ok at $R" >> /content/job.log; N=10 KEEP_RESULTS="20261026-pack6-5203d42 20261030-c33B-0202139" PICK_EXTRA="33:20261029-rcB-34bf6ae 1:20261030-c01s43-328139c:ck=runs/perc2mcks/ep1-s43/policy_250003456.safetensors" ASSET_PIECES_EXTRA=/content/v2d-track3/meshes/carve/ev01 EPS_ONLY=1 EVAL_ONLY=1 bash ops/jobs/h5_reeval.sh'
+  Cost [E]: e1conf2 (N=20) ~0.8 h -> ~$1.0-1.6.
+
+Stagger: create after the ep11 gate box (58552489) is past its store pulls; not at the same minute as Masses v2 boxes.
+Outputs: runs/<run>/results/h5/r*/ep*/ (qa_policy.json + rollout parquet), results/h5/h5_summary.json.

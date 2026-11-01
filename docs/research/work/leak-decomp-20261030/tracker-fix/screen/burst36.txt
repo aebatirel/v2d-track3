@@ -1,0 +1,42 @@
+ep36 wooden_spoon frames 407; keyframes [0, 20, 39, 47, 58, 68, 181, 204, 318, 330, 375, 382, 388, 394]
+f366    step  0.20 cm   0.7 deg | h   1.2 cm | hand   0.7 | cam step  0.20 cm
+f367    step  0.14 cm   1.0 deg | h   1.4 cm | hand   0.6 | cam step  0.28 cm
+f368    step  0.19 cm   0.7 deg | h   1.2 cm | hand   0.5 | cam step  0.24 cm
+f369    step  0.20 cm   0.5 deg | h   1.2 cm | hand   0.5 | cam step  0.25 cm
+f370    step  0.27 cm   1.2 deg | h   1.1 cm | hand   0.5 | cam step  0.22 cm
+f371    step  0.21 cm   0.8 deg | h   1.2 cm | hand   0.6 | cam step  0.23 cm
+f372    step  0.11 cm   1.2 deg | h   1.3 cm | hand   1.3 | cam step  0.30 cm
+f373    step  0.53 cm   1.5 deg | h   1.8 cm | hand   1.9 | cam step  0.36 cm
+f374    step  0.82 cm   4.3 deg | h   1.1 cm | hand   5.1 | cam step  0.12 cm
+f375 KF step  0.49 cm   1.9 deg | h   1.6 cm | hand   6.9 | cam step  0.66 cm
+f376    step  0.30 cm   1.5 deg | h   1.6 cm | hand   9.0 | cam step  0.30 cm
+f377    step  0.19 cm   0.4 deg | h   1.4 cm | hand  11.1 | cam step  0.14 cm
+f378    step  0.14 cm   0.5 deg | h   1.5 cm | hand  13.5 | cam step  0.16 cm
+f379    step  0.06 cm   0.7 deg | h   1.5 cm | hand  15.1 | cam step  0.15 cm
+f380    step  0.08 cm   0.6 deg | h   1.5 cm | hand  15.9 | cam step  0.10 cm
+f381    step  0.03 cm   0.8 deg | h   1.5 cm | hand  14.7 | cam step  0.18 cm
+f382 KF step  0.19 cm   0.5 deg | h   1.6 cm | hand  14.3 | cam step  0.20 cm
+f383    step  0.04 cm   0.6 deg | h   1.6 cm | hand  13.7 | cam step  0.15 cm
+f384    step  0.06 cm   0.4 deg | h   1.7 cm | hand  12.7 | cam step  0.16 cm
+f385    step  0.26 cm   0.7 deg | h   1.8 cm | hand  11.7 | cam step  0.12 cm
+f386    step  0.11 cm   0.4 deg | h   1.8 cm | hand  10.9 | cam step  0.21 cm
+f387    step  0.10 cm   0.7 deg | h   1.8 cm | hand  10.4 | cam step  0.09 cm
+f388 KF step  0.19 cm   0.4 deg | h   1.7 cm | hand  10.4 | cam step  0.14 cm
+f389    step  0.06 cm   1.3 deg | h   1.7 cm | hand  10.4 | cam step  0.03 cm
+f390    step  0.03 cm   0.4 deg | h   1.7 cm | hand  10.8 | cam step  0.08 cm
+f391    step  0.14 cm   0.6 deg | h   1.8 cm | hand  11.1 | cam step  0.04 cm
+f392    step  0.08 cm   0.7 deg | h   1.7 cm | hand  11.3 | cam step  0.07 cm
+f393    step  0.17 cm   0.1 deg | h   1.6 cm | hand  11.4 | cam step  0.22 cm
+f394 KF step  0.07 cm   0.8 deg | h   1.7 cm | hand  11.5 | cam step  0.21 cm
+f395    step  0.12 cm   0.7 deg | h   1.7 cm | hand  11.6 | cam step  0.12 cm
+f396    step  0.09 cm   0.3 deg | h   1.7 cm | hand  11.7 | cam step  0.17 cm
+f397    step  0.02 cm   0.4 deg | h   1.7 cm | hand  11.6 | cam step  0.06 cm
+f398    step  0.06 cm   0.4 deg | h   1.7 cm | hand  11.5 | cam step  0.14 cm
+f399    step  0.04 cm   1.1 deg | h   1.7 cm | hand  12.0 | cam step  0.22 cm
+f400    step  0.09 cm   0.1 deg | h   1.7 cm | hand  11.8 | cam step  0.19 cm
+f401    step  0.32 cm   0.2 deg | h   1.5 cm | hand  11.8 | cam step  0.23 cm
+f402    step  0.21 cm   0.8 deg | h   1.6 cm | hand  12.0 | cam step  0.16 cm
+f403    step  0.16 cm   0.2 deg | h   1.7 cm | hand  12.2 | cam step  0.23 cm
+f404    step  0.17 cm   0.5 deg | h   1.7 cm | hand  12.7 | cam step  0.19 cm
+f405    step  0.12 cm   0.4 deg | h   1.6 cm | hand  13.0 | cam step  0.32 cm
+f406    step  0.06 cm   0.5 deg | h   1.6 cm | hand   inf | cam step  0.22 cm

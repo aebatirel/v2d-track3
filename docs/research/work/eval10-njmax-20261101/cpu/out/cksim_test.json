@@ -1,0 +1,125 @@
+{
+ "checks": [
+  {
+   "ok": true,
+   "what": "hydra: the training overrides change exactly the four sim limits of the 475-key resolved config: {'env.sim.nconmax': [256, 512], 'env.sim.njmax': [512, 1024], 'sim.nconmax': [256, 512], 'sim.njmax': [512, 1024]}"
+  },
+  {
+   "ok": true,
+   "what": "cksim real -> 1024 stand-in: rc 0: conmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256} -> {'sim.njmax': 1024, 'sim.nconmax': 512, 'env.sim.njmax': 1024, 'env.sim.nconmax': 512}; config diff ['env.sim.nconmax', 'env.sim.njmax', 'sim.nconmax', 'sim.njmax']; buffer identical True (32 tensors); sha256 76a12265ebf7 -> de03ed2dcaa5"
+  },
+  {
+   "ok": true,
+   "what": "cksim stand-in -> 512 copy: rc 0: nconmax': 512, 'env.sim.njmax': 1024, 'env.sim.nconmax': 512} -> {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256}; config diff ['env.sim.nconmax', 'env.sim.njmax', 'sim.nconmax', 'sim.njmax']; buffer identical True (32 tensors); sha256 de03ed2dcaa5 -> 76a12265ebf7"
+  },
+  {
+   "ok": true,
+   "what": "round trip: the 512 copy of the 1024 stand-in is byte-identical to the real checkpoint (sha256 76a12265ebf7 = 76a12265ebf7)"
+  },
+  {
+   "ok": true,
+   "what": "cksim report: buffer identical (32 tensors), config diff ['env.sim.nconmax', 'env.sim.njmax', 'sim.nconmax', 'sim.njmax'], no other header / metadata entry differs"
+  },
+  {
+   "ok": true,
+   "what": "refusal: --from 1024 512 on a stock checkpoint: rc 1 (im.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256} != --from {'sim.njmax': 1024, 'sim.nconmax': 512, 'env.sim.njmax': 1024, 'env.sim.nconmax': 512})"
+  },
+  {
+   "ok": true,
+   "what": "refusal: a header that does not re-serialise byte for byte: rc 1 (cksim: the input header does not re-serialise byte for byte (refusing to rewrite it))"
+  },
+  {
+   "ok": true,
+   "what": "FlashCHORD _read_checkpoint loads all 32 tensors of the three files, identical in dtype, shape and bytes"
+  },
+  {
+   "ok": true,
+   "what": "evaluator config chain (read_checkpoint_metadata -> checkpoint_config -> apply_evaluation_composition -> RLEnvConfig.sim): {'real': [512, 256], 'standin_1024': [1024, 512], 'copy_512': [512, 256]} (n_1024: stored {'sim': [1024, 512], 'env_sim': [1024, 512]} -> evaluator RLEnvConfig.sim [1024, 512]\ncopy_512: stored {'sim': [512, 256], 'env_sim': [512, 256]} -> evaluator RLEnvConfig.sim [512, 256])"
+  }
+ ],
+ "hydra": {
+  "embodiment": "sharpa_hands_mid",
+  "keys": 475,
+  "diff": [
+   "env.sim.nconmax",
+   "env.sim.njmax",
+   "sim.nconmax",
+   "sim.njmax"
+  ],
+  "values": {
+   "env.sim.nconmax": [
+    256,
+    512
+   ],
+   "env.sim.njmax": [
+    512,
+    1024
+   ],
+   "sim.nconmax": [
+    256,
+    512
+   ],
+   "sim.njmax": [
+    512,
+    1024
+   ]
+  }
+ },
+ "files": {
+  "real": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/best/policy.safetensors",
+   "sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+   "bytes": 5138696,
+   "stored_sim": [
+    512,
+    256,
+    512,
+    256
+   ],
+   "tensors": 32,
+   "user_metadata_keys": 12
+  },
+  "standin_1024": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/nj/cksim/standin_1024/policy.safetensors",
+   "sha256": "de03ed2dcaa5c7bf58f8cfedf084dcd07e48b0b0fc700150051ae20cc4b47542",
+   "bytes": 5138696,
+   "stored_sim": [
+    1024,
+    512,
+    1024,
+    512
+   ],
+   "tensors": 32,
+   "user_metadata_keys": 12
+  },
+  "copy_512": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/nj/cksim/copy_512/policy.safetensors",
+   "sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+   "bytes": 5138696,
+   "stored_sim": [
+    512,
+    256,
+    512,
+    256
+   ],
+   "tensors": 32,
+   "user_metadata_keys": 12
+  }
+ },
+ "evaluator_config_chain": {
+  "real": [
+   512,
+   256
+  ],
+  "standin_1024": [
+   1024,
+   512
+  ],
+  "copy_512": [
+   512,
+   256
+  ]
+ },
+ "ok": true,
+ "failures": []
+}

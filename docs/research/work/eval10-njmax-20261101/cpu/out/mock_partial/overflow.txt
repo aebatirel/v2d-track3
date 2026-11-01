@@ -1,0 +1,6 @@
+overflow train: 1 files, 41 lines; nefc 40 (requested median 1057.0 p95 1080.0 max 1080), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow train_oom_retries: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow curve: 21 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow best: 10 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow conf1024: 10 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0
+overflow conf512: 10 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0

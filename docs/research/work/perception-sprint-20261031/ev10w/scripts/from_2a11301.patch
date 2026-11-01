@@ -1,0 +1,62 @@
+--- a/intrusion_diag.py
++++ b/intrusion_diag.py
+@@ -10,7 +10,7 @@
+ """
+ import importlib.util, json, os, sys, glob, csv
+ import numpy as np
+-spec = importlib.util.spec_from_file_location('intrusion', '/home/user/v2d-track3/tools/intrusion.py')
++spec = importlib.util.spec_from_file_location('intrusion', '/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ev10w/tree/tools/intrusion.py')
+ I = importlib.util.module_from_spec(spec); spec.loader.exec_module(I)
+ ref, sim, out, prov = sys.argv[1:5]
+ DIAG = 'DIAGNOSTIC, NOT CONTRACT-VALID (ev10_intrusion/scripts/intrusion_diag.py: provenance deny-list hits recorded, not enforced)'
+@@ -80,6 +80,8 @@
+              depth_lb_max_mm=float(dlb[m].max() * 1e3) if n_in else 0.0)
+     if n_in:
+         R = relT[i]; X = S[names[p]] @ R[:3, :3].T + R[:3, 3]
++        if os.environ.get('NOPUSH'):
++            rows.append(r); continue
+         s, u = push_dir(U[names[t]], X)
+         # express as a shift of the BLUE cup relative to the beige cup, in the blue cup's file frame and in world
+         if t == ib:
+@@ -90,7 +92,8 @@
+         sw = O[f, ib, :3, :3] @ sb
+         r.update(push_mm=s * 1e3, push_dir_partner_in_target=u.round(4).tolist(), blue_shift_dir_blueframe=sb.round(4).tolist(),
+                  blue_shift_dir_world=sw.round(4).tolist(), blue_shift_up_cos=float(sb @ up_blue))
+-    rows.append(r)
++    if not (n_in and os.environ.get('NOPUSH')):
++        rows.append(r)
+ H['diagnostic_push'] = dict(definition='smallest translation of the partner samples (2 mm lattice) leaving none inside the target pieces, '
+                             'on the REFERENCE poses (not a phys_fit): intrusion.push_residual search (6 axes, 42 icosphere dirs, '
+                             '10/3 deg cones), direction kept; blue_shift_* = the same separation written as a shift of the blue cup '
+--- a/gap.py
++++ b/gap.py
+@@ -12,7 +12,7 @@
+ import numpy as np, trimesh
+ sys.path.insert(0, '/home/user/v2d-track3/pipeline')
+ from collision_decomp import SignedDistance
+-spec = importlib.util.spec_from_file_location('intrusion', '/home/user/v2d-track3/tools/intrusion.py')
++spec = importlib.util.spec_from_file_location('intrusion', '/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ev10w/tree/tools/intrusion.py')
+ I = importlib.util.module_from_spec(spec); spec.loader.exec_module(I)
+ ref, outp = sys.argv[1], sys.argv[2]
+ names, O, P, Q, fps = I.load_ref(ref); T = len(O); ib, ig = names.index('blue_cup'), names.index('beige_cup')
+--- a/radii.py
++++ b/radii.py
+@@ -1,6 +1,6 @@
+ """Beige (A pieces) radius vs carved-blue cavity radius per height at selected frames (blue frame, blue cavity axis). DIAGNOSTIC."""
+ import sys, glob, importlib.util, numpy as np
+-spec = importlib.util.spec_from_file_location('intrusion', '/home/user/v2d-track3/tools/intrusion.py'); I = importlib.util.module_from_spec(spec); spec.loader.exec_module(I)
++spec = importlib.util.spec_from_file_location('intrusion', '/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ev10w/tree/tools/intrusion.py'); I = importlib.util.module_from_spec(spec); spec.loader.exec_module(I)
+ names, O, P, Q, fps = I.load_ref(sys.argv[1]); Oi = I.inv_pose(O); REL = np.einsum('tij,tjk->tik', Oi[:, 0], O[:, 1])
+ UB = I.Union(sorted(glob.glob('/home/user/v2d-track3/meshes/carve/ev10/blue_cup/piece_*.obj')))
+ UG = I.Union(sorted(glob.glob('/home/user/v2d-track3/meshes/carve/ev10/beige_cup/piece_*.obj')))
+--- a/make_manifest_ev10.py
++++ b/make_manifest_ev10.py
+@@ -2,7 +2,7 @@
+ {file: sha256} + 8 OBB fiducials 1 mm inward). Written by ev10_intrusion/scripts, NOT by gmg; split = eval."""
+ import glob, hashlib, importlib.util, json, os, sys
+ import numpy as np, trimesh
+-spec = importlib.util.spec_from_file_location('intrusion', '/home/user/v2d-track3/tools/intrusion.py'); I = importlib.util.module_from_spec(spec); spec.loader.exec_module(I)
++spec = importlib.util.spec_from_file_location('intrusion', '/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ev10w/tree/tools/intrusion.py'); I = importlib.util.module_from_spec(spec); spec.loader.exec_module(I)
+ sim, ep, src = sys.argv[1], int(sys.argv[2]), sys.argv[3]
+ man = dict(episode=ep, split='eval', round=0, source_of_pieces=src,
+            note='DIAGNOSTIC manifest written by ev10_intrusion/scripts/make_manifest_ev10.py, not by gmg', objects={})

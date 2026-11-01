@@ -1,0 +1,212 @@
+{
+ "checks": [
+  {
+   "ok": true,
+   "what": "packed checkpoint is the packed eval-20 one (sha256 61dcd7a63396)"
+  },
+  {
+   "ok": true,
+   "what": "packed eval-20 = the grasp-lock learner, seed 42: {'output_dir': '/content/runs/glock/ep20-s42', 'task': '/workspace/refs/glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet', 'steps': '70004736', 'seed': 42, 'algorithm': 'flash_sac', 'keys': 480}"
+  },
+  {
+   "ok": true,
+   "what": "REAL packed eval-14 vs eval-20 (same run evb1420): diff ['output_dir', 'reference.num_frames', 'reference.parquet', 'task.parquet'] (paths + the reference length only), sim {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256}"
+  },
+  {
+   "ok": true,
+   "what": "[R] the D arm's current-path eval-14 cells vs packed evb1420 eval 14: {'42': ['output_dir', 'reference.parquet', 'task.parquet'], '43': ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']} (all allowed), status VERIFIED"
+  },
+  {
+   "ok": true,
+   "what": "stand-in of this job's s43 checkpoint vs REAL packed: diff ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed'] (all allowed), sim {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256}"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts the stand-in: rc 0 no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "ok": true,
+   "what": "negative control njmax1024: caught (outside allowed ['env.sim.nconmax', 'env.sim.njmax', 'sim.nconmax', 'sim.njmax'], sim {'sim.njmax': 1024, 'sim.nconmax': 512, 'env.sim.njmax': 1024, 'env.sim.nconmax': 512})"
+  },
+  {
+   "ok": true,
+   "what": "negative control extra_key: caught (outside allowed ['training.mock_extra_setting'], sim {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256})"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle refuses the 1024 stand-in (rc 1)"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts 20261101-e20b1-abc1234"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts runs/20261101-e20b1-abc1234/results/ev20_b1/summary.json"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts refs/e20b1s42_glockt/ep20"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts runs/e20b1s43_glock/ep20-s43"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts results/e20b1s42_glock_public/ep20"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts results/ev20_b1"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts ops/jobs/ev20_b1.sh"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts tools/e20b1.py"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts docs/research/work/eval20-b1-20261101"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts <R>/meshes/carve/ev20b1"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts 20:<R>/meshes/carve/ev20b1"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle still refuses 20261101-e10nj-451b82d"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle still refuses results/ev10_nj"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle still refuses refs/perc2e10njs43_glockt/ep10"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle still refuses 20261030-orcB-38234d1"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts a kit checkpoints JSON naming the stand-in"
+  }
+ ],
+ "packed_sha256": "61dcd7a6339677ac8cf612a11a3b9bf8cd7939a358a438c111d34e213faea7ff",
+ "packed_learner": {
+  "output_dir": "/content/runs/glock/ep20-s42",
+  "task": "/workspace/refs/glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "steps": "70004736",
+  "seed": 42,
+  "algorithm": "flash_sac",
+  "keys": 480
+ },
+ "packed14_vs_packed20": {
+  "diff": [
+   "output_dir",
+   "reference.num_frames",
+   "reference.parquet",
+   "task.parquet"
+  ],
+  "outside_allowed": [
+   "reference.num_frames"
+  ],
+  "sim": {
+   "sim.njmax": 512,
+   "sim.nconmax": 256,
+   "env.sim.njmax": 512,
+   "env.sim.nconmax": 256
+  }
+ },
+ "dr_arm_ep14": {
+  "42": [
+   "output_dir",
+   "reference.parquet",
+   "task.parquet"
+  ],
+  "43": [
+   "env.reset.seed",
+   "output_dir",
+   "reference.parquet",
+   "reset.seed",
+   "task.parquet",
+   "training.seed"
+  ]
+ },
+ "standin_vs_packed": {
+  "diff": [
+   "env.reset.seed",
+   "output_dir",
+   "reference.parquet",
+   "reset.seed",
+   "task.parquet",
+   "training.seed"
+  ],
+  "outside_allowed": [],
+  "sim": {
+   "sim.njmax": 512,
+   "sim.nconmax": 256,
+   "env.sim.njmax": 512,
+   "env.sim.nconmax": 256
+  },
+  "task": "'/content/refs/e20b1s43_glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave'",
+  "output_dir": "/content/runs/e20b1s43_glock/ep20-s43"
+ },
+ "negative_njmax1024": {
+  "diff": [
+   "env.reset.seed",
+   "env.sim.nconmax",
+   "env.sim.njmax",
+   "output_dir",
+   "reference.parquet",
+   "reset.seed",
+   "sim.nconmax",
+   "sim.njmax",
+   "task.parquet",
+   "training.seed"
+  ],
+  "outside_allowed": [
+   "env.sim.nconmax",
+   "env.sim.njmax",
+   "sim.nconmax",
+   "sim.njmax"
+  ],
+  "sim": {
+   "sim.njmax": 1024,
+   "sim.nconmax": 512,
+   "env.sim.njmax": 1024,
+   "env.sim.nconmax": 512
+  }
+ },
+ "negative_extra_key": {
+  "diff": [
+   "env.reset.seed",
+   "output_dir",
+   "reference.parquet",
+   "reset.seed",
+   "task.parquet",
+   "training.mock_extra_setting",
+   "training.seed"
+  ],
+  "outside_allowed": [
+   "training.mock_extra_setting"
+  ],
+  "sim": {
+   "sim.njmax": 512,
+   "sim.nconmax": 256,
+   "env.sim.njmax": 512,
+   "env.sim.nconmax": 256
+  }
+ },
+ "ok": true,
+ "failures": []
+}

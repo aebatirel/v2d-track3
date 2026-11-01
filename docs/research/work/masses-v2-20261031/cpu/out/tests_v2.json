@@ -1,0 +1,455 @@
+{
+ "passed": 31,
+ "total": 31,
+ "tests": {
+  "R1_adopt": {
+   "ok": true,
+   "got": "ADOPT",
+   "want": "ADOPT",
+   "reasons": [
+    "mean delta +0.0400 >= +0.03, 3 of 4 delta > 0, no delta <= -0.05"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.04,
+    "delta_4dp": {
+     "ep24": 0.1,
+     "ep11": 0.05,
+     "ep13": 0.02,
+     "ep31": -0.01
+    },
+    "mean_delta_9dp": 0.04,
+    "n_positive": 3,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R2_not_mean_only": {
+   "ok": true,
+   "got": "NOT ADOPTED",
+   "want": "NOT ADOPTED",
+   "reasons": [
+    "mean delta +0.0275 < +0.03"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0275,
+    "delta_4dp": {
+     "ep24": 0.05,
+     "ep11": 0.02,
+     "ep13": 0.02,
+     "ep31": 0.02
+    },
+    "mean_delta_9dp": 0.0275,
+    "n_positive": 4,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R3_not_3of4_only": {
+   "ok": true,
+   "got": "NOT ADOPTED",
+   "want": "NOT ADOPTED",
+   "reasons": [
+    "only 2 of 4 episodes with delta > 0 (needs >= 3)"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0475,
+    "delta_4dp": {
+     "ep24": 0.2,
+     "ep11": 0.01,
+     "ep13": 0.0,
+     "ep31": -0.02
+    },
+    "mean_delta_9dp": 0.0475,
+    "n_positive": 2,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R4_not_drop_only": {
+   "ok": true,
+   "got": "NOT ADOPTED",
+   "want": "NOT ADOPTED",
+   "reasons": [
+    "delta <= -0.05: ep31 -0.0600"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.055,
+    "delta_4dp": {
+     "ep24": 0.2,
+     "ep11": 0.05,
+     "ep13": 0.03,
+     "ep31": -0.06
+    },
+    "mean_delta_9dp": 0.055,
+    "n_positive": 3,
+    "drops": [
+     "ep31"
+    ],
+    "episodes_scored": 4
+   }
+  },
+  "R5_boundary_mean_exactly_0.03": {
+   "ok": true,
+   "got": "ADOPT",
+   "want": "ADOPT",
+   "reasons": [
+    "mean delta +0.0300 >= +0.03, 4 of 4 delta > 0, no delta <= -0.05"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.03,
+    "delta_4dp": {
+     "ep24": 0.03,
+     "ep11": 0.03,
+     "ep13": 0.03,
+     "ep31": 0.03
+    },
+    "mean_delta_9dp": 0.03,
+    "n_positive": 4,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R5b_boundary_mean_0.0299": {
+   "ok": true,
+   "got": "NOT ADOPTED",
+   "want": "NOT ADOPTED",
+   "reasons": [
+    "mean delta +0.0299 < +0.03"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0299,
+    "delta_4dp": {
+     "ep24": 0.0299,
+     "ep11": 0.0299,
+     "ep13": 0.0299,
+     "ep31": 0.0299
+    },
+    "mean_delta_9dp": 0.0299,
+    "n_positive": 4,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R6_boundary_delta_exactly_-0.05_fails": {
+   "ok": true,
+   "got": "NOT ADOPTED",
+   "want": "NOT ADOPTED",
+   "reasons": [
+    "delta <= -0.05: ep31 -0.0500"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0625,
+    "delta_4dp": {
+     "ep24": 0.2,
+     "ep11": 0.05,
+     "ep13": 0.05,
+     "ep31": -0.05
+    },
+    "mean_delta_9dp": 0.0625,
+    "n_positive": 3,
+    "drops": [
+     "ep31"
+    ],
+    "episodes_scored": 4
+   }
+  },
+  "R6b_float_artifact_-0.05": {
+   "ok": true,
+   "got": "NOT ADOPTED",
+   "want": "NOT ADOPTED",
+   "reasons": [
+    "delta <= -0.05: ep31 -0.0500"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0625,
+    "delta_4dp": {
+     "ep24": 0.2,
+     "ep11": 0.05,
+     "ep13": 0.05,
+     "ep31": -0.05
+    },
+    "mean_delta_9dp": 0.0625,
+    "n_positive": 3,
+    "drops": [
+     "ep31"
+    ],
+    "episodes_scored": 4
+   }
+  },
+  "R7_delta_-0.0499_passes": {
+   "ok": true,
+   "got": "ADOPT",
+   "want": "ADOPT",
+   "reasons": [
+    "mean delta +0.0625 >= +0.03, 3 of 4 delta > 0, no delta <= -0.05"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0625,
+    "delta_4dp": {
+     "ep24": 0.2,
+     "ep11": 0.05,
+     "ep13": 0.05,
+     "ep31": -0.0499
+    },
+    "mean_delta_9dp": 0.062525,
+    "n_positive": 3,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R8_exactly_3of4_positive_one_zero": {
+   "ok": true,
+   "got": "ADOPT",
+   "want": "ADOPT",
+   "reasons": [
+    "mean delta +0.0500 >= +0.03, 3 of 4 delta > 0, no delta <= -0.05"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.05,
+    "delta_4dp": {
+     "ep24": 0.1,
+     "ep11": 0.05,
+     "ep13": 0.05,
+     "ep31": 0.0
+    },
+    "mean_delta_9dp": 0.05,
+    "n_positive": 3,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R9_zero_is_not_positive": {
+   "ok": true,
+   "got": "NOT ADOPTED",
+   "want": "NOT ADOPTED",
+   "reasons": [
+    "only 2 of 4 episodes with delta > 0 (needs >= 3)"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.05,
+    "delta_4dp": {
+     "ep24": 0.1,
+     "ep11": 0.1,
+     "ep13": 0.0,
+     "ep31": 0.0
+    },
+    "mean_delta_9dp": 0.05,
+    "n_positive": 2,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R10_+0.00004_is_positive_owner_literal": {
+   "ok": true,
+   "got": "ADOPT",
+   "want": "ADOPT",
+   "reasons": [
+    "mean delta +0.0500 >= +0.03, 3 of 4 delta > 0, no delta <= -0.05"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.05,
+    "delta_4dp": {
+     "ep24": 0.1,
+     "ep11": 0.1,
+     "ep13": 0.0,
+     "ep31": 0.0
+    },
+    "mean_delta_9dp": 0.05001,
+    "n_positive": 3,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R10b_nan_delta_invalid": {
+   "ok": true,
+   "got": "INVALID",
+   "want": "INVALID",
+   "reasons": [
+    "non-finite delta (a NaN/inf AUC reached a cell mean)"
+   ],
+   "clauses": {
+    "mean_delta_4dp": NaN,
+    "delta_4dp": {
+     "ep24": NaN,
+     "ep11": 0.1,
+     "ep13": 0.1,
+     "ep31": 0.1
+    },
+    "mean_delta_9dp": NaN,
+    "n_positive": 3,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R11_per_seed_drop_alone_does_not_fail": {
+   "ok": true,
+   "got": "ADOPT",
+   "want": "ADOPT",
+   "reasons": [
+    "mean delta +0.0500 >= +0.03, 4 of 4 delta > 0, no delta <= -0.05"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.05,
+    "delta_4dp": {
+     "ep24": 0.05,
+     "ep11": 0.05,
+     "ep13": 0.05,
+     "ep31": 0.05
+    },
+    "mean_delta_9dp": 0.05,
+    "n_positive": 4,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R12_incomplete_7_rollouts": {
+   "ok": true,
+   "got": "INCOMPLETE",
+   "want": "INCOMPLETE",
+   "reasons": [
+    "missing or < 8 scored rollouts: ['ep13/mass1/s43']"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0667,
+    "delta_4dp": {
+     "ep24": 0.1,
+     "ep11": 0.05,
+     "ep31": 0.05
+    },
+    "mean_delta_9dp": 0.066666667,
+    "n_positive": 3,
+    "drops": [],
+    "episodes_scored": 3
+   }
+  },
+  "R13_incomplete_missing_cell": {
+   "ok": true,
+   "got": "INCOMPLETE",
+   "want": "INCOMPLETE",
+   "reasons": [
+    "missing or < 8 scored rollouts: ['ep31/mass0/s42']"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0667,
+    "delta_4dp": {
+     "ep24": 0.1,
+     "ep11": 0.05,
+     "ep13": 0.05
+    },
+    "mean_delta_9dp": 0.066666667,
+    "n_positive": 3,
+    "drops": [],
+    "episodes_scored": 3
+   }
+  },
+  "R14_invalid_with_missing_listed": {
+   "ok": true,
+   "got": "INVALID",
+   "want": "INVALID",
+   "reasons": [
+    "mass_verify.py failed in at least one box: the arms did not load what the design says (see verify)",
+    "also missing or < 8 scored rollouts: ['ep31/mass0/s42']"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0667,
+    "delta_4dp": {
+     "ep24": 0.1,
+     "ep11": 0.05,
+     "ep13": 0.05
+    },
+    "mean_delta_9dp": 0.066666667,
+    "n_positive": 3,
+    "drops": [],
+    "episodes_scored": 3
+   }
+  },
+  "R15_partial": {
+   "ok": true,
+   "got": "PARTIAL",
+   "want": "PARTIAL",
+   "reasons": [
+    "box reading over 4 of 4 episodes; the v2 verdict needs both boxes merged"
+   ],
+   "clauses": {
+    "mean_delta_4dp": 0.0625,
+    "delta_4dp": {
+     "ep24": 0.1,
+     "ep11": 0.05,
+     "ep13": 0.05,
+     "ep31": 0.05
+    },
+    "mean_delta_9dp": 0.0625,
+    "n_positive": 4,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "M1_merge_two_boxes": {
+   "ok": true,
+   "got": "ADOPT: mean delta +0.0300 >= +0.03, 3 of 4 delta > 0, no delta <= -0.05 | mean delta +0.0300; ep24 mass0 0.5 mass1 0.56 delta 0.06 per seed {'42': 0.06, '43': 0.06}; ep11 mass0 0.5 mass1 0.54 delta 0.04 per seed {'42': 0.04, '43': 0.04}; ep13 mass0 0.5 mass1 0.53 delta 0.03 per seed {'42': 0.03, '43"
+  },
+  "M2_missing_cell_incomplete": {
+   "ok": true,
+   "got": "INCOMPLETE: missing or < 8 scored rollouts: ['ep13/mass1/s43'] | mean delta +0.0300; ep24 mass0 0.5 mass1 0.56 delta 0.06 per seed {'42': 0.06, '43': 0.06}; ep11 mass0 0.5 mass1 0.54 delta 0.04 per seed {'42': 0.04, '43': 0.04}; ep13 mass0 0.5 mass1 0.53 delta 0.03 per seed {'42': 0.03}; ep31 mass0 "
+  },
+  "M3_rerun_fills_the_pair": {
+   "ok": true,
+   "got": "ADOPT: mean delta +0.0300 >= +0.03, 3 of 4 delta > 0, no delta <= -0.05 | mean delta +0.0300; ep24 mass0 0.5 mass1 0.56 delta 0.06 per seed {'42': 0.06, '43': 0.06}; ep11 mass0 0.5 mass1 0.54 delta 0.04 per seed {'42': 0.04, '43': 0.04}; ep13 mass0 0.5 mass1 0.53 delta 0.03 per seed {'42': 0.03, '43"
+  },
+  "M4_pair_twice_refused_exit2": {
+   "ok": true,
+   "got": "REFUSED (no verdict): pair(s) qualify in more than one box: [\"ep13/s43 in ['/tmp/tmp0droy6nq/A', '/tmp/tmp0droy6nq/R']\"]"
+  },
+  "M5_pair_split_over_boxes_incomplete": {
+   "ok": true,
+   "got": "INCOMPLETE: missing or < 8 scored rollouts: ['ep31/mass1/s42'] | mean delta +0.0433; ep24 mass0 0.5 mass1 0.56 delta 0.06 per seed {'42': 0.06, '43': 0.06}; ep11 mass0 0.5 mass1 0.54 delta 0.04 per seed {'42': 0.04, '43': 0.04}; ep13 mass0 0.5 mass1 0.53 delta 0.03 per seed {'42': 0.03, '43': 0.03};"
+  },
+  "M6_verify_missing_wins_over_summary": {
+   "ok": true,
+   "got": "INCOMPLETE: missing or < 8 scored rollouts: ['ep11/mass0/s42'] | mean delta +0.0267; ep24 mass0 0.5 mass1 0.56 delta 0.06 per seed {'42': 0.06, '43': 0.06}; ep11 mass0 0.5 mass1 0.54 delta 0.04 per seed {'43': 0.04}; ep13 mass0 0.5 mass1 0.53 delta 0.03 per seed {'42': 0.03, '43': 0.03}; ep31 mass0 "
+  },
+  "M7_unverified_cell_incomplete": {
+   "ok": true,
+   "got": "INCOMPLETE: missing or < 8 scored rollouts: ['ep11/mass1/s43'] | mean delta +0.0267; ep24 mass0 0.5 mass1 0.56 delta 0.06 per seed {'42': 0.06, '43': 0.06}; ep11 mass0 0.5 mass1 0.54 delta 0.04 per seed {'42': 0.04}; ep13 mass0 0.5 mass1 0.53 delta 0.03 per seed {'42': 0.03, '43': 0.03}; ep31 mass0 "
+  },
+  "M8_failed_verify_invalid": {
+   "ok": true,
+   "got": "INVALID: mass_verify.py failed in at least one box: the arms did not load what the design says (see verify) | mean delta +0.0300; ep24 mass0 0.5 mass1 0.56 delta 0.06 per seed {'42': 0.06, '43': 0.06}; ep11 mass0 0.5 mass1 0.54 delta 0.04 per seed {'42': 0.04, '43': 0.04}; ep13 mass0 0.5 mass1 0.53 "
+  },
+  "M9_three_episodes_refused": {
+   "ok": true,
+   "got": "mass_verdict v2: the rule needs exactly 4 episodes (got [24, 11, 13]); use --partial for one box"
+  },
+  "M10_box_partial": {
+   "ok": true,
+   "got": "PARTIAL: box reading over 2 of 4 episodes; the v2 verdict needs both boxes merged | mean delta +0.0450; ep24 mass0 0.5 mass1 0.56 delta 0.06 per seed {'42': 0.06, '43': 0.06}; ep13 mass0 0.5 mass1 0.5"
+  },
+  "M11_files_boundary_drop": {
+   "ok": true,
+   "got": "NOT ADOPTED: mean delta +0.0250 < +0.03; only 2 of 4 episodes with delta > 0 (needs >= 3); delta <= -0.05: ep31 -0.0500 | mean delta +0.0250; ep24 mass0 0.5 mass1 0.6 delta 0.1 per seed {'42': 0.1, '43': 0.1}; ep11 mass0 0.5 mass1 0.55 delta 0.05 per seed {'42': 0.05, '43': 0.05}; ep13 mass0 0.5 mas"
+  },
+  "V1_first_check_fixture_cases": {
+   "ok": true,
+   "got": {
+    "adopt": "ADOPT",
+    "short": "NOT ADOPTED",
+    "drop": "NOT ADOPTED",
+    "edge": "ADOPT",
+    "incomplete": "INCOMPLETE",
+    "invalid": "INVALID"
+   },
+   "want": {
+    "adopt": "ADOPT",
+    "short": "NOT ADOPTED",
+    "drop": "NOT ADOPTED",
+    "edge": "ADOPT",
+    "incomplete": "INCOMPLETE",
+    "invalid": "INVALID"
+   }
+  },
+  "V1_stored_results_reproduced": {
+   "ok": true,
+   "got": "NOT ADOPTED: ep12: delta -0.0128 < +0.03 | ep2 mass0 0.5665 mass1 0.7234 delta 0.157 per seed {'42': 0.0809, '43': 0.233}; ep12 mass0 0.9237 mass1 0.9109 delta -0.0128 per seed {'42': -0.0064, '43': -"
+  }
+ }
+}

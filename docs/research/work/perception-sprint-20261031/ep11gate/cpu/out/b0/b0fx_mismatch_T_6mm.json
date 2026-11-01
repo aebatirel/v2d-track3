@@ -1,0 +1,61 @@
+{
+ "expect": "/home/user/v2d-track3/docs/research/work/perception-sprint-20261031/ep11gate/expect",
+ "arms": {
+  "e11c": {
+   "track": "C",
+   "poses": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ep11gate/cpu/b0fx/mismatch_T_6mm/C/ep11/poses.npz",
+   "md5_box": "b32ab808e560f8a3ebbec3658701066c",
+   "md5_expected": "b32ab808e560f8a3ebbec3658701066c",
+   "compare": {
+    "world_T_cam_identical": true,
+    "objects": {
+     "blue_cup": {
+      "frames_differing": 0,
+      "max_mm": 0.0,
+      "max_deg": 0.0
+     },
+     "beige_cup": {
+      "frames_differing": 0,
+      "max_mm": 0.0,
+      "max_deg": 0.0
+     }
+    }
+   },
+   "md5_expected_file": "b32ab808e560f8a3ebbec3658701066c",
+   "band": "IDENTICAL"
+  },
+  "e11t": {
+   "track": "T",
+   "poses": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ep11gate/cpu/b0fx/mismatch_T_6mm/T/ep11/poses.npz",
+   "md5_box": "af47ceae4564667efdda371f2c5eb075",
+   "md5_expected": "25801979433d7265bfd5aef2ca868dcc",
+   "compare": {
+    "world_T_cam_identical": true,
+    "objects": {
+     "blue_cup": {
+      "frames_differing": 136,
+      "max_mm": 6.000002,
+      "max_deg": 2e-06
+     },
+     "beige_cup": {
+      "frames_differing": 0,
+      "max_mm": 0.0,
+      "max_deg": 0.0
+     }
+    }
+   },
+   "md5_expected_file": "25801979433d7265bfd5aef2ca868dcc",
+   "band": "MISMATCH"
+  }
+ },
+ "bands": {
+  "numeric_mm": 0.01,
+  "numeric_deg": 0.001,
+  "differs_mm": 5.0,
+  "differs_deg": 2.0
+ },
+ "tracks_json": {
+  "error": "FileNotFoundError(2, 'No such file or directory')"
+ },
+ "go": false
+}

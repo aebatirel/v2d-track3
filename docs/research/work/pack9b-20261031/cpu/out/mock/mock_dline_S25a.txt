@@ -1,0 +1,1 @@
+v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)

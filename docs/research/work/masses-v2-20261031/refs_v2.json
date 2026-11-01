@@ -1,0 +1,307 @@
+{
+ "note": "Masses v2 (docs/research/work/masses-v2-20261031/PREREG.md): the 4 episodes and their stored finished grasp-lock references (reuse, never rebuilt). Paths are relative to runs/<source_run>/ in the HF store; ops/jobs/mass_check.sh (MV2_TAB) pulls each one with store.sh pull-files (one hf_hub_download, no listing) and places it at /content/<path>.",
+ "all_eps": [
+  24,
+  11,
+  13,
+  31
+ ],
+ "boxes": {
+  "A": [
+   24,
+   13
+  ],
+  "B": [
+   11,
+   31
+  ]
+ },
+ "props": "docs/research/physics-2026-10-30/props_masses_only.json",
+ "props_md5": "d55089307ff2ced3e3244c95be22c9d6",
+ "episodes": {
+  "24": {
+   "source_run": "20261024-ev3-2c1e4dd",
+   "base": "mcs",
+   "mode": "reuse",
+   "hive": "sequence_id=t3_ep024/robot_name=sharpa_wave",
+   "pull": [
+    "refs/perc2mcs/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet",
+    "refs/perc2mcs/ep24/reconstructed_stage/t3_ep024_support.usda",
+    "refs/glockt/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "refs/glockt/ep24/reconstructed_stage/t3_ep024_support.usda",
+    "refs/sf/ep24/assets/mesh/wooden_piece_1/wooden_piece_1.glb",
+    "refs/sf/ep24/assets/mesh/wooden_piece_2/wooden_piece_2.glb",
+    "refs/sf/ep24/assets/urdf/wooden_piece_1_rigid.urdf",
+    "refs/sf/ep24/assets/urdf/wooden_piece_2_rigid.urdf",
+    "results/glock_public/ep24/rest_check.json"
+   ],
+   "pull_optional": [
+    "results/glock_public/ep24/zero_score.txt",
+    "results/glock_public/ep24/support_fill.json"
+   ],
+   "glockt_md5": "424a39520f073f20ae436d0ec5636a1a",
+   "glockt_fingerprint": "83b9bdd4bfe74aa9bc97df0e4fe34d79",
+   "object_body_names": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "object_urdf_paths": [
+    "/content/refs/sf/ep24/assets/urdf/wooden_piece_1_rigid.urdf",
+    "/content/refs/sf/ep24/assets/urdf/wooden_piece_2_rigid.urdf"
+   ],
+   "urdfs": {
+    "wooden_piece_1": {
+     "md5": "1f35578377588b21eac4819c3abfcf56",
+     "mass": 0.3,
+     "com": "0.000559 -0.000885 -0.002647",
+     "meshes": [
+      "../mesh/wooden_piece_1/wooden_piece_1.glb"
+     ]
+    },
+    "wooden_piece_2": {
+     "md5": "c403d91cef511e4b42dadbb159760d51",
+     "mass": 0.3,
+     "com": "0.001920 0.001053 0.001835",
+     "meshes": [
+      "../mesh/wooden_piece_2/wooden_piece_2.glb"
+     ]
+    }
+   },
+   "rest_check": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "wooden_piece_1": {
+      "until_frame": 1,
+      "max_mm": 0.0,
+      "max_deg": 0.0,
+      "worst_frame": 0,
+      "ok": true
+     },
+     "wooden_piece_2": {
+      "until_frame": 97,
+      "max_mm": 8.3,
+      "max_deg": 3.9,
+      "worst_frame": 28,
+      "ok": false
+     }
+    }
+   },
+   "box": "A"
+  },
+  "11": {
+   "source_run": "20261025-twin11v3-0e8aebb",
+   "base": "mck",
+   "mode": "reuse",
+   "hive": "sequence_id=t3_ep011/robot_name=sharpa_wave",
+   "pull": [
+    "refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d6e85c126bb940e0b7c17ebaff9e87d6-0.parquet",
+    "refs/perc2mck/ep11/reconstructed_stage/t3_ep011_support.usda",
+    "refs/glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "refs/glockt/ep11/reconstructed_stage/t3_ep011_support.usda",
+    "refs/sf/ep11/assets/mesh/beige_cup/beige_cup.glb",
+    "refs/sf/ep11/assets/mesh/blue_cup/blue_cup.glb",
+    "refs/sf/ep11/assets/urdf/beige_cup_rigid.urdf",
+    "refs/sf/ep11/assets/urdf/blue_cup_rigid.urdf",
+    "results/glock_public/ep11/rest_check.json"
+   ],
+   "pull_optional": [
+    "results/glock_public/ep11/zero_score.txt",
+    "results/glock_public/ep11/support_fill.json"
+   ],
+   "glockt_md5": "fbf03ebdb68f47776c7e20802194ffe6",
+   "glockt_fingerprint": "495226c211fc5e381e2f6f45eb2301a0",
+   "object_body_names": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "object_urdf_paths": [
+    "/content/refs/sf/ep11/assets/urdf/blue_cup_rigid.urdf",
+    "/content/refs/sf/ep11/assets/urdf/beige_cup_rigid.urdf"
+   ],
+   "urdfs": {
+    "beige_cup": {
+     "md5": "4b31891f21f81c75c537e914128c1654",
+     "mass": 0.3,
+     "com": "-0.001797 0.003176 -0.016218",
+     "meshes": [
+      "../mesh/beige_cup/beige_cup.glb"
+     ]
+    },
+    "blue_cup": {
+     "md5": "31cd001d2618ee2972dc922b77109b9f",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "meshes": [
+      "../mesh/blue_cup/blue_cup.glb"
+     ]
+    }
+   },
+   "rest_check": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "blue_cup": {
+      "until_frame": 50,
+      "max_mm": 6.0,
+      "max_deg": 2.1,
+      "worst_frame": 49,
+      "ok": false
+     },
+     "beige_cup": {
+      "until_frame": 12,
+      "max_mm": 84.1,
+      "max_deg": 64.6,
+      "worst_frame": 11,
+      "ok": false
+     }
+    }
+   },
+   "box": "B"
+  },
+  "13": {
+   "source_run": "20261030-orcB-38234d1",
+   "base": "mck",
+   "mode": "reuse",
+   "hive": "sequence_id=t3_ep013/robot_name=sharpa_wave",
+   "pull": [
+    "refs/perc2mck/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/0d7b4754b12b4f4aad38b344b3f82c5f-0.parquet",
+    "refs/perc2mck/ep13/reconstructed_stage/t3_ep013_support.usda",
+    "refs/glockt/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "refs/glockt/ep13/reconstructed_stage/t3_ep013_support.usda",
+    "refs/sf/ep13/assets/mesh/blue_cup/blue_cup.glb",
+    "refs/sf/ep13/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb",
+    "refs/sf/ep13/assets/urdf/blue_cup_rigid.urdf",
+    "refs/sf/ep13/assets/urdf/plastic_dish_rack_rigid.urdf",
+    "results/glock_public/ep13/rest_check.json"
+   ],
+   "pull_optional": [
+    "results/glock_public/ep13/zero_score.txt",
+    "results/glock_public/ep13/support_fill.json"
+   ],
+   "glockt_md5": "414d0200732b79b260cc2d3080c50107",
+   "glockt_fingerprint": "231ba75397e31811d965cc3dc645dd11",
+   "object_body_names": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "object_urdf_paths": [
+    "/content/refs/sf/ep13/assets/urdf/blue_cup_rigid.urdf",
+    "/content/refs/sf/ep13/assets/urdf/plastic_dish_rack_rigid.urdf"
+   ],
+   "urdfs": {
+    "blue_cup": {
+     "md5": "31cd001d2618ee2972dc922b77109b9f",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "meshes": [
+      "../mesh/blue_cup/blue_cup.glb"
+     ]
+    },
+    "plastic_dish_rack": {
+     "md5": "ae549ee0201ce085c71a7164806047f6",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "meshes": [
+      "../mesh/plastic_dish_rack/plastic_dish_rack.glb"
+     ]
+    }
+   },
+   "rest_check": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "blue_cup": {
+      "until_frame": 13,
+      "max_mm": 3.7,
+      "max_deg": 2.4,
+      "worst_frame": 3,
+      "ok": false
+     },
+     "plastic_dish_rack": {
+      "until_frame": 13,
+      "max_mm": 2.7,
+      "max_deg": 1.4,
+      "worst_frame": 5,
+      "ok": true
+     }
+    }
+   },
+   "box": "A"
+  },
+  "31": {
+   "source_run": "20261024-ev30rp-07eef1a",
+   "base": "mck",
+   "mode": "reuse",
+   "hive": "sequence_id=t3_ep031/robot_name=sharpa_wave",
+   "pull": [
+    "refs/perc2mck/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/919152d3c8c943f3a6900a4ee7fa0c19-0.parquet",
+    "refs/perc2mck/ep31/reconstructed_stage/t3_ep031_support.usda",
+    "refs/glockt/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "refs/glockt/ep31/reconstructed_stage/t3_ep031_support.usda",
+    "refs/sf/ep31/assets/mesh/mini_sweeper/mini_sweeper.glb",
+    "refs/sf/ep31/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb",
+    "refs/sf/ep31/assets/urdf/mini_sweeper_rigid.urdf",
+    "refs/sf/ep31/assets/urdf/plastic_dish_rack_rigid.urdf",
+    "results/glock_public/ep31/rest_check.json"
+   ],
+   "pull_optional": [
+    "results/glock_public/ep31/zero_score.txt",
+    "results/glock_public/ep31/support_fill.json"
+   ],
+   "glockt_md5": "0cdf57f7bf7ded3e2b51f69f730cb090",
+   "glockt_fingerprint": "3cf0e9c1fad6b3b9fa97a6ba3040ea65",
+   "object_body_names": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "object_urdf_paths": [
+    "/content/refs/sf/ep31/assets/urdf/mini_sweeper_rigid.urdf",
+    "/content/refs/sf/ep31/assets/urdf/plastic_dish_rack_rigid.urdf"
+   ],
+   "urdfs": {
+    "mini_sweeper": {
+     "md5": "d2231d168353052209356db8fd201015",
+     "mass": 0.3,
+     "com": "-0.001585 -0.000276 0.000007",
+     "meshes": [
+      "../mesh/mini_sweeper/mini_sweeper.glb"
+     ]
+    },
+    "plastic_dish_rack": {
+     "md5": "ae549ee0201ce085c71a7164806047f6",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "meshes": [
+      "../mesh/plastic_dish_rack/plastic_dish_rack.glb"
+     ]
+    }
+   },
+   "rest_check": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "mini_sweeper": {
+      "until_frame": 19,
+      "max_mm": 19.0,
+      "max_deg": 19.0,
+      "worst_frame": 7,
+      "ok": false
+     },
+     "plastic_dish_rack": {
+      "until_frame": 19,
+      "max_mm": 2.5,
+      "max_deg": 0.6,
+      "worst_frame": 14,
+      "ok": true
+     }
+    }
+   },
+   "box": "B"
+  }
+ }
+}

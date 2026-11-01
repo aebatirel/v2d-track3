@@ -1,0 +1,8 @@
+6b0b76c6aabc395ff3ce6931c82727b7b7ca7320e45e372d0a1f42f20a77680f  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/depth0.npy
+cdd523863bc43654da8967c68d9fdbf356077d2a24a8efc7d6beeaf9fe272bd1  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/hands_refined.npz
+fb9103fa60c728083ad1f17b136d63ecde3d34d4a46e3c4a1e5e0ee8637ba0b1  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/poses.npz
+efe667709b2b19b01ade765afc4b441e1b850cce8f4074672d658435c175faa2  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/vo.json
+3afa16f09fb8cb359af135f3760541faadc27a7ea4636efd088ff30584001b22  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/ev10_depth4.npz
+8661c47695821a269c1fbc57e24b0318d594502656749fbbc72c4818b6806bee  /home/user/v2d-track3/pipeline/refine.py
+80e38923f16daba90e8ce832dbf96750f6564ef8a8a28b498795a1fdcdd5cdb5  /home/user/v2d-track3/pipeline/nest.py
+e95000361ca4beccdb7fffcc0ad7769963a03c3a03161d55fa6d5a90956fde26  /home/user/v2d-track3/tools/nest_physics.py

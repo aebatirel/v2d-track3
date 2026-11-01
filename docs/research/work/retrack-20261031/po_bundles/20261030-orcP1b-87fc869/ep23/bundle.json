@@ -1,0 +1,126 @@
+{
+ "episode": 23,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "T": 325,
+ "run_id": "20261030-orcP1b-87fc869",
+ "commit": "87fc869c24cec3cd1b90864ef3924b8e373639f3",
+ "oracle": [
+  "perc2scan (scan templates = ground-truth geometry)"
+ ],
+ "inputs": {
+  "episode": 23,
+  "objects": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "T": 325,
+  "depth": {
+   "store": "cache/depth/public/ep23/depths_fs0.5.npy",
+   "path": "/workspace/hfstore/cache/depth/public/ep23/depths_fs0.5.npy",
+   "bytes": 2080000128,
+   "bytes_expected": 2080000128,
+   "shape": [
+    325,
+    1000,
+    1600
+   ],
+   "dtype": "float32",
+   "stat": "17238303950 2080000128 1793386578",
+   "usable": true,
+   "frame0_sha256": "65a482b163a77aa62d77a79d125e5c7c5ec5ea3376496074cbe4a2b216771131",
+   "frame0_sha256_expected": "65a482b163a77aa62d77a79d125e5c7c5ec5ea3376496074cbe4a2b216771131",
+   "frame0_valid_frac": 0.7566,
+   "depth0_npy_md5": "2e79473887198494a9528b966085a3e3",
+   "matches_refine_inputs": true
+  },
+  "hands": {
+   "store_dir": "runs/20261025-g1-022fece/refs/perc2m/ep23",
+   "hands.npz": {
+    "store": "runs/20261025-g1-022fece/refs/perc2m/ep23/hands.npz",
+    "md5_expected": "cbc1287fb2462804d2b2c90c32aa9325",
+    "md5": "cbc1287fb2462804d2b2c90c32aa9325",
+    "md5_ok": true,
+    "frames": [
+     325,
+     325
+    ]
+   },
+   "hands_refined.npz": {
+    "store": "runs/20261025-g1-022fece/refs/perc2m/ep23/hands_refined.npz",
+    "md5_expected": "189239bb27965e7721c1e45171a0b29b",
+    "md5": "189239bb27965e7721c1e45171a0b29b",
+    "md5_ok": true,
+    "frames": [
+     325,
+     325
+    ]
+   }
+  },
+  "ok": true,
+  "problems": []
+ },
+ "arms": {
+  "perc2": {
+   "arm": "o",
+   "folder": "perc2",
+   "rc": 0,
+   "seconds": 78,
+   "mesh_dir": "/content/v2d-track3/meshes/library_v3",
+   "templates": {
+    "wooden_piece_1": {
+     "path": "/content/v2d-track3/meshes/library_v3/wooden_piece_1.glb",
+     "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+     "scan": false
+    },
+    "wooden_piece_2": {
+     "path": "/content/v2d-track3/meshes/library_v3/wooden_piece_2.glb",
+     "md5": "825a7fe364d280603f36226595137f43",
+     "scan": false
+    }
+   },
+   "template_kind": "library",
+   "gdino": true,
+   "depth_ready_s": 1.9,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true
+  },
+  "perc2scan": {
+   "arm": "s",
+   "folder": "perc2scan",
+   "rc": 0,
+   "seconds": 72,
+   "mesh_dir": "<unset>",
+   "templates": {
+    "wooden_piece_1": {
+     "path": "/content/t3/mesh/wooden_piece_1/wooden_piece_1_visual.glb",
+     "md5": "1fb2806514646281ccf987d13b5fcee8",
+     "scan": true
+    },
+    "wooden_piece_2": {
+     "path": "/content/t3/mesh/wooden_piece_2/wooden_piece_2_visual.glb",
+     "md5": "5dc06597aac076bc5fceca8704a29ce0",
+     "scan": true
+    }
+   },
+   "template_kind": "scan",
+   "gdino": true,
+   "depth_ready_s": 1.4,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true,
+   "camera_maxdiff_vs_perc2": 0.0
+  }
+ },
+ "gt_files": "result.json and log.txt of every arm hold mocap scores (perc2 scoring block); poses.npz, poses_world_vo.npz, vo.json, perc_log_inference.txt do not; bundle_ep<N>_oracle.tar leaves both out (they stay in the folder push for diagnostics)",
+ "ok": true
+}

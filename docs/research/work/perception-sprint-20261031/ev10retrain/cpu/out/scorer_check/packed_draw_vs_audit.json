@@ -1,0 +1,65 @@
+{
+ "rollout": "pack 6 results/submission/results/episode_000010.parquet (md5 64fdd856...; the packed eval-10 draw of packs 6-8)",
+ "reference": "P = gl10A2 refs/glockt/ep10 ref_gl_ilc.parquet (md5 1a5003d9...)",
+ "e10v_score": {
+  "sim_vs_ref": 0.4563,
+  "sim_vs_ref_stored": 0.4563,
+  "RPE": 15.7575,
+  "MPPE": 8.5438,
+  "AUC": 0.4577,
+  "audit_fail": true,
+  "fail_rpe_gt_5": true,
+  "objects": {
+   "blue_cup": {
+    "AUC": 0.6755,
+    "MPPE": 3.375,
+    "frac_kp_over_5cm": 0.118,
+    "end_kp_cm": 3.81,
+    "ref_travel_cm": 5.65,
+    "sim_travel_cm": 1.02
+   },
+   "beige_cup": {
+    "AUC": 0.2399,
+    "MPPE": 13.713,
+    "frac_kp_over_5cm": 0.758,
+    "end_kp_cm": 15.79,
+    "ref_travel_cm": 25.13,
+    "sim_travel_cm": 0.69
+   }
+  },
+  "own_ref_check": {
+   "ref": "P",
+   "max_dpos_m": 0.0,
+   "max_dq": 5.960464477539063e-08,
+   "ok": true
+  }
+ },
+ "audit_py_evalaudit_json": {
+  "RPE": 15.7575,
+  "MPPE": 8.5438,
+  "AUC": 0.4577,
+  "fail": true,
+  "qa_sim_vs_ref": 0.4563,
+  "objects": [
+   {
+    "name": "blue_cup",
+    "AUC": 0.6755,
+    "MPPE": 3.375,
+    "frac_kp_over_5cm": 0.118,
+    "ref_travel_cm": 5.65,
+    "sim_travel_cm": 1.02,
+    "end_kp_cm": 3.81
+   },
+   {
+    "name": "beige_cup",
+    "AUC": 0.2399,
+    "MPPE": 13.713,
+    "frac_kp_over_5cm": 0.758,
+    "ref_travel_cm": 25.13,
+    "sim_travel_cm": 0.69,
+    "end_kp_cm": 15.79
+   }
+  ]
+ },
+ "source": "audit.py at origin/claude/standings-20261031 (git show), run here on the same file: RPE 15.757500 MPPE 8.543800 AUC 0.457700 fail True (printed unrounded by the check)"
+}

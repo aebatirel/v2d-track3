@@ -1,0 +1,726 @@
+{
+ "refs": {
+  "V": {
+   "path": "<MR>/store/runs/20261031-e10v-mocksha/refs/perc2e10v_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "md5": "77869888a99fc814a892a13921003985",
+   "frames": 161
+  },
+  "P": {
+   "path": "<MR>/store/runs/20261031-e10v-mocksha/results/ev10_v4p/packed_ref/ref_gl_ilc.parquet",
+   "md5": "1a5003d94852c275519066645a1b9869",
+   "frames": 161
+  }
+ },
+ "rule": "docs/research/work/perception-sprint-20261031/ev10retrain/PREREG.md 3.5",
+ "rpe_fail_cm": 5.0,
+ "sets": {
+  "packed": {
+   "own": "P",
+   "glob": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r*/ep10/episode_000010.parquet",
+   "n_files": 10,
+   "n_scored": 10,
+   "rollouts": [
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r1/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4569,
+       "RPE": 15.8304,
+       "MPPE": 8.4346,
+       "AUC": 0.4581,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6797,
+         "MPPE": 3.272,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.03,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.24
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.598,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.67,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.24
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.449,
+       "RPE": 15.794,
+       "MPPE": 8.4581,
+       "AUC": 0.4515,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6627,
+         "MPPE": 3.49,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 4.05,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.24
+        },
+        "beige_cup": {
+         "AUC": 0.2403,
+         "MPPE": 13.427,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.42,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.24
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.449,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 1
+    },
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r2/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.455,
+       "RPE": 15.8278,
+       "MPPE": 8.4211,
+       "AUC": 0.4569,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6774,
+         "MPPE": 3.308,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.14,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.2
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.534,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.55,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.3
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4466,
+       "RPE": 15.7908,
+       "MPPE": 8.4473,
+       "AUC": 0.4501,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6603,
+         "MPPE": 3.524,
+         "frac_kp_over_5cm": 0.161,
+         "end_kp_cm": 4.16,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.2
+        },
+        "beige_cup": {
+         "AUC": 0.2399,
+         "MPPE": 13.371,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.3,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.3
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4466,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 2
+    },
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r3/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4523,
+       "RPE": 15.8351,
+       "MPPE": 8.4473,
+       "AUC": 0.4554,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6743,
+         "MPPE": 3.405,
+         "frac_kp_over_5cm": 0.031,
+         "end_kp_cm": 4.21,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.33
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.49,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.54,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.21
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4431,
+       "RPE": 15.7992,
+       "MPPE": 8.4748,
+       "AUC": 0.447,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6541,
+         "MPPE": 3.621,
+         "frac_kp_over_5cm": 0.193,
+         "end_kp_cm": 4.23,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.33
+        },
+        "beige_cup": {
+         "AUC": 0.2399,
+         "MPPE": 13.329,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.28,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.21
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4431,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 3
+    },
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r4/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4557,
+       "RPE": 15.8374,
+       "MPPE": 8.4563,
+       "AUC": 0.4569,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6774,
+         "MPPE": 3.314,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.2,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.23
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.599,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.73,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.23
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4466,
+       "RPE": 15.8009,
+       "MPPE": 8.4824,
+       "AUC": 0.4497,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6595,
+         "MPPE": 3.538,
+         "frac_kp_over_5cm": 0.168,
+         "end_kp_cm": 4.22,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.23
+        },
+        "beige_cup": {
+         "AUC": 0.2399,
+         "MPPE": 13.427,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.49,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.23
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4466,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 4
+    },
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r5/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4538,
+       "RPE": 15.8359,
+       "MPPE": 8.4277,
+       "AUC": 0.4565,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6766,
+         "MPPE": 3.339,
+         "frac_kp_over_5cm": 0.012,
+         "end_kp_cm": 4.14,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.22
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.516,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.57,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.2
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4455,
+       "RPE": 15.7987,
+       "MPPE": 8.4522,
+       "AUC": 0.4486,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6572,
+         "MPPE": 3.551,
+         "frac_kp_over_5cm": 0.168,
+         "end_kp_cm": 4.16,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.22
+        },
+        "beige_cup": {
+         "AUC": 0.2399,
+         "MPPE": 13.353,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.31,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.2
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4455,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 5
+    },
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r6/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4583,
+       "RPE": 15.8466,
+       "MPPE": 8.4044,
+       "AUC": 0.4598,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6828,
+         "MPPE": 3.23,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.02,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.3
+        },
+        "beige_cup": {
+         "AUC": 0.2368,
+         "MPPE": 13.579,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.78,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.23
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4523,
+       "RPE": 15.8078,
+       "MPPE": 8.4305,
+       "AUC": 0.4524,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6646,
+         "MPPE": 3.439,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 4.04,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.3
+        },
+        "beige_cup": {
+         "AUC": 0.2403,
+         "MPPE": 13.422,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.51,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.23
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4523,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 6
+    },
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r7/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4565,
+       "RPE": 15.8278,
+       "MPPE": 8.4193,
+       "AUC": 0.4581,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6797,
+         "MPPE": 3.276,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.18,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.16
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.562,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.64,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.23
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4482,
+       "RPE": 15.7886,
+       "MPPE": 8.4415,
+       "AUC": 0.4509,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6619,
+         "MPPE": 3.488,
+         "frac_kp_over_5cm": 0.143,
+         "end_kp_cm": 4.2,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.16
+        },
+        "beige_cup": {
+         "AUC": 0.2399,
+         "MPPE": 13.395,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.37,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.23
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4482,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 7
+    },
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r8/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4556,
+       "RPE": 15.8363,
+       "MPPE": 8.4163,
+       "AUC": 0.4567,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6766,
+         "MPPE": 3.34,
+         "frac_kp_over_5cm": 0.012,
+         "end_kp_cm": 4.11,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.26
+        },
+        "beige_cup": {
+         "AUC": 0.2368,
+         "MPPE": 13.492,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.62,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.28
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4476,
+       "RPE": 15.7997,
+       "MPPE": 8.4439,
+       "AUC": 0.449,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.658,
+         "MPPE": 3.552,
+         "frac_kp_over_5cm": 0.18,
+         "end_kp_cm": 4.13,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.26
+        },
+        "beige_cup": {
+         "AUC": 0.2399,
+         "MPPE": 13.336,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.36,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.28
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4476,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 8
+    },
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r9/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4559,
+       "RPE": 15.838,
+       "MPPE": 8.4086,
+       "AUC": 0.4569,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6774,
+         "MPPE": 3.279,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.1,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.26
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.538,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.68,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.22
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4491,
+       "RPE": 15.7999,
+       "MPPE": 8.4337,
+       "AUC": 0.4515,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6627,
+         "MPPE": 3.489,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 4.13,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.26
+        },
+        "beige_cup": {
+         "AUC": 0.2403,
+         "MPPE": 13.378,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.42,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.22
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4491,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 9
+    },
+    {
+     "path": "<MR>/store/runs/20261031-h5p7-1a7cdff/results/h5/r10/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+     "reference_parquet": null,
+     "own": "P",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4546,
+       "RPE": 15.835,
+       "MPPE": 8.4225,
+       "AUC": 0.4569,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6774,
+         "MPPE": 3.318,
+         "frac_kp_over_5cm": 0.006,
+         "end_kp_cm": 4.06,
+         "ref_travel_cm": 4.96,
+         "sim_travel_cm": 0.19
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.527,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.56,
+         "ref_travel_cm": 25.07,
+         "sim_travel_cm": 0.18
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4462,
+       "RPE": 15.7986,
+       "MPPE": 8.4465,
+       "AUC": 0.449,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.658,
+         "MPPE": 3.53,
+         "frac_kp_over_5cm": 0.168,
+         "end_kp_cm": 4.08,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.19
+        },
+        "beige_cup": {
+         "AUC": 0.2399,
+         "MPPE": 13.363,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.3,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.18
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4462,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 0.0,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 10
+    }
+   ]
+  }
+ }
+}

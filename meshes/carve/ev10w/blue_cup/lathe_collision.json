@@ -1,0 +1,33 @@
+{
+ "tool": "lathe_collision",
+ "profile": "blue_cup_profile.npz",
+ "name": "blue_cup",
+ "hollow": true,
+ "wall_t_mm": 3.0,
+ "shrink_mm": 0.0,
+ "segments": 12,
+ "band_cm": 6.0,
+ "pieces": 89,
+ "volume_cm3": 136.6,
+ "height_cm": 16.2,
+ "r_out_cm": [
+  3.15,
+  4.73
+ ],
+ "base_end": "hi",
+ "wall_fitted_mm": 4.89,
+ "base_extended_mm": 0.0,
+ "max_piece_vertices": 76,
+ "inner": "docs/research/work/perception-sprint-20261031/ev10w/build/ev10w_blue_inner.npz",
+ "band_edges_mm": [
+  -83.61,
+  -23.61,
+  38.39,
+  48.39,
+  58.39,
+  68.39,
+  74.39
+ ],
+ "inner_min_wall_mm": 1.5,
+ "inner_min_wall_at_h_mm": 38.39
+}

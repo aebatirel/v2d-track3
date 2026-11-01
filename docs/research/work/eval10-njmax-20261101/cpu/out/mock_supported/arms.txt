@@ -1,0 +1,1 @@
+ARMS OK :: V 7c5bc58d38558a12549dbd5362abb9d6 (fingerprint a9bcfef01803; e10v 7c5bc58d38558a12549dbd5362abb9d6), base 7c5bc58d38558a12549dbd5362abb9d6, copy <MR>/content/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet, blue_cup 0.3 kg md5=e10v True, beige_cup 0.3 kg md5=e10v True

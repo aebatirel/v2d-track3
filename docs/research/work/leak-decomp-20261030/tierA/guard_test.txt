@@ -1,0 +1,21 @@
+PASS pack 7: 20/20 checkpoints found locally with sha256 = checkpoints.json
+PASS pack 7: kit checkpoints JSON of the 20 local copies: rc 0 (no_oracle: 1 inputs checked, none oracle-derived)
+PASS pack 7: each of the 20 checkpoints as a word: refused []
+PASS pack 7: every stored training config read (21435 strings), none matches
+PASS stored 20261030-track3g-candidate/checkpoints.json: rc 0
+PASS stored 20261030-track3h-candidate/checkpoints_box.json: rc 0
+PASS stored 20261026-track3f/checkpoints.json: rc 0
+PASS pack 6/7 words of h5_reeval.sh + libraries + carve pieces (38 words): rc 0 no_oracle: 38 inputs checked, none oracle-derived
+PASS look-alikes accepted: [] refused
+PASS oracle-twin refusals kept: {'20261030-orcB-38234d1': 1, '11:20261030-orcB-38234d1': 1, 'refs/oracle_glockt/ep11': 1, '/content/oracle/ep11': 1, 'results/hard_ab/ep31/oracle_mcks-s42': 1, 'renamed oracle checkpoint (guardtest/ck.json)': 1}
+PASS B8 name refusals (25): accepted []
+PASS fixtures sit under neutral names (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8), so the refusals below are by content
+PASS B8 content refusals: symlink farm onto the scans (dir): rc 1; one farm link: rc 1; renamed byte copies (dir): rc 1; renamed byte copies as EP:DIR: rc 1; one renamed byte copy: rc 1; ASSET_PIECES-style dir holding a copy: rc 1; neutral link onto a perc2scan folder: rc 1; checkpoint, config -> perc2scan: rc 1; checkpoint, config -> hT: rc 1; checkpoint, config -> scanlib: rc 1; kit JSON listing a renamed checkpoint: rc 1; dir of renamed checkpoints: rc 1
+PASS a pack-7 JSON plus one scan copy: refused
+PASS store listing (134909 paths): old rule 88, new rule 789; newly refused groups ['20261022-r5ks-72ecb2f', '20261022-r5ks43-72ecb2f', 'access']; no longer refused []; pack runs refused []
+PASS Phase-1 mock box a (real perc_leak.sh, this guard): ['guard (/home/user/v2d-track3/tools/no_oracle.py): refuses 200/200 pushed files by store path runs/20261030-orcP1a-mocksha/...; bare paths (ep<N>/<arm>/..., tar names) refused: perc2scan 64/64, perc2 0/64, perc2rep 0/18, bundle tar 7/7', 'RESULT: ALL CHECKS PASS']; perc_leak.sh: ['perc_leak: guard refuses runs/20261030-orcP1a-mocksha/results/leak_p1/... (run id)', 'perc_leak: guard refuses the bare perc2scan folder name']
+RESULT: ALL CHECKS PASS
+
+real	0m38.379s
+user	0m19.171s
+sys	0m3.302s

@@ -1,0 +1,469 @@
+{
+ "label": "INVALID",
+ "why": [
+  "verify failed: ['s43: [\"saved config differs from the packed eval-20 checkpoint in [\\'training.mock_extra_setting\\']\"]']"
+ ],
+ "rule": "docs/research/work/eval20-b1-20261101/PREREG.md section 5",
+ "labels_attached": [],
+ "pack10_inclusion": {
+  "rule": "binding: a SWAP-ELIGIBLE eval 20 enters pack 10 only if (new confirmation mean - packed fresh-draw mean) sim_vs_ref vs P >= 0.02",
+  "bar": 0.02,
+  "gain": null,
+  "include_in_pack10": false,
+  "reading": "not swap-eligible: not included"
+ },
+ "clauses": {},
+ "sides": {
+  "packed": {
+   "n": 10,
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8934,
+    "sd": 0.028,
+    "min": 0.8193,
+    "max": 0.9146,
+    "median": 0.9013
+   },
+   "RPE": {
+    "n": 10,
+    "mean": 1.9024,
+    "sd": 0.8066,
+    "min": 1.3144,
+    "max": 4.1011,
+    "median": 1.6712
+   },
+   "MPPE": {
+    "n": 10,
+    "mean": 1.8219,
+    "sd": 0.2555,
+    "min": 1.6134,
+    "max": 2.4892,
+    "median": 1.7313
+   },
+   "AUC": {
+    "n": 10,
+    "mean": 0.887,
+    "sd": 0.0316,
+    "min": 0.8071,
+    "max": 0.9134,
+    "median": 0.8949
+   },
+   "fails": 0,
+   "fail_rate": 0.0,
+   "audit_fails": 0,
+   "objects": {
+    "blue_cup": 0.9242,
+    "water_pitcher": 0.8498
+   },
+   "draws": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  }
+ },
+ "training_box_gate": {
+  "rule": "PREREG section 4: >= 1 VERIFIED seed (n >= 8) with training-box mean sim_vs_ref vs P > 0.8933",
+  "bar": 0.8933,
+  "bar_source": "the packed eval-20 policy's 10 fresh (H5p7) draws, mean sim_vs_ref vs P: runs/20261031-h5p7-1a7cdff/results/h5/h5_summary.json[\"20\"][\"mean\"] [M] (dr_score.py on the same 10 draws: 0.8933)",
+  "met": true,
+  "seeds": {
+   "42": {
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.9996,
+    "mean_raw": 0.99961,
+    "above": true,
+    "margin": 0.1063
+   },
+   "43": {
+    "status": "INVALID",
+    "n": 10,
+    "mean": 0.9995,
+    "mean_raw": 0.99954,
+    "above": false,
+    "margin": 0.1062
+   }
+  }
+ },
+ "overflow": {
+  "bar": 1000,
+  "unclean_seeds": [],
+  "per_seed": {
+   "42": {
+    "dropped": 0,
+    "files": 1,
+    "counts": {
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0
+    },
+    "njmax_requested": {
+     "n": 0,
+     "median": null,
+     "p95": null,
+     "p99": null,
+     "max": null,
+     "min": null
+    }
+   },
+   "43": {
+    "dropped": 0,
+    "files": 1,
+    "counts": {
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0
+    },
+    "njmax_requested": {
+     "n": 0,
+     "median": null,
+     "p95": null,
+     "p99": null,
+     "max": null,
+     "min": null
+    }
+   }
+  },
+  "other": {
+   "train_oom_s42": {
+    "files": 0,
+    "dropped": 0
+   },
+   "curve_s42": {
+    "files": 21,
+    "dropped": 525
+   },
+   "best_s42": {
+    "files": 10,
+    "dropped": 250
+   },
+   "train_oom_s43": {
+    "files": 0,
+    "dropped": 0
+   },
+   "curve_s43": {
+    "files": 21,
+    "dropped": 525
+   },
+   "best_s43": {
+    "files": 10,
+    "dropped": 250
+   },
+   "conf": {
+    "files": 0,
+    "dropped": 0
+   }
+  },
+  "baseline": "determined-wright contact_budget f59c897 (FlashCHORD 32 x 60): b1 0 / 0 lines, sampled max 342, explicit 321 [R]"
+ },
+ "training_box": {
+  "42": {
+   "n": 10,
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.9996,
+    "sd": 0.0007,
+    "min": 0.9978,
+    "max": 1.0,
+    "median": 0.9998
+   },
+   "RPE": {
+    "n": 10,
+    "mean": 0.3537,
+    "sd": 0.0155,
+    "min": 0.319,
+    "max": 0.3754,
+    "median": 0.3537
+   },
+   "MPPE": {
+    "n": 10,
+    "mean": 0.4832,
+    "sd": 0.081,
+    "min": 0.3367,
+    "max": 0.6497,
+    "median": 0.4773
+   },
+   "AUC": {
+    "n": 10,
+    "mean": 0.9996,
+    "sd": 0.0007,
+    "min": 0.9978,
+    "max": 1.0,
+    "median": 0.9998
+   },
+   "fails": 0,
+   "fail_rate": 0.0,
+   "audit_fails": 0,
+   "objects": {
+    "blue_cup": 0.9997,
+    "water_pitcher": 0.9996
+   },
+   "draws": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  "43": {
+   "n": 10,
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.9995,
+    "sd": 0.0008,
+    "min": 0.9978,
+    "max": 1.0,
+    "median": 0.9999
+   },
+   "RPE": {
+    "n": 10,
+    "mean": 0.3539,
+    "sd": 0.0109,
+    "min": 0.3361,
+    "max": 0.3744,
+    "median": 0.3552
+   },
+   "MPPE": {
+    "n": 10,
+    "mean": 0.4847,
+    "sd": 0.0806,
+    "min": 0.3637,
+    "max": 0.6272,
+    "median": 0.4762
+   },
+   "AUC": {
+    "n": 10,
+    "mean": 0.9995,
+    "sd": 0.0008,
+    "min": 0.9978,
+    "max": 1.0,
+    "median": 0.9999
+   },
+   "fails": 0,
+   "fail_rate": 0.0,
+   "audit_fails": 0,
+   "objects": {
+    "blue_cup": 0.9998,
+    "water_pitcher": 0.9994
+   },
+   "draws": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  }
+ },
+ "choice": {
+  "status": "INVALID",
+  "chosen": null,
+  "checkpoint": null,
+  "sha256": null,
+  "seeds": {
+   "42": {
+    "results": "<MR>/content/results/e20b1s42_glock_public/ep20",
+    "checkpoint": "<MR>/content/results/e20b1s42_glock_public/ep20/best/policy.safetensors",
+    "sha256": "11ba868e8479d0c809b33f6352f6ba4b8b2cf9fee1950899ef779c115c901504",
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.9996,
+    "sd": 0.0007,
+    "min": 0.9978,
+    "max": 1.0,
+    "values": [
+     0.9998,
+     1.0,
+     0.9998,
+     1.0,
+     0.9995,
+     0.9997,
+     0.9995,
+     1.0,
+     0.9978,
+     1.0
+    ],
+    "chosen_by_curve": "<MR>/content/runs/e20b1s42_glock/ep20-s42/policy_60002304.safetensors"
+   },
+   "43": {
+    "results": "<MR>/content/results/e20b1s43_glock_public/ep20",
+    "checkpoint": "<MR>/content/results/e20b1s43_glock_public/ep20/best/policy.safetensors",
+    "sha256": "07c220b9d5ee3b6134120c9d0bbbceec14cb9a9e514fb0c56ca53ee3adbeff30",
+    "status": "INVALID",
+    "n": 10,
+    "mean": 0.9995,
+    "sd": 0.0008,
+    "min": 0.9978,
+    "max": 1.0,
+    "values": [
+     1.0,
+     0.9983,
+     1.0,
+     0.9998,
+     0.9998,
+     1.0,
+     1.0,
+     1.0,
+     0.9978,
+     0.9997
+    ],
+    "chosen_by_curve": "<MR>/content/runs/e20b1s43_glock/ep20-s43/policy_70004736.safetensors"
+   }
+  },
+  "incomplete_seeds": [],
+  "invalid_seeds": [
+   "43"
+  ]
+ },
+ "rest_check": {
+  "note": "reported, not gating: zero-action replay of P on the b1 asset copy (tools/trace_rollout.py zero + tools/rest_check.py, 5 mm / 2 deg until a hand comes) next to the packed run's record",
+  "b1": {
+   "all_ok": false,
+   "mock": 1
+  },
+  "packed": {
+   "water_pitcher": {
+    "max_mm": 10.4,
+    "max_deg": 3.9,
+    "until_frame": 14,
+    "ok": false
+   },
+   "blue_cup": {
+    "max_mm": 0.0,
+    "max_deg": 0.0,
+    "ok": true
+   }
+  }
+ },
+ "pieces": {
+  "set": "ev20b1",
+  "dir": "<MR>/content/v2d-track3/meshes/carve/ev20b1",
+  "md5sums_md5": "fe9aeca079fdcc7524a06f46fcd0a7ae",
+  "frozen_md5": "4259a6cf8a4c28dcbc212ff0a77bad5b",
+  "manifest": [
+   "f65a6a2d50ba0cd0625f23667d24975a  ./water_pitcher/piece_00.obj",
+   "5955729c92fb228926a88b3aa3e2bbe0  ./water_pitcher/piece_01.obj",
+   "308787448f0cf0e32296aed032a7a436  ./water_pitcher/piece_02.obj",
+   "ac5cd1b8fe8dad5c172d040591d330c3  ./water_pitcher/piece_03.obj",
+   "01b08416887b8e92a087b3b7474c5282  ./water_pitcher/piece_04.obj",
+   "3604542f22423a04f8aa6ec889c6a041  ./water_pitcher/piece_05.obj",
+   "0ade6940c74a49c5ae1660d5d9522339  ./water_pitcher/piece_06.obj",
+   "c727fa6ab03ede399020aaad787674d6  ./water_pitcher/piece_07.obj",
+   "493713e80bbbb81809c9fdbddbad7d5b  ./water_pitcher/piece_08.obj",
+   "0116e13697da21a94bfc60d808a79e4f  ./water_pitcher/piece_09.obj",
+   "40dffd4fb4173495f6469a44781e50aa  ./water_pitcher/piece_10.obj",
+   "eb0382ecf7d6909cc0c2fb1088686ea7  ./water_pitcher/piece_11.obj",
+   "e96313571acab423e3f094dee5c0ed95  ./water_pitcher/piece_12.obj",
+   "227c76c870333a9c1265c3021a504c28  ./water_pitcher/piece_13.obj",
+   "c24377707007cb292b7f4532137cac22  ./water_pitcher/piece_14.obj",
+   "4ce4fd3aeffac8b30ee6d8ff5f9f03dd  ./water_pitcher/piece_15.obj",
+   "485c0cf4885b8c7d38cc8861ca687d46  ./water_pitcher/piece_16.obj",
+   "5e93c4e59ae9fb8972b73543b01f0624  ./water_pitcher/piece_17.obj",
+   "d6028b593f17497c571431d1b6cc9da9  ./water_pitcher/piece_18.obj",
+   "34492ac8eb1c08c96732096375cc142d  ./water_pitcher/piece_19.obj",
+   "18f97b49a8ba853fd3be9867ea9047c6  ./water_pitcher/piece_20.obj",
+   "5751a0646ce106fa561c0e6aded55c0b  ./water_pitcher/piece_21.obj",
+   "e3aa9549419f26975aa39d3b77403586  ./water_pitcher/piece_22.obj",
+   "22da7b47edee72e1e8ededfa702fcf72  ./water_pitcher/piece_23.obj",
+   "d48e37e41f499b55525c78fda9081c23  ./water_pitcher/piece_24.obj",
+   "f3434377fc36784fedae9d602eeb113a  ./water_pitcher/piece_25.obj",
+   "a4315e4471dbcb4c8a8b7b3920c6d9cb  ./water_pitcher/piece_26.obj",
+   "56ffca02c063798bb2a3130a5c003a38  ./water_pitcher/piece_27.obj",
+   "712bfe6143b85757f9b504847630576c  ./water_pitcher/piece_28.obj",
+   "f491519d3ed136e33ea052669169094c  ./water_pitcher/piece_29.obj",
+   "0f10df35aed8030eb63f77d7f24b139f  ./water_pitcher/piece_30.obj",
+   "5876d2be2e170e5e0273203b276d3182  ./water_pitcher/piece_31.obj",
+   "c6c120e7a3becdf3626a47859214e2c9  ./water_pitcher/piece_32.obj",
+   "f2f8a58781c2f286fdd31db166944876  ./water_pitcher/piece_33.obj",
+   "939147c3dd343fb104ee02cdf5842c2c  ./water_pitcher/piece_34.obj",
+   "75af7a416595a308802b24afe1342ca9  ./water_pitcher/piece_35.obj",
+   "3823f312239edd76eee9bbbe06edc480  ./water_pitcher/piece_36.obj",
+   "db6fbaacd19da23e900bfb8c5c86559a  ./water_pitcher/piece_37.obj",
+   "3714675a3b156b3a699ff84f8117e17f  ./water_pitcher/piece_38.obj",
+   "88de4727a230de8b3abdc527693795ad  ./water_pitcher/piece_39.obj",
+   "b8c28c112d2c8a8435fe12bec008ba41  ./water_pitcher/piece_40.obj"
+  ],
+  "source": "origin/claude/bold-albattani-6qmxsv 83d18d0 (FROZEN.md; the pieces as delivered in 9c0bc0c)"
+ },
+ "urdfs": {
+  "water_pitcher": {
+   "packed_md5": "6772f95462e0554cfac39de97bdf2253",
+   "md5": "77b395a5aa46b2eeab1f02e20bf04348",
+   "collisions_packed": 9,
+   "collisions": 41,
+   "inertial_equal": true,
+   "visual_equal": true
+  },
+  "blue_cup": {
+   "packed_md5": "31cd001d2618ee2972dc922b77109b9f",
+   "md5": "31cd001d2618ee2972dc922b77109b9f",
+   "collisions_packed": 1,
+   "collisions": 1,
+   "inertial_equal": true,
+   "visual_equal": true
+  }
+ },
+ "verify": {
+  "ok": false,
+  "failures": [
+   "s43: [\"saved config differs from the packed eval-20 checkpoint in ['training.mock_extra_setting']\"]"
+  ],
+  "confirmation": {
+   "draws": 0,
+   "checked": 0
+  }
+ },
+ "equal_floor_note": null,
+ "counts": {
+  "conf": {
+   "own": "P",
+   "n_files": 0,
+   "n_scored": 0
+  },
+  "old": {
+   "own": "P",
+   "n_files": 1,
+   "n_scored": 1
+  },
+  "packed": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train42": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train43": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  }
+ }
+}

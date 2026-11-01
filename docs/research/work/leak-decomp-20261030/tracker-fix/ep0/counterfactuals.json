@@ -1,0 +1,211 @@
+{
+ "Ps_pot_f0_error": {
+  "angle_deg": 179.3,
+  "axis_body": [
+   -0.024,
+   -0.979,
+   0.2
+  ],
+  "pot_pca_axes_body": [
+   [
+    0.999,
+    -0.001,
+    0.045
+   ],
+   [
+    0.004,
+    -0.993,
+    -0.118
+   ],
+   [
+    0.044,
+    0.118,
+    -0.992
+   ]
+  ],
+  "pca_var": [
+   0.00137,
+   0.0033,
+   0.00557
+  ],
+  "axis_world": [
+   0.121,
+   0.993,
+   -0.0
+  ],
+  "angle_axis_to_world_z_deg": 90.0,
+  "shift_cm": 3.88
+ },
+ "mocap_pot_body_z_in_world_f0": [
+  0.975,
+  0.083,
+  0.207
+ ],
+ "as_is": {
+  "Ps*": {
+   "AUC": 0.0783,
+   "per_obj_AUC": {
+    "white_pot": 0.1555,
+    "white_pot_lid": 0.001
+   }
+  },
+  "Po*": {
+   "AUC": 0.9476,
+   "per_obj_AUC": {
+    "white_pot": 0.9928,
+    "white_pot_lid": 0.9025
+   }
+  },
+  "Pr*": {
+   "AUC": 0.9612,
+   "per_obj_AUC": {
+    "white_pot": 0.9926,
+    "white_pot_lid": 0.9298
+   }
+  },
+  "Po_lib": {
+   "AUC": 0.962,
+   "per_obj_AUC": {
+    "white_pot": 0.9904,
+    "white_pot_lid": 0.9335
+   }
+  },
+  "Pr_lib": {
+   "AUC": 0.9641,
+   "per_obj_AUC": {
+    "white_pot": 0.9918,
+    "white_pot_lid": 0.9363
+   }
+  }
+ },
+ "Ps_pot_track_motion_f0_63": {
+  "max_shift_cm": 3.23,
+  "max_rot_deg": 20.83
+ },
+ "Ps_pot_jump_f63_f64": {
+  "shift_cm": 5.19,
+  "rot_deg": 176.1
+ },
+ "Ps*_backfill_hold_f64": {
+  "AUC": 0.9948,
+  "per_obj_AUC": {
+   "white_pot": 0.9938,
+   "white_pot_lid": 0.9958
+  }
+ },
+ "Ps*_backfill_hold_f70": {
+  "AUC": 0.995,
+  "per_obj_AUC": {
+   "white_pot": 0.994,
+   "white_pot_lid": 0.996
+  }
+ },
+ "G_aligned_oracle": {
+  "Ps*": {
+   "white_pot": 0.8004,
+   "white_pot_lid": 0.9715
+  },
+  "Po*": {
+   "white_pot": 0.9933,
+   "white_pot_lid": 0.9316
+  },
+  "Pr*": {
+   "white_pot": 0.993,
+   "white_pot_lid": 0.9316
+  }
+ },
+ "f0_smooth_K10": {
+  "Po*": {
+   "AUC": 0.9611,
+   "per_obj_AUC": {
+    "white_pot": 0.9928,
+    "white_pot_lid": 0.9295
+   }
+  },
+  "Pr*": {
+   "AUC": 0.961,
+   "per_obj_AUC": {
+    "white_pot": 0.9926,
+    "white_pot_lid": 0.9295
+   }
+  },
+  "Po_lib": {
+   "AUC": 0.964,
+   "per_obj_AUC": {
+    "white_pot": 0.9916,
+    "white_pot_lid": 0.9363
+   }
+  },
+  "Pr_lib": {
+   "AUC": 0.9639,
+   "per_obj_AUC": {
+    "white_pot": 0.9915,
+    "white_pot_lid": 0.9363
+   }
+  }
+ },
+ "f0_smooth_K20": {
+  "Po*": {
+   "AUC": 0.9616,
+   "per_obj_AUC": {
+    "white_pot": 0.9926,
+    "white_pot_lid": 0.9306
+   }
+  },
+  "Pr*": {
+   "AUC": 0.9614,
+   "per_obj_AUC": {
+    "white_pot": 0.9921,
+    "white_pot_lid": 0.9306
+   }
+  },
+  "Po_lib": {
+   "AUC": 0.9645,
+   "per_obj_AUC": {
+    "white_pot": 0.9915,
+    "white_pot_lid": 0.9375
+   }
+  },
+  "Pr_lib": {
+   "AUC": 0.9646,
+   "per_obj_AUC": {
+    "white_pot": 0.9915,
+    "white_pot_lid": 0.9378
+   }
+  }
+ },
+ "f0_smooth_K30": {
+  "Po*": {
+   "AUC": 0.9612,
+   "per_obj_AUC": {
+    "white_pot": 0.9926,
+    "white_pot_lid": 0.9298
+   }
+  },
+  "Pr*": {
+   "AUC": 0.9613,
+   "per_obj_AUC": {
+    "white_pot": 0.9921,
+    "white_pot_lid": 0.9305
+   }
+  },
+  "Po_lib": {
+   "AUC": 0.9641,
+   "per_obj_AUC": {
+    "white_pot": 0.9916,
+    "white_pot_lid": 0.9365
+   }
+  },
+  "Pr_lib": {
+   "AUC": 0.9641,
+   "per_obj_AUC": {
+    "white_pot": 0.9915,
+    "white_pot_lid": 0.9368
+   }
+  }
+ },
+ "Po_vs_Pr_pot_f0": {
+  "shift_cm": 0.279,
+  "rot_deg": 0.512
+ }
+}

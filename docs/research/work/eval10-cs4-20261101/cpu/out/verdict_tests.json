@@ -1,0 +1,91 @@
+{
+ "ok": true,
+ "n": 21,
+ "passed": 21,
+ "cases": [
+  {
+   "ok": true,
+   "what": "e10v-like seeds (0.4524 / 0.4512) -> NO-SWAP, gate not met :: NO-SWAP :: pack 10: not swap-eligible: not included (gain V None, P None; bar 0.02) :: training-box gate not met: no seed's training-box mean sim_vs_ref vs V ab"
+  },
+  {
+   "ok": true,
+   "what": "a seed mean exactly at the bar 0.4632 does not meet the gate (strict)"
+  },
+  {
+   "ok": true,
+   "what": "a thin seed (n 7) -> INCOMPLETE and does not count for the gate"
+  },
+  {
+   "ok": true,
+   "what": "an INVALID cell -> INVALID (no single-seed fallback), and does not count for the gate"
+  },
+  {
+   "ok": true,
+   "what": "a missing seed -> INCOMPLETE"
+  },
+  {
+   "ok": true,
+   "what": "gate met, conf 0.50 / 0.49 vs packed 0.4632 / 0.4525 -> SWAP-ELIGIBLE, INCLUDE (gain {'V': 0.0368, 'P': 0.0375}) :: SWAP-ELIGIBLE [EQUAL FLOOR] :: pack 10: INCLUDE in pack 10 (gain V 0.0368, P 0.0375; bar 0.02) :: every clause holds on both references :: a_V ok margin 0.0368 | b_V ok margin 0.0 | c_V ok margin 0.0 "
+  },
+  {
+   "ok": true,
+   "what": "SWAP-ELIGIBLE with gain V +0.037, P +0.0075 -> NOT included (bar 0.02 on both) :: SWAP-ELIGIBLE but below the 0.02 inclusion bar: NOT included in pack 10"
+  },
+  {
+   "ok": true,
+   "what": "gain exactly +0.02 on both -> included (>=) {'V': 0.02, 'P': 0.02}"
+  },
+  {
+   "ok": true,
+   "what": "SWAP-ELIGIBLE at +0.002 (pack 9b-like) -> NOT included"
+  },
+  {
+   "ok": true,
+   "what": "clause a holds on V, fails on P -> NO-SWAP"
+  },
+  {
+   "ok": true,
+   "what": "median RPE vs V worse -> NO-SWAP (c_V)"
+  },
+  {
+   "ok": true,
+   "what": "9 scored confirmation draws -> INCOMPLETE"
+  },
+  {
+   "ok": true,
+   "what": "verify not ok -> INVALID"
+  },
+  {
+   "ok": true,
+   "what": "STOPPED -> INVALID"
+  },
+  {
+   "ok": true,
+   "what": "1,001 overflow lines in one training log -> \"pieces not clean in training\" attached; the rule still applies"
+  },
+  {
+   "ok": true,
+   "what": "1,000 lines -> no label (> 1,000 is the bar)"
+  },
+  {
+   "ok": true,
+   "what": "beige r1 lift 5.0 cm holds, 0.2 cm does not (reported clause)"
+  },
+  {
+   "ok": true,
+   "what": "both fail every draw, conf +0.007 -> SWAP-ELIGIBLE [EQUAL FLOOR], not included"
+  },
+  {
+   "ok": true,
+   "what": "choose: means within 0.005 -> the lower sd (42)"
+  },
+  {
+   "ok": true,
+   "what": "choose: 0.006 apart -> the higher mean (43)"
+  },
+  {
+   "ok": true,
+   "what": "choose: full tie -> seed 42"
+  }
+ ]
+}

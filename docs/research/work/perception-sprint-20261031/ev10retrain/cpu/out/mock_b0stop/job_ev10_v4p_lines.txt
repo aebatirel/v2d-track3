@@ -1,0 +1,4 @@
+[2026-10-31T19:32:43Z] ev10_v4p code mocksha0000000, ep 10, prefix perc2e10v, seeds [42 43], LIB <MR>/content/v2d-track3/meshes/library_v3, PIECES <MR>/content/v2d-track3/meshes/carve/ev10, NREP 10, NCONF 10, STEPS 70004736, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15], H5P7_RUN 20261031-h5p7-1a7cdff
+[2026-10-31T19:32:46Z] ev10_v4p: inputs ok ({"path": "<MR>/content/hfstore/cache/depth/eval/ep10/depths_fs0.5.npy", "bytes": 1030400128, "shape": [161, 1000, 1600], "frame0_sha256": "ab38c4d79f6864be4b82afc9be1ed0ad97ee95ce6953230c2f8a6698ae); no_oracle: no_oracle: 17 inputs checked, none oracle-derived
+[2026-10-31T19:32:56Z] ev10_v4p B0: STOP: V MISMATCH (max 36.9384 mm, 10.6201 deg) md5 fa449903630d6bb42dd79131331f4b6b
+[2026-10-31T19:32:56Z] ev10_v4p STOP: B0 MISMATCH: the rebuilt V4p track is not the pre-registered one (b0.json); no reference built

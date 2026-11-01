@@ -1,0 +1,62 @@
+{
+ "cwd": "/workspace/v2d_clean/robotic_grounding/flash_chord",
+ "python": "/content/v2d/robotic_grounding/flash_chord/.venv/bin/python",
+ "solver": false,
+ "device": "cpu",
+ "checkpoints": {
+  "ck1024": {
+   "path": "/content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors",
+   "stored_sim": {
+    "sim": [
+     1024,
+     512
+    ],
+    "env_sim": [
+     1024,
+     512
+    ]
+   },
+   "env_config_sim": [
+    1024,
+    512
+   ],
+   "solver": null
+  },
+  "ck512": {
+   "path": "/content/results/ev10_nj/ck512/policy.safetensors",
+   "stored_sim": {
+    "sim": [
+     512,
+     256
+    ],
+    "env_sim": [
+     512,
+     256
+    ]
+   },
+   "env_config_sim": [
+    512,
+    256
+   ],
+   "solver": null
+  },
+  "e10v_s43": {
+   "path": "/content/e10v_in/s43/policy.safetensors",
+   "stored_sim": {
+    "sim": [
+     512,
+     256
+    ],
+    "env_sim": [
+     512,
+     256
+    ]
+   },
+   "env_config_sim": [
+    512,
+    256
+   ],
+   "solver": null
+  }
+ }
+}

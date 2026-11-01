@@ -1,0 +1,5 @@
+perc2 seconds to the last tracked line (cached depth, library templates) per episode: {0: 109.7, 2: 104.0, 11: 52.4, 12: 83.9, 13: 74.3, 18: 91.2, 21: 83.6, 22: 72.4, 23: 121.9, 24: 81.8, 26: 101.8, 27: 121.0, 31: 119.1, 39: 75.9, 40: 71.8, 41: 87.2, 42: 66.9, 43: 74.6, 44: 63.3, 45: 96.5}
+box a: EPS="13 2 26 44 45 41 0" REPEAT="13 2" frames 1902 arm-frames 4337 runs 16 perc2 run-s (library) 1452 depth GB 12.2
+box b: EPS="11 21 31 39 22 42 23" REPEAT="11 21 31 39" frames 1703 arm-frames 4338 runs 18 perc2 run-s (library) 1515 depth GB 10.9
+box c: EPS="12 27 24 18 40 43" REPEAT="12 27 24 18" frames 1641 arm-frames 4337 runs 16 perc2 run-s (library) 1426 depth GB 10.5
+total frames 5246 arm-frames 13012 runs 50 perc2 run-s 4394 depth GB 33.6

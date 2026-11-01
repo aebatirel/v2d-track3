@@ -1,0 +1,1 @@
+VERIFIED :: B0 IDENTICAL :: identity e2s {'V4p_track': 0.007, 'stored_track': 1.751} :: chosen 43 :: confirmation draws 10 (rc {'0': 10, '1': 1}) :: own-reference checks 41/41

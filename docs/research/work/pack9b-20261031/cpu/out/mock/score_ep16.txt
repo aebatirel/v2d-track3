@@ -1,0 +1,3 @@
+ep16 conf (own P): 10 rollouts, 10 scored; r1 P s_v_r 0.9070 RPE 1.57; r2 P s_v_r 0.9026 RPE 1.58; r3 P s_v_r 0.9081 RPE 1.50; r4 P s_v_r 0.9109 RPE 1.48; r5 P s_v_r 0.9057 RPE 1.79; r6 P s_v_r 0.9073 RPE 1.78; r7 P s_v_r 0.5838 RPE 8.43; r8 P s_v_r 0.9072 RPE 1.78; r9 P s_v_r 0.5891 RPE 8.04; r10 P s_v_r 0.9081 RPE 1.58
+ep16 packed (own P): 10 rollouts, 10 scored; r1 P s_v_r 0.5867 RPE 8.46; r2 P s_v_r 0.9053 RPE 1.86; r3 P s_v_r 0.9061 RPE 1.55; r4 P s_v_r 0.5894 RPE 8.14; r5 P s_v_r 0.8990 RPE 1.68; r6 P s_v_r 0.9050 RPE 1.69; r7 P s_v_r 0.9100 RPE 1.67; r8 P s_v_r 0.8979 RPE 1.73; r9 P s_v_r 0.9106 RPE 1.59; r10 P s_v_r 0.9017 RPE 1.82
+ep16 old (own P): 1 rollouts, 1 scored; r0 P s_v_r 0.9079 RPE 1.58

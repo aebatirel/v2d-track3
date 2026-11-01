@@ -1,0 +1,96 @@
+{
+ "episode": 13,
+ "align": "gravity",
+ "meshes": "meshes/library_v3",
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "frames": 190,
+ "note": "EVALUATION-ONLY oracle built from mocap; never use for eval-episode inference",
+ "perceived_table": {
+  "normal": [
+   -0.12453,
+   -0.77031,
+   -0.62539
+  ],
+  "inlier_frac": 0.394,
+  "rms_mm": 0.8,
+  "yaw_deg": -100.14
+ },
+ "G": [
+  [
+   0.083307,
+   0.988713,
+   -0.124528,
+   0.153502
+  ],
+  [
+   0.619954,
+   -0.149257,
+   -0.770311,
+   0.668355
+  ],
+  [
+   -0.780203,
+   -0.01303,
+   -0.62539,
+   0.965407
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "mesh_frame_offset": {
+  "blue_cup": {
+   "rot_deg": 1.47,
+   "off_cm": 1.04
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 1.77,
+   "off_cm": 0.54
+  }
+ },
+ "mocap_f0_bottom_z_cm": {
+  "blue_cup": 59.96,
+  "plastic_dish_rack": 59.9
+ },
+ "up_vs_table_normal_deg": 0.022,
+ "f0_bottom_above_table_cm": {
+  "blue_cup": 0.3,
+  "plastic_dish_rack": -0.67
+ },
+ "expected_snap_cm": {
+  "blue_cup": -0.3,
+  "plastic_dish_rack": 0.67
+ },
+ "support_check_ok": true,
+ "f0_centre_vs_perception_cm": {
+  "blue_cup": 0.5,
+  "plastic_dish_rack": 0.58
+ },
+ "perception_vs_mocap": {
+  "AUC": 0.9605,
+  "per_obj_AUC": {
+   "blue_cup": 0.9329,
+   "plastic_dish_rack": 0.9882
+  }
+ },
+ "raw_vs_mocap": {
+  "AUC": 1.0,
+  "per_obj_AUC": {
+   "blue_cup": 1.0,
+   "plastic_dish_rack": 1.0
+  }
+ },
+ "after_snap_vs_mocap": {
+  "AUC": 1.0,
+  "per_obj_AUC": {
+   "blue_cup": 1.0,
+   "plastic_dish_rack": 1.0
+  }
+ }
+}

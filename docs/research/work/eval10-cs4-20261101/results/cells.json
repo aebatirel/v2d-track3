@@ -1,0 +1,165 @@
+{
+ "rule": "PREREG section 3.2 (pack 9b PREREG 1.3 style)",
+ "set": "ev10cs5",
+ "packed_ck": "/content/e10v_in/packed_ck/policy.safetensors",
+ "packed_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+ "allowed_config_diff": [
+  "env.reset.seed",
+  "output_dir",
+  "reference.parquet",
+  "reset.seed",
+  "task.parquet",
+  "training.seed"
+ ],
+ "seeds": {
+  "42": {
+   "seed": "42",
+   "results": "/content/results/perc2e10css42_glock_public/ep10",
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "chosen_by_curve": "/content/runs/perc2e10css42_glock/ep10-s42/policy_60002304.safetensors",
+   "checkpoint": "/content/results/perc2e10css42_glock_public/ep10/best/policy.safetensors",
+   "sha256": "cd0f35b3c64f20a51a99d472fbcaa9bab239fe26eca01161cb660145a0ef394e",
+   "config_diff_vs_packed": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ],
+   "sim_limits": {
+    "sim.njmax": 512,
+    "sim.nconmax": 256,
+    "env.sim.njmax": 512,
+    "env.sim.nconmax": 256
+   },
+   "reset_seed": 42,
+   "steps": 70004736,
+   "task_parquet": "/workspace/refs/perc2e10css42_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/perc2e10css42_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "5d22fc5782a919f2466988768d0708fa",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+     "md5": "ac8d296b440ceeb24e895366f45365d8",
+     "mass": 0.3,
+     "com": "0.000464 0.001038 0.019052"
+    },
+    "beige_cup": {
+     "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+     "md5": "1a8cb9d813c7a8085b4759347a16a8ba",
+     "mass": 0.3,
+     "com": "0.001535 0.005508 -0.005568"
+    }
+   },
+   "traj_fingerprint": "8f408d5101f108cda929fd3ee346e970",
+   "evaluations_checked": 10,
+   "n": 10,
+   "mean": 0.4768,
+   "sd": 0.0681,
+   "min": 0.3661,
+   "max": 0.5584,
+   "mean_raw": 0.47683,
+   "values": [
+    0.4612,
+    0.4664,
+    0.5388,
+    0.4606,
+    0.5522,
+    0.4948,
+    0.3682,
+    0.3661,
+    0.5016,
+    0.5584
+   ],
+   "status": "VERIFIED",
+   "failures": []
+  },
+  "43": {
+   "seed": "43",
+   "results": "/content/results/perc2e10css43_glock_public/ep10",
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "chosen_by_curve": "/content/runs/perc2e10css43_glock/ep10-s43/policy_10002432.safetensors",
+   "checkpoint": "/content/results/perc2e10css43_glock_public/ep10/best/policy.safetensors",
+   "sha256": "ca7c4e3a162ab11ecda1b8a040ad151763c2e57dcd1e97a1334c6623c2906131",
+   "config_diff_vs_packed": [
+    "env.reset.seed",
+    "output_dir",
+    "reference.parquet",
+    "reset.seed",
+    "task.parquet",
+    "training.seed"
+   ],
+   "sim_limits": {
+    "sim.njmax": 512,
+    "sim.nconmax": 256,
+    "env.sim.njmax": 512,
+    "env.sim.nconmax": 256
+   },
+   "reset_seed": 43,
+   "steps": 70004736,
+   "task_parquet": "/workspace/refs/perc2e10css43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/perc2e10css43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "5d22fc5782a919f2466988768d0708fa",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+     "md5": "ac8d296b440ceeb24e895366f45365d8",
+     "mass": 0.3,
+     "com": "0.000464 0.001038 0.019052"
+    },
+    "beige_cup": {
+     "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+     "md5": "1a8cb9d813c7a8085b4759347a16a8ba",
+     "mass": 0.3,
+     "com": "0.001535 0.005508 -0.005568"
+    }
+   },
+   "traj_fingerprint": "8f408d5101f108cda929fd3ee346e970",
+   "evaluations_checked": 10,
+   "n": 10,
+   "mean": 0.5096,
+   "sd": 0.0717,
+   "min": 0.382,
+   "max": 0.5903,
+   "mean_raw": 0.50961,
+   "values": [
+    0.3962,
+    0.5578,
+    0.382,
+    0.5598,
+    0.5903,
+    0.5433,
+    0.5351,
+    0.4637,
+    0.5526,
+    0.5153
+   ],
+   "status": "VERIFIED",
+   "failures": []
+  }
+ }
+}

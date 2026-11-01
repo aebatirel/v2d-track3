@@ -1,0 +1,339 @@
+{
+ "label": "SWAP-ELIGIBLE",
+ "why": [
+  "every clause holds on both references"
+ ],
+ "clauses": {
+  "a_V": {
+   "new_mean": 0.9999,
+   "packed_mean": 0.4555,
+   "holds": true,
+   "margin": 0.5444
+  },
+  "b_V": {
+   "new_fail_rate": 0.0,
+   "packed_fail_rate": 1.0,
+   "holds": true,
+   "margin": 1.0
+  },
+  "c_V": {
+   "new_median_rpe": 0.3541,
+   "packed_median_rpe": 15.8355,
+   "holds": true,
+   "margin": 15.4814
+  },
+  "s_V": {
+   "new_draw1": 1.0,
+   "old_packed_draw": 0.4715,
+   "bar": 0.4215,
+   "holds": true,
+   "margin": 0.5785
+  },
+  "a_P": {
+   "new_mean": 0.9628,
+   "packed_mean": 0.4474,
+   "holds": true,
+   "margin": 0.5154
+  },
+  "b_P": {
+   "new_fail_rate": 0.0,
+   "packed_fail_rate": 1.0,
+   "holds": true,
+   "margin": 1.0
+  },
+  "c_P": {
+   "new_median_rpe": 1.0697,
+   "packed_median_rpe": 15.799,
+   "holds": true,
+   "margin": 14.7292
+  },
+  "s_P": {
+   "new_draw1": 0.9666,
+   "old_packed_draw": 0.4563,
+   "bar": 0.4063,
+   "holds": true,
+   "margin": 0.5603
+  }
+ },
+ "sides": {
+  "V": {
+   "new": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9999,
+     "sd": 0.0001,
+     "min": 0.9996,
+     "max": 1.0,
+     "median": 0.9999
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 0.355,
+     "sd": 0.0146,
+     "min": 0.3375,
+     "max": 0.3778,
+     "median": 0.3541
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 0.4025,
+     "sd": 0.0754,
+     "min": 0.3077,
+     "max": 0.5237,
+     "median": 0.3972
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.9999,
+     "sd": 0.0002,
+     "min": 0.9996,
+     "max": 1.0,
+     "median": 0.9999
+    },
+    "fail_rate": 0.0,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {
+     "blue_cup": 0.9999,
+     "beige_cup": 0.9998
+    }
+   },
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4555,
+     "sd": 0.0017,
+     "min": 0.4523,
+     "max": 0.4583,
+     "median": 0.4556
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.835,
+     "sd": 0.0055,
+     "min": 15.8278,
+     "max": 15.8466,
+     "median": 15.8355
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4258,
+     "sd": 0.0163,
+     "min": 8.4044,
+     "max": 8.4563,
+     "median": 8.4218
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4572,
+     "sd": 0.0012,
+     "min": 0.4554,
+     "max": 0.4598,
+     "median": 0.4569
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6779,
+     "beige_cup": 0.2365
+    }
+   }
+  },
+  "P": {
+   "new": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9628,
+     "sd": 0.0018,
+     "min": 0.9604,
+     "max": 0.9666,
+     "median": 0.9624
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 1.074,
+     "sd": 0.0238,
+     "min": 1.047,
+     "max": 1.114,
+     "median": 1.0697
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 0.889,
+     "sd": 0.0439,
+     "min": 0.8451,
+     "max": 0.9947,
+     "median": 0.873
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.9639,
+     "sd": 0.0022,
+     "min": 0.9606,
+     "max": 0.9676,
+     "median": 0.9635
+    },
+    "fail_rate": 0.0,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {
+     "blue_cup": 0.948,
+     "beige_cup": 0.9799
+    }
+   },
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4474,
+     "sd": 0.0025,
+     "min": 0.4431,
+     "max": 0.4523,
+     "median": 0.4471
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7978,
+     "sd": 0.0055,
+     "min": 15.7886,
+     "max": 15.8078,
+     "median": 15.799
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4511,
+     "sd": 0.0167,
+     "min": 8.4305,
+     "max": 8.4824,
+     "median": 8.4469
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.45,
+     "sd": 0.0016,
+     "min": 0.447,
+     "max": 0.4524,
+     "median": 0.4499
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6599,
+     "beige_cup": 0.24
+    }
+   }
+  }
+ },
+ "secondary_literal_own_reference": {
+  "new_draw1_vs_V": 1.0,
+  "old_packed_draw_vs_P": 0.4563,
+  "holds": true
+ },
+ "equal_floor_note": null,
+ "gate_prereg_s5_crosscheck": {
+  "new_mean_vs_V": 0.9999,
+  "bar": 0.456,
+  "holds": true
+ },
+ "choice": {
+  "chosen": "43",
+  "checkpoint": "<MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+  "sha256": "48dd30d9924b1b9881a92cff2e15b228fcf28ec44f8cb45d78c6c6d1f7586bd6",
+  "seeds": {
+   "42": {
+    "n": 10,
+    "results": "<MR>/content/results/perc2e10vs42_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10vs42_glock_public/ep10/best/policy.safetensors",
+    "sha256": "bd020ca2d0993c9ada8aa37fd30c34f5a5859c7d65b0262aa6f39aaf4e71a3b1",
+    "chosen_by_curve": "<MR>/content/runs/perc2e10vs42_glock/ep10-s42/policy_9998336.safetensors",
+    "mean": 0.9994,
+    "sd": 0.0014,
+    "min": 0.9957,
+    "max": 1.0,
+    "values": [
+     1.0,
+     0.999,
+     0.9988,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     0.9957,
+     1.0,
+     1.0
+    ]
+   },
+   "43": {
+    "n": 10,
+    "results": "<MR>/content/results/perc2e10vs43_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+    "sha256": "48dd30d9924b1b9881a92cff2e15b228fcf28ec44f8cb45d78c6c6d1f7586bd6",
+    "chosen_by_curve": "<MR>/content/runs/perc2e10vs43_glock/ep10-s43/policy_60002304.safetensors",
+    "mean": 0.9999,
+    "sd": 0.0002,
+    "min": 0.9994,
+    "max": 1.0,
+    "values": [
+     1.0,
+     1.0,
+     1.0,
+     0.9994,
+     0.9998,
+     1.0,
+     0.9998,
+     1.0,
+     1.0,
+     0.9998
+    ]
+   }
+  },
+  "incomplete_seeds": []
+ },
+ "verify": {
+  "ok": true,
+  "failures": [],
+  "confirmation": {
+   "draws": 10,
+   "checked": 10,
+   "chosen": "43",
+   "sha256": "48dd30d9924b1b9881a92cff2e15b228fcf28ec44f8cb45d78c6c6d1f7586bd6",
+   "eval_rc": {
+    "0": 10
+   }
+  },
+  "b0_band": "IDENTICAL"
+ },
+ "counts": {
+  "conf": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "old": {
+   "own": "P",
+   "n_files": 1,
+   "n_scored": 1
+  },
+  "packed": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train42": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train43": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  }
+ },
+ "rule": "docs/research/work/perception-sprint-20261031/ev10retrain/PREREG.md section 5"
+}

@@ -1,0 +1,84 @@
++ cd /home/user/v2d-track3
++ export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 SPLIT=public
++ OMP_NUM_THREADS=1
++ OPENBLAS_NUM_THREADS=1
++ MKL_NUM_THREADS=1
++ SPLIT=public
++ git rev-parse HEAD
+0ec6b5a51b23e991363ec52e917f656b1bd85e0d
++ date -u
+Fri Oct 30 22:07:26 UTC 2026
++ /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/venv/bin/python -I tools/xstar_fit.py trk --perc /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po --geom docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json --lib meshes/library_v3 --t3 /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3 --kit /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit --out /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_scores/xstar_trk_Po_oracle.json --jobs 4
+ep2: lib 0.9866  * 0.9805  trk 0.9957 (opt_from_geom; ls 0.9946)  white_pot 1.24 cm, white_pot_lid 1.54 cm  (68 s)
+ep0: lib 0.9620  * 0.9476  trk 0.9956 (opt_from_ls; ls 0.9946)  white_pot 2.88 cm, white_pot_lid 3.12 cm  (72 s)
+ep12: lib 0.9662  * 0.9734  trk 0.9991 (opt_from_geom; ls 0.9974)  blue_cup 0.53 cm, plastic_dish_rack 1.48 cm  (104 s)
+ep11: lib 0.8978  * 0.8739  trk 0.9302 (opt_from_geom; ls 0.8891)  blue_cup 1.69 cm, beige_cup 0.84 cm  (132 s)
+ep18: lib 0.9144  * 0.9168  trk 0.9488 (opt_from_ls; ls 0.9341)  mini_sweeper 0.79 cm, mini_dust_pan 0.39 cm  (66 s)
+ep13: lib 0.9595  * 0.9039  trk 0.9748 (opt_from_ls; ls 0.9722)  blue_cup 1.09 cm, plastic_dish_rack 1.31 cm  (111 s)
+ep21: lib 0.8325  * 0.8313  trk 0.9945 (opt_from_ls; ls 0.9677)  blue_cup 0.52 cm, water_pitcher 1.87 cm  (129 s)
+ep23: lib 0.0414  * 0.0418  trk 0.0418 (geom; ls 0.0494)  wooden_piece_1 0.00 cm, wooden_piece_2 0.00 cm  (106 s)
+ep24: lib 0.8117  * 0.8105  trk 0.9859 (opt_from_ls; ls 0.9659)  wooden_piece_1 1.81 cm, wooden_piece_2 1.32 cm  (66 s)
+ep22: lib 0.8707  * 0.8684  trk 0.9950 (opt_from_ls; ls 0.9939)  blue_cup 0.96 cm, water_pitcher 2.23 cm  (153 s)
+ep27: lib 0.9605  * 0.9378  trk 0.9971 (opt_from_ls; ls 0.9961)  plastic_dish_rack 0.99 cm, white_pot 0.60 cm  (60 s)
+ep39: lib 0.9602  * 0.9804  trk 0.9961 (opt_from_ls; ls 0.9931)  mini_dust_pan 0.41 cm  (33 s)
+ep40: lib 0.9570  * 0.9740  trk 0.9853 (ls; ls 0.9853)  mini_dust_pan 1.07 cm  (26 s)
+ep26: lib 0.9717  * 0.9602  trk 0.9951 (opt_from_ls; ls 0.9939)  plastic_dish_rack 1.23 cm, white_pot 1.03 cm  (107 s)
+ep41: lib 0.9910  * 0.9881  trk 0.9941 (opt_from_ls; ls 0.9933)  white_pot 0.99 cm  (28 s)
+ep31: lib 0.7998  * 0.8351  trk 0.9977 (opt_from_ls; ls 0.9588)  mini_sweeper 0.93 cm, plastic_dish_rack 1.36 cm  (105 s)
+ep42: lib 0.9903  * 0.9638  trk 0.9954 (opt_from_ls; ls 0.9881)  white_pot 1.23 cm  (34 s)
+ep44: lib 0.9967  * 0.9982  trk 0.9987 (opt_from_ls; ls 0.9982)  white_pot 1.77 cm  (30 s)
+ep43: lib 0.9477  * 0.9425  trk 0.9952 (opt_from_ls; ls 0.9883)  white_pot 0.91 cm  (39 s)
+ep45: lib 0.9795  * 0.9789  trk 0.9903 (opt_from_ls; ls 0.9897)  white_pot 0.74 cm  (30 s)
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_scores/xstar_trk_Po_oracle.json
+
+real	6m37.635s
+user	14m32.373s
+sys	0m14.044s
++ date -u
+Fri Oct 30 22:14:04 UTC 2026
++ /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/venv/bin/python -I tools/xstar_fit.py trk --perc /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Ps_lib --geom docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json --lib meshes/library_v3 --t3 /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3 --kit /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit --out /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_scores/xstar_trk_Ps_oracle.json --jobs 4
+ep2: lib 0.9636  * 0.9933  trk 0.9952 (opt_from_geom; ls 0.9946)  white_pot 2.00 cm, white_pot_lid 2.00 cm  (177 s)
+ep0: lib 0.0778  * 0.0783  trk 0.0790 (ls; ls 0.0790)  white_pot 1.43 cm, white_pot_lid 1.46 cm  (189 s)
+ep12: lib 0.8042  * 0.9382  trk 0.9978 (opt_from_geom; ls 0.8567)  blue_cup 0.58 cm, plastic_dish_rack 0.82 cm  (215 s)
+ep11: lib 0.8825  * 0.9081  trk 0.9097 (opt_from_geom; ls 0.8321)  blue_cup 0.34 cm, beige_cup 0.23 cm  (246 s)
+ep18: lib 0.9629  * 0.9622  trk 0.9974 (opt_from_ls; ls 0.9941)  mini_sweeper 1.17 cm, mini_dust_pan 0.59 cm  (121 s)
+ep13: lib 0.9645  * 0.9974  trk 0.9985 (opt_from_geom; ls 0.9977)  blue_cup 0.35 cm, plastic_dish_rack 0.45 cm  (202 s)
+ep21: lib 0.9634  * 0.9755  trk 0.9956 (opt_from_ls; ls 0.9918)  blue_cup 0.38 cm, water_pitcher 0.56 cm  (248 s)
+ep23: lib 0.9981  * 0.9980  trk 0.9994 (opt_from_ls; ls 0.9766)  wooden_piece_1 0.36 cm, wooden_piece_2 0.38 cm  (169 s)
+ep22: lib 0.9654  * 0.9929  trk 0.9957 (opt_from_ls; ls 0.9947)  blue_cup 0.70 cm, water_pitcher 0.78 cm  (282 s)
+ep24: lib 0.8498  * 0.8494  trk 0.9863 (opt_from_ls; ls 0.9690)  wooden_piece_1 1.68 cm, wooden_piece_2 1.38 cm  (151 s)
+ep26: lib 0.9442  * 0.9836  trk 0.9970 (opt_from_ls; ls 0.9960)  plastic_dish_rack 0.38 cm, white_pot 0.44 cm  (99 s)
+ep39: lib 0.9935  * 0.9978  trk 0.9978 (geom; ls 0.9969)  mini_dust_pan 0.00 cm  (35 s)
+ep40: lib 0.9764  * 0.9971  trk 0.9993 (ls; ls 0.9993)  mini_dust_pan 0.15 cm  (25 s)
+ep41: lib 0.9954  * 0.9981  trk 0.9983 (opt_from_ls; ls 0.9975)  white_pot 0.62 cm  (25 s)
+ep27: lib 0.9428  * 0.9963  trk 0.9975 (opt_from_ls; ls 0.9953)  plastic_dish_rack 0.66 cm, white_pot 0.31 cm  (121 s)
+ep42: lib 0.9424  * 0.9893  trk 0.9961 (opt_from_ls; ls 0.9942)  white_pot 1.42 cm  (22 s)
+ep43: lib 0.9525  * 0.9921  trk 0.9954 (opt_from_ls; ls 0.9944)  white_pot 0.29 cm  (32 s)
+ep44: lib 0.9982  * 0.9990  trk 0.9997 (opt_from_ls; ls 0.9987)  white_pot 2.17 cm  (24 s)
+ep45: lib 0.9306  * 0.9666  trk 0.9931 (opt_from_ls; ls 0.9631)  white_pot 0.68 cm  (20 s)
+ep31: lib 0.8096  * 0.8685  trk 0.9974 (opt_from_ls; ls 0.9499)  mini_sweeper 1.35 cm, plastic_dish_rack 1.79 cm  (104 s)
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_scores/xstar_trk_Ps_oracle.json
+
+real	10m32.323s
+user	15m11.188s
+sys	0m8.524s
++ date -u
+Fri Oct 30 22:24:36 UTC 2026
++ /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/venv/bin/python -I tools/xstar_fit.py trk --perc /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2 --geom docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json --lib meshes/library_v3 --t3 /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3 --kit /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit --out /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_scores/xstar_trk_Po2_oracle.json --jobs 4 --episodes 2,11,12,13,18,21,24,27,31,39
+ep2: lib 0.9866  * 0.9805  trk 0.9957 (opt_from_geom; ls 0.9946)  white_pot 1.24 cm, white_pot_lid 1.54 cm  (166 s)
+ep13: lib 0.9612  * 0.9012  trk 0.9753 (opt_from_geom; ls 0.9706)  blue_cup 1.09 cm, plastic_dish_rack 1.34 cm  (260 s)
+ep12: lib 0.9672  * 0.9736  trk 0.9990 (opt_from_ls; ls 0.9974)  blue_cup 0.53 cm, plastic_dish_rack 1.45 cm  (279 s)
+ep11: lib 0.8978  * 0.8739  trk 0.9302 (opt_from_geom; ls 0.8891)  blue_cup 1.69 cm, beige_cup 0.84 cm  (322 s)
+ep18: lib 0.9144  * 0.9168  trk 0.9488 (opt_from_ls; ls 0.9341)  mini_sweeper 0.79 cm, mini_dust_pan 0.39 cm  (180 s)
+ep24: lib 0.8117  * 0.8105  trk 0.9859 (opt_from_ls; ls 0.9659)  wooden_piece_1 1.81 cm, wooden_piece_2 1.32 cm  (109 s)
+ep27: lib 0.9741  * 0.9441  trk 0.9971 (opt_from_ls; ls 0.9963)  plastic_dish_rack 0.92 cm, white_pot 0.60 cm  (98 s)
+ep39: lib 0.9602  * 0.9804  trk 0.9961 (opt_from_ls; ls 0.9931)  mini_dust_pan 0.41 cm  (36 s)
+ep31: lib 0.7998  * 0.8336  trk 0.9977 (opt_from_ls; ls 0.9588)  mini_sweeper 0.95 cm, plastic_dish_rack 1.38 cm  (107 s)
+ep21: lib 0.8332  * 0.8327  trk 0.9945 (opt_from_ls; ls 0.9682)  blue_cup 0.50 cm, water_pitcher 1.89 cm  (212 s)
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_scores/xstar_trk_Po2_oracle.json
+
+real	7m53.282s
+user	9m50.936s
+sys	0m5.006s
++ date -u
+Fri Oct 30 22:32:29 UTC 2026

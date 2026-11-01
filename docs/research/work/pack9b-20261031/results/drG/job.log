@@ -1,0 +1,129 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+h/physics-2026-10-30/props_masses_only.json (d55089307ff2ced3e3244c95be22c9d6), LIB /content/v2d-track3/meshes/library_v3, PIECES none, table /content/v2d-track3/docs/research/work/masses-eval-20261031/packed_refs.json (a7ed39d65e52)
+[2026-10-31T23:07:48Z] mass_eval ARM=dr: NO masses (props NOT used: 0.3 kg placeholder everywhere); start-state randomisation FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed> in the training process; patch ops/box/patch_flashchord_dr.py md5 570a7f47793d02ba5b0bf3d5e6fd6eac; folders /content/results/dr_eval, refs/drs<seed>_glockt, results/drs<seed>_glock_public
+[2026-10-31T23:08:15Z] mass_eval ep14: pulled 27 files of 20261025-evb1420-ee7ba8e (pull_files, no store listing)
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/results/glock_public/ep14/rest_check.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/results/glock_public/ep14/zero_score.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/results/glock_public/ep14/support_fill.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/results/final_eval/ep14/policy.safetensors
+[2026-10-31T23:08:45Z] mass_eval ep16: pulled 27 files of 20261024-pack-31ef267 (pull_files, no store listing)
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261024-pack-31ef267/results/glock_public/ep16/rest_check.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261024-pack-31ef267/results/glock_public/ep16/zero_score.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261024-pack-31ef267/results/glock_public/ep16/support_fill.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261024-seed43-61101f5/results/glock_public/ep16/best/policy.safetensors
+[2026-10-31T23:09:14Z] mass_eval ep33: pulled 27 files of 20261026-fr3233s43-6a8a0e2 (pull_files, no store listing)
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261026-fr3233s43-6a8a0e2/results/glock_public/ep33/rest_check.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261026-fr3233s43-6a8a0e2/results/glock_public/ep33/zero_score.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261026-fr3233s43-6a8a0e2/results/glock_public/ep33/support_fill.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261029-rcB-34bf6ae/results/glock_public/ep33/best/policy.safetensors
+[2026-10-31T23:09:17Z] mass_eval: packed references checked for [14 16 33] (ep14 glock 20261025-evb1420-ee7ba8e 10d5f3ba6b7368ed30dad9d0c9c30df1 71fa181ba92c320a47450c2e42561222 /content/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet;ep14 stage packed [85d27bbd5fb872770be430cf513852fd t3_ep014_support.usda] base [85d27bbd5fb872770be430cf513852fd t3_ep014_support.usda];ep16 glock 20261024-pack-31ef267 f7e2ea9260106425be6163553aac5af9 ade67fc96f0d73b16b4d5f36109f10ae /content/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet;ep16 stage packed [3e0a32942213aa7bbd1431f1cf14c6e1 t3_ep016_support.usda] base [3e0a32942213aa7bbd1431f1cf14c6e1 t3_ep016_support.usda];ep33 glock 20261026-fr3233s43-6a8a0e2 2a7173ab1d4248433bd049bc43f6878a e45b81792154fa1e9987e56b6c41bbcc /content/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet;ep33 stage packed [2cf97)
+[2026-10-31T23:09:18Z] mass_eval ep33: ENV_EP33=CURR_SCALE=0.4
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T23:09:20Z] mass_eval ep14: dr_arm ep14: source /content/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet (md5 10d5f3ba6b7368ed30dad9d0c9c30df1, fingerprint 71fa181ba92c320a47450c2e42561222) byte-copied for seeds ['42', '43']; URDFs blue_cup 0.3 kg, plastic_dish_rack 0.3 kg under /content/refs/sf/ep14/assets (unchanged)
+[2026-10-31T23:09:20Z] mass_eval ep16: dr_arm ep16: source /content/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet (md5 f7e2ea9260106425be6163553aac5af9, fingerprint ade67fc96f0d73b16b4d5f36109f10ae) byte-copied for seeds ['42', '43']; URDFs plastic_dish_rack 0.3 kg, wooden_spoon 0.3 kg under /content/refs/sf/ep16/assets (unchanged)
+[2026-10-31T23:09:20Z] mass_eval ep33: dr_arm ep33: source /content/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet (md5 2a7173ab1d4248433bd049bc43f6878a, fingerprint e45b81792154fa1e9987e56b6c41bbcc) byte-copied for seeds ['42', '43']; URDFs blue_cup 0.3 kg, wooden_spoon 0.3 kg under /content/refs/sf/ep33/assets (unchanged)
+[2026-10-31T23:09:21Z] mass_eval: seed 42, PAIRS [14:local:mck:drs42 16:local:mck:drs42 33:local:mck:drs42]
+[2026-10-31T23:09:21Z] glock_public code a1a7e258, pairs [14:local:mck:drs42 16:local:mck:drs42 33:local:mck:drs42], seed 42, steps 70004736, NREP 10, SPLIT eval, SETTLE 0, SF 1, REPLAN 0, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1]
+[2026-10-31T23:09:21Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-10-31T23:09:22Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-10-31T23:09:22Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/lifecycle/v2d_dr.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/lifecycle/reset.py
+[2026-10-31T23:09:22Z] patched FlashCHORD (start-state randomisation of sampled training resets, ops/box/patch_flashchord_dr.py md5 570a7f47793d); training env [FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42]
+[2026-10-31T23:09:23Z] glock drs42 ep14: base mck (/content/refs/drs42mck/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/f29e0a6542874341a5c3503ed1d63fff-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/drs42_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T23:09:53Z] glock drs42 ep16: base mck (/content/refs/drs42mck/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/a1f8c27c659c4b579b6a77beff22d2a9-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/drs42_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T23:10:23Z] glock drs42 ep33: ENV_EP33 = CURR_SCALE=0.4
+[2026-10-31T23:10:23Z] glock drs42 ep33: curriculum thresholds scaled by 0.4 for this episode: TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2  curriculum.thresholds=[7864320,13762560,19660800,25559040,31457280,37355520,43253760,49152000,55050240,80003072,100001382]]
+[2026-10-31T23:10:23Z] glock drs42 ep33: base mck (/content/refs/drs42mck/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/db9e55f30af04c2484989a903a40b75c-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/drs42_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-11-01T00:15:10Z] glock drs42 ep16: trained 7 checkpoints
+[2026-11-01T00:18:30Z] glock drs42 ep16: curve  10M sim_vs_ref 0.444 | plastic_dish: li; 20M sim_vs_ref 0.729 | plastic_dish: li; 30M sim_vs_ref 0.740 | plastic_dish: li; 40M sim_vs_ref 0.858 | plastic_dish: li; 50M sim_vs_ref 0.768 | plastic_dish: li; 60M sim_vs_ref 0.845 | plastic_dish: li; 70M sim_vs_ref 0.826 | plastic_dish: li;; chosen by sim_vs_ref: policy_40001536.safetensors
+[2026-11-01T00:20:10Z] glock drs42 ep16 RESULT (policy_40001536.safetensors): n 10 sim_vs_ref {'mean': 0.8228, 'std': 0.0829, 'min': 0.6761, 'max': 0.9124} registered AUC vs mocap None
+[2026-11-01T00:25:13Z] glock drs42 ep14: trained 7 checkpoints
+[2026-11-01T00:28:16Z] glock drs42 ep14: curve  10M sim_vs_ref 0.579 | blue_cup: lift 2; 20M sim_vs_ref 0.694 | blue_cup: lift 1; 30M sim_vs_ref 0.549 | blue_cup: lift 2; 40M sim_vs_ref 0.733 | blue_cup: lift 1; 50M sim_vs_ref 0.350 | blue_cup: lift 1; 60M sim_vs_ref 0.694 | blue_cup: lift 2; 70M sim_vs_ref 0.556 | blue_cup: lift 2;; chosen by sim_vs_ref: policy_40001536.safetensors
+[2026-11-01T00:29:40Z] glock drs42 ep14 RESULT (policy_40001536.safetensors): n 10 sim_vs_ref {'mean': 0.5689, 'std': 0.2018, 'min': 0.2816, 'max': 0.9068} registered AUC vs mocap None
+[2026-11-01T01:01:13Z] glock drs42 ep33: trained 7 checkpoints
+[2026-11-01T01:04:12Z] glock drs42 ep33: curve  10M sim_vs_ref 0.770 | blue_cup: lift 1; 20M sim_vs_ref 0.848 | blue_cup: lift 1; 30M sim_vs_ref 0.918 | blue_cup: lift 1; 40M sim_vs_ref 0.911 | blue_cup: lift 1; 50M sim_vs_ref 0.935 | blue_cup: lift 9; 60M sim_vs_ref 0.947 | blue_cup: lift 9; 70M sim_vs_ref 0.938 | blue_cup: lift 1;; chosen by sim_vs_ref: policy_60002304.safetensors
+[2026-11-01T01:05:35Z] glock drs42 ep33 RESULT (policy_60002304.safetensors): n 10 sim_vs_ref {'mean': 0.9428, 'std': 0.006, 'min': 0.9331, 'max': 0.9503} registered AUC vs mocap None
+[2026-11-01T01:05:35Z] glock_public summary: {}
+[2026-11-01T01:05:36Z] mass_eval: seed 43, PAIRS [14:local:mck:drs43 16:local:mck:drs43 33:local:mck:drs43]
+[2026-11-01T01:05:36Z] glock_public code a1a7e258, pairs [14:local:mck:drs43 16:local:mck:drs43 33:local:mck:drs43], seed 43, steps 70004736, NREP 10, SPLIT eval, SETTLE 0, SF 1, REPLAN 0, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1]
+[2026-11-01T01:05:36Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-11-01T01:05:37Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-11-01T01:05:37Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/lifecycle/v2d_dr.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/lifecycle/reset.py
+[2026-11-01T01:05:37Z] patched FlashCHORD (start-state randomisation of sampled training resets, ops/box/patch_flashchord_dr.py md5 570a7f47793d); training env [FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=43]
+[2026-11-01T01:05:37Z] glock drs43 ep14: base mck (/content/refs/drs43mck/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/f29e0a6542874341a5c3503ed1d63fff-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/drs43_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-11-01T01:06:07Z] glock drs43 ep16: base mck (/content/refs/drs43mck/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/a1f8c27c659c4b579b6a77beff22d2a9-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/drs43_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-11-01T01:06:37Z] glock drs43 ep33: ENV_EP33 = CURR_SCALE=0.4
+[2026-11-01T01:06:37Z] glock drs43 ep33: curriculum thresholds scaled by 0.4 for this episode: TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2  curriculum.thresholds=[7864320,13762560,19660800,25559040,31457280,37355520,43253760,49152000,55050240,80003072,100001382]]
+[2026-11-01T01:06:38Z] glock drs43 ep33: base mck (/content/refs/drs43mck/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/db9e55f30af04c2484989a903a40b75c-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/drs43_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-11-01T02:10:11Z] glock drs43 ep16: trained 7 checkpoints
+[2026-11-01T02:13:27Z] glock drs43 ep16: curve  10M sim_vs_ref 0.851 | plastic_dish: li; 20M sim_vs_ref 0.793 | plastic_dish: li; 30M sim_vs_ref 0.521 | plastic_dish: li; 40M sim_vs_ref 0.540 | plastic_dish: li; 50M sim_vs_ref 0.465 | plastic_dish: li; 60M sim_vs_ref 0.836 | plastic_dish: li; 70M sim_vs_ref 0.735 | plastic_dish: li;; chosen by sim_vs_ref: policy_10002432.safetensors
+[2026-11-01T02:15:05Z] glock drs43 ep16 RESULT (policy_10002432.safetensors): n 10 sim_vs_ref {'mean': 0.8411, 'std': 0.0697, 'min': 0.7063, 'max': 0.9167} registered AUC vs mocap None
+[2026-11-01T02:18:41Z] glock drs43 ep14: trained 7 checkpoints
+[2026-11-01T02:21:42Z] glock drs43 ep14: curve  10M sim_vs_ref 0.475 | blue_cup: lift 1; 20M sim_vs_ref 0.480 | blue_cup: lift 3; 30M sim_vs_ref 0.583 | blue_cup: lift 2; 40M sim_vs_ref 0.477 | blue_cup: lift 2; 50M sim_vs_ref 0.401 | blue_cup: lift 2; 60M sim_vs_ref 0.690 | blue_cup: lift 1; 70M sim_vs_ref 0.575 | blue_cup: lift 2;; chosen by sim_vs_ref: policy_60002304.safetensors
+[2026-11-01T02:23:06Z] glock drs43 ep14 RESULT (policy_60002304.safetensors): n 10 sim_vs_ref {'mean': 0.6973, 'std': 0.09, 'min': 0.556, 'max': 0.8356} registered AUC vs mocap None
+[2026-11-01T02:55:22Z] glock drs43 ep33: trained 7 checkpoints
+[2026-11-01T02:58:21Z] glock drs43 ep33: curve  10M sim_vs_ref 0.590 | blue_cup: lift 9; 20M sim_vs_ref 0.655 | blue_cup: lift 9; 30M sim_vs_ref 0.872 | blue_cup: lift 1; 40M sim_vs_ref 0.789 | blue_cup: lift 1; 50M sim_vs_ref 0.941 | blue_cup: lift 9; 60M sim_vs_ref 0.929 | blue_cup: lift 1; 70M sim_vs_ref 0.942 | blue_cup: lift 9;; chosen by sim_vs_ref: policy_70004736.safetensors
+[2026-11-01T02:59:44Z] glock drs43 ep33 RESULT (policy_70004736.safetensors): n 10 sim_vs_ref {'mean': 0.9219, 'std': 0.0669, 'min': 0.7223, 'max': 0.9507} registered AUC vs mocap None
+[2026-11-01T02:59:44Z] glock_public summary: {}
+[2026-11-01T02:59:46Z] mass_eval ARM=dr RESULT: ep14 VERIFIED :: s42 n 10 mean 0.5689 sd 0.2127 min 0.2816 cut 0/0 D-line ok; s43 n 10 mean 0.6973 sd 0.0949 min 0.556 cut 0/0 D-line ok :: candidate 43 ep16 VERIFIED :: s42 n 10 mean 0.8228 sd 0.0874 min 0.6761 cut 0/0 D-line ok; s43 n 10 mean 0.8411 sd 0.0734 min 0.7063 cut 0/0 D-line ok :: candidate 43 ep33 VERIFIED :: s42 n 10 mean 0.9428 sd 0.0063 min 0.9331 cut 0/0 D-line ok; s43 n 10 mean 0.9219 sd 0.0705 min 0.7223 cut 0/0 D-line ok :: candidate 42 hook: {"expected_md5": "d92ed77113adfd1aadeedda70a9d7bde", "installed_md5": "d92ed77113adfd1aadeedda70a9d7bde", "reset_tagged": true}; other training logs: 0 confirmation: {"RUNS_EXTRA": "20261031-drG-a1a7e25@refs/drs43_glockt/ep14 20261031-drG-a1a7e25@refs/drs43_glockt/ep16 20261031-drG-a1a7e25@refs/drs42_glockt/ep33", "PICK_EXTRA": "14:20261031-drG-a1a7e25:ck=results/drs43_glock_public/ep14/best/policy.safetensors 16:20261031-drG-a1a7e25:ck=results/drs43_glock_public/ep16/best/policy.safetensors 33:20261031-drG-a1a7e25:ck=results/drs42_glock_public/ep33/best/policy.safetensors", "DR_EPS": "14 16 33", "EVAL_ONLY": "14 16 33", "EPS_ONLY": "14 16 33", "ASSET_PIECES_EXTRA": ""} 

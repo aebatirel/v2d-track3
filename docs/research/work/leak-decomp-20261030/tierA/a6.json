@@ -1,0 +1,71 @@
+{
+ "mode": "a6",
+ "note": "ORACLE DIAGNOSTIC (public mocap + scans), leak-decomp Tier A; never a default, never for eval inference",
+ "code": {
+  "commit": "d51372e7087f6c0df22c1503b6e86489add40de4",
+  "tools_pipeline_dirty": true,
+  "leak_tierA_md5": "0f46a310d641483b388e122edf0980b5"
+ },
+ "inputs": {
+  "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+  "xgeom": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "xgeom_md5": "919ea341f045d566404cf3951b0056cc",
+  "xtrk": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json",
+  "xtrk_md5": "bd8432f14b90dba6fa4169f1586dee99",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "t3": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit"
+ },
+ "argv": [
+  "tools/leak_tierA.py",
+  "a6",
+  "--perc",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+  "--xgeom",
+  "docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "--xtrk",
+  "docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json",
+  "--lib",
+  "meshes/library_v3",
+  "--t3",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3",
+  "--kit",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit",
+  "--work",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a6.json",
+  "--frames_check",
+  "docs/research/work/leak-decomp-20261030/tierA/frames_check.json"
+ ],
+ "episodes": {},
+ "summary": {
+  "source": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/frames_check.json",
+  "source_md5": "1ad386573820970383b2320564f796b1",
+  "pass_flags": {
+   "a1": true,
+   "a2": true,
+   "a4": true,
+   "a3_inprocess": true,
+   "b1": true,
+   "b2": true,
+   "b0": true,
+   "b4": true,
+   "a4_trk": true
+  },
+  "all_pass": true,
+  "a1_mocap_scan_min": 1.0,
+  "a2_mocap_Xkit_min": 1.0,
+  "a3_mocap_Xgeom_lib_mean": 0.9795,
+  "a3_min": 0.906086,
+  "a4_round_trip_max_abs": 5.960464477539063e-08,
+  "b1_two_ways_max_abs": 0.0,
+  "b2_cup_spin_max_abs": 0.0018,
+  "b1b_budget_scan_max_abs": 0.0248,
+  "rule": {
+   "a1_a2": ">= 0.9995 (1.000)",
+   "b1_b2": "<= 0.002"
+  }
+ },
+ "seconds": 0.0
+}

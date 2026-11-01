@@ -1,0 +1,71 @@
+{
+ "ep": 16,
+ "names": [
+  "plastic_dish_rack",
+  "wooden_spoon"
+ ],
+ "refs": {
+  "P": {
+   "path": "SCRATCH/daudit/dl_evrefs/runs/20261026-pack6-5203d42/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "md5": "f7e2ea9260106425be6163553aac5af9",
+   "frames": 173
+  }
+ },
+ "rule": "docs/research/work/pack9b-20261031/PREREG.md section 4",
+ "rpe_fail_cm": 5.0,
+ "scorer": "tools/e10v_score.py via tools/dr_score.py",
+ "sets": {
+  "old": {
+   "own": "P",
+   "glob": "SCRATCH/e1conf/dl_keep/runs/20261026-pack6-5203d42/results/submission/results/episode_000016.parquet",
+   "n_files": 1,
+   "n_scored": 1,
+   "rollouts": [
+    {
+     "path": "SCRATCH/e1conf/dl_keep/runs/20261026-pack6-5203d42/results/submission/results/episode_000016.parquet",
+     "frames": 173,
+     "checkpoint_sha256": "df4d4473220a61cd1c8d67ee2f6ccacc167790dc35db9ae1de68ff0a4aa40b34",
+     "reference_parquet": "/workspace/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9079,
+       "RPE": 1.5763,
+       "MPPE": 1.3629,
+       "AUC": 0.8994,
+       "audit_fail": false,
+       "objects": {
+        "plastic_dish_rack": {
+         "AUC": 0.9382,
+         "MPPE": 0.814,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 1.92,
+         "ref_travel_cm": 0.79,
+         "sim_travel_cm": 1.73
+        },
+        "wooden_spoon": {
+         "AUC": 0.8605,
+         "MPPE": 1.912,
+         "frac_kp_over_5cm": 0.098,
+         "end_kp_cm": 7.15,
+         "ref_travel_cm": 38.03,
+         "sim_travel_cm": 37.93
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9079,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 0
+    }
+   ]
+  }
+ }
+}

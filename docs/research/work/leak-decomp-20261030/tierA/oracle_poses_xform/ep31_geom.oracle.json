@@ -1,0 +1,122 @@
+{
+ "episode": 31,
+ "align": "gravity",
+ "meshes": "meshes/library_v3",
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "frames": 290,
+ "note": "EVALUATION-ONLY oracle built from mocap; never use for eval-episode inference",
+ "perceived_table": {
+  "normal": [
+   -0.07514,
+   -0.67269,
+   -0.7361
+  ],
+  "inlier_frac": 0.394,
+  "rms_mm": 0.32,
+  "yaw_deg": -93.105
+ },
+ "G": [
+  [
+   0.138261,
+   0.987541,
+   -0.075144,
+   0.132902
+  ],
+  [
+   0.724024,
+   -0.152554,
+   -0.672693,
+   0.546282
+  ],
+  [
+   -0.675776,
+   0.038601,
+   -0.736096,
+   1.018035
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "mesh_frame_offset": {
+  "mini_sweeper": {
+   "rot_deg": 1.98,
+   "off_cm": 0.17
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 0.44,
+   "off_cm": 1.36
+  }
+ },
+ "mocap_f0_bottom_z_cm": {
+  "mini_sweeper": 60.53,
+  "plastic_dish_rack": 59.83
+ },
+ "up_vs_table_normal_deg": 0.009,
+ "f0_bottom_above_table_cm": {
+  "mini_sweeper": 0.29,
+  "plastic_dish_rack": -0.56
+ },
+ "expected_snap_cm": {
+  "mini_sweeper": -0.29,
+  "plastic_dish_rack": 0.56
+ },
+ "support_check_ok": true,
+ "f0_centre_vs_perception_cm": {
+  "mini_sweeper": 0.65,
+  "plastic_dish_rack": 0.65
+ },
+ "perception_vs_mocap": {
+  "AUC": 0.7999,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.9119,
+   "plastic_dish_rack": 0.6879
+  }
+ },
+ "raw_vs_mocap": {
+  "AUC": 0.9688,
+  "per_obj_AUC": {
+   "mini_sweeper": 1.0,
+   "plastic_dish_rack": 0.9375
+  }
+ },
+ "after_snap_vs_mocap": {
+  "AUC": 0.9688,
+  "per_obj_AUC": {
+   "mini_sweeper": 1.0,
+   "plastic_dish_rack": 0.9375
+  }
+ },
+ "xform": {
+  "file": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "kind": "geom",
+  "note": "X from tools/xstar_fit.py, not the kit registration; the *_star scores take the tracks to scan frames by the same X"
+ },
+ "perception_vs_mocap_star": {
+  "AUC": 0.8391,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.9248,
+   "plastic_dish_rack": 0.7534
+  }
+ },
+ "raw_vs_mocap_star": {
+  "AUC": 1.0,
+  "per_obj_AUC": {
+   "mini_sweeper": 1.0,
+   "plastic_dish_rack": 1.0
+  }
+ },
+ "after_snap_vs_mocap_star": {
+  "AUC": 1.0,
+  "per_obj_AUC": {
+   "mini_sweeper": 1.0,
+   "plastic_dish_rack": 1.0
+  }
+ }
+}

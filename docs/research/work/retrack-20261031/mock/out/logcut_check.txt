@@ -1,0 +1,5 @@
+Phase-1 real log (runs/20261030-orcP1a-87fc869/results/leak_p1/ep13/perc2, two single-file downloads, 31 Oct ~19:05 UTC)
+log.txt lines 8700; first scoring line at index 8696; perc_log_inference.txt lines 18; equal to the stamped lines before the cut: True
+stamped lines after the cut (first 3, scores truncated): ['[   41.6s] vo                           ', '[   41.6s] anchor:blue_cup              ', '[   41.6s] anchor:plastic_dish_rack     ']
+lines before the cut mentioning mocap / gt_ / ground / AUC / ADD: []
+last kept line: [   41.1s] tracked plastic_dish_rack sec 5.2 guard {'f0_retries': 0, 'implausible': 0, 'redetect': 0, 'reacquired': 0, '

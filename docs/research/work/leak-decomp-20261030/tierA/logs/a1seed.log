@@ -1,0 +1,107 @@
+a1seed: 650 registrations (1722 s)
+ep0: own-seed T_lib 0.9641; 50 seeds: mean 0.9658 min 0.9585, flips {'white_pot': 0, 'white_pot_lid': 0}
+ep2: own-seed T_lib 0.9823; 50 seeds: mean 0.9797 min 0.9637, flips {'white_pot': 0, 'white_pot_lid': 0}
+ep11: own-seed T_lib 0.8978; 50 seeds: mean 0.9006 min 0.8930, flips {'blue_cup': 0, 'beige_cup': 0}
+ep12: own-seed T_lib 0.9662; 50 seeds: mean 0.9581 min 0.9123, flips {'blue_cup': 0, 'plastic_dish_rack': 0}
+ep13: own-seed T_lib 0.9605; 50 seeds: mean 0.9628 min 0.9378, flips {'blue_cup': 0, 'plastic_dish_rack': 0}
+ep18: own-seed T_lib 0.9642; 50 seeds: mean 0.9269 min 0.2239, flips {'mini_sweeper': 2, 'mini_dust_pan': 0}
+ep21: own-seed T_lib 0.8325; 50 seeds: mean 0.8267 min 0.7327, flips {'blue_cup': 0, 'water_pitcher': 0}
+ep22: own-seed T_lib 0.8710; 50 seeds: mean 0.8866 min 0.8014, flips {'blue_cup': 0, 'water_pitcher': 0}
+ep23: own-seed T_lib 0.0414; 50 seeds: mean 0.0418 min 0.0407, flips {'wooden_piece_1': 0, 'wooden_piece_2': 0}
+ep24: own-seed T_lib 0.8117; 50 seeds: mean 0.8187 min 0.7865, flips {'wooden_piece_1': 0, 'wooden_piece_2': 0}
+ep26: own-seed T_lib 0.9652; 50 seeds: mean 0.9636 min 0.9506, flips {'plastic_dish_rack': 0, 'white_pot': 0}
+ep27: own-seed T_lib 0.9611; 50 seeds: mean 0.9642 min 0.9433, flips {'plastic_dish_rack': 0, 'white_pot': 0}
+ep31: own-seed T_lib 0.7999; 50 seeds: mean 0.7930 min 0.0957, flips {'mini_sweeper': 2, 'plastic_dish_rack': 0}
+ep39: own-seed T_lib 0.9602; 50 seeds: mean 0.9613 min 0.9428, flips {'mini_dust_pan': 0}
+ep40: own-seed T_lib 0.9570; 50 seeds: mean 0.9590 min 0.9488, flips {'mini_dust_pan': 0}
+ep41: own-seed T_lib 0.9910; 50 seeds: mean 0.9918 min 0.9902, flips {'white_pot': 0}
+ep42: own-seed T_lib 0.9915; 50 seeds: mean 0.9912 min 0.9881, flips {'white_pot': 0}
+ep43: own-seed T_lib 0.9482; 50 seeds: mean 0.9514 min 0.9438, flips {'white_pot': 0}
+ep44: own-seed T_lib 0.9967; 50 seeds: mean 0.9962 min 0.9927, flips {'white_pot': 0}
+ep45: own-seed T_lib 0.9795; 50 seeds: mean 0.9790 min 0.9690, flips {'white_pot': 0}
+{
+ "per_object_slot": {
+  "beige_cup@1": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 4.28,
+   "add_vs_xgeom_cm_median": 1.332
+  },
+  "blue_cup@0": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 1.35,
+   "add_vs_xgeom_cm_median": 0.822
+  },
+  "mini_dust_pan@0": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 1.28,
+   "add_vs_xgeom_cm_median": 0.256
+  },
+  "mini_dust_pan@1": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 1.95,
+   "add_vs_xgeom_cm_median": 0.264
+  },
+  "mini_sweeper@0": {
+   "draws": 50,
+   "flips": 2,
+   "rot_vs_kit_deg_max": 179.72,
+   "add_vs_xgeom_cm_median": 0.359
+  },
+  "plastic_dish_rack@0": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 1.77,
+   "add_vs_xgeom_cm_median": 1.28
+  },
+  "plastic_dish_rack@1": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 1.72,
+   "add_vs_xgeom_cm_median": 1.276
+  },
+  "water_pitcher@1": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 2.31,
+   "add_vs_xgeom_cm_median": 1.72
+  },
+  "white_pot@0": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 1.72,
+   "add_vs_xgeom_cm_median": 0.784
+  },
+  "white_pot@1": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 1.6,
+   "add_vs_xgeom_cm_median": 0.792
+  },
+  "white_pot_lid@1": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 7.42,
+   "add_vs_xgeom_cm_median": 0.229
+  },
+  "wooden_piece_1@0": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 2.5,
+   "add_vs_xgeom_cm_median": 0.212
+  },
+  "wooden_piece_2@1": {
+   "draws": 50,
+   "flips": 0,
+   "rot_vs_kit_deg_max": 1.57,
+   "add_vs_xgeom_cm_median": 0.12
+  }
+ },
+ "n_seed": 50,
+ "seed_base": 10000,
+ "seconds": 3479.8
+}
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a1seed.json (3479.8 s)

@@ -1,0 +1,2 @@
+z2latest:rvo                 P_o * 0.8974 lib 0.8970 (b1 0.853, b2 0.941) | common med 1.84 p90 1.99 cm, phases {'A': 0.31, 'B': 1.62, 'C': 1.88, 'D': 1.8, 'E': 1.86, 'F': 1.87}, removed 0.9988 | P_s * 0.9277 common 1.67
+z2:rvo                       P_o * 0.8257 lib 0.8232 (b1 0.809, b2 0.843) | common med 2.62 p90 2.80 cm, phases {'A': 0.25, 'B': 1.76, 'C': 2.61, 'D': 2.58, 'E': 2.67, 'F': 2.71}, removed 0.9984 | P_s * 0.8386 common 2.65

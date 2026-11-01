@@ -1,0 +1,56 @@
+{
+ "rule": "PREREG 3.4 (rule 2): higher mean sim_vs_ref vs V; within 0.005 the lower sd; else the first seed (42)",
+ "min_n": 8,
+ "seeds": {
+  "42": {
+   "n": 10,
+   "results": "/content/results/perc2e10vs42_glock_public/ep10",
+   "checkpoint": "/content/results/perc2e10vs42_glock_public/ep10/best/policy.safetensors",
+   "sha256": "cabdf1ad7abb67cb5f471464d0c8254d33890644356049948f3c5c7e54d06120",
+   "chosen_by_curve": "/content/runs/perc2e10vs42_glock/ep10-s42/policy_50003968.safetensors",
+   "mean": 0.4524,
+   "sd": 0.0175,
+   "min": 0.4105,
+   "max": 0.4713,
+   "values": [
+    0.4544,
+    0.4713,
+    0.4406,
+    0.462,
+    0.4666,
+    0.455,
+    0.4105,
+    0.4447,
+    0.4633,
+    0.4554
+   ]
+  },
+  "43": {
+   "n": 10,
+   "results": "/content/results/perc2e10vs43_glock_public/ep10",
+   "checkpoint": "/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+   "sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+   "chosen_by_curve": "/content/runs/perc2e10vs43_glock/ep10-s43/policy_60002304.safetensors",
+   "mean": 0.4512,
+   "sd": 0.0174,
+   "min": 0.4105,
+   "max": 0.4724,
+   "values": [
+    0.4565,
+    0.4538,
+    0.4317,
+    0.4569,
+    0.4105,
+    0.4724,
+    0.4548,
+    0.4569,
+    0.4608,
+    0.4573
+   ]
+  }
+ },
+ "incomplete_seeds": [],
+ "chosen": "43",
+ "checkpoint": "/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+ "sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8"
+}

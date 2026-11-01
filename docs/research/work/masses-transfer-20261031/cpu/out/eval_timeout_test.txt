@@ -1,0 +1,7 @@
+curve done: 2 checkpoints
+with EVAL_TIMEOUT=3: 3 s, scored: 0
+without EVAL_TIMEOUT (outer cut at 8 s): rc 124, 8 s
+MUJOCO_GL=egl XLA=false args=scripts/evaluate_policy.py evaluation.checkpoint=/tmp/claude-0/-home-user-v2d-track3/68c888
+MUJOCO_GL=egl XLA=false args=scripts/evaluate_policy.py evaluation.checkpoint=/tmp/claude-0/-home-user-v2d-track3/68c888
+MUJOCO_GL=egl XLA=false args=scripts/evaluate_policy.py evaluation.checkpoint=/tmp/claude-0/-home-user-v2d-track3/68c888
+MUJOCO_GL=egl XLA=false args=scripts/evaluate_policy.py evaluation.checkpoint=/tmp/claude-0/-home-user-v2d-track3/68c888

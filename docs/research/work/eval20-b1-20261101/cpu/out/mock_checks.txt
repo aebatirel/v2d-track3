@@ -1,0 +1,6 @@
+pass (expect SWAP-ELIGIBLE:INCLUDE): 37/37 checks pass
+floor (expect NO-SWAP:GATE): 36/36 checks pass
+unclean (expect SWAP-ELIGIBLE:UNCLEAN): 37/37 checks pass
+invalid (expect INVALID:CELLS): 30/30 checks pass
+tamper (expect INVALID:piece set check FAILED): 10/10 checks pass
+badrun (expect REFUSED): 3/3 checks pass

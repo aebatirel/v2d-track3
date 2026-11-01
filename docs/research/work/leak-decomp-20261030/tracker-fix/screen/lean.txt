@@ -1,0 +1,4 @@
+ep31 public refine/in: f0 lean 8.6 deg, frames 0-9 mean 7.1, last 10 frames 3.0 | Phase-1 P_o f0 8.4, last 10 2.7
+ep18 public refine/in: f0 lean 3.6 deg, frames 0-9 mean 3.5, last 10 frames 1.0 | Phase-1 P_o f0 3.5, last 10 1.1
+ep30 eval: f0 lean 7.7 deg, frames 0-9 mean 6.8, last 10 frames 6.7
+ep19 eval: f0 lean 1.5 deg, frames 0-9 mean 2.2, last 10 frames 62.8

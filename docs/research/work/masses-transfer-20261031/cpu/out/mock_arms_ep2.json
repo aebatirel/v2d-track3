@@ -1,0 +1,142 @@
+{
+ "episode": 2,
+ "base": "mck",
+ "source_parquet": "MR/content/refs/glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "source_md5": "b68484648302d79939ee0aac61e5f181",
+ "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+ "hive": "processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+ "source_asset_root": "MR/content/refs/sf/ep2/assets",
+ "source_urdfs": {
+  "white_pot": {
+   "path": "MR/content/refs/sf/ep2/assets/urdf/white_pot_rigid.urdf",
+   "md5": "d25b8a41f67aecbbc025bf94979f62b6",
+   "mass": 0.3,
+   "com": "0.004576 -0.006496 -0.004585"
+  },
+  "white_pot_lid": {
+   "path": "MR/content/refs/sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+   "md5": "7b5dc76af578ff9afed1591ebff687ad",
+   "mass": 0.3,
+   "com": "-0.003806 -0.003319 0.007932"
+  }
+ },
+ "arms": {
+  "mass0": {
+   "props": null,
+   "asset_root": "MR/content/refs/mass0_sf/ep2/assets",
+   "objects": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "md5": "d25b8a41f67aecbbc025bf94979f62b6",
+     "mass": 0.3,
+     "com": "0.004576 -0.006496 -0.004585",
+     "inertia": {
+      "ixx": 0.00279907252,
+      "ixy": 5.50792924e-05,
+      "ixz": 0.000141460905,
+      "iyy": 0.00227409246,
+      "iyz": -6.15004714e-06,
+      "izz": 0.00118148161
+     },
+     "identical_to_source": true
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "md5": "7b5dc76af578ff9afed1591ebff687ad",
+     "mass": 0.3,
+     "com": "-0.003806 -0.003319 0.007932",
+     "inertia": {
+      "ixx": 0.00124525615,
+      "ixy": -1.12927885e-05,
+      "ixz": 1.02879221e-05,
+      "iyy": 0.000677400276,
+      "iyz": -5.23055445e-05,
+      "izz": 0.00062661179
+     },
+     "identical_to_source": true
+    }
+   },
+   "mesh_md5": {
+    "mesh/white_pot/white_pot.glb": "b55415876a4cbc655b77f07e4a7efb00",
+    "mesh/white_pot_lid/white_pot_lid.glb": "c9a07a18d5da68ed1063058e2a54a58b"
+   },
+   "seeds": {
+    "42": {
+     "parquet": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "md5": "a1da461235483778f4cf0f9122f73b9d",
+     "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+     "base_link": "MR/content/refs/mass0s42mck/ep2",
+     "results": "MR/content/results/mass0s42_glock_public/ep2",
+     "pair": "2:local:mck:mass0s42"
+    },
+    "43": {
+     "parquet": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "md5": "a1da461235483778f4cf0f9122f73b9d",
+     "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+     "base_link": "MR/content/refs/mass0s43mck/ep2",
+     "results": "MR/content/results/mass0s43_glock_public/ep2",
+     "pair": "2:local:mck:mass0s43"
+    }
+   }
+  },
+  "mass1": {
+   "props": "MR/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json",
+   "asset_root": "MR/content/refs/mass1_sf/ep2/assets",
+   "objects": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "md5": "20dfdf89cd3721f913e0474c7db1b899",
+     "mass": 0.2771,
+     "com": "0.004576 -0.006496 -0.004585",
+     "inertia": {
+      "ixx": 0.00258540998,
+      "ixy": 5.08749064e-05,
+      "ixz": 0.000130662723,
+      "iyy": 0.0021005034,
+      "iyz": -5.68059354e-06,
+      "izz": 0.00109129518
+     },
+     "identical_to_source": false
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "md5": "68266ba1b6aca693ffeffc387696acf4",
+     "mass": 0.0882,
+     "com": "-0.003806 -0.003319 0.007932",
+     "inertia": {
+      "ixx": 0.000366105308,
+      "ixy": -3.32007982e-06,
+      "ixz": 3.0246491e-06,
+      "iyy": 0.000199155681,
+      "iyz": -1.53778301e-05,
+      "izz": 0.000184223866
+     },
+     "identical_to_source": false
+    }
+   },
+   "mesh_md5": {
+    "mesh/white_pot/white_pot.glb": "b55415876a4cbc655b77f07e4a7efb00",
+    "mesh/white_pot_lid/white_pot_lid.glb": "c9a07a18d5da68ed1063058e2a54a58b"
+   },
+   "seeds": {
+    "42": {
+     "parquet": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "md5": "032543ef87954e3b9122f1c9a6b62031",
+     "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+     "base_link": "MR/content/refs/mass1s42mck/ep2",
+     "results": "MR/content/results/mass1s42_glock_public/ep2",
+     "pair": "2:local:mck:mass1s42"
+    },
+    "43": {
+     "parquet": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "md5": "032543ef87954e3b9122f1c9a6b62031",
+     "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+     "base_link": "MR/content/refs/mass1s43mck/ep2",
+     "results": "MR/content/results/mass1s43_glock_public/ep2",
+     "pair": "2:local:mck:mass1s43"
+    }
+   }
+  }
+ },
+ "created": "2026-10-31T06:16:29Z"
+}

@@ -1,0 +1,378 @@
+{
+ "tool": "pipeline/refine.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/refine.py",
+  "--in",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/posthoc/V4",
+  "--steps",
+  "S12,S2",
+  "--s12_mode",
+  "support"
+ ],
+ "time_utc": "2026-10-31T10:49:21Z",
+ "code": {
+  "refine_sha256": "aae1fb410a659f6f8b494e5e93dbbbe0affbaa4db4a094ed012dd3977f1954b1",
+  "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+  "commit": "71bac0046787c08376b80914848c9d612e477778"
+ },
+ "steps_requested": [
+  "S12",
+  "S2"
+ ],
+ "steps_order": [
+  "S12",
+  "S2"
+ ],
+ "params": {
+  "inp": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/posthoc/V4",
+  "steps": "S12,S2",
+  "hands": null,
+  "depth": null,
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "pieces": null,
+  "calib": null,
+  "table": null,
+  "video": null,
+  "s0_frames": null,
+  "force": false,
+  "ring_in": 10,
+  "ring_out": 90,
+  "plane_thr": 0.006,
+  "plane_iters": 1000,
+  "support_tol": 0.03,
+  "support_max": 0.05,
+  "still_cm": 0.5,
+  "still_deg": 2.0,
+  "move_run": 3,
+  "rest_min": 5,
+  "hand_cm": 5.0,
+  "snap_max": 0.02,
+  "lowest_tol": 0.005,
+  "s1_rest": 1,
+  "s1_rest_min": 10,
+  "s1_rest_hand_free": 0.5,
+  "s1_blend": 10,
+  "s3_min_prefix": 5,
+  "s3_max_tilt": 10.0,
+  "s3_carry": "body",
+  "s3_fade": 10,
+  "s4_blend": 10,
+  "s4_owner": 0,
+  "s4_lift_moving": 0,
+  "s4_deadband": null,
+  "s6_hmax_cm": 2.0,
+  "s6_rmax_deg": 10.0,
+  "s6_axisym": "blue_cup,beige_cup",
+  "s5_min": 10,
+  "s5_blend": 5,
+  "s2_advance": 0.545,
+  "s2_interp": "se3",
+  "s2_hold_f0": 0,
+  "s10_mode": "gate",
+  "s10_contact_cm": 2.0,
+  "s10_bridge": 6,
+  "s10_min_len": 10,
+  "s10_carry_cm": 2.0,
+  "s10_onset": 15,
+  "s10_vis_g": 0.6,
+  "s10_vis_hi": 0.8,
+  "s10_vis_lo": 0.4,
+  "s10_ramp": 5,
+  "s10_smooth": 5,
+  "s10_trim_deg": 20.0,
+  "s10_radius_cm": 1.0,
+  "s11_mode": "mf",
+  "s11_apply": "whole",
+  "s11_depth": null,
+  "s11_det": null,
+  "s11_frames": 48,
+  "s11_min_frames": 5,
+  "s11_min_pts": 150,
+  "s11_band_cm": 2.0,
+  "s11_hand_cm": 2.0,
+  "s11_table_cm": 0.8,
+  "s11_dil": 2,
+  "s11_trim": 0.8,
+  "s11_iters": 30,
+  "s11_max_cm": 3.0,
+  "s11_max_deg": 10.0,
+  "s11_spread_cm": 1.0,
+  "s11_spread_deg": 3.0,
+  "s12_cups": "blue_cup,beige_cup",
+  "s12_mode": "support",
+  "s12_inner": "none",
+  "s12_coax_cm": 2.5,
+  "s12_enter_cm": 2.0,
+  "s12_bridge": 5,
+  "s12_min_len": 10,
+  "s12_pre": 10,
+  "s12_g1_cm": 2.0,
+  "s12_release_cm": 2.0,
+  "s12_ramp": 5,
+  "s12_depth": null,
+  "s12_band_cm": 3.0,
+  "s12_veto_cm": 1.0,
+  "s12_hand_cm": 2.0,
+  "s12_table_cm": 0.8,
+  "s12_pieces": null
+ },
+ "inputs": {
+  "poses.npz": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/poses.npz",
+   "sha256": "fb9103fa60c728083ad1f17b136d63ecde3d34d4a46e3c4a1e5e0ee8637ba0b1"
+  },
+  "vo.json": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/vo.json",
+   "sha256": "efe667709b2b19b01ade765afc4b441e1b850cce8f4074672d658435c175faa2"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/hands_refined.npz",
+   "sha256": "cdd523863bc43654da8967c68d9fdbf356077d2a24a8efc7d6beeaf9fe272bd1"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/depth0.npy",
+   "sha256": "6b0b76c6aabc395ff3ce6931c82727b7b7ca7320e45e372d0a1f42f20a77680f"
+  },
+  "mesh blue_cup": {
+   "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+   "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+  },
+  "mesh beige_cup": {
+   "path": "/home/user/v2d-track3/meshes/library_v3/beige_cup.glb",
+   "sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5"
+  }
+ },
+ "T": 161,
+ "names": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "vo": {
+  "keyframes": 3,
+  "fails": 0
+ },
+ "plane": {
+  "source": null,
+  "note": "no plane: not needed"
+ },
+ "labels": {
+  "blue_cup": {
+   "first_move": 7,
+   "liftoff": null,
+   "rest_segments": [
+    [
+     0,
+     7
+    ],
+    [
+     18,
+     30
+    ],
+    [
+     129,
+     161
+    ]
+   ],
+   "moving_frames": 107,
+   "first_hand_near": 14,
+   "hand_f0_cm": 12.87,
+   "h0_cm": null,
+   "table_supported": false,
+   "support_reason": "no plane",
+   "support_f0": null,
+   "com_body": [
+    -0.00034,
+    -0.00014,
+    0.00172
+   ],
+   "com_source": "surface estimate (make_assets.py)"
+  },
+  "beige_cup": {
+   "first_move": 1,
+   "liftoff": null,
+   "rest_segments": [
+    [
+     22,
+     32
+    ],
+    [
+     55,
+     72
+    ],
+    [
+     78,
+     85
+    ],
+    [
+     104,
+     112
+    ],
+    [
+     126,
+     133
+    ],
+    [
+     136,
+     161
+    ]
+   ],
+   "moving_frames": 76,
+   "first_hand_near": 16,
+   "hand_f0_cm": 31.86,
+   "h0_cm": null,
+   "table_supported": false,
+   "support_reason": "no plane",
+   "support_f0": null,
+   "com_body": [
+    -0.0018,
+    0.00318,
+    -0.01622
+   ],
+   "com_source": "surface estimate (make_assets.py)"
+  }
+ },
+ "steps": {
+  "S12": {
+   "mode": "support",
+   "inner": "none",
+   "cups": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "plane": {
+    "source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+    "n": [
+     -0.104035,
+     -0.789598,
+     -0.604741
+    ],
+    "d": 0.531101
+   },
+   "windows": [
+    {
+     "outer": "blue_cup",
+     "inner": "beige_cup",
+     "start": 53,
+     "end": 161,
+     "rho_cm_median": 0.51,
+     "zeta_cm_median": 2.61,
+     "pre_frame": 44,
+     "pre_height_cm": 10.186,
+     "pre_bottom_minus_f0_cm": 1.336,
+     "outer_lift_in_window_cm": {
+      "max": 2.225,
+      "end": 0.307
+     },
+     "hold_end": 161,
+     "released_by": "episode end",
+     "applied": true,
+     "outer_change_cm": {
+      "height_mean": -1.637,
+      "height_min": -3.694
+     }
+    }
+   ],
+   "changed": [
+    "blue_cup"
+   ],
+   "params": {
+    "s12_cups": "blue_cup,beige_cup",
+    "s12_mode": "support",
+    "s12_inner": "none",
+    "s12_coax_cm": 2.5,
+    "s12_enter_cm": 2.0,
+    "s12_bridge": 5,
+    "s12_min_len": 10,
+    "s12_pre": 10,
+    "s12_g1_cm": 2.0,
+    "s12_release_cm": 2.0,
+    "s12_ramp": 5,
+    "s12_depth": null,
+    "s12_band_cm": 3.0,
+    "s12_veto_cm": 1.0,
+    "s12_hand_cm": 2.0,
+    "s12_table_cm": 0.8,
+    "s12_pieces": null
+   },
+   "geometry": {
+    "blue_cup": {
+     "source": "library mesh",
+     "floor_above_base_cm": 5.82
+    },
+    "beige_cup": {
+     "source": "library mesh",
+     "floor_above_base_cm": 4.36
+    }
+   },
+   "delta": {
+    "blue_cup": {
+     "frames_changed": 108,
+     "max_cm": 3.694,
+     "max_deg": 0.0,
+     "f0_cm": 0.0,
+     "f0_deg": 0.0
+    },
+    "beige_cup": {
+     "frames_changed": 0,
+     "max_cm": 0.0,
+     "max_deg": 0.0,
+     "f0_cm": 0.0,
+     "f0_deg": 0.0
+    }
+   }
+  },
+  "S2": {
+   "advance_frames": 0.545,
+   "interp": "se3",
+   "hold_f0": false,
+   "last_frame": "held",
+   "delta": {
+    "blue_cup": {
+     "frames_changed": 160,
+     "max_cm": 0.598,
+     "max_deg": 10.045,
+     "f0_cm": 0.0634,
+     "f0_deg": 0.5186
+    },
+    "beige_cup": {
+     "frames_changed": 160,
+     "max_cm": 2.148,
+     "max_deg": 6.061,
+     "f0_cm": 0.0409,
+     "f0_deg": 2.8763
+    }
+   }
+  }
+ },
+ "checks": {
+  "world_T_cam_byte_identical": true,
+  "keys": [
+   "world_T_cam",
+   "cam_T_blue_cup",
+   "cam_T_beige_cup"
+  ],
+  "keys_ok": true,
+  "frames_ok": true,
+  "finite": true,
+  "frame0_byte_identical": {
+   "blue_cup": false,
+   "beige_cup": false
+  },
+  "frames_changed": {
+   "blue_cup": 161,
+   "beige_cup": 160
+  }
+ },
+ "log": [
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in: T=161, objects ['blue_cup', 'beige_cup'], steps ['S12', 'S2'], hands yes",
+  "plane: {\"source\": null, \"note\": \"no plane: not needed\"}",
+  "labels blue_cup: first_move 7, liftoff None, first hand<5cm 14, rest segs [(0, 7), (18, 30), (129, 161)], h0 None cm, support: no plane",
+  "labels beige_cup: first_move 1, liftoff None, first hand<5cm 16, rest segs [(22, 32), (55, 72), (78, 85), (104, 112), (126, 133), (136, 161)], h0 None cm, support: no plane",
+  "S12 window blue_cup <- beige_cup [53, 161) hold to 161 (episode end), pre-nest f44, outer height change mean -1.64 cm (min -3.69); inner none",
+  "S12: {\"mode\": \"support\", \"inner\": \"none\", \"cups\": [\"blue_cup\", \"beige_cup\"], \"plane\": {\"source\": \"det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)\", \"n\": [-0.104035, -0.789598, -0.604741], \"d\": 0.531101}, \"windows\": [{\"outer\": \"blue_cup\", \"inner\": \"beige_cup\", \"start\": 53, \"end\": 161, \"rho_cm_median\": 0.51, \"zeta_cm_median\": 2.61, \"pre_frame\": 44, \"pre_height_cm\": 10.186, \"pre_bottom_minus_f0_cm\": 1.336, \"outer_lift_in_window_cm\": {\"max\": 2.225, \"end\": 0.307}, \"hold_end\": 161, \"released_by\": \"episode end\", \"applied\": true, \"outer_change_cm\": {\"height_mean\": -1.637,",
+  "S2: {\"advance_frames\": 0.545, \"interp\": \"se3\", \"hold_f0\": false, \"last_frame\": \"held\"}"
+ ]
+}

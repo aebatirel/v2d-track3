@@ -1,0 +1,175 @@
+{
+ "episodes": {
+  "14": {
+   "decision": "CANDIDATE",
+   "seed": "42",
+   "run": "20261101-drG-mocksha",
+   "mode": "glock",
+   "ignored_seeds": [],
+   "checkpoint": "/content/results/drs42_glock_public/ep14/best/policy.safetensors",
+   "store_checkpoint": "runs/20261101-drG-mocksha/results/drs42_glock_public/ep14/best/policy.safetensors",
+   "sha256": "62cac7b8d4fe1d6512d55ba44b465a5f4227414f345c60692080e3807da6a1de",
+   "packed_sha256": "05b13510629eb5333fc7756b1d927275db0926005af35d09ad96e4648d9cd27e",
+   "boxes": [
+    [
+     "20261101-drG-mocksha",
+     "VERIFIED"
+    ]
+   ],
+   "stats": {
+    "42": {
+     "n": 10,
+     "mean": 0.8855,
+     "sd": 0.0125,
+     "min": 0.8664
+    },
+    "43": {
+     "n": 10,
+     "mean": 0.8757,
+     "sd": 0.0152,
+     "min": 0.8555
+    }
+   }
+  },
+  "16": {
+   "decision": "CANDIDATE",
+   "seed": "42",
+   "run": "20261101-drG-mocksha",
+   "mode": "glock",
+   "ignored_seeds": [],
+   "checkpoint": "/content/results/drs42_glock_public/ep16/best/policy.safetensors",
+   "store_checkpoint": "runs/20261101-drG-mocksha/results/drs42_glock_public/ep16/best/policy.safetensors",
+   "sha256": "538eaae640547142a7c390acaf39e7dbe61e8f7aaeb80f7fc7631a2e4ce7e9e1",
+   "packed_sha256": "df4d4473220a61cd1c8d67ee2f6ccacc167790dc35db9ae1de68ff0a4aa40b34",
+   "boxes": [
+    [
+     "20261101-drG-mocksha",
+     "VERIFIED"
+    ]
+   ],
+   "stats": {
+    "42": {
+     "n": 10,
+     "mean": 0.8803,
+     "sd": 0.0115,
+     "min": 0.8628
+    },
+    "43": {
+     "n": 10,
+     "mean": 0.8754,
+     "sd": 0.0139,
+     "min": 0.8561
+    }
+   }
+  },
+  "25": {
+   "decision": "CANDIDATE",
+   "seed": "42",
+   "run": "20261101-drS25s42-mocksha",
+   "mode": "std",
+   "ignored_seeds": [],
+   "checkpoint": "/content/runs/perc2mckdr/ep25-s42/policy_107143168.safetensors",
+   "store_checkpoint": "runs/20261101-drS25s42-mocksha/runs/perc2mckdr/ep25-s42/policy_107143168.safetensors",
+   "sha256": "5b9665ab00b4c280d9e798ffeb9f66848fbb9aba665e3550b01c71e7dc601b66",
+   "packed_sha256": "7edd445b741f206e79bcab18f7f2a3d6b971e2b0172eaef181255c639a385ce3",
+   "boxes": [
+    [
+     "20261101-drS25s42-mocksha",
+     "VERIFIED"
+    ],
+    [
+     "20261101-drS25s43-mocksha",
+     "VERIFIED"
+    ]
+   ],
+   "stats": {
+    "42": {
+     "n": 10,
+     "mean": 0.8839,
+     "sd": 0.0119,
+     "min": 0.8677
+    },
+    "43": {
+     "n": 10,
+     "mean": 0.8764,
+     "sd": 0.0157,
+     "min": 0.8554
+    }
+   }
+  },
+  "30": {
+   "decision": "CANDIDATE",
+   "seed": "43",
+   "run": "20261101-drS30s43-mocksha",
+   "mode": "std",
+   "ignored_seeds": [],
+   "checkpoint": "/content/runs/perc2mckdr/ep30-s43/policy_250003456.safetensors",
+   "store_checkpoint": "runs/20261101-drS30s43-mocksha/runs/perc2mckdr/ep30-s43/policy_250003456.safetensors",
+   "sha256": "887f7966860e1eb3301b851102364c7ac9dc7fff6d1f03d774e23503ff27c2d7",
+   "packed_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+   "boxes": [
+    [
+     "20261101-drS30s42-mocksha",
+     "VERIFIED"
+    ],
+    [
+     "20261101-drS30s43-mocksha",
+     "VERIFIED"
+    ]
+   ],
+   "stats": {
+    "42": {
+     "n": 10,
+     "mean": 0.8828,
+     "sd": 0.0124,
+     "min": 0.8657
+    },
+    "43": {
+     "n": 10,
+     "mean": 0.8809,
+     "sd": 0.0098,
+     "min": 0.8642
+    }
+   }
+  },
+  "33": {
+   "decision": "CANDIDATE",
+   "seed": "42",
+   "run": "20261101-drG-mocksha",
+   "mode": "glock",
+   "ignored_seeds": [],
+   "checkpoint": "/content/results/drs42_glock_public/ep33/best/policy.safetensors",
+   "store_checkpoint": "runs/20261101-drG-mocksha/results/drs42_glock_public/ep33/best/policy.safetensors",
+   "sha256": "266a83d3d2aed8eab259e8c5786421e273a9be531fa6c242d226d43d46248c36",
+   "packed_sha256": "df90b2162885a17c83ea69ce90067ec567b89434adbcdedc0fba19d4b0c07ccb",
+   "boxes": [
+    [
+     "20261101-drG-mocksha",
+     "VERIFIED"
+    ]
+   ],
+   "stats": {
+    "42": {
+     "n": 10,
+     "mean": 0.8873,
+     "sd": 0.012,
+     "min": 0.8605
+    },
+    "43": {
+     "n": 10,
+     "mean": 0.879,
+     "sd": 0.012,
+     "min": 0.861
+    }
+   }
+  }
+ },
+ "seeds": [
+  "42",
+  "43"
+ ],
+ "min_n": 8,
+ "n": 10,
+ "job": "N=10 KEEP_RESULTS=\"20261026-pack6-5203d42 20261030-c33B-0202139\" RUNS_EXTRA=\"20261101-drG-mocksha@refs/drs42_glockt/ep14 20261101-drG-mocksha@refs/drs42_glockt/ep16 20261101-drS25s42-mocksha@refs/perc2mckdr/ep25 20261101-drS30s43-mocksha@refs/perc2mckdr/ep30 20261101-drG-mocksha@refs/drs42_glockt/ep33\" PICK_EXTRA=\"33:20261029-rcB-34bf6ae 14:20261101-drG-mocksha:ck=results/drs42_glock_public/ep14/best/policy.safetensors 16:20261101-drG-mocksha:ck=results/drs42_glock_public/ep16/best/policy.safetensors 25:20261101-drS25s42-mocksha:ck=runs/perc2mckdr/ep25-s42/policy_107143168.safetensors 30:20261101-drS30s43-mocksha:ck=runs/perc2mckdr/ep30-s43/policy_250003456.safetensors 33:20261101-drG-mocksha:ck=results/drs42_glock_public/ep33/best/policy.safetensors\" DR_EPS=\"14 16 25 30 33\" EVAL_ONLY=\"14 16 25 30 33\" EPS_ONLY=\"14 16 25 30 33\" PACKED_TXT=/content/v2d-track3/results/submissions/20261030-track3g-candidate/summary.txt bash ops/jobs/h5_reeval.sh",
+ "rule": "docs/research/work/pack9b-20261031/PREREG.md sections 2-3"
+}
