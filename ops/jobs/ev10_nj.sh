@@ -56,7 +56,7 @@ unset MA_ARGS CURR_SCALE ES ES_TARGET ES_N ES_PATIENCE FC_DROP_START TRAIN_ARGS 
 unset EVAL_LOCAL_REF EVAL_NJ_DIAG FC_DR_PATCH FC_DR_RESET FC_DR_SEED
 O=/content/results/${PRE}s${SEED}_glock_public/ep$EP; RUNDIR=/content/runs/${PRE}s${SEED}_glock/ep$EP-s$SEED
 CK=$O/best/policy.safetensors; CK512=$G/ck512/policy.safetensors
-CLEAN=/content/v2d_clean; KIT=/content/kit/v2d_submission_kit; FCV=/content/v2d/robotic_grounding/flash_chord/.venv/bin/python
+TMPD=${TMPDIR:-/tmp}; CLEAN=/content/v2d_clean; KIT=/content/kit/v2d_submission_kit; FCV=/content/v2d/robotic_grounding/flash_chord/.venv/bin/python
 log "ev10_nj code $(git -C $REPO_DIR rev-parse --short HEAD), DIAGNOSTIC ONLY (never packed), ep $EP, prefix $PRE, seed $SEED, training overrides [$NJ_ARGS], reference run $REF_RUN, LIB $LIB, PIECES $PIECES, NREP $NREP, NCONF $NCONF at $NJ + $NCONF of the 512 copy, STEPS $STEPS, GL_ARGS [$GL_ARGS]" >> $J
 
 verdict() {  # PREREG section 4 label from whatever exists (also after a STOP)
@@ -119,11 +119,11 @@ log "ev10_nj: e10v inputs ok; control: $(ls $I/conf/r*/ep$EP/episode_0000$EP.par
 # ----- 2. the one training (seed 43) at njmax 1024 / nconmax 512; overflow and lift
 label "ev10 nj: training seed $SEED at njmax $NJ"
 ( while sleep 60; do echo "$(date +%s), $(nvidia-smi --query-gpu=memory.used,memory.total,utilization.gpu --format=csv,noheader,nounits 2> /dev/null | head -1)"; done ) \
-  > /tmp/ev10_nj_gpu_mem.csv 2>&1 & MEMP=$!                        # /tmp: not a watchdog path (a stalled training still trips it)
+  > $TMPD/ev10_nj_gpu_mem.csv 2>&1 & MEMP=$!                       # /tmp: not a watchdog path (a stalled training still trips it)
 t0=$(date +%s)
 ( REUSE_REF=1 REQUIRE_REUSE=1 EVAL_NJ_DIAG=1 SEED=$SEED PAIRS="$EP:local:$BASE:${PRE}s$SEED" TRAIN_ARGS="$NJ_ARGS" bash $REPO_DIR/ops/jobs/glock_public.sh ) \
   || log "ev10_nj: glock_public.sh returned $?" >> $J
-kill $MEMP 2> /dev/null; cp /tmp/ev10_nj_gpu_mem.csv $G/gpu_mem.csv 2> /dev/null
+kill $MEMP 2> /dev/null; cp $TMPD/ev10_nj_gpu_mem.csv $G/gpu_mem.csv 2> /dev/null
 log "ev10_nj: training + curve + $NREP evaluations took $(( ($(date +%s) - t0) / 60 )) min; GPU memory peak $(cut -d, -f2 $G/gpu_mem.csv 2> /dev/null | sort -n | tail -1) MiB of$(cut -d, -f3 $G/gpu_mem.csv 2> /dev/null | head -1) MiB (60 s samples)" >> $J
 count_overflow; log "ev10_nj overflow: $(tr '\n' ' ' < $G/overflow.txt | cut -c1-1500)" >> $J
 python $T/e10nj.py lift --curve $O/curve --control e10v_s42=$I/curve_s42.json --control e10v_s43=$I/curve_s43.json --out $G/lift.json > $G/lift.txt 2>&1
@@ -140,11 +140,16 @@ python $T/e10nj.py cksim --src $CK --dst $CK512 --from $NJ $NC --to 512 256 --ou
   || log "ev10_nj: the 512 copy FAILED (the 512 readout is then missing)" >> $J
 log "ev10_nj 512 copy: $(cut -c1-700 $G/ck512.txt)" >> $J
 [ -d $CLEAN ] || git -C /content/v2d worktree add --detach $CLEAN HEAD >> $J 2>&1 || stop "clean evaluator worktree FAILED"
-( cd $CLEAN/robotic_grounding/flash_chord && PYTHONPATH=$CLEAN/robotic_grounding/flash_chord/src MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false \
-    timeout -k 60 900 $FCV $T/e10nj_solver_check.py --out $G/solver_check.json --solver --device cuda:0 ck1024=$CK \
-    $([ -s $CK512 ] && echo ck512=$CK512) e10v_s$SEED=$I/s$SEED/policy.safetensors ) > $G/solver_check.txt 2>&1
-log "ev10_nj solver check (pristine evaluator tree, 1 world): $(tr '\n' ' ' < $G/solver_check.txt | cut -c1-1500)" >> $J
-python $T/e10nj.py guard --repo $REPO_DIR --neutral_dir /tmp --out $G/guard.json $CK $([ -s $CK512 ] && echo $CK512) > $G/guard.txt 2>&1
+solver_check() {  # $1 out name, then flags: the evaluator's own code path on the pristine tree (as the official draws import it)
+  local out=$1; shift
+  ( cd $CLEAN/robotic_grounding/flash_chord && PYTHONPATH=$CLEAN/robotic_grounding/flash_chord/src MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false \
+      timeout -k 60 900 $FCV $T/e10nj_solver_check.py --out $G/$out.json "$@" ck1024=$CK \
+      $([ -s $CK512 ] && echo ck512=$CK512) e10v_s$SEED=$I/s$SEED/policy.safetensors ) > $G/$out.txt 2>&1
+  log "ev10_nj $out (pristine evaluator tree, 1 world): $(tr '\n' ' ' < $G/$out.txt | cut -c1-1500)" >> $J
+}
+solver_check solver_check                                          # config chain only (fast; cannot be lost to a crash below)
+solver_check solver_build --solver --device cuda:0                 # + setup_scene / RLEnv / SolverMuJoCo: njmax, naconmax, bytes
+python $T/e10nj.py guard --repo $REPO_DIR --neutral_dir $TMPD --out $G/guard.json $CK $([ -s $CK512 ] && echo $CK512) > $G/guard.txt 2>&1
 log "ev10_nj pack guard: $(cut -c1-800 $G/guard.txt)" >> $J
 
 # ----- 4. official draws: 10 at 1024, 10 of the 512 copy (the kit evaluator on the pristine worktree, one call per draw)

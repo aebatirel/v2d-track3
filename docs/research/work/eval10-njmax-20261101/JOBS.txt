@@ -1,0 +1,91 @@
+EVAL-10 NJMAX DIAGNOSTIC: launch job string (prepared 1 Nov 2026 ~04:00 UTC; NOTHING LAUNCHED, nothing rented)
+DIAGNOSTIC ONLY - NEVER PACKED. The owner's go (relayed by keen-heisenberg, work log 1 Nov ~02:45 UTC, "Okay go") covers
+exactly this one box: ONE eval-10 training at njmax 1024 / nconmax 512 (~$2-3), plus the 512 evaluation of the same
+checkpoint. Pre-registration: PREREG.md (written before any result; sha256 33add65e4464658f... at writing, commit 086de63;
+commit it unchanged with the code). Build notes and CPU evidence: BUILD.md, cpu/ (same folder).
+
+Before the launch (orchestrator):
+  1. merge this build's branch (worktree-agent-ac592c6308cf07a10) into the session branch, commit + push; SHA=<that commit>,
+     S7=${SHA:0:7}. Check on that commit: ops/jobs/ev10_nj.sh, tools/e10nj.py, tools/e10nj_solver_check.py, the
+     EVAL_NJ_DIAG line in ops/jobs/glock_public.sh, the e10nj / ev10_nj rule in tools/no_oracle.py, and
+     docs/research/work/eval10-njmax-20261101/PREREG.md unchanged (sha256 33add65e…);
+  2. the owner's go stands for this spend (above); the planned figure is $3.50 (PREREG section 7: $1.8 / $3.0 / $5.8);
+  3. ledger line:
+       LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned <date>-e10nj-$S7 3.50 "eval-10 njmax-1024 diagnostic (DIAGNOSTIC ONLY, never packed): 1 training s43 at sim.njmax 1024 / nconmax 512 on e10v's stored V4p reference + 10 official draws at 1024 + 10 of its 512 copy; PREREG eval10-njmax-20261101" owner
+  4. offer: ONE RTX PRO 6000 (96 GB) on demand, <= $1.50/h (`ops/vast.sh offers`); snapshot pt2.11-cu130-py313-20261020.
+     Not in the same minute as another box create. The box self-destroys when the job ends (run_job.sh); the stall
+     watchdog (30 min without new log lines / files or GPU use) protects the spend; there is no fixed time limit.
+
+Run id: <date>-e10nj-$S7   e.g. 20261101-e10nj-$S7   (ev10_nj.sh refuses a run id without "-e10nj-"; no_oracle refuses
+                                                    every name containing "e10nj")
+Job string (everything is fixed inside the script: episode 10, reference run 20261031-e10v-caf38fb, prefix perc2e10nj,
+seed 43, e10v's recipe lines verbatim, TRAIN_ARGS "sim.njmax=1024 sim.nconmax=512", NREP 10, CURVE_REP 3, EVAL_TIMEOUT
+1200, 10 official draws at 1024 + 10 of the 512 copy):
+
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-e10nj-$S7 'bash ops/jobs/ev10_nj.sh'
+
+What it runs on the box (in order; PREREG section 2):
+  - make_assets.py library_v3 -> /content/assets with the meshes/carve/ev10 pieces (0.3 kg; as e10v);
+  - single-file store pulls from runs/20261031-e10v-caf38fb (no listing): results/ev10_v4p/rerun_files.txt and of its
+    entries only refs/perc2e10vmck/ep10/* (13 files), refs/perc2e10v_glockt/ep10/* (V + its support usda),
+    results/perc2e10v_glock_public/ep10/{rest_check.json, zero_score.txt}, results/ev10_v4p/{arms.json, identity.json,
+    b0.json, build.json, packed_ref/ref_gl_ilc.parquet}; from rerun_results.txt e10v seed 43's best/policy.safetensors
+    (sha256 bcc51063…) + summary.json and e10v's 10 official draws (episode_000010.{parquet,json}, eval_rc.txt); e10v's
+    curve.json of both seeds (~45 files, ~10 MB). Control files go to /content/e10v_in (not re-pushed);
+  - tools/e10nj.py arms: V md5 5d22fc57… / fingerprint 8f408d51… / base md5 ca4ae8dc… / URDF mass + COM = e10v's
+    arms.json, seed copy refs/perc2e10njs43_glockt/ep10, base link refs/perc2e10njs43mck/ep10; no_oracle accepts every
+    e10v input (else STOP);
+  - glock_public.sh REUSE_REF=1 REQUIRE_REUSE=1 EVAL_NJ_DIAG=1 SEED=43 PAIRS="10:local:mck:perc2e10njs43"
+    TRAIN_ARGS="sim.njmax=1024 sim.nconmax=512": 70M steps, curve 7 x 3 evaluations, checkpoint by sim_vs_ref vs V, 10
+    training-box evaluations; GPU memory sampled every 60 s ($TMPDIR, not a watchdog path) -> results/ev10_nj/gpu_mem.csv;
+  - overflow.json (train.log: nefc / broadphase / narrowphase / njmax_nnz / CCD lines, requested njmax distribution;
+    plus the curve, training-box and official-draw logs), lift.json (per checkpoint, both cups, 3 repeats; e10v's curves);
+  - tools/e10nj.py identity vs e10v s43's checkpoint (STOP -> INVALID if anything but the paths and the four limits
+    differs); tools/e10nj.py cksim -> results/ev10_nj/ck512/policy.safetensors (+ ck512.json); tools/e10nj_solver_check.py
+    on the pristine evaluator tree (cuda:0, 1 world, 900 s cap) for ck1024, ck512 and e10v_s43 -> solver_check.json;
+    tools/e10nj.py guard (no_oracle must refuse both checkpoints, as is / neutral copy / kit JSON) -> guard.json;
+  - 10 official draws of the 1024 checkpoint, then 10 of the 512 copy: the kit's run_policy_evaluation.py on
+    /content/v2d_clean, one call per draw, timeout 1200 s, up to 13 calls per set -> results/ev10_nj/conf1024|conf512/r<i>;
+  - tools/e10v_score.py vs V and P (conf1024, conf512, train1024, e10vconf) -> score.json; tools/e10nj.py verdict ->
+    summary.json + "ev10_nj RESULT: <label> :: ..." in job.log (and the instance label); ckpt_meta.txt; ONE store push
+    (plus the platform's 30-min interim pushes and its final self-destroy push).
+
+EXPECTED COST [estimates] (PREREG section 7; basis: e10v's job.log, same box type):
+| stage                                                              | low (h) | central (h) | high (h) |
+|--------------------------------------------------------------------|---------|-------------|----------|
+| setup: boot, snapshot restore, data, make_assets                   | 0.20    | 0.35        | 0.90     |
+| e10v pulls (~45 files, ~10 MB), seed copy, guard on inputs         | 0.03    | 0.08        | 0.25     |
+| training 70M at 1024 + curve (7 x 3) + 10 training-box evaluations | 0.95    | 1.20        | 1.60     |
+| identity, 512 copy, solver check, pack-guard check                 | 0.03    | 0.08        | 0.25     |
+| 20 official draws (10 at 1024, 10 of the 512 copy)                 | 0.17    | 0.35        | 0.60     |
+| scoring (~40 rollouts x 2 refs), verdict, push                     | 0.05    | 0.10        | 0.25     |
+| total wall                                                         | 1.43    | 2.16        | 3.85     |
+| $ at 1.27 / 1.40 / 1.50 per h                                      | $1.8    | $3.0        | $5.8     |
+  => ~$1.8-5.8, central ~$3.0 (planned $3.50). [M] basis: e10v seed 43 trained 47.5 min + curve 5.5 min + 10
+     evaluations 2.5 min; 10 official draws 5.1 min; e10v's whole job 139 min for two seeds, $3.25 at $1.375/h.
+     [E] 1024 may slow the solver in the nested phases (high column +35 % training). Tail risks: a failed final push
+     waits 60 min (+~$1.4); a STOP before training ends after setup (~$0.6-1.3 incl. the 30-min FAIL_HOLD).
+
+After the box (CPU, $0):
+  - read results/ev10_nj/{summary.json, verdict.txt, overflow.json, lift.json, identity.json, ck512.json, solver_check.json,
+    guard.json, score.json, gpu_mem.csv} and job.log from the store, ONE hf_hub_download per file (HF 429), e.g.
+    docs/research/work/perception-sprint-20261031/ev10retrain/cpu/scripts/dl.py <dir> runs/<run id>/results/ev10_nj/summary.json ...
+    (the 1024 train.log may be large if O is large: read overflow.json, not the log);
+  - copy the small result files into docs/research/work/eval10-njmax-20261101/results/ (never the checkpoints);
+  - write the reading in the work log and STATUS.md: the PREREG section 4 label first, then O by kind (vs e10v's 6.0 M),
+    L per checkpoint next to e10v's curves (beige r1 max vs the 2.5 cm control), A (n, mean vs V, vs P, vs 0.4593), the
+    512 readout (status, mean, delta vs 1024), e10v's control draws re-scored, GPU memory peak, training minutes;
+  - ledger actual: LEDGER_SESSION=focused-pascal python3 ops/ledger.py add actual <run id> <usd> "<note>";
+  - NEVER pack, copy into results/submissions/ or upload anything of this run (no_oracle refuses it; the PREREG forbids
+    it). A SUPPORTED reading buys only a pack-legal follow-up (e.g. falsifier 2: pieces whose nested rest fits 512 rows),
+    which needs its own go. INVALID / INCOMPLETE: no reading; a re-run needs a new decision.
+
+CPU EVIDENCE (this build; BUILD.md):
+  - cpu/out/cksim_test.json        9/9: hydra override lands in exactly the 4 sim keys; 512 copy byte-identical round trip on
+                                   the REAL packed gl10A2 checkpoint; FlashCHORD readers + evaluator config chain 512/1024/512
+  - cpu/out/solver_cpu_test.json   e10v s43 REAL checkpoint, REAL V: built SolverMuJoCo njmax / naconmax 512/256, 1024/512, 512/256
+  - cpu/out/guard_test.json        16/16: pack guard (names, content, store listing, pack_swap_rollouts)
+  - cpu/out/guard_equiv/summary.txt  glock_public.sh default unchanged (5,184 cases)
+  - cpu/out/static_checks.txt      unchanged files, verbatim recipe, syntax
+  - cpu/out/verdict_tests.json     23/23 label / lift / overflow fixtures
+  - cpu/out/mock_checks.txt        end-to-end mocks (e10v default path + 5 diagnostic scenarios)

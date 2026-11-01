@@ -1,0 +1,131 @@
+{
+ "ok": true,
+ "failures": [],
+ "checks": [
+  {
+   "ok": true,
+   "what": "supported: SUPPORTED / 512 VALID",
+   "info": "SUPPORTED / VALID :: SUPPORTED :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v co"
+  },
+  {
+   "ok": true,
+   "what": "O_at_bar_1000: SUPPORTED / 512 VALID",
+   "info": "SUPPORTED / VALID :: SUPPORTED :: O 1000 (bar 1000; nefc 1000, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10"
+  },
+  {
+   "ok": true,
+   "what": "O_above_bar_1001: INCONCLUSIVE / 512 VALID",
+   "info": "INCONCLUSIVE / VALID :: INCONCLUSIVE :: O 1001 (bar 1000; nefc 1001, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; "
+  },
+  {
+   "ok": true,
+   "what": "inconclusive_beats_falsified: INCONCLUSIVE / 512 VALID",
+   "info": "INCONCLUSIVE / VALID :: INCONCLUSIVE :: O 5000 (bar 1000; nefc 5000, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 0.3 cm (bar 5.0; any repeat 0.4; "
+  },
+  {
+   "ok": true,
+   "what": "falsified: FALSIFIED / 512 VALID",
+   "info": "FALSIFIED / VALID :: FALSIFIED :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 0.3 cm (bar 5.0; any repeat 0.4; e10v co"
+  },
+  {
+   "ok": true,
+   "what": "falsified_needs_no_draws: FALSIFIED / 512 MISSING",
+   "info": "FALSIFIED / MISSING :: FALSIFIED :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 0.3 cm (bar 5.0; any repeat 0.4; e10v co"
+  },
+  {
+   "ok": true,
+   "what": "incomplete_9_draws: INCOMPLETE / 512 VALID",
+   "info": "INCOMPLETE / VALID :: INCOMPLETE :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v c"
+  },
+  {
+   "ok": true,
+   "what": "partial_mean_equal_bar: PARTIAL / 512 VALID",
+   "info": "PARTIAL / VALID :: PARTIAL :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v cont"
+  },
+  {
+   "ok": true,
+   "what": "supported_just_above: SUPPORTED / 512 VALID",
+   "info": "SUPPORTED / VALID :: SUPPORTED :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v co"
+  },
+  {
+   "ok": true,
+   "what": "partial_below: PARTIAL / 512 VALID",
+   "info": "PARTIAL / VALID :: PARTIAL :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v cont"
+  },
+  {
+   "ok": true,
+   "what": "invalid_stopped: INVALID / 512 VALID",
+   "info": "INVALID / VALID :: INVALID :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v cont"
+  },
+  {
+   "ok": true,
+   "what": "invalid_arms: INVALID / 512 VALID",
+   "info": "INVALID / VALID :: INVALID :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v cont"
+  },
+  {
+   "ok": true,
+   "what": "invalid_identity: INVALID / 512 VALID",
+   "info": "INVALID / VALID :: INVALID :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v cont"
+  },
+  {
+   "ok": true,
+   "what": "invalid_no_checkpoint: INVALID / 512 VALID",
+   "info": "INVALID / VALID :: INVALID :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v cont"
+  },
+  {
+   "ok": true,
+   "what": "invalid_wrong_sha_scored: INVALID / 512 VALID",
+   "info": "INVALID / VALID :: INVALID :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v cont"
+  },
+  {
+   "ok": true,
+   "what": "invalid_wrong_sha_json: INVALID / 512 VALID",
+   "info": "INVALID / VALID :: INVALID :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v cont"
+  },
+  {
+   "ok": true,
+   "what": "invalid_own_ref: INVALID / 512 VALID",
+   "info": "INVALID / VALID :: INVALID :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v cont"
+  },
+  {
+   "ok": true,
+   "what": "readout512_invalid_does_not_gate: SUPPORTED / 512 INVALID",
+   "info": "SUPPORTED / INVALID :: SUPPORTED :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v co"
+  },
+  {
+   "ok": true,
+   "what": "readout512_built_solver_wrong: SUPPORTED / 512 INVALID",
+   "info": "SUPPORTED / INVALID :: SUPPORTED :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v co"
+  },
+  {
+   "ok": true,
+   "what": "readout512_no_solver_build_still_valid: SUPPORTED / 512 VALID",
+   "info": "SUPPORTED / VALID :: SUPPORTED :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v co"
+  },
+  {
+   "ok": true,
+   "what": "readout512_missing: SUPPORTED / 512 MISSING",
+   "info": "SUPPORTED / MISSING :: SUPPORTED :: O 40 (bar 1000; nefc 40, broadphase 0, narrowphase 0; requested median 1030 max 1080) | L beige_cup r1 max 8.0 cm (bar 5.0; any repeat 8.0; e10v co"
+  },
+  {
+   "ok": true,
+   "what": "512 readout reports its mean and the delta vs 1024",
+   "info": "(0.45, -0.05)"
+  },
+  {
+   "ok": true,
+   "what": "lift lift_below: r1 max 4.9 cm -> L False (a 6.0 cm lift in repeat 2 alone does not count: r1 only); controls 2.5 / 0.3 cm read",
+   "info": "(False, 4.9, 6.0, '')"
+  },
+  {
+   "ok": true,
+   "what": "lift lift_at_bar: r1 max 5.0 cm -> L True (a 6.0 cm lift in repeat 2 alone does not count: r1 only); controls 2.5 / 0.3 cm read",
+   "info": "(True, 5.0, 5.0, '')"
+  },
+  {
+   "ok": true,
+   "what": "overflow: counts per kind, O = nefc + broadphase + narrowphase, requested median / p95 / max = numpy's; an absent glob counts 0",
+   "info": "({'nefc': 5000, 'broadphase': 5, 'narrowphase': 1, 'njmax_nnz': 1, 'ccd': 0, 'newton_contacts': 0}, {'n': 5000, 'median': 779.5, 'p95': 1029.0, 'p99': 1051.0, 'max': 1057, 'min': 513})"
+  }
+ ]
+}

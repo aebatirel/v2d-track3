@@ -494,12 +494,13 @@ def cmd_verdict(a):
     s512 = []
     if not cks or not cks.get('ok'):
         s512.append('ck512 copy check not ok')
-    sol_rows = (sol or {}).get('checkpoints') or {}
-    sv = sol_rows.get('ck512') or {}
+    sv = dict(((sol or {}).get('checkpoints') or {}).get('ck512') or {})          # config chain (solver_check.json)
+    sb = (((js(f'{G}/solver_build.json') or {}).get('checkpoints') or {}).get('ck512') or {})   # + the built solver
+    sv['solver'] = sb.get('solver') or sv.get('solver'); sv['solver_error'] = sb.get('solver_error') or sb.get('error')
     if sv.get('env_config_sim') != [STOCK[0], STOCK[1]]:
         s512.append(f'evaluator config chain of the copy reads {sv.get("env_config_sim")} (want {list(STOCK)})')
-    if sv.get('solver') and sv['solver'].get('njmax') is not None and sv['solver'].get('njmax') != STOCK[0]:
-        s512.append(f'the copy\'s solver was built with njmax {sv["solver"].get("njmax")}')
+    if sv.get('solver') and (sv['solver'].get('njmax'), sv['solver'].get('naconmax')) != STOCK:
+        s512.append(f'the copy\'s solver was built with njmax / naconmax {sv["solver"].get("njmax")} / {sv["solver"].get("naconmax")}')
     if bad512 or cc512['wrong_checkpoint']:
         s512.append(f'512 draws failing the own-reference / checkpoint check: {(bad512 + cc512["wrong_checkpoint"])[:4]}')
     if not c512:
