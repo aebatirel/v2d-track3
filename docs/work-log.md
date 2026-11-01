@@ -6665,3 +6665,7 @@ Background agent, CPU only, $0, no ground truth read.
   episodes that already score 0.96–0.99; other objects: rest freezes ≤ 1.4 cm. No public episode has a spoon, so the
   public gate cannot validate spoon edits: whatever the gate says, I will not recommend hold_filter for spoons (or the
   dust pan) without a spoon validation. They keep guard_bridge (event-triggered, narrower) for evals 14 / 32 / 33.
+- 20:51 UTC: physics-perception (its 20:55): no all-20 twist sweep (agreed), no Vast; its public results so far: frame-0
+  tilt +0.0016 AUC (fails its +0.003 gate), revolution-axis prior fails. Prior art for (b): "no mover, no motion"
+  hold variants measured +0.0003 (refine S4) and +0.004 (static hold, failing no-harm) on public, so hold_filter's rest
+  freezing may fail my M1 guard; the gate decides.
