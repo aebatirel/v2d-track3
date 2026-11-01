@@ -40,3 +40,17 @@ scene (≤ 441 at explicit resets). The engines differ in contact settings. Use 
   1 world. The stock run gives 512 / 256.
 - No evaluator code change is needed: the official evaluator rebuilds from the checkpoint config. GPU memory for the
   constraint arrays grows with njmax; not measured.
+
+## Candidates (bold-albattani's collision-overlap fixes; owner permission relayed 02:50 UTC)
+
+| candidate | resets | contacts / world max (median) | nefc / world max (median) | overflow lines | verdict vs "no overflow at 512" |
+|---|---|---|---|---|---|
+| ev10cs (`ev10-cavsafe/ev10cs`, dafc911; 53 / 49 pieces) | sampled, 8 × 30 | 124 (107) | 510 (443) | **4** | **not clean** |
+| ev10cs | explicit f0 / 124 / 142 / 160 | 99 (30) | 409 (133) | 0 | — |
+| (packed ev10, for comparison) | sampled, 8 × 30 | 130 (115) | 536 (473) | 13 | overflow |
+
+- The sampled resets are the same frames for both: the reset seed is fixed and the reference identical, so the
+  comparison is paired.
+- ev10cs cuts the cup–cup contacts under sampled resets from 68 to 31 per world. At the nested explicit frames they
+  stay about the same (77 vs 79).
+
