@@ -5859,3 +5859,10 @@ Advice given:
   23 pieces vs 19; plain-MuJoCo rows max 160 vs 196 (indicative); overlay URDF 90df047a + sf glb f27eb335; eval 30 shares
   mini_sweeper via /content/assets → eval 19 needs its own asset copy. Next: determined-wright budget.py; a GPU retrain
   only if credit allows after ev10cs5 + eval 20, ≥ +0.02 rule (packed mean 0.921 ± 0.034).
+- 07:17 UTC ev10cs5 retrain interim [M, exec; not the reading]: seed 42 done — train.log 992 "nefc overflow" lines
+  (max request 599); curve 10M 0.465, 20M 0.316, 30M 0.389, 40M 0.460, 50M 0.347, 60M 0.510, 70M 0.460 (blue lift label
+  0–8; beige lift to be read from lift / curve json); chosen policy_60002304; training-box n 10 mean 0.4768 ± 0.0646
+  (min 0.366, max 0.558) → above the gate bar 0.4632, far below the njmax-1024 diagnostic (0.883 training box / 0.913
+  official). Seed 43 training since 07:17. [H] Clean pieces at stock limits did not by themselves recover the 1024 gain
+  on s42 (still ~10³ overflow lines, plus the pieces' trades: raised floor, deeper settle, unchanged beige start corner);
+  the PREREG verdict waits for s43 + the official draws.
