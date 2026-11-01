@@ -10793,3 +10793,5 @@ score.
   two-hand AUC **0.587 ± 0.156** (sim_vs_ref 0.614); paired Δ +0.209 on this seed. Rule needs both seeds (seed 43 running).
   Caveat [I]: public ep13's single lock carries with the RIGHT hand (from f46), eval 14's packed lock with the first picker
   (left), so the public control is weaker than eval 14's packed construction; eval 14 two-hand seed 42 is 0.603 vs packed 0.727.
+- 22:17 UTC 1 Nov **pfE launched**: 20261101-pfE-acfab9b (public ep13, arm f = first picker, seeds 42 / 43; PREREG addendum §6;
+  ledger planned $4.50). Five boxes running ≈ $7/h.
