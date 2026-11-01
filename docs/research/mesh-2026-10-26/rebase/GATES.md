@@ -130,3 +130,35 @@ Both use the same shift d = median over T-rest frames of the signed p_f.
 - README: a numbers table (packed vs candidate), the commands and md5s. Timestamped log: `NOTES.md`.
 - **Not done here:** FlashCHORD / MuJoCo-Warp runs, `budget.py`, any training or GPU A/B, any change to a pack or a
   visual mesh. Nothing is tuned on eval scores: there are none in this work.
+
+## A1. Amendment, 1 Nov 2026 ~06:35 UTC: eval-20 pitcher foot-plane clip (written before this candidate is built)
+
+**Why (post hoc, on packed numbers only).** All eight sets were measured under sections 2-3.
+- [M] Every set came out "not needed" (d between -0.14 and +0.05 mm) or had no T-rest frame (eval 28). No (a) or (b)
+  candidate exists.
+- [M] The packed eval-20 pitcher still fails G3 at its T-rest frames: f183 3.21 mm / 6.39 deg and f192 3.32 mm /
+  7.54 deg (up to 10 mm during the 2 s). The base is not in the table (d = +0.01 mm).
+- [M] At those poses its lowest collision point is a CoACD hull corner. Four vertices lie within 1 mm, and the COM
+  sits 39 mm outside them. That corner is 1.36 mm (along u) below the lowest point of support_fill's 8-sector arc
+  foot, which holds the COM 22 mm inside.
+- [M] Without the foot the pitcher falls over (73-80 deg). With it, it rocks off the corner onto the foot.
+- So the rule of section 3 (median penetration) cannot see this case. This amendment adds one variant for this set
+  only.
+
+**Rule (b1), pitcher on eval 20 only.**
+- Clip every packed pitcher piece (the 33 CoACD hulls and the 8 foot pieces) to the half-space u.x >= m_foot.
+  - m_foot = the minimum of u.x over the foot pieces' vertices.
+  - u is the T-rest axis of section 2 (already measured: [0.043013, 0.620115, 0.783331]).
+- Nothing of the collision copy then lies below the foot's base level. Same bound (<= 12 mm removed), convexity and
+  debris rules as (b).
+
+**Hypothesis [H].** Without the corner below the foot, the pitcher stands on the foot at its reference rest pose.
+**Falsifier:** G3 still fails (> 4 mm or > 5 deg) at f183 or f192.
+
+**Gates.** G1, G2 (vacuous here, as there are no partner-rest frames), G3, G5 and G6 exactly as section 4; G4
+indicative.
+- Also reported, not gated:
+  - settle at frame 0, where the simulator starts (H30, but its static run is shorter than 5 frames);
+  - settle at f152, the frame support_fill certified the foot at.
+- Packed numbers at the same frames are reported alongside.
+- **Delivery:** if b1 passes, `sets/ev20/water_pitcher/`; if it fails, `rejected/ev20_b1/` with `DO_NOT_USE.json`.
