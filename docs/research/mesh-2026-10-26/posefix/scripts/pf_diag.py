@@ -122,7 +122,7 @@ segs = []
 C1b = C1.copy()                                   # after poses under the BEFORE alignment
 C1b[:, 0, :, :3] = C1[:, 0, :, :3] @ R0.T + o0
 for g in PF['segments']:
-    if not g['status'].startswith('shift') and g['status'] != 'drop':
+    if g['t_norm_mm'] == 0 and g['r_deg'] == 0:
         continue
     s = names.index(g['obj']); fr = np.arange(g['start'], g['end'] + 1)
     push = (C1b[fr, 0, s, :3] - A0[fr, 0, s, :3]).mean(0)

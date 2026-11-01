@@ -6142,3 +6142,12 @@ diagnostic; nothing is picked for submission.
   slot (fill 10.8 -> 2.9 and 6.9 -> 2.3 cm3) but: eval 30 sets throw the free sweeper further (41-43 vs 25 mm) -> do not
   use; eval 14 c1-ev14 throws less (79 vs 136 mm) but 62 pieces and plain-MuJoCo rows 552-612 -> long shot, budget.py
   optional. Relayed to determined-wright / focused-pascal / keen-heisenberg; keep packed racks; the pose fix is the lever.
+
+### 2026-11-01 04:55 UTC — final contact-budget verdicts (determined-wright, 32x60) and ev10cs v4 requested
+- determined-wright (budget.py, 32 worlds x 60 steps, paired; record 6b04fba): eval 30 packed 0 / 0 lines; eval 14
+  packed 0 / 0; eval 14 + c1-ev14 12 / 0 (hold max 571), + c2-ev14 5 / 0 (499); eval 10 packed 380 / 9,723 (661, 100 %
+  of hold steps > 512); ev10cs 104 / 7,086 (598, 75 %); ev10cs3 110 / 576 (534, 15 %). Verdicts: keep packed racks on
+  14 and 30; no eval-10 candidate is clean -> no retrain; ev10cs3 best. Options: v4 with 30-80 fewer rows, or ev10cs3 +
+  sim.njmax=1024 (untested, pack lane / owner).
+- Orchestrator: ev10cs v4 requested from the ev10 agent (gates appended before building; fewer, larger beige pieces,
+  fewer blue bands, one-piece floor kept, cavity-safe inner faces; CPU, $0).

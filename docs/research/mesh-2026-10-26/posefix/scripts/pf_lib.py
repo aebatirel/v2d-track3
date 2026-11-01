@@ -89,9 +89,14 @@ class SDF:
         else:
             g = [lo[i] + GRID_H * np.arange(shape[i]) for i in range(3)]
             X = np.stack(np.meshgrid(*g, indexing='ij'), -1).reshape(-1, 3)
-            dense = area_samples(v, f, DENSE_SPACING, 11)
-            dense = np.vstack([dense, v])
-            dist = cKDTree(dense).query(X, workers=2)[0].reshape(shape).astype(np.float32)
+            # two-tier unsigned distance: coarse samples (3 mm) everywhere, dense samples (0.5 mm) where coarse < 8 mm
+            coarse = np.vstack([area_samples(v, f, 0.003, 13), v])
+            dist = cKDTree(coarse).query(X, workers=2)[0]
+            near = dist < 0.008
+            dense = np.vstack([area_samples(v, f, DENSE_SPACING, 11), v])
+            dn = cKDTree(dense).query(X[near], workers=2, distance_upper_bound=0.0095)[0]
+            dist[near] = np.minimum(dist[near], dn)
+            dist = dist.reshape(shape).astype(np.float32)
             w = np.median(np.stack([_winding_axis(v, f, lo, GRID_H, shape, ax) for ax in range(3)]), 0)
             inside = np.abs(w) >= 0.5
             sd = np.where(inside, -dist, dist).astype(np.float32)
