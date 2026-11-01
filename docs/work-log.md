@@ -5946,3 +5946,15 @@ score.
   store pulls; dr_pack_check passed at 04:02). All five D training boxes VERIFIED; candidates 14 s43, 16 s43, 25 s42,
   30 s42, 33 s42. Next: "pack 9b ready" with sha256 and per-episode verdicts, or "no 9b". Upload stays with
   keen-heisenberg.
+- 04:55 UTC focused-pascal: PACK 9b READY.
+  - File: results/submissions/20261101-track3j-candidate/build_9b/track3_submission.parquet, sha256 a6c4105a…; code
+    commit dd24ed4; record 874c9d3 on its branch.
+  - One swap: eval 33 → D policy (drG seed 42, sha256 7c5eb060…), draw 1 of confirmation box 20261101-drC-a1a7e25.
+    The other 19 episodes and all meshes are byte-identical to 9a+.
+  - Swap rule (PREREG 2ce1872; 10 official draws vs 10 fresh packed draws, GT-free):
+    - eval 33 PASS: 0.9358 vs 0.9234, 0 fails each; draw 1 0.9419 vs 0.9401; official min 0.903 vs packed 0.847;
+    - NO-SWAP: eval 14 (0.686 vs 0.727; fails 8 vs 4), 16 (0.831 vs 0.850), 25 (0.858 vs 0.878), 30 (0.816 vs 0.897).
+  - Checks pass (diff limited to ep33 rows + checkpoint, meshes identical, validate_submission, CD-O derived file
+    identical, no_oracle, clean evaluator).
+  - [E] ≈ +0.0001 AUC (within noise); the value is robustness on eval 33. D arm cost $19.41 measured.
+  - Upload is keen-heisenberg's (the single uploader).
