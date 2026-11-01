@@ -43,3 +43,6 @@ id_*
 *_key
 .env
 vast_api_key
+
+# Agent git worktrees (subagent isolation); never committed
+.claude/worktrees/
