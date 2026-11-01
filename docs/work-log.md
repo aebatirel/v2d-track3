@@ -6439,3 +6439,14 @@ arm and a no-policy replay floor to stage B.
     stable-pose prior's error, with 9a+ and v3 meshes, to see why S3 fails and whether a gated form is justified.
   - Messages sent to the perfect-following and GRASP sessions (scope, no eval refs touched, ask for their
     reference-construction changes and twist-repair code).
+- 20:40 UTC 1 Nov physperc **T1 fused frame-0 tilt: FAIL by the pre-registered gate, but no harm** [D, 20 public].
+  - Rule (PREREG_T1.md, pushed 66d31116 before scoring; output sha256 23af20cc): fuse the tracker's frame-0 down axis
+    with the nearest stable facet of our 9a+ mesh on our depth table plane (slerp W = 0.5), one body-frame correction
+    for the whole track; gate hand > 50 mm, lowest point within [−20, +10] mm, facet match <= 6 deg.
+  - P1 (anchor only): ΔAUC **+0.00156**, 13 better / 0 worse, min 0.0000, ΔMPPE −0.013 cm, ΔRPE −0.007 cm. Gate needs
+    +0.003: **fail** (the other three clauses pass). Largest: ep43 +0.0157, ep27 +0.0063, ep45 +0.0025.
+  - P2 (all gated objects): +0.00132, 13 / 3, min −0.0016 (ep22). Fail.
+  - R1 (snap W = 1, the S3-like control on 9a+): +0.00031, 9 / 4, ep43 −0.0115. Fail.
+  - Reading: the mechanism holds (D1: the physics prior is a second ~2 deg sensor; fused beats either alone, and P1 is
+    monotone-safe), but the size is ~1/10 of the tilt oracle. Not handed over as a pass.
+  - Runs: docs/analysis/physperc-20261101/runs/{before,P1,P2,R1}, results_T1.json. Machine: this container, CPU, $0.
