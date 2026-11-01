@@ -25,3 +25,4 @@ Scratch: /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca13
 - 2026-11-01T04:53:49Z PREREG pushed df60ff2 (04:53:42 UTC). Launching transform A B C D (code df60ff2).
 - 2026-11-01T05:05:29Z transform running (4 variants in parallel, load ~8); A at 4/20 eps after 11 min. pf_report.py written (formats only).
 - 2026-11-01T05:14:39Z transform done (C 05:08, D 05:10, A 05:13:58, B 05:14:03; code df60ff2). sha256 of all outputs -> out_sha256/; committing before stage0/scoring.
+- 2026-11-01T05:14:56Z stage0 done (20 parquets; ep23/24 downloaded from HF; scans = cdo_c0/t3/mesh). Launching score (100 runs, 2 streams, nice 5).

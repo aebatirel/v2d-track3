@@ -6167,3 +6167,12 @@ diagnostic; nothing is picked for submission.
   (pose floor).
 - Orchestrator: proposed one eval-10 training at stock limits with --pieces ev10cs4 (focused-pascal runs it; ~$6 [E]
   like e10v) to keen-heisenberg for the owner's go; check train.log overflow count first, then lift.
+
+### 2026-11-01 05:45 UTC — ev10cs5 (8 mm floor) standby built and frozen
+- determined-wright's 8 mm plate variant (nest test: release depth 4.0 vs 5.5 mm, tracking 0.12 vs 0.14 cm) prompted a
+  standby ev10cs5 (A5 gates 99be31e before building; build 7935261; FROZEN.md 2b016b4). md5 vs ev10cs4: only
+  blue piece_16 (plate), blue inertia.json, blue lathe_collision.json and carve.json differ; every other piece
+  identical. Plain MuJoCo (indicative): f124 drop through-floor 0/16 (v4 6/16); gate-1 max at f124 3.9 cm3 (fails 3.0;
+  higher floor meets the beige base; median unchanged 0.21); f111 overflow 3/16 copies (v4 0). focused-pascal's
+  pre-stated rule: ev10cs5 if md5 condition holds and determined-wright's 32x60 recheck is 0 / 0 by 06:30 UTC, else
+  ev10cs4. Sent to both.
