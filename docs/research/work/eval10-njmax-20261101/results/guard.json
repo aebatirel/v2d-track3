@@ -1,0 +1,53 @@
+{
+ "ok": true,
+ "cases": [
+  {
+   "path": "/content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors",
+   "how": "as is",
+   "word": "/content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors",
+   "rc": 1,
+   "refused": true,
+   "why": "  /content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors"
+  },
+  {
+   "path": "/content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors",
+   "how": "neutral byte copy",
+   "word": "/tmp/nj_guard_neutral/n0/policy.safetensors",
+   "rc": 1,
+   "refused": true,
+   "why": "  /tmp/nj_guard_neutral/n0/policy.safetensors (checkpoint config: /content/runs/perc2e10njs43_glock/ep10-s43)"
+  },
+  {
+   "path": "/content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors",
+   "how": "kit checkpoints JSON naming the neutral copy",
+   "word": "/tmp/nj_guard_neutral/n0/checkpoints.json",
+   "rc": 1,
+   "refused": true,
+   "why": "  /tmp/nj_guard_neutral/n0/checkpoints.json: /tmp/nj_guard_neutral/n0/policy.safetensors (checkpoint config: /content/runs/perc2e10njs43_glock/ep10-s43)"
+  },
+  {
+   "path": "/content/results/ev10_nj/ck512/policy.safetensors",
+   "how": "as is",
+   "word": "/content/results/ev10_nj/ck512/policy.safetensors",
+   "rc": 1,
+   "refused": true,
+   "why": "  /content/results/ev10_nj/ck512/policy.safetensors"
+  },
+  {
+   "path": "/content/results/ev10_nj/ck512/policy.safetensors",
+   "how": "neutral byte copy",
+   "word": "/tmp/nj_guard_neutral/n1/policy.safetensors",
+   "rc": 1,
+   "refused": true,
+   "why": "  /tmp/nj_guard_neutral/n1/policy.safetensors (checkpoint config: /content/runs/perc2e10njs43_glock/ep10-s43)"
+  },
+  {
+   "path": "/content/results/ev10_nj/ck512/policy.safetensors",
+   "how": "kit checkpoints JSON naming the neutral copy",
+   "word": "/tmp/nj_guard_neutral/n1/checkpoints.json",
+   "rc": 1,
+   "refused": true,
+   "why": "  /tmp/nj_guard_neutral/n1/checkpoints.json: /tmp/nj_guard_neutral/n1/policy.safetensors (checkpoint config: /content/runs/perc2e10njs43_glock/ep10-s43)"
+  }
+ ]
+}

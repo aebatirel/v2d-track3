@@ -10,6 +10,12 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-01 05:45 UTC: eval-10 njmax-1024 diagnostic SUPPORTED — the floor was training-time contact overflow
+- Overflow 0 lines (e10v ~6 M); beige cup lifted 23.9 cm; official sim_vs_ref vs V 0.913 at 1024 (e10v 0.459); the same
+  checkpoint at stock 512 scores 0.903 vs V / 0.873 vs P. DIAGNOSTIC ONLY, NEVER PACKED (guard refuses it).
+- Legal route: eval-10 retrain on the clean ev10cs5 pieces at stock limits (pre-stated choice met; build in progress).
+- Owner question: is a policy trained at njmax 1024 but evaluated at stock limits acceptable? (organisers' call).
+
 ## 2026-11-01 05:03 UTC: pack 9b UPLOADED (by keen-heisenberg's session) — AUC 0.81677 vs 9a+ 0.81757; 9a+ stays best
 - Board: SP-SR / MP-SR / CD-O unchanged; RPE 3.88283 (9a+ 3.87853), MPPE 2.90186 (2.89663). The eval-33 swap's GT-free
   proxy gain (+0.0018) was noise vs mocap (≈ −0.016 on that episode). Receipt on claude/keen-heisenberg-engcwz (157ed61).

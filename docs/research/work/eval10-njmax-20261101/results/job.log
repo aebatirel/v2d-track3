@@ -1,0 +1,200 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+s/20261031-e10v-caf38fb/results/ev10_v4p/b0.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/build.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/arms.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/identity.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/packed_ref/ref_gl_ilc.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r1/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r1/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r1/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r10/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r10/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r10/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r2/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r2/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r2/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r3/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r3/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r3/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r4/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r4/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r4/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r5/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r5/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r5/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r6/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r6/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r6/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r7/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r7/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r7/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r8/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r8/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r8/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r9/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r9/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/conf/r9/eval_rc.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/perc2e10vs43_glock_public/ep10/best/summary.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/perc2e10vs42_glock_public/ep10/curve/curve.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/perc2e10vs43_glock_public/ep10/curve/curve.json
+[2026-11-01T04:33:50Z] ev10_nj arms: ARMS OK :: V 5d22fc5782a919f2466988768d0708fa (fingerprint 8f408d5101f1; e10v 5d22fc5782a919f2466988768d0708fa), base ca4ae8dcbc290d66ce09d6ad69a09410, copy /content/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet, blue_cup 0.3 kg md5=e10v True, beige_cup 0.3 kg md5=e10v True
+[2026-11-01T04:33:50Z] ev10_nj: e10v inputs ok; control: 10 e10v draws, curves [curve_s42.json curve_s43.json ]; no_oracle: no_oracle: 4 inputs checked, none oracle-derived
+[2026-11-01T04:33:52Z] glock_public code 451b82df, pairs [10:local:mck:perc2e10njs43], seed 43, steps 70004736, NREP 10, SPLIT eval, SETTLE 0, SF 0, REPLAN 1, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-11-01T04:33:52Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.42] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.07 0.16 0.3 ] cm, 53 collision pieces
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-11-01T04:33:55Z] glock_public: collision pieces from /content/v2d-track3/meshes/carve/ev10 (beige_cup blue_cup carve.json fc_test )
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-11-01T04:33:55Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-11-01T04:33:55Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 sim.njmax=1024 sim.nconmax=512]
+[2026-11-01T04:33:57Z] glock perc2e10njs43 ep10: base mck (/content/refs/perc2e10njs43mck/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/bc086246e792487e8b2e7b22c53c1070-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-11-01T05:17:08Z] glock perc2e10njs43 ep10: trained 7 checkpoints
+[2026-11-01T05:23:17Z] glock perc2e10njs43 ep10: curve  10M sim_vs_ref 0.553 | blue_cup: lift 1; 20M sim_vs_ref 0.493 | blue_cup: lift 3; 30M sim_vs_ref 0.631 | blue_cup: lift 1; 40M sim_vs_ref 0.490 | blue_cup: lift 2; 50M sim_vs_ref 0.527 | blue_cup: lift 3; 60M sim_vs_ref 0.483 | blue_cup: lift 1; 70M sim_vs_ref 0.882 | blue_cup: lift 0;; chosen by sim_vs_ref: policy_70004736.safetensors
+[2026-11-01T05:26:03Z] glock perc2e10njs43 ep10 RESULT (policy_70004736.safetensors): n 10 sim_vs_ref {'mean': 0.8832, 'std': 0.0493, 'min': 0.7877, 'max': 0.9435} registered AUC vs mocap None
+[2026-11-01T05:26:03Z] glock_public summary: {}
+[2026-11-01T05:26:03Z] ev10_nj: training + curve + 10 evaluations took 52 min; GPU memory peak  46726 MiB of 97887 MiB (60 s samples)
+[2026-11-01T05:26:04Z] ev10_nj overflow: overflow train: 1 files, 175 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow train_oom_retries: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow curve: 21 files, 1953 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow best: 10 files, 930 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow conf1024: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow conf512: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 
+[2026-11-01T05:26:04Z] ev10_nj lift: lift: 7 checkpoints; 10M s_v_r 0.553 beige_cup r1 9.3 (max of 3 26.7) blue_cup r1 1.1; 20M s_v_r 0.4932 beige_cup r1 0.3 (max of 3 23.5) blue_cup r1 3.7; 30M s_v_r 0.6306 beige_cup r1 23.2 (max of 3 36.1) blue_cup r1 1.4; 40M s_v_r 0.4905 beige_cup r1 23.6 (max of 3 24.1) blue_cup r1 2.6; 50M s_v_r 0.5269 beige_cup r1 21.9 (max of 3 22.5) blue_cup r1 3.5; 60M s_v_r 0.4829 beige_cup r1 23.9 (max of 3 23.9) blue_cup r1 11.2; 70M s_v_r 0.8822 beige_cup r1 21.1 (max of 3 22.3) blue_cup r1 0.7 :: L True (r1 max 23.9 cm, bar 5.0); controls e10v_s42 r1 max 2.5, e10v_s43 r1 max 0.3
+[2026-11-01T05:26:07Z] ev10_nj identity: IDENTITY OK :: config diff vs e10v s43 ['env.sim.nconmax', 'env.sim.njmax', 'output_dir', 'reference.parquet', 'sim.nconmax', 'sim.njmax', 'task.parquet']; sim {'sim.njmax': 1024, 'sim.nconmax': 512, 'env.sim.njmax': 1024, 'env.sim.nconmax': 512} vs control {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256}; reference md5 5d22fc5782a919f2466988768d0708fa
+[2026-11-01T05:26:07Z] ev10_nj 512 copy: CKSIM OK :: {'sim.njmax': 1024, 'sim.nconmax': 512, 'env.sim.njmax': 1024, 'env.sim.nconmax': 512} -> {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256}; config diff ['env.sim.nconmax', 'env.sim.njmax', 'sim.nconmax', 'sim.njmax']; buffer identical True (32 tensors); sha256 3c75ca1debb5 -> aaa077ebae86
+Preparing worktree (detached HEAD 8c778f9)
+Updating files:   4% (191/4224)Updating files:   5% (212/4224)Updating files:   6% (254/4224)Updating files:   7% (296/4224)Updating files:   8% (338/4224)Updating files:   9% (381/4224)Updating files:  10% (423/4224)Updating files:  11% (465/4224)Updating files:  12% (507/4224)Updating files:  13% (550/4224)Updating files:  14% (592/4224)Updating files:  15% (634/4224)Updating files:  16% (676/4224)Updating files:  17% (719/4224)Updating files:  18% (761/4224)Updating files:  19% (803/4224)Updating files:  20% (845/4224)Updating files:  21% (888/4224)Updating files:  22% (930/4224)Updating files:  23% (972/4224)Updating files:  24% (1014/4224)Updating files:  25% (1056/4224)Updating files:  26% (1099/4224)Updating files:  27% (1141/4224)Updating files:  28% (1183/4224)Updating files:  29% (1225/4224)Updating files:  30% (1268/4224)Updating files:  31% (1310/4224)Updating files:  32% (1352/4224)Updating files:  33% (1394/4224)Updating files:  34% (1437/4224)Updating files:  35% (1479/4224)Updating files:  36% (1521/4224)Updating files:  37% (1563/4224)Updating files:  38% (1606/4224)Updating files:  38% (1645/4224)Updating files:  39% (1648/4224)Updating files:  40% (1690/4224)Updating files:  41% (1732/4224)Updating files:  42% (1775/4224)Updating files:  43% (1817/4224)Updating files:  44% (1859/4224)Updating files:  45% (1901/4224)Updating files:  46% (1944/4224)Updating files:  47% (1986/4224)Updating files:  48% (2028/4224)Updating files:  49% (2070/4224)Updating files:  50% (2112/4224)Updating files:  51% (2155/4224)Updating files:  52% (2197/4224)Updating files:  53% (2239/4224)Updating files:  54% (2281/4224)Updating files:  55% (2324/4224)Updating files:  56% (2366/4224)Updating files:  57% (2408/4224)Updating files:  58% (2450/4224)Updating files:  59% (2493/4224)Updating files:  60% (2535/4224)Updating files:  61% (2577/4224)Updating files:  62% (2619/4224)Updating files:  63% (2662/4224)Updating files:  64% (2704/4224)Updating files:  65% (2746/4224)Updating files:  65% (2760/4224)Updating files:  66% (2788/4224)Updating files:  67% (2831/4224)Updating files:  68% (2873/4224)Updating files:  69% (2915/4224)Updating files:  70% (2957/4224)Updating files:  71% (3000/4224)Updating files:  72% (3042/4224)Updating files:  73% (3084/4224)Updating files:  74% (3126/4224)Updating files:  75% (3168/4224)Updating files:  76% (3211/4224)Updating files:  77% (3253/4224)Updating files:  78% (3295/4224)Updating files:  79% (3337/4224)Updating files:  80% (3380/4224)Updating files:  81% (3422/4224)Updating files:  81% (3441/4224)Updating files:  82% (3464/4224)Updating files:  83% (3506/4224)Updating files:  84% (3549/4224)Updating files:  85% (3591/4224)Updating files:  86% (3633/4224)Updating files:  87% (3675/4224)Updating files:  88% (3718/4224)Updating files:  89% (3760/4224)Updating files:  90% (3802/4224)Updating files:  91% (3844/4224)Updating files:  92% (3887/4224)Updating files:  93% (3929/4224)Updating files:  94% (3971/4224)Updating files:  95% (4013/4224)Updating files:  96% (4056/4224)Updating files:  97% (4098/4224)Updating files:  98% (4140/4224)Updating files:  99% (4182/4224)Updating files: 100% (4224/4224)Updating files: 100% (4224/4224), done.
+Filtering content:   0% (2/229)Filtering content:   1% (3/229), 20.31 MiB | 13.16 MiB/sFiltering content:   1% (4/229), 20.31 MiB | 13.16 MiB/sFiltering content:   2% (5/229), 51.13 MiB | 27.31 MiB/sFiltering content:   3% (7/229), 69.52 MiB | 16.55 MiB/sFiltering content:   3% (9/229), 69.52 MiB | 16.55 MiB/sFiltering content:   4% (10/229), 122.95 MiB | 23.05 MiB/sFiltering content:   5% (12/229), 122.95 MiB | 23.05 MiB/sFiltering content:   5% (13/229), 122.95 MiB | 23.05 MiB/sFiltering content:   6% (14/229), 143.38 MiB | 24.09 MiB/sFiltering content:   6% (15/229), 143.38 MiB | 24.09 MiB/sFiltering content:   7% (17/229), 149.63 MiB | 21.44 MiB/sFiltering content:   8% (19/229), 149.63 MiB | 21.44 MiB/sFiltering content:   9% (21/229), 149.63 MiB | 21.44 MiB/sFiltering content:  10% (23/229), 194.18 MiB | 25.56 MiB/sFiltering content:  10% (25/229), 194.18 MiB | 25.56 MiB/sFiltering content:  11% (26/229), 194.18 MiB | 25.56 MiB/sFiltering content:  12% (28/229), 194.18 MiB | 25.56 MiB/sFiltering content:  13% (30/229), 206.19 MiB | 25.33 MiB/sFiltering content:  14% (33/229), 206.19 MiB | 25.33 MiB/sFiltering content:  15% (35/229), 206.19 MiB | 25.33 MiB/sFiltering content:  16% (37/229), 206.19 MiB | 25.33 MiB/sFiltering content:  17% (39/229), 206.19 MiB | 25.33 MiB/sFiltering content:  17% (41/229), 214.25 MiB | 24.69 MiB/sFiltering content:  18% (42/229), 214.25 MiB | 24.69 MiB/sFiltering content:  19% (44/229), 214.25 MiB | 24.69 MiB/sFiltering content:  20% (46/229), 214.25 MiB | 24.69 MiB/sFiltering content:  21% (49/229), 214.25 MiB | 24.69 MiB/sFiltering content:  22% (51/229), 214.25 MiB | 24.69 MiB/sFiltering content:  23% (53/229), 216.63 MiB | 24.62 MiB/sFiltering content:  24% (55/229), 216.63 MiB | 24.62 MiB/sFiltering content:  25% (58/229), 216.63 MiB | 24.62 MiB/sFiltering content:  26% (60/229), 216.63 MiB | 24.62 MiB/sFiltering content:  27% (62/229), 216.63 MiB | 24.62 MiB/sFiltering content:  28% (65/229), 217.75 MiB | 21.25 MiB/sFiltering content:  29% (67/229), 217.75 MiB | 21.25 MiB/sFiltering content:  30% (69/229), 217.75 MiB | 21.25 MiB/sFiltering content:  31% (71/229), 217.75 MiB | 21.25 MiB/sFiltering content:  32% (74/229), 217.75 MiB | 21.25 MiB/sFiltering content:  33% (76/229), 217.75 MiB | 21.25 MiB/sFiltering content:  34% (78/229), 217.75 MiB | 21.25 MiB/sFiltering content:  35% (81/229), 217.88 MiB | 23.50 MiB/sFiltering content:  36% (83/229), 217.88 MiB | 23.50 MiB/sFiltering content:  37% (85/229), 217.88 MiB | 23.50 MiB/sFiltering content:  38% (88/229), 217.88 MiB | 23.50 MiB/sFiltering content:  39% (90/229), 217.88 MiB | 23.50 MiB/sFiltering content:  40% (92/229), 217.88 MiB | 23.50 MiB/sFiltering content:  41% (94/229), 217.88 MiB | 23.50 MiB/sFiltering content:  42% (97/229), 217.88 MiB | 23.50 MiB/sFiltering content:  43% (99/229), 217.88 MiB | 23.50 MiB/sFiltering content:  44% (101/229), 217.89 MiB | 16.98 MiB/sFiltering content:  45% (104/229), 217.89 MiB | 16.98 MiB/sFiltering content:  46% (106/229), 217.89 MiB | 16.98 MiB/sFiltering content:  47% (108/229), 217.89 MiB | 16.98 MiB/sFiltering content:  47% (109/229), 219.56 MiB | 11.16 MiB/sFiltering content:  48% (110/229), 219.56 MiB | 11.16 MiB/sFiltering content:  49% (113/229), 228.71 MiB | 11.85 MiB/sFiltering content:  50% (115/229), 228.71 MiB | 11.85 MiB/sFiltering content:  50% (116/229), 228.71 MiB | 11.85 MiB/sFiltering content:  51% (117/229), 228.71 MiB | 11.85 MiB/sFiltering content:  52% (120/229), 240.02 MiB | 6.76 MiB/s Filtering content:  53% (122/229), 240.02 MiB | 6.76 MiB/sFiltering content:  54% (124/229), 240.02 MiB | 6.76 MiB/sFiltering content:  54% (125/229), 240.02 MiB | 6.76 MiB/sFiltering content:  55% (126/229), 240.02 MiB | 6.76 MiB/sFiltering content:  56% (129/229), 249.14 MiB | 6.33 MiB/sFiltering content:  57% (131/229), 249.14 MiB | 6.33 MiB/sFiltering content:  58% (133/229), 249.14 MiB | 6.33 MiB/sFiltering content:  59% (136/229), 252.91 MiB | 5.72 MiB/sFiltering content:  60% (138/229), 252.91 MiB | 5.72 MiB/sFiltering content:  61% (140/229), 252.91 MiB | 5.72 MiB/sFiltering content:  62% (142/229), 252.91 MiB | 5.72 MiB/sFiltering content:  63% (145/229), 252.91 MiB | 5.72 MiB/sFiltering content:  64% (147/229), 252.91 MiB | 5.72 MiB/sFiltering content:  65% (149/229), 255.05 MiB | 5.58 MiB/sFiltering content:  66% (152/229), 255.05 MiB | 5.58 MiB/sFiltering content:  67% (154/229), 255.05 MiB | 5.58 MiB/sFiltering content:  68% (156/229), 255.05 MiB | 5.58 MiB/sFiltering content:  69% (159/229), 255.05 MiB | 5.58 MiB/sFiltering content:  70% (161/229), 255.05 MiB | 5.58 MiB/sFiltering content:  71% (163/229), 266.91 MiB | 7.21 MiB/sFiltering content:  72% (165/229), 266.91 MiB | 7.21 MiB/sFiltering content:  73% (168/229), 266.91 MiB | 7.21 MiB/sFiltering content:  73% (169/229), 266.91 MiB | 7.21 MiB/sFiltering content:  74% (170/229), 266.91 MiB | 7.21 MiB/sFiltering content:  75% (172/229), 266.91 MiB | 7.21 MiB/sFiltering content:  76% (175/229), 266.91 MiB | 7.21 MiB/sFiltering content:  77% (177/229), 267.41 MiB | 7.34 MiB/sFiltering content:  78% (179/229), 267.41 MiB | 7.34 MiB/sFiltering content:  79% (181/229), 267.41 MiB | 7.34 MiB/sFiltering content:  80% (184/229), 267.41 MiB | 7.34 MiB/sFiltering content:  81% (186/229), 267.41 MiB | 7.34 MiB/sFiltering content:  82% (188/229), 267.62 MiB | 7.44 MiB/sFiltering content:  83% (191/229), 267.62 MiB | 7.44 MiB/sFiltering content:  84% (193/229), 267.62 MiB | 7.44 MiB/sFiltering content:  85% (195/229), 267.62 MiB | 7.44 MiB/sFiltering content:  86% (197/229), 267.62 MiB | 7.44 MiB/sFiltering content:  87% (200/229), 267.62 MiB | 7.44 MiB/sFiltering content:  88% (202/229), 267.62 MiB | 7.44 MiB/sFiltering content:  89% (204/229), 267.79 MiB | 8.93 MiB/sFiltering content:  90% (207/229), 267.79 MiB | 8.93 MiB/sFiltering content:  91% (209/229), 267.79 MiB | 8.93 MiB/sFiltering content:  92% (211/229), 268.92 MiB | 6.30 MiB/sFiltering content:  93% (213/229), 268.92 MiB | 6.30 MiB/sFiltering content:  94% (216/229), 275.43 MiB | 5.75 MiB/sFiltering content:  94% (217/229), 275.43 MiB | 5.75 MiB/sFiltering content:  95% (218/229), 275.43 MiB | 5.75 MiB/sFiltering content:  96% (220/229), 279.07 MiB | 4.84 MiB/sFiltering content:  97% (223/229), 279.07 MiB | 4.84 MiB/sFiltering content:  98% (225/229), 279.07 MiB | 4.84 MiB/sFiltering content:  99% (227/229), 279.07 MiB | 4.84 MiB/sFiltering content:  99% (227/229), 324.61 MiB | 3.50 MiB/sFiltering content:  99% (228/229), 324.61 MiB | 3.50 MiB/sFiltering content: 100% (229/229), 420.21 MiB | 3.34 MiB/sFiltering content: 100% (229/229), 961.15 MiB | 2.79 MiB/sFiltering content: 100% (229/229), 961.15 MiB | 3.56 MiB/s, done.
+HEAD is now at 8c778f9 Honor authored scale for Cube support geometry (#185)
+[2026-11-01T05:30:53Z] ev10_nj solver_check (pristine evaluator tree, 1 world): ck1024: stored {'sim': [1024, 512], 'env_sim': [1024, 512]} -> evaluator RLEnvConfig.sim [1024, 512] ck512: stored {'sim': [512, 256], 'env_sim': [512, 256]} -> evaluator RLEnvConfig.sim [512, 256] e10v_s43: stored {'sim': [512, 256], 'env_sim': [512, 256]} -> evaluator RLEnvConfig.sim [512, 256] 
+[2026-11-01T05:31:22Z] ev10_nj solver_build (pristine evaluator tree, 1 world): /content/v2d_clean/robotic_grounding/flash_chord/src/flash_chord/embodiments/binding.py:371: UserWarning: Inertia validation corrected 6 bodies. Set validate_inertia_detailed=True for detailed per-body warnings.   model = builder.finalize(device=device, skip_all_validations=True) /content/v2d_clean/robotic_grounding/flash_chord/src/flash_chord/scene/builder.py:508: UserWarning: Inertia validation corrected 6 bodies. Set validate_inertia_detailed=True for detailed per-body warnings.   model = builder.finalize() ck1024: stored {'sim': [1024, 512], 'env_sim': [1024, 512]} -> evaluator RLEnvConfig.sim [1024, 512]; solver {'njmax': 1024, 'naconmax': 512, 'njmax_nnz': 22584, 'nworld': 1, 'nv': 74, 'ngeom': 156, 'nbody': 56, 'data_bytes_one_world': 364308, 'device': 'cuda:0', 'seconds': 15.7} /content/v2d_clean/robotic_grounding/flash_chord/src/flash_chord/embodiments/binding.py:371: UserWarning: Inertia validation corrected 6 bodies. Set validate_inertia_detailed=True for detailed per-body warnings.   model = builder.finalize(device=device, skip_all_validations=True) /content/v2d_clean/robotic_grounding/flash_chord/src/flash_chord/scene/builder.py:508: UserWarning: Inertia validation corrected 6 bodies. Set validate_inertia_detailed=True for detailed per-body warnings.   model = builder.finalize() ck512: stored {'sim': [512, 256], 'env_sim': [512, 256]} -> evaluator RLEnvConfig.sim [512, 256]; solver {'njmax': 512, 'naconmax': 256, 'njmax_nnz': 11320, 'nworld': 1, 'nv': 74, 'ngeom'
+[2026-11-01T05:31:23Z] ev10_nj pack guard: GUARD OK: 6/6 refused :: policy.safetensors as is: REFUSED; policy.safetensors neutral byte copy: REFUSED; policy.safetensors kit checkpoints JSON naming the neutral copy: REFUSED; policy.safetensors as is: REFUSED; policy.safetensors neutral byte copy: REFUSED; policy.safetensors kit checkpoints JSON naming the neutral copy: REFUSED
+[2026-11-01T05:31:28Z] ev10_nj: conf1024: official draws of /content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors (sha256 3c75ca1debb5) on the clean evaluator 8c778f9, modified files 0
+[2026-11-01T05:32:03Z] ev10_nj: conf1024 draw 1 rc 0 sim_vs_ref 0.9146 overflow lines 0
+[2026-11-01T05:32:36Z] ev10_nj: conf1024 draw 2 rc 0 sim_vs_ref 0.9152 overflow lines 0
+[2026-11-01T05:33:08Z] ev10_nj: conf1024 draw 3 rc 0 sim_vs_ref 0.9301 overflow lines 0
+[2026-11-01T05:33:41Z] ev10_nj: conf1024 draw 4 rc 0 sim_vs_ref 0.8983 overflow lines 0
+[2026-11-01T05:34:14Z] ev10_nj: conf1024 draw 5 rc 0 sim_vs_ref 0.9293 overflow lines 0
+[2026-11-01T05:34:47Z] ev10_nj: conf1024 draw 6 rc 0 sim_vs_ref 0.9156 overflow lines 0
+[2026-11-01T05:35:20Z] ev10_nj: conf1024 draw 7 rc 0 sim_vs_ref 0.9332 overflow lines 0
+[2026-11-01T05:35:52Z] ev10_nj: conf1024 draw 8 rc 0 sim_vs_ref 0.8694 overflow lines 0
+[2026-11-01T05:36:26Z] ev10_nj: conf1024 draw 9 rc 0 sim_vs_ref 0.901 overflow lines 0
+[2026-11-01T05:36:59Z] ev10_nj: conf1024 draw 10 rc 0 sim_vs_ref 0.9226 overflow lines 0
+[2026-11-01T05:36:59Z] ev10_nj: conf512: official draws of /content/results/ev10_nj/ck512/policy.safetensors (sha256 aaa077ebae86) on the clean evaluator 8c778f9, modified files 0
+[2026-11-01T05:37:32Z] ev10_nj: conf512 draw 1 rc 0 sim_vs_ref 0.9175 overflow lines 0
+[2026-11-01T05:38:05Z] ev10_nj: conf512 draw 2 rc 0 sim_vs_ref 0.862 overflow lines 0
+[2026-11-01T05:38:37Z] ev10_nj: conf512 draw 3 rc 0 sim_vs_ref 0.9132 overflow lines 0
+[2026-11-01T05:39:10Z] ev10_nj: conf512 draw 4 rc 0 sim_vs_ref 0.8859 overflow lines 0
+[2026-11-01T05:39:42Z] ev10_nj: conf512 draw 5 rc 0 sim_vs_ref 0.9392 overflow lines 0
+[2026-11-01T05:40:15Z] ev10_nj: conf512 draw 6 rc 0 sim_vs_ref 0.8647 overflow lines 0
+[2026-11-01T05:40:48Z] ev10_nj: conf512 draw 7 rc 0 sim_vs_ref 0.8626 overflow lines 0
+[2026-11-01T05:41:21Z] ev10_nj: conf512 draw 8 rc 0 sim_vs_ref 0.9334 overflow lines 0
+[2026-11-01T05:41:53Z] ev10_nj: conf512 draw 9 rc 0 sim_vs_ref 0.9295 overflow lines 0
+[2026-11-01T05:42:26Z] ev10_nj: conf512 draw 10 rc 0 sim_vs_ref 0.9264 overflow lines 0
+[2026-11-01T05:45:14Z] ev10_nj scores: conf1024 (own V): 10 rollouts, 10 scored; r1 V s_v_r 0.9146 RPE 1.87 P s_v_r 0.8793 RPE 2.35; r2 V s_v_r 0.9152 RPE 1.79 P s_v_r 0.8853 RPE 2.22; r3 V s_v_r 0.9301 RPE 1.74 P s_v_r 0.8934 RPE 2.24; r4 V s_v_r 0.8983 RPE 2.20 P s_v_r 0.8700 RPE 2.69; r5 V s_v_r 0.9293 RPE 1.65 P s_v_r 0.8876 RPE 2.15; r6 V s_v_r 0.9156 RPE 1.72 P s_v_r 0.8907 RPE 2.19; r7 V s_v_r 0.9332 RPE 1.56 P s_v_r 0.8905 RPE 1.97; r8 V s_v_r 0.8694 RPE 2.46 P s_v_r 0.8507 RPE 2.93; r9 V s_v_r 0.9010 RPE 2.17 P s_v_r 0.8734 RPE 2.63; r10 V s_v_r 0.9226 RPE 1.60 P s_v_r 0.8841 RPE 2.11 conf512 (own V): 10 rollouts, 10 scored; r1 V s_v_r 0.9175 RPE 1.89 P s_v_r 0.8816 RPE 2.37; r2 V s_v_r 0.8620 RPE 2.74 P s_v_r 0.8307 RPE 3.24; r3 V s_v_r 0.9132 RPE 2.15 P s_v_r 0.8899 RPE 2.56; r4 V s_v_r 0.8859 RPE 2.39 P s_v_r 0.8538 RPE 2.93; r5 V s_v_r 0.9392 RPE 1.72 P s_v_r 0.9092 RPE 2.14; r6 V s_v_r 0.8647 RPE 2.60 P s_v_r 0.8457 RPE 3.08; r7 V s_v_r 0.8626 RPE 2.63 P s_v_r 0.8383 RPE 3.08; r8 V s_v_r 0.9334 RPE 1.70 P s_v_r 0.9022 RPE 2.14; r9 V s_v_r 0.9295 RPE 1.90 P s_v_r 0.8950 RPE 2.36; r10 V s_v_r 0.9264 RPE 1.65 P s_v_r 0.8841 RPE 2.08 train1024 (own V): 10 rollouts, 10 scored; r1 V s_v_r 0.7877 RPE 3.89 P s_v_r 0.7702 RPE 4.31; r2 V s_v_r 0.8405 RPE 2.92 P s_v_r 0.8224 RPE 3.37; r3 V s_v_r 0.9435 RPE 1.59 P s_v_r 0.9024 RPE 2.09; r4 V s_v_r 0.9268 RPE 1.53 P s_v_r 0.8899 RPE 1.95; r5 V s_v_r 0.9288 RPE 1.57 P s_v_r 0.8853 RPE 2.09; r6 V s_v_r 0.8841 RPE 2.67 P s_v_r 0.8595 RPE 3.09; r7 V s_v_r 0.8509 RPE 2.58 P s_v_r 0.8269 RPE 3.03; r8 V s_v_r 0.9241 RPE 1.96 P s_v_r 0.8948 RPE 2.45; r9 V s_v_r 0.9105 RPE 2.00 P s_v_r 0.8789 RPE 2.50; r10 V s_v_r 0.8356 RPE 2.96 P s_v_r 0.8082 RPE 3.39 e10vconf (own V): 10 rollouts, 10 scored; r1 V s_v_r 0.4565 RPE 15.91 P s_v_r 0.4486 RPE 15.72; r2 V s_v_r 0.4715 RPE 15.78 P s_v_r 0.4567 RPE 15.58; r3 V s_v_r 0.4682 RPE 15.81 P s_v_r 0.4524 RPE 15.62; r4 V s_v_r 0.4713 RPE 15.70 P s_v_r 0.4629 RPE 15.51; r5 V s_v_r 0.4569 RPE 15.93 P s_v_r 0.4427 RPE 15.74; r6 V s_v_r 0.4402 RPE 16.11 P s_v_r 0.4245 RPE 15.93; r7 V s_v_r 0.4567 RPE 15.88 P s_v_r 0.4509 RPE 15.68; r8 V s_v_r 0.4569 RPE 15.85 P s_v_r 0.4509 RPE 15.66; r9 V s_v_r 0.4589 RPE 15.85 P s_v_r 0.4501 RPE 15.66; r10 V s_v_r 0.4554 RPE 15.95 P s_v_r 0.4458 RPE 15.76 
+[2026-11-01T05:45:14Z] ev10_nj RESULT: SUPPORTED :: O 0 (bar 1000; nefc 0, broadphase 0, narrowphase 0; requested median None max None) | L beige_cup r1 max 23.9 cm (bar 5.0; any repeat 36.1; e10v control {'e10v_s42': 2.5, 'e10v_s43': 0.3}) | A n 10 mean sim_vs_ref vs V 0.9129 (bar > 0.4593) || 512 readout VALID: n 10 mean vs V 0.9034 (delta vs 1024 -0.0095) || vs P: 1024 0.8805, 512 0.873 || e10v control re-scored: 0.4593 vs V || guard 6/6 refused || DIAGNOSTIC ONLY, NEVER PACKED

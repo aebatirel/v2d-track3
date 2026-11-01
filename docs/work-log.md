@@ -5772,3 +5772,18 @@ Advice given:
 - 05:25 UTC njmax diagnostic interim [M, exec; not a reading]: training 04:34 → 05:17 (43 min for 70M steps at 1024; not
   slower than e10v); train.log "nefc overflow" lines **0**; curve sim_vs_ref 10M 0.553, 20M 0.493, 30M 0.631, 40M 0.490 …
   (e10v ~0.44–0.46). The PREREG label waits for lift.json (beige), the 10 official draws at 1024 and the 512 copy.
+- 05:45 UTC **eval-10 njmax-1024 diagnostic: SUPPORTED** (PREREG eval10-njmax-20261101, 086de63; run
+  20261101-e10nj-451b82d, commit 451b82d, instance 58615195 India $1.389/h; run_job.log RTX PRO 6000 Max-Q driver
+  595.91.07, env restored, job rc 0 after 87 min; ledger actual $2.06). RESULT line [M]:
+    O = 0 overflow lines in the 1024 training (nefc 0, broadphase 0, narrowphase 0; bar 1,000; e10v had ~6 M per seed);
+    L = beige r1 lift max 23.9 cm (bar 5.0; any repeat 36.1; e10v control 2.5 / 0.3);
+    A = official sim_vs_ref vs V at 1024, n 10, mean 0.9129 (draws 0.869–0.933; bar > 0.4593); vs P 0.8805;
+    512 readout VALID: the same checkpoint at stock 512 / 256, n 10, mean 0.9034 vs V (Δ −0.0095), 0.873 vs P;
+    e10v control re-scored 0.4593 vs V (consistent); guard 6/6 refused; training-box eval 0.8832 ± 0.0493; 0 overflow
+    lines in every official draw. Results copied to docs/research/work/eval10-njmax-20261101/results/.
+  Reading: dropped constraint rows during training were the cause of eval 10's cup-never-lifted floor (both the packed
+  policy and e10v). Eval 10 goes from ~0.46 to ~0.91 on the GT-free proxy (≈ +0.45 on one of 20 episodes; [E] up to
+  ~+0.02 AUC if the board follows, unverified). DIAGNOSTIC ONLY, NEVER PACKED — per the owner's condition.
+  Open question for the owner (not acted on): the 512 copy is evaluated with stock physics (only the training used
+  1024); whether a policy TRAINED at njmax 1024 and evaluated at stock limits is acceptable is a rules question for the
+  organisers. The legal route tonight is the ev10cs5 retrain at stock limits (build in progress).
