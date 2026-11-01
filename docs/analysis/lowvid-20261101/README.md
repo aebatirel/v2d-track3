@@ -24,3 +24,34 @@ Videos are not in git (CLAUDE.md). They were sent to the owner and sit in the se
   - The cup sags 9–12 cm below the reference in good and bad draws alike; bad draws never recover.
   - In 3 draws the cup is thrown 63–162 cm, and in 2 the rack is thrown too.
 - **Robot-hand GPU videos for 14 (×3 replays) / 25 / 30** are pending: run 20261101-vid3-b96ae95 (focused-pascal).
+
+## Sim-vs-reference offsets in the packed rollouts (GT-free) [M], 1 Nov ~19:20 UTC
+- Columns:
+  - mean |d| = mean distance between the simulated object and our reference;
+  - const % = share of the squared error that one constant shift would remove;
+  - dz = mean vertical offset (sim minus reference);
+  - rot = mean orientation error (cups spin freely in scoring).
+
+| Eval | Object | mean \|d\| cm | const % | dz cm | rot ° |
+|---|---|---|---|---|---|
+| 14 | blue_cup | 2.00 | 13 | +0.43 | 15.1 |
+| 14 | rack | 0.64 | 40 | −0.43 | 2.3 |
+| 16 | rack | 0.86 | 48 | −0.23 | 3.4 |
+| 16 | wooden_spoon | 1.32 | 28 | −0.39 | 21.5 |
+| 20 | blue_cup | 0.90 | 17 | −0.18 | 6.0 |
+| 20 | water_pitcher | 1.16 | 5 | +0.08 | 5.1 |
+| 25 | wooden_piece_1 | 1.48 | 15 | −0.53 | 8.4 |
+| 25 | wooden_piece_2 | 1.53 | 13 | −0.59 | 7.9 |
+| 30 | mini_sweeper | 1.82 | 24 | +0.94 | 11.1 |
+| 30 | rack | 0.87 | 45 | −0.57 | 1.1 |
+| 32 | blue_cup | 2.71 | 11 | −0.26 | 16.4 |
+| 32 | wooden_spoon | 1.09 | 1 | +0.04 | 6.6 |
+
+- **Reading:**
+  - For moving objects only 1–28 % of the sim-vs-reference error is a constant shift, so it is tracking error that
+    varies with motion and contact.
+  - The static racks are the exception (40–48 % constant): they sit 0.2–0.6 cm lower in the simulation than in our
+    reference.
+  - The score is computed against mocap, not against our reference. On the 20 public episodes, by ground-truth
+    substitution (diagnostic, 31 Oct), a constant per-object offset in our reference is worth AUC +0.050 and the frame-0
+    scene tilt +0.040 (overlapping).
