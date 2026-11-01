@@ -6263,3 +6263,17 @@ arm and a no-policy replay floor to stage B.
     - byte diff only e000010; README disclosure; ≥ $10 reserve.
   - Pack 10 stays the fallback for the final per-board selection. The organisers question is still worth sending; it
     matters only for the final pick.
+- 11:27 UTC 1 Nov focused-pascal: **pack-11 verdict INCLUDE, but pack 11 NOT built.**
+  - Verdict: amendment 998385b0 committed before scoring (standing rule on already-seen draws); tools/p11_verdict.py
+    b8bc0aa7.
+    - vs pack 10's eval-10 policy: +0.371 (V), +0.361 (P); fail rate 0 / 10 vs 10 / 10; draw 1 vs V 0.918, RPE 1.9 cm.
+  - Stock evaluation proven [M]:
+    - ck512 (aaa077eb…) stores 512 / 256 in sim and env.sim; its weights are byte-identical to the 1024 checkpoint.
+    - SolverMuJoCo built at 512 / 256 for that file on the pristine tree.
+    - 10 / 10 draws rc 0 with 0 overflow lines.
+    - checkpoint_sha256 covers the whole safetensors file.
+  - Blocked: that session's permission check denied the sha-specific allowlist entry in tools/no_oracle.py as a
+    security-control change on a relayed go. It will not use skip flags or ask another session.
+  - Unblock: the owner's own approval in focused-pascal's session. Then a CPU-only build, $0, ~10 min.
+  - This session does not make that change either (it would route around their guard). Owner asked to post in that
+    session.
