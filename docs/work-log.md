@@ -6363,3 +6363,10 @@ arm and a no-policy replay floor to stage B.
   - RUNS narrowed to these episodes. sub_videos.sh now handles PICK `ck=` (b96ae95), and REPLAYS is opt-in.
   - Eval 10's ck512 skipped: it is in no PACK_RUN, so the job's sha check refuses it.
   - Output: store runs/20261101-vid3-b96ae95/results/sub_videos/{ep14_r1,ep14_r2,ep14_r3,ep25,ep30}.mp4.
+- ~19:10 UTC 1 Nov owner: "render the videos with the used mesh" (asked why the eval-25 boards look interlocked).
+  - Answer: the submitted visual board meshes have no slots; the simulator's collision pieces (meshes/carve/ev25) have
+    a carved slot.
+  - Re-rendered evals 14 / 25 / 30 with the simulator's collision geometry: eval-25 carved pieces; CoACD 1.0.11
+    (FlashCHORD defaults) re-created for 14 / 30, with hull counts matching the mesh lane's report.
+  - Added a visual-vs-collision still of each board, showing the slot as a notch.
+  - Tools and the still: docs/analysis/lowvid-20261101/. Videos sent, not in git.
