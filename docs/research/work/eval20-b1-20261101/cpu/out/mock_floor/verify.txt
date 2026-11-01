@@ -1,0 +1,1 @@
+VERIFIED :: set ev20b1 :: chosen 42 :: confirmation draws 0 (rc {}) :: own-reference checks 31/31

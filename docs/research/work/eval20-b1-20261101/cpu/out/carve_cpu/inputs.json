@@ -1,0 +1,82 @@
+{
+ "reference": "content/refs/glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "md5": "4d06d8d42d57d84b1d25a166e8a90adc",
+ "traj_fingerprint": "c1e09fcc24b9ace1c5aee25fa5027c6e",
+ "hive": "processed/sequence_id=t3_ep020/robot_name=sharpa_wave",
+ "pinned": {
+  "md5": "4d06d8d42d57d84b1d25a166e8a90adc",
+  "fp": "c1e09fcc24b9ace1c5aee25fa5027c6e",
+  "stage": "1388703af76a393ff75a4d34fc614f7d",
+  "packed_sha": "61dcd7a6339677ac8cf612a11a3b9bf8cd7939a358a438c111d34e213faea7ff"
+ },
+ "table": {
+  "md5": "4d06d8d42d57d84b1d25a166e8a90adc",
+  "fp": "c1e09fcc24b9ace1c5aee25fa5027c6e",
+  "packed_sha256": "61dcd7a6339677ac8cf612a11a3b9bf8cd7939a358a438c111d34e213faea7ff",
+  "source_run": "20261025-evb1420-ee7ba8e"
+ },
+ "stage": {
+  "glockt": {
+   "t3_ep020_support.usda": "1388703af76a393ff75a4d34fc614f7d"
+  },
+  "base": {
+   "t3_ep020_support.usda": "1388703af76a393ff75a4d34fc614f7d"
+  }
+ },
+ "rest_check_packed": {
+  "all_ok": false,
+  "mm": 5.0,
+  "deg": 2.0,
+  "objects": {
+   "blue_cup": {
+    "until_frame": 1,
+    "max_mm": 0.0,
+    "max_deg": 0.0,
+    "worst_frame": 0,
+    "ok": true
+   },
+   "water_pitcher": {
+    "until_frame": 14,
+    "max_mm": 10.4,
+    "max_deg": 3.9,
+    "worst_frame": 8,
+    "ok": false
+   }
+  }
+ },
+ "assets": {
+  "blue_cup": {
+   "urdf": "content/refs/sf/ep20/assets/urdf/blue_cup_rigid.urdf",
+   "under_root": true,
+   "md5": "31cd001d2618ee2972dc922b77109b9f",
+   "collisions": 1,
+   "mass": 0.3,
+   "glb_md5": "d2be7e3decad003dab41fe0009541912"
+  },
+  "water_pitcher": {
+   "urdf": "content/refs/sf/ep20/assets/urdf/water_pitcher_rigid.urdf",
+   "under_root": true,
+   "md5": "6772f95462e0554cfac39de97bdf2253",
+   "collisions": 9,
+   "mass": 0.3,
+   "glb_md5": "adb315f3250d90072c385b8dfd8bf49c"
+  }
+ },
+ "packed_ck_sha256": "61dcd7a6339677ac8cf612a11a3b9bf8cd7939a358a438c111d34e213faea7ff",
+ "packed_asset_tree": {
+  "mesh/blue_cup/blue_cup.glb": "d2be7e3decad003dab41fe0009541912",
+  "mesh/water_pitcher/water_pitcher.glb": "adb315f3250d90072c385b8dfd8bf49c",
+  "urdf/blue_cup_rigid.urdf": "31cd001d2618ee2972dc922b77109b9f",
+  "urdf/foot/water_pitcher_foot0_0.stl": "2374c37b7b6f4154c9f605d89a97cf9f",
+  "urdf/foot/water_pitcher_foot0_1.stl": "95423dfc89ee1f6dd994e79bd9e43a9a",
+  "urdf/foot/water_pitcher_foot0_2.stl": "49ef365d75ade1e94f98803c7da1819d",
+  "urdf/foot/water_pitcher_foot0_3.stl": "0daece1e625e21c68bc318985eb523a5",
+  "urdf/foot/water_pitcher_foot0_4.stl": "6186963379ec2ba1edffdd117eecb81f",
+  "urdf/foot/water_pitcher_foot0_5.stl": "02a2498642d8e375071311590a411d50",
+  "urdf/foot/water_pitcher_foot0_6.stl": "ae22f9a6f6309e0d1e516b33ab99f0a0",
+  "urdf/foot/water_pitcher_foot0_7.stl": "069e0fb708299f26538ed497bc1238b4",
+  "urdf/water_pitcher_rigid.urdf": "6772f95462e0554cfac39de97bdf2253"
+ },
+ "ok": true,
+ "failures": []
+}
