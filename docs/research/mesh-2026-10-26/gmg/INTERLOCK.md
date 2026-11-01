@@ -11,7 +11,7 @@ insertions, simulator copy only (PREREG F-I4, section 20; written and pushed bef
 ~18:05 UTC, orchestrator decision): the plate body follows the observed outline (polygon prisms) and t comes from all
 points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Round-2 result (31 Oct ~20:15 UTC): both ep24 boards slotted, P2-P7 pass, r0 delivered with P1 pending; not frozen for eval 25 (ep23 board 1 over the prism cap), section 20.11.** **Round-2 report (31 Oct ~21:15 UTC): two verifiers, no blocking item; board 2's slot about 3.5 mm off the observed slot; P1 handed to the Embodiment session; eval 25 not run; open decisions, section 20.12.** **Round 3 (31 Oct ~21:20 UTC, orchestrator decision, post hoc): a simplification ladder for the prism cap, a new synthetic freeze family w10, and slot-centre and coverage reports (PREREG F-I4.16, section 20.13; written and pushed before any run with it).** **Round 3 amended (31 Oct ~22:25 UTC, orchestrator decision 2, post hoc, after determined-wright's P1 and contact-budget results on the round-2 ep24 folder): a contact-budget gate for every delivery, a body of at most three rectangles cut into boxes, and a new freeze (PREREG F-I4.17, section 20.14; written and pushed before any run with it).** **Round-3 result and report (1 Nov ~00:50 UTC): the box body slots both ep24 boards and passes P2-P7, but the contact gate's ratio clause fails (124 vs 32 rows, limit 2 x; no overflow), so F-I4.17 is not frozen; eval 25 not run, nothing delivered; two verifiers, no blocking item; section 20.15.** **Extended 31 Oct
 ~17:34 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
-F-I5, section 21; written and pushed before any code or run with it). **Collision-carve result and report (31 Oct ~20:57 and ~21:30 UTC): nothing carved or delivered on the five public episodes; eval twins not run (orchestrator); two verifiers: the ring pieces fail the gate on their own and our tracked poses fail the hands-off test even with faithful colliders, sections 21.11-21.12.** **Collision-carve round 2 (31 Oct ~21:50 UTC, orchestrator decision, post hoc): cavity-safe rings, CoACD below the cap, a pose precheck, a faithful reference and a physical delivery floor, then the five 21.10 decisions (PREREG F-I5.15, section 21.13; written and pushed before any code or run with it).** **Round 2 amended (31 Oct ~22:30-22:40 UTC, orchestrator decision 2, post hoc): a contact-budget gate under the training sim config for every delivery (no overflow, at most 1.5 x the packed default's rows, at most 380 rows in the full scene), the smallest cavity-safe ring layout instead of the cap rule, and the packed pieces' contact numbers in the eval precheck (PREREG F-I5.16, section 21.14; written and pushed before any code or run with it).** This file adds a stage to the frozen gmg design
+F-I5, section 21; written and pushed before any code or run with it). **Collision-carve result and report (31 Oct ~20:57 and ~21:30 UTC): nothing carved or delivered on the five public episodes; eval twins not run (orchestrator); two verifiers: the ring pieces fail the gate on their own and our tracked poses fail the hands-off test even with faithful colliders, sections 21.11-21.12.** **Collision-carve round 2 (31 Oct ~21:50 UTC, orchestrator decision, post hoc): cavity-safe rings, CoACD below the cap, a pose precheck, a faithful reference and a physical delivery floor, then the five 21.10 decisions (PREREG F-I5.15, section 21.13; written and pushed before any code or run with it).** **Round 2 amended (31 Oct ~22:30-22:40 UTC, orchestrator decision 2, post hoc): a contact-budget gate under the training sim config for every delivery (no overflow, at most 1.5 x the packed default's rows, at most 380 rows in the full scene), the smallest cavity-safe ring layout instead of the cap rule, and the packed pieces' contact numbers in the eval precheck (PREREG F-I5.16, section 21.14; written and pushed before any code or run with it).** **Round-2 result and report (1 Nov ~03:20 UTC): nothing carved or delivered, public or eval; on our SHELLs no ring that stays out of the cavity keeps a 1.5 mm wall; every public hands-off test frame is an impossible pose; on the eval references no packed collider blocks a feasible pose; the plain-MuJoCo contact gate fails its validity check c1; two verifiers; section 21.15, PREREG F-I5.19.** This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
 section 8 and in PREREG F-I1.0. The selection-rule changes are pre-registered as PREREG section F entry **F-I1**
 (dated 2026-10-31, revised the same day). If this file and PREREG F-I1 disagree, PREREG wins. Writing v1 and v2 used
@@ -134,6 +134,13 @@ slotted boards overflowed it and fell through the table. So every copy we delive
 overflow, at most 1.5 times the rows of the pack's own default shapes, at most 380 rows in the full scene with both
 hands), and each cup or pot gets the fewest ring pieces that still keep its wall (12 slices on the cups and 16 on the
 pot are expected, not 8). The eval check will also report the contact numbers of the pieces the pack ships today.
+**Round-2 result (1 Nov ~03:20 UTC, section 21.15).** Nothing was carved or delivered, public or eval. The new ring
+pieces stay out of the cup's opening on clean shapes, but our measured cup and pot walls are about 1 mm rough on each
+face, so no such ring keeps 1.5 mm of wall on them, and every object fell back to coarse boxes (all public folders
+do-not-use). At every hands-off test frame on public data our tracked poses are impossible (overlap, or in the table),
+so the poses have to be fixed at rest before a carve can be judged. On the eval references, where the pose is
+possible, the pack's collision pieces never block; where they overlap at rest, the visual meshes overlap too. Our
+plain-MuJoCo contact counter flags pieces the evaluator's engine handles, so our contact numbers are indicative only.
 
 **Cost.** CPU only, no rental. The 16-copy physics checks take about 0.6-2.5 CPU-hours per carved pair on our 4 shared
 cores [E]. mujoco and coacd are installed in the gmg venv; FlashCHORD's settle is run by the Embodiment session with
@@ -2602,6 +2609,7 @@ Masses remain the 0.3 kg placeholder (D-I1), and S runs plain MuJoCo 3.17.0, not
 the Embodiment session).
 
 ### 21.13 Round 2: pieces that cannot enter a cavity, a pose check before the physics test, a delivery floor (PREREG F-I5.15; written 31 Oct before any code or run with it)
+[Pointer added 1 Nov ~03:20 UTC: the results of this round, as amended in 21.14, are in section 21.15 and PREREG F-I5.19; the text below is unchanged.]
 **In plain words.** Round 1 delivered nothing, for three measured reasons: our ring pieces for cups and pots cut about
 3 mm into the cup's opening (only 8 slices fitted under the piece cap, and each slice's inner face was a flat chord
 across the round cavity); at the frames where we test "hands off, does the guest stay put", our tracked poses are
@@ -3094,3 +3102,160 @@ flag-off path are unchanged (checked). On synthetic objects:
   rule change for the orchestrator, not done here.
 - Every result folder this builds also gets a "contact gate pending" marker, because the full-scene budget check
   (determined-wright's tool) cannot run on this machine.
+
+### 21.15 Round 2 result and report (the results of 21.13 and 21.14): nothing carved or delivered, public or eval; the ring rule cannot keep the wall on our shapes; every public hands-off frame is an impossible pose; the plain-MuJoCo contact gate fails its validity check (1 Nov ~03:20 UTC; PREREG F-I5.19)
+**In plain words.** Round 2 produced no carved simulator piece for any episode, public or eval, and nothing was
+delivered. The submitted meshes and the pack are unchanged. Cost $0 (no rental). What we learned:
+- **The new ring pieces work on clean shapes but not on ours.** On synthetic cups and pots no piece reaches into the
+  opening (0.0 mm). On our five public episodes every cup and pot fails the 1.5 mm wall check: our measured walls are
+  about 1 mm rough on each face, and a ring that never enters the opening must clear the roughest point of both faces
+  in each slice. A verifier showed this on both blue cups at every slice count up to 32. The racks, the lid and the
+  sweeper failed for another reason (their CoACD pieces still fill openings). So every object fell back to 6 mm boxes
+  keeping 2-9 % of its shape, and all five public folders are marked do-not-use (as are the five round-1 ones).
+- **Our tracked poses are impossible at every hands-off test frame on public data.** The two ep11 cups overlap by
+  half a cup, the ep2 lid overlaps the pot by 21-27 cm3, the ep12 / ep13 cup overlaps the rack (and the ep13 cup sits
+  5.7 mm inside the table), and the ep31 sweeper is never within 4 mm of the rack at rest. Even
+  2 mm copies of our own shapes fail the hands-off test there. The poses are clean while the cup is being lowered in
+  hand and go wrong at rest, so the pose lanes should look at the rest phase.
+- **On the eval episodes no carve is needed now.** On the pack's own references, at hands-off frames where the pose
+  is possible, the pack's collision pieces never block (at most 0.73 cm3 of overlap). Where they do overlap at rest
+  (evals 10, 1, 14, 30), the visual meshes overlap too, so the reference pose is the problem, not the pieces.
+- **Our contact counter is not the evaluator's.** Checked against the one case the physics lane measured in the
+  evaluator's engine, our plain-MuJoCo count flags pieces that the evaluator handles. Our contact numbers are
+  therefore indicative only; eval 10's contact overflow stands on the other lanes' measurements in the evaluator's
+  simulator.
+- **Next decisions** (none taken here): a ring rule that tolerates rough walls, a fix of one measurement defect in
+  the piece repair, the engine for the contact check, and pose fixes at rest before any carve is tried again.
+
+**Accuracy, failures and cost** [M unless marked]:
+
+| item | result |
+|---|---|
+| design (F-I5.15, F-I5.16) | pushed f00e657 (22:02:26) and 217aa1f (22:46:41), before the first round-2 code (~23:08, first pushed 23:13:10); the text at HEAD equals the pushed text |
+| build and T-I14 (F-I5.17, F-I5.18; ced42fd -> ba3387d -> 88f49df) | rings 0.0 mm into the cavity at 8 / 12 / 16 sectors on the synthetic cup, pot and analytic cup (<= 0.015 mm between rays); the continuity check against the SHELL catches round 1's pieces (39.7 % gaps) and a forced 1 mm ring; search 12 / 16 sectors on r4 / r5; precheck p1-p4, gate g1-g3 and the controls as predicted; true nests tn0 / tn1 pass S on the delivered default rings; n2a (sectors lined up) drops 14 mm; n1 / n3 not carved (P81, P82 miss); four bugs found by the tests and fixed before any real run |
+| T-I16 public ep11, 2, 12, 13, 31 (code 88f49df, this container, 00:18-01:48; inputs hash-identical to round 1) | every ring candidate fails the min-wall check (-21 to -173 mm); CoACD 41 -> repair 45-82 still fails the pieces gate (1-22 hulls over 0.3 cm3); all ten objects end in 6 mm boxes (share 0.018-0.086 < 0.5); all five folders DO_NOT_USE; ep11 in scope, its S frame f126 `pose_impossible` (c) (85.2 cm3); all 7 floor frames `pose_impossible` ((c); ep13 f181 also (a) -5.7 mm), ep31 has none; so no S, S_ref, P2-P7 or gated G1 count ran under the rule |
+| S diagnostic at the 7 floor frames (report only) | delivered boxes: the guest falls 54-110 mm; faithful 2 mm SHELL boxes: 4.8-13.2 mm, 6.1-13.9 deg, every frame fails, as the precheck said |
+| L0 (ep11) | the two rims are 3.3 mm apart in our points: P90 falsified; our data do not show a nest |
+| eval precheck (diagnostic, packed references, cea1342; H30 re-table 07b31b8) | H30 failing / H30 frames: 10 25 / 33, 1 50 / 50, 14 18 / 29, 15 12 / 54, 16 14 / 60, 30 22 / 22, 32 0 / 3, 33 0 / 14; no H30 frame fails (a) (max 3.94 mm); feasible H30 frames where the packed colliders block: 0 in every pair |
+| T-I17 c1 (07b31b8; 41 s, plain MuJoCo, sim=rl, ep24 r0 f246, determined-wright's poses and draws) | **fails**: carved 12 / 16 copies over 512 rows (needs >= 15; max 2,948), default 16 / 16 (needs 0; max 688), ratio 4.29 (>= 3 holds); MuJoCo-Warp [R]: 16 / 16 vs 0 / 16 |
+| eval carves | not run: no public delivery, verify_cc2_1 B1 standing, 0 eval pairs in scope |
+| not run | T-I15 (held-out cups, pots, lid, dust pans, racks ep26 / ep27), n4-n6, f1-f3, the P91 diagnostic, G2 anywhere (no FlashCHORD, warp or mujoco_warp here), any precheck on our own eval twins |
+| verification | `build/I/verify_cc2_0.md` (rule compliance): 1 blocking (c1 skipped on a false premise; fixed in 07b31b8), 10 non-blocking; `build/I/verify_cc2_1.md` (physics, geometry, contact budget): 2 blocking (B1 the robust ring profile fails, **stands**; B2 H0 vs H30, fixed in 07b31b8), 11 non-blocking |
+| delivered | nothing: no carved or new default pieces, nothing uploaded or packed; `DO_NOT_USE.json` in the five round-2 and the five round-1 folders (scratch and committed copies); `CONTACT_GATE_PENDING.json` in the five round-2 folders |
+| cost | this container's 4 shared cores, no rental, no `mesh-bold` ledger line, $0; about 5.6 h of wall time from the design (21:33) to the eval step (03:10), partly in parallel [E, log times] |
+
+**Predictions** (PREREG F-I5.15 (9), F-I5.16 (4); scored in F-I5.19):
+
+| outcome | predictions |
+|---|---|
+| hold | P75 (the three T-I16 racks; ep26 / ep27 not run), P78, P79, P80, P83, P85, P87, P96, P97 (except r5's 8-sector clause) |
+| falsified or missed | P73, P74 / P94, P76 (as built, confounded by H-d, item 6), P77 (ep13 f146 also fails (c)), P81, P82, P90, P95 (c1), P103 (eval 10; the eval-25 leg not run); P93's [H] leg |
+| not tested or not run | P71, P84, P86 (fixtures), P88, P89 (x7, x8, x11, rack slot; x6, x10 hold), P91, P92, P98, P99 (vacuous), P100 (G1 leg), P101, P102 |
+| superseded | P72 (by P93), P74 (by P94) |
+
+**Confirmed by the verifiers** [M]: both rule entries reached origin before any round-2 code; the code that ran is the
+frozen 88f49df (launch sha256 of collcarve, cavpieces, contactgate5, interlock, platebody and both drivers equal the
+blobs; not dirty), and no gmg module, tool or test changed after it, so nothing was tuned after an outcome; the
+thresholds in code match F-I5.15 (10) / F-I5.16 (5) and the sim=rl sha256 is checked at run time; the precheck, floor,
+search and push entries follow the text (apart from items 8-10); the floor outcome reproduces (shares of all ten
+objects within 0.001 with independent booleans; piece files sum to the floor volumes); the precheck reproduces at four
+frames with an independent winding-number grid (a 1 mm grid shift moves no verdict); S at ep13 f181 reproduces on both
+collider kinds; the packed-default hull counts reproduce with coacd 1.0.11; the markers are where stated; T-I16 read
+only our bundles, hands and SHELL candidates; the eval precheck decided nothing and read reference columns only.
+
+**Corrections and caveats** (none changes an outcome). Items 1-4 concern the eval numbers, 5-7 the next rule:
+1. **c1 was first skipped on a false premise** (verify_cc2_0 B1). Four records said the ep24 bundle is not on this
+   machine; both the v6 and v4 bundles are, and c1 needs neither. Corrected in the two `CORRECTION_20261101.md` files,
+   the build log (03:06) and PREREG F-I5.19. c1 then ran and fails, so by F-I5.16 (1)(h) **no F-I5 delivery may be
+   called usable before G1 has run in MuJoCo-Warp**, and every round-2 contact count (public G1, the eval pair scenes,
+   eval 10 included) is plain-MuJoCo only. [H] plain MuJoCo over-counts where convex pieces land on a plane (the
+   default boards drop 30-37 mm onto the table: 64-86 guest-table contacts at step 8); falsifier: c1 with the pair
+   lowered to 1 mm above the table still flags the default.
+2. **The eval precheck's "hands-off" was H0 (no contact label), not the rule's H30** (verify_cc2_1 B2). The H30 tables
+   (`collcarve2-eval/precheck_H30_tables.md`) are primary for any relay. The 16.6 mm (eval 14 f42) and 19.5 mm (eval 32
+   f33) table penetrations are in-hand frames (hand 3.0 / 0.7 mm away); under H30 no frame fails (a).
+3. **Eval 10 at rest** (verify_cc2_1 N8): f142 is the only H30 contact frame: 516-656 rows (median 536), exactly 512
+   with no jitter. The 1,252-1,296 maxima are at the in-hand frames f111 / f116, whose holding hand is not in the scene.
+   On evals 14 and 30 nothing overflows, but the hands-free pair scene throws the packed guest 132-140 mm (cup) and
+   23-62 mm (sweeper; medians) within 2 s (N9): "no overflow" is not "stable".
+4. **Status of the eval precheck** (verify_cc2_0 N3, N10). It ran 00:14-01:46, before the public verification and
+   without a dated go (21.13.12 item 4). It used the packed references' poses, boxes of the pack's visual meshes, H0
+   labels, (c) as overlap >= 1 cm3 without the carvability test, and a frame fallback added after the 1-5 mm reference
+   jitter was seen. It is a consistency check of the pack's references and colliders, not the F-I5.15 (3) precheck of
+   our eval twins. Its scripts ran outside the gmg guard; GT-freeness rests on code reading (FlashCHORD reference
+   columns only: object_body_*, mesh / URDF paths, robot frames, MANO contact labels).
+5. **No never-intruding ring keeps 1.5 mm of wall on these SHELLs** (verify_cc2_1 B1, standing). B4's robust profile
+   (the interval holding the median wall) was falsified by its own falsifier, and so were a half-sector offset and a
+   fitted eccentric oval circle: the 12-sector local wall of both blue cups stays below 0 (ep12 -1.14 to -2.08 mm, ep13
+   -1.09 to -4.86 mm); at 32 sectors 75-111 of 168 rows (ep12) still have a sector under 1.5 mm. Cause: SHELL
+   roughness (residual std 0.68-0.92 mm; within a 30 deg sector the range is 1.0-1.35 mm median, 2.7-3.9 mm p90, per
+   face). Unioning the overlapping SHELL bodies changes nothing.
+6. **H-d is a code defect against F-I5.4, not a rule choice** (verify_cc2_0 N2). F-I5.4 states one keep-out; the repair
+   scores it on a 2 mm grid anchored at the CoACD hulls' bounds and the gate on one anchored at the repaired set's
+   bounds (0.272-0.296 vs 0.344-1.55 cm3 on the same hulls). P76 reads "falsified as built, confounded"; round 1's
+   route-3 outcomes carry the same confound. No verdict changes [E]: every folder has an object at or one split short of
+   the cap that still fails the gate. The route-3 hulls were not saved, so testing H-d needs CoACD re-run.
+7. **The SHELL bodies are several overlapping solids** (verify_cc2_1 N4): 9-33 bodies over 0.1 cm3; the summed volume
+   exceeds the union by 0.5-3.0 %; the inside tests disagree (winding in `fast_inside`, parity in `_intervals`,
+   `Profile2.radial`, `continuity2`), and `exact_share` / `removed_share` divide by a volume that counts overlaps twice
+   (inexact on the ep11 blue cup and the sweeper). The ep2 pot has a body that is not a volume. One union at load should
+   come before rings are tried again.
+
+Record only:
+8. **Records of F-I5.15 (8) not built** (verify_cc2_0 N1): the F-I5.7 rigid shift runs only after a carve set exists,
+   so `push_list_fi5r2.json` has no shift and its floor-frame entries no numbers; no `sources/`; no
+   `decision_flag_off`; `props_gmg.json` still from the 1.5 mm grid (1.5-1.9 x the exact union, e.g. ep11 blue cup
+   11.15 vs 6.48 cm3). Item (a) before any push list goes to the pose lanes; all four before any folder is called
+   usable.
+9. **Precision** (verify_cc2_0 N6, verify_cc2_1 N1, N2, N6, N7): "0.05 mm wall left" is the ray offset (<= 0.05 mm; with
+   a 1e-6 m offset 0.001 mm); the route-4 boxes reach 1.3-2.3 mm outside the SHELL (0.07-1.66 cm3 per object, <= 0.19
+   cm3 per box), so keep-out is "measured 0, bounded", not "0 by construction"; `g1_pass: true` in all five
+   `contact_gate.json` is vacuous (should be null with a vacuous status; ep11 lacks the top-level flag); the search stops
+   at its first failing check, so the per-set intrusion (F-I5.15 (1f)) was never computed; G1's S scene welds the
+   receiver, so receiver-table contacts are not counted.
+10. **"Every touching frame fails the pose check" holds only for hands-off frames** (verify_cc2_1 N5): clean touching
+    frames exist while the guest is lowered in hand (ep12 f113-120, ep13 f97-102, ep2 f63-66 and f260-263; hand
+    0.3-20.5 mm away, moving 1.8-26 mm per frame), so none is an S frame; ep11 has none (96 of 97 near frames overlap);
+    ep31 never comes within 4 mm.
+11. **G1 at impossible poses** (verify_cc2_1 N3, report only): the delivered boxes would pass easily (ep13 f181 20 / 80,
+    ep11 f127 14 / 56 contacts / rows), while the packed default reaches 508-513 contacts at ep11 f127; a ratio at
+    impossible poses means nothing, which supports the rule's exclusion of those frames.
+12. **Run plan and records** (verify_cc2_0 N4, N5, N7, N8): T-I16 ran on this container, not the box (no rental);
+    T-I15 not run; round-1 candidates were copied, not rebuilt (all 47 input files hash-identical); at 00:46 the T-I16
+    step set its own scheduler group to nice -3 (no negative-nice group remains; not to be repeated; use the box for
+    more CPU); the T-I14 nest runs started 12 s before their cited commit ba3387d and F-I5.17 was committed at 23:41:49
+    though dated "22:47-23:45"; P75 holds on 3 of its 5 racks; "no public episode shows a real nest" should read "our
+    data show no nest in any public episode"; any later eval twin run is inference under a frozen rule, never
+    development on eval.
+
+**Hand-offs** (relayed by the orchestrator; texts in the work log of 1 Nov ~03:20 UTC):
+- **Embodiment session (determined-wright): nothing to run.** No F-I5 r0 folder exists for any eval episode; the ten
+  public F-I5 folders (round 1 and 2) are DO_NOT_USE. The c1 verdict goes with every contact number we send. The H30
+  push list for pose fixes on the packed references: eval 10 f136-160 (cups overlap up to 88.5 cm3), eval 1 f0-23 and
+  f309-334 (lid in pot up to 34.9 cm3), eval 30 22 frames in f0-4 and f244-262 (sweeper in rack up to 8.4 cm3), eval
+  14 f140-157 (cup in rack up to 10.7 cm3), evals 15 / 16 spoon unsupported up to 6.5 / 8.0 mm (12 / 14 frames).
+- **Pack builder (focused-pascal): no new eval pieces from this lane.** Keep `meshes/carve/ev10`, `ev01`, `ev25`; no
+  rollout re-run is needed for F-I5. No packed collider blocks a feasible H30 pose (max 0.73 cm3); where packed pieces
+  overlap at rest the visual meshes overlap too. The orchestrator's separate ev10-cavsafe and rackslot candidates
+  (`build/I/results/ev10-cavsafe/`, `rackslot/`, under the owner's 02:50 UTC permission) are outside F-I5 and not
+  covered here.
+
+**Open decisions** (owner / orchestrator; none taken here; each a dated entry before any run uses it):
+1. **A ring rule for rough walls** (item 5). [H, verify_cc2_1] quantile faces (q = 0.05) with a measured intrusion
+   allowance would keep about 3-4.5 mm; falsifier: the 16-sector minimum wall stays under 1.5 mm on the ep12 / ep13
+   blue cups. Or smooth the SHELL first. Either is post hoc on these ten objects; T-I15's held-out objects should
+   carry its falsifier.
+2. **The keep-out grid** (item 6): one fixed grid for the repair and the gate is a code fix to the stated F-I5.4, not
+   a threshold; save every route's hulls (`_tried/`) so the effect can be measured.
+3. **The contact-gate engine** (item 1): run G1 in MuJoCo-Warp (FlashCHORD environment on a box, or determined-wright),
+   or rely on G2 alone; until then no F-I5 folder can be usable.
+4. **Poses first** (items 2, 10): every public hands-off S frame is `pose_impossible`, and the carve cannot be judged on
+   public data until the rest-phase poses are fixed by the pose lanes; item 8 (a) before the push list is sent.
+5. **SHELL union at load** (item 7) and the remaining records (items 8, 9).
+6. Still open from 21.13.13 / 21.14.8 / F-I5.18: exactly tracked nests drop 14 mm with lined-up sectors (a seat carve or
+   sector alignment, outside the waiver's "if 2 mesh collide"); n1's H-a (wall-keeping carve option) and H-b (R+
+   coverage); the sweep gate for resting pairs.
+7. **Eval twins** need eval bundles (`tools/ev_extract.py`), the clean t0 and an orchestrator go after 1-4; the
+   precheck on our own eval tracks comes first. Off-axis nests (eval 10) are not carved (F-I5.15 (7)).
+
+Masses remain the 0.3 kg placeholder (D-I1); every S and G1 number is plain MuJoCo 3.17.0.

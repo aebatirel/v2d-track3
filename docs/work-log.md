@@ -6073,3 +6073,35 @@ diagnostic; nothing is picked for submission.
   now the public scan (ground truth, display only, 4k-face wireframe of `data/scan/*.glb`, identity frame: centres
   within 2-11 mm of library_v3, identity chamfer 2-8 mm [M]); labelled as ground truth shown for comparison only.
   Nothing was built, chosen or scored from it. The spoon has no public scan.
+
+### 2026-11-01 03:20 UTC — collision carve round 2 (F-I5.15 / F-I5.16) closed: nothing carved or delivered, public or eval (CPU, $0)
+- Report: `gmg/INTERLOCK.md` 21.15 (plain words, accuracy / failures / cost, predictions, verifier confirmations,
+  corrections, hand-offs, open decisions); PREREG F-I5.19 (outcomes, prediction scores, dated corrections of F-I5.17
+  (13) / (14) and F-I5.18; no rule change). Runs: build + T-I14 (ced42fd -> 88f49df), T-I16 public (88f49df, this
+  container 00:18-01:48, results `gmg/build/I/results/collcarve2-public/`), eval precheck (cea1342, diagnostic), T-I17 c1
+  and the H30 re-table (07b31b8). Verifiers: `verify_cc2_0.md` (810d726), `verify_cc2_1.md` (b06fc09).
+- **Result [M]:** every cup / pot ring candidate fails the 1.5 mm wall check on our SHELLs (min wall -21 to -173 mm;
+  verify_cc2_1 B1: SHELL roughness about 1 mm per face, no never-intruding ring keeps 1.5 mm at 12-32 sectors); CoACD
+  (41, repair to 82) fails the pieces gate on every object; all ten objects end in 6 mm boxes (share 0.018-0.086), all
+  five public folders DO_NOT_USE (the five round-1 folders too). Every public hands-off S / floor frame is
+  `pose_impossible` (overlap 2.7-85 cm3; ep13 cup 5.7 mm in the table; ep31 no frame within 4 mm), so S, S_ref and the
+  contact gate never ran under the rule. L0: ep11 rims 3.3 mm apart (our data show no nest).
+- **Eval [M]:** on the rule's hands-off set H30, feasible frames where the packed colliders block: 0 in every pair
+  (evals 10, 1, 14, 15, 16, 30, 32, 33); where packed pieces overlap at rest, the visual meshes overlap too (pose
+  issues). No eval carve run, no eval r0.
+- **c1 fails [M]:** plain MuJoCo (sim=rl) flags the default ep24 pieces 16/16 over 512 rows (MuJoCo-Warp 0/16) and the
+  carved 12/16 (needs >= 15). So all round-2 contact counts are plain-MuJoCo only and no F-I5 delivery can be usable
+  before G1 runs in MuJoCo-Warp. Eval 10's overflow stands on the FlashCHORD measurements of 02:50 UTC [R].
+- **Open (owner / orchestrator):** a ring rule for rough walls ([H] quantile faces with a measured intrusion
+  allowance); the keep-out grid defect H-d (code fix to F-I5.4); the G1 engine; rest-phase pose fixes before any carve;
+  SHELL union at load; the F-I5.15 (8) records (rigid shift before any push list).
+- **Hand-off text, Embodiment (determined-wright)** (for the orchestrator to relay; not sent):
+  > Collision carve round 2 (gmg F-I5.15 / F-I5.16): nothing for you to run. No F-I5 r0 folder exists for any eval episode; all ten public F-I5 folders (rounds 1 and 2: ep11, ep2, ep12, ep13, ep31) are DO_NOT_USE. Our gate check c1 failed: on the ep24 r0, plain MuJoCo with sim=rl limits flags the default pieces (16/16 copies over 512 rows, max 688) where your MuJoCo-Warp run showed none, so our contact counts are plain-MuJoCo only. Pose-fix push list on the packed references (no hand within 30 mm; faithful 2 mm boxes of the visual meshes): eval 10 f136-160, cups overlap up to 88.5 cm3; eval 1 f0-23 and f309-334, lid-pot up to 34.9 cm3; eval 30, 22 frames in f0-4 / f244-262, sweeper-rack up to 8.4 cm3; eval 14 f140-157, cup-rack up to 10.7 cm3; evals 15 / 16, spoon unsupported up to 6.5 / 8.0 mm. Tables: gmg/build/I/results/collcarve2-eval/precheck_H30_tables.md.
+- **Hand-off text, pack builder (focused-pascal)** (for the orchestrator to relay; not sent):
+  > Collision carve round 2 (gmg F-I5.15 / F-I5.16): no eval episode has new collision pieces from this lane. Keep meshes/carve/ev10, ev01 and ev25; no rollout re-run is needed for it. Eval precheck of your packed references on hands-off frames (no hand within 30 mm), failing / hands-off frames: eval 10 25/33, 1 50/50, 14 18/29, 15 12/54, 16 14/60, 30 22/22, 32 0/3, 33 0/14. No packed collider blocks a feasible pose: where the pose check passes, packed overlap is at most 0.73 cm3. Where packed pieces overlap at rest (evals 10, 1, 14, 30), the visual meshes overlap too, so those are pose problems. Caveats: our contact counts are plain MuJoCo only (our validity check failed); on evals 14 and 30 the hands-free pair scene throws the packed guest 23-140 mm (medians) in 2 s. The ev10-cavsafe and rackslot candidates are separate lanes. Tables: gmg/build/I/results/collcarve2-eval/precheck_H30_tables.md.
+- **Owner summary** (for the orchestrator to relay; not sent):
+  > 1. Collision carve round 2 is done: no carved collision pieces for any episode, public or eval; submitted meshes and pack unchanged; cost $0.
+  > 2. The new cup and pot pieces never enter the opening, but our measured walls are about 1 mm rough per face, so they cannot also keep a 1.5 mm wall; every object fell back to coarse boxes (do-not-use).
+  > 3. At every hands-off test frame on public episodes our tracked poses are impossible (overlapping, or inside the table), so poses must be fixed before a carve can be judged.
+  > 4. On the eval references the pack's collision pieces never block a possible pose; where they overlap at rest, the visual meshes overlap too: the poses are the problem.
+  > 5. Our contact counter flags pieces the evaluator handles, so our contact numbers are indicative only. Next decisions: a ring rule for rough walls, and pose fixes.

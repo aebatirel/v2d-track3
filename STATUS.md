@@ -1,5 +1,21 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~03:20 UTC: collision carve round 2 closed: verified, nothing carved or delivered, public or eval (CPU, $0)
+- **Result [M]:** on our SHELLs no ring piece that stays out of the cavity keeps a 1.5 mm wall (walls ~1 mm rough per
+  face; verify_cc2_1 B1, standing); CoACD still fills openings; all ten public objects ended in 6 mm boxes, so all five
+  round-2 public folders (and the five round-1 ones) carry `DO_NOT_USE.json`. Every public hands-off test frame is an
+  impossible pose (overlap or in the table), so S and the contact gate never ran under the rule.
+- **Eval:** no eval carve run. On the packed references' hands-off frames (no hand within 30 mm) no packed collider
+  blocks a feasible pose; where packed pieces overlap at rest, the visual meshes overlap too (pose issues: evals 10, 1,
+  14, 30). Push list in `gmg/build/I/results/collcarve2-eval/precheck_H30_tables.md`.
+- **c1 fails:** our plain-MuJoCo contact counter flags the default ep24 pieces that MuJoCo-Warp passes, so every
+  round-2 contact number is plain-MuJoCo only; eval 10's overflow stands on the FlashCHORD measurements.
+- **Hand-offs** (texts in the work log, 03:20 UTC; for the orchestrator to relay): determined-wright, nothing to run
+  plus the pose push list; focused-pascal, no new eval pieces from F-I5, keep `meshes/carve/ev10`, `ev01`, `ev25`.
+- **Open (owner / orchestrator):** a ring rule for rough walls; the keep-out grid defect H-d; the G1 engine
+  (MuJoCo-Warp); rest-phase pose fixes before any carve; SHELL union at load; F-I5.15 (8) records. Report:
+  `gmg/INTERLOCK.md` 21.15, PREREG F-I5.19.
+
 ## 2026-11-01 ~00:50 UTC: board slot round 3 closed: verified, not frozen, eval 25 not run, nothing delivered (CPU, $0)
 - **Result [M]:** the new body (at most 3 rectangles per board, cut into 5 slotted boxes instead of 57-77 prisms) slots
   both public ep24 boards and passes P2-P7 (P3 0.074 cm / 0.68 deg). The new contact gate fails as written: 124 solver

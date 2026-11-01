@@ -1751,6 +1751,12 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   and t_i17_c1 READMEs and corrections, this section to 03:13. Task: INTERLOCK result section for round 2 (21.13 /
   21.14), PREREG F-I5.19 outcomes and dated corrections (no rule change), a dated work-log entry, a short STATUS
   section; three hand-off texts returned to the orchestrator (not sent). No code, no run, no rental, $0.
+- 03:18 (Report) written: INTERLOCK 21.15 (round-2 result and report: plain words, accuracy / failures / cost, P71-P103
+  scores, verifier confirmations, 12 corrections, hand-offs, 7 open decisions) + header, section-0 and 21.13 pointers;
+  PREREG F-I5.19 (outcomes, prediction scores, dated corrections of F-I5.17 (13) / (14) and F-I5.18, blocking-finding
+  state; no rule change); a dated work-log entry (03:20 UTC, with the three hand-off texts, not sent); a STATUS
+  section at the top. Nothing run, no rental, $0. Committing PREREG.md, INTERLOCK.md, STATUS.md, docs/work-log.md and
+  my lines of this log only.
 <!-- cc2report-end -->
 
 ## ev10 cavity-safe pieces (agent of the orchestrator, started 1 Nov 02:47 UTC)

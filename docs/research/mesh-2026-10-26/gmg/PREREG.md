@@ -3228,6 +3228,64 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     - **Not run in this step**: n4-n6, f1-f3, the P91 diagnostic, T-I17 c1 (the ep24 v6 bundle is not on this
       machine), T-I15, T-I16, L0, the eval precheck; G2 everywhere (no FlashCHORD environment here:
       CONTACT_GATE_PENDING.json).
+  - **F-I5.19 Round 2 outcomes, verification and dated corrections (T-I16, L0, the eval precheck, T-I17 c1, the eval-carve
+    step; measured 1 Nov 00:14-03:10 UTC; recorded 1 Nov ~03:20 UTC; post hoc, record only: no rule, threshold or
+    outcome is changed by this entry; INTERLOCK 21.15).** [M] unless marked. Results: `build/I/results/collcarve2-public/`
+    (T-I16, code 88f49df, this container 00:18-01:48, not the box; inputs hash-identical to round 1),
+    `collcarve2-evalcheck/` (cea1342), `collcarve2-eval/` and `collcarve-r2/t_i17_c1/` (07b31b8); verification
+    `build/I/verify_cc2_0.md` (810d726) and `verify_cc2_1.md` (b06fc09).
+    - **Outcomes.** Nothing was carved or delivered, public or eval. T-I16: every route-2 ring candidate of the cups and
+      the pot fails check (i) (min wall -21 to -173 mm, 42-60 candidates per object; the lid `lathe_profile_complex`);
+      route 3 (CoACD 41, repair to 45-82) fails the pieces gate on every object (1-22 hulls over 0.3 cm3); all ten
+      objects end in route 4 (6 mm boxes, share 0.018-0.086 < f_keep 0.5), so all five folders carry
+      `DO_NOT_USE.json`; ep12, ep13, ep31 and ep2 are out of scope (sweep gate, no component); ep11 is in scope
+      (receiver beige) but its S frame f126 is `pose_impossible` (c) (V_ov 85.2 cm3); all seven floor frames are
+      `pose_impossible` ((c); ep13 f181 also (a) -5.7 mm) and ep31 has none, so no S, S_ref, P2-P7 or gated G1 count
+      ran under the rule (G1 vacuous); G2 pending (`CONTACT_GATE_PENDING.json`). L0: the ep11 rims are 3.3 mm apart in
+      our points. Eval precheck (diagnostic, packed references): on the rule's hands-off set H30 (no hand point within
+      30 mm) failing / H30 frames 10 25 / 33, 1 50 / 50, 14 18 / 29, 15 12 / 54, 16 14 / 60, 30 22 / 22, 32 0 / 3, 33
+      0 / 14; no H30 frame fails (a) (max 3.94 mm); feasible H30 frames where the packed colliders block: 0 in every
+      pair. T-I17 c1 (plain MuJoCo, sim=rl, ep24 r0 at f246, determined-wright's poses and 16 draws): carved 12 / 16
+      copies over 512 rows (max 2,948), default 16 / 16 (max 688), ratio 4.29: **c1 fails** (two of three legs), so by
+      F-I5.16 (1)(h) no F-I5 delivery may be called usable before G1 has run in MuJoCo-Warp, and every round-2 contact
+      count is plain-MuJoCo only. Eval carves: not run (no public delivery; verify_cc2_1 B1 standing; 0 eval pairs in
+      scope).
+    - **Predictions** (F-I5.15 (9), F-I5.16 (4)). Hold: P75 (the three T-I16 racks; ep26 / ep27 not run), P78, P79,
+      P80, P83, P85, P87, P96, P97 (except r5's 8-sector clause: it fails (i), not (iii)). Falsified or missed: P73,
+      P74 / P94, P76 (as built, confounded by the keep-out grid defect, below), P77 (ep13 f146 also fails (c)), P81, P82
+      (n3 leg; n4 / n5 not run), P90 (our data do not show a nest; this does not show that ep11 holds none), P95 (c1),
+      P103 (eval 10: 16 / 16 copies over 512 at the H30 rest f142, 516-656 rows, plain MuJoCo; FlashCHORD training
+      overflow measured by focused-pascal and determined-wright, work log 02:50 UTC [R]; the eval-25 leg not run). P93:
+      its [E] falsifier is not met only because no layout was accepted at all; its [H] leg misses. Not tested or not
+      run: P71, P84, P86 (fixtures f1-f3; its share and S-vs-S_ref legs act as stated on T-I16 and n1 / n2a), P88,
+      P89 (x7, x8, x11, rack slot; x6 and x10 hold), P91, P92, P98, P99 (vacuous), P100 (G1 leg), P101, P102. P72 and P74
+      were superseded by P93 / P94.
+    - **Dated corrections.** (a) F-I5.17 (13): the round-1 scratch folders `runs-dev/20261031-fi5pub-3053a78/...` are
+      on this machine; the marker script looked under the repo root; `DO_NOT_USE.json` was written there at 00:17:54.
+      (b) F-I5.17 (14) and F-I5.18 ("Not run in this step"): "c1 needs the ep24 v6 bundle, not on this machine" is
+      false: v6 (`runs/20261031-b4ext6-90c8cce`) and v4 (`runs/20261031-b4ext4-b61e8aa`) bundles are both here, and c1
+      needs neither (pieces committed in `slot2-ep24/fi4o/r0`, poses from determined-wright's reference). c1 ran at
+      03:04 and fails (above). (c) H-d (the T-I16 log line of 01:45 in `build/I.md` and the public README) is a code defect against F-I5.4, not a
+      rule-level choice: one keep-out definition is stated, but the repair and the gate anchor their 2 mm grids at
+      different hull bounds; round 1's route-3 outcomes carry the same confound [verify_cc2_0 N2]. (d) The eval
+      precheck ran 00:14-01:46, before the public verification and without a dated go (F-I5.15 (11)(v)); it used the
+      packed references' poses and boxes of the pack's visual meshes, H0 contact labels, (c) as overlap >= 1 cm3
+      without the carvability sub-check, and a post-hoc frame fallback; it is a consistency check of the pack's
+      references and colliders, not the F-I5.15 (3) precheck of our eval twins; its scripts ran outside the gmg guard
+      (GT-freeness by code reading: reference columns only) [verify_cc2_0 N3, N10]. (e) Precision: "0.05 mm wall left"
+      is the ray offset (<= 0.05 mm; 0.001 mm with a 1e-6 m offset); route-4 boxes reach 1.3-2.3 mm outside the SHELL
+      (<= 0.19 cm3 per box), so keep-out reads "measured 0, bounded", not "0 by construction"; `g1_pass: true` in the
+      five `contact_gate.json` is vacuous; the exact shares are inexact on the ep11 blue cup and the sweeper (overlapping
+      SHELL bodies counted twice) [verify_cc2_0 N6, verify_cc2_1 N1, N2, N4, N6]. (f) Records F-I5.15 (8) not built:
+      the F-I5.7 rigid shift (only after a carve set exists; `push_list_fi5r2.json` lacks shifts and floor-frame
+      numbers), `sources/`, `decision_flag_off`, exact-volume props (still 1.5-1.9 x) [verify_cc2_0 N1]. (g) Run plan:
+      T-I16 ran on this container, not the box; T-I15 not run; at 00:46 the T-I16 step set its own scheduler group to
+      nice -3 (none remains; not to be repeated); the T-I14 nest runs started 12 s before their cited commit ba3387d
+      [verify_cc2_0 N4, N5, N7].
+    - **Blocking findings and their state.** verify_cc2_0 B1 (c1 skipped on a false premise): fixed (corrections, c1
+      run, verdict attached to the eval-10 numbers). verify_cc2_1 B2 (H0 vs H30): fixed (H30 tables). verify_cc2_1 B1
+      (no never-intrude ring keeps w_min = 1.5 mm on these SHELLs at 12-32 sectors; SHELL roughness about 1 mm per face
+      within a sector; B4's robust profile falsified by its own falsifier): **stands; needs a new rule.**
 
 ## Revision 1 changelog
 
