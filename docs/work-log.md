@@ -5578,3 +5578,7 @@ Advice given:
   this would explain why the ep11 gate's gain did not transfer and why the cup is never lifted. Falsifiers: (1) one
   eval-10 training at njmax 1024 / nconmax 512; (2) or a reference whose nested rest has no piece overlap (overflow → ~0
   in a one-world rollout). Either needs the owner's go; nothing launched.
+- 03:00 UTC overflow vs weak cells (keen-heisenberg's CPU check) [M]: D std training logs — S25 s42 (0.816) 6 lines (max
+  541), S25 s43 (0.482, weak) 0, S30 s42 0, S30 s43 0; eval 1 packed std0116 ep1-s42 (H5 0.822 ± 0.239, min 0.150) 0;
+  carved c01s43 ep1-s43 39 (max 581). No broadphase overflow anywhere. Overflow does not track the weak / high-variance
+  cells; it stays an eval-10 finding (~6 M lines per run there). G's logs (14/16/33) to be counted after the box ends.
