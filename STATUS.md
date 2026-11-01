@@ -13,7 +13,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 ## 2026-11-01 05:45 UTC: eval-10 njmax-1024 diagnostic SUPPORTED — the floor was training-time contact overflow
 - Overflow 0 lines (e10v ~6 M); beige cup lifted 23.9 cm; official sim_vs_ref vs V 0.913 at 1024 (e10v 0.459); the same
   checkpoint at stock 512 scores 0.903 vs V / 0.873 vs P. DIAGNOSTIC ONLY, NEVER PACKED (guard refuses it).
-- Legal route: eval-10 retrain on the clean ev10cs5 pieces at stock limits (pre-stated choice met; build in progress).
+- Legal route LAUNCHED 06:10: eval-10 retrain on ev10cs5 at stock 512/256, `20261101-e10cs-50c2d90` (58625218), PREREG
+  eval10-cs4-20261101 (13c4133); swap rule + pack-10 inclusion ≥ +0.02 on V and P; result ~08:30 UTC [E].
 - Owner question: is a policy trained at njmax 1024 but evaluated at stock limits acceptable? (organisers' call).
 
 ## 2026-11-01 05:03 UTC: pack 9b UPLOADED (by keen-heisenberg's session) — AUC 0.81677 vs 9a+ 0.81757; 9a+ stays best

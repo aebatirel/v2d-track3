@@ -5795,3 +5795,17 @@ Advice given:
   (determined-wright's candidate threshold); ~2×10⁴ is what D's G ep33 had while learning 0.94. → the njmax / clean-pieces
   lever is eval 10 only; no other eval gets an overflow retrain. Packing a 1024-trained checkpoint stays excluded (owner's
   condition) even though determined-wright reads it as legal; that question goes to the owner / organisers.
+- 06:00 UTC ev10cs5 retrain build delivered (subagent; worktree branch worktree-agent-a85860be5329e0f22: 9f49f4a pieces,
+  13c4133 PREREG + job + tools, b202905 BUILD + mocks). PREREG docs/research/work/eval10-cs4-20261101/PREREG.md sha256
+  d7d31381… committed in 13c4133 before any result. Files: meshes/carve/ev10cs4 (fa2ec41) + ev10cs5 (2b016b4) with
+  MD5SUMS / FROZEN.md / PROVENANCE.md; tools/e10cs_pieces.py, tools/e10cs.py (reuses e10v rule2 + e10v_verdict.verdict);
+  ops/jobs/ev10_cs.sh; glock_public.sh one opt-in alternative (EVAL_CS_REF=1, perc2e10css<seed>). Reference: e10v's V
+  reused byte for byte [M: a rebuild with the new pieces would move only the beige in 45 hands-off frames, 0.88 cm
+  median]. Inertia = piece-derived (ev10cs5 blue COM 19.05 mm, +16.1 vs ev10). Failed mesh gate 4a (blue kept volume
+  0.402 vs 0.80) disclosed. Mocks 174/174, glock_public equivalence 0 diffs / 11,232 cases, no_oracle 23/23. I reviewed
+  the shared-code diff (glock_public opt-in only), merged (50c2d90d), PREREG sha unchanged, both MD5SUMS pass (50/50).
+- 06:10 UTC **ev10cs5 retrain launched**: `ops/vast.sh V2D_COMMIT=50c2d90d… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  58237198 20261101-e10cs-50c2d90 'PIECESET=ev10cs5 bash ops/jobs/ev10_cs.sh'` → instance 58625218 (India, $1.392/h);
+  ledger planned $3.50 (PREREG $2.4 / $3.1 / $5.6). Credit $28.94 before launch. Order: overflow count per train.log
+  first; training-box gate (> 0.4632 vs V) before the 10 official draws; swap rule on V and P; pack-10 inclusion ≥ +0.02
+  on both.
