@@ -6431,3 +6431,8 @@ arm and a no-policy replay floor to stage B.
   - It hands passing changes to the perfect-following session; it never touches eval references or packs.
   - The perfect-following session was told (20:01). The 06:30 UTC morning check (trig_01WrgPaDQptP63JxeKgKLy6B) also
     reads this session.
+- 20:05 UTC 1 Nov owner: "If the cloud cpu clogs you can rent cheap machines in vast also".
+  - Relayed to the perception and GRASP sessions: cheap CPU machines allowed, cap $8 combined, plan + cost logged
+    first, labelled, self-destroy + watchdog, never touch other sessions' instances.
+  - To keep the ≥ $10 reserve on $122.85 of credit, the perfect-following GPU budget moved from $110 to $102 (told to
+    that session).
