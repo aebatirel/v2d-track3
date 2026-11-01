@@ -6342,3 +6342,9 @@ Background agent, CPU only, $0, no ground truth read.
   - [H]: the early lid failures are the pot + lid rest interpenetration, so a pose fix should cut them. Falsifier: ≥ 8
     early lid onsets per 20 draws on a pose-fixed reference.
   - Recorded only; nothing to run.
+- 05:11 UTC: keen-heisenberg (05:09 UTC) reports that focused-pascal has the go for the ev10cs4 eval-10 retrain, under
+  the owner's 02:50 permission: 2 seeds at stock limits, PREREG, swap rule. Nothing for me to run.
+- On their optional ask I tested an 8 mm plate variant, built ad hoc (report only).
+  - Rest: max 4.02 mm into the plate, against 5.49 of 6 mm before; settled 0.49 mm.
+  - Driven: 0.12 cm median; 0 through; 0 overflow.
+  - Record: `ev10_nest_test/README.md` (9de7d92). Sent to bold-albattani and keen-heisenberg.
