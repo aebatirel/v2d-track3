@@ -1,0 +1,39 @@
+{
+ "hands": {
+  "plastic_dish_rack": {
+   "until_frame": 24,
+   "max_mm": 3.0,
+   "max_deg": 2.4,
+   "first_robot_touch": null,
+   "touches_in_window": {}
+  },
+  "wooden_spoon": {
+   "until_frame": 24,
+   "max_mm": 4.5,
+   "max_deg": 17.8,
+   "first_robot_touch": {
+    "frame": 20,
+    "robot_body": "right_sharpa_wave_right_thumb_PP"
+   },
+   "touches_in_window": {
+    "right_sharpa_wave_right_thumb_PP": 8
+   }
+  }
+ },
+ "parked": {
+  "plastic_dish_rack": {
+   "until_frame": 24,
+   "max_mm": 3.3,
+   "max_deg": 2.5,
+   "first_robot_touch": null,
+   "touches_in_window": {}
+  },
+  "wooden_spoon": {
+   "until_frame": 24,
+   "max_mm": 8.3,
+   "max_deg": 29.1,
+   "first_robot_touch": null,
+   "touches_in_window": {}
+  }
+ }
+}

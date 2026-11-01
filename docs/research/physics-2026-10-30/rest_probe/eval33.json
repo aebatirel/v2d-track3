@@ -1,0 +1,45 @@
+{
+ "hands": {
+  "blue_cup": {
+   "until_frame": 11,
+   "max_mm": 2.5,
+   "max_deg": 1.5,
+   "first_robot_touch": {
+    "frame": 11,
+    "robot_body": "left_sharpa_wave_left_pinky_DP"
+   },
+   "touches_in_window": {
+    "left_sharpa_wave_left_pinky_DP": 1
+   }
+  },
+  "wooden_spoon": {
+   "until_frame": 42,
+   "max_mm": 87.0,
+   "max_deg": 31.5,
+   "first_robot_touch": {
+    "frame": 24,
+    "robot_body": "right_sharpa_wave_right_hand_C_MC"
+   },
+   "touches_in_window": {
+    "right_sharpa_wave_right_hand_C_MC": 21,
+    "right_sharpa_wave_right_pinky_MC": 19
+   }
+  }
+ },
+ "parked": {
+  "blue_cup": {
+   "until_frame": 11,
+   "max_mm": 9.8,
+   "max_deg": 6.7,
+   "first_robot_touch": null,
+   "touches_in_window": {}
+  },
+  "wooden_spoon": {
+   "until_frame": 42,
+   "max_mm": 10.6,
+   "max_deg": 19.5,
+   "first_robot_touch": null,
+   "touches_in_window": {}
+  }
+ }
+}
