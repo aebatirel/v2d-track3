@@ -11,9 +11,12 @@ Per touched hull P (method [H], GATES.md):
     chosen among 120 directions x 3 offsets (F quantiles 25/50/75 %) to minimise the F points still inside the hull
     of either half's K (1 mm decimated K for the choice); recurse (depth <= MAX_DEPTH).
   Every leaf is P intersected with half-spaces, so it is convex, lies inside P and keeps every K point of P.
-Then, if the count exceeds the packed count, greedy merges of the piece pairs whose joint hull adds the least volume
-(the added cells may not touch RV_all, the guest's packed pieces + clearance over ALL frames of the scope's episodes)
-bring it back to <= 43 (the owner's piece-count rule); a merge adding more than MERGE_MAX_CM3 is not made.
+Construction target (GATES.md Amendment 2): F' = F minus the cells whose centre is within BAND = 0.87 mm of the
+rack-mesh surface (they straddle the surface at 1 mm resolution); K is unchanged (the mesh is never cut).
+Then greedy merges of piece pairs into their joint hull. A merge never adds a cell of F' (band cells may be added). First every merge that adds
+no new fill outside the packed union (it only restores packed fill; least added volume first); then, while the count
+exceeds the packed count (the owner's piece-count rule, 43), the merges adding the least new fill, at most
+MERGE_MAX_CM3 each and none of it inside the guest's packed pieces + clearance at ANY frame of the scope's episodes.
 
 Usage: build.py SCOPE OUT_DIR    SCOPE: 30, 14 or both
 """
@@ -23,10 +26,13 @@ from scipy.spatial import ConvexHull, HalfspaceIntersection
 from scipy.optimize import linprog
 import rs_lib as L
 
-MAX_CLIP, MAX_DEPTH = 6, 3
-TOL_F = 15                 # leftover F cells (1 mm) allowed per leaf (0.015 cm3); generic, numerical
+MAX_CLIP = 6
+MAX_DEPTH = int(os.environ.get('RS_DEPTH', 5))       # BSP depth (generic)
+TOL_F = int(os.environ.get('RS_TOL', 20))   # leftover F cells (1 mm) allowed per leaf; generic, numerical (G2 <= 1 cm3 total)
+KDEC = float(os.environ.get('RS_KDEC', 0.001))   # K decimation for the split choice (m)
+BAND = 0.00087              # GATES.md Amendment 2: F cells within half a cell diagonal of the mesh surface are not targeted
 W_COLL = 0.25              # collateral weight in the clip-plane choice (a non-RV cell cut counts 1/4 of an F cell)
-MERGE_MAX_CM3 = 2.0        # largest hull volume a merge may add (generic)
+MERGE_MAX_CM3 = 2.0        # largest NEW fill (outside the packed union) a merge may add (generic)
 SAMPLE_M = 0.0003
 
 
@@ -106,9 +112,14 @@ def clip(K, F, Q, notRV):
 def best_split(Kd, F):
     """Plane through the F region that leaves the fewest F points inside the hull of either half's K."""
     best = None
-    for n in SDIRS:
+    dirs = list(SDIRS)
+    for X in (F, Kd):
+        if len(X) > 3:
+            w, v = np.linalg.eigh(np.cov((X - X.mean(0)).T))
+            dirs += [v[:, k] for k in range(3)]
+    for n in dirs:
         s = F @ n; k = Kd @ n
-        for q in (25, 50, 75):
+        for q in (10, 30, 50, 70, 90):
             b = float(np.percentile(s, q))
             Kp, Km = Kd[k > b], Kd[k <= b]
             if len(Kp) < 20 or len(Km) < 20:
@@ -116,7 +127,7 @@ def best_split(Kd, F):
             t = trapped(Kp, F[s > b]) + trapped(Km, F[s <= b])
             key = (t, abs(len(Kp) - len(Km)))
             if best is None or key < best[0]:
-                best = (key, n.copy(), b)
+                best = (key, np.asarray(n).copy(), b)
     return best
 
 
@@ -125,7 +136,7 @@ def process(eq, K, F, Q, notRV, depth, log, tag):
     planes, Fm, Qm = clip(K, F, Q, notRV)
     if Fm.sum() <= TOL_F or depth >= MAX_DEPTH:
         return [dict(planes=planes, F_left=int(Fm.sum()), Q_kept=int(Qm.sum()), tag=tag, depth=depth)]
-    Kd = decimate(K)
+    Kd = decimate(K, KDEC)
     bs = best_split(Kd, F)
     if bs is None:
         return [dict(planes=planes, F_left=int(Fm.sum()), Q_kept=int(Qm.sum()), tag=tag, depth=depth)]
@@ -176,16 +187,31 @@ def main():
     t0 = time.time()
     rack = L.load_mesh(L.RACK_MESH); H = L.load_hulls(L.RACK_PACKED); G = L.Grid(H)
     z0 = np.load(f'{L.SCR}/rackslot/grid_base.npz'); M, PK = z0['M'], z0['PK']
-    RV = np.zeros(G.n, bool); RVall = np.zeros(G.n, bool); frames = {}
+    RV = np.zeros(G.n, bool); frames = {}; swept_all = []
     for ep in eps:
         R, info = L.rest_frames(ep); P = L.poses(ep); gh = L.load_hulls(L.GUEST[ep]['packed'])
         frames[ep] = dict(R=R, **info)
         RV |= L.rest_volume(G, gh, P['rel'], R, PK)
-        allmask = np.ones(G.n, bool)
-        RVall |= L.rest_volume(G, gh, P['rel'], list(range(len(P['rel']))), allmask)
-    F = RV & PK & ~M
-    log(f'scope {scope}: RV {RV.sum() / 1e3:.2f} cm3, F {F.sum() / 1e3:.2f} cm3, RV_all {RVall.sum() / 1e3:.1f} cm3 '
-        f'({time.time() - t0:.0f} s)')
+        swept_all.append((gh, P['rel']))
+
+    def in_swept_all(occ):
+        """Any cell of OCC inside the guest's packed pieces + clearance at ANY frame of the scope's episodes."""
+        n = 0
+        for gh, rel in swept_all:
+            n += L.rest_volume(G, gh, rel, list(range(len(rel))), occ).sum()
+        return int(n)
+    F_all = RV & PK & ~M
+    rack_s = np.asarray(trimesh.sample.sample_surface_even(rack, int(rack.area / 0.0003 ** 2), seed=3)[0])
+    from scipy.spatial import cKDTree
+    fi = np.argwhere(F_all)
+    dsurf = cKDTree(rack_s).query(G.lo + (fi + 0.5) * G.pitch)[0]
+    F = np.zeros(G.n, bool)
+    keep = dsurf > BAND
+    F[fi[keep, 0], fi[keep, 1], fi[keep, 2]] = True          # F' (GATES.md Amendment 2): F beyond the surface band
+    log(f'F all {F_all.sum() / 1e3:.2f} cm3, band (<= {BAND * 1e3:.2f} mm from the mesh surface) {(~keep).sum() / 1e3:.2f}, '
+        f"F' {F.sum() / 1e3:.2f}")
+    log(f'scope {scope}: R {[len(v["R"]) for v in frames.values()]}, RV {RV.sum() / 1e3:.2f} cm3, '
+        f'F {F.sum() / 1e3:.2f} cm3 ({time.time() - t0:.0f} s)')
     S = np.asarray(trimesh.sample.sample_surface_even(rack, int(rack.area / SAMPLE_M ** 2), seed=0)[0])
     Mc, Fc = G.centres(M), G.centres(F)
     pieces, report = [], []
@@ -216,50 +242,81 @@ def main():
         report.append(dict(piece=i, F_cells=int(fin.sum()), K=len(K), leaves=len(leaves),
                            vol_cm3=round(ConvexHull(V).volume * 1e6, 2)))
     log(f'after cut: {len(pieces)} pieces ({time.time() - t0:.0f} s)')
-    # merges back to <= the packed count
+    # merges (GATES.md C1: <= the packed count): a merge never adds an RV cell; first every merge whose hull adds
+    # no new fill outside the packed union (it only restores packed fill), then, while the count exceeds the packed
+    # count, the merges adding the least new fill (<= MERGE_MAX_CM3, none of it where the guest goes at any frame)
     merges = []
     target = len(H)
-    occs = [G.hull_occ(p['V']) for p in pieces] if len(pieces) > target else []
-    while len(pieces) > target:
+    occs = [G.hull_occ(p['V']) for p in pieces]
+    cache = {}
+
+    def pair_eval(a, b):
+        Va, Vb = pieces[a]['V'], pieces[b]['V']
+        if np.any(Va.min(0) > Vb.max(0) + 0.002) or np.any(Vb.min(0) > Va.max(0) + 0.002):
+            return None
+        Vm = np.vstack([Va, Vb])
+        mo = G.hull_occ(Vm)
+        added = mo & ~(occs[a] | occs[b])
+        if (added & F).sum() > 0:
+            return None
+        newf = added & ~PK
+        nn = int(newf.sum())
+        if nn * 1e-3 > MERGE_MAX_CM3:
+            return None
+        return (nn, int(added.sum()))
+
+    for u, p in enumerate(pieces):
+        p['uid'] = u
+    uid_next = [len(pieces)]
+
+    def key(a, b):
+        return (pieces[a]['uid'], pieces[b]['uid'])
+    while True:
         best = None
         for a in range(len(pieces)):
             for b in range(a + 1, len(pieces)):
-                Va, Vb = pieces[a]['V'], pieces[b]['V']
-                if np.any(Va.min(0) > Vb.max(0) + 0.002) or np.any(Vb.min(0) > Va.max(0) + 0.002):
+                kk = key(a, b)
+                if kk not in cache:
+                    cache[kk] = pair_eval(a, b)
+                ev = cache[kk]
+                if ev is None:
                     continue
-                hv = ConvexHull(np.vstack([Va, Vb])).volume
-                add_est = hv - ConvexHull(Va).volume - ConvexHull(Vb).volume
-                if add_est * 1e6 > MERGE_MAX_CM3 + 5:
+                if ev[0] > 0 and len(pieces) <= target:
                     continue
-                cand = (add_est, a, b)
-                if best is None or cand[0] < best[0]:
-                    # exact added cells and RV_all conflict
-                    mo = G.hull_occ(np.vstack([Va, Vb]))
-                    added = mo & ~(occs[a] | occs[b])
-                    if (added & RVall).sum() > 0 or (added & RV).sum() > 0:
-                        continue
-                    best = (add_est, a, b, added.sum() / 1e3)
-        if best is None or best[3] > MERGE_MAX_CM3:
-            log(f'no admissible merge left (best {best}); {len(pieces)} pieces'); break
-        _, a, b, add = best
+                if best is None or ev < best[0]:
+                    best = (ev, a, b)
+        if best is None:
+            break
+        (nn, na), a, b = best
+        if nn > 0:
+            mo = G.hull_occ(np.vstack([pieces[a]['V'], pieces[b]['V']]))
+            if in_swept_all(mo & ~(occs[a] | occs[b]) & ~PK) > 0:
+                cache[key(a, b)] = None
+                continue
         Vm = np.vstack([pieces[a]['V'], pieces[b]['V']])
         Vm = Vm[ConvexHull(Vm).vertices]
-        merges.append(dict(a=pieces[a].get('tag', f'p{pieces[a]["src"]}'), b=pieces[b].get('tag', f'p{pieces[b]["src"]}'),
-                           added_cm3=round(float(add), 3)))
-        log(f'merge {merges[-1]}')
-        mo = occs[a] | occs[b] | G.hull_occ(Vm)
-        pieces = [p for k, p in enumerate(pieces) if k not in (a, b)] + [dict(src=[pieces[a]['src'], pieces[b]['src']],
-                                                                              V=Vm, kind='merged')]
+        mo_ = G.hull_occ(np.vstack([pieces[a]['V'], pieces[b]['V']]))
+        band_add = int((mo_ & ~(occs[a] | occs[b]) & RV).sum())
+        merges.append(dict(a=pieces[a].get('tag') or f'p{pieces[a]["src"]}', b=pieces[b].get('tag') or f'p{pieces[b]["src"]}',
+                           new_fill_cm3=nn / 1e3, added_cm3=na / 1e3, band_cells_added=band_add))
+        log(f'merge {merges[-1]} -> {len(pieces) - 1} pieces')
+        mo = G.hull_occ(Vm)
+        tag = f"({merges[-1]['a']}+{merges[-1]['b']})"
+        srcs = [x for p in (pieces[a], pieces[b]) for x in (p['src'] if isinstance(p['src'], list) else [p['src']])]
+        pieces = [p for k, p in enumerate(pieces) if k not in (a, b)] + [dict(src=srcs, V=Vm, kind='merged', tag=tag,
+                                                                              uid=uid_next[0])]
+        uid_next[0] += 1
         occs = [o for k, o in enumerate(occs) if k not in (a, b)] + [mo]
+    log(f'after merges: {len(pieces)} pieces ({time.time() - t0:.0f} s)')
     files = []
     for k, p in enumerate(pieces):
         m = write_obj(f'{out}/plastic_dish_rack/piece_{k:02d}.obj', p['V'])
-        files.append(dict(file=f'piece_{k:02d}.obj', src=p['src'] if not isinstance(p['src'], (list, np.ndarray)) else
-                          [int(x) for x in p['src']], kind=p['kind'], tag=p.get('tag'), verts=len(m.vertices),
+        files.append(dict(file=f'piece_{k:02d}.obj', src=[int(x) for x in p['src']] if isinstance(p['src'], list)
+                          else int(p['src']), kind=p['kind'], tag=p.get('tag'), verts=len(m.vertices),
                           vol_cm3=round(m.volume * 1e6, 3), watertight=bool(m.is_watertight)))
-    json.dump(dict(scope=scope, episodes=frames, constants=dict(MAX_CLIP=MAX_CLIP, MAX_DEPTH=MAX_DEPTH, TOL_F=TOL_F,
+    json.dump(dict(scope=scope, episodes=frames, constants=dict(MAX_CLIP=MAX_CLIP, MAX_DEPTH=MAX_DEPTH, TOL_F=TOL_F, KDEC=KDEC,
                    W_COLL=W_COLL, MERGE_MAX_CM3=MERGE_MAX_CM3, SAMPLE_M=SAMPLE_M, CLEAR=L.CLEAR, PITCH=L.PITCH),
-                   RV_cm3=RV.sum() / 1e3, F_cm3=F.sum() / 1e3, RV_all_cm3=RVall.sum() / 1e3, touched=report,
+                   RV_cm3=RV.sum() / 1e3, F_all_cm3=F_all.sum() / 1e3, F_target_cm3=F.sum() / 1e3, touched=report,
                    merges=merges, pieces=files, n_pieces=len(files), secs=round(time.time() - t0, 1)),
               open(f'{out}/build.json', 'w'), indent=1, default=float)
     log(f'done: {len(files)} pieces, {time.time() - t0:.0f} s')

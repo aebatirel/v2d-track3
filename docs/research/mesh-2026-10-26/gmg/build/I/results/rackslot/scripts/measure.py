@@ -5,12 +5,13 @@ Usage: measure.py SET OUT.json EPS     SET: a folder holding plastic_dish_rack/p
 """
 import glob, json, os, subprocess, sys, time
 import numpy as np, trimesh
-from scipy.spatial import ConvexHull
+from scipy.spatial import ConvexHull, cKDTree
 import rs_lib as L, vox
 
 P_GUEST = 0.0015
 G1_MED, G1_MAX, G2_MAX, G5_MIN = 1.0, 3.0, 1.0, 0.90
 C2_CELLS_CM3, C2_SURF_MM = 0.1, 0.5
+BAND = 0.00087        # GATES.md Amendment 2: G2b counts swept cells more than half a cell diagonal from the mesh surface
 COACD_TARGET = f'{L.SCR}/coacd1011'
 
 
@@ -107,6 +108,8 @@ def main():
         c2['pass_'] = True
         res['C3'] = dict(pass_=True, note='packed: FlashCHORD hulls themselves')
     res['C2'] = c2
+    rack3 = L.load_mesh(L.RACK_MESH)
+    surf3 = np.asarray(trimesh.sample.sample_surface_even(rack3, int(rack3.area / 0.0003 ** 2), seed=3)[0])
     for ep in eps:
         R, info = L.rest_frames(ep); P = L.poses(ep)
         gh = L.load_hulls(L.GUEST[ep]['packed'])
@@ -131,9 +134,13 @@ def main():
         g1['floor_blocks'] = bool(g1['floor_pm_median'] > G1_MED or g1['floor_pm_max'] > G1_MAX)
         g1x = dict(median=float(np.median(col('E'))), max=float(col('E').max()), min=float(col('E').min()))
         g1x['pass_'] = bool(g1x['median'] <= G1_MED and g1x['max'] <= G1_MAX)
-        sw = (RV & CO & ~M).sum() * v1
-        g2 = dict(swept_cm3=round(sw, 3), per_frame_max_guest_packed=float(col('beyond_packed_guest').max()),
-                  per_frame_max_guest_mesh=float(col('beyond_mesh_guest').max()), pass_=bool(sw <= G2_MAX))
+        swc = G.centres(RV & CO & ~M)
+        dsw = cKDTree(surf3).query(swc)[0] if len(swc) else np.zeros(0)
+        sw = len(swc) * v1
+        sw_b = float((dsw > BAND).sum()) * v1
+        g2 = dict(swept_cm3=round(sw, 3), pass_as_written=bool(sw <= G2_MAX), G2b_beyond_band_cm3=round(sw_b, 3),
+                  band_mm=BAND * 1e3, per_frame_max_guest_packed=float(col('beyond_packed_guest').max()),
+                  per_frame_max_guest_mesh=float(col('beyond_mesh_guest').max()), pass_=bool(sw_b <= G2_MAX))
         base = (PK & ~RV).sum(); kept = (CO & PK & ~RV).sum()
         g5 = dict(kept_ratio=round(kept / base, 4), packed_outside_RV_cm3=round(base * v1, 2),
                   lost_cm3=round((base - kept) * v1, 2), added_outside_packed_cm3=round((CO & ~PK).sum() * v1, 3),

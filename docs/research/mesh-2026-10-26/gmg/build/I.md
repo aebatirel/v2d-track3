@@ -1915,3 +1915,9 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   the mesh below, so the hull must be split between them. Revised build (03:33): depth <= 5, TOL 20 cells per leaf,
   split candidates with 5 offsets + PCA axes, merges that only restore packed fill (no RV cell) first, then capped
   new-fill merges only while > 43.
+- 03:52 Dev build try2 (depth 5, TOL 20, F all): eval 30 107 pieces / 1.32 cm3 F left, eval 14 102 / 1.04; no merge
+  admissible (every sibling merge re-covers F). Diagnostic (`scripts/diag_left.py`, construction only, no gate code):
+  of the F left, 1.20 (eval 30) / 0.98 (eval 14) cm3 lie within 1.0 mm of the rack-mesh surface (cells straddling the
+  surface at 1 mm). GATES.md Amendment 2 (before any candidate is measured): G2 judged as G2b = swept cells more than
+  0.87 mm (half a 1 mm cell diagonal) from the mesh surface, G2 as written still reported with its verdict; the build
+  targets F' = F beyond that band; merges may add band cells, never F' cells. try1 / try2 stay unmeasured dev builds.

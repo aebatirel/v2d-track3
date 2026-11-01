@@ -70,6 +70,37 @@ commit 2d9bfc5; `../collcarve2-eval/`). The rule's hands-off set is H30, not H0.
 The H0-based R table and frames in "Definitions" and "G3" below are kept for the record. They are superseded by items
 1-2.
 
+## Amendment 2 (1 Nov 2026, 03:52 UTC), before any candidate was measured
+
+**What prompted it.** Two development builds, try1 and try2, were made under Amendment 1. They are not candidates and
+were never run through `measure.py` or `phys.py`. A construction diagnostic on them (`scripts/diag_left.py`) showed
+[M]:
+- **Most forbidden cells left inside the pieces touch the mesh surface.** These are cells of F (RV minus the rack
+  mesh) whose centre is within 1.0 mm of the rack-mesh surface.
+
+  | Build | Pieces | F left in pieces, cm3 | ... of which within 1.0 mm of the mesh surface, cm3 |
+  |---|---|---|---|
+  | try2, eval 30 (BSP depth 5) | 107 | 1.32 | 1.20 |
+  | try2, eval 14 | 102 | 1.04 | 0.98 |
+  | try1, eval 30 (BSP depth 3) | 70 | 2.42 | 1.95 |
+
+- **Such a cell straddles the mesh surface.** At 1 mm resolution it cannot be called "beyond the mesh". A convex piece
+  that keeps the mesh cannot drop it without being split at the scale of single cells.
+- **Chasing those cells is what drives the piece count up.** Of all F, 2.2 cm3 (eval 30) and 1.9 cm3 (eval 14) lie
+  within 0.6 mm of the mesh surface.
+
+**Change.**
+- **G2 is judged on G2b.** G2b is the same swept measure (RV inside the candidate pieces, outside the rack mesh, 1 mm
+  cells), counting only cells whose centre lies more than b = 0.87 mm from the rack-mesh surface. 0.87 mm is half the
+  diagonal of a 1 mm cell (generic, grid resolution). The surface is sampled at 0.3 mm (seed 3). Pass: G2b <= 1.0 cm3.
+- **G2 as written (all cells) stays in every table with its own verdict.** The packed rack's G2 is 10.76 cm3 on eval
+  30 and 6.88 cm3 on eval 14.
+- **The build targets F' = F minus the band.** Merges may add band cells but never an F' cell. Every other gate is
+  unchanged.
+- **Naming.** The first sets measured are named c1-ev30, c1-ev14 and c1-both, as planned. try1 and try2 stay in the
+  record as unmeasured development builds: the log and `build.json` in the scratch folder, and their piece counts and
+  leftovers in the table above.
+
 ## Definitions
 
 - **Frame of work.** Everything is measured in the rack's link frame. The guest is placed there by the packed
