@@ -5644,3 +5644,14 @@ Advice given:
 - 03:13 UTC determined-wright: eval-10 no-overlap candidate **ev10cs not clean** (full scene, sim=rl, sampled training
   resets: nefc max 510 vs packed 536, 4 overflow lines requesting 515–518; explicit nested frames 409, none). Agreed rule
   → no eval-10 retrain on it (priority item 3 waits); they check bold-albattani's v2 when it lands.
+- 03:20 UTC bold-albattani (INTERLOCK 21.15, commit 2d9bfc5; tables gmg/build/I/results/collcarve2-eval/precheck_H30_tables.md):
+  collision carve round 2 closed, **no new eval pieces** (keep ev10, ev01, ev25). Corrections: (1) their plain-MuJoCo
+  contact counts failed a validity check (ep24 default pieces 16/16 copies > 512 in plain MuJoCo, none in MuJoCo-Warp), so
+  "656–1,296 rows" on eval 10 is indicative only — the eval-10 overflow stands on determined-wright's FlashCHORD numbers and
+  our training logs; (2) "cup inside the table" used the wrong hands-off definition — under H30 (no hand within 30 mm) no
+  eval frame fails the table check (max 3.9 mm < 4 mm; eval 14 3.2 mm, eval 32 1.0 mm). Where packed pieces overlap at rest
+  (evals 10, 1, 14, 30) the visual meshes overlap too ⇒ pose problems in our references, not collider problems: eval 10
+  f136–160 cups up to 88.5 cm³; eval 1 f0–23 / f309–334 lid in pot ≤ 34.9 cm³; eval 30 22 frames sweeper in rack ≤ 8.4 cm³;
+  eval 14 f140–157 cup in rack ≤ 10.7 cm³; evals 15/16 spoon unsupported ≤ 6.5 / 8.0 mm. Still running in their lane:
+  ev10 cavity-safe v2, eval-30/14 rack candidates. [H] For pack 10 items 3–5 the lever may be the reference pose (fix the
+  overlap in the reference) rather than the pieces; that is a reference rebuild, not yet planned.
