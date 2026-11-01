@@ -1,0 +1,51 @@
+{
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/e20/tree_b1/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref.parquet",
+ "worlds": 32,
+ "steps": 60,
+ "nefc_hold_window": {
+  "max": 321,
+  "median": 108.0,
+  "share_over_njmax": 0.0,
+  "n": 100
+ },
+ "nefc_after_hold": {
+  "max": 275,
+  "median": 88.0,
+  "share_over_njmax": 0.0,
+  "n": 200
+ },
+ "nconmax": 8192,
+ "njmax": 512,
+ "collision_geoms": {
+  "world/table": 1,
+  "left_hand": 26,
+  "right_hand": 26,
+  "blue_cup_object": 68,
+  "water_pitcher_object": 41,
+  "other:support": 1
+ },
+ "max_contacts_per_world": 76,
+ "median_contacts_per_world": 22.0,
+ "max_nefc_per_world": 321,
+ "median_nefc": 103.0,
+ "frames": [
+  0,
+  14,
+  152,
+  183,
+  192
+ ],
+ "max_total_contacts_requested": 2432,
+ "share_steps_nefc_over_njmax": 0.0,
+ "max_contacts_per_world_by_pair": {
+  "blue_cup_object / left_hand": 34,
+  "blue_cup_object / world/table": 31,
+  "right_hand / right_hand": 20,
+  "left_hand / left_hand": 19,
+  "water_pitcher_object / world/table": 18,
+  "blue_cup_object / other:support": 12,
+  "other:support / water_pitcher_object": 10,
+  "right_hand / water_pitcher_object": 9,
+  "blue_cup_object / water_pitcher_object": 8
+ }
+}

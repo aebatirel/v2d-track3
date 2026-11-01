@@ -97,3 +97,21 @@ worst of the 32 worlds exceeds 512 rows. Runs are in `runs_32x60/` and `runs_8x3
 - Trade-off: ev10cs4 has 53–64 rows of budget headroom but only 0.5 mm of floor margin at the release impact. ev10cs5
   has 8–9 rows of headroom and ~4 mm of floor margin (`ev10_nest_test/`).
 
+**Eval 20, b1 pitcher set (1 Nov 06:43 UTC, keen-heisenberg's request).**
+- Set: bold-albattani 9c0bc0c `rebase/sets/ev20/water_pitcher/`, 41 pieces. Applied with
+  `pipeline/placement_carve.py assets refs/sf/ep20/assets <set> OUT`; the inertial is unchanged.
+- Reference: the packed eval-20 reference (evb1420, md5 4d06d8d4). The packed pitcher URDF has 9 collisions: the mesh
+  and 8 foot STLs.
+- 32 × 60, explicit frames f0 / 14 / 152 / 183 / 192.
+
+| set | overflow lines (sampled / explicit) | sampled hold max (median) | explicit max |
+|---|---|---|---|
+| packed | 0 / 0 | 348 (293) | 317 |
+| b1 | **0 / 0** | 342 (291) | 321 |
+
+- Budget: clean.
+- Observation: under b1 the blue cup touches the world-body geom (the ground or table plane), with up to 6 contacts
+  per world under sampled resets and 31 at the explicit frames. The packed set shows none. The pitcher touches that
+  geom in both. [H] The carve removed pitcher fill that held the cup up, so the cup now rests lower. That may be
+  intended, but it is worth a settle check before training.
+
