@@ -1821,3 +1821,19 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   "FAIL (pose floor)" where the floor exceeds it; the candidate is judged on G1x (overlap beyond the guest-pieces-in-
   rack-mesh floor, same thresholds). Delivery rule: first candidate in build order (c1-ev30, c1-ev14, c1-both) passing
   G1x-G5 and C1-C3; no candidate changed after measurement.
+- 03:06 [M] **Gate 2 (plain MuJoCo, sim=rl, 16 copies x 2 s): candidate FAIL**: f111 / f142 / f116 max nefc 804 /
+  936 / 808, ncon <= 234, overflow 10 + 15 + 15 = 40 / 48 copies. Packed rerun = precheck (1,252 / 656 / 1,296,
+  48 / 48). Step-0 rows drop at the hands-off frames (f142 296 vs 568; f124 372 vs 588; f160 284 vs 512), but the maxima
+  come later in the 2 s; at f160 the candidate is WORSE (788, 16 / 16 vs 580, 4 / 16). Note [R]: cc2eval's 03:06 entry
+  above finds plain-MuJoCo G1 counts stricter than MuJoCo-Warp; all our pair-scene numbers are plain-MuJoCo-only.
+- 03:08 [M] Settle trace (`scripts/settle_trace.py`, 1 unjittered copy, f124 / f142 / f160). In the candidate, the
+  beige slides down the wider cavity (guest displacement in the blue frame +4 / +12 / +27 mm along the axis) onto the
+  blue floor. There its 13 ring-base pieces meet the blue's 17 CoACD base hulls, ALL of whose top faces lie on the
+  floor plane: 166-191 of 185-194 contacts at the max-nefc step are guest-base x receiver-base; the settled last 0.5 s
+  holds 574 / 746 / 738 rows. Packed: the beige stays wedged on the walls (max 780 / 512 / 480 rows, settled
+  484 / 384 / 68). So removing overlap lets the guest reach a 13 x 17 piece-pair floor.
+- 03:09 [M] **Gate 3, corrected measure: candidate depth 0.0 mm, 0.0 cm3 -> PASS**; packed ev10 3.54 mm deep, 54.2 cm3,
+  all 36 wall pieces. Floor decomposition f124-f160 (median): visual overlap 80.8 cm3 = 46.1 inside the blue lathe
+  cavity (the blue mesh fills its own cavity) + 33.8 outside it (the beige mesh crosses the blue's lathe wall / base:
+  pose and mesh size); exact-lathe design floor (shrunk beige body outside the cavity) 6.68 cm3 (1.26-21.28), above
+  the candidate's 1.92 because inscribed chords sit inside the exact body.

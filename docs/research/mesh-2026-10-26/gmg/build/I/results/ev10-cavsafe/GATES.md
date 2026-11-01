@@ -129,3 +129,29 @@ constant.
 - Both stay as designed.
 
 **Unchanged.** Gates 1-4, the frames and the expected outcomes.
+
+## Amendment A2 (1 Nov, 03:11 UTC): variant v2, designed AFTER v1's gate numbers, before any v2 number
+
+**Why (post hoc on v1) [M].**
+- v1 (`ev10cs`) passes gate 3 and fails gates 1, 2 and 4a.
+- The settle trace (`scripts/settle_trace.py`) shows the gate-2 rows come from the blue cup's floor. The beige slides
+  down the wider cavity, 4-27 mm along the axis, onto the blue floor.
+- There its 13 ring-base pieces meet the 17 CoACD base hulls. All 17 hulls have their top face on the floor plane, so
+  166-191 of the 185-194 contacts at the max-nefc step are base against base.
+
+**v2 design (`ev10cs2`).** v1 unchanged except for the blue cup's base. Change F1:
+- The cavity floor becomes **one** convex piece: the hull of the circumscribed 12-gon rings, r(h) / cos(pi/12), at
+  h_floor and at the profile bins up to h_base.
+  - This is lathe_collision.py's own base plate span [h_base - t, h_base], with t = 3 mm.
+  - Its top face lies on the floor plane, so it does not enter the cavity.
+- The 17 ev10 base hulls are clipped to h >= h_base with the tool's own `interaction_carve.clip`. That function drops a
+  piece thinner than a 0.2 mm inscribed ball. The footing on the table is unchanged: it is the hulls' bottom faces.
+- No new constant.
+- The blue count is 36 + 1 + K <= 53, which needs K <= 16. Otherwise v2 is not built as specified, and that is
+  reported.
+
+**Gates.** Gates 1-4 as above, and the same frames.
+- Report only: the settle trace at f124, f142 and f160.
+- Expected [H]: at the max-nefc step, guest-base x receiver-floor contacts <= 13.
+- Falsifiers: more than 50 such contacts, or gate 2 fails with its maximum at the floor.
+- v2 is labelled post hoc everywhere. v1 stays the pre-registered candidate.
