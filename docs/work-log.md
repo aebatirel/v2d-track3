@@ -6249,3 +6249,17 @@ arm and a no-policy replay floor to stage B.
     (+0.005–0.01 [E], ~$3–4); evals 1 / 30 overlaps (small).
 - 09:02 UTC **all four lanes reported done; nothing running.** Deleted the 10:30 check (trig_01Ltr9dX9Kt5Lx9WbYiiSasC),
   now moot. Consolidated decisions / half-done / opportunities in docs/analysis/overnight-20261101/README.md.
+- 09:11 UTC 1 Nov **owner: "I give give you go"** to pack the njmax-1024-trained eval-10 policy evaluated at stock
+  limits.
+  - Owner's reading (09:08): the rule protects the evaluation setting of the final policy; the training buffer is a
+    training choice, like FDR / VOC / the D arm. This replaces my "never packed" condition for that one policy.
+  - Relayed to focused-pascal (09:12) as pack 11 = pack 10 + the eval-10 1024-trained checkpoint, with conditions:
+    - the saved config carries stock 512 / 256, proven by the evaluator log;
+    - reuse the 512-readout draws only if they came from the pristine kit evaluator on that exact stock-config
+      checkpoint, else a ~$2 confirmation box; 0 overflow in every scored draw;
+    - the standing swap rule vs pack 10's ev10cs5 draws plus the ≥ +0.02 bar, as a dated PREREG amendment that
+      discloses the values were already seen;
+    - the guard lifted for that sha only;
+    - byte diff only e000010; README disclosure; ≥ $10 reserve.
+  - Pack 10 stays the fallback for the final per-board selection. The organisers question is still worth sending; it
+    matters only for the final pick.
