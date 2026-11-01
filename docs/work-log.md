@@ -5908,3 +5908,12 @@ Advice given:
 - 08:22 UTC eval-20 b1 interim [M, exec; not the reading]: seed 42 done — 1,236 overflow lines (max request 604; > 1,000
   → "pieces not clean in training" label if it stands); curve 10M 0.266, 20M 0.212, 30M 0.191, 40M 0.325, 50M 0.290, 60M
   0.616, 70M 0.845 (still rising); training-box n 10 0.7861 ± 0.1473 (min 0.411) < gate 0.8933. Seed 43 since 08:17.
+- 08:44 UTC keen-heisenberg: **pack 10 uploaded** 08:38–08:43 UTC by that session (owner's direct "Upload it" there, after
+  their permission check blocked the first try; not from this session). Their checks pass (sha e1bef1e5…, byte diff =
+  e000010 only, njmax 512, PREREG 13c4133, dry run). **Board [M]: AUC 0.81915 (best; 9a+ 0.81757, +0.0016 — estimate was
+  +0.002), RPE 3.68275 (best; 3.87853), MPPE 2.84759 (best; 2.89663), SP-SR 0.80 (9a+ 0.85), MP-SR 0.65 =, CD-O 0.33234 =.**
+  Each board keeps its best: AUC / RPE / MPPE improve, SP-SR stays at 9a+'s 0.85. [H] SP-SR lost eval 10: the old policy
+  "succeeded" because the cup barely moved; the new one moves it ~10 cm without completing the nest — an eval-10 policy
+  that completes the nest should win SP-SR back. Receipt + UPLOAD.md on claude/keen-heisenberg-engcwz (5b0f081).
+  [M] First confirmed board gain from the contact-overflow finding; the GT-free proxy gain (+0.04 on the episode) matched
+  the board's direction this time (AUC +0.0016 ≈ +0.032 on one episode).

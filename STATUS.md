@@ -10,6 +10,11 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-01 08:43 UTC: PACK 10 UPLOADED (keen-heisenberg's session) — new bests on AUC 0.81915, RPE 3.683, MPPE 2.848
+- vs 9a+: AUC +0.0016, RPE −0.196, MPPE −0.049; SP-SR 0.80 (board keeps 9a+'s 0.85); MP-SR / CD-O unchanged.
+- Only eval 10 changed (legal ev10cs5 retrain). [H] SP-SR dropped because the new eval-10 policy moves the cup without
+  completing the nest. Next lever there: an eval-10 policy that completes the nest (overflow → 0 at stock limits).
+
 ## 2026-11-01 08:13 UTC: eval-10 legal retrain (ev10cs5, stock limits) SWAP-ELIGIBLE → INCLUDE in pack 10
 - Official draws vs V 0.532 (packed 0.463), vs P 0.512 (0.453); gain +0.069 / +0.059 ≥ +0.02 on both; all clauses hold;
   every draw still fails RPE > 5 cm (equal floor) but draw 1 beats the packed rollout on sim_vs_ref, RPE and MPPE.
