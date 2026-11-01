@@ -79,6 +79,10 @@
 # off by default): with SPLIT=eval, eval 10 may also use a PERC prefix perc2e10css<seed> (that job's byte copy of e10v's stored
 # V4p reference) with RUN local and REQUIRE_REUSE=1 only; folders refs/perc2e10css<seed>_glock*, runs/perc2e10css<seed>_glock,
 # results/perc2e10css<seed>_glock_public (stock contact limits; packable). Unset, every PERC decision is exactly as before.
+# EVAL_E20B1=1 (2026-11-01, eval-20 retrain on the b1 pitcher pieces, ops/jobs/ev20_b1.sh; docs/research/work/eval20-b1-20261101/;
+# opt-in, off by default): with SPLIT=eval, eval 20 may also use a PERC prefix e20b1s<seed> (that job's byte copy of the packed
+# eval-20 reference) with RUN local and REQUIRE_REUSE=1 only; folders refs/e20b1s<seed>_glock*, runs/e20b1s<seed>_glock,
+# results/e20b1s<seed>_glock_public (stock contact limits; packable). Unset, every PERC decision is exactly as before.
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log. Each rollout's
 # summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -196,6 +200,7 @@ one() {
         || { [ "${EVAL_LOCAL_REF:-0}" = 1 ] && [ "$ep" = 10 ] && [[ $perc =~ ^perc2e10v(s[0-9]+)?$ ]] && [ "$run" = local ]; } \
         || { [ "${EVAL_NJ_DIAG:-0}" = 1 ] && [ "$ep" = 10 ] && [[ $perc =~ ^perc2e10njs[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
         || { [ "${EVAL_CS_REF:-0}" = 1 ] && [ "$ep" = 10 ] && [[ $perc =~ ^perc2e10css[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
+        || { [ "${EVAL_E20B1:-0}" = 1 ] && [ "$ep" = 20 ] && [[ $perc =~ ^e20b1s[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
         || { log "glock ep$ep: PERC $perc with SPLIT=eval needs a mass<A>s<seed> prefix, RUN local and REQUIRE_REUSE=1" >> $J; return 1; }
       fi
     else
