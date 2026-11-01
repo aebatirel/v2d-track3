@@ -6378,3 +6378,9 @@ Background agent, CPU only, $0, no ground truth read.
   - They keep the owner's condition: no 1024-trained policy in a pack until the organisers agree. The question is
     with the owner.
   - The ep2/ep12 public test is an option for the owner, not launched.
+- 06:43 UTC: eval 20, bold-albattani's b1 pitcher set (9c0bc0c, 41 pieces, via placement_carve.py assets on the
+  packed refs/sf/ep20/assets), keen-heisenberg's request.
+  - 32 × 60: **0 / 0 overflow lines**; max 342 / 321, against packed 348 / 317. Clean.
+  - Observation: under b1 the cup touches the world-body plane (6 / 31 contacts), which packed shows none of; a cup
+    settle check is suggested.
+  - Record f59c897. Sent to focused-pascal, bold-albattani and keen-heisenberg.
