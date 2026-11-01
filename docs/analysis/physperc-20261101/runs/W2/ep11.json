@@ -1,0 +1,42 @@
+{
+ "episode": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 137,
+ "meshes": "mesh9a",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 1.86,
+   "anchor_shift_cm": 0.98,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "beige_cup": {
+   "rot_deg": 4.04,
+   "anchor_shift_cm": 0.47,
+   "axis": [
+    0.011,
+    0.03,
+    0.999
+   ],
+   "order": 360
+  }
+ },
+ "perception": {
+  "AUC": 0.906,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.5739,
+  "RPE_cm": 1.6955,
+  "per_obj_AUC": {
+   "blue_cup": 0.8622,
+   "beige_cup": 0.9498
+  }
+ }
+}

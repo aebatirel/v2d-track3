@@ -6485,3 +6485,12 @@ arm and a no-policy replay floor to stage B.
     PEN 96 % of frames; ep23 board JUMPs + PEN −137 mm, the identity swap) and one false positive (ep21 pitcher
     jump during a pour with the hand missed); the other 17 episodes clean. Output diag/qa_physics_public.json.
     Offered to perfect-following as a read-only QA of eval references (this session does not touch eval).
+- 22:00 UTC 1 Nov physperc **idea 3 (twist) on the 5 public cup episodes** [D; mocap read only by d7_twist.py].
+  - W1 = GRASP's twist_canon.canonicalise (41383b4, copied verbatim) on npz tracks, holds following a MediaPipe palm
+    frame (no robot wrist here): twist error vs mocap WORSE on 5 / 6 cups (ep21 4.0 -> 36.4 deg, ep22 1.9 -> 32.6),
+    registered AUC ep11 −0.0084, ep21 −0.003. Falsified in this form (consistent with perfect-following's ep13 note).
+  - W2 = rest-only hold (exploratory, NOT pre-registered, one run): twist increments removed only on static frames
+    (centroid step < 1 mm, no hand within 50 mm); twist error better on 6 / 6 (ep13 74.6 -> 57.7, ep21 4.0 -> 1.6);
+    registered AUC unchanged (±0.0003). Board-neutral by construction (cups are symmetric); value is physics
+    feasibility only. Sent to GRASP (theirs to gate with sim_vs_ref).
+  - Our tracker observes cup twist well on several cups (2–5 deg), so "twist is unobservable" is not true here.
