@@ -6313,3 +6313,13 @@ Background agent, CPU only, $0, no ground truth read.
     0.3 kg.
   - The large-sample controls on packed evals 30 and 14 had never run: my wait loop's `pgrep -f` matched its own
     command line. Fixed and restarted, together with c1 / c2 at both sample sizes.
+
+### 2026-11-01 04:47 UTC — determined-wright: overlap-fix budget verdicts (32 × 60 standard with controls)
+- Controls: the packed evals 30 and 14 have 0 overflow lines at 32 × 60 (max 287 / 505 rows), so the size is a fair
+  absolute test. The 8 × 30 bar was not robust.
+- **Eval 14:** c1-ev14 adds 12 overflow lines and c2-ev14 adds 5, against 0 packed → keep the packed rack.
+- **Eval 30:** packed is clean.
+- **Eval 10:** packed 380 / 9,723 lines; ev10cs 104 / 7,086; ev10cs3 110 / 576 → no clean candidate, no retrain.
+  ev10cs3 + `sim.njmax=1024` is untested; it needs the owner's go.
+- Record: `contact_budget/README.md` "Large-sample standard", runs in `runs_32x60/` and `runs_8x30/` (6b04fba). Sent
+  to bold-albattani, focused-pascal and keen-heisenberg.

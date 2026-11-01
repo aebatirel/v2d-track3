@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~04:47 UTC: overlap-fix contact checks done; no retrain cleared; nothing of mine running
+- Owner permission (relayed 02:50 UTC) for collision-overlap fixes; my part was CPU checks only. Record:
+  `docs/research/physics-2026-10-30/contact_budget/` (32 × 60 standard with controls).
+- Eval 14: keep the packed rack (candidates c1 / c2 add overflow).
+- Eval 30: packed is clean.
+- Eval 10: no clean candidate (ev10cs3 is best, still 110 / 576 lines). focused-pascal runs the owner-approved
+  njmax-1024 diagnostic.
+
 ## 2026-11-01 ~00:05 UTC: arm V inconclusive (not used); the recipe screen is complete; nothing of mine is running
 - **Arm V** (the actor sees object velocity, §10.1): Δ ep2 −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007 →
   inconclusive, V not used.
