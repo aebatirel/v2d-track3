@@ -1,5 +1,25 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~03:25 UTC: ev10 cavity-safe cup pieces: three measured candidates delivered, none clean yet (CPU, $0)
+- **What:** eval-10 blue / beige cup collision pieces that do not enter the blue cavity (measured 0.0 mm; packed ev10:
+  3.5 mm, 54 cm3), built with ev10's tool and constants. Folders `ev10cs` (v1, pre-registered), `ev10cs2` (v2: +
+  one-piece blue floor, 44 / 49), `ev10cs3` (v3: v2 at 8 sectors, 32 / 33), in
+  `docs/research/mesh-2026-10-26/gmg/build/I/results/ev10-cavsafe/`, make_assets --pieces layout. Gates in GATES.md
+  were written before any candidate number.
+- **Results [M], plain MuJoCo:**
+  - rest overlap f124-f160 (median / max): packed 11.9 / 32.7 cm3, v1 / v2 1.9 / 6.8, v3 0.4 / 3.0 (gate 1 passes on
+    v3 only);
+  - pair-scene max nefc: packed 1,296 (48 / 48 copies overflow), v1 936 (40), v2 548 (5), v3 756 (6); gate 2 fails
+    on all;
+  - settled nest: v2 212 rows, v3 160 rows;
+  - kept-volume gate fails for the blue cup in every set, because its mesh fills its own cavity.
+- **Floor:** the visual meshes overlap at every rest frame (80.8 cm3, of which 33.8 cm3 is beyond the blue cavity). It
+  is the reference pose, not the pieces.
+- **FlashCHORD** (determined-wright [R]) on v1: sampled nefc 510 vs packed 536, 4 vs 13,544 overflow lines; "improved,
+  not clean". v2 / v3 are with them (criterion: <= ~460 and 0 lines).
+- **Open:** FlashCHORD on v2 / v3; then a rest / nest test (thin 3 mm floor crossed at a hands-free drop impact [M,
+  plain MuJoCo]); a training run only after that and the owner's go. No pack changed.
+
 ## 2026-11-01 ~03:20 UTC: collision carve round 2 closed: verified, nothing carved or delivered, public or eval (CPU, $0)
 - **Result [M]:** on our SHELLs no ring piece that stays out of the cavity keeps a 1.5 mm wall (walls ~1 mm rough per
   face; verify_cc2_1 B1, standing); CoACD still fills openings; all ten public objects ended in 6 mm boxes, so all five

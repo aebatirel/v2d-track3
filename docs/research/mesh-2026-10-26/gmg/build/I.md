@@ -1880,3 +1880,14 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
 - 03:16 v3 built (blue 32: 24 wall + floor plate 10.78 cm3 + 7 hulls, 136.1 cm3; beige 33, 250.1 cm3; wall minima as
   v2: 0.25 mm mouth bin, 0.875 mm bottom bin); folder `ev10cs3/` laid out (make_assets tested: 32 / 33); committed
   before our own v3 numbers so FlashCHORD can run in parallel. v3 evalcheck / contacts / settle running.
+- 03:21 [M] v3 results: **gate 1 PASS (median 0.378, max 2.987 cm3**, min 0.007; all-frame max 7.61 at f109);
+  gate 2 FAIL (f111 / f142 / f116 max nefc 756 / 376 / 752, ncon <= 189, overflow 2 + 0 + 4 = 6 / 48; maxima at the
+  in-hand frames carry 31-35 guest-table contacts); f124 684 (3 / 16), f160 380 (0 / 16); settle 160 rows at rest;
+  gate 3 0.0 PASS; gate 4a blue 0.340 FAIL, beige 1.584; piece target 32 / 33 pass. Peek at v3 f124 step 8: 172
+  contacts on 59 pairs (up to 4 per mesh-mesh pair in this MuJoCo); the beige base touches the table plane through the
+  blue floor at the impact of the hands-free 24 mm drop (6.8 mm axial travel in one 10 ms step vs 4.6 mm of floor) [M];
+  thin-floor crossing at impacts [H]. Reference: the pair is 24.4 / 13.9 / 0.4 mm above the table at f124 / f142 /
+  f160 (blue lowest point), hands > 90 mm away from f142: the "rest" is still descending.
+- 03:24 README written (`ev10-cavsafe/README.md`: plain words, delivery (folders, paired reference, critical frames),
+  table packed / v1 / v2 / v3, changes, floor, settle, what the pack lane does, limits, time order, inputs, commands);
+  results/ (summary.json, contacts, settle, measure, per_frame, cfg, logs). Committing.
