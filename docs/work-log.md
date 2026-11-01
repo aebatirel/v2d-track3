@@ -5510,7 +5510,7 @@ Advice given:
   tonight: if a D box shows PUSH-FAILED, pull its summary/verify (and what the merge needs) from the store, check them,
   then destroy it by hand. Fix later (separate change): serialise push-run with flock on /content/push.lock, or give
   the interim push its own staging folder.
-- ~01:20 UTC built `tools/pack_swap_rollouts.py` for the pack 9b CPU repack (BUILD item 8 was open: C's draw 1 is
+- ~00:55 UTC built `tools/pack_swap_rollouts.py` for the pack 9b CPU repack (BUILD item 8 was open: C's draw 1 is
   "pack 7 + candidates", not 9a+). Tests (pack9b cpu/rollout_swap_tests.txt): pure repack = 9a+ byte for byte
   (e02736ea…); synthetic ep14 swap passes (316 pose + 316 checkpoint rows, CD-O unchanged); 7 refusals behave, incl. a
   swap without flash_chord metadata (found while testing: the kit packer reads the hashes from the rollout parquet's

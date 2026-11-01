@@ -206,7 +206,7 @@ read. Markers: [M] measured, [E] estimate, [H] hypothesis.
    files (`verdict.json` pack9b[N].path), with every other episode byte-identical. That CPU repack (pack 9a's B7 method)
    is not built here.
 
-## Pack 9b CPU repack (added 1 Nov 2026 ~01:20 UTC, orchestrator; closes item 8)
+## Pack 9b CPU repack (added 1 Nov 2026 ~00:55 UTC, orchestrator; closes item 8)
 - Tool: `tools/pack_swap_rollouts.py` (sibling of pack_swap_meshes.py: swaps rollouts, refuses any mesh change).
   Inputs = pack 9a+'s own packer inputs (scratchpad `pack9ap/pack9ap2/results` + `meshes`), base = build_9aplus parquet.
 - Per PASS episode N: `--swap N=<verdict.json pack9b[N].path>` (the .json beside it) and `--expect-checkpoint N=<the

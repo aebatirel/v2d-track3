@@ -1,4 +1,4 @@
-tools/pack_swap_rollouts.py CPU tests, 1 Nov 2026 ~01:20 UTC (packing venv: pandas 3.0.6 / pyarrow 26.0.0 / numpy 2.5.4 / trimesh 5.2.0 / fast_simplification 0.2.0)
+tools/pack_swap_rollouts.py CPU tests, 1 Nov 2026 ~00:55 UTC (packing venv: pandas 3.0.6 / pyarrow 26.0.0 / numpy 2.5.4 / trimesh 5.2.0 / fast_simplification 0.2.0)
 Base = pack 9a+ build_9aplus/track3_submission.parquet (sha256 e02736ea…); inputs = the 9a+ packer inputs (scratchpad pack9ap/pack9ap2/{results,meshes}).
 Fixtures are synthetic (ep14 rollout with achieved_position_x + 1 mm, fake checkpoints); they are not results.
 --- T0b_repack
