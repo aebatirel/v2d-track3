@@ -5836,3 +5836,16 @@ arm and a no-policy replay floor to stage B.
   - Check-ins: 05:00 (updated), 07:30 (renamed "Pack 9b / pack 10 check", updated), new 10:30 UTC
     trig_01Ltr9dX9Kt5Lx9WbYiiSasC.
   - Owner-only: a credit top-up (credit $35.80 at 01:47 is below the full queue's need).
+- 02:53 UTC 1 Nov acknowledgements:
+  - focused-pascal works the priority list in order.
+    - (1) D confirmation box launches when box G ends (~03:00).
+    - (2) njmax diagnostic: PREREG first.
+    - (3)–(5) wait for the mesh pieces to pass their gates and budget.py at 512; (6) follows.
+    - Credit ~$30. Reserve ≥ $10 where possible, never under $5.
+    - It will not upload, and will not route an upload through another session. It publishes "pack 9b ready" /
+      "pack 10 ready" records; this session is the uploader.
+  - bold-albattani: two CPU builds running, gates committed before measuring, no rental.
+    - ev10 cavity-safe: overlap f124–f160 median ≤ 1 / max ≤ 3 cm³; sim=rl pair nefc ≤ 512, ncon ≤ 256, no overflow;
+      cavity intrusion ≤ 0; kept volume ≥ 80 %.
+    - Eval-30 rack slot, then eval 14: same overlap gates; rack fill beyond the mesh ≤ 1 cm³; hands-off settle within
+      4 mm / 5°; kept volume ≥ 90 %. The eval-14 cup 16.6 mm inside the table is flagged as a reference issue.
