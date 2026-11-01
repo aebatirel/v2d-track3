@@ -1,0 +1,42 @@
+PASS unchanged since d153ea9: ops/jobs/ev10_v4p.sh
+PASS unchanged since d153ea9: ops/jobs/ev10_nj.sh
+PASS unchanged since d153ea9: tools/e10v_score.py
+PASS unchanged since d153ea9: tools/e10v_verify.py
+PASS unchanged since d153ea9: tools/e10v_verdict.py
+PASS unchanged since d153ea9: tools/e10v_track.sh
+PASS unchanged since d153ea9: tools/e10nj.py
+PASS unchanged since d153ea9: tools/no_oracle.py
+PASS unchanged since d153ea9: pipeline/make_assets.py
+PASS unchanged since d153ea9: ops/box/lib.sh
+PASS unchanged since d153ea9: ops/box/store.sh
+PASS unchanged since d153ea9: ops/box/run_job.sh
+PASS unchanged since d153ea9: ops/box/watchdog.sh
+PASS unchanged since d153ea9: tools/ckpt_curve.sh
+PASS unchanged since d153ea9: tools/ckpt_curve_summary.py
+PASS unchanged since d153ea9: pipeline/qa.py
+PASS unchanged since d153ea9: ops/jobs/h5_reeval.sh
+PASS unchanged since d153ea9: ops/jobs/pack_eval.sh
+PASS unchanged since d153ea9: ops/jobs/submit_pack.sh
+PASS unchanged since d153ea9: ops/jobs/mass_eval.sh
+PASS unchanged since d153ea9: ops/jobs/ep11_gate.sh
+PASS unchanged since d153ea9: tools/pack_swap_rollouts.py
+PASS unchanged since d153ea9: meshes/carve/ev10
+PASS unchanged since d153ea9: meshes/library_v3
+PASS glock_public.sh: 1 code line added (the EVAL_CS_REF alternative of the eval PERC guard), 0 removed, the rest comments (5	0	ops/jobs/glock_public.sh)
+PASS ev10_cs.sh's recipe lines (export / unset, 8 lines) are ev10_v4p.sh's, verbatim except PIECES=meshes/carve/$PS
+PASS confirm()'s draw loop is ev10_v4p.sh's but for the job name, the overflow count in the draw log line and list_results (4 differing lines)
+PASS bash -n ops/jobs/ev10_cs.sh
+PASS bash -n ops/jobs/glock_public.sh
+PASS bash -n ops/jobs/ev10_v4p.sh
+PASS bash -n ops/jobs/ev10_nj.sh
+PASS py_compile tools/e10cs.py
+PASS py_compile tools/e10cs_pieces.py
+PASS py_compile tools/no_oracle.py
+PASS ev10_cs.sh refuses a run id without -e10cs-
+PASS ev10_cs.sh refuses a PIECESET other than ev10cs4 / ev10cs5
+PASS the opt-in goes to the glock_public.sh training calls only (2 mentions)
+PASS ev10_cs.sh passes no sim limit (stock 512 / 256)
+PASS piece set ev10cs4: check ok (MD5SUMS = files = FROZEN.md)
+PASS piece set ev10cs5: check ok (MD5SUMS = files = FROZEN.md)
+PASS ev10cs5 vs ev10cs4: clause (a) holds
+RESULT: ALL PASS

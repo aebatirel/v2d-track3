@@ -1,5 +1,5 @@
 {
- "base": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e10cs/seat/ev10/V/ep10/poses.npz",
+ "base": "<S>/e10cs/seat/ev10/V/ep10/poses.npz",
  "windows": {
   "s12": [
    53,
@@ -12,7 +12,7 @@
  },
  "cands": {
   "ev10cs4": {
-   "poses": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e10cs/seat/ev10cs4/V/ep10/poses.npz",
+   "poses": "<S>/e10cs/seat/ev10cs4/V/ep10/poses.npz",
    "objects": {
     "beige_cup": {
      "s12": {
@@ -43,7 +43,7 @@
    }
   },
   "ev10cs5": {
-   "poses": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e10cs/seat/ev10cs5/V/ep10/poses.npz",
+   "poses": "<S>/e10cs/seat/ev10cs5/V/ep10/poses.npz",
    "objects": {
     "beige_cup": {
      "s12": {
