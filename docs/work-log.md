@@ -6494,3 +6494,5 @@ arm and a no-policy replay floor to stage B.
     registered AUC unchanged (±0.0003). Board-neutral by construction (cups are symmetric); value is physics
     feasibility only. Sent to GRASP (theirs to gate with sim_vs_ref).
   - Our tracker observes cup twist well on several cups (2–5 deg), so "twist is unobservable" is not true here.
+- 22:15 UTC 1 Nov physperc: morning report written (STATUS.md, docs/analysis/physperc-20261101/README.md). No gate
+  passed; best stack F1P1 +0.00298 (14 / 0) misses by 0.00002; qa_physics.py offered to perfect-following. $0 spent.

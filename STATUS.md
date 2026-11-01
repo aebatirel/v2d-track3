@@ -1,18 +1,35 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-01 ~21:20 UTC: physics-perception lane (KURSAD perception half), CPU, $0: no gate passed yet; best stack +0.00298
-Branch claude/physics-perception-20261101, folder docs/analysis/physperc-20261101/. Public episodes only; mocap read
-only by scoring and diagnostics; each test pre-registered and pushed before scoring. Gate: mean ΔAUC >= +0.003, no
-episode < −0.01, MPPE / RPE not worse.
-- Baseline harness reproduces posefix runs/before 20 / 20 exactly (mean AUC 0.8769).
-- Ideas 1+2 had been tested as refine.py S3 (−0.0013); D1 shows why: a stable facet of our mesh is a ~2 deg tilt
-  sensor, no better than the tracker, and wrong where the object does not sit on a facet (dust pan, pitcher).
-- [D] T1 P1 fused anchor tilt +0.00156 (13 / 0) FAIL; T2 revolution-axis prior +0.00067 FAIL (falsifier fired);
-  T3 F1 "resting objects do not float" +0.00142 (2 / 0) FAIL; **stack F1P1 +0.00298, 14 better / 0 worse, MPPE
-  −0.028, RPE −0.011: FAILS the mean clause by 0.00002** (not rounded up). Nothing handed to perfect-following.
-- [D, oracle] exact anchor tilt +0.0164, 70 % from the pitcher (ep21/22, our mesh lacks half its base: systematic
-  6 deg; needs a complete-base pitcher mesh). Translation offset after alignment +0.030 (+0.0195 after the tilt
-  oracle), concentrated in ep24 / ep31 / ep11.
+## 2026-11-01 ~22:15 UTC: physics-perception lane (KURSAD perception half) morning report, CPU, $0: NO gate passed
+Branch claude/physics-perception-20261101; everything in docs/analysis/physperc-20261101/README.md.
+Public episodes only; mocap read only by scoring and diagnostics; each test pre-registered and pushed before scoring.
+Gate: mean ΔAUC >= +0.003, no episode < −0.01, MPPE / RPE not worse. Harness reproduces posefix runs/before 20 / 20.
+- **Idea 1, frame-0 anchor tilt from physics.**
+  - Already tested as refine.py S3 (snap, −0.0013). D1: the stable facet of our mesh is a ~2 deg sensor, like the
+    tracker.
+  - T1 P1, the fused version: **+0.00156, 13 / 0: FAIL** (mean).
+  - T2, revolution-axis prior: +0.00067: FAIL (its falsifier fired).
+  - Exact-tilt oracle +0.0164 [D]; 70 % of it is the pitcher (ep21 / 22, a systematic 6 deg because our mesh lacks
+    half its base). No GT-free prior recovers it.
+- **Idea 2, multi-frame init.** Covered by S3's prefix mean and the earlier "mean of 0–4" test (lottery). Not
+  repeated.
+- **Idea 3, twist.**
+  - GRASP's twist_canon (palm-frame holds) is worse vs mocap on 5 / 6 cups and costs AUC (ep11 −0.008): falsified in
+    this form.
+  - A rest-only twist hold (exploratory, not pre-registered) is better on 6 / 6 cups and AUC-neutral. Sent to GRASP.
+- **Idea 4, no mover, no motion.**
+  - Earlier forms are covered: +0.0003 / +0.001 / +0.004 (no-harm fail) / −0.018.
+  - New: T3 F1, "resting objects do not float", gives +0.00142 (2 / 0): FAIL.
+  - **Stack F1P1 = +0.00298, 14 better / 0 worse, MPPE −0.028, RPE −0.011, 95 % CI [+0.0008, +0.0059]: misses the
+    mean clause by 0.00002.** Not handed over as a pass; the owner may choose to include it if references are rebuilt
+    anyway.
+- **On the board [E].** F1P1 ≈ +0.002 AUC, but only through retraining every affected policy (~$3–6 each).
+- **Handed to perfect-following:** `scripts/qa_physics.py`, a GT-free read-only audit. On public it flags exactly
+  the two catastrophic track failures (ep0 lid, ep23 board swap) plus one false positive. No reference change was
+  handed over.
+- **Next** (GPU, owner's go-ahead):
+  1. a complete-base pitcher geometry for the tilt prior / template (≈ $1–3, up to +0.012 public [D oracle]);
+  2. re-detection of the episodes qa_physics flags (≈ $1–2 each).
 
 ## 2026-11-01 ~11:44 UTC: PACK 11 UPLOADED: AUC 0.83921, our best on every board (MP-SR 0.70, RPE 3.179, MPPE 2.545, SP-SR 0.85)
 - Pack 11 = pack 10 with eval 10's policy trained at njmax 1024 (training-only) and evaluated at stock 512 / 256
