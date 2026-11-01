@@ -6506,3 +6506,10 @@ Background agent, CPU only, $0, no ground truth read.
   (14 / 16 copies 0.65–0.70; two at 0.40–0.41), nominal 0.6957; its input O2 0.6041 ± 0.093; floor 0.5727. Replay vs
   truth bit-identical (190 frames). Nominal trajectory: cup within ~2 cm through the hand-over (f76: 1.6 cm), lost at the
   placement (~31 cm off by f108). Arm 4 (O2 grasp) started 16:52.
+- 18:10 UTC: ep13 arm 4/8 done [M]: **O2 grasp**: jittered **0.6241 ± 0.107**, nominal 0.6929; replay bit-identical; 4
+  rollbacks; solve ≈ 76 min. **Test B verdict (gate.py): FAIL.** d_b (P2) = +0.024 [−0.071, +0.115], 9 / 16 wins;
+  d_a (O2) = −0.027 [−0.101, +0.050], 5 / 16 wins; no harm flag. Report-only: from the oracle motion both solvers
+  carry the cup longer than their input (lost at ~f60–82 instead of f27–50; within 3 cm on 35 % of frames vs 22 %),
+  about equally; from our perceived motion all three P2 arms lose it by f15–17. Result files copied to
+  `docs/research/grasp-ep13-20261101/results/` (jitter JSONs, run logs, solve JSONs, gate_testB.json). Test A running
+  (P anneal started 18:10).

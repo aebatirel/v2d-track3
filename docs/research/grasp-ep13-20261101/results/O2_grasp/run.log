@@ -1,0 +1,11 @@
+2026-11-01T16:52:11Z ep13 O2 grasp code fcd0c477 solve.py 39e9307f grasp_window.py 1150c763 jitter_check.py 3522b860 input md5 7ad0e431
+args: --workers 4 --worlds 32 --robust 4 --horizon 16 --knot 4 --ctrl 4 --iters 8 --ramp 1 4 --sig_pos 0.01 --sig_rot 0.05 --sig_fin 0.15 --anneal 0.80 --retries 4 --retry 0.05 --back 3 --rob_pos 0.0005 --rob_fin 0.005 --seed 0 --method grasp --g_sig_abs 0.0044 0.0044 0.044 --g_ess 0.5 --g_moves 2 
+solve rc=0 4596 s
+zero replay rc=0
+floor_vs_ref 0.5727
+zero_action: sim_vs_ref 0.6929
+truth: sim_vs_ref 0.6929
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[4593s] fresh load of ps_grasp.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 56 s: ps_grasp.parquet: copy 0 (no noise) 0.6929; jittered copies [0.6947, 0.6936, 0.6778, 0.628, 0.4209, 0.6653, 0.6531, 0.6651, 0.4074, 0.689, 0.6939, 0.6934, 0.6936, 0.6502, 0.3888, 0.6702]; jittered mean 0.6241 sd 0.1067 min 0.3888 max 0.6947
+2026-11-01T18:10:08Z DONE
