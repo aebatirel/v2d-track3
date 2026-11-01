@@ -5973,3 +5973,9 @@ Advice given:
   only through the owner-approved exception). README there (disclosure line included). Not uploaded from this session.
   Correction: the 11:25 entry first quoted the means as 0.8342 / 0.4630 vs V; the verdict file's means are vs V 0.9034
   vs 0.5322 and vs P 0.873 vs 0.5116 (gains +0.3712 / +0.3614 were right).
+- 11:45 UTC keen-heisenberg: **pack 11 uploaded** 11:39–11:44 UTC by that session (their checks pass: sha 3c428350…,
+  byte diff = e000010 only, stock 512 in config and solver build, verdict per 998385b0, dry run). **Board [M]: AUC
+  0.83921 (best; pack 10 0.81915, +0.020 — estimate was ≈ +0.02), SP-SR 0.85 (= 9a+'s best; pack 10 0.80), MP-SR 0.70
+  (best; 0.65), RPE 3.17899 (best; 3.68275), MPPE 2.54531 (best; 2.84759), CD-O 0.33234 =.** The proxy gain
+  transferred (+0.37 on one episode ≈ +0.019 AUC). Receipt on claude/keen-heisenberg-engcwz. Nothing pending from
+  their side.
