@@ -1374,6 +1374,20 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   ratio, 64-124 rows on ep24); before any re-freeze also verify_slot3_1 N1 (w10 bodies grow with edge noise, IoU vs
   the true plate 0.85-0.93) and N4 (keep-out is 0.0 by construction for boxes); Prep25's `interlock_dev` split
   label (shared file, still `public`) must be fixed before any eval run. This container only, no rental, $0.
+- 00:41 (Report step, board-slot round-3 workflow) started about 00:37. Read STATUS, CLAUDE.md, this log (round 3, all),
+  INTERLOCK 20.13 / 20.14, PREREG F-I4.15 outcomes, F-I4.16 and F-I4.17 (all), verify_slot3_0 / verify_slot3_1 (answers,
+  verdicts, findings), `build/I/results/slot3-ep24/README.md`, the fi4q r0 `manifest.json` (sha256 665db2b4...) and
+  `DO_NOT_USE.json`, the F-I4.16 w10 records (`slot3-tests/fi416/`, chosen rungs). Task: INTERLOCK 20.15 (results
+  addendum: accuracy / failures / cost, what the verifiers confirmed, corrections and caveats, hand-offs, open
+  decisions), PREREG outcomes bullets for F-I4.16 and F-I4.17 (record only; verify_slot3_0 N1 / N2 / N10), a dated
+  work-log entry, a STATUS top section; commit + push only my lines. No code, no run, no rental.
+- 00:46 Report written: INTERLOCK 20.15 (+ header pointer, status line under 20.14), PREREG F-I4.16 and F-I4.17
+  outcomes bullets (record only; the verify_slot3_0 N1 / N2 run-order and pre-commit deviations, N7 / N8 field and
+  table details, and the verifiers' findings for the next entry), STATUS top section, work-log entry with the two
+  hand-off texts (determined-wright: nothing to run, the fi4q r0 is a DO_NOT_USE record; focused-pascal: keep
+  `meshes/carve/ev25`, no rollout re-run, the 9.8 mm / 2.5 deg P_sel vs P_sim gap from Prep25). No rule, code,
+  threshold or result record changed. Commit of my lines only (other agents' uncommitted lines in this file left
+  unstaged) and push next. This container only, $0.
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and

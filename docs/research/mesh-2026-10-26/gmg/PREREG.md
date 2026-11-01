@@ -1925,6 +1925,20 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     shape evidence. `meshes/carve/ev25` is not read before the eval-25 r0 is written. Public development and eval
     inference stay separate: nothing is tuned on eval. Every miss and failure is reported; any change after an outcome
     is a new dated entry.
+  - **Outcomes (record only; added 1 Nov ~00:50 UTC with the round-3 report; no rule, threshold or constant changed
+    after an outcome) [M].** F-I4.16 was superseded for delivery by F-I4.17 (pushed 22:41:21) before its freeze runs
+    finished, and no F-I4.16 freeze decision was taken. Launched at 3b7e6d0 at 22:14 on this container: ep24 `fi4p`
+    and the w10 k5 physics cell were stopped by the orchestrator at 22:17 (no result); w10 k1-k4 and k6-k9 (files
+    written 22:19) pass F-I4.16's geometric freeze checks on both boards (chosen rung 1.0 or 1.5 mm; default prisms
+    27-80 and slotted 30-80, cap 82; keep-out 0.0 cm3; widths within 0.3 mm of t + 2); Identity (REV 15 vs 16) and w6c
+    at REV 16 pass (1105 s). These records were read only after F-I4.17 was pushed. The F-I4.17 runs compute this
+    entry's ladder and reports as report and fallback with the same code: ep24 rung 1.0 on both boards (57 / 77
+    slotted prisms; rungs 2.0 / 3.0 / 4.0 give 17 / 11 / 6 and 22 / 16 / 10), ep23 board 1 rung 1.5 mm (105 vertices,
+    64 default prisms; coverage 0.742 of its frame and 0.712 of board 2), w10p board A rung 1.5 mm (81 slotted / 66
+    default prisms), ep24 board 2 `slot_centre_disagrees` -5.0 mm (361 points). Predictions: P60 and P62 hold on the
+    eight cells measured (k5 not run); P59's rung part holds (byte identity with round 2 not tested); P67 and P68 hold
+    in the F-I4.17 reports; P61, P63-P66, P69 and P70 were not measured. Records `build/I/results/slot3-tests/fi416/`;
+    log `build/I.md` "Board slot round 3" (22:14, 22:52); INTERLOCK 20.15.
 
 - **2026-10-31, F-I4.17 (post hoc): a contact-budget gate for every delivery; a low-piece body (at most three
   frame-aligned rectangles, cut into boxes); a new freeze.** Written 22:28-22:41 UTC from the orchestrator's decision
@@ -2273,6 +2287,64 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     part 2 only as the non-colliding visual of `make_assets`). `meshes/carve/ev25` is not read before the eval-25 r0 is
     written. Public development and eval inference stay separate; nothing is tuned on eval. Every miss and failure is
     reported; any change after an outcome is a new dated entry.
+  - **Outcomes (2026-10-31 22:56 to 2026-11-01 00:37 UTC; record only: no rule, threshold or constant changed after
+    an outcome; code dc4a2a4 / a130449, `platebody.py` byte-identical in every run; this container, no rental, $0;
+    log `build/I.md` "Board slot round 3"; results `build/I/results/slot3-ep24/`, `slot3-ep23/`,
+    `slot3-tests/fi417/`; verifiers `build/I/verify_slot3_0.md` and `verify_slot3_1.md`, no blocking item; INTERLOCK
+    20.15) [M].**
+    - **Code checks (step 2):** (ii)-(iv) pass (I-mask IoU 1.0 and its theta; rectangle 1, T 2 rectangles; I with a
+      waist slot 5 boxes / default 3, rectangle with a slot 3 / 1, tiling 0.0 mm2; nefc = 4 ncon at every step); (i)
+      at REV 16 the code reproduces 3b7e6d0 on w1 t = 10 (163 piece arrays byte-identical, 0 record differences).
+    - **Gate validity (step 3, P125):** part 1 flags the round-2 ep24 r0 prisms: max nefc 868 (S1; S2 512), max ncon
+      217, 3 of 16 copies over 512 rows, ratio 27.1 to the control (32 rows, 8 contacts); the round-2 default prisms
+      880 / 220, 1 copy over. The control against itself passes (1.0).
+    - **Freeze (b), w10 k1-k9 under REV 17: holds** as F-I4.17.3 reads it. Every board CARVEs (T1) with the low-piece
+      body, 3 rectangles, IoU 0.972-0.996, 5 slotted / 3 default boxes, keep-out 0.0 cm3, |w - (t + 2)| <= 0.33 mm.
+      k5 (t 8, edge noise 2 mm): P2-P7 pass on 16 copies (P3 carved lag 0.031 cm / 0.14 deg; default 1.17 cm / 103.6
+      deg); part 1 passes (84 vs 48 rows, ratio 1.75, no overflow; default 80). Other cells' part-1 ratios (reported):
+      1.50-2.08 (k2 2.08, k6 2.00), no overflow anywhere.
+    - **Freeze (a), ep24 `fi4q` (launched 23:01:02, 828 s): fails.** Both boards CARVE (T1) with the low-piece body
+      (IoU 0.958 / 0.952), 5 slotted / 3 default boxes, t 7.401 mm, w 9.40 mm, D from the waist edge 67.55 / 54.56 mm,
+      cross-lap D sum 122.11 vs W_x 120.52 mm (diff 1.59), keep-out 0.0. P2-P7 pass on 16 copies (P3 carved 0.074 cm /
+      0.68 deg, after-max 0.315 cm; default 0.849 cm / 104.2 deg; overlap 0.039 cm3). **Part 1 fails on the ratio:**
+      delivered max nefc 124 (S1; S2 120), max ncon 31, no overflow; control 32 / 8; ratio 3.875 > 2.0; default boxes
+      112 / 28. At the max-nefc step 27-28 of the contacts are board-table. ep24 board 2 `slot_centre_disagrees` -5.0
+      mm (361 points).
+    - **Freeze decision (step 7): not frozen.** The round stopped; nothing was tuned; eval 25 was not run (no ev25a
+      run, r0, slot-centre, P_sel -> P_sim or `meshes/carve/ev25` comparison; that folder was not opened). The ep24 r0
+      carries `DO_NOT_USE.json` (`contact_budget`, both boards) and was not sent for P1 or part 2 (step 8). Part 2 was
+      not run: warp, newton, mujoco_warp and FlashCHORD are not on this machine.
+    - **Reports (not freeze inputs):** w10p: A IoU 0.741 -> `low_piece_iou_fail`, polygon at rung 1.5 mm (81 slotted
+      / 66 default prisms), B box body; both CARVE; part-1 counts 308 rows delivered, default 1596 rows with 20 of 32
+      copies over. w10n: t 7.37 / 7.83 mm, IoU 0.985 / 0.980, both CARVE, ratio 2.09. w1 t = 10: one rectangle (IoU
+      0.985 / 0.990), 3 / 1 boxes, CARVE. w7 and w8b pass; w8 CARVEs both and passes P2-P7 (P3 0.104 cm / 1.6 deg) but
+      misses the inherited F-I4.15.7 slot-centre check on board A (-2.17 mm against 2 mm). ep23 board 1: IoU 0.814 ->
+      polygon fallback at rung 1.5 mm (105 vertices, 64 default prisms; rung 1.0 still 85 > 82), coverage 0.742 of its
+      frame and 0.712 of board 2. Waiver-off `test_interlock.py` (all classes but Waiver, a130449, 2712 s): 24 tests
+      OK, 2 expected failures, as in round 2.
+    - **Predictions:** P120, P121, P122, P124, P125, P127, P129, P130, P131, P132, P133 and P134 hold; **P123 fails**
+      (ratio 3.875); **P128 fails** as written (the 0.93 floor holds, min 0.972, but at every t the IoU rises from
+      edge noise 2 to 3 mm); P126 and P135-P137 were not measured.
+    - **Deviations (no outcome effect):** (1) run order (verify_slot3_0 N1): the freeze-input runs started (23:01:02,
+      23:03:30) before code check (i) passed (23:05:13; its first three launches failed because the 3b7e6d0
+      extraction lacked `pipeline/provenance.py`, `denylist.json` and `autokit`), where step 2 puts the code checks
+      first; 0 differences, `platebody.py` unchanged. (2) Pre-commit smoke (verify_slot3_0 N2): checks (ii)-(iv) and
+      w1 t = 10 under REV 17 ran at about 22:56 on uncommitted code without a launch file, against step 1; (ii)-(iv)
+      were not re-run at a commit, w1 was re-run at a130449 with an identical record apart from timing. (3) The part-1
+      module is `gmg/contactgate_fi4.py`, not `gmg/contactgate.py` (the concurrent F-I5.16 build planned its own).
+      (4) The synthetic table sits 1 mm beyond the lowest vertex over all three piece sets, not the pair's lowest
+      piece vertex (verify_slot3_0 N8; synthetic cells only; k5 passed). (5) The r0 manifest writes `p1_pending:
+      false` (F-I4.17.4: true) while the per-board `carve.json` flags list `p1_pending`, and its part-1 record omits
+      the per-copy rows, which are in `fi4q/contact_gate_*.json` (verify_slot3_0 N7).
+    - **Verifier findings for the next entry (measured; no decision changed):** the one-box control starts with its
+      boxes 7.7 cm3 inside each other and ends as two flat boxes with no board-board contact, while the delivered pair
+      stays assembled on its edges; on ep24 the box-partition direction moves the delivered rows between 64 and 124
+      (verify_slot3_0 N3, verify_slot3_1 N3). The max-nefc count moves by about one contact between implementations,
+      so w10 k2 and k6 swap sides of 2.0 (N5 in both notes). The w10 box bodies are 8-18 % larger than the true plate
+      (IoU against it 0.85-0.93) while the gated raster IoU stays 0.97-0.99, so freeze (b) does not test shape
+      (verify_slot3_1 N1). Keep-out is 0.0 by construction for boxes; seen-empty volume inside the delivered hulls
+      reaches 6.11 cm3 on ep24 and 12.5 cm3 on w10 (verify_slot3_1 N4). Under the wider reading of (b) (every cell
+      passes part 1), k2 would fail (b) too (verify_slot3_0 N4).
 
 - **2026-10-31, F-I5: collision carve for every colliding pair under the owner's extended waiver (simulator copy
   only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:34 UTC in a design step (no code edited,

@@ -9,7 +9,7 @@ real tool (section 19). **Amended 31 Oct ~16:20 UTC under the owner's waiver of 
 insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it); **result (31 Oct
 ~18:00 UTC): no notch built on public ep24, eval 25 not run, nothing delivered (section 20.9)**. **Round 2 (31 Oct
 ~18:05 UTC, orchestrator decision): the plate body follows the observed outline (polygon prisms) and t comes from all
-points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Round-2 result (31 Oct ~20:15 UTC): both ep24 boards slotted, P2-P7 pass, r0 delivered with P1 pending; not frozen for eval 25 (ep23 board 1 over the prism cap), section 20.11.** **Round-2 report (31 Oct ~21:15 UTC): two verifiers, no blocking item; board 2's slot about 3.5 mm off the observed slot; P1 handed to the Embodiment session; eval 25 not run; open decisions, section 20.12.** **Round 3 (31 Oct ~21:20 UTC, orchestrator decision, post hoc): a simplification ladder for the prism cap, a new synthetic freeze family w10, and slot-centre and coverage reports (PREREG F-I4.16, section 20.13; written and pushed before any run with it).** **Round 3 amended (31 Oct ~22:25 UTC, orchestrator decision 2, post hoc, after determined-wright's P1 and contact-budget results on the round-2 ep24 folder): a contact-budget gate for every delivery, a body of at most three rectangles cut into boxes, and a new freeze (PREREG F-I4.17, section 20.14; written and pushed before any run with it).** **Extended 31 Oct
+points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Round-2 result (31 Oct ~20:15 UTC): both ep24 boards slotted, P2-P7 pass, r0 delivered with P1 pending; not frozen for eval 25 (ep23 board 1 over the prism cap), section 20.11.** **Round-2 report (31 Oct ~21:15 UTC): two verifiers, no blocking item; board 2's slot about 3.5 mm off the observed slot; P1 handed to the Embodiment session; eval 25 not run; open decisions, section 20.12.** **Round 3 (31 Oct ~21:20 UTC, orchestrator decision, post hoc): a simplification ladder for the prism cap, a new synthetic freeze family w10, and slot-centre and coverage reports (PREREG F-I4.16, section 20.13; written and pushed before any run with it).** **Round 3 amended (31 Oct ~22:25 UTC, orchestrator decision 2, post hoc, after determined-wright's P1 and contact-budget results on the round-2 ep24 folder): a contact-budget gate for every delivery, a body of at most three rectangles cut into boxes, and a new freeze (PREREG F-I4.17, section 20.14; written and pushed before any run with it).** **Round-3 result and report (1 Nov ~00:50 UTC): the box body slots both ep24 boards and passes P2-P7, but the contact gate's ratio clause fails (124 vs 32 rows, limit 2 x; no overflow), so F-I4.17 is not frozen; eval 25 not run, nothing delivered; two verifiers, no blocking item; section 20.15.** **Extended 31 Oct
 ~17:34 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
 F-I5, section 21; written and pushed before any code or run with it). **Collision-carve result and report (31 Oct ~20:57 and ~21:30 UTC): nothing carved or delivered on the five public episodes; eval twins not run (orchestrator); two verifiers: the ring pieces fail the gate on their own and our tracked poses fail the hands-off test even with faithful colliders, sections 21.11-21.12.** **Collision-carve round 2 (31 Oct ~21:50 UTC, orchestrator decision, post hoc): cavity-safe rings, CoACD below the cap, a pose precheck, a faithful reference and a physical delivery floor, then the five 21.10 decisions (PREREG F-I5.15, section 21.13; written and pushed before any code or run with it).** **Round 2 amended (31 Oct ~22:30-22:40 UTC, orchestrator decision 2, post hoc): a contact-budget gate under the training sim config for every delivery (no overflow, at most 1.5 x the packed default's rows, at most 380 rows in the full scene), the smallest cavity-safe ring layout instead of the cap rule, and the packed pieces' contact numbers in the eval precheck (PREREG F-I5.16, section 21.14; written and pushed before any code or run with it).** This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
@@ -2040,6 +2040,137 @@ P93):
   2 (about 3.5 mm off the observed notch). Both are reported, not corrected.
 - P1 at determined-wright's reference fails for reasons outside the slot (the 3 cm hover). Until their reference sits
   on the table, P1 cannot separate a good slot from a bad one; the lowered-pose run is the informative one.
+
+Status (1 Nov ~00:50 UTC): outcome and report in section 20.15. F-I4.17 is not frozen (freeze (a) fails on the
+contact gate's ratio clause); eval 25 was not run; nothing was delivered.
+
+### 20.15 Round 3 result and report: box body built, contact gate fails on ep24, not frozen, eval 25 not run (1 Nov ~00:50 UTC)
+**In plain words.** Round 3 replaced the 57-77 small prisms per board of round 2 with a body of a few boxes (at most
+three rectangles per board, cut into 5 boxes with the slot and 3 without), and added a check that the boards stay
+within the training simulator's contact budget. On public ep24 both boards again get a slot, and every physics test
+we run on our own tracks passes. The new contact check fails as written: in our settle scene the slotted boxes need
+124 solver rows, while the control (one plain box per board) needs 32, and the rule allows at most twice the control.
+The absolute numbers are far inside the simulator's limits (124 of 512 rows, 31 of 256 contacts, no overflow in any
+copy), and even the unslotted boxes would fail (112 rows). The cause is measured: the boxed boards settle standing on
+their edges, and each box along the table edge adds up to 4 contacts, while the control's two boxes are pushed apart
+and end lying flat. ep24 is a freeze condition, so the round stopped there: the rule is not frozen, eval 25 was not
+run, and nothing goes to the Embodiment session for P1. The synthetic freeze family passes, but one verifier showed
+that it cannot tell whether the body has the right size. Two independent verifiers found no blocking problem. The
+submitted board meshes are unchanged.
+
+**Accuracy, failures and cost** [M unless marked]:
+
+| item | result |
+|---|---|
+| F-I4.16 runs (code 3b7e6d0, launched 22:14; superseded by F-I4.17 at 22:41) | w10 k1-k4, k6-k9 pass F-I4.16's geometric checks (chosen rung 1.0 or 1.5 mm per board, slotted prisms 30-80 <= 82, keep-out 0.0, widths within 0.3 mm of t + 2); Identity REV 15 vs 16 and w6c at REV 16 ok; ep24 `fi4p` and the k5 physics cell stopped by the orchestrator at 22:17 (no result); no F-I4.16 freeze decision |
+| F-I4.17 code checks (dc4a2a4 / a130449) | the fit on exact masks, the box tiling and nefc = 4 ncon pass; at REV 16 the code reproduces 3b7e6d0 on w1 t = 10 (163 piece arrays byte-identical, 0 record differences) |
+| gate validity (P125) | part 1 flags the round-2 ep24 prisms: 868 rows, 217 contacts, 3 of 16 copies over 512 rows, ratio 27.1 to the control |
+| freeze (b): w10 k1-k9 | **holds** as F-I4.17.3 reads it: all nine cells carve both boards with the box body (raster IoU 0.972-0.996), 5 slotted / 3 default boxes, keep-out 0.0, widths within 0.33 mm of t + 2; k5 passes P2-P7 (P3 0.031 cm / 0.14 deg) and part 1 (84 vs 48 rows, ratio 1.75); other cells' ratios 1.50-2.08 (reported) |
+| freeze (a): ep24 `fi4q` (828 s) | both boards carve with the box body (IoU 0.958 / 0.952), 5 / 3 boxes, t 7.401 mm, slot 9.40 mm, D 67.55 / 54.56 mm, cross-lap diff 1.59 mm; P2-P7 pass on 16 copies (P3 0.074 cm / 0.68 deg; default 0.849 cm / 104 deg); **part 1 fails**: 124 rows / 31 contacts vs the control's 32 / 8, ratio **3.875** > 2.0, no overflow; default boxes 112 / 28 |
+| freeze decision (F-I4.17.3) | **not frozen**; eval 25 not run; the ep24 r0 carries `DO_NOT_USE.json` (`contact_budget`) and is a record, not handed off (F-I4.17.6 step 8) |
+| part 2 (determined-wright's budget.py, <= 380 rows in the full eval scene) | not run: warp, newton, mujoco_warp and FlashCHORD are not on this machine |
+| reports (not freeze inputs) | w10p: hidden board A IoU 0.741, polygon fallback (81 / 66 prisms; its default set reaches 1596 rows, 20 of 32 copies overflow); w10n ok (ratio 2.09); w1 t = 10: one rectangle, 3 / 1 boxes; w7, w8b ok; w8: board A's slot centre -2.17 mm against the inherited 2 mm tolerance, P2-P7 pass; ep23 board 1: IoU 0.814, polygon at rung 1.5 mm (64 prisms), coverage 0.742 of its frame and 0.712 of board 2; ep24 board 2: `slot_centre_disagrees`, -5.0 mm (361 points) |
+| waiver-off T-I1 suite (a130449, 2712 s) | 24 tests OK, 2 expected failures, as in round 2 |
+| Prep25 (parallel step, no rule needed) | eval-25 bundle built under the strace audit (0 findings), board map to the packed reference (ours swapped against it, as in the 25 Oct identity rule), candidates; unused because eval 25 did not run (`build/I/results/slot3-ev25/PREP.md`) |
+| predictions | F-I4.17: P120-P122, P124, P125, P127, P129-P134 hold; **P123 fails** (ratio 3.875); **P128 fails** as written (the 0.93 floor holds, but IoU rises from edge noise 2 to 3 mm at every t); P126, P135-P137 not measured. F-I4.16: P60 and P62 hold on the eight cells measured; P67 and P68 hold in the F-I4.17 reports; the rest not measured |
+| verification | `build/I/verify_slot3_0.md` (V0, rule compliance) and `verify_slot3_1.md` (V1, geometry, physics, contact budget): no blocking item |
+| cost | this container's 4 shared CPU cores; no rental, $0; about 2.3 h of run and test wall time, mostly in parallel [E, sum of the logged times], plus two verifier passes |
+
+**Confirmed by the verifiers** [M]: F-I4.16 was pushed 37 minutes before its first code commit and run, F-I4.17 about 15
+minutes before its first code run; neither rule text was edited after an outcome (only a stamp fix); after the first
+F-I4.17 outcome the only code change was a failure-message fix (a130449), and `platebody.py` is byte-identical in
+every F-I4.17 run; the w10 seeds are new and the fixtures unchanged; the fit is the exact global optimum of its family
+on both ep24 boards; the delivered boxes are exact cuboids equal to the manifest, with the rule's slot width, centre
+and depth; P3 reproduces on ep24 (0.0741 cm / 0.68 deg) and on k5 (0.031 cm / 0.14 deg); part 1 on ep24 reproduces
+exactly with an independent scene (124 / 112 / 32 rows) and gives 128 / 32 from the committed files; the fail is
+robust (ratio 3.75-5.17 under six variants); the round stopped as the rule requires; no ground truth was read and
+`meshes/carve/ev25` was not opened.
+
+**Corrections and caveats to the build record** (no decision changes). For the next rule:
+1. **The ratio clause compares an assembled pair with two separated boards** (V0 N3, V1 N3) [M]. The control's two
+   boxes start 7.70 / 7.78 cm3 inside each other, are pushed apart and end lying flat with no board-board contact;
+   its 32 rows equal those of a control with board-board collision switched off. The delivered pair stays assembled
+   and stands on its edges: board 1's resting edge is shared by all five of its boxes, which gives 20 table contacts.
+   Cutting board 1's boxes in the other direction gives 72 rows (ratio 2.25), both boards 64 rows (2.00), or 80 rows
+   (2.5) with the bodies placed at the world origin. On ep24 the verdict therefore depends on the box-partition
+   direction and on a single contact at the limit [M]. Diagnostic only: changing the partition or the ratio now would
+   be post hoc on a freeze input.
+2. **The count moves by about one contact between implementations** (V0 N5, V1 N5) [M]: ep24 128 vs 124 rows after
+   rounding the vertices to 1e-8 m; w10 k2 and k6 swap sides of 2.0 between counters. k5 passes in all four draws
+   (1.58-1.92).
+3. **The w10 family cannot see a body that is too large** (V1 N1) [M]. Against the known synthetic plate the box
+   body's IoU is about 0.93 at edge noise 1 mm, 0.87-0.89 at 2 mm and 0.85 at 3 mm; it contains the plate and is
+   8-18 % larger in area (8-14 mm longer, 5-13 mm wider), with 11.8-36 cm3 outside the plate; D_A + D_B is 133-141 mm
+   against a true 125 mm. The gated IoU stays at 0.97-0.99 because the outline raster grows with the body. Cause [E]:
+   a cell is counted after 3 of 100 frames and a 3 x 3 closing follows. This also explains P128's miss. [H] ep24 grows
+   the same way (board 1 seen-empty share 6.0 %, between w10's edge noise 1 and 2 mm); falsifier: an ep24-like w10
+   cell with IoU against the true plate >= 0.95. "(b) holds" is therefore not evidence of shape.
+4. **Keep-out is 0.0 by construction for box pieces** (V1 N4) [M]: the keep-out points are taken outside the union of
+   the pieces, and boxes tile it exactly. Measured directly, the seen-empty volume inside the delivered hulls reaches
+   6.11 cm3 on ep24 (6 of 10 hulls over 0.3 cm3) and 12.5 cm3 on w10 k4-k6 (8-10 of 10 hulls over 0.3 cm3). The
+   keep-out clause of freeze (b) decided nothing here.
+5. **The slot removes wood our own cameras saw** (V1 N7) [M]: 96.5 % / 65.6 % of the removed volume lies in observed
+   voxels and 1.5 % / 0 % in seen-empty ones; the outline raster shows no notch at either slot. This is what the
+   owner's waiver allows (the slot follows the partner's path), and it matches board 2's `slot_centre_disagrees`
+   (-5.0 mm).
+6. **The reading of freeze (b)** (V0 N4): F-I4.17.3 gates part 1 on k5 only. If every w10 cell had to pass part 1, k2
+   (2.08) would fail (b) as well. No effect: the round is not frozen either way.
+7. **Part 1 is not a faithful copy of the evaluator** (V0 N6, V1 N6) [M]. P125 holds, but plain MuJoCo ranks the
+   round-2 sets the other way from MuJoCo-Warp (default 880 vs carved 868 rows here; 416 vs 2027 in
+   determined-wright's run), and the S2 counts change up to 3.5 x with where the free-joint body frame sits (bodies at
+   the world origin: 1524 rows, 8 of 16 copies over). Box pieces are insensitive (120-124 rows). Part 2 remains the
+   only number measured in the evaluator's own engine.
+
+Record only (no outcome effect):
+8. **Run order** (V0 N1): the freeze-input runs (ep24 `fi4q` and k5 at 23:01:02, the other w10 cells at 23:03:30)
+   started before code check (i) passed at 23:05:13; its first three launches had failed because the 3b7e6d0
+   extraction lacked `provenance.py`, `denylist.json` and `autokit`. F-I4.17.6 step 2 puts the code checks first. 0
+   differences, and `platebody.py` did not change. Same class as verify_slot2_0 N3.
+9. **Pre-commit smoke** (V0 N2): code checks (ii)-(iv) and w1 t = 10 under REV 17 ran at about 22:56 on uncommitted
+   code without a launch file, against F-I4.17.6 step 1. (ii)-(iv) were not re-run at a commit; w1 was re-run at
+   a130449 with an identical record apart from timing. The F-I4.16 build did the same before 3b7e6d0.
+10. **r0 fields** (V0 N7): the manifest has `p1_pending: false` where F-I4.17.4 writes true, while the per-board
+    `carve.json` flags still list `p1_pending`; defensible for a DO_NOT_USE record, but inconsistent. The manifest's
+    part-1 record omits the per-copy rows; they are in `fi4q/contact_gate_*.json` beside r0.
+11. **Synthetic table** (V0 N8): placed 1 mm beyond the lowest vertex over all three piece sets, not the pair's lowest
+    piece vertex as F-I4.17.1 says, so the delivered gap is >= 1 mm. Synthetic cells only; k5 passed.
+12. **sim=rl copy** (V0 N9): the limits come from the committed `cfg_sim_rl.yaml` (sha256 695536b7..., matching
+    determined-wright's branch); that it equals FlashCHORD's `configs/sim/rl.yaml` at the pin rests on notes [R].
+13. **Commits and names** (V0 N11, build): dc4a2a4's message says "build" but its diff is only `fi417_ep23.py`; the
+    REV 17 code entered git through another agent's WIP snapshots 76a72d1 / 94b98f0 (the runs used dc4a2a4 or
+    a130449). `fi417_ep23.py`'s docstring names `ep23_fi416.json` as its output. Check (iv) drops a second box instead
+    of testing one box at rest (nefc = 4 ncon still holds). The part-1 counter is `gmg/contactgate_fi4.py`, not the
+    `gmg/contactgate.py` of F-I4.17.6 step 1, because the concurrent F-I5.16 build planned its own. Two log stamps
+    were corrected after writing (23:08 -> 22:58, 23:26 -> 23:24).
+14. **Pair height** (V1 N2): "the pair starts 16.7 mm above our table" (build log, 23:16) is the rigid lowering over
+    all three sets, set by the control box (17.7 mm); the delivered pieces' lowest vertex starts 21.7 mm above it.
+
+**Hand-offs** (relayed by the orchestrator; texts in the work log of 1 Nov ~00:50 UTC):
+- **Embodiment session (determined-wright): nothing to run.** The ep24 round-3 folder
+  `build/I/results/slot3-ep24/fi4q/r0` (`manifest.json` sha256 `665db2b4...`) carries `DO_NOT_USE.json`
+  (`contact_budget`) and is a record. No eval-25 folder exists. The round-2 `fi4o` folder stays do-not-use. If the
+  orchestrator later wants a measurement on the record, `slot3-ep24/README.md` lists the four asks (P1 at their
+  reference and at the lowered pose, the sim=rl contact check, part 2).
+- **Pack builder (focused-pascal): no eval-25 slot.** Keep `meshes/carve/ev25`; no eval-25 rollout re-run now. Not
+  read, not compared; no P_sel -> P_sim result exists.
+
+**Open decisions** (owner / orchestrator; none taken here):
+1. **The ratio clause.** Options include a control that stays assembled (for example the default boxes), a ratio per
+   box along the resting edge, or absolute bounds only (no overflow in part 1 plus part 2's 380 rows). Any of them is
+   a new dated entry, post hoc on ep24, whose counts are now known: ep24 can no longer be an independent check of the
+   clause.
+2. **A freeze check that sees shape** (item 3): compare the body with the known synthetic plate, or stop the raster
+   growth, before any re-freeze.
+3. **A keep-out measure for boxes** (item 4): seen-empty volume inside each hull, or a seen-empty share gate (open
+   since 20.12 decision 4).
+4. **Part 2** needs determined-wright's simulator for any new folder; no folder is usable before it is measured.
+5. **Before any eval-25 run:** `interlock_dev` still labels its output split `public` (a one-line fix in a shared
+   file), and at assembly our mapped eval-25 track and the packed reference parquet differ in relative board pose by
+   9.8 mm / 2.5 deg [M, Prep25]. [H] An eval-25 slot built on our track may sit 6-10 mm from where the simulator
+   replays the partner; falsifier: the P_sel -> P_sim overlap check on an eval-25 r0 gives a median <= 0.3 cm3.
+   Building the slot on the packed poses instead needs a decision (SPEC section 17 freezes eval tracks to evperc).
+6. Eval 25 then needs a frozen rule, a run with physics and both gate parts, P1 by the Embodiment session and, on the
+   pack side, an eval-25 rollout re-run before any use.
 
 ## 21. Collision carve for every colliding pair (owner's extended waiver, 31 Oct; PREREG F-I5; written before any code or run with it)
 

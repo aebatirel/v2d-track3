@@ -6000,3 +6000,21 @@ diagnostic; nothing is picked for submission.
   on score keep 9a+; E0b is the owner's compliance option.
 - Re-track (PUBOWN Set B) FAIL verdict recorded in PUBOWN/NOTES.md (1787cb9); uncoloured-template hypothesis logged by
   focused-pascal for the owner, not run.
+
+### 2026-11-01 ~00:50 UTC — gmg I board slot round 3, Report step (board-slot round-3 workflow): INTERLOCK 20.15, hand-offs
+- **Record:** INTERLOCK 20.15 (results addendum: accuracy / failures / cost, what both verifiers confirmed, 14
+  corrections and caveats, hand-offs, 6 open decisions), a header pointer and a status line under 20.14; PREREG
+  outcomes bullets for F-I4.16 (superseded; its w10 geometric cells pass) and F-I4.17 (with the verify_slot3_0 N1 / N2
+  run-order and pre-commit deviations); STATUS top section. No code, no run, no rental ($0).
+- **Main points [M]:** the box body slots both ep24 boards and passes P2-P7 (P3 0.074 cm / 0.68 deg), but contact-gate
+  part 1 fails on the ratio (124 vs 32 rows, 3.875 > 2.0; no overflow; unslotted boxes 112), so F-I4.17 is not frozen
+  and eval 25 was not run; the ep24 r0 is a DO_NOT_USE record. w10 passes freeze (b) but cannot see body growth (IoU
+  vs the true plate 0.85-0.93); keep-out is 0.0 by construction for boxes; the control ends as two separated flat
+  boxes, and the box-partition direction moves ep24 between 64 and 124 rows.
+- **Hand-off text, Embodiment session (determined-wright):**
+  > Board slot round 3 (gmg F-I4.17, boards): nothing to run. The new body (5 slotted boxes per board instead of 57-77 prisms) slots both public ep24 boards and passes our P2-P7 (P3 0.074 cm / 0.68 deg). It fails our pre-registered contact gate's ratio clause in plain MuJoCo with your sim=rl limits: 124 rows / 31 contacts against 32 rows for a one-box-per-board control (limit 2x), with no overflow (512 / 256). The folder `docs/research/mesh-2026-10-26/gmg/build/I/results/slot3-ep24/fi4q/r0` (branch claude/bold-albattani-6qmxsv; manifest sha256 665db2b4...; DO_NOT_USE.json, reason contact_budget; p1_pending false; contact_budget_pending true) is a record, not a delivery: please run no P1 (your pose or lowered), sim=rl check or budget.py on it unless the orchestrator asks. Eval 25 was not run, so no ev25 folder exists. Board 2 carries slot_centre_disagrees (-5.0 mm, 361 points). The round-2 fi4o folder stays do-not-use.
+- **Hand-off text, pack builder (focused-pascal):**
+  > Eval 25 board slot, round 3: no gmg eval-25 slot pieces exist. Keep `meshes/carve/ev25` in the pack; no eval-25 rollout re-run is needed now. Our round-3 rule (a few boxes per board plus a contact-budget gate) did not freeze: on public ep24 the slotted boxes passed every physics test on our tracks but used 3.9x the solver rows of a one-box-per-board control (limit 2x; 124 of 512 rows, no overflow), so eval 25 was not run. Hence no comparison with `meshes/carve/ev25` (not opened) and no P_sel -> P_sim overlap result. Measured for any later eval-25 slot: at assembly our relative board pose differs from the packed eval-25 parquet (md5 71ac95f3) by 9.8 mm / 2.5 deg, more than the slot's 1 mm clearance [H: a slot built on our track may miss the replay by 6-10 mm]. Any future slot still needs an eval-25 rollout re-run before use.
+- **Open (orchestrator):** the part-1 ratio clause (any change is a new dated entry, post hoc on ep24); a freeze check
+  that sees shape; a keep-out measure for boxes; part 2 needs determined-wright; before any eval-25 run the
+  `interlock_dev` split label and the P_sel vs P_sim pose gap (9.8 mm / 2.5 deg at assembly, Prep25).

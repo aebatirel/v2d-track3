@@ -1,5 +1,22 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~00:50 UTC: board slot round 3 closed: verified, not frozen, eval 25 not run, nothing delivered (CPU, $0)
+- **Result [M]:** the new body (at most 3 rectangles per board, cut into 5 slotted boxes instead of 57-77 prisms) slots
+  both public ep24 boards and passes P2-P7 (P3 0.074 cm / 0.68 deg). The new contact gate fails as written: 124 solver
+  rows against 32 for a one-box-per-board control (limit 2 x; 3.875), with no overflow (124 of 512 rows, 31 of 256
+  contacts). Freeze (a) fails, so the round stopped: eval 25 not run, the ep24 r0 is a DO_NOT_USE record and is not
+  sent for P1. The synthetic family w10 passes freeze (b).
+- **Verified** (`gmg/build/I/verify_slot3_0.md`, `verify_slot3_1.md`): no blocking item; the fail reproduces (124-128
+  vs 32 rows). Cause: the boxed boards settle on their edges and each box along the table adds contacts, while the
+  control's boxes separate and lie flat; even the unslotted boxes give 112 rows.
+- **Before any re-freeze:** w10 cannot see a body that is too large (IoU vs the true plate 0.85-0.93); keep-out is 0.0
+  by construction for boxes (seen-empty space in the ep24 hulls up to 6.1 cm3); part 2 (380 rows in the full eval
+  scene) needs determined-wright's simulator.
+- **Hand-offs:** determined-wright, nothing to run; focused-pascal, keep `meshes/carve/ev25`, no rollout re-run now.
+- **Open (orchestrator):** a dated F-I4 entry on the ratio clause (post hoc on ep24, whose counts are known); a w10
+  shape check; eval-25 poses (our mapped track vs the packed parquet: 9.8 mm / 2.5 deg at assembly); the
+  `interlock_dev` split label. Report: `gmg/INTERLOCK.md` 20.15; PREREG F-I4.16 / F-I4.17 outcomes.
+
 ## 2026-10-31 ~23:55 UTC: C0b / E0b (scan-free C0 rebuild) closed for pack 10: pot and beige adopted, both flagged; owner decisions B1 / B2 (Vast ~$1.17)
 - **Adopted (WIN and AUC guard, PREREG 8174998):** white_pot and beige_cup. Their eval-built E0b picks ship in
   `meshes/library_e0b` (v3 base) and `meshes/library_e0bx` (v3x base, eval 8). Merge them one by one into pack 9a+.
