@@ -5830,3 +5830,9 @@ Advice given:
   "nefc overflow" lines (max requested 555), 0 broadphase — vs e10v's ~6 M per seed on the packed ev10 pieces. [E]
   ~1,100 at 100 % if the rate holds: near the PREREG's 1,000-line "not clean in training" label (reported only; the rule
   still applies). Matches determined-wright's thin-headroom warning (503 / 504 of 512).
+- 06:47 UTC determined-wright (docs/research/physics-2026-10-30/ev20_settle/README.md, 85e8ef8): **eval-20 blue-cup settle
+  under b1 fine** [M] — 2 s hands-free settle at the reference pose (md5 4d06d8d4), FlashCHORD sim=rl: f152 0.03 cm /
+  0.2° (packed 0.10 / 0.1), f183 0.17 cm / 0.7° (packed 4.19 cm / 29.4°, tips), f192 0.33 cm / 0.7° (packed 1.27 / 0.5);
+  final lowest point within 1 mm of the table, transient dips ≤ 4.1 mm; no overflow / NaN. Flag: at f192 the pitcher
+  falls hands-free in both (packed 6.8 cm / 28°, b1 12.0 cm / 50°); stable at f152 / f183. [H] f192 is a pour / in-hand
+  frame; the build agent checks hands-off status (H30, our tracks) and discloses. Not a blocker for the launch.
