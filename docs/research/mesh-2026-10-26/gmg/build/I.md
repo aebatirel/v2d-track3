@@ -1935,3 +1935,22 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   rows, 1 / 16 copies over 512 (packed 304) -> FAIL; f249 324, f1 344. G4 S still fails (mean 62 / 46 / 27 mm, packed
   133 / 230 / 144). G6 pair-scene throw WORSE: 49 / 41 / 40 mm median (packed 38 / 23 / 25); S throw better (55 / 44 /
   23 vs 138 / 217 / 134). c1-ev14 (62 pieces) and c1-both (86) packaged; measuring.
+- 04:08 [M] c1-ev14 measured: G1 12.8 / 14.6 (packed 15.7 / 17.6; FAIL, floor V_pm 11.7 / 13.4); G1x 1.14 / 1.37
+  (FAIL median; packed 4.01 / 4.43); G2 2.31 as written (FAIL), G2b 0.30 (pass); G5 0.999; C2 pass; C3 as written FAIL
+  (7 sliver flags, coacd one part each). G3 (plain MuJoCo, indicative) FAILS badly: f149 584 rows (10 / 16 copies over
+  512), f144 612 (16 / 16), f153 552 (11 / 16); packed 300 / 336 / 320. Guest-rack contacts 15-21 -> 60, rack-table
+  59-68 -> 78-93 at the max step. G4 S still fails but the throw drops 4-8x (83 / 108 / 101 mm vs 692 / 799 / 381).
+  G6 pair-scene throw drops ~42 % (79 / 76 / 81 mm vs 140 / 136 / 134). Same contact pattern on c1-ev30 (guest-rack
+  4-17 -> 45-58). New candidates c2-ev30 / c2-ev14 (`scripts/merge2.py`, started 04:08): c1 + greedy merges cheapest
+  by added F' cells, total added F' <= 0.5 cm3 (half the G2b allowance), new fill <= 2 cm3 per merge and never where
+  the guest goes at any frame, stop at 43; hull vertices snapped to 10 um (welds the C3 slivers). c1 stays as measured.
+- 04:20 [M] c2 measured. c2-ev30 (57 pieces): G3 passes (392 / 348 / 308 rows), C3 passes, G2b 0.80, G1x 1.97 /
+  2.32 FAIL median, G4 FAIL (56 / 42 / 28 mm), pair-scene throw 56 / 41 / 43 mm (packed 38 / 23 / 25: worse). c2-ev14
+  (54): G3 FAIL (488 / 580 / 536, 11 and 1 copies over), G2b 0.69, G1x 1.45 / 1.73 FAIL, pair throw 202 / 76 / 77 mm
+  (f149 worse than packed 140). c1-both (86): same per-episode geometry as c1-ev30 / c1-ev14, contacts worse (eval 14
+  616-688 rows, 14-16 / 16 over). No candidate passes its gates (G1 floor and G4 floor everywhere, G1x median, C1).
+- 04:25 README written (results/rackslot/README.md). Verdict: the root cause is the pose (guest mesh inside the rack
+  mesh at 22 / 22 and 18 / 18 H30 rest frames); eval 30: do not use any set (free-sweeper throw grows); eval 14:
+  c1-ev14 is the only set with a possible value (pair-scene throw 136 -> 79 mm median) if FlashCHORD budget.py keeps it
+  <= 512 rows (plain MuJoCo 552-612) and the owner accepts its failed gates. Pieces in the make_assets --pieces layout
+  under results/rackslot/pieces/; make_assets.py (6bbb52a) default reproduces the sf/ep14 URDF inertials exactly.
