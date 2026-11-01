@@ -5869,3 +5869,8 @@ arm and a no-policy replay floor to stage B.
     - ep33: 0.943 vs 0.934 (pack-7 rcB), floor 0.890.
   - ep33 looks most likely to pass; ep16 and ep30 depend on draw 1; ep14 and ep25 are unlikely.
   - G's logs show moderate overflow (ep14 ~1.6–1.9×10⁴, ep33 ~3×10⁴, ep16 0) that does not track the weak cells.
+- 03:13 UTC 1 Nov determined-wright: **ev10 cavity-safe v1 (ev10cs) not clean, so no retrain on it**.
+  - [M] full scene, sim=rl, vs packed: nefc max 510 vs 536; overflow lines 4 vs 13; cup–cup contacts 31 vs 68.
+  - A large reduction, but it fails the pre-registered no-overflow gate.
+  - Waiting for bold-albattani's v2 (A2). The eval-30 / eval-14 rack candidates are not out yet; their gates are
+    written.
