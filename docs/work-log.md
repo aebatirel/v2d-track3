@@ -6645,3 +6645,11 @@ Background agent, CPU only, $0, no ground truth read.
     reference measured; with our perceived motion every construction stays below the floor. Reading [I]: on this twin the
     construction is not the limiter; our perceived motion at the pick is (cf. 20:21: the perceived cup is within 1 cm /
     3–8° of mocap there, but the hand–cup relation differs by ~3.6 cm).
+- 20:43 UTC: perfect-following reported single-frame teleports in packed eval tracks [their M] (eval 14 cup f45→46
+  19.1 cm / 116°, onset f42–46 in 9/10 H5p7 draws; eval 32 cup flipped f21–33; eval 33 f90→91 11 cm). Jump check of the
+  public pre-lock tracks I have [M], 20 fps: no translation teleports (max 33–51 cm/s, all at or below mocap's own maxima:
+  ep13 cup 48 vs 56, ep2 pot / lid 44 / 51 vs 130 / 89, ep12 cup 40 vs 50, ep31 sweeper 33 vs 40, racks 10). ep13's cup
+  anomaly is rotation-only: 1016°/s at f14→15 (51° in one frame) about the symmetry axis, tilt unchanged; ep12's cup
+  381°/s at f141. So ep13 does not reproduce eval 14's 19 cm jump and cannot validate a jump repair. Told them which
+  public tracks to scan instead and that hold_filter's glitch mode covers depart-and-return segments (eval 32) but not
+  one-sided steps (eval 14).
