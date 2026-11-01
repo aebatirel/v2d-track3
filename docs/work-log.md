@@ -5973,3 +5973,10 @@ arm and a no-policy replay floor to stage B.
     - The kept-volume failure is disclosed.
     - New pack-10 rule (lesson from 9b): swap only if the expected sim_vs_ref gain is ≥ 0.02 on the episode.
   - Messaged determined-wright (no run; optional 8 mm plate margin check) and bold-albattani (freeze ev10cs4 by md5).
+- 05:10 UTC 1 Nov bold-albattani asked for the owner's go on the ev10cs4 eval-10 retrain.
+  - Evidence: packed ev10 380 / 9,723 overflow lines vs ev10cs4 0 / 0; nest 0.14 / 0.52 cm and 1.1 / 2.7° vs packed
+    1.02 / 2.06 cm and 7.0 / 11.1°.
+  - Known trades: beige 1.3–24 mm deeper in plain MuJoCo; blue cavity floor 3 mm above the visual mesh; impact margin
+    5.49 / 6 mm; free rest drifts 1.6 cm (reference visual meshes overlap 80 cm³; that is the pose fix's job).
+  - Cost [E, theirs]: ~$6 on the ledger.
+  - Answered 05:16: the 02:50 permission covers it; the go went to focused-pascal at 05:14 with the stated conditions.
