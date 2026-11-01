@@ -1,0 +1,742 @@
+<title>Track 3 Mesh Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a metrology report. Summary and decisions first, then one card per object with a live 3D view,
+   then the experiments that did not ship. Cool neutrals, blue = in the pack, orange = waiting on a decision. */
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --sunk: #e9edf1;
+  --ink: #11161c;
+  --ink-2: #47515c;
+  --muted: #6f7984;
+  --line: #d9dee4;
+  --lib: #8e959d;
+  --pack: #2a78d6;
+  --cand: #eb6834;
+  --rej: #b4bac1;
+  --good: #0ca30c;
+  --warn: #b77f00;
+  --crit: #d03b3b;
+  --good-bg: #e5f4e5;
+  --warn-bg: #fbf0d6;
+  --crit-bg: #f9e3e3;
+  --info-bg: #e3eefb;
+  --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-data: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101317; --surface: #181c21; --sunk: #20252b; --ink: #edf1f5; --ink-2: #b8c0c9; --muted: #8b949e;
+    --line: #2b3239; --lib: #727a83; --pack: #3987e5; --cand: #d95926; --rej: #4d545b;
+    --good: #3cbf3c; --warn: #f0b429; --crit: #ec6a6a;
+    --good-bg: #16301a; --warn-bg: #33290f; --crit-bg: #3a1c1c; --info-bg: #15263b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101317; --surface: #181c21; --sunk: #20252b; --ink: #edf1f5; --ink-2: #b8c0c9; --muted: #8b949e;
+  --line: #2b3239; --lib: #727a83; --pack: #3987e5; --cand: #d95926; --rej: #4d545b;
+  --good: #3cbf3c; --warn: #f0b429; --crit: #ec6a6a;
+  --good-bg: #16301a; --warn-bg: #33290f; --crit-bg: #3a1c1c; --info-bg: #15263b;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 48px; }
+h1, h2, h3 { font-family: var(--font-display); font-stretch: 85%; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2rem, 4.4vw, 3.1rem); font-weight: 800; line-height: 1.05; }
+h2 { font-size: 1.6rem; font-weight: 750; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--font-data); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--ink-2); font-size: 1.08rem; }
+.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.tag { font-family: var(--font-data); font-size: 0.7rem; color: var(--muted); }
+section { display: grid; gap: 20px; }
+.sec-head { display: grid; gap: 8px; }
+
+/* header */
+header.top { display: grid; gap: 22px; }
+.board-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; gap: 4px; }
+.stat .v { font-family: var(--font-data); font-size: 1.7rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat .k { font-size: 0.86rem; color: var(--ink-2); }
+.stat .s { font-family: var(--font-data); font-size: 0.72rem; color: var(--muted); }
+.ruler { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px 6px; }
+.ruler svg { width: 100%; height: auto; display: block; }
+
+/* decisions */
+.decisions { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.decision { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--cand); border-radius: 6px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
+.decision .q { font-weight: 600; }
+.decision .meta { font-family: var(--font-data); font-size: 0.78rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.decision .rec { font-size: 0.92rem; color: var(--ink-2); }
+.decision .rec b { color: var(--ink); }
+
+/* chips */
+.chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-data); font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+.chip svg { width: 10px; height: 10px; flex: none; }
+.chip.pack { background: var(--info-bg); color: var(--pack); }
+.chip.cand { background: var(--warn-bg); color: var(--warn); }
+.chip.rej { background: var(--crit-bg); color: var(--crit); }
+.chip.lib { background: var(--sunk); color: var(--ink-2); }
+.chip.run { background: var(--sunk); color: var(--ink-2); }
+
+/* charts */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px 18px 12px; display: grid; gap: 12px; min-width: 0; }
+.panel > svg { width: 100%; height: auto; display: block; overflow: visible; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.85rem; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+details.data { font-size: 0.85rem; color: var(--ink-2); }
+details.data summary { cursor: pointer; font-family: var(--font-data); font-size: 0.74rem; color: var(--muted); }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th, td { text-align: left; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-data); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+td.n { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.axis text { fill: var(--muted); font-family: var(--font-data); font-size: 11px; }
+.axis line, .axis path { stroke: var(--line); }
+.lbl { fill: var(--ink-2); font-family: var(--font-body); font-size: 13px; }
+.val { fill: var(--ink); font-family: var(--font-data); font-size: 11.5px; }
+.hit { fill: transparent; cursor: default; }
+#tip { position: fixed; pointer-events: none; z-index: 20; background: var(--ink); color: var(--bg); font-family: var(--font-data); font-size: 0.76rem; padding: 6px 9px; border-radius: 4px; max-width: 260px; line-height: 1.4; }
+
+/* object gallery */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+.obj { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; display: grid; grid-template-rows: auto auto 1fr; min-width: 0; overflow: hidden; }
+.obj .head { padding: 14px 16px 10px; display: grid; gap: 6px; }
+.obj .head .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.obj .head .pairs { font-family: var(--font-data); font-size: 0.72rem; color: var(--muted); }
+.view { position: relative; aspect-ratio: 4 / 3; max-width: 100%; background: var(--sunk); border-block: 1px solid var(--line); }
+.view canvas { width: 100% !important; height: 100% !important; display: block; touch-action: none; }
+.view .msg { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-data); font-size: 0.75rem; color: var(--muted); pointer-events: none; text-align: center; padding: 12px; }
+.view .hint { position: absolute; right: 10px; bottom: 8px; font-family: var(--font-data); font-size: 0.66rem; color: var(--muted); pointer-events: none; }
+.obj .body { padding: 12px 16px 16px; display: grid; gap: 10px; align-content: start; }
+.versions { display: flex; flex-wrap: wrap; gap: 6px; }
+.versions button { font-family: var(--font-body); font-size: 0.85rem; background: var(--surface); color: var(--ink-2); border: 1px solid var(--line); border-radius: 4px; padding: 5px 9px; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+.versions button i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.versions button[aria-pressed="true"] { border-color: var(--ink-2); color: var(--ink); background: var(--sunk); }
+.versions button:focus-visible, .toggle input:focus-visible { outline: 2px solid var(--pack); outline-offset: 2px; }
+.toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 0.82rem; color: var(--ink-2); cursor: pointer; }
+.vlist { display: grid; gap: 6px; }
+.vrow { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; font-size: 0.88rem; }
+.vrow .nm { display: inline-flex; gap: 7px; align-items: center; min-width: 0; }
+.vrow .nm i { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.vrow .sc { font-family: var(--font-data); font-variant-numeric: tabular-nums; font-size: 0.85rem; }
+.vrow .why { grid-column: 1 / -1; color: var(--muted); font-size: 0.8rem; padding-left: 17px; }
+.dots svg { width: 100%; height: auto; display: block; }
+.note { font-size: 0.84rem; color: var(--ink-2); }
+
+/* experiment cards */
+.exps { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.exp { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.exp .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.exp ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 0.9rem; color: var(--ink-2); }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 16px; }
+footer p { max-width: none; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div id="tip" hidden></div>
+<div class="wrap">
+
+<header class="top">
+  <div class="sec-head">
+    <span class="eyebrow">NVIDIA V2D Challenge · Track 3 · mesh lane · 31 Oct – 1 Nov 2026</span>
+    <h1>Track 3 Mesh Review</h1>
+    <p class="lede">Every mesh we proposed for the eval pack, what each one scores on the public scans, and where it stands. Scores are the board's metric, CD-O in cm, where lower is better. Public-scan numbers are marked [D], estimates [E], machine measurements [M].</p>
+  </div>
+  <div class="board-strip">
+    <div class="stat"><span class="k">Pack 8, CD-O board</span><span class="v">0.402</span><span class="s">rank 18 · Kaggle, measured</span></div>
+    <div class="stat"><span class="k">Pack 9a+, shipped</span><span class="v" style="color:var(--pack)">0.332</span><span class="s">rank 14 · Kaggle 0.33234 · AUC +0.003</span></div>
+    <div class="stat"><span class="k">With the C0 blue cup</span><span class="v" style="color:var(--cand)">≈0.300</span><span class="s">[E] from public scans · your decision</span></div>
+    <div class="stat"><span class="k">Rented compute, mesh lane, 31 Oct</span><span class="v">$1.47</span><span class="s">5 CPU boxes · all self-destroyed</span></div>
+  </div>
+  <div class="ruler" aria-label="CD-O board position against rank thresholds">
+    <div class="eyebrow">Where the board sits · lower CD-O ranks higher</div>
+    <svg id="ruler" viewBox="0 0 1000 120" role="img" aria-label="Number line of CD-O from 0.27 to 0.41 with our packs and rank thresholds"></svg>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Open decisions</span>
+    <h2>Three calls waiting on you</h2>
+  </div>
+  <div class="decisions">
+    <div class="decision">
+      <span class="chip cand"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>Biggest gain</span>
+      <div class="q">Add the C0 blue cup to pack 10?</div>
+      <div class="meta">CD-O 0.523 → 0.291 [D] on 5 of 36 pairs · board ≈ −0.032 [E]</div>
+      <div class="meta">AUC guard vs 9a+: mean +0.022 · MPPE −0.22 cm · RPE +0.17 cm</div>
+      <div class="rec">Fails one clause: on ep13 (cup in rack) AUC drops 0.030, the floor is 0.02. Both pack lanes declined it for the automatic upload. <b>My recommendation: take it, flagged.</b></div>
+    </div>
+    <div class="decision">
+      <span class="chip cand"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>Compliance vs score</span>
+      <div class="q">Swap to the scan-free pot and beige cup (E0b)?</div>
+      <div class="meta">pot 0.392 vs 0.342 now · beige 0.30 vs 0.25 now [D]</div>
+      <div class="rec">They contain no scan-derived number, but both score worse than what the pack ships. Lid, rack and blue cup failed the rebuild. <b>My recommendation: keep pack 9a+ on score.</b></div>
+    </div>
+    <div class="decision">
+      <span class="chip cand"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>About $1</span>
+      <div class="q">Test grey-painted templates for tracking?</div>
+      <div class="meta">re-track of ep45 and ep0 · one box, ~30 min</div>
+      <div class="rec">Our own-video meshes broke tracking, and they carry no colour while the library meshes are grey. Painting them grey tests whether colour is the cause. It's not on the pack-10 path.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Where the board's error comes from</span>
+    <h2>Error by object, weighted by eval pairs</h2>
+    <p class="note">Each bar is the number of eval pairs for that object times its CD-O. The 36 bars' total divided by 36 gives the board: 11.96 / 36 = 0.332, which matches Kaggle's 0.33234. The spoon value is inferred from the board, since the spoon has no public scan.</p>
+  </div>
+  <div class="panel">
+    <div class="legend"><span><i style="background:var(--pack)"></i>Pack 9a+ now</span><span><i style="background:var(--cand)"></i>With the C0 blue cup</span></div>
+    <svg id="contrib" viewBox="0 0 1000 430" role="img" aria-label="Weighted CD-O by object"></svg>
+    <details class="data"><summary>Show the numbers</summary><div class="tablewrap"><table id="contribTable"></table></div></details>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Object by object</span>
+    <h2>The meshes</h2>
+    <p class="note">Drag to turn a mesh, scroll or pinch to zoom. Pick a version below each view. "Library outline" overlays library_v3 as a wireframe in the same object frame, so you can see where the shapes differ. Meshes are reduced to at most 24,000 faces for the browser.</p>
+    <div class="legend"><span><i style="background:var(--lib)"></i>library_v3 (the old default)</span><span><i style="background:var(--pack)"></i>In pack 9a+</span><span><i style="background:var(--cand)"></i>Waiting on a decision</span><span><i style="background:var(--rej)"></i>Not adopted / record only</span></div>
+  </div>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">The blue cup decision in detail</span>
+    <h2>AUC guard for adding the C0 cup to pack 9a+</h2>
+    <p class="note">Change in tracking AUC on each public twin when the C0 cup replaces the library cup, everything else as shipped in 9a+. Our rule asks for a mean of at least −0.005 and no twin below −0.02.</p>
+  </div>
+  <div class="two">
+    <div class="panel">
+      <svg id="guard" viewBox="0 0 520 300" role="img" aria-label="AUC change per public twin"></svg>
+      <details class="data"><summary>Show the numbers</summary><div class="tablewrap"><table>
+        <tr><th>Twin</th><th>Objects</th><th>dAUC</th><th>dMPPE cm</th><th>dRPE cm</th></tr>
+        <tr><td>ep11</td><td>blue cup, beige cup</td><td class="n">+0.0071</td><td class="n">−0.192</td><td class="n">+0.154</td></tr>
+        <tr><td>ep12</td><td>blue cup, rack</td><td class="n">+0.0332</td><td class="n">−0.426</td><td class="n">−0.288</td></tr>
+        <tr><td>ep13</td><td>blue cup, rack</td><td class="n">−0.0296</td><td class="n">+0.204</td><td class="n">+0.236</td></tr>
+        <tr><td>ep21</td><td>blue cup, pitcher</td><td class="n">+0.0502</td><td class="n">−0.364</td><td class="n">+0.747</td></tr>
+        <tr><td>ep22</td><td>blue cup, pitcher</td><td class="n">+0.0493</td><td class="n">−0.341</td><td class="n">+0.021</td></tr>
+        <tr><td><b>Mean</b></td><td></td><td class="n"><b>+0.0220</b></td><td class="n"><b>−0.224</b></td><td class="n"><b>+0.174</b></td></tr>
+      </table></div></details>
+    </div>
+    <div class="panel">
+      <h3>Why ep13 drops</h3>
+      <p class="note">On ep13 the cup's own AUC falls from 0.940 to 0.901. The rack's AUC also falls, from 0.993 to 0.972, although the rack mesh is the same. The scorer seems to tie objects in one episode together through a shared anchor [H]. On ep12, with the same two objects, the swap gains 0.033.</p>
+      <div class="tablewrap"><table>
+        <tr><th>ep13, per object</th><th>9a+</th><th>+ C0 cup</th><th>Change</th></tr>
+        <tr><td>blue cup AUC</td><td class="n">0.9395</td><td class="n">0.9007</td><td class="n">−0.039</td></tr>
+        <tr><td>rack AUC (same mesh)</td><td class="n">0.9928</td><td class="n">0.9724</td><td class="n">−0.020</td></tr>
+      </table></div>
+      <p class="tag">Record: cdo-sprint/C0/bluecup-on-9aplus/README.md · commit fc952de</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Tried and not shipped</span>
+    <h2>Experiments that did not make the pack</h2>
+    <p class="note">Each one was pre-registered, run, checked by independent verifiers and kept on record, including the failures.</p>
+  </div>
+
+  <div class="two">
+    <div class="panel">
+      <div class="row" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline"><h3>Own-video meshes as tracking templates</h3><span class="chip rej"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="2"/></svg>Failed</span></div>
+      <p class="note">One mesh per public episode, built from that episode's own video. The score session re-ran FoundationPose with them as templates. Change in tracking AUC per episode; the pass mark was a mean of at least +0.01.</p>
+      <svg id="retrack" viewBox="0 0 520 360" role="img" aria-label="Re-track AUC change per episode"></svg>
+      <p class="tag">Mean −0.170 · 3 of 20 cases positive · verdict by focused-pascal, commit 942dbfc · build cost ≈ $0.15</p>
+    </div>
+    <div class="panel">
+      <div class="row" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline"><h3>Board slot: pieces vs the simulator's limit</h3><span class="chip rej"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="2"/></svg>Not delivered</span></div>
+      <p class="note">Constraint rows one simulated scene needs, against the training simulator's hard limit of 512. Round 2 cut the boards into 57 and 77 pieces and overflowed. Round 3 uses 5 boxes per board.</p>
+      <svg id="rows" viewBox="0 0 520 330" role="img" aria-label="Constraint rows per scene"></svg>
+      <p class="tag">Scenes differ, see each label · round 2 measured by determined-wright (MuJoCo-Warp, sim=rl) · round 3 by us (plain MuJoCo, sim=rl limits, boards + table)</p>
+    </div>
+  </div>
+
+  <div class="exps">
+    <div class="exp">
+      <div class="row"><h3>Board slot, eval 25</h3><span class="chip rej"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="2"/></svg>No for pack 10</span></div>
+      <ul>
+        <li>Round 1: a rectangle body cut wood on I-shaped boards. No slot.</li>
+        <li>Round 2: outline polygons, 57 / 77 prisms. Slot passes our physics on ep24, but overflows the training simulator in 16 of 16 copies.</li>
+        <li>Round 3: 5 boxes per board, 124 rows, no overflow, physics passes. It failed my contact-ratio rule, which the verifiers found compares against a box that falls flat.</li>
+        <li>Decisive: our board pose at assembly is 9.8 mm and 2.5° off the pose the simulator replays for eval 25. The slot has 1 mm clearance.</li>
+      </ul>
+      <p class="tag">Pack keeps meshes/carve/ev25 · $0 · INTERLOCK 20.15</p>
+    </div>
+    <div class="exp">
+      <div class="row"><h3>Collision carve, any colliding pair</h3><span class="chip run"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Nothing delivered</span></div>
+      <ul>
+        <li>Round 1: splitting objects into simulator pieces failed on all 10 public objects. Fallback boxes kept 2–9 % of each shape.</li>
+        <li>Round 2: cavity-safe rings, a pose check and the contact limit. Rings still fail on our stray inner sheets. Every hands-off frame is impossible as tracked: cups overlap by 77–85 cm³, a cup sits in the table.</li>
+        <li>So pose correction, not carving, is the remedy for these pairs. The impossible frames went to the pose lanes.</li>
+      </ul>
+      <p class="tag">$0 · INTERLOCK 21.12–21.14</p>
+    </div>
+    <div class="exp">
+      <div class="row"><h3>Eval check of the packed pieces</h3><span class="chip cand"><svg viewBox="0 0 10 10"><path d="M5 1l4 8H1z" fill="currentColor"/></svg>Flagged to the pack</span></div>
+      <ul>
+        <li>Eval 10: the packed cup pieces overlap at the nested rest and need 656–1,296 rows against 512. Every copy overflows from step 0.</li>
+        <li>Evals 14 and 30: the rack's collider fills up to 10.5 cm³ of the slot the cup or sweeper rests in.</li>
+        <li>Evals 14 and 32: a cup sits 16.6 mm and 19.5 mm inside the table.</li>
+        <li>Eval 1: the packed lid and pot pieces are clean.</li>
+      </ul>
+      <p class="tag">Diagnostic only, ground-truth free · sent to focused-pascal and determined-wright</p>
+    </div>
+    <div class="exp">
+      <div class="row"><h3>Generate-then-fit (C1 T3)</h3><span class="chip rej"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="2"/></svg>Not adopted</span></div>
+      <ul>
+        <li>Generated meshes fitted to our observations gave three CD-O wins.</li>
+        <li>All three failed the AUC guard: better shape, worse tracking.</li>
+      </ul>
+      <p class="tag">C1 README · $0</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Sources: branch claude/bold-albattani-6qmxsv of aebatirel/v2d-track3. Board numbers are from Kaggle (measured). Per-object CD-O [D] is scored against the public scans, which serve only scoring and diagnostics, never building. Eval meshes were chosen without eval ground truth.</p>
+  <p>Mesh files shown: library_v3, library_c0, C1/T1 and T2, C2/P and R, library_e0b, and the round-3 board boxes (ep24 record), reduced to at most 24,000 faces and stored with 16-bit vertex positions (under 0.01 mm error at these sizes). Built 1 Nov 2026, 01:00 UTC.</p>
+</footer>
+</div>
+
+
+<script>
+// ---------- data ----------
+window.MR = {};
+MR.objects = [
+  { id: 'cup', name: 'Blue cup', pairs: 5, up: 'z', lib: 'cup_lib',
+    versions: [
+      { key: 'cup_lib', label: 'library_v3', role: 'lib', cdo: 0.523, why: 'In the pack today. The largest single share of the board.' },
+      { key: 'cup_c0', label: 'C0 lathe, ep21', role: 'cand', cdo: 0.291, why: 'Your decision. Passes the mean guard, fails the ep13 floor.' }
+    ], extra: 'Scan-free rebuild (C0b) scored 1.677: clutter in the crop pulled it 30 mm off.' },
+  { id: 'pot', name: 'White pot', pairs: 6, up: 'x', lib: 'pot_lib',
+    versions: [
+      { key: 'pot_lib', label: 'library_v3', role: 'lib', cdo: 0.437, why: 'The old default.' },
+      { key: 'pot_c0', label: 'C0 primitive fit, ep41', role: 'pack', cdo: 0.342, why: 'Shipped in pack 9a+, flagged for its marker-ball radius.' },
+      { key: 'pot_e0b', label: 'E0b scan-free, built on eval 3', role: 'cand', cdo: 0.392, why: 'Compliance option. 0.392 is its method’s public pick; 17 of its 32 balls hang below the base.' }
+    ] },
+  { id: 'rack', name: 'Dish rack', pairs: 5, up: 'x', lib: 'rack_lib',
+    versions: [
+      { key: 'rack_lib', label: 'library_v3', role: 'lib', cdo: 0.555, why: 'The old default.' },
+      { key: 'rack_c0', label: 'C0 part program', role: 'pack', cdo: 0.456, why: 'Shipped in pack 9a+.' },
+      { key: 'rack_c2r', label: 'C2/R with fitted pegs', role: 'rej', cdo: 0.441, why: 'Better by 0.015, short of the 0.02 margin. Not adopted.' }
+    ], extra: 'Scan-free rebuild (C0b) scored 1.632.' },
+  { id: 'beige', name: 'Beige cup', pairs: 2, up: 'z', lib: 'beige_lib',
+    versions: [
+      { key: 'beige_lib', label: 'library_v3', role: 'lib', cdo: 0.856, why: 'Eval 10 value; 0.730 on eval 8.' },
+      { key: 'beige_t1', label: 'C1/T1 lathe, ep11', role: 'pack', cdo: 0.248, why: 'Shipped in pack 9a+. 0.255 on eval 8.' },
+      { key: 'beige_e0b', label: 'E0b scan-free, built on eval 8', role: 'cand', cdo: 0.301, why: 'Compliance option. Three inside-out shells.' }
+    ] },
+  { id: 'lid', name: 'Pot lid', pairs: 1, up: 'x', lib: 'lid_lib',
+    versions: [
+      { key: 'lid_lib', label: 'library_v3', role: 'lib', cdo: 0.421, why: 'The old default.' },
+      { key: 'lid_c0', label: 'C0 primitive fit, ep2', role: 'pack', cdo: 0.220, why: 'Shipped in pack 9a+, flagged.' }
+    ], extra: 'Scan-free rebuild: every build failed (clutter broke the flange step).' },
+  { id: 'pan', name: 'Mini dust pan', pairs: 2, up: 'x', lib: 'pan_lib',
+    versions: [
+      { key: 'pan_lib', label: 'library_v3', role: 'lib', cdo: 0.331, why: 'The old default.' },
+      { key: 'pan_t2', label: 'C1/T2 generated, placed', role: 'pack', cdo: 0.260, why: 'Shipped in pack 9a+. AUC guard +0.012.' }
+    ] },
+  { id: 'pitcher', name: 'Water pitcher', pairs: 1, up: 'x', lib: 'pitcher_lib',
+    versions: [
+      { key: 'pitcher_lib', label: 'library_v3', role: 'lib', cdo: 0.894, why: 'Still in the pack. The worst per-pair value we have.' },
+      { key: 'pitcher_c2p', label: 'C2/P lathe + observed sheet', role: 'rej', cdo: 1.160, why: 'Worse. The object is a watering can seen from one side.' }
+    ] },
+  { id: 'board', name: 'Wooden board', pairs: 2, up: 'x', lib: 'board1_lib',
+    versions: [
+      { key: 'board1_lib', label: 'library_v3 board 1', role: 'lib', cdo: 0.22, why: 'In the pack. 31 mm thick; our points measure 7.4 mm.' },
+      { key: 'slot3_wooden_piece_1', label: 'Round 3 slotted boxes, ep24', role: 'rej', cdo: null, why: 'Simulator pieces only, not a visual mesh. 5 boxes, 9.4 mm slot. Record, not delivered.' }
+    ] }
+];
+MR.contrib = [
+  { name: 'Blue cup', pairs: 5, cdo: 0.523, alt: 0.291 },
+  { name: 'Dish rack', pairs: 5, cdo: 0.456 },
+  { name: 'White pot', pairs: 6, cdo: 0.342 },
+  { name: 'Wooden spoon', pairs: 10, cdo: 0.181, inferred: true },
+  { name: 'Water pitcher', pairs: 1, cdo: 0.894 },
+  { name: 'Mini sweeper', pairs: 2, cdo: 0.315 },
+  { name: 'Mini dust pan', pairs: 2, cdo: 0.260 },
+  { name: 'Beige cup', pairs: 2, cdo: 0.250 },
+  { name: 'Wooden boards', pairs: 2, cdo: 0.220 },
+  { name: 'Pot lid', pairs: 1, cdo: 0.220 }
+];
+MR.guard = [ ['ep11', 0.0071], ['ep12', 0.0332], ['ep13', -0.0296], ['ep21', 0.0502], ['ep22', 0.0493] ];
+MR.retrack = [
+  ['ep45 pot', -0.973], ['ep0 pot', -0.925], ['ep11 cups', -0.705], ['ep26 pot', -0.475], ['ep2 pot', -0.263],
+  ['ep41 pot', -0.052], ['ep42 pot', -0.018], ['ep44 pot', -0.017], ['ep43 pot', -0.003],
+  ['ep22 cup', 0.0101], ['ep13 cup', 0.0114], ['ep21 cup', 0.0151]
+];
+MR.rows = [
+  { name: 'Round 2 slotted, 57 + 77 prisms', v: 2027, scene: 'boards + table, MuJoCo-Warp', over: true },
+  { name: 'Round 2 plain, 50 + 71 prisms', v: 416, scene: 'boards + table, MuJoCo-Warp' },
+  { name: 'Packed eval-25 scene, everything', v: 276, scene: 'both hands + boards + support' },
+  { name: 'Round 3 slotted, 5 + 5 boxes', v: 124, scene: 'boards + table, plain MuJoCo' },
+  { name: 'Round 3 plain, 3 + 3 boxes', v: 112, scene: 'boards + table, plain MuJoCo' }
+];
+</script>
+<script>
+// ---------- charts (plain SVG) ----------
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const tip = document.getElementById('tip');
+  function el(tag, attrs, parent, text) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function hover(node, html) {
+    node.addEventListener('pointermove', ev => {
+      tip.innerHTML = html; tip.hidden = false;
+      const x = Math.min(ev.clientX + 14, window.innerWidth - 270);
+      tip.style.left = x + 'px'; tip.style.top = (ev.clientY + 14) + 'px';
+    });
+    node.addEventListener('pointerleave', () => { tip.hidden = true; });
+  }
+  const fmt = (v, d) => (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(d);
+  // round a bar's data-end (4px) and keep the baseline square
+  function bar(parent, x0, x1, y, h, fill) {
+    const left = Math.min(x0, x1), w = Math.max(Math.abs(x1 - x0), 1), r = Math.min(4, w / 2, h / 2);
+    const toRight = x1 >= x0;
+    const d = toRight
+      ? `M${left},${y} H${left + w - r} Q${left + w},${y} ${left + w},${y + r} V${y + h - r} Q${left + w},${y + h} ${left + w - r},${y + h} H${left} Z`
+      : `M${left + w},${y} H${left + r} Q${left},${y} ${left},${y + r} V${y + h - r} Q${left},${y + h} ${left + r},${y + h} H${left + w} Z`;
+    return el('path', { d, fill }, parent);
+  }
+
+  // ruler
+  (function () {
+    const s = document.getElementById('ruler');
+    const x0 = 60, x1 = 960, lo = 0.27, hi = 0.41, X = v => x0 + (v - lo) / (hi - lo) * (x1 - x0);
+    const ax = el('g', { class: 'axis' }, s);
+    el('line', { x1: x0, x2: x1, y1: 70, y2: 70, 'stroke-width': 2 }, ax);
+    for (let v = 0.28; v <= 0.4001; v += 0.02) {
+      el('line', { x1: X(v), x2: X(v), y1: 66, y2: 74 }, ax);
+      el('text', { x: X(v), y: 92, 'text-anchor': 'middle' }, ax, v.toFixed(2));
+    }
+    const th = [[0.338, '14th'], [0.297, '10th'], [0.282, '6th']];
+    th.forEach(([v, r]) => {
+      el('line', { x1: X(v), x2: X(v), y1: 52, y2: 70, stroke: 'var(--muted)', 'stroke-dasharray': '3 3' }, s);
+      el('text', { x: X(v), y: 46, 'text-anchor': 'middle', class: 'val', fill: 'var(--muted)', style: 'fill:var(--muted)' }, s, r + ' at ' + v.toFixed(3));
+    });
+    const pts = [[0.40188, 'Pack 8', 'var(--lib)'], [0.33234, 'Pack 9a+', 'var(--pack)'], [0.300, '+ C0 cup [E]', 'var(--cand)']];
+    pts.forEach(([v, n, c], i) => {
+      const g = el('g', {}, s);
+      el('circle', { cx: X(v), cy: 70, r: 7, fill: c, stroke: 'var(--surface)', 'stroke-width': 2 }, g);
+      el('text', { x: X(v), y: 114, 'text-anchor': 'middle', class: 'lbl' }, g, n + ' ' + v.toFixed(3));
+      const hit = el('circle', { cx: X(v), cy: 70, r: 16, class: 'hit' }, g);
+      hover(hit, `${n}<br>CD-O ${v.toFixed(5).replace(/0+$/, '')}`);
+    });
+    el('text', { x: x0, y: 18, class: 'val', style: 'fill:var(--muted)' }, s, '← better');
+  })();
+
+  // contribution
+  (function () {
+    const s = document.getElementById('contrib');
+    const L = 190, R = 900, top = 16, rowH = 38, bh = 14, max = 3.0, X = v => L + v / max * (R - L);
+    const ax = el('g', { class: 'axis' }, s);
+    for (let v = 0; v <= max + 1e-9; v += 0.5) {
+      el('line', { x1: X(v), x2: X(v), y1: top - 4, y2: top + rowH * MR.contrib.length, 'stroke-opacity': v === 0 ? 1 : 0.6 }, ax);
+      el('text', { x: X(v), y: top + rowH * MR.contrib.length + 18, 'text-anchor': 'middle' }, ax, v.toFixed(1));
+    }
+    el('text', { x: R, y: top + rowH * MR.contrib.length + 40, 'text-anchor': 'end', class: 'val', style: 'fill:var(--muted)' }, s, 'pairs × CD-O (cm)');
+    const tb = document.getElementById('contribTable');
+    tb.innerHTML = '<tr><th>Object</th><th>Eval pairs</th><th>CD-O per pair</th><th>Weighted</th></tr>';
+    let tot = 0;
+    MR.contrib.forEach((o, i) => {
+      const y = top + i * rowH + 6, w = o.pairs * o.cdo; tot += w;
+      el('text', { x: L - 12, y: y + bh - 2, 'text-anchor': 'end', class: 'lbl' }, s, o.name + (o.inferred ? ' (inferred)' : ''));
+      bar(s, X(0), X(w), y, bh, 'var(--pack)');
+      el('text', { x: X(w) + 6, y: y + bh - 2, class: 'val' }, s, w.toFixed(2) + '  (' + o.pairs + ' × ' + o.cdo.toFixed(3) + ')');
+      const hit = el('rect', { x: L, y: y - 4, width: R - L, height: bh + 8, class: 'hit' }, s);
+      hover(hit, `${o.name}<br>${o.pairs} pairs × ${o.cdo.toFixed(3)} cm = ${w.toFixed(2)}${o.inferred ? '<br>inferred from the board' : ''}`);
+      let row = `<tr><td>${o.name}${o.inferred ? ' (inferred)' : ''}</td><td class="n">${o.pairs}</td><td class="n">${o.cdo.toFixed(3)}</td><td class="n">${w.toFixed(2)}</td></tr>`;
+      if (o.alt != null) {
+        const wa = o.pairs * o.alt, ya = y + bh + 2;
+        bar(s, X(0), X(wa), ya, 8, 'var(--cand)');
+        el('text', { x: X(wa) + 6, y: ya + 8, class: 'val' }, s, wa.toFixed(2) + ' with C0 cup');
+        row += `<tr><td>Blue cup with C0</td><td class="n">${o.pairs}</td><td class="n">${o.alt.toFixed(3)}</td><td class="n">${wa.toFixed(2)}</td></tr>`;
+      }
+      tb.insertAdjacentHTML('beforeend', row);
+    });
+    tb.insertAdjacentHTML('beforeend', `<tr><td><b>Board</b></td><td class="n">36</td><td></td><td class="n"><b>${tot.toFixed(2)} / 36 = ${(tot / 36).toFixed(3)}</b></td></tr>`);
+  })();
+
+  // guard
+  (function () {
+    const s = document.getElementById('guard');
+    const L = 60, R = 500, T = 20, B = 250, lo = -0.04, hi = 0.06, Y = v => T + (hi - v) / (hi - lo) * (B - T);
+    const ax = el('g', { class: 'axis' }, s);
+    for (let v = -0.04; v <= 0.0601; v += 0.02) {
+      el('line', { x1: L, x2: R, y1: Y(v), y2: Y(v), 'stroke-opacity': Math.abs(v) < 1e-9 ? 1 : 0.55 }, ax);
+      el('text', { x: L - 8, y: Y(v) + 4, 'text-anchor': 'end' }, ax, fmt(v, 2));
+    }
+    el('line', { x1: L, x2: R, y1: Y(-0.02), y2: Y(-0.02), stroke: 'var(--crit)', 'stroke-dasharray': '5 4', 'stroke-width': 1.5 }, s);
+    el('text', { x: R, y: Y(-0.02) + 15, 'text-anchor': 'end', class: 'val', style: 'fill:var(--crit)' }, s, 'floor −0.02');
+    el('line', { x1: L, x2: R, y1: Y(0.022), y2: Y(0.022), stroke: 'var(--ink-2)', 'stroke-dasharray': '2 3' }, s);
+    el('text', { x: R, y: Y(0.022) - 6, 'text-anchor': 'end', class: 'val', style: 'fill:var(--ink-2)' }, s, 'mean +0.022');
+    const n = MR.guard.length, slot = (R - L) / n, bw = 36;
+    MR.guard.forEach(([ep, v], i) => {
+      const cx = L + slot * (i + 0.5), y0 = Y(0), y1 = Y(v);
+      const top = Math.min(y0, y1), h = Math.abs(y1 - y0);
+      const r = Math.min(4, h / 2);
+      const d = v >= 0
+        ? `M${cx - bw / 2},${y0} V${y1 + r} Q${cx - bw / 2},${y1} ${cx - bw / 2 + r},${y1} H${cx + bw / 2 - r} Q${cx + bw / 2},${y1} ${cx + bw / 2},${y1 + r} V${y0} Z`
+        : `M${cx - bw / 2},${y0} V${y1 - r} Q${cx - bw / 2},${y1} ${cx - bw / 2 + r},${y1} H${cx + bw / 2 - r} Q${cx + bw / 2},${y1} ${cx + bw / 2},${y1 - r} V${y0} Z`;
+      el('path', { d, fill: v < -0.02 ? 'var(--crit)' : 'var(--cand)' }, s);
+      el('text', { x: cx, y: v >= 0 ? y1 - 6 : y1 + 15, 'text-anchor': 'middle', class: 'val' }, s, fmt(v, 3));
+      el('text', { x: cx, y: B + 20, 'text-anchor': 'middle', class: 'lbl' }, s, ep);
+      const hit = el('rect', { x: cx - slot / 2, y: T, width: slot, height: B - T, class: 'hit' }, s);
+      hover(hit, `${ep}: dAUC ${fmt(v, 4)}${v < -0.02 ? '<br>below the −0.02 floor' : ''}`);
+    });
+    el('text', { x: L, y: B + 44, class: 'val', style: 'fill:var(--muted)' }, s, 'change in AUC vs pack 9a+, public twins');
+  })();
+
+  // retrack
+  (function () {
+    const s = document.getElementById('retrack');
+    const L = 92, R = 470, T = 10, rowH = 26, lo = -1.0, hi = 0.1, X = v => L + (v - lo) / (hi - lo) * (R - L);
+    const ax = el('g', { class: 'axis' }, s);
+    const B = T + rowH * MR.retrack.length;
+    for (let v = -1.0; v <= 0.0001; v += 0.25) {
+      el('line', { x1: X(v), x2: X(v), y1: T, y2: B, 'stroke-opacity': Math.abs(v) < 1e-9 ? 1 : 0.5 }, ax);
+      el('text', { x: X(v), y: B + 16, 'text-anchor': 'middle' }, ax, v === 0 ? '0' : v.toFixed(2).replace('-', '−'));
+    }
+    MR.retrack.forEach(([n, v], i) => {
+      const y = T + i * rowH + 6, h = 13;
+      el('text', { x: L - 10, y: y + 11, 'text-anchor': 'end', class: 'lbl' }, s, n);
+      bar(s, X(0), X(v), y, h, v < 0 ? 'var(--crit)' : 'var(--pack)');
+      const roomLeft = X(v) - L > 56;
+      el('text', { x: v < 0 ? (roomLeft ? X(v) - 6 : X(0) + 6) : X(v) + 6, y: y + 11, 'text-anchor': v < 0 && roomLeft ? 'end' : 'start', class: 'val' }, s, fmt(v, 3));
+      const hit = el('rect', { x: L, y: y - 6, width: R - L, height: rowH, class: 'hit' }, s);
+      hover(hit, `${n}: AUC change ${fmt(v, 4)}`);
+    });
+    // labels that would collide with the left axis for the longest bars are placed right of zero instead
+    el('text', { x: L, y: B + 38, class: 'val', style: 'fill:var(--muted)' }, s, 'change in tracking AUC vs library_v3 templates');
+  })();
+
+  // rows
+  (function () {
+    const s = document.getElementById('rows');
+    const L = 14, R = 470, T = 8, rowH = 52, max = 2100, X = v => L + v / max * (R - L);
+    const ax = el('g', { class: 'axis' }, s);
+    const B = T + rowH * MR.rows.length;
+    for (let v = 0; v <= 2000; v += 500) {
+      el('line', { x1: X(v), x2: X(v), y1: T, y2: B, 'stroke-opacity': v === 0 ? 1 : 0.5 }, ax);
+      el('text', { x: X(v), y: B + 16, 'text-anchor': 'middle' }, ax, String(v));
+    }
+    el('line', { x1: X(512), x2: X(512), y1: T - 2, y2: B, stroke: 'var(--crit)', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, s);
+    el('text', { x: X(512) + 5, y: B + 34, class: 'val', style: 'fill:var(--crit)' }, s, 'limit 512 per world');
+    MR.rows.forEach((r, i) => {
+      const y = T + i * rowH;
+      el('text', { x: L, y: y + 13, class: 'lbl' }, s, r.name);
+      bar(s, X(0), X(r.v), y + 19, 12, r.over ? 'var(--crit)' : (r.name.startsWith('Packed') ? 'var(--lib)' : 'var(--pack)'));
+      const inside = X(r.v) > R - 130;
+      el('text', { x: inside ? X(r.v) - 8 : X(r.v) + 6, y: y + 29, 'text-anchor': inside ? 'end' : 'start', class: 'val', style: inside ? 'fill:var(--surface)' : '' }, s, r.v + (r.over ? ' rows · overflows' : ''));
+      el('text', { x: L, y: y + 46, class: 'val', style: 'fill:var(--muted)' }, s, r.scene);
+      const hit = el('rect', { x: L, y, width: R - L, height: rowH - 4, class: 'hit' }, s);
+      hover(hit, `${r.name}<br>${r.v} rows · ${r.scene}`);
+    });
+  })();
+})();
+</script>
+<script>
+// ---------- gallery markup ----------
+(function () {
+  const ROLE = { lib: ['lib', 'Library'], pack: ['pack', 'In pack 9a+'], cand: ['cand', 'Your decision'], rej: ['rej', 'Not adopted'] };
+  const icon = { lib: '<svg viewBox="0 0 10 10"><rect x="2" y="2" width="6" height="6" fill="currentColor"/></svg>',
+    pack: '<svg viewBox="0 0 10 10"><path d="M1.5 5.2l2.3 2.3L8.5 2.8" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
+    cand: '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>',
+    rej: '<svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="2"/></svg>' };
+  const g = document.getElementById('gallery');
+  MR.objects.forEach(o => {
+    const best = o.versions.find(v => v.role === 'pack') || o.versions.find(v => v.role === 'lib');
+    const cand = o.versions.find(v => v.role === 'cand');
+    const st = cand ? ROLE.cand : (o.versions.some(v => v.role === 'pack') ? ROLE.pack : ROLE.lib);
+    const stLabel = cand ? 'Decision open' : (o.versions.some(v => v.role === 'pack') ? 'Improved in 9a+' : 'Library in pack');
+    const card = document.createElement('article');
+    card.className = 'obj'; card.id = 'obj-' + o.id;
+    const first = o.versions.find(v => v.role === 'cand') || o.versions.find(v => v.role === 'pack') || o.versions[0];
+    card.innerHTML = `
+      <div class="head">
+        <div class="row"><h3>${o.name}</h3><span class="chip ${st[0]}">${icon[st[0]]}${stLabel}</span></div>
+        <span class="pairs">${o.pairs} of 36 eval pairs · in pack now: ${best.label} (${best.cdo != null ? best.cdo.toFixed(3) : '–'})</span>
+      </div>
+      <div class="view" data-obj="${o.id}"><div class="msg">Loading 3D view…</div><span class="hint">drag to turn</span></div>
+      <div class="body">
+        <div class="versions" role="group" aria-label="${o.name} versions">
+          ${o.versions.map(v => `<button type="button" id="b-${v.key}" data-key="${v.key}" aria-pressed="${v.key === first.key}"><i style="background:var(--${v.role})"></i>${v.label}</button>`).join('')}
+        </div>
+        <label class="toggle"><input type="checkbox" id="ov-${o.id}" ${o.versions.length > 1 ? 'checked' : ''}> Library outline</label>
+        <div class="dots"></div>
+        <div class="vlist">
+          ${o.versions.map(v => `<div class="vrow"><span class="nm"><i style="background:var(--${v.role})"></i>${v.label}</span><span class="sc">${v.cdo != null ? v.cdo.toFixed(3) + ' cm' : 'no CD-O'}</span><span class="why">${v.why}</span></div>`).join('')}
+        </div>
+        ${o.extra ? `<p class="note">${o.extra}</p>` : ''}
+      </div>`;
+    g.appendChild(card);
+    // dot strip on one shared scale 0 - 1.2 cm
+    const scored = o.versions.filter(v => v.cdo != null && o.id !== 'board');
+    const dots = card.querySelector('.dots');
+    if (scored.length > 1) {
+      const NS = 'http://www.w3.org/2000/svg', W = 320, L = 8, R = 312, X = v => L + v / 1.2 * (R - L);
+      const s = document.createElementNS(NS, 'svg'); s.setAttribute('viewBox', `0 0 ${W} 40`);
+      s.setAttribute('role', 'img'); s.setAttribute('aria-label', 'CD-O of each version on a 0 to 1.2 cm scale');
+      let h = `<line x1="${L}" x2="${R}" y1="16" y2="16" stroke="var(--line)" stroke-width="2"/>`;
+      [0, 0.4, 0.8, 1.2].forEach(t => { h += `<text x="${X(t)}" y="36" text-anchor="middle" style="fill:var(--muted);font-family:var(--font-data);font-size:10px">${t.toFixed(1)}</text>`; });
+      const vs = scored.map(v => v.cdo); const a = Math.min(...vs), b = Math.max(...vs);
+      h += `<line x1="${X(a)}" x2="${X(b)}" y1="16" y2="16" stroke="var(--ink-2)" stroke-width="2"/>`;
+      scored.forEach(v => { h += `<circle cx="${X(v.cdo)}" cy="16" r="6" fill="var(--${v.role})" stroke="var(--surface)" stroke-width="2"><title>${v.label}: ${v.cdo.toFixed(3)} cm</title></circle>`; });
+      s.innerHTML = h; dots.appendChild(s);
+    }
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+// ---------- 3D viewers (three.js r147, classic build) ----------
+(function () {
+  if (!window.THREE || !THREE.OrbitControls) {
+    document.querySelectorAll('.view .msg').forEach(m => m.textContent = 'The 3D view could not load here. The scores below still apply.');
+    return;
+  }
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || '#888';
+  let reduce = false; try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  const cache = new Map();
+  function b64(str, Type) {
+    const bin = atob(str), n = bin.length, u8 = new Uint8Array(n);
+    for (let i = 0; i < n; i++) u8[i] = bin.charCodeAt(i);
+    return new Type(u8.buffer);
+  }
+  // Each mesh ships as JSON: vertices quantised to uint16 inside their bounding box, plus a triangle index.
+  function load(key) {
+    if (!cache.has(key)) cache.set(key, fetch('m/' + key + '.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
+      const q = b64(d.v, Uint16Array), pos = new Float32Array(q.length);
+      for (let i = 0; i < q.length; i++) { const a = i % 3; pos[i] = d.min[a] + q[i] / 65535 * d.span[a]; }
+      const idx = b64(d.i, d.it === 'u16' ? Uint16Array : Uint32Array);
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      geo.setIndex(new THREE.BufferAttribute(idx, 1));
+      geo.computeVertexNormals();
+      const grp = new THREE.Group(); grp.add(new THREE.Mesh(geo)); return grp;
+    }));
+    return cache.get(key);
+  }
+  const viewers = [];
+  const roleColor = role => css('--' + role);
+  function makeViewer(box, obj) {
+    let renderer;
+    try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); }
+    catch (e) { box.querySelector('.msg').textContent = 'This browser has no WebGL, so the 3D view is off.'; return null; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    box.prepend(renderer.domElement);
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(32, 4 / 3, 0.001, 50);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x8090a0, 1.1));
+    const key = new THREE.DirectionalLight(0xffffff, 1.0); key.position.set(1, 2, 1.5); scene.add(key);
+    const rim = new THREE.DirectionalLight(0xffffff, 0.45); rim.position.set(-1.5, 0.5, -1); scene.add(rim);
+    const root = new THREE.Group(); scene.add(root);
+    if (obj.up === 'x') root.rotation.z = Math.PI / 2; else if (obj.up === 'z') root.rotation.x = -Math.PI / 2;
+    const controls = new THREE.OrbitControls(cam, renderer.domElement);
+    controls.enableDamping = true; controls.autoRotate = !reduce; controls.autoRotateSpeed = 1.2;
+    controls.addEventListener('start', () => { controls.autoRotate = false; });
+    const v = { box, obj, renderer, scene, cam, root, controls, current: null, ghost: null, role: null, visible: true, fitted: false };
+    function size() { const w = box.clientWidth, h = box.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+    if (window.ResizeObserver) new ResizeObserver(size).observe(box); else window.addEventListener('resize', size);
+    size();
+    v.fit = (o3) => {
+      const b = new THREE.Box3().setFromObject(o3); const sph = b.getBoundingSphere(new THREE.Sphere());
+      controls.target.copy(sph.center);
+      const d = sph.radius / Math.sin(THREE.MathUtils.degToRad(cam.fov / 2)) * 1.05;
+      cam.position.copy(sph.center).add(new THREE.Vector3(0.9, 0.55, 1.1).normalize().multiplyScalar(d));
+      cam.near = d / 100; cam.far = d * 10; cam.updateProjectionMatrix(); controls.update();
+    };
+    v.show = async (vk) => {
+      const ver = obj.versions.find(x => x.key === vk);
+      const msg = box.querySelector('.msg'); msg.textContent = 'Loading ' + ver.label + '\u2026'; msg.hidden = false;
+      try {
+        const src = await load(vk);
+        const m = src.clone(true);
+        const mat = new THREE.MeshStandardMaterial({ color: roleColor(ver.role), roughness: 0.55, metalness: 0.05, side: THREE.DoubleSide });
+        m.traverse(n => { if (n.isMesh) n.material = mat; });
+        if (v.current) root.remove(v.current);
+        v.current = m; v.role = ver.role; root.add(m);
+        if (!v.fitted) { v.fit(root); v.fitted = true; }
+        msg.hidden = true;
+      } catch (e) { msg.textContent = 'Could not load ' + ver.label + '.'; }
+    };
+    v.ghostOn = async (on) => {
+      if (v.ghost) { root.remove(v.ghost); v.ghost = null; }
+      if (!on) return;
+      try {
+        const src = await load(obj.lib);
+        const gm = src.clone(true);
+        const mat = new THREE.MeshBasicMaterial({ color: css('--ink-2'), wireframe: true, transparent: true, opacity: 0.18, depthWrite: false });
+        gm.traverse(n => { if (n.isMesh) n.material = mat; });
+        v.ghost = gm; root.add(gm);
+      } catch (e) {}
+    };
+    v.recolor = () => {
+      if (v.current) v.current.traverse(n => { if (n.isMesh) n.material.color.set(roleColor(v.role)); });
+      if (v.ghost) v.ghost.traverse(n => { if (n.isMesh) n.material.color.set(css('--ink-2')); });
+    };
+    viewers.push(v);
+    return v;
+  }
+  function wire(card, obj) {
+    const box = card.querySelector('.view');
+    let v = null, started = false;
+    const pressedKey = () => card.querySelector('.versions button[aria-pressed="true"]').dataset.key;
+    const ov = card.querySelector('#ov-' + obj.id);
+    const start = async () => {
+      if (started) return; started = true;
+      v = makeViewer(box, obj); if (!v) return;
+      const k = pressedKey(); await v.show(k);
+      if (ov.checked && k !== obj.lib) v.ghostOn(true);
+    };
+    card.querySelectorAll('.versions button').forEach(btn => btn.addEventListener('click', async () => {
+      card.querySelectorAll('.versions button').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      await start(); if (!v) return;
+      await v.show(btn.dataset.key);
+      v.ghostOn(ov.checked && btn.dataset.key !== obj.lib);
+    }));
+    ov.addEventListener('change', async () => { await start(); if (v) v.ghostOn(ov.checked && pressedKey() !== obj.lib); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) start(); if (v) v.visible = en.isIntersecting; }), { rootMargin: '300px' }).observe(box);
+    } else start();
+  }
+  MR.objects.forEach(o => wire(document.getElementById('obj-' + o.id), o));
+  function tick() {
+    for (const v of viewers) { if (!v.visible) continue; v.controls.update(); v.renderer.render(v.scene, v.cam); }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+  const recolorAll = () => viewers.forEach(v => v.recolor());
+  try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', recolorAll); } catch (e) {}
+  new MutationObserver(recolorAll).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>

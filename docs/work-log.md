@@ -6028,3 +6028,12 @@ diagnostic; nothing is picked for submission.
 - **Eval-25 verdict: NO** (no gmg slot pieces for pack 10; keep meshes/carve/ev25), sent to focused-pascal,
   keen-heisenberg (owner's morning summary) and determined-wright (nothing to run). Any future slot must be cut in the
   frame of the replayed poses (new rule, not planned tonight). Cost of the board-slot rounds tonight: $0.
+
+### 2026-11-01 01:20 UTC — mesh review artifact for the owner
+- Published https://claude.ai/artifact/6NyiKtg8NgmQRD7mAzpk8e (private): 3D views of every mesh version per object
+  (library_v3, shipped C0/C1, candidates C0 blue cup and E0b, rejected C2), board error by object, the blue-cup guard,
+  re-track verdict, board-slot contact rows, collision-carve and eval-check findings, and the three open owner decisions.
+  Page source and the mesh prep scripts: `docs/research/mesh-2026-10-26/review/` (meshes reduced to <= 24k faces,
+  16-bit quantised JSON; regenerable with prep.py + tojson.py, not committed).
+- Also relayed (00:58 UTC) to focused-pascal and determined-wright: the eval precheck finding that the packed ev10 cup
+  pieces overlap at the nested rest and need 656-1,296 rows vs njmax 512 under sim=rl (pair scene, plain MuJoCo).
