@@ -10807,3 +10807,8 @@ score.
     unstable before its grasp (rest check: 77 mm / 20° by f32; replan kept, zero action 0.195), unrelated to the cup
     bridge (f86–90). So the rebuild differs from the packed eval-33 reference (built by run fr3233s43 with its own
     settings); a confound of the rebuild, not evidence about the bridge [I].
+- 23:48 UTC 1 Nov **batch 1 done** (pfA, pfB self-destroyed): results docs/research/work/pf-hands-20261101/results/README.md.
+  - pfA public ep13 AUC vs mocap: s 0.378 / 0.554, 2h 0.587 / 0.553 → mean paired Δ +0.104: **PASS** by the rule, but one
+    seed carries it (seed 43 both at the floor) [I: fragile].
+  - pfB evals 14 / 16 two-hand: both seeds below the packed policy (14: 0.603 / 0.581 vs 0.727; 16: 0.713 / 0.696 vs 0.850):
+    **NO-SWAP**. Two-hand is not adopted on eval.
