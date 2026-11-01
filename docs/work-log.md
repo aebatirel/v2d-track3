@@ -6356,3 +6356,10 @@ arm and a no-policy replay floor to stage B.
     - 2–3 replays for eval 14 to catch its failure mode;
     - targeted pulls (the 30 Oct HF-429 lesson); the eval-25 `ck=` fix or skip;
     - plan and cost in the log first (~$2–4 [E]); ≥ $10 reserve; no videos in git.
+- 18:57 UTC 1 Nov focused-pascal: **robot-hand video box launched**, 20261101-vid3-b96ae95 (58698678, UK, $1.348/h).
+  - Ledger $2.50 planned, ~$1.4 [E], ~1 h. Credit $23.56.
+  - Content: eval 14 ×3 fresh replays (r1–r3, each scored and mode-tagged), 25 and 30. Policies are pack 7's = pack 11's
+    for these (sha 05b13510 / 7edd445b / bc9fccad).
+  - RUNS narrowed to these episodes. sub_videos.sh now handles PICK `ck=` (b96ae95), and REPLAYS is opt-in.
+  - Eval 10's ck512 skipped: it is in no PACK_RUN, so the job's sha check refuses it.
+  - Output: store runs/20261101-vid3-b96ae95/results/sub_videos/{ep14_r1,ep14_r2,ep14_r3,ep25,ep30}.mp4.
