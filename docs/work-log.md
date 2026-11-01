@@ -10734,3 +10734,12 @@ score.
     322 cm/s jump at f33), 16 f112–120 (spoon moves after release, no robot tip f122–173), 25 f41 / f173, 1 f129+, 3 f66.
   - Messages to the GRASP session (20:00, 20:18): split agreed as proposed by me (they: repair a then b as a tool with its
     public gate; me: GPU, hand assignment, ep13 RL test).
+- ~20:55 UTC 1 Nov **perfect-following: batch 1 plan (GPU), pre-registered** in docs/research/work/pf-hands-20261101/PREREG.md
+  before any result. Job ops/jobs/pf_arms.sh (new), verdicts tools/pf_verdict.py (new; CPU mock-tested on the H5p7 eval-14
+  draws: choose / dr_score / eval and a synthetic public table), glock_public.sh opt-in EVAL_PF + per-prefix GL_ARGS_pf*.
+  - Fixed first: the branch merge had interleaved two versions of ops/jobs/glock_public.sh and pipeline/pipeline_ep.sh
+    (syntax error); restored focused-pascal's versions (the ones its boxes ran), all .sh / .py parse.
+  - CPU zero-action (this container, one replay each) eval 14: single-hand 0.293, two-hand 0.586 (floor 0.588) [M].
+  - Boxes: pfA = public ep13 arms s / 2h × seeds 42 / 43 (≈ 3 h, ≈ $4.5–5 [E]); pfB = evals 14 and 16, arm 2h × seeds 42 / 43,
+    gate + 10 fresh official draws + swap rule + inclusion bar (≈ 3.7 h, ≈ $5–6 [E]). Batch ≈ $10–11 [E] of the $110.
+  - Eval adoption needs both the public PASS and the episode's swap rule.

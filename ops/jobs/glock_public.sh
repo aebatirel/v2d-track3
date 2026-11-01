@@ -83,6 +83,11 @@
 # opt-in, off by default): with SPLIT=eval, eval 20 may also use a PERC prefix e20b1s<seed> (that job's byte copy of the packed
 # eval-20 reference) with RUN local and REQUIRE_REUSE=1 only; folders refs/e20b1s<seed>_glock*, runs/e20b1s<seed>_glock,
 # results/e20b1s<seed>_glock_public (stock contact limits; packable). Unset, every PERC decision is exactly as before.
+# EVAL_PF=1 (2026-11-01, perfect-following hand-assignment arms, ops/jobs/pf_arms.sh; docs/research/work/pf-hands-20261101/;
+# opt-in, off by default): with SPLIT=eval, a PERC prefix pf<arm>s<seed> (pf_arms.sh's byte copy of the packed eval base
+# reference refs/perc2mck/ep<N>, GT-free) with RUN local; the reference stages run (support_fill, grasp_lock with the arm's
+# GL_ARGS, ILC, replan) on that copy; folders refs/pf<arm>s<seed>_*, runs/pf<arm>s<seed>_glock, results/pf<arm>s<seed>_glock_public
+# (stock contact limits; packable). Unset, every PERC decision is exactly as before.
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log. Each rollout's
 # summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -201,12 +206,18 @@ one() {
         || { [ "${EVAL_NJ_DIAG:-0}" = 1 ] && [ "$ep" = 10 ] && [[ $perc =~ ^perc2e10njs[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
         || { [ "${EVAL_CS_REF:-0}" = 1 ] && [ "$ep" = 10 ] && [[ $perc =~ ^perc2e10css[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
         || { [ "${EVAL_E20B1:-0}" = 1 ] && [ "$ep" = 20 ] && [[ $perc =~ ^e20b1s[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
+        || { [ "${EVAL_PF:-0}" = 1 ] && [[ $perc =~ ^pf[a-z0-9]+s[0-9]+$ ]] && [ "$run" = local ]; } \
         || { log "glock ep$ep: PERC $perc with SPLIT=eval needs a mass<A>s<seed> prefix, RUN local and REQUIRE_REUSE=1" >> $J; return 1; }
       fi
     else
     [ "$SPLIT" = public ] && [ "$run" = local ] || { log "glock ep$ep: PERC $perc needs SPLIT=public and RUN local" >> $J; return 1; }
     fi
     pre=${perc}_; tg="$perc ep$ep"; O=/content/results/${pre}glock_public
+    if [[ $perc =~ ^pf[a-z0-9]+s[0-9]+$ ]]; then                   # (2026-11-01, pf_arms.sh) the arm's own grasp-lock arguments
+      local glv=GL_ARGS_$perc                                      # one() runs in its own subshell: only this pair sees them
+      [ -n "${!glv:-}" ] || { log "glock $tg: $glv unset (pf arms name their GL_ARGS)" >> $J; return 1; }
+      GL_ARGS=${!glv}; log "glock $tg: GL_ARGS [$GL_ARGS]" >> $J
+    fi
   fi
   LG=/content/${pre}glock_ep$ep.log
   if [ -n "${!ev:-}" ]; then                                        # per-episode settings (one() runs in its own subshell)
