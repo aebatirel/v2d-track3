@@ -44,3 +44,12 @@ Reported, not gating: symmetric sim_vs_ref of every confirmation draw (tools/sim
 
 ## 5. Cost [E]
 pfA: 2 waves of 2 trainings ≈ 3 h + setup ≈ $4.5–5. pfB: same ≈ 3 h + confirmations ≈ 0.7 h ≈ $5–6. Total ≈ $10–11.
+
+## 6. Addendum, 1 Nov ~22:15 UTC (after pfA seed 42 only; written before any first-picker result)
+pfA seed 42 [M]: s 0.378, 2h 0.587 (AUC vs mocap). Public ep13's `s` lock carries with the right hand (from f46), while
+eval 14's packed lock kept its first picker (left). To compare with eval 14's construction, box pfE trains arm
+`f` = common + `--single_hand 2` (first picker; grasp_lock.py from claude/grasp-ep13-20261101 @ 660b5af, mode 1 unchanged)
+on public ep13, seeds 42 / 43, same recipe and base. Deviation: a different box from pfA (box-to-box noise not controlled).
+Reported against pfA's cells: f − s and 2h − f (paired by seed), same thresholds as §3 (≥ +0.05 mean, no seed < −0.05).
+Reading fixed now: if 2h − f passes, two-hand also beats eval 14's construction on its twin; if not, the pfA gain is
+"right-hand lock is bad", not "two-hand is good".
