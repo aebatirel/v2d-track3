@@ -1606,3 +1606,25 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   and outer face <= r_out at EVERY construction ray of the sector band, on the innermost interval) collapse on thin
   inner SHELL sheets (ep13: inside the cavity; ep12: near the floor / fillet); falsifier: with the interval that
   holds the row's median wall instead of the innermost one, the 12-sector min wall of these cups stays < 1.5 mm.
+- 01:19 (T-I16) [M] pieces step done for 7 of 10 objects, all route 4 (6 mm boxes): ep12 blue_cup 29, ep13 blue_cup
+  25, ep11 blue_cup 17, ep11 beige_cup 20 (route 2: one wall run, no solid run, i.e. bottomless (B3); every
+  candidate min wall -21 to -36 mm, 11 of 12 wall pieces dropped at 12 x 1), ep2 white_pot 42 (route 2: min wall -73 to
+  -173 mm on every candidate), ep31 mini_sweeper 3; the racks are in route 3. So no cup or pot gets rings: P93 / P94
+  and P72-P74's ring legs miss. Profile diagnostic on the beige cup and the pot (same script): beige 25 rays > 10 mm
+  inside the row median (e.g. h 128 mm [17.0, 17.4] mm against 28.5), 40 % of its construction rays hit nothing
+  (sectors completed by the median); pot: 2,526 such rays in 46 wall rows (54 % within 15 mm of the base, e.g. h
+  -39.6 mm [5.95, 22.9] mm against 51.0) and handle rows where the innermost interval runs out to 254 mm (the handle
+  fused to the wall). Same [H] B4 (exact per-ray envelopes on raw SHELL rays).
+- 01:31 (T-I16) [M] **ep11 done** (4,349 s, 01:30:56): blue_cup route 3 -> 4 (17 boxes, share 0.038), beige_cup route
+  2 (no layout) -> 3 (73 hulls, gate fail: 5 over 0.3 cm3, max 0.44) -> 4 (20 boxes, share 0.038). Pair in scope
+  (beige_cup<-blue_cup#2: 11 voxels, SEAT, sweep 1.0), receiver beige_cup, S frame f126 fails precheck (c) (V_ov 85.2
+  cm3, removed 0.53, topology 2/79 -> 119/127): `pose_impossible_all`, not carved, default delivered. Floor frames
+  f127, f108 (containment 0.96 / 0.98): both fail (c) (V_ov 84.5 / 76.7 cm3), so no S and no S_ref there; G1 vacuous
+  (no gated frame; packed default 58 + 47 CoACD-0.05 hulls computed, not counted); floor fails on the share (0.038 /
+  0.038 < 0.5): DO_NOT_USE.json, CONTACT_GATE_PENDING.json. ep13 and ep31 racks: route 3 = CoACD 41 + 41 splits ->
+  82, gate fails (max 0.78 / 1.74 cm3) -> route 4 (24 / 47 boxes).
+- 01:35 (T-I16) [M] **ep31 done** (4,516 s): sweeper route 3 -> 4 (3 boxes, share 0.018), rack route 3 -> 4 (47
+  boxes, share 0.047); no persistent component (out of scope); floor `s_floor_vacuous` (the two hands-off static
+  segments, mid f285 / f278, have the faithful sweeper 12.0 / 11.9 mm from the faithful rack: the sweeper floats,
+  verify_cc_1 B2); G1 vacuous (packed default 98 + 46 hulls, not counted); floor fails on the shares:
+  DO_NOT_USE.json, CONTACT_GATE_PENDING.json.

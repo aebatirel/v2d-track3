@@ -218,8 +218,10 @@ def tables(SS):
         for k, r in S['pairs'].items():
             fl = r.get('floor') or {}
             if not fl.get('rows'):
+                gaps = ', '.join(f'f{g["frame"]} {g["gap_mm"]} mm' for g in (fl.get('info') or {}).get('segment_gaps')
+                                 or [])
                 L.append(f'| {S["ep"]} | {k} | {fl.get("receiver") or "-"} | - | {fl.get("flag") or "no floor frame"} '
-                         f'| - | - | - |')
+                         f'(faithful gap at the hands-off segments: {gaps or "no segment"}) | - | - | - |')
             for x in fl.get('rows') or []:
                 pf = x.get('precheck_fails')
                 a = (x.get('precheck') or {}).get('a_table') or {}
