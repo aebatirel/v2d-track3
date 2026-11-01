@@ -1591,3 +1591,18 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   6 mm (P76's sweeper leg misses); ep13 blue_cup route 2: `no_accepted_layout` (00:44) -> route 3. Scheduler: my
   run group's autogroup weight set to nice -3 (my own processes only, nobody else's reniced; 3 groups compete: frame_kit
   at nice 19, the eval-check lane's two processes, and my six), i.e. about 2 of the 4 cores, near a per-process share.
+- 00:58 (T-I16) [M] ep13 blue_cup route 2 (rev 2): `no_accepted_layout`; every candidate fails (i) min wall, at -31.8
+  to -74.7 mm (ring volume 0.12-1.8 cm3: 15-20 of 24 wall pieces dropped as negative walls), then route 3 and route 4
+  (25 boxes). ep12 blue_cup: the same (`no_accepted_layout`; 12-sector one-band b1: min wall -55.2 mm, 15 pieces
+  dropped). ep11 blue_cup (rotc 3.01 sigma, not lathe): route 3 = CoACD 41 + 40 splits -> 81 hulls, gate fails (21
+  hulls over 0.3 cm3, max 1.55) -> route 4, 17 boxes. Diagnostic (report only, decides nothing,
+  `build/I/fi517_diag_profile.py`, `<run>/diag/profile_ep1{2,3}_blue_cup.json`, 6 s each): the same Profile2 as the
+  run; per wall run, the rays whose innermost interval ends > 10 mm inside the row's median outer radius. ep13: 3,852
+  such rays in 64 of 173 wall rows at 272 of 360 azimuths, their r_out at 0.41-0.62 of the row median, spread up the
+  cavity (median 46.5 mm above the base, 11 % within 15 mm of it), e.g. h -85.6 mm, phi 344 deg: [5.80, 5.81] mm where
+  the row median r_out is 31.7 mm; interval counts up to 7. ep12: 617 such rays in 40 rows at 145 azimuths, 71 %
+  within 15 mm of the base (e.g. h 61.5 mm: [14.25, 14.28] mm, row median 35.6 mm), plus the foot run below the base
+  (82-91 mm) where 23 % of rays hit. [H] B4: the rule's exact per-ray envelopes (F-I5.15 (1b): inner face >= r_in
+  and outer face <= r_out at EVERY construction ray of the sector band, on the innermost interval) collapse on thin
+  inner SHELL sheets (ep13: inside the cavity; ep12: near the floor / fillet); falsifier: with the interval that
+  holds the row's median wall instead of the innermost one, the 12-sector min wall of these cups stays < 1.5 mm.
