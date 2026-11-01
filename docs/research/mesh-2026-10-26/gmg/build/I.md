@@ -1691,6 +1691,19 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   -7.0 mm; ep12 -4.6 mm; ep2 lid pushed up 1.2-6.1 mm; ep11 9.3-9.9 mm lateral). The precheck's verdicts agree with
   faithful S at every frame (verify_cc_1 B2 at round 1's frames likewise). README table filled. T-I16 step done:
   code 88f49df (runs), results 4023e4f + this commit. No rental, $0.
+<!-- cc2eval-start -->
+- 03:01 (Eval carves step, collision-carve round-2 workflow, started 02:56) Read STATUS, CLAUDE.md, this section,
+  verify_cc2_0 / verify_cc2_1, PREREG F-I5.15-F-I5.18, the collcarve2-public and collcarve2-evalcheck READMEs, the
+  work log to 03:00 (the orchestrator's ev10-cavsafe and rackslot lanes run beside this one; their folders are not
+  touched here). Eval-run condition (task): at least one F-I5.15 public pair delivered, no blocking finding standing,
+  pair in carve scope by the eval precheck. [M] T-I16 delivered no public pair (all five folders DO_NOT_USE on the
+  share floor, every floor frame pose_impossible or vacuous), so **no eval pair qualifies and none will be run**.
+  Blocking findings that need no new decision, fixed in this step: verify_cc2_0 B1 (dated correction of the four
+  "ep24 bundle absent" statements; run T-I17 c1 here, since F-I4.17's P125 used other poses, table and draws, so it
+  cannot be cited) and verify_cc2_1 B2 (eval precheck tables on the rule's 30 mm hands-off, H30). Not fixable here
+  (needs a new rule): verify_cc2_1 B1 (no never-intrude ring keeps 1.5 mm on these SHELLs). Work dir
+  `<scratch>/cc2eval`. Load 2.6 / 4 cores. CPU, no rental, $0.
+<!-- cc2eval-end -->
 
 ## ev10 cavity-safe pieces (agent of the orchestrator, started 1 Nov 02:47 UTC)
 Task: a CANDIDATE eval-10 collision set (blue cup = receiver, beige cup = guest) whose pieces do not overlap at the
@@ -1735,3 +1748,13 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   Built: blue 53 pieces 130.4 cm3 (min mid-sector wall 0.25 mm at the mouth bin, 0.875 mm at the bottom bin, >= 2.49
   mm in band 2); beige 49 pieces 264.0 cm3 (G1 lowers band 2 by up to 4.83 mm below a profile step). Committing A1,
   then measuring.
+- 03:00 Measuring (code: precheck evalcheck.py unchanged on `<scratch>/cavsafe/cfg.json`, tags packed / cand;
+  `ev10-cavsafe/scripts/cavsafe_measure.py`, `contacts_fixed.py`). Packed rerun reproduces the precheck's piece
+  volumes (152.51 / 303.08 cm3).
+- 03:02 [M] First gate-3 run: the pre-registered depth r_in - rho is ill-posed at the floor plane. The base hulls' top
+  faces lie ON h = h_floor, where r_in - rho is 30.5 mm at the axis, so both sets showed "30.47 mm". Corrected (stated
+  in the script and README): points at h >= h_floor - 1 um are on the floor plane; depth into C = min(r_in - rho,
+  h_floor - h); the radial measure is kept for the 36 wall pieces. Grid intrusion volume (interior 0.5 mm points):
+  packed ev10 54.2 cm3 (the 12 inscribed chords alone account for about 36 cm3 [E]), candidate 0.0 cm3. Guest: ev10
+  beige reaches 2.71 mm beyond its shrunk profile (and stays >= 5.29 mm inside the unshrunk lathe profile); candidate
+  0.00 / 8.0 mm.

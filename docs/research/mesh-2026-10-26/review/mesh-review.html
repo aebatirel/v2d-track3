@@ -145,6 +145,35 @@ td.n { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
 .exp ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 0.9rem; color: var(--ink-2); }
 footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 16px; }
 footer p { max-width: none; }
+
+/* every-mesh library */
+.libbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tabs button { font-family: var(--font-body); font-size: 0.86rem; background: var(--surface); color: var(--ink-2); border: 1px solid var(--line); border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tabs button .c { font-family: var(--font-data); font-size: 0.72rem; opacity: 0.75; margin-left: 4px; }
+.libbar select { font-family: var(--font-body); font-size: 0.86rem; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 5px 8px; max-width: 100%; }
+.tabs button:focus-visible, .libbar select:focus-visible, .tile:focus-visible { outline: 2px solid var(--pack); outline-offset: 2px; }
+.libwrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .libwrap { grid-template-columns: minmax(0, 1fr); } }
+.libview { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); }
+@media (max-width: 860px) { .libview { position: static; } }
+.libview .view { border-top: 0; }
+.libmeta { padding: 12px 16px 14px; display: grid; gap: 6px; font-size: 0.88rem; }
+.libmeta .t { font-weight: 600; overflow-wrap: anywhere; }
+.libmeta .kv { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; font-size: 0.82rem; color: var(--ink-2); }
+.libmeta .kv b { font-weight: 400; color: var(--muted); font-family: var(--font-data); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.libmeta .src { font-family: var(--font-data); font-size: 0.72rem; color: var(--muted); overflow-wrap: anywhere; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); gap: 8px; max-height: 1040px; overflow-y: auto; padding: 2px; min-width: 0; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: 6px; display: grid; gap: 4px; justify-items: center; cursor: pointer; text-align: left; font: inherit; color: inherit; }
+.tile[aria-pressed="true"] { border-color: var(--ink-2); background: var(--sunk); }
+.tile .th { width: 112px; height: 112px; background-repeat: no-repeat; border-radius: 3px; }
+.tile .nm { font-size: 0.72rem; color: var(--ink-2); width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile .row { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 4px; }
+.tile .sc { font-family: var(--font-data); font-size: 0.74rem; font-variant-numeric: tabular-nums; }
+.tile .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.tile .fam { font-family: var(--font-data); font-size: 0.62rem; color: var(--muted); width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.libcount { font-family: var(--font-data); font-size: 0.78rem; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -219,6 +248,36 @@ footer p { max-width: none; }
   </div>
   <div class="gallery" id="gallery"></div>
 </section>
+
+<section id="every-mesh">
+  <div class="sec-head">
+    <span class="eyebrow">Every mesh we built</span>
+    <h2>The full mesh library</h2>
+    <p class="note" id="libIntro">Every mesh our experiments produced, one tile each, duplicates merged by file hash: libraries, primitive and lathe fits, the five 3D generators (SAM 3D, Pixal3D, TRELLIS.2, Hunyuan3D, TripoSG), generate-then-fit, per-episode builds from our own video, eval-built sets and every candidate behind each pick. Scores are the stored public-scan CD-O [D] in cm; nothing was re-scored for this page, and eval-built meshes have no score because eval has no scan. Copies of the public scans that sat in scoring folders are left out, since they are ground truth, not our meshes. Meshes are reduced to about 2,000 faces here. Tiles sort best score first. Click a tile to load it in the viewer.</p>
+  </div>
+  <div class="libbar">
+    <div class="tabs" id="libTabs" role="tablist" aria-label="Object"></div>
+  </div>
+  <div class="libbar">
+    <label class="toggle" for="libFam">Method</label>
+    <select id="libFam"></select>
+    <label class="toggle"><input type="checkbox" id="libScored"> Scored only</label>
+    <label class="toggle" for="libSort">Sort</label>
+    <select id="libSort"><option value="score">Best score first</option><option value="fam">By method</option><option value="name">By name</option></select>
+    <span class="libcount" id="libCount"></span>
+  </div>
+  <div class="legend"><span><i style="background:var(--pack)"></i>In pack 9a+</span><span><i style="background:var(--cand)"></i>Waiting on your decision</span><span><i style="background:var(--lib)"></i>Everything else</span></div>
+  <div class="libwrap">
+    <div class="libview">
+      <div class="view" id="libView"><div class="msg">Pick a mesh</div><span class="hint">drag to turn</span></div>
+      <div class="libmeta" id="libMeta">
+        <label class="toggle"><input type="checkbox" id="libOv" checked> Library outline (library_v3)</label>
+      </div>
+    </div>
+    <div class="tiles" id="libTiles" aria-label="Meshes"></div>
+  </div>
+</section>
+
 
 <section>
   <div class="sec-head">
@@ -738,5 +797,135 @@ MR.rows = [
   const recolorAll = () => viewers.forEach(v => v.recolor());
   try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', recolorAll); } catch (e) {}
   new MutationObserver(recolorAll).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
+
+<script>
+// ---------- every-mesh library ----------
+(function () {
+  const NAMES = { white_pot: 'White pot', white_pot_lid: 'Pot lid', blue_cup: 'Blue cup', beige_cup: 'Beige cup', plastic_dish_rack: 'Dish rack',
+    water_pitcher: 'Water pitcher', mini_dust_pan: 'Mini dust pan', mini_sweeper: 'Mini sweeper', wooden_piece_1: 'Board 1', wooden_piece_2: 'Board 2', wooden_spoon: 'Wooden spoon' };
+  const UPX = { blue_cup: 'z', beige_cup: 'z' };
+  const tabs = document.getElementById('libTabs'), tilesEl = document.getElementById('libTiles'), famSel = document.getElementById('libFam');
+  const scoredCb = document.getElementById('libScored'), sortSel = document.getElementById('libSort'), countEl = document.getElementById('libCount');
+  const box = document.getElementById('libView'), meta = document.getElementById('libMeta'), ovCb = document.getElementById('libOv');
+  let INDEX = null, cur = null, selId = null;
+  const bundles = new Map();
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || '#888';
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function bundle(obj) {
+    if (!bundles.has(obj)) bundles.set(obj, fetch('lib/b/' + obj + '.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(d => { const m = new Map(); d.meshes.forEach(x => m.set(x.id, x)); return m; }));
+    return bundles.get(obj);
+  }
+  fetch('lib/index.json').then(r => r.json()).then(ix => {
+    INDEX = ix;
+    const objs = Object.keys(ix).sort((a, b) => ix[b].items.length - ix[a].items.length);
+    let total = 0, scored = 0; objs.forEach(o => { total += ix[o].items.length; scored += ix[o].items.filter(i => i.cdo != null).length; });
+    countEl.dataset.total = total;
+    document.getElementById('libIntro').insertAdjacentHTML('beforeend', ' <b>' + total + ' meshes, ' + scored + ' with a scan score.</b>');
+    objs.forEach((o, k) => {
+      const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.id = 'libtab-' + o;
+      b.innerHTML = esc(NAMES[o] || o) + '<span class="c">' + ix[o].items.length + '</span>';
+      b.addEventListener('click', () => select(o)); tabs.appendChild(b);
+    });
+    select(objs.includes('white_pot') ? 'white_pot' : objs[0]);
+  }).catch(() => { tilesEl.textContent = 'The mesh library index could not load.'; });
+  function select(o) {
+    cur = o;
+    tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', String(b.id === 'libtab-' + o)));
+    const fams = [...new Set(INDEX[o].items.map(i => i.fam))];
+    famSel.innerHTML = '<option value="">All methods</option>' + fams.map(f => '<option>' + esc(f) + '</option>').join('');
+    render();
+    const first = INDEX[o].items.find(i => i.pack) || INDEX[o].items[0];
+    if (first) show(first);
+  }
+  function render() {
+    const ix = INDEX[cur]; const fam = famSel.value, onlyScored = scoredCb.checked;
+    let items = ix.items.filter(i => (!fam || i.fam === fam) && (!onlyScored || i.cdo != null));
+    const s = sortSel.value;
+    if (s === 'fam') items = items.slice().sort((a, b) => a.fam.localeCompare(b.fam) || (a.cdo ?? 9) - (b.cdo ?? 9));
+    else if (s === 'name') items = items.slice().sort((a, b) => a.label.localeCompare(b.label));
+    countEl.textContent = items.length + ' of ' + ix.items.length + ' shown';
+    const frag = document.createDocumentFragment();
+    items.forEach(it => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'tile'; b.setAttribute('aria-pressed', String(it.id === selId));
+      const col = it.tile % ix.cols, row = Math.floor(it.tile / ix.cols);
+      const dot = it.pack ? 'var(--pack)' : it.cand ? 'var(--cand)' : 'var(--lib)';
+      b.innerHTML = '<div class="th" style="background-image:url(lib/s/' + cur + '.png);background-position:-' + (col * ix.tile) + 'px -' + (row * ix.tile) + 'px"></div>' +
+        '<div class="row"><span class="sc">' + (it.cdo != null ? it.cdo.toFixed(3) : 'not scored') + '</span><span class="dot" style="background:' + dot + '"></span></div>' +
+        '<div class="nm" title="' + esc(it.label) + '">' + esc(it.label) + '</div><div class="fam">' + esc(it.fam) + '</div>';
+      b.addEventListener('click', () => show(it));
+      frag.appendChild(b);
+    });
+    tilesEl.replaceChildren(frag);
+  }
+  [famSel, scoredCb, sortSel].forEach(e => e.addEventListener('change', render));
+  // viewer
+  let V = null;
+  function viewer() {
+    if (V !== null) return V;
+    if (!window.THREE || !THREE.OrbitControls) { box.querySelector('.msg').textContent = 'The 3D view could not load here.'; V = false; return V; }
+    let renderer; try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { box.querySelector('.msg').textContent = 'No WebGL in this browser.'; V = false; return V; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); box.prepend(renderer.domElement);
+    const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(32, 4 / 3, 0.001, 50);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x8090a0, 1.1));
+    const k = new THREE.DirectionalLight(0xffffff, 1.0); k.position.set(1, 2, 1.5); scene.add(k);
+    const r2 = new THREE.DirectionalLight(0xffffff, 0.45); r2.position.set(-1.5, 0.5, -1); scene.add(r2);
+    const root = new THREE.Group(); scene.add(root);
+    const controls = new THREE.OrbitControls(cam, renderer.domElement); controls.enableDamping = true;
+    let reduce = false; try { reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    controls.autoRotate = !reduce; controls.autoRotateSpeed = 1.0; controls.addEventListener('start', () => { controls.autoRotate = false; });
+    const size = () => { const w = box.clientWidth, h = box.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); };
+    if (window.ResizeObserver) new ResizeObserver(size).observe(box); size();
+    (function loop() { controls.update(); renderer.render(scene, cam); requestAnimationFrame(loop); })();
+    V = { scene, cam, root, controls, mesh: null, ghost: null, obj: null, role: 'lib' };
+    const recolor = () => { if (V.mesh) V.mesh.material.color.set(css('--' + V.role)); if (V.ghost) V.ghost.material.color.set(css('--ink-2')); };
+    try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', recolor); } catch (e) {}
+    new MutationObserver(recolor).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return V;
+  }
+  function geo(d) {
+    const bin = s => { const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u.buffer; };
+    const q = new Uint16Array(bin(d.v)), pos = new Float32Array(q.length);
+    for (let i = 0; i < q.length; i++) { const a = i % 3; pos[i] = d.min[a] + q[i] / 65535 * d.span[a]; }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    g.setIndex(new THREE.BufferAttribute(d.it === 'u16' ? new Uint16Array(bin(d.i)) : new Uint32Array(bin(d.i)), 1)); g.computeVertexNormals(); return g;
+  }
+  async function show(it) {
+    selId = it.id; tilesEl.querySelectorAll('.tile').forEach(t => t.setAttribute('aria-pressed', 'false'));
+    [...tilesEl.querySelectorAll('.tile')].forEach(t => { if (t.querySelector('.nm').title === it.label) t.setAttribute('aria-pressed', 'true'); });
+    const status = it.pack ? 'In pack 9a+' : it.cand ? 'Waiting on your decision' : 'Not in the pack';
+    meta.innerHTML = '<div class="t">' + esc(it.label) + '</div>' +
+      '<div class="kv"><b>Method</b><span>' + esc(it.fam) + '</span><b>CD-O</b><span class="num">' + (it.cdo != null ? it.cdo.toFixed(4) + ' cm [D]' : 'not scored') + '</span>' +
+      (it.add != null ? '<b>ADD</b><span class="num">' + Number(it.add).toFixed(1) + ' mm</span>' : '') +
+      (it.flips != null ? '<b>Flips</b><span class="num">' + it.flips + '</span>' : '') +
+      '<b>Status</b><span>' + status + '</span><b>Size</b><span class="num">' + it.ext.join(' × ') + ' mm · ' + it.n_src.toLocaleString() + ' faces at source</span></div>' +
+      '<div class="src">' + esc(it.src) + (it.copies ? ' (+' + it.copies + ' identical copies)' : '') + '</div>' +
+      '<label class="toggle"><input type="checkbox" id="libOv" ' + (ovCb.checked ? 'checked' : '') + '> Library outline (library_v3)</label>';
+    const ov = document.getElementById('libOv'); ov.addEventListener('change', () => { ovCb.checked = ov.checked; show(it); });
+    const v = viewer(); if (!v) return;
+    const msg = box.querySelector('.msg'); msg.textContent = 'Loading\u2026'; msg.hidden = false;
+    try {
+      const m = await bundle(cur); const d = m.get(it.id); if (!d) throw new Error('missing');
+      if (v.mesh) { v.root.remove(v.mesh); v.mesh.geometry.dispose(); }
+      if (v.ghost) { v.root.remove(v.ghost); v.ghost = null; }
+      v.role = it.pack ? 'pack' : it.cand ? 'cand' : 'lib';
+      v.mesh = new THREE.Mesh(geo(d), new THREE.MeshStandardMaterial({ color: css('--' + v.role), roughness: 0.55, metalness: 0.05, side: THREE.DoubleSide }));
+      v.root.rotation.set(0, 0, 0); if ((UPX[cur] || 'x') === 'x') v.root.rotation.z = Math.PI / 2; else v.root.rotation.x = -Math.PI / 2;
+      v.root.add(v.mesh);
+      const libItem = INDEX[cur].items.find(i => /meshes\/library_v3\//.test(i.src));
+      if (ovCb.checked && libItem && libItem.id !== it.id) {
+        const gd = m.get(libItem.id);
+        if (gd) { v.ghost = new THREE.Mesh(geo(gd), new THREE.MeshBasicMaterial({ color: css('--ink-2'), wireframe: true, transparent: true, opacity: 0.18, depthWrite: false })); v.root.add(v.ghost); }
+      }
+      if (v.obj !== cur) {
+        const bb = new THREE.Box3().setFromObject(v.root), sph = bb.getBoundingSphere(new THREE.Sphere());
+        v.controls.target.copy(sph.center); const dd = sph.radius / Math.sin(THREE.MathUtils.degToRad(v.cam.fov / 2)) * 1.1;
+        v.cam.position.copy(sph.center).add(new THREE.Vector3(0.9, 0.55, 1.1).normalize().multiplyScalar(dd)); v.cam.near = dd / 100; v.cam.far = dd * 10; v.cam.updateProjectionMatrix(); v.obj = cur;
+      }
+      msg.hidden = true;
+    } catch (e) { msg.textContent = 'Could not load this mesh.'; }
+  }
 })();
 </script>

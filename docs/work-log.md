@@ -6058,3 +6058,14 @@ diagnostic; nothing is picked for submission.
   committed first: overlap, rack fill beyond mesh <= 1 cm3, sim=rl, settle 4 mm / 5 deg, kept >= 90 %; eval-14 cup in
   table flagged as reference issue); (4) evals 32, 15/16 if time allows. Path per candidate: our gates -> determined-
   wright budget.py -> focused-pascal retrain under the swap rule. CPU, $0.
+
+### 2026-11-01 03:30 UTC — mesh review artifact v2: every mesh we built
+- Owner asked to add all resulting meshes. Version 2 of https://claude.ai/artifact/6NyiKtg8NgmQRD7mAzpk8e adds "The full
+  mesh library": 595 distinct meshes (dedupe by sha1[:16]) across 11 objects, 234 with a stored public-scan CD-O [D]
+  (nothing re-scored): libraries v1-v4/v3x, C0/C1/C2 fits and candidates, the five generators (SAM 3D, Pixal3D-MV,
+  TRELLIS.2, Hunyuan3D-2.1, TripoSG; registered versions only), generate-then-fit, primitive fits, C0b, PUBOWN, E0 and
+  E0b eval builds, gmg shells. Object tabs, method filter, scored-only toggle, sort, one 3D viewer.
+- Ten scan copies found in scoring folders (`*/t3/mesh/*`, labelled scan_self or the object name) were removed from the
+  index, the bundles and the thumbnail sheets before publishing (ground truth, not our meshes).
+- Files: `docs/research/mesh-2026-10-26/review/` (page source, build_lib.py, library_index.json). Bundles and sprites
+  (19 MB) are regenerable and not committed.
