@@ -5934,3 +5934,11 @@ score.
 - 00:05 UTC (1 Nov) determined-wright: arm V (actor sees object velocity) inconclusive, not used (mean Δ −0.024: ep2
   −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007). Recipe screen complete: K, D and V inconclusive; S no signal. No
   recipe change for pack 10 from that lane. Its 31 Oct GPU spend ≈ $30.15 [E] over 6 boxes; none running.
+- 02:53 UTC (1 Nov) keen-heisenberg (single uploader) records the owner in its chat:
+  - 02:43 "Okay go": one eval-10 njmax-1024 diagnostic, never packed;
+  - 02:50 verbatim "I give you permission for everything", answering the plan to fix the collision overlaps behind
+    evals 10, 30 and 14 (mesh chat builds on CPU, determined-wright runs budget.py, focused-pascal retrains and confirms
+    under the swap rule, then packs).
+  Its reading: covers GPU work and Kaggle uploads of packs where every swapped episode passes its pre-registered swap
+  rule and the pack checks pass. Not covered: njmax-1024 policies, the C0 blue cup, anything that reads GT or is tuned
+  on eval results. Pack checks at 05:00 (9b), 07:30 and 10:30 UTC.
