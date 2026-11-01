@@ -10762,3 +10762,6 @@ score.
   - 20261101-pfC-97095b8, instance 58710688 (Max-Q, Michigan, $1.34/h): `EP=14 SPLIT=eval ARMS="s 2h" BRIDGE=1`;
   - 20261101-pfD-97095b8, instance 58710689 (Max-Q, Texas, $1.46/h): `EP="32 33 15" SPLIT=eval ARMS=s ARMS_EP15=2h BRIDGE=1`.
   - 4 boxes running ≈ $5.7/h. Credit before batch 1: $122.85.
+- 20:50 UTC 1 Nov CPU zero-action (one replay each, GT-free, reported only): eval 32 single-hand 0.414 vs bridged 0.372
+  (each vs its own reference). Zero-action replays do not reliably predict the fine-tuned order (approach-3 §11.3); the
+  GPU rule decides.
