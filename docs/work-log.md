@@ -5540,3 +5540,11 @@ Advice given:
   0.8173 sd 0.141 (hard_ab 0.1337) min 0.4804 max 0.9212; cut 0/0; D-line ok; hook md5 = expected; no stray logs. Main
   pipeline sim_vs_ref 0.9224 (floor 0.7277); checkpoint policy_250003456 (same cosmetic chosen() line as S25a). Seed choice
   between S30a/S30b is the merge's (PREREG 2). Box is saving, then destroys.
+- 01:47 UTC (D check-in) **D S25b (20261031-drS25s43-a1a7e25, 58589859): ep25 VERIFIED, weak seed** — s43 n 10 mean
+  0.4816 sd 0.0245 (hard_ab 0.0233) min 0.4601 max 0.5427; cut 0/0; D-line ok. Main pipeline qa_policy sim_vs_ref 0.4806
+  vs floor 0.3078, verdict "weak"; checkpoint policy_250003456. run_job.log: RTX PRO 6000 Server driver 595.58.03, env
+  restored, job rc 0 after 113 min, pushed. Ledger actual $2.72 (destroy time estimated). [M] eval 25 seeds: s42 0.816 ±
+  0.23 vs s43 0.482 ± 0.02 — the usual seed split on this episode; the merge applies PREREG 2's seed rule.
+- **D S30b closed**: job rc 0 at 01:42:31 (116 min), pushed, gone by 01:46; RTX PRO 6000 WS driver 615.71.09, env
+  restored; ledger actual $2.78. Results copied for both boxes to pack9b-20261031/results/{drS25s43,drS30s43}/.
+- Remaining: S30a (58590659, running), G (58587687, seed-43 wave since 01:08, ~03:00). Vast credit $35.80 (01:47Z).
