@@ -6125,3 +6125,12 @@ diagnostic; nothing is picked for submission.
   Caveats: beige settles 4-27 mm deeper; v3 floor 4.6 mm, lip wall 0.25 mm; v2/v3 post hoc.
 - Sent to determined-wright (cc focused-pascal, keen-heisenberg) for budget.py on ev10cs2 / ev10cs3 (pass <= ~460, 0
   overflow lines); GPU training test needs the owner's go.
+
+### 2026-11-01 04:15 UTC — public pose-fix test started (keen-heisenberg proposal, owner's 02:50 permission)
+- Proposal (keen-heisenberg, data): on H30 hands-off segments, minimal rigid shift that removes visual-mesh
+  interpenetration (object-object, object-table), constant per segment with ramps, applied to the last-released
+  object; GT-free transform; scored on public with the kit chain; gate mean dAUC >= +0.002 and no episode < -0.01;
+  direction check (cosine push vs ours-minus-mocap) and mesh check (our meshes at mocap poses).
+- Orchestrator: accepted. Background agent writes PREREG first (posefix/PREREG.md), then one scored run on the public
+  tracks and scorer of the CD-O AUC guard with the 9a+ mesh set; CPU, $0. If it passes, the rule goes to focused-pascal
+  for the eval references (10, 1, 14, 30, then 15/16).
