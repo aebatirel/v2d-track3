@@ -13,7 +13,9 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, 'results', 'collcarve-public')
 REPO = os.path.abspath(os.path.join(HERE, '..', '..', '..', '..', '..', '..'))
-SCR = os.path.join(REPO, 'runs-dev', '20261031-fi5pub-3053a78', 'sim', 'public')
+DATA = os.environ.get('GMG_DATA_ROOT', '/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/'
+                      'scratchpad')     # the guard's data root (gmg/guard.py SCRATCH_DEFAULT); fixed 1 Nov 00:25
+SCR = os.path.join(DATA, 'gmg', 'runs-dev', '20261031-fi5pub-3053a78', 'sim', 'public')
 
 
 def shares():

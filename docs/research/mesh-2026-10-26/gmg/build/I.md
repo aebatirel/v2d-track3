@@ -1513,3 +1513,24 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 00:13 (Build 2) [M] n2a re-run (`test_n2a_sectors_lined_up`, 586 s, code ba3387d + the rename) reproduced every
   number (S 14.094 / 14.383 mm, S_ref 0.354 / 0.470 mm, floor fail, G1 pass); its JSON is now in
   `t_i14/nests.json`. Build step done: code ced42fd / ba3387d, F-I5.17 b173678, F-I5.18 f1ec42c. No rental, $0.
+- 00:17 (T-I16 public rerun step, collision-carve round-2 workflow, started 00:14) Task: re-run ep11, ep2, ep12, ep13,
+  ep31 under F-I5.15 / F-I5.16 / F-I5.17 as built (code 88f49df: gmg modules = ba3387d + the n2a test rename),
+  same v6 bundles (`runs/20261031-b4ext6-90c8cce`), same CPU candidates and picks and the same M1 hands as round 1
+  (copied from `runs-dev/20261031-fi5pub-3053a78/{cand,in}`), results to `build/I/results/collcarve2-public/`.
+  [M] the round-1 scratch round folders DO exist on this machine, under `<scratch>/gmg/runs-dev/20261031-fi5pub-
+  3053a78/sim/public/ep*-fi5/r0` (F-I5.17 (13) said absent: `fi515_round1_markers.py` looked under the repo root,
+  not under the guard's data root); the markers were written there at 00:16 (path fix in that script, nothing overwritten).
+  Machine: this container (4 shared cores, load 5.9, 11 GB free), not a rental: the inputs (v6 bundles, 200 MB)
+  exist only in this container's scratch and the round folders stay in scratch; $0. All five in parallel at nice 5
+  (threads as round 1), run `<scratch>/gmg/runs-dev/20261101-fi5r2pub-88f49df`, tag fi5r2.
+- 00:31 (T-I16) Launched 00:18:23 UTC, this container, code 88f49df (gmg modules unmodified; sha256 in each
+  `drv<N>_fi5r2.launch`): `GMG_MODE=dev nice -n 5 <venv>/python -m gmg.tools.collcarve2_dev --fi5-rev 2 --run <run>
+  --ep N --bundle <v6>/epN --cands <run>/cand/public/epN --pick <round-1 picks> --hands <run>/in/handsN/hands.npz
+  --proxy-copies 16 --identity eval --waiver-fi5 --no-physcheck --tag fi5r2` for ep12, ep13, ep31, ep11, ep2 (pids
+  17742-17836, logs `<run>/drv<N>_fi5r2.log`; inputs byte-identical to round 1's, `<scratch>/cc2pub/inputs.sha256`).
+  [M] the five share one scheduler autogroup (one launching shell), i.e. about one of the 4 cores (load 9-11).
+  Diagnostic launched 00:20 (nice 10, report only, P77 / P78): `build/I/fi515_precheck_r1frames.py` = the round-2
+  precheck at round 1's S frames. First rows [M]: ep12 f6 fails (a) (-15.1 mm), f176 fails (c) (V_ov 7.4 cm3, min
+  wall left 0.05 mm, topology 7/72 -> 22/67); ep13 f146 fails (a) (-23.3 mm) AND (c) (V_ov 3.2 cm3); ep31 f282 / f8
+  fail (b) (46.9 / 48.0 mm above the table, 11.3 / 33.3 mm from the rack's boxes); ep11 f126 fails (c) (V_ov 85.2 cm3,
+  removed share 0.53, topology 2/79 -> 119/127); ep2 running.
