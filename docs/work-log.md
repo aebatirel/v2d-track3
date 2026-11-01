@@ -5782,3 +5782,13 @@ arm and a no-policy replay floor to stage B.
   carved c01s43 39, max 581. Eval 10: ~6 M per run. No broadphase overflow anywhere. G's logs (14/16/33) to be counted
   when that box ends. So eval 25 s43's weakness and the eval-1 variance have another cause; the overflow lead (and its
   ~$2–3 falsifier) applies to eval 10 only.
+- 02:43 UTC 1 Nov **owner: "Okay go"** (in this chat), in reply to the eval-10 contact-overflow falsifier 1: one eval-10
+  training at njmax 1024 / nconmax 512, ~$2–3 [E, focused-pascal]. Relayed to focused-pascal at 02:44 with conditions:
+  - diagnostic only, never packed: the evaluator rebuilds sim from the checkpoint's config (L420–423), and changed
+    physics at evaluation needs the organisers' OK, so pack 9b scope and the 05:00 upload rules are unchanged;
+  - pre-register before launch: supported = overflow ≈ 0 AND lift > 0 at some checkpoint AND sim_vs_ref > 0.459;
+    falsified = no overflow but lift 0; inconclusive = overflow persists at 1024. Also evaluate the checkpoint at
+    njmax 512;
+  - usual box rules (cost stated, self-destroy, stall watchdog);
+  - falsifier 2 (a reference with no piece overlap at the nested rest, at 512) is the submission-legal fix if 1
+    supports the hypothesis. It is not covered by this go; its plan and cost go to the owner.
