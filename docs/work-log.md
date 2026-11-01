@@ -5901,3 +5901,7 @@ Advice given:
     0.472, RPE 15.96, MPPE 8.47; vs P 0.456, RPE 15.76; beige moves 10.4 cm (packed 0.7; reference 25.4).
   [E] Board: AUC up on eval 10 by ~+0.04–0.07 on the proxy (≈ +0.002–0.003 AUC over 20 episodes if the board follows);
   draw 1 also has lower RPE / MPPE than the packed rollout. Results copied to eval10-cs4-20261101/results/.
+- 08:20 UTC **pack 10 ready: results/submissions/20261101-track3k-candidate/build_10/track3_submission.parquet** (9,120 rows,
+  sha256 e1bef1e5d7df3513…0e2a, code commit a187a8c9). 9a+ (best upload) + eval 10's ev10cs5 draw-1 rollout (s43,
+  ca7c4e3a…); checks pass: only ep10's 322 pose + checkpoint rows differ, meshes / eval / packer / uploader hashes
+  identical, CD-O xyz identical, uploader offline validation, no_oracle. README there. Not uploaded from this session.

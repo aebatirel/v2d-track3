@@ -13,7 +13,9 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 ## 2026-11-01 08:13 UTC: eval-10 legal retrain (ev10cs5, stock limits) SWAP-ELIGIBLE → INCLUDE in pack 10
 - Official draws vs V 0.532 (packed 0.463), vs P 0.512 (0.453); gain +0.069 / +0.059 ≥ +0.02 on both; all clauses hold;
   every draw still fails RPE > 5 cm (equal floor) but draw 1 beats the packed rollout on sim_vs_ref, RPE and MPPE.
-- Overflow 992 / 660 lines (e10v ~6 M); chosen seed 43 (ca7c4e3a…). Cost $2.85. Pack 10 build next (base 9a+).
+- Overflow 992 / 660 lines (e10v ~6 M); chosen seed 43 (ca7c4e3a…). Cost $2.85.
+- **PACK 10 READY** (08:20): results/submissions/20261101-track3k-candidate/build_10/track3_submission.parquet, sha256
+  e1bef1e5…0e2a, code a187a8c9 — 9a+ with eval 10's draw-1 rollout; all checks pass; NOT uploaded here.
 
 ## 2026-11-01 05:45 UTC: eval-10 njmax-1024 diagnostic SUPPORTED — the floor was training-time contact overflow
 - Overflow 0 lines (e10v ~6 M); beige cup lifted 23.9 cm; official sim_vs_ref vs V 0.913 at 1024 (e10v 0.459); the same
