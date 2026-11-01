@@ -5970,3 +5970,15 @@ score.
   sha256 e1bef1e5…0e2a; code commit a187a8c9). It is 9a+ with eval 10's legal retrain (ev10cs5 carve pieces, stock
   njmax limits): GT-free proxy +0.069 vs V and +0.059 vs P, INCLUDE under the +0.02 bar. All checks pass.
   keen-heisenberg uploads.
+
+### 2026-11-01 08:38–08:50 UTC — PACK 10 UPLOADED (owner: "Upload it", 08:38, in keen-heisenberg's chat)
+- Pack 10 = 9a+ with eval 10's ev10cs5 stock-limit retrain; sha e1bef1e5…, code a187a8c; submissions 57866069 / 71 / 72 /
+  75 / 77 / 79. Record build_10/UPLOAD.md on claude/keen-heisenberg-engcwz (5b0f081).
+- Scores: AUC 0.81915 (NEW BEST; 9a+ 0.81757); SP-SR 0.80 (best stays 0.85); MP-SR 0.65 =; RPE 3.68275 (NEW BEST; 3.87853);
+  MPPE 2.84759 (NEW BEST; 2.89663); CD-O 0.33234 =.
+- Boards 08:50 UTC: AUC 8, SP-SR 10 (others moved up: Sambhav 0.95; Purple and Gravity Aligned 0.90), MP-SR 8, RPE 10
+  (was 11), MPPE 11, CD-O 14. Rank sum 61, 11th (10th DSAIL 59). Ties do not penalise later uploads: at 0.85 we rank
+  above DSAIL despite the later timestamp.
+- Counting: each board shows the best submission; per the PR #215 kit, the counted one is the selected Final
+  Submission, else the best per board, and the container covers each counted file. Advised keen-heisenberg not to
+  select now and to choose per board near the close.

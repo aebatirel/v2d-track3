@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~08:50 UTC: PACK 10 UPLOADED — AUC 0.81915, RPE 3.683, MPPE 2.848 (all new bests); rank sum 61, 11th
+- 9a+ + eval-10 ev10cs5 carve retrain. SP-SR fell to 0.80 on this file (board keeps 0.85). 10th (DSAIL) at 59.
+- Boards keep the best per board; Final Submission selection deferred (PR #215: container covers each counted file).
+
 ## 2026-11-01 ~05:05 UTC: pack 9b uploaded (AUC 0.81677, below 9a+); 9a+ stays best on every board; rank sum 61, 11th
 - Overnight: eval-10 retrain no-swap, masses not adopted, re-track and markers failed, recipe arms inconclusive; D passed on eval 33 only.
 - Remaining levers per the owner's 02:50 permission: collision-overlap fixes for evals 10, 30, 14 (mesh carves + retrain).
