@@ -5548,3 +5548,9 @@ Advice given:
 - **D S30b closed**: job rc 0 at 01:42:31 (116 min), pushed, gone by 01:46; RTX PRO 6000 WS driver 615.71.09, env
   restored; ledger actual $2.78. Results copied for both boxes to pack9b-20261031/results/{drS25s43,drS30s43}/.
 - Remaining: S30a (58590659, running), G (58587687, seed-43 wave since 01:08, ~03:00). Vast credit $35.80 (01:47Z).
+- 01:53 UTC **D S30a (20261031-drS30s42-a1a7e25, 58590659): ep30 VERIFIED** — s42 n 10 mean 0.8367 sd 0.1246 (hard_ab
+  0.1182) min 0.5699 max 0.9127; cut 0/0; D-line ok. Sweep chose policy_200007680 (main pipeline sim_vs_ref 0.919, floor
+  0.7277); that checkpoint and selection.json are in the store (kept by push-run's NAMED rule). run_job.log: RTX PRO 6000
+  Max-Q driver 590.48.01, env restored, job rc 0 after 137 min, pushed. Ledger actual $2.98. Results copied to
+  pack9b-20261031/results/drS30s42/. [M] eval 30 seeds: s42 0.837 ± 0.12, s43 0.817 ± 0.14.
+  All four standard-learner boxes done ($11.67 together); G remains (seed-43 wave, ~03:00).
