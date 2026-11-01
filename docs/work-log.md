@@ -5659,3 +5659,7 @@ Advice given:
   ("Fetching 6866 files" at ~7.5 files/s; one 429 line) until 03:59; dr_pack_check OK 04:01:58 (evaluated = D candidates =
   14 16 25 30 33); submit_pack clean evaluator 8c778f9, 0 modified files, 04:03:34 = draw 1. [E] draws 2–10 at H5p7's
   ~1.2 min per episode-draw → ~05:05 end, push, then dr_score / dr_verdict ~15 min, pack 9b build ~10 min → record ~05:30.
+- 04:12 UTC committed `docs/research/work/pack9b-20261031/after_c.sh` BEFORE any C result: the JOBS "After C" steps as
+  one script (single-file downloads of C's 50 rollouts + json + dr_pack_check ×2 + h5_summary; dr_score per episode
+  with sets conf / packed (H5p7) / old vs P; dr_verdict with the scratch c_merge.json). Dry run of the scorer on the
+  packed side of eval 14 (10 H5p7 draws + the old draw): runs in 30 s; output not used for anything.
