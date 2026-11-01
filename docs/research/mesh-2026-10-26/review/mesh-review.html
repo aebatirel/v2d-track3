@@ -243,7 +243,7 @@ footer p { max-width: none; }
   <div class="sec-head">
     <span class="eyebrow">Object by object</span>
     <h2>The meshes</h2>
-    <p class="note">Drag to turn a mesh, scroll or pinch to zoom. Pick a version below each view. "Library outline" overlays library_v3 as a wireframe in the same object frame, so you can see where the shapes differ. Meshes are reduced to at most 24,000 faces for the browser.</p>
+    <p class="note">Drag to turn a mesh, scroll or pinch to zoom. Pick a version below each view. "Public scan outline" overlays the public scan as a dark wireframe: the ground-truth shape the CD-O scores measure against, shown for comparison only. Nothing on this page was built or chosen from it. The scans sit in the same object frame as our meshes (centres within 2–11 mm of library_v3), so no registration is applied; the scorer aligns each mesh first, so a small offset in the view is not a score loss. Meshes are reduced to at most 24,000 faces for the browser.</p>
     <div class="legend"><span><i style="background:var(--lib)"></i>library_v3 (the old default)</span><span><i style="background:var(--pack)"></i>In pack 9a+</span><span><i style="background:var(--cand)"></i>Waiting on a decision</span><span><i style="background:var(--rej)"></i>Not adopted / record only</span></div>
   </div>
   <div class="gallery" id="gallery"></div>
@@ -253,7 +253,7 @@ footer p { max-width: none; }
   <div class="sec-head">
     <span class="eyebrow">Every mesh we built</span>
     <h2>The full mesh library</h2>
-    <p class="note" id="libIntro">Every mesh our experiments produced, one tile each, duplicates merged by file hash: libraries, primitive and lathe fits, the five 3D generators (SAM 3D, Pixal3D, TRELLIS.2, Hunyuan3D, TripoSG), generate-then-fit, per-episode builds from our own video, eval-built sets and every candidate behind each pick. Scores are the stored public-scan CD-O [D] in cm; nothing was re-scored for this page, and eval-built meshes have no score because eval has no scan. Copies of the public scans that sat in scoring folders are left out, since they are ground truth, not our meshes. Meshes are reduced to about 2,000 faces here. Tiles sort best score first. Click a tile to load it in the viewer.</p>
+    <p class="note" id="libIntro">Every mesh our experiments produced, one tile each, duplicates merged by file hash: libraries, primitive and lathe fits, the five 3D generators (SAM 3D, Pixal3D, TRELLIS.2, Hunyuan3D, TripoSG), generate-then-fit, per-episode builds from our own video, eval-built sets and every candidate behind each pick. Scores are the stored public-scan CD-O [D] in cm; nothing was re-scored for this page, and eval-built meshes have no score because eval has no scan. Copies of the public scans that sat in scoring folders are left out, since they are ground truth, not our meshes. Meshes are reduced to about 2,000 faces here. Tiles sort best score first. Click a tile to load it in the viewer; the dark wireframe is the public scan, the target the scores measure against (ground truth, for comparison only; the spoon has no public scan).</p>
   </div>
   <div class="libbar">
     <div class="tabs" id="libTabs" role="tablist" aria-label="Object"></div>
@@ -271,7 +271,7 @@ footer p { max-width: none; }
     <div class="libview">
       <div class="view" id="libView"><div class="msg">Pick a mesh</div><span class="hint">drag to turn</span></div>
       <div class="libmeta" id="libMeta">
-        <label class="toggle"><input type="checkbox" id="libOv" checked> Library outline (library_v3)</label>
+        <label class="toggle"><input type="checkbox" id="libOv" checked> Public scan outline</label>
       </div>
     </div>
     <div class="tiles" id="libTiles" aria-label="Meshes"></div>
@@ -385,45 +385,45 @@ footer p { max-width: none; }
 // ---------- data ----------
 window.MR = {};
 MR.objects = [
-  { id: 'cup', name: 'Blue cup', pairs: 5, up: 'z', lib: 'cup_lib',
+  { id: 'cup', scan: 'blue_cup', name: 'Blue cup', pairs: 5, up: 'z', lib: 'cup_lib',
     versions: [
       { key: 'cup_lib', label: 'library_v3', role: 'lib', cdo: 0.523, why: 'In the pack today. The largest single share of the board.' },
       { key: 'cup_c0', label: 'C0 lathe, ep21', role: 'cand', cdo: 0.291, why: 'Your decision. Passes the mean guard, fails the ep13 floor.' }
     ], extra: 'Scan-free rebuild (C0b) scored 1.677: clutter in the crop pulled it 30 mm off.' },
-  { id: 'pot', name: 'White pot', pairs: 6, up: 'x', lib: 'pot_lib',
+  { id: 'pot', scan: 'white_pot', name: 'White pot', pairs: 6, up: 'x', lib: 'pot_lib',
     versions: [
       { key: 'pot_lib', label: 'library_v3', role: 'lib', cdo: 0.437, why: 'The old default.' },
       { key: 'pot_c0', label: 'C0 primitive fit, ep41', role: 'pack', cdo: 0.342, why: 'Shipped in pack 9a+, flagged for its marker-ball radius.' },
       { key: 'pot_e0b', label: 'E0b scan-free, built on eval 3', role: 'cand', cdo: 0.392, why: 'Compliance option. 0.392 is its method’s public pick; 17 of its 32 balls hang below the base.' }
     ] },
-  { id: 'rack', name: 'Dish rack', pairs: 5, up: 'x', lib: 'rack_lib',
+  { id: 'rack', scan: 'plastic_dish_rack', name: 'Dish rack', pairs: 5, up: 'x', lib: 'rack_lib',
     versions: [
       { key: 'rack_lib', label: 'library_v3', role: 'lib', cdo: 0.555, why: 'The old default.' },
       { key: 'rack_c0', label: 'C0 part program', role: 'pack', cdo: 0.456, why: 'Shipped in pack 9a+.' },
       { key: 'rack_c2r', label: 'C2/R with fitted pegs', role: 'rej', cdo: 0.441, why: 'Better by 0.015, short of the 0.02 margin. Not adopted.' }
     ], extra: 'Scan-free rebuild (C0b) scored 1.632.' },
-  { id: 'beige', name: 'Beige cup', pairs: 2, up: 'z', lib: 'beige_lib',
+  { id: 'beige', scan: 'beige_cup', name: 'Beige cup', pairs: 2, up: 'z', lib: 'beige_lib',
     versions: [
       { key: 'beige_lib', label: 'library_v3', role: 'lib', cdo: 0.856, why: 'Eval 10 value; 0.730 on eval 8.' },
       { key: 'beige_t1', label: 'C1/T1 lathe, ep11', role: 'pack', cdo: 0.248, why: 'Shipped in pack 9a+. 0.255 on eval 8.' },
       { key: 'beige_e0b', label: 'E0b scan-free, built on eval 8', role: 'cand', cdo: 0.301, why: 'Compliance option. Three inside-out shells.' }
     ] },
-  { id: 'lid', name: 'Pot lid', pairs: 1, up: 'x', lib: 'lid_lib',
+  { id: 'lid', scan: 'white_pot_lid', name: 'Pot lid', pairs: 1, up: 'x', lib: 'lid_lib',
     versions: [
       { key: 'lid_lib', label: 'library_v3', role: 'lib', cdo: 0.421, why: 'The old default.' },
       { key: 'lid_c0', label: 'C0 primitive fit, ep2', role: 'pack', cdo: 0.220, why: 'Shipped in pack 9a+, flagged.' }
     ], extra: 'Scan-free rebuild: every build failed (clutter broke the flange step).' },
-  { id: 'pan', name: 'Mini dust pan', pairs: 2, up: 'x', lib: 'pan_lib',
+  { id: 'pan', scan: 'mini_dust_pan', name: 'Mini dust pan', pairs: 2, up: 'x', lib: 'pan_lib',
     versions: [
       { key: 'pan_lib', label: 'library_v3', role: 'lib', cdo: 0.331, why: 'The old default.' },
       { key: 'pan_t2', label: 'C1/T2 generated, placed', role: 'pack', cdo: 0.260, why: 'Shipped in pack 9a+. AUC guard +0.012.' }
     ] },
-  { id: 'pitcher', name: 'Water pitcher', pairs: 1, up: 'x', lib: 'pitcher_lib',
+  { id: 'pitcher', scan: 'water_pitcher', name: 'Water pitcher', pairs: 1, up: 'x', lib: 'pitcher_lib',
     versions: [
       { key: 'pitcher_lib', label: 'library_v3', role: 'lib', cdo: 0.894, why: 'Still in the pack. The worst per-pair value we have.' },
       { key: 'pitcher_c2p', label: 'C2/P lathe + observed sheet', role: 'rej', cdo: 1.160, why: 'Worse. The object is a watering can seen from one side.' }
     ] },
-  { id: 'board', name: 'Wooden board', pairs: 2, up: 'x', lib: 'board1_lib',
+  { id: 'board', scan: 'wooden_piece_1', name: 'Wooden board', pairs: 2, up: 'x', lib: 'board1_lib',
     versions: [
       { key: 'board1_lib', label: 'library_v3 board 1', role: 'lib', cdo: 0.22, why: 'In the pack. 31 mm thick; our points measure 7.4 mm.' },
       { key: 'slot3_wooden_piece_1', label: 'Round 3 slotted boxes, ep24', role: 'rej', cdo: null, why: 'Simulator pieces only, not a visual mesh. 5 boxes, 9.4 mm slot. Record, not delivered.' }
@@ -649,7 +649,7 @@ MR.rows = [
         <div class="versions" role="group" aria-label="${o.name} versions">
           ${o.versions.map(v => `<button type="button" id="b-${v.key}" data-key="${v.key}" aria-pressed="${v.key === first.key}"><i style="background:var(--${v.role})"></i>${v.label}</button>`).join('')}
         </div>
-        <label class="toggle"><input type="checkbox" id="ov-${o.id}" ${o.versions.length > 1 ? 'checked' : ''}> Library outline</label>
+        <label class="toggle"><input type="checkbox" id="ov-${o.id}" checked> Public scan outline</label>
         <div class="dots"></div>
         <div class="vlist">
           ${o.versions.map(v => `<div class="vrow"><span class="nm"><i style="background:var(--${v.role})"></i>${v.label}</span><span class="sc">${v.cdo != null ? v.cdo.toFixed(3) + ' cm' : 'no CD-O'}</span><span class="why">${v.why}</span></div>`).join('')}
@@ -752,16 +752,16 @@ MR.rows = [
       if (v.ghost) { root.remove(v.ghost); v.ghost = null; }
       if (!on) return;
       try {
-        const src = await load(obj.lib);
+        const src = await load('scan_' + obj.scan);
         const gm = src.clone(true);
-        const mat = new THREE.MeshBasicMaterial({ color: css('--ink-2'), wireframe: true, transparent: true, opacity: 0.18, depthWrite: false });
+        const mat = new THREE.MeshBasicMaterial({ color: css('--ink'), wireframe: true, transparent: true, opacity: 0.26, depthWrite: false });
         gm.traverse(n => { if (n.isMesh) n.material = mat; });
         v.ghost = gm; root.add(gm);
       } catch (e) {}
     };
     v.recolor = () => {
       if (v.current) v.current.traverse(n => { if (n.isMesh) n.material.color.set(roleColor(v.role)); });
-      if (v.ghost) v.ghost.traverse(n => { if (n.isMesh) n.material.color.set(css('--ink-2')); });
+      if (v.ghost) v.ghost.traverse(n => { if (n.isMesh) n.material.color.set(css('--ink')); });
     };
     viewers.push(v);
     return v;
@@ -775,15 +775,15 @@ MR.rows = [
       if (started) return; started = true;
       v = makeViewer(box, obj); if (!v) return;
       const k = pressedKey(); await v.show(k);
-      if (ov.checked && k !== obj.lib) v.ghostOn(true);
+      if (ov.checked) v.ghostOn(true);
     };
     card.querySelectorAll('.versions button').forEach(btn => btn.addEventListener('click', async () => {
       card.querySelectorAll('.versions button').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
       await start(); if (!v) return;
       await v.show(btn.dataset.key);
-      v.ghostOn(ov.checked && btn.dataset.key !== obj.lib);
+      v.ghostOn(ov.checked);
     }));
-    ov.addEventListener('change', async () => { await start(); if (v) v.ghostOn(ov.checked && pressedKey() !== obj.lib); });
+    ov.addEventListener('change', async () => { await start(); if (v) v.ghostOn(ov.checked); });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) start(); if (v) v.visible = en.isIntersecting; }), { rootMargin: '300px' }).observe(box);
     } else start();
@@ -810,7 +810,7 @@ MR.rows = [
   const scoredCb = document.getElementById('libScored'), sortSel = document.getElementById('libSort'), countEl = document.getElementById('libCount');
   const box = document.getElementById('libView'), meta = document.getElementById('libMeta'), ovCb = document.getElementById('libOv');
   let INDEX = null, cur = null, selId = null;
-  const bundles = new Map();
+  const bundles = new Map(), scans = new Map();
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || '#888';
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   function bundle(obj) {
@@ -880,7 +880,7 @@ MR.rows = [
     if (window.ResizeObserver) new ResizeObserver(size).observe(box); size();
     (function loop() { controls.update(); renderer.render(scene, cam); requestAnimationFrame(loop); })();
     V = { scene, cam, root, controls, mesh: null, ghost: null, obj: null, role: 'lib' };
-    const recolor = () => { if (V.mesh) V.mesh.material.color.set(css('--' + V.role)); if (V.ghost) V.ghost.material.color.set(css('--ink-2')); };
+    const recolor = () => { if (V.mesh) V.mesh.material.color.set(css('--' + V.role)); if (V.ghost) V.ghost.material.color.set(css('--ink')); };
     try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', recolor); } catch (e) {}
     new MutationObserver(recolor).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     return V;
@@ -902,7 +902,7 @@ MR.rows = [
       (it.flips != null ? '<b>Flips</b><span class="num">' + it.flips + '</span>' : '') +
       '<b>Status</b><span>' + status + '</span><b>Size</b><span class="num">' + it.ext.join(' × ') + ' mm · ' + it.n_src.toLocaleString() + ' faces at source</span></div>' +
       '<div class="src">' + esc(it.src) + (it.copies ? ' (+' + it.copies + ' identical copies)' : '') + '</div>' +
-      '<label class="toggle"><input type="checkbox" id="libOv" ' + (ovCb.checked ? 'checked' : '') + '> Library outline (library_v3)</label>';
+      '<label class="toggle"><input type="checkbox" id="libOv" ' + (ovCb.checked ? 'checked' : '') + '> Public scan outline</label>';
     const ov = document.getElementById('libOv'); ov.addEventListener('change', () => { ovCb.checked = ov.checked; show(it); });
     const v = viewer(); if (!v) return;
     const msg = box.querySelector('.msg'); msg.textContent = 'Loading\u2026'; msg.hidden = false;
@@ -914,10 +914,12 @@ MR.rows = [
       v.mesh = new THREE.Mesh(geo(d), new THREE.MeshStandardMaterial({ color: css('--' + v.role), roughness: 0.55, metalness: 0.05, side: THREE.DoubleSide }));
       v.root.rotation.set(0, 0, 0); if ((UPX[cur] || 'x') === 'x') v.root.rotation.z = Math.PI / 2; else v.root.rotation.x = -Math.PI / 2;
       v.root.add(v.mesh);
-      const libItem = INDEX[cur].items.find(i => /meshes\/library_v3\//.test(i.src));
-      if (ovCb.checked && libItem && libItem.id !== it.id) {
-        const gd = m.get(libItem.id);
-        if (gd) { v.ghost = new THREE.Mesh(geo(gd), new THREE.MeshBasicMaterial({ color: css('--ink-2'), wireframe: true, transparent: true, opacity: 0.18, depthWrite: false })); v.root.add(v.ghost); }
+      if (ovCb.checked && cur !== 'wooden_spoon') {
+        try {
+          if (!scans.has(cur)) scans.set(cur, fetch('m/scan_' + cur + '.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }));
+          const gd = await scans.get(cur);
+          if (selId === it.id) { v.ghost = new THREE.Mesh(geo(gd), new THREE.MeshBasicMaterial({ color: css('--ink'), wireframe: true, transparent: true, opacity: 0.26, depthWrite: false })); v.root.add(v.ghost); }
+        } catch (e) {}
       }
       if (v.obj !== cur) {
         const bb = new THREE.Box3().setFromObject(v.root), sph = bb.getBoundingSphere(new THREE.Sphere());

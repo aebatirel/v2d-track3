@@ -1762,3 +1762,16 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   **Gate 1, candidate: V_packed f124-f160 median 1.92 cm3, min 0.16, max 6.82 (f124) -> FAIL** (needs <= 1.0 / 3.0);
   -84 % median, -79 % max vs packed. Faithful visual overlap (pose floor as defined) unchanged, median 80.6 cm3.
   Piece union volumes: blue 130.06 cm3 (ev10 152.51), beige 264.29 (303.08). Contacts (gate 2) started 03:03.
+- 03:05 Relay (determined-wright 02:56, data): budget.py packed baselines eval 30 nefc max 244, eval 14 385, 0 % over
+  512, so the target is the slot fill, not contacts. Confirmed [M] from packed_refs.json (focused-pascal, md5
+  a7ed39d6...): eval 30 `pieces: null`, `lib: library_v3`, shared `/content/assets` = make_assets.py default (one
+  `<collision>` = the library glb, FlashCHORD CoACD at load, 43 hulls); reference refs/perc2mcks/ep30/.../a2eb7d27...-0
+  .parquet md5 dd464c96..., run 20261025-std30-ee7ba8e. Eval 14 `pieces: null`, asset_root `/content/refs/sf/ep14/assets`
+  (sf rack and cup = library_v3 vertex for vertex; sf URDFs carry the default single collision), reference
+  refs/glockt/ep14/.../ref_gl_ilc.parquet md5 10d5f3ba..., run 20261025-evb1420-ee7ba8e.
+- 03:05 [M] packed rack only (no candidate yet; `<scratch>/rackslot/scripts/explore2.py`): rest frames R (H0, guest in
+  the slot region >= 1 cm3, no (a)/(b) flag, runs >= 5): eval 30 f0-29, f124-128, f241-262 (57; excluded f123 (a),
+  f191 (b), f192-195 run of 4); eval 14 f118-157 (40; excluded f39 (b), f40 run of 1, f41-45 (a) cup 11.6-15.7 mm in
+  the table, the flagged reference problem). Swept rest volume (guest packed pieces + 1.0 mm) inside the packed rack:
+  eval 30 76.0 cm3, of which 49.3 inside the rack mesh (swept pose floor) and 26.7 beyond it in 10 of 43 pieces; eval
+  14 34.3 / 26.5 / 7.8 cm3 in 6 pieces. Pieces 3, 4, 13 touch both slots. Rack mesh outside the packed union 0.02 cm3.

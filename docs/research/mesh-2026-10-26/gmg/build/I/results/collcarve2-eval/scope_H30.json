@@ -1,0 +1,242 @@
+{
+ "_note": "Eval carve-scope check of the Eval-carves step (task condition (iii)): per eval pair, the H30 frames that pass the\npose precheck (no fail in (a) table, (b) float/support, (c) faithful overlap >= 1 cm3) AND where the PACKED colliders\nblock (packed-vs-packed overlap >= 1 cm3, or guest visual inside the receiver's packed pieces but outside its visual\n>= 1 cm3). Such a frame is 'packed collider blocks a feasible pose'. From the evalcheck per-frame records only.",
+ "threshold_cm3": 1.0,
+ "episodes": {
+  "32": {
+   "H30": {
+    "frames": 3,
+    "feasible": 3,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.0,
+    "max_V_rpk_only_feasible_cm3": 0.0
+   },
+   "H0": {
+    "frames": 21,
+    "feasible": 15,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.0,
+    "max_V_rpk_only_feasible_cm3": 0.0
+   },
+   "all": {
+    "frames": 259,
+    "feasible": 89,
+    "feasible_and_packed_blocks": 6,
+    "frames_list": [
+     80,
+     81,
+     82,
+     84,
+     92,
+     155
+    ],
+    "max_V_packed_feasible_cm3": 2.228,
+    "max_V_rpk_only_feasible_cm3": 0.594
+   }
+  },
+  "33": {
+   "H30": {
+    "frames": 14,
+    "feasible": 14,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.0,
+    "max_V_rpk_only_feasible_cm3": 0.0
+   },
+   "H0": {
+    "frames": 30,
+    "feasible": 26,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.0,
+    "max_V_rpk_only_feasible_cm3": 0.0
+   },
+   "all": {
+    "frames": 348,
+    "feasible": 95,
+    "feasible_and_packed_blocks": 3,
+    "frames_list": [
+     94,
+     155,
+     166
+    ],
+    "max_V_packed_feasible_cm3": 2.079,
+    "max_V_rpk_only_feasible_cm3": 0.716
+   }
+  },
+  "14": {
+   "H30": {
+    "frames": 29,
+    "feasible": 11,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.0,
+    "max_V_rpk_only_feasible_cm3": 0.0
+   },
+   "H0": {
+    "frames": 63,
+    "feasible": 16,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.0,
+    "max_V_rpk_only_feasible_cm3": 0.0
+   },
+   "all": {
+    "frames": 158,
+    "feasible": 30,
+    "feasible_and_packed_blocks": 4,
+    "frames_list": [
+     98,
+     99,
+     100,
+     101
+    ],
+    "max_V_packed_feasible_cm3": 2.342,
+    "max_V_rpk_only_feasible_cm3": 0.344
+   }
+  },
+  "16": {
+   "H30": {
+    "frames": 60,
+    "feasible": 46,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.705,
+    "max_V_rpk_only_feasible_cm3": 0.702
+   },
+   "H0": {
+    "frames": 86,
+    "feasible": 67,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.705,
+    "max_V_rpk_only_feasible_cm3": 0.702
+   },
+   "all": {
+    "frames": 173,
+    "feasible": 104,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.969,
+    "max_V_rpk_only_feasible_cm3": 0.702
+   }
+  },
+  "30": {
+   "H30": {
+    "frames": 22,
+    "feasible": 0,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": null,
+    "max_V_rpk_only_feasible_cm3": null
+   },
+   "H0": {
+    "frames": 63,
+    "feasible": 4,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.766,
+    "max_V_rpk_only_feasible_cm3": 0.294
+   },
+   "all": {
+    "frames": 263,
+    "feasible": 31,
+    "feasible_and_packed_blocks": 9,
+    "frames_list": [
+     76,
+     99,
+     110,
+     131,
+     140,
+     169,
+     196,
+     198,
+     199
+    ],
+    "max_V_packed_feasible_cm3": 3.132,
+    "max_V_rpk_only_feasible_cm3": 1.576
+   }
+  },
+  "15": {
+   "H30": {
+    "frames": 54,
+    "feasible": 42,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.732,
+    "max_V_rpk_only_feasible_cm3": 0.388
+   },
+   "H0": {
+    "frames": 92,
+    "feasible": 68,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.732,
+    "max_V_rpk_only_feasible_cm3": 0.537
+   },
+   "all": {
+    "frames": 166,
+    "feasible": 86,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.732,
+    "max_V_rpk_only_feasible_cm3": 0.537
+   }
+  },
+  "10": {
+   "H30": {
+    "frames": 33,
+    "feasible": 8,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.0,
+    "max_V_rpk_only_feasible_cm3": 0.0
+   },
+   "H0": {
+    "frames": 52,
+    "feasible": 15,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.0,
+    "max_V_rpk_only_feasible_cm3": 0.0
+   },
+   "all": {
+    "frames": 161,
+    "feasible": 43,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": 0.0,
+    "max_V_rpk_only_feasible_cm3": 0.0
+   }
+  },
+  "1": {
+   "H30": {
+    "frames": 50,
+    "feasible": 0,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": null,
+    "max_V_rpk_only_feasible_cm3": null
+   },
+   "H0": {
+    "frames": 56,
+    "feasible": 0,
+    "feasible_and_packed_blocks": 0,
+    "frames_list": [],
+    "max_V_packed_feasible_cm3": null,
+    "max_V_rpk_only_feasible_cm3": null
+   },
+   "all": {
+    "frames": 335,
+    "feasible": 101,
+    "feasible_and_packed_blocks": 1,
+    "frames_list": [
+     267
+    ],
+    "max_V_packed_feasible_cm3": 1.147,
+    "max_V_rpk_only_feasible_cm3": 0.358
+   }
+  }
+ }
+}

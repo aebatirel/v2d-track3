@@ -6069,3 +6069,7 @@ diagnostic; nothing is picked for submission.
   index, the bundles and the thumbnail sheets before publishing (ground truth, not our meshes).
 - Files: `docs/research/mesh-2026-10-26/review/` (page source, build_lib.py, library_index.json). Bundles and sprites
   (19 MB) are regenerable and not committed.
+- 03:40 UTC (owner request "For outline use the public scan we are aiming"): artifact v3. The outline in both viewers is
+  now the public scan (ground truth, display only, 4k-face wireframe of `data/scan/*.glb`, identity frame: centres
+  within 2-11 mm of library_v3, identity chamfer 2-8 mm [M]); labelled as ground truth shown for comparison only.
+  Nothing was built, chosen or scored from it. The spoon has no public scan.
