@@ -1,0 +1,29 @@
+ok   no store listing (single-file downloads only)  [32]
+ok   every download succeeded (files hidden by MOCK_HIDE excepted)
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e10v-mocksha', 'dst': 'runs/20261031-e10v-mocksha', 'msg': 'run 20261031-e10v-mocksha: 2026-11-01T03:39:59Z'}]]
+ok   hands_mp / hand_refine / perc2 / score_registered never ran
+ok   nothing written under the packed names refs/glockt/ep10, refs/perc2mck/ep10, results/glock_public/ep10
+ok   rc 0  [rc=0]
+ok   verdict SWAP-ELIGIBLE  [SWAP-ELIGIBLE: ['every clause holds on both references']]
+ok   verdict pushed to the store
+ok   no depth cache in the push
+ok   s42: trained once  [1]
+ok   s42: trained on its own copy of V  [<S>/nj/mock/e10v/content/refs/perc2e10vs42_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave]
+ok   s42: seed, steps  [('42', 70004736)]
+ok   s42: 0.3 kg URDFs under /content/assets
+ok   s42: every CLI training key equals the packed gl10A2 config  [{} compared ['logging.mode', 'objective.contact_wrench_support.weight', 'objective.force_closure.enabled', 'objective.force_closure.weight', 'objective.unintended_contact.weight', 'output_dir', 'reset.seed', 'task.motion_speed', 'task.parquet', 'training.total_environment_steps']]
+ok   s43: trained once  [1]
+ok   s43: trained on its own copy of V  [<S>/nj/mock/e10v/content/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave]
+ok   s43: seed, steps  [('43', 70004736)]
+ok   s43: 0.3 kg URDFs under /content/assets
+ok   s43: every CLI training key equals the packed gl10A2 config  [{} compared ['logging.mode', 'objective.contact_wrench_support.weight', 'objective.force_closure.enabled', 'objective.force_closure.weight', 'objective.unintended_contact.weight', 'output_dir', 'reset.seed', 'task.motion_speed', 'task.parquet', 'training.total_environment_steps']]
+ok   V4p track rebuilt here: B0 IDENTICAL  [IDENTICAL]
+ok   mkref ran once on the box's V4p track (md5 = B0's md5_box) with the eval-10 cache and the stored hands, SPLIT=eval  [[{'argv': ['--ep', '10', '--poses', '<S>/nj/mock/e10v/content/results/ev10_v4p/track/V/ep10/poses.npz', '--depth', '<S>/nj/mock/e10v/content/hfstore/cache/depth/eval/ep10/depths_fs0.5.npy', '--hands', '<S>/nj/mock/e10v/content/refs/perc2e10vmck/ep10/hands_refined.npz', '--out', '<S>/nj/mock/e10v/content/refs/perc2e10vmck/ep10', '--wrist_cost', '3.0'], 'poses': '<S>/nj/mock/e10v/content/results/ev10_v4p/track/V/ep10/poses.npz', 'poses_md5': 'fa449903630d6bb42dd79131331f4b6b', 'depth': '<S>/nj/mock/e10v/content/hfstore/cache/depth/eval/ep10/depths_fs0.5.npy', 'hands': '<S>/nj/mock/e10v/content/refs/perc2e10vmck/ep10/hands_refined.npz', 'hands_md5': '419c230800b727240663597916cba59e', 'assets': '<S>/nj/mock/e10v/content/assets', 'split': 'eval'}]]
+ok   grasp-lock reference stages ran once (+ re-plan check) with the gl10A2 GL_ARGS and kp 400  [[['--single_hand', '1', '--mcp_first', '1', '--close', '10', '--palm_clear', '-0.001', '--wrap_where_held', '1', '--snap', '1', '--approach_cm', '15'], ['--single_hand', '1', '--mcp_first', '1', '--close', '10', '--palm_clear', '-0.001', '--wrap_where_held', '1', '--snap', '1', '--approach_cm', '15', '--sim_trace', '<S>/nj/mock/e10v/content/results/perc2e10v_glock_public/ep10/zero.npz']]]
+ok   contact retargeting with --rest_settle 1
+ok   confirmation: >= 10 official draws of the chosen checkpoint on the pristine evaluator  [10]
+ok   10 scored confirmation draws, own-reference check ok on every scored rollout  [{'conf': {'own': 'V', 'n_files': 10, 'n_scored': 10}, 'old': {'own': 'P', 'n_files': 1, 'n_scored': 1}, 'packed': {'own': 'P', 'n_files': 10, 'n_scored': 10}, 'train42': {'own': 'V', 'n_files': 10, 'n_scored': 10}, 'train43': {'own': 'V', 'n_files': 10, 'n_scored': 10}}]
+ok   packed H5p7 draws (10) and the old packed draw scored on both references  [{'conf': {'own': 'V', 'n_files': 10, 'n_scored': 10}, 'old': {'own': 'P', 'n_files': 1, 'n_scored': 1}, 'packed': {'own': 'P', 'n_files': 10, 'n_scored': 10}, 'train42': {'own': 'V', 'n_files': 10, 'n_scored': 10}, 'train43': {'own': 'V', 'n_files': 10, 'n_scored': 10}}]
+ok   verify VERIFIED
+ok   verify / summary / score pushed
+28/28 checks pass

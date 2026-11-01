@@ -1,0 +1,1 @@
+cases 5184; differing with EVAL_NJ_DIAG unset/0: 0; changed with EVAL_NJ_DIAG=1: 8 (all newly ALLOWED: 8; outside perc2e10njs<seed> / eval / ep 10 / local / REQUIRE_REUSE=1: 0)

@@ -84,8 +84,9 @@ CPU EVIDENCE (this build; BUILD.md):
   - cpu/out/cksim_test.json        9/9: hydra override lands in exactly the 4 sim keys; 512 copy byte-identical round trip on
                                    the REAL packed gl10A2 checkpoint; FlashCHORD readers + evaluator config chain 512/1024/512
   - cpu/out/solver_cpu_test.json   e10v s43 REAL checkpoint, REAL V: built SolverMuJoCo njmax / naconmax 512/256, 1024/512, 512/256
-  - cpu/out/guard_test.json        16/16: pack guard (names, content, store listing, pack_swap_rollouts)
+  - cpu/out/guard_test.json        15/15: pack guard (names, content, store listing, pack_swap_rollouts)
   - cpu/out/guard_equiv/summary.txt  glock_public.sh default unchanged (5,184 cases)
   - cpu/out/static_checks.txt      unchanged files, verbatim recipe, syntax
-  - cpu/out/verdict_tests.json     23/23 label / lift / overflow fixtures
-  - cpu/out/mock_checks.txt        end-to-end mocks (e10v default path + 5 diagnostic scenarios)
+  - cpu/out/verdict_tests.json     25/25 label / lift / overflow fixtures
+  - cpu/out/mock_checks.txt        end-to-end mocks, 181/181 checks: e10v default path SWAP-ELIGIBLE 28/28; SUPPORTED, FALSIFIED,
+                                   INCONCLUSIVE, PARTIAL (32/32 each), INVALID (STOP at identity, 25/25)

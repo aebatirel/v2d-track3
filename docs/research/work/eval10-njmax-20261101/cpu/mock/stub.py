@@ -58,6 +58,7 @@ if argv[:2] == ['-m', 'venv']:                     # the job's pinned venvs -> w
 if base == 'e10nj_solver_check.py':                # REAL FlashCHORD (pin) on CPU
     fpy = os.environ['MOCK_FCPY']; env = dict(os.environ)
     env['PYTHONPATH'] = os.environ.get('MOCK_FC_PYTHONPATH', '') + ':' + env.get('PYTHONPATH', ''); env['JAX_PLATFORMS'] = 'cpu'
+    env.pop('MUJOCO_GL', None)                     # this VM has no EGL (the box has; the official draws use it too)
     av = [('cpu' if x.startswith('cuda') else x) for x in argv]
     audit('solver_check_audit', argv=av, cwd=os.getcwd()); os.execve(fpy, [fpy] + av, env)
 if argv[:1] in (['-c'], ['-']) or not script.endswith('.py') or base in (

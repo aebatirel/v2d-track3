@@ -115,7 +115,7 @@ The model has nv 74 (sparse Jacobian), 156 geoms and 56 bodies.
 pristine tree with cuda (`solver_check.json`, `solver_build.json`), and the 512 readout is VALID only if the copy reads
 512/256 there. The copy has its own sha256, so the draws name it and the verdict checks that.
 
-## 4. The pack guard (`cpu/out/guard_test.json`, 16/16 pass) [M]
+## 4. The pack guard (`cpu/out/guard_test.json`, 15/15 pass) [M]
 - **no_oracle by name:** `e10nj|ev10_nj` was added to BAD. Refused: 11 names, including the run id, its store paths,
   `perc2e10njs43`, the refs / runs / results folders, `results/ev10_nj/...`, `EP:DIR`, `ck=` and `RUN@sub` words. The old
   guard (68f1421) accepted all of them.
@@ -154,7 +154,7 @@ pristine tree with cuda (`solver_check.json`, `solver_build.json`), and the 512 
     local / REQUIRE_REUSE=1.
   - The rest of glock_public.sh is unchanged except 6 comment lines (static check: 1 code line added, 0 removed).
 - **ev10_v4p.sh** is byte-identical (static check). Its end-to-end mock 'pass' (31 Oct's harness, unchanged) was re-run
-  on this build's code (new glock_public.sh and no_oracle.py): MOCK_RESULT_E10V (section 7).
+  on this build's code (new glock_public.sh and no_oracle.py): **SWAP-ELIGIBLE, 28/28 checks**, as on 31 Oct (section 7).
 - `bash -n` / `py_compile` are clean on every changed script (`cpu/out/static_checks.txt`).
 
 ## 6. GPU memory at 1024 rows × 4096 worlds [M on CPU + E]
@@ -184,7 +184,42 @@ pristine tree with cuda (`solver_check.json`, `solver_build.json`), and the 512 
   no_oracle.py, e10nj.py, e10v_score.py.
 - Mock numbers are NOT evidence about H.
 
-MOCK_TABLE
+Final run on the final code, 1 Nov 03:20–04:12 UTC (`cpu/out/mock_checks.txt`, `mock_check_<n>.txt`, `mock_<n>/`; 6 scenarios,
+181 checks, all pass):
+
+| scenario | injected | outcome (mock numbers) | checks |
+|---|---|---|---|
+| e10v | the DEFAULT path: `bash ops/jobs/ev10_v4p.sh`, e10v's mock 'pass' (MOCK_POLICY=copy) | SWAP-ELIGIBLE, VERIFIED | 28/28 |
+| supported | policy tracks V; 40 overflow lines at 1024; the 512 copy rolls out as the floor | **SUPPORTED**: O 40; L beige r1 max 23.8 cm; A 0.9995 (n 10). 512 readout VALID, 0.4567 (−0.543) | 32/32 |
+| falsified | cups left at frame 0; 0 overflow lines | **FALSIFIED**: O 0; L 0.2 cm; A 0.456 | 32/32 |
+| inconclusive | policy tracks V; 5,000 overflow lines at 1024 | **INCONCLUSIVE**: O 5,000 (L 23.7 cm, A 0.9999 do not matter) | 32/32 |
+| partial | beige lifted 8 cm at f30–60 and put back; 40 lines | **PARTIAL**: O 40; L 8.2 cm; A 0.4428 ≤ 0.4593 | 32/32 |
+| invalid | one extra key in the 1024 training's config | **INVALID**: STOP at identity ("stored config differs … training.mock_extra_setting"); no official draw; verdict and push still written | 25/25 |
+
+Every diagnostic scenario checks the following:
+- no store listing; every download a single file of `runs/20261031-e10v-caf38fb`; exactly one upload;
+- nothing written under e10v's names (`perc2e10vs*`, `results/ev10_v4p`) or the packed names;
+- arms equal to e10v's `arms.json`, and no_oracle accepting e10v's inputs;
+- **one training**: seed 43, 70,004,736 steps, on the seed copy;
+- the trainer received `sim.njmax=1024 sim.nconmax=512`, and the saved config holds 1024 / 512 in sim and env.sim;
+- every other CLI training key equals the packed config (10+ keys);
+- TRAIN_ARGS is the FDR overrides followed by the two sim keys;
+- REUSE_REF holds, and no reference stage ran;
+- the overflow count equals the injected count;
+- lift has 7 checkpoints × 3 repeats, with e10v's REAL controls read (2.5 / 0.3 cm);
+- identity diff = the paths + the four limits;
+- the 512 copy is header-only;
+- the **REAL FlashCHORD evaluator config chain** reads ck1024 [1024, 512] and ck512 [512, 256];
+- the guard refuses 6/6;
+- 10 official calls of the 1024 checkpoint, each rebuilt at **njmax 1024** from its stored config, and 10 of the copy,
+  each rebuilt at **njmax 512** (the stub reads the evaluated file's stored config, as the evaluator does), all on the
+  pristine worktree;
+- the curve plus training-box evaluations are 31, all of 1024 checkpoints;
+- 10 + 10 + 10 + 10 rollouts scored, with every own-reference check ok;
+- the 512 readout is VALID.
+
+The solver build itself fails on the mock's minimal reference parquet. That is expected and reported only; the CPU
+solver test of section 3.2 covers it on the real scene.
 
 ## 8. Risks and open points
 1. **Lift reading** (section 2): PREREG L is the beige cup at ≥ 5.0 cm. The orchestrator should confirm it against the
@@ -205,3 +240,18 @@ MOCK_TABLE
 8. **Never packed:** see section 4 and its residual gap. JOBS.txt "After the box" says never to copy anything of this run
    into `results/submissions/`.
 9. **One seed:** this shows the mechanism, not its spread.
+
+## 9. Re-running the CPU evidence (scratch paths of this VM; S = the session scratchpad)
+- FlashCHORD-capable python: `S/carve/fcvenv/bin/python` (FlashCHORD source at the pin, editable) with
+  `PYTHONPATH=S/nj/fcextra JAX_PLATFORMS=cpu`. The overlay is `uv pip install --target` of the uv.lock pins listed in
+  section 3.1, with packages already in fcvenv removed from it.
+- `cpu/scripts/cksim_test.py --repo R --ck <packed gl10A2 policy.safetensors> --py S/map/scoring/venv/bin/python --fc
+  <flash_chord dir> --emb R/flashchord_conf/embodiment/sharpa_hands_mid.yaml --work <dir> --out cpu/out/cksim_test.json`
+  (FlashCHORD python).
+- `cpu/scripts/solver_cpu_test.py --repo R --ck <e10v s43 policy> --ref <e10v V> --usda <its support usda> --assets
+  <make_assets output> --py ... --fc ... --work <dir> --out cpu/out/solver_cpu_test.json` (FlashCHORD python; ~30 s).
+- `python -I cpu/scripts/guard_test.py --repo R --scratch S --fix <dir> --py <py> --packpy S/pack9a_venv306/bin/python
+  --kit <kit> --standin <cksim stand-in> --out cpu/out/guard_test.json` (~30 s).
+- `bash cpu/scripts/guard_equiv.sh R <dir>` (~40 s); `bash cpu/scripts/static_checks.sh R cpu/out/static_checks.txt`;
+  `python -I cpu/scripts/verdict_tests.py --repo R --work <dir> --out cpu/out/verdict_tests.json`.
+- `bash cpu/mock/run_all.sh [scenario ...]`. Run e10v first; the others each take ~7–15 min on 2 cores, mostly scoring.
