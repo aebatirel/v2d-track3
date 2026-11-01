@@ -1,0 +1,386 @@
+{
+ "run": "20261101-evsolvetest-dry",
+ "episodes": {
+  "ep37": {
+   "ep": 37,
+   "input": {
+    "mode": "table",
+    "md5": "b78747bb1d941fa56121886cc15ec225",
+    "frames": 151,
+    "objects": [
+     "wooden_spoon"
+    ],
+    "store_path": "runs/20261024-pack-31ef267/refs/glockt/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "asset_roots": [
+     "/content/refs/sf/ep37/assets"
+    ],
+    "asset_digest": "8d0a274ee7c9bb6eaaf5075915260049",
+    "n_asset_files": 2,
+    "masses": {
+     "wooden_spoon_rigid.urdf": [
+      "0.3"
+     ]
+    },
+    "stage_md5": "c630b9efce26c4de9b169294c5ad89d2",
+    "packed_policy": {
+     "run": "20261024-pack-31ef267",
+     "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep37/best/policy.safetensors",
+     "sha256": "ec709d3d50fd84ce352d59c867cbcd648c70b12b9d91e3933510dbe6652bd25e"
+    },
+    "table_lib": "library_v3",
+    "table_pieces": null
+   },
+   "input_copy": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_in.parquet",
+    "md5": "b78747bb1d941fa56121886cc15ec225",
+    "identical_to_input": true
+   },
+   "stage_copy": [
+    "runs/20261101-evsolvetest-dry/refs/evsolve/ep37/reconstructed_stage/t3_ep037_support.usda"
+   ],
+   "stage_copy_md5": [
+    "c630b9efce26c4de9b169294c5ad89d2"
+   ],
+   "jitter_in": {
+    "nominal": 0.7151,
+    "mean": 0.7635,
+    "sd": 0.0284,
+    "min": 0.7151,
+    "max": 0.8119,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "zero_in": {
+    "floor_vs_ref": 0.743,
+    "zero_action": 1.0
+   },
+   "rest_check_in": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "wooden_spoon": {
+      "until_frame": 19,
+      "max_mm": 6.0,
+      "max_deg": 3.9,
+      "worst_frame": 12,
+      "ok": false
+     }
+    }
+   },
+   "result_files": {
+    "zero_score_in.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep37/zero_score_in.txt",
+    "rest_check_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep37/rest_check_in.json",
+    "jitter_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep37/jitter_in.json"
+   },
+   "status": "failed: solved, jitter_ps | Traceback: stub solve failure"
+  },
+  "ep1": {
+   "ep": 1,
+   "status": "dropped: [2026-10-31T16:53:21Z] eval_solve ep1: no pull list (episode 1 is a std episode, not grasp lock (out of scope) ); dropped"
+  },
+  "ep14": {
+   "ep": 14,
+   "status": "input refused: reference md5 ec764ca98802ad2cbbced696bf059bf2 != expected 10d5f3ba6b7368ed30dad9d0c9c30df1"
+  },
+  "ep3": {
+   "ep": 3,
+   "status": "dropped: [2026-10-31T16:53:22Z] eval_solve ep3: inputs incomplete (pull.log); dropped"
+  },
+  "ep38": {
+   "ep": 38,
+   "input": {
+    "mode": "table",
+    "md5": "33d3f4e217426b797d0371849f9ee1fd",
+    "frames": 263,
+    "objects": [
+     "mini_dust_pan"
+    ],
+    "store_path": "runs/20261024-pack-31ef267/refs/glockt/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "asset_roots": [
+     "/content/refs/sf/ep38/assets"
+    ],
+    "asset_digest": "9da2723f0ec05980c37beb660f822e62",
+    "n_asset_files": 2,
+    "masses": {
+     "mini_dust_pan_rigid.urdf": [
+      "0.3"
+     ]
+    },
+    "stage_md5": "46ad19358eff66969582d7b4f84a5e8e",
+    "packed_policy": {
+     "run": "20261024-pack-31ef267",
+     "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep38/best/policy.safetensors",
+     "sha256": "6c0aa63e7a24df26e94cb63e4a0d021ed66779be0df5ef26d42625ce4d954bfe"
+    },
+    "table_lib": "library_v3",
+    "table_pieces": null
+   },
+   "input_copy": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_in.parquet",
+    "md5": "33d3f4e217426b797d0371849f9ee1fd",
+    "identical_to_input": true
+   },
+   "stage_copy": [
+    "runs/20261101-evsolvetest-dry/refs/evsolve/ep38/reconstructed_stage/t3_ep038_support.usda"
+   ],
+   "stage_copy_md5": [
+    "46ad19358eff66969582d7b4f84a5e8e"
+   ],
+   "jitter_in": {
+    "nominal": 0.5607,
+    "mean": 0.6092,
+    "sd": 0.0284,
+    "min": 0.5607,
+    "max": 0.6576,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "jitter_ps": {
+    "nominal": 0.6813,
+    "mean": 0.7298,
+    "sd": 0.0284,
+    "min": 0.6813,
+    "max": 0.7782,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "solve": {
+    "wall_s": 3.0,
+    "deadline_t": null,
+    "rollbacks": 0,
+    "paced_replans": 0,
+    "mean_iters": 7.0,
+    "T": 263,
+    "replans": 27,
+    "planned_replans": 27
+   },
+   "solved": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_ps.parquet",
+    "md5": "9abacb5d13c0cc7dc2d94c975ea32abf",
+    "solve_json": "runs/20261101-evsolvetest-dry/refs/evsolve/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_ps_solve.json",
+    "solve_npz": "runs/20261101-evsolvetest-dry/refs/evsolve/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_ps_solve.npz",
+    "solve_log": "runs/20261101-evsolvetest-dry/refs/evsolve/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_ps_solve.log",
+    "changed_columns": [
+     "robot_right_wrist_position"
+    ],
+    "only_target_columns_changed": true,
+    "frames_edited": 10
+   },
+   "zero_in": {
+    "floor_vs_ref": 0.2937,
+    "zero_action": 1.0
+   },
+   "rest_check_in": {
+    "all_ok": true,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "mini_dust_pan": {
+      "until_frame": 31,
+      "max_mm": 2.4,
+      "max_deg": 1.1,
+      "worst_frame": 10,
+      "ok": true
+     }
+    }
+   },
+   "zero_ps": {
+    "floor_vs_ref": 0.2937,
+    "zero_action": 1.0,
+    "truth": 1.0
+   },
+   "rest_check_ps": {
+    "all_ok": true,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "mini_dust_pan": {
+      "until_frame": 31,
+      "max_mm": 2.4,
+      "max_deg": 1.1,
+      "worst_frame": 10,
+      "ok": true
+     }
+    }
+   },
+   "result_files": {
+    "zero_score_in.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep38/zero_score_in.txt",
+    "rest_check_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep38/rest_check_in.json",
+    "zero_score_ps.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep38/zero_score_ps.txt",
+    "rest_check_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep38/rest_check_ps.json",
+    "jitter_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep38/jitter_in.json",
+    "jitter_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep38/jitter_ps.json"
+   },
+   "delta_jittered": 0.1206,
+   "status": "solved"
+  },
+  "ep36": {
+   "ep": 36,
+   "input": {
+    "mode": "table",
+    "md5": "36e60e15163f47486e6bcf85b93fb22e",
+    "frames": 407,
+    "objects": [
+     "wooden_spoon"
+    ],
+    "store_path": "runs/20261024-pack-31ef267/refs/glockt/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "asset_roots": [
+     "/content/refs/sf/ep36/assets"
+    ],
+    "asset_digest": "98ecc7ae739e5567ab29d96fee83e797",
+    "n_asset_files": 2,
+    "masses": {
+     "wooden_spoon_rigid.urdf": [
+      "0.3"
+     ]
+    },
+    "stage_md5": "de1c3f2832a0f6db12452f497b77c71c",
+    "packed_policy": {
+     "run": "20261024-pack-31ef267",
+     "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep36/best/policy.safetensors",
+     "sha256": "d1b402c803398aeae8bf0effaf8e1026a6d637770a762b1571cdcb90f6527076"
+    },
+    "table_lib": "library_v3",
+    "table_pieces": null
+   },
+   "input_copy": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_in.parquet",
+    "md5": "36e60e15163f47486e6bcf85b93fb22e",
+    "identical_to_input": true
+   },
+   "stage_copy": [
+    "runs/20261101-evsolvetest-dry/refs/evsolve/ep36/reconstructed_stage/t3_ep036_support.usda"
+   ],
+   "stage_copy_md5": [
+    "de1c3f2832a0f6db12452f497b77c71c"
+   ],
+   "jitter_in": {
+    "nominal": 0.5643,
+    "mean": 0.6128,
+    "sd": 0.0284,
+    "min": 0.5643,
+    "max": 0.6612,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "jitter_ps": {
+    "nominal": 0.5146,
+    "mean": 0.5631,
+    "sd": 0.0284,
+    "min": 0.5146,
+    "max": 0.6115,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "solve": {
+    "wall_s": 3.0,
+    "deadline_t": null,
+    "rollbacks": 0,
+    "paced_replans": 0,
+    "mean_iters": 7.0,
+    "T": 407,
+    "replans": 41,
+    "planned_replans": 41
+   },
+   "solved": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_ps.parquet",
+    "md5": "0c79832a453128cd6b793200729f20f5",
+    "solve_json": "runs/20261101-evsolvetest-dry/refs/evsolve/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_ps_solve.json",
+    "solve_npz": "runs/20261101-evsolvetest-dry/refs/evsolve/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_ps_solve.npz",
+    "solve_log": "runs/20261101-evsolvetest-dry/refs/evsolve/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_ps_solve.log",
+    "changed_columns": [
+     "robot_right_wrist_position"
+    ],
+    "only_target_columns_changed": true,
+    "frames_edited": 10
+   },
+   "zero_in": {
+    "floor_vs_ref": 0.0894,
+    "zero_action": 1.0
+   },
+   "rest_check_in": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "wooden_spoon": {
+      "until_frame": 20,
+      "max_mm": 3.7,
+      "max_deg": 2.4,
+      "worst_frame": 16,
+      "ok": false
+     }
+    }
+   },
+   "zero_ps": {
+    "floor_vs_ref": 0.0894,
+    "zero_action": 1.0,
+    "truth": 1.0
+   },
+   "rest_check_ps": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "wooden_spoon": {
+      "until_frame": 20,
+      "max_mm": 3.7,
+      "max_deg": 2.4,
+      "worst_frame": 16,
+      "ok": false
+     }
+    }
+   },
+   "result_files": {
+    "zero_score_in.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep36/zero_score_in.txt",
+    "rest_check_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep36/rest_check_in.json",
+    "zero_score_ps.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep36/zero_score_ps.txt",
+    "rest_check_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep36/rest_check_ps.json",
+    "jitter_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep36/jitter_in.json",
+    "jitter_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep36/jitter_ps.json"
+   },
+   "delta_jittered": -0.0497,
+   "status": "solved"
+  }
+ },
+ "solved": [
+  38,
+  36
+ ],
+ "failed": {
+  "37": "failed: solved, jitter_ps | Traceback: stub solve failure",
+  "1": "dropped: [2026-10-31T16:53:21Z] eval_solve ep1: no pull list (episode 1 is a std episode, not grasp lock (out of scope) ); dropped",
+  "14": "input refused: reference md5 ec764ca98802ad2cbbced696bf059bf2 != expected 10d5f3ba6b7368ed30dad9d0c9c30df1",
+  "3": "dropped: [2026-10-31T16:53:22Z] eval_solve ep3: inputs incomplete (pull.log); dropped"
+ },
+ "delta_jittered": {
+  "n": 2,
+  "mean": 0.0354,
+  "min": -0.0497,
+  "negative": [
+   "ep36"
+  ]
+ },
+ "note": "GT-free: jittered zero-action sim_vs_ref vs OUR reference (64 copies, 0.5 mm / 0.005 rad target noise, seed 0, common random numbers), input vs solved, as G2. No verdict here: pack 10's per-episode rule decides. robot_<side>_frames (the RL hand-tracking target) and the object reference are unchanged; the solved reference names the same asset files as the input (object_urdf_paths unchanged)."
+}

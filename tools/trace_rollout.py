@@ -7,7 +7,12 @@ OUT.npz: q (frames, bodies, 7) body poses [x y z qx qy qz qw], frame (reference 
 CONTACTS=1 also records per frame and body pair the summed contact normal force, tangential force and contact count
 (cf: frames x bodies x bodies x 3; body -1 = world/support stored in the last slot) from FlashCHORD's own contact
 readout (solver.update_contacts with forces), for grip-force analysis (docs/research/notes/24).
-No ground truth is read. Analysis: tools/hand_object_gap.py.
+CONTACTS=2 (2026-10-30) also keeps every individual contact: cl (n, 10) rows [record index, body0, body1, position xyz,
+normal xyz (shape0 -> shape1), force on shape0 along the normal], world frame (tools/sim_contacts.py).
+STATE=1 (2026-10-31, solver<->RL loop) also keeps the full simulator state of world 0 per frame (jq joint_q, jqd joint_qd,
+qd body_qd, qw MuJoCo qacc_warmstart, es episode_step), the input of tools/physics_solve/solve.py --start_state (a solve
+from the policy's state at a failure) and of the reset-state bank (tools/physics_solve/merge_ref.py).
+No ground truth is read. Analysis: tools/hand_object_gap.py, tools/physics_solve/failures.py.
 """
 import atexit, dataclasses, os, sys
 
@@ -16,6 +21,11 @@ import numpy as np
 mode, out = sys.argv[1], sys.argv[2]
 REC = {'q': [], 'frame': [], 'labels': [], 'cf': []}
 CONTACTS = os.environ.get('CONTACTS', '0') not in ('', '0')
+CONTACT_LIST = os.environ.get('CONTACTS', '0') == '2'
+REC['cl'] = []
+STATE = os.environ.get('STATE', '0') not in ('', '0')
+for k in ('jq', 'jqd', 'qd', 'qw', 'es'):
+    REC[k] = []
 
 
 def contact_table(env):
@@ -31,12 +41,30 @@ def contact_table(env):
 
 def record(env):
     REC['q'].append(env.state_0.body_q.numpy().copy()); REC['frame'].append(int(env.timestep.numpy()[0]))
+    if STATE:                                    # world 0's full state (the evaluator replays one world)
+        W = env.world_count
+        REC['jq'].append(env.state_0.joint_q.numpy().reshape(W, -1)[0].copy())
+        REC['jqd'].append(env.state_0.joint_qd.numpy().reshape(W, -1)[0].copy())
+        REC['qd'].append(env.state_0.body_qd.numpy().reshape(W, -1)[0].copy())
+        REC['qw'].append(env.solver.mjw_data.qacc_warmstart.numpy()[0].copy())
+        REC['es'].append(int(env.episode_step.numpy()[0]))
     if CONTACTS:
         REC['cf'].append(contact_table(env))
+    if CONTACT_LIST:
+        from flash_chord.runtime.contact import read_contacts_w
+        model = env.model if hasattr(env, 'model') else env.scene.model
+        rd = read_contacts_w(model, env.state_0, env.contacts); i = len(REC['q']) - 1
+        for b0, b1, p, n, f in zip(rd.body0_ids, rd.body1_ids, rd.contact_pos_w, rd.contact_normal_w, rd.contact_force_w):
+            REC['cl'].append([i, int(b0), int(b1), *p, *n, float(np.dot(f, n))])
 
 
 def save():
     extra = dict(cf=np.array(REC['cf'], np.float32)) if REC['cf'] else {}
+    if CONTACT_LIST:
+        extra['cl'] = np.array(REC['cl'], np.float64).reshape(-1, 10)
+    if STATE:
+        extra.update(jq=np.array(REC['jq'], np.float32), jqd=np.array(REC['jqd'], np.float32),
+                     qd=np.array(REC['qd'], np.float32), qw=np.array(REC['qw'], np.float32), es=np.array(REC['es']))
     np.savez_compressed(out, q=np.array(REC['q'], np.float32), frame=np.array(REC['frame']), labels=np.array(REC['labels']), **extra)
     print(f'trace: {len(REC["q"])} frames -> {out}', flush=True)
 
@@ -49,6 +77,13 @@ if mode == 'policy':
     sys.argv = [sys.argv[0]] + sys.argv[3:]
     sys.path.insert(0, os.path.join(os.getcwd(), 'scripts'))
     import view_policy as vp
+    from flash_chord.envs.rl import RLEnv as _RLEnv
+    _cap0 = _RLEnv.capture_step
+
+    def _capture_step(self):                     # Warp graph capture crashes on the CPU (2026-10-31): step eagerly
+        if not self.device.is_cpu:               # there (the same transition); CUDA unchanged
+            _cap0(self)
+    _RLEnv.capture_step = _capture_step
     init0, step0 = vp.FlashSACPolicyViewer.__init__, vp.FlashSACPolicyViewer.step
 
     def init(self, *a, **k):

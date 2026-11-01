@@ -11,6 +11,10 @@ These carry over the rules the owner set while this work ran locally. Follow the
 - Record for every run: exact command, machine, output paths, the code version (commit) and the result, including
   failures.
 
+## Talking to the owner
+- Give times to the owner in Turkish time (TRT, UTC+3), e.g. "01:30 TRT" (owner, 31 Oct 2026). Logs and ledger may stay
+  in UTC; say which zone a time is in.
+
 ## Experimental integrity
 - Inference must never read ground truth: mocap poses, the `pose` field of `observation.objects` in the public episode
   parquets, or anything derived from them. Ground truth is read only by scoring and diagnostics, after inference.

@@ -1,0 +1,280 @@
+<title>Solver–RL Loop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column (~880px) with wide figures that scroll sideways on phones; schematic first, then evidence, then the proposal. */
+:root {
+  --bg: #F3F6F7; --surface: #FFFFFF; --ink: #15212B; --muted: #566573; --line: #D3DBE1;
+  --rl: #0E7782; --rl-soft: #DCEFF1; --solver: #A86400; --solver-soft: #F6EAD6;
+  --good: #2C7A4B; --bad: #B0281F; --ctrl: #7D8B97;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E141A; --surface: #151E27; --ink: #E3E9EF; --muted: #93A2AF; --line: #2A3743;
+  --rl: #52C2CC; --rl-soft: #15343A; --solver: #EDA545; --solver-soft: #3A2C14;
+  --good: #6CC98C; --bad: #F08A80; --ctrl: #8D9BA8; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0E141A; --surface: #151E27; --ink: #E3E9EF; --muted: #93A2AF; --line: #2A3743;
+  --rl: #52C2CC; --rl-soft: #15343A; --solver: #EDA545; --solver-soft: #3A2C14;
+  --good: #6CC98C; --bad: #F08A80; --ctrl: #8D9BA8; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 900px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px; display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.45rem; font-weight: 600; }
+h3 { font-size: 1.08rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+section { display: grid; gap: 14px; min-width: 0; }
+.lede { font-size: 1.05rem; color: var(--ink); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.fig { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; }
+.fig svg { display: block; }
+.fig-cap { font-size: 0.85rem; color: var(--muted); }
+.key { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.85rem; color: var(--muted); }
+.key span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-display); font-weight: 600; font-size: 0.86rem; color: var(--muted); white-space: nowrap; }
+td.num, th.num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.pill { display: inline-block; font-family: var(--f-mono); font-size: 0.74rem; padding: 1px 7px; border-radius: 99px; border: 1px solid currentColor; white-space: nowrap; }
+.pill.bad { color: var(--bad); } .pill.good { color: var(--good); } .pill.amber { color: var(--solver); }
+.verdict { display: grid; gap: 10px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--solver); border-radius: 6px; }
+.reasons { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.reason { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.reason .big { font-family: var(--f-mono); font-size: 1.35rem; color: var(--solver); }
+.chg td:first-child { font-weight: 600; white-space: nowrap; }
+.new { color: var(--rl); font-weight: 500; }
+.cost { display: grid; gap: 8px; padding: 16px 18px; background: var(--rl-soft); border-radius: 6px; }
+ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 70ch; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 4px; }
+text { font-family: var(--f-body); }
+</style>
+
+<div class="wrap">
+
+<header style="display:grid;gap:10px">
+  <div class="eyebrow">V2D Track 3 · physics study · option 3 · run 20261031-rlloop-ccf9058</div>
+  <h1>Solver–RL Loop</h1>
+  <p class="lede">The robot policy and a physics solver take turns. The policy trains, we watch where it drops an object, the solver plans that stretch from the robot's own position, and the plan is written back into what the policy trains on. This page shows how the loop works, what it did in today's test, why it barely acted, and a more aggressive version.</p>
+</header>
+
+<section>
+  <div class="eyebrow">1 · How it works now</div>
+  <h2>One episode, three training rounds, two solver turns</h2>
+  <div class="fig">
+    <svg viewBox="0 0 980 600" width="980" height="600" role="img" aria-label="Schematic of the solver and RL loop">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+        <marker id="ahs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--solver)"/></marker>
+      </defs>
+      <!-- reference -->
+      <rect x="24" y="40" width="250" height="150" rx="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.4"/>
+      <text x="40" y="66" font-size="15" font-weight="600" fill="var(--ink)">Reference  R0 → R1 → R2</text>
+      <text x="40" y="90" font-size="12.5" fill="var(--muted)">what the policy is asked to follow:</text>
+      <text x="40" y="110" font-size="12.5" fill="var(--ink)">· wrist + finger targets per frame</text>
+      <text x="40" y="129" font-size="12.5" fill="var(--ink)">· contact targets (where to touch)</text>
+      <text x="40" y="148" font-size="12.5" fill="var(--ink)">· object path (never changed)</text>
+      <text x="40" y="172" font-size="11.5" fill="var(--muted)">R0 = solved reference from G1/G2</text>
+      <!-- bank -->
+      <rect x="24" y="226" width="250" height="104" rx="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="40" y="252" font-size="15" font-weight="600" fill="var(--ink)">Reset-state bank</text>
+      <text x="40" y="274" font-size="12.5" fill="var(--ink)">full simulator states to restart from:</text>
+      <text x="40" y="293" font-size="12.5" fill="var(--ink)">· the policy's states just before it fails</text>
+      <text x="40" y="312" font-size="12.5" fill="var(--ink)">· solver states where every object holds</text>
+      <!-- training -->
+      <rect x="340" y="40" width="280" height="150" rx="6" fill="var(--rl-soft)" stroke="var(--rl)" stroke-width="1.6"/>
+      <text x="356" y="66" font-size="15" font-weight="600" fill="var(--rl)">RL training round (FlashSAC)</text>
+      <text x="356" y="90" font-size="12.5" fill="var(--ink)">A: 0 → 30M steps on R0</text>
+      <text x="356" y="109" font-size="12.5" fill="var(--ink)">B: resume 30 → 50M on R1</text>
+      <text x="356" y="128" font-size="12.5" fill="var(--ink)">C: resume 50 → 70M on R2</text>
+      <text x="356" y="150" font-size="12.5" fill="var(--ink)">resume keeps actor, critic, optimiser</text>
+      <text x="356" y="170" font-size="12.5" fill="var(--ink)">25 % of resets start from the bank</text>
+      <!-- checkpoint -->
+      <rect x="690" y="40" width="266" height="150" rx="6" fill="var(--surface)" stroke="var(--rl)" stroke-width="1.4"/>
+      <text x="706" y="66" font-size="15" font-weight="600" fill="var(--rl)">Newest checkpoint</text>
+      <text x="706" y="90" font-size="12.5" fill="var(--ink)">played once like the official</text>
+      <text x="706" y="109" font-size="12.5" fill="var(--ink)">evaluator, recording the full</text>
+      <text x="706" y="128" font-size="12.5" fill="var(--ink)">simulator state every frame</text>
+      <text x="706" y="152" font-size="12.5" fill="var(--muted)">(tools/trace_rollout.py STATE=1)</text>
+      <!-- failure finder -->
+      <rect x="690" y="262" width="266" height="150" rx="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.4"/>
+      <text x="706" y="288" font-size="15" font-weight="600" fill="var(--ink)">Failure finder</text>
+      <text x="706" y="312" font-size="12.5" fill="var(--ink)">first frame an object stays</text>
+      <text x="706" y="331" font-size="12.5" fill="var(--ink)">&gt; 3 cm off for ≥ 8 frames</text>
+      <text x="706" y="355" font-size="12.5" fill="var(--ink)">window: starts 0.5 s before,</text>
+      <text x="706" y="374" font-size="12.5" fill="var(--ink)">3 s long, at most 2 per round</text>
+      <text x="706" y="398" font-size="12.5" fill="var(--muted)">(tools/physics_solve/failures.py)</text>
+      <!-- solver -->
+      <rect x="340" y="262" width="280" height="150" rx="6" fill="var(--solver-soft)" stroke="var(--solver)" stroke-width="1.6"/>
+      <text x="356" y="288" font-size="15" font-weight="600" fill="var(--solver)">Physics solver (sampling MPC)</text>
+      <text x="356" y="312" font-size="12.5" fill="var(--ink)">starts from the POLICY'S own state</text>
+      <text x="356" y="331" font-size="12.5" fill="var(--ink)">1,024 simulated worlds × 4 jitters</text>
+      <text x="356" y="350" font-size="12.5" fill="var(--ink)">plans 2 s ahead, re-plans as it goes</text>
+      <text x="356" y="369" font-size="12.5" fill="var(--ink)">same physics as the evaluator</text>
+      <text x="356" y="393" font-size="12.5" fill="var(--muted)">≤ 15 min per window</text>
+      <!-- merge -->
+      <rect x="340" y="470" width="280" height="104" rx="6" fill="var(--surface)" stroke="var(--solver)" stroke-width="1.4"/>
+      <text x="356" y="496" font-size="15" font-weight="600" fill="var(--solver)">Merge</text>
+      <text x="356" y="518" font-size="12.5" fill="var(--ink)">solver targets into the window</text>
+      <text x="356" y="537" font-size="12.5" fill="var(--ink)">+ 6 blend frames, solver contacts</text>
+      <text x="356" y="556" font-size="12.5" fill="var(--ink)">→ next reference + more bank states</text>
+      <!-- scoring -->
+      <rect x="690" y="470" width="266" height="104" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1.4"/>
+      <text x="706" y="496" font-size="15" font-weight="600" fill="var(--ink)">Scoring (after training)</text>
+      <text x="706" y="518" font-size="12.5" fill="var(--ink)">each 10M checkpoint: 3 runs</text>
+      <text x="706" y="537" font-size="12.5" fill="var(--ink)">best one: 5 runs scored against</text>
+      <text x="706" y="556" font-size="12.5" fill="var(--ink)">the true motion (mocap)</text>
+      <!-- arrows -->
+      <path d="M274 115 H336" stroke="var(--muted)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/>
+      <path d="M274 278 C305 278 305 160 336 160" stroke="var(--muted)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/>
+      <path d="M620 115 H686" stroke="var(--muted)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/>
+      <path d="M823 190 V258" stroke="var(--muted)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/>
+      <path d="M690 337 H624" stroke="var(--solver)" stroke-width="1.6" fill="none" marker-end="url(#ahs)"/>
+      <path d="M480 412 V466" stroke="var(--solver)" stroke-width="1.6" fill="none" marker-end="url(#ahs)"/>
+      <path d="M340 522 C200 522 150 450 150 334" stroke="var(--solver)" stroke-width="1.6" fill="none" marker-end="url(#ahs)"/>
+      <path d="M340 540 C60 540 8 420 8 190 C8 150 14 140 20 140" stroke="var(--solver)" stroke-width="1.6" fill="none" marker-end="url(#ahs)"/>
+      <path d="M823 412 V466" stroke="var(--line)" stroke-width="1.4" fill="none" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+      <text x="636" y="106" font-size="11" fill="var(--muted)">at 30M, 50M</text>
+      <text x="640" y="328" font-size="11" fill="var(--solver)">window</text>
+      <text x="24" y="22" font-size="11.5" fill="var(--muted)">Never changed: the hand-tracking target, the object path, the evaluator. Ground truth is read only by scoring.</text>
+    </svg>
+  </div>
+  <p class="fig-cap">The loop runs between training rounds; scoring runs once at the end. Option 3's control arm (O1) trains on R0 the whole time with early stopping and no solver.</p>
+</section>
+
+<section>
+  <div class="eyebrow">2 · What it did today</div>
+  <h2>Score of every checkpoint against our own reference</h2>
+  <div class="key">
+    <span><i class="sw" style="background:var(--rl)"></i>option 3, loop (O3)</span>
+    <span><i class="sw" style="background:var(--ctrl)"></i>control, no loop (O1)</span>
+    <span><i class="sw" style="background:var(--solver)"></i>solver turn</span>
+    <span><i class="sw" style="background:var(--ink);height:8px;width:8px;border-radius:50%"></i>checkpoint it picked</span>
+  </div>
+  <div class="fig"><svg id="curves" viewBox="0 0 920 500" width="920" height="500" role="img" aria-label="Checkpoint curves for four episodes"></svg></div>
+  <p class="fig-cap">Higher is better (share of the episode the objects follow our reference; 1.0 = perfect). O3 points are 3 runs each; O1 points after 10M come from its early-stopping check (2 runs). Measured, one seed.</p>
+
+  <div class="tbl"><table>
+    <thead><tr><th>episode</th><th class="num">option 3</th><th>picked</th><th class="num">control</th><th class="num">O3 − O1</th><th class="num">G3 (earlier)</th></tr></thead>
+    <tbody>
+      <tr><td>ep2 pot + lid</td><td class="num">0.835 ± 0.189</td><td>20M <span class="pill amber">before loop</span></td><td class="num">0.585 ± 0.237</td><td class="num">+0.251</td><td class="num">0.584</td></tr>
+      <tr><td>ep12 cup → rack</td><td class="num">0.904 ± 0.036</td><td>50M <span class="pill good">after loop</span></td><td class="num">0.893 ± 0.026</td><td class="num">+0.011</td><td class="num">0.892</td></tr>
+      <tr><td>ep18 sweeper</td><td class="num">0.620 ± 0.007</td><td>10M <span class="pill amber">before loop</span></td><td class="num">0.579 ± 0.095</td><td class="num">+0.041</td><td class="num">0.622</td></tr>
+      <tr><td>ep24 boards</td><td class="num">0.224 ± 0.004</td><td>20M <span class="pill amber">before loop</span></td><td class="num">0.254 ± 0.037</td><td class="num">−0.030</td><td class="num">0.244</td></tr>
+      <tr><td><strong>mean</strong></td><td class="num"></td><td></td><td class="num"></td><td class="num"><strong>+0.068</strong></td><td class="num"></td></tr>
+    </tbody>
+  </table></div>
+  <p class="fig-cap">Scored against the true motion (registered AUC vs mocap), 5 runs of the picked checkpoint, mean ± spread.</p>
+
+  <div class="verdict">
+    <h3>Verdict: the rule says "signal", the evidence says the loop did not do it</h3>
+    <p>The rule we fixed in advance (mean ≥ +0.03, no episode ≤ −0.05) is met. But 3 of the 4 winning checkpoints were saved <em>before the loop had changed anything</em>. And option 3's first round was not the same training as the control: the learning rate falls from 3e-4 to 1.5e-4 over each run's own length, so a 30M round falls more than twice as fast as the control's 70M run. The ep2 gap may be that schedule or ep2's usual run-to-run chaos. After the solver turns, option 3 never beat its own first-round best on ep2, ep18 or ep24.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">3 · Why it barely acted</div>
+  <h2>Each solver turn, as it happened</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>episode</th><th>turn</th><th class="num">policy score</th><th>failure window</th><th>what slipped</th><th class="num">frames the solver changed</th></tr></thead>
+    <tbody>
+      <tr><td>ep2</td><td>after 30M</td><td class="num">0.453</td><td class="mono">f52–177</td><td>pot, lid</td><td class="num"><span class="pill bad">0</span></td></tr>
+      <tr><td>ep2</td><td>after 50M</td><td class="num">0.502</td><td class="mono">f51–177</td><td>pot, lid</td><td class="num">47</td></tr>
+      <tr><td>ep12</td><td>after 30M</td><td class="num">0.916</td><td class="mono">f114–180</td><td>blue cup</td><td class="num">67</td></tr>
+      <tr><td>ep12</td><td>after 50M</td><td class="num">0.928</td><td class="mono">f125–180</td><td>blue cup</td><td class="num">40</td></tr>
+      <tr><td>ep18</td><td>after 30M</td><td class="num">0.295</td><td class="mono">f10–100</td><td>sweeper, dust pan</td><td class="num"><span class="pill bad">0</span></td></tr>
+      <tr><td>ep18</td><td>after 50M</td><td class="num">0.372</td><td class="mono">f30–119</td><td>sweeper, dust pan</td><td class="num"><span class="pill bad">0</span></td></tr>
+      <tr><td>ep24</td><td>after 30M</td><td class="num">0.208</td><td class="mono">f6–125</td><td>both boards</td><td class="num"><span class="pill bad">0</span></td></tr>
+      <tr><td>ep24</td><td>after 50M</td><td class="num">0.353</td><td class="mono">f6–100</td><td>both boards</td><td class="num">72</td></tr>
+    </tbody>
+  </table></div>
+  <div class="reasons">
+    <div class="reason"><div class="big">4 of 8</div><h3>The solver found nothing better</h3><p class="muted">Starting from a robot that is already slipping, its best plan scored the same as the current one, so it stopped after the minimum 6 iterations and changed no frames.</p></div>
+    <div class="reason"><div class="big">1 window</div><h3>One failure per turn</h3><p class="muted">Each turn looked at one replay and found one window. A separate analysis shows replays split at 1–2 contact moments; one replay sees only one of them.</p></div>
+    <div class="reason"><div class="big">4 states</div><h3>A tiny restart bank</h3><p class="muted">ep2's bank held 4 states, so the 25 % of restarts drawn from it kept repeating the same few moments.</p></div>
+    <div class="reason"><div class="big">2 turns</div><h3>Late and rare</h3><p class="muted">Turns came only at 30M and 50M. By 30M ep2 had already collapsed (0.966 → 0.488), and nothing brought it back.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">4 · A more aggressive loop</div>
+  <h2>Loop v2: more turns, harder solves, a fair control</h2>
+  <p>Every change below answers one of the four problems above, or the learning-rate flaw. Each is a hypothesis until a run tests it.</p>
+  <div class="tbl"><table class="chg">
+    <thead><tr><th>knob</th><th>now</th><th>v2</th><th>why</th></tr></thead>
+    <tbody>
+      <tr><td>Fair control</td><td>separate control run, different run length</td><td class="new">both arms branch from the same 10M checkpoint, one fixed learning-rate schedule</td><td>removes the learning-rate flaw and seed noise before the branch point</td></tr>
+      <tr><td>How often</td><td>turns at 30M and 50M</td><td class="new">a turn every 10M (6 turns)</td><td>catch the policy before it collapses, as ep2 did between 20M and 30M</td></tr>
+      <tr><td>Finding failures</td><td>1 replay</td><td class="new">16 slightly nudged replays; windows = every cluster of failure moments (up to 3)</td><td>replays split at 1–2 contact moments; the rare late one is caught too</td></tr>
+      <tr><td>Solve start</td><td>0.5 s before the failure</td><td class="new">1.5 s before, so the grip can be fixed before the lift</td><td>on ep31 the grip is already 2–3 cm off before the lift</td></tr>
+      <tr><td>Solve effort</td><td>1,024 worlds, stops after 6 iterations</td><td class="new">4,096 worlds, wider search, all 16 iterations, restarts from 4 nudged states</td><td>4 of 8 solves found nothing at the current effort</td></tr>
+      <tr><td>If a window can't be solved</td><td>nothing changes</td><td class="new">re-solve the rest of the episode from that state, as in the earlier G2 solve</td><td>early failures (ep24 f6, ep18 f10) need the whole plan rebuilt</td></tr>
+      <tr><td>Restart bank</td><td>a few states, 25 % of restarts</td><td class="new">states from all 16 replays + every solver state that holds, small random nudges, 50 % of restarts near the windows</td><td>train hardest exactly where replays part ways</td></tr>
+      <tr><td>Stretch: imitation</td><td>the policy only sees the edited reference</td><td class="new">feed the solver's own actions into training through FlashSAC's existing imitation term</td><td>a direct teacher signal; needs a training-only patch, so it is the riskiest piece</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cost">
+    <h3>What it would take</h3>
+    <ul>
+      <li>CPU build and dry run first, then one GPU box. 4 public episodes, one seed, plus 2 extra seeds on ep2 because ep2 is chaotic.</li>
+      <li>Training: 10M shared start + 2 × 60M branches per episode. Solves overlap with training and add perhaps 1–2 h.</li>
+      <li>Estimate: about 7–9 h on one box, roughly <strong>$10–15</strong> (estimate, not measured). Nothing is rented without your go-ahead.</li>
+      <li>Pass/fail fixed in advance: the loop branch beats the no-loop branch by ≥ +0.03 on average, no episode ≤ −0.05, and at least half the winning checkpoints come from after a solver turn.</li>
+    </ul>
+  </div>
+  <p class="muted">A cheaper first step tests only the learning-rate flaw: the control with the shorter schedule, 3 seeds on ep2, about $3–4. If that alone explains ep2's +0.25, the loop needs v2 to show anything.</p>
+</section>
+
+<footer>
+  <div>Sources: run 20261031-rlloop-ccf9058 (code ccf9058), summary in docs/research/physics-2026-10-30/gpu/rlloop_summary.json; write-up in physics-solver.md §6.1. Cost of today's run ≈ $6.48 (estimate from hours × rate).</div>
+  <div>Public episodes only. Inference never reads ground truth; the true motion is used only for the final score.</div>
+</footer>
+</div>
+
+<script>
+(function () {
+  const svg = document.getElementById('curves');
+  const NS = 'http://www.w3.org/2000/svg';
+  const eps = [
+    { name: 'ep2 · pot + lid', o3: [0.944, 0.966, 0.488, 0.473, 0.498, 0.422, 0.493], o1: [0.729, 0.494, 0.492, 0.502, 0.499, 0.486, null], p3: 20, p1: 10 },
+    { name: 'ep12 · cup into rack', o3: [0.723, 0.756, 0.888, 0.946, 0.949, 0.941, 0.938], o1: [0.741, 0.717, 0.799, 0.944, 0.941, null, null], p3: 50, p1: 40 },
+    { name: 'ep18 · sweeper + dust pan', o3: [0.587, 0.436, 0.339, 0.490, 0.400, 0.378, 0.418], o1: [0.592, 0.448, 0.326, 0.594, 0.349, 0.529, null], p3: 10, p1: 40 },
+    { name: 'ep24 · two boards', o3: [0.199, 0.229, 0.168, 0.193, 0.162, 0.149, 0.214], o1: [0.166, 0.169, 0.190, 0.191, 0.236, 0.210, 0.210], p3: 20, p1: 50 }
+  ];
+  const W = 440, H = 220, ml = 44, mr = 14, mt = 30, mb = 34;
+  const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; };
+  eps.forEach((ep, i) => {
+    const ox = (i % 2) * (W + 20) + 10, oy = Math.floor(i / 2) * (H + 26) + 6;
+    const g = el('g', { transform: `translate(${ox},${oy})` });
+    const x = m => ml + (m - 10) / 60 * (W - ml - mr);
+    const y = v => mt + (1 - v) * (H - mt - mb);
+    el('text', { x: 0, y: 16, 'font-size': 13.5, 'font-weight': 600, fill: 'var(--ink)' }, g).textContent = ep.name;
+    [[30, 50], [50, 70]].forEach(([a, b], k) => el('rect', { x: x(a), y: mt, width: x(b) - x(a), height: H - mt - mb, fill: k ? 'var(--rl-soft)' : 'var(--rl-soft)', opacity: k ? 0.35 : 0.6 }, g));
+    [0, 0.25, 0.5, 0.75, 1].forEach(v => {
+      el('line', { x1: ml, x2: W - mr, y1: y(v), y2: y(v), stroke: 'var(--line)', 'stroke-width': 1 }, g);
+      el('text', { x: ml - 6, y: y(v) + 4, 'font-size': 10.5, 'text-anchor': 'end', fill: 'var(--muted)', 'font-family': 'var(--f-mono)' }, g).textContent = v.toFixed(2);
+    });
+    [10, 20, 30, 40, 50, 60, 70].forEach(m => el('text', { x: x(m), y: H - mb + 16, 'font-size': 10.5, 'text-anchor': 'middle', fill: 'var(--muted)', 'font-family': 'var(--f-mono)' }, g).textContent = m + 'M');
+    [30, 50].forEach(m => {
+      el('line', { x1: x(m), x2: x(m), y1: mt, y2: H - mb, stroke: 'var(--solver)', 'stroke-width': 2, 'stroke-dasharray': '3 3' }, g);
+      el('text', { x: x(m) + 4, y: mt + 11, 'font-size': 10, fill: 'var(--solver)' }, g).textContent = 'solver';
+    });
+    const line = (vals, color, dash, w) => {
+      const pts = vals.map((v, k) => v == null ? null : [x(10 + 10 * k), y(v)]).filter(Boolean);
+      el('polyline', { points: pts.map(p => p.join(',')).join(' '), fill: 'none', stroke: color, 'stroke-width': w, 'stroke-dasharray': dash || '', 'stroke-linejoin': 'round' }, g);
+      pts.forEach(p => el('circle', { cx: p[0], cy: p[1], r: 2.6, fill: color }, g));
+    };
+    line(ep.o1, 'var(--ctrl)', '5 4', 1.6);
+    line(ep.o3, 'var(--rl)', '', 2.4);
+    const mark = (m, vals, color) => { const v = vals[(m - 10) / 10]; el('circle', { cx: x(m), cy: y(v), r: 6.5, fill: 'none', stroke: color, 'stroke-width': 2 }, g); };
+    mark(ep.p3, ep.o3, 'var(--rl)'); mark(ep.p1, ep.o1, 'var(--ctrl)');
+  });
+})();
+</script>

@@ -1,0 +1,226 @@
+{
+ "p2": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   4,
+   23,
+   26,
+   35,
+   36
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 1.085,
+   "p90": 2.765,
+   "max": 3.39,
+   "share_gt_1cm": 0.5
+  },
+  "after_hold_diff_cm": {
+   "median": 2.37,
+   "max": 6.87,
+   "share_gt_1cm": 0.781
+  },
+  "nodr_hold_motion_cm": {
+   "median": 2.105,
+   "max": 4.88,
+   "share_gt_1cm": 0.969
+  },
+  "worst_worlds": [
+   {
+    "world": 4,
+    "frame": 256,
+    "hold_end_diff_cm": 3.39,
+    "nodr_hold_motion_cm": 4.24
+   },
+   {
+    "world": 22,
+    "frame": 50,
+    "hold_end_diff_cm": 3.05,
+    "nodr_hold_motion_cm": 2.95
+   },
+   {
+    "world": 12,
+    "frame": 195,
+    "hold_end_diff_cm": 2.95,
+    "nodr_hold_motion_cm": 4.88
+   }
+  ],
+  "ref_md5": "b4807f41fcf4b0b69eb8b27098d5bd80",
+  "objects": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "embodiment": "sharpa_hands_mid"
+ },
+ "p12": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   2,
+   12,
+   14,
+   18,
+   19
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 0.806,
+   "p90": 2.978,
+   "max": 4.41,
+   "share_gt_1cm": 0.469
+  },
+  "after_hold_diff_cm": {
+   "median": 1.912,
+   "max": 20.65,
+   "share_gt_1cm": 0.719
+  },
+  "nodr_hold_motion_cm": {
+   "median": 1.944,
+   "max": 8.45,
+   "share_gt_1cm": 0.656
+  },
+  "worst_worlds": [
+   {
+    "world": 16,
+    "frame": 40,
+    "hold_end_diff_cm": 4.41,
+    "nodr_hold_motion_cm": 4.55
+   },
+   {
+    "world": 2,
+    "frame": 79,
+    "hold_end_diff_cm": 3.93,
+    "nodr_hold_motion_cm": 2.26
+   },
+   {
+    "world": 4,
+    "frame": 135,
+    "hold_end_diff_cm": 3.39,
+    "nodr_hold_motion_cm": 3.33
+   }
+  ],
+  "ref_md5": "96ddc1ca6d19e8e5321b4ef9c89c34bb",
+  "objects": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "embodiment": "sharpa_hands_mid"
+ },
+ "p18": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   4,
+   23,
+   27,
+   36,
+   37
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 0.0,
+   "p90": 0.0,
+   "max": 1.32,
+   "share_gt_1cm": 0.031
+  },
+  "after_hold_diff_cm": {
+   "median": 0.251,
+   "max": 20.18,
+   "share_gt_1cm": 0.375
+  },
+  "nodr_hold_motion_cm": {
+   "median": 0.0,
+   "max": 1.35,
+   "share_gt_1cm": 0.031
+  },
+  "worst_worlds": [
+   {
+    "world": 28,
+    "frame": 339,
+    "hold_end_diff_cm": 1.32,
+    "nodr_hold_motion_cm": 1.35
+   },
+   {
+    "world": 14,
+    "frame": 113,
+    "hold_end_diff_cm": 0.13,
+    "nodr_hold_motion_cm": 0.07
+   },
+   {
+    "world": 8,
+    "frame": 197,
+    "hold_end_diff_cm": 0.04,
+    "nodr_hold_motion_cm": 0.0
+   }
+  ],
+  "ref_md5": "f0f14155f35c5a2970de48e1a88aa23a",
+  "objects": [
+   "mini_sweeper",
+   "mini_dust_pan"
+  ],
+  "embodiment": "sharpa_hands_mid"
+ },
+ "p24": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   3,
+   18,
+   21,
+   28,
+   29
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 1.049,
+   "p90": 3.363,
+   "max": 4.3,
+   "share_gt_1cm": 0.531
+  },
+  "after_hold_diff_cm": {
+   "median": 2.81,
+   "max": 33.81,
+   "share_gt_1cm": 0.719
+  },
+  "nodr_hold_motion_cm": {
+   "median": 1.665,
+   "max": 5.62,
+   "share_gt_1cm": 0.688
+  },
+  "worst_worlds": [
+   {
+    "world": 14,
+    "frame": 88,
+    "hold_end_diff_cm": 4.3,
+    "nodr_hold_motion_cm": 3.68
+   },
+   {
+    "world": 7,
+    "frame": 135,
+    "hold_end_diff_cm": 4.24,
+    "nodr_hold_motion_cm": 1.82
+   },
+   {
+    "world": 21,
+    "frame": 206,
+    "hold_end_diff_cm": 3.39,
+    "nodr_hold_motion_cm": 5.62
+   }
+  ],
+  "ref_md5": "699fe4266a0a965aaf4472a1bfcc8828",
+  "objects": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "embodiment": "sharpa_hands_mid"
+ }
+}

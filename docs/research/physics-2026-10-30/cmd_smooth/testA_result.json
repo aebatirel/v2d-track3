@@ -1,0 +1,92 @@
+{
+ "GL": {
+  "rows": [
+   {
+    "ep": 2,
+    "raw": 0.5505,
+    "smooth": 0.5521,
+    "delta": 0.0016,
+    "raw_copy0": null,
+    "smooth_copy0": null,
+    "raw_sd": null,
+    "smooth_sd": null
+   },
+   {
+    "ep": 12,
+    "raw": 0.5787,
+    "smooth": 0.5828,
+    "delta": 0.0041,
+    "raw_copy0": null,
+    "smooth_copy0": null,
+    "raw_sd": null,
+    "smooth_sd": null
+   },
+   {
+    "ep": 18,
+    "raw": 0.4523,
+    "smooth": 0.4667,
+    "delta": 0.0144,
+    "raw_copy0": null,
+    "smooth_copy0": null,
+    "raw_sd": null,
+    "smooth_sd": null
+   },
+   {
+    "ep": 24,
+    "raw": 0.1903,
+    "smooth": 0.1931,
+    "delta": 0.0028,
+    "raw_copy0": null,
+    "smooth_copy0": null,
+    "raw_sd": null,
+    "smooth_sd": null
+   }
+  ],
+  "verdict": "fail"
+ },
+ "SOL": {
+  "rows": [
+   {
+    "ep": 2,
+    "raw": 0.7711,
+    "smooth": 0.7601,
+    "delta": -0.011,
+    "raw_copy0": null,
+    "smooth_copy0": null,
+    "raw_sd": null,
+    "smooth_sd": null
+   },
+   {
+    "ep": 12,
+    "raw": 0.7755,
+    "smooth": 0.7481,
+    "delta": -0.0274,
+    "raw_copy0": null,
+    "smooth_copy0": null,
+    "raw_sd": null,
+    "smooth_sd": null
+   },
+   {
+    "ep": 18,
+    "raw": 0.4523,
+    "smooth": 0.4667,
+    "delta": 0.0144,
+    "raw_copy0": null,
+    "smooth_copy0": null,
+    "raw_sd": null,
+    "smooth_sd": null
+   },
+   {
+    "ep": 24,
+    "raw": 0.2203,
+    "smooth": 0.1956,
+    "delta": -0.0247,
+    "raw_copy0": null,
+    "smooth_copy0": null,
+    "raw_sd": null,
+    "smooth_sd": null
+   }
+  ],
+  "verdict": "fail"
+ }
+}

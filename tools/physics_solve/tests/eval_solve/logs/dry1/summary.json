@@ -1,0 +1,602 @@
+{
+ "run": "20261101-evsolvetest-dry",
+ "episodes": {
+  "ep37": {
+   "ep": 37,
+   "input": {
+    "mode": "table",
+    "md5": "b78747bb1d941fa56121886cc15ec225",
+    "frames": 151,
+    "objects": [
+     "wooden_spoon"
+    ],
+    "store_path": "runs/20261024-pack-31ef267/refs/glockt/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "asset_roots": [
+     "/content/refs/sf/ep37/assets"
+    ],
+    "asset_digest": "8d0a274ee7c9bb6eaaf5075915260049",
+    "n_asset_files": 2,
+    "masses": {
+     "wooden_spoon_rigid.urdf": [
+      "0.3"
+     ]
+    },
+    "stage_md5": "c630b9efce26c4de9b169294c5ad89d2",
+    "packed_policy": {
+     "run": "20261024-pack-31ef267",
+     "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep37/best/policy.safetensors",
+     "sha256": "ec709d3d50fd84ce352d59c867cbcd648c70b12b9d91e3933510dbe6652bd25e"
+    },
+    "table_lib": "library_v3",
+    "table_pieces": null
+   },
+   "input_copy": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_in.parquet",
+    "md5": "b78747bb1d941fa56121886cc15ec225",
+    "identical_to_input": true
+   },
+   "stage_copy": [
+    "runs/20261101-evsolvetest-dry/refs/evsolve/ep37/reconstructed_stage/t3_ep037_support.usda"
+   ],
+   "stage_copy_md5": [
+    "c630b9efce26c4de9b169294c5ad89d2"
+   ],
+   "jitter_in": {
+    "nominal": 0.7151,
+    "mean": 0.7635,
+    "sd": 0.0284,
+    "min": 0.7151,
+    "max": 0.8119,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "jitter_ps": {
+    "nominal": 0.7863,
+    "mean": 0.8348,
+    "sd": 0.0284,
+    "min": 0.7863,
+    "max": 0.8832,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "solve": {
+    "wall_s": 3.0,
+    "deadline_t": null,
+    "rollbacks": 0,
+    "paced_replans": 0,
+    "mean_iters": 7.0,
+    "T": 151,
+    "replans": 15,
+    "planned_replans": 15
+   },
+   "solved": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_ps.parquet",
+    "md5": "f453e34cf1fa7b44c630006805986efb",
+    "solve_json": "runs/20261101-evsolvetest-dry/refs/evsolve/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_ps_solve.json",
+    "solve_npz": "runs/20261101-evsolvetest-dry/refs/evsolve/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_ps_solve.npz",
+    "solve_log": "runs/20261101-evsolvetest-dry/refs/evsolve/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_ps_solve.log",
+    "changed_columns": [
+     "robot_right_wrist_position"
+    ],
+    "only_target_columns_changed": true,
+    "frames_edited": 10
+   },
+   "zero_in": {
+    "floor_vs_ref": 0.743,
+    "zero_action": 1.0
+   },
+   "rest_check_in": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "wooden_spoon": {
+      "until_frame": 19,
+      "max_mm": 6.0,
+      "max_deg": 3.9,
+      "worst_frame": 12,
+      "ok": false
+     }
+    }
+   },
+   "zero_ps": {
+    "floor_vs_ref": 0.743,
+    "zero_action": 1.0,
+    "truth": 1.0
+   },
+   "rest_check_ps": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "wooden_spoon": {
+      "until_frame": 19,
+      "max_mm": 6.0,
+      "max_deg": 3.9,
+      "worst_frame": 12,
+      "ok": false
+     }
+    }
+   },
+   "result_files": {
+    "zero_score_in.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep37/zero_score_in.txt",
+    "rest_check_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep37/rest_check_in.json",
+    "zero_score_ps.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep37/zero_score_ps.txt",
+    "rest_check_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep37/rest_check_ps.json",
+    "jitter_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep37/jitter_in.json",
+    "jitter_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep37/jitter_ps.json"
+   },
+   "delta_jittered": 0.0713,
+   "status": "solved"
+  },
+  "ep10": {
+   "ep": 10,
+   "input": {
+    "mode": "table",
+    "md5": "1a5003d94852c275519066645a1b9869",
+    "frames": 161,
+    "objects": [
+     "blue_cup",
+     "beige_cup"
+    ],
+    "store_path": "runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "asset_roots": [
+     "/content/assets"
+    ],
+    "asset_digest": "f2876da408be8348ad0d857ac401aabb",
+    "n_asset_files": 106,
+    "masses": {
+     "blue_cup_rigid.urdf": [
+      "0.3"
+     ],
+     "beige_cup_rigid.urdf": [
+      "0.3"
+     ]
+    },
+    "stage_md5": "cd611b11f86a313620e750e438f7c34d",
+    "packed_policy": {
+     "run": "20261026-gl10A2-5e0e100",
+     "checkpoint": "runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/best/policy.safetensors",
+     "sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9"
+    },
+    "table_lib": "library_v3",
+    "table_pieces": "meshes/carve/ev10"
+   },
+   "input_copy": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_in.parquet",
+    "md5": "1a5003d94852c275519066645a1b9869",
+    "identical_to_input": true
+   },
+   "stage_copy": [
+    "runs/20261101-evsolvetest-dry/refs/evsolve/ep10/reconstructed_stage/t3_ep010_support.usda"
+   ],
+   "stage_copy_md5": [
+    "cd611b11f86a313620e750e438f7c34d"
+   ],
+   "jitter_in": {
+    "nominal": 0.5308,
+    "mean": 0.5793,
+    "sd": 0.0284,
+    "min": 0.5308,
+    "max": 0.6277,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "jitter_ps": {
+    "nominal": 0.6279,
+    "mean": 0.6764,
+    "sd": 0.0284,
+    "min": 0.6279,
+    "max": 0.7248,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "solve": {
+    "wall_s": 3.0,
+    "deadline_t": null,
+    "rollbacks": 0,
+    "paced_replans": 0,
+    "mean_iters": 7.0,
+    "T": 161,
+    "replans": 16,
+    "planned_replans": 16
+   },
+   "solved": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_ps.parquet",
+    "md5": "6d2d3db741ce4f22c6268a7de028300c",
+    "solve_json": "runs/20261101-evsolvetest-dry/refs/evsolve/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_ps_solve.json",
+    "solve_npz": "runs/20261101-evsolvetest-dry/refs/evsolve/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_ps_solve.npz",
+    "solve_log": "runs/20261101-evsolvetest-dry/refs/evsolve/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_ps_solve.log",
+    "changed_columns": [
+     "robot_right_wrist_position"
+    ],
+    "only_target_columns_changed": true,
+    "frames_edited": 10
+   },
+   "zero_in": {
+    "floor_vs_ref": 0.4482,
+    "zero_action": 1.0
+   },
+   "rest_check_in": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "blue_cup": {
+      "until_frame": 27,
+      "max_mm": 1.9,
+      "max_deg": 6.1,
+      "worst_frame": 3,
+      "ok": false
+     },
+     "beige_cup": {
+      "until_frame": 23,
+      "max_mm": 3.4,
+      "max_deg": 11.9,
+      "worst_frame": 17,
+      "ok": false
+     }
+    }
+   },
+   "zero_ps": {
+    "floor_vs_ref": 0.4482,
+    "zero_action": 1.0,
+    "truth": 1.0
+   },
+   "rest_check_ps": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "blue_cup": {
+      "until_frame": 27,
+      "max_mm": 1.9,
+      "max_deg": 6.1,
+      "worst_frame": 3,
+      "ok": false
+     },
+     "beige_cup": {
+      "until_frame": 23,
+      "max_mm": 3.4,
+      "max_deg": 11.9,
+      "worst_frame": 17,
+      "ok": false
+     }
+    }
+   },
+   "result_files": {
+    "zero_score_in.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep10/zero_score_in.txt",
+    "rest_check_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep10/rest_check_in.json",
+    "zero_score_ps.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep10/zero_score_ps.txt",
+    "rest_check_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep10/rest_check_ps.json",
+    "jitter_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep10/jitter_in.json",
+    "jitter_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep10/jitter_ps.json"
+   },
+   "delta_jittered": 0.0971,
+   "status": "solved"
+  },
+  "ep8": {
+   "ep": 8,
+   "input": {
+    "mode": "table",
+    "md5": "9424b5a1a3f7257566c856a6cc34f745",
+    "frames": 219,
+    "objects": [
+     "beige_cup",
+     "white_pot"
+    ],
+    "store_path": "runs/20261025-evb0810-ee7ba8e/refs/glockt/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "asset_roots": [
+     "/content/refs/sf/ep8/assets"
+    ],
+    "asset_digest": "b5c0d9227a110c893f1afab998e28927",
+    "n_asset_files": 20,
+    "masses": {
+     "beige_cup_rigid.urdf": [
+      "0.3"
+     ],
+     "white_pot_rigid.urdf": [
+      "0.3"
+     ]
+    },
+    "stage_md5": "d9b4e178d49256b0bf66c7f70fd7560e",
+    "packed_policy": {
+     "run": "20261025-evb0810-ee7ba8e",
+     "checkpoint": "runs/20261025-evb0810-ee7ba8e/results/final_eval/ep8/policy.safetensors",
+     "sha256": "cb6277bfc3b7f37d499ed7af262ebe1407f434dd0f778ef29d235cb59b5fa500"
+    },
+    "table_lib": "library_v3x",
+    "table_pieces": null
+   },
+   "input_copy": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_in.parquet",
+    "md5": "9424b5a1a3f7257566c856a6cc34f745",
+    "identical_to_input": true
+   },
+   "stage_copy": [
+    "runs/20261101-evsolvetest-dry/refs/evsolve/ep8/reconstructed_stage/t3_ep008_support.usda"
+   ],
+   "stage_copy_md5": [
+    "d9b4e178d49256b0bf66c7f70fd7560e"
+   ],
+   "jitter_in": {
+    "nominal": 0.6736,
+    "mean": 0.722,
+    "sd": 0.0284,
+    "min": 0.6736,
+    "max": 0.7705,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "jitter_ps": {
+    "nominal": 0.5504,
+    "mean": 0.5988,
+    "sd": 0.0284,
+    "min": 0.5504,
+    "max": 0.6472,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "solve": {
+    "wall_s": 3.0,
+    "deadline_t": null,
+    "rollbacks": 0,
+    "paced_replans": 0,
+    "mean_iters": 7.0,
+    "T": 219,
+    "replans": 22,
+    "planned_replans": 22
+   },
+   "solved": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_ps.parquet",
+    "md5": "2af8c02ecb03a62901d77451c74eb7c7",
+    "solve_json": "runs/20261101-evsolvetest-dry/refs/evsolve/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_ps_solve.json",
+    "solve_npz": "runs/20261101-evsolvetest-dry/refs/evsolve/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_ps_solve.npz",
+    "solve_log": "runs/20261101-evsolvetest-dry/refs/evsolve/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_ps_solve.log",
+    "changed_columns": [
+     "robot_right_wrist_position"
+    ],
+    "only_target_columns_changed": true,
+    "frames_edited": 10
+   },
+   "zero_in": {
+    "floor_vs_ref": 0.5811,
+    "zero_action": 1.0
+   },
+   "rest_check_in": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "beige_cup": {
+      "until_frame": 33,
+      "max_mm": 4.2,
+      "max_deg": 14.9,
+      "worst_frame": 5,
+      "ok": false
+     },
+     "white_pot": {
+      "until_frame": 83,
+      "max_mm": 4.9,
+      "max_deg": 1.2,
+      "worst_frame": 81,
+      "ok": true
+     }
+    }
+   },
+   "zero_ps": {
+    "floor_vs_ref": 0.5811,
+    "zero_action": 1.0,
+    "truth": 1.0
+   },
+   "rest_check_ps": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "beige_cup": {
+      "until_frame": 33,
+      "max_mm": 4.2,
+      "max_deg": 14.9,
+      "worst_frame": 5,
+      "ok": false
+     },
+     "white_pot": {
+      "until_frame": 83,
+      "max_mm": 4.9,
+      "max_deg": 1.2,
+      "worst_frame": 81,
+      "ok": true
+     }
+    }
+   },
+   "result_files": {
+    "zero_score_in.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep8/zero_score_in.txt",
+    "rest_check_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep8/rest_check_in.json",
+    "zero_score_ps.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep8/zero_score_ps.txt",
+    "rest_check_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep8/rest_check_ps.json",
+    "jitter_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep8/jitter_in.json",
+    "jitter_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep8/jitter_ps.json"
+   },
+   "delta_jittered": -0.1232,
+   "status": "solved"
+  },
+  "ep35": {
+   "ep": 35,
+   "input": {
+    "mode": "table",
+    "md5": "bc064b462f0e9791ec77f22dbb5a2344",
+    "frames": 421,
+    "objects": [
+     "wooden_spoon"
+    ],
+    "store_path": "runs/20261024-pack-31ef267/refs/glockt/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "asset_roots": [
+     "/content/refs/sf/ep35/assets"
+    ],
+    "asset_digest": "a44140aaa36d68a792ed93066a07fd52",
+    "n_asset_files": 2,
+    "masses": {
+     "wooden_spoon_rigid.urdf": [
+      "0.3"
+     ]
+    },
+    "stage_md5": "db99031c9502336cc94aef174fdc5651",
+    "packed_policy": {
+     "run": "20261024-pack-31ef267",
+     "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep35/best/policy.safetensors",
+     "sha256": "e0515c33783b740c7e6b94b066d4199710752c2d2e6d1f192ae05c6175720061"
+    },
+    "table_lib": "library_v3",
+    "table_pieces": null
+   },
+   "input_copy": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_in.parquet",
+    "md5": "bc064b462f0e9791ec77f22dbb5a2344",
+    "identical_to_input": true
+   },
+   "stage_copy": [
+    "runs/20261101-evsolvetest-dry/refs/evsolve/ep35/reconstructed_stage/t3_ep035_support.usda"
+   ],
+   "stage_copy_md5": [
+    "db99031c9502336cc94aef174fdc5651"
+   ],
+   "jitter_in": {
+    "nominal": 0.7203,
+    "mean": 0.7688,
+    "sd": 0.0284,
+    "min": 0.7203,
+    "max": 0.8172,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "jitter_ps": {
+    "nominal": 0.6559,
+    "mean": 0.7044,
+    "sd": 0.0284,
+    "min": 0.6559,
+    "max": 0.7528,
+    "k": 64,
+    "seed": 0,
+    "sig_pos": 0.0005,
+    "sig_fin": 0.005,
+    "device": "cuda",
+    "wall_s": 0.1
+   },
+   "solve": {
+    "wall_s": 3.0,
+    "deadline_t": null,
+    "rollbacks": 0,
+    "paced_replans": 0,
+    "mean_iters": 7.0,
+    "T": 421,
+    "replans": 42,
+    "planned_replans": 42
+   },
+   "solved": {
+    "store_path": "runs/20261101-evsolvetest-dry/refs/evsolve/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_ps.parquet",
+    "md5": "851317def1a2683b4dfd8d6ea5fdedeb",
+    "solve_json": "runs/20261101-evsolvetest-dry/refs/evsolve/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_ps_solve.json",
+    "solve_npz": "runs/20261101-evsolvetest-dry/refs/evsolve/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_ps_solve.npz",
+    "solve_log": "runs/20261101-evsolvetest-dry/refs/evsolve/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_ps_solve.log",
+    "changed_columns": [
+     "robot_right_wrist_position"
+    ],
+    "only_target_columns_changed": true,
+    "frames_edited": 10
+   },
+   "zero_in": {
+    "floor_vs_ref": 0.1134,
+    "zero_action": 1.0
+   },
+   "rest_check_in": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "wooden_spoon": {
+      "until_frame": 14,
+      "max_mm": 2.6,
+      "max_deg": 6.7,
+      "worst_frame": 4,
+      "ok": false
+     }
+    }
+   },
+   "zero_ps": {
+    "floor_vs_ref": 0.1134,
+    "zero_action": 1.0,
+    "truth": 1.0
+   },
+   "rest_check_ps": {
+    "all_ok": false,
+    "mm": 5.0,
+    "deg": 2.0,
+    "objects": {
+     "wooden_spoon": {
+      "until_frame": 14,
+      "max_mm": 2.6,
+      "max_deg": 6.7,
+      "worst_frame": 4,
+      "ok": false
+     }
+    }
+   },
+   "result_files": {
+    "zero_score_in.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep35/zero_score_in.txt",
+    "rest_check_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep35/rest_check_in.json",
+    "zero_score_ps.txt": "runs/20261101-evsolvetest-dry/results/eval_solve/ep35/zero_score_ps.txt",
+    "rest_check_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep35/rest_check_ps.json",
+    "jitter_in.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep35/jitter_in.json",
+    "jitter_ps.json": "runs/20261101-evsolvetest-dry/results/eval_solve/ep35/jitter_ps.json"
+   },
+   "delta_jittered": -0.0644,
+   "status": "solved"
+  }
+ },
+ "solved": [
+  37,
+  10,
+  8,
+  35
+ ],
+ "failed": {},
+ "delta_jittered": {
+  "n": 4,
+  "mean": -0.0048,
+  "min": -0.1232,
+  "negative": [
+   "ep8",
+   "ep35"
+  ]
+ },
+ "note": "GT-free: jittered zero-action sim_vs_ref vs OUR reference (64 copies, 0.5 mm / 0.005 rad target noise, seed 0, common random numbers), input vs solved, as G2. No verdict here: pack 10's per-episode rule decides. robot_<side>_frames (the RL hand-tracking target) and the object reference are unchanged; the solved reference names the same asset files as the input (object_urdf_paths unchanged)."
+}

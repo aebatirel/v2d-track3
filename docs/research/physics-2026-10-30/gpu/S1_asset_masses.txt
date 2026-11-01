@@ -1,0 +1,20 @@
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): shell model, plastic (PP) 900 kg/m3, wall 2.0 mm; mass 0.1367 kg, COM and inertia of that model. -->
+      <mass value="0.1367"/>
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): shell model, plastic (PP) 900 kg/m3, wall 2.0 mm; mass 0.1280 kg, COM and inertia of that model. -->
+      <mass value="0.128"/>
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): shell model, plastic (PP) 900 kg/m3, wall 2.0 mm, both faces scanned; mass 0.0442 kg, COM and inertia of that model. -->
+      <mass value="0.0442"/>
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): prior model, small brush, wood/plastic block + bristles; stated prior 45 g; mass 0.0450 kg, COM and inertia of that model. -->
+      <mass value="0.045"/>
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): shell model, plastic (PP) 900 kg/m3, wall 2.5 mm, both faces scanned; mass 0.3865 kg, COM and inertia of that model. -->
+      <mass value="0.3865"/>
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): shell model, plastic (PP) 900 kg/m3, wall 2.5 mm, empty; mass 0.5031 kg, COM and inertia of that model. -->
+      <mass value="0.5031"/>
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): shell model, plastic (PP) 900 kg/m3, wall 2.5 mm, both faces scanned; mass 0.0882 kg, COM and inertia of that model. -->
+      <mass value="0.0882"/>
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): shell model, plastic (PP) 900 kg/m3, wall 2.5 mm; mass 0.2771 kg, COM and inertia of that model. -->
+      <mass value="0.2771"/>
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): shell model, pine/plywood 550 kg/m3, plate 8.5 mm, both faces scanned; mass 0.1389 kg, COM and inertia of that model. -->
+      <mass value="0.1389"/>
+  <!-- Plausible physics (pipeline/object_physics.py, /content/v2d-track3/docs/research/physics-2026-10-30/props_public_scans.json): shell model, pine/plywood 550 kg/m3, plate 8.5 mm, both faces scanned; mass 0.1409 kg, COM and inertia of that model. -->
+      <mass value="0.1409"/>

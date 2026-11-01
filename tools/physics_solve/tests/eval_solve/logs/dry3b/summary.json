@@ -1,0 +1,20 @@
+{
+ "run": "20261101-evsolvetest-dry",
+ "episodes": {
+  "ep10": {
+   "ep": 10,
+   "status": "input refused: reference md5 1a5003d94852c275519066645a1b9869 != expected 00000000000000000000000000000000"
+  }
+ },
+ "solved": [],
+ "failed": {
+  "10": "input refused: reference md5 1a5003d94852c275519066645a1b9869 != expected 00000000000000000000000000000000"
+ },
+ "delta_jittered": {
+  "n": 0,
+  "mean": null,
+  "min": null,
+  "negative": []
+ },
+ "note": "GT-free: jittered zero-action sim_vs_ref vs OUR reference (64 copies, 0.5 mm / 0.005 rad target noise, seed 0, common random numbers), input vs solved, as G2. No verdict here: pack 10's per-episode rule decides. robot_<side>_frames (the RL hand-tracking target) and the object reference are unchanged; the solved reference names the same asset files as the input (object_urdf_paths unchanged)."
+}

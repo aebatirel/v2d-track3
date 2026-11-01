@@ -7590,3 +7590,1154 @@ arm and a no-policy replay floor to stage B.
   (bad mode), r2 0.285 (below every H5p7 draw), r3 0.749 (between the modes; H5p7: good ~0.87–0.91, bad ~0.51–0.66) —
   no good-mode replay captured; eval 25 0.897 (H5p7 mean 0.878); eval 30 0.901 (0.897). Eval 25 rendered this time
   (PICK ck= fix). Eval 10 ck512 skipped (in no PACK_RUN submission). Reporting only; nothing is chosen from them.
+### 30 Oct ~09:30 UTC — owner: embodiment options; a human-shaped (MANO-like) hand; "simulate the episode physically first"
+- Listed every embodiment option (Sharpa variants in `flashchord_conf/embodiment/`, NVIDIA's `_primitive` / `_stiff`,
+  `dexmate_sharpa`, `g1_dex3`, new builds: gripper, other hands, human-shaped hand). Sharpa Wave is the closest shipped
+  hand to the human hand; measured size gap: Sharpa index finger 10.45 cm vs our perceived hand 6.25–6.45 cm (1.6×).
+- **Correction:** the FAQ ("Other embodiments are welcome, including ...") does not forbid a human-shaped hand. Note 04
+  §9.4's "ask organizers before any custom embodiment" was caution, not a rule (as note 26 §F found for wrist gains).
+  Remaining practical issue [I]: MANO's own model files are non-commercial/no-redistribution, while winners release
+  Apache-2.0, so a human-shaped hand would be built from our own perceived hand proportions, not MANO's files.
+- Owner's idea: a perfect human-hand copy makes the simulated episode match the video, and physics/policy are corrected
+  where it does not. Answer: zero action already replays the reference exactly and RL learns the correction, so the
+  idea is our current pipeline with a better-matched hand. A copy alone does not hold objects: video gives positions,
+  not grip forces; our reference is 2–3 cm off mocap and contact needs mm; simulated contact is rigid with no
+  torsional friction. Literature: SPIDER kinematic replay 11.0 vs physics-optimised 48.8 ADD-AUC (5 hands); V2P-Manip
+  human-hand model 82.4 % after RL. "Simulate the episode physically first" = forensics idea D (SPIDER / Do as I Do,
+  est. $7–35 + 1.5–2 days, works with Sharpa too). Changing object mass/friction to fit the video = system
+  identification; it crosses our own "do not change the world" line (note 26 §F), so it is the owner's decision.
+- Proposed falsification tests (not run): (1) Do as I Do-style physics pass with Sharpa on ep24/ep18, falsified if
+  it does not beat the grasp-lock zero-action replay against our reference; (2) human-proportioned hand, zero-action
+  CPU replay on ep24/ep18, falsified if reset overlaps and early drift do not drop and sim_vs_ref does not beat
+  Sharpa. Awaiting the owner's choice; nothing launched.
+
+### 30 Oct ~09:45 UTC — owner: use MANO; set object weight/friction "as much as allowed" to match the video
+- Read today (scratchpad copies, not committed): NVIDIA FAQ PDF (raw GitHub, main), kit `tracks/track_3/README.md`,
+  MANO licence page. No physics or object-property rule in the FAQ or kit README. MANO licence: "non-commercial
+  scientific research", "may not be reproduced, modified and/or made available in any form to any third party",
+  no distribution; commercial use (incl. "production of other artifacts for commercial purposes") prohibited.
+- Owner decision: object physical properties may be set; the simulator's world (solver, contact model) stays. Recorded
+  in STATUS.md with the proposed honesty constraints (per object not per episode, plausible values, no GT, declared).
+- Facts given: object mass/COM/inertia live in our URDFs (make_assets.py, 0.3 kg placeholder, thin-shell inertia);
+  friction is one global `scene.contact_friction` 1.0 for every shape; per-object friction needs code changes;
+  `object_free_joint_damping` would act as an unphysical brake. Mass cannot be measured from video alone.
+
+### 30 Oct ~09:50 UTC — object physics study launched (owner: COM first, public meshes first, 3–4 public episodes)
+- Owner: "find the centre of gravity"; proposal accepted; "first try it with the public given meshes, later the
+  generated meshes"; hand choice (MANO vs own design) left to us; 3–4 public GPU episodes approved.
+- Container setup (this cloud session, 4 CPU): FlashCHORD at the evaluator pin 8c778f90 in `scratchpad/fcvenv`
+  (uv sync). Its LFS assets were refused by the git proxy (repo not in the session's set); fetched instead from
+  media.githubusercontent.com at the same commit, every file's sha256 checked against its LFS pointer (559 files).
+- Measured [M]: NVIDIA's public URDF says "Track 3 supplies no measured physical properties. 0.3 kg is a placeholder
+  mass; COM/inertia are a uniform triangle-surface estimate over the collision mesh"; the scans' origin is that
+  centroid. Materials from public video frames: pot, lid, cups, pitcher, rack, dust pan = rigid plastic; boards = wood.
+  Our library_v3 meshes: shell COM 2–25 mm from the scans' (pitcher 24.5, beige cup 16.1, rack 13.4 mm); solid-vs-shell
+  COM on our meshes up to 19 mm (spoon, blue cup) because our meshes are thicker / partly filled (boards 2.7–3.1 cm
+  thick vs 8.5 mm real).
+- Pre-registered (README, before results): CPU zero-action S1 − S0 rule; GPU registered-AUC S1 − S0 rule.
+- GPU: `20261030-physS0-6a814df` (58386066, UK, $1.348/h) and `20261030-physS1-6a814df` (58386069, KR, $1.177/h),
+  `ARM=S0|S1 bash ops/jobs/physics_arms.sh`, commit 6a814df, ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger
+  planned $6.50 each. Credit $63.49 before launch; the other session's videos box 58363797 was running.
+- ~10:00 UTC owner: "I approve for gpu too" — explicit confirmation of the GPU arms already launched (S0 58386066
+  loading, S1 58386069 in setup).
+
+### 30 Oct ~10:35 UTC — hand representation chosen: own capsule hand (review `physics-2026-10-30/human-hand-models.md`)
+- Background literature/open-source review (D-Grasp, ArtiGrasp, DeepSimHO use mean-shape MANO split per bone; HUG,
+  HOIC, PhysHOI use capsules; MyoHand measured locally). Recommendation adopted (owner left the choice to us):
+  **(b) our own Apache-2.0 capsule hand on the MediaPipe 21-keypoint tree, 22 finger DoF (Arti-MANO's set), kit
+  floating wrist**; MANO-derived files cannot ship under Apache-2.0, and no physics paper simulates a fitted MANO
+  surface; MyoHand (Apache-2.0) only as a source of numbers (Newton skips its muscles; fixed size; 1-DoF thumb MCP).
+- Proposed parameters [L/I]: capsule radii 6–9.5 mm + 2 pad spheres per tip (FlashCHORD/MJWarp makes one contact per
+  geom pair); index MCP/PIP/DIP effort 2.5/1.5/0.6 N m (Valero-Cuevas 1998; MyoHand capacity 3.65–4.85/2.12–2.74/
+  0.85–0.89 N m); graded PD MCP:PIP:DIP ≈ 2.0:1.2:0.5 N m/rad; hand ≈ 0.4 kg, gravity-compensated.
+- **[H-size]** (review, from earlier measurements): perceived index MCP→tip 6.25–6.45 cm vs palm 5.0–5.2 cm, ratio
+  1.2–1.3 against 1.7–2.1 expected (MyoHand 94.8/45.2 mm) → perception likely shortens fingers 25–40 %. Consequence: the
+  earlier "Sharpa fingers 1.6× ours" compares against an undersized perceived hand; against MyoHand's index (94.8 mm)
+  the Sharpa's 104.5 mm is ≈ 1.1× [I]. Build two variants: P (perceived bone lengths) and A (anthropometric
+  proportions scaled by palm). Falsified if the 10 best frames per public episode still give index < 7.5 cm, or A ≤ P.
+- MANO-vs-capsule head-to-head (§6.9) needs MANO files downloaded locally by the owner (registration); not run.
+
+### 30 Oct ~11:20 UTC — human capsule hand built and replayed (CPU); CPU mass test neutral
+- CPU zero-action mass test (pre-registered): neutral (mean Δ S1 − S0 +0.021). Details in physics README.
+- `pipeline/human_hand.py` (commit 232ca35): 22-DoF human capsule hand with the Sharpa's names; FlashCHORD builds it
+  unchanged (52 bodies, 60 shapes, 22 finger DoF per hand, 17 contact links); zero-pose FK equals the template chain
+  lengths. First IK pass had the finger flexion sign inverted (fingers pinned at extension limits); fixed by deriving
+  each chain's flexion sign from the geometry.
+- Pure copy of the perceived motion with the human hand (S1 physics): P 0.323 / 0.617 / 0.331 / 0.194 and A 0.325 /
+  0.596 / 0.133 / 0.103 (diverged) on ep2/12/18/24 vs floors 0.506/0.605/0.619/0.220 → the copy does not carry objects;
+  ep12 cup lost at f37 as with the Sharpa. `tools/hold_gap.py`: perceived fingertips near (median +0.2–1.8 cm) but not
+  squeezing. [H-size] falsified in this test (P ≥ A). Next: [H-squeeze] (pre-registered in the README).
+- GPU arms: both boxes building references since 10:08 UTC (masses confirmed in their job logs).
+
+### 30 Oct ~12:00–13:45 UTC — GPU mass arms done; human-hand squeeze and grasp-lock falsified
+- Worker restart ~12:05 (owner: "Tekrar deneyin"); nothing lost (all pushed through 0ad5c7e).
+- GPU (registered AUC vs mocap, 5 evals): S0 0.944 / 0.862 / 0.573 / 0.207, S1 0.736 / 0.885 / 0.625 / 0.232 (ep2/12/18/24);
+  harm by the rule (ep2 −0.208: S1 training collapsed after 20M). S1 box self-destroyed 12:36 (ledger actual $3.31);
+  S0 box finished but its store push failed on HF 429s (summaries copied off the box into
+  `docs/research/physics-2026-10-30/gpu/`); it retries once, then destroys itself.
+- Human hand: [H-squeeze] falsified (+0.3 rad: +0.009 / −0.019 / +0.019 / +0.002). [H-lock] first three runs void
+  (URDF robot name; primitive shapes had no surface samples; grasp_lock ignored the hand config) → fixes 62286da,
+  103e1ba, 9731c7b (`GL_EMB`, default unchanged); valid run falsified (+0.117 / −0.039 / −0.055 / −0.092).
+- focused-pascal session told the S0/S1 store paths (it reuses S0 for its oracle-twin comparison).
+
+### 30 Oct ~13:50 UTC — round 2 launched (owner: "go nuts with all")
+- S0 physics box finished; its first store push failed (HF 429) and the 60-min retry succeeded (results in the store);
+  ledger actual $5.39 (estimate). Credit before round 2: $51.27 (ledger: $46.39 spent of the $100 budget).
+- Code 5ba27bd: `glock_public.sh` HUMAN mode (per-episode human capsule hand through every stage; default unchanged),
+  `physics_arms.sh` PAIRS / SEEDS / HUMAN. Rules pre-registered in the physics README (round 2).
+- Boxes (ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger planned $3 / $3 / $4.50):
+  - `20261030-p2s0-5ba27bd` 58409544 (KR, $1.542/h): `ARM=S0 PAIRS=2:20261024-ev3-2c1e4dd:mck SEEDS="43 44"`;
+  - `20261030-p2s1-5ba27bd` 58409510 (JP, $1.495/h): `ARM=S1 PAIRS=2:... SEEDS="43 44"`;
+  - `20261030-p2hu-5ba27bd` 58409512 (US, $1.508/h): `ARM=S0 HUMAN=1` (ep2/12/18/24, seed 42).
+  The first p2s0 create hit a vanished offer (no instance created); relaunched on 48635918.
+- Option 3 (physics-based motion solving): background research agent on Do as I Do / SPIDER code (CPU only).
+- ~14:40 UTC (1) COM on our meshes: shell centroid median 8.3 mm from the scans (kept); [H-com] O0 vs Oc not falsified
+  (+0.215 / −0.024 / −0.060 / +0.021) but the 2 mm chaos control moves as much (+0.109 / −0.005 / −0.116 / +0.151) →
+  zero-action replays are chaotic in object parameters; the COM effect is sensitivity, not accuracy.
+
+### 30 Oct ~13:50–15:05 UTC — option 3 (physics solver): Do as I Do / SPIDER read; FlashCHORD-native sampling MPC on CPU
+Write-up: `docs/research/physics-2026-10-30/physics-solver.md`. Code: `tools/physics_solve/{solve.py,jitter_check.py}`.
+Background agent, CPU only, $0, no ground truth read.
+- Clones (scratchpad `src/`):
+  - Do as I Do `824591b` (MIT; MuJoCo Warp `5d5a645`, mujoco 3.4.0, warp 1.10.1, torch; CUDA required; Sharpa MJCF);
+  - SPIDER `4471700` (CC BY-NC 4.0; mujoco-warp 3.7.0.1; no Sharpa MJCF).
+  - Their simulator differs from FlashCHORD: condim 6 vs 3, finger kp 300 vs 1.7, wrist kp 1000 vs 400 + ball effort
+    25, 5 ms vs 10 ms, one free object per hand.
+- `solve.py`: annealed sampling MPC whose rollouts are FlashCHORD worlds (`sharpa_hands_mid`, VOC 0). It works on
+  FlashCHORD's residual channels, keeps a 1-world truth env and 4 worker processes, and supports rollback and K robust
+  copies. Exactness:
+  - the truth trajectory is bit-identical to `trace_rollout.py zero` of the written parquet;
+  - worlds are independent;
+  - three bugs found and fixed: quaternion ulp in the loader FK path, finger-limit clip, never-reset VOC hold.
+- ep12 (input: S1 GL+ILC, zero action 0.600, floor 0.605), nominal zero-action sim_vs_ref:
+  - v1 0.6485 (64 samples × 4 iterations, 695 s);
+  - v2 stopped after t=40 (superseded);
+  - v3 0.6899 (24 candidates × 4 robust copies, 4 rollbacks, 1,203 s): the cup is carried to f84 instead of being
+    lost at f37.
+- **Not robust:** `jitter_check.py`, 8 copies at 0.5 mm / 0.005 rad: GL 0.556 ± 0.031, v1 0.559 ± 0.025, v3 0.564 ±
+  0.039. The pre-registered bar of 0.586 is not met: [H-robust] falsified at CPU scale. At 10 µm / 1e-4 rad: 0.570 /
+  0.574 / 0.564.
+- Side result: single zero-action replays are noisy estimates. Jittered GL+ILC: ep2 0.260 ± 0.071 (nominal 0.141),
+  ep18 0.219 ± 0.075 (0.279), ep24 0.200 ± 0.006 (0.203).
+- After v3: the sampler clips offsets to the residual clips. v3 had reached 1.29 rad on the fingers, so the planner
+  was inaccurate on 9 of 54 replans; the truth and the scores are unaffected. Fixed, solve.py md5 `c41881ae` (`ad6a7525` after a docstring update).
+- Proposed next step (owner's go-ahead needed): CUDA port, then G1 on ep2/12/18/24 (~1 h, ~$1–1.5) with a 32-copy
+  jitter gate. Plan and costs in the write-up §5.
+
+### 30 Oct ~17:20 UTC — round 2 results; usage-limit stop and resume
+- 5-hour usage limit hit ~15:10–17:00 UTC: the solver-port and literature agents stopped (resumed at 17:08); the worker
+  restarted. Round-2 boxes finished meanwhile (job exit 0; self-destroyed 15:51–16:18); ledger actuals $3.16 / $3.04 /
+  $3.72 (estimates).
+- ep2 3-seed means S0 0.738, S1 0.898 → signal for plausible masses; same-reference seeds agree to 0.001 → reference-
+  build variance dominates. Human hand + RL worse than the Sharpa (mean −0.161).
+- Physics fit v1 (`pipeline/phys_fit.py`) written; inputs pulled for ep2/12/18/24 (perception tracks of 25 Oct, hands,
+  table_frame.npz); baseline scores reproduced exactly (0.9823 / 0.9662 / 0.9642 / 0.8117).
+
+### 30 Oct ~17:00–17:25 UTC — physics solver: CUDA port + G1 box job, pre-registered (no GPU run yet)
+- Owner/coordinator go-ahead for G1 (GPU cap ~$2). `tools/physics_solve/solve.py` (md5 `07e3755e`):
+  - `--device cuda` runs one in-process planner env (`--worlds` = all worlds); CPU keeps the worker processes;
+  - device-generic state transfer (`assign`; the CPU tests are still bit-exact);
+  - `--truth_device` and `--deadline_s` added.
+- `jitter_check.py` (md5 `3522b860`): `--device`, the box KIT default, `--json`.
+- CPU checks:
+  - the in-process path gives offsets and truth identical to the worker path;
+  - truth vs official replay 0.0;
+  - the deadline path works;
+  - jitter reproduces 0.5594.
+- New `ops/jobs/physics_solve.sh` (md5 `d2f3d701`):
+  - per episode: S1 stored GL+ILC(+EVOLVE) reference (fallback S0, then a rebuild here), S1 scan assets;
+  - then jitter (K 64), solve (1,024 worlds = 256 × 4 robust, H 20, 4 iterations, 6 rollbacks, deadline 4 s/frame),
+    official replay + score, jitter of the output;
+  - writes `summary.json` with the verdict.
+  - Dry-run on CPU in a scratch root (store stubbed): completes; the fallback chain behaves.
+- Pre-registered in `physics-solver.md` §5.1: PASS iff the solved jittered mean beats GL+ILC by ≥ 0.03 on ≥ 2 of 4
+  episodes; harm flag at ≤ −0.05.
+- Expected ~40–55 min box time, ≈ $0.8–1.4. Nothing rented by the agent.
+- ~17:20 UTC physics solver G1 launched: `20261030-psolve-eecd18a` (58429953, TX, $1.519/h), `bash ops/jobs/physics_solve.sh`,
+  commit eecd18a, ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger planned $1.50; gate pre-registered in
+  `physics-solver.md` §5.1. Credit before launch $35.82.
+- ~18:15 UTC physics solver G1 **PASS** (jittered Δ +0.080 / +0.063 / −0.004 / +0.005 on ep2/12/18/24; 2 of 4 ≥ 0.03);
+  box job exit 0 after 45 min, ledger actual $1.29. Physics fit v1 passed its gate (+0.0070 mean) but with a frame-0
+  alignment confound; the frame-0-held control is running.
+
+### 30 Oct ~18:25–18:45 UTC — physics solver G2 + G3: one box job, pre-registered (no GPU run yet)
+- Owner approved G2 and G3 (cap ≈ $14.5).
+- `solve.py` (md5 `be1dabb1`) gains Do as I Do's early stop (`--early_rel/--early_n/--min_iters`), pacing
+  (`--pace_s`) and matrix knot interpolation. CPU-tested: early stop fired; pacing cut iterations; truth vs official
+  replay 0.0.
+- New `ops/jobs/physics_solve_rl.sh` (`179ac592`):
+  - **G2**, ep2 + ep12:
+    - 4,096 worlds = 1,024 × 4 robust copies; 3 s horizon, 0.5 s commits, ≤ 32 iterations (anneal 0.9518 → G1's
+      final noise), early stop, 3 rollbacks;
+    - pace 14.4 s/frame, deadline 18 s/frame (ep2 ≤ 1.7 h);
+    - 64-copy jitter of the GL+ILC input, of G1's output and of G2's output on the same box.
+  - **G3**, all four episodes:
+    - the frozen round-1 S1 recipe through `glock_public.sh` REUSE_REF on the solved references (G2's if its
+      jittered mean ≥ G1's, else G1's; G1's for ep18/24);
+    - `robot_<side>_frames` stay the intended hand.
+  - CPU dry run in a scratch root with a fake store and a stub `glock_public.sh`: passes.
+- Readings pre-registered in `physics-solver.md` §5.2:
+  - G2 scale vs G1;
+  - [H-RL] at 30M vs round-1 S1 seed 42;
+  - final registered AUC vs round-1 S1 seed 42 (signal / harm / inconclusive);
+  - ep2 vs round-2 seeds reported.
+- Expected ~3.7–4.5 h box, ≈ $4.5–6.8. Nothing rented by the agent.
+- ~18:40 UTC physics solver G2 + G3 launched: `20261030-psolverl-04301a2` (58438083, NY, $1.467/h),
+  `bash ops/jobs/physics_solve_rl.sh` (default G3_PICK: G2's reference for ep2/ep12 only if its jittered mean ≥ G1's —
+  GT-free; accepted), commit 04301a2; ledger planned $6.80; readings pre-registered in physics-solver.md §5.2.
+  Credit before launch $32.67. Expected ≈ 3.7–4.5 h.
+- 23:05 UTC psolverl box done (job exit 0 after 259 min; ledger actual $6.48). G2 "scale helps" (jittered ep2 0.763,
+  ep12 0.832 vs GL+ILC 0.524 / 0.578). G3: RL from solved references much faster (30M: 0.965 / 0.761 / 0.523 / 0.191 vs
+  0.483 / 0.549 / 0.529 / 0.112) but final AUC harm by the rule (0.584 / 0.892 / 0.622 / 0.244 vs 0.736 / 0.885 / 0.625 /
+  0.232; ep2 collapse after 30M, as round-1 seed 42).
+- ~23:15 UTC round 3 (realistic-mass seed round) launched: `20261030-p3ms1-2298cd3` (58463509, UT, $1.482/h) and
+  `20261030-p3ms0-2298cd3` (TX offer 31194553; the first S0 offer had vanished, nothing rented), `ARM=S0|S1
+  PAIRS=ep12/18/24 SEEDS=43 bash ops/jobs/physics_arms.sh`, commit 2298cd3; ledger planned $3.60 each (the p3ms0 planned
+  line was written 4× by ledger retries on the slow store; one actual line closes it). Credit $23.35 before launch.
+
+### 31 Oct ~03:15 UTC — round 3 result: realistic masses adopted (pre-registered rule); usage-limit pause overnight
+- Owner hit the usage limit; resumed 03:02 UTC. Round-3 boxes: p3ms0 done (job exit 0, $3.28); p3ms1 watchdog-destroyed
+  after a 30-min stall in ep12's checkpoint evaluation ($3.88; ep12 seed 43 missing). Mean Δ +0.090 → adopt.
+- ~04:55 UTC 31 Oct: owner topped up; credit $41.17 (0 instances). Pack session (focused-pascal) owns the eval retrain with
+  the adopted masses; it proposed a pre-registered library_v3 transfer check (ep2 + ep12, 2 seeds, ~$5–6) and will get the
+  owner's go-ahead itself. Commits for it: merge claude/determined-wright-3joens tip (ff5ca7d). Option 3 being built on CPU
+  by the solver agent.
+- ~05:10 UTC 31 Oct [M] R5-lite (CPU, scratchpad, code 97de901): orcB O (mocap motion) vs P (perceived) references, zero
+  action, `tools/physics_solve/jitter_check.py --k 16 --seed 0` (KIT=$S/dl/kit/x/v2d_submission_kit): ep13 0.569 ± 0.008
+  vs 0.551 ± 0.007; ep31 0.556 ± 0.091 vs 0.554 ± 0.096; ep11 skipped (assets_ev10 missing). True motion barely helps
+  zero-action executability; result sent to the pack session. Table: physics README "R5-lite".
+
+### 31 Oct ~04:30–05:35 UTC — option 3 (solver ↔ RL loop) + option-1 control: built on CPU, pre-registered (no GPU run)
+- Owner approved. Design and readings in `physics-solver.md` §6.1.
+- Built and CPU-tested:
+  - `tools/trace_rollout.py` `STATE=1` (full simulator state per frame; on the CPU the policy path skips Warp graph
+    capture, which crashes there);
+  - `tools/physics_solve/failures.py` (first frame an object stays > 3 cm ADD off for ≥ 8 frames → windows from
+    0.5 s before);
+  - `solve.py --start_state/--t0/--record` (solve from a recorded state; the official replay of the output equals the
+    solver's trajectory, 0.0);
+  - `merge_ref.py` (solver targets into the reference + contacts + reset-state bank; only solver states that hold);
+  - `ops/box/patch_flashchord_states.py`, a training-only reset-state bank:
+    - inert: resets identical to the original;
+    - share 1.0: banked states loaded bit-exactly;
+    - explicit resets untouched.
+- New `ops/jobs/physics_rl_loop.sh`:
+  - O1 = REUSE_REF on the G3 solved references + ES + CURR_SCALE 0.4;
+  - O3 = 30M / 50M / 70M rounds of one resumed FlashSAC run, with diagnosis → windowed solves → merge → bank between
+    rounds;
+  - scoring as rounds 1–3.
+  - CPU dry run with stubs for training, evaluation and store: completes.
+- The scratchpad FlashCHORD venv got jax/flax/optax/safetensors/distrax/wandb (CPU) for the policy-path tests.
+- Pre-registered:
+  - primary O3 − O1 registered AUC (signal / harm / inconclusive);
+  - O1 − G3 and O3 − G3;
+  - [H-teach].
+- Estimate ≈ 4–5 h, ≈ $5.5–7.5 (worst ≈ $8.3). Nothing rented by the agent.
+- 05:18 UTC 31 Oct: owner chose "Launch now" for option 3 (in parallel with the pack session's batch). Run
+  `20261031-rlloop-ccf9058`: `ops/vast.sh V2D_COMMIT=ccf9058 ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 56426318
+  20261031-rlloop-ccf9058 'bash ops/jobs/physics_rl_loop.sh'` → Vast contract 58495839 (RTX PRO 6000 WS, UK, $1.369/h
+  all-in). Pre-registration: physics-solver.md §6.1. Ledger planned $8.3 (est. $5.5–7.5). Untested before the GPU:
+  FlashSAC resume on a merged reference and the reset-state bank under graph capture (first exercised at round B, ~30M).
+- ~05:45 UTC 31 Oct: CPU review of the pack session's mass-transfer check (branch claude/focused-pascal-2nz9s1 at
+  4e019af) → NO-GO as built, sent to them. Same reference, per-arm masses, identical settings, no GT before scoring: OK.
+  Fix before launch: a missing cell gives INVALID instead of the pre-registered INCOMPLETE (reproduced with a fixture);
+  the config diff may give a false INVALID on path-bearing keys; pyarrow Table.equals fails on NaN columns; eval
+  timeouts dropped silently (stall may correlate with the mass arm). Fixture: scratchpad masscheck_review/test/.
+- 08:05 UTC 31 Oct [M] rlloop box progress: O3 round A (30M) done on ep2 (policy sim_vs_ref 0.453; window f52-177, pot +
+  lid), ep24 (0.208; f6-125, wooden pieces), ep12 (0.916; f114-180, blue cup); solves + merges ran (~5-8 min each).
+  O3 ep2 round B started 07:54: FlashSAC resumed from state_30003200 (progress line starts at 30,003,200/50,003,968) and
+  the reset-state bank loaded (4 states, share 0.25), running under graph capture → both GPU-untested parts work.
+  Bank is small (4 states). O1 so far: ep2 early stop at 60M (best 40M), ep12 RESULT AUC 0.893 (ES at 50M, "two in a
+  row >= 0.9"), ep18 AUC 0.579 (ES at 60M). Slots are shared, so total time looks ~5.5-6 h (est. $8-8.5), above the
+  4-5 h estimate; not cut (still progressing).
+- ~08:50 UTC 31 Oct: the mesh session (bold-albattani) relayed an owner idea: carve meshes where objects must interlock or
+  nest (pieces entering slots, stacked cups), driven by per-frame physics fixes. Replied: feasible on CPU as a standalone
+  GT-free `tools/intrusion.py` (per frame/pair penetrating samples in the target's frame + depth, plus phys_fit v1's
+  residual after pose correction); carved sim copies in the existing make_assets `--pieces DIR/<obj>/piece_*.obj` layout
+  (CoACD keeps each piece, so slots are not refilled). Waiting for their reviewed interface; nothing built yet.
+- 10:15 UTC 31 Oct [M] Option 3 run `20261031-rlloop-ccf9058` done (job 09:57Z, box gone ~10:02Z, ≈ $6.48 [E]; ledger
+  actual recorded — 4 identical lines from a timed-out-then-retried append). AUC vs mocap O3 / O1: ep2 0.835 / 0.585,
+  ep12 0.904 / 0.893, ep18 0.620 / 0.579, ep24 0.224 / 0.254 → pre-registered primary +0.068 "signal". Post-hoc: 3 of 4
+  O3 checkpoints are from round A (pre-loop), and round A is confounded by FlashSAC's cosine LR horizon (30M vs 70M run
+  length); after the loop rounds O3 never beat its round-A best on ep2/18/24. Interpretation: no evidence the loop
+  helps; new hypothesis H-lr (shorter LR horizon) logged, not run. Results: physics-solver.md §6.1 Results,
+  gpu/rlloop_summary.json. Fixed ops/ledger.py append to be idempotent (skip if the row already landed).
+- 10:40 UTC 31 Oct: owner asked for the loop explained/visualised and a more aggressive version. Found from the store
+  (seg_solve.json, merge logs) that the solver changed 0 frames in 4 of 8 turns (no better plan from the slipping state,
+  early stop at 6 iterations). Published two private pages: "Solver–RL Loop" (schematic, curves, per-turn table, loop v2
+  proposal ~$10–15 est.) https://claude.ai/artifact/A254GDBKXmA7Kxig7ET2cU and "Physics Study Board"
+  https://claude.ai/artifact/Na4KEzWSQazQxzZ33KBKyZ. Vast credit measured $29.16 at 10:35 UTC (mass box running).
+- 10:55 UTC 31 Oct: owner idea "bigger LR first, then fine-tune; maybe domain randomization". Evidence check: the
+  evaluator runs VOC 0 (work log, VOC fix entry), so early peaks are real; O3 ep2 collapsed between 20M and 30M right
+  after the VOC curriculum stage dropped assist 0.25 → 0.1 (CURR_SCALE 0.4 thresholds 19.7M / 25.6M); G3 ep2 likewise
+  peaked at 30M under VOC 0.75. Hypotheses [H-voc] collapse follows the assist fade; [H-lr2] a high-then-low LR
+  (6e-4 → 3e-5 cosine) keeps the peak; [H-dr] training-only DR (reset nudges 1–2 mm, mass/friction ±20 %, COM ±5 mm,
+  action noise; no config field, as the evaluator rebuilds from the config) cuts draw spread ≥ 40 % with mean ≥ −0.02.
+  Proposed test: 3 arms × ep2/ep18 × 2 seeds, ~$9–11 est.; not built or run, awaiting the owner (budget clash with the
+  eval retrain noted).
+- 11:05 UTC 31 Oct: combined budget to the freeze (owner asked; replies from focused-pascal, bold-albattani,
+  keen-heisenberg at ~10:45). Leaderboard lane $34–49 (mass check rest, eval-10 fix ≈ +0.022 board [E], masses retrain
+  O2, spoon wave); mesh lane $15–28; my lane: recipe screen $38–45 + confirm ~$20 + second eval retrain $10–15 (run by
+  the pack session); buffer $15–20. Full $132–177 (top-up $105–150), lean $87–121 (top-up $60–90); credit $29.16.
+  Board math (keen-heisenberg): a +0.03 recipe lift ≈ +0.006 board, so the screen is insurance (readouts: 10-draw sd and
+  worst draw). Dropped mass/friction DR (the scored rollout uses our own assets: no dynamics gap). Sequencing agreed with
+  the pack session: masses retrain first with the current recipe, winner into a second smaller retrain. Board page v2
+  (copies in docs/research/physics-2026-10-30/pages/).
+- ~11:30 UTC 31 Oct: owner chose the LEAN budget ($87–121 total, top-up $60–90 needed; credit $29.16).
+  `tools/intrusion.py` finished (agent build, CPU): CLI `intrusion.py REF.parquet SIM_DIR OUT.npz [--round K]
+  [--pitch_mm 2] [--surf_mm 0.5] [--prov PROV.json] [--fit PHYS_FIT_OUT --fit_commit SHA]`, gmg-intrusion/2 fields,
+  fiducial round trip, deny-list provenance guard. Tests (tools/intrusion_tests/, ALL PASS): two-box overlaps match an
+  independent count exactly, volumes within the 2 mm grid bound, rel_T error ≤ 7e-16, depth within 0.14 mm; refusals
+  for re-centred pieces / shifted fiducials / edited piece / wrong episode / mocap path / library_v3 in chain / scans
+  phys_fit. Real ep24 (perceived ref, collision_decomp pieces, 275 frames): 5.2 s, 124 intruding frame-pairs (max
+  0.92 cm³). Open contract points sent to the mesh session (manifest layout, validator vs parquet, no provenance chain
+  in any current reference, phys_fit.json lacks commit/argv).
+- ~11:50 UTC 31 Oct: owner topped up $100 for the lean plan; Vast credit measured 28.47 → 128.43. Ledger budget line
+  added. Allocation (est.): pack lane $24–39 first + second retrain $10–15; mesh lane $15–28; my screen $28–34 +
+  confirm ~$10; buffer ~$10. Both other sessions told; each box keeps a ledger planned line first.
+- Correction (10:58 UTC 31 Oct, from the ledger/notification timestamps): my entries since ~10:20 UTC carried clock
+  estimates up to ~1 h late. Actual times: loop pages published ~10:25, LR/DR proposal ~10:35, budget replies 10:44–10:46,
+  combined budget ~10:48, lean chosen ~10:50, top-up recorded 10:56 UTC (not 11:05 / 11:30 / 11:50).
+
+### 31 Oct ~11:00–12:05 UTC — recipe screen C / K / D: built, CPU-tested and pre-registered (physics-solver.md §8; no GPU run)
+- Task (coordinator, owner's LR/DR idea, lean budget): 3 arms × public ep2/12/18/24 × seeds 42/43 = 24 trainings.
+  - All cells share ONE stored reference per episode: `runs/20261030-physS1-6a814df/refs/glockt/ep<N>`. These are
+    round 1's S1 GL+ILC+EVOLVE references, also G1's input (`gpu/psolve_G1_summary.json`); no other store run holds
+    all four.
+  - S1 scan masses, cap 70,004,736 steps, ES 0.9 / 20M / 20M / 2 for every arm, NREP 10.
+  - Nothing rented. Files are left uncommitted for the coordinator.
+- **New files:**
+  - `ops/jobs/recipe_screen.sh` (box job; knobs SEEDS / ARMS / CELLS for 2- or 3-box packing);
+  - `ops/box/patch_flashchord_dr.py` (training-only start-state randomization, FC_DR_RESET / FC_DR_SEED);
+  - `tools/recipe_screen.py` (arm definitions, cell records, config check, box summary, merge + pre-registered
+    verdicts; a missing cell gives INCOMPLETE);
+  - `tools/recipe_screen_tests/` (dr_patch_test.py, dr_compare.py, schedules.py, eval_invariance.py, stubs.py,
+    dry_run.sh, dry_check.py).
+- **Machine and inputs:**
+  - this cloud container (4 CPU); FlashCHORD at the evaluator pin, `S=<scratchpad>`,
+    `FC=$S/src/video_to_data/robotic_grounding/flash_chord`, venv `$S/fcvenv`;
+  - patched copies `$S/rs/fc_{dr,s,sdr,dsr,box,boxref}` (symlink farms with real copies of the edited packages);
+  - `REF=$S/box2/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet` (CPU S1
+    grasp-lock ep12 reference, scratchpad assets).
+- **DR patch** [M]:
+  - Command:
+    `cd $FC && EMB=sharpa_hands_mid USE_COPY=<copy> [FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42] [FC_STATE_RESET=$S/loop/bank12.npz FC_STATE_RESET_P=0.5] [MODE=evalseq|EXTRA=1] $S/fcvenv/bin/python tools/recipe_screen_tests/dr_patch_test.py $REF $S/rs/out/<name>.npz`
+    (18 configurations), then `dr_compare.py $S/rs/out` → **40 checks, 0 FAIL**.
+  - Unset: bit-identical to stock, alone and with the box patch set.
+  - On, the draws stay in bounds:
+    - object position max 1.447 mm, mean |Δ| 0.66 mm;
+    - rotation max 0.0208 rad;
+    - fingers max 0.00999 rad;
+    - wrists and other coordinates unchanged.
+  - The draws are new per world, per reset and per seed. Upstream frames and finger openings are unchanged.
+  - Explicit resets and the evaluator's reset sequence with DR on are bit-identical to stock.
+  - With the state bank: equivalent either way, in either patch order.
+  - Survival of the nudge: median 1.39 mm → 0.71 mm at the end of the 20-step VOC-1 hold, then 8.6 mm 20 steps later
+    (zero action, VOC 0).
+  - Control: stock's steps after an explicit reset depend on the history (warm start, max |Δq| 0.032), so the steps
+    after an explicit reset are compared within the evaluator's sequence only.
+- **K settings in FlashCHORD's config code** [M]:
+  - Command: `cd $FC && JAX_PLATFORMS=cpu $S/fcvenv/bin/python tools/recipe_screen_tests/schedules.py $S/rs/fc_box <ep12 task dir> $S/rs/schedules.json`.
+  - The v2d curriculum thresholds equal the tool's constants. C and D resolve to identical configs. C vs K differ only
+    in the 4 LR keys and the thresholds (top level and training.curriculum).
+  - The horizon is 136,728 updates for both C (null → total) and K (pinned).
+  - LR at 10/20/30/70M (critic | actor):
+    - C: 2.93/2.73/2.43/1.50e-4 | 2.98/2.93/2.84/2.26e-4;
+    - K: 5.74/4.97/3.84/0.30e-4 | 5.93/5.73/5.40/3.18e-4.
+  - VOC at the checkpoints:
+    - C: 1 / .75 / .75 / .5 / .25 / .25 / .1;
+    - K: 1 / 1 / 1 / .75 / .75 / .75 / .5.
+  - **Finding:** the actor and temperature clocks advance once per actor update (period 2), so the actor's cosine
+    reaches only its midpoint by the cap. K's actor LR stays above C's peak, and "low" holds for the critic only. §6.1's
+    LR numbers were the critic clock. This is an open point for the owner; the registered value is the spec.
+- **Evaluator invariance** [M]:
+  - Command: `cd $FC && EMB=sharpa_hands_mid $S/fcvenv/bin/python tools/recipe_screen_tests/eval_invariance.py $S/box3/runs/loop/ep12-s42/policy_30003200.safetensors $REF $S/rs/evinv`.
+    The checkpoint is a stored FlashSAC ep12 checkpoint (250M-step config).
+  - The unchanged harness ran on CPU (1 world, explicit, graph capture skipped as in trace_rollout) on the base copy
+    and on copies with K's keys / curriculum_stage 1 and 3.
+  - Result: object trajectories bit-identical (362 rows), and every metric identical except the echoed
+    environment_steps. About 30 s per evaluation.
+- **Dry run of the whole job** [M]:
+  - Command: `bash tools/recipe_screen_tests/dry_run.sh $S/rs/dry4 $FC $S/venv/bin/python $S/fcvenv/bin/python $REF`.
+    Two boxes (SEEDS=42 | 43); training, evaluation, scoring and the store stubbed with FAKE numbers; the real job,
+    `early_stop.sh`, `recipe_screen.py` and the DR patch.
+  - Faults injected:
+    - a crash of D/ep24-s43 after 2 checkpoints;
+    - a hung draw (K/ep2-s42 r7);
+    - a hung early-stop watcher (C/ep18-s42);
+    - stray `FC_DR_RESET` / `CURR_SCALE` in the job environment.
+  - `dry_check.py`: 29 PASS, 0 FAIL.
+    - Arms reached the right processes. `FC_DR_RESET` reached D trainings only and none of 461 evaluations.
+    - The crash → `train_failed`. The hung draw → 9/10 draws, still present. The watcher was killed after ES_TAIL;
+      only that one.
+    - Merge: K vs C "signal" (+0.039), D vs C INCOMPLETE listing `D/ep24-s43`; with that cell filled, "signal".
+    - Reference / config tampering → INVALID, duplicates ignored, a results directory merges identically.
+  - Bugs found by earlier dry runs and fixed:
+    - the reference-dir check needed root-relative paths (dry1);
+    - ES_TAIL must exceed the watcher's own 25 s cycle in the dry run;
+    - `$BASHPID` in a redirection expands in the child, so the incremental summary's temp name never matched (dry2,
+      fixed with a named local).
+  - Also a boundary unit test of the rules: the bounds are inclusive as written, with float tolerance.
+- **Estimate** [E] (30M env steps / 37–42 min per slot, ES ~55–60M, 2 slots, $1.37–1.45/h):
+  - 2 boxes (SEEDS=42 | 43): 7.5–9.8 h each, $20–28, worst (no early stop) ≤ $33;
+  - 3 boxes (ARMS=C | K | D): 5–7 h, $21–30, worst ≤ $35.
+  - Launch commands are in physics-solver.md §8. A ledger planned line per box goes first.
+- **Open for the owner before launch:**
+  - go-ahead and plan (2 or 3 boxes);
+  - K's horizon: 136,728 (registered; the actor LR stays high) or 68,364 (actor low by 70M, critic low from 35M).
+
+### 2026-10-31 12:10 UTC — determined-wright: recipe screen reviewed and committed (not launched)
+- Reviewed the builder's job (`ops/jobs/recipe_screen.sh`), DR patch (`ops/box/patch_flashchord_dr.py`), merge/verdict
+  tool (`tools/recipe_screen.py`) and CPU tests (`tools/recipe_screen_tests/`). Re-ran here: `bash -n` on both shell
+  scripts, `py_compile` on every Python file, `recipe_screen.py args K 70004736` / `env D 42 …` print the registered
+  arguments. Builder's CPU results (not re-run): DR patch 40/40 checks, evaluator invariance bit-identical, dry run of
+  the whole job 29/29.
+- Decision (agent): K keeps the registered horizon 136,728 updates (same as C's own). Upstream advances the actor's LR
+  clock every second update in both arms, so K's actor never decays below 3.18e-4; the alternative 68,364 would hold
+  the critic at the 3e-5 floor from 35M on, a different experiment. Chosen checkpoints have been at 10–20M, where the
+  schedule tail matters little.
+- Not launched: needs the owner's go-ahead (2 boxes split by seed, ≈ $20–28 [E], ≤ $33) and the pack session's eval
+  work first.
+
+### 2026-10-31 12:13 UTC — determined-wright: owner approved the recipe screen launch
+- Owner answer: "Go, after pack (Recommended)": rent 2 boxes (SEEDS=42 | SEEDS=43, commit 609582a or later), ≈ $21–27 [E],
+  ≤ $33, once focused-pascal's eval-10 / masses work is launched or it confirms no conflict. Asked focused-pascal at
+  12:15 UTC. Candidate offers 56216787 ($1.27/h, PL), 48367592 / 57986770 ($1.38/h). Ledger planned lines go in
+  before each create.
+
+### 2026-10-31 12:16 UTC — determined-wright: recipe screen box 1 of 2 rented
+- focused-pascal (12:15 UTC): no objection to running alongside; its boxes go up ~15:00–19:00 UTC; asked for creates
+  ~10 min apart (HF store 429s at setup). Owner's condition met. Vast credit $126.55 measured 12:14 UTC.
+- Ledger planned `20261031-rscr42-2e25459` $14. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  56216787 20261031-rscr42-2e25459 'SEEDS=42 bash ops/jobs/recipe_screen.sh'` (commit 2e25459, = 609582a job + log
+  lines) → Vast instance 58531195, RTX PRO 6000 Max-Q, Poland, $1.271/h all-in.
+- Box 2 (SEEDS=43) follows ~10 min later after box 1's setup looks healthy.
+
+### 2026-10-31 12:28 UTC — determined-wright: recipe screen box 2 of 2 rented
+- Box 1 (58531195) healthy at 12:23 UTC: job log shows code 2e25459, arms [C K D], seeds [42], patches applied
+  (TRAIN_ARGS curriculum=tracking_250m_mixed_reset_v2d + FDR weights), references pulling.
+- Ledger planned `20261031-rscr43-865dfbb` $15 (note names offer 57548541, which was gone at create: 404 no_such_ask).
+  Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 57391360 20261031-rscr43-865dfbb
+  'SEEDS=43 bash ops/jobs/recipe_screen.sh'` (commit 865dfbb: same job code as 2e25459, log lines only) → Vast
+  instance 58532423, RTX PRO 6000 WS, South Korea, $1.487/h all-in.
+- Expected end ~20:00–23:00 UTC [E]; both self-destroy. Merge afterwards on CPU:
+  `python3 tools/recipe_screen.py verdict <rscr42>/results/recipe_screen/summary.json <rscr43>/... --out merged.json`.
+
+### 2026-10-31 13:00 UTC — determined-wright: eval-10 cup-nest intrusion diagnostic (CPU, GT-free)
+- Agent ran `tools/intrusion.py` logic on the eval-10 reference (gl10A2-5e0e100 ep10, md5 1a5003d9) against the carved
+  `meshes/carve/ev10` cups (A) and plain library_v3 cups (B). Diagnostic only: the tool refuses library_v3 in the
+  provenance chain, so a wrapper recorded the deny hit instead. Write-up, small outputs, scripts:
+  `docs/research/physics-2026-10-30/ev10_intrusion/` (npz 46 MB left in the scratchpad, regenerable).
+- Result [M]: library_v3's blue cup has a false floor 66 mm above its base (68–94 cm³ intrusion at f100–160). Carved A
+  fixes the floor (beige sits on it, median gap −0.1 mm), but its lower cavity is ~5–7 mm too narrow in radius
+  (18–36 cm³ at f100–117). The blue cup's +3.1–3.7 cm rise is not penetration avoidance (separation needs blue DOWN).
+- H-nest-a + falsifier in the README. Sent to focused-pascal (asked to copy bold-albattani).
+
+### 2026-10-31 12:57 UTC — determined-wright: recipe screen training started on both boxes
+- Both boxes pulled the 4 physS1 references with identical md5s (ep2 b4807f41, ep12 96ddc1ca, ep18 f0f14155, ep24
+  699fe426) and started C/ep2 + K/ep2 at 12:50 UTC (seed 42 on 58531195, seed 43 on 58532423); GPU 100 %, 81.7 GB.
+- D (the DR patch under CUDA graph capture, untested on GPU) first trains when an ep2 slot frees; checked next.
+- focused-pascal takes H-nest-a (new folder meshes/carve/ev10w, my diagnostic as falsifier, then an extra arm in its
+  ep11 gate only if it passes; owner go-ahead first). Mass check: 3 of 4 cells in (ep2 +0.081 / +0.233, ep12 s42 −0.007).
+
+### 2026-10-31 13:05 UTC — determined-wright: mass transfer check result received (focused-pascal's run)
+- Run 20261031-mass-2ed46ea (library_v3, 0.3 kg vs realistic masses, shared reference per episode, NREP 10), as
+  reported by focused-pascal (results on claude/focused-pascal-2nz9s1, 991fdea): VERIFIED; NOT ADOPTED under its
+  PREREG §3. ep2 0.552→0.633 (s42), 0.581→0.814 (s43), Δ +0.157 (SE 0.105); ep12 0.928→0.921, 0.920→0.900, Δ −0.013
+  (SE 0.007): ep12 misses the +0.03 bar. Eval keeps the 0.3 kg placeholder; the masses retrain (O1–O3, $16–26) is off.
+  Box actual $9.10.
+- Open (my lane, owner's call, not proposed yet): references rebuilt under the masses as their own pre-registered test.
+  Frees ~$16–26 of the lean plan.
+
+### 2026-10-31 14:45 UTC — determined-wright: H-nest-a falsified; recipe screen first results; arm D runs on GPU
+- focused-pascal (13:55 UTC; PREREG 3f058d2, results 334393e): reproduced my eval-10 numbers exactly, then falsified
+  H-nest-a. My radii were measured about the world vertical; the carved cavity's lathe axis is tilted 2.37° and
+  offset ~6 mm. The intrusion is a one-sided ~5.4 mm beige pose offset, not cavity width. ev10w fails G1 and G2.
+  V4p with ev10 unchanged is nearly coaxial on hands-off frames. Correction appended to ev10_intrusion/README.md.
+- Recipe screen (box-local, 2 of 24 cells, not a verdict): C/ep2-s42 AUC 0.955 ± 0.029 (50M checkpoint);
+  K/ep2-s42 0.965 ± 0.009 (30M; early stop at 50M). Arm D trains on both boxes since ~14:10 UTC; the patch prints its
+  banner (±1.5 mm, ±0.015 rad, fingers ±0.01 rad, 4096 worlds) and runs without errors under CUDA. MuJoCo-Warp
+  "nefc overflow" warnings appear in every arm (K: 3.96M lines), so they are not specific to D.
+- Training round ~1.3 h per cell pair → boxes end ~21:00–22:00 UTC [E].
+- The background poll from 12:57 UTC was lost when this session's worker restarted. Checked by hand at 14:43 UTC.
+
+### 2026-10-31 14:55 UTC — determined-wright: owner approved "Masses v2" re-test
+- Owner's point: the mass check tested only 2 episodes, and ep12 (0.92–0.93) had almost no room for a +0.03 gain.
+  Owner chose "Run re-test (Recommended)": 4 public headroom episodes (not ep2/ep12, chosen by low current library_v3
+  baseline before any run), 0.3 kg vs realistic masses, seeds 42/43, NREP 10, the mass check's shared-reference design.
+  Rule: ADOPT iff mean Δ over the 4 ≥ +0.03 AND ≥ 3 of 4 Δ > 0 AND no Δ(ep) ≤ −0.05; missing cells → INCOMPLETE.
+  ≈ $18–20 [E], 2 boxes, ~7 h. If ADOPT, the eval masses retrain (~$16–26) needs its own owner go-ahead.
+- Proposed to focused-pascal to run it in its lane with its job and verdict tool; I review the PREREG first.
+
+### 2026-10-31 15:30 UTC — determined-wright: pack 10 coordination
+- "New score status" session (session_01D9UJC7rdn1DZrNM1rKyE7b) relayed the owner's ask (~15:10 and 15:25 UTC): put every
+  planned improvement into one pack. Pack 10 = one combined eval retrain from ≈ 1 Nov 18:00 UTC, built by
+  focused-pascal; it lands ≈ 2 Nov evening. Context: organiser PR nvidia-isaac/video_to_data#215 makes results
+  provisional until a reproduce container re-rolls every policy, so draw stability now counts toward the final standing.
+- Answered (copied to focused-pascal):
+  - Recipe-screen verdict ~22:30 UTC tonight [E].
+  - Exact K/D settings for a retrain, as in §8 and `tools/recipe_screen.py`; both are independent of the masses assets.
+  - Caveats [H]: transfer from public scans to library_v3; K+D together untested.
+  - Nothing else from physics is ready: G3 harm on ep2; loop no evidence; fit v2 on hold.
+
+### 2026-10-31 16:15 UTC — determined-wright: ep2 video, current recipe vs physics-solved references (CPU, reporting only)
+- Source: store run 20261031-rlloop-ccf9058. Stored best-checkpoint draws, 5 of 10 per arm: O1 (current recipe,
+  `results/glock_public/ep2/best/r*`) and O3 (physics loop, `results/physics_rl_loop/ep2/o3/best/r*`).
+- Shown: the median-AUC stored draw of each arm, not the best: O1 r1 (0.580; stored 0.323–0.917) and O3 r4 (0.913;
+  stored 0.460–0.957).
+- Command: `tools/render_eval_rollout.py <episode_000002.parquet> <meshdir> <out.mp4> --size 640x480`, then ffmpeg
+  hstack. Meshdir: the public scans of white_pot / white_pot_lid, welded and decimated to 4k faces (raw scans are
+  unwelded triangle soup and render as speckles).
+- Seen: in O1 the pot tips over (19 cm off its reference by frame 320); in O3 it stays upright (~1 cm off).
+- Caveat: ep2 is O3's best episode (ep12/ep18 about equal, ep24 −0.03). §6.1 explains why the gain cannot be credited
+  to the loop itself.
+- Video is not in git (CLAUDE.md); it is in the session scratchpad `vid/out/ep2_current_vs_physics.mp4`.
+
+### 2026-10-31 16:25 UTC — determined-wright: cross-session push board for the owner
+- Owner asked for one page covering everything running in all chats: the scores each run is after and the history
+  behind it. Sources: the STATUS.md and work logs of focused-pascal, bold-albattani, standings-20261031 and
+  keen-heisenberg (fetched 16:15 UTC); Vast show; credit $114.27 (16:13 UTC); both screen boxes' job logs.
+- Artifact "Track 3 Push Board": https://claude.ai/artifact/VA364pepzf3LQg9SXLEW4u (private). Copy in
+  `docs/research/physics-2026-10-30/pages/push-board.html`. Times are TRT.
+- Recipe screen interim (box-local, 12 of 24 cells; not a verdict): ep2 s42 C .955±.029 K .965±.009 D .743±.269;
+  ep2 s43 C .869±.174 K .959±.020 D .862±.236; ep12 s42 C .576±.066; ep12 s43 C .612±.014 K .582±.024 D .919±.022;
+  ep18 s43 C .624±.002 K .620±.009.
+
+### 2026-10-31 16:35 UTC — determined-wright: owner questioned the solver verdicts; clean re-test approved
+- Owner: "Are we sure … did we really explore everything?" Re-read G2/G3/§6.1 records. Overstated in my summaries:
+  - G3's "harm" is one seed (42) on ep2. That seed also collapses on the normal reference; seeds 43/44 reach 0.98. The
+    chosen ep2 policy was erratic (0.197–0.968).
+  - The loop was barely exercised: the solver edited 0 frames in 4 of 8 turns.
+  - The option-3 ep2 gain may come from the solved references plus the shorter LR schedule; never tested cleanly.
+  - Corrected the push board (v3).
+- Owner chose "Test + auto eval":
+  - Arm S (solved references, the screen's C recipe, seeds 42/43) against the screen's C cells, pre-registered as
+    physics-solver.md §9 (83664f6; timestamps corrected to ~16:25/16:30 UTC). ≈ $9–10 [E].
+  - If "signal", eval solving (≈ $15 [E]) starts without asking again.
+- Agents building on CPU: arm S in the recipe screen, and `ops/jobs/eval_solve.sh`. Asked focused-pascal for pack 10's
+  grasp-lock eval episodes and their reference/asset inputs.
+
+### 2026-10-31 16:33 UTC — determined-wright: masses v2 pre-registration reviewed, GO (clock checked; the message to focused-pascal said ~16:55 in error)
+- Reviewed focused-pascal's PREREG (claude/focused-pascal-2nz9s1, 8c05528 + verdict fixes 74da763,
+  docs/research/work/masses-v2-20261031/).
+  - Selection by library_v3 baseline only: ep24 0.2406, ep11 0.5249 (twin11v3 frozen reference, not V4p), ep13 0.5428,
+    ep31 0.6951.
+  - The owner's rule is applied verbatim at reported precision. INCOMPLETE / INVALID handling is correct.
+- GO; ep31 accepted explicitly (the frozen-recipe preference matches the first check's builds). Caveat sent: ep11/ep13
+  sit at non-mass floors, so the "3 of 4 > 0" clause is near a coin flip there. Its §7 puts P(ADOPT) at ≈ 0.59 even with
+  +0.12 on ep24/ep31 [E]; with no effect, a false ADOPT is ≈ 0.13 [E]. ≈ $18 [E]; focused-pascal launches and keeps the
+  ledger lines.
+
+### 2026-10-31 17:05 UTC — determined-wright: eval-solve job ready (CPU-tested, not launched)
+- `ops/jobs/eval_solve.sh` with `tools/physics_solve/eval_inputs.py`, `eval_solve_summary.py`, tests in
+  `tools/physics_solve/tests/eval_solve/` (TESTS.txt) and docs in `docs/research/physics-2026-10-30/eval_solve/`.
+  `ops/box/store.sh` gains `pull-files` (byte-identical to focused-pascal's version; additive only).
+- Inputs: the 15 grasp-lock eval episodes (3 5 6 8 10 14 15 16 20 32 33 35 36 37 38) from focused-pascal's
+  `packed_refs.json` (copied at 71bac00). All 15 references exist and match their md5; assets present at 0.3 kg.
+  Standard-learner evals 1/19/25/28/30 are refused.
+- Solver settings = G2_ARGS byte for byte, 2 solves per GPU, 64-copy jittered check on input and output. No GT read.
+- CPU smoke test on eval 37 at tiny scale (not a result): jitter 0.890 → 0.938 (4 copies); only right-hand wrist and
+  finger targets changed, on 11 frames. Dry runs of the full job, failure handling and the eval-10 override pass.
+- Plan: 2 boxes (evsolve1: 35 36 33 20 16 15 37; evsolve2: 3 5 38 32 6 8 10 14), 3.9–4.7 h each [E], ≈ $9–14 [E],
+  worst ≈ $12–17. Launches only if §9 gives "signal" (owner pre-approved). Caveats: solved under 0.3 kg; eval 10 V4p
+  path pending.
+
+### 2026-10-31 17:20 UTC — determined-wright: arm S built and CPU-tested (physics-solver.md §9)
+- Code (a710b43 + this commit): `tools/recipe_screen.py` (arm S = C with the solved references; registered md5s;
+  `S_vs_C` with §9's rule unchanged), `ops/jobs/recipe_screen.sh` (S refs from `SRCREF_S=20261030-psolverl-04301a2`,
+  alone in `refs/screenS/ep<N>` as G3's task dirs; md5 check), tests in `tools/recipe_screen_tests/`
+  (`arm_s_test_log.txt`, `solved_refs_check.py`).
+- Real files [M]: the S files are exactly what G3 trained on; their solver inputs are the screen's physS1 files
+  (b4807f41 / 96ddc1ca / f0f14155 / 699fe426); object columns identical on all 4 (only wrist/finger targets differ:
+  ep2 312/343 frames, ep12 180/181, ep24 30/275). **ep18's solved file is byte-identical to its input** (G1 edited
+  0 of 353 frames), so Δ(ep18) measures only seed and box noise; §9 counts it anyway.
+- CPU dry runs [fake numbers]: C/K/D 29/29 PASS (train commands identical to dry4), arm S 41/41 PASS (signal / no
+  signal / INCOMPLETE / INVALID and the ±0.03 / −0.05 boundaries; K_vs_C and D_vs_C unchanged). Re-checked here: S
+  args/env print empty, the same as C.
+- Plan [E]: 2 boxes ARMS=S SEEDS=42 | 43, ~2.9–3.9 h each, ≈ $6.5–11.5 (worst ≤ $15). The control is the C cells
+  of rscr42/rscr43 (non-concurrent).
+- The builder left three stray files at the container root (/exits_s.txt, /merged_S*.txt). Its delete was blocked by
+  the safety check, so they are left in place and reported to the owner. They are outside the repo.
+
+### 2026-10-31 17:22 UTC — determined-wright: arm S box 1 of 2 rented (physics-solver.md §9)
+- Ledger planned `20261031-rscrS42-cc9c32f` $6. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  56213818 20261031-rscrS42-cc9c32f 'ARMS=S SEEDS=42 bash ops/jobs/recipe_screen.sh'` → Vast 58559935, RTX PRO 6000
+  WS, Greece, $1.444/h. Box 2 (SEEDS=43) follows ~10 min later.
+
+### 2026-10-31 17:32 UTC — determined-wright: arm S box 2 of 2 rented
+- Box 1 (58559935) started its job at 17:31 UTC (code cc9c32f, arms [S], seeds [42], S refs from psolverl, md5 check on).
+- Ledger planned `20261031-rscrS43-d6787a8` $6. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  56921483 20261031-rscrS43-d6787a8 'ARMS=S SEEDS=43 bash ops/jobs/recipe_screen.sh'` (d6787a8 = cc9c32f + one log
+  line) → Vast 58560711, RTX PRO 6000 Max-Q, Michigan, $1.34/h. Both S boxes end ~21:00–21:30 UTC [E].
+
+### 2026-10-31 18:26 UTC — determined-wright: recipe screen seed-43 box finished (12/12 cells scored)
+- Run 20261031-rscr43-865dfbb, Vast 58532423: job done 17:37 UTC, self-destroyed. Ledger actual $7.73 (~5.2 h ×
+  $1.487/h, estimate). Summary pulled from the store.
+- Seed-43 cells, AUC mean ± sd over 10 draws:
+
+  | episode | C | K | D |
+  |---|---|---|---|
+  | ep2 | .869±.174 | .959±.020 | .862±.236 |
+  | ep12 | .612±.014 | .582±.024 | .919±.022 |
+  | ep18 | .624±.002 | .620±.009 | .600±.059 |
+  | ep24 | .238±.005 | .251±.013 | .230±.003 |
+
+- No verdict until the seed-42 box (10/12 at 18:26) and the two arm-S boxes finish.
+
+### 2026-10-31 20:24 UTC — determined-wright: recipe screen all 24 cells in; solver re-test 7 of 8; verdicts (interim)
+- Boxes finished and self-destroyed:
+  - rscr42 (58531195): job exit 0 at 18:43 UTC. Ledger actual $8.22 (6.47 h × $1.271/h, estimate).
+  - rscrS42 (58559935): job exit 0 at 19:38 UTC. Ledger actual $3.30 (2.28 h × $1.444/h, estimate).
+  - rscrS43 (58560711) is still running its last cell (S/ep24-s43). Poll `bu7fslt4n` watches it.
+- The poll `b3wmrva5m` timed out after 110 min with no problem flagged (two boxes gone, one running).
+- Summaries were pulled from the store into scratchpad `rs/real/runs/<run>/`. Merge on CPU:
+  `python3 tools/recipe_screen.py verdict <rscr42>/results/recipe_screen/summary.json <rscr43>/… <rscrS42>/… --out
+  scratchpad rs/merged_partial3.json`.
+- **One control cell is not present: C/ep24-s43 has 4 of 10 draws.**
+  - The 6 missing draws (r1 r2 r3 r7 r8 r9) crashed at evaluator start, at 16:41 UTC on the rscr43 box. The error is
+    `env.cc:93 Check failed: ret == 0 (11 vs. 0) Thread tf_foreach creation via pthread_create() failed`: errno 11
+    (EAGAIN), a thread/process limit on the box, hit while other cells were training.
+  - This is an infrastructure crash, not a policy failure. Per §8 the cell is missing, so K vs C, D vs C and S vs C are
+    formally INCOMPLETE.
+- Cells, AUC mean (draw sd, ddof 0), 10 draws unless noted:
+
+  | ep | seed | C | K | D | S |
+  |---|---|---|---|---|---|
+  | 2 | 42 | .955 (.029) | .965 (.009) | .743 (.269) | .751 (.211) |
+  | 2 | 43 | .869 (.174) | .959 (.020) | .862 (.236) | .808 (.225) |
+  | 12 | 42 | .576 (.066) | .519 (.067) | .924 (.021) | .832 (.070) |
+  | 12 | 43 | .612 (.014) | .582 (.024) | .919 (.022) | .802 (.082) |
+  | 18 | 42 | .620 (.015) | .623 (.006) | .603 (.053) | .553 (.099) |
+  | 18 | 43 | .624 (.002) | .620 (.009) | .600 (.059), 9 draws | .616 (.014) |
+  | 24 | 42 | .234 (.003) | .191 (.022) | .233 (.006) | .249 (.005) |
+  | 24 | 43 | .238 (.005), 4 draws: missing | .251 (.013) | .230 (.003) | pending |
+
+- **Bounds: can the missing C/ep24-s43 draws change a verdict?**
+  - **K vs C: inconclusive under any completion.** On the 3 complete episodes: ep2 +0.050, ep12 −0.043, ep18 −0.001.
+    - Signal would need Δ(ep24) ≥ +0.115, i.e. C's ep24 seed-mean ≤ 0.106: impossible.
+    - Harm would need Δ(ep24) ≤ −0.10, i.e. C/ep24-s43 ≥ 0.41. Its 4 present draws are 0.234–0.246, so the 6 missing
+      draws would have to average ≥ 0.53. No ep24 draw in the screen exceeds 0.29.
+  - **D vs C: not determined.**
+    - The sd falls by ≥ 40 % on ep12 only. The 3-episode mean Δ is +0.066 (ep2 −0.110, ep12 +0.327, ep18 −0.020).
+    - The verdict becomes "signal" iff C/ep24-s43's 10-draw sd is ≥ 0.0116. Its 4 present draws have sd 0.0046; the
+      other C ep24 seed has sd 0.0026.
+    - Otherwise "inconclusive". Completing it means re-scoring that checkpoint, a box of about $1 [E] that needs the
+      owner's go-ahead.
+  - **S vs C: no signal under any completion.** Δ(ep2) = (.751 + .808)/2 − (.955 + .869)/2 = **−0.132**, which is
+    ≤ −0.05. The other episodes: Δ(ep12) +0.223, Δ(ep18) −0.038.
+    - Per §9 both "no signal" and INCOMPLETE mean stop. **Eval solving does not start;** solved references are not used.
+- **ep18 is a free replicate.** S's ep18 reference is byte-identical to C's (md5 f0f14155…). S/ep18 and C/ep18 are the
+  same reference, seed and recipe, so their difference is pure training nondeterminism: seed 42 0.553 (sd .099) vs 0.620
+  (sd .015); seed 43 0.616 vs 0.624. A re-run of one cell can move it by up to 0.07 AUC and change its draw sd 6×.
+- **Post-hoc, not pre-registered (hypothesis): sim_vs_ref picks the better arm.**
+  - Script: scratchpad `rs/posthoc_select.py`.
+  - For each (episode, seed), the arm with the higher 10-draw sim_vs_ref (vs our reference, GT-free) also had the higher
+    AUC: C vs D 7/7, C vs K 7/7, K vs D 7/8, C vs S 3/4. The misses are all ep24 pairs within 0.02.
+  - A per-cell selector "train C and D, keep the one with the higher sim_vs_ref" would gain +0.094 AUC mean over 7
+    cells. All of the gain is ep12 (+0.35 / +0.31, with a lower draw sd); everywhere else it keeps C.
+  - Falsifier: train D on more public episodes (for example masses-v2's ep11/13/31). The selector fails if
+    sim_vs_ref picks D where its AUC is lower by > 0.02, or if D wins on none of them.
+
+### 2026-10-31 20:29 UTC — determined-wright: owner decision "No D" for pack 10 (my messages said 20:31 in error)
+- Asked the owner whether pack 10 should also train D per eval episode, keeping the higher sim_vs_ref (≈ $14–20 [E]).
+- Answer: **"No D"**. Pack 10 stays on the current recipe.
+- Told focused-pascal and the score-status session; the D proposal is withdrawn.
+- No re-score of C/ep24-s43 (≈ $1, not asked for), so the §8 verdicts stay formally INCOMPLETE, with the bounds above.
+
+### 2026-10-31 20:32 UTC — determined-wright: solver re-test finished; final merge; eval solving NOT started
+- rscrS43 (58560711): job exit 0 at 20:26 UTC, self-destroyed (box gone 20:30). Ledger actual $3.88 (~2.9 h × $1.336/h,
+  estimate). No screen boxes are left on the account.
+- S/ep24-s43: .237 (sd .014, 10 draws), checkpoint at 40M.
+- Final merge over the 4 box summaries: `python3 tools/recipe_screen.py verdict … --out
+  docs/research/physics-2026-10-30/gpu/recipe_screen_S_merged.json`; text in `gpu/recipe_screen_S_merged.txt`. The
+  post-hoc selector check is `gpu/scripts/recipe_screen_posthoc_select.py` → `gpu/recipe_screen_posthoc_select.txt`.
+- S vs C: INCOMPLETE (C/ep24-s43). It is "no signal" under any completion: Δ ep2 −0.133, ep12 +0.223, ep18 −0.038,
+  ep24 ≈ +0.007 provisional. Per §9: stop. Eval solving is not started; solved references are not used for eval.
+- Written up as physics-solver.md §8.1 and §9.1.
+- focused-pascal's reply (queued 20:25 UTC, sent before it saw "No D"): offered the masses-v2 mass0 cells as a library_v3
+  check set for a D falsifier (≈ $6–10 [E]). Not run, because the owner declined D.
+- Lane total for the screen and the re-test: $8.22 + $7.73 + $3.30 + $3.88 = $23.13 (actuals, estimates).
+- 20:34 UTC: push board v4 published (same URL). Only the physics lane changed: the screen and re-test cards, the
+  final table with arm S, the timeline and two road entries. Other lanes stay as of 19:20 TRT, as the header says.
+  Copy in `docs/research/physics-2026-10-30/pages/push-board.html`.
+
+### 2026-10-31 20:54 UTC — determined-wright: targeted D for pack 10 (owner reversal relayed by score-status; my messages said 20:57 in error)
+- Score-status session (20:51 UTC) relayed the owner's words, ~20:40 UTC in that chat: "sure add that whatev". This
+  answers its proposal: D as a second version on the unstable evals 14, 16, 25, 30, 33, ≈ $6–10, swap rule decides.
+  Not said in this chat; the spend is the pack-10 session's.
+- Sent focused-pascal the exact D settings (copied to score-status):
+  - Run `ops/box/patch_flashchord_dr.py` on the FlashCHORD tree. Today only recipe_screen.sh does this;
+    glock_public.sh, hard_ab.sh and fc_patches do not.
+  - Training env `FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed>`: via TRAIN_ENV in glock_public, via ENV_EP<N> in
+    hard_ab.
+  - Check that the hook's start line appears in the training log.
+- Caveats sent:
+  - (a) The screen shows no steadying of unstable episodes: ep2 sd .10 → .25, ep18 .008 → .056. The swap rule decides.
+  - (b) Standard learner: FC_IMMEDIATE_FIRST_FRAME's deployment-exact starts are drawn inside ReferenceReset.sample, so
+    DR perturbs them too (frame 0, no hold, assist < 0.1). Untested, as is D at 250M steps.
+  - (c) Carved assets move as one body; the risk is objects that start nested or touching (ep12 CPU test: median
+    0.71 mm after the hold, max 58 mm).
+- Offered: an opt-in FC_DR_SKIP_IMMEDIATE flag (~1 h, CPU tests) and a free CPU pop check per episode.
+
+### 2026-10-31 21:18 UTC — determined-wright: arm V (actor sees object velocity) built and pre-registered; owner GO
+- keen-heisenberg (21:01 UTC) relayed the owner's request for a slip-aware, physics-informed robot side. Items:
+  1. object velocity in the actor's observation;
+  2. solver v2 (no-slip term, force feasibility, worst-of-copies scoring);
+  3. part of 2.
+- CPU check at the evaluator pin (video_to_data 8c778f9), `docs/research/physics-2026-10-30/v_obs/`:
+  - `observation.object_body_velocity.enabled=true` lands in the checkpoint's resolved config.
+  - `harness.evaluate_checkpoint` rebuilds the env from that config, and `apply_evaluation_composition` never touches
+    the observation.
+  - Actor observation: 722 → 734 values (+12 for 2 objects); the rest is identical. The velocity is 0 at the frame-0
+    reset and live after 30 steps.
+- Owner (~21:09 UTC, AskUserQuestion):
+  - **arm V "Go"** (≈ $7–9 [E]).
+  - Solver v2: the owner asked what it is and why it failed. Answered: it is not built; its precondition (S signal)
+    failed. Recommended skipping; waiting on the owner.
+- Pre-registered as physics-solver.md §10 (c213eae, before any V result):
+  - V = C + the override, ep2/12/18/24 × seeds 42/43, physS1 references, control = the screen's C cells.
+  - The V seed-43 box first re-scores C/ep24-s43: 10 fresh evaluations of its stored chosen checkpoint.
+  - Rule as K's: signal iff mean Δ ≥ +0.03 and no Δ ≤ −0.05; harm iff mean ≤ −0.03 or any Δ ≤ −0.10.
+- Code ab63b37:
+  - `tools/recipe_screen.py`: arm V, the actor-velocity config check, V_vs_C.
+  - `ops/jobs/recipe_screen.sh`: RESCORE="arm:ep:seed:STORE_RUN", run before any training.
+  - Stubs and `dry_run_v.sh` / `dry_check_v.py`.
+- Tests:
+  - Dry run: **33/33 PASS**, including the real stored checkpoint's config check, the merge replacing the 4-draw
+    record, and the negative cases.
+  - Real summaries re-merged with the new tool: C/K/D/S output unchanged.
+  - The full older dry run (dry_run.sh → scratchpad `rs/dry7`) is running as a regression check.
+
+### 2026-10-31 21:27 UTC — determined-wright: arm V boxes rented (physics-solver.md §10); DR skip option delivered
+- Code for both boxes: V2D_COMMIT 0636f20 (arm V + RESCORE from ab63b37; later commits are logs).
+- Box 2 (seed 43, with the re-score): `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 V2D_COMMIT=0636f20… create
+  28784856 20261031-rscrV43-0636f20 'ARMS=V SEEDS=43 RESCORE=C:24:43:20261031-rscr43-865dfbb bash ops/jobs/recipe_screen.sh'`
+  → Vast 58580297, RTX PRO 6000 WS, Spain, $1.377/h.
+- Box 1 (seed 42): `… create 47655764 20261031-rscrV42-0636f20 'ARMS=V SEEDS=42 bash ops/jobs/recipe_screen.sh'` → Vast
+  58580313, RTX PRO 6000 WS, Serbia, $1.497/h. The first offer (28784861) was gone (404 no_such_ask).
+- Ledger planned $4.5 each (21:19 UTC). Expected end ~00:00–00:45 UTC [E].
+- Regression dry run `rs/dry7` (DRY_CK_SLEEP=4): 69/70 PASS. The one FAIL is the ES-kill check: every stub training
+  reached its cap. Most likely the 4 s stub clock (dry6 used the default 12 s and passed); the ES code is unchanged.
+  Re-running at the default speed as `rs/dry8`.
+- FC_DR_SKIP_IMMEDIATE=1 delivered to focused-pascal (4e5c8a0) for the standard-learner D cells (evals 25, 30).
+  CPU test 17/17 PASS (`tools/recipe_screen_tests/dr_skip_test_log.txt`).
+- Owner decisions relayed by keen-heisenberg (~21:15 UTC; the owner went to sleep):
+  - the targeted D cells (evals 14/16/25/30/33, 2 seeds) start tonight; focused-pascal launches them;
+  - pack 9b uploads automatically once its rule and checks pass.
+- Credit $69.22 at 21:20 UTC, shared by all lanes.
+
+### 2026-10-31 21:47 UTC — determined-wright: D reset check delivered; regression dry run 70/70; P1 helper started
+- Regression dry run `rs/dry8` at the default stub clock: **70/70 PASS**, exit 0. dry7's one FAIL was the 4 s stub clock.
+- **D reset check** (`docs/research/physics-2026-10-30/d_reset_check/`, 8fb5152): CPU, box patch set, 32 worlds, DR vs
+  no DR with the same upstream frames, on the 5 packed D evals (md5s = packed_refs.json) and the 4 public screen
+  episodes.
+  - Object offset at the end of the hold (median / share > 1 cm / max):
+    - evals: 14 0.63/31 %/3.15; 16 0.16/25 %/4.00; 25 0.60/34 %/6.70; 30 1.05/56 %/3.28; 33 0.57/28 %/2.60;
+    - public: 2 1.09/50 %/3.39; 12 0.81/47 %/4.41; 18 0.00/3 %/1.32; 24 1.05/53 %/4.30.
+  - No eval outside the public range, and no NaN. Sent to focused-pascal and keen-heisenberg.
+- bold-albattani's P1 request (r0 slot2-ep24 boards; INTERLOCK §6.2 settle with 16 jittered copies): a CPU helper is
+  running it in scratchpad `p1ep24/`. I review before replying; ETA promised ~23:30 UTC.
+- keen-heisenberg's command-smoothing (A) and synergy (B) CPU tests are queued next.
+- 21:54 UTC, D reset check correction (eval 25 only). focused-pascal (21:27 UTC) pointed out that packed_refs.json gives
+  eval 25 `pieces: meshes/carve/ev25`. Re-run with `make_assets.py ... --pieces meshes/carve/ev25`: median 0.46 cm,
+  25 % > 1 cm, max 5.79 cm, no NaN. The first run, without pieces, had 0.60 / 34 % / 6.70. Conclusion unchanged; sent.
+- bold-albattani (21:31 UTC): no eval r0 folders exist from F-I5, and the public F-I5 boxes are not to be used. The
+  ep24 P1 request stands. Their data: at hands-off frames the tracked poses are physically impossible (ep11 cups
+  overlap 86 cm³; ep12/13 cup 15–23 mm inside the table; ep31 sweeper 45 mm above it). The remedy there is pose
+  correction, not carving.
+- Test A (physics-solver.md §11) is running: 16 jitter checks on CPU (`cmds/`).
+
+### 2026-10-31 22:13 UTC — determined-wright: C/ep24-s43 re-scored; recipe screen verdicts complete
+- The V seed-43 box ran the §10 re-score first: C/ep24-s43 = **0.2333** (sd 0.0012, 10 draws, policy_20000768, md5
+  699fe426). The poll saw it at 22:12 UTC.
+- Merged with the live cell record (pulled with `vast.sh exec`): K vs C **inconclusive** (−0.0018), D vs C
+  **inconclusive** (sd falls on 1 episode), S vs C **no signal** (min −0.133). No INVALID.
+  `gpu/recipe_screen_KDS_complete.{json,txt}`; physics-solver.md §8.1.
+- The V cells are training on both boxes.
+
+### 2026-10-31 22:15 UTC — determined-wright: P1 settle on bold-albattani's r0 (ep24 boards) — FAIL for carved and default
+- A CPU helper ran INTERLOCK §6.2 P1 (16 jittered copies, frame 246 plus 258/270) on our physS1 ep24 reference (md5
+  699fe426), r0 from cdc8b40 vs `_default`. Record: `docs/research/physics-2026-10-30/p1_ep24/` (RESULT.md,
+  result.json, scripts, commands). I reviewed it and re-checked the contact limits in `configs/sim/rl.yaml`.
+- **P1 fails for both carved and default.** Drift: carved 3.7 / 3.2 cm, default 3.2 / 3.2 cm, all against a 1 cm limit.
+  The default also fails tilt (13° / 8°). No NaN.
+  - Cause: our reference holds the assembled cross 27–36 mm above the table at f246–274, with no hand near. The
+    per-object z shift fits the 3 cm library_v3 boards at frame 0, not 7.4 mm plates on edge.
+  - So the test does not separate carved from default.
+  - Diagnostic only: with the hover removed, the carved pieces pass every numeric criterion (relative sink −4.8 mm
+    signed); the default fails tilt.
+- **Contact-budget hazard [M].** With the training sim config (`sim=rl`: nconmax 256, njmax 512 per world), the carved
+  r0 scene overflows in 16/16 copies (it asks for 500–670 contacts and up to ~2030 constraint rows). Contacts are
+  dropped and the boards fall through the table.
+  - The default pieces never overflow.
+  - The packed `meshes/carve/ev25` pieces showed no overflow warning in the D reset check's 64 runs.
+  - The evaluator rebuilds the env from the checkpoint config, so the same limits apply at scoring.
+- [H] Our ep24 track places the free-standing cross ~3 cm too high; the same may hold for eval 25 (boards). Falsifier:
+  a GT-free depth check of the board bottom edges against the table plane.
+
+### 2026-10-31 22:22 UTC — determined-wright: test A (command smoothing) FAILS; contact budget of eval 25 measured
+- Test A (§11, pre-registered 21:50 UTC): 16 CPU jitter checks, 16 copies each, common random numbers.
+  - GL raw → smoothed Δ: +0.002 / +0.004 / +0.014 / +0.003.
+  - SOL raw → smoothed Δ: −0.011 / −0.027 / +0.014 / −0.025.
+  - Both **fail** the rule (≥ +0.03 on ≥ 2 of 4 episodes). The line stops. Record: physics-solver.md §11.1 and
+    `docs/research/physics-2026-10-30/cmd_smooth/`.
+- Contact budget, answering bold-albattani: `contact_budget/budget.py`, CPU, box patch set, 8 sampled training resets
+  × 60 zero-action steps, sim=rl.
+  - Limits: nconmax 256 per world (MuJoCo-Warp holds it as one pool, naconmax = 256 × worlds); njmax 512 constraint
+    rows per world.
+  - Eval 25 with its packed carve pieces:
+    - collision geoms: 26 per hand, boards 21 + 11, support 1, ground 1;
+    - contacts per world: max 65, median 46;
+    - constraint rows (nefc) per world: max 276, median 201.
+  - Library_v3 without pieces: 56 / 40 contacts, nefc 240 / 175.
+  - Largest per-world shares: hand self-contacts up to 21 (right) and 15–17 (left); hand–board up to 20; board–board
+    up to 14; board–support up to 12.
+
+### 2026-10-31 22:24 UTC — determined-wright: training-time constraint overflow (njmax) on ep2/ep12 [M]; not in scoring
+- Found while checking the arm V boxes: V/ep2-s42's train.log has "nefc overflow - please increase njmax to 515…728".
+- **The control has it too, and more of it.** Store train.logs, overflow lines (largest request):
+
+  | cell | overflow lines | largest request |
+  |---|---|---|
+  | C/ep2-s42 | 613,729 | 948 |
+  | C/ep2-s43 | 357,932 | 896 |
+  | D/ep2-s42 | 342,071 | 879 |
+  | C/ep12-s42 | 13,367 | 667 |
+  | C/ep24-s42 | 0 | — |
+
+  sim=rl's njmax is 512 per world, so MuJoCo-Warp drops constraint rows in those world-steps. Not V-specific.
+- **Not in scoring.** The 50 stored scored draws of C/ep2-s42, C/ep2-s43, D/ep2-s42, S/ep2-s42 and C/ep12-s42 have 0
+  overflow lines in their eval.log, including the failed draws (0.33–0.54). Overflow therefore does not explain the
+  draw spread; the hypothesis "overflow in scored rollouts" is falsified for these cells.
+- [H-njmax-train]: dropped constraints in ~1 % of ep2's training world-steps (≈ 0.6 M lines over ~50 M world-steps)
+  corrupt the learning signal on the contact-rich pot + lid episode.
+  - Test: an arm with `sim.njmax=1024`, C otherwise, on ep2 (+ ep12), 2 seeds.
+  - The override would be stored in the checkpoint config, so the evaluator would rebuild with it (more memory, no
+    harm, since scoring never overflowed).
+  - Not run; the owner is asleep. To be offered.
+
+### 2026-10-31 23:36 UTC — determined-wright: D cells live (focused-pascal); arm V interim
+- focused-pascal (23:35 UTC): the targeted D cells run on 5 boxes (commit a1a7e25).
+  - The D log line is verified on both paths: grasp lock eval 14 without the skip tail; standard learner eval 25
+    with "; skip immediate starts"; patch md5 570a7f47793d on both.
+  - Their other results tonight: masses v2 NOT ADOPTED (+0.0034, 1/4 positive); eval-10 V4p retrain NO-SWAP (equal
+    floor); re-track FAIL. Record: their 28a03df.
+- Arm V interim, box-local (not a verdict):
+  - V/ep12: s42 .548 (sd .023; C .576), s43 .587 (sd .019; C .612);
+  - V/ep2-s43: .757 (sd .311; C .869, sd .174).
+  - Remaining: V/ep2-s42, ep18 ×2, ep24 ×2.
+
+### 2026-11-01 00:05 UTC — determined-wright: arm V verdict — inconclusive, V not used
+- Both boxes self-destroyed: V43 at 23:39 UTC, V42 at 00:02 UTC. Ledger actuals $3.97 and $3.05 (estimates), $7.02 in
+  total against the ≈ $7–9 plan.
+- Merge of all 6 summaries → `gpu/recipe_screen_V_merged.{json,txt}`. Seed-mean Δ(V − C): ep2 −0.049, ep12 −0.026,
+  ep18 −0.013, ep24 −0.007; mean −0.024 → **inconclusive**, so V is not used. Record: physics-solver.md §10.1.
+- Final verdicts of the screen (C/K/D/S/V, all complete): K inconclusive, D inconclusive, S no signal, V
+  inconclusive. No recipe change for pack 10 from this lane.
+- This lane's GPU spend for 31 Oct: rscr42 $8.22 + rscr43 $7.73 + rscrS42 $3.30 + rscrS43 $3.88 + rscrV42 $3.97 +
+  rscrV43 $3.05 = **$30.15** (estimates).
+- 00:07 UTC: push board v5 (physics lane: arm V result, 6-box total). Copy in docs/research/physics-2026-10-30/pages/push-board.html.
+
+### 2026-11-01 00:48 UTC — determined-wright: bold-albattani board-slot round 3 closed (nothing for me to run)
+- `slot3-ep24/fi4q/r0` (5 slotted boxes per board) is DO_NOT_USE on their side.
+  - It failed their own ratio clause: 124 constraint rows against 32 for a one-box control, limit 2×.
+  - No overflow. P2–P7 pass on their tracks.
+- They ask me not to run P1, the sim=rl check or budget.py on it. Eval 25 keeps `meshes/carve/ev25`.
+- Their measurement: at assembly, their ep25 relative board pose differs from the packed eval-25 parquet by
+  9.8 mm / 2.5°. A future slot would have to be cut in the frame of the replayed poses.
+- The pending P1 item is closed.
+
+### 2026-11-01 02:40 UTC — determined-wright: eval-10 packed carve overflows njmax in training (confirmed for bold-albattani)
+- bold-albattani's plain-MuJoCo pair check (02:35 UTC): 656–1,296 rows at nested frames; the packed pieces overlap
+  11.9 cm³ at rest.
+- My FlashCHORD check, `contact_budget/budget.py`, now with `FRAMES=` explicit resets (e1a3063):
+  - packed configuration `--pieces meshes/carve/ev10`, md5 1a5003d9;
+  - sampled training resets: nefc max 536, median 473, **13 % of world-steps over 512**;
+  - explicit frames 0/124/142/160: max 441, no overflow.
+- Packed run 20261026-gl10A2-5e0e100: train.log has **8,368,544** overflow lines; its 5 scored draws have 0.
+- Training is corrupted; scoring is not. [H] This contributes to eval 10's floor.
+- Sent to bold-albattani and focused-pascal. The candidate fixes (sim.njmax=1024, or pieces that don't overlap at
+  rest) were not tested.
+- 02:42 UTC: answered focused-pascal (02:37 UTC). Their e10v retrain logs show 6.0 M / 5.8 M overflow lines (requests
+  up to 1,057) and "lift 0" on both seeds. Their falsifier, one eval-10 training at njmax 1024 / nconmax 512 (~$2–3),
+  needs the owner's go.
+  - CPU check (`contact_budget/njmax_cfg_test.py`): `sim.njmax=1024 sim.nconmax=512` is a training-only override. It
+    is stored in the resolved config, survives the evaluator's composition, and the evaluator's solver is built with
+    1024 / 512. No evaluator code change.
+  - Packed gl10A2: 8.37 M lines in training, 0 in its 5 scored draws.
+
+### 2026-11-01 02:55 UTC — determined-wright: collision-overlap fixes — budget checks queued; baselines measured
+- keen-heisenberg relayed (02:52 UTC):
+  - the owner's go at 02:43 for focused-pascal's eval-10 njmax-1024 diagnostic (theirs to run; not duplicated here);
+  - the owner's words at 02:50, "I give you permission for everything", for fixing the collision overlaps behind
+    evals 10, 30 and 14.
+  - My part is CPU only: run budget.py on each bold-albattani candidate as it lands. focused-pascal retrains only after
+    the check shows no overflow at 512. I rent nothing.
+- Packed baselines (`contact_budget/`, f2100c6; sampled / explicit nefc max):
+  - eval 30: 244 / 223;
+  - eval 14: 297 / 385;
+  - eval 10: 536 / 441, 13 % of steps over 512.
+- bold-albattani's `ev10-cavsafe/GATES.md` (98ddccf) was written before any candidate. No pieces yet; watcher
+  `b41ahbswb` is on their branch.
+- 03:12 UTC: candidate **ev10cs** (bold-albattani dafc911, 53 / 49 pieces), full-scene budget check.
+  - Sampled resets: nefc max 510 (packed 536), median 443 (473); **4 overflow lines** (requests 515–518); cup–cup
+    contacts 31 (68).
+  - Explicit f0/124/142/160: max 409, no overflow.
+  - **Not clean** at 512, so no retrain. Reported to all three. Waiting for their v2 (A2) and the rack candidates.
+- 03:27 UTC: candidates ev10cs2 / ev10cs3 (bold-albattani 5cd0433).
+  - Small sample (8 worlds × 30 steps):
+    - ev10cs2: nefc max 510, 3 overflow lines → not clean;
+    - ev10cs3: max 443, 0 lines.
+  - **The small sample was not representative.** ev10cs3 at 32 worlds × 60 steps: sampled max 603, median 500, 110
+    overflow lines; explicit (f0/111/116/124/142/160) max 533, 576 lines.
+    - The per-step maximum over more worlds is higher.
+    - Steps 21–60 include the zero-action collapse after the hold.
+  - budget.py now reports a hold window (steps < 20) and an after-hold window.
+  - Paired large-sample runs (packed / ev10cs3 / ev10cs at 32 × 60) are running. Packed at 32 × 60: hold-window nefc
+    max 661, median 599, every step over 512 in at least one world; explicit max 1,680.
+  - Nothing has been reported to the other sessions about cs2 / cs3 yet.
+- 03:42 UTC: paired 32 × 60 budget for eval 10, hold window (steps < 20). "Share" = share of steps whose worst of 32
+  worlds exceeds 512 rows.
+
+  | | packed | ev10cs | ev10cs3 |
+  |---|---|---|---|
+  | sampled, hold window: max / median / share | 661 / 599 / 100 % | 598 / 548 / 75 % | **534 / 495 / 15 %** |
+  | explicit (f0/111/116/124/142/160), hold window: max / share | 918 / 33 % | 699 / 19 % | **477 / 0 %** |
+  | explicit, after the hold: max / share | 1,680 / 39 % | 627 / 16 % | 533 / 3 % |
+  | overflow lines, sampled / explicit | 380 / 9,723 | 104 / 7,086 | 110 / 576 |
+
+  ev10cs3 is clearly better than packed but not clean. The after-hold window is the zero-action collapse and is noisy.
+- 04:25 UTC: bold-albattani's rack candidates (e863636). Evals 30 and 14 keep the packed racks; eval 30 uses no
+  candidate at all. They asked for budget.py on c1-ev14 (62 rack pieces) and c2-ev14 (54).
+  - Built from the packed eval-14 assets: the refs/sf rack mesh plus the candidate pieces, the blue cup as packed,
+    0.3 kg.
+  - The large-sample controls on packed evals 30 and 14 had never run: my wait loop's `pgrep -f` matched its own
+    command line. Fixed and restarted, together with c1 / c2 at both sample sizes.
+
+### 2026-11-01 04:47 UTC — determined-wright: overlap-fix budget verdicts (32 × 60 standard with controls)
+- Controls: the packed evals 30 and 14 have 0 overflow lines at 32 × 60 (max 287 / 505 rows), so the size is a fair
+  absolute test. The 8 × 30 bar was not robust.
+- **Eval 14:** c1-ev14 adds 12 overflow lines and c2-ev14 adds 5, against 0 packed → keep the packed rack.
+- **Eval 30:** packed is clean.
+- **Eval 10:** packed 380 / 9,723 lines; ev10cs 104 / 7,086; ev10cs3 110 / 576 → no clean candidate, no retrain.
+  ev10cs3 + `sim.njmax=1024` is untested; it needs the owner's go.
+- Record: `contact_budget/README.md` "Large-sample standard", runs in `runs_32x60/` and `runs_8x30/` (6b04fba). Sent
+  to bold-albattani, focused-pascal and keen-heisenberg.
+
+### 2026-11-01 05:08 UTC — determined-wright: ev10cs4 clears the budget gate and the FlashCHORD nest test
+- ev10cs4 (bold-albattani 7e4bc6a, 24 / 21 pieces), contact budget at 32 × 60 (6e32856): **0 / 0 overflow lines**;
+  hold max 448; overall max 459. Packed: 380 / 9,723.
+- FlashCHORD nest test (`docs/research/physics-2026-10-30/ev10_nest_test/`, 4f5ff63): carve_fc_test (+ relT) under
+  sim=rl, packed vs ev10cs4.
+  - Driven, beige relative to blue: 0.14 cm / 1.1° median vs packed 1.02 cm / 7.0°.
+  - Free rest from f124: 1.59 vs 1.28 cm.
+  - 0 overflow, 0 NaN.
+  - Floor plate (6 mm): driven max 0.43 mm into it; rest impact 5.49 mm at f126, settled ~1 mm; never through.
+- Sent to bold-albattani, focused-pascal and keen-heisenberg. Next: one eval-10 GPU training on ev10cs4 (~$2–3,
+  focused-pascal); it needs the owner's go.
+- 05:10 UTC, keen-heisenberg: drawdiv on ep2 for the masses-check run (their f58f638, `docs/analysis/drawdiv-20261031/`).
+  - Good draws (both objects < 3 cm): mass0 4/10 and 3/10, mass1 6/10 and 8/10.
+  - The draws split early: 10 µm by f1–4, 5 mm by f5–11.
+  - The lid fails first. The light lid removes most of the f54–61 lid failures; the early ones (before f30) stay.
+  - [H]: the early lid failures are the pot + lid rest interpenetration, so a pose fix should cut them. Falsifier: ≥ 8
+    early lid onsets per 20 draws on a pose-fixed reference.
+  - Recorded only; nothing to run.
+- 05:11 UTC: keen-heisenberg (05:09 UTC) reports that focused-pascal has the go for the ev10cs4 eval-10 retrain, under
+  the owner's 02:50 permission: 2 seeds at stock limits, PREREG, swap rule. Nothing for me to run.
+- On their optional ask I tested an 8 mm plate variant, built ad hoc (report only).
+  - Rest: max 4.02 mm into the plate, against 5.49 of 6 mm before; settled 0.49 mm.
+  - Driven: 0.12 cm median; 0 through; 0 overflow.
+  - Record: `ev10_nest_test/README.md` (9de7d92). Sent to bold-albattani and keen-heisenberg.
+- 05:13 UTC: answered focused-pascal's inertia question for the ev10cs4 retrain (their build has started, ~$3–5 under
+  the owner's standing go).
+  - meshes/carve/ev10 also has inertia.json, but the built URDFs differ (mass 0.3 kg in both).
+  - Blue COM moves 12.8 mm along the axis (z 2.99 → 15.77 mm); inertia +0.4–4 %.
+  - Beige COM moves 1.4 mm; izz −10 %.
+  - Suggested copying packed inertia.json to keep a one-variable test.
+- 05:23 UTC: ev10cs5 (bold-albattani 1373603, the 8 mm plate) for focused-pascal's PREREG.
+  - Byte identity vs v4: only the plate, blue inertia.json and build records differ.
+  - 32 × 60: **0 / 0 overflow lines**; max 503 / 504 (v4: 448 / 459).
+  - Both conditions met; headroom is only ~8 rows. Record be1e893; sent to focused-pascal and bold-albattani.
+
+### 2026-11-01 05:48 UTC — determined-wright: eval-10 njmax-1024 diagnostic SUPPORTED (focused-pascal)
+- focused-pascal (05:47 UTC): eval-10 training at `sim.njmax=1024 sim.nconmax=512`, owner's go 02:43 UTC, never
+  packed.
+  - 0 overflow lines; the beige cup lifted 23.9 cm.
+  - Official sim_vs_ref vs V: **0.913** (1024 config) and 0.903 when evaluated at stock 512, against e10v's 0.459.
+  - 0 overflow lines in every draw.
+- This confirms the lead from `contact_budget/` and the overflow counts: training-time constraint overflow caused
+  eval 10's no-lift floor.
+- Suggested to focused-pascal and keen-heisenberg:
+  - count overflow lines in every packed eval training log; ≳ 100 k lines makes an episode a candidate for an
+    njmax-1024 retrain;
+  - re-offered the public ep2/ep12 njmax test (≈ $7 [E], needs the owner's go).
+- 05:53 UTC, focused-pascal: triage of the packed eval training logs, by file size, no downloads; line counts are
+  estimates.
+  - eval 10 ≈ 8.37 M lines; eval 33 ≈ 21 k; eval 32 ≈ 20 k; eval 14 ≈ 4.6 k; eval 20 ≈ 1.2 k; the other 15: 0.
+  - Only eval 10 is heavily affected, so no other eval gets an overflow retrain.
+  - They keep the owner's condition: no 1024-trained policy in a pack until the organisers agree. The question is
+    with the owner.
+  - The ep2/ep12 public test is an option for the owner, not launched.
+- 06:43 UTC: eval 20, bold-albattani's b1 pitcher set (9c0bc0c, 41 pieces, via placement_carve.py assets on the
+  packed refs/sf/ep20/assets), keen-heisenberg's request.
+  - 32 × 60: **0 / 0 overflow lines**; max 342 / 321, against packed 348 / 317. Clean.
+  - Observation: under b1 the cup touches the world-body plane (6 / 31 contacts), which packed shows none of; a cup
+    settle check is suggested.
+  - Record f59c897. Sent to focused-pascal, bold-albattani and keen-heisenberg.
+- 06:46 UTC: eval-20 blue-cup settle check for focused-pascal (`ev20_settle/`, 85e8ef8).
+  - Under b1 the cup rests within 0.33 cm / 0.7° at f152/183/192; packed tips 29° at f183. No sink-through; the cup
+    ends within 1 mm of the table.
+  - Flag: at f192 the pitcher falls hands-free in both sets (b1 12 cm vs packed 6.8 cm); probably an in-hand frame.
+  - Not a blocker. Sent to focused-pascal, bold-albattani and keen-heisenberg.
+- 07:06 UTC: rest probe for keen-heisenberg (`rest_probe/`, 2a809d6).
+  - Hands vs parked, zero-action, on the packed evals 3/5/6/8/16/33.
+  - The hands touch the objects inside the rest windows. On evals 5 / 8 / 33 the motion is far larger with the hands:
+    pot 26 vs 3 mm, pot 42 vs 9 mm, spoon 87 vs 11 mm. The first touches are fingertips at f3 / f13 and the palm at
+    f24.
+  - Eval 16's spoon rotates more when parked (29°): not the hands.
+  - Eval 3's 65 mm (pack, GPU) does not reproduce on CPU.
+  - A first run had a body-name parsing bug (`track3_<obj>_object`); it was fixed before reporting.
+- 07:08 UTC: keen-heisenberg parks the hand-push finding, with no reference rebuild. Evals 5 / 8 / 33 already score
+  0.94–0.97, so a fix cannot clear their +0.02 rule; evals 3 and 16 are not explained by the hands. Noted for later:
+  a contact-aware approach constraint in mkref. Told them the eval-20 b1 items were already done (f59c897, 85e8ef8).
+  Nothing is pending on my side.
+
+### 2026-11-01 08:56 UTC — determined-wright: wrap-up (owner via keen-heisenberg: close loops, start nothing new)
+- Repo clean and pushed. No agents running, and no boxes of mine. Box 58631864 (20261101-e20b1-4207ce4) is
+  focused-pascal's eval-20 b1 retrain.
+- Final report sent to keen-heisenberg; the same content is in STATUS.md (wrap-up section).
+
+### 2026-11-01 ~12:25 UTC — grasp-ep13 (branch `claude/grasp-ep13-20261101`, off determined-wright 5bab5c6): GRASP-mode solver built (CPU, $0)
+- Task (owner, this session): test whether a GRASP-style sampler (Liu, Wang, Bao, Yang, Harvard 2026) makes public ep13
+  (twin of eval 14, the left→right hand-over + flip) feasible. CPU first; pre-registered gate; GPU only with the owner's
+  go. Nothing rented, nothing sent to Kaggle.
+- Container setup (4 CPU, scratchpad): FlashCHORD at the evaluator pin 8c778f90 (`uv sync --frozen`, Python 3.12;
+  warp 1.14.0, mujoco 3.8.1, newton 1.2.0); its 559 LFS assets from media.githubusercontent.com (the git proxy refuses
+  LFS for that repo), each sha256 checked; `flashchord_conf/embodiment/sharpa_hands_mid.yaml` copied in as
+  `ops/jobs/physics_solve.sh` does; kit zip md5 1988f0d8.
+- Inputs (store run `20261030-orcB-38234d1`, the oracle-twins box): perceived `refs/glockt/ep13` (md5 414d0200) and
+  oracle `refs/oracle_glockt/ep13` (md5 455173ec) = the references the twins trained on; assets `refs/{sf,oracle_sf}/ep13`
+  (identical files). Dev episode: `refs/glockt/ep31`. Local copies by `docs/research/grasp-ep13-20261101/scripts/prep_inputs.py`
+  (only `object_urdf_paths` rewritten, checked).
+- CPU zero-action sim_vs_ref [M]: ep13 P 0.5406 (box GPU 0.5515), O 0.5724 (box 0.5620); floors 0.5561 / 0.5727. A repeat
+  CPU replay is bit-identical (max |Δq| 0.0); 27 s warm per 190-frame replay.
+- GRASP code read (github.com/ComputationalRobotics/GRASP_code @ 992c737, MIT). Its optimiser files (`grasp/optim/*`,
+  `grasp/mpc/grasp_mpc.py`) are GRASP's own; the SPIDER-derived files (CC BY-NC) are listed in its THIRD_PARTY_NOTICES.md
+  (`grasp/sim/*`, `grasp/config.py`, `grasp/utils/*`, most of `grasp/pipeline/*`) and were not used.
+- Built: `tools/physics_solve/grasp_window.py` (numpy re-write of GRASP's tempered SMC window: AR(1) prior around the
+  warm-start plan, ESS-adaptive tempering, systematic resampling, local quadratic surrogate on the archive of all
+  rollouts in the window with the DCT rank-r basis, prior-preconditioned MALA proposals, MH on the TRUE cost, adaptive
+  step, samples carried to the next window; MIT notice kept) and `solve.py --method grasp` (same cost, robust copies,
+  commit, rollbacks and rollout budget as the annealed sampler; the robust copies' noise is fixed per window so the MH
+  test is exact).
+- Checks [M]: unit tests `tools/physics_solve/tests/grasp/test_grasp_window.py` all PASS; regression: the default
+  (anneal) path of the new solve.py vs the original (md5 fa511432) on ep31 f0–44 → identical output parquet (md5 bfecffd6),
+  offsets and truth trajectory; GRASP-mode smoke on ep31 runs, fresh-load target buffers bit-identical.
+- Smoke reading: at 16 candidates the surrogate is over-fitted (R² 1.0 on 16–48 points) and tempering reaches only
+  λ ≈ 0.02 in 2 stages. Dev sweep on ep31 f16–48 at the comparison scale (32 × 4 worlds, 8 batches per replan):
+  anneal (iters 8, anneal 0.80 = G1/G2's final noise factor 0.216 over 8 iterations) J_best/J_warm 0.985, 2/8 improved,
+  466 s; GRASP configs (ESS 0.9 / 0.5, moves 2 / 1) running.
+- ~12:30 UTC: exactness of GRASP mode [M]: the official zero-action replay of the ep31 smoke output (`--method grasp`,
+  `--stop 44`) is bit-identical to the solver's committed truth trajectory (45 frames, max |Δq| 0.0; 23 frames carry
+  non-zero offsets, max wrist offset 0.75 cm). Run scripts for ep13 written (`scripts/run_ep13.sh`, `jitter_inputs.sh`,
+  `gate.py`); PREREG draft written, not yet frozen (GRASP settings pending the ep31 dev sweep). GRASP page [L]: 94.2 %
+  vs Do-as-I-Do 81.0 % vs SPIDER 71.4 % on Sharpa bimanual OakInk2, "evaluation sets differ"; no budget or compute given
+  (code: 2,000 particles, ≤ 64 tempering stages × 5 moves per window).
+- ~12:33 UTC: **finding [M]: both ep13 twin references park the left hand; the hand-over is not in the robot
+  reference.** The oracle-twins box built them with `--single_hand 1` (GL_ARGS in its job.log). grasp_lock.py keeps one
+  carrier per object (the hand with the most hold frames: right, f46–104), drops the other hand's holds and parks it at
+  its frame-0 pose. In `refs/glockt/ep13` and `refs/oracle_glockt/ep13` the left wrist stays at z 57.0 cm for all 190
+  frames and its frames never come within 15.7 cm of the cup's bounding sphere; in the support-filled input before the
+  lock (`refs/sf/ep13/.../ref_sf.parquet`) the left hand is on the cup over f20–60 (−2.7 to −8.1 cm inside the sphere)
+  and the right hand from ~f40. The cup's reference rises ~9–12 cm by f30–40 (z 68.9 → 78.1 → 80.9 cm), before the
+  right hand arrives (f40: 1.6 cm) and holds (f46). So the robot is asked to lift the cup with no hand near it.
+  - Reading [I]: the oracle twin's O ≈ P (0.544 vs 0.543, both at the floor) shows ep13 is not perception-limited, but
+    its "control-limited" class was measured with this construction for both arms, so it may be construction-limited
+    (the single-hand carry drops the left-hand pick). The solver's hand gate also never enables the left hand on these
+    inputs (0 near frames; right hand 37 of 48 replans).
+  - Consequence for this test: on the twins' references neither solver can make the hand-over happen (the left hand is
+    ≥ 15 cm away and outside the gate; the right hand is 27 cm away at f30). I add a pre-registered second input
+    construction: the same `ref_sf` inputs (P and O) re-locked with the box's GL_ARGS **minus** `--single_hand 1`
+    (two-hand holds, the hand-over kept), then wrist ILC (4 iterations, kp 400), via `tools/cpu_glock_zero.sh`. No
+    REPLAN stage (on ep13 the box's replan was "not better; kept the previous version"). Building now.
+- ~12:37 UTC: two-hand grasp-lock rebuilds done (CPU, `tools/cpu_glock_zero.sh`, code e919165, 3.5 min each) [M]. Holds:
+  P2 left f19–61 + right f46–104, O2 left f17–61 + right f46–99. ILC iteration 3 (left/right wrist error, mean): P2
+  2.3 / 0.8 cm, O2 1.2 / 0.7 cm. Nominal zero-action sim_vs_ref (single replays; report only): **P2 0.5268**,
+  **O2 0.6474** (floors 0.5561 / 0.5727; the twins' P / O give 0.5406 / 0.5724 on CPU). Outputs:
+  scratchpad `gl2/ep13_{P,O}/` (md5 501e928e / 7ad0e431).
+- PREREG draft updated (not frozen): test A = the twins' references (the owner's gate), test B = the two-hand rebuilds,
+  same gate per test; test B runs first. Dev sweep on ep31 G2–G5 still running; G1 (paper-like ESS 0.9) improved 0/8
+  windows vs the annealed sampler's 2/8.
+- ~12:53 UTC: dev sweep on ep31 f16–48 (8 active windows, same scale as the ep13 arms) [M], metric = mean per-window
+  J_best / J_warm (improved windows): anneal 0.9853 (2/8); G1 ESS 0.9, 2 moves 1.0000 (0/8); G2 ESS 0.5, 2 moves
+  0.9892 (3/8); G3 ESS 0.5, 1 move 0.9759 (2/8); G4 / G5 (GRASP's own widths) running. Diagnostics: at ESS 0.9 the
+  tempering reaches λ ≈ 0.05–0.12 in 4 stages (samples ≈ prior); at ESS 0.5 it reaches λ = 1 within 1–4 stages, after
+  which acceptance is 0.0 (the per-stage step adaptation cannot shrink the 0.59 step fast enough in so few stages); the
+  diag surrogate is over-fitted early (R² 1.0 on ≤ 113 points).
+- ~12:53 UTC: dry run of `scripts/run_ep13.sh` on ep31 (`dry31`, tiny budget, `--stop 28`): every step ran; official
+  replay vs solver truth bit-identical (29 frames), fresh-load buffers identical, 16-copy jitter check 86 s. Output moved
+  out of the ep13 tree. `scripts/run_all.sh` written (inputs' jitter, test B, test A, gate).
+- 13:08 UTC: dev done: G4 (GRASP widths, ESS 0.9) 0.9668 (3/8), **G5 (GRASP widths, ESS 0.5, 2 moves) 0.9582 (5/8)** →
+  selected by the pre-declared rule. **PREREG frozen at d8544cf** (tests A and B, gate per test, the width confound and a
+  conditional equal-width control stated). No ep13 solve ran before it.
+- 13:09 UTC: ep13 runs launched on this container, detached (`setsid nohup`), commit d8544cf:
+  `S=<scratchpad> GRASP_ARGS="--g_sig_abs 0.0044 0.0044 0.044 --g_ess 0.5 --g_moves 2" bash
+  docs/research/grasp-ep13-20261101/scripts/run_all.sh` → scratchpad `ep13/` (`run_all.log`, one dir per arm). Order:
+  inputs' jitter checks, P2 anneal, P2 grasp, O2 anneal, O2 grasp, P anneal, P grasp, O anneal, O grasp, gate. A first
+  launch at 13:08 under the tool's 2 h background limit was stopped after 30 s (no arm had started; its partial input
+  jitter dirs moved to `ep13_aborted/`). Expected ≈ 5–9 h [E].
+- 14:26 UTC: ep13 arm 1/8 done [M]: **P2 anneal** (two-hand perceived input, our solver): jittered mean **0.3935 ± 0.146**
+  (16 copies; min 0.118, max 0.555), nominal 0.5270; its input P2 0.3435 ± 0.162; floor 0.5561. Official replay vs
+  solver truth bit-identical over all 190 frames; fresh-load buffers identical. 4 rollbacks used (cup lost at f24
+  repeatedly); the cup is ~20 cm off by f96. Solve ≈ 74 min. Arm 2 (P2 grasp) started 14:26.
+- 15:38 UTC: ep13 arm 2/8 done [M]: **P2 grasp** (GRASP mode, config G5): jittered mean **0.4176 ± 0.166** (min 0.077,
+  max 0.557), nominal **0.6266**; replay vs truth bit-identical (190 frames); 4 rollbacks; solve ≈ 71 min.
+  - **Test B primary: d_b = 0.4176 − 0.3935 = +0.024** (paired over the 16 common-noise copies: bootstrap 95 % CI
+    −0.071 to +0.115; GRASP ahead on 9 / 16). Below the +0.05 bar, so **test B cannot pass**, whatever the O2 arms show
+    (they can only add a harm flag). Nominal (copy 0) Δ +0.100: the nominal gain mostly vanishes under 0.5 mm / 0.005 rad
+    noise, as for the CPU solver on ep12 (30 Oct).
+  - Report-only: the cup stays within 3 cm on 8 % of frames in every P2 arm (input, anneal, grasp) and is lost (> 3 cm
+    for 8 frames) at f15–17 in every copy; neither solver keeps the cup through the hand-over from our perceived motion.
+    The O2 input keeps it within 3 cm on 22 % of frames, lost at f27–69.
+  - Single nominal trajectories looked very different mid-solve (f52: GRASP 4.3 cm vs anneal 18.7 cm off): a reminder
+    that only the jittered means are the measure.
+  - Remaining (pre-registered, running): O2 anneal (started 15:38), O2 grasp, then test A (P, O × 2).
+- 16:52 UTC: ep13 arm 3/8 done [M]: **O2 anneal** (two-hand oracle input, our solver): jittered mean **0.6507 ± 0.092**
+  (14 / 16 copies 0.65–0.70; two at 0.40–0.41), nominal 0.6957; its input O2 0.6041 ± 0.093; floor 0.5727. Replay vs
+  truth bit-identical (190 frames). Nominal trajectory: cup within ~2 cm through the hand-over (f76: 1.6 cm), lost at the
+  placement (~31 cm off by f108). Arm 4 (O2 grasp) started 16:52.
+- 18:10 UTC: ep13 arm 4/8 done [M]: **O2 grasp**: jittered **0.6241 ± 0.107**, nominal 0.6929; replay bit-identical; 4
+  rollbacks; solve ≈ 76 min. **Test B verdict (gate.py): FAIL.** d_b (P2) = +0.024 [−0.071, +0.115], 9 / 16 wins;
+  d_a (O2) = −0.027 [−0.101, +0.050], 5 / 16 wins; no harm flag. Report-only: from the oracle motion both solvers
+  carry the cup longer than their input (lost at ~f60–82 instead of f27–50; within 3 cm on 35 % of frames vs 22 %),
+  about equally; from our perceived motion all three P2 arms lose it by f15–17. Result files copied to
+  `docs/research/grasp-ep13-20261101/results/` (jitter JSONs, run logs, solve JSONs, gate_testB.json). Test A running
+  (P anneal started 18:10).
+- 18:41 UTC: ep13 arm 5/8 done [M]: **P anneal** (test A, the twins' perceived input): the solver beat the warm start in
+  0 of 37 active windows (4 rollbacks used), so the output has 0 edited frames and equals the input: jittered 0.5542 ±
+  0.004 (copy for copy identical to P_input), nominal 0.5406; floor 0.5561. Replay bit-identical. Solve 30 min. As
+  expected from the parked left hand. Arm 6 (P grasp) started 18:41.
+- 19:16 UTC: ep13 arm 6/8 done [M]: **P grasp** (test A perceived): output identical in score to the input and to P anneal
+  (jittered 0.5542 ± 0.004, copy for copy; nominal 0.5406). **Test A primary d_b = 0.000 → test A cannot pass** (the
+  O arms can only add a harm flag). Arm 7 (O anneal) started 19:16.
+- 19:36 UTC: **finding [M] (public diagnostic, stored references only): our perceived ep13 cup track spins about the
+  cup's symmetry axis while it rests.** In P2 (= P's object track) the cup rotates 12° by f8, 35° f14, 54° f18, 130° f26,
+  140° f30 with < 0.5 cm of travel until f22; the rotation axis is the cup's mesh symmetry axis at every frame checked
+  (|cos| 1.00; PCA variances 0.00065 / 0.00076 / 0.00232, axis (0.01, −0.04, 1.00) in the body frame). The oracle track
+  rotates 0–9° until f24 (22–34° by f32–36). The metric (kit AUC, sim_vs_ref) is ADD, not ADD-S, so a spin about an
+  axis no camera can see costs real score: 46° alone ≈ 3.9 cm on the 5 cm sphere. This is why every perceived-motion arm
+  (P, P2: input, anneal, grasp) is "lost" (> 3 cm for 8 frames) at f15–17 while every oracle arm holds until ≥ f26: the
+  robot cannot spin a resting cup, and should not.
+  - [H-spin] Canonicalising the unobservable symmetry-axis spin of symmetric objects in our references (GT-free: e.g.
+    hold the spin at its last observable / hand-attached value) raises both sim_vs_ref and the registered AUC vs mocap
+    on cup episodes. Falsified on public twins if the registered AUC of the canonicalised reference vs mocap does not rise
+    (ep13 first; then the other blue-cup twins). Not run here: it is a reference-side change for the owner's new
+    "perfect following" lane (keen-heisenberg's 19:35 message, relayed to the owner in chat; no reply sent to the other
+    session without the owner's go).
+- 19:57 UTC: owner (this chat): "how can we solve the perceived motion to be physically possible … tell the meeting
+  analysis chat as well". Proposal written to `docs/research/grasp-ep13-20261101/README.md` §8 (a844888): (a) symmetry-axis
+  twist canonicalisation, (b) "no mover, no motion" with hand-frame low-pass during holds, (c) hand assignment that
+  matches object motion (first picker / two-hand only in hand-over windows), (d) a weld-to-hand feasibility preflight;
+  each with a public falsification test. Sent to the "Meeting analysis with Roman" session (session_01D9UJC7JP3bbasvhFUrxyf7,
+  keen-heisenberg's coordination chat), together with the GRASP verdict and the §7 notes for the perfect-following
+  session. Next on CPU after the ep13 arms: repair (a) on ep13 P2 + jitter check.

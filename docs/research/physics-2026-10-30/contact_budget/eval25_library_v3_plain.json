@@ -1,0 +1,29 @@
+{
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/dchk/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/ref.parquet",
+ "worlds": 8,
+ "steps": 60,
+ "nconmax": 2048,
+ "njmax": 512,
+ "collision_geoms": {
+  "world/table": 1,
+  "left_hand": 26,
+  "right_hand": 26,
+  "wooden_piece_1_object": 19,
+  "wooden_piece_2_object": 9,
+  "other:support": 1
+ },
+ "max_contacts_per_world": 56,
+ "median_contacts_per_world": 40.0,
+ "max_nefc_per_world": 240,
+ "median_nefc": 174.5,
+ "max_contacts_per_world_by_pair": {
+  "right_hand / right_hand": 21,
+  "left_hand / wooden_piece_1_object": 19,
+  "right_hand / wooden_piece_2_object": 18,
+  "left_hand / left_hand": 17,
+  "other:support / wooden_piece_1_object": 9,
+  "other:support / wooden_piece_2_object": 9,
+  "wooden_piece_1_object / wooden_piece_2_object": 8,
+  "left_hand / wooden_piece_2_object": 3
+ }
+}

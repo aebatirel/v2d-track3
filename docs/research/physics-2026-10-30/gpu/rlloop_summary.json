@@ -1,0 +1,525 @@
+{
+ "ep2": {
+  "O1": {
+   "checkpoint": "/content/runs/glock/ep2-s42/policy_10002432.safetensors",
+   "n": 5,
+   "sim_vs_ref": {
+    "mean": 0.59,
+    "std": 0.2331,
+    "min": 0.3326,
+    "max": 0.9157
+   },
+   "auc": {
+    "mean": 0.5847,
+    "std": 0.2365,
+    "min": 0.3232,
+    "max": 0.9171
+   }
+  },
+  "O3": {
+   "checkpoint": "/content/runs/loop/ep2-s42/policy_20000768.safetensors",
+   "n": 5,
+   "sim_vs_ref": {
+    "mean": 0.8524,
+    "std": 0.1684,
+    "min": 0.5173,
+    "max": 0.9638
+   },
+   "auc": {
+    "mean": 0.8354,
+    "std": 0.1887,
+    "min": 0.4595,
+    "max": 0.9572
+   }
+  },
+  "O1_curve": [
+   "  10M  sim_vs_ref 0.729  |  white_pot: lift   2.9 (ref 10.6) in3cm 0.34 lost@134/343  white_pot_li: lift   5.6 (ref  5.6) in3cm 0.80 lost@329/343"
+  ],
+  "O3_curve": [
+   "  10M  sim_vs_ref 0.944  |  white_pot: lift  10.6 (ref 10.6) in3cm 1.00 lost@None/343  white_pot_li: lift   8.1 (ref  5.6) in3cm 0.97 lost@None/343",
+   "  20M  sim_vs_ref 0.966  |  white_pot: lift  11.6 (ref 10.6) in3cm 1.00 lost@None/343  white_pot_li: lift   6.4 (ref  5.6) in3cm 0.99 lost@None/343",
+   "  30M  sim_vs_ref 0.488  |  white_pot: lift   0.1 (ref 10.6) in3cm 0.34 lost@129/343  white_pot_li: lift   2.3 (ref  5.6) in3cm 0.18 lost@65/343",
+   "  40M  sim_vs_ref 0.473  |  white_pot: lift   0.1 (ref 10.6) in3cm 0.34 lost@129/343  white_pot_li: lift   1.4 (ref  5.6) in3cm 0.39 lost@65/343",
+   "  50M  sim_vs_ref 0.498  |  white_pot: lift   0.1 (ref 10.6) in3cm 0.42 lost@160/343  white_pot_li: lift   1.4 (ref  5.6) in3cm 0.38 lost@65/343",
+   "  60M  sim_vs_ref 0.422  |  white_pot: lift   0.0 (ref 10.6) in3cm 0.34 lost@129/343  white_pot_li: lift   2.1 (ref  5.6) in3cm 0.18 lost@66/343",
+   "  70M  sim_vs_ref 0.493  |  white_pot: lift   0.1 (ref 10.6) in3cm 0.77 lost@129/343  white_pot_li: lift   1.3 (ref  5.6) in3cm 0.39 lost@65/343"
+  ],
+  "O3_loop": [
+   {
+    "round": "r0",
+    "onsets": {
+     "white_pot": 117,
+     "white_pot_lid": 62
+    },
+    "windows": [
+     [
+      52,
+      177
+     ]
+    ],
+    "trace": [
+     "floor_vs_ref 0.5060",
+     "policy: sim_vs_ref 0.4530"
+    ],
+    "bank": {
+     "path": "/content/results/physics_rl_loop/ep2/o3/bank_r1.npz",
+     "states": 4,
+     "policy": 3,
+     "solver": 1
+    }
+   },
+   {
+    "round": "r1",
+    "onsets": {
+     "white_pot": 117,
+     "white_pot_lid": 61
+    },
+    "windows": [
+     [
+      51,
+      177
+     ]
+    ],
+    "trace": [
+     "floor_vs_ref 0.5060",
+     "policy: sim_vs_ref 0.5024"
+    ],
+    "bank": {
+     "path": "/content/results/physics_rl_loop/ep2/o3/bank_r2.npz",
+     "states": 9,
+     "policy": 6,
+     "solver": 3
+    }
+   },
+   {
+    "round": "final",
+    "onsets": {
+     "white_pot": 117,
+     "white_pot_lid": 61
+    },
+    "windows": [
+     [
+      51,
+      177
+     ]
+    ],
+    "trace": null,
+    "bank": null
+   }
+  ],
+  "G3_auc": 0.584,
+  "S1_round1_auc": 0.7362
+ },
+ "ep12": {
+  "O1": {
+   "checkpoint": "/content/runs/glock/ep12-s42/policy_40001536.safetensors",
+   "n": 5,
+   "sim_vs_ref": {
+    "mean": 0.9181,
+    "std": 0.0247,
+    "min": 0.8705,
+    "max": 0.9399
+   },
+   "auc": {
+    "mean": 0.8929,
+    "std": 0.0263,
+    "min": 0.8408,
+    "max": 0.9119
+   }
+  },
+  "O3": {
+   "checkpoint": "/content/runs/loop/ep12-s42/policy_50003968.safetensors",
+   "n": 5,
+   "sim_vs_ref": {
+    "mean": 0.9211,
+    "std": 0.0275,
+    "min": 0.8696,
+    "max": 0.9525
+   },
+   "auc": {
+    "mean": 0.9042,
+    "std": 0.0362,
+    "min": 0.833,
+    "max": 0.9337
+   }
+  },
+  "O1_curve": [
+   "  10M  sim_vs_ref 0.741  |  blue_cup: lift  17.6 (ref 17.4) in3cm 0.47 lost@93/181  plastic_dish: lift  19.9 (ref  0.5) in3cm 0.83 lost@164/181"
+  ],
+  "O3_curve": [
+   "  10M  sim_vs_ref 0.723  |  blue_cup: lift  18.1 (ref 17.4) in3cm 0.48 lost@93/181  plastic_dish: lift   3.4 (ref  0.5) in3cm 1.00 lost@None/181",
+   "  20M  sim_vs_ref 0.756  |  blue_cup: lift  14.9 (ref 17.4) in3cm 0.34 lost@71/181  plastic_dish: lift   0.5 (ref  0.5) in3cm 1.00 lost@None/181",
+   "  30M  sim_vs_ref 0.888  |  blue_cup: lift  18.3 (ref 17.4) in3cm 0.80 lost@None/181  plastic_dish: lift   1.4 (ref  0.5) in3cm 1.00 lost@None/181",
+   "  40M  sim_vs_ref 0.946  |  blue_cup: lift  17.6 (ref 17.4) in3cm 0.98 lost@None/181  plastic_dish: lift   0.5 (ref  0.5) in3cm 1.00 lost@None/181",
+   "  50M  sim_vs_ref 0.949  |  blue_cup: lift  18.1 (ref 17.4) in3cm 0.91 lost@None/181  plastic_dish: lift   0.6 (ref  0.5) in3cm 1.00 lost@None/181",
+   "  60M  sim_vs_ref 0.941  |  blue_cup: lift  18.0 (ref 17.4) in3cm 0.91 lost@None/181  plastic_dish: lift   0.6 (ref  0.5) in3cm 1.00 lost@None/181",
+   "  70M  sim_vs_ref 0.938  |  blue_cup: lift  17.2 (ref 17.4) in3cm 0.97 lost@None/181  plastic_dish: lift   3.9 (ref  0.5) in3cm 0.99 lost@None/181"
+  ],
+  "O3_loop": [
+   {
+    "round": "r0",
+    "onsets": {
+     "blue_cup": 124,
+     "plastic_dish_rack": null
+    },
+    "windows": [
+     [
+      114,
+      180
+     ]
+    ],
+    "trace": [
+     "floor_vs_ref 0.6051",
+     "policy: sim_vs_ref 0.9157"
+    ],
+    "bank": {
+     "path": "/content/results/physics_rl_loop/ep12/o3/bank_r1.npz",
+     "states": 16,
+     "policy": 3,
+     "solver": 13
+    }
+   },
+   {
+    "round": "r1",
+    "onsets": {
+     "blue_cup": 135,
+     "plastic_dish_rack": null
+    },
+    "windows": [
+     [
+      125,
+      180
+     ]
+    ],
+    "trace": [
+     "floor_vs_ref 0.6051",
+     "policy: sim_vs_ref 0.9280"
+    ],
+    "bank": {
+     "path": "/content/results/physics_rl_loop/ep12/o3/bank_r2.npz",
+     "states": 30,
+     "policy": 6,
+     "solver": 24
+    }
+   },
+   {
+    "round": "final",
+    "onsets": {
+     "blue_cup": null,
+     "plastic_dish_rack": null
+    },
+    "windows": [],
+    "trace": null,
+    "bank": null
+   }
+  ],
+  "G3_auc": 0.892,
+  "S1_round1_auc": 0.8847
+ },
+ "ep18": {
+  "O1": {
+   "checkpoint": "/content/runs/glock/ep18-s42/policy_40001536.safetensors",
+   "n": 5,
+   "sim_vs_ref": {
+    "mean": 0.5559,
+    "std": 0.0793,
+    "min": 0.3974,
+    "max": 0.5993
+   },
+   "auc": {
+    "mean": 0.5791,
+    "std": 0.0952,
+    "min": 0.3888,
+    "max": 0.63
+   }
+  },
+  "O3": {
+   "checkpoint": "/content/runs/loop/ep18-s42/policy_10002432.safetensors",
+   "n": 5,
+   "sim_vs_ref": {
+    "mean": 0.5883,
+    "std": 0.0073,
+    "min": 0.575,
+    "max": 0.5961
+   },
+   "auc": {
+    "mean": 0.6196,
+    "std": 0.0074,
+    "min": 0.6056,
+    "max": 0.626
+   }
+  },
+  "O1_curve": [
+   "  10M  sim_vs_ref 0.592  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.18 lost@59/353  mini_dust_pa: lift   0.0 (ref 16.1) in3cm 0.56 lost@122/353"
+  ],
+  "O3_curve": [
+   "  10M  sim_vs_ref 0.587  |  mini_sweeper: lift   0.9 (ref  8.1) in3cm 0.17 lost@59/353  mini_dust_pa: lift   0.0 (ref 16.1) in3cm 0.54 lost@122/353",
+   "  20M  sim_vs_ref 0.436  |  mini_sweeper: lift   1.0 (ref  8.1) in3cm 0.11 lost@44/353  mini_dust_pa: lift   0.0 (ref 16.1) in3cm 0.55 lost@122/353",
+   "  30M  sim_vs_ref 0.339  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift  16.7 (ref 16.1) in3cm 0.05 lost@23/353",
+   "  40M  sim_vs_ref 0.490  |  mini_sweeper: lift   1.6 (ref  8.1) in3cm 0.15 lost@59/353  mini_dust_pa: lift  10.5 (ref 16.1) in3cm 0.08 lost@120/353",
+   "  50M  sim_vs_ref 0.400  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   3.6 (ref 16.1) in3cm 0.12 lost@119/353",
+   "  60M  sim_vs_ref 0.378  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift  35.2 (ref 16.1) in3cm 0.14 lost@97/353",
+   "  70M  sim_vs_ref 0.418  |  mini_sweeper: lift   1.9 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   5.7 (ref 16.1) in3cm 0.14 lost@66/353"
+  ],
+  "O3_loop": [
+   {
+    "round": "r0",
+    "onsets": {
+     "mini_sweeper": 40,
+     "mini_dust_pan": 20
+    },
+    "windows": [
+     [
+      10,
+      100
+     ]
+    ],
+    "trace": [
+     "floor_vs_ref 0.6185",
+     "policy: sim_vs_ref 0.2953"
+    ],
+    "bank": {
+     "path": "/content/results/physics_rl_loop/ep18/o3/bank_r1.npz",
+     "states": 5,
+     "policy": 3,
+     "solver": 2
+    }
+   },
+   {
+    "round": "r1",
+    "onsets": {
+     "mini_sweeper": 40,
+     "mini_dust_pan": 59
+    },
+    "windows": [
+     [
+      30,
+      119
+     ]
+    ],
+    "trace": [
+     "floor_vs_ref 0.6185",
+     "policy: sim_vs_ref 0.3717"
+    ],
+    "bank": {
+     "path": "/content/results/physics_rl_loop/ep18/o3/bank_r2.npz",
+     "states": 9,
+     "policy": 6,
+     "solver": 3
+    }
+   },
+   {
+    "round": "final",
+    "onsets": {
+     "mini_sweeper": 40,
+     "mini_dust_pan": 64
+    },
+    "windows": [
+     [
+      30,
+      124
+     ]
+    ],
+    "trace": null,
+    "bank": null
+   }
+  ],
+  "G3_auc": 0.622,
+  "S1_round1_auc": 0.6245
+ },
+ "ep24": {
+  "O1": {
+   "checkpoint": "/content/runs/glock/ep24-s42/policy_50003968.safetensors",
+   "n": 5,
+   "sim_vs_ref": {
+    "mean": 0.2627,
+    "std": 0.0403,
+    "min": 0.2331,
+    "max": 0.3416
+   },
+   "auc": {
+    "mean": 0.2537,
+    "std": 0.0373,
+    "min": 0.2226,
+    "max": 0.3262
+   }
+  },
+  "O3": {
+   "checkpoint": "/content/runs/loop/ep24-s42/policy_20000768.safetensors",
+   "n": 5,
+   "sim_vs_ref": {
+    "mean": 0.2303,
+    "std": 0.0036,
+    "min": 0.2256,
+    "max": 0.2344
+   },
+   "auc": {
+    "mean": 0.224,
+    "std": 0.004,
+    "min": 0.2172,
+    "max": 0.2291
+   }
+  },
+  "O1_curve": [
+   "  10M  sim_vs_ref 0.166  |  wooden_piece: lift  14.8 (ref 23.1) in3cm 0.05 lost@21/275  wooden_piece: lift   8.9 (ref 26.1) in3cm 0.21 lost@124/275"
+  ],
+  "O3_curve": [
+   "  10M  sim_vs_ref 0.199  |  wooden_piece: lift   4.3 (ref 23.1) in3cm 0.07 lost@27/275  wooden_piece: lift  10.6 (ref 26.1) in3cm 0.24 lost@124/275",
+   "  20M  sim_vs_ref 0.229  |  wooden_piece: lift   7.2 (ref 23.1) in3cm 0.05 lost@24/275  wooden_piece: lift   4.8 (ref 26.1) in3cm 0.25 lost@122/275",
+   "  30M  sim_vs_ref 0.168  |  wooden_piece: lift  16.8 (ref 23.1) in3cm 0.05 lost@22/275  wooden_piece: lift  11.9 (ref 26.1) in3cm 0.23 lost@124/275",
+   "  40M  sim_vs_ref 0.193  |  wooden_piece: lift   9.3 (ref 23.1) in3cm 0.07 lost@22/275  wooden_piece: lift   5.3 (ref 26.1) in3cm 0.21 lost@122/275",
+   "  50M  sim_vs_ref 0.162  |  wooden_piece: lift   7.8 (ref 23.1) in3cm 0.07 lost@21/275  wooden_piece: lift   9.0 (ref 26.1) in3cm 0.21 lost@124/275",
+   "  60M  sim_vs_ref 0.149  |  wooden_piece: lift  14.3 (ref 23.1) in3cm 0.07 lost@21/275  wooden_piece: lift   7.1 (ref 26.1) in3cm 0.22 lost@121/275",
+   "  70M  sim_vs_ref 0.214  |  wooden_piece: lift  13.7 (ref 23.1) in3cm 0.06 lost@21/275  wooden_piece: lift   5.7 (ref 26.1) in3cm 0.27 lost@124/275"
+  ],
+  "O3_loop": [
+   {
+    "round": "r0",
+    "onsets": {
+     "wooden_piece_1": 16,
+     "wooden_piece_2": 65
+    },
+    "windows": [
+     [
+      6,
+      125
+     ]
+    ],
+    "trace": [
+     "floor_vs_ref 0.2199",
+     "policy: sim_vs_ref 0.2075"
+    ],
+    "bank": {
+     "path": "/content/results/physics_rl_loop/ep24/o3/bank_r1.npz",
+     "states": 5,
+     "policy": 3,
+     "solver": 2
+    }
+   },
+   {
+    "round": "r1",
+    "onsets": {
+     "wooden_piece_1": 16,
+     "wooden_piece_2": 40
+    },
+    "windows": [
+     [
+      6,
+      100
+     ]
+    ],
+    "trace": [
+     "floor_vs_ref 0.2199",
+     "policy: sim_vs_ref 0.3525"
+    ],
+    "bank": {
+     "path": "/content/results/physics_rl_loop/ep24/o3/bank_r2.npz",
+     "states": 11,
+     "policy": 6,
+     "solver": 5
+    }
+   },
+   {
+    "round": "final",
+    "onsets": {
+     "wooden_piece_1": 19,
+     "wooden_piece_2": 65
+    },
+    "windows": [
+     [
+      9,
+      125
+     ]
+    ],
+    "trace": null,
+    "bank": null
+   }
+  ],
+  "G3_auc": 0.244,
+  "S1_round1_auc": 0.2324
+ },
+ "readings": {
+  "primary_O3_vs_O1": {
+   "comparison": "O3 - O1, registered AUC vs mocap",
+   "deltas": {
+    "2": 0.2507,
+    "12": 0.0113,
+    "18": 0.0405,
+    "24": -0.0297
+   },
+   "mean": 0.0682,
+   "missing": [],
+   "rule": "signal iff mean >= +0.03 and none <= -0.05; harm iff mean <= -0.03 or any <= -0.10; else inconclusive",
+   "verdict": "signal"
+  },
+  "secondary_O1_vs_G3": {
+   "comparison": "O1 - G3",
+   "deltas": {
+    "2": 0.0007,
+    "12": 0.0009,
+    "18": -0.0429,
+    "24": 0.0097
+   },
+   "mean": -0.0079,
+   "missing": [],
+   "rule": "signal iff mean >= +0.03 and none <= -0.05; harm iff mean <= -0.03 or any <= -0.10; else inconclusive",
+   "verdict": "inconclusive"
+  },
+  "secondary_O3_vs_G3": {
+   "comparison": "O3 - G3",
+   "deltas": {
+    "2": 0.2514,
+    "12": 0.0122,
+    "18": -0.0024,
+    "24": -0.02
+   },
+   "mean": 0.0603,
+   "missing": [],
+   "rule": "signal iff mean >= +0.03 and none <= -0.05; harm iff mean <= -0.03 or any <= -0.10; else inconclusive",
+   "verdict": "signal"
+  },
+  "report_O3_vs_round1": {
+   "comparison": "O3 - round-1 S1 seed 42",
+   "deltas": {
+    "2": 0.0992,
+    "12": 0.0195,
+    "18": -0.0049,
+    "24": -0.0084
+   },
+   "mean": 0.0263,
+   "missing": [],
+   "rule": "signal iff mean >= +0.03 and none <= -0.05; harm iff mean <= -0.03 or any <= -0.10; else inconclusive",
+   "verdict": "inconclusive"
+  },
+  "H_teach": {
+   "rule": "the first failure frame of the final policy is later than after round A on >= 2 of 4 episodes (no failure = frame 10^6)",
+   "episodes": [
+    {
+     "ep": "2",
+     "after_round_A": 62,
+     "final": 61,
+     "later": false
+    },
+    {
+     "ep": "12",
+     "after_round_A": 124,
+     "final": 1000000,
+     "later": true
+    },
+    {
+     "ep": "18",
+     "after_round_A": 20,
+     "final": 40,
+     "later": true
+    },
+    {
+     "ep": "24",
+     "after_round_A": 16,
+     "final": 19,
+     "later": true
+    }
+   ],
+   "verdict": "supported"
+  }
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/e10b/tree/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref.parquet",
+ "worlds": 8,
+ "steps": 30,
+ "nconmax": 2048,
+ "njmax": 512,
+ "collision_geoms": {
+  "world/table": 1,
+  "left_hand": 26,
+  "right_hand": 26,
+  "blue_cup_object": 53,
+  "beige_cup_object": 49,
+  "other:support": 1
+ },
+ "max_contacts_per_world": 130,
+ "median_contacts_per_world": 114.5,
+ "max_nefc_per_world": 536,
+ "median_nefc": 473.0,
+ "frames": "sampled",
+ "max_total_contacts_requested": 393,
+ "share_steps_nefc_over_njmax": 0.13333333333333333,
+ "max_contacts_per_world_by_pair": {
+  "beige_cup_object / blue_cup_object": 68,
+  "beige_cup_object / right_hand": 36,
+  "blue_cup_object / left_hand": 26,
+  "blue_cup_object / right_hand": 24,
+  "blue_cup_object / other:support": 17,
+  "beige_cup_object / other:support": 13,
+  "beige_cup_object / left_hand": 12,
+  "left_hand / left_hand": 9,
+  "left_hand / right_hand": 7,
+  "right_hand / right_hand": 5
+ }
+}

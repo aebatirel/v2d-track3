@@ -1,0 +1,13 @@
+refs/perc2e11ts42_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet
+refs/perc2e11ts42_glockt/ep10/reconstructed_stage/t3_ep010_support.usda
+results/eval_solve/assets_md5.txt
+results/eval_solve/ep10/input_store_path.txt
+results/eval_solve/ep10/inputs.json
+results/eval_solve/ep10/pull.log
+results/eval_solve/ep10/pull_list.err
+results/eval_solve/ep10/pull_list.tsv
+results/eval_solve/handoff.md
+results/eval_solve/handoff.tsv
+results/eval_solve/make_assets.log
+results/eval_solve/summary.err
+results/eval_solve/summary.json

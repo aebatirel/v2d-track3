@@ -1,0 +1,8 @@
+blue outer radius at heights -85/-60/-30/0/30/60 mm: [40.8, 41.9, 42.4, 44.2, 45.7, 47.0]
+100 beige surface samples outside the blue outer wall below its rim: 0 of 40629; max radial excess 0.0 mm; their heights None mm
+105 beige surface samples outside the blue outer wall below its rim: 0 of 42659; max radial excess 0.0 mm; their heights None mm
+110 beige surface samples outside the blue outer wall below its rim: 0 of 42060; max radial excess 0.0 mm; their heights None mm
+117 beige surface samples outside the blue outer wall below its rim: 0 of 42536; max radial excess 0.0 mm; their heights None mm
+120 beige surface samples outside the blue outer wall below its rim: 0 of 38247; max radial excess 0.0 mm; their heights None mm
+140 beige surface samples outside the blue outer wall below its rim: 0 of 35416; max radial excess 0.0 mm; their heights None mm
+160 beige surface samples outside the blue outer wall below its rim: 0 of 33848; max radial excess 0.0 mm; their heights None mm
