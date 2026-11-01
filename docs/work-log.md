@@ -6111,3 +6111,7 @@ arm and a no-policy replay floor to stage B.
     clear the ≥ +0.02 rule, and the hands don't explain evals 3 and 16.
   - Noted for a later reference version: a contact-aware approach constraint in mkref (finger links ≥ a few mm from
     objects until hold onset).
+- 07:08 UTC 1 Nov determined-wright: **eval-20 b1 clean.** budget.py at 32×60 shows 0 / 0 overflow lines, max
+  342 / 321 vs packed 348 / 317 (f59c897). Blue-cup settle at f152 / 183 / 192 stays within 0.33 cm / 0.7° under b1
+  (packed tips 29° at f183), no sink-through (85e8ef8). Flag: at f192 the pitcher falls hands-free in both sets
+  (probably an in-hand frame). This releases focused-pascal's eval-20 retrain (PREREG first).
