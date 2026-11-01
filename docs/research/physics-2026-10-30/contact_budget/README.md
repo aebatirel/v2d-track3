@@ -28,3 +28,11 @@ instead. FlashCHORD runs at the evaluator pin with the box patch set.
 
 **bold-albattani's pair-only plain-MuJoCo check** (656–1,296 rows at f124–160) reads higher than FlashCHORD's full
 scene (≤ 441 at explicit resets). The engines differ in contact settings. Use the FlashCHORD numbers for the gate.
+
+**Is `sim.njmax` a training-only override?** Yes. CPU check at the pin (`njmax_cfg_test.py`, eval-10 packed reference):
+- `train_flash_sac … sim.njmax=1024 sim.nconmax=512` stores them in the resolved config (`env.sim.njmax 1024, nconmax 512`).
+- `harness.apply_evaluation_composition` leaves them in place.
+- The evaluator's `RLEnvConfig.sim` carries them, and the built SolverMuJoCo has njmax 1024 and naconmax 512 for
+  1 world. The stock run gives 512 / 256.
+- No evaluator code change is needed: the official evaluator rebuilds from the checkpoint config. GPU memory for the
+  constraint arrays grows with njmax; not measured.
