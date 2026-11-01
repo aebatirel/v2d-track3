@@ -6401,3 +6401,8 @@ Background agent, CPU only, $0, no ground truth read.
   0.94–0.97, so a fix cannot clear their +0.02 rule; evals 3 and 16 are not explained by the hands. Noted for later:
   a contact-aware approach constraint in mkref. Told them the eval-20 b1 items were already done (f59c897, 85e8ef8).
   Nothing is pending on my side.
+
+### 2026-11-01 08:56 UTC — determined-wright: wrap-up (owner via keen-heisenberg: close loops, start nothing new)
+- Repo clean and pushed. No agents running, and no boxes of mine. Box 58631864 (20261101-e20b1-4207ce4) is
+  focused-pascal's eval-20 b1 retrain.
+- Final report sent to keen-heisenberg; the same content is in STATUS.md (wrap-up section).

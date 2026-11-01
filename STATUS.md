@@ -1,5 +1,22 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~08:56 UTC: WRAP-UP (keen-heisenberg relayed the owner: start nothing new). Nothing of mine is running.
+- **Done (31 Oct 12:00 – 1 Nov 09:00 UTC):**
+  - recipe screen C/K/D/S/V complete: K inconclusive, D inconclusive, S no signal, V inconclusive; no recipe change;
+    GPU $30.15 [E];
+  - test A (command smoothing): fail;
+  - for the D cells: FC_DR_SKIP_IMMEDIATE (4e5c8a0) and the D reset check;
+  - contact budget: the training njmax overflow found (eval 10 8.4 M lines; public ep2 0.6 M); budget.py with the
+    32 × 60 standard; eval-10 njmax-1024 diagnostic SUPPORTED (focused-pascal: 0.913 vs 0.459 sim_vs_ref);
+  - candidate checks: ev10cs4 / cs5 clean, with the nest test and floor check; ev14 racks rejected; ev20 b1 clean, and
+    the cup settle is fine; ev24 board r0 P1 fail, so DO_NOT_USE;
+  - rest probe: the hands push objects on evals 5 / 8 / 33; parked.
+- **Open (others' lanes or the owner's):**
+  - ev10cs5 stock-limit retrain and ev20 b1 retrain (focused-pascal; box 58631864 is theirs);
+  - packing a 1024-trained policy (owner / organisers);
+  - public ep2/ep12 njmax-1024 test (≈ $7 [E], owner);
+  - solver v2 and synergy B not done (recommended skip).
+
 ## 2026-11-01 ~05:48 UTC: eval-10 njmax-1024 diagnostic SUPPORTED (0.913 vs 0.459 sim_vs_ref); ev10cs5 cleared for the stock-limit retrain; nothing of mine running
 - Owner permission (relayed 02:50 UTC) for collision-overlap fixes; my part was CPU checks only. Record:
   `docs/research/physics-2026-10-30/contact_budget/` (32 × 60 standard with controls).
