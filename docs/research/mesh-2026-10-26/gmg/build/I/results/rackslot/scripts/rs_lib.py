@@ -56,10 +56,10 @@ def runs_of(mask):
     return out
 
 
-def rest_frames(ep):
-    """R: frames in maximal runs of >= RUN_MIN consecutive frames that are hands-off (H0: no contact label in either
-    hand), have the guest in the rack's cavity region (guest mesh inside the rack's convex hull and outside the rack
-    mesh >= 1 cm3), and carry no (a) table or (b) float flag of the precheck (pose possible apart from overlap)."""
+def rest_frames_h0(ep):
+    """SUPERSEDED 1 Nov 03:27 UTC (GATES.md amendment; H0 is not the rule's hands-off set). R under H0: frames in
+    maximal runs of >= RUN_MIN consecutive frames that are H0 (no contact label in either hand), have the guest in the
+    rack's cavity region (>= 1 cm3) and carry no (a) table or (b) float flag of the precheck."""
     fr = records(ep)
     rows, pair = fr['per_frame']['rows'], fr['per_frame']['pair']
     base = np.array([r['H0'] and pair[f]['V_gvis_in_rcavity'] >= CAV_MIN for f, r in enumerate(rows)])
@@ -70,6 +70,46 @@ def rest_frames(ep):
                 short_runs=[[int(a), int(b)] for a, b in runs_of(ok) if b - a + 1 < RUN_MIN])
     return R, dict(n_base=int(base.sum()), runs=[[int(a), int(b)] for a, b in runs_of(ok) if b - a + 1 >= RUN_MIN],
                    excluded=excl)
+
+
+def rest_frames(ep):
+    """R (GATES.md as amended 1 Nov 03:27 UTC): frames that are hands-off under the rule's H30 (no robot hand point
+    within 30 mm of either object, the precheck's H30), have the guest in the rack's cavity region (guest mesh inside
+    the rack's convex hull and outside the rack mesh >= 1 cm3), and carry no (a) table or (b) float flag of the
+    precheck (pose possible apart from overlap). No run-length condition."""
+    fr = records(ep)
+    rows, pair = fr['per_frame']['rows'], fr['per_frame']['pair']
+    base = np.array([r['H30'] and pair[f]['V_gvis_in_rcavity'] >= CAV_MIN for f, r in enumerate(rows)])
+    flag = np.array([any(x.startswith(('a_', 'b_')) for x in r['fails']) for r in rows])
+    ok = base & ~flag
+    R = [int(f) for f in np.nonzero(ok)[0]]
+    return R, dict(n_base=int(base.sum()), runs=[[int(a), int(b)] for a, b in runs_of(ok)],
+                   excluded=dict(flagged=[(int(f), rows[f]['fails']) for f in np.nonzero(base & flag)[0]]),
+                   n_H30=int(sum(r['H30'] for r in rows)))
+
+
+def gate_frames(ep, k=3):
+    """G3 / G4 frames (GATES.md as amended): the precheck's contact frames that are in R, then the middle frame of
+    each other run of R (longest first), then the R frames at the 25 % / 75 % / 50 % positions, until there are K."""
+    R, info = rest_frames(ep)
+    pre = [f for f in PRECHECK_FRAMES[ep] if f in R]
+    sel = list(pre)
+    runs = sorted(info['runs'], key=lambda r: -(r[1] - r[0]))
+    for a, b in runs:
+        if len(sel) >= k:
+            break
+        if not any(a <= f <= b for f in sel):
+            sel.append((a + b) // 2)
+    for q in (0.25, 0.75, 0.5):
+        if len(sel) >= k:
+            break
+        f = R[int(round(q * (len(R) - 1)))]
+        if f not in sel:
+            sel.append(f)
+    return sel[:k]
+
+
+PRECHECK_FRAMES = {'30': [257, 249, 17], '14': [149, 135, 137]}
 
 
 class Grid:

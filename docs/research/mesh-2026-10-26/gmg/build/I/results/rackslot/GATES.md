@@ -9,6 +9,67 @@ Measured before this file, on the packed rack only (no candidate) [M]:
 - the swept rest volume;
 - the pose floor from the precheck (`../collcarve2-evalcheck/per_frame`).
 
+## Amendment 1 (1 Nov 2026, 03:27 UTC), before any candidate was measured
+
+**What prompted it.** The orchestrator relayed the collision-carve round-2 verifiers and report (INTERLOCK 21.15,
+commit 2d9bfc5; `../collcarve2-eval/`). The rule's hands-off set is H30, not H0.
+
+**State when it was written.**
+- No candidate had been measured.
+- One build, c1-ev30 under the H0 rest set, was started at 03:13 and stopped at 03:25 before it finished. It was never
+  measured. Its partial log is kept as `c1-ev30-h0-stopped.log`.
+- The packed rack had been measured under H0, as a baseline: `meas_h0/`. That run reproduced the precheck's contact
+  rows exactly.
+
+**What it supersedes.** Where this section and the text below disagree, this section holds.
+
+1. **Rest frames R.** These are frames that pass all three tests below. There is no run-length condition (H30 already
+   drops the in-hand transit frames that the run rule was meant to remove).
+   - H30: no robot hand point within 30 mm of either object (the precheck's H30; F-I5.3 (b), F-I5.16 (3)(a)).
+   - The guest is in the slot region: at least 1 cm3 of its mesh inside the rack's convex hull and outside the rack
+     mesh.
+   - No (a) table or (b) float flag.
+
+   | Eval | R | Frames | Left out |
+   |---|---|---|---|
+   | 30 | f0-2, f4, f244-245, f247-262 | 22 | none: every H30 frame is in the slot, and none is flagged |
+   | 14 | f140-157 | 18 | 11 H30 frames, where the cup is not in the slot region |
+
+2. **Gate frames for G3 / G4 / G6** (`rs_lib.gate_frames`, rule fixed here):
+   - first, the precheck's contact frames that lie in R;
+   - then the middle frame of each other run of R, longest run first;
+   - then the R frames at 25 %, 75 % and 50 % of R, until there are 3.
+
+   | Eval | Frames | Why |
+   |---|---|---|
+   | 30 | f257, f249, f1 | f1: the episode starts with the sweeper resting in the slot |
+   | 14 | f149, f144, f153 | |
+
+   The precheck's f17 (eval 30) and f135 / f137 (eval 14) are hands-off under H0 only, so they drop out.
+3. **G3 label.** G3 is **plain MuJoCo, indicative only**: validity check c1 failed, because plain MuJoCo over-counts
+   against MuJoCo-Warp. determined-wright's FlashCHORD `budget.py` is the binding contact check. G3's thresholds are
+   unchanged.
+4. **New G6 (reported, no threshold): how far the guest is thrown.** This is the candidate's possible value when the
+   pose floor blocks G1 and G4. Two measures, each the median over the 16 copies at each gate frame, for the candidate
+   and the packed rack:
+   - pair scene (G3; both objects free, sim=rl, 2 s): the guest's displacement, contacts.py's `disp_mm_receiver_guest`
+     (the measure behind the round-2 verifiers' "thrown 23-140 mm");
+   - S scene (G4; rack fixed): the guest's displacement.
+
+   "Reduces the throw" means the candidate's median over the three gate frames is below the packed rack's. The size of
+   the reduction is reported. It is not a pass / fail gate.
+5. **Plain statement required in the README.** The precheck shows the visual meshes overlapping at every H30 rest
+   frame. In the slot this is a faithful overlap of 1 cm3 or more: eval 30 22 / 22, up to 8.4 cm3; eval 14 18 / 18,
+   up to 10.7 cm3 (`../collcarve2-eval/precheck_H30_tables.md`). Wherever that holds, the README states plainly that a
+   rack piece set cannot fix the root cause, which is the pose (pose lanes). G1 and G4 are then expected to fail on the
+   pose floor, and G6 is reported as the candidate's possible value.
+6. **Eval 14's "cup 16.6 mm in the table at f42" is restated.** Under H30, f41-45 are not hands-off: a hand is within
+   30 mm, and 3 mm at f42. This is a reference pose problem while the cup is held, not a hands-off rest problem. It
+   enters no gate. Over the H30 frames, eval 14's largest table penetration is 3.9 mm, by the rack at f157.
+
+The H0-based R table and frames in "Definitions" and "G3" below are kept for the record. They are superseded by items
+1-2.
+
 ## Definitions
 
 - **Frame of work.** Everything is measured in the rack's link frame. The guest is placed there by the packed

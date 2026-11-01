@@ -1891,3 +1891,14 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
 - 03:24 README written (`ev10-cavsafe/README.md`: plain words, delivery (folders, paired reference, critical frames),
   table packed / v1 / v2 / v3, changes, floor, settle, what the pack lane does, limits, time order, inputs, commands);
   results/ (summary.json, contacts, settle, measure, per_frame, cfg, logs). Committing.
+- 03:27 Relay (round-2 verifiers, INTERLOCK 21.15, 2d9bfc5): hands-off = H30, not H0; plain-MuJoCo contacts indicative
+  only; report the visual floor and, if it blocks, the throw. GATES.md Amendment 1 written before any candidate was
+  measured: R = H30 & slot region & no (a)/(b) flag, no run rule (eval 30: f0-2, f4, f244-245, f247-262, 22 frames;
+  eval 14: f140-157, 18); gate frames eval 30 f257, f249, f1; eval 14 f149, f144, f153; G3 labelled indicative; new
+  G6 (report) = guest throw in the pair scene and the S scene, candidate vs packed. Eval 14's f42 cup-in-table restated:
+  in hand under H30 (hand 3 mm away), not a hands-off rest issue. The H0 c1-ev30 build (03:13-03:25) was stopped before
+  it finished and never measured (`c1-ev30-h0-stopped.log`).
+- 03:27 [M] packed baseline under H0 (kept as `meas_h0/`, superseded): G3 reproduces the precheck exactly (eval 30
+  304 / 264 / 324 rows, eval 14 300 / 260 / 312); G4 S on the packed rack throws the guest: eval 30 mean 133-230 mm,
+  eval 14 670-692 mm (rack fixed, 2 s), so S fails on the packed rack at every frame; G1 packed 15.4 / 16.1 cm3 median
+  with the guest-pieces-in-rack-mesh floor at 9.0 / 11.9; G2 swept 26.7 / 7.8 cm3.
