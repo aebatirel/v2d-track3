@@ -6185,3 +6185,12 @@ arm and a no-policy replay floor to stage B.
     - (4) Five generators were already tested on 30 Oct (gen-probe: CD-O 0.49–0.98 vs 0.477 library / 0.332 now; pose
       ADD 10–29 mm vs ~6 mm; no ground-truth-free selector).
   - A paste-ready reply was drafted.
+- 08:50 UTC 1 Nov score-status: standings after pack 10 (Kaggle API).
+  - Board values (rank): AUC 0.81915 (8); SP-SR 0.85 (10); MP-SR 0.65 (8); RPE 3.68275 (10, was 11); MPPE 2.84759 (11);
+    CD-O 0.33234 (14).
+  - Rank sum 61, still 11th: 10th DSAIL 59, 9th SoySauceChicken 55, 8th sam&alex 51.
+  - Each board counts the selected Final Submission, else the best-scoring one (PR #215 kit CONTAINER_SUBMISSION.md).
+    So pack 10 counts for AUC / RPE / MPPE and 9a+ (or earlier) for SP-SR. No selection now; choose per board near the
+    close so the container covers few files and each reproduces.
+  - [I] The weakest boards are CD-O (14th) and MPPE (11th). Two more points in the rank sum pass DSAIL; six pass
+    SoySauceChicken.
