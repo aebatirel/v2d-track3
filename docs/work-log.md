@@ -6324,3 +6324,14 @@ arm and a no-policy replay floor to stage B.
   - Their scope check (packing a 1024-trained policy needs the owner's explicit OK) answered: covered by the owner's
     09:08 / 09:11 words in this chat and the guard approval in focused-pascal's session.
   - Pack 11 is the natural single Final Submission.
+- ~12:10 UTC 1 Nov owner asked about GraspGen (NVIDIA, arXiv 2507.13097; github.com/NVlabs/GraspGen).
+  - What it is [L]: diffusion transformer that generates 6-DoF grasps, plus a discriminator trained "on generator",
+    over 57 M synthetic grasps on 8,515 Objaverse-XL objects (dataset CC BY 4.0; code licence: see its LICENSE file).
+    Inputs: object point clouds (partial or complete) or meshes. Grippers: Franka Panda, Robotiq 2F-140, suction;
+    custom grippers need retraining; GraspGen-X for more.
+  - Assessment: not useful for our score. It plans where a parallel-jaw or suction gripper should grasp an object.
+    Our task copies a human demonstration with 22-DoF Sharpa hands, where the grasp must match the human's (it is taken
+    from the retargeted human hand, and the policy is scored on following the object path). No dexterous-hand support;
+    retraining for the Sharpa would need a dexterous grasp dataset.
+  - The closest transferable idea is its generator + discriminator ranking, which our grasp_search / grasp-lock LP
+    already plays the role of.
