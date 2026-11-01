@@ -1,4 +1,4 @@
-# Guard-bridge reference repair + eval 15 two-hand (perfect-following lane), pre-registered 1 Nov 2026 ~20:55 UTC,
+# Guard-bridge reference repair + eval 15 two-hand (perfect-following lane), pre-registered 1 Nov 2026 ~20:45 UTC,
 # before any GPU result of this batch (batch 1, pf-hands, still training; none of its results seen)
 
 Session: perfect-following (session_01D9UJC8Nz9EEFNmz2yzimzN). Job: `ops/jobs/pf_arms.sh` with `BRIDGE=1`; repair
