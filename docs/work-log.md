@@ -6669,3 +6669,17 @@ Background agent, CPU only, $0, no ground truth read.
   tilt +0.0016 AUC (fails its +0.003 gate), revolution-axis prior fails. Prior art for (b): "no mover, no motion"
   hold variants measured +0.0003 (refine S4) and +0.004 (static hold, failing no-harm) on public, so hold_filter's rest
   freezing may fail my M1 guard; the gate decides.
+- 21:03 UTC: **repair (b) public gate: FAIL** (pre-registered 20:31; set fixed 20:36; `scripts/gate_b.py`, `score_b.py`,
+  hold_filter 1d4b5ac defaults; results in `docs/research/grasp-ep13-20261101/results/gate_b/`) [M]:
+  - M1, registered AUC of the object track vs mocap, U → F: ep2 0.9798 → 0.9723 (−0.0075), ep12 0.9208 → 0.9263
+    (+0.0055), ep13 0.9395 → 0.9372 (−0.0023), ep31 0.8218 → 0.8330 (+0.0112); mean **+0.0017**, min −0.0075 →
+    **M1 holds** (no accuracy harm).
+  - M2, zero-action jittered sim_vs_ref (8 copies, symmetric) of the re-locked references, U → F: ep2 0.226 → 0.250
+    (+0.024), ep12 0.557 → 0.494 (−0.062), ep13 0.569 → 0.565 (−0.004), ep31 0.510 → 0.480 (−0.029); mean **−0.018** →
+    **M2 fails** (needed ≥ +0.02). Plain ADD gives the same picture.
+  - Verdict FAIL: hold_filter as built is not used. Reading [I]: on these public tracks the filter mostly freezes rest
+    jitter (≤ 1.8 cm) and fills a few short runs; that does not make the re-locked references easier to follow at zero
+    action, consistent with physics-perception's earlier "no mover, no motion" results (+0.0003 / +0.004 failing no-harm).
+    Its real target (eval 32's flipped segment) has no public counterpart, so it cannot pass a public gate on its merits;
+    the event-triggered guard_bridge (perfect-following) covers those eval cases. Report-only: M1 rose on ep31 (+0.011)
+    and ep12 (+0.006), so rest freezing may help accuracy on static objects, but M2 says it does not help the robot.

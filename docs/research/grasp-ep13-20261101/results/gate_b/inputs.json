@@ -1,0 +1,22 @@
+{
+ "2": [
+  "/tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/gate_b/run1/ep2/in/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_in.parquet",
+  "/tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/gate_b/run1/ep2/in/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_hf.parquet",
+  0
+ ],
+ "12": [
+  "/tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/gate_b/run1/ep12/in/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_in.parquet",
+  "/tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/gate_b/run1/ep12/in/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_hf.parquet",
+  0
+ ],
+ "13": [
+  "/tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/gate_b/run1/ep13/in/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/ref_in.parquet",
+  "/tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/gate_b/run1/ep13/in/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/ref_hf.parquet",
+  0
+ ],
+ "31": [
+  "/tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/gate_b/run1/ep31/in/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/ref_in.parquet",
+  "/tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/gate_b/run1/ep31/in/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/ref_hf.parquet",
+  0
+ ]
+}

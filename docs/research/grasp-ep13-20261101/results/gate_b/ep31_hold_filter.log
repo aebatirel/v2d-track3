@@ -1,0 +1,2 @@
+mini_sweeper: glitch runs [] | rest [(0, 25, 0.8, 'frozen'), (265, 290, 1.1, 'frozen')] | changed 50 frames, max shift 1.12 cm
+plastic_dish_rack: glitch runs [] | rest [(0, 290, 1.8)] | changed 0 frames, max shift 0.0 cm

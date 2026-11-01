@@ -1,0 +1,2 @@
+white_pot: glitch runs [(162, 166)] | rest [(0, 108, 0.4, 'frozen'), (234, 269, 0.4, 'frozen'), (337, 343, 0.5, 'frozen')] | changed 153 frames, max shift 7.23 cm
+white_pot_lid: glitch runs [] | rest [(0, 52, 0.2, 'frozen'), (122, 235, 0.3, 'frozen'), (304, 343, 0.8, 'frozen')] | changed 204 frames, max shift 0.82 cm
