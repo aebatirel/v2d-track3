@@ -1,6 +1,6 @@
 # Contact budget under the training sim config (sim=rl), CPU [M]
 
-`budget.py`: collision geoms per group, plus per-world contacts and constraint rows (nefc) over W sampled training
+`budget.py` (one scene: `budget_run.sh REF EMB OUT_PREFIX FRAMES`, which runs sampled + explicit resets): collision geoms per group, plus per-world contacts and constraint rows (nefc) over W sampled training
 resets × STEPS zero-action steps. With `FRAMES=a,b,…` it uses explicit, evaluator-style resets at those frames
 instead. FlashCHORD runs at the evaluator pin with the box patch set.
 
@@ -15,6 +15,10 @@ instead. FlashCHORD runs at the evaluator pin with the box patch set.
 | eval 25, library_v3 without pieces | sampled, 8 × 60 | 56 (40) | 240 (175) | 0 |
 | **eval 10 packed** (`--pieces meshes/carve/ev10`, 53 / 49 pieces) | sampled, 8 × 30 | 130 (115) | **536 (473)** | **13 %** |
 | eval 10 packed | explicit frames 0 / 124 / 142 / 160, 8 × 30 each | 107 (54) | 441 (227) | 0 |
+| eval 30 packed (library_v3, no pieces) | sampled, 8 × 30 | 57 (44) | 244 (189) | 0 |
+| eval 30 packed | explicit frames 0 / 66 / 132 / 197 / 262 | 52 (26) | 223 (116) | 0 |
+| eval 14 packed (`refs/sf/ep14/assets`) | sampled, 8 × 30 | 71 (42) | 297 (183) | 0 |
+| eval 14 packed | explicit frames 0 / 40 / 79 / 118 / 157 | 92 (38) | 385 (167) | 0 |
 
 **Eval 10 notes:**
 - The cup–cup contacts dominate: up to 68 per world with sampled resets and 79 at the nested frames. Under sampled
