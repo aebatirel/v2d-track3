@@ -73,6 +73,7 @@ worst of the 32 worlds exceeds 512 rows. Runs are in `runs_32x60/` and `runs_8x3
 | eval 10 + ev10cs (v1) | 598 / 548 / 75 % | 566 | 699 | 104 / 7,086 | overflow |
 | eval 10 + ev10cs3 (v3, 32 / 33 pieces) | 534 / 495 / 15 % | 603 | 533 | 110 / 576 | **not clean**  |
 | eval 10 + **ev10cs4** (v4, 24 / 21 pieces; 7e4bc6a) | 448 / 432 / 0 % | 457 | 459 | **0 / 0** | **clean** (passes the budget gate) |
+| eval 10 + **ev10cs5** (v4 with an 8 mm floor plate; 1373603) | 503 / 467 / 0 % | 492 | 504 | **0 / 0** | **clean**, headroom only 8 rows |
 
 - Explicit frames: eval 10 f0/111/116/124/142/160; eval 14 f0/140/144/149/153/157; eval 30 f0/66/132/197/262.
 - The eval-14 rack candidates were built from the packed eval-14 assets: the refs/sf rack mesh plus the candidate
@@ -84,4 +85,15 @@ worst of the 32 worlds exceeds 512 rows. Runs are in `runs_32x60/` and `runs_8x3
     level of the clean eval-14 control. This is the budget gate only. Geometry and settle (floor crossing, deeper
     settling) are bold-albattani's gates and the FlashCHORD rest/nest test. ev10cs3 cuts the overflow lines 3–17×
     vs packed but is not clean.
+
+**ev10cs5 check (1 Nov 05:23 UTC, for focused-pascal's PREREG).**
+- Byte identity vs ev10cs4 (md5, file by file). Only these differ:
+  - `blue_cup/piece_16.obj`: the plate, 6.0 → 8.0 mm, 22.67 → 30.93 cm³, convex, plate_h [70.39, 78.39] mm;
+  - `blue_cup/inertia.json`: blue COM z 15.77 → 19.05 mm, mass 0.3 kg;
+  - `blue_cup/lathe_collision.json`, `carve.json` and the new `FROZEN.md`: build records.
+  - All 21 beige files and the other 23 blue pieces are identical.
+- Contact budget at 32 × 60: **0 / 0 overflow lines**. Sampled hold max 503 (median 467), explicit max 504. That is
+  higher than ev10cs4 (448 / 459): the raised floor adds beige–blue contact rows.
+- Trade-off: ev10cs4 has 53–64 rows of budget headroom but only 0.5 mm of floor margin at the release impact. ev10cs5
+  has 8–9 rows of headroom and ~4 mm of floor margin (`ev10_nest_test/`).
 
