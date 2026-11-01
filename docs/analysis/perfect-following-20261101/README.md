@@ -45,3 +45,10 @@ Onsets: frames where the error takes off (draws with an onset / 10). "Grip" = ro
 - Three kinds dominate: a hand-over carried by one hand (14, maybe 15/16), a perceived object moving with no robot hand
   (16 after release, 25, 30, 1), and a perception glitch inside a hold (32).
 - Cup twist (repair a) is not a sim_vs_ref loss in RL rollouts.
+
+## Hold-rigidity scan (hold_glitch.py / hold_glitch.json) [M], 20:40 UTC
+Object pose in the holding hand's robot-wrist frame (pre-lock reference) over every MANO hold phase. Held objects are not
+near-rigid in that frame anywhere: relative spread 2–28 cm and relative speed maxima 22–416 cm/s, including the
+near-perfect evals 35 / 36 / 38 (spread 18–28 cm). So hand-relative rigidity does not single out eval 32's glitch; the
+hand track itself is too noisy to anchor the object [I]. A glitch detector for repair (b) should use the object track's
+own kinematics (eval 32: 322 cm/s jump at f33) rather than the hand frame.
