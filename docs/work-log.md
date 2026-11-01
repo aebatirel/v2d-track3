@@ -5988,3 +5988,11 @@ score.
   - Then one more SP-SR/MP-SR episode (+1 to +3 each).
   - Nothing running in this session. Open: Final Submission selection per board near the close; the PR #215
     container after the close; merging session branches into main (stale since 30 Oct).
+- 11:38 UTC focused-pascal: PACK 11 READY (results/submissions/20261101-track3l-candidate/build_11/; sha256
+  3c428350…055ec; code 50312319).
+  - Pack 10 with eval 10 = the njmax-1024-trained policy evaluated at stock 512/256 (ck512 aaa077eb…): GT-free proxy
+    +0.371 (V) / +0.361 (P) over pack 10's eval-10 policy; 0/10 fails vs 10/10.
+  - Only ep10's rows differ; all checks pass. keen-heisenberg verifies and uploads.
+  Flagged to keen-heisenberg: its own record of the owner's 02:43 / 02:50 words excludes njmax-1024 policies ("never
+  packed"), so packing needs a fresh explicit owner OK (training-side simulator setting ≠ evaluator pin; disclose in
+  the technical report).
