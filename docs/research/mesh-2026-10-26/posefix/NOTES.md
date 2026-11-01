@@ -23,3 +23,4 @@ Scratch: /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca13
   jittery segments -> median frame (Q_OK 0.5); lid-on-pot needs inheritance; GN stalls on thin shells -> lift stage 1b.
 - 2026-11-01T04:53:30Z PREREG.md written (variants A gated; B, C, D report only). Committing before any scoring.
 - 2026-11-01T04:53:49Z PREREG pushed df60ff2 (04:53:42 UTC). Launching transform A B C D (code df60ff2).
+- 2026-11-01T05:05:29Z transform running (4 variants in parallel, load ~8); A at 4/20 eps after 11 min. pf_report.py written (formats only).
