@@ -5655,3 +5655,7 @@ Advice given:
   eval 14 f140–157 cup in rack ≤ 10.7 cm³; evals 15/16 spoon unsupported ≤ 6.5 / 8.0 mm. Still running in their lane:
   ev10 cavity-safe v2, eval-30/14 rack candidates. [H] For pack 10 items 3–5 the lever may be the reference pose (fix the
   overlap in the reference) rather than the pieces; that is a reference rebuild, not yet planned.
+- 04:05 UTC C progress [M, exec]: setup 8 min (env restored 03:11), then pack_eval's --include store pulls of pack 6's base
+  ("Fetching 6866 files" at ~7.5 files/s; one 429 line) until 03:59; dr_pack_check OK 04:01:58 (evaluated = D candidates =
+  14 16 25 30 33); submit_pack clean evaluator 8c778f9, 0 modified files, 04:03:34 = draw 1. [E] draws 2–10 at H5p7's
+  ~1.2 min per episode-draw → ~05:05 end, push, then dr_score / dr_verdict ~15 min, pack 9b build ~10 min → record ~05:30.
