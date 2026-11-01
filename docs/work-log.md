@@ -6266,7 +6266,7 @@ Background agent, CPU only, $0, no ground truth read.
     1024 / 512. No evaluator code change.
   - Packed gl10A2: 8.37 M lines in training, 0 in its 5 scored draws.
 
-### 2026-11-01 02:58 UTC — determined-wright: collision-overlap fixes — budget checks queued; baselines measured
+### 2026-11-01 02:55 UTC — determined-wright: collision-overlap fixes — budget checks queued; baselines measured
 - keen-heisenberg relayed (02:52 UTC):
   - the owner's go at 02:43 for focused-pascal's eval-10 njmax-1024 diagnostic (theirs to run; not duplicated here);
   - the owner's words at 02:50, "I give you permission for everything", for fixing the collision overlaps behind
