@@ -14,3 +14,4 @@
 - 2026-11-01T06:35Z f0 survey (orchestrator, report-only) started: downloading packed refs 10,14,15,16,19,25,30,32,33,35-38 to scratch rebase/dl2. sets/ev20 is frozen (FROZEN.md, orchestrator) - not touched.
 - 2026-11-01T06:37Z f0_survey.py written; eval-20 test reproduces the earlier f0 settle (pitcher 195 mm / 94.6 deg). Running all 20 packed evals in 3 processes.
 - 2026-11-01T06:52Z f0 survey done (20/20 reconstructed). Falls over at f0 hands-off: ev20 pitcher 195 mm/94.6 deg, ev19 sweeper 90/88.8 (std, no support_fill; narrow bristle footprint). ev30 sweeper 23.9/25 (12.2 cm3 in rack), ev10 beige 6.5/4.0 (hull corner). Rest within 4.3 mm / 5.1 deg. FlashCHORD rest checks [R] fail for pots ev3/5/6/8 and spoons ev16/33 though hands-free they hold (<= 1.8 mm) -> [H] hand/arm contact in the zero-action replay. f0_survey.md written.
+- 2026-11-01T06:57Z ev19/GATES.md written before running support_fill (gate frames f0 and f2; sweeper's only H30 rest run [2,8]).
