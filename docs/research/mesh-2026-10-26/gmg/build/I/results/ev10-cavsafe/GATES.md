@@ -97,3 +97,35 @@ The same code runs for the packed ev10 and for the candidate. That code is the p
   - focused-pascal's ev10w found the rest overlap is a relative-pose offset of 4-7 mm.
   - Falsifier: candidate median <= 1.0 cm3 and max <= 3.0 cm3.
 - **Gate 3 passes** by construction. Falsifier: any sampled depth > 0.001 mm.
+
+## Amendment A1 (1 Nov, 03:12 UTC, after building, before any gate number)
+
+**What happened.** Building R1 + R2 with the blue cup's outer points unchanged failed the tool's own validity check:
+the mid-sector wall (outer chord minus the inner tangent f) is negative at two bins.
+
+| Bin (h) | Where | Inner f raised by R2 | Mid-sector wall |
+|---|---|---|---|
+| -83.6 mm | the mouth lip, where the outer profile curls inward | 2.75 mm | -1.30 mm |
+| 74.4 mm | the rounded bottom corner | 2.13 mm | -0.30 mm |
+
+A single convex piece per band cannot follow a concave profile from the cavity side unless its outer face moves out
+too.
+
+**Change (R1').** The blue cup's outer points are also placed at r / cos(pi/12) at the sector edges. The wall polygon
+then circumscribes the lathe wall on both faces. This is the mirror of ev10, which inscribes both faces. It adds no
+constant.
+- Cost: the blue cup's outer surface lies 0 to r (1/cos(pi/12) - 1), about 1.6 mm, outside the lathe profile, against
+  0 to 1.6 mm inside it in ev10. The base hulls, which carry the table contact, are unchanged.
+- Mid-sector wall as built [M, from the build log, not a gate]:
+  - >= 2.49 mm in band 2;
+  - 0.25 mm at the mouth bin (band 1);
+  - 0.875 mm at the bottom bin (band 3);
+  - elsewhere near t - raise.
+- Blue piece volume 130.4 cm3 (ev10 152.9).
+
+**Also seen while building [M, not a gate].**
+- G1 lowers the beige cup's outer points by up to 4.83 mm in band 2 (h 50-70 mm), below a step of the profile (r_s 33.5
+  -> 35.0 mm at h 42-52 mm). Beige piece volume 264.0 cm3 (ev10 302.9).
+- Both stay as designed.
+
+**Unchanged.** Gates 1-4, the frames and the expected outcomes.

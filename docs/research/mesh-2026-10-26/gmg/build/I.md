@@ -1711,3 +1711,27 @@ Results: `build/I/results/ev10-cavsafe/`. Work dir `<scratch>/cavsafe`.
 - 02:55 Orchestrator added gates (owner approved collision-overlap fixes 02:50 UTC). Wrote
   `build/I/results/ev10-cavsafe/GATES.md` (gates 1-4 with definitions, the candidate design R1 / R2 / G1, expected
   outcomes) BEFORE building or measuring the candidate; committed now.
+
+## rack slot pieces (evals 30, 14) (agent of the orchestrator, started 1 Nov 02:53 UTC)
+Task (owner go 02:50 UTC, relayed): a CANDIDATE rack collision piece set for eval 30 (rack <- mini sweeper), then eval
+14 (rack <- blue cup), whose pieces do not fill the slot volume where the packed reference rests the guest beyond what
+the rack mesh fills; gates written to GATES.md and pushed before any candidate is measured. CPU only, no rental, $0.
+Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<scratch>/rackslot`.
+- 02:56 Read STATUS.md, CLAUDE.md, collcarve2-evalcheck (README, scripts, per-frame JSONs), focused-pascal's
+  make_assets.py (`--pieces DIR/<obj>/piece_*.obj`, one `<collision>` per convex piece, visual stays the mesh) and the
+  placement-carve README (ev14 rack 90 pieces, ev30 rack 85 pieces "sweeper falls through the carved slot", do not use).
+  Packed rack collider = FlashCHORD CoACD 1.0.11 (threshold 0.05) of the library_v3 rack at load: 43 hulls,
+  `<scratch>/evck/out/packed/rack_lib.npz` md5 c0742888... (reproduces the 26 Oct census). Eval-14 sf rack glb md5
+  99bc3983... = library_v3 rack (e6835614...) vertex for vertex (geom sha1 c9ee8c559c02), so one rack set can serve both.
+  [M] from the precheck per-frame JSONs: the visual meshes themselves overlap at the hands-off rest (eval 30 f0-29 /
+  f241-262: 5.1-10.9 cm3; eval 14 f118-157: 7.2-12.3 cm3), so the owner's gate 1 (packed overlap median <= 1 cm3)
+  sits below the pose floor for any rack set that keeps the rack mesh; GATES.md states how that is handled.
+- 03:05 Built the candidate with `ev10-cavsafe/scripts/lathe_cavsafe.py` (copy of focused-pascal's lathe_collision.py
+  blob 680cc2f9 + opt-in --inner_circ / --outer_insc / --base_pieces; no flags = ev10 exactly: all 53 + 49 pieces
+  Hausdorff 0.0 mm, blue base bytes equal, inertia within 2e-9 m). R1+R2 with the outer unchanged FAILED the tool's
+  wall check (mid-sector wall -1.30 mm at the mouth lip bin, -0.30 mm at the bottom-corner bin: a convex band piece
+  cannot follow a concave profile from the cavity side).
+- 03:12 Amendment A1 in GATES.md (before any gate number): blue outer points also circumscribed (R1', --outer_circ).
+  Built: blue 53 pieces 130.4 cm3 (min mid-sector wall 0.25 mm at the mouth bin, 0.875 mm at the bottom bin, >= 2.49
+  mm in band 2); beige 49 pieces 264.0 cm3 (G1 lowers band 2 by up to 4.83 mm below a profile step). Committing A1,
+  then measuring.
