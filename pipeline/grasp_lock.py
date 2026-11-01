@@ -81,7 +81,10 @@ def main():
     p.add_argument('--blend', type=int, default=8); p.add_argument('--preopen', type=float, default=0.3)
     p.add_argument('--wrap', type=int, default=1); p.add_argument('--wrap_ratio', type=float, default=3.0)
     p.add_argument('--back', type=float, default=0.04); p.add_argument('--wrap_squeeze', type=float, default=0.4)
-    p.add_argument('--single_hand', type=int, default=0)
+    p.add_argument('--single_hand', type=int, default=0, help='1: one carrier per object = the hand with the most hold '
+                   'frames; 2 (2026-11-01): the FIRST PICKER = the hand whose first hold starts earliest (eval 14\'s packed '
+                   'lock happened to keep its first picker; on public ep13 mode 1 kept the right hand, which holds only after '
+                   'the left hand has lifted the cup)')
     p.add_argument('--force_design', type=int, default=0, help='1: squeeze from a per-frame contact-force LP (grasp_force.py)')
     p.add_argument('--sf', type=float, default=gf.SF); p.add_argument('--f_min', type=float, default=gf.F_MIN)
     p.add_argument('--lead', type=int, default=2); p.add_argument('--oblique_deg', type=float, default=0.0)
@@ -157,6 +160,8 @@ def main():
             xs = [x for x in ph if x['object'] == o_]
             frames = {sd: sum(x['frames'] for x in xs if x['hand'] == sd) for sd in ('left', 'right')}
             hand = max(frames, key=frames.get); s1_ = max(x['end'] for x in xs)
+            if a.single_hand == 2:                                 # first picker: the earliest hold start
+                hand = min(xs, key=lambda x: (x['start'], x['hand']))['hand']
             if o_ in TPL and frames.get(TPL[o_]['side'], 0) > 0:     # the hand that has a proven grasp for this object
                 hand = TPL[o_]['side']
             first = min((x for x in xs if x['hand'] == hand), key=lambda x: x['start'])
