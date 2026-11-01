@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~08:43 UTC: PACK 10 UPLOADED: AUC 0.81915, our best (RPE 3.68275, MPPE 2.84759 also best; SP-SR 0.80)
+- Pack 10 = 9a+ with eval 10's stock-limit retrain on the ev10cs5 cavity-safe pieces (+0.069 on the GT-free proxy).
+- SP-SR dropped one episode: eval 10 now moves the cup without completing the nest. The SP-SR best stays 0.85 from
+  9a+.
+- Record: results/submissions/20261101-track3k-candidate/build_10/UPLOAD.md (branch claude/keen-heisenberg-engcwz).
+- Next: eval-20 b1 retrain (pack 10b if it passes); organisers question on training at njmax 1024 (eval 10 → 0.91
+  on the proxy).
+
 ## 2026-11-01 ~05:02 UTC: PACK 9b UPLOADED: AUC 0.81677, below 9a+ (0.81757 stays our best)
 - 9b = 9a+ with eval 33's D-arm rollout; eval 33 was the only D cell to pass the swap rule (14 / 16 / 25 / 30 NO-SWAP).
 - Boards (9b vs 9a+): AUC 0.81677 vs 0.81757; SP-SR 0.85 =; MP-SR 0.65 =; RPE 3.88283 vs 3.87853; MPPE 2.90186 vs

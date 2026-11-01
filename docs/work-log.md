@@ -6154,3 +6154,17 @@ arm and a no-policy replay floor to stage B.
   - dry run valid (19 uploads left per board); CD-O equals the staged file.
   - **The upload call was blocked by the session's auto-mode permission classifier.** Not retried; the owner was asked
     to confirm.
+- 08:38–08:43 UTC 1 Nov **PACK 10 UPLOADED** (owner, directly: "Upload it", after the permission check blocked the
+  first attempt).
+  - Submission IDs 57866069–57866079.
+  - Scores:
+    - AUC **0.81915** (new best; 9a+ 0.81757; +0.0016 against +0.002 estimated);
+    - SP-SR 0.80 (0.85);
+    - MP-SR 0.65 (=);
+    - RPE **3.68275** (3.87853);
+    - MPPE **2.84759** (2.89663);
+    - CD-O 0.33234 (=).
+  - [H] SP-SR lost one episode at eval 10: the old policy "succeeded" by barely moving the cup; the new one moves it
+    10 cm without completing the nest.
+  - Receipt + UPLOAD.md in build_10 (5b0f081). Messaged focused-pascal (pack 10b on pack 10 if eval 20 passes) and
+    score-status (asked about per-board best vs final selection).
