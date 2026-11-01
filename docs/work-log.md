@@ -6348,3 +6348,9 @@ Background agent, CPU only, $0, no ground truth read.
   - Rest: max 4.02 mm into the plate, against 5.49 of 6 mm before; settled 0.49 mm.
   - Driven: 0.12 cm median; 0 through; 0 overflow.
   - Record: `ev10_nest_test/README.md` (9de7d92). Sent to bold-albattani and keen-heisenberg.
+- 05:13 UTC: answered focused-pascal's inertia question for the ev10cs4 retrain (their build has started, ~$3–5 under
+  the owner's standing go).
+  - meshes/carve/ev10 also has inertia.json, but the built URDFs differ (mass 0.3 kg in both).
+  - Blue COM moves 12.8 mm along the axis (z 2.99 → 15.77 mm); inertia +0.4–4 %.
+  - Beige COM moves 1.4 mm; izz −10 %.
+  - Suggested copying packed inertia.json to keep a one-variable test.
