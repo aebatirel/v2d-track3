@@ -5532,3 +5532,7 @@ Advice given:
   A "chosen checkpoint missing; using " (empty) line comes from hard_ab.sh chosen() (code since be376f7); the repeat
   evaluations and the confirmation string both name policy_250003456 = selection.json's choice, so it did not change
   the checkpoint [M]. No comparison with the packed policy yet (that is C + dr_verdict, PREREG section 3/4).
+- 01:30 UTC S25a closed: pushed (no push failure), destroyed ~01:30; run_job.log gpu RTX PRO 6000 Max-Q driver
+  610.57.04, env restored, job rc 0 after 134 min; ledger actual $3.19. Store has the candidate checkpoint
+  runs/…/runs/perc2mckdr/ep25-s42/policy_250003456.safetensors and selection.json. summary/verify/job.log copied to
+  docs/research/work/pack9b-20261031/results/drS25s42/.
