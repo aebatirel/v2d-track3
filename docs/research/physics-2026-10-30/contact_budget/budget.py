@@ -19,7 +19,7 @@ def group(b):
     return 'other:' + n
 gb = [int(x) for x in m.geom_bodyid]; coll = [(int(m.geom_contype[g]) | int(m.geom_conaffinity[g])) != 0 for g in range(m.ngeom)]
 geoms = collections.Counter(group(gb[g]) for g in range(m.ngeom) if coll[g])
-per_pair = collections.defaultdict(list); tot, nefc, nacon_req = [], [], []
+per_pair = collections.defaultdict(list); tot, nefc, nacon_req, kidx = [], [], [], []
 FRAMES = [int(x) for x in os.environ.get('FRAMES', '').split(',') if x.strip()]   # explicit (evaluator-style) resets at
 with S.on(env):                                       # these frames instead of one sampled training reset
     for F in (FRAMES or [None]):
@@ -33,8 +33,10 @@ with S.on(env):                                       # these frames instead of 
           for p in {p for _, p in cnt}:
               per_pair[p].append(max(cnt.get((wi, p), 0) for wi in range(W)))
           tot.append(max(wc.values()) if wc else 0); nefc.append(int(md.nefc.numpy().max()))
-          nacon_req.append(int(md.nacon.numpy()[0]))
-out = dict(ref=sys.argv[1], worlds=W, steps=STEPS, nconmax=int(getattr(md, 'naconmax', -1)), njmax=int(getattr(md, 'njmax', -1)),
+          nacon_req.append(int(md.nacon.numpy()[0])); kidx.append(k)
+HOLD = int(os.environ.get('HOLD', '20'))                         # the reset's VOC-1 settling hold (steps 1-20)
+win = lambda sel: (lambda v: dict(max=int(v.max()), median=float(np.median(v)), share_over_njmax=float(np.mean(v > int(getattr(md, 'njmax', 10 ** 9)))), n=int(len(v))) if len(v) else None)(np.array([x for x, k in zip(nefc, kidx) if sel(k)]))  # noqa: E731
+out = dict(ref=sys.argv[1], worlds=W, steps=STEPS, nefc_hold_window=win(lambda k: k < HOLD), nefc_after_hold=win(lambda k: k >= HOLD), nconmax=int(getattr(md, 'naconmax', -1)), njmax=int(getattr(md, 'njmax', -1)),
            collision_geoms=dict(geoms), max_contacts_per_world=max(tot), median_contacts_per_world=float(np.median(tot)),
            max_nefc_per_world=max(nefc), median_nefc=float(np.median(nefc)), frames=FRAMES or 'sampled',
            max_total_contacts_requested=max(nacon_req), share_steps_nefc_over_njmax=float(np.mean(np.array(nefc) > int(getattr(md, 'njmax', 10 ** 9)))),

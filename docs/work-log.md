@@ -6284,3 +6284,15 @@ Background agent, CPU only, $0, no ground truth read.
     contacts 31 (68).
   - Explicit f0/124/142/160: max 409, no overflow.
   - **Not clean** at 512, so no retrain. Reported to all three. Waiting for their v2 (A2) and the rack candidates.
+- 03:27 UTC: candidates ev10cs2 / ev10cs3 (bold-albattani 5cd0433).
+  - Small sample (8 worlds × 30 steps):
+    - ev10cs2: nefc max 510, 3 overflow lines → not clean;
+    - ev10cs3: max 443, 0 lines.
+  - **The small sample was not representative.** ev10cs3 at 32 worlds × 60 steps: sampled max 603, median 500, 110
+    overflow lines; explicit (f0/111/116/124/142/160) max 533, 576 lines.
+    - The per-step maximum over more worlds is higher.
+    - Steps 21–60 include the zero-action collapse after the hold.
+  - budget.py now reports a hold window (steps < 20) and an after-hold window.
+  - Paired large-sample runs (packed / ev10cs3 / ev10cs at 32 × 60) are running. Packed at 32 × 60: hold-window nefc
+    max 661, median 599, every step over 512 in at least one world; explicit max 1,680.
+  - Nothing has been reported to the other sessions about cs2 / cs3 yet.

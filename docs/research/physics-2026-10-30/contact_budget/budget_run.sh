@@ -18,4 +18,5 @@ for f in sys.argv[1:]:
           'med', d['median_contacts_per_world'], '| nefc max', d['max_nefc_per_world'], 'med', d['median_nefc'],
           '| share>512', round(d.get('share_steps_nefc_over_njmax', 0), 3))
     print('    top pairs', dict(list(d['max_contacts_per_world_by_pair'].items())[:4]))
+    print('    hold window (steps < 20):', d.get('nefc_hold_window'), '| after hold:', d.get('nefc_after_hold'))
 PY
