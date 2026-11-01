@@ -10800,3 +10800,6 @@ score.
     0.706 vs the bridged reference (CPU, dr_score on the bridged base, 20:40);
   - pfD eval 32 bridged single-hand 0.877 ± 0.044 (packed H5p7 0.852 vs P); eval 15 two-hand 0.943 ± 0.029 (packed 0.906).
   - Verdicts need seed 43, the confirmation draws and the two-reference scoring (PREREG).
+- 23:02 UTC 1 Nov interim [M] (training box, vs own reference): eval 16 two-hand s43 0.696 (both seeds < packed 0.850);
+  eval 14 bridged two-hand s42 0.680 (vs bridged single-hand s42 0.880); **eval 33 bridged single-hand s42 0.406 ± 0.042**
+  (packed 0.923) — a large failure, cause not yet known (the bridge + 6-frame ramp at f86–90, or the recipe on this box).
