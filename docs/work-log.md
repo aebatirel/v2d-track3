@@ -6371,3 +6371,10 @@ Background agent, CPU only, $0, no ground truth read.
   - count overflow lines in every packed eval training log; ≳ 100 k lines makes an episode a candidate for an
     njmax-1024 retrain;
   - re-offered the public ep2/ep12 njmax test (≈ $7 [E], needs the owner's go).
+- 05:53 UTC, focused-pascal: triage of the packed eval training logs, by file size, no downloads; line counts are
+  estimates.
+  - eval 10 ≈ 8.37 M lines; eval 33 ≈ 21 k; eval 32 ≈ 20 k; eval 14 ≈ 4.6 k; eval 20 ≈ 1.2 k; the other 15: 0.
+  - Only eval 10 is heavily affected, so no other eval gets an overflow retrain.
+  - They keep the owner's condition: no 1024-trained policy in a pack until the organisers agree. The question is
+    with the owner.
+  - The ep2/ep12 public test is an option for the owner, not launched.
