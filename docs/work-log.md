@@ -6206,3 +6206,15 @@ arm and a no-policy replay floor to stage B.
     needs the owner's compliance call (selector written after scoring), or a clean blue-cup build.
   - Open: Final Submission selection per board near the close; the PR #215 container after the close; main stale
     since 30 Oct (session branches to merge).
+- 08:57 UTC 1 Nov determined-wright final report (branch pushed; STATUS wrap-up; no agents or boxes).
+  - Finished:
+    - recipe screen (K / D / S / V inconclusive or no signal, ~$30.15 GPU [E]);
+    - test A fail;
+    - FC_DR_SKIP_IMMEDIATE + D reset check;
+    - contact budget (eval 10 8.4 M training overflow lines, public ep2 0.6 M, scoring 0);
+    - candidate checks (ev10cs4 / 5 clean; ev14 racks rejected; ev20 b1 clean; ev24 r0 DO_NOT_USE);
+    - rest probe.
+  - Open: ev20 b1 retrain (focused-pascal); 1024 policy (owner / organisers); public ep2 / ep12 njmax-1024 test
+    (~$7, needs a go); solver v2 / synergy B not done (recommends skip).
+  - Their top 3: (1) eval 10 (done via pack 10; the 1024 route waits on the organisers); (2) rest-pose fix, which is
+    outdated (falsified at 05:48); (3) ep2 / ep12 njmax-1024, of low eval transfer.
