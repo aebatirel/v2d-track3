@@ -5966,3 +5966,7 @@ score.
   - 9a+ remains our best on every board; the eval-33 swap's proxy gain was noise on the board.
 - 05:05 UTC boards (Kaggle API): AUC 8, SP-SR 9 (was 8; tie order), MP-SR 8, RPE 11, MPPE 11, CD-O 14. Rank sum 61,
   still 11th (10th DSAIL 58, 9th SoySauceChicken 54, 8th sam&alex 51).
+- 08:17 UTC focused-pascal: PACK 10 READY (results/submissions/20261101-track3k-candidate/build_10/ on its branch;
+  sha256 e1bef1e5…0e2a; code commit a187a8c9). It is 9a+ with eval 10's legal retrain (ev10cs5 carve pieces, stock
+  njmax limits): GT-free proxy +0.069 vs V and +0.059 vs P, INCLUDE under the +0.02 bar. All checks pass.
+  keen-heisenberg uploads.
