@@ -6392,3 +6392,12 @@ arm and a no-policy replay floor to stage B.
   - Fetched and sent to the owner here too.
   - [M, visual] At the eval-14 hand-over (frame 46), one robot hand carries the cup while the other hand stays parked to
     the side; the human uses both. This is consistent with the single-hand lock finding (grasp-ep13 branch).
+- 19:34 UTC 1 Nov **owner topped up the credit: $122.85** (no instances running).
+  - Owner, verbatim: "I got you credit include the spending permision and basically all the permisions needed to
+    perfect those scores in any way possible. Make sure they colab with the grasp session needed or at least
+    communicate with them."
+  - Kickoff prompt for the "perfect following" session updated with the spending permission (up to $110 total, ≥ $10
+    reserve, plan + cost logged per batch) and collaboration with the GRASP session (session_01D9UJC8CjzgvbaFYA5wbvPg).
+  - The GRASP session was told to expect it (19:35): finish test A, share the two-hand rebuilds and scripts, rent
+    nothing.
+  - The owner pastes the prompt directly, so its approvals are the owner's own words in that session.
