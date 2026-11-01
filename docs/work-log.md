@@ -6629,3 +6629,10 @@ Background agent, CPU only, $0, no ground truth read.
   run: **ep2, ep12** (`runs/20261031-mass-2ed46ea`), **ep13, ep24** (`runs/20261031-mv2a2-b5043ce`), **ep11, ep31**
   (`runs/20261031-mv2b-b5043ce`); GL_ARGS from each run's job.log. Rule unchanged (M1 mean Δ ≥ −0.002 and no episode
   < −0.010; M2 mean Δ ≥ +0.02; PASS iff both), now over these 6 episodes.
+- 20:40 UTC: **repair (b) gate set corrected before any scoring:** the `mv2a2` / `mv2b` runs store only assets under
+  `refs/sf/ep<N>`; their pre-lock parquets are mass-study arms built on reused references (`mass0s42mck`, REUSE_REF), not
+  the current recipe, so ep11 and ep24 are dropped. Final set, 4 public episodes with complete stored support-filled
+  pre-lock trees: **ep2, ep12** (`runs/20261031-mass-2ed46ea/refs/sf`, GL_ARGS `--single_hand 1 --mcp_first 1 --close 10
+  --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1`) and **ep13, ep31**
+  (`runs/20261030-orcB-38234d1/refs/sf`, the same GL_ARGS without `--onset_anchor 1`). Both arms (U, F) are re-locked
+  on CPU without REPLAN / EVOLVE. Rule unchanged. Four episodes make this a small-sample gate; the write-up says so.
