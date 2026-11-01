@@ -1,6 +1,6 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-01 ~05:08 UTC: overlap-fix checks done; eval-10 candidate ev10cs4 cleared (budget + nest test); nothing of mine running
+## 2026-11-01 ~05:48 UTC: eval-10 njmax-1024 diagnostic SUPPORTED (0.913 vs 0.459 sim_vs_ref); ev10cs5 cleared for the stock-limit retrain; nothing of mine running
 - Owner permission (relayed 02:50 UTC) for collision-overlap fixes; my part was CPU checks only. Record:
   `docs/research/physics-2026-10-30/contact_budget/` (32 × 60 standard with controls).
 - Eval 14: keep the packed rack (candidates c1 / c2 add overflow).

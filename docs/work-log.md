@@ -6358,3 +6358,16 @@ Background agent, CPU only, $0, no ground truth read.
   - Byte identity vs v4: only the plate, blue inertia.json and build records differ.
   - 32 × 60: **0 / 0 overflow lines**; max 503 / 504 (v4: 448 / 459).
   - Both conditions met; headroom is only ~8 rows. Record be1e893; sent to focused-pascal and bold-albattani.
+
+### 2026-11-01 05:48 UTC — determined-wright: eval-10 njmax-1024 diagnostic SUPPORTED (focused-pascal)
+- focused-pascal (05:47 UTC): eval-10 training at `sim.njmax=1024 sim.nconmax=512`, owner's go 02:43 UTC, never
+  packed.
+  - 0 overflow lines; the beige cup lifted 23.9 cm.
+  - Official sim_vs_ref vs V: **0.913** (1024 config) and 0.903 when evaluated at stock 512, against e10v's 0.459.
+  - 0 overflow lines in every draw.
+- This confirms the lead from `contact_budget/` and the overflow counts: training-time constraint overflow caused
+  eval 10's no-lift floor.
+- Suggested to focused-pascal and keen-heisenberg:
+  - count overflow lines in every packed eval training log; ≳ 100 k lines makes an episode a candidate for an
+    njmax-1024 retrain;
+  - re-offered the public ep2/ep12 njmax test (≈ $7 [E], needs the owner's go).
