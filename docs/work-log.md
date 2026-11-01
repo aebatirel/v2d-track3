@@ -5554,3 +5554,18 @@ Advice given:
   Max-Q driver 590.48.01, env restored, job rc 0 after 137 min, pushed. Ledger actual $2.98. Results copied to
   pack9b-20261031/results/drS30s42/. [M] eval 30 seeds: s42 0.837 ± 0.12, s43 0.817 ± 0.14.
   All four standard-learner boxes done ($11.67 together); G remains (seed-43 wave, ~03:00).
+- 02:35 UTC bold-albattani diagnostic (their gmg/build/I/results/collcarve2-evalcheck/README.md, branch
+  claude/bold-albattani-6qmxsv; GT-free, packed refs + packed pieces): eval 10's packed ev10 pieces (53 / 49) overlap at
+  the nested hands-off rest f124–f160 (median 11.9 cm³, 3.4–32.7); the pair alone in plain MuJoCo with sim=rl limits needs
+  656–1,296 constraint rows / 164–324 contacts (> 512 / 256) at step 0 in all 16 copies × 3 frames; no other eval pair
+  overflows. Smaller: evals 14/30 rack CoACD collider fills ~10.5 cm³ of the slot; eval 14 cup 16.6 mm in the table at
+  f42; eval 32 cup 19.5 mm in the table f32–33; evals 15/16 spoon 44–61 mm from support in ~20 hands-off frames.
+- 02:40 UTC **measured on the eval-10 V4p retrain's own training logs** (store runs/20261031-e10v-caf38fb/runs/
+  perc2e10vs{42,43}_glock/ep10-s*/train.log, 270 / 263 MB): "nefc overflow - please increase njmax to N" on 6,010,501
+  (s42) and 5,846,480 (s43) lines; requested njmax median 580, p95 752, p99 808, max 1,057 / 1,006 vs the 512 limit; first
+  line at log line 77 (before 1 % of training); 3.58 M lines in the first 50 % of s43's steps. No "broadphase overflow".
+  [H] Constraint rows dropped throughout eval-10 training (cup-in-cup contact) are a cause of "lift 0" at every
+  checkpoint in both seeds. Falsifier: one eval-10 training at sim.njmax 1024 / nconmax 512 (same V4p reference, same
+  recipe, one seed): overflow lines → 0 and the cup still never lifted ⇒ not the main cause. Not run (needs the owner's
+  go; ~1.3–1.6 h, ~$2–3). Not checked yet: whether the packed eval-10 policy's training overflowed the same way, and
+  whether the official evaluator's eval-10 rollouts overflow (scoring path).
