@@ -6486,3 +6486,7 @@ Background agent, CPU only, $0, no ground truth read.
   inputs' jitter checks, P2 anneal, P2 grasp, O2 anneal, O2 grasp, P anneal, P grasp, O anneal, O grasp, gate. A first
   launch at 13:08 under the tool's 2 h background limit was stopped after 30 s (no arm had started; its partial input
   jitter dirs moved to `ep13_aborted/`). Expected ≈ 5–9 h [E].
+- 14:26 UTC: ep13 arm 1/8 done [M]: **P2 anneal** (two-hand perceived input, our solver): jittered mean **0.3935 ± 0.146**
+  (16 copies; min 0.118, max 0.555), nominal 0.5270; its input P2 0.3435 ± 0.162; floor 0.5561. Official replay vs
+  solver truth bit-identical over all 190 frames; fresh-load buffers identical. 4 rollbacks used (cup lost at f24
+  repeatedly); the cup is ~20 cm off by f96. Solve ≈ 74 min. Arm 2 (P2 grasp) started 14:26.
