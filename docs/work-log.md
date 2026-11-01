@@ -6298,3 +6298,17 @@ arm and a no-policy replay floor to stage B.
     public ep13 (oracle and our reference), a GRASP-style sampler in FlashCHORD vs our solver.
     - Gate: zero-action sim_vs_ref gain ≥ +0.05 over our solver's on our reference.
     - Then RL from the solved reference under the swap rule for eval 14.
+- 11:52 UTC 1 Nov focused-pascal: "pack 11 ready" (34f4279d), after the owner approved the guard exception directly in
+  their session.
+- 11:39–11:44 UTC **PACK 11 UPLOADED** (owner's 09:11 go).
+  - Content: pack 10 + eval 10 ck512 (trained njmax 1024, evaluated at stock 512 / 256, disclosed).
+  - Checks [M]: byte diff e000010 only; stock 512 in config and solver build; verdict 998385b0 INCLUDE; dry run.
+  - Scores:
+    - AUC **0.83921** (+0.020 over pack 10);
+    - SP-SR 0.85;
+    - MP-SR **0.70**;
+    - RPE **3.17899**;
+    - MPPE **2.54531**;
+    - CD-O 0.33234.
+  - Pack 11 beats or ties every earlier pack on every board. Receipt + UPLOAD.md in build_11 (93530b1b).
+  - Owner asked for a kickoff prompt to run the GRASP item in a new session; given in chat.

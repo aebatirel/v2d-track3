@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~11:44 UTC: PACK 11 UPLOADED: AUC 0.83921, our best on every board (MP-SR 0.70, RPE 3.179, MPPE 2.545, SP-SR 0.85)
+- Pack 11 = pack 10 with eval 10's policy trained at njmax 1024 (training-only) and evaluated at stock 512 / 256
+  (disclosed).
+- Record: results/submissions/20261101-track3l-candidate/build_11/UPLOAD.md (branch claude/keen-heisenberg-engcwz).
+- Next block: GRASP-style sampler for eval 14 / ep13 (new session); CD-O blue-cup variant (owner's compliance call).
+
 ## 2026-11-01 ~08:43 UTC: PACK 10 UPLOADED: AUC 0.81915, our best (RPE 3.68275, MPPE 2.84759 also best; SP-SR 0.80)
 - Pack 10 = 9a+ with eval 10's stock-limit retrain on the ev10cs5 cavity-safe pieces (+0.069 on the GT-free proxy).
 - SP-SR dropped one episode: eval 10 now moves the cup without completing the nest. The SP-SR best stays 0.85 from
