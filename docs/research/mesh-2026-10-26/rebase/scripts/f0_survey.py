@@ -106,6 +106,8 @@ def main():
                             shutil.copy(f'/home/user/v2d-track3/meshes/{x["lib"]}/{m}.glb', lib)
                         pc = PIECES.get(e)
                         pdir = (f'{fp}/../{pc}' if e == '1' else f'/home/user/v2d-track3/{pc}') if pc else None
+                        if os.environ.get('F0_PIECES'):                    # a candidate folder instead of the packed one
+                            pdir = pc = os.environ['F0_PIECES']
                         cmd = [sys.executable, '-I', f'{fp}/make_assets.py', lib, shared] + (['--pieces', pdir] if pdir else [])
                         r = subprocess.run(cmd, capture_output=True, text=True); assert r.returncode == 0, r.stderr[-400:]
                         res['shared_assets'] = dict(lib=x['lib'], pieces=pc, make_assets=r.stdout.strip().splitlines())
@@ -145,6 +147,11 @@ def main():
                     if rj and rj[0][0] not in frames:
                         frames.append(int(rj[0][0]))
             res['first_H30_rest_frame_per_object'] = first_obj
+            if os.environ.get('F0_ALWAYS_FIRST') == '1' and first is not None and first not in frames:
+                frames.append(int(first))                                # report the first all-object H30 rest run anyway
+            for xf in [int(v) for v in os.environ.get('F0_EXTRA', '').split(',') if v]:
+                if xf not in frames:
+                    frames.append(xf)
             res['f0_hand_mm'] = {o['name']: round(float(min(hand[0, j], 9.99)) * 1e3, 1) for j, o in enumerate(objs)}
             res['first_H30_rest_frame'] = first
             res['objects'] = {o['name']: dict(urdf_md5=o['urdf_md5'], pieces=len(o['hulls']), collision=o['src'],
@@ -152,7 +159,7 @@ def main():
             grids = {o['name']: rb.solid_grid(o['hulls']) for o in objs} if len(objs) > 1 else {}
             res['frames'] = []
             for f in frames:
-                fd = dict(frame=int(f), kind='start' if f == 0 else ('first H30 rest (all objects)' if f == first else 'first H30 rest of ' + ', '.join(n for n, v in first_obj.items() if v == f)), hand_mm={}, objects={}, pairs={})
+                fd = dict(frame=int(f), kind='start' if f == 0 else ('first H30 rest (all objects)' if f == first else ('first H30 rest of ' + ', '.join(n for n, v in first_obj.items() if v == f) if f in first_obj.values() else 'requested')), hand_mm={}, objects={}, pairs={})
                 for j, o in enumerate(objs):
                     W = rb.tf(T[f, j], o['V']); low = W[:, 2].min(); com = rb.tf(T[f, j], np.array([o['ine']['com']]))[0]
                     sup_ = {}
