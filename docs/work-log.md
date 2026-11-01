@@ -6416,3 +6416,9 @@ arm and a no-policy replay floor to stage B.
   - sim_vs_ref (pipeline/qa.py) uses plain `_object_add`, so it IS charged there.
   - So the twist hurts physics feasibility and makes our proxy pessimistic on cup episodes, not the board directly.
   - Correction sent to the GRASP session, with a request for a symmetric sim_vs_ref line next to the plain one.
+- 19:56 UTC 1 Nov **perfect-following session started** by this session at the owner's request ("I need the session to
+  start before I go to sleep"): session_01D9UJC8Nz9EEFNmz2yzimzN, repo source.
+  - Prompt: the plan (docs/plans/perfect-following-20261101.md), the owner's verbatim permissions, $110 budget, ≥ $10
+    reserve, GRASP collaboration (repairs a–d folded in), the symmetric-vs-plain scoring note, the uploader route,
+    and "if a permission check blocks a relayed approval, log it and continue".
+  - GRASP session told the new id. Morning summary scheduled for 06:30 UTC 2 Nov (send_later).
