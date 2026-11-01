@@ -3108,6 +3108,55 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     orchestrator's true-nest cases tn0, tn1, n2a, gate g1-g3, controls); n4-n6, f1-f3, the P91 diagnostic and T-I17 c1
     are not run in this step (c1 needs the ep24 v6 bundle, not on this machine).
 
+  - **F-I5.18 T-I14 outcomes, the subset run in the build step (synthetic, 31 Oct 23:18 - 1 Nov 00:30 UTC, this
+    container, 16 copies, code ced42fd -> ba3387d (every number below from ba3387d unless marked), F-I5.17 as built;
+    results `build/I/results/collcarve-r2/t_i14/`, logs in `build/I.md`).** [M] unless marked. No rule is changed by
+    this entry; the two hypotheses at the end are for the orchestrator.
+    - **Rings.** Construction-ray intrusion 0.0 mm at 8 / 12 / 16 sectors on the T-I12 cup, the T-I12 pot and the
+      256-facet analytic cup (continuity-ray intrusion <= 0.015 mm); min wall cup 0.97 / 2.60 / 3.24 mm, pot -3.89
+      (every wall piece dropped) / 0.57 / 2.09 mm, analytic 0.959 / 2.634 / 3.233 against the formula's 0.955 / 2.637
+      / 3.231 (P87 r3 holds). r1: round 1's 8-sector chords on a 5.36 mm wall: their own check passes, intrusion 3.26
+      mm, continuity2 fails (gaps 39.7 %) (P87 r1 holds; the check is not self-referential). r2: a forced 1 mm ring
+      fails continuity2 (P87 r2 holds, after the F-I5.17 (5) fix); a set covering a third of the wall passes a
+      self-check and fails continuity2. P97: r4 accepted at 12 sectors, b1, n_r 13, the 8-sector candidate failing
+      (iii) (holds); r5 at 16 sectors, b1, n_r 17 (holds), but its 8-sector candidates fail (i) (min wall -2.28 mm),
+      not (iii) (that clause misses, as the geometry of F-I5.16 (2) implies).
+    - **Precheck (P85 holds).** p1 fails (a) (-10.0 mm), p2 fails (b) (10.0 / 73 mm), p3 fails (c) only (V_ov 77.3
+      cm3, removed 0.77, topology 1/0 -> 2/2, 0.05 mm wall left), p4 passes (V_ov 12.9 cm3, removed 0.088, 3.49 mm).
+    - **Gate (P96 holds; g1 run with 2 x 77 pieces as the orchestrator asked, not 2 x 100).** g1: contact_overflow in
+      16/16 copies (ncon >= 1,400, nefc >= 5,600); g3 (delivered = packed default, CoACD 1.0.11 at 0.05: one hull)
+      passes, ratio 1.0; g2 (that hull split 2 x 2) contact_ratio 7.0 (224 / 32 rows), no overflow.
+    - **Controls.** x6 (plate pair) and x10 (flag off) identical under the round-2 context and under rev 1; CC.REV
+      defaults to 1; round 1's x9 reproduces (P89's x6 / x10 part holds; x7, x8, x11 and the rack-slot fixture not run).
+    - **Nests (12 sectors, b1, 13 pieces each; sectors half offset unless marked).** **tn0** (exact rest, on axis):
+      out of scope, default delivered, S 0.73 / 1.05 mm (f81 / f62): passes; floor and G1 pass (P83 half-offset leg
+      holds: mean drop 0.66 / 0.98 mm). **tn1** (exact rest depth, 1 mm off axis): `off_axis_nest` (e_ax 1.09 + c 0.10 >
+      t_min 2.60 - w_min 1.50), default delivered, S 1.26 / 1.27 mm: passes; floor and G1 pass. **n2a** (exact rest,
+      sectors lined up; diagnostic): S on the default rings 14.09 / 14.38 mm (fails), S_ref 0.35 / 0.47 mm (passes):
+      floor fail, DO_NOT_USE (P83 aligned and 64-sector legs hold; numbers from the run log, the JSON re-run under a
+      file name without the guard's `_align` substring). **n1** (9.5 mm too deep): precheck passes at both S frames;
+      c 0.10 mm (sigma_wall 0.051; 18 receiver components, one with c 0.95 mm
+      was `off_axis_nest` and not carved); carve 48 K fragments (R 6 voxels), forced edges 12 / 95 mm, 9 widen + 1 trim_top;
+      **wall_integrity_fail** (409 of 6,874 K samples without wall: the trimmed sector), default delivered; S on it
+      4.87 / 4.79 mm (fails), S_ref 1.77 / 2.84 mm (passes): floor fail, DO_NOT_USE; G1 passes (304 rows vs packed 756)
+      -> **P81 misses** (P98 untested: nothing carved delivered). **n3** (n1 + 1 mm off axis): `off_axis_nest` (e_ax
+      1.09 mm), default, S 4.83 / 4.76 mm, S_ref 1.92 / 2.16 mm: floor fail, DO_NOT_USE -> **P82 misses** (n3 not
+      carved: F-I5.16 (4) foresaw the lost margin at 12 sectors). In every nest the packed default (CoACD 0.05 of the
+      cups) overflows the S scene in 16/16 copies (`packed_overflow`, 668-764 rows) while our rings stay at 184-304.
+    - **Diagnostic on n1's carve (post hoc, report only, never delivered; `t_i14/diag_n1_carve.json`).** Same K,
+      trim options removed for wall pieces: 10 widen, wall left >= 1.56 mm, topology kept, residual guest-in-host
+      overlap at T_rest 0.146 cm3 (rule carve 0.271, default 0.955); S still lifts the guest 4.06 / 3.98 mm (f81 fails,
+      f62 passes). Hypotheses (not applied): **H-a** the most-volume option rule (F-I5.11 (2)) picks wall-opening trims
+      where K sits near one end of a band; falsifier: with a wall-keeping preference the wall rule still fails on n1.
+      **H-b** the persistent region R (2 mm collider samples on the 4 mm grid) covers 6 voxels of a uniform 0.5 mm
+      overlap, so K clipped to R+ leaves overlap that lifts the guest about 4 mm; falsifier: with R+ = every 4 mm voxel
+      holding guest-in-host overlap at the rest frames, S still lifts the guest by more than 4 mm. **Mechanism for real
+      pairs [M on the fixtures]**: an exactly placed nest holds on the delivered rings only when the two ring sets are
+      half a sector apart; lined up, the guest drops about 14 mm at 12 sectors.
+    - **Not run in this step**: n4-n6, f1-f3, the P91 diagnostic, T-I17 c1 (the ep24 v6 bundle is not on this
+      machine), T-I15, T-I16, L0, the eval precheck; G2 everywhere (no FlashCHORD environment here:
+      CONTACT_GATE_PENDING.json).
+
 ## Revision 1 changelog
 
 What changed, and why:

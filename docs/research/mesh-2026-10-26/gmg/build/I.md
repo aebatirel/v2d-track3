@@ -1499,3 +1499,14 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   preference still fails the wall rule on n1); H-b the persistent region R from 2 mm collider samples under-covers a
   thin uniform overlap (falsifier: R+ = every 4 mm voxel holding guest-in-host overlap at the rest frames, and S still
   lifts the guest > 4 mm).
+- 00:14 (Build 2) [M] nest runs done (16 copies, code ba3387d, 1,817 s each under load 5-13): **n1**:
+  wall_integrity_fail (the trim_top sector), default delivered, S 4.87 / 4.79 mm (fails), S_ref 1.77 / 2.84 mm
+  (passes): floor fail, DO_NOT_USE -> P81 misses; G1 passes (304 vs packed 756). **n3**: off_axis_nest (e_ax 1.09
+  mm), default, S 4.83 / 4.76 mm, S_ref 1.92 / 2.16 mm: floor fail -> P82 misses. **n2a** (lined-up sectors): S
+  14.09 / 14.38 mm, S_ref 0.35 / 0.47 mm: floor fail (P83 aligned and 64-sector legs hold); its JSON was refused by the
+  guard (the file name `test_n2a_aligned.json` holds `_align`): test renamed `test_n2a_sectors_lined_up`, re-run
+  launched 00:01:35 for the record (numbers above from the log). Written: PREREG F-I5.18 (T-I14 outcomes, the two
+  hypotheses H-a / H-b, what was not run), INTERLOCK 21.14.9 (plain words); results
+  `build/I/results/collcarve-r2/t_i14/` (summary.json, rings, precheck, gate, controls, nests, diag_n1_carve).
+  No rental, $0. Next for the orchestrator: H-a / H-b decide whether a carve can hold n1 at all; T-I17 c1, T-I15 /
+  T-I16 on the box are not started.

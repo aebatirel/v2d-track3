@@ -418,7 +418,7 @@ class Nest(unittest.TestCase):
         s = self._run('tn1', depth_err=0.0, offset=(0.001, 0.0))
         self.assertTrue(s['S_delivered'] and all(r['pass_'] for r in s['S_delivered']), s['S_delivered'])
 
-    def test_n2a_aligned(self):
+    def test_n2a_sectors_lined_up(self):
         """P83 aligned leg (diagnostic): the exact rest with ALIGNED 12-sector rings lets the guest drop >= 4 mm (S
         fails on the delivered default pieces) while the 64-sector references hold it (mean drop <= 2 mm)."""
         s = self._run('n2a', depth_err=0.0, phase_deg=0.0)

@@ -1,0 +1,108 @@
+{
+ "rule_carve": {
+  "options": {
+   "widen": 9,
+   "trim_top": 1
+  },
+  "wall": {
+   "default_cm3": 75.947,
+   "removed_cm3": 8.141,
+   "removed_share": 0.1072,
+   "samples_on_clip_faces": 36182,
+   "samples": 6874,
+   "need": 6874,
+   "bad": 409,
+   "min_left_mm": 0.0,
+   "min_default_chord_mm": 2.689,
+   "ok_wall": false,
+   "ok_removed": true,
+   "pass_": false,
+   "fail": "wall_integrity_fail"
+  },
+  "overlap_at_rest_cm3": 0.271
+ },
+ "widen_only_diag": {
+  "options": {
+   "widen": 10
+  },
+  "removed": 0,
+  "wall": {
+   "default_cm3": 75.947,
+   "removed_cm3": 7.909,
+   "removed_share": 0.1041,
+   "samples_on_clip_faces": 36182,
+   "samples": 6874,
+   "need": 6874,
+   "bad": 0,
+   "min_left_mm": 1.559,
+   "min_default_chord_mm": 2.689,
+   "ok_wall": true,
+   "ok_removed": true,
+   "pass_": true,
+   "fail": null
+  },
+  "topology": {
+   "default": {
+    "C": 1,
+    "T": 0
+   },
+   "carved": {
+    "C": 1,
+    "T": 0
+   },
+   "pass_": true,
+   "fail": null
+  },
+  "overlap_at_rest_cm3": 0.146
+ },
+ "default_overlap_at_rest_cm3": 0.955,
+ "K_fragments": 48,
+ "R_voxels": 6,
+ "note": "DIAGNOSTIC (post hoc, report only, never delivered)",
+ "S_diag": {
+  "rule_carve@81": {
+   "disp_mm": 4.291,
+   "dz_mm": -4.282,
+   "lateral_mm": 0.266,
+   "tilt_deg": 3.565,
+   "copies": 16,
+   "nan": 0,
+   "below": 0,
+   "pass_": false,
+   "memory": "2G"
+  },
+  "widen_only_diag@81": {
+   "disp_mm": 4.06,
+   "dz_mm": -4.057,
+   "lateral_mm": 0.138,
+   "tilt_deg": 2.841,
+   "copies": 16,
+   "nan": 0,
+   "below": 0,
+   "pass_": false,
+   "memory": "2G"
+  },
+  "rule_carve@62": {
+   "disp_mm": 4.286,
+   "dz_mm": -4.266,
+   "lateral_mm": 0.411,
+   "tilt_deg": 3.643,
+   "copies": 16,
+   "nan": 0,
+   "below": 0,
+   "pass_": false,
+   "memory": "2G"
+  },
+  "widen_only_diag@62": {
+   "disp_mm": 3.975,
+   "dz_mm": -3.934,
+   "lateral_mm": 0.569,
+   "tilt_deg": 2.96,
+   "copies": 16,
+   "nan": 0,
+   "below": 0,
+   "pass_": true,
+   "memory": "2G"
+  }
+ }
+}

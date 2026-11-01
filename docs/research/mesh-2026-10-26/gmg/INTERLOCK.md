@@ -2934,3 +2934,32 @@ Changed: P72 is replaced by P93 and P74 by P94; wherever P81, P82, P84, P86 or P
   floor climb the search.
 - A perfectly tracked nest is still not carved (21.13.13), and with 12 sectors the polygon gap of 21.13.5 is larger than
   at 16 (rho (1/cos(pi/12) - 1) = 1.2 mm at 33.7 mm against 0.66).
+
+#### 21.14.9 As built and the synthetic tests (PREREG F-I5.17, F-I5.18; written 1 Nov after the T-I14 runs)
+**In plain words.** Round 2 is built and switched on only through the new round-2 driver option; round 1 and the
+flag-off path are unchanged (checked). On synthetic objects:
+- **The new ring pieces never reach into the cup's opening.** Measured on a tapered cup and on a pot at 8, 12 and 16
+  slices: no piece is inside the opening at any test ray (0.0 mm); between rays at most 0.015 mm. Where a slice would
+  have a negative wall (the pot at 8 slices) the piece is now left out instead of being built inside out, which a
+  first version did (3.6 mm into the opening; found and fixed before any real run).
+- **The coverage check now looks at our measured cup wall, not at the pieces themselves.** Round 1's 8-slice pieces
+  pass their own old check but fail the new one (40 % of the rays find less than half of the wall covered). A first
+  version still took its starting height from the pieces and missed a 1 mm gap ring; it now starts from our shape.
+- **The fewest-pieces search** picks 12 slices for a 47.6 mm cup and 16 for a 98.4 mm pot (13 and 17 pieces).
+- **The pose check works**: a guest 10 mm in the table, a guest floating 10 mm above everything, and two cups whose
+  walls cross are each caught by the right test; a slightly-too-deep nest passes.
+- **The contact budget works**: two stacked sets of 77 pieces overflow the evaluator's limits in all 16 copies
+  (1,400 contacts and 5,600 constraint rows against 256 and 512); the same objects as one piece each pass; splitting
+  each into four fails the 1.5 x rule (7.0 x).
+- **True nests**: a cup resting exactly inside another cup, on axis, stays put on the delivered pieces (0.7-1.1 mm),
+  and so does one sitting 1 mm off axis (1.3 mm; not carved: the off-axis rule). But only because the two cups' slices
+  are offset by half a slice in this test: with the slices lined up, the inner cup drops 14 mm (a 12-slice polygon
+  inside a 12-slice polygon). Real pairs come with whatever offset their poses give.
+- **The carve itself does not yet hold a nest that our track places 0.5 mm too deep**: in our 0.5 mm-too-deep test the carve is rejected and the default pieces let the cup rise 4.8 mm,
+  so that folder is marked do-not-use (the same happens 1 mm off axis, where the off-axis rule now applies at 12 slices). Two reasons were
+  measured (diagnostic only): the carve trims the top off one slice instead of cutting its inner face back, which the
+  new wall rule correctly rejects; and the region allowed for the carve covers only a few spots of the thin, uniform
+  overlap, so the rest is not cut and pushes the cup up about 4 mm even when the trim is avoided. Fixing either is a
+  rule change for the orchestrator, not done here.
+- Every result folder this builds also gets a "contact gate pending" marker, because the full-scene budget check
+  (determined-wright's tool) cannot run on this machine.
