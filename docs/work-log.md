@@ -5929,3 +5929,21 @@ arm and a no-policy replay floor to stage B.
   - Eval 10: no clean candidate (ev10cs3 is best, still overflows).
   - No GPU retrain is cleared tonight. The geometry retrains (priority items 3–5) are off. The next lever is the pose
     fix (bold-albattani's public test, running).
+- 04:57 UTC 1 Nov focused-pascal: "pack 9b ready" (874c9d3, results/submissions/20261101-track3j-candidate/build_9b).
+  - D verdict (PREREG §4, 2ce1872): eval 33 PASS (0.9358 vs 0.9234, 0 / 0 fails, draw 1 0.9419); evals 14 / 16 / 25 /
+    30 NO-SWAP (the packed policies beat the D candidates on official draws).
+  - D arm $19.41 measured. Credit ~$29.
+- 04:57–05:02 UTC **pack 9b UPLOADED by this session** (owner: "Upload automatically" and "I give you permission for
+  everything").
+  - Checks [M]: sha256 a6c4105a…; 9,120 rows; byte diff vs 9a+ = e000033's 696 pose + checkpoint rows only, plus
+    code_commit_url d7ecaef → dd24ed4 on every row; meshes identical; kit hashes match; dry run valid; CD-O equal.
+  - Kaggle submission IDs 57860700–57860708.
+  - Scores: AUC 0.81677 (9a+ 0.81757), SP-SR 0.85 (=), MP-SR 0.65 (=), RPE 3.88283 (3.87853), MPPE 2.90186
+    (2.89663), CD-O 0.33234 (=).
+  - **9b is slightly worse; 9a+ stays our best on every board.** The GT-free proxy's +0.0018 on one episode was noise
+    against mocap.
+  - Receipt and UPLOAD.md in build_9b on this branch (157ed61). Messaged focused-pascal and score-status. Deleted the
+    05:45 check (trig_01W85SJqy4miyDxtbixJcK4H), now moot. The 07:30 and 10:30 checks stay for pack 10 / news.
+  - Lesson [I]: when the expected gain is within noise, a swap is a coin flip on the board. The swap rule protects
+    against large losses but not small ones. Worth adding for pack 10: skip uploads whose expected AUC change is below
+    the board's noise.

@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~05:02 UTC: PACK 9b UPLOADED: AUC 0.81677, below 9a+ (0.81757 stays our best)
+- 9b = 9a+ with eval 33's D-arm rollout; eval 33 was the only D cell to pass the swap rule (14 / 16 / 25 / 30 NO-SWAP).
+- Boards (9b vs 9a+): AUC 0.81677 vs 0.81757; SP-SR 0.85 =; MP-SR 0.65 =; RPE 3.88283 vs 3.87853; MPPE 2.90186 vs
+  2.89663; CD-O 0.33234 =.
+- Record: results/submissions/20261101-track3j-candidate/build_9b/UPLOAD.md (branch claude/keen-heisenberg-engcwz).
+- Overnight geometry route closed (no clean pieces); the root cause is impossible rest poses in our references.
+- Running: the public pose-fix test (bold-albattani, CPU) and the eval-10 njmax-1024 diagnostic (never packed).
+
 ## 2026-11-01 ~02:50 UTC: owner gave blanket permission; overnight geometry push (keen-heisenberg coordinating)
 - Owner: "I give you permission for everything" (02:50 UTC). Scope and limits: docs/work-log.md 02:50 entry.
 - Plan: fix the collision overlaps behind evals 10 / 30 / 14.
