@@ -5582,3 +5582,10 @@ Advice given:
   541), S25 s43 (0.482, weak) 0, S30 s42 0, S30 s43 0; eval 1 packed std0116 ep1-s42 (H5 0.822 ± 0.239, min 0.150) 0;
   carved c01s43 ep1-s43 39 (max 581). No broadphase overflow anywhere. Overflow does not track the weak / high-variance
   cells; it stays an eval-10 finding (~6 M lines per run there). G's logs (14/16/33) to be counted after the box ends.
+- ~02:42 UTC determined-wright (their contact_budget/README.md, e1a3063) confirms on the packed eval-10 config
+  (meshes/carve/ev10, budget.py at the FlashCHORD pin, sim=rl): training-style sampled resets nefc max 536 / world
+  (median 473), 13 % of world-steps > 512; the PACKED eval-10 run gl10A2's train.log has 8.37 M "nefc overflow" lines;
+  its 5 scored draws have 0 (the policy never nests the cups). → scoring unaffected, training corrupted in the nested
+  phase [M]; [H] a contributor to the floor. Their cheapest variant: training with sim.njmax=1024 (stored in the
+  checkpoint config, so the evaluator rebuilds with it — note for any later use: that changes the evaluated sim config of
+  that one policy; to be cleared against the rules before it enters a pack). D cells unaffected (no ev10 pieces).
