@@ -1,6 +1,6 @@
-# ev10-cavsafe: cavity-safe eval-10 cup pieces (three measured candidates)
+# ev10-cavsafe: cavity-safe eval-10 cup pieces (four measured candidates)
 
-1 Nov 2026, 02:47-03:25 UTC. CPU on this container, no rental, $0. GT-free.
+1 Nov 2026, 02:47-03:25 UTC; v4 04:47-05:00 UTC (section 9). CPU on this container, no rental, $0. GT-free.
 
 These are candidates for the pack lane. No pack was changed. `meshes/carve/ev10` stays what the packed eval-10 policy
 uses.
@@ -8,7 +8,11 @@ uses.
 Tags: [M] measured here, [R] read from another lane, [E] estimate, [H] hypothesis.
 
 The gates were written before any candidate number: `GATES.md` (commit 98ddccf), with amendments A1 (cbb6d29),
-A2 (dafc911) and A3 (c5500c7). Section 7 gives the time order.
+A2 (dafc911), A3 (c5500c7) and A4 (fedccf6, v4). Section 7 gives the time order.
+
+**v4 (`ev10cs4`, 24 / 21 pieces), added later: section 9.** In plain MuJoCo it passes gates 1-3 (rest overlap
+0.21 / 2.61 cm3; pair-scene max nefc 488, 0 / 48 copies over the limits). It fails gate 4a for the blue cup, as every
+set does, and fails the drop check. FlashCHORD 32 x 60 is pending with determined-wright.
 
 ## In plain words
 
@@ -59,14 +63,15 @@ A piece set that keeps the cavity empty therefore cannot hold 80 % of the mesh v
    - `<obj>/lathe_collision.json`;
    - `carve.json` with the note, commands and input hashes.
 
-   Use: `python pipeline/make_assets.py meshes/library_v3 OUT --pieces <folder>`. Tested on all three: it writes 53 / 49,
-   44 / 49 and 32 / 33 `<collision>` elements.
+   Use: `python pipeline/make_assets.py meshes/library_v3 OUT --pieces <folder>`. Tested on all four: it writes 53 / 49,
+   44 / 49, 32 / 33 and 24 / 21 `<collision>` elements.
 
    | Folder | What it is | Blue / beige pieces |
    |---|---|---|
    | `ev10cs/` | v1, pre-registered: cavity-safe walls, ev10's 17 base hulls | 53 / 49 |
    | `ev10cs2/` | v2 (A2, post hoc on v1's contact trace): v1 + a one-piece blue floor | 44 / 49 |
    | `ev10cs3/` | v3 (A3): v2 with 8 sectors instead of 12, fewer and larger hand-facing pieces | 32 / 33 |
+   | `ev10cs4/` | v4 (A4): v3 with 8 cm bands (2 per wall), a beige base of 1 + 4 rim pieces and a 6 mm blue floor (F2) | 24 / 21 |
 
 2. **Pairs with** the packed eval-10 reference:
    - `runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet`;
@@ -291,3 +296,109 @@ python -I R/summarize_cavsafe.py <run dir> results/summary.json
 - `per_frame/ep<tag>_frames.json`;
 - `cfg.json`;
 - `logs/`.
+
+## 9. v4 (`ev10cs4`): fewer, larger pieces and a 6 mm floor (A4)
+
+### In plain words
+
+**What v4 is.** v3 with fewer, larger pieces where the hands and the blue floor touch the cups:
+- 2 wall bands per cup instead of 3;
+- a beige base of 1 + 4 pieces instead of 1 + 8;
+- the blue cup's one-piece floor, made 6 mm thick.
+
+The pre-registered drop check of the 3 mm build fired, so A4's rule (F2) gave it the thicker floor. That raises the
+blue cavity floor by 3 mm.
+
+**What it passes in plain MuJoCo.**
+- The rest overlap is 0.21 cm3 median, 2.61 cm3 max (gate 1 passes).
+- The pair scene stays under the limits in all 48 gate copies, max 488 rows (gate 2 passes).
+- No blue piece enters the (raised) cavity (gate 3 passes).
+
+**What it does not fix.**
+- Gate 4a fails for the blue cup, as it does for every set.
+- When the hands-free test scene drops the pair 24-32 mm, the beige still goes through the blue floor in some copies,
+  even at 6 mm.
+
+**What the final verdict waits on.** FlashCHORD at 32 x 60, determined-wright's large-sample standard. Its target: 0
+overflow lines and a hold-window max <= 480 rows.
+
+### Numbers [M]
+
+Same scripts and frames as section 1. "v4, 3 mm" is the build before F2. It was measured, but it is not delivered.
+
+| | packed `ev10` | v3 `ev10cs3` | v4, 3 mm (before F2) | **v4 `ev10cs4` (F2, delivered)** |
+|---|---|---|---|---|
+| Pieces, blue / beige | 53 / 49 | 32 / 33 | 24 / 21 | **24 / 21** |
+| Gate 1: overlap f124-f160, median / max, cm3 | 11.86 / 32.67 | 0.38 / 2.99 | 0.21 / 2.61 | **0.21 / 2.61 PASS** (min 0.000) |
+| Max overlap over all frames, cm3 (in hand included) | 36.2 (f105) | 7.61 (f109) | 9.47 (f109) | 17.12 (f109) |
+| Gate 2: max nefc at f111 / f142 / f116 (overflow copies of 16) | 1,252 (16) / 656 (16) / 1,296 (16) | 756 (2) / 376 (0) / 752 (4) | 484 (0) / 344 (0) / 504 (0) | **488 (0) / 212 (0) / 336 (0) PASS**; max ncon 122 |
+| Report: f124 / f160 / rule frame f117 | 876 / 580 / - | 684 (3) / 380 (0) / 712 (13) | 468 (0) / 256 (0) / 508 (0) | 460 (0) / 196 (0) / 448 (0) |
+| Step-0 nefc at f111 / f142 / f116 | 1,004 / 568 / 1,280 | 224 / 152 / 272 | 144 / 88 / 176 | 176 / 88 / 204 |
+| Settled nest rows at f124 / f142 / f160 (settle trace) | 484 / 384 / 68 | 160 / 160 / 160 | 96 / 96 / 96 | 96 / 104 / 96 |
+| Beige axial sink by the end of the trace, mm (f124 / f142 / f160) | -0.8 / -1.2 / 12.4 | 4.3 / 12.0 / 27.3 | 4.3 / 12.0 / 27.3 | 1.3 / 9.1 / 24.4 |
+| Drop check: copies with guest-table contacts at the max step, f111 / f142 / f116 / f124 / f160 (of 16) | - | 2 / 2 / 4 / 5 / 4 | 3 / 1 / 6 / 3 / 1 | **8 / 0 / 2 / 6 / 0** |
+| Drop check, unjittered settle traces | - | 33 / 14 / 0 contacts | 0 / 0 / 0 | 0 / 0 / 0 |
+| Gate 3: cavity depth / volume | 3.54 mm / 54.2 cm3 | 0.0 / 0.0 | 0.0 / 0.0 | **0.0 / 0.0 PASS** against the raised floor (h_base - 6 mm); against v1-v3's cavity the plate fills its bottom 3 mm, 9.4 cm3 (by F2's design) |
+| Gate 4a: blue / beige | 0.381 / 1.92 | 0.340 / 1.58 | 0.356 / 1.79 | **0.384 FAIL** / 1.79 |
+| 4b, kept visual / 4c, union against ev10 | 0.296, 0.176 / 1, 1 | 0.153, 0.097 / 0.891, 0.825 | 0.151, 0.094 / 0.936, 0.934 | 0.177, 0.094 / 1.008, 0.934 |
+| Thinnest blue mid-sector wall: mouth bin / bottom bin, mm | - | 0.25 / 0.875 | 0.54 / 1.39 | 0.54 / 1.39 |
+| Beige outer face lowered at most (G1), mm | - | 4.83 | 2.39 | 2.39 |
+| COM against ev10: blue / beige, mm along file z | 0 / 0 | +4.6 / -1.5 | +7.2 / -1.4 | **+12.8 / -1.4** |
+| FlashCHORD 32 x 60, overflow lines sampled / explicit; hold-window max ([R], determined-wright 6b04fba) | 380 / 9,723; 661 | 110 / 576; 534 | - | pending |
+
+In v4, the gate-2 maxima at f111 / f116 / f124 are frames where the scene drops the pair. At f111 the 122 contacts are
+77 guest-receiver, 20 guest-table and 25 receiver-table.
+
+### The drop check [M]: `scripts/drop_peek.py`, `results/logs/v4_droppeek_f124.log`
+
+At f124 the pair is 24 mm above the table, and the scene has no hands.
+- In 6 of 16 copies, the beige base reaches h 79.0-80.5 mm along the blue axis at step 8, the blue cup's impact on the
+  table. That is past the 6 mm plate (top 72.4 mm) and at the blue cup's lowest point (80.0 mm).
+- In the other copies it still sinks 0.4-4.9 mm into the plate.
+- So F2 removed the guest-table contacts at the hands-off frames f142 and f160 (1 -> 0 copies), but not at the drop
+  frames (f111: 3 -> 8 copies, f116: 6 -> 2, f124: 3 -> 6).
+- A4 allowed one application and no further iteration, so the result is reported as it is.
+
+[H] At a 10 ms step, a soft contact lets a 0.7 m/s impact sink about v x timeconst, roughly 14 mm at MuJoCo's default
+0.02 s. No floor that fits in this cup (4.6 mm below the lathe floor, 7.6 mm with F2) stops a free drop. It only matters
+if the policy lets the pair fall. Falsifier: a FlashCHORD drop of the nested pair from 24 mm at the training contact
+settings, with the beige staying above the plate.
+
+### Trades (stated in A4; measured here)
+
+- **Shape.**
+  - The blue cup's outer faces lie up to 3.3 mm (3.9 mm at the lip) outside its lathe profile at the sector edges.
+  - The beige is 8 mm plus up to 3 mm (chord) plus up to 2.4 mm (G1) inside its mesh. Its base stands on 4 rim pieces.
+- **Settle depth.** The beige still slides down to the blue floor, 1.3-24.4 mm deeper than the reference puts it. That
+  is 3 mm less than v1-v3.
+- **Insertion frames.** The raised floor meets the beige at the in-hand insertion frames f100-f117, where the
+  reference puts the beige base at the old floor height. The all-frame max overlap is 17.1 cm3 at f109, against 9.5 cm3
+  with the 3 mm plate. The rest frames are unaffected.
+- **Mass distribution.** The blue COM moves 12.8 mm toward its base: the 22.7 cm3 plate inside a 154 cm3 uniform solid
+  at 0.3 kg.
+
+### Hand-off to determined-wright
+
+- **Folder:** `ev10cs4/`, in the `make_assets.py --pieces` layout (tested: 24 / 21 `<collision>` elements).
+  - md5 of the per-piece md5 lists: blue `8ca4996c...`, beige `7f8bff4c...`.
+- **Paired reference:** the packed gl10A2 `ref_gl_ilc.parquet`, md5 `1a5003d94852c275519066645a1b9869`, with the
+  library_v3 visual meshes.
+- **Frames:**
+  - nested hands-off rest f124-f160;
+  - explicit f0, f124, f142, f160;
+  - plus f111 and f116, the in-hand pair-scene gate frames where this scene drops the pair.
+- **Target (A4):** FlashCHORD 32 x 60, 0 overflow lines sampled and explicit, hold-window max <= 480 rows.
+- **Next, if it passes:** the rest / nest test in FlashCHORD, including whether the beige crosses the floor at the
+  training contact settings, before any training run.
+
+### Time order (UTC)
+
+| Time | Event |
+|---|---|
+| 04:47 | Request |
+| 04:48-04:49 | Profile-only dry runs |
+| 04:50 | A4 committed (fedccf6), before building |
+| 04:51 | v4 (3 mm) built; v3 rebuild byte-identical |
+| 04:52-04:53 | v4 3 mm numbers; the drop check fired |
+| 04:53 | F2 build |
+| 04:55-04:57 | F2 numbers and drop peek |

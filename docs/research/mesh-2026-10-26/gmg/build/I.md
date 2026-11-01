@@ -1960,3 +1960,18 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   reference number). Amendment A4 in GATES.md: v4 = v3 + bands 8 cm (2 per wall) + beige base 1 + 4 rim sectors;
   counts 24 / 21; conditional F2 (6 mm floor if the drop check shows guest-table contacts); target FlashCHORD 32x60
   0 lines, hold max <= 480. Committing before building.
+- 04:53 [M] v4 (3 mm plate) built: blue 24 (142.8 cm3), beige 21 (284.6 cm3); v3 rebuild with the edited script
+  byte-identical. Gate 1 PASS (median 0.206, max 2.609 cm3); gate 2 PASS narrowly (f111 / f142 / f116 max nefc 484 /
+  344 / 504, ncon <= 126, 0 / 48 overflow; f124 468, f160 256, rule frame f117 508, all 0 / 16); settle 96 rows at rest
+  (v3 160, v2 212), 0 guest-table contacts in the 3 unjittered traces. **Drop check TRIGGERS**: guest-table contacts
+  at the max-nefc step in 3 / 1 / 6 / 3 / 1 copies of 16 at f111 / f142 / f116 / f124 / f160 (v3: 2 / 2 / 4 / 5 / 4;
+  v2: 0 everywhere). Per A4, ev10cs4 gets F2 (6 mm plate). Building it.
+- 04:57 [M] **ev10cs4 (F2: 6 mm plate) delivered**: blue 24 (153.8 cm3), beige 21 (283.0 cm3). Gate 1 PASS (0.206 /
+  2.609, same as 3 mm); **gate 2 PASS** (f111 / f142 / f116 max nefc 488 / 212 / 336, ncon 122, 0 / 48 overflow; f124
+  460, f160 196, f117 448, all 0 / 16); settle 96-104 rows; beige axial sink 1.3 / 9.1 / 24.4 mm (3 mm less); gate 3
+  PASS against the raised floor (the plate fills the old cavity's bottom 3 mm, 9.4 cm3, by design); gate 4a blue 0.384
+  FAIL. Drop check still fires at the drop frames (copies 8 / 0 / 2 / 6 / 0 at f111 / f142 / f116 / f124 / f160):
+  `drop_peek.py` f124: 6 / 16 copies take the beige base to h 79.0-80.5 mm (through the 6 mm plate, at the blue's lowest
+  point) at the step-8 impact of the hands-free 24 mm drop. [H] soft-contact sink ~ v x timeconst ~ 14 mm >> any floor
+  that fits in this cup. Trades: all-frame max overlap 17.1 cm3 at f109 (insertion frames; 9.5 with 3 mm), blue COM
+  +12.8 mm toward its base. README section 9; FlashCHORD 32x60 pending (determined-wright).

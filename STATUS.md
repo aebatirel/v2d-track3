@@ -1,5 +1,19 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~05:00 UTC: ev10 cavity-safe v4 (`ev10cs4`, 24 / 21 pieces) delivered for FlashCHORD 32x60 (CPU, $0)
+- **v4** = v3 + 2 wall bands per cup + beige base 1 + 4 + a 6 mm blue floor. The floor came from the pre-registered
+  drop check of the 3 mm build (A4 in `gmg/build/I/results/ev10-cavsafe/GATES.md`, committed before building).
+- **Plain MuJoCo [M]:**
+  - rest overlap f124-f160 0.21 / 2.61 cm3 (gate 1 passes);
+  - pair-scene max nefc 488, 0 / 48 overflow (gate 2 passes);
+  - cavity-safe (gate 3 passes against the raised floor);
+  - gate 4a fails for the blue cup, as in every set;
+  - a hands-free 24-32 mm drop still pushes the beige through the floor in 2-8 of 16 copies at f111 / f116 / f124.
+- **Trades:** the beige still settles 1-24 mm deeper than the reference; blue COM +12.8 mm toward its base; all-frame
+  overlap 17.1 cm3 at the insertion frame f109.
+- **Next:** determined-wright runs FlashCHORD 32x60 (target 0 overflow lines, hold max <= 480), then a rest / nest
+  test; no training without the owner's go. README section 9.
+
 ## 2026-11-01 ~03:25 UTC: ev10 cavity-safe cup pieces: three measured candidates delivered, none clean yet (CPU, $0)
 - **What:** eval-10 blue / beige cup collision pieces that do not enter the blue cavity (measured 0.0 mm; packed ev10:
   3.5 mm, 54 cm3), built with ev10's tool and constants. Folders `ev10cs` (v1, pre-registered), `ev10cs2` (v2: +

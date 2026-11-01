@@ -1,0 +1,14 @@
+04:55:11 epcand4f done in 91.0 s: H0 52 / 161, H30 33, receiver blue_cup
+cand4f f111 (gate): max nefc 488 ncon 122 step0 nefc 176 overflow 0/16 classes {'guest_receiver': 77, 'guest_table': 20, 'receiver_table': 25} disp [33.2, 30.75] 1.2 s
+cand4f f142 (gate): max nefc 212 ncon 53 step0 nefc 88 overflow 0/16 classes {'guest_receiver': 43, 'guest_table': 0, 'receiver_table': 10} disp [17.5, 25.9] 1.0 s
+cand4f f116 (gate): max nefc 336 ncon 84 step0 nefc 204 overflow 0/16 classes {'guest_receiver': 76, 'guest_table': 3, 'receiver_table': 5} disp [33.9, 31.45] 1.0 s
+cand4f f124 (report): max nefc 460 ncon 115 step0 nefc 132 overflow 0/16 classes {'guest_receiver': 75, 'guest_table': 17, 'receiver_table': 23} disp [25.85, 27.2] 0.9 s
+cand4f f160 (report): max nefc 196 ncon 49 step0 nefc 76 overflow 0/16 classes {'guest_receiver': 33, 'guest_table': 0, 'receiver_table': 16} disp [1.8, 25.200000000000003] 0.9 s
+cand4f f117 (report_rule_not_static_in_hand): max nefc 448 ncon 112 step0 nefc 184 overflow 0/16 classes {'guest_receiver': 83, 'guest_table': 10, 'receiver_table': 19} disp [37.4, 34.0] 0.9 s
+gate2 {"frames": [111, 142, 116], "max_nefc": 488, "max_ncon": 122, "overflow_copies": 0, "pass": true}
+cand4f 124 {"frame": 124, "max": {"step": 8, "nefc": 192, "ncon": 48, "guest_receiver_by_guest_group_band1_2_3_base": [0, 6, 19, 0]}, "nefc_step0": 92, "nefc_last_0p5s_median": 96.0, "ncon_last_0p5s_median": 24.0, "guest_table_max": 0, "guest_table_steps": 0, "guest_rel_disp_end_mm": [-2.89, 0.14, 1.31], "receiver_tilt_end_deg": 2.03}
+cand4f 142 {"frame": 142, "max": {"step": 61, "nefc": 104, "ncon": 26, "guest_receiver_by_guest_group_band1_2_3_base": [0, 2, 20, 0]}, "nefc_step0": 56, "nefc_last_0p5s_median": 104.0, "ncon_last_0p5s_median": 26.0, "guest_table_max": 0, "guest_table_steps": 0, "guest_rel_disp_end_mm": [-3.54, 1.35, 9.06], "receiver_tilt_end_deg": 4.04}
+cand4f 160 {"frame": 160, "max": {"step": 34, "nefc": 100, "ncon": 25, "guest_receiver_by_guest_group_band1_2_3_base": [0, 0, 18, 0]}, "nefc_step0": 48, "nefc_last_0p5s_median": 96.0, "ncon_last_0p5s_median": 24.0, "guest_table_max": 0, "guest_table_steps": 0, "guest_rel_disp_end_mm": [-3.95, 1.89, 24.43], "receiver_tilt_end_deg": 0.92}
+drop check copies [(111, 8), (142, 0), (116, 2), (124, 6), (160, 0), (117, 6)]
+
+[exited with code 0]

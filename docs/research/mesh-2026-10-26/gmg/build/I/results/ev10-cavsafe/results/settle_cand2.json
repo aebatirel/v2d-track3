@@ -17,6 +17,8 @@
    "nefc_step0": 332,
    "nefc_last_0p5s_median": 212.0,
    "ncon_last_0p5s_median": 53.0,
+   "guest_table_max": 0,
+   "guest_table_steps": 0,
    "guest_rel_disp_end_mm": [
     -3.86,
     -0.22,
@@ -222,6 +224,8 @@
    "nefc_step0": 256,
    "nefc_last_0p5s_median": 212.0,
    "ncon_last_0p5s_median": 53.0,
+   "guest_table_max": 0,
+   "guest_table_steps": 0,
    "guest_rel_disp_end_mm": [
     -4.41,
     -0.59,
@@ -427,6 +431,8 @@
    "nefc_step0": 224,
    "nefc_last_0p5s_median": 212.0,
    "ncon_last_0p5s_median": 53.0,
+   "guest_table_max": 0,
+   "guest_table_steps": 0,
    "guest_rel_disp_end_mm": [
     -1.93,
     2.03,

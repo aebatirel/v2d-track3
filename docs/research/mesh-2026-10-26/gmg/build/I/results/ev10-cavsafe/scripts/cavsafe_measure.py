@@ -18,7 +18,7 @@ library_v3 visual meshes and the packed reference's replayed poses (evalcheck.py
            (ii) design floor: the exact shrunk beige lathe body (rho <= r_s, 1 mm grid) outside C and inside the blue's
            outer envelope (rho <= r / cos(pi/12), h_mouth <= h <= h_base): what remains for perfect pieces of this
            lathe design (shrink 8 mm, wall 3 mm, these profiles) at these poses
-Usage: python -I cavsafe_measure.py PROF_DIR PACKED_PIECES CAND_PIECES POSES.npz OUT.json
+Usage: python -I cavsafe_measure.py PROF_DIR PACKED_PIECES CAND_PIECES POSES.npz OUT.json [PLATE_T_M (default 0.003)]
 """
 import glob, json, os, sys
 import numpy as np, trimesh
@@ -29,6 +29,7 @@ sys.path.insert(0, os.path.join(HERE, '..', '..', 'collcarve2-evalcheck', 'scrip
 import vox  # noqa: E402  (the precheck's exact parity voxeliser)
 
 prof_dir, packed_dir, cand_dir, poses, out = sys.argv[1:6]
+PLATE_T = float(sys.argv[6]) if len(sys.argv) > 6 else 0.003   # A4 F2: cavity floor at h_base - PLATE_T
 REPO = '/home/user/v2d-track3'
 T_WALL, SHRINK, SEG = 0.003, 0.008, 12
 SP = 0.0005
@@ -70,7 +71,7 @@ def piece_points(V, sp=SP):
 
 
 blue = Lathe('blue_cup')
-h_mouth = blue.h.min(); h_base = blue.h.max(); h_floor = h_base - T_WALL
+h_mouth = blue.h.min(); h_base = blue.h.max(); h_floor = h_base - PLATE_T
 
 
 def cavity_depth(X, radial=False):

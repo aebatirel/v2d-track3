@@ -27,9 +27,12 @@ for f in map(int, frames.split(',')):
         Rh = d.xmat[H].reshape(3, 3); return Rh.T @ (d.xpos[G] - d.xpos[H])
     r0 = rel(); z0 = d.xmat[H].reshape(3, 3)[:, 2].copy()
     tr, best = [], (-1, None)
+    gt_max, gt_steps = 0, 0                     # drop check (A4): guest-table contacts
     for k in range(steps):
         mujoco.mj_step(m, d)
         ne, nc = int(d.nefc), int(d.ncon)
+        gt = C.classes(m, d)['guest_table']
+        gt_max = max(gt_max, gt); gt_steps += int(gt > 0)
         dr = (rel() - r0) * 1e3
         tilt = float(np.degrees(np.arccos(np.clip(d.xmat[H].reshape(3, 3)[:, 2] @ z0, -1, 1))))
         tr.append([k, ne, nc, *np.round(dr, 2).tolist(), round(tilt, 2)])
@@ -44,7 +47,7 @@ for f in map(int, frames.split(',')):
     tr = np.array(tr)
     last = tr[-50:]
     rec = dict(frame=f, max=best[1], nefc_step0=int(tr[0, 1]), nefc_last_0p5s_median=float(np.median(last[:, 1])),
-               ncon_last_0p5s_median=float(np.median(last[:, 2])),
+               ncon_last_0p5s_median=float(np.median(last[:, 2])), guest_table_max=gt_max, guest_table_steps=gt_steps,
                guest_rel_disp_end_mm=tr[-1, 3:6].tolist(), receiver_tilt_end_deg=float(tr[-1, 6]),
                trace_every_10=tr[::10].tolist())
     res['frames'].append(rec)

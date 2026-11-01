@@ -1,17 +1,21 @@
 """ev10-cavsafe: one summary JSON + the README numbers table, from the run outputs (evalcheck ep<tag>_frames.json,
 contacts_fixed <tag>.json, settle_trace <tag>.json, cavsafe_measure json). Gates as GATES.md.
 Usage: python -I summarize_cavsafe.py RUN_DIR OUT.json   (RUN_DIR holds geo_<tag>/, contacts_<tag>.json,
-       settle_<tag>.json, measure2.json (packed + v1), measure_v2.json (v2), measure_v3.json (v3))"""
+       settle_<tag>.json, measure2.json (packed + v1), measure_v2.json (v2), measure_v3.json (v3), measure_v4.json, measure_v4f.json, measure_v4f_origcav.json (v4))"""
 import json, os, sys
 import numpy as np
 
 run, out = sys.argv[1:3]
 TAGS = dict(packed='packed ev10', cand='v1 ev10cs (pre-registered)', cand2='v2 ev10cs2 (post hoc, A2)',
-            cand3='v3 ev10cs3 (A3)')
+            cand3='v3 ev10cs3 (A3)', cand4='v4 with the 3 mm plate (A4, before F2; not delivered)',
+            cand4f='v4 ev10cs4 (A4 with F2: 6 mm plate)')
 REST = range(124, 161)
 M1 = json.load(open(os.path.join(run, 'measure2.json')))
 M2 = json.load(open(os.path.join(run, 'measure_v2.json')))
 M3 = json.load(open(os.path.join(run, 'measure_v3.json')))
+M4 = json.load(open(os.path.join(run, 'measure_v4.json')))
+M4F = json.load(open(os.path.join(run, 'measure_v4f.json')))
+M4FO = json.load(open(os.path.join(run, 'measure_v4f_origcav.json')))
 res = dict(_note='ev10-cavsafe summary; gates per GATES.md; [M] plain MuJoCo 3.17.0 for contacts', sets={})
 for tag, label in TAGS.items():
     fr = json.load(open(os.path.join(run, f'geo_{tag}', f'ep{tag}_frames.json')))
@@ -22,7 +26,7 @@ for tag, label in TAGS.items():
     objs = {o['name']: o for o in fr['summary']['objects']}
     ct = json.load(open(os.path.join(run, f'contacts_{tag}.json')))
     st = json.load(open(os.path.join(run, f'settle_{tag}.json')))
-    me = dict(cand2=M2, cand3=M3).get(tag, M1)['cand' if tag != 'packed' else 'packed']
+    me = dict(cand2=M2, cand3=M3, cand4=M4, cand4f=M4F).get(tag, M1)['cand' if tag != 'packed' else 'packed']
     vol = {}
     for n, o in objs.items():
         u, vis, outv = o['packed_union_cm3'], o['vis_cm3'], o['packed_outside_visual_cm3']
@@ -51,7 +55,13 @@ for tag, label in TAGS.items():
              settle=[dict(frame=x['frame'], max=x['max'], nefc_step0=x['nefc_step0'],
                           nefc_last_0p5s_median=x['nefc_last_0p5s_median'],
                           guest_rel_disp_end_mm=x['guest_rel_disp_end_mm'],
-                          receiver_tilt_end_deg=x['receiver_tilt_end_deg']) for x in st['frames']])
+                          receiver_tilt_end_deg=x['receiver_tilt_end_deg'], guest_table_max=x.get('guest_table_max'),
+                          guest_table_steps=x.get('guest_table_steps')) for x in st['frames']],
+             drop_check_copies=[dict(frame=a['frame'], copies_with_guest_table_at_max=int(sum(
+                 1 for r in a['per_copy'] if (r['classes_at_max_nefc'] or {}).get('guest_table', 0) > 0)))
+                 for a in ct['frames']])
+    if tag == 'cand4f':
+        s['gate3_original_cavity'] = M4FO['cand']['receiver']
     res['sets'][tag] = s
 fl = M1['floor']['frames']
 R = [x for x in fl if x['frame'] in REST]
