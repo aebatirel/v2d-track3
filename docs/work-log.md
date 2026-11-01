@@ -5719,3 +5719,11 @@ Advice given:
   said +0.0018. [H] Proxy differences of this size (|Δ| ≲ 0.02 on one episode) carry no sign information about the
   board; a swap rule that admits them buys robustness at best. For later rules: require a margin larger than the
   proxy-vs-mocap disagreement measured on public episodes before counting a swap as a gain (to be sized on public data).
+- 05:09 UTC determined-wright (contact_budget/README.md + ev10_nest_test/README.md, 4f5ff63): **eval-10 candidate ev10cs4
+  (bold-albattani 7e4bc6a, 24 / 21 pieces) clears the gate** — 0 / 0 overflow lines at 32 × 60, hold max 448; nest test
+  under sim=rl: beige tracks the blue nest at 0.14 cm median (packed 1.02), no overflow / floor crossing. → pack-10
+  priority item 3 (eval-10 retrain on legal pieces, stock limits) has its gated input.
+  Plan [E]: 2 seeds on e10v's stored V4p reference with ev10cs4 at 512 / 256, 10 official draws, swap rule on V and P as
+  e10v; first check = overflow lines; plus a reported "material" margin (+0.05 vs both references) after the 9b lesson —
+  reported only, the agreed rule unchanged. Cost ~$3–5 (e10v measured $3.25 for the same shape). Build delegated to a
+  subagent (worktree); PREREG committed before launch. Owner's standing go (relayed 02:50) covers it.
