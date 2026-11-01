@@ -5753,3 +5753,12 @@ Advice given:
   beige COM 1.4 mm, izz −10 %, ixx/iyy +1.6 %. Decision: keep piece-derived inertia (the pipeline's way, as packed);
   disclosed as a second changed variable; the job records the inertials and md5s it used. determined-wright will run
   the 32×60 budget + byte-identity checks on ev10cs5 ~20–25 min after it lands.
+- 05:17 UTC bold-albattani: **ev10cs5 frozen** (build 7935261, A5 gates 99be31e committed before the build, FROZEN.md
+  2b016b4, `lathe_cavsafe.py --plate_t 0.008`). My own git-blob comparison of ev10cs4 vs ev10cs5 on
+  origin/claude/bold-albattani-6qmxsv (1373603b, 51 files each): differ only blue_cup/piece_16.obj (the plate) +
+  blue_cup/inertia.json, blue_cup/lathe_collision.json, carve.json, FROZEN.md. Rule clause (a) — "every piece other than
+  the floor plate byte-identical" — holds; the four non-piece records follow the plate (inertia derived from the pieces;
+  build records), judged allowed now, before any result. Their plain-MuJoCo numbers (indicative only; plain MuJoCo
+  over-counts vs MuJoCo-Warp, see 03:20): better drops (f124 0/16 through the floor vs 6/16), worse gate-1 max overlap at
+  f124 (3.9 vs 2.6 cm³, fails their 3.0) and f111 overflow in 3/16 plain-MuJoCo copies (v4 0); blue COM 16.1 mm toward
+  the base (v4 12.8). Decision stays with the pre-stated rule: clause (b) = determined-wright's FlashCHORD 32×60 recheck.
