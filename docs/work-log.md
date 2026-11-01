@@ -6534,3 +6534,10 @@ Background agent, CPU only, $0, no ground truth read.
     (ep13 first; then the other blue-cup twins). Not run here: it is a reference-side change for the owner's new
     "perfect following" lane (keen-heisenberg's 19:35 message, relayed to the owner in chat; no reply sent to the other
     session without the owner's go).
+- 19:57 UTC: owner (this chat): "how can we solve the perceived motion to be physically possible … tell the meeting
+  analysis chat as well". Proposal written to `docs/research/grasp-ep13-20261101/README.md` §8 (a844888): (a) symmetry-axis
+  twist canonicalisation, (b) "no mover, no motion" with hand-frame low-pass during holds, (c) hand assignment that
+  matches object motion (first picker / two-hand only in hand-over windows), (d) a weld-to-hand feasibility preflight;
+  each with a public falsification test. Sent to the "Meeting analysis with Roman" session (session_01D9UJC7JP3bbasvhFUrxyf7,
+  keen-heisenberg's coordination chat), together with the GRASP verdict and the §7 notes for the perfect-following
+  session. Next on CPU after the ep13 arms: repair (a) on ep13 P2 + jitter check.
