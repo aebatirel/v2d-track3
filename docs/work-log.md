@@ -6520,3 +6520,17 @@ Background agent, CPU only, $0, no ground truth read.
 - 19:16 UTC: ep13 arm 6/8 done [M]: **P grasp** (test A perceived): output identical in score to the input and to P anneal
   (jittered 0.5542 ± 0.004, copy for copy; nominal 0.5406). **Test A primary d_b = 0.000 → test A cannot pass** (the
   O arms can only add a harm flag). Arm 7 (O anneal) started 19:16.
+- 19:40 UTC: **finding [M] (public diagnostic, stored references only): our perceived ep13 cup track spins about the
+  cup's symmetry axis while it rests.** In P2 (= P's object track) the cup rotates 12° by f8, 35° f14, 54° f18, 130° f26,
+  140° f30 with < 0.5 cm of travel until f22; the rotation axis is the cup's mesh symmetry axis at every frame checked
+  (|cos| 1.00; PCA variances 0.00065 / 0.00076 / 0.00232, axis (0.01, −0.04, 1.00) in the body frame). The oracle track
+  rotates 0–9° until f24 (22–34° by f32–36). The metric (kit AUC, sim_vs_ref) is ADD, not ADD-S, so a spin about an
+  axis no camera can see costs real score: 46° alone ≈ 3.9 cm on the 5 cm sphere. This is why every perceived-motion arm
+  (P, P2: input, anneal, grasp) is "lost" (> 3 cm for 8 frames) at f15–17 while every oracle arm holds until ≥ f26: the
+  robot cannot spin a resting cup, and should not.
+  - [H-spin] Canonicalising the unobservable symmetry-axis spin of symmetric objects in our references (GT-free: e.g.
+    hold the spin at its last observable / hand-attached value) raises both sim_vs_ref and the registered AUC vs mocap
+    on cup episodes. Falsified on public twins if the registered AUC of the canonicalised reference vs mocap does not rise
+    (ep13 first; then the other blue-cup twins). Not run here: it is a reference-side change for the owner's new
+    "perfect following" lane (keen-heisenberg's 19:35 message, relayed to the owner in chat; no reply sent to the other
+    session without the owner's go).
