@@ -10787,3 +10787,5 @@ score.
 - 21:13 UTC 1 Nov physics-perception: offers a read-only GT-free QA flagger (qa_physics.py @ ef4cfb5b; flags only ep0 lid and
   ep23 on public, one false positive); its best transform stack +0.00298 on public misses its +0.003 gate (not handed
   over). Not run on eval here: this lane's jump scan already covers JUMP-type flags (14 / 32 / 33 only).
+- 21:53 UTC 1 Nov pfB seed 42 (training box, NREP 10, sim_vs_ref vs P) [M]: eval 14 two-hand 0.603 ± 0.105 (packed H5p7
+  0.727); eval 16 two-hand 0.713 ± 0.037 (packed 0.850). Both below the packed policy; seed 43 running (68 min per seed wave).
