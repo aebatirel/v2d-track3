@@ -6033,3 +6033,16 @@ arm and a no-policy replay floor to stage B.
     - G6 piece count ≤ packed.
   - Delivery order: public ep2 set (for the ep2 A/B, credit permitting); eval pot sets 1, 3, 5, 6, 8, 28 (eval 1
     from the ev01 carve); pitcher, eval 20.
+- 06:11 UTC 1 Nov focused-pascal: **eval-10 stock retrain launched** (pack-10 candidate).
+  - Box 20261101-e10cs-50c2d90 (58625218, India, $1.392/h), code 50c2d90d, job 'PIECESET=ev10cs5 bash
+    ops/jobs/ev10_cs.sh'.
+  - PREREG docs/research/work/eval10-cs4-20261101/PREREG.md, committed 13c4133 before any result.
+  - Config: equal to gl10A2's except the reference / seed / output keys, at 512 / 256.
+  - Pieces: ev10cs5 by md5.
+  - Swap rule: pack-9b a / b / c / s against the H5p7 draws.
+  - Training-box gate: confirmation only if a seed beats 0.4632 vs V. Beige lift reported. Pack-10 inclusion needs
+    ≥ +0.02 on V and P.
+  - Disclosed: mesh gate 4a (blue kept volume 0.402) failed; the reference is e10v's V byte for byte (a rebuild would
+    move only the beige at rest, 0.88 cm median); piece-derived inertia moves the blue COM 16.1 mm (second variable).
+  - Cost: $3.50 planned (2.4 / 3.1 / 5.6). Credit $28.94 at launch. Result ~08:30 UTC [E]; then confirmation if it
+    passes the gate. The 10:30 check (and its own follow-up) covers "pack 10 ready".
