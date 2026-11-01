@@ -57,5 +57,73 @@ See `PREREG.md` §6. Selected G5: GRASP's own prior widths (σ 0.0044 m / rad, f
 0.958 (5/8 windows improved) vs our annealed sampler's 0.985 (2/8). With our wider noise, GRASP's tempering either stayed
 near the prior (ESS 0.9, 0/8 improved) or reached λ = 1 and rejected every move (ESS 0.5).
 
-## 5. ep13 results
-(pending; filled in from `scripts/gate.py` output)
+## 5. ep13 results (pre-registered; jittered = mean of 16 copies with 0.5 mm / 0.005 rad target noise) [M]
+Files: `results/` (each arm's `jitter.json`, `run.log`, solve JSON; `gate_*.json`). Every solver output's official
+zero-action replay was bit-identical to its committed trajectory over all 190 frames.
+
+| input | input jittered | anneal (ours) nominal / jittered | GRASP nominal / jittered | d = GRASP − anneal (paired 95 % CI; wins of 16) |
+|---|---|---|---|---|
+| P2 two-hand, perceived | 0.3435 ± 0.162 | 0.5270 / 0.3935 ± 0.146 | 0.6266 / 0.4176 ± 0.166 | **+0.024** (−0.071, +0.115; 9) |
+| O2 two-hand, oracle | 0.6041 ± 0.093 | 0.6957 / **0.6507** ± 0.092 | 0.6929 / 0.6241 ± 0.107 | −0.027 (−0.101, +0.050; 5) |
+| P twins', perceived | 0.5542 ± 0.004 | 0.5406 / 0.5542 ± 0.004 | 0.5406 / 0.5542 ± 0.004 | **0.000** (both outputs = the input: 0 windows improved) |
+| O twins', oracle | 0.5707 ± 0.003 | PENDING_OA | PENDING_OG | PENDING_DA |
+
+Floors: 0.5561 (P, P2), 0.5727 (O, O2).
+
+**Verdicts (pre-registered rule: d_b ≥ +0.05 on the perceived input, neither d below −0.05):**
+- **Test B (two-hand): FAIL** (d_b +0.024; no harm flag).
+- **Test A (the owner's gate, twins' references): FAIL** (d_b 0.000). PENDING_A_NOTE
+- So [H-grasp] is falsified at this CPU budget on ep13, and **no GPU step is proposed**.
+
+Report-only readings:
+- Nominal vs jittered: GRASP's nominal gain on P2 (+0.100) mostly vanishes under 0.5 mm noise (+0.024), the pattern our
+  solver showed on CPU on 30 Oct. Single nominal trajectories mislead (mid-solve at f52 the GRASP run had the cup 4.3 cm
+  off and the anneal run 18.7 cm off; their jittered means differ by 0.024).
+- Two-hand vs single-hand (the construction): with the oracle motion the two-hand lock lifts the input from the floor
+  (0.571 → 0.604) and both solvers carry the cup through the hand-over (lost at ~f60–82 instead of f27–50, within 3 cm on
+  35 % of frames vs 22 %); the remaining failure is at the placement (~f100). With our perceived motion every arm is
+  below the floor and "lost" at f15–17, because of the next item.
+- **Our perceived cup track spins about the cup's symmetry axis while the cup rests** (12° by f8, 54° by f18, 130° by
+  f26, 140° by f30; the rotation axis is the mesh's symmetry axis, |cos| 1.00; the mocap cup turns 0–9° until f24). The
+  metric is ADD, not ADD-S, so this unobservable spin costs score in sim_vs_ref and in the leaderboard AUC vs mocap,
+  and no robot can (or should) reproduce it. [H-spin]: canonicalising symmetry-axis spin of symmetric objects in our
+  references raises both; falsifiable on public twins by the registered AUC of the canonicalised reference vs mocap.
+
+## 6. Cost
+$0: everything ran on this container's 4 CPUs (setup ~20 min; dev sweep ~45 min; eight ep13 arms ~8 h). No GPU was
+rented.
+
+## 7. For the follow-up work (owner's "perfect following" lane)
+**Where things are.**
+- Code (this branch): `tools/physics_solve/solve.py` (`--method grasp`, default anneal unchanged),
+  `tools/physics_solve/grasp_window.py`, tests in `tools/physics_solve/tests/grasp/`; scripts in `scripts/`.
+- Two-hand references: built on CPU, not stored (regenerable in 3.5 min each). Recipe: `tools/cpu_glock_zero.sh
+  <ref_sf.parquet> <out_dir> "--mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15"`
+  on `runs/20261030-orcB-38234d1/refs/{sf,oracle_sf}/ep13/.../ref_sf.parquet` (asset paths rewritten by
+  `scripts/prep_inputs.py`). On a GPU box the same thing is `ops/jobs/glock_public.sh` with that GL_ARGS (the box default
+  minus `--single_hand 1`); no new code is needed. Local md5: P2 7ad0e431, O2 501e928e.
+- The lock's hand choice: `pipeline/grasp_lock.py` `--single_hand 1` keeps the hand with the most hold frames (ep13:
+  right, f46–104, which starts after the cup has risen); eval 14's packed lock happened to keep its first picker (left,
+  f18–118).
+
+**A fair single- vs two-hand RL test on public ep13 [E]** (not run; GPU, the owner's go):
+- One box, one commit, the frozen grasp-lock recipe (`glock_public.sh`, 70M steps, `SF=1`, the same REPLAN and EVOLVE
+  settings for every arm), the same perceived base reference (`perc2mck` ep13), assets and seeds; arms differ only in
+  GL_ARGS:
+  1. single-hand as packed (`--single_hand 1`, right carries from f46);
+  2. single-hand first picker (left carries all, eval 14's construction; needs a small `grasp_lock.py` option, e.g.
+     choose the hand with the earliest hold);
+  3. two-hand (no `--single_hand`).
+- At least 2 seeds per arm (ep2-type seed chaos), NREP 10 official evaluations, the checkpoint chosen by sim_vs_ref
+  (GT-free) and scored by registered AUC vs mocap (public evaluation only); a pre-registered rule such as arm − arm 1
+  ≥ +0.05 mean over seeds with no seed below −0.05.
+- Do the symmetry-spin canonicalisation first or as a fourth factor: on our perceived ep13 track it dominates the early
+  error, so without it all arms may stay below the floor (as every perceived arm here did).
+- Cost [E]: 6 trainings (3 arms × 2 seeds) at 2 concurrent per box wave ≈ 3 waves × 1.1–1.4 h + setup ≈ 4–5 h ≈
+  $5.5–7.5 at $1.3–1.5/h.
+
+**What the GRASP optimiser is still good for.** Little, right now. At equal CPU budget it ties our annealed solver (test
+B: +0.024 / −0.027, both within noise); its gains appear only on nominal replays, which do not survive noise. Its
+design needs far larger archives (2,000 particles, ≤ 64 stages × 5 moves per window in the paper; here 32 × 8 batches).
+Keep the code (default off); revisit only at GPU scale (1,024–4,096 worlds, as G2 for our solver) and only behind a new
+pre-registered gate. The bit-identical replay check and the fixed-noise robust cost carry over to any solver.
