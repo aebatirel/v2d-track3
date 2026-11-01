@@ -6370,3 +6370,18 @@ arm and a no-policy replay floor to stage B.
     (FlashCHORD defaults) re-created for 14 / 30, with hull counts matching the mesh lane's report.
   - Added a visual-vs-collision still of each board, showing the slot as a notch.
   - Tools and the still: docs/analysis/lowvid-20261101/. Videos sent, not in git.
+- ~19:25 UTC 1 Nov GRASP session status (branch claude/grasp-ep13-20261101, read-only check).
+  - Built and verified [M]: a GRASP window optimiser re-written in numpy from GRASP's MIT optimiser files (no SPIDER /
+    NC code) inside our FlashCHORD solver. Unit tests pass; the default path is byte-identical; replays are
+    bit-identical.
+  - Result [M]: test B (two-hand rebuilds) d_b +0.024 (CI −0.07 to +0.12) < +0.05, so FAIL. Test A (twins' references)
+    d_b 0.000, so it cannot pass; 2 arms remain. The GRASP optimiser does not beat our sampler on ep13.
+  - Key finding [M]: the ep13 twin references were locked `--single_hand`. The left hand is parked all episode, and
+    the cup's reference rises 9–12 cm by f30–40 with no robot hand near it. So "control-limited" may be
+    "construction-limited" [I]. Eval 14's packed reference was also locked single-hand (the LEFT carries f18–118, the
+    right is parked), while the human hands the cup over around f40–46. That matches our measured eval-14 failure onset
+    at f42–45 [H].
+  - Proposed to the owner as the GRASP session's next item (after its test A):
+    - a CPU audit of single-hand locks across the 20 eval references (pre-lock vs post-lock hold phases);
+    - a pre-registered public ep13 RL test, single- vs two-hand reference (~$3–4, owner's go);
+    - if positive, an eval-14 two-hand rebuild + retrain under the swap rule.
