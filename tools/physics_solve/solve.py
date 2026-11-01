@@ -312,12 +312,28 @@ def main():
     p.add_argument('--record', action='store_true', help='also store the truth\'s full state per committed frame (jq, jqd, '
                    'qd, qw, es as trace_rollout STATE=1) and its contacts (cl as CONTACTS=2) in OUT_solve.npz')
     p.add_argument('--seed', type=int, default=0)
+    # --method grasp (2026-11-01): GRASP's window optimiser (tools/physics_solve/grasp_window.py) instead of the annealed
+    # sampler, with the SAME cost, robust copies, commit, rollbacks and rollout budget (ITERS batches per replan)
+    p.add_argument('--method', default='anneal', choices=('anneal', 'grasp'))
+    p.add_argument('--g_rho', type=float, default=0.9, help='AR(1) knot correlation (GRASP hands: 0.9)')
+    p.add_argument('--g_sig', type=float, default=0.8, help='AR(1) innovation width = G_SIG x SIG_* x the RAMP factor')
+    p.add_argument('--g_beta', type=float, default=100.0, help='beta = G_BETA / J(warm start) of the window')
+    p.add_argument('--g_ess', type=float, default=0.9); p.add_argument('--g_moves', type=int, default=2)
+    p.add_argument('--g_step', type=float, default=0.59, help='MALA step in prior widths (GRASP hands 0.0026 / 0.0044)')
+    p.add_argument('--g_acc', type=float, default=0.05); p.add_argument('--g_rate', type=float, default=3.0)
+    p.add_argument('--g_step_min', type=float, default=0.1)
+    p.add_argument('--g_rank', type=int, default=2); p.add_argument('--g_quad', default='diag', choices=('diag', 'full'))
+    p.add_argument('--g_ridge', type=float, default=1e-3); p.add_argument('--g_window', type=float, default=3.0)
+    p.add_argument('--g_carry', type=float, default=0.5, help='share of the next window\'s initial particles carried '
+                   'from this window\'s final population (lowest cost first), shifted by the commit')
     a = p.parse_args(); t_start = time.time(); rng = np.random.default_rng(a.seed)
     a.truth_device = a.truth_device or a.device
     import pyarrow as pa
     import pyarrow.parquet as pq
     import warp as wp
     wp.config.log_level = wp.LOG_WARNING
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import grasp_window as GW
 
     ref = Ref(a.inp); T = ref.T; B = len(ref.names)
     log_path = os.path.splitext(a.out)[0] + '_solve.log'; LOG = open(log_path, 'w')
@@ -399,6 +415,7 @@ def main():
         REC['cl'].append(rows)
     Q = [truth.state_0.body_q.numpy().copy()]; FR = [t]; rec_state()
     replans = []; chunks = []; boost, boost_until, retries = 0, -1, 0; deadline_t = None
+    gcarry = None                                      # --method grasp: samples carried to the next window
     t_loop0 = time.time(); n_paced = 0
     nk = a.horizon // a.knot + 1
     while t < stop:
@@ -423,7 +440,16 @@ def main():
             if a.pace_s > 0 and time.time() - t_loop0 > a.pace_s * (t + C):   # behind schedule: cheapest replan
                 n_it, bst = min(a.min_iters, a.iters), 0; n_paced += 1; row['paced'] = True
             row['boost'] = bst; small = 0
-            for it in range(n_it):
+
+            def clipf(X):                                      # offsets inside FlashCHORD's residual clips (0.2 m, 1 rad,
+                X = np.clip(X, -rclip[None, None], rclip[None, None])   # 1 rad: the planner's action path clips
+                for h in active:                               # there; v3 did not, see the doc); finger targets no
+                    s = sides[h]; s0 = starts[h] + 6; fr = ref.fing[s][t:t + H]   # further outside the joint limits
+                    # than the reference itself (zero offset stays zero)
+                    lo_, hi_ = np.minimum(lo[h], fr), np.maximum(hi[h], fr)
+                    X[:, :, s0:s0 + nf[h]] = np.clip(fr[None] + X[:, :, s0:s0 + nf[h]], lo_[None], hi_[None]) - fr[None]
+                return X
+            for it in range(n_it if a.method == 'anneal' else 0):
                 eps = rng.normal(size=(N, nk, len(dims))) * (sig[dims] * (np.sqrt(2.0) ** bst) * (a.anneal ** (it % a.iters)))[None, None] * ramp[None, :, None]
                 eps[0] = 0.0
                 noise = np.zeros((N, H, A))                    # knots -> frames: linear interpolation as a matrix
@@ -431,14 +457,6 @@ def main():
                 U = mean[None] + noise
                 if t == 0:
                     U[:, 0] = 0.0                              # frame 0 is the reset pose: never edited
-                def clipf(X):                                  # offsets inside FlashCHORD's residual clips (0.2 m, 1 rad,
-                    X = np.clip(X, -rclip[None, None], rclip[None, None])   # 1 rad: the planner's action path clips
-                    for h in active:                           # there; v3 did not, see the doc); finger targets no
-                        s = sides[h]; s0 = starts[h] + 6; fr = ref.fing[s][t:t + H]   # further outside the joint limits
-                        # than the reference itself (zero offset stays zero)
-                        lo_, hi_ = np.minimum(lo[h], fr), np.maximum(hi[h], fr)
-                        X[:, :, s0:s0 + nf[h]] = np.clip(fr[None] + X[:, :, s0:s0 + nf[h]], lo_[None], hi_[None]) - fr[None]
-                    return X
                 U = clipf(U)
                 UW = np.repeat(U, K, axis=0)                   # world c*K + k runs candidate c, copy k
                 if K > 1:
@@ -469,10 +487,59 @@ def main():
                 k = max(2, int(round(a.top * N))); top = np.argsort(J)[:k]
                 r = -J[top]; r = (r - r.mean()) / (r.std() + 1e-2); w = np.exp(r / a.temperature); w /= w.sum()
                 mean = np.einsum('i,iha->ha', w, U[top])
+            if a.method == 'grasp':
+                # GRASP window: the robust copies' target noise is drawn ONCE per window (common to every candidate and
+                # every batch), so J is a deterministic function of the plan and the MH test on it is exact
+                jit = np.zeros((K, H, A))
+                if K > 1:
+                    for h in active:
+                        s0 = starts[h]
+                        jit[1:, :, s0:s0 + 3] = rng.normal(size=(K - 1, H, 3)) * a.rob_pos
+                        jit[1:, :, s0 + 6:s0 + 6 + nf[h]] = rng.normal(size=(K - 1, H, nf[h])) * a.rob_fin
+                mean0 = mean.copy()
+
+                def evaluate(Xk, mean0=mean0, jit=jit, dims=dims, H=H, K=K, N=N):
+                    n_ = len(Xk); noise = np.zeros((n_, H, A))
+                    noise[:, :, dims] = np.einsum('hk,nkd->nhd', Mint, Xk)
+                    U = mean0[None] + noise
+                    if t == 0:
+                        U[:, 0] = 0.0                          # frame 0 is the reset pose: never edited
+                    U = clipf(U)
+                    UW = np.repeat(U, K, axis=0)
+                    if K > 1:
+                        UW = clipf(UW + np.tile(jit, (n_, 1, 1)))
+                    UW = np.concatenate([UW, np.repeat(UW[:1], NW - len(UW), 0)], 0) if len(UW) < NW else UW
+                    cost_w = planner.rollout(snap, UW.astype(np.float64))[:n_ * K].reshape(n_, K, -1)
+                    reg = np.zeros((n_, H))
+                    for h in active:
+                        s0 = starts[h]
+                        reg += (a.w_pos * np.linalg.norm(U[:, :, s0:s0 + 3], axis=-1) + a.w_rot * np.linalg.norm(U[:, :, s0 + 3:s0 + 6], axis=-1)
+                                + a.w_fin * np.linalg.norm(U[:, :, s0 + 6:s0 + 6 + nf[h]], axis=-1))
+                    wts = np.ones(H); wts[-1] = a.terminal
+                    J = ((cost_w + reg[:, None]) * wts).sum(-1).mean(1) / wts.sum()
+                    return J, [(U[i].copy(), cost_w[i, 0].copy()) for i in range(n_)]
+                Dk = a.g_sig * sig[dims][None] * ramp[:, None] * (np.sqrt(2.0) ** bst)
+                carry = None
+                if (gcarry is not None and gcarry['t'] == t and np.array_equal(gcarry['dims'], dims) and a.g_carry > 0):
+                    Up = gcarry['U'][:, gcarry['C']:]                     # shift by the commit, then the plan's decaying tail
+                    tl = Up[:, -1:] * np.linspace(1.0, 0.0, a.horizon - Up.shape[1] + 1)[1:][None, :, None]
+                    Us = np.concatenate([Up, tl], 1)[:, :H]
+                    dev = (Us - mean0[None, :H])[:, :, dims]
+                    m_ = int(a.g_carry * N); carry = np.einsum('kh,nhd->nkd', np.linalg.pinv(Mint), dev)[:m_]
+                res = GW.run(evaluate, Dk, a.g_rho, N, n_it, rng, beta_rel=a.g_beta, ess=a.g_ess, moves=a.g_moves,
+                             step=a.g_step, acc_target=a.g_acc, acc_rate=a.g_rate, step_min=a.g_step_min, rank=a.g_rank,
+                             quad=a.g_quad, ridge=a.g_ridge, window=a.g_window, carry=carry, log=log)
+                best = (res['best_J'], res['best_aux'][0], res['best_aux'][1])
+                order = np.argsort(res['pop_J'])
+                popx = res['pop_x'][order]
+                pn = np.zeros((len(popx), H, A)); pn[:, :, dims] = np.einsum('hk,nkd->nhd', Mint, popx)
+                gcarry = dict(t=t + C, dims=dims.copy(), C=C, U=clipf(mean0[None] + pn))
+                hist = [dict(it=i, J0=round(res['J0'], 5), **hh) for i, hh in enumerate(res['hist'])] or [dict(it=0, J0=round(res['J0'], 5))]
+                best_from = ('grasp', res['used'], res['archive'], len(carry) if carry is not None else 0)
             chosen = best[1]; row.update(J_warm=hist[0]['J0'], J_best=round(best[0], 5), iters=hist, best_from=best_from,
                                         pred_obj_cost=round(float(best[2][:C].mean()), 5))
         else:
-            chosen = plan[:H].copy()
+            chosen = plan[:H].copy(); gcarry = None
         # commit C frames on the truth env (reference buffers patched with the folded offsets; zero action)
         offsets[t:t + C] = chosen[:C]
         sl = slice(t, t + C); fs = [slice(lay.hand_finger_starts[h], lay.hand_finger_starts[h] + nf[h]) for h in range(nh)]
@@ -520,7 +587,7 @@ def main():
                 del REC[k_][e['nQ']:]
             boost = boost + 1 if t - C < boost_until else 1; boost_until = t; retries += 1
             log(f'  rollback {retries}/{a.retries}: {[ref.names[j] for j in lost]} lost at frame {t}; back to t={e["t"]}, boost {boost}')
-            replans[-1]['rollback_to'] = e['t']; t = e['t']; del chunks[ib:]
+            replans[-1]['rollback_to'] = e['t']; t = e['t']; del chunks[ib:]; gcarry = None
         elif not lost and t >= boost_until:
             boost = 0
         if len(replans) % 5 == 0:

@@ -6406,3 +6406,34 @@ Background agent, CPU only, $0, no ground truth read.
 - Repo clean and pushed. No agents running, and no boxes of mine. Box 58631864 (20261101-e20b1-4207ce4) is
   focused-pascal's eval-20 b1 retrain.
 - Final report sent to keen-heisenberg; the same content is in STATUS.md (wrap-up section).
+
+### 2026-11-01 ~13:40 UTC — grasp-ep13 (branch `claude/grasp-ep13-20261101`, off determined-wright 5bab5c6): GRASP-mode solver built (CPU, $0)
+- Task (owner, this session): test whether a GRASP-style sampler (Liu, Wang, Bao, Yang, Harvard 2026) makes public ep13
+  (twin of eval 14, the left→right hand-over + flip) feasible. CPU first; pre-registered gate; GPU only with the owner's
+  go. Nothing rented, nothing sent to Kaggle.
+- Container setup (4 CPU, scratchpad): FlashCHORD at the evaluator pin 8c778f90 (`uv sync --frozen`, Python 3.12;
+  warp 1.14.0, mujoco 3.8.1, newton 1.2.0); its 559 LFS assets from media.githubusercontent.com (the git proxy refuses
+  LFS for that repo), each sha256 checked; `flashchord_conf/embodiment/sharpa_hands_mid.yaml` copied in as
+  `ops/jobs/physics_solve.sh` does; kit zip md5 1988f0d8.
+- Inputs (store run `20261030-orcB-38234d1`, the oracle-twins box): perceived `refs/glockt/ep13` (md5 414d0200) and
+  oracle `refs/oracle_glockt/ep13` (md5 455173ec) = the references the twins trained on; assets `refs/{sf,oracle_sf}/ep13`
+  (identical files). Dev episode: `refs/glockt/ep31`. Local copies by `docs/research/grasp-ep13-20261101/scripts/prep_inputs.py`
+  (only `object_urdf_paths` rewritten, checked).
+- CPU zero-action sim_vs_ref [M]: ep13 P 0.5406 (box GPU 0.5515), O 0.5724 (box 0.5620); floors 0.5561 / 0.5727. A repeat
+  CPU replay is bit-identical (max |Δq| 0.0); 27 s warm per 190-frame replay.
+- GRASP code read (github.com/ComputationalRobotics/GRASP_code @ 992c737, MIT). Its optimiser files (`grasp/optim/*`,
+  `grasp/mpc/grasp_mpc.py`) are GRASP's own; the SPIDER-derived files (CC BY-NC) are listed in its THIRD_PARTY_NOTICES.md
+  (`grasp/sim/*`, `grasp/config.py`, `grasp/utils/*`, most of `grasp/pipeline/*`) and were not used.
+- Built: `tools/physics_solve/grasp_window.py` (numpy re-write of GRASP's tempered SMC window: AR(1) prior around the
+  warm-start plan, ESS-adaptive tempering, systematic resampling, local quadratic surrogate on the archive of all
+  rollouts in the window with the DCT rank-r basis, prior-preconditioned MALA proposals, MH on the TRUE cost, adaptive
+  step, samples carried to the next window; MIT notice kept) and `solve.py --method grasp` (same cost, robust copies,
+  commit, rollbacks and rollout budget as the annealed sampler; the robust copies' noise is fixed per window so the MH
+  test is exact).
+- Checks [M]: unit tests `tools/physics_solve/tests/grasp/test_grasp_window.py` all PASS; regression: the default
+  (anneal) path of the new solve.py vs the original (md5 fa511432) on ep31 f0–44 → identical output parquet (md5 bfecffd6),
+  offsets and truth trajectory; GRASP-mode smoke on ep31 runs, fresh-load target buffers bit-identical.
+- Smoke reading: at 16 candidates the surrogate is over-fitted (R² 1.0 on 16–48 points) and tempering reaches only
+  λ ≈ 0.02 in 2 stages. Dev sweep on ep31 f16–48 at the comparison scale (32 × 4 worlds, 8 batches per replan):
+  anneal (iters 8, anneal 0.80 = G1/G2's final noise factor 0.216 over 8 iterations) J_best/J_warm 0.985, 2/8 improved,
+  466 s; GRASP configs (ESS 0.9 / 0.5, moves 2 / 1) running.
