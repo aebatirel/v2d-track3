@@ -5959,3 +5959,17 @@ arm and a no-policy replay floor to stage B.
     - [H] The early failures are the pot+lid rest-pose interpenetration (the eval-1 analogue). Sent to
       determined-wright.
   - Morning summary given to the owner in this chat.
+- 05:09–05:14 UTC 1 Nov **ev10cs4 cleared determined-wright's FlashCHORD checks** (6e32856, 4f5ff63).
+  - [M] Contact budget at 32×60: 0 / 0 overflow lines, hold max 448.
+  - [M] Nest test: beige tracks the reference nest ~7× closer than packed (0.14 vs 1.02 cm median), no floor
+    crossing; release impact 5.5 of 6 mm.
+  - bold-albattani's own gates (fedccf6 / 7e4bc6a): overlap 0.21 / 2.61 cm³, nefc and intrusion pass; **blue
+    kept volume 0.384 fails**, as for every cavity-safe set (the blue visual mesh fills its own cavity). The
+    plain-MuJoCo drop check shows beige crossing in 2–8 of 16 copies at 24–32 mm drops. FlashCHORD showed none.
+  - **Go given to focused-pascal (05:14)** under the owner's 02:50 permission (priority item 3).
+    - Conditions: pack-eligible candidate; PREREG before launch with the pack-9b swap rule; 2 seeds at stock
+      njmax 512 / nconmax 256; ev10cs4 by md5; ~$3.5 [E].
+    - The confirmation box only if a training-box mean beats the packed fresh draws. Beige lift ≥ 5 cm is reported.
+    - The kept-volume failure is disclosed.
+    - New pack-10 rule (lesson from 9b): swap only if the expected sim_vs_ref gain is ≥ 0.02 on the episode.
+  - Messaged determined-wright (no run; optional 8 mm plate margin check) and bold-albattani (freeze ev10cs4 by md5).
