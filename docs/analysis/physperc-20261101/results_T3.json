@@ -1,0 +1,392 @@
+{
+ "F1": {
+  "mean": {
+   "AUC": 0.00142,
+   "MPPE_cm": -0.01503,
+   "RPE_cm": -0.00254,
+   "SP_SR": 0.0,
+   "MP_SR": 0.0
+  },
+  "better": 2,
+  "worse": 0,
+  "min": 0.0,
+  "min_ep": 0,
+  "gate": {
+   "mean_ok": false,
+   "min_ok": true,
+   "mppe_ok": true,
+   "rpe_ok": true,
+   "PASS": false
+  },
+  "per_ep": {
+   "0": {
+    "AUC": 0.0,
+    "base": 0.4963,
+    "new": 0.4963,
+    "obj": {
+     "white_pot": 0.0,
+     "white_pot_lid": 0.0
+    }
+   },
+   "2": {
+    "AUC": 0.0,
+    "base": 0.9783,
+    "new": 0.9783,
+    "obj": {
+     "white_pot": 0.0,
+     "white_pot_lid": 0.0
+    }
+   },
+   "11": {
+    "AUC": 0.0212,
+    "base": 0.9058,
+    "new": 0.927,
+    "obj": {
+     "blue_cup": 0.0425,
+     "beige_cup": 0.0
+    }
+   },
+   "12": {
+    "AUC": 0.0,
+    "base": 0.958,
+    "new": 0.958,
+    "obj": {
+     "blue_cup": 0.0,
+     "plastic_dish_rack": 0.0
+    }
+   },
+   "13": {
+    "AUC": 0.0,
+    "base": 0.9661,
+    "new": 0.9661,
+    "obj": {
+     "blue_cup": 0.0,
+     "plastic_dish_rack": 0.0
+    }
+   },
+   "18": {
+    "AUC": 0.0,
+    "base": 0.9628,
+    "new": 0.9628,
+    "obj": {
+     "mini_sweeper": 0.0,
+     "mini_dust_pan": 0.0
+    }
+   },
+   "21": {
+    "AUC": 0.0,
+    "base": 0.8325,
+    "new": 0.8325,
+    "obj": {
+     "blue_cup": 0.0,
+     "water_pitcher": 0.0
+    }
+   },
+   "22": {
+    "AUC": 0.0,
+    "base": 0.871,
+    "new": 0.871,
+    "obj": {
+     "blue_cup": 0.0,
+     "water_pitcher": 0.0
+    }
+   },
+   "23": {
+    "AUC": 0.0,
+    "base": 0.0414,
+    "new": 0.0414,
+    "obj": {
+     "wooden_piece_1": 0.0,
+     "wooden_piece_2": 0.0
+    }
+   },
+   "24": {
+    "AUC": 0.0073,
+    "base": 0.8117,
+    "new": 0.819,
+    "obj": {
+     "wooden_piece_1": 0.0,
+     "wooden_piece_2": 0.0146
+    }
+   },
+   "26": {
+    "AUC": 0.0,
+    "base": 0.9775,
+    "new": 0.9775,
+    "obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.0
+    }
+   },
+   "27": {
+    "AUC": 0.0,
+    "base": 0.9879,
+    "new": 0.9879,
+    "obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.0
+    }
+   },
+   "31": {
+    "AUC": 0.0,
+    "base": 0.8611,
+    "new": 0.8611,
+    "obj": {
+     "mini_sweeper": 0.0,
+     "plastic_dish_rack": 0.0
+    }
+   },
+   "39": {
+    "AUC": 0.0,
+    "base": 0.9755,
+    "new": 0.9755,
+    "obj": {
+     "mini_dust_pan": 0.0
+    }
+   },
+   "40": {
+    "AUC": 0.0,
+    "base": 0.9803,
+    "new": 0.9803,
+    "obj": {
+     "mini_dust_pan": 0.0
+    }
+   },
+   "41": {
+    "AUC": 0.0,
+    "base": 0.9893,
+    "new": 0.9893,
+    "obj": {
+     "white_pot": 0.0
+    }
+   },
+   "42": {
+    "AUC": 0.0,
+    "base": 0.992,
+    "new": 0.992,
+    "obj": {
+     "white_pot": 0.0
+    }
+   },
+   "43": {
+    "AUC": 0.0,
+    "base": 0.9778,
+    "new": 0.9778,
+    "obj": {
+     "white_pot": 0.0
+    }
+   },
+   "44": {
+    "AUC": 0.0,
+    "base": 0.9975,
+    "new": 0.9975,
+    "obj": {
+     "white_pot": 0.0
+    }
+   },
+   "45": {
+    "AUC": 0.0,
+    "base": 0.9759,
+    "new": 0.9759,
+    "obj": {
+     "white_pot": 0.0
+    }
+   }
+  }
+ },
+ "F1P1": {
+  "mean": {
+   "AUC": 0.00298,
+   "MPPE_cm": -0.02792,
+   "RPE_cm": -0.01087,
+   "SP_SR": 0.0,
+   "MP_SR": 0.0
+  },
+  "better": 14,
+  "worse": 0,
+  "min": 0.0,
+  "min_ep": 21,
+  "gate": {
+   "mean_ok": false,
+   "min_ok": true,
+   "mppe_ok": true,
+   "rpe_ok": true,
+   "PASS": false
+  },
+  "per_ep": {
+   "0": {
+    "AUC": 0.0003,
+    "base": 0.4963,
+    "new": 0.4966,
+    "obj": {
+     "white_pot": 0.0005,
+     "white_pot_lid": 0.0
+    }
+   },
+   "2": {
+    "AUC": 0.0009,
+    "base": 0.9783,
+    "new": 0.9792,
+    "obj": {
+     "white_pot": 0.0005,
+     "white_pot_lid": 0.0012
+    }
+   },
+   "11": {
+    "AUC": 0.0219,
+    "base": 0.9058,
+    "new": 0.9277,
+    "obj": {
+     "blue_cup": 0.0429,
+     "beige_cup": 0.0009
+    }
+   },
+   "12": {
+    "AUC": 0.0011,
+    "base": 0.958,
+    "new": 0.9591,
+    "obj": {
+     "blue_cup": 0.008,
+     "plastic_dish_rack": -0.0059
+    }
+   },
+   "13": {
+    "AUC": 0.0005,
+    "base": 0.9661,
+    "new": 0.9666,
+    "obj": {
+     "blue_cup": 0.0,
+     "plastic_dish_rack": 0.001
+    }
+   },
+   "18": {
+    "AUC": 0.0009,
+    "base": 0.9628,
+    "new": 0.9637,
+    "obj": {
+     "mini_sweeper": 0.0,
+     "mini_dust_pan": 0.0018
+    }
+   },
+   "21": {
+    "AUC": 0.0,
+    "base": 0.8325,
+    "new": 0.8325,
+    "obj": {
+     "blue_cup": 0.0,
+     "water_pitcher": 0.0
+    }
+   },
+   "22": {
+    "AUC": 0.0,
+    "base": 0.871,
+    "new": 0.871,
+    "obj": {
+     "blue_cup": 0.0,
+     "water_pitcher": 0.0
+    }
+   },
+   "23": {
+    "AUC": 0.0006,
+    "base": 0.0414,
+    "new": 0.042,
+    "obj": {
+     "wooden_piece_1": 0.0011,
+     "wooden_piece_2": 0.0
+    }
+   },
+   "24": {
+    "AUC": 0.0073,
+    "base": 0.8117,
+    "new": 0.819,
+    "obj": {
+     "wooden_piece_1": 0.0,
+     "wooden_piece_2": 0.0146
+    }
+   },
+   "26": {
+    "AUC": 0.0009,
+    "base": 0.9775,
+    "new": 0.9784,
+    "obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.002
+    }
+   },
+   "27": {
+    "AUC": 0.0063,
+    "base": 0.9879,
+    "new": 0.9942,
+    "obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.0124
+    }
+   },
+   "31": {
+    "AUC": 0.0,
+    "base": 0.8611,
+    "new": 0.8611,
+    "obj": {
+     "mini_sweeper": 0.0,
+     "plastic_dish_rack": 0.0
+    }
+   },
+   "39": {
+    "AUC": 0.0,
+    "base": 0.9755,
+    "new": 0.9755,
+    "obj": {
+     "mini_dust_pan": 0.0
+    }
+   },
+   "40": {
+    "AUC": 0.0,
+    "base": 0.9803,
+    "new": 0.9803,
+    "obj": {
+     "mini_dust_pan": 0.0
+    }
+   },
+   "41": {
+    "AUC": 0.0,
+    "base": 0.9893,
+    "new": 0.9893,
+    "obj": {
+     "white_pot": 0.0
+    }
+   },
+   "42": {
+    "AUC": 0.0005,
+    "base": 0.992,
+    "new": 0.9925,
+    "obj": {
+     "white_pot": 0.0005
+    }
+   },
+   "43": {
+    "AUC": 0.0157,
+    "base": 0.9778,
+    "new": 0.9935,
+    "obj": {
+     "white_pot": 0.0157
+    }
+   },
+   "44": {
+    "AUC": 0.0002,
+    "base": 0.9975,
+    "new": 0.9977,
+    "obj": {
+     "white_pot": 0.0002
+    }
+   },
+   "45": {
+    "AUC": 0.0025,
+    "base": 0.9759,
+    "new": 0.9784,
+    "obj": {
+     "white_pot": 0.0025
+    }
+   }
+  }
+ }
+}

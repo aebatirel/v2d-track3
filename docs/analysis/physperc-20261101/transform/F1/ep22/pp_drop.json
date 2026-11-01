@@ -1,0 +1,18 @@
+{
+ "water_pitcher": [
+  {
+   "a": 45,
+   "b": 57,
+   "static_mm": 11.0,
+   "gap_mm": 144.9,
+   "applied": false
+  },
+  {
+   "a": 60,
+   "b": 83,
+   "static_mm": 9.84,
+   "gap_mm": 261.3,
+   "applied": false
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "wooden_piece_1": [
+  {
+   "a": 291,
+   "b": 324,
+   "static_mm": 3.1,
+   "gap_mm": 16.0,
+   "applied": false
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "blue_cup": [
+  {
+   "a": 103,
+   "b": 136,
+   "static_mm": 1.24,
+   "gap_mm": 23.3,
+   "applied": true
+  }
+ ]
+}

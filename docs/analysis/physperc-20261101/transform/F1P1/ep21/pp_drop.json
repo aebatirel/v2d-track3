@@ -1,0 +1,20 @@
+{
+ "blue_cup": [
+  {
+   "a": 108,
+   "b": 133,
+   "static_mm": 2.9,
+   "gap_mm": 63.6,
+   "applied": false
+  }
+ ],
+ "water_pitcher": [
+  {
+   "a": 42,
+   "b": 87,
+   "static_mm": 9.57,
+   "gap_mm": 279.8,
+   "applied": false
+  }
+ ]
+}

@@ -6466,3 +6466,13 @@ arm and a no-policy replay floor to stage B.
     12–13 deg) but the tracker is already good there.
   - Conclusion so far: physics tilt priors are a real second sensor but the reachable score on public is ≈ +0.0016
     (T1 P1, 13 / 0). Moving to twist / rest-motion (ideas 3–4).
+- 21:15 UTC 1 Nov physperc **D4 / D5 / T3** [D, 20 public]. PREREG_T3.md pushed 46268f69 before scoring.
+  - D4 (oracle): constant translation offset after the kit alignment = +0.030 (vertical +0.019, along the f0 camera
+    ray +0.020, lateral +0.009, overlapping); +0.0195 left after the exact-tilt oracle (ep24 +0.099, ep31 +0.061,
+    ep11 +0.060). The big offsets lie along the viewing ray (ours too close / too high).
+  - D5: of 10 "floating, no hand, no support" runs, 7 are real holds with the hand missed by MediaPipe (54–280 mm
+    high); 3 are false floats, low (16–23 mm) and static (ep11 blue cup, ep23 board 1, ep24 board 2; truth 0.6–2.3).
+  - **F1 (drop static low floats to the table): +0.00142, 2 / 0** (ep11 +0.021, ep24 +0.007). Fail (mean).
+  - **F1P1 (T1 P1 fused anchor tilt + F1): +0.00298, 14 better / 0 worse, min 0.0000, ΔMPPE −0.028, ΔRPE −0.011.
+    FAILS the +0.003 mean clause by 0.00002.** Not rounded into a pass. Thresholds of F1 were chosen in-sample
+    (disclosed in the PREREG).
