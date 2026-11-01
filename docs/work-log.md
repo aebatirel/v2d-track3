@@ -5681,3 +5681,8 @@ Advice given:
   Credit $31.95 before launch.
 - 04:19 UTC keen-heisenberg correction: "lift > 0" was their suggested condition wording, not the owner's (the owner said
   only "Okay go"); they agree with the PREREG's beige-cup lift ≥ 5 cm clause; PREREG stays as committed in 086de63.
+- 04:47 UTC determined-wright contact-budget verdicts (32 × 60 with controls; record 6b04fba): eval 14 keep the packed
+  rack (candidates c1 / c2 add 12 / 5 overflow lines, packed 0); eval 30 packed clean (0); eval 10 no clean candidate
+  (best ev10cs3 110 / 576 lines vs packed 380 / 9,723) → no retrain on new pieces for 10 / 14 / 30 by the agreed rule.
+  Pack 10 items 3–5 have no gated input tonight. [H] next candidate if the njmax diagnostic supports overflow as the
+  cause: ev10cs3 + njmax 1024 (diagnostic only; needs the owner's go) — the legal route stays a reference-pose fix.
