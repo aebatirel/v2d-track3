@@ -1,5 +1,15 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~12:55 UTC: GRASP-mode test on public ep13 (branch `claude/grasp-ep13-20261101`, CPU, $0): built, dev sweep running
+- Goal (owner): can a GRASP-style sampler make ep13 (eval 14's twin: hand-over + flip, control-limited) feasible?
+- Built and checked: `solve.py --method grasp` + `tools/physics_solve/grasp_window.py` (GRASP's own MIT optimiser maths,
+  no SPIDER code). The default path is bit-identical to the old solver; GRASP-mode output replays bit-identically to its
+  committed trajectory [M].
+- Next: freeze the GRASP settings from the ep31 dev sweep, commit `docs/research/grasp-ep13-20261101/PREREG.md`, then the
+  four ep13 solves ({anneal, grasp} × {oracle, perceived}), jitter-checked (16 copies). Gate: grasp − anneal ≥ +0.05 on
+  the perceived reference, neither reference worse by > 0.05.
+- No GPU, nothing rented, nothing sent to Kaggle. Other lanes' state: see keen-heisenberg's STATUS (pack 11 uploaded).
+
 ## 2026-11-01 ~08:56 UTC: WRAP-UP (keen-heisenberg relayed the owner: start nothing new). Nothing of mine is running.
 - **Done (31 Oct 12:00 – 1 Nov 09:00 UTC):**
   - recipe screen C/K/D/S/V complete: K inconclusive, D inconclusive, S no signal, V inconclusive; no recipe change;
