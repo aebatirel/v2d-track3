@@ -5923,3 +5923,9 @@ arm and a no-policy replay floor to stage B.
   - tools/no_oracle.py now refuses the run's names and any checkpoint with non-stock contact limits; all 20 pack-7
     checkpoints pass.
   - D confirmation at draw 3 of 10 at 04:16; the pack 9b record ~05:00–05:30.
+- 04:47 UTC 1 Nov determined-wright: **overlap-fix budget checks done** (CPU, $0; record 6b04fba on their branch).
+  - Keep the packed racks for evals 14 / 30: both packed configurations are clean; the eval-14 rack candidates add
+    overflow.
+  - Eval 10: no clean candidate (ev10cs3 is best, still overflows).
+  - No GPU retrain is cleared tonight. The geometry retrains (priority items 3–5) are off. The next lever is the pose
+    fix (bold-albattani's public test, running).
