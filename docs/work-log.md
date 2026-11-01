@@ -5762,3 +5762,10 @@ Advice given:
   over-counts vs MuJoCo-Warp, see 03:20): better drops (f124 0/16 through the floor vs 6/16), worse gate-1 max overlap at
   f124 (3.9 vs 2.6 cm³, fails their 3.0) and f111 overflow in 3/16 plain-MuJoCo copies (v4 0); blue COM 16.1 mm toward
   the base (v4 12.8). Decision stays with the pre-stated rule: clause (b) = determined-wright's FlashCHORD 32×60 recheck.
+- 05:24 UTC determined-wright (contact_budget/README.md "ev10cs5 check", be1e893): ev10cs5 (1373603) — byte identity vs
+  ev10cs4: only piece_16.obj (plate 6 → 8 mm, 30.93 cm³), inertia.json (blue COM z 15.77 → 19.05 mm), and build records
+  differ; all 21 beige files + 23 other blue pieces identical; **32×60 budget 0 / 0 overflow lines** (sampled + explicit
+  f0/111/116/124/142/160). Caveat [M]: max rows 503 (sampled) / 504 (explicit) of 512 vs ev10cs4's 448 / 459 — thin
+  headroom; at 4096 worlds the worst world may occasionally exceed 512. → **pre-stated rule met: the retrain uses
+  ev10cs5** (05:24 < 06:30). The PREREG's overflow check (> 1,000 lines → "pieces not clean in training", reported)
+  covers the headroom risk.
