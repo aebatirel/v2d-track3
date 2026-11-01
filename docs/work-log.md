@@ -6312,3 +6312,15 @@ arm and a no-policy replay floor to stage B.
     - CD-O 0.33234.
   - Pack 11 beats or ties every earlier pack on every board. Receipt + UPLOAD.md in build_11 (93530b1b).
   - Owner asked for a kickoff prompt to run the GRASP item in a new session; given in chat.
+- 11:47 UTC 1 Nov score-status standings after pack 11.
+  - Ours: AUC 0.83921 (8), SP-SR 0.85 (10), MP-SR 0.70 (8; tied with DSAIL at 7), RPE 3.17899 (10), MPPE 2.54531 (10),
+    CD-O 0.33234 (14).
+  - Rank sum 60, 11th: 10th DSAIL 59, 9th SoySauceChicken 56, 8th sam&alex 53.
+  - Swaps with DSAIL count double:
+    - AUC needs +0.0047 (DSAIL 0.84391);
+    - MPPE −0.20 cm (DSAIL 2.347);
+    - MP-SR one more episode;
+    - CD-O −0.012 → +1 (The Simsons 0.320).
+  - Their scope check (packing a 1024-trained policy needs the owner's explicit OK) answered: covered by the owner's
+    09:08 / 09:11 words in this chat and the guard approval in focused-pascal's session.
+  - Pack 11 is the natural single Final Submission.
