@@ -6517,3 +6517,6 @@ Background agent, CPU only, $0, no ground truth read.
   0 of 37 active windows (4 rollbacks used), so the output has 0 edited frames and equals the input: jittered 0.5542 ±
   0.004 (copy for copy identical to P_input), nominal 0.5406; floor 0.5561. Replay bit-identical. Solve 30 min. As
   expected from the parked left hand. Arm 6 (P grasp) started 18:41.
+- 19:16 UTC: ep13 arm 6/8 done [M]: **P grasp** (test A perceived): output identical in score to the input and to P anneal
+  (jittered 0.5542 ± 0.004, copy for copy; nominal 0.5406). **Test A primary d_b = 0.000 → test A cannot pass** (the
+  O arms can only add a harm flag). Arm 7 (O anneal) started 19:16.
