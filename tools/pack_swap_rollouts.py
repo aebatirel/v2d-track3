@@ -40,6 +40,14 @@ ROW_RE = r'^track_3/e(\d+)/w\d+/f\d+/o(\d+)$'
 EVAL_KEYS = ('eval_code_sha256', 'eval_script_sha256')
 
 
+def _no_oracle():  # tools/no_oracle.py as a module (for its ALLOW_CKPT, the single owner-approved checkpoint exception)
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('no_oracle_mod', os.path.join(REPO, 'tools', 'no_oracle.py'))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
 def flash_meta(path):
     """The rollout parquet's flash_chord.* schema metadata (where the packer reads the hashes first)."""
     import pyarrow.parquet as pq
@@ -110,7 +118,12 @@ def main():
         swap_files[n] = (p, j)
 
     if not args.skip_no_oracle:
-        meta_words = [m[k] for pj in swap_files.values() for m in [flash_meta(pj[0])] for k in ('reference_parquet',) if m.get(k)]
+        # The swap's reference path is passed to no_oracle as a word (it catches a renamed rollout), EXCEPT for a swap whose
+        # own rollout names the one owner-approved checkpoint in tools/no_oracle.py ALLOW_CKPT: that rollout itself is still
+        # checked (and accepted only by that exact sha256), its box-side reference path is not.
+        allow_ckpt = _no_oracle().ALLOW_CKPT
+        meta_words = [m[k] for pj in swap_files.values() for m in [flash_meta(pj[0])] for k in ('reference_parquet',)
+                      if m.get(k) and m.get('checkpoint_sha256') not in allow_ckpt]
         guard = subprocess.run([sys.executable, '-I', os.path.join(REPO, 'tools', 'no_oracle.py'),
                                 os.path.abspath(args.results), os.path.abspath(args.meshes),
                                 *[f for pj in swap_files.values() for f in pj], *meta_words], capture_output=True, text=True)

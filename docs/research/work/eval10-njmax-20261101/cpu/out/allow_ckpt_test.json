@@ -1,0 +1,130 @@
+{
+ "ok": true,
+ "n": 17,
+ "passed": 17,
+ "cases": [
+  {
+   "case": "ck512 (allowed sha) as is",
+   "want": "accepted",
+   "got": "accepted",
+   "ok": true,
+   "out": "no_oracle: accepted by the owner-approved exception: <DL>/runs/20261101-e10nj-451b82d/results/ev10_nj/ck512/policy.safetensors (checkpoint aaa077ebae86\u2026: eval-10 ck512 of run 20261101-e10nj-451b82d (trained njmax 1024 / nconmax 512; evaluated at stock 512 / 256))\nno_oracle: 1 inputs checked, none or"
+  },
+  {
+   "case": "ck512 neutral-name copy",
+   "want": "accepted",
+   "got": "accepted",
+   "ok": true,
+   "out": "no_oracle: accepted by the owner-approved exception: <WORK>/neutral/policy_b.safetensors (checkpoint aaa077ebae86\u2026: eval-10 ck512 of run 20261101-e10nj-451b82d (trained njmax 1024 / nconmax 512; evaluated at stock 512 / 256))\nno_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "case": "conf512 r1 rollout parquet",
+   "want": "accepted",
+   "got": "accepted",
+   "ok": true,
+   "out": "no_oracle: accepted by the owner-approved exception: <DL>/runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r1/ep10/episode_000010.parquet (checkpoint aaa077ebae86\u2026: eval-10 ck512 of run 20261101-e10nj-451b82d (trained njmax 1024 / nconmax 512; evaluated at stock 512 / 256))\nno_oracle: 1 inputs ch"
+  },
+  {
+   "case": "conf512 r1 rollout json",
+   "want": "accepted",
+   "got": "accepted",
+   "ok": true,
+   "out": "no_oracle: accepted by the owner-approved exception: <DL>/runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r1/ep10/episode_000010.json (checkpoint aaa077ebae86\u2026: eval-10 ck512 of run 20261101-e10nj-451b82d (trained njmax 1024 / nconmax 512; evaluated at stock 512 / 256))\nno_oracle: 1 inputs check"
+  },
+  {
+   "case": "conf512 r1 parquet + json together",
+   "want": "accepted",
+   "got": "accepted",
+   "ok": true,
+   "out": "no_oracle: accepted by the owner-approved exception: <DL>/runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r1/ep10/episode_000010.parquet (checkpoint aaa077ebae86\u2026: eval-10 ck512 of run 20261101-e10nj-451b82d (trained njmax 1024 / nconmax 512; evaluated at stock 512 / 256))\nno_oracle: accepted by"
+  },
+  {
+   "case": "pack 10 eval-10 rollout (normal input)",
+   "want": "accepted",
+   "got": "accepted",
+   "ok": true,
+   "out": "no_oracle: 2 inputs checked, none oracle-derived"
+  },
+  {
+   "case": "1024 checkpoint as is",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  <DL>/runs/20261101-e10nj-451b82d/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors"
+  },
+  {
+   "case": "1024 checkpoint neutral-name copy (non-stock limits by content)",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  <WORK>/neutral/policy_a.safetensors (checkpoint config: /content/runs/perc2e10njs43_glock/ep10-s43)"
+  },
+  {
+   "case": "conf1024 r1 rollout parquet",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  <DL>/runs/20261101-e10nj-451b82d/results/ev10_nj/conf1024/r1/ep10/episode_000010.parquet"
+  },
+  {
+   "case": "conf1024 r1 rollout json",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  <DL>/runs/20261101-e10nj-451b82d/results/ev10_nj/conf1024/r1/ep10/episode_000010.json: /workspace/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors\n"
+  },
+  {
+   "case": "conf1024 json neutral-name copy (its content names e10nj paths)",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  <WORK>/neutral/episode_a.json: /workspace/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors\n  <WORK>/neutral/episode_a.json: /workspace/refs/perc2e1"
+  },
+  {
+   "case": "allowed json tampered to name the 1024 checkpoint",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  <WORK>/neutral/episode_tampered.json: /workspace/results/ev10_nj/ck512/policy.safetensors\n  <WORK>/neutral/episode_tampered.json: /workspace/refs/perc2e10njs43_gl"
+  },
+  {
+   "case": "run id word",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  20261101-e10nj-451b82d"
+  },
+  {
+   "case": "result folder word",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  results/ev10_nj/conf1024"
+  },
+  {
+   "case": "reference path word of the diagnostic",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  /workspace/refs/perc2e10njs43_glockt/ep10/processed/x.parquet"
+  },
+  {
+   "case": "the whole e10nj results dir (contains the 1024 checkpoint)",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "REFUSED: oracle-twin / leak-study (mocap- or scan-derived) or eval-10 njmax-diagnostic (changed physics) input, never for an eval pack:\n  <DL>/runs/20261101-e10nj-451b82d/results"
+  },
+  {
+   "case": "allowed + a refused input together",
+   "want": "refused",
+   "got": "refused",
+   "ok": true,
+   "out": "no_oracle: accepted by the owner-approved exception: <DL>/runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r1/ep10/episode_000010.parquet (checkpoint aaa077ebae86\u2026: eval-10 ck512 of run 20261101-e10nj-451b82d (trained njmax 1024 / nconmax 512; evaluated at stock 512 / 256))\nREFUSED: oracle-twin /"
+  }
+ ],
+ "info": {
+  "note": "claims_allowed: a json whose content names the allowed sha is accepted by design (the exception is by content); pack_swap_rollouts additionally requires the parquet metadata and the json to name the same checkpoint and the --expect-checkpoint sha, so a mislabelled json cannot enter a pack alone",
+  "claims_allowed": 0
+ }
+}

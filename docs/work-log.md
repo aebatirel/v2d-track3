@@ -5951,3 +5951,17 @@ Advice given:
   ops/provenance/allow_checkpoints.json) was denied by this session's permission check as a security-control weakening
   (the owner's go reached me relayed). Not worked around (no --skip-no-oracle, no other session asked to do it). It needs
   the owner's own word in this session, or the owner deciding another route.
+- 11:40 UTC **owner's own word in this session**: "I approve adding a single sha-specific allowlist entry in
+  tools/no_oracle.py for the eval-10 checkpoint ck512 (aaa077eb…): trained with njmax 1024, evaluated at stock 512/256.
+  Build pack 11 = pack 10 with that eval-10 rollout. Only that checkpoint; every other non-stock checkpoint stays refused."
+  Done: tools/no_oracle.py ALLOW_CKPT = {aaa077eb…} — an input is accepted only when its own content names that sha256
+  (the .safetensors file's sha256, a rollout parquet's flash_chord.checkpoint_sha256, a rollout json's
+  checkpoint_sha256); main() accepts such a file whole (its json strings name the diagnostic paths), the directory walk
+  skips such files; nothing else changed. tools/pack_swap_rollouts.py: the swap's reference-path word is not passed for
+  a swap whose own rollout names an ALLOW_CKPT sha (the rollout itself is still checked). Tests
+  (eval10-njmax-20261101/cpu/scripts/allow_ckpt_test.py → cpu/out/allow_ckpt_test.json): 17/17 — ck512 and its conf512
+  rollouts accepted (as is and renamed); the 1024 checkpoint (as is and renamed, non-stock by content), the conf1024
+  rollouts, a tampered json, the run id / folder / reference words, the whole e10nj results dir and a mixed input set
+  refused. By-content limit noted: a json on a neutral path claiming the allowed sha is accepted; the pack builder
+  additionally requires parquet metadata = json = --expect-checkpoint. Regression: oracle / leak / scanlib / t3 mesh /
+  r5ks / perc2scan still refused; pack 10's inputs accepted; 9a+ pure repack still byte-identical.

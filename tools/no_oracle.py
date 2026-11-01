@@ -35,6 +35,13 @@ BAD = re.compile(r'oracle|\d{8}-orc[A-Za-z0-9]*-'                               
                  r'|20261022-r5ks'                                                   # scan geometry
                  r'|e10nj|ev10_nj')                                                  # eval-10 njmax diagnostic (changed physics)
 STOCK_SIM = (512, 256)                                                               # FlashCHORD configs/sim/rl.yaml njmax, nconmax
+# Owner-approved exception (owner, in this session, 1 Nov 2026 ~11:30 UTC; docs/research/work/eval10-njmax-20261101/
+# PREREG_AMENDMENT_pack11.md): ONE checkpoint, the eval-10 policy trained with sim.njmax 1024 / nconmax 512 (training
+# only) whose stock-config copy ck512 stores and is evaluated at 512 / 256. An input is accepted under it only when its
+# own content names this sha256: the .safetensors file's sha256, a rollout parquet's flash_chord.checkpoint_sha256, or a
+# rollout json's checkpoint_sha256. Every other non-stock-limit checkpoint and every e10nj / ev10_nj name stays refused.
+ALLOW_CKPT = {'aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f':
+              'eval-10 ck512 of run 20261101-e10nj-451b82d (trained njmax 1024 / nconmax 512; evaluated at stock 512 / 256)'}
 HASHED = ('.glb', '.gltf', '.obj', '.stl', '.ply', '.urdf', '.npz')                # files whose sha256 is compared
 MAX_HASH, MAX_FILES, DEPTH = 256 << 20, 5000, 3
 
@@ -87,6 +94,29 @@ def sha256(p):
     return h.hexdigest()
 
 
+def named_checkpoint(path):  # the checkpoint sha256 a file is (.safetensors) or names (rollout .parquet / .json); else None
+    try:
+        r = os.path.realpath(path)
+        if not os.path.isfile(r):
+            return None
+        if r.endswith('.safetensors'):
+            return sha256(r)
+        if r.endswith('.parquet'):
+            import pyarrow.parquet as pq
+            v = (pq.read_schema(r).metadata or {}).get(b'flash_chord.checkpoint_sha256')
+            return v.decode() if v else None
+        if r.endswith('.json') and os.path.getsize(r) < (1 << 20):
+            d = json.load(open(r))
+            return d.get('checkpoint_sha256') if isinstance(d, dict) else None
+    except Exception:
+        return None
+    return None
+
+
+def allowed(path):  # the owner-approved exception names exactly this file's checkpoint (ALLOW_CKPT)
+    return named_checkpoint(path) in ALLOW_CKPT
+
+
 def files(p):  # p itself, or the files under directory p (depth-limited, symlinks followed)
     if not os.path.isdir(p):
         yield p; return
@@ -114,6 +144,8 @@ def why(s, sha):
             continue
         for f in files(part):
             r = os.path.realpath(f)
+            if allowed(f):                                                   # ALLOW_CKPT: this one checkpoint only
+                continue
             if BAD.search(r):
                 return f' ({f} -> {r})'
             if r.endswith('.safetensors'):
@@ -134,6 +166,10 @@ def why(s, sha):
 def main(argv):
     bad, sha = [], deny_sha()
     for w in argv:
+        if allowed(w):                                                       # ALLOW_CKPT: accepted whole, by content
+            print(f'no_oracle: accepted by the owner-approved exception: {w} '
+                  f'(checkpoint {named_checkpoint(w)[:12]}…: {ALLOW_CKPT[named_checkpoint(w)]})')
+            continue
         todo = [(w, w)]
         if w.endswith('.json') and os.path.isfile(w):
             todo = [(f'{w}: {s}', s) for s in strings(json.load(open(w)))]
