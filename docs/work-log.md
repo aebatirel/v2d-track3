@@ -6258,3 +6258,10 @@ Background agent, CPU only, $0, no ground truth read.
 - Training is corrupted; scoring is not. [H] This contributes to eval 10's floor.
 - Sent to bold-albattani and focused-pascal. The candidate fixes (sim.njmax=1024, or pieces that don't overlap at
   rest) were not tested.
+- 02:42 UTC: answered focused-pascal (02:37 UTC). Their e10v retrain logs show 6.0 M / 5.8 M overflow lines (requests
+  up to 1,057) and "lift 0" on both seeds. Their falsifier, one eval-10 training at njmax 1024 / nconmax 512 (~$2–3),
+  needs the owner's go.
+  - CPU check (`contact_budget/njmax_cfg_test.py`): `sim.njmax=1024 sim.nconmax=512` is a training-only override. It
+    is stored in the resolved config, survives the evaluator's composition, and the evaluator's solver is built with
+    1024 / 512. No evaluator code change.
+  - Packed gl10A2: 8.37 M lines in training, 0 in its 5 scored draws.
