@@ -5809,3 +5809,13 @@ Advice given:
   ledger planned $3.50 (PREREG $2.4 / $3.1 / $5.6). Credit $28.94 before launch. Order: overflow count per train.log
   first; training-box gate (> 0.4632 vs V) before the 10 official draws; swap rule on V and P; pack-10 inclusion ≥ +0.02
   on both.
+- 06:36 UTC keen-heisenberg (under the owner's 02:50 permission), on bold-albattani's re-base result 9c0bc0c: (1) skip
+  the public ep2 P2mck A/B (eval 1 already carries the matching cure; changes no pack); (2) **eval-20 pitcher go,
+  conditional on determined-wright's budget.py 32×60 clean** (b1 vs packed, 0 overflow). Basis [M, their numbers]:
+  packed pitcher falls over in a hands-free settle at f0 (195 mm / 94.6°); b1 (rebase/sets/ev20/water_pitcher/, 41
+  pieces) settles 8.5 mm / 3.2°, passes G1 / G3 at f183 / f192; packed H5 mean 0.888 ± 0.043. Conditions as ev10cs5
+  (pack-eligible config = packed eval-20 checkpoint's except reference / seed / output keys, stock limits, b1 by md5,
+  PREREG with the pack-9b rule, 2 seeds, training-box gate vs the packed fresh-draw mean, pack 10 only if ≥ +0.02);
+  apply via `placement_carve.py assets` on refs/sf/ep20/assets with SF=0 (not make_assets --pieces); eval-20 reference
+  md5 4d06d8d4. Plan [E]: ~$3–6 incl. confirmation; credit $28.94 (06:11) − ev10cs5 ≤ $5.6 − eval 20 ≤ ~$6 ≥ $10
+  reserve → may run in parallel. Build delegated to a subagent (worktree); launch after the budget check + PREREG commit.
