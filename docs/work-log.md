@@ -6115,3 +6115,13 @@ diagnostic; nothing is picked for submission.
   into the table" and eval 32 "19.5 mm" were H0 frames with a hand 3 mm away; under H30 max 3.9 mm, no frame fails.
   Round-2 hand-offs (pose-fix list, keep packed carves) and the owner summary sent. Rack-slot agent told to use H30
   frames, report the visual-mesh pose floor, and label plain-MuJoCo counts indicative.
+
+### 2026-11-01 04:00 UTC — ev10 cavity-safe candidates delivered for FlashCHORD check
+- Agent report (folder `gmg/build/I/results/ev10-cavsafe/`, commit 1204854; GATES 98ddccf before measuring): v1 ev10cs
+  53/49, v2 ev10cs2 44/49 (one-piece blue floor), v3 ev10cs3 32/33 (8 sectors). Plain-MuJoCo pair scene (indicative):
+  overlap f124-160 median/max 11.9/32.7 (packed) -> 1.9/6.8 (v1, v2) -> 0.38/2.99 (v3, gate 1 passes by 0.01);
+  nefc at f142 656 -> 936 / 548 / 376; settled nest 68-484 -> 574-746 / 212 / 160; intrusion 3.5 mm -> 0. Kept-volume
+  gate fails for the blue cup (its visual mesh fills its own cavity). Pose floor: visual-mesh overlap 80.6 cm3 median.
+  Caveats: beige settles 4-27 mm deeper; v3 floor 4.6 mm, lip wall 0.25 mm; v2/v3 post hoc.
+- Sent to determined-wright (cc focused-pascal, keen-heisenberg) for budget.py on ev10cs2 / ev10cs3 (pass <= ~460, 0
+  overflow lines); GPU training test needs the owner's go.
