@@ -130,7 +130,7 @@ constant.
 
 **Unchanged.** Gates 1-4, the frames and the expected outcomes.
 
-## Amendment A2 (1 Nov, 03:11 UTC): variant v2, designed AFTER v1's gate numbers, before any v2 number
+## Amendment A2 (1 Nov, 03:10 UTC): variant v2, designed AFTER v1's gate numbers, before any v2 number
 
 **Why (post hoc on v1) [M].**
 - v1 (`ev10cs`) passes gate 3 and fails gates 1, 2 and 4a.
@@ -155,3 +155,44 @@ constant.
 - Expected [H]: at the max-nefc step, guest-base x receiver-floor contacts <= 13.
 - Falsifiers: more than 50 such contacts, or gate 2 fails with its maximum at the floor.
 - v2 is labelled post hoc everywhere. v1 stays the pre-registered candidate.
+
+## Amendment A3 (1 Nov, 03:14 UTC): variant v3, written before any v3 number
+
+**Inputs (data, relayed by the orchestrator).**
+- determined-wright, 03:13 UTC, their contact_budget/README.md 90e3e41 [R]. FlashCHORD full scene on v1 (`ev10cs`,
+  dafc911):
+  - sampled nefc max 510 / median 443, against packed 536 / 473;
+  - 4 overflow lines, against 13,544;
+  - cup-cup contacts max 31, against 68.
+- Their verdict: improved, not clean at 512. Hands now dominate (the right hand on the beige cup, about 44 contacts).
+  Their lever is fewer, larger pieces where the hands touch, plus the single-piece receiver floor (A2).
+- Our v2 numbers seen before this amendment [M, plain MuJoCo]:
+  - gate 1 = v1 (median 1.92, max 6.82 cm3);
+  - gate 2: max nefc 548, ncon 137, overflow 5 / 48;
+  - gate 3: 0.0 mm;
+  - settle: 212 rows at rest at f124, f142 and f160.
+
+**v3 design (`ev10cs3`) = v2 with `--seg 8` for both cups.** Everything else is unchanged:
+- bands 6 cm;
+- R1' / R2 on the blue cup, G1 on the beige cup;
+- the floor plate (its rings are 8-gons) and the same 7 clipped base hulls;
+- the beige ring base with 1 + 8 pieces.
+
+Counts: blue 24 + 1 + 7 = 32, beige 24 + 9 = 33.
+
+**Why 8.** It is a judgment constant, chosen before any N = 8 number and not derived.
+- 8 / 12 cuts the hand-facing pieces per band by a third, the step that the FlashCHORD target (about 60-100 rows off
+  about 124 contacts) asks for.
+- The chord error at r = 40 mm is 3.0 mm inside for the beige (inscribed) and 3.3 mm outside for the blue's outer face
+  (circumscribed), about the wall constant t = 3 mm.
+- N = 6 would give 5.4-6.2 mm, about the 4-7 mm pose offset.
+
+**Gates for v3.**
+- Gates 1-4 as above, on the same frames, plus the settle trace.
+- Piece-count target: at most two thirds of ev10 per cup (blue <= 35, beige <= 33).
+- **FlashCHORD criterion, the final contact gate** (measured by determined-wright with budget.py, not by us): sampled
+  nefc max <= about 460 and 0 overflow lines.
+- Expected [H]: plain-MuJoCo gate 2 max nefc below v2's 548. Gate 1 changes: the 8-gon chords sit further inside the
+  beige, and the blue's inner faces stay tangent. Falsifier: gate 1 median above v1's 1.92 cm3.
+
+v2 (`ev10cs2`) is delivered as built.

@@ -1850,3 +1850,22 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   hulls whose bottoms reach 79.1-80.0 mm (the ev10 hulls that end at 76.5-78.5 mm never touch a level table). v1
   rebuild with the edited script byte-identical. evalcheck / contacts / settle on v2 running; gate 3 v2: 0.0 mm,
   0.0 cm3 PASS.
+- 03:12 [M] Every touched packed hull has 91-100 % of its F cells inside the convex hull of the rack mesh it contains
+  (`explore3.py`): CoACD hulls are hulls of mesh parts, so no single clipping plane can empty the slot without cutting
+  the mesh; each touched hull must be split. Eval 30's F by run: f0-29 10.3 cm3, f124-128 15.1 (sweeper at the rack's
+  far end, inside its end wall: a transit pose with no hand label, kept because GATES.md R admits it), f241-262 11.0.
+  Build `scripts/build.py` (method [H]): per touched hull, clip planes that keep every rack-mesh point (0.3 mm surface
+  samples + 1 mm cells) and cut F, BSP splits through F where clipping cannot (depth <= 3), then merges of the cheapest
+  piece pairs (added cells never in the guest's all-frames swept volume) back to <= 43. Started c1-ev30 03:13; packed
+  baselines (measure.py, phys.py: G1-G5 on the packed rack, same code) started 03:14. Load 4.5-5 on 4 cores.
+- 03:13 [M] v2 results: gate 1 = v1 (median 1.92, max 6.82 cm3: FAIL); **gate 2 max nefc 548 / ncon 137, overflow
+  5 / 48 (f111 0, f142 1, f116 4): FAIL, narrowly** (v1 936 / 40, packed 1,296 / 48); f124 612 (2 / 16), f160 388
+  (0 / 16), rule frame f117 504 (0 / 16); settle: 212 rows at rest at f124 / f142 / f160 (v1 574-746, packed 68-484),
+  guest-base x floor contacts 0-29 at the max steps (v1 166-191). Gate 3 0.0 mm PASS. A2's [H] holds.
+- 03:13 Orchestrator relay: determined-wright's FlashCHORD budget.py on v1 (90e3e41): sampled nefc max 510 / median
+  443 (packed 536 / 473), 4 overflow lines (packed 13,544), cup-cup <= 31 (68); explicit f0/124/142/160 max 409, 0
+  lines (441); "improved, NOT clean at 512, do not retrain on it"; hands dominate (~44 right hand - beige). Lever:
+  fewer, larger hand-facing pieces + single-piece floor; FlashCHORD target sampled max <= ~460, 0 lines.
+- 03:14 Amendment A3 in GATES.md (before any v3 number): v3 = v2 with --seg 8 (blue 32, beige 33 pieces); piece-count
+  target <= 2/3 of ev10; FlashCHORD criterion recorded (determined-wright measures). v2 folder `ev10cs2/` laid out
+  (make_assets --pieces tested: 44 / 49 collisions); committing v2 + A3 before building v3.
