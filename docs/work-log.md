@@ -5926,3 +5926,13 @@ Advice given:
 - 08:58 UTC wrap-up (owner via keen-heisenberg: finish in-flight, start nothing new): 0 Vast instances; ledger all closed
   (actual $200.12 of the $325 budget; nothing planned-open); Vast credit $23.63. Agent worktrees removed (all three
   merged first, no uncommitted changes); no scheduled check-ins of this session pending.
+- 11:05 UTC keen-heisenberg relays the **owner's go (verbatim "I give give you go", 09:11 UTC, their chat; relayed 09:12,
+  reached here 11:04)** to pack the njmax-1024-trained eval-10 policy scored at stock limits (owner's reading: the rule
+  protects the evaluation setting; the training buffer is a training choice). It replaces "never packed" for this one
+  policy only. Conditions: stock config in the saved checkpoint (evaluator log proof), reuse the conf512 draws if they
+  came from the pristine evaluator on that exact file (else one ~$2 box), 0 overflow in every scored draw, the pack-9b
+  rule vs pack 10's eval-10 draws + ≥ +0.02, a dated PREREG amendment saying the 512 values were already seen, a
+  sha-specific guard exception, byte diff vs pack 10 = e000010 only, README disclosure, plan + cost first, ≥ $10 reserve.
+  Plan: CPU only, $0 (reuse the stored conf512 draws); amendment committed first
+  (eval10-njmax-20261101/PREREG_AMENDMENT_pack11.md), then downloads, checks, re-scoring of both sides with
+  e10v_score.py, verdict, guard allowlist, pack 11 build on pack 10's inputs.
