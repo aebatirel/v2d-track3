@@ -6468,3 +6468,12 @@ Background agent, CPU only, $0, no ground truth read.
 - PREREG draft updated (not frozen): test A = the twins' references (the owner's gate), test B = the two-hand rebuilds,
   same gate per test; test B runs first. Dev sweep on ep31 G2–G5 still running; G1 (paper-like ESS 0.9) improved 0/8
   windows vs the annealed sampler's 2/8.
+- ~12:53 UTC: dev sweep on ep31 f16–48 (8 active windows, same scale as the ep13 arms) [M], metric = mean per-window
+  J_best / J_warm (improved windows): anneal 0.9853 (2/8); G1 ESS 0.9, 2 moves 1.0000 (0/8); G2 ESS 0.5, 2 moves
+  0.9892 (3/8); G3 ESS 0.5, 1 move 0.9759 (2/8); G4 / G5 (GRASP's own widths) running. Diagnostics: at ESS 0.9 the
+  tempering reaches λ ≈ 0.05–0.12 in 4 stages (samples ≈ prior); at ESS 0.5 it reaches λ = 1 within 1–4 stages, after
+  which acceptance is 0.0 (the per-stage step adaptation cannot shrink the 0.59 step fast enough in so few stages); the
+  diag surrogate is over-fitted early (R² 1.0 on ≤ 113 points).
+- ~12:53 UTC: dry run of `scripts/run_ep13.sh` on ep31 (`dry31`, tiny budget, `--stop 28`): every step ran; official
+  replay vs solver truth bit-identical (29 frames), fresh-load buffers identical, 16-copy jitter check 86 s. Output moved
+  out of the ep13 tree. `scripts/run_all.sh` written (inputs' jitter, test B, test A, gate).

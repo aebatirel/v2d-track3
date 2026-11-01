@@ -11,13 +11,15 @@
 set -u; S=${S:?}; REF=$1; METHOD=$2; T=/home/user/v2d-track3/tools
 FCD=$S/src/video_to_data/robotic_grounding/flash_chord; FPY=$S/fcvenv/bin/python; BPY=$S/venv/bin/python
 export OMP_NUM_THREADS=1 EMB=sharpa_hands_mid DEV=cpu KIT=$S/kit/v2d_submission_kit
-case $REF in P|O) P=$(ls $S/inputs/ep13_$REF/processed/*/*/ref_in.parquet) ;; P2|O2) P=$(ls $S/gl2/ep13_${REF:0:1}/processed/*/*/ref_gl_ilc.parquet) ;; *) exit 2 ;; esac
+case $REF in P|O) P=$(ls $S/inputs/ep13_$REF/processed/*/*/ref_in.parquet) ;; P2|O2) P=$(ls $S/gl2/ep13_${REF:0:1}/processed/*/*/ref_gl_ilc.parquet) ;;
+  dry31) P=$(ls $S/inputs/ep31_P/processed/*/*/ref_in.parquet) ;; *) exit 2 ;; esac   # dry31: script test on the dev episode
 D=$(dirname $P); O=$S/ep13/${REF}_$METHOD; mkdir -p $O
-OUTP=$D/ps_$METHOD.parquet; N=190
+OUTP=$D/ps_$METHOD.parquet; N=$($BPY -c "import pyarrow.parquet as pq; print(len(pq.read_table('$P').column('robot_left_wrist_position')[0].as_py()))")
 COMMON="--workers 4 --worlds 32 --robust 4 --horizon 16 --knot 4 --ctrl 4 --iters 8 --ramp 1 4 --sig_pos 0.01 --sig_rot 0.05 \
 --sig_fin 0.15 --anneal 0.80 --retries 4 --retry 0.05 --back 3 --rob_pos 0.0005 --rob_fin 0.005 --seed 0"
 GRASP=${GRASP_ARGS:?set GRASP_ARGS (frozen in PREREG.md)}
 [ "$METHOD" = grasp ] && EXTRA="--method grasp $GRASP" || EXTRA="--method anneal"
+EXTRA="$EXTRA ${DRY_ARGS:-}"                    # DRY_ARGS: script test only (never set for the pre-registered arms)
 { echo "$(date -u +%FT%TZ) ep13 $REF $METHOD code $(git -C /home/user/v2d-track3 rev-parse --short HEAD)$(git -C /home/user/v2d-track3 diff --quiet HEAD -- tools || echo +wip) \
 solve.py $(md5sum < $T/physics_solve/solve.py | cut -c1-8) grasp_window.py $(md5sum < $T/physics_solve/grasp_window.py | cut -c1-8) \
 jitter_check.py $(md5sum < $T/physics_solve/jitter_check.py | cut -c1-8) input md5 $(md5sum < $P | cut -c1-8)"
