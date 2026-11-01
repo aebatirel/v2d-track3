@@ -6279,3 +6279,8 @@ Background agent, CPU only, $0, no ground truth read.
   - eval 10: 536 / 441, 13 % of steps over 512.
 - bold-albattani's `ev10-cavsafe/GATES.md` (98ddccf) was written before any candidate. No pieces yet; watcher
   `b41ahbswb` is on their branch.
+- 03:12 UTC: candidate **ev10cs** (bold-albattani dafc911, 53 / 49 pieces), full-scene budget check.
+  - Sampled resets: nefc max 510 (packed 536), median 443 (473); **4 overflow lines** (requests 515–518); cup–cup
+    contacts 31 (68).
+  - Explicit f0/124/142/160: max 409, no overflow.
+  - **Not clean** at 512, so no retrain. Reported to all three. Waiting for their v2 (A2) and the rack candidates.
