@@ -10776,3 +10776,6 @@ score.
     36 — needs its public gate.
   - physics-perception session (session_01D9UJC6vSSNiJqaAdzNUn7d) told what this lane changes (guard_bridge on the base,
     GL_ARGS) so its transforms compose.
+- 21:02 UTC 1 Nov pfC-97095b8 failed at the bridge (`rtree` missing on the box image; job exit 1, box on HOLD) and pfD-97095b8
+  showed CLONE-FAIL; both destroyed (≈ 15 min each, ≈ $0.7 total). pf_arms.sh now installs rtree before guard_bridge.
+  Relaunched below with the same job strings.

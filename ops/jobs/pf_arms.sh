@@ -71,6 +71,7 @@ for e in $EPS; do
   fi
   if [ "${BRIDGE:-0}" = 1 ] && [ -z "$EVS" ]; then log "pf_arms ep$e: no guard events (events.json): base not bridged, scored vs P only" >> $J; fi
   if [ "${BRIDGE:-0}" = 1 ] && [ -n "$EVS" ]; then
+    python -c "import rtree" 2> /dev/null || pip install -q rtree >> $J 2>&1   # trimesh proximity queries (box image lacks it)
     touch $I/ep$e/BRIDGED; cp $B $I/ep$e/base_unbridged.parquet
     python $T/guard_bridge.py $I/ep$e/base_unbridged.parquet $B --events "$EVS" --mesh_dir $LIB --json $G/bridge_ep$e.json > $G/bridge_ep$e.txt 2>&1 \
       || { log "pf_arms ep$e: guard_bridge FAILED ($(tail -2 $G/bridge_ep$e.txt | tr '\n' ' ' | cut -c1-300))" >> $J; continue; }
