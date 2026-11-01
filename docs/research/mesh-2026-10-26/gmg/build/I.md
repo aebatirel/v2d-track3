@@ -1358,6 +1358,22 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   as round 2 (20:29 entry). Build + public runs step done: freeze not reached (ep24 part 1), eval 25 not run, ep24 r0 a
   DO_NOT_USE record, this container only, $0. Results in `build/I/results/slot3-ep24/`, `slot3-ep23/`,
   `slot3-tests/` (fi416 = the F-I4.16 records, fi417 = this step).
+- 00:37 (Eval 25 step, board-slot round-3 workflow) started 00:35. **Eval 25 not run.** The F-I4.17.3 freeze does
+  not hold, so the step stops before the ev25a run as F-I4.17.3 requires. **(a) fails** [M, the 23:27 decision
+  above; reproduced by verify_slot3_0 (128 / 32 = 4.0 rows from the committed r0 files) and verify_slot3_1 (124 / 32
+  with its own XML; 3.75-5.17 under its variants)]: ep24 fi4q CARVEs both boards with the low-piece body (IoU 0.958 /
+  0.952) and passes P2-P7 on 16 copies (P3 0.074 cm / 0.68 deg), but contact-gate part 1 fails: delivered max nefc
+  124 against the one-box control's 32, ratio 3.875 > 2.0 (no overflow; the unslotted default boxes give 112, 3.5 x).
+  (b) holds as F-I4.17.3 reads it (k5 ratio 1.75; under verify_slot3_0 N4's wider reading k2 at 2.08 would fail it
+  too). Neither verifier has a blocking item, so nothing was fixed; no rule, code, threshold or record was changed.
+  Not done (each depends on the ev25a run): the F-I4.17 run with physics and the contact gate on the Prep25 bundle,
+  its r0 / DO_NOT_USE, the slot-centre report, the P_sel -> P_sim check and the meshes/carve/ev25 comparison
+  (meshes/carve/ev25 not opened). [M] the Prep25 dev run `<scratch>/gmg/runs-dev/20261031-ev25prep-765dc6f` has no
+  `sim/` folder. For an orchestrator decision (a new dated F entry before any eval-25 run): the part-1 ratio clause
+  (verify_slot3_1 N3: the control ends as two separated flat boxes, and the box partition and the resting edge set the
+  ratio, 64-124 rows on ep24); before any re-freeze also verify_slot3_1 N1 (w10 bodies grow with edge noise, IoU vs
+  the true plate 0.85-0.93) and N4 (keep-out is 0.0 by construction for boxes); Prep25's `interlock_dev` split
+  label (shared file, still `public`) must be fixed before any eval run. This container only, no rental, $0.
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
