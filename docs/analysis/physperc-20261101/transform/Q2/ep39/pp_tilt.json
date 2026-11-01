@@ -1,0 +1,16 @@
+{
+ "anchor": "mini_dust_pan",
+ "W": 0.5,
+ "SEL": "anchor",
+ "PRIOR": "axis",
+ "W_AXIS": 0.75,
+ "objects": {
+  "mini_dust_pan": {
+   "prior": "facet (axis rms 6.8 mm)",
+   "hand_mm": 293.5,
+   "gap_mm": -7.3,
+   "match_deg": 13.92,
+   "skip": "gate"
+  }
+ }
+}

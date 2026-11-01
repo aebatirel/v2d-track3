@@ -1,0 +1,23 @@
+{
+ "anchor": "white_pot",
+ "W": 0.5,
+ "SEL": "all",
+ "PRIOR": "axis",
+ "W_AXIS": 0.75,
+ "objects": {
+  "white_pot": {
+   "prior": "axis rms 0.85 mm",
+   "hand_mm": Infinity,
+   "gap_mm": -8.0,
+   "match_deg": 2.4,
+   "tilt_deg": 1.798
+  },
+  "white_pot_lid": {
+   "prior": "axis rms 0.08 mm",
+   "hand_mm": Infinity,
+   "gap_mm": 90.8,
+   "match_deg": 0.92,
+   "skip": "gate"
+  }
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "anchor": "plastic_dish_rack",
+ "W": 0.5,
+ "SEL": "anchor",
+ "PRIOR": "axis",
+ "W_AXIS": 0.75,
+ "objects": {
+  "blue_cup": {
+   "skip": "not anchor"
+  },
+  "plastic_dish_rack": {
+   "prior": "facet (axis rms 7.9 mm)",
+   "hand_mm": 134.7,
+   "gap_mm": -8.0,
+   "match_deg": 0.74,
+   "tilt_deg": 0.371
+  }
+ }
+}

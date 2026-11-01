@@ -1,0 +1,19 @@
+{
+ "anchor": "wooden_piece_1",
+ "W": 0.5,
+ "SEL": "anchor",
+ "PRIOR": "axis",
+ "W_AXIS": 0.75,
+ "objects": {
+  "wooden_piece_1": {
+   "prior": "axis rms 1.73 mm",
+   "hand_mm": 27.3,
+   "gap_mm": -9.3,
+   "match_deg": 2.6,
+   "skip": "gate"
+  },
+  "wooden_piece_2": {
+   "skip": "not anchor"
+  }
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "anchor": "blue_cup",
+ "W": 0.5,
+ "SEL": "all",
+ "PRIOR": "axis",
+ "W_AXIS": 0.75,
+ "objects": {
+  "blue_cup": {
+   "prior": "axis rms 3.25 mm",
+   "hand_mm": 148.7,
+   "gap_mm": 0.0,
+   "match_deg": 0.74,
+   "tilt_deg": 0.555
+  },
+  "beige_cup": {
+   "prior": "axis rms 0.45 mm",
+   "hand_mm": 321.8,
+   "gap_mm": 7.1,
+   "match_deg": 1.71,
+   "tilt_deg": 1.283
+  }
+ }
+}

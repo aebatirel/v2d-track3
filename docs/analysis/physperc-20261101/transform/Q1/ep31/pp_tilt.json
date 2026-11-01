@@ -1,0 +1,23 @@
+{
+ "anchor": "mini_sweeper",
+ "W": 0.5,
+ "SEL": "all",
+ "PRIOR": "axis",
+ "W_AXIS": 0.75,
+ "objects": {
+  "mini_sweeper": {
+   "prior": "facet (axis rms 5.5 mm)",
+   "hand_mm": 232.5,
+   "gap_mm": -0.0,
+   "match_deg": 10.46,
+   "skip": "gate"
+  },
+  "plastic_dish_rack": {
+   "prior": "facet (axis rms 7.9 mm)",
+   "hand_mm": 91.8,
+   "gap_mm": -2.9,
+   "match_deg": 1.19,
+   "tilt_deg": 0.595
+  }
+ }
+}

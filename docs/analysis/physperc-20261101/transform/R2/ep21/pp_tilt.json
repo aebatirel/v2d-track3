@@ -1,0 +1,23 @@
+{
+ "anchor": "water_pitcher",
+ "W": 0.5,
+ "SEL": "all",
+ "PRIOR": "axis",
+ "W_AXIS": 1.0,
+ "objects": {
+  "blue_cup": {
+   "prior": "axis rms 3.25 mm",
+   "hand_mm": 118.9,
+   "gap_mm": -1.2,
+   "match_deg": 1.89,
+   "tilt_deg": 1.89
+  },
+  "water_pitcher": {
+   "prior": "facet (axis rms 14.6 mm)",
+   "hand_mm": 91.8,
+   "gap_mm": -8.4,
+   "match_deg": 59.33,
+   "skip": "gate"
+  }
+ }
+}
