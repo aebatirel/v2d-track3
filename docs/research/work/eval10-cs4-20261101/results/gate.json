@@ -1,0 +1,24 @@
+{
+ "rule": "PREREG section 4: >= 1 VERIFIED seed (n >= 8) with training-box mean sim_vs_ref vs V > 0.4632",
+ "bar": 0.4632,
+ "bar_source": "the packed eval-10 policy's 10 fresh (H5p7) draws, mean sim_vs_ref vs V, e10v summary.json [M]",
+ "met": true,
+ "seeds": {
+  "42": {
+   "status": "VERIFIED",
+   "n": 10,
+   "mean": 0.4768,
+   "mean_raw": 0.47683,
+   "above": true,
+   "margin": 0.0136
+  },
+  "43": {
+   "status": "VERIFIED",
+   "n": 10,
+   "mean": 0.5096,
+   "mean_raw": 0.50961,
+   "above": true,
+   "margin": 0.0464
+  }
+ }
+}

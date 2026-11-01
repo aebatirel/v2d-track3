@@ -5885,3 +5885,19 @@ Advice given:
   the packed eval-20 log ≈ 1.2 k by size); ev10cs5 s43 645 lines at 98 % (s42 ended at 992). Both pieces were 0 / 0 at
   32 × 60 in determined-wright's budget runs; 4096-world training with sampled resets still finds ~10³ rows-overflow
   events. PREREG labels apply as written (> 1,000 → "pieces not clean in training", reported; the rule still decides).
+- 08:13 UTC **eval-10 retrain on ev10cs5: SWAP-ELIGIBLE [EQUAL FLOOR]; pack-10 inclusion: INCLUDE** (PREREG
+  eval10-cs4-20261101 §5.5, 13c4133; run 20261101-e10cs-50c2d90, code 50c2d90d, instance 58625218 India $1.389/h;
+  run_job.log RTX PRO 6000 Max-Q driver 595.91.07, env restored, job rc 0 after 121 min; ledger actual $2.85). [M]:
+    inclusion gain (new − packed sim_vs_ref) V +0.069, P +0.0591 (bar +0.02 on both) → INCLUDE;
+    clauses all hold on V and P: a_V +0.069, b_V 0.0 (fail rate 1.0 vs 1.0), c_V median RPE margin 2.10 cm, s_V +0.090;
+    a_P +0.059, b_P 0.0, c_P 2.05, s_P +0.091;
+    gate met (s42 0.4768, s43 0.5096 > 0.4632); chosen seed 43 (best policy_10002432, sha256 ca7c4e3a…);
+    overflow lines per training log s42 992, s43 660 (bar 1,000; e10v ~6 M); beige r1 lift max s42 239.8 cm [anomaly —
+    physically impossible as a lift; probably the cup was thrown], s43 12.7 cm (clause ≥ 5 cm: true);
+    official draws (n 10) vs V: sim_vs_ref 0.5322 ± 0.0615 (packed 0.4632 ± 0.0067), RPE median 13.94 / mean 21.12 cm
+    (max 76.9; packed 16.05 ± 0.09), MPPE median 8.56 cm; vs P: 0.5116 ± 0.0557 (packed 0.4525), RPE median 13.79 /
+    mean 20.87; per object vs V: blue 0.831, beige 0.243. All draws still fail RPE > 5 cm (equal-floor note).
+    Draw 1 (the pack rollout): vs V 0.512, RPE 13.25, MPPE 7.92; vs P 0.497, RPE 12.85 — the replaced 9a+ rollout: vs V
+    0.472, RPE 15.96, MPPE 8.47; vs P 0.456, RPE 15.76; beige moves 10.4 cm (packed 0.7; reference 25.4).
+  [E] Board: AUC up on eval 10 by ~+0.04–0.07 on the proxy (≈ +0.002–0.003 AUC over 20 episodes if the board follows);
+  draw 1 also has lower RPE / MPPE than the packed rollout. Results copied to eval10-cs4-20261101/results/.
