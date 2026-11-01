@@ -402,3 +402,49 @@ settings, with the beige staying above the plate.
 | 04:52-04:53 | v4 3 mm numbers; the drop check fired |
 | 04:53 | F2 build |
 | 04:55-04:57 | F2 numbers and drop peek |
+
+## 10. v5 (`ev10cs5`, standby): ev10cs4 with an 8 mm floor plate (A5)
+
+`ev10cs4` is frozen (FROZEN.md, fa2ec41) and was not touched; its md5 list was re-checked after this build: all OK.
+
+**The build.** v5 is ev10cs4 rebuilt with `--plate_t 0.008` instead of 0.006, so the blue floor plate spans
+[h_base - 8 mm, h_base] and the cavity floor is 2 mm higher.
+- By md5, every file is byte-identical to ev10cs4 except three: `blue_cup/piece_16.obj` (the plate, md5
+  `f8cec72184b8d4def1f2ea991817db92`; ev10cs4 `97b48703...`), `blue_cup/inertia.json` and
+  `blue_cup/lathe_collision.json`.
+- The plate is 30.93 cm3. Its top ring is the circumscribed profile at the new floor, r = 38.46 mm.
+- determined-wright's tested variant moved the old plate's face (30.7 cm3) [R], so the two plates are close but not
+  byte-identical [E].
+
+**Numbers [M]** (plain MuJoCo, indicative only; same scripts and frames):
+
+| | v4 `ev10cs4` (6 mm) | **v5 `ev10cs5` (8 mm)** |
+|---|---|---|
+| Gate 1: overlap f124-f160, median / max, cm3 | 0.206 / 2.609 PASS | **0.206 / 3.885 FAIL** (max at f124: the raised floor meets the beige base) |
+| Max overlap over all frames (insertion frames) | 17.12 (f109) | 22.26 (f109) |
+| Gate 2: max nefc at f111 / f142 / f116 (overflow copies of 16) | 488 (0) / 212 (0) / 336 (0) PASS | **560 (3) / 204 (0) / 252 (0) FAIL**; max ncon 140 |
+| Report: f124 / f160 / rule frame f117 | 460 / 196 / 448 (all 0) | 352 / 192 / 268 (all 0) |
+| Settled nest rows at f124 / f142 / f160 | 96 / 104 / 96 | 96 / 104 / 96 |
+| Beige axial sink by the end of the trace, mm | 1.3 / 9.1 / 24.4 | -0.6 / 7.1 / 22.3 |
+| Drop check: copies with guest-table contacts at the max step, f111 / f142 / f116 / f124 / f160 / f117 | 8 / 0 / 2 / 6 / 0 / 6 | **3 / 0 / 0 / 0 / 0 / 1** (still fires, at the in-hand drop frames) |
+| Drop peek at f124: copies through the floor; deepest beige base | 6 of 16; 80.5 mm (floor top 72.4) | **0 of 16**; 75.9 mm (floor top 70.4, i.e. at most 5.5 mm into the 8 mm plate) |
+| Gate 3: cavity, against the raised floor | 0.0 PASS | 0.0 PASS |
+| Gate 4a: blue / beige | 0.384 FAIL / 1.79 | 0.402 FAIL / 1.79 |
+| Blue COM against ev10, along file z | +12.8 mm | +16.1 mm |
+
+**Reading.**
+- The thicker plate stops the f124 drop crossing (0 of 16 copies), in line with determined-wright's nest test
+  (max 4.02 mm into the plate, 0 through) [R].
+- The cost is gate 1: the plate now reaches the beige base at the start of the rest (f124, 3.9 cm3 > 3.0).
+- The f111 drop frame (the pair 32 mm in the air, in hand) still overflows in 3 of 16 copies in plain MuJoCo.
+- A5's expectation "gate 1 unchanged" is **falsified** at the max; the median is unchanged.
+- FlashCHORD remains the contact gate. v5 is a standby; ev10cs4 stays the frozen candidate.
+
+**Time order (UTC, this machine's clock; other sessions' stamps may be offset).**
+
+| Time | Event |
+|---|---|
+| 05:12 | Request read |
+| 05:13 | A5 committed (99be31e), before building |
+| 05:13 | v5 built; md5 diff against ev10cs4 |
+| 05:14-05:15 | Measures |

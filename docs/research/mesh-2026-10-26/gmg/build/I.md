@@ -1979,3 +1979,9 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   Evidence [R]: determined-wright's 8 mm plate variant nest test (rest max depth 4.02 vs 5.49 mm, 0 through). A5 in
   GATES.md before building: v5 = v4 with --plate_t 0.008 (cavity floor 2 mm higher); all other pieces must match
   ev10cs4 by md5.
+- 05:15 [M] **ev10cs5 (v5, standby) delivered**: `--plate_t 0.008`; only blue piece_16 (md5 f8cec721...), inertia.json
+  and lathe_collision.json differ from ev10cs4 (md5-checked; ev10cs4's FROZEN.md list still verifies). Gate 1 FAIL at
+  the max (median 0.206, max 3.885 cm3 at f124: the raised floor meets the beige base); gate 2 FAIL (f111 560, 3 / 16
+  overflow; f142 204, f116 252); settle 96-104 rows, sink 2 mm less; drop check still fires at the in-hand drop
+  frames (f111 3, f117 1 of 16) but 0 / 16 copies cross the floor at f124 (deepest 5.5 mm into the 8 mm plate); gate 3
+  PASS; gate 4a blue 0.402 FAIL; blue COM +16.1 mm. README section 10.

@@ -1,0 +1,30 @@
+05:14:22 epcand5 done in 69.3 s: H0 52 / 161, H30 33, receiver blue_cup
+cand5 f111 (gate): max nefc 560 ncon 140 step0 nefc 176 overflow 3/16 classes {'guest_receiver': 98, 'guest_table': 19, 'receiver_table': 23} disp [33.1, 28.700000000000003] 1.1 s
+cand5 f142 (gate): max nefc 204 ncon 51 step0 nefc 88 overflow 0/16 classes {'guest_receiver': 41, 'guest_table': 0, 'receiver_table': 10} disp [17.5, 23.85] 0.8 s
+cand5 f116 (gate): max nefc 252 ncon 63 step0 nefc 204 overflow 0/16 classes {'guest_receiver': 35, 'guest_table': 0, 'receiver_table': 28} disp [33.9, 29.55] 0.9 s
+cand5 f124 (report): max nefc 352 ncon 88 step0 nefc 176 overflow 0/16 classes {'guest_receiver': 65, 'guest_table': 0, 'receiver_table': 23} disp [26.15, 25.1] 0.7 s
+cand5 f160 (report): max nefc 192 ncon 48 step0 nefc 76 overflow 0/16 classes {'guest_receiver': 43, 'guest_table': 0, 'receiver_table': 5} disp [2.2, 23.05] 0.7 s
+cand5 f117 (report_rule_not_static_in_hand): max nefc 268 ncon 67 step0 nefc 184 overflow 0/16 classes {'guest_receiver': 46, 'guest_table': 0, 'receiver_table': 21} disp [37.3, 32.1] 0.8 s
+gate2 {"frames": [111, 142, 116], "max_nefc": 560, "max_ncon": 140, "overflow_copies": 3, "pass": false}
+cand5 124 {"frame": 124, "max": {"step": 9, "nefc": 388, "ncon": 97, "guest_receiver_by_guest_group_band1_2_3_base": [14, 27, 35, 0]}, "nefc_step0": 152, "nefc_last_0p5s_median": 96.0, "ncon_last_0p5s_median": 24.0, "guest_table_max": 0, "guest_table_steps": 0, "guest_rel_disp_end_mm": [-2.19, 3.05, -0.57], "receiver_tilt_end_deg": 2.05}
+cand5 142 {"frame": 142, "max": {"step": 7, "nefc": 116, "ncon": 29, "guest_receiver_by_guest_group_band1_2_3_base": [0, 0, 20, 0]}, "nefc_step0": 56, "nefc_last_0p5s_median": 104.0, "ncon_last_0p5s_median": 26.0, "guest_table_max": 0, "guest_table_steps": 0, "guest_rel_disp_end_mm": [-2.98, 1.31, 7.07], "receiver_tilt_end_deg": 4.04}
+cand5 160 {"frame": 160, "max": {"step": 12, "nefc": 172, "ncon": 43, "guest_receiver_by_guest_group_band1_2_3_base": [0, 13, 27, 0]}, "nefc_step0": 48, "nefc_last_0p5s_median": 96.0, "ncon_last_0p5s_median": 24.0, "guest_table_max": 0, "guest_table_steps": 0, "guest_rel_disp_end_mm": [-5.39, -0.71, 22.3], "receiver_tilt_end_deg": 0.91}
+drop check copies [(111, 3), (142, 0), (116, 0), (124, 0), (160, 0), (117, 1)]
+0 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 75.5 mm (blue floor top 70.4, lowest blue point 80.0)
+1 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 75.9 mm (blue floor top 70.4, lowest blue point 80.0)
+2 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 74.1 mm (blue floor top 70.4, lowest blue point 80.0)
+3 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 72.0 mm (blue floor top 70.4, lowest blue point 80.0)
+4 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 72.4 mm (blue floor top 70.4, lowest blue point 80.0)
+5 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 75.6 mm (blue floor top 70.4, lowest blue point 80.0)
+6 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 72.8 mm (blue floor top 70.4, lowest blue point 80.0)
+7 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 72.2 mm (blue floor top 70.4, lowest blue point 80.0)
+8 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 73.0 mm (blue floor top 70.4, lowest blue point 80.0)
+9 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 72.5 mm (blue floor top 70.4, lowest blue point 80.0)
+10 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 72.6 mm (blue floor top 70.4, lowest blue point 80.0)
+11 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 72.9 mm (blue floor top 70.4, lowest blue point 80.0)
+12 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 73.8 mm (blue floor top 70.4, lowest blue point 80.0)
+13 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 72.8 mm (blue floor top 70.4, lowest blue point 80.0)
+14 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 73.8 mm (blue floor top 70.4, lowest blue point 80.0)
+15 first guest-table step/contacts/rel disp mm/axis angle deg/beige base max h mm: None | max beige base h over run 73.5 mm (blue floor top 70.4, lowest blue point 80.0)
+
+[exited with code 0]

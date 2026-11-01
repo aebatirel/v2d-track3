@@ -1,14 +1,14 @@
 """ev10-cavsafe: one summary JSON + the README numbers table, from the run outputs (evalcheck ep<tag>_frames.json,
 contacts_fixed <tag>.json, settle_trace <tag>.json, cavsafe_measure json). Gates as GATES.md.
 Usage: python -I summarize_cavsafe.py RUN_DIR OUT.json   (RUN_DIR holds geo_<tag>/, contacts_<tag>.json,
-       settle_<tag>.json, measure2.json (packed + v1), measure_v2.json (v2), measure_v3.json (v3), measure_v4.json, measure_v4f.json, measure_v4f_origcav.json (v4))"""
+       settle_<tag>.json, measure2.json (packed + v1), measure_v2.json (v2), measure_v3.json (v3), measure_v4.json, measure_v4f.json, measure_v4f_origcav.json (v4), measure_v5.json (v5))"""
 import json, os, sys
 import numpy as np
 
 run, out = sys.argv[1:3]
 TAGS = dict(packed='packed ev10', cand='v1 ev10cs (pre-registered)', cand2='v2 ev10cs2 (post hoc, A2)',
             cand3='v3 ev10cs3 (A3)', cand4='v4 with the 3 mm plate (A4, before F2; not delivered)',
-            cand4f='v4 ev10cs4 (A4 with F2: 6 mm plate)')
+            cand4f='v4 ev10cs4 (A4 with F2: 6 mm plate)', cand5='v5 ev10cs5 (A5: 8 mm plate, standby)')
 REST = range(124, 161)
 M1 = json.load(open(os.path.join(run, 'measure2.json')))
 M2 = json.load(open(os.path.join(run, 'measure_v2.json')))
@@ -16,6 +16,7 @@ M3 = json.load(open(os.path.join(run, 'measure_v3.json')))
 M4 = json.load(open(os.path.join(run, 'measure_v4.json')))
 M4F = json.load(open(os.path.join(run, 'measure_v4f.json')))
 M4FO = json.load(open(os.path.join(run, 'measure_v4f_origcav.json')))
+M5 = json.load(open(os.path.join(run, 'measure_v5.json')))
 res = dict(_note='ev10-cavsafe summary; gates per GATES.md; [M] plain MuJoCo 3.17.0 for contacts', sets={})
 for tag, label in TAGS.items():
     fr = json.load(open(os.path.join(run, f'geo_{tag}', f'ep{tag}_frames.json')))
@@ -26,7 +27,7 @@ for tag, label in TAGS.items():
     objs = {o['name']: o for o in fr['summary']['objects']}
     ct = json.load(open(os.path.join(run, f'contacts_{tag}.json')))
     st = json.load(open(os.path.join(run, f'settle_{tag}.json')))
-    me = dict(cand2=M2, cand3=M3, cand4=M4, cand4f=M4F).get(tag, M1)['cand' if tag != 'packed' else 'packed']
+    me = dict(cand2=M2, cand3=M3, cand4=M4, cand4f=M4F, cand5=M5).get(tag, M1)['cand' if tag != 'packed' else 'packed']
     vol = {}
     for n, o in objs.items():
         u, vis, outv = o['packed_union_cm3'], o['vis_cm3'], o['packed_outside_visual_cm3']
