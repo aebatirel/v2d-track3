@@ -6159,3 +6159,11 @@ diagnostic; nothing is picked for submission.
   settled nest 96-104 rows; intrusion 0; blue kept volume 0.384 (fails as all sets). Drop check: beige crosses the
   6 mm floor in 2-8 of 16 copies at 24-32 mm drops (0 at rest frames). Sent to determined-wright (cc focused-pascal,
   keen-heisenberg); target 0 overflow lines at 32x60, hold max <= ~480.
+
+### 2026-11-01 05:15 UTC — ev10cs4 passes determined-wright's checks; training run proposed
+- determined-wright (data): FlashCHORD 32x60 contact budget 0 / 0 overflow lines (hold max 448, overall 459; packed
+  ev10 380 / 9,723) (6e32856). Nest test (4f5ff63): driven beige-vs-blue 0.14 / 0.52 cm, 1.1 / 2.7 deg vs packed
+  1.02 / 2.06 cm, 7.0 / 11.1 deg; floor not crossed (impact 5.49 of 6 mm; settles ~1 mm); free rest drifts 1.6 cm
+  (pose floor).
+- Orchestrator: proposed one eval-10 training at stock limits with --pieces ev10cs4 (focused-pascal runs it; ~$6 [E]
+  like e10v) to keen-heisenberg for the owner's go; check train.log overflow count first, then lift.
