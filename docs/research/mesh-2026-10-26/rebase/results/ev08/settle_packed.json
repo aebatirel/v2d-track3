@@ -1,0 +1,156 @@
+{
+ "set": "ev08",
+ "variant": "packed",
+ "target": "white_pot",
+ "names": [
+  "beige_cup",
+  "white_pot"
+ ],
+ "test_frames": [
+  0,
+  4
+ ],
+ "diagnostic_only": false,
+ "options": {
+  "timestep": 0.01,
+  "cone": "pyramidal",
+  "integrator": "implicitfast",
+  "iterations": 100,
+  "ls_iterations": 50,
+  "impratio": 20.0,
+  "njmax": 512,
+  "nconmax": 256
+ },
+ "mujoco": "3.17.0",
+ "secs": 2.0,
+ "pieces": [
+  53,
+  31
+ ],
+ "frames": [
+  {
+   "frame": 0,
+   "G3": {
+    "final_mm": [
+     1.91,
+     0.58
+    ],
+    "final_deg": [
+     1.01,
+     0.34
+    ],
+    "max_mm": [
+     1.91,
+     0.98
+    ],
+    "max_deg": [
+     1.01,
+     0.34
+    ],
+    "ncon0": 42,
+    "nefc0": 168,
+    "max_ncon": 62,
+    "max_nefc": 248,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 292,
+    "max_ncon": 73,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.6,
+     "max": 1.15,
+     "min": 0.28,
+     "q90": 1.05
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.42,
+     "max": 1.07,
+     "min": 0.1,
+     "q90": 0.665
+    },
+    "partner_final_mm": {
+     "beige_cup": {
+      "n": 16,
+      "median": 1.91,
+      "max": 1.91,
+      "min": 1.91,
+      "q90": 1.91
+     }
+    }
+   }
+  },
+  {
+   "frame": 4,
+   "G3": {
+    "final_mm": [
+     0.83,
+     0.25
+    ],
+    "final_deg": [
+     0.5,
+     0.29
+    ],
+    "max_mm": [
+     0.98,
+     0.25
+    ],
+    "max_deg": [
+     0.5,
+     0.29
+    ],
+    "ncon0": 5,
+    "nefc0": 20,
+    "max_ncon": 49,
+    "max_nefc": 196,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 296,
+    "max_ncon": 74,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.425,
+     "max": 1.26,
+     "min": 0.15,
+     "q90": 1.025
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.36,
+     "max": 1.08,
+     "min": 0.06,
+     "q90": 0.76
+    },
+    "partner_final_mm": {
+     "beige_cup": {
+      "n": 16,
+      "median": 0.83,
+      "max": 0.83,
+      "min": 0.83,
+      "q90": 0.83
+     }
+    }
+   }
+  }
+ ],
+ "G3_pass": true,
+ "secs_run": 3.0
+}

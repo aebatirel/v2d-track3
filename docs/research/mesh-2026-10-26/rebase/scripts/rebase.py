@@ -279,6 +279,26 @@ def main():
         cands['b'] = cb
         rep['rule_b'] = dict(base_level_m=round(m_u, 6), plane_m=round(m_u + d, 6), pieces_untouched=kept,
                              pieces_cut=cut, pieces_dropped=dropped)
+    if cfg.get('amend_a1'):                                         # GATES.md A1: clip at the foot pieces' base level
+        foot = [V for V, sr in zip(o['hulls'], o['src']) if sr is not None]
+        m_f = float(min((V @ u).min() for V in foot))
+        assert 0 <= (m_f - m_u) * 1e3 <= D_MAX_MM, (m_f, m_u)
+        cb, kept, cut, dropped, src1 = [], 0, 0, 0, []
+        for V, sr in zip(o['hulls'], o['src']):
+            sv = V @ u
+            if sv.min() >= m_f - 1e-12:
+                cb.append(V); kept += 1; src1.append(sr)
+            elif sv.max() <= m_f + 1e-12:
+                dropped += 1
+            else:
+                P = clip(V, u, m_f)
+                if P is None:
+                    dropped += 1
+                else:
+                    cb.append(P); cut += 1; src1.append(None)
+        cands['b1'] = cb
+        rep['rule_b1'] = dict(base_level_m=round(m_u, 6), foot_level_m=round(m_f, 6), removed_mm=round((m_f - m_u) * 1e3, 3),
+                              pieces_untouched=kept, pieces_cut=cut, pieces_dropped=dropped)
     vol = lambda hs: round(sum(ConvexHull(V).volume for V in hs) * 1e6, 2)
     rep['packed_cm3'] = vol(o['hulls'])
     # ---------------------------------------------------------------- G1 / G2 / G6 / convexity per candidate
@@ -331,7 +351,7 @@ def main():
                          for n, x in v['G2'].items()}, G2_pass=v.get('G2_pass'), convex=v['convex_all'])
              for k, v in ev.items()}
     print(json.dumps(dict(set=cfg['set'], n_rest=rep['n_rest'], rest_runs=rest_runs, d_mm=rep['d_mm'], u=rep['u'],
-                          u_dev=rep['u_dev_deg'], status=status, rule_b=rep.get('rule_b'), eval=brief,
+                          u_dev=rep['u_dev_deg'], status=status, rule_b=rep.get('rule_b'), rule_b1=rep.get('rule_b1'), eval=brief,
                           partner_rest_runs=prest, secs=rep['secs']), indent=None))
 
 

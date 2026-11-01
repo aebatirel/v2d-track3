@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<robot name="track3_water_pitcher">
+  <!-- Our reconstruction (pipeline/recon_mesh.py). Placeholder mass 0.3 kg as in the public assets; COM/inertia are a
+       uniform triangle-surface estimate over this mesh. -->
+  <mujoco><compiler balanceinertia="true" discardvisual="false"/></mujoco>
+  <link name="object">
+    <inertial>
+      <origin xyz="-0.003263 0.013687 0.019474" rpy="0 0 0"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.00304711634" ixy="9.55662969e-05" ixz="0.000158035691" iyy="0.00234535497" iyz="0.000367367535" izz="0.00153347609"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/water_pitcher.glb" scale="1 1 1"/></geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_00.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_01.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_02.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_03.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_04.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_05.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_06.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_07.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_08.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_09.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_10.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_11.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_12.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_13.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_14.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_15.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_16.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_17.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_18.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_19.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_20.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_21.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_22.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_23.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_24.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_25.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_26.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_27.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_28.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_29.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_30.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_31.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_32.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_33.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_34.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_35.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_36.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_37.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_38.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_39.obj" scale="1 1 1"/></geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/water_pitcher/col_40.obj" scale="1 1 1"/></geometry>
+    </collision>
+  </link>
+</robot>

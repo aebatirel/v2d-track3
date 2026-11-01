@@ -93,7 +93,10 @@ def run(x, opt, nb):
 
 
 def main():
-    cfg = json.load(open(sys.argv[1])); out = sys.argv[2]; variants = sys.argv[3:]
+    args = sys.argv[3:]; extra = []
+    if '--extra' in args:                                           # report-only frames (GATES A1: f0, f152)
+        k = args.index('--extra'); extra = [int(x) for x in args[k + 1].split(',')]; args = args[:k] + args[k + 2:]
+    cfg = json.load(open(sys.argv[1])); out = sys.argv[2]; variants = args
     fr = json.load(open(f'{out}/frames.json')); R = rb.load_ref(cfg['ref']); top = rb.support(cfg['usda'])['top_z']
     names = R['names']; tgt = cfg['target']; io = names.index(tgt)
     rr = sorted(fr['rest_runs'], key=lambda r: -(r[1] - r[0]))[:3]
@@ -101,6 +104,8 @@ def main():
     diag = False
     if not test:
         test, diag = [0], True
+    gated = set(test) if not diag else set()
+    test = sorted(set(test) | set(extra))
     opt = sim_rl(); rng = np.random.default_rng(JIT_SEED)
     J = np.hstack([rng.normal(0, JIT_M, (COPIES, 3)), rng.normal(0, JIT_RAD, (COPIES, 3))])
     ine = {n: urdf_inertial(cfg['objects'][n]['urdf']) for n in names}
@@ -122,7 +127,7 @@ def main():
                 T1 = list(T0); T1[io] = T0[io] @ Jm
                 cp.append(run(xml(objs, T1, top, opt), opt, len(names)))
             ok = (not g3['nan']) and g3['final_mm'][io] <= G3_MM and g3['final_deg'][io] <= G3_DEG
-            res['frames'].append(dict(frame=int(f), G3=g3, G3_pass=bool(ok),
+            res['frames'].append(dict(frame=int(f), gated=bool(f in gated), G3=g3, G3_pass=bool(ok),
                                       G4=dict(max_nefc=max(c['max_nefc'] for c in cp), max_ncon=max(c['max_ncon'] for c in cp),
                                               overflow_copies=int(sum(c['overflow'] for c in cp)),
                                               nan_copies=int(sum(c['nan'] for c in cp)),
@@ -133,7 +138,7 @@ def main():
             print(f"{cfg['set']} {v} f{f}: target {g3['final_mm'][io]} mm / {g3['final_deg'][io]} deg (max {g3['max_mm'][io]} / "
                   f"{g3['max_deg'][io]}), all {g3['final_mm']} mm {g3['final_deg']} deg, nefc0 {g3['nefc0']} max {g3['max_nefc']}; "
                   f"G4 16 copies max nefc {res['frames'][-1]['G4']['max_nefc']} overflow {res['frames'][-1]['G4']['overflow_copies']}", flush=True)
-        res['G3_pass'] = bool(all(x['G3_pass'] for x in res['frames'])) if not diag else None
+        res['G3_pass'] = bool(all(x['G3_pass'] for x in res['frames'] if x['gated'])) if not diag else None
         res['secs_run'] = round(time.time() - t0, 1)
         json.dump(res, open(f'{out}/settle_{v}.json', 'w'), indent=1)
 

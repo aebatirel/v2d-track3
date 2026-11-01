@@ -1,0 +1,47 @@
+{
+ "set": "ev28",
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261024-pack-31ef267/refs/perc2mck/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet",
+ "ref_md5": "6f57deb27e47abcd7ec2afe739354af1",
+ "target": "white_pot",
+ "support": {
+  "top_z": 0.6,
+  "centre_xy": [
+   0.0,
+   0.04
+  ],
+  "radius": 0.288631,
+  "height": 0.02,
+  "file": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261024-pack-31ef267/refs/perc2mck/ep28/reconstructed_stage/t3_ep028_support.usda",
+  "md5": "2eb50d82b13262179328d086221966f2"
+ },
+ "rest_runs": [],
+ "n_rest": 0,
+ "partner_rest_runs": {
+  "plastic_dish_rack": [
+   [
+    188,
+    198
+   ],
+   [
+    207,
+    212
+   ]
+  ]
+ },
+ "packed_count": 31,
+ "packed_count_listed": 31,
+ "visual_md5": {
+  "plastic_dish_rack": "99bc3983ccc7ab5fbc06a1a8f3bf3034",
+  "white_pot": "b55415876a4cbc655b77f07e4a7efb00"
+ },
+ "packed_src": {
+  "plastic_dish_rack": {
+   "npz": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/packed_coacd2/plastic_dish_rack.npz"
+  },
+  "white_pot": {
+   "npz": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/packed_coacd/white_pot.npz"
+  }
+ },
+ "gates_file": "GATES.md (0b8291f)",
+ "verdict": "no T-rest frames: nothing measured"
+}

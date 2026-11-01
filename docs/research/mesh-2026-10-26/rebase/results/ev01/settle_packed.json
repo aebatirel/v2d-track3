@@ -1,0 +1,280 @@
+{
+ "set": "ev01",
+ "variant": "packed",
+ "target": "white_pot",
+ "names": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "test_frames": [
+  0,
+  6,
+  18,
+  313
+ ],
+ "diagnostic_only": false,
+ "options": {
+  "timestep": 0.01,
+  "cone": "pyramidal",
+  "integrator": "implicitfast",
+  "iterations": 100,
+  "ls_iterations": 50,
+  "impratio": 20.0,
+  "njmax": 512,
+  "nconmax": 256
+ },
+ "mujoco": "3.17.0",
+ "secs": 2.0,
+ "pieces": [
+  53,
+  107
+ ],
+ "frames": [
+  {
+   "frame": 0,
+   "G3": {
+    "final_mm": [
+     0.25,
+     4.31
+    ],
+    "final_deg": [
+     0.31,
+     1.56
+    ],
+    "max_mm": [
+     0.61,
+     4.93
+    ],
+    "max_deg": [
+     0.68,
+     1.95
+    ],
+    "ncon0": 4,
+    "nefc0": 16,
+    "max_ncon": 35,
+    "max_nefc": 140,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 288,
+    "max_ncon": 72,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.46,
+     "max": 1.07,
+     "min": 0.08,
+     "q90": 0.955
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.345,
+     "max": 1.12,
+     "min": 0.1,
+     "q90": 0.865
+    },
+    "partner_final_mm": {
+     "white_pot_lid": {
+      "n": 16,
+      "median": 6.575,
+      "max": 7.17,
+      "min": 4.1,
+      "q90": 6.91
+     }
+    }
+   }
+  },
+  {
+   "frame": 6,
+   "G3": {
+    "final_mm": [
+     0.34,
+     4.18
+    ],
+    "final_deg": [
+     0.42,
+     1.65
+    ],
+    "max_mm": [
+     0.69,
+     4.93
+    ],
+    "max_deg": [
+     0.7,
+     1.77
+    ],
+    "ncon0": 4,
+    "nefc0": 16,
+    "max_ncon": 36,
+    "max_nefc": 144,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 256,
+    "max_ncon": 64,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.505,
+     "max": 1.13,
+     "min": 0.12,
+     "q90": 1.02
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.465,
+     "max": 1.22,
+     "min": 0.11,
+     "q90": 0.89
+    },
+    "partner_final_mm": {
+     "white_pot_lid": {
+      "n": 16,
+      "median": 6.26,
+      "max": 6.81,
+      "min": 4.06,
+      "q90": 6.555
+     }
+    }
+   }
+  },
+  {
+   "frame": 18,
+   "G3": {
+    "final_mm": [
+     0.38,
+     6.62
+    ],
+    "final_deg": [
+     0.19,
+     0.81
+    ],
+    "max_mm": [
+     0.43,
+     7.01
+    ],
+    "max_deg": [
+     0.27,
+     0.85
+    ],
+    "ncon0": 18,
+    "nefc0": 72,
+    "max_ncon": 39,
+    "max_nefc": 156,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 276,
+    "max_ncon": 69,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.545,
+     "max": 1.45,
+     "min": 0.12,
+     "q90": 1.155
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.275,
+     "max": 0.99,
+     "min": 0.08,
+     "q90": 0.73
+    },
+    "partner_final_mm": {
+     "white_pot_lid": {
+      "n": 16,
+      "median": 6.515,
+      "max": 6.94,
+      "min": 6.07,
+      "q90": 6.875
+     }
+    }
+   }
+  },
+  {
+   "frame": 313,
+   "G3": {
+    "final_mm": [
+     0.53,
+     5.37
+    ],
+    "final_deg": [
+     0.51,
+     0.93
+    ],
+    "max_mm": [
+     0.84,
+     5.96
+    ],
+    "max_deg": [
+     0.78,
+     1.39
+    ],
+    "ncon0": 3,
+    "nefc0": 12,
+    "max_ncon": 82,
+    "max_nefc": 328,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 392,
+    "max_ncon": 98,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.665,
+     "max": 1.19,
+     "min": 0.28,
+     "q90": 1.08
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.475,
+     "max": 1.3,
+     "min": 0.15,
+     "q90": 1.09
+    },
+    "partner_final_mm": {
+     "white_pot_lid": {
+      "n": 16,
+      "median": 5.32,
+      "max": 8.79,
+      "min": 3.96,
+      "q90": 6.44
+     }
+    }
+   }
+  }
+ ],
+ "G3_pass": true,
+ "secs_run": 10.9
+}
