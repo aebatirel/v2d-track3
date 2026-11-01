@@ -6443,7 +6443,7 @@ Background agent, CPU only, $0, no ground truth read.
   `gate.py`); PREREG draft written, not yet frozen (GRASP settings pending the ep31 dev sweep). GRASP page [L]: 94.2 %
   vs Do-as-I-Do 81.0 % vs SPIDER 71.4 % on Sharpa bimanual OakInk2, "evaluation sets differ"; no budget or compute given
   (code: 2,000 particles, ≤ 64 tempering stages × 5 moves per window).
-- ~12:45 UTC: **finding [M]: both ep13 twin references park the left hand; the hand-over is not in the robot
+- ~12:33 UTC: **finding [M]: both ep13 twin references park the left hand; the hand-over is not in the robot
   reference.** The oracle-twins box built them with `--single_hand 1` (GL_ARGS in its job.log). grasp_lock.py keeps one
   carrier per object (the hand with the most hold frames: right, f46–104), drops the other hand's holds and parks it at
   its frame-0 pose. In `refs/glockt/ep13` and `refs/oracle_glockt/ep13` the left wrist stays at z 57.0 cm for all 190

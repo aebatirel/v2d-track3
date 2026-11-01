@@ -317,6 +317,9 @@ def main():
     p.add_argument('--method', default='anneal', choices=('anneal', 'grasp'))
     p.add_argument('--g_rho', type=float, default=0.9, help='AR(1) knot correlation (GRASP hands: 0.9)')
     p.add_argument('--g_sig', type=float, default=0.8, help='AR(1) innovation width = G_SIG x SIG_* x the RAMP factor')
+    p.add_argument('--g_sig_abs', type=float, nargs=3, default=None, metavar=('POS', 'ROT', 'FIN'),
+                   help='absolute AR(1) innovation widths (m, rad, rad) x the RAMP factor instead of G_SIG x SIG_* '
+                   '(GRASP hands: 0.0044 0.0044 0.044 = sigma 0.0044, finger channel scale 10)')
     p.add_argument('--g_beta', type=float, default=100.0, help='beta = G_BETA / J(warm start) of the window')
     p.add_argument('--g_ess', type=float, default=0.9); p.add_argument('--g_moves', type=int, default=2)
     p.add_argument('--g_step', type=float, default=0.59, help='MALA step in prior widths (GRASP hands 0.0026 / 0.0044)')
@@ -518,7 +521,13 @@ def main():
                     wts = np.ones(H); wts[-1] = a.terminal
                     J = ((cost_w + reg[:, None]) * wts).sum(-1).mean(1) / wts.sum()
                     return J, [(U[i].copy(), cost_w[i, 0].copy()) for i in range(n_)]
-                Dk = a.g_sig * sig[dims][None] * ramp[:, None] * (np.sqrt(2.0) ** bst)
+                if a.g_sig_abs:
+                    gs = np.zeros(A)
+                    for h in range(nh):
+                        s0 = starts[h]; gs[s0:s0 + 3], gs[s0 + 3:s0 + 6], gs[s0 + 6:s0 + 6 + nf[h]] = a.g_sig_abs
+                    Dk = gs[dims][None] * ramp[:, None] * (np.sqrt(2.0) ** bst)
+                else:
+                    Dk = a.g_sig * sig[dims][None] * ramp[:, None] * (np.sqrt(2.0) ** bst)
                 carry = None
                 if (gcarry is not None and gcarry['t'] == t and np.array_equal(gcarry['dims'], dims) and a.g_carry > 0):
                     Up = gcarry['U'][:, gcarry['C']:]                     # shift by the commit, then the plan's decaying tail
