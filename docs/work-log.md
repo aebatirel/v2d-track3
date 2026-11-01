@@ -6335,3 +6335,17 @@ arm and a no-policy replay floor to stage B.
     retraining for the Sharpa would need a dexterous grasp dataset.
   - The closest transferable idea is its generator + discriminator ranking, which our grasp_search / grasp-lock LP
     already plays the role of.
+- 18:50 UTC 1 Nov owner asked for videos of our lowest-scoring eval episodes.
+  - Ranked by H5p7 fresh-draw means (pack-7 policies = pack 11 except eval 10): 14 0.727, 16 0.850, 32 0.852,
+    25 0.878, 20 0.893, 30 0.897.
+  - Sent 6 videos, not in git; session scratchpad lowvid/out/:
+    - evals 16 / 20 / 32: the 30 Oct robot videos (store runs/20261030-vid5-817b135/results/sub_videos/; real |
+      sim-on-camera | 3D with hand);
+    - evals 14 / 30: real cam_a | packed run | worst H5p7 draw (r7);
+    - eval 25: real | packed. Object-only renders via determined-wright's tools/render_eval_rollout.py (CPU,
+      library_v3).
+  - [M] Eval 14 is bimodal: 5 / 10 draws ≈ 0.86–0.91, 5 ≈ 0.51–0.66. The cup's failure onset (> 3 cm for 8 frames) is
+    at frames 42–45 in 7 / 10 draws: the hand-over (the human passes the cup between hands, horizontal). The cup sags
+    9–12 cm below the reference in both good and bad draws; bad draws do not recover. In 3 draws the cup is thrown
+    63–162 cm and in 2 the rack too (144–193 cm).
+  - Eval 30: one failure in 10 (r7: sweeper 25 cm off from f52).
