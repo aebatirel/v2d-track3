@@ -10,14 +10,17 @@ import pyarrow as pa, pyarrow.parquet as pq
 
 M, OUT = sys.argv[1], sys.argv[2]
 R = f'{M}/runs/20261030-orcB-38234d1/refs'
-JOBS = {  # name: (reference dir, asset dir, sequence)
-    'ep13_P': ('glockt/ep13', 'sf/ep13', 't3_ep013'),
-    'ep13_O': ('oracle_glockt/ep13', 'oracle_sf/ep13', 't3_ep013'),
-    'ep31_P': ('glockt/ep31', 'sf/ep31', 't3_ep031'),
+JOBS = {  # name: (reference dir, asset dir, sequence, file)
+    'ep13_P': ('glockt/ep13', 'sf/ep13', 't3_ep013', 'ref_gl_ilc.parquet'),
+    'ep13_O': ('oracle_glockt/ep13', 'oracle_sf/ep13', 't3_ep013', 'ref_gl_ilc.parquet'),
+    'ep31_P': ('glockt/ep31', 'sf/ep31', 't3_ep031', 'ref_gl_ilc.parquet'),
+    # the support-filled references BEFORE the grasp lock (input of the two-hand grasp-lock rebuild, 1 Nov)
+    'ep13_P_sf': ('sf/ep13', 'sf/ep13', 't3_ep013', 'ref_sf.parquet'),
+    'ep13_O_sf': ('oracle_sf/ep13', 'oracle_sf/ep13', 't3_ep013', 'ref_sf.parquet'),
 }
-for name, (rd, ad, seq) in JOBS.items():
+for name, (rd, ad, seq, fn) in JOBS.items():
     H = f'processed/sequence_id={seq}/robot_name=sharpa_wave'
-    src = f'{R}/{rd}/{H}/ref_gl_ilc.parquet'
+    src = f'{R}/{rd}/{H}/{fn}'
     if not os.path.exists(src):
         print(name, 'missing', src); continue
     root = f'{OUT}/{name}'; os.makedirs(f'{root}/{H}', exist_ok=True); os.makedirs(f'{root}/reconstructed_stage', exist_ok=True)

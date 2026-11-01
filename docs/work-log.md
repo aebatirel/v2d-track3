@@ -6443,3 +6443,20 @@ Background agent, CPU only, $0, no ground truth read.
   `gate.py`); PREREG draft written, not yet frozen (GRASP settings pending the ep31 dev sweep). GRASP page [L]: 94.2 %
   vs Do-as-I-Do 81.0 % vs SPIDER 71.4 % on Sharpa bimanual OakInk2, "evaluation sets differ"; no budget or compute given
   (code: 2,000 particles, ≤ 64 tempering stages × 5 moves per window).
+- ~12:45 UTC: **finding [M]: both ep13 twin references park the left hand; the hand-over is not in the robot
+  reference.** The oracle-twins box built them with `--single_hand 1` (GL_ARGS in its job.log). grasp_lock.py keeps one
+  carrier per object (the hand with the most hold frames: right, f46–104), drops the other hand's holds and parks it at
+  its frame-0 pose. In `refs/glockt/ep13` and `refs/oracle_glockt/ep13` the left wrist stays at z 57.0 cm for all 190
+  frames and its frames never come within 15.7 cm of the cup's bounding sphere; in the support-filled input before the
+  lock (`refs/sf/ep13/.../ref_sf.parquet`) the left hand is on the cup over f20–60 (−2.7 to −8.1 cm inside the sphere)
+  and the right hand from ~f40. The cup's reference rises ~9–12 cm by f30–40 (z 68.9 → 78.1 → 80.9 cm), before the
+  right hand arrives (f40: 1.6 cm) and holds (f46). So the robot is asked to lift the cup with no hand near it.
+  - Reading [I]: the oracle twin's O ≈ P (0.544 vs 0.543, both at the floor) shows ep13 is not perception-limited, but
+    its "control-limited" class was measured with this construction for both arms, so it may be construction-limited
+    (the single-hand carry drops the left-hand pick). The solver's hand gate also never enables the left hand on these
+    inputs (0 near frames; right hand 37 of 48 replans).
+  - Consequence for this test: on the twins' references neither solver can make the hand-over happen (the left hand is
+    ≥ 15 cm away and outside the gate; the right hand is 27 cm away at f30). I add a pre-registered second input
+    construction: the same `ref_sf` inputs (P and O) re-locked with the box's GL_ARGS **minus** `--single_hand 1`
+    (two-hand holds, the hand-over kept), then wrist ILC (4 iterations, kp 400), via `tools/cpu_glock_zero.sh`. No
+    REPLAN stage (on ep13 the box's replan was "not better; kept the previous version"). Building now.
