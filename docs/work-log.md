@@ -6349,3 +6349,10 @@ arm and a no-policy replay floor to stage B.
     9–12 cm below the reference in both good and bad draws; bad draws do not recover. In 3 draws the cup is thrown
     63–162 cm and in 2 the rack too (144–193 cm).
   - Eval 30: one failure in 10 (r7: sweeper 25 cm off from f52).
+- 18:58 UTC 1 Nov owner: "I want robot hands as well" (videos of the lowest-scoring eval episodes).
+  - Robot hands need a GPU replay. The evaluator parquets hold no robot state, and the CPU renders are object-only.
+  - Asked focused-pascal (the launching lane; owner's 02:50 permission) to run ops/jobs/sub_videos.sh for evals 14, 25
+    and 30 (+10 ck512 if easy):
+    - 2–3 replays for eval 14 to catch its failure mode;
+    - targeted pulls (the 30 Oct HF-429 lesson); the eval-25 `ck=` fix or skip;
+    - plan and cost in the log first (~$2–4 [E]); ≥ $10 reserve; no videos in git.
