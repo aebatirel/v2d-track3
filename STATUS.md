@@ -5,8 +5,13 @@
 - Boards (9b vs 9a+): AUC 0.81677 vs 0.81757; SP-SR 0.85 =; MP-SR 0.65 =; RPE 3.88283 vs 3.87853; MPPE 2.90186 vs
   2.89663; CD-O 0.33234 =.
 - Record: results/submissions/20261101-track3j-candidate/build_9b/UPLOAD.md (branch claude/keen-heisenberg-engcwz).
-- Overnight geometry route closed (no clean pieces); the root cause is impossible rest poses in our references.
-- Running: the public pose-fix test (bold-albattani, CPU) and the eval-10 njmax-1024 diagnostic (never packed).
+- **Eval 10's floor explained [M]:** training-time contact overflow.
+  - The njmax-1024 diagnostic scores 0.913 vs 0.459 (0.903 when evaluated at stock limits); never packed.
+  - The stock route: the eval-10 retrain on ev10cs5 pieces at 512 (0 overflow), next, for pack 10 under the swap rule.
+- **Pose fix falsified** on public episodes (ΔAUC −0.0107, 17 / 20 worse). The rest overlaps are largely mesh shape;
+  the C0 pot base sits ~7–8 mm below the real base.
+- Next on CPU: re-base the pot / pitcher collision bases (bold-albattani).
+- Credit $28.95 (05:47).
 
 ## 2026-11-01 ~02:50 UTC: owner gave blanket permission; overnight geometry push (keen-heisenberg coordinating)
 - Owner: "I give you permission for everything" (02:50 UTC). Scope and limits: docs/work-log.md 02:50 entry.
