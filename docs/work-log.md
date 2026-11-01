@@ -5979,3 +5979,15 @@ Advice given:
   (best; 0.65), RPE 3.17899 (best; 3.68275), MPPE 2.54531 (best; 2.84759), CD-O 0.33234 =.** The proxy gain
   transferred (+0.37 on one episode ≈ +0.019 AUC). Receipt on claude/keen-heisenberg-engcwz. Nothing pending from
   their side.
+- 18:58 UTC keen-heisenberg relays an owner request (their chat): robot-hand videos of the weakest evals 14, 25, 30
+  (the pack-11 policies = pack 7's for these; eval 10's ck512 only if easy). Under the owner's 02:50 permission.
+  **Plan + cost (before launch)**: one box, `ops/jobs/sub_videos.sh` with PACK_RUN=20261030-c33B-0202139 (pack 7's
+  submission: eval 14 / 25 / 30 checkpoint paths + sha 05b13510 / 7edd445b / bc9fccad, = pack 11's), EPS="14 25 30",
+  REPLAYS="14:3" (eval 14 is bimodal in H5p7: 3 fresh replays, each tagged and scored so the mode is stated), RUNS
+  narrowed to these episodes only (30 Oct lesson: pulling all of pack 6's runs cost ~6 h under HF 429), pack 6's PICK
+  entries for 14 / 25 / 30, ASSET_PIECES ev25 + ev10 as pack 6 / H5. Code changes (opt-in; defaults unchanged; bash -n
+  + a mock of the new logic): PICK `ck=` form handled as pack_eval.sh does (eval 25 failed on 30 Oct without it);
+  REPLAYS="EP:K" → K tagged replays ep<N>_r<i>.mp4. Eval 10's ck512 skipped: it is in no PACK_RUN's submission, so the
+  job's sha check against the submitted rollout would refuse it (not easy). Videos stay out of git (store + H.264 via
+  the tool's ffmpeg step). Cost [E]: ~1.0 h (setup 0.35, pulls 0.1–0.3, 5 replays in 2 waves 0.35, push 0.1) ×
+  ~$1.4/h ≈ $1.4; high ~$4 (HF 429); ledger planned $2.50; credit $23.63 → reserve kept.

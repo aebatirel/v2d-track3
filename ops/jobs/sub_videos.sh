@@ -42,7 +42,12 @@ done
 for x in ${PICK:-}; do                                             # as pack_eval.sh
   IFS=: read -r ep r kind <<< "$x"; d=/content/pick/$r; mkdir -p $d
   sub=results/glock_public/ep$ep/best; [ "$kind" = final ] && sub=results/final_eval/ep$ep
+  if [ "${kind#ck=}" != "$kind" ]; then                            # EP:RUN:ck=<path in the run>, as pack_eval.sh (1 Nov:
+    hf download "$HF_STORE" --repo-type dataset --include "runs/$r/${kind#ck=}" --local-dir $d > /dev/null \
+      || log "sub_videos: PICK $x FAILED" >> $J                    # the 30 Oct eval-25 video failed without this branch)
+  else
   hf download "$HF_STORE" --repo-type dataset --include "runs/$r/$sub/*" --local-dir $d > /dev/null || log "sub_videos: PICK $x FAILED" >> $J
+  fi
 done
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true
 if [ -n "${ASSET_PIECES:-}" ] && [ "$(echo $ASSET_PIECES | wc -w)" -gt 1 ]; then   # several folders: merged per object,
@@ -55,9 +60,9 @@ fc_patches $J || exit 1
 E=$FC/src/flash_chord/configs/embodiment/sharpa_hands_mid.yaml; [ -s $E ] || cp $REPO_DIR/flashchord_conf/embodiment/sharpa_hands_mid.yaml $E
 mkdir -p /workspace && { [ -e /workspace/refs ] || ln -s /content/refs /workspace/refs; } && { [ -e /workspace/pick ] || ln -s /content/pick /workspace/pick; }
 
-one() {
-  local ep=$1 E6 CK sha want TASK REFDIR N MD O sc
-  E6=$(printf %06d $ep); O=$OUTV/ep$ep; mkdir -p $O
+one() {  # $1 episode, $2 optional replay tag (REPLAYS, 1 Nov): outputs ep<N>_<tag>.mp4 and folder ep<N>_<tag>
+  local ep=$1 tag=${2:-} E6 CK sha want TASK REFDIR N MD O sc NAME
+  E6=$(printf %06d $ep); NAME=ep$ep${tag:+_$tag}; O=$OUTV/$NAME; mkdir -p $O
   # the checkpoint the SUBMITTED rollout names (26 Oct: for 3/5/15/16 pack 3's checkpoints.json said seed 43 but the
   # packed rollouts are the first pack's seed-42 ones, kept by cp -n), else the pack's checkpoints.json entry
   CK=$(python -c "import json; print(json.load(open('$PI/submission/results/episode_$E6.json'))['checkpoint'])" | sed 's#^/workspace/#/content/#')
@@ -85,16 +90,27 @@ print(checkpoint_config(read_checkpoint_metadata(sys.argv[1]))['task']['parquet'
   sc=$(python -c "import json; print(json.loads(open('$PI/submission/summary.txt').readline())['$ep'])" 2>/dev/null)
   echo "$CK $TASK $REFDIR $MD" > $O/inputs.txt
   python $REPO_DIR/tools/sim_vs_real_video.py $O/policy_trace.npz $TASK $REFDIR /content/perc2/ep$ep /content/t3/eval/v/ep${ep}_a.mp4 $MD \
-      $O/view.mp4 $OUTV/ep$ep.mp4 --title "eval $ep: submitted policy, replayed like the official evaluator" \
+      $O/view.mp4 $OUTV/$NAME.mp4 --title "eval $ep: submitted policy, replayed like the official evaluator${tag:+ ($tag)}" \
       --score "${sc:+packed rollout sim_vs_ref $sc; this replay $(tail -1 $O/score.txt | cut -c1-60) (vs our reference, not ground truth)}" > $O/svr.log 2>&1 \
-    && log "sub_videos ep$ep: $(du -h $OUTV/ep$ep.mp4 | cut -f1); replay $(tail -1 $O/score.txt | cut -c1-120)" >> $J \
-    || log "sub_videos ep$ep: sim_vs_real FAILED ($(tail -2 $O/svr.log | tr '\n' ' ' | cut -c1-200))" >> $J
+    && log "sub_videos $NAME: $(du -h $OUTV/$NAME.mp4 | cut -f1); replay $(tail -1 $O/score.txt | cut -c1-120)" >> $J \
+    || log "sub_videos $NAME: sim_vs_real FAILED ($(tail -2 $O/svr.log | tr '\n' ' ' | cut -c1-200))" >> $J
 }
 
+reps() {  # REPLAYS="EP:K ..." (opt-in, 1 Nov): K fresh replays of EP (tags r1..rK); unset or absent: one replay, no tag
+  local x; for x in ${REPLAYS:-}; do [ "${x%%:*}" = "$1" ] && { echo "${x#*:}"; return; }; done; echo 0
+}
 pids=()
 for ep in $EPS; do
-  one $ep & pids+=($!)
-  [ ${#pids[@]} -ge ${PAR:-3} ] && { wait "${pids[@]}"; pids=(); }
+  k=$(reps $ep)
+  if [ "$k" -gt 0 ] 2>/dev/null; then
+    for i in $(seq 1 $k); do
+      one $ep r$i & pids+=($!)
+      [ ${#pids[@]} -ge ${PAR:-3} ] && { wait "${pids[@]}"; pids=(); }
+    done
+  else
+    one $ep & pids+=($!)
+    [ ${#pids[@]} -ge ${PAR:-3} ] && { wait "${pids[@]}"; pids=(); }
+  fi
 done
 [ ${#pids[@]} -gt 0 ] && wait "${pids[@]}"
 log "sub_videos: $(ls $OUTV/*.mp4 2>/dev/null | wc -l) videos of $(echo $EPS | wc -w)" >> $J
