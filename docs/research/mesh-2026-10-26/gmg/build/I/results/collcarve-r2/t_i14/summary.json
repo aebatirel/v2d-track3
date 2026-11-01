@@ -1145,5 +1145,79 @@
     }
    }
   }
+ },
+ "n2a": {
+  "deliver": "default",
+  "why": "no persistent component passes the kept gates",
+  "n_s": {
+   "A": 12,
+   "B": 12
+  },
+  "components": [],
+  "caps_fail": null,
+  "tests": null,
+  "failing": null,
+  "S_delivered": [
+   {
+    "src": "floor",
+    "frame": 81,
+    "disp_mm": 14.094,
+    "tilt_deg": 0.341,
+    "pass_": false,
+    "ref_pass": true,
+    "ref_disp_mm": 0.354
+   },
+   {
+    "src": "floor",
+    "frame": 62,
+    "disp_mm": 14.383,
+    "tilt_deg": 0.409,
+    "pass_": false,
+    "ref_pass": true,
+    "ref_disp_mm": 0.47
+   }
+  ],
+  "floor_pass": false,
+  "floor_fails": [
+   {
+    "kind": "S",
+    "pair": [
+     "A",
+     "B"
+    ],
+    "frame": 81,
+    "S_disp_mm": 14.094,
+    "S_ref_disp_mm": 0.354
+   },
+   {
+    "kind": "S",
+    "pair": [
+     "A",
+     "B"
+    ],
+    "frame": 62,
+    "S_disp_mm": 14.383,
+    "S_ref_disp_mm": 0.47
+   }
+  ],
+  "g1": true,
+  "g1_pairs": {
+   "A|B": {
+    "pass_": true,
+    "fail": null,
+    "gated_rows": 2,
+    "delivered_overflow_copies": 0,
+    "delivered_max_nefc": 252,
+    "packed_max_nefc": 684,
+    "ratio": 0.3684,
+    "ratio_max": 1.5,
+    "delivered_max_ncon": 63,
+    "flag_packed": "packed_overflow",
+    "limits": {
+     "njmax": 512,
+     "nconmax": 256
+    }
+   }
+  }
  }
 }

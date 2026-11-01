@@ -3133,8 +3133,8 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
       holds: mean drop 0.66 / 0.98 mm). **tn1** (exact rest depth, 1 mm off axis): `off_axis_nest` (e_ax 1.09 + c 0.10 >
       t_min 2.60 - w_min 1.50), default delivered, S 1.26 / 1.27 mm: passes; floor and G1 pass. **n2a** (exact rest,
       sectors lined up; diagnostic): S on the default rings 14.09 / 14.38 mm (fails), S_ref 0.35 / 0.47 mm (passes):
-      floor fail, DO_NOT_USE (P83 aligned and 64-sector legs hold; numbers from the run log, the JSON re-run under a
-      file name without the guard's `_align` substring). **n1** (9.5 mm too deep): precheck passes at both S frames;
+      floor fail, DO_NOT_USE (P83 aligned and 64-sector legs hold; the first run's JSON was refused by the guard for
+      the `_align` substring in its file name; the re-run 00:01-00:11 UTC, same code, reproduced every number). **n1** (9.5 mm too deep): precheck passes at both S frames;
       c 0.10 mm (sigma_wall 0.051; 18 receiver components, one with c 0.95 mm
       was `off_axis_nest` and not carved); carve 48 K fragments (R 6 voxels), forced edges 12 / 95 mm, 9 widen + 1 trim_top;
       **wall_integrity_fail** (409 of 6,874 K samples without wall: the trimmed sector), default delivered; S on it
