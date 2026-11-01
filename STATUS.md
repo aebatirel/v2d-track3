@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~02:50 UTC: owner gave blanket permission; overnight geometry push (keen-heisenberg coordinating)
+- Owner: "I give you permission for everything" (02:50 UTC). Scope and limits: docs/work-log.md 02:50 entry.
+- Plan: fix the collision overlaps behind evals 10 / 30 / 14.
+  - bold-albattani builds the pieces on CPU.
+  - determined-wright checks them with budget.py.
+  - focused-pascal retrains, confirms under the swap rule, and packs.
+  - keen-heisenberg uploads passing packs (checks at 05:00, 07:30, 10:30 UTC).
+- Running: the D arm (verdict after the G box and the confirmation box); the njmax-1024 diagnostic (eval 10, diagnostic
+  only, never packed).
+- Owner-only: credit top-up.
+
 ## 2026-10-31 ~21:30 UTC: overnight coordination (owner asleep; goal "a new better pack in the morning")
 - **Owner decisions (this chat, ~21:25 UTC):**
   - (1) start the targeted D cells (evals 14, 16, 25, 30, 33, 2 seeds, ≈ $16–23 [E]) TONIGHT on the current packed
@@ -826,17 +837,6 @@ Details and every command: `docs/work-log.md`. Branch `main-bsky37`.
 4. Open questions: njmax overflow and the mid-wrist embodiment vs the rules; spoon frame A vs B.
 - **Open questions for the owner:** njmax 512 overflows in training (raising it changes sim settings → ask the
   organisers); the mid wrist (embodiment) for submissions; spoon frame (A vs B).
-
-### Overnight push, 1 Nov 02:50 UTC (keen-heisenberg coordinating)
-- Owner: "I give you permission for everything" (02:50 UTC). Scope and limits: docs/work-log.md 02:50 entry.
-- Plan: fix the collision overlaps behind evals 10 / 30 / 14.
-  - bold-albattani builds the pieces on CPU.
-  - determined-wright checks them with budget.py.
-  - focused-pascal retrains, confirms under the swap rule, and packs.
-  - keen-heisenberg uploads passing packs (checks at 05:00, 07:30, 10:30 UTC).
-- Running: the D arm (verdict after the G box and the confirmation box); the njmax-1024 diagnostic (eval 10, diagnostic
-  only, never packed).
-- Owner-only: credit top-up.
 
 ## Goal and constraints
 - **Goal:** top of the NVIDIA V2D Challenge Track 3 leaderboard (ranked by AUC), plus the Industry Innovation award.
