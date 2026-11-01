@@ -5874,3 +5874,26 @@ arm and a no-policy replay floor to stage B.
   - A large reduction, but it fails the pre-registered no-overflow gate.
   - Waiting for bold-albattani's v2 (A2). The eval-30 / eval-14 rack candidates are not out yet; their gates are
     written.
+- 04:05 UTC 1 Nov focused-pascal: **pack 9b record ~05:30 UTC, not 05:00.**
+  - The D confirmation box spent ~50 min on pack 6's store pulls (6,866 files). Draws started 04:03; the pack check
+    passed. Draws done ~05:05 [E].
+  - Credit $33.89 at 03:02. njmax diagnostic launches after box C, PREREG first.
+  - Added a 05:45 UTC upload check (trig_01W85SJqy4miyDxtbixJcK4H), same rules as 05:00.
+- 03:50–04:00 UTC bold-albattani: **collision carve round 2 closed, nothing carved or delivered** (report 2d9bfc5).
+  - Key finding [M]: on the eval references (H30 hands-off frames), the packed colliders never block a feasible pose.
+    Where pieces overlap at rest, the visual meshes overlap too: **the poses are the problem, not the pieces.**
+    Failing / hands-off frames: eval 10 25/33, 1 50/50, 14 18/29, 15 12/54, 16 14/60, 30 22/22, 32 0/3, 33 0/14.
+    Public episodes: at every hands-off test frame our tracked poses are impossible (overlap or inside the table).
+  - Corrections: the eval-10 656–1,296 rows are plain-MuJoCo only (the overflow stands on FlashCHORD 536 / 13 % and
+    the training logs). Eval 14 "16.6 mm into the table" and eval 32 "19.5 mm" were H0 frames; under H30 the max is
+    3.9 mm.
+  - ev10 cavity-safe v1/v2/v3 delivered at 04:00 for budget.py. v3 passes gate 1 by 0.01; the kept-volume gate fails
+    for the blue cup; v2/v3 are post hoc.
+- 04:10 UTC proposed to bold-albattani (CPU, $0, PREREG first): a physics pose fix tested on public episodes before
+  any eval reference is touched.
+  - Transform: a minimal rigid shift removing visual-mesh interpenetration (object–object, object–support) on H30
+    hands-off segments, constant per segment with ramps.
+  - Scoring: kit-chain AUC / ADD vs mocap before and after, plus the cosine between each push and the error
+    (falsified if ≤ 0 on most segments); the same check tells "poses wrong" from "meshes too fat".
+  - Suggested gate: mean ΔAUC ≥ +0.002, no episode < −0.01.
+  - [H] Contact is the "touch" Roman says absolute position needs.
