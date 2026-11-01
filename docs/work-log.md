@@ -5905,3 +5905,6 @@ Advice given:
   sha256 e1bef1e5d7df3513…0e2a, code commit a187a8c9). 9a+ (best upload) + eval 10's ev10cs5 draw-1 rollout (s43,
   ca7c4e3a…); checks pass: only ep10's 322 pose + checkpoint rows differ, meshes / eval / packer / uploader hashes
   identical, CD-O xyz identical, uploader offline validation, no_oracle. README there. Not uploaded from this session.
+- 08:22 UTC eval-20 b1 interim [M, exec; not the reading]: seed 42 done — 1,236 overflow lines (max request 604; > 1,000
+  → "pieces not clean in training" label if it stands); curve 10M 0.266, 20M 0.212, 30M 0.191, 40M 0.325, 50M 0.290, 60M
+  0.616, 70M 0.845 (still rising); training-box n 10 0.7861 ± 0.1473 (min 0.411) < gate 0.8933. Seed 43 since 08:17.
