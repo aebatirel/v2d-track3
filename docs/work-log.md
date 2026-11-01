@@ -5727,3 +5727,12 @@ Advice given:
   e10v; first check = overflow lines; plus a reported "material" margin (+0.05 vs both references) after the 9b lesson —
   reported only, the agreed rule unchanged. Cost ~$3–5 (e10v measured $3.25 for the same shape). Build delegated to a
   subagent (worktree); PREREG committed before launch. Owner's standing go (relayed 02:50) covers it.
+- 05:14 UTC keen-heisenberg: go for the eval-10 retrain on ev10cs4 (priority item 3; owner's direct "I give you
+  permission for everything" 02:50 in their chat). Conditions passed to the build agent before its PREREG commit:
+  pack-eligible config = the packed eval-10 checkpoint's except pieces (ev10cs4 by md5) and the stated reference, stock
+  512 / 256; the pack-9b swap rule (a/b/c/s) vs the packed policy's fresh draws, seed choice per pack-9b PREREG §2;
+  confirmation draws only if a seed's training-box mean vs V beats the packed fresh-draw mean vs V (0.4632), else
+  NO-SWAP and stop; reported clause beige lift ≥ 5 cm; **new binding pack-10 inclusion rule: expected sim_vs_ref gain ≥
+  0.02 on the episode (new − packed on both V and P)**; disclose bold-albattani's failed "blue kept volume" gate (0.384;
+  every cavity-safe set fails it) with the acceptance reason (drop / nest tests cover that risk); ~$3.5 [E]; reserve
+  ≥ $10 (credit $29.93 at 05:06). "pack 10 ready: <path>" if it passes; keen-heisenberg verifies and uploads.
