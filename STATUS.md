@@ -16,6 +16,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - Legal route LAUNCHED 06:10: eval-10 retrain on ev10cs5 at stock 512/256, `20261101-e10cs-50c2d90` (58625218), PREREG
   eval10-cs4-20261101 (13c4133); swap rule + pack-10 inclusion ≥ +0.02 on V and P; result ~08:30 UTC [E].
 - Owner question: is a policy trained at njmax 1024 but evaluated at stock limits acceptable? (organisers' call).
+- Also running: eval-20 b1 pitcher retrain `20261101-e20b1-4207ce4` (58631864), PREREG eval20-b1-20261101 (36f255a);
+  gate > 0.8933, inclusion ≥ 0.91335 on P. ev10cs5 s42 interim: 992 overflow lines, training box 0.477 (s43 running).
 
 ## 2026-11-01 05:03 UTC: pack 9b UPLOADED (by keen-heisenberg's session) — AUC 0.81677 vs 9a+ 0.81757; 9a+ stays best
 - Board: SP-SR / MP-SR / CD-O unchanged; RPE 3.88283 (9a+ 3.87853), MPPE 2.90186 (2.89663). The eval-33 swap's GT-free

@@ -5866,3 +5866,18 @@ Advice given:
   official). Seed 43 training since 07:17. [H] Clean pieces at stock limits did not by themselves recover the 1024 gain
   on s42 (still ~10³ overflow lines, plus the pieces' trades: raised floor, deeper settle, unchanged beige start corner);
   the PREREG verdict waits for s43 + the official draws.
+- 07:20 UTC eval-20 b1 build delivered (subagent; worktree branch worktree-agent-ad5ea562458c54efd: 36f255a pieces + job +
+  PREREG + tools, 51baed0 BUILD + cpu/out). PREREG docs/research/work/eval20-b1-20261101/PREREG.md sha256 d13c9116…,
+  committed in 36f255a before any result. [M] Packed eval-20 policy = grasp lock s42, 70M (stored config sha256 61dcd7a6;
+  evb1420 job.log "eval_both ep20: chosen glock, means std 0.1461, glock 0.8923"). Pieces meshes/carve/ev20b1 = the lane's
+  frozen set (83d18d0; 41 pieces = 9c0bc0c), applied via placement_carve.py assets on the packed refs/sf/ep20/assets, SF=0:
+  only the pitcher URDF changes (9 → 41 collisions), visual + inertial unchanged, blue cup untouched. Gate: training-box
+  mean > 0.8933 (exact H5p7 value); rule on P: (a) ≥ 0.89335 (b) 0 draws RPE > 5 cm (c) median RPE ≤ 1.67 cm (s) draw 1
+  ≥ 0.8448; inclusion ≥ 0.91335. Risk disclosed [M]: f192 is hands-off (nearest hand 149 mm; hands-off f165–end) and
+  b1's pitcher is less stable there in FlashCHORD (12.0 cm / 50° vs 6.8 / 28°). Builder's guess P(included) ≈ 0.2,
+  ≈ +0.0008 AUC if included [E]. Mocks 153/153, equivalence 0 diffs / 15,552. Merged (4207ce42); PREREG unchanged;
+  MD5SUMS pass.
+- 07:26 UTC **eval-20 b1 retrain launched**: `ops/vast.sh V2D_COMMIT=4207ce42… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020
+  create 58449260 20261101-e20b1-4207ce4 'bash ops/jobs/ev20_b1.sh'` → instance 58631864 (France, $1.410/h; the UK offer
+  had gone); ledger planned $3.50 (PREREG $2.3 / $3.2 / $5.4). Credit $27.03 before launch; with ev10cs5 running both
+  stay above the $10 reserve.
