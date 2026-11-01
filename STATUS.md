@@ -19,6 +19,9 @@ Report: `docs/research/grasp-ep13-20261101/README.md`; PREREG frozen at d8544cf 
 - **Coordination:** the owner's "perfect following" session (session_01D9UJC8Nz9EEFNmz2yzimzN) owns all GPU; it runs ep13
   single vs two-hand RL (pfA) and eval 14 / 16 / 32 / 33 / 15 retrains, results ≈ 00:00–01:00 UTC; first picker is its
   batch-3 option. No rentals from this session; nothing sent to Kaggle.
+- **23:50 UTC (02:50 TRT), perfect-following's pfA [their M]:** ep13 two-hand vs single-hand RL formally +0.104 but
+  fragile (seed 43 both at the floor); two-hand is worse on evals 14 / 16 (no swap). The big signal is theirs: eval 14
+  with the perception jump at f46 bridged, single-hand, scores 0.880 vs packed 0.727 (confirmations pending).
 
 ## 2026-11-01 ~08:56 UTC: WRAP-UP (keen-heisenberg relayed the owner: start nothing new). Nothing of mine is running.
 - **Done (31 Oct 12:00 – 1 Nov 09:00 UTC):**

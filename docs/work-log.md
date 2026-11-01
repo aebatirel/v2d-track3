@@ -6695,3 +6695,13 @@ Background agent, CPU only, $0, no ground truth read.
   jittered 0.5707 = its input. **Final pre-registered gate (`scripts/gate.py`, results/gate_final.json): test A FAIL
   (d_b 0.000, d_a 0.000), test B FAIL (d_b +0.024, d_a −0.027). [H-grasp] falsified at this CPU budget on ep13; no GPU step
   proposed.** All eight outputs replay bit-identically to their solver trajectories (190 frames each). Runs 13:09–21:22.
+- 23:50 UTC (02:50 TRT): perfect-following's pfA results [their M] (registered AUC vs mocap, NREP 10, chosen checkpoint;
+  public ep13; floor ≈ 0.542): single-hand (as packed) s42 0.378 / s43 0.554; two-hand 0.587 / 0.553; first picker
+  (pfE) s42 0.555, s43 pending. Their rule (mean paired Δ(2h − s) ≥ +0.05) gives +0.104 → formally PASS, but seed 43 has
+  both arms at the floor (fragile). On eval, two-hand is worse than the packed lock (eval 14 0.603 / 0.581 vs packed
+  0.727; eval 16 0.713 / 0.696 vs 0.850: NO-SWAP). Their large signal: eval 14 with the guard-bridged reference
+  (perception re-acquisition jump at f46 repaired), single-hand, seed 42 = 0.880 ± 0.054 vs its own reference (packed
+  0.727 vs P / 0.706 vs bridged); two-hand bridged 0.680; confirmations pending. Reading [I], consistent with this lane:
+  on our perceived ep13 every construction stays near the floor (CPU zero-action, 21:22 entry); on eval 14 the
+  limiter was the perception jump, not the hand assignment. Details: their branch
+  `docs/research/work/pf-hands-20261101/results/README.md`.
