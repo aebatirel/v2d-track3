@@ -5709,3 +5709,13 @@ Advice given:
   README there. Not uploaded from this session. (Correction to the 04:50 entry's aside: training-box vs official means
   differed in both directions — ep30 s42 0.837 → 0.816, ep14 s43 0.697 → 0.686, ep16 s43 0.841 → 0.831, but ep25 s42
   0.816 → 0.858 and ep33 s42 0.943 → 0.936.)
+- 05:03 UTC keen-heisenberg: **pack 9b uploaded** 04:57–05:02 UTC by that session (owner's direct "Upload automatically"
+  and "I give you permission for everything" there; not from this session). Their pre-upload checks pass (sha256, rows,
+  byte diff vs 9a+ = only e000033 696 pose + checkpoint rows and the commit URL, script hashes = kit, verdict vs PREREG
+  2ce1872, dry run, CD-O = staged). **Board [M]: AUC 0.81677 (9a+ 0.81757), SP-SR 0.85 =, MP-SR 0.65 =, RPE 3.88283
+  (3.87853), MPPE 2.90186 (2.89663), CD-O 0.33234 =.** 9b is slightly worse; each board keeps its best, so 9a+ stays
+  the best on AUC / RPE / MPPE. Receipt + UPLOAD.md on claude/keen-heisenberg-engcwz (157ed61).
+  [M] The AUC change −0.0008 over 20 episodes ≈ −0.016 on eval 33 vs mocap, while our GT-free proxy (vs our reference P)
+  said +0.0018. [H] Proxy differences of this size (|Δ| ≲ 0.02 on one episode) carry no sign information about the
+  board; a swap rule that admits them buys robustness at best. For later rules: require a margin larger than the
+  proxy-vs-mocap disagreement measured on public episodes before counting a swap as a gain (to be sized on public data).

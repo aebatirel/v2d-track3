@@ -10,6 +10,10 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-01 05:03 UTC: pack 9b UPLOADED (by keen-heisenberg's session) — AUC 0.81677 vs 9a+ 0.81757; 9a+ stays best
+- Board: SP-SR / MP-SR / CD-O unchanged; RPE 3.88283 (9a+ 3.87853), MPPE 2.90186 (2.89663). The eval-33 swap's GT-free
+  proxy gain (+0.0018) was noise vs mocap (≈ −0.016 on that episode). Receipt on claude/keen-heisenberg-engcwz (157ed61).
+
 ## 2026-11-01 04:56 UTC: PACK 9b READY — results/submissions/20261101-track3j-candidate/build_9b/ (not uploaded here)
 - `track3_submission.parquet`, 9,120 rows, sha256 a6c4105abb4a6a85…44e4a, code https://github.com/aebatirel/v2d-track3/commit/dd24ed412714ecc12cbda275be9b45180a00744e.
 - D-arm swap rule: **eval 33 PASS** (0.936 vs packed 0.923, 0 fails each); 14 / 16 / 25 / 30 NO-SWAP. Pack 9b = 9a+ with
