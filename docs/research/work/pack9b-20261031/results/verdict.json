@@ -1,0 +1,1008 @@
+{
+ "rule": "docs/research/work/pack9b-20261031/PREREG.md sections 4 and 6",
+ "min_n": 10,
+ "episodes": {
+  "14": {
+   "label": "NO-SWAP",
+   "why": [
+    "fails: ['a', 'b', 'c', 's']"
+   ],
+   "clauses": {
+    "a": {
+     "new_mean": 0.6864,
+     "packed_mean": 0.7269,
+     "holds": false,
+     "margin": -0.0405
+    },
+    "b": {
+     "new_fail_rate": 0.8,
+     "packed_fail_rate": 0.4,
+     "holds": false,
+     "margin": -0.4
+    },
+    "c": {
+     "new_median_rpe": 7.4627,
+     "packed_median_rpe": 3.7858,
+     "holds": false,
+     "margin": -3.6768
+    },
+    "s": {
+     "new_draw1": 0.5928,
+     "old_packed_draw": 0.9094,
+     "bar": 0.8594,
+     "holds": false,
+     "margin": -0.2666,
+     "new_draw1_r": 1,
+     "new_draw1_path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep14/episode_000014.parquet"
+    }
+   },
+   "sides": {
+    "new": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.6864,
+      "sd": 0.1,
+      "min": 0.5635,
+      "max": 0.8706,
+      "median": 0.6804
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 9.2662,
+      "sd": 5.3041,
+      "min": 3.1087,
+      "max": 18.6429,
+      "median": 7.4627
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 10.307,
+      "sd": 6.26,
+      "min": 1.7078,
+      "max": 24.9396,
+      "median": 8.4805
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.686,
+      "sd": 0.1009,
+      "min": 0.5651,
+      "max": 0.8714,
+      "median": 0.6841
+     },
+     "fails": 8,
+     "fail_rate": 0.8,
+     "audit_fails": 9,
+     "objects": {
+      "blue_cup": 0.5014,
+      "plastic_dish_rack": 0.8706
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    "packed": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.7269,
+      "sd": 0.1752,
+      "min": 0.5107,
+      "max": 0.9116,
+      "median": 0.7625
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 20.9206,
+      "sd": 30.308,
+      "min": 1.6437,
+      "max": 96.1266,
+      "median": 3.7858
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 11.7483,
+      "sd": 15.8036,
+      "min": 1.5806,
+      "max": 51.3458,
+      "median": 3.5015
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.7232,
+      "sd": 0.1755,
+      "min": 0.4998,
+      "max": 0.9098,
+      "median": 0.7549
+     },
+     "fails": 4,
+     "fail_rate": 0.4,
+     "audit_fails": 5,
+     "objects": {
+      "blue_cup": 0.5676,
+      "plastic_dish_rack": 0.8787
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    }
+   },
+   "equal_floor_note": null,
+   "h_dr_sd_reading": {
+    "new_sd": 0.1,
+    "packed_sd": 0.1752,
+    "lower": true
+   },
+   "candidate": {
+    "decision": "CANDIDATE",
+    "run": "20261031-drG-a1a7e25",
+    "seed": "43",
+    "sha256": "332d549cd885474c2ec425a58060b16e1fd675bd1e22be5adf6e52e9dce02fd2",
+    "store_checkpoint": "runs/20261031-drG-a1a7e25/results/drs43_glock_public/ep14/best/policy.safetensors",
+    "stats": {
+     "42": {
+      "n": 10,
+      "mean": 0.5689,
+      "sd": 0.2127,
+      "min": 0.2816
+     },
+     "43": {
+      "n": 10,
+      "mean": 0.6973,
+      "sd": 0.0949,
+      "min": 0.556
+     }
+    }
+   },
+   "counts": {
+    "conf": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "packed": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "old": {
+     "own": "P",
+     "n_files": 1,
+     "n_scored": 1
+    }
+   },
+   "old_vs_pack7_summary": {
+    "scored": 0.9094,
+    "pack7": 0.9094,
+    "matches": true
+   },
+   "draw1": {
+    "r": 1,
+    "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep14/episode_000014.parquet",
+    "checkpoint_sha256": "332d549cd885474c2ec425a58060b16e1fd675bd1e22be5adf6e52e9dce02fd2"
+   }
+  },
+  "16": {
+   "label": "NO-SWAP",
+   "why": [
+    "fails: ['a', 'b', 'c']"
+   ],
+   "clauses": {
+    "a": {
+     "new_mean": 0.8311,
+     "packed_mean": 0.8498,
+     "holds": false,
+     "margin": -0.0187
+    },
+    "b": {
+     "new_fail_rate": 0.1,
+     "packed_fail_rate": 0.0,
+     "holds": false,
+     "margin": -0.1
+    },
+    "c": {
+     "new_median_rpe": 1.8344,
+     "packed_median_rpe": 1.7925,
+     "holds": false,
+     "margin": -0.0418
+    },
+    "s": {
+     "new_draw1": 0.8692,
+     "old_packed_draw": 0.9079,
+     "bar": 0.8579,
+     "holds": true,
+     "margin": 0.0113,
+     "new_draw1_r": 1,
+     "new_draw1_path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep16/episode_000016.parquet"
+    }
+   },
+   "sides": {
+    "new": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.8311,
+      "sd": 0.0717,
+      "min": 0.7142,
+      "max": 0.9207,
+      "median": 0.8532
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 2.2377,
+      "sd": 1.0809,
+      "min": 1.6125,
+      "max": 5.2042,
+      "median": 1.8344
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 2.6515,
+      "sd": 1.7008,
+      "min": 1.3863,
+      "max": 6.6005,
+      "median": 1.8588
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.8486,
+      "sd": 0.0806,
+      "min": 0.7224,
+      "max": 0.9212,
+      "median": 0.8851
+     },
+     "fails": 1,
+     "fail_rate": 0.1,
+     "audit_fails": 5,
+     "objects": {
+      "plastic_dish_rack": 0.8938,
+      "wooden_spoon": 0.8035
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    "packed": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.8498,
+      "sd": 0.0526,
+      "min": 0.7892,
+      "max": 0.916,
+      "median": 0.8322
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 2.4605,
+      "sd": 1.167,
+      "min": 1.4469,
+      "max": 4.7087,
+      "median": 1.7925
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 2.1331,
+      "sd": 0.7431,
+      "min": 1.2788,
+      "max": 3.3844,
+      "median": 2.1997
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.8418,
+      "sd": 0.0715,
+      "min": 0.7021,
+      "max": 0.9118,
+      "median": 0.8548
+     },
+     "fails": 0,
+     "fail_rate": 0.0,
+     "audit_fails": 6,
+     "objects": {
+      "plastic_dish_rack": 0.9099,
+      "wooden_spoon": 0.7737
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    }
+   },
+   "equal_floor_note": null,
+   "h_dr_sd_reading": {
+    "new_sd": 0.0717,
+    "packed_sd": 0.0526,
+    "lower": false
+   },
+   "candidate": {
+    "decision": "CANDIDATE",
+    "run": "20261031-drG-a1a7e25",
+    "seed": "43",
+    "sha256": "8356f94274b777e4da485b6f9522ef2002fe09e3e749fa037d840a39f19ca40c",
+    "store_checkpoint": "runs/20261031-drG-a1a7e25/results/drs43_glock_public/ep16/best/policy.safetensors",
+    "stats": {
+     "42": {
+      "n": 10,
+      "mean": 0.8228,
+      "sd": 0.0874,
+      "min": 0.6761
+     },
+     "43": {
+      "n": 10,
+      "mean": 0.8411,
+      "sd": 0.0734,
+      "min": 0.7063
+     }
+    }
+   },
+   "counts": {
+    "conf": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "packed": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "old": {
+     "own": "P",
+     "n_files": 1,
+     "n_scored": 1
+    }
+   },
+   "old_vs_pack7_summary": {
+    "scored": 0.9079,
+    "pack7": 0.9079,
+    "matches": true
+   },
+   "draw1": {
+    "r": 1,
+    "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep16/episode_000016.parquet",
+    "checkpoint_sha256": "8356f94274b777e4da485b6f9522ef2002fe09e3e749fa037d840a39f19ca40c"
+   }
+  },
+  "25": {
+   "label": "NO-SWAP",
+   "why": [
+    "fails: ['a', 'b']"
+   ],
+   "clauses": {
+    "a": {
+     "new_mean": 0.858,
+     "packed_mean": 0.8782,
+     "holds": false,
+     "margin": -0.0202
+    },
+    "b": {
+     "new_fail_rate": 0.1,
+     "packed_fail_rate": 0.0,
+     "holds": false,
+     "margin": -0.1
+    },
+    "c": {
+     "new_median_rpe": 2.6818,
+     "packed_median_rpe": 2.9531,
+     "holds": true,
+     "margin": 0.2713
+    },
+    "s": {
+     "new_draw1": 0.9307,
+     "old_packed_draw": 0.8937,
+     "bar": 0.8437,
+     "holds": true,
+     "margin": 0.087,
+     "new_draw1_r": 1,
+     "new_draw1_path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep25/episode_000025.parquet"
+    }
+   },
+   "sides": {
+    "new": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.858,
+      "sd": 0.1795,
+      "min": 0.3681,
+      "max": 0.9466,
+      "median": 0.9263
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 4.4365,
+      "sd": 4.8613,
+      "min": 2.3724,
+      "max": 18.1237,
+      "median": 2.6818
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 2.2702,
+      "sd": 2.4399,
+      "min": 1.1962,
+      "max": 9.091,
+      "median": 1.375
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.851,
+      "sd": 0.1797,
+      "min": 0.3634,
+      "max": 0.9389,
+      "median": 0.921
+     },
+     "fails": 1,
+     "fail_rate": 0.1,
+     "audit_fails": 2,
+     "objects": {
+      "wooden_piece_1": 0.8286,
+      "wooden_piece_2": 0.8733
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    "packed": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.8782,
+      "sd": 0.0133,
+      "min": 0.8564,
+      "max": 0.8949,
+      "median": 0.8824
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 2.9405,
+      "sd": 0.2019,
+      "min": 2.6546,
+      "max": 3.3115,
+      "median": 2.9531
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 1.8348,
+      "sd": 0.1165,
+      "min": 1.6941,
+      "max": 2.0804,
+      "median": 1.7989
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.8678,
+      "sd": 0.0139,
+      "min": 0.8417,
+      "max": 0.8855,
+      "median": 0.8734
+     },
+     "fails": 0,
+     "fail_rate": 0.0,
+     "audit_fails": 0,
+     "objects": {
+      "wooden_piece_1": 0.8782,
+      "wooden_piece_2": 0.8575
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    }
+   },
+   "equal_floor_note": null,
+   "h_dr_sd_reading": {
+    "new_sd": 0.1795,
+    "packed_sd": 0.0133,
+    "lower": false
+   },
+   "candidate": {
+    "decision": "CANDIDATE",
+    "run": "20261031-drS25s42-a1a7e25",
+    "seed": "42",
+    "sha256": "1369113ff968fe8e6a5c95f4cec4f100257bf0e9a7f10471361040c732d1c81e",
+    "store_checkpoint": "runs/20261031-drS25s42-a1a7e25/runs/perc2mckdr/ep25-s42/policy_250003456.safetensors",
+    "stats": {
+     "42": {
+      "n": 10,
+      "mean": 0.8158,
+      "sd": 0.2275,
+      "min": 0.3454
+     },
+     "43": {
+      "n": 10,
+      "mean": 0.4816,
+      "sd": 0.0245,
+      "min": 0.4601
+     }
+    }
+   },
+   "counts": {
+    "conf": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "packed": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "old": {
+     "own": "P",
+     "n_files": 1,
+     "n_scored": 1
+    }
+   },
+   "old_vs_pack7_summary": {
+    "scored": 0.8937,
+    "pack7": 0.8937,
+    "matches": true
+   },
+   "draw1": {
+    "r": 1,
+    "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep25/episode_000025.parquet",
+    "checkpoint_sha256": "1369113ff968fe8e6a5c95f4cec4f100257bf0e9a7f10471361040c732d1c81e"
+   }
+  },
+  "30": {
+   "label": "NO-SWAP",
+   "why": [
+    "fails: ['a', 'c']"
+   ],
+   "clauses": {
+    "a": {
+     "new_mean": 0.8164,
+     "packed_mean": 0.8972,
+     "holds": false,
+     "margin": -0.0809
+    },
+    "b": {
+     "new_fail_rate": 0.1,
+     "packed_fail_rate": 0.1,
+     "holds": true,
+     "margin": 0.0
+    },
+    "c": {
+     "new_median_rpe": 3.4723,
+     "packed_median_rpe": 2.9323,
+     "holds": false,
+     "margin": -0.54
+    },
+    "s": {
+     "new_draw1": 0.9259,
+     "old_packed_draw": 0.9229,
+     "bar": 0.8729,
+     "holds": true,
+     "margin": 0.053,
+     "new_draw1_r": 1,
+     "new_draw1_path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep30/episode_000030.parquet"
+    }
+   },
+   "sides": {
+    "new": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.8164,
+      "sd": 0.1965,
+      "min": 0.2823,
+      "max": 0.9326,
+      "median": 0.8805
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 4.1208,
+      "sd": 2.0649,
+      "min": 2.6621,
+      "max": 9.781,
+      "median": 3.4723
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 2.7142,
+      "sd": 2.6217,
+      "min": 1.3368,
+      "max": 10.0235,
+      "median": 1.892
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.7899,
+      "sd": 0.1933,
+      "min": 0.2736,
+      "max": 0.9155,
+      "median": 0.8587
+     },
+     "fails": 1,
+     "fail_rate": 0.1,
+     "audit_fails": 1,
+     "objects": {
+      "mini_sweeper": 0.7762,
+      "plastic_dish_rack": 0.8036
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    "packed": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.8972,
+      "sd": 0.073,
+      "min": 0.692,
+      "max": 0.9351,
+      "median": 0.9194
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 3.6043,
+      "sd": 2.084,
+      "min": 2.7747,
+      "max": 9.5248,
+      "median": 2.9323
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 1.9242,
+      "sd": 1.4358,
+      "min": 1.3147,
+      "max": 5.9958,
+      "median": 1.4508
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.8767,
+      "sd": 0.0729,
+      "min": 0.6713,
+      "max": 0.9146,
+      "median": 0.8987
+     },
+     "fails": 1,
+     "fail_rate": 0.1,
+     "audit_fails": 1,
+     "objects": {
+      "mini_sweeper": 0.8211,
+      "plastic_dish_rack": 0.9322
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    }
+   },
+   "equal_floor_note": null,
+   "h_dr_sd_reading": {
+    "new_sd": 0.1965,
+    "packed_sd": 0.073,
+    "lower": false
+   },
+   "candidate": {
+    "decision": "CANDIDATE",
+    "run": "20261031-drS30s42-a1a7e25",
+    "seed": "42",
+    "sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+    "store_checkpoint": "runs/20261031-drS30s42-a1a7e25/runs/perc2mckdr/ep30-s42/policy_200007680.safetensors",
+    "stats": {
+     "42": {
+      "n": 10,
+      "mean": 0.8367,
+      "sd": 0.1246,
+      "min": 0.5699
+     },
+     "43": {
+      "n": 10,
+      "mean": 0.8173,
+      "sd": 0.141,
+      "min": 0.4804
+     }
+    }
+   },
+   "counts": {
+    "conf": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "packed": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "old": {
+     "own": "P",
+     "n_files": 1,
+     "n_scored": 1
+    }
+   },
+   "old_vs_pack7_summary": {
+    "scored": 0.9229,
+    "pack7": 0.9229,
+    "matches": true
+   },
+   "draw1": {
+    "r": 1,
+    "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep30/episode_000030.parquet",
+    "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01"
+   }
+  },
+  "33": {
+   "label": "PASS",
+   "why": [
+    "every clause holds"
+   ],
+   "clauses": {
+    "a": {
+     "new_mean": 0.9358,
+     "packed_mean": 0.9234,
+     "holds": true,
+     "margin": 0.0124
+    },
+    "b": {
+     "new_fail_rate": 0.0,
+     "packed_fail_rate": 0.0,
+     "holds": true,
+     "margin": 0.0
+    },
+    "c": {
+     "new_median_rpe": 1.9647,
+     "packed_median_rpe": 2.0599,
+     "holds": true,
+     "margin": 0.0952
+    },
+    "s": {
+     "new_draw1": 0.9419,
+     "old_packed_draw": 0.9401,
+     "bar": 0.8901,
+     "holds": true,
+     "margin": 0.0518,
+     "new_draw1_r": 1,
+     "new_draw1_path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep33/episode_000033.parquet"
+    }
+   },
+   "sides": {
+    "new": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.9358,
+      "sd": 0.0148,
+      "min": 0.9029,
+      "max": 0.9538,
+      "median": 0.9391
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 1.9236,
+      "sd": 0.2449,
+      "min": 1.4998,
+      "max": 2.3227,
+      "median": 1.9647
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 1.2578,
+      "sd": 0.1516,
+      "min": 1.0895,
+      "max": 1.5651,
+      "median": 1.2098
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.9361,
+      "sd": 0.0141,
+      "min": 0.9045,
+      "max": 0.9525,
+      "median": 0.939
+     },
+     "fails": 0,
+     "fail_rate": 0.0,
+     "audit_fails": 0,
+     "objects": {
+      "blue_cup": 0.9458,
+      "wooden_spoon": 0.9264
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    "packed": {
+     "n": 10,
+     "sim_vs_ref": {
+      "n": 10,
+      "mean": 0.9234,
+      "sd": 0.0275,
+      "min": 0.8471,
+      "max": 0.9428,
+      "median": 0.9304
+     },
+     "RPE": {
+      "n": 10,
+      "mean": 2.1787,
+      "sd": 0.5,
+      "min": 1.7845,
+      "max": 3.5547,
+      "median": 2.0599
+     },
+     "MPPE": {
+      "n": 10,
+      "mean": 1.3294,
+      "sd": 0.2476,
+      "min": 1.1468,
+      "max": 2.0157,
+      "median": 1.2666
+     },
+     "AUC": {
+      "n": 10,
+      "mean": 0.9261,
+      "sd": 0.028,
+      "min": 0.8482,
+      "max": 0.945,
+      "median": 0.9333
+     },
+     "fails": 0,
+     "fail_rate": 0.0,
+     "audit_fails": 0,
+     "objects": {
+      "blue_cup": 0.937,
+      "wooden_spoon": 0.9151
+     },
+     "draws": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    }
+   },
+   "equal_floor_note": null,
+   "h_dr_sd_reading": {
+    "new_sd": 0.0148,
+    "packed_sd": 0.0275,
+    "lower": true
+   },
+   "candidate": {
+    "decision": "CANDIDATE",
+    "run": "20261031-drG-a1a7e25",
+    "seed": "42",
+    "sha256": "7c5eb060b8a390ae83ebdcf414e5759393077b3addcd7c8729358e24e8dd6332",
+    "store_checkpoint": "runs/20261031-drG-a1a7e25/results/drs42_glock_public/ep33/best/policy.safetensors",
+    "stats": {
+     "42": {
+      "n": 10,
+      "mean": 0.9428,
+      "sd": 0.0063,
+      "min": 0.9331
+     },
+     "43": {
+      "n": 10,
+      "mean": 0.9219,
+      "sd": 0.0705,
+      "min": 0.7223
+     }
+    }
+   },
+   "counts": {
+    "conf": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "packed": {
+     "own": "P",
+     "n_files": 10,
+     "n_scored": 10
+    },
+    "old": {
+     "own": "P",
+     "n_files": 1,
+     "n_scored": 1
+    }
+   },
+   "old_vs_pack7_summary": {
+    "scored": 0.9401,
+    "pack7": 0.9401,
+    "matches": true
+   },
+   "draw1": {
+    "r": 1,
+    "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep33/episode_000033.parquet",
+    "checkpoint_sha256": "7c5eb060b8a390ae83ebdcf414e5759393077b3addcd7c8729358e24e8dd6332"
+   }
+  }
+ },
+ "pack9b": {
+  "33": {
+   "r": 1,
+   "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep33/episode_000033.parquet",
+   "checkpoint_sha256": "7c5eb060b8a390ae83ebdcf414e5759393077b3addcd7c8729358e24e8dd6332"
+  }
+ }
+}

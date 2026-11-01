@@ -1,0 +1,6 @@
+ep14 NO-SWAP :: fails: ['a', 'b', 'c', 's'] :: a FAIL margin -0.0405 | b FAIL margin -0.4 | c FAIL margin -3.6768 | s FAIL margin -0.2666 :: new 0.6864 (n 10, RPE med 7.4627, fails 8) vs packed 0.7269 (n 10, RPE med 3.7858, fails 4)
+ep16 NO-SWAP :: fails: ['a', 'b', 'c'] :: a FAIL margin -0.0187 | b FAIL margin -0.1 | c FAIL margin -0.0418 | s ok margin 0.0113 :: new 0.8311 (n 10, RPE med 1.8344, fails 1) vs packed 0.8498 (n 10, RPE med 1.7925, fails 0)
+ep25 NO-SWAP :: fails: ['a', 'b'] :: a FAIL margin -0.0202 | b FAIL margin -0.1 | c ok margin 0.2713 | s ok margin 0.087 :: new 0.858 (n 10, RPE med 2.6818, fails 1) vs packed 0.8782 (n 10, RPE med 2.9531, fails 0)
+ep30 NO-SWAP :: fails: ['a', 'c'] :: a FAIL margin -0.0809 | b ok margin 0.0 | c FAIL margin -0.54 | s ok margin 0.053 :: new 0.8164 (n 10, RPE med 3.4723, fails 1) vs packed 0.8972 (n 10, RPE med 2.9323, fails 1)
+ep33 PASS :: every clause holds :: a ok margin 0.0124 | b ok margin 0.0 | c ok margin 0.0952 | s ok margin 0.0518 :: new 0.9358 (n 10, RPE med 1.9647, fails 0) vs packed 0.9234 (n 10, RPE med 2.0599, fails 0)
+pack 9b swaps (PASS): ['33']

@@ -5686,3 +5686,20 @@ Advice given:
   (best ev10cs3 110 / 576 lines vs packed 380 / 9,723) → no retrain on new pieces for 10 / 14 / 30 by the agreed rule.
   Pack 10 items 3–5 have no gated input tonight. [H] next candidate if the njmax diagnostic supports overflow as the
   cause: ev10cs3 + njmax 1024 (diagnostic only; needs the owner's go) — the legal route stays a reference-pose fix.
+- 04:50 UTC **D arm verdict (PREREG pack9b-20261031 §4/§6; after_c.sh, committed before the result; tools/dr_verdict.py)**:
+  only **eval 33 PASS**; 14 / 16 / 25 / 30 NO-SWAP. Confirmation box 20261101-drC-a1a7e25 (58608674, Spain $1.377/h):
+  job rc 0 after 104 min, env restored, dr_pack_check ok on both draw paths (evaluated = candidates = 14 16 25 30 33, no
+  failures); 105/105 files pulled; ledger actual $2.17. Clause table [M], new (C, 10 official draws) vs packed (H5p7, 10
+  fresh draws), GT-free sim_vs_ref vs P:
+    ep14 s43: 0.6864 vs 0.7269 (a −0.0405), fail rate 8/10 vs 4/10, median RPE 7.46 vs 3.79 cm, draw 1 0.5928 vs old
+          0.9094 (s −0.2666) → NO-SWAP (a b c s)
+    ep16 s43: 0.8311 vs 0.8498 (a −0.0187), fails 1 vs 0, med RPE 1.83 vs 1.79 → NO-SWAP (a b c)
+    ep25 s42: 0.8580 vs 0.8782 (a −0.0202), fails 1 vs 0, med RPE 2.68 vs 2.95 (c ok) → NO-SWAP (a b)
+    ep30 s42: 0.8164 vs 0.8972 (a −0.0809), fails 1 vs 1, med RPE 3.47 vs 2.93 → NO-SWAP (a c)
+    ep33 s42: 0.9358 vs 0.9234 (a +0.0124), fails 0 vs 0, med RPE 1.96 vs 2.06, draw 1 0.9419 vs old 0.9401 → PASS
+  Candidate for 33: run 20261031-drG-a1a7e25 seed 42, checkpoint sha256 7c5eb060…; pack 9b swap = C's r1/ep33 rollout.
+  [M] Training-box means overstated D on 14/16/25/30 relative to the official evaluator (e.g. ep30 s42 0.837 → 0.816,
+  ep25 s42 0.816 → 0.858 up, ep14 0.697 → 0.686); the packed side's fresh draws were higher than the D candidates on four
+  of five. [E] Expected leaderboard effect of the 33 swap: draw 1 0.9419 vs the packed rollout's 0.9401 → +0.0018
+  sim_vs_ref on one of 20 episodes ≈ +0.0001 AUC (noise level); its value is robustness (D policy sd 0.006 on the
+  training box; official draws min 0.903 vs packed min 0.847). D training + confirmation total $19.41 measured.
