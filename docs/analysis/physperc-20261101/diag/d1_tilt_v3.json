@@ -1,0 +1,372 @@
+{
+ "0": {
+  "white_pot": {
+   "slot": 0,
+   "e_now": 1.78,
+   "e_prior": 2.22,
+   "match_deg": 0.6,
+   "prob": 0.368,
+   "gap_mm": 1.4,
+   "hand_mm": 344.8,
+   "reg_deg": 1.69
+  },
+  "white_pot_lid": {
+   "slot": 1,
+   "e_now": 169.91,
+   "e_prior": 159.94,
+   "match_deg": 19.19,
+   "prob": 0.238,
+   "gap_mm": -53.9,
+   "hand_mm": 262.6,
+   "reg_deg": 1.74
+  }
+ },
+ "2": {
+  "white_pot": {
+   "slot": 0,
+   "e_now": 1.99,
+   "e_prior": 1.87,
+   "match_deg": 1.95,
+   "prob": 0.368,
+   "gap_mm": -2.6,
+   "hand_mm": Infinity,
+   "reg_deg": 1.83
+  },
+  "white_pot_lid": {
+   "slot": 1,
+   "e_now": 2.36,
+   "e_prior": 1.17,
+   "match_deg": 1.33,
+   "prob": 0.497,
+   "gap_mm": 78.9,
+   "hand_mm": Infinity,
+   "reg_deg": 1.05
+  }
+ },
+ "11": {
+  "blue_cup": {
+   "slot": 0,
+   "e_now": 1.21,
+   "e_prior": 2.0,
+   "match_deg": 1.25,
+   "prob": 0.029,
+   "gap_mm": 0.0,
+   "hand_mm": 148.7,
+   "reg_deg": 1.86
+  },
+  "beige_cup": {
+   "slot": 1,
+   "e_now": 5.25,
+   "e_prior": 49.59,
+   "match_deg": 44.35,
+   "prob": 0.055,
+   "gap_mm": -1.0,
+   "hand_mm": 320.9,
+   "reg_deg": 145.26
+  }
+ },
+ "12": {
+  "blue_cup": {
+   "slot": 0,
+   "e_now": 4.01,
+   "e_prior": 2.21,
+   "match_deg": 3.81,
+   "prob": 0.029,
+   "gap_mm": -4.6,
+   "hand_mm": 241.1,
+   "reg_deg": 0.82
+  },
+  "plastic_dish_rack": {
+   "slot": 1,
+   "e_now": 3.4,
+   "e_prior": 0.78,
+   "match_deg": 2.65,
+   "prob": 0.443,
+   "gap_mm": -16.4,
+   "hand_mm": 102.2,
+   "reg_deg": 1.32
+  }
+ },
+ "13": {
+  "blue_cup": {
+   "slot": 0,
+   "e_now": 3.88,
+   "e_prior": 2.33,
+   "match_deg": 3.29,
+   "prob": 0.029,
+   "gap_mm": -2.4,
+   "hand_mm": 195.4,
+   "reg_deg": 1.47
+  },
+  "plastic_dish_rack": {
+   "slot": 1,
+   "e_now": 2.55,
+   "e_prior": 0.44,
+   "match_deg": 2.12,
+   "prob": 0.443,
+   "gap_mm": -17.7,
+   "hand_mm": 133.5,
+   "reg_deg": 1.77
+  }
+ },
+ "18": {
+  "mini_sweeper": {
+   "slot": 0,
+   "e_now": 2.59,
+   "e_prior": 2.35,
+   "match_deg": 0.26,
+   "prob": 0.016,
+   "gap_mm": -5.8,
+   "hand_mm": 160.8,
+   "reg_deg": 3.1
+  },
+  "mini_dust_pan": {
+   "slot": 1,
+   "e_now": 2.34,
+   "e_prior": 2.45,
+   "match_deg": 2.82,
+   "prob": 0.56,
+   "gap_mm": -7.1,
+   "hand_mm": 124.4,
+   "reg_deg": 2.44
+  }
+ },
+ "21": {
+  "blue_cup": {
+   "slot": 0,
+   "e_now": 2.06,
+   "e_prior": 2.94,
+   "match_deg": 2.05,
+   "prob": 0.029,
+   "gap_mm": -1.2,
+   "hand_mm": 118.9,
+   "reg_deg": 1.36
+  },
+  "water_pitcher": {
+   "slot": 1,
+   "e_now": 6.12,
+   "e_prior": 64.47,
+   "match_deg": 59.33,
+   "prob": 0.081,
+   "gap_mm": -8.4,
+   "hand_mm": 91.8,
+   "reg_deg": 2.65
+  }
+ },
+ "22": {
+  "blue_cup": {
+   "slot": 0,
+   "e_now": 2.59,
+   "e_prior": 2.28,
+   "match_deg": 2.34,
+   "prob": 0.029,
+   "gap_mm": -2.9,
+   "hand_mm": 124.0,
+   "reg_deg": 1.64
+  },
+  "water_pitcher": {
+   "slot": 1,
+   "e_now": 6.31,
+   "e_prior": 64.82,
+   "match_deg": 60.02,
+   "prob": 0.081,
+   "gap_mm": -8.1,
+   "hand_mm": 121.9,
+   "reg_deg": 3.19
+  }
+ },
+ "23": {
+  "wooden_piece_1": {
+   "slot": 0,
+   "e_now": 3.51,
+   "e_prior": 2.41,
+   "match_deg": 4.46,
+   "prob": 0.498,
+   "gap_mm": -18.3,
+   "hand_mm": 103.4,
+   "reg_deg": 0.58
+  },
+  "wooden_piece_2": {
+   "slot": 1,
+   "e_now": 2.13,
+   "e_prior": 0.73,
+   "match_deg": 2.76,
+   "prob": 0.487,
+   "gap_mm": -13.0,
+   "hand_mm": 116.1,
+   "reg_deg": 0.44
+  }
+ },
+ "24": {
+  "wooden_piece_1": {
+   "slot": 0,
+   "e_now": 3.13,
+   "e_prior": 2.32,
+   "match_deg": 4.1,
+   "prob": 0.498,
+   "gap_mm": -9.3,
+   "hand_mm": 27.3,
+   "reg_deg": 0.35
+  },
+  "wooden_piece_2": {
+   "slot": 1,
+   "e_now": 2.58,
+   "e_prior": 0.63,
+   "match_deg": 2.07,
+   "prob": 0.487,
+   "gap_mm": -16.7,
+   "hand_mm": 329.3,
+   "reg_deg": 0.47
+  }
+ },
+ "26": {
+  "plastic_dish_rack": {
+   "slot": 0,
+   "e_now": 3.48,
+   "e_prior": 0.97,
+   "match_deg": 2.51,
+   "prob": 0.443,
+   "gap_mm": -16.6,
+   "hand_mm": 212.3,
+   "reg_deg": 1.82
+  },
+  "white_pot": {
+   "slot": 1,
+   "e_now": 6.52,
+   "e_prior": 3.77,
+   "match_deg": 5.36,
+   "prob": 0.29,
+   "gap_mm": 14.1,
+   "hand_mm": 124.7,
+   "reg_deg": 1.77
+  }
+ },
+ "27": {
+  "plastic_dish_rack": {
+   "slot": 0,
+   "e_now": 4.14,
+   "e_prior": 0.99,
+   "match_deg": 3.15,
+   "prob": 0.443,
+   "gap_mm": -18.0,
+   "hand_mm": 112.2,
+   "reg_deg": 1.24
+  },
+  "white_pot": {
+   "slot": 1,
+   "e_now": 4.16,
+   "e_prior": 3.07,
+   "match_deg": 3.7,
+   "prob": 0.368,
+   "gap_mm": -10.8,
+   "hand_mm": 78.9,
+   "reg_deg": 1.57
+  }
+ },
+ "31": {
+  "mini_sweeper": {
+   "slot": 0,
+   "e_now": 3.69,
+   "e_prior": 6.77,
+   "match_deg": 10.46,
+   "prob": 0.016,
+   "gap_mm": -0.0,
+   "hand_mm": 232.5,
+   "reg_deg": 3.04
+  },
+  "plastic_dish_rack": {
+   "slot": 1,
+   "e_now": 3.35,
+   "e_prior": 0.6,
+   "match_deg": 2.79,
+   "prob": 0.443,
+   "gap_mm": -13.1,
+   "hand_mm": 90.0,
+   "reg_deg": 1.56
+  }
+ },
+ "39": {
+  "mini_dust_pan": {
+   "slot": 0,
+   "e_now": 0.85,
+   "e_prior": 3.22,
+   "match_deg": 3.09,
+   "prob": 0.56,
+   "gap_mm": -5.7,
+   "hand_mm": 297.6,
+   "reg_deg": 2.41
+  }
+ },
+ "40": {
+  "mini_dust_pan": {
+   "slot": 0,
+   "e_now": 2.01,
+   "e_prior": 4.03,
+   "match_deg": 2.55,
+   "prob": 0.56,
+   "gap_mm": -4.0,
+   "hand_mm": 248.0,
+   "reg_deg": 2.47
+  }
+ },
+ "41": {
+  "white_pot": {
+   "slot": 0,
+   "e_now": 2.17,
+   "e_prior": 2.54,
+   "match_deg": 1.47,
+   "prob": 0.368,
+   "gap_mm": -0.8,
+   "hand_mm": 245.5,
+   "reg_deg": 1.71
+  }
+ },
+ "42": {
+  "white_pot": {
+   "slot": 0,
+   "e_now": 1.03,
+   "e_prior": 3.2,
+   "match_deg": 2.19,
+   "prob": 0.368,
+   "gap_mm": -1.9,
+   "hand_mm": 176.4,
+   "reg_deg": 1.66
+  }
+ },
+ "43": {
+  "white_pot": {
+   "slot": 0,
+   "e_now": 4.37,
+   "e_prior": 0.68,
+   "match_deg": 4.25,
+   "prob": 0.29,
+   "gap_mm": -6.8,
+   "hand_mm": 213.9,
+   "reg_deg": 1.88
+  }
+ },
+ "44": {
+  "white_pot": {
+   "slot": 0,
+   "e_now": 1.51,
+   "e_prior": 2.17,
+   "match_deg": 1.89,
+   "prob": 0.368,
+   "gap_mm": -3.3,
+   "hand_mm": 216.5,
+   "reg_deg": 1.8
+  }
+ },
+ "45": {
+  "white_pot": {
+   "slot": 0,
+   "e_now": 2.28,
+   "e_prior": 3.01,
+   "match_deg": 1.45,
+   "prob": 0.368,
+   "gap_mm": -1.6,
+   "hand_mm": 229.9,
+   "reg_deg": 2.05
+  }
+ }
+}

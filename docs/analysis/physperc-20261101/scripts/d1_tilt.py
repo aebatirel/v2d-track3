@@ -43,6 +43,7 @@ for e in EPS:
         res[e][n] = dict(slot=s, e_now=round(ang(g_ours, g_true), 2), e_prior=round(ang(g_prior, g_true), 2),
                          match_deg=round(match, 2), prob=round(float(sp['prob'][k]), 3), gap_mm=round(gap * 1000, 1),
                          hand_mm=round(PL.hand_dist(J, 0, f'{MD}/{n}.glb', P[n][0]) * 1000, 1),
-                         reg_deg=round(float(np.degrees(Rot.from_matrix(B).magnitude())), 2))
-        print(e, n, res[e][n], flush=True)
+                         reg_deg=round(float(np.degrees(Rot.from_matrix(B).magnitude())), 2),
+                         g_true=g_true.tolist(), g_ours=g_ours.tolist(), g_prior=g_prior.tolist())
+        print(e, n, {k: v for k, v in res[e][n].items() if not k.startswith('g_')}, flush=True)
 json.dump(res, open(OUT, 'w'), indent=1)
