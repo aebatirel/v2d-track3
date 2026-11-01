@@ -195,7 +195,27 @@ for i in range(B):
                                              median_depth_mm=round(float(np.median(R_[:, 6])), 2)),
                          frames=[list(map(lambda x: round(float(x), 2), r)) for r in rows]))
 res['mesh_check'] = mesh
+# bottoms (mocap world z taken as up): lowest point of our mesh at the mocap pose minus that of the scan at the mocap pose,
+# at the object's rest frames; negative = our mesh reaches lower than the scan (our mesh 'too fat' at the bottom)
+bott = []
+for s, n in enumerate(names):
+    fr = np.nonzero(rest[n])[0][::2]
+    if not len(fr):
+        continue
+    sv = np.asarray(scans[n].v); ov = np.asarray(ours[n].v)
+    rows = []
+    for t in fr:
+        Ra = mat(ref[t, 0, s]); O = Ra @ np.linalg.inv(Xmat(s)); Sm = mat(gt[t, s])
+        rows.append((int(t), 1000 * L.tf(O, ov)[:, 2].min(), 1000 * L.tf(Sm, sv)[:, 2].min()))
+    R_ = np.array(rows)
+    bott.append(dict(obj=n, rest_frames_sampled=int(len(R_)),
+                     ours_minus_scan_lowest_mm_median=round(float(np.median(R_[:, 1] - R_[:, 2])), 2),
+                     scan_lowest_z_mm_median=round(float(np.median(R_[:, 2])), 2),
+                     scan_lowest_z_mm_iqr=round(float(np.subtract(*np.percentile(R_[:, 2], [75, 25]))), 2)))
+res['bottom_check'] = bott
 json.dump(res, open(a.out, 'w'), indent=1)
-print(json.dumps({k: v for k, v in res.items() if k not in ('mesh_check',)}, indent=None)[:2000])
+print(json.dumps({k: v for k, v in res.items() if k not in ('mesh_check', 'bottom_check')}, indent=None)[:2000])
 for m in mesh:
     print(m['pair'], m['rest_frames'], m['ours_at_ours'], m['ours_at_mocap'], m['scans_at_mocap'])
+for b_ in bott:
+    print(b_)

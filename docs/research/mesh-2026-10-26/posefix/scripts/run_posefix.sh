@@ -1,11 +1,11 @@
 #!/bin/bash
 # posefix runner (PREREG.md in this folder). CPU, $0.
-#   transform  : variants A (gated), B, C (report only) on the 20 public tracks -> SP/out/<V>/ep<e>/poses_world_vo.npz,
+#   transform  : variants A (gated), B, C, D (report only) on the 20 public tracks -> SP/out/<V>/ep<e>/poses_world_vo.npz,
 #                then sha256 of every written track -> SP/out/<V>/tracks_sha256.txt (BEFORE any scoring step reads it)
 #   stage0     : stage the scoring inputs (public parquets incl. mocap, public scans) under SP/t3; only the scorer
 #                and pf_diag.py read them
-#   score      : score_registered.py on before (original tracks) and A, B, C; each run once; existing JSONs skipped
-#   diag       : pf_diag.py per episode for A (and B, C report only)
+#   score      : score_registered.py on before (original tracks) and A, B, C, D; each run once; existing JSONs skipped
+#   diag       : pf_diag.py per episode for A (and B, C, D report only)
 # Usage: bash run_posefix.sh transform|stage0|score|diag
 set -u
 S=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad
@@ -18,12 +18,13 @@ EPS="0 2 11 12 13 18 21 22 23 24 26 27 31 39 40 41 42 43 44 45"
 what=${1:-}
 
 if [ "$what" = transform ]; then
-  for V in A B C; do
-    mkdir -p $SP/out/$V
-    nice -n 5 $PY $SC/pf_transform.py $V $SP/tracks $SP/out/$V $EPS > $SP/out/$V/transform.log 2>&1 \
-      && echo "$(date -u +%FT%TZ) transform $V OK" || echo "$(date -u +%FT%TZ) transform $V FAIL"
-    ( cd $SP/out/$V && sha256sum ep*/poses_world_vo.npz > tracks_sha256.txt )
+  for V in A B C D; do
+    ( mkdir -p $SP/out/$V
+      nice -n 5 $PY $SC/pf_transform.py $V $SP/tracks $SP/out/$V $EPS > $SP/out/$V/transform.log 2>&1 \
+        && echo "$(date -u +%FT%TZ) transform $V OK" || echo "$(date -u +%FT%TZ) transform $V FAIL"
+      ( cd $SP/out/$V && sha256sum ep*/poses_world_vo.npz ep*/posefix.json > tracks_sha256.txt ) ) &
   done
+  wait
 fi
 
 if [ "$what" = stage0 ]; then
@@ -55,13 +56,13 @@ one() {   # tag tracks_root ep
 
 if [ "$what" = score ]; then
   ( for e in $EPS; do one before $SP/tracks $e; one A $SP/out/A $e; done ) &
-  ( for e in $EPS; do one B $SP/out/B $e; one C $SP/out/C $e; done ) &
+  ( for e in $EPS; do one B $SP/out/B $e; one C $SP/out/C $e; one D $SP/out/D $e; done ) &
   wait
-  echo "SCORE done: $(ls $SP/runs/*/ep*.json 2>/dev/null | wc -l) of 80 JSONs"
+  echo "SCORE done: $(ls $SP/runs/*/ep*.json 2>/dev/null | wc -l) of 100 JSONs"
 fi
 
 if [ "$what" = diag ]; then
-  for V in A B C; do
+  for V in A B C D; do
     mkdir -p $SP/diag/$V
     for e in $EPS; do
       [ -s $SP/diag/$V/ep$e.json ] && continue

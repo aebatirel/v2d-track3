@@ -16,3 +16,9 @@ Scratch: /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca13
   0.5 mm dense within 8 mm). First KD-only build too slow (3.8M nodes x 630k samples); replaced, rebuild running.
 - 2026-11-01T04:26:09Z GT-free look at ep11 (our poses, our meshes): end rest f~104-136 both cups float above our table
   (blue 20-24 mm, beige 34-35 mm), visual overlap ~97 cm3; start f0-30 blue on table (0 to -2.4 mm), beige 6-7 mm up.
+- 2026-11-01T04:53:30Z GT-free measurement of all 20 eps -> gtfree_measure_summary.txt (table penetration at rest is
+  pervasive: pots -6..-13 mm, racks -3..-11, dust pan -5..-12; pair overlaps: ep11 ~93 cm3, ep24 10.5, ep31 5.8, ep2
+  4.6, ep13 4.1, ep12 2.4 cm3 median).
+- 2026-11-01T04:53:30Z dev transform runs (GT-free, not scored) on 0 2 11 12 13 24 31 41: q90 success overshoots on
+  jittery segments -> median frame (Q_OK 0.5); lid-on-pot needs inheritance; GN stalls on thin shells -> lift stage 1b.
+- 2026-11-01T04:53:30Z PREREG.md written (variants A gated; B, C, D report only). Committing before any scoring.
