@@ -1775,3 +1775,8 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   the table, the flagged reference problem). Swept rest volume (guest packed pieces + 1.0 mm) inside the packed rack:
   eval 30 76.0 cm3, of which 49.3 inside the rack mesh (swept pose floor) and 26.7 beyond it in 10 of 43 pieces; eval
   14 34.3 / 26.5 / 7.8 cm3 in 6 pieces. Pieces 3, 4, 13 touch both slots. Rack mesh outside the packed union 0.02 cm3.
+- 03:08 GATES.md written (results/rackslot/GATES.md) before any candidate exists; it reached origin in the WIP snapshot
+  f352c79 (03:06), committed again here with the scripts so far. Owner gate 1 is reported as written and judged
+  "FAIL (pose floor)" where the floor exceeds it; the candidate is judged on G1x (overlap beyond the guest-pieces-in-
+  rack-mesh floor, same thresholds). Delivery rule: first candidate in build order (c1-ev30, c1-ev14, c1-both) passing
+  G1x-G5 and C1-C3; no candidate changed after measurement.

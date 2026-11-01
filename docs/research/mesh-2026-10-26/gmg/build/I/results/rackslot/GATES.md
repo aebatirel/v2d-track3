@@ -1,6 +1,6 @@
 # Gates for the rack slot pieces (evals 30 and 14)
 
-Written 1 Nov 2026, 03:10 UTC, and pushed **before any candidate was built or measured**. Owner go 02:50 UTC (relayed by
+Written 1 Nov 2026, 03:06 UTC (first pushed in f352c79, a WIP snapshot), and pushed **before any candidate was built or measured**. Owner go 02:50 UTC (relayed by
 the orchestrator). They apply to every candidate in this folder. Thresholds come from the owner's task unless stated.
 Tags: [M] measured, [E] estimate, [H] hypothesis.
 
