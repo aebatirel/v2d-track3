@@ -1975,3 +1975,7 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   point) at the step-8 impact of the hands-free 24 mm drop. [H] soft-contact sink ~ v x timeconst ~ 14 mm >> any floor
   that fits in this cup. Trades: all-frame max overlap 17.1 cm3 at f109 (insertion frames; 9.5 with 3 mm), blue COM
   +12.8 mm toward its base. README section 9; FlashCHORD 32x60 pending (determined-wright).
+- 05:13 Orchestrator: standby ev10cs5 in a NEW folder; ev10cs4 frozen (FROZEN.md fa2ec41) for focused-pascal's retrain.
+  Evidence [R]: determined-wright's 8 mm plate variant nest test (rest max depth 4.02 vs 5.49 mm, 0 through). A5 in
+  GATES.md before building: v5 = v4 with --plate_t 0.008 (cavity floor 2 mm higher); all other pieces must match
+  ev10cs4 by md5.

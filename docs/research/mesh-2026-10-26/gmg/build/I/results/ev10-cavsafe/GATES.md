@@ -259,3 +259,40 @@ with these changes:
 - The blue outer surface lies up to 3.3-3.9 mm outside its lathe profile at the sector edges (as in v3).
 - The beige stays 8 mm plus up to 3 mm inside its mesh, and the beige base has 4 rim pieces.
 - The beige still settles to the blue floor, 4-27 mm deeper than the reference puts it (3 mm less with F2).
+
+## Amendment A5 (1 Nov, 05:13 UTC): standby variant v5 (`ev10cs5`, new folder), written before building it
+
+**Input (data, relayed by the orchestrator).** determined-wright, 05:17 UTC, ev10_nest_test/README.md "8 mm plate
+variant" [R]. They moved ev10cs4's `blue_cup/piece_16` (the floor plate) cavity face 2 mm into the cavity, from a 6 mm
+to an 8 mm plate (still convex, 30.7 cm3), with everything else unchanged. FlashCHORD nest test results:
+
+| Measure | 8 mm plate | 6 mm plate |
+|---|---|---|
+| Rest from f124: max depth into the plate | 4.02 mm | 5.49 mm |
+| Rest from f124: settled median depth | 0.49 mm | about 1 mm |
+| Rest from f124: beige vs blue (median) | 1.30 cm | 1.59 cm |
+| Driven: max depth | 1.5 mm | 0.43 mm |
+| Driven: beige vs blue | 0.12 cm | 0.14 cm |
+
+0 through, 0 overflow, no NaN.
+
+**`ev10cs4` is frozen** (FROZEN.md, fa2ec41) and is not touched. v5 goes into a new folder.
+
+**Design.** v5 = v4 (`ev10cs4`) with the blue floor plate thickened upward from 6 mm to 8 mm. The only change is
+`--plate_t 0.008` instead of 0.006 on the blue build. The plate spans [h_base - 8 mm, h_base] and the cavity floor of
+gates 1-3 moves to h_base - 8 mm, 2 mm higher than v4.
+- Constant: 8 mm is determined-wright's tested value. It is post hoc, chosen from their nest test, not derived.
+- Everything else is unchanged and must be byte-identical to ev10cs4, checked by md5: blue `piece_00`-`piece_15` (wall)
+  and `piece_17`-`piece_23` (the 7 clipped footing hulls), and all 21 beige files.
+- Only `blue_cup/piece_16` (the plate), `blue_cup/inertia.json` and `blue_cup/lathe_collision.json` may differ.
+
+**Gates.** Gates 1-4 as for v4 (frames f124-f160; f111 / f142 / f116; report frames f124, f160 and the rule frame), and
+the drop check as defined in A4. The FlashCHORD target is unchanged (32 x 60: 0 overflow lines, hold-window max <= 480;
+determined-wright measures).
+
+**Expected [H].**
+- Gate 1 at f124-f160 is unchanged: the rest frames keep >= 2.5 mm above the old floor, so they are unaffected.
+- The all-frame overlap at the insertion frames f100-f117 rises above v4's 17.1 cm3.
+- The settled beige sinks about 2 mm less.
+- The blue COM moves further toward the base.
+- Falsifier: gate-1 median at f124-f160 above v4's 0.206 cm3.
