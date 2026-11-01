@@ -6384,3 +6384,8 @@ Background agent, CPU only, $0, no ground truth read.
   - Observation: under b1 the cup touches the world-body plane (6 / 31 contacts), which packed shows none of; a cup
     settle check is suggested.
   - Record f59c897. Sent to focused-pascal, bold-albattani and keen-heisenberg.
+- 06:46 UTC: eval-20 blue-cup settle check for focused-pascal (`ev20_settle/`, 85e8ef8).
+  - Under b1 the cup rests within 0.33 cm / 0.7° at f152/183/192; packed tips 29° at f183. No sink-through; the cup
+    ends within 1 mm of the table.
+  - Flag: at f192 the pitcher falls hands-free in both sets (b1 12 cm vs packed 6.8 cm); probably an in-hand frame.
+  - Not a blocker. Sent to focused-pascal, bold-albattani and keen-heisenberg.
