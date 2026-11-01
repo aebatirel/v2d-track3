@@ -5524,3 +5524,11 @@ Advice given:
   not changed post hoc. [M] Their relative board pose at assembly differs from our packed eval-25 reference (md5
   71ac95f3) by 9.8 mm / 2.5° vs a 1 mm slot clearance; [H] any future slot must be cut in the frame of the replayed poses.
   → meshes/carve/ev25 stays; no eval-25 rollout re-run. Pack 10 Tier 1 is now only the D cells (eval 10 NO-SWAP).
+- 01:26 UTC **D S25a (20261031-drS25s42-a1a7e25, 58588731) RESULT [M, job.log via exec]: ep25 VERIFIED** — s42 n 10
+  sim_vs_ref mean 0.8158 sd 0.2275 (hard_ab: 0.2158) min 0.3454 max 0.9333; std main evaluation cut 0/0; D-line ok; hook
+  md5 d92ed771… installed = expected, reset tagged; no stray training logs. Main pipeline qa_policy sim_vs_ref 0.9327
+  (floor 0.3078); selection.json chose policy_250003456 (final). Confirmation string: PICK_EXTRA
+  25:20261031-drS25s42-a1a7e25:ck=runs/perc2mckdr/ep25-s42/policy_250003456.safetensors, DR_EPS / EVAL_ONLY / EPS_ONLY 25.
+  A "chosen checkpoint missing; using " (empty) line comes from hard_ab.sh chosen() (code since be376f7); the repeat
+  evaluations and the confirmation string both name policy_250003456 = selection.json's choice, so it did not change
+  the checkpoint [M]. No comparison with the packed policy yet (that is C + dr_verdict, PREREG section 3/4).
