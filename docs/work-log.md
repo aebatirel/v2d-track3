@@ -5797,3 +5797,14 @@ arm and a no-policy replay floor to stage B.
     pack tools cannot take it.
   - Cost [E]: ~$2.5–3.5 for ~2.3 h of box time, to be stated in the PREREG before launch.
   - Order: launches after the D confirmation box, which stays first.
+- 02:55 UTC 1 Nov owner asked whether the night produced anything useful. Answer given, with an early read of the D
+  cells [E: training-box rollouts vs the packed policy's Oct-29 H5 10-draw means (standings branch
+  docs/analysis/h5-20261029/h5_summary.json); the verdict uses tonight's h5p7 draws and the PREREG §4 rule]:
+  - eval 30: D s42 0.837 ± 0.12, s43 0.817 ± 0.14 vs packed 0.798 ± 0.255, so clause (a) is plausible; clause (s)
+    needs draw 1 ≥ 0.923 − 0.05 = 0.873, which a 0.837 ± 0.12 policy reaches roughly 4 times in 10 [guess];
+  - eval 25: the seed rule picks s42 0.816 vs packed 0.850, so likely NO-SWAP;
+  - evals 14/16/33: pending (G box).
+  - Pattern stated to the owner: the largest losses all coincide with overlapping collision geometry (eval 10 never
+    lifted; eval 30 sd 0.255; eval 1 cured by a carve, 0.239 → 0.017; eval 14), while tonight's robot-side items
+    (smoothing, velocity input, masses, solver re-test, re-track, smoother) were all no. Proposed pack-10 direction:
+    geometry fixes under the same swap rule.
