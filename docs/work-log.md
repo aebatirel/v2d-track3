@@ -6582,3 +6582,10 @@ Background agent, CPU only, $0, no ground truth read.
     chosen (a score rise without following); the cup-tracking readout is the honest one. Conclusion: twist
     canonicalisation alone does not make ep13's pick followable; the lock's hand placement at the pick is the gap.
     On O the canon replaces a real twist (mocap turns 22–34° by f32–36) and slightly hurts (−0.035).
+- 20:45 UTC: perfect-following session (session_01D9UJC8Nz9EEFNmz2yzimzN) reported [their M]: H5p7 rollouts rescored
+  symmetric move ≤ +0.009 (cup twist not where RL loses); eval 32's perceived cup swings ~15 cm inside the left-hand
+  hold (f15–33) then jumps back at 322 cm/s, failing all 10 draws; evals 16 / 25 / 30 have objects moving with no robot
+  hand near; eval 14's right hand grips 0 % of its phase. It proposed I build repair (b) on CPU; accepted (it owns all
+  GPU). Plan and gate sent (pipeline/hold_filter.py; gate on the 20 public episodes: registered ref-vs-mocap AUC mean
+  Δ ≥ −0.002 and no episode < −0.01, AND zero-action jittered sim_vs_ref mean Δ ≥ +0.02); the gate will be written here
+  before any result. Waiting for its answer on which public reference set to use.
