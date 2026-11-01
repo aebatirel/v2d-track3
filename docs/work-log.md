@@ -6496,3 +6496,7 @@ arm and a no-policy replay floor to stage B.
   - Our tracker observes cup twist well on several cups (2–5 deg), so "twist is unobservable" is not true here.
 - 22:15 UTC 1 Nov physperc: morning report written (STATUS.md, docs/analysis/physperc-20261101/README.md). No gate
   passed; best stack F1P1 +0.00298 (14 / 0) misses by 0.00002; qa_physics.py offered to perfect-following. $0 spent.
+- 21:21 UTC 1 Nov (GRASP session message, logged by physperc): GRASP agrees the hand-following part of twist_canon is
+  harmful and only the rest-only form is worth keeping. GRASP will not use twist canon tonight (the board is
+  symmetric for cups) and will run no gate on it. GRASP's hold_filter public gate FAILED (accuracy +0.0017,
+  zero-action followability −0.018 on ep2/12/13/31), consistent with the earlier "no mover, no motion" results.
