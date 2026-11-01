@@ -1,0 +1,47 @@
+# ev20 b1 pitcher pieces frozen for a possible eval-20 retrain
+
+Frozen 2026-11-01 ~06:40 UTC at keen-heisenberg's request. Built under rebase/GATES.md amendment A1 (ea025f3), result commit 9c0bc0c. Apply with placement_carve.py assets on refs/sf/ep20/assets with SF=0 (not make_assets --pieces). Do not edit; any change is a new folder.
+
+```
+f65a6a2d50ba0cd0625f23667d24975a  ./water_pitcher/piece_00.obj
+5955729c92fb228926a88b3aa3e2bbe0  ./water_pitcher/piece_01.obj
+308787448f0cf0e32296aed032a7a436  ./water_pitcher/piece_02.obj
+ac5cd1b8fe8dad5c172d040591d330c3  ./water_pitcher/piece_03.obj
+01b08416887b8e92a087b3b7474c5282  ./water_pitcher/piece_04.obj
+3604542f22423a04f8aa6ec889c6a041  ./water_pitcher/piece_05.obj
+0ade6940c74a49c5ae1660d5d9522339  ./water_pitcher/piece_06.obj
+c727fa6ab03ede399020aaad787674d6  ./water_pitcher/piece_07.obj
+493713e80bbbb81809c9fdbddbad7d5b  ./water_pitcher/piece_08.obj
+0116e13697da21a94bfc60d808a79e4f  ./water_pitcher/piece_09.obj
+40dffd4fb4173495f6469a44781e50aa  ./water_pitcher/piece_10.obj
+eb0382ecf7d6909cc0c2fb1088686ea7  ./water_pitcher/piece_11.obj
+e96313571acab423e3f094dee5c0ed95  ./water_pitcher/piece_12.obj
+227c76c870333a9c1265c3021a504c28  ./water_pitcher/piece_13.obj
+c24377707007cb292b7f4532137cac22  ./water_pitcher/piece_14.obj
+4ce4fd3aeffac8b30ee6d8ff5f9f03dd  ./water_pitcher/piece_15.obj
+485c0cf4885b8c7d38cc8861ca687d46  ./water_pitcher/piece_16.obj
+5e93c4e59ae9fb8972b73543b01f0624  ./water_pitcher/piece_17.obj
+d6028b593f17497c571431d1b6cc9da9  ./water_pitcher/piece_18.obj
+34492ac8eb1c08c96732096375cc142d  ./water_pitcher/piece_19.obj
+18f97b49a8ba853fd3be9867ea9047c6  ./water_pitcher/piece_20.obj
+5751a0646ce106fa561c0e6aded55c0b  ./water_pitcher/piece_21.obj
+e3aa9549419f26975aa39d3b77403586  ./water_pitcher/piece_22.obj
+22da7b47edee72e1e8ededfa702fcf72  ./water_pitcher/piece_23.obj
+d48e37e41f499b55525c78fda9081c23  ./water_pitcher/piece_24.obj
+f3434377fc36784fedae9d602eeb113a  ./water_pitcher/piece_25.obj
+a4315e4471dbcb4c8a8b7b3920c6d9cb  ./water_pitcher/piece_26.obj
+56ffca02c063798bb2a3130a5c003a38  ./water_pitcher/piece_27.obj
+712bfe6143b85757f9b504847630576c  ./water_pitcher/piece_28.obj
+f491519d3ed136e33ea052669169094c  ./water_pitcher/piece_29.obj
+0f10df35aed8030eb63f77d7f24b139f  ./water_pitcher/piece_30.obj
+5876d2be2e170e5e0273203b276d3182  ./water_pitcher/piece_31.obj
+c6c120e7a3becdf3626a47859214e2c9  ./water_pitcher/piece_32.obj
+f2f8a58781c2f286fdd31db166944876  ./water_pitcher/piece_33.obj
+939147c3dd343fb104ee02cdf5842c2c  ./water_pitcher/piece_34.obj
+75af7a416595a308802b24afe1342ca9  ./water_pitcher/piece_35.obj
+3823f312239edd76eee9bbbe06edc480  ./water_pitcher/piece_36.obj
+db6fbaacd19da23e900bfb8c5c86559a  ./water_pitcher/piece_37.obj
+3714675a3b156b3a699ff84f8117e17f  ./water_pitcher/piece_38.obj
+88de4727a230de8b3abdc527693795ad  ./water_pitcher/piece_39.obj
+b8c28c112d2c8a8435fe12bec008ba41  ./water_pitcher/piece_40.obj
+```
