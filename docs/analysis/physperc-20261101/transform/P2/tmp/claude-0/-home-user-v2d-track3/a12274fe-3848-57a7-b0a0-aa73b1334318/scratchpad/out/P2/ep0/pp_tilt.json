@@ -1,0 +1,19 @@
+{
+ "anchor": "white_pot",
+ "W": 0.5,
+ "SEL": "all",
+ "objects": {
+  "white_pot": {
+   "hand_mm": 347.5,
+   "gap_mm": -5.9,
+   "match_deg": 2.26,
+   "tilt_deg": 1.13
+  },
+  "white_pot_lid": {
+   "hand_mm": 266.1,
+   "gap_mm": -56.6,
+   "match_deg": 5.07,
+   "skip": "gate"
+  }
+ }
+}

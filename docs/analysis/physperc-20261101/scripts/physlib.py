@@ -31,7 +31,7 @@ def table_up(S, e, P, MD):
     E = json.load(open(f'{S}/data/b4/ep{e}/episode.json'))
     n = np.asarray(E['table']['n'], np.float64); d = float(E['table']['d'])
     s = np.linalg.norm(n); n, d = n / s, d / s
-    hs = [n @ P[k][0][:3, 3] + d for k in P.files]
+    hs = [n @ P[k][0][:3, 3] + d for k in P.keys()]
     if np.median(hs) < 0:
         n, d = -n, -d
     return n, d

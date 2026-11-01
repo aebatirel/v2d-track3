@@ -1,0 +1,19 @@
+{
+ "anchor": "blue_cup",
+ "W": 0.5,
+ "SEL": "all",
+ "objects": {
+  "blue_cup": {
+   "hand_mm": 148.7,
+   "gap_mm": 0.0,
+   "match_deg": 1.25,
+   "tilt_deg": 0.626
+  },
+  "beige_cup": {
+   "hand_mm": 321.8,
+   "gap_mm": 7.1,
+   "match_deg": 1.63,
+   "tilt_deg": 0.815
+  }
+ }
+}

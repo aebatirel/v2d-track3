@@ -1,0 +1,19 @@
+{
+ "anchor": "mini_sweeper",
+ "W": 0.5,
+ "SEL": "all",
+ "objects": {
+  "mini_sweeper": {
+   "hand_mm": 160.8,
+   "gap_mm": -5.8,
+   "match_deg": 0.26,
+   "tilt_deg": 0.128
+  },
+  "mini_dust_pan": {
+   "hand_mm": 124.7,
+   "gap_mm": -8.3,
+   "match_deg": 13.32,
+   "skip": "gate"
+  }
+ }
+}

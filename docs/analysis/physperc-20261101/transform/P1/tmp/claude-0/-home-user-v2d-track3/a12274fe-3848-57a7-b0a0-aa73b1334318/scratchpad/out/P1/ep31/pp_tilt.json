@@ -1,0 +1,16 @@
+{
+ "anchor": "mini_sweeper",
+ "W": 0.5,
+ "SEL": "anchor",
+ "objects": {
+  "mini_sweeper": {
+   "hand_mm": 232.5,
+   "gap_mm": -0.0,
+   "match_deg": 10.46,
+   "skip": "gate"
+  },
+  "plastic_dish_rack": {
+   "skip": "not anchor"
+  }
+ }
+}

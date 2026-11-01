@@ -1,0 +1,13 @@
+{
+ "anchor": "white_pot",
+ "W": 0.5,
+ "SEL": "anchor",
+ "objects": {
+  "white_pot": {
+   "hand_mm": 246.5,
+   "gap_mm": -6.6,
+   "match_deg": 1.12,
+   "tilt_deg": 0.561
+  }
+ }
+}

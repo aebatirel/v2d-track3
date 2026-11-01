@@ -1,0 +1,13 @@
+{
+ "anchor": "mini_dust_pan",
+ "W": 0.5,
+ "SEL": "all",
+ "objects": {
+  "mini_dust_pan": {
+   "hand_mm": 241.6,
+   "gap_mm": -5.6,
+   "match_deg": 13.27,
+   "skip": "gate"
+  }
+ }
+}

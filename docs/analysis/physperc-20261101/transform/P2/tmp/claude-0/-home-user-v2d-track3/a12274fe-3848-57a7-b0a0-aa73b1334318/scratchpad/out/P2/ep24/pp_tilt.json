@@ -1,0 +1,19 @@
+{
+ "anchor": "wooden_piece_1",
+ "W": 0.5,
+ "SEL": "all",
+ "objects": {
+  "wooden_piece_1": {
+   "hand_mm": 27.3,
+   "gap_mm": -9.3,
+   "match_deg": 4.1,
+   "skip": "gate"
+  },
+  "wooden_piece_2": {
+   "hand_mm": 329.3,
+   "gap_mm": -16.7,
+   "match_deg": 2.07,
+   "tilt_deg": 1.033
+  }
+ }
+}

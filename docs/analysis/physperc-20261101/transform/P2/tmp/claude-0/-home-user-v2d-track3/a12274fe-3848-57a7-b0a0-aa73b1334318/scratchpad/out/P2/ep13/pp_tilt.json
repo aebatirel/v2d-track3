@@ -1,0 +1,19 @@
+{
+ "anchor": "plastic_dish_rack",
+ "W": 0.5,
+ "SEL": "all",
+ "objects": {
+  "blue_cup": {
+   "hand_mm": 195.4,
+   "gap_mm": -2.4,
+   "match_deg": 3.29,
+   "tilt_deg": 1.645
+  },
+  "plastic_dish_rack": {
+   "hand_mm": 134.7,
+   "gap_mm": -8.0,
+   "match_deg": 0.74,
+   "tilt_deg": 0.371
+  }
+ }
+}

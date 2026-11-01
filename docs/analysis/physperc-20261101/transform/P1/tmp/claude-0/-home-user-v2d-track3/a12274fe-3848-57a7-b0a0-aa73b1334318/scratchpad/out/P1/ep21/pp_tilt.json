@@ -1,0 +1,16 @@
+{
+ "anchor": "water_pitcher",
+ "W": 0.5,
+ "SEL": "anchor",
+ "objects": {
+  "blue_cup": {
+   "skip": "not anchor"
+  },
+  "water_pitcher": {
+   "hand_mm": 91.8,
+   "gap_mm": -8.4,
+   "match_deg": 59.33,
+   "skip": "gate"
+  }
+ }
+}

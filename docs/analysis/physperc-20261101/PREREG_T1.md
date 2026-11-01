@@ -1,6 +1,6 @@
 # PREREG T1: physics-fused frame-0 tilt (written and pushed BEFORE any scoring of a transformed track)
 
-Session physics-perception (claude/physics-perception-20261101), 1 Nov 2026 ~21:20 UTC. CPU, $0. Public episodes only.
+Session physics-perception (claude/physics-perception-20261101), 1 Nov 2026 ~20:20 UTC (pushed 66d31116, 20:25:09 UTC). CPU, $0. Public episodes only.
 
 ## What was known before this test
 - [M] `pipeline/refine.py` S3 (30 Oct), tilt-to-plane SNAP of every table-supported object, library_v3 meshes, prefix
