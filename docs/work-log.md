@@ -6194,3 +6194,15 @@ arm and a no-policy replay floor to stage B.
     close so the container covers few files and each reproduces.
   - [I] The weakest boards are CD-O (14th) and MPPE (11th). Two more points in the rank sum pass DSAIL; six pass
     SoySauceChicken.
+- 08:55 UTC 1 Nov score-status wrap-up (standings @ 19f5ca32, clean; nothing running).
+  - Gaps to the next rank (Kaggle API 08:58):
+    - AUC +0.025 (DSAIL 0.84391);
+    - SP-SR +1 episode ties at 0.90 (+1 to +3 ranks);
+    - MP-SR +1 episode (+1);
+    - RPE −0.93 cm (hard);
+    - MPPE −0.15 cm (+1);
+    - CD-O −0.012 → +1, −0.021 → +3 (ASAP 0.3118 / Purple 0.3177 / Simsons 0.3202 vs our 0.3323).
+  - Best points per effort: CD-O (bunched, mesh-only, no retrain, $0). The C0 blue cup alone ≈ 0.30 [E] (+3–4 ranks)
+    needs the owner's compliance call (selector written after scoring), or a clean blue-cup build.
+  - Open: Final Submission selection per board near the close; the PR #215 container after the close; main stale
+    since 30 Oct (session branches to merge).
