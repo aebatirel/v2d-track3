@@ -15,6 +15,9 @@
 #   (chosen seed's mean sim_vs_ref vs P > the packed policy's H5p7 fresh-draw mean), then NCONF fresh official draws on the
 #   pristine evaluator, tools/dr_score.py (conf / packed H5p7 / old packed draw / training draws, all vs P) and
 #   tools/pf_verdict.py (pack-9b swap rule a / b / c / s + the +0.02 inclusion bar). Nothing is packed or uploaded here.
+# BRIDGE=1 (eval; docs/research/work/pf-bridge-20261101/PREREG.md): the base's object track is first repaired by
+# tools/guard_bridge.py at the perception's TRACK_GUARD re-acquisitions (events.json there); the candidate is then scored vs
+# P (packed) and vs its own bridged reference B, and tools/pf_verdict.py applies that PREREG's two-reference rule.
 # Env: EP (one or more episodes, space-separated), SPLIT (public|eval), ARMS (e.g. "s 2h" or "2h"), SEEDS (default "42 43"),
 #      SRC_RUN (public only), NCONF (default 10). RUN_ID must contain -pf.
 #   ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-pfA-<sha7> \
@@ -62,6 +65,17 @@ for e in $EPS; do
   fi
   B=$(ls /content/refs/perc2mck/ep$e/processed/*/*/*.parquet 2> /dev/null | head -1)
   [ -s "$B" ] || { log "pf_arms ep$e: no base reference refs/perc2mck/ep$e" >> $J; continue; }
+  if [ "${BRIDGE:-0}" = 1 ]; then                                   # (pf-bridge PREREG) guard-bridge the base's object track
+    EVS=$(python -c "import json, sys; print(json.load(open(sys.argv[1])).get(sys.argv[2], {}).get('events', ''))" $REPO_DIR/docs/research/work/pf-bridge-20261101/events.json $e)
+  fi
+  if [ "${BRIDGE:-0}" = 1 ] && [ -z "$EVS" ]; then log "pf_arms ep$e: no guard events (events.json): base not bridged, scored vs P only" >> $J; fi
+  if [ "${BRIDGE:-0}" = 1 ] && [ -n "$EVS" ]; then
+    touch $I/ep$e/BRIDGED; cp $B $I/ep$e/base_unbridged.parquet
+    python $T/guard_bridge.py $I/ep$e/base_unbridged.parquet $B --events "$EVS" --mesh_dir $LIB --json $G/bridge_ep$e.json > $G/bridge_ep$e.txt 2>&1 \
+      || { log "pf_arms ep$e: guard_bridge FAILED ($(tail -2 $G/bridge_ep$e.txt | tr '\n' ' ' | cut -c1-300))" >> $J; continue; }
+    log "pf_arms ep$e: guard bridge [$EVS]: $(cut -c1-500 $G/bridge_ep$e.txt)" >> $J
+  fi
+  v=$(tabl $e env 2> /dev/null); [ -n "$v" ] && [ "$v" != None ] && export ENV_EP$e="$v" && log "pf_arms ep$e: ENV_EP$e=$v (the packed recipe's)" >> $J
   for s in $SEEDS; do for a in $ARMS; do
     pre=pf${a}s$s; rm -rf /content/refs/${pre}mck/ep$e; mkdir -p /content/refs/${pre}mck
     cp -r /content/refs/perc2mck/ep$e /content/refs/${pre}mck/ep$e
@@ -127,7 +141,7 @@ for e in $OK; do
   OLD=runs/20261026-pack6-5203d42/results/submission/results/episode_$E6   # the board pack's old packed draw (pack 6)
   for x in parquet json; do PULL_RETRY_S=5 pull1 $OLD.$x && mkdir -p $I/ep$e/old/r1 && cp $HS/$OLD.$x $I/ep$e/old/r1/; done
   for a in $ARMS; do
-    python $T/pf_verdict.py choose --results /content/results --ep $e --arm $a --seeds "$SEEDS" --h5 $I/ep$e/packed_h5 --out $G/choice_ep${e}_$a.json > $G/choice_ep${e}_$a.txt 2>&1; rc=$?
+    python $T/pf_verdict.py choose --results /content/results --ep $e --arm $a --seeds "$SEEDS" --h5 $I/ep$e/packed_h5 --out $G/choice_ep${e}_$a.json $([ -f $I/ep$e/BRIDGED ] && echo --nogate) > $G/choice_ep${e}_$a.txt 2>&1; rc=$?
     log "pf_arms ep$e $a choice + gate: $(cut -c1-700 $G/choice_ep${e}_$a.txt)" >> $J
     if [ $rc = 0 ]; then
       ck=$(python -c "import json, sys; print(json.load(open(sys.argv[1]))['checkpoint'])" $G/choice_ep${e}_$a.json)
@@ -136,10 +150,17 @@ for e in $OK; do
     fi
     sets=(--set "conf:P:$G/conf_ep${e}_$a/r*/ep$e/episode_$E6.parquet" --set "old:P:$I/ep$e/old/r1/episode_$E6.parquet" --set "packed:P:$I/ep$e/packed_h5/r*/episode_$E6.parquet")
     for s in $SEEDS; do sets+=(--set "train$s:P:/content/results/pf${a}s${s}_glock_public/ep$e/best/r*/episode_$E6.parquet"); done
-    python $T/dr_score.py --kit $KIT --lib $LIB --ep $e --ref P=$I/ep$e/P.parquet --out $G/score_ep${e}_$a.json "${sets[@]}" > $G/score_ep${e}_$a.txt 2>&1 \
+    REFS=(--ref P=$I/ep$e/P.parquet); VREFS="P"
+    if [ -f $I/ep$e/BRIDGED ]; then                                 # the candidate trained on P' (bridged): scored vs P and P'
+      cs=$(python -c "import json, sys; print(json.load(open(sys.argv[1])).get('chosen') or '')" $G/choice_ep${e}_$a.json 2> /dev/null)
+      PB=$(ls /content/refs/pf${a}s${cs:-42}_glockt/ep$e/processed/*/*/ref_gl_ilc.parquet 2> /dev/null | head -1)
+      [ -s "$PB" ] && { REFS+=(--ref B=$PB); VREFS="P B"; sets[0]="conf:B:$G/conf_ep${e}_$a/r*/ep$e/episode_$E6.parquet"
+        for s in $SEEDS; do sets+=(--set "trainB$s:B:/content/results/pf${a}s${s}_glock_public/ep$e/best/r*/episode_$E6.parquet"); done; }
+    fi
+    python $T/dr_score.py --kit $KIT --lib $LIB --ep $e "${REFS[@]}" --out $G/score_ep${e}_$a.json "${sets[@]}" > $G/score_ep${e}_$a.txt 2>&1 \
       || log "pf_arms ep$e $a: scoring FAILED ($(tail -2 $G/score_ep${e}_$a.txt | tr '\n' ' ' | cut -c1-300))" >> $J
     for r in $G/conf_ep${e}_$a/r*/ep$e; do python $T/simref_timeline.py $r $e --kit $KIT --names $(tabl $e objects | tr ' ' ,) --json $r/timeline.json > /dev/null 2>&1; done
-    python $T/pf_verdict.py eval --score $G/score_ep${e}_$a.json --choice $G/choice_ep${e}_$a.json --table $TAB --ep $e --out $G/verdict_ep${e}_$a.json > $G/verdict_ep${e}_$a.txt 2>&1
+    python $T/pf_verdict.py eval --score $G/score_ep${e}_$a.json --choice $G/choice_ep${e}_$a.json --table $TAB --ep $e --refs "$VREFS" --out $G/verdict_ep${e}_$a.json > $G/verdict_ep${e}_$a.txt 2>&1
     log "pf_arms ep$e $a RESULT: $(cut -c1-2500 $G/verdict_ep${e}_$a.txt)" >> $J; label "pf arms ep$e $a: $(head -c 60 $G/verdict_ep${e}_$a.txt)"
     bash $OPS/store.sh push-run > /dev/null 2>&1 || log "pf_arms: interim push FAILED" >> $J
   done

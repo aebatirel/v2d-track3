@@ -1,0 +1,4 @@
+{"_note": "perc2 TRACK_GUARD re-acquisition events of the packed eval perceptions (runs/<source_run>/perc2/ep<N>/log.txt, lines 'track guard <obj> f<N>: re-acquired'; read 1 Nov 2026, GT-free). Every other eval episode's packed perception log has none.",
+ "14": {"source_log": "runs/20261025-evb1420-ee7ba8e/perc2/ep14/log.txt", "events": "blue_cup:46"},
+ "32": {"source_log": "runs/20261026-fr32s46b-5e0e100/perc2/ep32/log.txt", "events": "blue_cup:21,blue_cup:34"},
+ "33": {"source_log": "runs/20261026-fr3233s43-6a8a0e2/perc2/ep33/log.txt", "events": "blue_cup:91"}}

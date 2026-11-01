@@ -101,8 +101,8 @@ def choose(a):
     if len(pk) < 10:
         out['label'] = 'INCOMPLETE'; out['why'] = f'packed H5p7 draws scored: {len(pk)} < 10'
         json.dump(out, open(a.out, 'w'), indent=1); print(out['label'], out['why']); sys.exit(2)
-    gate = out['chosen_mean'] > float(np.mean(pk))
-    out['gate'] = dict(bar=round(float(np.mean(pk)), 4), met=bool(gate))
+    gate = out['chosen_mean'] > float(np.mean(pk)) or bool(a.nogate)
+    out['gate'] = dict(bar=round(float(np.mean(pk)), 4), met=bool(gate), skipped=bool(a.nogate))
     out['label'] = 'CONFIRM' if gate else 'NO-SWAP'
     json.dump(out, open(a.out, 'w'), indent=1)
     print(out['label'], f"seed {best} mean {out['chosen_mean']} vs packed {out['gate']['bar']};",
@@ -112,7 +112,9 @@ def choose(a):
 
 def evaluate(a):
     S = json.load(open(a.score)); ch = json.load(open(a.choice)); T = json.load(open(a.table))['episodes'][str(a.ep)]
-    out = dict(ep=a.ep, rule='pack-9b PREREG section 4 + pf-hands PREREG section 4', choice=ch.get('label'), sides={}, clauses={})
+    refs = a.refs.split()
+    out = dict(ep=a.ep, rule='pack-9b PREREG section 4 + pf-hands / pf-bridge PREREG section 4', refs=refs, choice=ch.get('label'),
+               sides={}, clauses={})
     if ch.get('label') != 'CONFIRM':
         out['label'] = 'NO-SWAP' if ch.get('label') == 'NO-SWAP' else 'INCOMPLETE'; out['why'] = f"choice {ch.get('label')}: no confirmation"
     sides = {}; bad = []
@@ -124,33 +126,39 @@ def evaluate(a):
             if not r.get('scored'): continue
             if not r.get('own_ref_check', {}).get('ok'): bad.append(f'{name} r{r["draw"]} own-reference check'); continue
             if want and r.get('checkpoint_sha256') and r['checkpoint_sha256'] != want: bad.append(f'{name} r{r["draw"]} checkpoint'); continue
-            v = r['vs']['P']
-            if not all(np.isfinite([v['sim_vs_ref'], v['RPE']])): continue
-            ok.append(dict(draw=r['draw'], svr=v['sim_vs_ref'], rpe=v['RPE']))
+            v = {X: r['vs'][X] for X in refs}
+            if not all(np.isfinite([v[X][m] for X in refs for m in ('sim_vs_ref', 'RPE')])): continue
+            ok.append(dict(draw=r['draw'], **{f'svr_{X}': v[X]['sim_vs_ref'] for X in refs}, **{f'rpe_{X}': v[X]['RPE'] for X in refs}))
         ok.sort(key=lambda x: x['draw']); sides[name] = ok
-        out['sides'][name] = dict(sim_vs_ref=summ([x['svr'] for x in ok]), RPE=summ([x['rpe'] for x in ok]),
-                                  fails=int(sum(x['rpe'] > 5 for x in ok)))
+        out['sides'][name] = {X: dict(sim_vs_ref=summ([x[f'svr_{X}'] for x in ok]), RPE=summ([x[f'rpe_{X}'] for x in ok]),
+                                      fails=int(sum(x[f'rpe_{X}'] > 5 for x in ok))) for X in refs}
     for k in S['sets']:
         if k.startswith('train'):
-            out['sides'][k] = dict(sim_vs_ref=summ([r['vs']['P']['sim_vs_ref'] for r in S['sets'][k]['rollouts'] if r.get('scored')]))
+            out['sides'][k] = {X: dict(sim_vs_ref=summ([r['vs'][X]['sim_vs_ref'] for r in S['sets'][k]['rollouts'] if r.get('scored') and X in r.get('vs', {})]))
+                               for X in refs}
     if 'label' not in out:
         N, K, O = sides['conf'], sides['packed'], sides['old']
         if bad: out['label'] = 'INVALID'; out['why'] = bad
         elif len(N) < 10 or len(K) < 10 or len(O) != 1: out['label'] = 'INCOMPLETE'; out['why'] = f'n conf {len(N)}, packed {len(K)}, old {len(O)}'
         else:
-            mN, mK = np.mean([x['svr'] for x in N]), np.mean([x['svr'] for x in K])
-            fN, fK = np.mean([x['rpe'] > 5 for x in N]), np.mean([x['rpe'] > 5 for x in K])
-            cN, cK = np.median([x['rpe'] for x in N]), np.median([x['rpe'] for x in K])
-            c = dict(a=dict(conf=round(mN, 4), packed=round(mK, 4), holds=bool(mN >= mK - TOL)),
-                     b=dict(conf=round(fN, 3), packed=round(fK, 3), holds=bool(fN <= fK + TOL)),
-                     c=dict(conf=round(cN, 3), packed=round(cK, 3), holds=bool(cN <= cK + TOL)),
-                     s=dict(conf_draw1=N[0]['svr'], old=O[0]['svr'], holds=bool(N[0]['svr'] >= O[0]['svr'] - 0.05 - TOL)))
-            out['clauses'] = c
-            out['label'] = 'PASS' if all(x['holds'] for x in c.values()) else 'NO-SWAP'
-            out['inclusion'] = dict(bar=0.02, gain=round(mN - mK, 4), include=bool(out['label'] == 'PASS' and mN - mK >= 0.02 - TOL))
+            for X in refs:
+                mN, mK = np.mean([x[f'svr_{X}'] for x in N]), np.mean([x[f'svr_{X}'] for x in K])
+                fN, fK = np.mean([x[f'rpe_{X}'] > 5 for x in N]), np.mean([x[f'rpe_{X}'] > 5 for x in K])
+                cN, cK = np.median([x[f'rpe_{X}'] for x in N]), np.median([x[f'rpe_{X}'] for x in K])
+                out['clauses'][X] = dict(a=dict(conf=round(mN, 4), packed=round(mK, 4), holds=bool(mN >= mK - TOL)),
+                                         b=dict(conf=round(fN, 3), packed=round(fK, 3), holds=bool(fN <= fK + TOL)),
+                                         c=dict(conf=round(cN, 3), packed=round(cK, 3), holds=bool(cN <= cK + TOL)),
+                                         s=dict(conf_draw1=N[0][f'svr_{X}'], old=O[0][f'svr_{X}'], holds=bool(N[0][f'svr_{X}'] >= O[0][f'svr_{X}'] - 0.05 - TOL)),
+                                         gain=round(mN - mK, 4))
+            if refs == ['P']:          # pf-hands: the pack-9b rule on P
+                C = out['clauses']['P']; ok_ = all(C[k]['holds'] for k in 'abcs'); gain = C['gain']
+            else:                      # pf-bridge: the full rule on the candidate's own reference B, and clause (a) on P
+                C = out['clauses']['B']; ok_ = all(C[k]['holds'] for k in 'abcs') and out['clauses']['P']['a']['holds']; gain = C['gain']
+            out['label'] = 'PASS' if ok_ else 'NO-SWAP'
+            out['inclusion'] = dict(bar=0.02, on=refs[-1], gain=gain, include=bool(ok_ and gain >= 0.02 - TOL))
     json.dump(out, open(a.out, 'w'), indent=1)
     print(out['label'], json.dumps({k: out[k] for k in ('clauses', 'inclusion', 'why') if k in out}),
-          {k: v['sim_vs_ref'].get('mean') for k, v in out['sides'].items()})
+          {k: {X: v[X]['sim_vs_ref'].get('mean') for X in v} for k, v in out['sides'].items()})
 
 
 if __name__ == '__main__':
@@ -159,5 +167,7 @@ if __name__ == '__main__':
     for k in ('results', 'eps', 'arms', 'seeds', 'out', 'arm', 'h5', 'score', 'choice', 'table'):
         ap.add_argument(f'--{k}', default=None)
     ap.add_argument('--ep', type=int, default=None)
+    ap.add_argument('--refs', default='P', help='eval: "P" or "P B" (B = the candidate\'s own bridged reference)')
+    ap.add_argument('--nogate', action='store_true', help='choose: confirm the chosen seed without the training-box gate')
     a = ap.parse_args()
     {'public': public, 'choose': choose, 'eval': evaluate}[a.mode](a)

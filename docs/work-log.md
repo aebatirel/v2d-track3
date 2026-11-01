@@ -10748,3 +10748,11 @@ score.
     SRC_RUN=20261030-orcB-38234d1 bash ops/jobs/pf_arms.sh`;
   - 20261101-pfB-21ab92e, instance 58708762 (RTX PRO 6000 WS, South Korea, $1.49/h): `EP="14 16" SPLIT=eval ARMS=2h bash
     ops/jobs/pf_arms.sh`.
+- ~20:55 UTC 1 Nov **finding [M]: the deterministic losses of evals 14 / 32 / 33 sit on perception TRACK_GUARD
+  re-acquisitions** (one-frame cup jumps of 11–20 cm; eval 32 also a ~150° axis flip f21–33). Before the eval-14 / 32
+  re-acquisitions the cup drifts 3–14 cm out of the perceived hand. New GT-free repair tools/guard_bridge.py; no public
+  guard re-acquisition exists to test it (checked), so the batch-2 rule scores against both P and the bridged reference.
+  CPU zero-action: eval 14 single 0.293 → bridged 0.558; two-hand 0.586 / bridged 0.573; eval 15 single 0.613 / two-hand
+  0.767; eval 16 0.539 / 0.661; eval 33 two-hand 0.192 (one replay each).
+  - Pre-registered before any batch-2 result: docs/research/work/pf-bridge-20261101/PREREG.md. Batch 2 plan: pfC (eval 14
+    bridged, s / 2h) + pfD (evals 32 / 33 bridged s, eval 15 2h), 2 seeds, ≈ $12 [E].
