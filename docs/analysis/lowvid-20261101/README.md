@@ -23,7 +23,9 @@ Videos are not in git (CLAUDE.md). They were sent to the owner and sit in the se
   - The cup's failure onset (> 3 cm for 8 frames) falls at f42–45 in 7 / 10 H5p7 draws: the hand-over.
   - The cup sags 9–12 cm below the reference in good and bad draws alike; bad draws never recover.
   - In 3 draws the cup is thrown 63–162 cm, and in 2 the rack is thrown too.
-- **Robot-hand GPU videos for 14 (×3 replays) / 25 / 30** are pending: run 20261101-vid3-b96ae95 (focused-pascal).
+- **Robot-hand GPU videos** (run 20261101-vid3-b96ae95, $0.70): eval 14 replays r1 0.560 / r2 0.285 / r3 0.749 (all
+  in the failing hand-over mode); eval 25 0.897; eval 30 0.901. In the eval-14 3-D view, one robot hand carries the cup
+  through the hand-over while the other stays parked: the single-hand lock (claude/grasp-ep13-20261101).
 
 ## Sim-vs-reference offsets in the packed rollouts (GT-free) [M], 1 Nov ~19:20 UTC
 - Columns:

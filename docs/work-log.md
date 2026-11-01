@@ -6385,3 +6385,10 @@ arm and a no-policy replay floor to stage B.
     - a CPU audit of single-hand locks across the 20 eval references (pre-lock vs post-lock hold phases);
     - a pre-registered public ep13 RL test, single- vs two-hand reference (~$3–4, owner's go);
     - if positive, an eval-14 two-hand rebuild + retrain under the swap rule.
+- 19:29 UTC 1 Nov focused-pascal: **robot-hand videos done** (run 20261101-vid3-b96ae95, 30 min, $0.70,
+  self-destroyed; store results/sub_videos/).
+  - Eval 14 replays: r1 0.560, r2 0.285, r3 0.749 (replay-tool scores). None landed in the good mode.
+  - Eval 25: 0.897. Eval 30: 0.901. Eval 10's ck512 skipped (it is in no PACK_RUN).
+  - Fetched and sent to the owner here too.
+  - [M, visual] At the eval-14 hand-over (frame 46), one robot hand carries the cup while the other hand stays parked to
+    the side; the human uses both. This is consistent with the single-hand lock finding (grasp-ep13 branch).
