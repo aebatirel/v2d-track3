@@ -5612,3 +5612,17 @@ Advice given:
   49 pieces), gated by piece / visual overlap at f124–f160, plain-MuJoCo nefc / ncon and kept volume; output
   gmg/build/I/results/ev10-cavsafe/; then determined-wright's budget.py. Any GPU test of it needs its own owner go
   (keen-heisenberg collects plan + cost). Nothing changes in any pack.
+- ~02:52 UTC keen-heisenberg relays the **owner, verbatim 02:50 UTC: "I give you permission for everything"** (answer to
+  their proposal: mesh lane fixes the overlaps behind evals 10 / 30 / 14 on CPU, then GPU retrains under the swap rule).
+  Their reading: GPU tests / retrains that serve the score need no per-batch go (each still needs plan + cost in the work
+  log before launch, PREREG committed before any result, self-destroy + stall watchdog); Kaggle uploads of packs that pass
+  every pre-registered check (pack 9b at 05:00; later pack 10). NOT covered: an njmax-1024 policy in any pack (until the
+  organisers agree), the C0 blue cup, anything reading GT or tuned on eval results. Priority: (1) D confirmation box,
+  (2) njmax diagnostic, (3) eval-10 retrain on the no-overlap pieces (2 seeds, after their gates + budget.py at 512),
+  (4) eval-30 rack-slot carve retrain (std, 2 seeds), (5) eval-14 carve retrain (grasp lock, 2 seeds), (6) one
+  confirmation box for 3–5. Their estimate ~$19 for 3–6 + ~$3 for 2; reserve ≥ $5 credit; stop and report when credit
+  can't cover the next item; owner asked to top up. I am the only launching lane; record "pack 10 ready: <path>".
+  My handling: GPU batches go ahead in that order under those conditions (I keep a $10 reserve where I can). Uploads:
+  unchanged for THIS session — my upload attempt was blocked by the permission guard on a relayed approval, so I do not
+  upload or route an upload elsewhere; I publish each pack record and the upload stays with the session where the owner
+  gave the word (or the owner's own word here).
