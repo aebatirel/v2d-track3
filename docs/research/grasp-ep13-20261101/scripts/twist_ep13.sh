@@ -8,7 +8,7 @@ export FCD=$S/src/video_to_data/robotic_grounding/flash_chord PY=$S/fcvenv/bin/p
 GA="--mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15"
 for X in P O; do (
   IN=$(ls $S/inputs/ep13_${X}_sf/processed/*/*/ref_in.parquet); D=$(dirname $IN)
-  $SPY -I $R/pipeline/twist_canon.py $IN $D/ref_tc.parquet > $S/twist_${X}_canon.log 2>&1
+  $SPY -I $R/pipeline/twist_canon.py $IN $D/ref_tc.parquet > $S/twist_${X}_canon.log 2>&1 || { echo "$X: twist_canon FAILED"; exit 1; }
   bash $R/tools/cpu_glock_zero.sh $D/ref_tc.parquet $S/twist/ep13_$X "$GA" > /dev/null 2>&1
   O=$S/ep13/${X}2T_input; mkdir -p $O; G=$(ls $S/twist/ep13_$X/processed/*/*/ref_gl_ilc.parquet)
   ( cd $FCD && EMB=sharpa_hands_mid DEV=cpu $PY $R/tools/physics_solve/jitter_check.py $G --device cpu --k 17 --seed 0 --json $O/jitter.json --out $O/jitter.npz ) > $O/jitter.log 2>&1

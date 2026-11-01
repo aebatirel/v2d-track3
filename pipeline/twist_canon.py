@@ -104,7 +104,8 @@ def main():
         Q2[:, j], inf = canonicalise(OQ[:, j], OP[:, j], ax, radius[j], hands, a.hold_cm, a.move_mm)
         info['objects'][n] = dict(axis_body=np.round(ax, 4).tolist(), pca_var=pca, other_axes_rel_diff=iso, **inf)
     i = t.column_names.index('object_body_wxyz')
-    t2 = t.set_column(i, 'object_body_wxyz', pa.array([Q2.reshape(-1, 4).tolist()], type=t.schema.field(i).type))
+    shape = np.array(g('object_body_wxyz')).shape                    # keep the column's own nesting
+    t2 = t.set_column(i, 'object_body_wxyz', pa.array([Q2.reshape(shape).tolist()], type=t.schema.field(i).type))
     pq.write_table(t2, a.out)
     json.dump(info, open(os.path.splitext(a.out)[0] + '_twist_canon.json', 'w'), indent=1)
     for n, d in info['objects'].items():
