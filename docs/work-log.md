@@ -6018,3 +6018,13 @@ diagnostic; nothing is picked for submission.
 - **Open (orchestrator):** the part-1 ratio clause (any change is a new dated entry, post hoc on ep24); a freeze check
   that sees shape; a keep-out measure for boxes; part 2 needs determined-wright; before any eval-25 run the
   `interlock_dev` split label and the P_sel vs P_sim pose gap (9.8 mm / 2.5 deg at assembly, Prep25).
+
+### 2026-11-01 00:55 UTC — orchestrator: board slot round 3 closed; eval-25 verdict NO, sent
+- Board-slot round 3 done (report 3fce701, INTERLOCK 20.15). F-I4.17 low-piece body: ep24 both boards CARVE with 5
+  slotted boxes each (IoU 0.958 / 0.952), P2-P7 pass (P3 0.074 cm / 0.68 deg), 124 rows / 31 contacts, no overflow;
+  freeze (a) FAILS the ratio clause (124 / 32 = 3.875 > 2.0; even the 3-box default is 3.5x). Verifiers: no blocking;
+  the one-box control ends lying flat, so the clause is a poor comparator (orchestrator design error, recorded).
+  Freeze (b) w10 holds. Eval 25 not run. Prep25 measured P_sel vs P_sim at assembly 9.8 mm / 2.5 deg.
+- **Eval-25 verdict: NO** (no gmg slot pieces for pack 10; keep meshes/carve/ev25), sent to focused-pascal,
+  keen-heisenberg (owner's morning summary) and determined-wright (nothing to run). Any future slot must be cut in the
+  frame of the replayed poses (new rule, not planned tonight). Cost of the board-slot rounds tonight: $0.

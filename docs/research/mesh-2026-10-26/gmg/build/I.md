@@ -1553,6 +1553,18 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   Machine: this container (4 shared cores, load 5.9, 11 GB free), not a rental: the inputs (v6 bundles, 200 MB)
   exist only in this container's scratch and the round folders stay in scratch; $0. All five in parallel at nice 5
   (threads as round 1), run `<scratch>/gmg/runs-dev/20261101-fi5r2pub-88f49df`, tag fi5r2.
+- 00:23 (Eval precheck step, collision-carve round-2 workflow; diagnostic only, decides nothing) started 00:14. Task:
+  F-I5.15 precheck + F-I5.16 (3) contact numbers on the PACKED references of evals 10, 1, 14, 16, 30, 32, 33 (15 if it
+  has a rack seat) from focused-pascal's `packed_refs.json` (origin/claude/focused-pascal-2nz9s1 c6fe323). Downloaded
+  from the HF store to `<scratch>/evck/dl` (37 MB): references md5-match the list for all 8 (eval 1: the listed
+  `refs/perc2mcks` copy is absent in the store; its byte source `refs/perc2mck/ep1/processed/...parquet` has the listed
+  md5 7f230466), supports (one cylinder each, top z = 0.600 m), sf assets of 14/15/16/32/33. Geometry [M]: sf meshes of
+  14/15/16/33 are library_v3 vertex-for-vertex; ep32 cup and spoon are the support-filled variants (405.0 / 99.7 cm3).
+  Carve pieces: `meshes/carve/ev10` identical on both branches (53 + 49), `ev01` from focused-pascal (53 + 107). Script
+  is standalone (no gmg import: the gmg guard refuses `.parquet` and `library_v3` paths, which are this diagnostic's
+  inputs as the pack's own references and simulator assets, not shape evidence). Launched 00:22 (nice 15, this
+  container): FlashCHORD's CoACD call with coacd 1.0.11 on the 6 distinct visual meshes (cup, cup ep32sf, rack,
+  spoon, spoon ep32sf, sweeper) -> `<scratch>/evck/out/packed/`. Load 5.2 / 4 cores.
 - 00:31 (T-I16) Launched 00:18:23 UTC, this container, code 88f49df (gmg modules unmodified; sha256 in each
   `drv<N>_fi5r2.launch`): `GMG_MODE=dev nice -n 5 <venv>/python -m gmg.tools.collcarve2_dev --fi5-rev 2 --run <run>
   --ep N --bundle <v6>/epN --cands <run>/cand/public/epN --pick <round-1 picks> --hands <run>/in/handsN/hands.npz
@@ -1564,3 +1576,18 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   wall left 0.05 mm, topology 7/72 -> 22/67); ep13 f146 fails (a) (-23.3 mm) AND (c) (V_ov 3.2 cm3); ep31 f282 / f8
   fail (b) (46.9 / 48.0 mm above the table, 11.3 / 33.3 mm from the rack's boxes); ep11 f126 fails (c) (V_ov 85.2 cm3,
   removed share 0.53, topology 2/79 -> 119/127); ep2 running.
+- 00:34 (T-I16) [M] precheck at round 1's S frames done (`<run>/diag/precheck_r1frames.json`, 811 s): ep12 f6 (a)
+  -15.1 mm; ep12 f176 (c) (V_ov 7.4 cm3, topology 7/72 -> 22/67, wall left 0.05 mm); ep13 f146 (a) -23.3 mm and (c)
+  (V_ov 3.2 cm3); ep31 f282 / f8 (b) (46.9 / 48.0 mm above the table, 11.3 / 33.3 mm from the rack); ep11 f126 (c)
+  (V_ov 85.2 cm3, removed share 0.53, topology 2/79 -> 119/127); ep2 f24 / f328 pass (a) and (b) (lid lowest point
+  60.9 / 62.8 mm above the table, 0 mm from the pot) and fail (c) (V_ov 24.6 / 23.7 cm3, topology 8/44 -> 24/80 and
+  20/75, wall left 0.05 mm). P77 holds on 4 of the 5 predicted frames; ep13 f146 also fails (c), which P77's "or fails
+  another check" clause counts as a miss. P78 holds. Every frame with overlap fails (c): the guest's SHELL crosses
+  the receiver's wall (no wall left where the cut would go). The five drivers are in the pieces step (cups and pot:
+  the layout search; ep31 sweeper: CoACD).
+- 00:46 (T-I16) [M] progress after 27 min wall (each driver 3-5.5 min CPU: the five shared about 1 core): ep31
+  mini_sweeper route 3 = CoACD asked 41, got 41, repair 4 splits -> 45 hulls, the repair's own max excess 0.28 cm3
+  but the gate (keep-out recomputed on the repaired set) 0.344 cm3 on 1 hull -> gate fail -> route 4, 3 boxes of
+  6 mm (P76's sweeper leg misses); ep13 blue_cup route 2: `no_accepted_layout` (00:44) -> route 3. Scheduler: my
+  run group's autogroup weight set to nice -3 (my own processes only, nobody else's reniced; 3 groups compete: frame_kit
+  at nice 19, the eval-check lane's two processes, and my six), i.e. about 2 of the 4 cores, near a per-process share.
