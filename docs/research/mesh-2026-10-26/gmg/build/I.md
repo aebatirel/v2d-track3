@@ -1703,6 +1703,47 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   cannot be cited) and verify_cc2_1 B2 (eval precheck tables on the rule's 30 mm hands-off, H30). Not fixable here
   (needs a new rule): verify_cc2_1 B1 (no never-intrude ring keeps 1.5 mm on these SHELLs). Work dir
   `<scratch>/cc2eval`. Load 2.6 / 4 cores. CPU, no rental, $0.
+- 03:06 [M] **T-I17 c1 ran (fixes verify_cc2_0 B1 (2)) and FAILS.** F-I4.17's P125 could not be cited: its S1 scene
+  used our P_sel without determined-wright's z shifts (1.92 mm relative), our own table plane and simphys.jitters
+  seed 1 on the guest only, not their scene and draws. Inputs: our physS1 reference `ref_gl_ilc.parquet` (md5
+  699fe426..., matches their RESULT section 2) and support stage (md5 debb7ad9..., table top 0.600 m) from the HF store
+  to `<scratch>/cc2eval/dl`; f246 poses extracted outside the guard (`<scratch>/cc2eval/scripts/ref24_pose.py`,
+  columns object_body_names / _position / _wxyz only); run `GMG_MODE=dev nice -n 10 <venv>/python
+  docs/research/mesh-2026-10-26/gmg/build/I/fi516_c1_ep24.py --pose <scratch>/cc2eval/c1_pose_f246.npz --out
+  <scratch>/cc2eval/c1_ep24.json` (this container, 03:04:02-03:04:43, HEAD 7bc14ee, contactgate5 / simpieces unmodified,
+  sha256 in `c1_launch*.sha256`). Scene identity: nominal lowest vertices 35.19 / 30.85 mm above the table (theirs
+  35.0 / 30.7); boards drop 30-37 mm in 2 s (theirs 3.0-3.7 cm). Result, plain MuJoCo 3.17.0 with the sim=rl options
+  (sha 695536b7...4b66): carved 57 / 77 max nefc 2,948 (median 614), max ncon 737, **12 / 16 copies over 512**
+  (the maxima at step 0 or 8-9: the jittered start interpenetrates the tight slot); default 50 / 71 max nefc 688
+  (median 632), max ncon 172, **16 / 16 over 512** (at step 8, the drop onto the table: 64-86 guest-table plus
+  71-84 guest-receiver contacts; 256-392 rows at rest). Ratio 4.29 >= 3 holds, but carved >= 15 / 16 and default
+  0 / 16 fail. MuJoCo-Warp (their run, large buffers): carved 2,027, default 416-425, 16 / 16 vs 0 / 16. So per
+  F-I5.16 (1)(h): **G1 in plain MuJoCo is weaker than MuJoCo-Warp (it flags the default that MuJoCo-Warp passes);
+  no F-I5 delivery is called usable before G1 has run in MuJoCo-Warp**, and every plain-MuJoCo contact number of
+  this round (public G1, the eval precheck's pair scenes, eval 10's 656-1,296 rows) is labelled plain-MuJoCo-only.
+  Eval 10's overflow itself stands on determined-wright's and focused-pascal's FlashCHORD measurements of 02:50
+  UTC [R, work log], not on ours.
+- 03:09 [M] **verify_cc2_1 B2 fixed: the eval precheck on the rule's hands-off set H30** (no robot hand point within
+  30 mm, F-I5.3 (b) / F-I5.16 (3)(a)), recomputed from the evalcheck's own per-frame records with its own
+  `summarize.block` / `cavity` (no new measurement): `build/I/results/collcarve2-eval/precheck_H30_tables.md` and
+  `precheck_H30.json` (script `collcarve2-eval/scripts/precheck_h30.py`). H30 failing / H30 frames (was H0): eval 10
+  25 / 33 (37 / 52), 1 50 / 50 (56 / 56), 14 18 / 29 (47 / 63), 15 12 / 54 (24 / 92), 16 14 / 60 (19 / 86), 30 22 / 22
+  (59 / 63), 32 0 / 3 (6 / 21), 33 0 / 14 (4 / 30); no H30 frame fails (a) (max penetration 3.94 mm, rack, eval 14
+  f157); every (c) fail is a faithful overlap >= 1 cm3. Contact-count frames: eval 10 f142 is H30 (656 rows, 16 / 16
+  over), f111 / f116 are in hand (1,252 / 1,296). These H30 columns are the primary ones for any relay to the pose
+  lanes. **Carve-scope check** (task condition (iii), `collcarve2-eval/scope_H30.json`, script `scope_h30.py`): H30
+  frames that pass the pose precheck AND where the packed colliders block (packed overlap >= 1 cm3 or guest mesh in the
+  receiver pieces outside its mesh >= 1 cm3): **0 in every eval pair** (feasible H30 frames: 32 3, 33 14, 14 11, 16 46,
+  30 0, 15 42, 10 8, 1 0; max packed overlap there 0.0-0.73 cm3). So no eval pair is in carve scope on the precheck
+  either.
+- 03:13 Dated corrections written (new files; the READMEs are left as written): `collcarve2-public/
+  CORRECTION_20261101.md` (c1 premise false, c1 now run and failed; B4 robust profile falsified by verify_cc2_1 B1;
+  precision items 0.05 mm / boxes outside the SHELL / g1_pass when vacuous) and `collcarve2-evalcheck/
+  CORRECTION_20261101.md` (H0 -> H30, c1 premise, eval-10 rest vs in-hand frames, evals 14 / 30 thrown, status of the
+  check). PREREG F-I5.17 (14) and F-I5.18 carry the same false premise: a dated F-I5.19 entry is for the orchestrator
+  (shared file, not edited here). **Step result: no eval pair qualifies on any of the three conditions; nothing run,
+  no eval bundle, no r0, no deliveries line** (`build/I/results/collcarve2-eval/README.md`, with a hand-off text for
+  determined-wright / focused-pascal, not sent). No rental, $0.
 <!-- cc2eval-end -->
 
 ## ev10 cavity-safe pieces (agent of the orchestrator, started 1 Nov 02:47 UTC)
