@@ -5638,3 +5638,6 @@ Advice given:
 - 03:03 UTC **C launched**: `ops/vast.sh V2D_COMMIT=a1a7e258bd90… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 28784861
   20261101-drC-a1a7e25 '<c_merge.json job>'` → instance 58608674 (Spain, $1.377/h; the France offer had gone: no_such_ask);
   ledger planned $1.75. Credit $33.89 before the launch.
+- 03:06 UTC overflow in G's six D training logs [M]: ep14 s42 18,953 lines (median 525, max 650) / s43 15,925 (527, 634);
+  ep16 0 / 0; ep33 s42 29,846 (524, 617) / s43 31,981 (524, 647). Moderate (~10⁴, requests ≤ 650) vs eval 10's ~6×10⁶
+  (requests up to ~1,050); ep33 learns best (0.94) despite ~3×10⁴. Overflow does not track the weak cells here either.
