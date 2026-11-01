@@ -1,0 +1,30 @@
+# Contact budget under the training sim config (sim=rl), CPU [M]
+
+`budget.py`: collision geoms per group, plus per-world contacts and constraint rows (nefc) over W sampled training
+resets × STEPS zero-action steps. With `FRAMES=a,b,…` it uses explicit, evaluator-style resets at those frames
+instead. FlashCHORD runs at the evaluator pin with the box patch set.
+
+**Limits** (`configs/sim/rl.yaml`):
+- nconmax 256 per world, held as one pool (naconmax = 256 × worlds);
+- njmax 512 constraint rows per world, a hard per-world limit. MuJoCo-Warp drops rows beyond it and prints
+  "nefc overflow".
+
+| scene | resets | contacts / world max (median) | nefc / world max (median) | steps over 512 |
+|---|---|---|---|---|
+| eval 25 packed (`--pieces meshes/carve/ev25`) | sampled, 8 × 60 | 65 (46) | 276 (201) | 0 |
+| eval 25, library_v3 without pieces | sampled, 8 × 60 | 56 (40) | 240 (175) | 0 |
+| **eval 10 packed** (`--pieces meshes/carve/ev10`, 53 / 49 pieces) | sampled, 8 × 30 | 130 (115) | **536 (473)** | **13 %** |
+| eval 10 packed | explicit frames 0 / 124 / 142 / 160, 8 × 30 each | 107 (54) | 441 (227) | 0 |
+
+**Eval 10 notes:**
+- The cup–cup contacts dominate: up to 68 per world with sampled resets and 79 at the nested frames. Under sampled
+  resets the 20-step VOC-1 hold presses the overlapping carved pieces (11.9 cm³ median at rest, bold-albattani)
+  together.
+- The packed eval-10 training run 20261026-gl10A2-5e0e100 (`runs/glock/ep10-s42/train.log`) has **8,368,544** "nefc
+  overflow" lines.
+- Its 5 stored scored draws have **0**. The policy never nests the cups in scoring.
+- [H]: the overflow corrupts eval 10's training (cup–cup contact rows are dropped in the nested phase), which may add
+  to its do-nothing floor. Not tested.
+
+**bold-albattani's pair-only plain-MuJoCo check** (656–1,296 rows at f124–160) reads higher than FlashCHORD's full
+scene (≤ 441 at explicit resets). The engines differ in contact settings. Use the FlashCHORD numbers for the gate.

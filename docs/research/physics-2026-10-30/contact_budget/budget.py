@@ -19,20 +19,24 @@ def group(b):
     return 'other:' + n
 gb = [int(x) for x in m.geom_bodyid]; coll = [(int(m.geom_contype[g]) | int(m.geom_conaffinity[g])) != 0 for g in range(m.ngeom)]
 geoms = collections.Counter(group(gb[g]) for g in range(m.ngeom) if coll[g])
-per_pair = collections.defaultdict(list); tot, nefc = [], []
-with S.on(env):
-    env.reset()
-    for k in range(STEPS):
-        env.step(None); n = int(md.nacon.numpy()[0])
-        g = md.contact.geom.numpy()[:n]; w = md.contact.worldid.numpy()[:n]
-        cnt = collections.Counter(); wc = collections.Counter(int(x) for x in w)
-        for (a, b), wi in zip(g, w):
-            p = tuple(sorted((group(gb[int(a)]), group(gb[int(b)])))); cnt[(int(wi), p)] += 1
-        for p in {p for _, p in cnt}:
-            per_pair[p].append(max(cnt.get((wi, p), 0) for wi in range(W)))
-        tot.append(max(wc.values()) if wc else 0); nefc.append(int(md.nefc.numpy().max()))
+per_pair = collections.defaultdict(list); tot, nefc, nacon_req = [], [], []
+FRAMES = [int(x) for x in os.environ.get('FRAMES', '').split(',') if x.strip()]   # explicit (evaluator-style) resets at
+with S.on(env):                                       # these frames instead of one sampled training reset
+    for F in (FRAMES or [None]):
+      env.reset() if F is None else env.reset(frame_id=F)
+      for k in range(STEPS):
+          env.step(None); n = min(int(md.nacon.numpy()[0]), int(getattr(md, 'naconmax', 10 ** 9)))
+          g = md.contact.geom.numpy()[:n]; w = md.contact.worldid.numpy()[:n]
+          cnt = collections.Counter(); wc = collections.Counter(int(x) for x in w)
+          for (a, b), wi in zip(g, w):
+              p = tuple(sorted((group(gb[int(a)]), group(gb[int(b)])))); cnt[(int(wi), p)] += 1
+          for p in {p for _, p in cnt}:
+              per_pair[p].append(max(cnt.get((wi, p), 0) for wi in range(W)))
+          tot.append(max(wc.values()) if wc else 0); nefc.append(int(md.nefc.numpy().max()))
+          nacon_req.append(int(md.nacon.numpy()[0]))
 out = dict(ref=sys.argv[1], worlds=W, steps=STEPS, nconmax=int(getattr(md, 'naconmax', -1)), njmax=int(getattr(md, 'njmax', -1)),
            collision_geoms=dict(geoms), max_contacts_per_world=max(tot), median_contacts_per_world=float(np.median(tot)),
-           max_nefc_per_world=max(nefc), median_nefc=float(np.median(nefc)),
+           max_nefc_per_world=max(nefc), median_nefc=float(np.median(nefc)), frames=FRAMES or 'sampled',
+           max_total_contacts_requested=max(nacon_req), share_steps_nefc_over_njmax=float(np.mean(np.array(nefc) > int(getattr(md, 'njmax', 10 ** 9)))),
            max_contacts_per_world_by_pair={' / '.join(p): max(v) for p, v in sorted(per_pair.items(), key=lambda x: -max(x[1]))})
 print(json.dumps(out, indent=1)); json.dump(out, open(sys.argv[2], 'w'), indent=1)
