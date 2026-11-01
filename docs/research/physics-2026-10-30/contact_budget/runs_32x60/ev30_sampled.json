@@ -1,0 +1,43 @@
+{
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/dchk/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/ref.parquet",
+ "worlds": 32,
+ "steps": 60,
+ "nefc_hold_window": {
+  "max": 270,
+  "median": 203.5,
+  "share_over_njmax": 0.0,
+  "n": 20
+ },
+ "nefc_after_hold": {
+  "max": 287,
+  "median": 223.0,
+  "share_over_njmax": 0.0,
+  "n": 40
+ },
+ "nconmax": 8192,
+ "njmax": 512,
+ "collision_geoms": {
+  "world/table": 1,
+  "left_hand": 26,
+  "right_hand": 26,
+  "mini_sweeper_object": 19,
+  "plastic_dish_rack_object": 43,
+  "other:support": 1
+ },
+ "max_contacts_per_world": 68,
+ "median_contacts_per_world": 50.5,
+ "max_nefc_per_world": 287,
+ "median_nefc": 215.0,
+ "frames": "sampled",
+ "max_total_contacts_requested": 1105,
+ "share_steps_nefc_over_njmax": 0.0,
+ "max_contacts_per_world_by_pair": {
+  "other:support / plastic_dish_rack_object": 30,
+  "left_hand / left_hand": 26,
+  "right_hand / right_hand": 19,
+  "mini_sweeper_object / plastic_dish_rack_object": 15,
+  "mini_sweeper_object / right_hand": 8,
+  "left_hand / plastic_dish_rack_object": 7,
+  "mini_sweeper_object / other:support": 3
+ }
+}

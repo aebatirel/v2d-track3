@@ -1,0 +1,53 @@
+{
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/e10c/ev10cs3/tree/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref.parquet",
+ "worlds": 32,
+ "steps": 60,
+ "nefc_hold_window": {
+  "max": 477,
+  "median": 131.0,
+  "share_over_njmax": 0.0,
+  "n": 120
+ },
+ "nefc_after_hold": {
+  "max": 533,
+  "median": 161.5,
+  "share_over_njmax": 0.029166666666666667,
+  "n": 240
+ },
+ "nconmax": 8192,
+ "njmax": 512,
+ "collision_geoms": {
+  "world/table": 1,
+  "left_hand": 26,
+  "right_hand": 26,
+  "blue_cup_object": 32,
+  "beige_cup_object": 33,
+  "other:support": 1
+ },
+ "max_contacts_per_world": 129,
+ "median_contacts_per_world": 36.0,
+ "max_nefc_per_world": 533,
+ "median_nefc": 160.0,
+ "frames": [
+  0,
+  111,
+  116,
+  124,
+  142,
+  160
+ ],
+ "max_total_contacts_requested": 4128,
+ "share_steps_nefc_over_njmax": 0.019444444444444445,
+ "max_contacts_per_world_by_pair": {
+  "beige_cup_object / blue_cup_object": 56,
+  "beige_cup_object / right_hand": 26,
+  "blue_cup_object / left_hand": 24,
+  "beige_cup_object / left_hand": 22,
+  "blue_cup_object / right_hand": 21,
+  "right_hand / right_hand": 17,
+  "left_hand / right_hand": 17,
+  "blue_cup_object / other:support": 12,
+  "left_hand / left_hand": 12,
+  "beige_cup_object / other:support": 9
+ }
+}

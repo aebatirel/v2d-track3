@@ -54,3 +54,31 @@ scene (≤ 441 at explicit resets). The engines differ in contact settings. Use 
 - ev10cs cuts the cup–cup contacts under sampled resets from 68 to 31 per world. At the nested explicit frames they
   stay about the same (77 vs 79).
 
+## Large-sample standard (1 Nov ~04:46 UTC): 32 worlds × 60 steps, hold window reported separately
+
+**Why.** At 8 × 30, ev10cs3 read clean: max 443, 0 lines. At 32 × 60 it overflows. The per-step worst world grows with
+the number of worlds, and steps 21–60 include the zero-action collapse after the hold. Controls show that 32 × 60 is
+a fair absolute test: the non-overlapping packed scenes (evals 30 and 14) have **0 overflow lines** there.
+
+Hold window = steps < 20, the VOC-1 settling hold of every training reset. Share = the share of steps in which the
+worst of the 32 worlds exceeds 512 rows. Runs are in `runs_32x60/` and `runs_8x30/`.
+
+| scene | sampled hold: max / median / share | sampled after hold: max | explicit frames: max | overflow lines (sampled / explicit) | verdict |
+|---|---|---|---|---|---|
+| eval 30 packed (control) | 270 / 204 / 0 % | 287 | 221 | **0 / 0** | clean |
+| eval 14 packed (control) | 407 / 307 / 0 % | 357 | 505 | **0 / 0** | clean |
+| eval 14 + rack c1-ev14 (62 pieces) | 571 / 313 / 10 % | 477 | 291 | 12 / 0 | **not clean** (worse than packed) |
+| eval 14 + rack c2-ev14 (54 pieces) | 499 / 337 / 0 % | 356 | 216 | 5 / 0 | **not clean** (worse than packed) |
+| eval 10 packed (`meshes/carve/ev10`) | 661 / 599 / 100 % | 654 | 1,680 | 380 / 9,723 | overflow |
+| eval 10 + ev10cs (v1) | 598 / 548 / 75 % | 566 | 699 | 104 / 7,086 | overflow |
+| eval 10 + ev10cs3 (v3, 32 / 33 pieces) | 534 / 495 / 15 % | 603 | 533 | 110 / 576 | **not clean** (best eval-10 set) |
+
+- Explicit frames: eval 10 f0/111/116/124/142/160; eval 14 f0/140/144/149/153/157; eval 30 f0/66/132/197/262.
+- The eval-14 rack candidates were built from the packed eval-14 assets: the refs/sf rack mesh plus the candidate
+  pieces, the blue cup as packed, 0.3 kg.
+- **Verdicts (rule "no overflow at 512" at 32 × 60):**
+  - eval 14: keep the packed rack; c1 and c2 add overflow.
+  - eval 30: keep the packed configuration; it is clean.
+  - eval 10: no candidate is clean. ev10cs3 cuts the overflow lines 3–17× vs packed but is not a retrain candidate
+    by the rule.
+
