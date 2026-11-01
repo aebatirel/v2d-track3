@@ -5494,3 +5494,7 @@ Advice given:
 - 00:02 UTC D lines on the other standard-learner boxes [M, exec]: S30a ep30-s42, S30b ep30-s43, S25b ep25-s43 all show
   "packed references checked" (ep30 std 20261025-std30-ee7ba8e md5 dd464c96…; ep25 20261026-c25s42-feb0407) and the D line
   with the right seed and the "; skip immediate starts (…)" tail. All five D boxes are training.
+- 00:06 UTC determined-wright [M, their record gpu/recipe_screen_V_merged.txt ee8ad41]: arm V (actor sees object
+  velocity) INCONCLUSIVE, not used (Δ V − C seed means ep2 −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007; mean −0.024).
+  Screen complete: K inconclusive, D inconclusive, S no signal, V inconclusive → no recipe change for pack 10 from that
+  lane; the targeted D cells (running) are decided by the swap rule only. rscrV42/V43 self-destroyed (their ~$7.02 [E]).
