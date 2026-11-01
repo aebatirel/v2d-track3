@@ -5897,3 +5897,12 @@ arm and a no-policy replay floor to stage B.
     (falsified if ≤ 0 on most segments); the same check tells "poses wrong" from "meshes too fat".
   - Suggested gate: mean ΔAUC ≥ +0.002, no episode < −0.01.
   - [H] Contact is the "touch" Roman says absolute position needs.
+- 04:07 UTC 1 Nov bold-albattani **started the public pose-fix test** (new item; CPU, $0; folder
+  docs/research/mesh-2026-10-26/posefix/ on their branch).
+  - PREREG committed before any scoring.
+  - Inputs: the CD-O guard's public tracks and scorer (cdo_c0/tracks, pipeline/score_registered.py), so the before
+    numbers reproduce the stored base; the 9a+ mesh set; a ground-truth-free H30 hand estimate and table plane from
+    our depth.
+  - Transform as proposed. One scored run on ~20 public episodes. Gate: mean ΔAUC ≥ +0.002, no episode < −0.01;
+    MPPE / RPE reported. Diagnostics: push-vs-error cosine and our meshes at mocap poses.
+  - If it passes, the rule goes to focused-pascal for evals 10, 1, 14, 30, then 15 / 16. ETA 2–3 h; PREREG within 1 h.
