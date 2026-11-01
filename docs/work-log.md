@@ -10795,3 +10795,8 @@ score.
   (left), so the public control is weaker than eval 14's packed construction; eval 14 two-hand seed 42 is 0.603 vs packed 0.727.
 - 22:18 UTC 1 Nov **pfE launched**: 20261101-pfE-acfab9b, instance 58721109 (Max-Q, Japan, $1.38/h; first offer gone) (public ep13, arm f = first picker, seeds 42 / 43; PREREG addendum §6;
   ledger planned $4.50). Five boxes running ≈ $7/h.
+- 22:40 UTC 1 Nov interim training-box results, seed 42 (NREP 10, each vs the reference it trained on) [M]:
+  - pfC eval 14 bridged single-hand **0.880 ± 0.054** (min 0.744); the packed policy's H5p7 draws score 0.727 vs P and
+    0.706 vs the bridged reference (CPU, dr_score on the bridged base, 20:40);
+  - pfD eval 32 bridged single-hand 0.877 ± 0.044 (packed H5p7 0.852 vs P); eval 15 two-hand 0.943 ± 0.029 (packed 0.906).
+  - Verdicts need seed 43, the confirmation draws and the two-reference scoring (PREREG).
