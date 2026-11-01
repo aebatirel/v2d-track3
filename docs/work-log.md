@@ -6541,3 +6541,11 @@ Background agent, CPU only, $0, no ground truth read.
   each with a public falsification test. Sent to the "Meeting analysis with Roman" session (session_01D9UJC7JP3bbasvhFUrxyf7,
   keen-heisenberg's coordination chat), together with the GRASP verdict and the §7 notes for the perfect-following
   session. Next on CPU after the ep13 arms: repair (a) on ep13 P2 + jitter check.
+- 20:05 UTC: **correction (keen-heisenberg, 20:02; verified in the kit [M]):** the leaderboard is symmetry-aware. The
+  kit's Track 3 README declares "`beige_cup` and `blue_cup`: any rotation about the central axis is equivalent", and
+  `AUC.py` (`_REGISTER_OBJECT_MESH = True` → `_score_registered_track3` → `_symmetry_point_errors` with the declared axes /
+  orders) minimises over them. So my 19:36 entry and the 19:57 message were wrong that the leaderboard charges the ep13
+  cup twist. Our GT-free proxy sim_vs_ref (pipeline/qa.py, plain `_object_add`) does charge it, and so does a
+  full-orientation training reward. Repair (a) still matters: the reference asks for an impossible spin of a resting cup,
+  and the proxy is pessimistic on cup episodes. README §5 / §8 corrected. Report-only: sim_vs_ref with the kit's
+  symmetric errors per arm (`scripts/sym_score.py`), running.

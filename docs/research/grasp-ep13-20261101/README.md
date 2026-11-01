@@ -84,10 +84,13 @@ Report-only readings:
   35 % of frames vs 22 %); the remaining failure is at the placement (~f100). With our perceived motion every arm is
   below the floor and "lost" at f15–17, because of the next item.
 - **Our perceived cup track spins about the cup's symmetry axis while the cup rests** (12° by f8, 54° by f18, 130° by
-  f26, 140° by f30; the rotation axis is the mesh's symmetry axis, |cos| 1.00; the mocap cup turns 0–9° until f24). The
-  metric is ADD, not ADD-S, so this unobservable spin costs score in sim_vs_ref and in the leaderboard AUC vs mocap,
-  and no robot can (or should) reproduce it. [H-spin]: canonicalising symmetry-axis spin of symmetric objects in our
-  references raises both; falsifiable on public twins by the registered AUC of the canonicalised reference vs mocap.
+  f26, 140° by f30; the rotation axis is the mesh's symmetry axis, |cos| 1.00; the mocap cup turns 0–9° until f24).
+  **Correction (20:05 UTC, checked in the kit):** the leaderboard is symmetry-aware (kit Track 3 README: "`beige_cup` and
+  `blue_cup`: any rotation about the central axis is equivalent"; `AUC.py` scores with `_symmetry_point_errors`), so it
+  does NOT charge this twist. Our GT-free proxy sim_vs_ref (pipeline/qa.py, plain ADD) does, and so does any training
+  reward that tracks full orientation. So the twist (1) asks the robot to spin a resting cup, which it cannot do without
+  disturbing it, and (2) makes our proxy pessimistic on cup episodes (it may mislead swap decisions). The "lost at f15"
+  readings above are partly this proxy charge. Symmetric-error sim_vs_ref per arm (report only): SYM_TABLE_PENDING.
 
 ## 6. Cost
 $0: everything ran on this container's 4 CPUs (setup ~20 min; dev sweep ~45 min; eight ep13 arms ~8 h). No GPU was
@@ -131,8 +134,9 @@ pre-registered gate. The bit-identical replay check and the fixed-noise robust c
 ## 8. Making our perceived motion physically possible (proposal, 1 Nov ~19:55 UTC; nothing run yet)
 **The gap, measured on ep13 [M].** Same two-hand construction, same solver budget; only the object track differs:
 jittered zero-action sim_vs_ref of the input 0.344 (our perceived track) vs 0.604 (mocap track); after either solver
-0.39–0.42 vs 0.62–0.65. The reference itself is close to mocap by AUC (0.940 vs 0.964), so the loss is not "where" the
-cup is but motions a robot cannot produce. Earlier results point the same way: eval 10's twin ep11 O − P +0.345 in RL
+0.39–0.42 vs 0.62–0.65 (plain-ADD proxy; part of the perceived-track gap is the proxy charging the cup's twist, see §5).
+The reference itself is close to mocap by AUC (0.940 vs 0.964), so the loss is not "where" the cup is but motions a robot
+cannot produce. Earlier results point the same way: eval 10's twin ep11 O − P +0.345 in RL
 (perception-limited, "our reference nests the beige cup deeper than the shapes allow").
 
 **What is already falsified (do not repeat as is):** generic smoothing (zero-lag RTS on tracks, kit gate −0.00011),
@@ -142,9 +146,11 @@ projecting rest poses onto the support (ΔAUC −0.0107, 17 / 20 worse; overlaps
 1. **Symmetry-axis spin canonicalisation.** For rotationally symmetric objects (cups; mesh PCA with two near-equal
    axes, or a rotational self-registration check), split each frame's rotation into swing (tilt, observable) and twist
    (about the symmetry axis, unobservable). Keep the swing; hold the twist constant while the object rests and let it
-   follow the holding hand's twist while held. ep13: our track twists 140° by f30 with no cause [M]; ADD (not ADD-S)
-   charges it in both sim_vs_ref and the leaderboard AUC. Test ($0, CPU): blue / beige cup twins (ep11, 12, 13, 21, 22):
-   reference AUC vs mocap must not drop (registered, as score_registered), zero-action jittered sim_vs_ref should rise.
+   follow the holding hand's twist while held. ep13: our track twists 140° by f30 with no cause [M]. The leaderboard
+   ignores the twist (symmetric metric for cups), but our proxy sim_vs_ref and full-orientation training rewards charge
+   it, and the reference asks for a physically impossible spin. Test ($0, CPU): blue / beige cup twins (ep11, 12, 13,
+   21, 22): the registered AUC vs mocap should be unchanged (the metric is symmetric; a change would flag a bug), and the
+   zero-action jittered sim_vs_ref, plain and symmetric, should rise (the robot is no longer asked to spin the cup).
    Caveat: a cup with a visible handle has an observable twist; apply only where the twist is unobservable.
 2. **No mover, no motion.** An object may move only while an assigned hand is in contact (or it is supported by a moving
    object, or falling). Outside those windows hold the pose; inside a hold, express the object in the holding hand's frame,
