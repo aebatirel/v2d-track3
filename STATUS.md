@@ -10,6 +10,14 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-01 04:56 UTC: PACK 9b READY — results/submissions/20261101-track3j-candidate/build_9b/ (not uploaded here)
+- `track3_submission.parquet`, 9,120 rows, sha256 a6c4105abb4a6a85…44e4a, code https://github.com/aebatirel/v2d-track3/commit/dd24ed412714ecc12cbda275be9b45180a00744e.
+- D-arm swap rule: **eval 33 PASS** (0.936 vs packed 0.923, 0 fails each); 14 / 16 / 25 / 30 NO-SWAP. Pack 9b = 9a+ with
+  eval 33's D draw-1 rollout; expected effect ≈ +0.0001 AUC [E] (robustness: official min 0.903 vs 0.847). D arm $19.41.
+- Checks: only ep33 rows differ from 9a+; meshes and CD-O identical; uploader offline validation; no_oracle. Upload stays
+  with the session where the owner gave the word.
+- Running: eval-10 njmax-1024 diagnostic `20261101-e10nj-451b82d` (never packed).
+
 ## 2026-11-01 ~04:20 UTC: D confirmation running; eval-10 njmax-1024 diagnostic launched (never packed)
 - D arm: all five training boxes VERIFIED ($17.24); merge chose 14 s43, 16 s43, 25 s42, 30 s42, 33 s42; confirmation box
   `20261101-drC-a1a7e25` (58608674) on draw 3 of 10 at 04:16; then after_c.sh → verdict → pack 9b record (~05:00–05:30).

@@ -5703,3 +5703,9 @@ Advice given:
   of five. [E] Expected leaderboard effect of the 33 swap: draw 1 0.9419 vs the packed rollout's 0.9401 → +0.0018
   sim_vs_ref on one of 20 episodes ≈ +0.0001 AUC (noise level); its value is robustness (D policy sd 0.006 on the
   training box; official draws min 0.903 vs packed min 0.847). D training + confirmation total $19.41 measured.
+- 04:56 UTC **pack 9b ready: results/submissions/20261101-track3j-candidate/build_9b/track3_submission.parquet**
+  (9,120 rows, sha256 a6c4105abb4a6a85…44e4a, code commit dd24ed4). 9a+ + eval 33's D draw-1 rollout; checks pass:
+  only ep33's 696 pose rows + checkpoint differ, meshes / CD-O identical, uploader offline validation, no_oracle.
+  README there. Not uploaded from this session. (Correction to the 04:50 entry's aside: training-box vs official means
+  differed in both directions — ep30 s42 0.837 → 0.816, ep14 s43 0.697 → 0.686, ep16 s43 0.841 → 0.831, but ep25 s42
+  0.816 → 0.858 and ep33 s42 0.943 → 0.936.)
