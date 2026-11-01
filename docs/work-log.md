@@ -5991,3 +5991,10 @@ Advice given:
   job's sha check against the submitted rollout would refuse it (not easy). Videos stay out of git (store + H.264 via
   the tool's ffmpeg step). Cost [E]: ~1.0 h (setup 0.35, pulls 0.1–0.3, 5 replays in 2 waves 0.35, push 0.1) ×
   ~$1.4/h ≈ $1.4; high ~$4 (HF 429); ledger planned $2.50; credit $23.63 → reserve kept.
+- 18:56 UTC **video box launched**: `ops/vast.sh V2D_COMMIT=b96ae95c… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  58257843 20261101-vid3-b96ae95 'PACK_RUN=20261030-c33B-0202139 EPS="14 25 30" REPLAYS="14:3" PAR=3 RUNS="20261025-evb1420-ee7ba8e@refs/glockt/ep14,refs/sf/ep14
+  20261026-c25s42-feb0407@refs/perc2mcks/ep25 20261025-std30-ee7ba8e@refs/perc2mcks/ep30" PICK="14:20261025-evb1420-ee7ba8e:final
+  25:20261026-c25s42-feb0407:ck=runs/perc2mcks/ep25-s42/policy_250003456.safetensors 30:20261025-std30-ee7ba8e:final"
+  ASSET_PIECES="…/meshes/carve/ev25 …/meshes/carve/ev10" bash ops/jobs/sub_videos.sh'` → instance 58698678 (United
+  Kingdom, $1.348/h); ledger planned $2.50; credit $23.56 before launch. Output: store runs/20261101-vid3-b96ae95/
+  results/sub_videos/{ep14_r1,ep14_r2,ep14_r3,ep25,ep30}.mp4. Reporting only; nothing is chosen from the videos.
