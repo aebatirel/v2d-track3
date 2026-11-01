@@ -6354,3 +6354,7 @@ Background agent, CPU only, $0, no ground truth read.
   - Blue COM moves 12.8 mm along the axis (z 2.99 → 15.77 mm); inertia +0.4–4 %.
   - Beige COM moves 1.4 mm; izz −10 %.
   - Suggested copying packed inertia.json to keep a one-variable test.
+- 05:23 UTC: ev10cs5 (bold-albattani 1373603, the 8 mm plate) for focused-pascal's PREREG.
+  - Byte identity vs v4: only the plate, blue inertia.json and build records differ.
+  - 32 × 60: **0 / 0 overflow lines**; max 503 / 504 (v4: 448 / 459).
+  - Both conditions met; headroom is only ~8 rows. Record be1e893; sent to focused-pascal and bold-albattani.
