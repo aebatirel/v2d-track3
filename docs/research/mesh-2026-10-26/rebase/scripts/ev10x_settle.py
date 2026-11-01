@@ -30,10 +30,16 @@ J = [np.hstack([rng.normal(0, 0.0005, 3), rng.normal(0, 0.005, 3)]) for _ in ran
 def load(adir, n):
     u = f'{adir}/urdf/{n}_rigid.urdf'; s = open(u).read(); d = os.path.dirname(u)
     cols = [os.path.normpath(os.path.join(d, f)) for f in re.findall(r'<collision>.*?<mesh filename="([^"]*)"', s, re.S)]
-    assert all(not c.endswith('.glb') for c in cols), 'expects piece files'
     vis = os.path.normpath(os.path.join(d, re.search(r'<visual>.*?<mesh filename="([^"]*)"', s, re.S).group(1)))
-    return dict(hulls=[np.asarray(trimesh.load(c, force='mesh').vertices, float) for c in cols], ine=st.urdf_inertial(u),
-                vis=vis, urdf_md5=rb.md5(u))
+    hulls, src = [], []
+    for c in cols:                                                  # glb -> FlashCHORD's CoACD (f0_survey.coacd_npz)
+        if c.endswith('.glb'):
+            import f0_survey
+            z = np.load(f0_survey.coacd_npz(c, os.environ['COACD1011'], os.environ['COACD_CACHE']))
+            hulls += [np.asarray(z[f'v{i}'], float) for i in range(int(z['n']))]; src.append(f'{os.path.basename(c)} {rb.md5(c)[:8]} -> CoACD {int(z["n"])}')
+        else:
+            hulls.append(np.asarray(trimesh.load(c, force='mesh').vertices, float)); src.append(os.path.basename(c))
+    return dict(hulls=hulls, ine=st.urdf_inertial(u), vis=vis, urdf_md5=rb.md5(u), src=src, vis_md5=rb.md5(vis))
 
 
 def run(spec, T0):
@@ -77,7 +83,8 @@ for v, adir in variants.items():
                                               for k, f in fr.items() if f is not None}
         first_done = True
     spec = [(n, o['hulls'], o['ine']) for n, o in zip(names, O)]
-    rv = dict(pieces={n: len(o['hulls']) for n, o in zip(names, O)}, urdf_md5={n: o['urdf_md5'] for n, o in zip(names, O)}, frames={})
+    rv = dict(pieces={n: len(o['hulls']) for n, o in zip(names, O)}, urdf_md5={n: o['urdf_md5'] for n, o in zip(names, O)},
+              collision={n: o['src'] for n, o in zip(names, O)}, visual_md5={n: o['vis_md5'] for n, o in zip(names, O)}, frames={})
     for k, f in res['frames'].items():
         if f is None:
             rv['frames'][k] = None; continue
