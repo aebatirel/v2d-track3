@@ -10756,3 +10756,5 @@ score.
   0.767; eval 16 0.539 / 0.661; eval 33 two-hand 0.192 (one replay each).
   - Pre-registered before any batch-2 result: docs/research/work/pf-bridge-20261101/PREREG.md. Batch 2 plan: pfC (eval 14
     bridged, s / 2h) + pfD (evals 32 / 33 bridged s, eval 15 2h), 2 seeds, ≈ $12 [E].
+- 20:48 UTC 1 Nov pfD (58710608) created with `ARMS=s` for evals 32 / 33 / 15 and destroyed within a minute: eval 15 must
+  get arm 2h (PREREG §3). pf_arms.sh now takes ARMS_EP<N> per episode. Relaunch below; cost of the mistake ≈ $0.03.

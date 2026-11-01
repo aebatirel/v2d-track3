@@ -29,8 +29,9 @@ case "${RUN_ID:-}" in *-pf*) ;; *) log "pf_arms: RUN_ID '${RUN_ID:-}' must conta
 EPS=${EP:?EP}; SPLIT=${SPLIT:?SPLIT}; ARMS=${ARMS:?ARMS}; SEEDS=${SEEDS:-"42 43"}; NCONF=${NCONF:-10}
 TAB=$REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json; H5P7_RUN=20261031-h5p7-1a7cdff
 GC="--mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15"
+arms_of() { local v=ARMS_EP$1; echo ${!v:-$ARMS}; }              # ARMS_EP<N>: that episode's arms (default ARMS)
 gl_of() { case $1 in s) echo "--single_hand 1 $GC" ;; 2h) echo "$GC" ;; *) return 1 ;; esac; }
-for a in $ARMS; do gl_of $a > /dev/null || { log "pf_arms: unknown arm $a" >> $J; exit 1; }; done
+for a in $ARMS $(for e in $EPS; do arms_of $e; done); do gl_of $a > /dev/null || { log "pf_arms: unknown arm $a" >> $J; exit 1; }; done
 export LIB=$REPO_DIR/meshes/library_v3 SF=1 SETTLE=0 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=10 PAR=2 TRAIN_SLOTS=2 \
   STEPS=70004736 EVAL_TIMEOUT=1200 NO_PUSH=1 ASSETS=/content/assets SPLIT
 export MESH_DIR=$LIB
@@ -76,7 +77,7 @@ for e in $EPS; do
     log "pf_arms ep$e: guard bridge [$EVS]: $(cut -c1-500 $G/bridge_ep$e.txt)" >> $J
   fi
   v=$(tabl $e env 2> /dev/null); [ -n "$v" ] && [ "$v" != None ] && export ENV_EP$e="$v" && log "pf_arms ep$e: ENV_EP$e=$v (the packed recipe's)" >> $J
-  for s in $SEEDS; do for a in $ARMS; do
+  for s in $SEEDS; do for a in $(arms_of $e); do
     pre=pf${a}s$s; rm -rf /content/refs/${pre}mck/ep$e; mkdir -p /content/refs/${pre}mck
     cp -r /content/refs/perc2mck/ep$e /content/refs/${pre}mck/ep$e
   done; done
@@ -88,13 +89,13 @@ OK=${OK# }; [ -n "$OK" ] || { log "pf_arms: no episode has its inputs" >> $J; ba
 
 # ----- 2. training: one glock_public.sh invocation per seed, every (episode, arm) of it in waves of 2
 for s in $SEEDS; do
-  PP=""; for e in $OK; do for a in $ARMS; do PP="$PP $e:local:mck:pf${a}s$s"; export GL_ARGS_pf${a}s$s="$(gl_of $a)"; done; done
+  PP=""; for e in $OK; do for a in $(arms_of $e); do PP="$PP $e:local:mck:pf${a}s$s"; export GL_ARGS_pf${a}s$s="$(gl_of $a)"; done; done
   label "pf arms: seed $s [$PP ]"; log "pf_arms: seed $s, PAIRS [${PP# }]" >> $J; t0=$(date +%s)
   ( SEED=$s PAIRS="${PP# }" bash $REPO_DIR/ops/jobs/glock_public.sh ) || log "pf_arms: seed $s returned $?" >> $J
   log "pf_arms: seed $s took $(( ($(date +%s) - t0) / 60 )) min" >> $J
   bash $OPS/store.sh push-run > /dev/null 2>&1 || log "pf_arms: interim push FAILED" >> $J
 done
-for e in $OK; do for s in $SEEDS; do for a in $ARMS; do        # stored config of every chosen checkpoint
+for e in $OK; do for s in $SEEDS; do for a in $(arms_of $e); do        # stored config of every chosen checkpoint
   c=/content/results/pf${a}s${s}_glock_public/ep$e/best/policy.safetensors; [ -f $c ] && { echo "== ep$e $a s$s"; $FCV $T/ckpt_meta.py $c; }
 done; done; done > $G/ckpt_meta.txt 2>&1
 
@@ -140,7 +141,7 @@ for e in $OK; do
   done; done
   OLD=runs/20261026-pack6-5203d42/results/submission/results/episode_$E6   # the board pack's old packed draw (pack 6)
   for x in parquet json; do PULL_RETRY_S=5 pull1 $OLD.$x && mkdir -p $I/ep$e/old/r1 && cp $HS/$OLD.$x $I/ep$e/old/r1/; done
-  for a in $ARMS; do
+  for a in $(arms_of $e); do
     python $T/pf_verdict.py choose --results /content/results --ep $e --arm $a --seeds "$SEEDS" --h5 $I/ep$e/packed_h5 --out $G/choice_ep${e}_$a.json $([ -f $I/ep$e/BRIDGED ] && echo --nogate) > $G/choice_ep${e}_$a.txt 2>&1; rc=$?
     log "pf_arms ep$e $a choice + gate: $(cut -c1-700 $G/choice_ep${e}_$a.txt)" >> $J
     if [ $rc = 0 ]; then
