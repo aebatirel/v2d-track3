@@ -6176,3 +6176,14 @@ diagnostic; nothing is picked for submission.
   higher floor meets the beige base; median unchanged 0.21); f111 overflow 3/16 copies (v4 0). focused-pascal's
   pre-stated rule: ev10cs5 if md5 condition holds and determined-wright's 32x60 recheck is 0 / 0 by 06:30 UTC, else
   ev10cs4. Sent to both.
+
+### 2026-11-01 05:55 UTC — posefix (rest projection) public test: gate fails; overlaps are partly mesh shape
+- Agent report (posefix/README.md; PREREG df60ff2 before scoring; output sha 4ef1305 before GT staged; results e3b1fcd;
+  CPU $0): rule A mean dAUC -0.0107 (gate +0.002), min -0.0342 (ep41); 17/20 worse; MPPE +0.128 cm, RPE +0.087 cm;
+  variants C -0.0051, D -0.0024, B -0.0106. Direction falsified (28/50 cos <= 0; pair pushes 11/16 right but 5.7x
+  overshoot). Mesh check: overlaps persist at mocap poses (ep11 cups 65 cm3, ep31 11.1, ep24 9.9, ep2 5.9; only cup-in-
+  rack mostly pose); caveat: container openings may count as solid. C0 pot lowest point 6.9-8.3 mm below the real base
+  at true poses (not the balls; they are lateral), v3 pitcher 7-11 mm.
+- Not proposed for eval. Correction relayed to keen-heisenberg / focused-pascal / determined-wright: the overnight "poses
+  are the problem" summary was too strong; a large part is mesh shape. Offered a physics-only re-base of the pot and
+  pitcher meshes as a possible next item.
