@@ -44,6 +44,7 @@ OV_FRAME_CM3 = 1.0    # informed: cdo-sprint/spoon-diag frame threshold
 HAND_MM = 0.030       # F-I5.3 (2) / F-I5.16 (3) hands-off radius
 STATIC_M = 0.002      # F-I1.1 static: < 2 mm per frame
 STATIC_N = 5          # F-I1.1 >= 5 frames
+CAP = 0.1             # distances are reported up to 100 mm (">= 100 mm" beyond; nearest-neighbour queries bounded)
 P_VIS, P_GUEST, P_FA, P_SURF = 0.001, 0.0015, 0.002, 0.002
 RECV_ORDER = ['plastic_dish_rack', 'white_pot', 'blue_cup']   # receiver by role (cup / pot / rack hold the partner)
 COLS = ['object_body_names', 'object_body_position', 'object_body_wxyz', 'object_mesh_paths', 'object_urdf_paths',
@@ -167,6 +168,25 @@ def cube_dist(tree, cells, pitch, X, k=8):
     return np.linalg.norm(q, axis=2).min(1)
 
 
+def bounded(tree, X):
+    """min nearest-neighbour distance, capped at CAP"""
+    d = tree.query(X, k=1, distance_upper_bound=CAP)[0] if len(X) else np.array([np.inf])
+    return float(min(d.min(), CAP))
+
+
+def cube_min(tree, cells, pitch, X):
+    """min over X of cube_dist, evaluated only where it can be the minimum: a cube is at least the centre distance
+    minus its half diagonal away, so points with nearest-centre distance > min + sqrt(3)/2 pitch cannot win (same
+    value as cube_dist(...).min(), faster)."""
+    if not len(X):
+        return CAP
+    dc = tree.query(X, k=1, distance_upper_bound=CAP + pitch)[0]
+    if not np.isfinite(dc).any():
+        return CAP
+    cand = X[dc <= dc.min() + 0.5 * np.sqrt(3.0) * pitch + 1e-12]
+    return float(min(cube_dist(tree, cells, pitch, cand).min(), CAP))
+
+
 # ---------------------------------------------------------------------------------------------------- per frame
 def pair_frame(R, G, T_wr, T_wg):
     """Guest G against receiver R at one frame. Volumes in cm3, lengths in mm."""
@@ -192,11 +212,11 @@ def pair_frame(R, G, T_wr, T_wg):
     if in_ff.any():
         o['dist_faithful_mm'] = 0.0
     else:
-        d1 = cube_dist(R.fa_tree, R.fa_cells, P_FA, tf(T_rg, G.fa_corners)).min()
-        d2 = cube_dist(G.fa_tree, G.fa_cells, P_FA, tf(np.linalg.inv(T_rg), R.fa_corners)).min()
+        d1 = cube_min(R.fa_tree, R.fa_cells, P_FA, tf(T_rg, G.fa_corners))
+        d2 = cube_min(G.fa_tree, G.fa_cells, P_FA, tf(np.linalg.inv(T_rg), R.fa_corners))
         o['dist_faithful_mm'] = float(min(d1, d2) * 1e3)
-    o['dist_visual_mm'] = 0.0 if in_rv.any() else float(R.surf_tree.query(tf(T_rg, G.surf))[0].min() * 1e3)
-    o['dist_packed_mm'] = 0.0 if in_pp.any() else float(R.pk_tree.query(tf(T_rg, G.pk_surf))[0].min() * 1e3)
+    o['dist_visual_mm'] = 0.0 if in_rv.any() else bounded(R.surf_tree, tf(T_rg, G.surf)) * 1e3
+    o['dist_packed_mm'] = 0.0 if in_pp.any() else bounded(R.pk_tree, tf(T_rg, G.pk_surf)) * 1e3
     return o
 
 
@@ -259,12 +279,14 @@ def run_episode(ep, cfg, out_dir, log):
         dd = []
         for j, O in enumerate(objs):
             Ti = np.linalg.inv(T[f, j])
-            dd.append(O.surf_tree.query(tf(Ti, P))[0] if len(P) else np.zeros(0))
-            hand_min[f, j] = O.surf_tree.query(tf(Ti, R_['hands'][f]))[0].min()
+            dd.append(O.surf_tree.query(tf(Ti, P), distance_upper_bound=CAP)[0] if len(P) else np.zeros(0))
+            hand_min[f, j] = bounded(O.surf_tree, tf(Ti, R_['hands'][f]))
         if len(P):
-            k = np.argmin(np.stack(dd), 0)
+            D = np.stack(dd)
+            k = np.argmin(D, 0)
+            ok = np.isfinite(D.min(0))                  # a label point > 100 mm from both objects is not attributed
             for j in range(len(objs)):
-                contact_obj[f, j] = bool((k == j).any())
+                contact_obj[f, j] = bool(((k == j) & ok).any())
     H0 = ~contact_any
     H30 = np.all(hand_min >= HAND_MM, 1)
     disp, runs = static_mask(T, objs)

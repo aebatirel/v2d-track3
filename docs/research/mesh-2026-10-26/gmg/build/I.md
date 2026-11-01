@@ -1591,6 +1591,16 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   6 mm (P76's sweeper leg misses); ep13 blue_cup route 2: `no_accepted_layout` (00:44) -> route 3. Scheduler: my
   run group's autogroup weight set to nice -3 (my own processes only, nobody else's reniced; 3 groups compete: frame_kit
   at nice 19, the eval-check lane's two processes, and my six), i.e. about 2 of the 4 cores, near a per-process share.
+- 00:50 (Eval precheck) [M] packed decomposition (coacd 1.0.11, 0.05, -1, auto) reproduces the 26 Oct hull census:
+  spoon 10 hulls / 97.51 cm3 (census 10 / 97.5), rack 43 / 1210.61 (43 / 1210.6), cup 76 / 449.91 (75 / 450.4), plus
+  cup ep32sf 72, spoon ep32sf 11, sweeper 19. Found while building the config: the references' `object_mesh_paths` say
+  `/content/assets/mesh/...` for every object, but the simulator loads `object_urdf_paths`, which for 14/15/16/32/33
+  point at `refs/sf/epN/assets` (ep32: the support-filled cup and spoon); the config follows the URDF collision mesh.
+  Eval 10 [M]: no F-I1.1 static stretch at rest (the reference's guest-in-receiver jitter is 1-5 mm per frame), so
+  the contact-frame pick uses the stated fallback (contact-label-free runs, flag not_static). First contact numbers
+  (eval 10, packed ev10 pieces, pair scene, sim=rl): 656-1,296 rows, 164-324 contacts, overflow in 16/16 copies at
+  all three frames (P103's first leg misses on eval 10). Launched 00:33 (nice 15): geometry runs [10, 1, 30, 33] and
+  [14, 15, 16, 32]; contacts driver after each; outputs `<scratch>/evck/out/{geo,contacts}`.
 - 00:58 (T-I16) [M] ep13 blue_cup route 2 (rev 2): `no_accepted_layout`; every candidate fails (i) min wall, at -31.8
   to -74.7 mm (ring volume 0.12-1.8 cm3: 15-20 of 24 wall pieces dropped as negative walls), then route 3 and route 4
   (25 boxes). ep12 blue_cup: the same (`no_accepted_layout`; 12-sector one-band b1: min wall -55.2 mm, 15 pieces
@@ -1628,3 +1638,16 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   segments, mid f285 / f278, have the faithful sweeper 12.0 / 11.9 mm from the faithful rack: the sweeper floats,
   verify_cc_1 B2); G1 vacuous (packed default 98 + 46 hulls, not counted); floor fails on the shares:
   DO_NOT_USE.json, CONTACT_GATE_PENDING.json.
+- 01:46 (Eval precheck) [M] done (diagnostic only; nothing carved, decided or tuned): results
+  `build/I/results/collcarve2-evalcheck/` (README, `evalcheck_summary.json`, `eval_contact_precheck.json`,
+  `per_frame/`, scripts). Runs: this container, nice 15, `<scratch>/evck/out/geo2` + `contacts2` (01:08-01:42; a first
+  slower run in `out/geo` was stopped after evals 10 / 14, its values identical within the 100 mm distance cap).
+  Hands-off (no contact label) frames: overlap on the faithful 2 mm boxes >= 1 cm3 in 37 / 52 (eval 10), 56 / 56 (1),
+  46 / 63 (14), 58 / 63 (30); packed-vs-packed 11.9 cm3 median at the eval-10 nested rest, 0 on eval 1 (ev01 works),
+  16.4 / 15.5 cm3 median on 14 / 30 (the rack's CoACD pieces fill the cup / sweeper slot up to 10.5 / 10.4 cm3 beyond
+  the rack mesh); table penetration 16.6 mm (eval 14 cup, f42), 19.5 mm (eval 32 cup, f33); spoon floats 61 / 44 mm
+  (15 / 16; eval 15 has a rack seat: spoon between the plates in 58 hands-off frames, nothing filled); evals 32 / 33
+  reproduce spoon-diag within 0.1 cm3 (the cup mesh blocks, the pieces add <= 1.0 cm3). Contact numbers (pair scene,
+  sim=rl limits, plain MuJoCo): **eval 10 overflows in 16/16 copies at all 3 frames (656-1,296 rows, 164-324
+  contacts; > 512 rows at step 0)**; all others 104-436 rows, no overflow. P103 falsified on eval 10; budget.py (b)
+  not run (no FlashCHORD / warp here): hand-off to determined-wright via the orchestrator. $0.
