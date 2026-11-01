@@ -10,6 +10,13 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-01 09:00 UTC: wrap-up — nothing running; credit $23.63; ledger closed ($200.12 actual)
+- Eval-20 b1 retrain NO-SWAP (gate missed: s43 0.8929 vs > 0.8933; overflow 1.2–1.3 k lines) → no pack 10b.
+- Best board: pack 10 (AUC 0.81915, RPE 3.683, MPPE 2.848) + 9a+ (SP-SR 0.85, MP-SR 0.65, CD-O 0.332).
+- Open: (1) eval-10 nest completion (njmax-1024 diagnostic 0.913 vs legal 0.532; owner / organiser question on 1024
+  training; legal route = overflow → 0 at 512, e.g. clip the beige low corner [H]); (2) store.sh push race (fix described
+  in the work log, 00:50 entry; not built); (3) eval-19 sweeper support fill certified on CPU, retrain not run.
+
 ## 2026-11-01 08:43 UTC: PACK 10 UPLOADED (keen-heisenberg's session) — new bests on AUC 0.81915, RPE 3.683, MPPE 2.848
 - vs 9a+: AUC +0.0016, RPE −0.196, MPPE −0.049; SP-SR 0.80 (board keeps 9a+'s 0.85); MP-SR / CD-O unchanged.
 - Only eval 10 changed (legal ev10cs5 retrain). [H] SP-SR dropped because the new eval-10 policy moves the cup without

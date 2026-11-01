@@ -5917,3 +5917,12 @@ Advice given:
   that completes the nest should win SP-SR back. Receipt + UPLOAD.md on claude/keen-heisenberg-engcwz (5b0f081).
   [M] First confirmed board gain from the contact-overflow finding; the GT-free proxy gain (+0.04 on the episode) matched
   the board's direction this time (AUC +0.0016 ≈ +0.032 on one episode).
+- 08:56 UTC **eval-20 b1 retrain: NO-SWAP [pieces not clean in training] → no pack 10b** (PREREG eval20-b1-20261101,
+  36f255a; run 20261101-e20b1-4207ce4, code 4207ce42, instance 58631864 France $1.410/h; run_job.log RTX PRO 6000 Max-Q
+  driver 595.91.07, env restored, job rc 0 after 89 min; ledger actual $2.14). [M] Training-box gate not met: s42
+  0.7861 ± 0.147, s43 0.8929 ± 0.036 vs the bar > 0.8933 (packed H5p7 0.8934, 0 fails, median RPE 1.67 cm); no
+  confirmation draws; overflow lines s42 1,236, s43 1,334 (bar 1,000). Eval 20 stays as packed. Results copied to
+  eval20-b1-20261101/results/.
+- 08:58 UTC wrap-up (owner via keen-heisenberg: finish in-flight, start nothing new): 0 Vast instances; ledger all closed
+  (actual $200.12 of the $325 budget; nothing planned-open); Vast credit $23.63. Agent worktrees removed (all three
+  merged first, no uncommitted changes); no scheduled check-ins of this session pending.
