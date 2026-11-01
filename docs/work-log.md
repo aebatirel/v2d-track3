@@ -6151,3 +6151,11 @@ diagnostic; nothing is picked for submission.
   sim.njmax=1024 (untested, pack lane / owner).
 - Orchestrator: ev10cs v4 requested from the ev10 agent (gates appended before building; fewer, larger beige pieces,
   fewer blue bands, one-piece floor kept, cavity-safe inner faces; CPU, $0).
+
+### 2026-11-01 05:30 UTC — ev10cs4 delivered for the 32x60 FlashCHORD check
+- Agent report (A4 rules fedccf6 before building; results 7e4bc6a): ev10cs4 = v3 with 2 wall bands, beige base 1 + 4,
+  6 mm blue floor (one pre-registered change after the drop check fired on 3 mm); 24 / 21 pieces. Plain MuJoCo
+  (indicative): overlap f124-160 0.21 / 2.61 cm3; nefc f111 / f142 / f116 488 / 212 / 336, 0 of 48 copies over 512;
+  settled nest 96-104 rows; intrusion 0; blue kept volume 0.384 (fails as all sets). Drop check: beige crosses the
+  6 mm floor in 2-8 of 16 copies at 24-32 mm drops (0 at rest frames). Sent to determined-wright (cc focused-pascal,
+  keen-heisenberg); target 0 overflow lines at 32x60, hold max <= ~480.
