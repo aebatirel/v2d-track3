@@ -10758,3 +10758,7 @@ score.
     bridged, s / 2h) + pfD (evals 32 / 33 bridged s, eval 15 2h), 2 seeds, ≈ $12 [E].
 - 20:48 UTC 1 Nov pfD (58710608) created with `ARMS=s` for evals 32 / 33 / 15 and destroyed within a minute: eval 15 must
   get arm 2h (PREREG §3). pf_arms.sh now takes ARMS_EP<N> per episode. Relaunch below; cost of the mistake ≈ $0.03.
+- 20:48 UTC 1 Nov **batch 2 launched** (code 97095b8):
+  - 20261101-pfC-97095b8, instance 58710688 (Max-Q, Michigan, $1.34/h): `EP=14 SPLIT=eval ARMS="s 2h" BRIDGE=1`;
+  - 20261101-pfD-97095b8, instance 58710689 (Max-Q, Texas, $1.46/h): `EP="32 33 15" SPLIT=eval ARMS=s ARMS_EP15=2h BRIDGE=1`.
+  - 4 boxes running ≈ $5.7/h. Credit before batch 1: $122.85.
