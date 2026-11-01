@@ -1,0 +1,704 @@
+{
+ "label": "NO-SWAP",
+ "why": [
+  "training-box gate not met: no seed's training-box mean sim_vs_ref vs V above 0.4632 ({'42': 0.4555, '43': 0.4546}); no confirmation draws"
+ ],
+ "rule": "docs/research/work/eval10-cs4-20261101/PREREG.md section 5",
+ "labels_attached": [],
+ "pack10_inclusion": {
+  "rule": "binding: a SWAP-ELIGIBLE eval 10 enters pack 10 only if (new confirmation mean - packed fresh-draw mean) sim_vs_ref >= 0.02 on BOTH V and P",
+  "bar": 0.02,
+  "gain": {
+   "V": null,
+   "P": null
+  },
+  "include_in_pack10": false,
+  "reading": "not swap-eligible: not included"
+ },
+ "clauses": {},
+ "sides": {
+  "V": {
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4555,
+     "sd": 0.0017,
+     "min": 0.4523,
+     "max": 0.4583,
+     "median": 0.4556
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.835,
+     "sd": 0.0055,
+     "min": 15.8278,
+     "max": 15.8466,
+     "median": 15.8355
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4258,
+     "sd": 0.0163,
+     "min": 8.4044,
+     "max": 8.4563,
+     "median": 8.4218
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4572,
+     "sd": 0.0012,
+     "min": 0.4554,
+     "max": 0.4598,
+     "median": 0.4569
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6779,
+     "beige_cup": 0.2365
+    }
+   }
+  },
+  "P": {
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4474,
+     "sd": 0.0025,
+     "min": 0.4431,
+     "max": 0.4523,
+     "median": 0.4471
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7978,
+     "sd": 0.0055,
+     "min": 15.7886,
+     "max": 15.8078,
+     "median": 15.799
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4511,
+     "sd": 0.0167,
+     "min": 8.4305,
+     "max": 8.4824,
+     "median": 8.4469
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.45,
+     "sd": 0.0016,
+     "min": 0.447,
+     "max": 0.4524,
+     "median": 0.4499
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6599,
+     "beige_cup": 0.24
+    }
+   }
+  }
+ },
+ "training_box_gate": {
+  "rule": "PREREG section 4: >= 1 VERIFIED seed (n >= 8) with training-box mean sim_vs_ref vs V > 0.4632",
+  "bar": 0.4632,
+  "bar_source": "the packed eval-10 policy's 10 fresh (H5p7) draws, mean sim_vs_ref vs V, e10v summary.json [M]",
+  "met": false,
+  "seeds": {
+   "42": {
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.4555,
+    "mean_raw": 0.45548,
+    "above": false,
+    "margin": -0.0077
+   },
+   "43": {
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.4546,
+    "mean_raw": 0.45458999999999994,
+    "above": false,
+    "margin": -0.0086
+   }
+  }
+ },
+ "overflow": {
+  "bar": 1000,
+  "unclean_seeds": [],
+  "per_seed": {
+   "42": {
+    "dropped": 0,
+    "files": 1,
+    "counts": {
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0
+    },
+    "njmax_requested": {
+     "n": 0,
+     "median": null,
+     "p95": null,
+     "p99": null,
+     "max": null,
+     "min": null
+    }
+   },
+   "43": {
+    "dropped": 0,
+    "files": 1,
+    "counts": {
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0
+    },
+    "njmax_requested": {
+     "n": 0,
+     "median": null,
+     "p95": null,
+     "p99": null,
+     "max": null,
+     "min": null
+    }
+   }
+  },
+  "other": {
+   "train_oom_s42": {
+    "files": 0,
+    "dropped": 0
+   },
+   "curve_s42": {
+    "files": 21,
+    "dropped": 0
+   },
+   "best_s42": {
+    "files": 10,
+    "dropped": 0
+   },
+   "train_oom_s43": {
+    "files": 0,
+    "dropped": 0
+   },
+   "curve_s43": {
+    "files": 21,
+    "dropped": 0
+   },
+   "best_s43": {
+    "files": 10,
+    "dropped": 0
+   },
+   "conf": {
+    "files": 0,
+    "dropped": 0
+   }
+  },
+  "baseline": "e10v (ev10 pieces, same V and recipe): 6,010,501 (s42) / 5,846,480 (s43) nefc lines [M]"
+ },
+ "lift": {
+  "rule": "reported: beige r1 lift >= 5.0 cm at >= 1 curve checkpoint (tools/e10nj.py lift)",
+  "holds_any_seed": false,
+  "per_seed": {
+   "42": {
+    "beige_r1_max_cm": 0.2,
+    "beige_any_repeat_max_cm": 0.3,
+    "holds": false,
+    "checkpoints": [
+     {
+      "ckpt_M": 10,
+      "sim_vs_ref": 0.4571,
+      "beige_r1": 0.2,
+      "beige_max": 0.2,
+      "blue_r1": 0.2
+     },
+     {
+      "ckpt_M": 20,
+      "sim_vs_ref": 0.4564,
+      "beige_r1": 0.1,
+      "beige_max": 0.1,
+      "blue_r1": 0.0
+     },
+     {
+      "ckpt_M": 30,
+      "sim_vs_ref": 0.457,
+      "beige_r1": 0.1,
+      "beige_max": 0.2,
+      "blue_r1": 0.1
+     },
+     {
+      "ckpt_M": 40,
+      "sim_vs_ref": 0.4546,
+      "beige_r1": 0.2,
+      "beige_max": 0.3,
+      "blue_r1": 0.1
+     },
+     {
+      "ckpt_M": 50,
+      "sim_vs_ref": 0.4551,
+      "beige_r1": 0.1,
+      "beige_max": 0.2,
+      "blue_r1": 0.1
+     },
+     {
+      "ckpt_M": 60,
+      "sim_vs_ref": 0.4559,
+      "beige_r1": 0.2,
+      "beige_max": 0.2,
+      "blue_r1": 0.1
+     },
+     {
+      "ckpt_M": 70,
+      "sim_vs_ref": 0.457,
+      "beige_r1": 0.1,
+      "beige_max": 0.1,
+      "blue_r1": 0.1
+     }
+    ],
+    "controls": {
+     "e10v_s42": 2.5,
+     "e10v_s43": 0.3
+    }
+   },
+   "43": {
+    "beige_r1_max_cm": 0.3,
+    "beige_any_repeat_max_cm": 0.3,
+    "holds": false,
+    "checkpoints": [
+     {
+      "ckpt_M": 10,
+      "sim_vs_ref": 0.456,
+      "beige_r1": 0.3,
+      "beige_max": 0.3,
+      "blue_r1": 0.2
+     },
+     {
+      "ckpt_M": 20,
+      "sim_vs_ref": 0.4549,
+      "beige_r1": 0.1,
+      "beige_max": 0.1,
+      "blue_r1": 0.1
+     },
+     {
+      "ckpt_M": 30,
+      "sim_vs_ref": 0.4561,
+      "beige_r1": 0.1,
+      "beige_max": 0.2,
+      "blue_r1": 0.1
+     },
+     {
+      "ckpt_M": 40,
+      "sim_vs_ref": 0.4574,
+      "beige_r1": 0.1,
+      "beige_max": 0.2,
+      "blue_r1": 0.0
+     },
+     {
+      "ckpt_M": 50,
+      "sim_vs_ref": 0.4565,
+      "beige_r1": 0.1,
+      "beige_max": 0.2,
+      "blue_r1": 0.1
+     },
+     {
+      "ckpt_M": 60,
+      "sim_vs_ref": 0.4572,
+      "beige_r1": 0.1,
+      "beige_max": 0.1,
+      "blue_r1": 0.1
+     },
+     {
+      "ckpt_M": 70,
+      "sim_vs_ref": 0.4549,
+      "beige_r1": 0.0,
+      "beige_max": 0.2,
+      "blue_r1": 0.2
+     }
+    ],
+    "controls": {
+     "e10v_s42": 2.5,
+     "e10v_s43": 0.3
+    }
+   }
+  }
+ },
+ "training_box": {
+  "42": {
+   "V": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4555,
+     "sd": 0.0013,
+     "min": 0.4536,
+     "max": 0.4575,
+     "median": 0.4554
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.8024,
+     "sd": 0.0081,
+     "min": 15.7948,
+     "max": 15.8171,
+     "median": 15.7994
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4085,
+     "sd": 0.01,
+     "min": 8.3848,
+     "max": 8.4212,
+     "median": 8.4085
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4569,
+     "sd": 0.0006,
+     "min": 0.4561,
+     "max": 0.4583,
+     "median": 0.4568
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6772,
+     "beige_cup": 0.2366
+    }
+   },
+   "P": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4474,
+     "sd": 0.0019,
+     "min": 0.4439,
+     "max": 0.4501,
+     "median": 0.4472
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7781,
+     "sd": 0.0074,
+     "min": 15.769,
+     "max": 15.7918,
+     "median": 15.7765
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4404,
+     "sd": 0.0102,
+     "min": 8.4163,
+     "max": 8.4543,
+     "median": 8.4404
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4502,
+     "sd": 0.0011,
+     "min": 0.4482,
+     "max": 0.4519,
+     "median": 0.4503
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6602,
+     "beige_cup": 0.2401
+    }
+   }
+  },
+  "43": {
+   "V": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4546,
+     "sd": 0.001,
+     "min": 0.4524,
+     "max": 0.4557,
+     "median": 0.4549
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.8008,
+     "sd": 0.0059,
+     "min": 15.7885,
+     "max": 15.8106,
+     "median": 15.8007
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4156,
+     "sd": 0.015,
+     "min": 8.395,
+     "max": 8.4375,
+     "median": 8.4132
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4567,
+     "sd": 0.0005,
+     "min": 0.4556,
+     "max": 0.4571,
+     "median": 0.457
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6769,
+     "beige_cup": 0.2366
+    }
+   },
+   "P": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4462,
+     "sd": 0.0015,
+     "min": 0.4439,
+     "max": 0.449,
+     "median": 0.446
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7771,
+     "sd": 0.0074,
+     "min": 15.7598,
+     "max": 15.7865,
+     "median": 15.7769
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4478,
+     "sd": 0.0151,
+     "min": 8.4285,
+     "max": 8.4698,
+     "median": 8.4454
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4496,
+     "sd": 0.0012,
+     "min": 0.4478,
+     "max": 0.4513,
+     "median": 0.4498
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.659,
+     "beige_cup": 0.2402
+    }
+   }
+  }
+ },
+ "choice": {
+  "status": "CHOSEN",
+  "chosen": "43",
+  "checkpoint": "<MR>/content/results/perc2e10css43_glock_public/ep10/best/policy.safetensors",
+  "sha256": "d9bbae9e59d7abdc2218b20d9277ab748b1e8047f9949ab72b0c4b240ea9cf6a",
+  "seeds": {
+   "42": {
+    "results": "<MR>/content/results/perc2e10css42_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10css42_glock_public/ep10/best/policy.safetensors",
+    "sha256": "39bcfceb971872307f52fa3af4834fc90d2168b30be73af9633074190ed6a711",
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.4555,
+    "sd": 0.0013,
+    "min": 0.4536,
+    "max": 0.4575,
+    "values": [
+     0.4552,
+     0.4552,
+     0.4567,
+     0.4557,
+     0.4536,
+     0.4575,
+     0.4538,
+     0.4548,
+     0.4567,
+     0.4556
+    ],
+    "chosen_by_curve": "<MR>/content/runs/perc2e10css42_glock/ep10-s42/policy_9998336.safetensors"
+   },
+   "43": {
+    "results": "<MR>/content/results/perc2e10css43_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10css43_glock_public/ep10/best/policy.safetensors",
+    "sha256": "d9bbae9e59d7abdc2218b20d9277ab748b1e8047f9949ab72b0c4b240ea9cf6a",
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.4546,
+    "sd": 0.001,
+    "min": 0.4524,
+    "max": 0.4557,
+    "values": [
+     0.4536,
+     0.4552,
+     0.4552,
+     0.4556,
+     0.4524,
+     0.4544,
+     0.4552,
+     0.4546,
+     0.4557,
+     0.454
+    ],
+    "chosen_by_curve": "<MR>/content/runs/perc2e10css43_glock/ep10-s43/policy_40001536.safetensors"
+   }
+  },
+  "incomplete_seeds": [],
+  "invalid_seeds": []
+ },
+ "pieces": {
+  "set": "ev10cs4",
+  "dir": "<MR>/content/v2d-track3/meshes/carve/ev10cs4",
+  "md5sums_md5": "c745ebc8c3e86cadc5301a7b2351c5c1",
+  "manifest": [
+   "1475bc0bbc62f6dea9c4b5f8046298fa  ./beige_cup/inertia.json",
+   "8955e9762b2360f15c15086ebfd3a3d8  ./beige_cup/lathe_collision.json",
+   "7755a622b411a927268578c35cbd1c42  ./beige_cup/piece_00.obj",
+   "f06ead813b91e3da9024558a55358768  ./beige_cup/piece_01.obj",
+   "5fc45619a518eea31cfa9f98b79bde27  ./beige_cup/piece_02.obj",
+   "352b55fa044bf575b8b1959d664ad5a2  ./beige_cup/piece_03.obj",
+   "a74949f5f35a2c3e5a7d61ab0277b606  ./beige_cup/piece_04.obj",
+   "1f28620c36a2512831ed828b6f11a82e  ./beige_cup/piece_05.obj",
+   "0dcb8dd3efa992397759acc81bf2f490  ./beige_cup/piece_06.obj",
+   "35ad80a5b4fa82afe5fec300af01b13b  ./beige_cup/piece_07.obj",
+   "be8e16e156185d38a8e6f8e7d89fb7ad  ./beige_cup/piece_08.obj",
+   "101a29cf58206b9408b975647f96444d  ./beige_cup/piece_09.obj",
+   "3a61eedc5f3efcb5f25a16fb30aeb3e4  ./beige_cup/piece_10.obj",
+   "845c005416362b168024d7229f4c6fc9  ./beige_cup/piece_11.obj",
+   "ea6e001641de0f6c145256cd1c07ded3  ./beige_cup/piece_12.obj",
+   "30ca9e86b1f150355b03a44d0fc6c374  ./beige_cup/piece_13.obj",
+   "a3f924e47e03225ca5d9ae9cccdd3173  ./beige_cup/piece_14.obj",
+   "ac943393d7e195a0f4ac962891fef3fb  ./beige_cup/piece_15.obj",
+   "9bc91e037b74140077900f8d95c6de8a  ./beige_cup/piece_16.obj",
+   "eef8c16705cb73076a9cf0701b290cde  ./beige_cup/piece_17.obj",
+   "6fc5abadbd40687faa321a3416f23ea6  ./beige_cup/piece_18.obj",
+   "5a74fa7bd4cc216954f74bceb9458c1b  ./beige_cup/piece_19.obj",
+   "327d7ab6217430cd232dc0fa95ef456e  ./beige_cup/piece_20.obj",
+   "711978e0bdc970cf4d174b3f84baac17  ./blue_cup/inertia.json",
+   "1f4278de0714b4f87c4fb87a63639906  ./blue_cup/lathe_collision.json",
+   "3427257f72f042bde1615d06c91d1d61  ./blue_cup/piece_00.obj",
+   "ef0723058cd9e07dc3a6358e549ce3fc  ./blue_cup/piece_01.obj",
+   "8892ce2a623c9b63bae053862bbd0289  ./blue_cup/piece_02.obj",
+   "060b3e4572f9b9fda8b87794b9ca4da9  ./blue_cup/piece_03.obj",
+   "74b8a89327c080a82bd0bf606c541b88  ./blue_cup/piece_04.obj",
+   "07dcb181eb158ad604f33eb82243c1d6  ./blue_cup/piece_05.obj",
+   "86b9f246a52bb4e4e3d31f5f1d931ad2  ./blue_cup/piece_06.obj",
+   "fa9ada25672068201d73dd96f868276a  ./blue_cup/piece_07.obj",
+   "460ebd27bc47c432ff5677919a563ce8  ./blue_cup/piece_08.obj",
+   "1d8b4bc3618d6a2ced47277aaac11f45  ./blue_cup/piece_09.obj",
+   "1af6b5c25af78a259f634cae14d225dd  ./blue_cup/piece_10.obj",
+   "c467b63a2615970f346f9f7ecc042fe4  ./blue_cup/piece_11.obj",
+   "8fa73ede9da2c64c6b278b8c3ed19d08  ./blue_cup/piece_12.obj",
+   "e823509883455fcef9184731424331c7  ./blue_cup/piece_13.obj",
+   "c5ed772a7cc64cf5a8fe273cf06fd4c1  ./blue_cup/piece_14.obj",
+   "f7ef79722e833747b852a3d1ec3a969e  ./blue_cup/piece_15.obj",
+   "97b48703203f8e1d71434bbd9fe48a72  ./blue_cup/piece_16.obj",
+   "9e63a96c12c6b62426c92ed9e7fc623f  ./blue_cup/piece_17.obj",
+   "6b17c4f8bc36fa08269213fcee9d195a  ./blue_cup/piece_18.obj",
+   "5a866cc43b39c1dc4f343e7e2d2e1c19  ./blue_cup/piece_19.obj",
+   "27c963dbcf869580f13196dcf8b571dc  ./blue_cup/piece_20.obj",
+   "4c2938e1f96e54fc1cc9397f69df3f36  ./blue_cup/piece_21.obj",
+   "211e1bb5fc48e1babf3621478294b2ec  ./blue_cup/piece_22.obj",
+   "5b12b5b1d9dac7c14058f9dcb34ff9a8  ./blue_cup/piece_23.obj",
+   "bc9d1d9b017dc19ec9d0638ab986ffd9  ./carve.json"
+  ],
+  "source": "origin/claude/bold-albattani-6qmxsv fa2ec41 (built 7e4bc6a)",
+  "clause_a": null
+ },
+ "urdf_inertials": {
+  "blue_cup": {
+   "urdf_md5": "8511f0d3fdc154c6e2dba609aa195c4c",
+   "mass": 0.3,
+   "com_mm": [
+    0.537,
+    1.145,
+    15.774
+   ],
+   "inertia": {
+    "ixx": 0.000988371289,
+    "ixy": -5.9029839e-07,
+    "ixz": 1.48183979e-05,
+    "iyy": 0.000987850467,
+    "iyz": 1.98734235e-05,
+    "izz": 0.000457898899
+   },
+   "collisions": 24
+  },
+  "beige_cup": {
+   "urdf_md5": "1a8cb9d813c7a8085b4759347a16a8ba",
+   "mass": 0.3,
+   "com_mm": [
+    1.535,
+    5.508,
+    -5.568
+   ],
+   "inertia": {
+    "ixx": 0.000904406358,
+    "ixy": 7.82045625e-08,
+    "ixz": 5.5230646e-06,
+    "iyy": 0.000904326764,
+    "iyz": -9.0076599e-06,
+    "izz": 0.000268303606
+   },
+   "collisions": 21
+  }
+ },
+ "verify": {
+  "ok": true,
+  "failures": [],
+  "confirmation": {
+   "draws": 0,
+   "checked": 0,
+   "chosen": "43",
+   "sha256": "d9bbae9e59d7abdc2218b20d9277ab748b1e8047f9949ab72b0c4b240ea9cf6a",
+   "eval_rc": {}
+  }
+ },
+ "equal_floor_note": null,
+ "counts": {
+  "conf": {
+   "own": "V",
+   "n_files": 0,
+   "n_scored": 0
+  },
+  "old": {
+   "own": "P",
+   "n_files": 1,
+   "n_scored": 1
+  },
+  "packed": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train42": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train43": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  }
+ }
+}

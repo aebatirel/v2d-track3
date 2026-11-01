@@ -95,7 +95,7 @@ while read -r f; do
     *) continue ;;                                                 # its track, inputs: not needed
   esac
   pull $f || stop "pull of $REF_RUN's $f FAILED"
-  mkdir -p $(dirname $d) && cp -n $HS/$E/$f $d
+  mkdir -p $(dirname $d) && { [ -e $d ] || cp $HS/$E/$f $d; }       # (not cp -n: newer coreutils warn on stderr)
 done < $HS/$E/results/ev10_v4p/rerun_files.txt
 while read -r f m; do
   [ "$(md5sum < $I/${f#results/ev10_v4p/} 2> /dev/null | cut -c1-32)" = "$m" ] || stop "e10v's $f missing or md5 != $m"

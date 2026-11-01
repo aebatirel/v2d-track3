@@ -1,0 +1,7 @@
+e10v default path (expect SWAP-ELIGIBLE, 28 checks): 28/28 checks pass
+floor4 (expect NO-SWAP:GATE, ev10cs4): 34/34 checks pass
+unclean5 (expect SWAP-ELIGIBLE:UNCLEAN, ev10cs5): 34/34 checks pass
+badset (expect REFUSED, ev10cs6): 3/3 checks pass
+tamper5 (expect INVALID:piece set check FAILED, ev10cs5): 12/12 checks pass
+invalid5 (expect INVALID:CELLS, ev10cs5): 29/29 checks pass
+pass5 (expect SWAP-ELIGIBLE:INCLUDE, ev10cs5): 34/34 checks pass

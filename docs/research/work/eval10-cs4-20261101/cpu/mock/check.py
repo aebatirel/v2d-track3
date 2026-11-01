@@ -87,7 +87,7 @@ ok('every CLI training key equals the packed gl10A2 config (no mismatch; >= 10 k
 real = re.findall(r'TRAIN_ARGS \[([^\]]*)\]', open(f'{REPO}/docs/research/work/perception-sprint-20261031/ev10retrain/results/job.log', errors='replace').read())
 mine = re.findall(r'TRAIN_ARGS \[([^\]]*)\]', job)
 ok('TRAIN_ARGS = e10v\'s REAL job log line, byte for byte', bool(real) and bool(mine) and set(mine) == set(real), (set(mine), set(real)))
-keys = [sorted(a.split('=', 1)[0] for a in x.get('argv', [])[1:] if '=' in a) for x in tr]
+keys = [sorted(a.split('=', 1)[0] for a in x.get('argv', []) if '=' in a) for x in tr]          # argv = the trainer's arguments
 ok('the training command line has exactly the template keys + TRAIN_ARGS keys (same template as e10v)', keys and all(k == keys[0] for k in keys)
    and set(keys[0]) == {'experiment', 'embodiment', 'task.parquet', 'task.motion_speed', 'reset.seed', 'logging.mode', 'output_dir',
                         'training.total_environment_steps', 'curriculum', 'objective.force_closure.enabled', 'objective.force_closure.weight',

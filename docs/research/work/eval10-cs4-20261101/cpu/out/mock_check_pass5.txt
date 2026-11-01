@@ -1,0 +1,36 @@
+ok   label SWAP-ELIGIBLE  [SWAP-ELIGIBLE; ['every clause holds on both references']]
+ok   rc 0  [rc=0]
+ok   RESULT line in the job log
+ok   no store listing (single-file downloads only)  [47]
+ok   every download is e10v's run or the packed side's H5p7 draws  [['20261031-e10v-caf38fb', '20261031-h5p7-1a7cdff']]
+ok   exactly one store upload (the final push), holding summary.json  [[{'kind': 'upload', 'src': '<MR>/content/push/20261101-e10cs-mocksha', 'dst': 'runs/20261101-e10cs-mocksha', 'msg': 'run 20261101-e10cs-mocksha: 2026-11-01T06:08:15Z'}]]
+ok   the push holds no e10v or njmax result folder (results/ev10_v4p, results/ev10_nj, perc2e10vs*, perc2e10nj*)
+ok   nothing written under the packed or e10v result names on this box
+ok   hands_mp / hand_refine / perc2 / score_registered never ran
+ok   piece set ev10cs5: MD5SUMS md5 = the pinned one, check ok, clause (a) vs ev10cs4 holds  [('045d8921d5fe548ffebbee3cc21e798b', [])]
+ok   assets: REAL make_assets.py build, URDF md5 = the set's pinned md5, 24 / 21 collisions (byte copies of the pieces)  [{'blue_cup': ('ac8d296b440ceeb24e895366f45365d8', 24), 'beige_cup': ('1a8cb9d813c7a8085b4759347a16a8ba', 21)}]
+ok   arms: V = e10v's arms.json (md5, fingerprint, base); seed copies 42 / 43 byte copies; V names the set's URDFs, not e10v's  [[]]
+ok   no_oracle accepted the piece set and every e10v input
+ok   two trainings: seeds 42 and 43, 70,004,736 steps, runs/perc2e10css<seed>_glock/ep10-s<seed>, on the seed copies  [[('ontent/runs/perc2e10css42_glock/ep10-s42', '42'), ('ontent/runs/perc2e10css43_glock/ep10-s43', '43')]]
+ok   the trainings loaded the set's URDFs (md5) at 0.3 kg
+ok   stock contact limits: no sim.* override on the command line, saved sim / env.sim 512 / 256  [[({}, [512, 256, 512, 256]), ({}, [512, 256, 512, 256])]]
+ok   every CLI training key equals the packed gl10A2 config (no mismatch; >= 10 keys compared)  [[({}, 10), ({}, 10)]]
+ok   TRAIN_ARGS = e10v's REAL job log line, byte for byte  [({'curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 '}, {'curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 '})]
+ok   the training command line has exactly the template keys + TRAIN_ARGS keys (same template as e10v)  [[['curriculum', 'embodiment', 'experiment', 'logging.mode', 'objective.contact_wrench_support.weight', 'objective.force_closure.enabled', 'objective.force_closure.weight', 'objective.unintended_contact.weight', 'output_dir', 'reset.seed', 'task.motion_speed', 'task.parquet', 'training.total_environment_steps']]]
+ok   glock_public ran with REUSE_REF / REQUIRE_REUSE and never rebuilt a reference  [0]
+ok   collision pieces logged from the set's folder
+ok   overflow: each training log has 0 nefc lines (the injected count), the summary reads the same  [{'42': 0, '43': 0}]
+ok   overflow label absent  [[]]
+ok   lift s42: 7 checkpoints x 3 repeats, e10v controls read (r1 max 2.5 / 0.3 cm)  [7]
+ok   lift s43: 7 checkpoints x 3 repeats, e10v controls read (r1 max 2.5 / 0.3 cm)  [7]
+ok   cells: both VERIFIED; config diff vs the packed checkpoint within the allowed keys; stock limits; V md5  [{'42': ('VERIFIED', ['output_dir', 'reference.parquet', 'task.parquet'], []), '43': ('VERIFIED', ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed'], [])}]
+ok   choice = pack 9b rule (e10v rule 2) on the cells  [43]
+ok   training-box gate met (bar 0.4632)  [{'42': (0.9997, True), '43': (0.9999, True)}]
+ok   10 official calls of the chosen checkpoint on the pristine worktree, at stock 512  [10]
+ok   no_oracle accepted the chosen checkpoint (packable)
+ok   scored: conf 10, packed 10, old 1, train42 10, train43 10  [{'conf': 10, 'old': 1, 'packed': 10, 'train42': 10, 'train43': 10}]
+ok   verify ok, every own-reference check ok  [([], 41)]
+ok   pack-10 inclusion: gain >= 0.02 on V and P -> INCLUDE  [{'rule': 'binding: a SWAP-ELIGIBLE eval 10 enters pack 10 only if (new confirmation mean - packed fresh-draw mean) sim_vs_ref >= 0.02 on BOTH V and P', 'bar': 0.02, 'gain': {'V': 0.5443, 'P': 0.5119}, 'include_in_pack10': True, 'reading': 'INCLUDE in pack 10'}]
+ok   summary records the piece set, its MD5SUMS md5 and the 50-line manifest; the URDF inertials used  [('ev10cs5', '045d8921d5fe548ffebbee3cc21e798b', 50)]
+{"mr": "<S>/e10cs/mock/pass5", "expect": "SWAP-ELIGIBLE:INCLUDE", "label": "SWAP-ELIGIBLE", "checks": 34, "failed": []}
+34/34 checks pass

@@ -109,12 +109,12 @@ def cmd_pieces(a):
     r['manifest'] = open(man).read().splitlines() if os.path.isfile(man) else None
     rc, out = tool('check', '--dir', d, '--out', f'{a.out}.check.json'); r['check'] = js(f'{a.out}.check.json'); r['check_line'] = out[-600:]
     if rc != 0:
-        fails.append(f'e10cs_pieces check failed: {out[-300:]}')
+        fails.append(f'e10cs_pieces check failed: {out[:300]}')
     if s == 'ev10cs5':                                                    # PREREG 2.2 clause (a), re-checked on the box
         rc, out = tool('compare', '--base', os.path.join(os.path.dirname(d), 'ev10cs4'), '--cand', d, '--out', f'{a.out}.compare.json')
         r['clause_a'] = js(f'{a.out}.compare.json'); r['clause_a_line'] = out[-600:]
         if rc != 0:
-            fails.append(f'clause (a) vs ev10cs4 failed: {out[-300:]}')
+            fails.append(f'clause (a) vs ev10cs4 failed: {out[:300]}')
     r['ok'] = not fails; r['failures'] = fails
     json.dump(r, open(a.out, 'w'), indent=1)
     print(('PIECES OK' if not fails else 'PIECES FAILED: ' + ' | '.join(fails)) + f" :: set {s}, MD5SUMS {r['md5sums_md5']}, "
@@ -127,7 +127,7 @@ def cmd_assets(a):
     rc, out = tool('assets', '--assets', a.assets, '--pieces', a.pieces, '--out', f'{a.out}.urdfs.json')
     u = js(f'{a.out}.urdfs.json') or {}
     if rc != 0:
-        fails.append(f'e10cs_pieces assets failed: {out[-300:]}')
+        fails.append(f'e10cs_pieces assets failed: {out[:300]}')
     for n, want in SETS[s]['urdf'].items():
         got = ((u.get('urdfs') or {}).get(n) or {}).get('urdf_md5')
         if got != want:
