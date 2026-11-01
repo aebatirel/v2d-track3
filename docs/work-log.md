@@ -5906,3 +5906,20 @@ arm and a no-policy replay floor to stage B.
   - Transform as proposed. One scored run on ~20 public episodes. Gate: mean ΔAUC ≥ +0.002, no episode < −0.01;
     MPPE / RPE reported. Diagnostics: push-vs-error cosine and our meshes at mocap poses.
   - If it passes, the rule goes to focused-pascal for evals 10, 1, 14, 30, then 15 / 16. ETA 2–3 h; PREREG within 1 h.
+- 04:20 UTC 1 Nov focused-pascal: **eval-10 njmax-1024 diagnostic launched.**
+  - Box 20261101-e10nj-451b82d (instance 58615195, India, $1.392/h). Ledger $3.50; PREREG range $1.8 / $3.0 / $5.8.
+  - PREREG docs/research/work/eval10-njmax-20261101/PREREG.md, committed first (086de63).
+  - Labels:
+    - INCONCLUSIVE: overflow > 1,000;
+    - FALSIFIED: overflow ≤ 1,000 and no lift;
+    - SUPPORTED: overflow ≤ 1,000, lift, and mean official sim_vs_ref at 1024 > 0.4593;
+    - PARTIAL: lift without a score gain.
+    - The 512 copy is reported alongside and never changes the label.
+  - Correction [M]: the "blue_cup: lift 0" log label tracked the blue cup, which stays on the table by design. The
+    lifted cup is the beige one. e10v curve.json: beige lift 0.0–0.3 cm at 13 of 14 checkpoints, 2.5 cm once (a knock).
+    "Never lifted" stands, for the beige cup. The lift clause is beige ≥ 5 cm at some checkpoint.
+  - Reply 04:19: "lift > 0" was my suggested wording, not the owner's (the owner said only "Okay go"). The beige
+    ≥ 5 cm clause stands as committed.
+  - tools/no_oracle.py now refuses the run's names and any checkpoint with non-stock contact limits; all 20 pack-7
+    checkpoints pass.
+  - D confirmation at draw 3 of 10 at 04:16; the pack 9b record ~05:00–05:30.
