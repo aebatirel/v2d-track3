@@ -827,6 +827,17 @@ Details and every command: `docs/work-log.md`. Branch `main-bsky37`.
 - **Open questions for the owner:** njmax 512 overflows in training (raising it changes sim settings → ask the
   organisers); the mid wrist (embodiment) for submissions; spoon frame (A vs B).
 
+### Overnight push, 1 Nov 02:50 UTC (keen-heisenberg coordinating)
+- Owner: "I give you permission for everything" (02:50 UTC). Scope and limits: docs/work-log.md 02:50 entry.
+- Plan: fix the collision overlaps behind evals 10 / 30 / 14.
+  - bold-albattani builds the pieces on CPU.
+  - determined-wright checks them with budget.py.
+  - focused-pascal retrains, confirms under the swap rule, and packs.
+  - keen-heisenberg uploads passing packs (checks at 05:00, 07:30, 10:30 UTC).
+- Running: the D arm (verdict after the G box and the confirmation box); the njmax-1024 diagnostic (eval 10, diagnostic
+  only, never packed).
+- Owner-only: credit top-up.
+
 ## Goal and constraints
 - **Goal:** top of the NVIDIA V2D Challenge Track 3 leaderboard (ranked by AUC), plus the Industry Innovation award.
   Freeze 2026-11-04 17:00 EST. The owner said "anything goes" for the leaderboard, within the rules.

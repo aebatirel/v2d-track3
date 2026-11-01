@@ -5797,7 +5797,7 @@ arm and a no-policy replay floor to stage B.
     pack tools cannot take it.
   - Cost [E]: ~$2.5–3.5 for ~2.3 h of box time, to be stated in the PREREG before launch.
   - Order: launches after the D confirmation box, which stays first.
-- 02:55 UTC 1 Nov owner asked whether the night produced anything useful. Answer given, with an early read of the D
+- ~02:48 UTC 1 Nov (clock-corrected; first written as 02:55) owner asked whether the night produced anything useful. Answer given, with an early read of the D
   cells [E: training-box rollouts vs the packed policy's Oct-29 H5 10-draw means (standings branch
   docs/analysis/h5-20261029/h5_summary.json); the verdict uses tonight's h5p7 draws and the PREREG §4 rule]:
   - eval 30: D s42 0.837 ± 0.12, s43 0.817 ± 0.14 vs packed 0.798 ± 0.255, so clause (a) is plausible; clause (s)
@@ -5808,3 +5808,31 @@ arm and a no-policy replay floor to stage B.
     lifted; eval 30 sd 0.255; eval 1 cured by a carve, 0.239 → 0.017; eval 14), while tonight's robot-side items
     (smoothing, velocity input, masses, solver re-test, re-track, smoother) were all no. Proposed pack-10 direction:
     geometry fixes under the same swap rule.
+- 02:50 UTC 1 Nov **owner, verbatim: "I give you permission for everything"**. It answered my proposal to fix the
+  collision overlaps behind evals 10 / 30 / 14 and to have the mesh chat prepare carves.
+  - How I read it (sent to every lane):
+    - GPU work that serves the score needs no per-batch go. Each batch still gets plan + expected cost in the work
+      log before launch, a PREREG before any result, self-destroy and the stall watchdog, and a ≥ $5 credit reserve.
+    - Kaggle uploads of packs whose every swapped episode passes its pre-registered swap rule and whose pack checks
+      pass (9b, later pack 10). This session stays the single uploader.
+  - Not covered:
+    - the competition rules and CLAUDE.md integrity;
+    - njmax-1024 policies in packs (organisers' OK needed);
+    - the C0 blue cup (fails its own ep13 floor, selector not pre-registered);
+    - anything reading ground truth or tuned on eval results.
+  - Messages 02:52–02:54:
+    - focused-pascal (the only launching lane), priority:
+      1. D confirmation;
+      2. njmax diagnostic;
+      3. eval-10 retrain on no-overlap pieces;
+      4. eval-30 rack-slot retrain;
+      5. eval-14 retrain;
+      6. one confirmation box for 3–5.
+      [E] ~$19 for 3–6 plus ~$3 for 2; stop and report if credit cannot cover the next item.
+    - bold-albattani (mesh): CPU queue, gates committed before measuring, cut in the packed reference's frame:
+      ev10 cavity-safe, then the eval-30 rack slot, then the eval-14 rack, then evals 32 / 15 / 16.
+    - determined-wright: no duplicate njmax launch; budget.py on each candidate.
+    - score-status: for the record.
+  - Check-ins: 05:00 (updated), 07:30 (renamed "Pack 9b / pack 10 check", updated), new 10:30 UTC
+    trig_01Ltr9dX9Kt5Lx9WbYiiSasC.
+  - Owner-only: a credit top-up (credit $35.80 at 01:47 is below the full queue's need).
