@@ -6636,3 +6636,12 @@ Background agent, CPU only, $0, no ground truth read.
   --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1`) and **ep13, ep31**
   (`runs/20261030-orcB-38234d1/refs/sf`, the same GL_ARGS without `--onset_anchor 1`). Both arms (U, F) are re-locked
   on CPU without REPLAN / EVOLVE. Rule unchanged. Four episodes make this a small-sample gate; the write-up says so.
+- 20:40 UTC: **first-picker lock on ep13 [M]** (`pipeline/grasp_lock.py --single_hand 2`, commit 660b5af; box GL_ARGS
+  with `--single_hand 2`; ILC; jitter --k 17 --seed 0; `scripts/firstpicker_ep13.sh`). Carrier: left, P f19–104, O f17–99
+  (right parked). Jittered sim_vs_ref plain / symmetric (floors P 0.556 / 0.574, O 0.573 / 0.573):
+  - P1F 0.323 ± 0.108 / 0.369 ± 0.105; cup within 3 cm 14 %; lost f15–32. (P as packed 0.554 / 0.571; P2 0.344 / 0.377.)
+  - **O1F 0.672 ± 0.062 / 0.675 ± 0.062**; within 3 cm 31 %; lost mostly f42–47. (O 0.571; O2 0.604 / 0.606; O2 + our
+    solver 0.651.) With the true motion, eval 14's construction (first picker carries all) is the most followable ep13
+    reference measured; with our perceived motion every construction stays below the floor. Reading [I]: on this twin the
+    construction is not the limiter; our perceived motion at the pick is (cf. 20:21: the perceived cup is within 1 cm /
+    3–8° of mocap there, but the hand–cup relation differs by ~3.6 cm).
