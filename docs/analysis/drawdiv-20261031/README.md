@@ -55,3 +55,37 @@ by frame, and find where the error starts. He expected different rollouts to fai
    - The public twin uses the grasp-lock learner; eval 30's packed policy is the standard learner.
    - The high-spread case is tested next on the masses-check run `20261031-mass-2ed46ea` (public ep2 / ep12, 2 seeds ×
      10 draws, rollouts kept; due ≈ 12:30–14:00 UTC), with the same script.
+
+## Public ep2, masses-check rollouts (1 Nov 2026 ~05:15 UTC; `fetch_mass.sh`, `drawdiv_mass_ep2.json`) [M]
+Run `20261031-mass-2ed46ea` (commit 2ed46ea), public ep2 (white pot + lid).
+- Arms: mass0 = 0.3 kg placeholders; mass1 = estimated masses (pot 0.2771 kg, lid 0.0882 kg).
+- Two seeds per arm, 10 official draws each. The same reference is used in every draw.
+- As before, no ground truth is read: draws are compared with our reference and with each other.
+
+| Arm / seed | sim_vs_ref mean ± sd (min) | Draws with both objects < 3 cm mean error | Pairwise first split, median frame (10 µm / 5 mm / 2 cm) |
+|---|---|---|---|
+| mass0 s42 | 0.559 ± 0.349 (0.176) | 4 / 10 | 2 / 7 / 35 |
+| mass0 s43 | 0.602 ± 0.282 (0.175) | 3 / 10 | 4 / 11 / 54 |
+| mass1 s42 | 0.648 ± 0.358 (0.174) | 6 / 10 | 1 / 5 / 34 |
+| mass1 s43 | 0.813 ± 0.307 (0.179) | 8 / 10 | 1 / 6 / 54 |
+
+Failure onsets (an object stays > 3 cm from the reference for ≥ 8 frames). In failed draws the lid goes first.
+
+| Lid onsets | Total | Frames 54–61 | Before frame 30 |
+|---|---|---|---|
+| mass0 (both seeds) | 19 | 10 | 8 |
+| mass1 (both seeds) | 13 | 2 | 9 |
+
+The pot follows at frames 42–69 or 117–124.
+
+Reading:
+- Draws differ from frames 1–4 and are 5 mm apart by frames 5–11. ep2 has no single late event that decides a draw:
+  start-up noise is amplified at the lid's contacts.
+- Two lid moments decide most failures:
+  - early lid contact, before frame 30, in both arms;
+  - frames ~54–61, mostly with the 0.3 kg placeholder lid. The estimated 88 g lid removes most of these (10 → 2).
+- This matches the masses verdict on ep2: +0.157 mean, which was not adopted because ep12 went −0.013.
+- [H] The early-contact failures are the pot+lid nesting problem that a geometry carve cured on eval 1, the eval-side
+  pot+lid episode (sd 0.239 → 0.017). bold-albattani's precheck finds our public rest poses interpenetrate. If so, a
+  pose fix that separates lid and pot at rest should cut ep2's early lid failures.
+  - Falsifier: ep2 rollouts on a pose-fixed reference keep ≥ 8 early lid onsets per 20 draws.

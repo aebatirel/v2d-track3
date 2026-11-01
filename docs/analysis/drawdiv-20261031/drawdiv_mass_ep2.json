@@ -1,0 +1,1046 @@
+{
+ "mass0s42_glock_public/ep2": {
+  "arm": "mass0s42_glock_public",
+  "ep": 2,
+  "objects": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "frames": 343,
+  "same_reference": true,
+  "sim_vs_ref": {
+   "mean": 0.5591,
+   "sd": 0.3486,
+   "min": 0.1758,
+   "max": 0.9696,
+   "values": [
+    0.1822,
+    0.9656,
+    0.3789,
+    0.3245,
+    0.4421,
+    0.9613,
+    0.1758,
+    0.9162,
+    0.2749,
+    0.9696
+   ]
+  },
+  "pairwise_first_split": {
+   "1e-05": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 1,
+    "median": 2.0,
+    "max": 11
+   },
+   "0.005": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 5,
+    "median": 7.0,
+    "max": 34
+   },
+   "0.02": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 6,
+    "median": 35.0,
+    "max": 278
+   }
+  },
+  "best_vs_worst": {
+   "best": "r10",
+   "best_svr": 0.9696,
+   "worst": "r7",
+   "worst_svr": 0.1758,
+   "first_diff_10um": 2,
+   "split_5mm": 7,
+   "split_2cm": 23,
+   "split_2cm_per_object": {
+    "white_pot": 64,
+    "white_pot_lid": 23
+   }
+  },
+  "failure_onset_3cm_8f": {
+   "r1": {
+    "white_pot": 68,
+    "white_pot_lid": 57
+   },
+   "r2": {
+    "white_pot": null,
+    "white_pot_lid": 56
+   },
+   "r3": {
+    "white_pot": 124,
+    "white_pot_lid": 27
+   },
+   "r4": {
+    "white_pot": 117,
+    "white_pot_lid": 60
+   },
+   "r5": {
+    "white_pot": 117,
+    "white_pot_lid": 6
+   },
+   "r6": {
+    "white_pot": null,
+    "white_pot_lid": 59
+   },
+   "r7": {
+    "white_pot": 64,
+    "white_pot_lid": 7
+   },
+   "r8": {
+    "white_pot": null,
+    "white_pot_lid": 60
+   },
+   "r9": {
+    "white_pot": 120,
+    "white_pot_lid": 21
+   },
+   "r10": {
+    "white_pot": null,
+    "white_pot_lid": null
+   }
+  },
+  "mean_err_cm_by_object": {
+   "r1": {
+    "white_pot": 14.73,
+    "white_pot_lid": 10.69
+   },
+   "r2": {
+    "white_pot": 0.53,
+    "white_pot_lid": 1.25
+   },
+   "r3": {
+    "white_pot": 3.91,
+    "white_pot_lid": 11.89
+   },
+   "r4": {
+    "white_pot": 5.01,
+    "white_pot_lid": 20.97
+   },
+   "r5": {
+    "white_pot": 3.74,
+    "white_pot_lid": 16.05
+   },
+   "r6": {
+    "white_pot": 0.62,
+    "white_pot_lid": 1.37
+   },
+   "r7": {
+    "white_pot": 9.91,
+    "white_pot_lid": 13.36
+   },
+   "r8": {
+    "white_pot": 1.13,
+    "white_pot_lid": 1.83
+   },
+   "r9": {
+    "white_pot": 5.94,
+    "white_pot_lid": 14.08
+   },
+   "r10": {
+    "white_pot": 0.5,
+    "white_pot_lid": 1.18
+   }
+  },
+  "best_worst_err_cm_every10": {
+   "frame": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300,
+    310,
+    320,
+    330,
+    340
+   ],
+   "best": [
+    0.3,
+    2.0,
+    2.3,
+    2.2,
+    2.4,
+    2.3,
+    4.6,
+    2.1,
+    1.8,
+    0.8,
+    0.8,
+    1.0,
+    1.4,
+    0.7,
+    0.5,
+    0.7,
+    0.6,
+    1.3,
+    0.8,
+    1.2,
+    0.6,
+    0.4,
+    0.4,
+    0.3,
+    0.5,
+    0.8,
+    1.1,
+    0.8,
+    0.7,
+    0.9,
+    1.1,
+    1.5,
+    1.7,
+    1.4,
+    1.9
+   ],
+   "worst": [
+    0.3,
+    3.3,
+    3.8,
+    3.9,
+    5.3,
+    5.6,
+    6.0,
+    13.3,
+    14.3,
+    14.6,
+    14.6,
+    15.4,
+    15.4,
+    15.6,
+    15.3,
+    15.8,
+    15.8,
+    16.4,
+    19.4,
+    17.4,
+    17.8,
+    17.7,
+    17.7,
+    18.1,
+    18.2,
+    18.2,
+    14.7,
+    11.0,
+    8.9,
+    12.3,
+    11.6,
+    10.9,
+    12.8,
+    21.4,
+    23.2
+   ]
+  }
+ },
+ "mass0s43_glock_public/ep2": {
+  "arm": "mass0s43_glock_public",
+  "ep": 2,
+  "objects": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "frames": 343,
+  "same_reference": true,
+  "sim_vs_ref": {
+   "mean": 0.6017,
+   "sd": 0.2821,
+   "min": 0.1754,
+   "max": 0.9544,
+   "values": [
+    0.1754,
+    0.6362,
+    0.9486,
+    0.4368,
+    0.7099,
+    0.4257,
+    0.6329,
+    0.8745,
+    0.9544,
+    0.2229
+   ]
+  },
+  "pairwise_first_split": {
+   "1e-05": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 4,
+    "median": 4.0,
+    "max": 12
+   },
+   "0.005": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 7,
+    "median": 11.0,
+    "max": 39
+   },
+   "0.02": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 23,
+    "median": 54.0,
+    "max": 61
+   }
+  },
+  "best_vs_worst": {
+   "best": "r9",
+   "best_svr": 0.9544,
+   "worst": "r1",
+   "worst_svr": 0.1754,
+   "first_diff_10um": 4,
+   "split_5mm": 7,
+   "split_2cm": 61,
+   "split_2cm_per_object": {
+    "white_pot": 62,
+    "white_pot_lid": 61
+   }
+  },
+  "failure_onset_3cm_8f": {
+   "r1": {
+    "white_pot": 62,
+    "white_pot_lid": 60
+   },
+   "r2": {
+    "white_pot": 54,
+    "white_pot_lid": 54
+   },
+   "r3": {
+    "white_pot": null,
+    "white_pot_lid": 59
+   },
+   "r4": {
+    "white_pot": 67,
+    "white_pot_lid": 28
+   },
+   "r5": {
+    "white_pot": 262,
+    "white_pot_lid": 57
+   },
+   "r6": {
+    "white_pot": 66,
+    "white_pot_lid": 24
+   },
+   "r7": {
+    "white_pot": 173,
+    "white_pot_lid": 17
+   },
+   "r8": {
+    "white_pot": 61,
+    "white_pot_lid": 57
+   },
+   "r9": {
+    "white_pot": null,
+    "white_pot_lid": 11
+   },
+   "r10": {
+    "white_pot": 62,
+    "white_pot_lid": 32
+   }
+  },
+  "mean_err_cm_by_object": {
+   "r1": {
+    "white_pot": 15.57,
+    "white_pot_lid": 8.89
+   },
+   "r2": {
+    "white_pot": 3.32,
+    "white_pot_lid": 9.59
+   },
+   "r3": {
+    "white_pot": 0.76,
+    "white_pot_lid": 1.42
+   },
+   "r4": {
+    "white_pot": 3.88,
+    "white_pot_lid": 16.7
+   },
+   "r5": {
+    "white_pot": 2.1,
+    "white_pot_lid": 9.76
+   },
+   "r6": {
+    "white_pot": 3.72,
+    "white_pot_lid": 18.2
+   },
+   "r7": {
+    "white_pot": 2.16,
+    "white_pot_lid": 10.04
+   },
+   "r8": {
+    "white_pot": 1.78,
+    "white_pot_lid": 1.82
+   },
+   "r9": {
+    "white_pot": 0.65,
+    "white_pot_lid": 1.37
+   },
+   "r10": {
+    "white_pot": 10.8,
+    "white_pot_lid": 7.14
+   }
+  },
+  "best_worst_err_cm_every10": {
+   "frame": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300,
+    310,
+    320,
+    330,
+    340
+   ],
+   "best": [
+    0.3,
+    2.6,
+    3.3,
+    3.1,
+    2.7,
+    2.6,
+    3.2,
+    2.7,
+    0.9,
+    0.7,
+    1.1,
+    1.0,
+    2.4,
+    1.9,
+    2.0,
+    0.8,
+    0.6,
+    0.6,
+    0.8,
+    0.7,
+    0.7,
+    0.5,
+    0.5,
+    0.6,
+    0.5,
+    0.9,
+    0.6,
+    0.8,
+    0.9,
+    0.8,
+    1.4,
+    1.7,
+    1.7,
+    1.1,
+    1.7
+   ],
+   "worst": [
+    0.3,
+    2.6,
+    2.5,
+    2.3,
+    2.4,
+    1.8,
+    3.5,
+    10.8,
+    16.5,
+    17.4,
+    18.0,
+    18.5,
+    23.0,
+    22.3,
+    15.7,
+    25.3,
+    24.4,
+    25.5,
+    30.1,
+    24.4,
+    24.7,
+    24.7,
+    25.0,
+    24.9,
+    24.6,
+    24.9,
+    19.3,
+    14.6,
+    13.2,
+    11.0,
+    9.9,
+    9.7,
+    9.3,
+    12.6,
+    11.0
+   ]
+  }
+ },
+ "mass1s42_glock_public/ep2": {
+  "arm": "mass1s42_glock_public",
+  "ep": 2,
+  "objects": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "frames": 343,
+  "same_reference": true,
+  "sim_vs_ref": {
+   "mean": 0.6482,
+   "sd": 0.3584,
+   "min": 0.1743,
+   "max": 0.9568,
+   "values": [
+    0.2993,
+    0.1743,
+    0.8928,
+    0.9057,
+    0.8944,
+    0.2097,
+    0.9514,
+    0.2537,
+    0.9444,
+    0.9568
+   ]
+  },
+  "pairwise_first_split": {
+   "1e-05": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 1,
+    "median": 1.0,
+    "max": 8
+   },
+   "0.005": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 5,
+    "median": 5.0,
+    "max": 19
+   },
+   "0.02": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 6,
+    "median": 34.0,
+    "max": 58
+   }
+  },
+  "best_vs_worst": {
+   "best": "r10",
+   "best_svr": 0.9568,
+   "worst": "r2",
+   "worst_svr": 0.1743,
+   "first_diff_10um": 6,
+   "split_5mm": 6,
+   "split_2cm": 28,
+   "split_2cm_per_object": {
+    "white_pot": 65,
+    "white_pot_lid": 28
+   }
+  },
+  "failure_onset_3cm_8f": {
+   "r1": {
+    "white_pot": 42,
+    "white_pot_lid": 20
+   },
+   "r2": {
+    "white_pot": 65,
+    "white_pot_lid": 24
+   },
+   "r3": {
+    "white_pot": null,
+    "white_pot_lid": 9
+   },
+   "r4": {
+    "white_pot": null,
+    "white_pot_lid": 15
+   },
+   "r5": {
+    "white_pot": null,
+    "white_pot_lid": 21
+   },
+   "r6": {
+    "white_pot": 53,
+    "white_pot_lid": 14
+   },
+   "r7": {
+    "white_pot": null,
+    "white_pot_lid": null
+   },
+   "r8": {
+    "white_pot": 62,
+    "white_pot_lid": 41
+   },
+   "r9": {
+    "white_pot": 48,
+    "white_pot_lid": 22
+   },
+   "r10": {
+    "white_pot": null,
+    "white_pot_lid": 61
+   }
+  },
+  "mean_err_cm_by_object": {
+   "r1": {
+    "white_pot": 13.09,
+    "white_pot_lid": 7.54
+   },
+   "r2": {
+    "white_pot": 12.61,
+    "white_pot_lid": 11.47
+   },
+   "r3": {
+    "white_pot": 1.06,
+    "white_pot_lid": 2.26
+   },
+   "r4": {
+    "white_pot": 1.07,
+    "white_pot_lid": 1.99
+   },
+   "r5": {
+    "white_pot": 0.93,
+    "white_pot_lid": 2.33
+   },
+   "r6": {
+    "white_pot": 10.15,
+    "white_pot_lid": 10.96
+   },
+   "r7": {
+    "white_pot": 0.95,
+    "white_pot_lid": 1.31
+   },
+   "r8": {
+    "white_pot": 9.14,
+    "white_pot_lid": 9.53
+   },
+   "r9": {
+    "white_pot": 0.77,
+    "white_pot_lid": 1.52
+   },
+   "r10": {
+    "white_pot": 0.65,
+    "white_pot_lid": 1.37
+   }
+  },
+  "best_worst_err_cm_every10": {
+   "frame": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300,
+    310,
+    320,
+    330,
+    340
+   ],
+   "best": [
+    0.3,
+    2.1,
+    2.2,
+    2.0,
+    1.9,
+    2.2,
+    2.9,
+    3.3,
+    1.9,
+    1.0,
+    1.0,
+    0.9,
+    1.2,
+    1.2,
+    0.7,
+    1.9,
+    0.8,
+    1.4,
+    0.8,
+    2.0,
+    0.6,
+    0.5,
+    0.5,
+    0.7,
+    0.4,
+    0.7,
+    1.5,
+    0.8,
+    0.7,
+    1.3,
+    2.0,
+    1.9,
+    1.7,
+    1.5,
+    2.1
+   ],
+   "worst": [
+    0.3,
+    2.6,
+    2.9,
+    3.2,
+    4.5,
+    5.4,
+    6.4,
+    12.0,
+    18.0,
+    16.6,
+    17.0,
+    17.5,
+    17.2,
+    15.7,
+    15.6,
+    20.2,
+    17.4,
+    19.4,
+    22.2,
+    18.2,
+    17.9,
+    19.2,
+    19.2,
+    19.3,
+    19.3,
+    21.0,
+    16.1,
+    12.4,
+    12.3,
+    11.8,
+    12.3,
+    12.2,
+    12.7,
+    17.4,
+    16.4
+   ]
+  }
+ },
+ "mass1s43_glock_public/ep2": {
+  "arm": "mass1s43_glock_public",
+  "ep": 2,
+  "objects": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "frames": 343,
+  "same_reference": true,
+  "sim_vs_ref": {
+   "mean": 0.8129,
+   "sd": 0.3075,
+   "min": 0.1793,
+   "max": 0.9637,
+   "values": [
+    0.9637,
+    0.9632,
+    0.9625,
+    0.9606,
+    0.9362,
+    0.1793,
+    0.9599,
+    0.2839,
+    0.9594,
+    0.9606
+   ]
+  },
+  "pairwise_first_split": {
+   "1e-05": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 1,
+    "median": 1.0,
+    "max": 11
+   },
+   "0.005": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 5,
+    "median": 6.0,
+    "max": 49
+   },
+   "0.02": {
+    "n_pairs_split": 45,
+    "of": 45,
+    "min": 29,
+    "median": 54.0,
+    "max": 117
+   }
+  },
+  "best_vs_worst": {
+   "best": "r1",
+   "best_svr": 0.9637,
+   "worst": "r6",
+   "worst_svr": 0.1793,
+   "first_diff_10um": 1,
+   "split_5mm": 5,
+   "split_2cm": 29,
+   "split_2cm_per_object": {
+    "white_pot": 41,
+    "white_pot_lid": 29
+   }
+  },
+  "failure_onset_3cm_8f": {
+   "r1": {
+    "white_pot": null,
+    "white_pot_lid": null
+   },
+   "r2": {
+    "white_pot": null,
+    "white_pot_lid": null
+   },
+   "r3": {
+    "white_pot": null,
+    "white_pot_lid": null
+   },
+   "r4": {
+    "white_pot": null,
+    "white_pot_lid": null
+   },
+   "r5": {
+    "white_pot": null,
+    "white_pot_lid": 19
+   },
+   "r6": {
+    "white_pot": 69,
+    "white_pot_lid": 24
+   },
+   "r7": {
+    "white_pot": null,
+    "white_pot_lid": null
+   },
+   "r8": {
+    "white_pot": 57,
+    "white_pot_lid": 56
+   },
+   "r9": {
+    "white_pot": null,
+    "white_pot_lid": 45
+   },
+   "r10": {
+    "white_pot": null,
+    "white_pot_lid": null
+   }
+  },
+  "mean_err_cm_by_object": {
+   "r1": {
+    "white_pot": 0.55,
+    "white_pot_lid": 1.27
+   },
+   "r2": {
+    "white_pot": 0.68,
+    "white_pot_lid": 1.3
+   },
+   "r3": {
+    "white_pot": 0.62,
+    "white_pot_lid": 1.27
+   },
+   "r4": {
+    "white_pot": 0.62,
+    "white_pot_lid": 1.3
+   },
+   "r5": {
+    "white_pot": 0.83,
+    "white_pot_lid": 1.69
+   },
+   "r6": {
+    "white_pot": 16.58,
+    "white_pot_lid": 8.83
+   },
+   "r7": {
+    "white_pot": 0.9,
+    "white_pot_lid": 1.17
+   },
+   "r8": {
+    "white_pot": 17.32,
+    "white_pot_lid": 6.61
+   },
+   "r9": {
+    "white_pot": 0.56,
+    "white_pot_lid": 1.28
+   },
+   "r10": {
+    "white_pot": 0.84,
+    "white_pot_lid": 1.25
+   }
+  },
+  "best_worst_err_cm_every10": {
+   "frame": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300,
+    310,
+    320,
+    330,
+    340
+   ],
+   "best": [
+    0.3,
+    2.0,
+    2.2,
+    2.1,
+    2.3,
+    3.1,
+    3.2,
+    1.6,
+    1.2,
+    0.6,
+    0.6,
+    0.9,
+    1.5,
+    1.0,
+    1.2,
+    0.9,
+    0.6,
+    1.1,
+    1.0,
+    1.2,
+    1.1,
+    1.1,
+    1.1,
+    1.1,
+    0.9,
+    0.9,
+    0.7,
+    0.6,
+    0.5,
+    0.8,
+    1.5,
+    2.0,
+    2.0,
+    1.9,
+    2.9
+   ],
+   "worst": [
+    0.3,
+    2.8,
+    3.0,
+    3.7,
+    4.7,
+    5.1,
+    5.9,
+    11.4,
+    14.3,
+    15.2,
+    16.4,
+    17.9,
+    24.2,
+    23.1,
+    18.6,
+    28.2,
+    24.2,
+    27.5,
+    30.1,
+    25.5,
+    26.0,
+    25.4,
+    25.2,
+    25.8,
+    26.2,
+    26.6,
+    18.7,
+    14.0,
+    13.3,
+    12.9,
+    12.8,
+    10.9,
+    13.2,
+    20.0,
+    21.6
+   ]
+  }
+ }
+}
