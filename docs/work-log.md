@@ -6422,3 +6422,20 @@ arm and a no-policy replay floor to stage B.
     reserve, GRASP collaboration (repairs a–d folded in), the symmetric-vs-plain scoring note, the uploader route,
     and "if a permission check blocks a relayed approval, log it and continue".
   - GRASP session told the new id. Morning summary scheduled for 06:30 UTC 2 Nov (send_later).
+- 20:45 UTC 1 Nov **physics-perception session started** (session_01D9UJC6vSSNiJqaAdzNUn7d, branch
+  claude/physics-perception-20261101; CPU only, $0). Owner's ask: "attempt to correct the perception with the help of
+  physics". Public episodes only; mocap read only by scoring and diagnostics.
+  - Harness rebuilt in this container (docs/analysis/physperc-20261101/): tracks from store run
+    20261025-sweep-a894083 (sha256 = bold-albattani posefix inputs.json on 20/20), hands from
+    mesh-20261031-b4ext4-b61e8aa (sha256 equal 20/20), table plane from that run's episode bundle (frame-0 depth
+    RANSAC; GT-free), 9a+ meshes (md5 equal), public parquets / scans from nvidia/video_to_data_challenge
+    (sha256 equal to t3_inputs_sha256.txt), kit zip from the organisers' site.
+  - [M] Baseline `pipeline/score_registered.py` on the 20 staged tracks reproduces posefix runs/before **20 / 20
+    exactly** (mean AUC 0.8769; ep0 lid track failure 0.496, ep23 identity swap 0.041).
+  - [M] Finding before any new test: idea 1 (stable-pose tilt-to-plane) + idea 2 (static-prefix mean) were already
+    tested as `pipeline/refine.py` S3 on 30 Oct (docs/research/work/refine/RESULTS.md): ΔAUC −0.0013, 10 / 8, drops
+    ep39 −0.077, ep40 −0.028, ep24 −0.021; gains ep31 +0.062, ep26 +0.021, ep43 +0.014 (library_v3 meshes, all
+    table-supported objects). Not re-run as is. Running D1 (diagnostic): per object at f0, our tilt error vs the
+    stable-pose prior's error, with 9a+ and v3 meshes, to see why S3 fails and whether a gated form is justified.
+  - Messages sent to the perfect-following and GRASP sessions (scope, no eval refs touched, ask for their
+    reference-construction changes and twist-repair code).
