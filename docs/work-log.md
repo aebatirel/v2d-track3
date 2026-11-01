@@ -5848,3 +5848,14 @@ Advice given:
   default settings as glock_public SF=1, packed perc2mcks reference of 20261025-std1928-ee7ba8e) and the ep18 history:
   the first fill did not stop the brush falling (fill bug: a slab for one rest pose under another, fixed — a fill may not
   reach below any other resting pose), so the tool may add nothing if eval 19 has several resting poses.
+- 07:03 UTC bold-albattani (CPU, GT-free): (1) ev10cs5 f0 settle (rebase/ev10cs5_f0.md, 01d7cc3; plain MuJoCo, packed
+  eval-10 reference 1a5003d9): beige start wobble 6.5 mm / 4.0° unchanged vs packed (a low beige corner puts the COM
+  outside the lowest support points; matches our rest check 7.6 mm / 4.0°), blue steadier (0.86 mm / 0.55° vs 2.35 /
+  1.52), no copy falls, nest rows 136–288 vs packed 556–948; after a drop into the nest the beige can sit ~11 mm deeper
+  than the reference. Report-only for the ev10cs5 reading. (2) **eval-19 support_fill: sweeper CERTIFIED BY FILL**
+  (GATES a0ffceb before the run; result 4fa6ec4; FROZEN 64338be): support_fill.py 22fb399 default auto fill on packed
+  reference 201f338a, fill 0.5 cm (slab 4.2 cm³), margin 1.4 → 5.5 mm, tip 1.3 → 5.0°; E1 f0 16/16 falls (90.2 mm /
+  88.8°) → 0.01 mm / 0.01° all copies < 0.86°; f2 16/16 falls → 1.70 mm / 1.53° all < 2.03°; E2 visual md5 unchanged;
+  23 pieces vs 19; plain-MuJoCo rows max 160 vs 196 (indicative); overlay URDF 90df047a + sf glb f27eb335; eval 30 shares
+  mini_sweeper via /content/assets → eval 19 needs its own asset copy. Next: determined-wright budget.py; a GPU retrain
+  only if credit allows after ev10cs5 + eval 20, ≥ +0.02 rule (packed mean 0.921 ± 0.034).
