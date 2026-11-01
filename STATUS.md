@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~05:05 UTC: pack 9b uploaded (AUC 0.81677, below 9a+); 9a+ stays best on every board; rank sum 61, 11th
+- Overnight: eval-10 retrain no-swap, masses not adopted, re-track and markers failed, recipe arms inconclusive; D passed on eval 33 only.
+- Remaining levers per the owner's 02:50 permission: collision-overlap fixes for evals 10, 30, 14 (mesh carves + retrain).
+
 ## 2026-10-31 ~23:35 UTC: eval-10 V4p retrain NO-SWAP (policy never lifts the cup); masses v2 NOT ADOPTED
 - Eval 10 stays as packed (0.46, fails 10/10). Masses mean Δ +0.003. Pack 9b only if D cells (14/16/25/30/33) pass.
 - Tonight's failures: re-track, markers, solver, masses, eval-10 retrain. Landed: pack 9a+ meshes (AUC 0.8176, CD-O 0.332).

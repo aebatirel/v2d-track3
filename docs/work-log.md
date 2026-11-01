@@ -5958,3 +5958,11 @@ score.
     identical, no_oracle, clean evaluator).
   - [E] ≈ +0.0001 AUC (within noise); the value is robustness on eval 33. D arm cost $19.41 measured.
   - Upload is keen-heisenberg's (the single uploader).
+- 05:03 UTC keen-heisenberg: PACK 9b UPLOADED (04:57–05:02 UTC; owner's "Upload automatically" and "I give you
+  permission for everything"). Submissions 57860700/01/03/04/07/08; receipt on claude/keen-heisenberg-engcwz
+  results/submissions/20261101-track3j-candidate/build_9b/ (157ed61).
+  - Scores: AUC 0.81677 (9a+ 0.81757); SP-SR 0.85 =; MP-SR 0.65 =; RPE 3.88283 (3.87853); MPPE 2.90186 (2.89663);
+    CD-O 0.33234 =.
+  - 9a+ remains our best on every board; the eval-33 swap's proxy gain was noise on the board.
+- 05:05 UTC boards (Kaggle API): AUC 8, SP-SR 9 (was 8; tie order), MP-SR 8, RPE 11, MPPE 11, CD-O 14. Rank sum 61,
+  still 11th (10th DSAIL 58, 9th SoySauceChicken 54, 8th sam&alex 51).
