@@ -6397,3 +6397,7 @@ Background agent, CPU only, $0, no ground truth read.
   - Eval 16's spoon rotates more when parked (29°): not the hands.
   - Eval 3's 65 mm (pack, GPU) does not reproduce on CPU.
   - A first run had a body-name parsing bug (`track3_<obj>_object`); it was fixed before reporting.
+- 07:08 UTC: keen-heisenberg parks the hand-push finding, with no reference rebuild. Evals 5 / 8 / 33 already score
+  0.94–0.97, so a fix cannot clear their +0.02 rule; evals 3 and 16 are not explained by the hands. Noted for later:
+  a contact-aware approach constraint in mkref. Told them the eval-20 b1 items were already done (f59c897, 85e8ef8).
+  Nothing is pending on my side.
