@@ -5996,3 +5996,14 @@ score.
   Flagged to keen-heisenberg: its own record of the owner's 02:43 / 02:50 words excludes njmax-1024 policies ("never
   packed"), so packing needs a fresh explicit owner OK (training-side simulator setting ≠ evaluator pin; disclose in
   the technical report).
+
+### 2026-11-01 11:39–11:47 UTC — PACK 11 UPLOADED (owner's direct go, keen-heisenberg's chat)
+- Pack 10 with eval 10's ck512 policy (trained with njmax 1024, training only; evaluated at stock 512/256;
+  disclosed). sha 3c428350…; code 5031231; submissions 57870406 / 08 / 11 / 15 / 17 / 20. Record build_11/UPLOAD.md
+  on claude/keen-heisenberg-engcwz.
+- Scores: AUC 0.83921 (best; pack 10 0.81915); SP-SR 0.85; MP-SR 0.70 (best); RPE 3.17899 (best); MPPE 2.54531 (best);
+  CD-O 0.33234. Beats or ties every earlier pack on every board: the natural single Final Submission.
+- Boards 11:47 UTC: AUC 8, SP-SR 10, MP-SR 8 (tie at 0.70 with DSAIL 7th), RPE 10, MPPE 10, CD-O 14. Rank sum 60, 11th;
+  10th DSAIL 59.
+- One point from 10th. Swaps with DSAIL count double: AUC +0.0047 (DSAIL 0.84391), MPPE −0.20 cm, or MP-SR one more
+  episode. Or CD-O −0.012 for +1 (tie at 59).

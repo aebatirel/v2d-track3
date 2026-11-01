@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~11:47 UTC: PACK 11 UPLOADED — AUC 0.83921, MP-SR 0.70, RPE 3.179, MPPE 2.545 (bests); rank sum 60, 11th
+- Eval 10 fixed (njmax-1024-trained policy, evaluated at stock limits; disclosed). One point behind 10th (DSAIL 59).
+- Next-rank levers: AUC +0.005 (swap with DSAIL), MPPE −0.20, one more MP-SR episode, CD-O −0.012 (blue cup).
+
 ## 2026-11-01 ~08:50 UTC: PACK 10 UPLOADED — AUC 0.81915, RPE 3.683, MPPE 2.848 (all new bests); rank sum 61, 11th
 - 9a+ + eval-10 ev10cs5 carve retrain. SP-SR fell to 0.80 on this file (board keeps 0.85). 10th (DSAIL) at 59.
 - Boards keep the best per board; Final Submission selection deferred (PR #215: container covers each counted file).
