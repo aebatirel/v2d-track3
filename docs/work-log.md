@@ -5763,3 +5763,16 @@ arm and a no-policy replay floor to stage B.
     - (2) 20 fps (Nyquist 10 Hz) and the 0.15 cm tracking noise make grip vibrations unobservable, and the robot's
       grip is designed, not copied.
   - A paste-ready reply was drafted asking Roman about estimating an object's starting orientation.
+- ~02:50 UTC 1 Nov focused-pascal (cross-session message, for the morning summary): **measured lead on why eval 10
+  fails; nothing launched on it.**
+  - [M] Same ev10 collision pieces and V4p method in both runs. ep11 gate training: 62 and 123 "nefc overflow" lines,
+    requested njmax median 518, max 559 (limit 512). Eval-10 retrain: ~6.0 M overflow lines per seed, median 580,
+    p95 752, max ~1,050, i.e. ~50,000× more constraint overflow, from the start of training.
+  - Context: bold-albattani found the packed pieces overlap at eval 10's nested hands-off rest (3.4–32.7 cm³).
+  - [H] eval-10 training drops contact rows throughout, which would explain "lift 0" at every checkpoint and the ep11
+    gain not transferring. Falsifiers (owner's go needed): (1) one eval-10 training at njmax 1024 / nconmax 512,
+    ~$2–3; (2) a reference whose nested rest has no piece overlap.
+  - D arm: 4/5 boxes done, all VERIFIED. Eval 25 s42 0.816, s43 0.482 (weak); eval 30 s42 0.837, s43 0.817. G
+    (evals 14/16/33) due ~03:05, then the confirmation box, then the verdict. Credit $35.80 at 01:47.
+  - This session takes no action on it: it goes in the owner's morning summary as a decision (falsifier 1 is the
+    cheaper one). No rental from this chat.
