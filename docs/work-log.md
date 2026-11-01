@@ -5819,3 +5819,10 @@ Advice given:
   apply via `placement_carve.py assets` on refs/sf/ep20/assets with SF=0 (not make_assets --pieces); eval-20 reference
   md5 4d06d8d4. Plan [E]: ~$3–6 incl. confirmation; credit $28.94 (06:11) − ev10cs5 ≤ $5.6 − eval 20 ≤ ~$6 ≥ $10
   reserve → may run in parallel. Build delegated to a subagent (worktree); launch after the budget check + PREREG commit.
+- 06:44 UTC determined-wright (contact_budget/README.md "Eval 20, b1", f59c897): **eval-20 b1 pitcher set CLEAN** —
+  0 / 0 overflow lines (sampled / explicit f0/14/152/183/192), sampled max 342 (median 291) vs packed 348 (293),
+  explicit max 321 vs 317; applied with pipeline/placement_carve.py assets on the packed refs/sf/ep20/assets, packed
+  reference md5 4d06d8d4. Observation [M]: under b1 the blue cup touches the world geom (≤ 6 contacts / world sampled,
+  31 at explicit frames; packed none for the cup). [H] the carve removed pitcher fill that held the cup up. I asked for a
+  blue-cup settle check at f152 / 183 / 192 (CPU, $0) before the launch; passed the observation to the build agent for
+  the PREREG disclosure.
