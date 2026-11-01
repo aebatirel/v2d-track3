@@ -5,8 +5,9 @@
 - SP-SR dropped one episode: eval 10 now moves the cup without completing the nest. The SP-SR best stays 0.85 from
   9a+.
 - Record: results/submissions/20261101-track3k-candidate/build_10/UPLOAD.md (branch claude/keen-heisenberg-engcwz).
-- Next: eval-20 b1 retrain (pack 10b if it passes); organisers question on training at njmax 1024 (eval 10 → 0.91
-  on the proxy).
+- 09:00: eval-20 b1 NO-SWAP (no 10b). All lanes done, nothing running, credit $23.63.
+- **Open decisions, half-done items and ranked opportunities: docs/analysis/overnight-20261101/README.md.** Start
+  there.
 
 ## 2026-11-01 ~05:02 UTC: PACK 9b UPLOADED: AUC 0.81677, below 9a+ (0.81757 stays our best)
 - 9b = 9a+ with eval 33's D-arm rollout; eval 33 was the only D cell to pass the swap rule (14 / 16 / 25 / 30 NO-SWAP).

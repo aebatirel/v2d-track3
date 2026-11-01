@@ -6241,3 +6241,11 @@ arm and a no-policy replay floor to stage B.
     - Upper bound: best public-scored mesh per object, ~0.263 [E] (~6th). Caveats: winner's curse, provenance flags,
       the Hunyuan licence (excludes EU / UK / KR). For discussion only.
     - Neither variant can hurt AUC (best per board).
+- 09:00 UTC 1 Nov focused-pascal final report: **eval-20 b1 NO-SWAP** (gate missed by 0.0004: 0.8929 vs > 0.8933), so
+  no pack 10b. Nothing running; ledger closed; credit $23.63; all committed (536556185, worktrees removed).
+  - Open: the organisers question (1024); the store.sh push race fix (not built); eval-19 support_fill (needs budget.py
+    and a retrain).
+  - Their top 3: eval-10 nest completion (route A organisers / route B clip the beige corner, ~$3); eval 14
+    (+0.005–0.01 [E], ~$3–4); evals 1 / 30 overlaps (small).
+- 09:02 UTC **all four lanes reported done; nothing running.** Deleted the 10:30 check (trig_01Ltr9dX9Kt5Lx9WbYiiSasC),
+  now moot. Consolidated decisions / half-done / opportunities in docs/analysis/overnight-20261101/README.md.
