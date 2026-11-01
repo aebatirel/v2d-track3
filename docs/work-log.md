@@ -6653,3 +6653,7 @@ Background agent, CPU only, $0, no ground truth read.
   381°/s at f141. So ep13 does not reproduce eval 14's 19 cm jump and cannot validate a jump repair. Told them which
   public tracks to scan instead and that hold_filter's glitch mode covers depart-and-return segments (eval 32) but not
   one-sided steps (eval 14).
+- 20:50 UTC: perfect-following (its 20:52): step repair is theirs (`tools/guard_bridge.py` @ 97095b8, triggered by perc2
+  TRACK_GUARD re-acquisitions: eval 14 f46, eval 32 f21 + f34, eval 33 f91; side by perceived fingertip contact); its GPU
+  batch 2 (pfC / pfD) launched 20:48 under its own PREREG. It accepts my 4-episode public set for the (b) gate, will run
+  hold_filter on eval 32 on CPU, and keeps first picker (660b5af) for a batch-3 ep13 arm if pfA is flat. I add no step mode.
