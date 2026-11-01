@@ -6,8 +6,9 @@ changed after an ep13 result. Labels: [M] measured, [E] estimate, [H] hypothesis
 ## 1. Question and hypothesis
 Public ep13 (blue cup, dish rack: left-hand grasp, left→right hand-over, 180° flip, cup placed in the rack) is the
 public twin of eval 14. Eval 14 is our weakest remaining eval: packed sim_vs_ref 0.727, 4 / 10 official draws fail.
-The oracle twins showed it is control-limited, not perception-limited [M]: the grasp-lock learner on the TRUE object
-motion scores 0.544 ± 0.002, the same as on our perceived motion (0.543); both sit at the static floor.
+The oracle twins showed it is not perception-limited [M]: the grasp-lock learner on the TRUE object motion scores
+0.544 ± 0.002, the same as on our perceived motion (0.543); both sit at the static floor. Both twin references, however,
+drop the left-hand pick (§2), so "control-limited" may be "construction-limited" [I].
 
 **[H-grasp]** At an equal CPU rollout budget, GRASP's window optimiser (Liu, Wang, Bao, Yang, Harvard 2026 [L]: an
 archive of every rollout, local quadratic cost models fitted to it, gradient-guided MALA proposals, Metropolis–Hastings
@@ -50,7 +51,9 @@ Common (both methods): `--workers 4 --worlds 32 --robust 4 --horizon 16 --knot 4
 --rob_fin 0.005 --seed 0`, no deadline. `--anneal 0.80` applies to the annealed sampler only: 0.80⁷ ≈ 0.21, the final
 noise factor of G1/G2 (0.6³ = 0.216), so no new tuning of our solver.
 
-GRASP mode: `GRASP_ARGS` = **(filled in from the ep31 development sweep, §6, before any ep13 run)**.
+GRASP mode: `GRASP_ARGS` = **`--g_sig_abs 0.0044 0.0044 0.044 --g_ess 0.5 --g_moves 2`** (dev config G5, chosen by the §6
+rule), with the other GRASP options at their defaults: `--g_rho 0.9 --g_beta 100 --g_step 0.59 --g_acc 0.05 --g_rate 3
+--g_step_min 0.1 --g_rank 2 --g_quad diag --g_ridge 1e-3 --g_window 3 --g_carry 0.5`.
 
 GRASP settings taken from the paper's hand configuration (`experiments/paper.py` HAND) [L]: AR(1) ρ 0.9, prior widening
 ×4 across the window (our `--ramp 1 4`), DCT surrogate rank 2, MALA step 0.0026 / 0.0044 = 0.59 prior widths with the
@@ -109,4 +112,26 @@ metric. **Selection rule (written 12:35 UTC, before G2–G5 finished):** the ep1
 the lowest mean J_best / J_warm; a tie within 0.002 goes to the config closer to the paper (G4 > G1 > others).
 Configs: G1 ESS 0.9, 2 moves, widths 0.8 × our noise; G2 ESS 0.5, 2 moves; G3 ESS 0.5, 1 move; G4 GRASP's own widths
 (σ 0.0044 m / rad, fingers ×10) ESS 0.9, 2 moves; G5 G4 with ESS 0.5. All β_rel 100, ρ 0.9, rank 2, diag, carry 0.5.
-Results: (filled in below before freezing).
+Results [M] (8 active windows each; code 3d511983 / 8b630e61 + the solve.py of this commit; md5 39e9307f or the
+behaviour-identical e73b4b89):
+
+| config | settings | mean J_best / J_warm | windows improved | mean realised object cost | wall |
+|---|---|---|---|---|---|
+| anneal | iters 8, anneal 0.80 | 0.9853 | 2 / 8 | 0.02713 | 459 s |
+| G1 | ESS 0.9, 2 moves, widths 0.8 × our noise | 1.0000 | 0 / 8 | 0.04469 | 462 s |
+| G2 | ESS 0.5, 2 moves, 0.8 × our noise | 0.9892 | 3 / 8 | 0.03669 | 530 s |
+| G3 | ESS 0.5, 1 move, 0.8 × our noise | 0.9759 | 2 / 8 | 0.03161 | 533 s |
+| G4 | ESS 0.9, 2 moves, GRASP widths | 0.9668 | 3 / 8 | 0.02948 | 463 s |
+| **G5** | ESS 0.5, 2 moves, GRASP widths | **0.9582** | **5 / 8** | 0.02274 | 411 s |
+
+Selected: G5 (lowest ratio; G4 is 0.0086 behind, outside the 0.002 tie margin). Diagnostics: with our noise widths the
+tempering either stays near the prior (ESS 0.9) or jumps to λ = 1 and then rejects every move (ESS 0.5); with GRASP's
+narrower widths acceptance stays 0.5–0.8 and the surrogate's R² falls from 1.0 to 0.7–0.9 as the archive grows.
+
+**Known confound (stated before any ep13 result):** G5 differs from the annealed arm in two ways, the optimiser and the
+exploration widths (GRASP's σ 0.0044 m / rad and 0.044 rad for fingers vs our 0.01 m, 0.05 rad, 0.15 rad). The gate
+compares the two solvers as configured. **Conditional attribution control (pre-registered, report only):** if a test
+passes, the annealed sampler is re-run on that test's perceived input with `--sig_pos 0.0044 --sig_rot 0.0044 --sig_fin
+0.044` (else as §2.1) and jitter-checked the same way; the write-up then says whether GRASP's edge survives equal widths.
+
+Frozen at the commit that adds this table; the ep13 runs start after it (`scripts/run_all.sh`).
