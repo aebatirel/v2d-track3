@@ -1,0 +1,250 @@
+{
+ "ep": 21,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 186,
+ "auc_before": 0.8325,
+ "add_cm_before": {
+  "blue_cup": 0.8302,
+  "water_pitcher": 3.5468
+ },
+ "auc_after": 0.8231,
+ "add_cm_after": {
+  "blue_cup": 0.8302,
+  "water_pitcher": 3.6719
+ },
+ "auc_before_scorer": 0.8325,
+ "auc_after_scorer": 0.8231,
+ "direction": [
+  {
+   "obj": "water_pitcher",
+   "start": 0,
+   "end": 7,
+   "status": "shift_t",
+   "push_mm": 6.88,
+   "corr_mm": 23.73,
+   "corr_along_push_mm": -20.97,
+   "cos": -0.884,
+   "pos_err_mm_before": 23.75,
+   "pos_err_mm_after_same_alignment": 30.0,
+   "pos_err_mm_after_scored": 30.0
+  },
+  {
+   "obj": "water_pitcher",
+   "start": 153,
+   "end": 185,
+   "status": "shift_t",
+   "push_mm": 5.22,
+   "corr_mm": 36.18,
+   "corr_along_push_mm": -34.7,
+   "cos": -0.959,
+   "pos_err_mm_before": 36.2,
+   "pos_err_mm_after_same_alignment": 41.23,
+   "pos_err_mm_after_scored": 41.23
+  }
+ ],
+ "mesh_check": [
+  {
+   "pair": "blue_cup|water_pitcher",
+   "rest_frames": 36,
+   "sampled": 18,
+   "ours_at_ours": {
+    "median_cm3": 0.0,
+    "max_cm3": 0.0,
+    "median_depth_mm": 0.0
+   },
+   "ours_at_mocap": {
+    "median_cm3": 0.0,
+    "max_cm3": 0.0,
+    "median_depth_mm": 0.0
+   },
+   "scans_at_mocap": {
+    "median_cm3": 0.0,
+    "max_cm3": 0.0,
+    "median_depth_mm": 0.0
+   },
+   "frames": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     2.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     4.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     6.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     158.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     160.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     162.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     164.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     166.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     168.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     170.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     172.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     174.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     176.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     178.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     180.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     182.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     184.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   ]
+  }
+ ],
+ "bottom_check": [
+  {
+   "obj": "blue_cup",
+   "rest_frames_sampled": 41,
+   "ours_minus_scan_lowest_mm_median": 8.92,
+   "scan_lowest_z_mm_median": 599.85,
+   "scan_lowest_z_mm_iqr": 55.83
+  },
+  {
+   "obj": "water_pitcher",
+   "rest_frames_sampled": 49,
+   "ours_minus_scan_lowest_mm_median": -7.31,
+   "scan_lowest_z_mm_median": 682.69,
+   "scan_lowest_z_mm_iqr": 277.68
+  }
+ ]
+}

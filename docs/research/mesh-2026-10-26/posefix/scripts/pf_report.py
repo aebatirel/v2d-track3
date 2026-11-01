@@ -152,7 +152,7 @@ L.append('| ep | pair | rest frames | ours at our poses: median / max cm3, media
 L.append('|---|---|---|---|---|---|')
 for m in res['mesh_check']:
     f = lambda x: f"{x['median_cm3']:.2f} / {x['max_cm3']:.2f}, {x['median_depth_mm']:.1f}"
-    L.append(f"| {m['ep']} | {m['pair']} | {m['rest_frames']} | {f(m['ours_at_ours'])} | {f(m['ours_at_mocap'])} | {f(m['scans_at_mocap'])} |")
+    L.append(f"| {m['ep']} | {m['pair'].replace('|', ' / ')} | {m['rest_frames']} | {f(m['ours_at_ours'])} | {f(m['ours_at_mocap'])} | {f(m['scans_at_mocap'])} |")
 L.append('\n### Bottom check (mocap z up; our mesh lowest point at the mocap pose minus the scan lowest point; rest frames)\n')
 L.append('| ep | object | frames | ours - scan, median mm | scan lowest z median mm (IQR) |')
 L.append('|---|---|---|---|---|')

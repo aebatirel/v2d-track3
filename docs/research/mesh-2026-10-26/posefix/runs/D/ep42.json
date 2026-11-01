@@ -1,0 +1,30 @@
+{
+ "episode": 42,
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 257,
+ "meshes": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/posefix/mesh9a",
+ "registration": {
+  "white_pot": {
+   "rot_deg": 0.81,
+   "anchor_shift_cm": 0.25,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.992,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.5983,
+  "RPE_cm": 0.0,
+  "per_obj_AUC": {
+   "white_pot": 0.992
+  }
+ }
+}

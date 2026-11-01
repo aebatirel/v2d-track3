@@ -1,0 +1,218 @@
+{
+ "ep": 39,
+ "variant": "B",
+ "objects": [
+  "mini_dust_pan"
+ ],
+ "frames": 319,
+ "changed_frames": {
+  "mini_dust_pan": 62
+ },
+ "rest_frames": {
+  "mini_dust_pan": 86
+ },
+ "segments": [
+  {
+   "obj": "mini_dust_pan",
+   "start": 0,
+   "end": 31,
+   "status": "shift_t",
+   "t_mm": [
+    -0.587,
+    -4.238,
+    -5.174
+   ],
+   "t_norm_mm": 6.714,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.018725,
+    0.076987,
+    0.57754
+   ],
+   "constraint_frames": 32,
+   "pair_frames": {},
+   "before": {
+    "ok": 0.0,
+    "max_mm": 8.34,
+    "median_mm": 7.14
+   },
+   "hand_min_mm": 39.2,
+   "lowest_above_table_mm_median": -7.14,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 8.34,
+    "median_mm": 7.14
+   },
+   "clearance_mm": -0.43,
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 8.34,
+    "median_mm": 7.14
+   },
+   "stage1": {
+    "it": 4,
+    "ok": 0.781,
+    "max_mm": 1.62,
+    "viol": 3827,
+    "t_mm": [
+     -0.59,
+     -4.24,
+     -5.17
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.781,
+    "max_mm": 1.62,
+    "median_mm": 0.43
+   },
+   "after_all_rest_partners": {
+    "ok": 0.781,
+    "max_mm": 1.62,
+    "median_mm": 0.43
+   }
+  },
+  {
+   "obj": "mini_dust_pan",
+   "start": 219,
+   "end": 248,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.278646,
+    -0.096643,
+    0.352823
+   ],
+   "constraint_frames": 30,
+   "pair_frames": {},
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": 440.1,
+   "lowest_above_table_mm_median": 197.12,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "clearance_mm": 197.12,
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   }
+  },
+  {
+   "obj": "mini_dust_pan",
+   "start": 295,
+   "end": 318,
+   "status": "shift_t",
+   "t_mm": [
+    -0.955,
+    -6.899,
+    -8.423
+   ],
+   "t_norm_mm": 10.929,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.102536,
+    0.081561,
+    0.570567
+   ],
+   "constraint_frames": 24,
+   "pair_frames": {},
+   "before": {
+    "ok": 0.0,
+    "max_mm": 14.11,
+    "median_mm": 11.88
+   },
+   "hand_min_mm": 35.8,
+   "lowest_above_table_mm_median": -11.88,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 14.11,
+    "median_mm": 11.88
+   },
+   "clearance_mm": -0.95,
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 14.11,
+    "median_mm": 11.88
+   },
+   "stage1": {
+    "it": 4,
+    "ok": 0.542,
+    "max_mm": 3.18,
+    "viol": 5349,
+    "t_mm": [
+     -0.95,
+     -6.9,
+     -8.42
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.542,
+    "max_mm": 3.18,
+    "median_mm": 0.95
+   },
+   "after_all_rest_partners": {
+    "ok": 0.542,
+    "max_mm": 3.18,
+    "median_mm": 0.95
+   }
+  }
+ ],
+ "seconds": 2.6
+}

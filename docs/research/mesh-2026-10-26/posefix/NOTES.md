@@ -26,3 +26,7 @@ Scratch: /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca13
 - 2026-11-01T05:05:29Z transform running (4 variants in parallel, load ~8); A at 4/20 eps after 11 min. pf_report.py written (formats only).
 - 2026-11-01T05:14:39Z transform done (C 05:08, D 05:10, A 05:13:58, B 05:14:03; code df60ff2). sha256 of all outputs -> out_sha256/; committing before stage0/scoring.
 - 2026-11-01T05:14:56Z stage0 done (20 parquets; ep23/24 downloaded from HF; scans = cdo_c0/t3/mesh). Launching score (100 runs, 2 streams, nice 5).
+- 2026-11-01T05:27:18Z [D] scored before + A (20/20 each, 0 FAIL). before ep0 == stored C0 c0 ep0 exactly. A: mean dAUC -0.0107, min -0.0342 (ep41); 18 of 20 negative, ep18 +0.0061, ep11/ep23 0. GATE FAILS. Diag A started; B/C/D scoring continuing.
+- 2026-11-01T05:33:07Z scoring done 100/100, 0 FAIL (05:15-05:37). Diag B, C, D launched in parallel (same command as run_posefix.sh diag).
+- 2026-11-01T05:40:05Z [D] diag A done 20/20 (replica AUC == scorer on all). Direction A: 50 shifted segs, cos<=0 on 28 (falsified as written); pair segs 16, cos<=0 on 5; table-only 34, cos<=0 on 23. Mesh: overlap at mocap poses persists (ep11 65 cm3, ep2 5.9, ep31 11.1 > 5.4 ours, ep24 9.9); ep12/13 drop to 0.7/1.9. Bottom: C0 pot lowest point 6.9-8.3 mm below the scan's at the mocap pose in all 9 pot episodes; pitcher -7.3/-10.7.
+- 2026-11-01T05:46:09Z diag B/C/D done (60/60 OK). pf_report -> results.json, tables.md; README written. Gate FAIL (A mean -0.0107, min -0.0342 ep41); C -0.0051, D -0.0024, B -0.0106. Committing results.
