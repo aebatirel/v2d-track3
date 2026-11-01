@@ -6132,3 +6132,7 @@ arm and a no-policy replay floor to stage B.
   - Implication [I]: the stock-limit route may not recover eval 10. The organisers' question on training at
     njmax 1024 now carries the larger gain (~+0.45 proxy on eval 10, up to ~+0.02 AUC [E]). NVIDIA's own
     dexmate_sharpa_flash_sac.yaml uses njmax 1024. Raised with the owner.
+- 07:30 UTC 1 Nov **pack check** (trig_01CQcLfUjZJNZd61yhKw26n3): **no "pack 10 ready" record, so nothing uploaded.**
+  - Instances: 58625218 e10cs (s43 training, $1.389/h) and 58631864 e20b1 (setup, $1.408/h).
+  - Credit $26.82.
+  - The 10:30 check (trig_01Ltr9dX9Kt5Lx9WbYiiSasC) covers both results.
