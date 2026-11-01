@@ -6209,3 +6209,12 @@ diagnostic; nothing is picked for submission.
   revised [H] (lid-in-hull fill causes early lid failures) matches focused-pascal's P2mck placement carve (53.8 -> 0).
   Eval-20 pitcher: packed fails settle G3 (3.2-3.3 mm / 6.4-7.5 deg); b1 clip (0.03 cm3) passes (1.6 mm / <0.6 deg),
   plain-MuJoCo rows 316 vs 304 (indicative). Relayed; budget.py on eval 20 requested from determined-wright.
+
+### 2026-11-01 07:10 UTC — f0 settle survey (report-only) relayed
+- Agent report (rebase/f0_survey.md, a6923c5; CPU $0): all 20 packed eval references rebuilt. Falls at f0 with no hand
+  near: eval 20 pitcher (195 mm / 94.6 deg; frozen b1 fixes to 8.5 mm / 3.2 deg) and eval 19 sweeper (90 mm / 89 deg;
+  std mode, support_fill never ran: [H] support_fill keeps it standing). Others: eval 30 sweeper 24 mm / 25 deg (starts
+  12.2 cm3 in the rack), eval 10 beige 6.5 mm (ev10 piece corner below support), eval 1 lid 4.3 mm; 30 other objects
+  within 3.3 mm / 5.1 deg. FlashCHORD rest-check failures for pots (evals 3/5/6/8) and spoons (16/33) are not geometry:
+  [H] hands/arm contact during the approach. Relayed to keen-heisenberg / focused-pascal / determined-wright; offered
+  a pre-registered eval-19 support_fill test.
