@@ -6193,3 +6193,10 @@ diagnostic; nothing is picked for submission.
   23.9 cm, official sim_vs_ref vs V 0.913 (e10v at stock limits: 0.459). Diagnostic only, never packed.
 - The legal fix runs now: eval-10 retrain at stock limits on ev10cs5 (frozen 2b016b4), which met focused-pascal's
   pre-stated rule (md5 condition + determined-wright 32x60 recheck, be1e893).
+
+### 2026-11-01 06:00 UTC — re-base (collision-only) of pot and pitcher started
+- keen-heisenberg approved the re-base, collision-only (visual mesh / CD-O untouched); [H] it may cut ep2's early lid
+  failures (their drawdiv, f58f638); GPU A/B on ep2 later, credit permitting ($28.95 shared at 05:52).
+- Background agent: rebase/ folder; GATES.md before measuring; rules (a) translate collision up by median rest
+  penetration, (b) clip base slab only; gates G1-G6; delivery order ep2 public set, eval pot sets (1, 3, 5, 6, 8, 28;
+  eval 1 from ev01), pitcher eval 20. CPU, $0.
