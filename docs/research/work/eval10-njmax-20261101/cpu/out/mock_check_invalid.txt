@@ -1,0 +1,27 @@
+ok   label INVALID  [INVALID; ["job stopped: identity FAILED: the diagnostic checkpoint is not e10v's seed-43 recipe at njmax 1024 (identity.json)", 'identity not ok: ["stored config differs from the control in [\'training.mock_extra_setting\'] (only [\'output_dir\', \'task.parquet\', \'reference.parquet\'] and the sim limits may)"]']]
+ok   rc 1 (stopped)  [rc=1]
+ok   stopped for: identity FAILED  [identity FAILED: the diagnostic checkpoint is not e10v's seed-43 recipe at njmax 1024 (identity.json)]
+ok   RESULT line in the job log
+ok   no store listing (single-file downloads only)  [56]
+ok   every download succeeded  [[]]
+ok   every download is e10v's run (runs/20261031-e10v-caf38fb)  [['20261031-e10v-caf38fb']]
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261101-e10nj-mocksha', 'dst': 'runs/20261101-e10nj-mocksha', 'msg': 'run 20261101-e10nj-mocksha: 2026-11-01T03:58:10Z'}]]
+ok   the push is this run's and holds summary.json
+ok   the push holds no e10v result folder of this box (results/ev10_v4p, perc2e10vs*)
+ok   hands_mp / hand_refine / perc2 / score_registered never ran  [[]]
+ok   nothing under the packed names refs/glockt/ep10, refs/perc2mck/ep10, results/glock_public/ep10, refs/glock/ep10
+ok   no e10v folder written on this box (perc2e10vs*, results/ev10_v4p): e10v is read only
+ok   arms: V = e10v's arms.json (md5, fingerprint, base, URDF inertials), seed copy refs/perc2e10njs43_glockt  [[]]
+ok   no_oracle accepted every e10v input
+ok   exactly one training: seed 43, 70,004,736 steps, output runs/perc2e10njs43_glock/ep10-s43, on the seed copy  [[('<S>/nj/mock/invalid/content/runs/perc2e10njs43_glock/ep10-s43', '43', 70004736)]]
+ok   the training got sim.njmax=1024 sim.nconmax=512 and saved them in sim and env.sim  [({'sim.njmax': '1024', 'sim.nconmax': '512'}, [1024, 512, 1024, 512])]
+ok   every other CLI training key equals the packed gl10A2 config (mismatches = the two sim keys only)  [({'sim.njmax': ['1024', 512], 'sim.nconmax': ['512', 256]}, 12)]
+ok   TRAIN_ARGS = the FDR overrides, then the two sim overrides  [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 sim.njmax=1024 sim.nconmax=512]
+ok   glock_public ran with REUSE_REF / REQUIRE_REUSE and never rebuilt a reference  [0]
+ok   overflow: train.log nefc lines = 40 (the injected count)  [{'nefc': 40, 'broadphase': 0, 'narrowphase': 0, 'njmax_nnz': 0, 'ccd': 0, 'newton_contacts': 0}]
+ok   overflow: the label clause O reads the same
+ok   lift: 7 curve checkpoints x 3 repeats read, e10v controls read (r1 max 2.5 / 0.3 cm)  [(7, {'e10v_s42': 2.5, 'e10v_s43': 0.3})]
+ok   identity vs e10v s43: config diff = paths + the four sim limits  [['env.sim.nconmax', 'env.sim.njmax', 'output_dir', 'reference.parquet', 'sim.nconmax', 'sim.njmax', 'task.parquet', 'training.mock_extra_setting']]
+ok   no official draw after a STOP
+{"mr": "<S>/nj/mock/invalid", "expect": "INVALID:identity FAILED", "label": "INVALID", "checks": 25, "failed": []}
+25/25 checks pass

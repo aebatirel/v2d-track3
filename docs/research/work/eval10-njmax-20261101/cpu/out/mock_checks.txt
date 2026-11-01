@@ -1,0 +1,6 @@
+e10v default path (expect SWAP-ELIGIBLE, 28 checks): 28/28 checks pass
+partial (expect PARTIAL): 32/32 checks pass
+supported (expect SUPPORTED): 32/32 checks pass
+invalid (expect INVALID:identity FAILED): 25/25 checks pass
+falsified (expect FALSIFIED): 32/32 checks pass
+inconclusive (expect INCONCLUSIVE): 32/32 checks pass

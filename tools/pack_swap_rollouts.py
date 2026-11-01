@@ -5,7 +5,9 @@ Written 1 Nov 2026 (pack 9b, docs/research/work/pack9b-20261031/BUILD.md item 8)
 that tool swaps meshes and refuses any pose change; this one swaps rollouts and refuses any mesh change.
 
 Steps (CPU, no ground truth read: the packer reads row_id from the kit's sample submission plus the roster):
- 1. tools/no_oracle.py on the base results, the base meshes and every swap file (refuses mocap / oracle runs);
+ 1. tools/no_oracle.py on the base results, the base meshes and every swap file (refuses mocap / oracle runs and the
+    eval-10 njmax diagnostic's runs), plus each swap parquet's flash_chord.reference_parquet path (the reference the
+    evaluated checkpoint trained on, e.g. refs/perc2e10njs43_glockt: caught even when the rollout is renamed);
  2. OUT/results = a byte copy of --results with, per --swap N=<rollout.parquet>, episode_<N6>.parquet and
     episode_<N6>.json replaced by that rollout and the .json next to it (same stem); OUT/meshes = a byte copy of --meshes
     (never modified). Each swap's .json must name a checkpoint_sha256 that differs from the base rollout's (a swap is a
@@ -108,9 +110,10 @@ def main():
         swap_files[n] = (p, j)
 
     if not args.skip_no_oracle:
+        meta_words = [m[k] for pj in swap_files.values() for m in [flash_meta(pj[0])] for k in ('reference_parquet',) if m.get(k)]
         guard = subprocess.run([sys.executable, '-I', os.path.join(REPO, 'tools', 'no_oracle.py'),
                                 os.path.abspath(args.results), os.path.abspath(args.meshes),
-                                *[f for pj in swap_files.values() for f in pj]], capture_output=True, text=True)
+                                *[f for pj in swap_files.values() for f in pj], *meta_words], capture_output=True, text=True)
         print(guard.stdout.strip() or guard.stderr.strip())
         if guard.returncode:
             raise SystemExit('error: tools/no_oracle.py refused an input; nothing was built')
