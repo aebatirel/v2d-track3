@@ -5982,3 +5982,9 @@ score.
 - Counting: each board shows the best submission; per the PR #215 kit, the counted one is the selected Final
   Submission, else the best per board, and the container covers each counted file. Advised keen-heisenberg not to
   select now and to choose per board near the close.
+- 08:58 UTC wrap-up (owner's request via keen-heisenberg): neighbour table and next-rank gaps sent.
+  - Best rank-per-effort: CD-O (bunched 0.312–0.338; −0.021 cm → +3 ranks; packed-mesh-only, $0). The held-back blue
+    cup ≈ board 0.30 [E] needs the owner's compliance call or a clean passing build.
+  - Then one more SP-SR/MP-SR episode (+1 to +3 each).
+  - Nothing running in this session. Open: Final Submission selection per board near the close; the PR #215
+    container after the close; merging session branches into main (stale since 30 Oct).
