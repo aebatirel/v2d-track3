@@ -6606,3 +6606,19 @@ Background agent, CPU only, $0, no ground truth read.
   - Next: the public gate on all 20 public episodes (pre-registered below before any result), once the perfect-following
     session names the reference set. Public dataset downloaded for scoring only (HF nvidia/video_to_data_challenge
     track_3, 1.5 GB, scratchpad content/t3).
+- 20:36 UTC: scoring path for repair (b) checked [M]: `scripts/ref_to_npz.py` (reference object track → perception npz)
+  + `pipeline/score_registered.py` (kit functions, our assets' meshes, public mocap) reproduces the box's ep13 P value
+  exactly: registered AUC 0.9395 (cup 0.9414, rack 0.9375).
+- **20:36 UTC PRE-REGISTRATION, repair (b) public gate (written before any (b) result on a public reference set):**
+  - Set: the 20 public episodes' current-recipe references (the set the perfect-following session names; fallback: each
+    episode's newest stored grasp-lock reference and its pre-lock input; the list is logged before scoring).
+  - Arms per episode: U = the pre-lock input as is; F = `pipeline/hold_filter.py` defaults (`--mode glitch`) on it. Both
+    rebuilt the same way on CPU (`tools/cpu_glock_zero.sh` with the episode's stored GL_ARGS; no REPLAN / EVOLVE).
+  - M1 (accuracy guard): registered AUC of the object track vs mocap (`score_registered.py`, the episode's own meshes),
+    F − U per episode. Must hold: mean Δ ≥ −0.002 and no episode below −0.010.
+  - M2 (followability): zero-action jittered sim_vs_ref of the rebuilt references (`jitter_check.py --k 9 --seed 0`,
+    8 copies), symmetric kit errors primary and plain ADD reported, F − U per episode. Must hold: mean Δ ≥ +0.02.
+  - **PASS iff M1 and M2 both hold.** Report-only: per-episode Δs, glitch runs and flags per object, the episodes where
+    F changes nothing (Δ = 0 by construction there).
+  - PASS → hand `hold_filter.py` to the perfect-following session for eval retrains (their gate). FAIL → (b) as built
+    is not used; the write-up says which metric failed.
