@@ -5491,3 +5491,6 @@ Advice given:
   C0 0.342, beige 0.30 vs C1/T1 0.25; AUC guard passed on public. Their recommendation: keep 9a+'s pot and beige on
   score; E0b = the provenance-cleaner option (owner's compliance call). Flags if chosen: pot 17/32 marker balls below the
   base (−60 mm vs −43 mm), beige three inside-out shells. Lid / rack / blue cup not adopted. Pack 9b keeps 9a+'s meshes.
+- 00:02 UTC D lines on the other standard-learner boxes [M, exec]: S30a ep30-s42, S30b ep30-s43, S25b ep25-s43 all show
+  "packed references checked" (ep30 std 20261025-std30-ee7ba8e md5 dd464c96…; ep25 20261026-c25s42-feb0407) and the D line
+  with the right seed and the "; skip immediate starts (…)" tail. All five D boxes are training.
