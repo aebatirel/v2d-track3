@@ -107,3 +107,48 @@ Skip: robot-side tweaks (all negative tonight), the public ep2 / ep12 njmax-1024
 - **Test [H]:** a CPU-first port of the algorithm into our FlashCHORD solver. Gate: zero-action sim_vs_ref ≥ +0.05
   over our solver on ep13, then RL under the swap rule.
 - **Caveat [M]:** our references are noisy, and our solver's gain vanished under 0.5 mm target noise.
+
+### Added ~12:00 UTC: domain randomisation verdict, and distance to a unified recipe
+**Domain randomisation (D arm: start-state jitter in training only) did not help [M].**
+- Public screen (determined-wright): it did not steady unstable episodes (ep2 sd 0.10 → 0.25, ep18 0.008 → 0.056).
+  The recipe screen verdict was inconclusive (ep12 +0.33, ep2 −0.11).
+- Eval cells, D vs packed over 10 official draws:
+
+  | Eval | D | Packed | Fails, D vs packed |
+  |---|---|---|---|
+  | 14 | 0.686 | 0.727 | 8 vs 4 |
+  | 16 | 0.831 | 0.850 | 1 vs 0 |
+  | 25 | 0.858 | 0.878 | 1 vs 0 |
+  | 30 | 0.816 | 0.897 | — |
+  | 33 | 0.936 | 0.923 | — |
+
+- Only eval 33 passed, and on the board it cost −0.0008 AUC (pack 9b).
+- The pre-registered falsifier (a higher fail share than packed) fired on evals 14, 16 and 25.
+- Reading [I]: draws split within the first frames and are decided at contact events (drawdiv), or by overlapping
+  collision geometry. ±1.5 mm start jitter addresses neither. What worked tonight was fixing the contact physics
+  itself (eval 10's training overflow: +0.020 AUC).
+- Not tested: dynamics randomisation (friction, mass ranges) and observation noise.
+
+**Unified recipe: where we are [M, packed_refs.json a7ed39d6 + pack 11].**
+- **Two learners with an automatic, ground-truth-free choice between them:**
+  - grasp lock (70M steps) on 15 / 20 eval episodes;
+  - standard learner (250M) on 5 (evals 1, 19, 25, 28, 30).
+  - Where both were trained, the higher sim_vs_ref mean picks (e.g. eval 20: glock 0.892 vs std 0.146). This part is
+    already a unified procedure, at about 2× training cost.
+- **Five per-episode hand fixes:**
+  - eval 1: lid-in-pot carve (ev01);
+  - eval 10: cup pieces + njmax 1024 in training, saved at stock;
+  - eval 25: board pieces (ev25);
+  - eval 33: CURR_SCALE 0.4;
+  - eval 8: v5 beige-cup mesh.
+- **Automatable as rules (CPU tools exist):**
+  1. contact overflow: count "nefc overflow" lines in training; above a bar, retrain at njmax 1024 and save the
+     checkpoint at stock 512 / 256. Or always train at 1024 (cost ~+35 % time [E]; effect on clean episodes untested);
+  2. geometry preflight: f0 settle survey + overlap + budget.py. Run support_fill also in std mode (eval 19 skipped it)
+     and apply the hull-clip rule (eval 20 b1);
+  3. curriculum scale: a 2-arm sweep chosen by sim_vs_ref, as for the learner choice.
+- **Not automatable yet:** carving nested or slotted pairs (ev10cs4 / 5 needed hand iteration; rack sets failed) and
+  control-limited hand-overs (eval 14).
+- **Path [E]:** "pipeline v2" = learner choice + overflow rule + geometry preflight + curriculum sweep, validated on the
+  20 public episodes against the current per-episode results (develop on public only). CPU wiring first. A full public
+  validation run is roughly $40–60 [E: ~15 glock at ~$1.5–2 plus ~5 std at ~$3, ×2 for both learners].
