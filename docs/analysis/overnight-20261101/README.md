@@ -152,3 +152,39 @@ Skip: robot-side tweaks (all negative tonight), the public ep2 / ep12 njmax-1024
 - **Path [E]:** "pipeline v2" = learner choice + overflow rule + geometry preflight + curriculum sweep, validated on the
   20 public episodes against the current per-episode results (develop on public only). CPU wiring first. A full public
   validation run is roughly $40–60 [E: ~15 glock at ~$1.5–2 plus ~5 std at ~$3, ×2 for both learners].
+
+### Added ~12:30 UTC: what unlocks "pipeline v2" (one cheap recipe, grasp-lock first)
+- **Today's selection.** eval_both.sh builds the reference once, trains grasp lock, and trains the standard learner
+  only if grasp lock is below 0.9; the higher sim_vs_ref mean is packed.
+  - Grasp lock wins on 15 / 20 eval episodes.
+  - It loses where motion is non-prehensile or environment-driven: sweeping (19, 30), board insertion (25: std 0.712
+    vs glock 0.376 [M]), pot / lid placement and rack work (1, 28).
+- **Needed for one recipe:**
+  1. A GT-free episode-type gate from the reference, so only one learner is trained, not both: hold phases vs object
+     motion without a firm hold.
+  2. A non-prehensile contact mode in the grasp-lock reference and reward (slide / push / tool contact). Alternatively,
+     a GRASP-style physics retargeting step making every reference feasible before RL. Its paper reports refined
+     references improve PPO [L]; the next session tests it on ep13.
+  3. Automatic physics hygiene:
+     - njmax 1024 in training, saved at stock;
+     - an f0 settle + overlap + budget.py preflight;
+     - support_fill in every mode;
+     - cavity-safe pieces for nested containers (needs an automatic rule).
+  4. A fixed curriculum default or a 2-arm sweep (eval 33's CURR_SCALE 0.4).
+- **Validation (develop on public only), pre-registered.** Gate: mean ≥ current per-episode best − 0.01, no episode
+  < −0.05, ≤ 1 manual intervention. ~$3–4 per episode [E] (grasp lock 2 seeds + confirmation), so ~$60–80 for 20.
+- **Physics solver history [M]:**
+  - 30 Oct: zero-action tracking 0.76 / 0.83 vs 0.52 / 0.58 on 2 episodes; RL learned faster on 3 / 4; one ep2 seed
+    failed;
+  - its gain vanished under 0.5 mm target noise;
+  - arm S (2 seeds, 31 Oct): no signal, so it was closed for eval;
+  - the solver-RL loop barely acted;
+  - the GRASP-style sampler is the next attempt.
+- **Better meshes vs perception [M]:**
+  - In scoring, the 9a+ mesh swaps took CD-O 0.402 → 0.332 and AUC 0.81460 → 0.81757 (together with the eval-1
+    carve), through the kit's mesh registration. Public guard ΔAUC: pot +0.003, lid +0.0055, rack +0.016,
+    dust pan +0.012, beige +0.008.
+  - Tracking with the new templates (re-track, 31 Oct) was WORSE: mean ΔR −0.17; pot template failures, e.g. ep45
+    0.98 → 0.006; ep11 cups −0.70.
+  - Blue-cup-only episodes: +0.010–0.015 [post hoc].
+  - So far, better meshes improved the score, not the tracker.
