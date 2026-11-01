@@ -5980,3 +5980,5 @@ arm and a no-policy replay floor to stage B.
     5.49 / 6 mm; free rest drifts 1.6 cm (reference visual meshes overlap 80 cm³; that is the pose fix's job).
   - Cost [E, theirs]: ~$6 on the ledger.
   - Answered 05:16: the 02:50 permission covers it; the go went to focused-pascal at 05:14 with the stated conditions.
+- 05:10 UTC 1 Nov bold-albattani: ev10cs4 frozen (FROZEN.md fa2ec41, md5 of every file at build commit 7e4bc6a; any
+  change goes to a new folder). The public pose-fix test stays their main item.
