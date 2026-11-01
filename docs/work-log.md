@@ -6168,3 +6168,20 @@ arm and a no-policy replay floor to stage B.
     10 cm without completing the nest.
   - Receipt + UPLOAD.md in build_10 (5b0f081). Messaged focused-pascal (pack 10b on pack 10 if eval 20 passes) and
     score-status (asked about per-board best vs final selection).
+- ~08:50 UTC 1 Nov Roman (forwarded by the owner, 08:40–08:49).
+  - His points:
+    - (2) compressed sensing: information content, not Nyquist, limits recovery, so vibration characteristics may be
+      extractable from 20 Hz video; his spectro-temporal CS work;
+    - (3) refine meshes from video observations;
+    - (4) a foundation model for mesh reconstruction;
+    - plus a long text on blending visual tracking with CS (coded exposure / rolling shutter).
+  - Assessment given to the owner:
+    - (2) Klis & Chatzi's method reconstructs from randomly sampled sub-Nyquist data. Our frames are uniformly sampled,
+      so a sparse spectrum's aliases cannot be told apart without random timing or a rolling shutter. The amplitude is
+      also buried in ~1–6 mm per-frame tracking noise. And the score measures poses, not forces, and the robot's grip
+      is designed, not copied. Research direction, not a leaderboard lever.
+    - (3) The submitted shape already comes from scans of the same objects (CD-O 0.332 cm). What hurt physics was the
+      convex collision decomposition filling cavities; eval 10's cavity-safe pieces gave today's 0.81915.
+    - (4) Five generators were already tested on 30 Oct (gen-probe: CD-O 0.49–0.98 vs 0.477 library / 0.332 now; pose
+      ADD 10–29 mm vs ~6 mm; no ground-truth-free selector).
+  - A paste-ready reply was drafted.
