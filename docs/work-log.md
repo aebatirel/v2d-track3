@@ -5679,3 +5679,5 @@ Advice given:
   58237198 20261101-e10nj-451b82d 'bash ops/jobs/ev10_nj.sh'` → instance 58615195 (India, $1.392/h, 38 cpu / 998 GB);
   ledger planned $3.50 (PREREG $1.8 / $3.0 / $5.8; the high case assumes 35 % slower training at 1024, unmeasured).
   Credit $31.95 before launch.
+- 04:19 UTC keen-heisenberg correction: "lift > 0" was their suggested condition wording, not the owner's (the owner said
+  only "Okay go"); they agree with the PREREG's beige-cup lift ≥ 5 cm clause; PREREG stays as committed in 086de63.
