@@ -39,3 +39,15 @@ check. ev10cs4 passed the gate at 05:04 UTC (`contact_budget/README.md`: 0 / 0 o
   80 cm³.
 - The only margin concern is the release impact: 5.5 of 6 mm. A thicker plate would add margin. That is a design
   choice for bold-albattani, and a hypothesis, not tested.
+
+## 8 mm plate variant (keen-heisenberg's question, 05:14 UTC; report only, not a delivery)
+- **Variant:** ev10cs4 with piece_16's cavity face moved 2 mm into the cavity (6 → 8 mm). It stays convex, at
+  30.7 cm³. The far face and every other piece are unchanged, so the floor is 2 mm higher. Built ad hoc here; not
+  bold-albattani's.
+- **rest from f124:** beige relative to blue 1.30 cm median (6 mm plate: 1.59). Floor: max **4.02 mm** into the 8 mm
+  plate, at f144 (6 mm plate: 5.49 of 6 at f126); settled median 0.49 mm; 0 frames through.
+- **driven:** 0.12 cm / 0.9° median (6 mm plate: 0.14). Floor: max 1.5 mm (f101); 0 frames through.
+- No overflow lines and no NaN.
+- **Reading:** the 8 mm plate leaves ~4 mm of margin at the worst moment instead of 0.5 mm, with tracking unchanged
+  or better. Cost: the floor is 2 mm higher. That moves the nest 2 mm off the reference's depth, which in turn is
+  deeper than the visual meshes allow.
