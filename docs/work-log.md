@@ -6037,3 +6037,14 @@ diagnostic; nothing is picked for submission.
   16-bit quantised JSON; regenerable with prep.py + tojson.py, not committed).
 - Also relayed (00:58 UTC) to focused-pascal and determined-wright: the eval precheck finding that the packed ev10 cup
   pieces overlap at the nested rest and need 656-1,296 rows vs njmax 512 under sim=rl (pair scene, plain MuJoCo).
+
+### 2026-11-01 02:50 UTC — eval-10 overflow confirmed by both lanes; cavity-safe ev10 candidate started
+- focused-pascal [M]: tonight's eval-10 retrain logs have ~6.0 M "nefc overflow" lines per seed (requested njmax median
+  580, p95 752, max ~1,050 vs 512) from the start of training; the cup was never lifted. njmax-1024 falsifier needs the
+  owner's go.
+- determined-wright [M] (budget.py, FlashCHORD, e1a3063): overflow is real in training (sampled resets nefc max 536,
+  13 % of world-steps over 512; cup-cup contacts up to 68-79), not in scoring (explicit resets max 441). Packed gl10A2
+  train.log: 8.37 M overflow lines.
+- Orchestrator: background agent building a cavity-safe ev10 piece candidate (receiver inner faces tangent, guest
+  inscribed, <= 53 / 49 pieces) with GT-free overlap / nefc / kept-volume numbers vs packed ev10, folder
+  `gmg/build/I/results/ev10-cavsafe/`; CPU, $0. FlashCHORD budget.py on it would be determined-wright's step.
