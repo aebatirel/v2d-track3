@@ -5745,3 +5745,9 @@ arm and a no-policy replay floor to stage B.
   $7.02 [E]): Δ vs C ep2 −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007, mean −0.024 (leaning negative, short of
   the harm bar). With test A failed and arm S showing no signal, no robot-side item from that lane changes pack 10. V+D
   is not run.
+- 00:47 UTC 1 Nov bold-albattani: **eval-25 board-slot verdict NO** (INTERLOCK 20.15, 3fce701; $0 tonight).
+  - Round 3 (5 boxes per board) passes every physics test on public ep24.
+  - It fails one clause of its own contact rule, and changing that now would be post hoc.
+  - Our tracked board pose at assembly differs from the packed eval-25 reference by 9.8 mm / 2.5°, against a 1 mm
+    clearance.
+  - Pack 10 keeps `meshes/carve/ev25`.
