@@ -119,3 +119,23 @@ def revolution_axis(mpath, n=20000, iters=30, keep=0.6):
     a = c / s
     x0 = np.cross(a, cb / s) + mu       # Plucker: for the axis, cb/s = x0 x a  -> x0 = a x (cb/s) (closest point)
     return a, float(np.sqrt(np.mean(r[w] ** 2))), x0
+
+
+@functools.lru_cache(None)
+def hull_facets(mpath, min_area=1e-4, merge_deg=2.0):
+    """Contact-facet candidates: convex-hull faces merged by normal (within merge_deg), area >= min_area (m^2).
+    No stability test (a resting object touches the table with a hull facet; stability needs the COM, which an
+    incomplete mesh gets wrong). Returns (unit outward normals = body down axes, areas)."""
+    h = mesh(mpath).convex_hull
+    N = np.asarray(h.face_normals); A = np.asarray(h.area_faces)
+    order = np.argsort(-A); used = np.zeros(len(N), bool); out, ar = [], []
+    c = np.cos(np.radians(merge_deg))
+    for i in order:
+        if used[i]:
+            continue
+        g = (~used) & (N @ N[i] >= c)
+        used |= g
+        nn = (N[g] * A[g, None]).sum(0); out.append(nn / np.linalg.norm(nn)); ar.append(A[g].sum())
+    out, ar = np.array(out), np.array(ar)
+    k = ar >= min_area
+    return out[k], ar[k]

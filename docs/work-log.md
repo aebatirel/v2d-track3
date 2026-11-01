@@ -6450,3 +6450,19 @@ arm and a no-policy replay floor to stage B.
   - Reading: the mechanism holds (D1: the physics prior is a second ~2 deg sensor; fused beats either alone, and P1 is
     monotone-safe), but the size is ~1/10 of the tilt oracle. Not handed over as a pass.
   - Runs: docs/analysis/physperc-20261101/runs/{before,P1,P2,R1}, results_T1.json. Machine: this container, CPU, $0.
+- 21:00 UTC 1 Nov physperc **T2 revolution-axis tilt prior: FAIL, falsifier fired** [D, 20 public]. PREREG_T2.md
+  pushed 56c05c6e before transforms; output sha256 ac36ee29 before scoring.
+  - D2 (in-sample): a revolution body resting upright has a vertical axis; the axis of OUR mesh (line-complex fit,
+    pot 0.85 mm rms, cups, lid, flat boards) cuts the tilt error of 17 gated objects 2.47 -> 1.12 deg (W 0.75).
+  - Q1 (all gated, axis W 0.75 else facet W 0.5): **+0.00067**, 11 / 3, min −0.0029 (ep22); below P2's +0.00132 =
+    falsifier fired: halving cup / pot tilt does not reach the score. Q2 (anchor) +0.00091; R2 (W 1) +0.00031.
+- 21:10 UTC **O1 oracle (diagnostic, the correction comes from mocap): exact frame-0 tilt of the anchor vs OUR table
+  = +0.0164** mean, 13 / 6. Of that, ep21 +0.135 and ep22 +0.098 (pitcher anchor, systematic −6 deg in both
+  episodes), ep24 +0.050 (board 1; hand within 27 mm at f0, gated out), ep18 +0.029, ep12 +0.017. Without the two
+  pitcher episodes the tilt ceiling is ≈ +0.004; T1 P1 took +0.0016 of it.
+  - D3: no reliable GT-free pitcher prior from our mesh (half its base is missing): stable facet 64 deg off, contact
+    facet 32 deg, lowest-2 mm plane 3.3–4.1 deg but 6–7 deg at 5 mm (fragile). [H] A complete-base pitcher template
+    / prior is the route (≈ +0.012 public mean at most, oracle). Contact facet fixes the dust-pan prior (0.8–2.5 vs
+    12–13 deg) but the tracker is already good there.
+  - Conclusion so far: physics tilt priors are a real second sensor but the reachable score on public is ≈ +0.0016
+    (T1 P1, 13 / 0). Moving to twist / rest-motion (ideas 3–4).

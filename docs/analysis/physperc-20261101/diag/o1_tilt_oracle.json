@@ -1,0 +1,197 @@
+{
+ "O1tilt": {
+  "mean": {
+   "AUC": 0.0164,
+   "MPPE_cm": -0.15697,
+   "RPE_cm": 0.02209,
+   "SP_SR": 0.0,
+   "MP_SR": 0.05
+  },
+  "better": 13,
+  "worse": 6,
+  "min": -0.0104,
+  "min_ep": 27,
+  "gate": {
+   "mean_ok": true,
+   "min_ok": false,
+   "mppe_ok": true,
+   "rpe_ok": false,
+   "PASS": false
+  },
+  "per_ep": {
+   "0": {
+    "AUC": 0.0006,
+    "base": 0.4963,
+    "new": 0.4969,
+    "obj": {
+     "white_pot": 0.0012,
+     "white_pot_lid": 0.0
+    }
+   },
+   "2": {
+    "AUC": 0.0069,
+    "base": 0.9783,
+    "new": 0.9852,
+    "obj": {
+     "white_pot": 0.0003,
+     "white_pot_lid": 0.0134
+    }
+   },
+   "11": {
+    "AUC": -0.0025,
+    "base": 0.9058,
+    "new": 0.9033,
+    "obj": {
+     "blue_cup": -0.0004,
+     "beige_cup": -0.0046
+    }
+   },
+   "12": {
+    "AUC": 0.0173,
+    "base": 0.958,
+    "new": 0.9753,
+    "obj": {
+     "blue_cup": 0.02,
+     "plastic_dish_rack": 0.0145
+    }
+   },
+   "13": {
+    "AUC": -0.0057,
+    "base": 0.9661,
+    "new": 0.9604,
+    "obj": {
+     "blue_cup": -0.0165,
+     "plastic_dish_rack": 0.0049
+    }
+   },
+   "18": {
+    "AUC": 0.0287,
+    "base": 0.9628,
+    "new": 0.9915,
+    "obj": {
+     "mini_sweeper": -0.0005,
+     "mini_dust_pan": 0.0579
+    }
+   },
+   "21": {
+    "AUC": 0.1346,
+    "base": 0.8325,
+    "new": 0.9671,
+    "obj": {
+     "blue_cup": 0.0185,
+     "water_pitcher": 0.2506
+    }
+   },
+   "22": {
+    "AUC": 0.0976,
+    "base": 0.871,
+    "new": 0.9686,
+    "obj": {
+     "blue_cup": 0.0069,
+     "water_pitcher": 0.1881
+    }
+   },
+   "23": {
+    "AUC": 0.0006,
+    "base": 0.0414,
+    "new": 0.042,
+    "obj": {
+     "wooden_piece_1": 0.0011,
+     "wooden_piece_2": 0.0
+    }
+   },
+   "24": {
+    "AUC": 0.0498,
+    "base": 0.8117,
+    "new": 0.8615,
+    "obj": {
+     "wooden_piece_1": 0.0579,
+     "wooden_piece_2": 0.0416
+    }
+   },
+   "26": {
+    "AUC": -0.002,
+    "base": 0.9775,
+    "new": 0.9755,
+    "obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": -0.0039
+    }
+   },
+   "27": {
+    "AUC": -0.0104,
+    "base": 0.9879,
+    "new": 0.9775,
+    "obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": -0.0209
+    }
+   },
+   "31": {
+    "AUC": 0.0119,
+    "base": 0.8611,
+    "new": 0.873,
+    "obj": {
+     "mini_sweeper": 0.0189,
+     "plastic_dish_rack": 0.0048
+    }
+   },
+   "39": {
+    "AUC": -0.0082,
+    "base": 0.9755,
+    "new": 0.9673,
+    "obj": {
+     "mini_dust_pan": -0.0082
+    }
+   },
+   "40": {
+    "AUC": 0.0002,
+    "base": 0.9803,
+    "new": 0.9805,
+    "obj": {
+     "mini_dust_pan": 0.0002
+    }
+   },
+   "41": {
+    "AUC": 0.0007,
+    "base": 0.9893,
+    "new": 0.99,
+    "obj": {
+     "white_pot": 0.0007
+    }
+   },
+   "42": {
+    "AUC": 0.0005,
+    "base": 0.992,
+    "new": 0.9925,
+    "obj": {
+     "white_pot": 0.0005
+    }
+   },
+   "43": {
+    "AUC": 0.0138,
+    "base": 0.9778,
+    "new": 0.9916,
+    "obj": {
+     "white_pot": 0.0138
+    }
+   },
+   "44": {
+    "AUC": 0.0,
+    "base": 0.9975,
+    "new": 0.9975,
+    "obj": {
+     "white_pot": 0.0
+    }
+   },
+   "45": {
+    "AUC": -0.0065,
+    "base": 0.9759,
+    "new": 0.9694,
+    "obj": {
+     "white_pot": -0.0065
+    }
+   }
+  }
+ }
+}

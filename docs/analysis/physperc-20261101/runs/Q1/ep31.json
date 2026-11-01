@@ -1,0 +1,42 @@
+{
+ "episode": 31,
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "frames": 290,
+ "meshes": "mesh9a",
+ "registration": {
+  "mini_sweeper": {
+   "rot_deg": 3.04,
+   "anchor_shift_cm": 0.43,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 2.1,
+   "anchor_shift_cm": 0.63,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.8615,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.85,
+  "RPE_cm": 1.7012,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.9119,
+   "plastic_dish_rack": 0.8112
+  }
+ }
+}
