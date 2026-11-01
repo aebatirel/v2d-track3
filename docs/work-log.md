@@ -5599,3 +5599,11 @@ Advice given:
   Falsifier proposal stands (one eval-10 training at njmax 1024 / nconmax 512, same V4p reference + recipe; first check =
   overflow-line count); needs the owner's go. Open question for the owner: is a per-policy sim.njmax change acceptable
   under the challenge rules (the evaluator inherits it from the checkpoint config)?
+- ~02:45 UTC keen-heisenberg relays the **owner's go, verbatim "Okay go" (02:43 UTC, their chat)** for falsifier 1 only:
+  ONE eval-10 training at njmax 1024 / nconmax 512, ~$2–3. Conditions: diagnostic only, never packed (a 1024 checkpoint
+  takes changed physics into evaluation; the requirements note counts that as manipulating the evaluation unless the
+  organisers OK it); pre-register and commit before launch (supported: overflow ≈ 0 AND lift > 0 at some checkpoint AND
+  sim_vs_ref > 0.459; falsified: overflow gone, lift 0; inconclusive: overflow persists); also evaluate the same
+  checkpoint at njmax 512; usual box rules. Falsifier 2 (no-overlap pieces at 512) is NOT covered.
+  Build delegated to a subagent in its own worktree (opt-in job reusing e10v's stored V4p reference, a no_oracle guard
+  on the run tag, PREREG, CPU mock, JOBS/BUILD). Nothing launched. Pack 9b unchanged (9a+ + passing D cells).
