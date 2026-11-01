@@ -6134,3 +6134,11 @@ diagnostic; nothing is picked for submission.
 - Orchestrator: accepted. Background agent writes PREREG first (posefix/PREREG.md), then one scored run on the public
   tracks and scorer of the CD-O AUC guard with the 9a+ mesh set; CPU, $0. If it passes, the rule goes to focused-pascal
   for the eval references (10, 1, 14, 30, then 15/16).
+
+### 2026-11-01 04:30 UTC — rack-slot candidates (evals 30, 14): none passes; root cause is the pose
+- Agent report (folder `gmg/build/I/results/rackslot/`, commit e863636; GATES pushed before measuring, amended twice
+  before any candidate was measured: H30 frames, plain-MuJoCo label, throw report G6, G2b band rule). Guest mesh inside
+  the rack mesh at every H30 rest frame (eval 30: 22/22, 6.2 cm3 median; eval 14: 18/18, 9.2 cm3). Candidates empty the
+  slot (fill 10.8 -> 2.9 and 6.9 -> 2.3 cm3) but: eval 30 sets throw the free sweeper further (41-43 vs 25 mm) -> do not
+  use; eval 14 c1-ev14 throws less (79 vs 136 mm) but 62 pieces and plain-MuJoCo rows 552-612 -> long shot, budget.py
+  optional. Relayed to determined-wright / focused-pascal / keen-heisenberg; keep packed racks; the pose fix is the lever.
