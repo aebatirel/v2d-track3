@@ -10723,3 +10723,14 @@ score.
   - The guard exception was approved in focused-pascal's session.
   Recorded in its 09:11 work-log entry and build_11/UPLOAD.md, with the disclosure for the technical report and the
   container. Pack 11 agreed as the single Final Submission near the close.
+
+- ~20:20 UTC 1 Nov **perfect-following session (claude/perfect-following-20261101): steps 1–2 done, CPU, $0.**
+  - Merged focused-pascal / grasp-ep13 / determined-wright / bold-albattani / standings into the branch (only docs conflicts;
+    STATUS kept from keen-heisenberg, work log union-merged).
+  - CPU env: FlashCHORD 8c778f9 venv, kit, public dataset in the session scratchpad. Credit $122.85, 0 instances.
+  - New tool tools/simref_timeline.py (qa.py's sim_vs_ref + the kit's symmetric cup scoring + per-frame errors / onsets).
+  - Results: docs/analysis/perfect-following-20261101/README.md (episode × problem table). Symmetric − plain ≤ +0.009 [M].
+    Deterministic onsets: 14 f42–46 (hand-over carried one-handed), 32 f19 (perceived cup glitch 15 cm inside the hold,
+    322 cm/s jump at f33), 16 f112–120 (spoon moves after release, no robot tip f122–173), 25 f41 / f173, 1 f129+, 3 f66.
+  - Messages to the GRASP session (20:00, 20:18): split agreed as proposed by me (they: repair a then b as a tool with its
+    public gate; me: GPU, hand assignment, ep13 RL test).

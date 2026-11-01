@@ -1,5 +1,15 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~20:20 UTC: PERFECT-FOLLOWING session: steps 1–2 done (CPU, $0); GPU batch next
+Branch `claude/perfect-following-20261101`; report `docs/analysis/perfect-following-20261101/README.md`.
+- Symmetric vs plain sim_vs_ref on the 200 H5p7 draws: ≤ +0.009 difference everywhere [M]. Cup spin is not the loss.
+- The losses sit at the same frames in every draw (reference problems, not luck) [M]:
+  - eval 14: the human hands the cup over (L → R → L); our reference carries it with the left hand only (f42–46);
+  - eval 32: our perceived cup jumps 15 cm sideways and back inside the hold (f15–36);
+  - eval 16 / 25 / 30 / 1: an object keeps moving with no robot hand on it (after release, or outside holds).
+- Next: public ep13 test (single vs two-hand) + eval-14 two-hand retrain on GPU; the GRASP session asked to build the
+  "no mover, no motion" reference repair with its public gate. Spend so far $0 of $110.
+
 ## 2026-11-01 ~11:44 UTC: PACK 11 UPLOADED: AUC 0.83921, our best on every board (MP-SR 0.70, RPE 3.179, MPPE 2.545, SP-SR 0.85)
 - Pack 11 = pack 10 with eval 10's policy trained at njmax 1024 (training-only) and evaluated at stock 512 / 256
   (disclosed).
