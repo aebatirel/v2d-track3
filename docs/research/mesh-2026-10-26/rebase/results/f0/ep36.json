@@ -1,0 +1,87 @@
+{
+ "ep": 36,
+ "mode": "glock",
+ "source_run": "20261024-pack-31ef267",
+ "lib": "library_v3",
+ "pieces": null,
+ "md5_listed": "36e60e15163f47486e6bcf85b93fb22e",
+ "ref": "20261024-pack-31ef267/refs/glockt/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "ref_md5": "36e60e15163f47486e6bcf85b93fb22e",
+ "md5_match": true,
+ "names": [
+  "wooden_spoon"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "de1c3f2832a0f6db12452f497b77c71c",
+  "radius": 0.3251
+ },
+ "f0_hand_mm": {
+  "wooden_spoon": 97.5
+ },
+ "first_H30_rest_frame": 394,
+ "objects": {
+  "wooden_spoon": {
+   "urdf_md5": "59f7268c34f1fd07dbb24fb80d9fd907",
+   "pieces": 9,
+   "collision": [
+    "wooden_spoon.glb 2ba0ecb4 -> CoACD 9"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "wooden_spoon": {
+     "pen_mm": -0.14,
+     "com_height_mm": 10.9,
+     "hand_mm": 97.5,
+     "support": {
+      "band1mm": {
+       "points": 63,
+       "com_margin_mm": 4.1
+      },
+      "band3mm": {
+       "points": 198,
+       "com_margin_mm": 9.3
+      }
+     },
+     "min_dist_to_partner_mesh_mm": null,
+     "settle_mm": 0.47,
+     "settle_deg": 0.7,
+     "max_mm": 0.98,
+     "max_deg": 0.7,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.825,
+       "max": 1.38,
+       "min": 0.21,
+       "q90": 1.235
+      },
+      "deg": {
+       "n": 16,
+       "median": 0.965,
+       "max": 1.19,
+       "min": 0.19,
+       "q90": 1.1
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    }
+   },
+   "pairs": {}
+  }
+ ],
+ "status": "ok",
+ "secs": 2.3
+}

@@ -1,0 +1,147 @@
+{
+ "ep": 32,
+ "mode": "glock",
+ "source_run": "20261026-fr32s46b-5e0e100",
+ "lib": "library_v3",
+ "pieces": null,
+ "md5_listed": "36e600c8346f9d2bd89dc47447ea55fc",
+ "ref": "20261026-fr32s46b-5e0e100/refs/glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "ref_md5": "36e600c8346f9d2bd89dc47447ea55fc",
+ "md5_match": true,
+ "names": [
+  "blue_cup",
+  "wooden_spoon"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "2ef5dc709e916f9f07fc3ca144aafe8f",
+  "radius": 0.268661
+ },
+ "first_H30_rest_frame_per_object": {
+  "blue_cup": null
+ },
+ "f0_hand_mm": {
+  "blue_cup": 13.3,
+  "wooden_spoon": 112.0
+ },
+ "first_H30_rest_frame": null,
+ "objects": {
+  "blue_cup": {
+   "urdf_md5": "31cd001d2618ee2972dc922b77109b9f",
+   "pieces": 74,
+   "collision": [
+    "blue_cup.glb 0e2bb5f5 -> CoACD 74"
+   ],
+   "mass": 0.3
+  },
+  "wooden_spoon": {
+   "urdf_md5": "59f7268c34f1fd07dbb24fb80d9fd907",
+   "pieces": 11,
+   "collision": [
+    "wooden_spoon.glb 6bf5b0e3 -> CoACD 11"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "blue_cup": {
+     "pen_mm": 0.74,
+     "com_height_mm": 86.9,
+     "hand_mm": 13.3,
+     "support": {
+      "band1mm": {
+       "points": 10,
+       "com_margin_mm": -2.1
+      },
+      "band3mm": {
+       "points": 65,
+       "com_margin_mm": 29.3
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 149.8,
+     "settle_mm": 3.29,
+     "settle_deg": 2.1,
+     "max_mm": 4.16,
+     "max_deg": 2.69,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 3.35,
+       "max": 4.53,
+       "min": 2.59,
+       "q90": 4.18
+      },
+      "deg": {
+       "n": 16,
+       "median": 2.135,
+       "max": 2.93,
+       "min": 1.7,
+       "q90": 2.71
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": [
+      "held at f0 (hand 13.3 mm)",
+      "hull corner below the support (10 pts within 1 mm, COM -2.1 mm; within 3 mm COM 29.3 mm inside)"
+     ]
+    },
+    "wooden_spoon": {
+     "pen_mm": 0.52,
+     "com_height_mm": 10.9,
+     "hand_mm": 112.0,
+     "support": {
+      "band1mm": {
+       "points": 118,
+       "com_margin_mm": 4.8
+      },
+      "band3mm": {
+       "points": 176,
+       "com_margin_mm": 9.4
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 149.8,
+     "settle_mm": 0.77,
+     "settle_deg": 4.02,
+     "max_mm": 1.06,
+     "max_deg": 5.52,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.85,
+       "max": 1.11,
+       "min": 0.7,
+       "q90": 1.07
+      },
+      "deg": {
+       "n": 16,
+       "median": 3.985,
+       "max": 4.34,
+       "min": 3.5,
+       "q90": 4.215
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    }
+   },
+   "pairs": {
+    "blue_cup|wooden_spoon": 0.0
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 5.0
+}

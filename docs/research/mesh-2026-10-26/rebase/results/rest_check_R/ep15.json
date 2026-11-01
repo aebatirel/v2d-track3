@@ -1,0 +1,1 @@
+{"all_ok": false, "mm": 5.0, "deg": 2.0, "objects": {"plastic_dish_rack": {"until_frame": 28, "max_mm": 3.1, "max_deg": 0.4, "worst_frame": 26, "ok": true}, "wooden_spoon": {"until_frame": 28, "max_mm": 5.4, "max_deg": 12.7, "worst_frame": 25, "ok": false}}}

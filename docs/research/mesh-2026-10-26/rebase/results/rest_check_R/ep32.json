@@ -1,0 +1,1 @@
+{"all_ok": false, "mm": 5.0, "deg": 2.0, "objects": {"blue_cup": {"until_frame": 1, "max_mm": 0.0, "max_deg": 0.0, "worst_frame": 0, "ok": true}, "wooden_spoon": {"until_frame": 40, "max_mm": 3.8, "max_deg": 4.5, "worst_frame": 13, "ok": false}}}

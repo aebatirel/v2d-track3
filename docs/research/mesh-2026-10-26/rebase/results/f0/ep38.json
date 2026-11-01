@@ -1,0 +1,89 @@
+{
+ "ep": 38,
+ "mode": "glock",
+ "source_run": "20261024-pack-31ef267",
+ "lib": "library_v3",
+ "pieces": null,
+ "md5_listed": "33d3f4e217426b797d0371849f9ee1fd",
+ "ref": "20261024-pack-31ef267/refs/glockt/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "ref_md5": "33d3f4e217426b797d0371849f9ee1fd",
+ "md5_match": true,
+ "names": [
+  "mini_dust_pan"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "46ad19358eff66969582d7b4f84a5e8e",
+  "radius": 0.281614
+ },
+ "f0_hand_mm": {
+  "mini_dust_pan": 207.6
+ },
+ "first_H30_rest_frame": 0,
+ "objects": {
+  "mini_dust_pan": {
+   "urdf_md5": "868954ad718b834b87833019f9f33e41",
+   "pieces": 26,
+   "collision": [
+    "mini_dust_pan.glb 9ac90016 -> CoACD 26"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "mini_dust_pan": {
+     "pen_mm": 0.5,
+     "com_height_mm": 16.3,
+     "hand_mm": 207.6,
+     "support": {
+      "band1mm": {
+       "points": 40,
+       "com_margin_mm": -6.2
+      },
+      "band3mm": {
+       "points": 182,
+       "com_margin_mm": 21.3
+      }
+     },
+     "min_dist_to_partner_mesh_mm": null,
+     "settle_mm": 1.42,
+     "settle_deg": 2.81,
+     "max_mm": 1.77,
+     "max_deg": 4.13,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 1.245,
+       "max": 1.65,
+       "min": 1.01,
+       "q90": 1.53
+      },
+      "deg": {
+       "n": 16,
+       "median": 2.755,
+       "max": 3.37,
+       "min": 2.41,
+       "q90": 3.265
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": [
+      "hull corner below the support (40 pts within 1 mm, COM -6.2 mm; within 3 mm COM 21.3 mm inside)"
+     ]
+    }
+   },
+   "pairs": {}
+  }
+ ],
+ "status": "ok",
+ "secs": 1.3
+}

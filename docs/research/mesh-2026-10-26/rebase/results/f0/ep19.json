@@ -1,0 +1,254 @@
+{
+ "ep": 19,
+ "mode": "std",
+ "source_run": "20261025-std1928-ee7ba8e",
+ "lib": "library_v3",
+ "pieces": null,
+ "md5_listed": "201f338aba02911d7fc15998911219ea",
+ "ref": "20261025-std1928-ee7ba8e/refs/perc2mcks/ep19/processed/sequence_id=t3_ep019/robot_name=sharpa_wave/afc53914ae7542d7b565119fc4892688-0.parquet",
+ "ref_md5": "201f338aba02911d7fc15998911219ea",
+ "md5_match": true,
+ "names": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "8b41baf8dc0a8d290dc558cd2d89a7cd",
+  "radius": 0.251355
+ },
+ "shared_assets": {
+  "lib": "library_v3",
+  "pieces": null,
+  "make_assets": [
+   "mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm",
+   "mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm"
+  ]
+ },
+ "first_H30_rest_frame_per_object": {
+  "mini_dust_pan": 201
+ },
+ "f0_hand_mm": {
+  "mini_sweeper": 170.2,
+  "mini_dust_pan": 10.2
+ },
+ "first_H30_rest_frame": null,
+ "objects": {
+  "mini_sweeper": {
+   "urdf_md5": "68762128a0acdcc36e8b4c2d6cf2b635",
+   "pieces": 19,
+   "collision": [
+    "mini_sweeper.glb c32f43de -> CoACD 19"
+   ],
+   "mass": 0.3
+  },
+  "mini_dust_pan": {
+   "urdf_md5": "ad816644d1057ce09445fdcdb61bca19",
+   "pieces": 26,
+   "collision": [
+    "mini_dust_pan.glb 9ac90016 -> CoACD 26"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "mini_sweeper": {
+     "pen_mm": 0.58,
+     "com_height_mm": 63.4,
+     "hand_mm": 170.2,
+     "support": {
+      "band1mm": {
+       "points": 106,
+       "com_margin_mm": 4.2
+      },
+      "band3mm": {
+       "points": 208,
+       "com_margin_mm": 6.4
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 113.8,
+     "settle_mm": 90.21,
+     "settle_deg": 88.79,
+     "max_mm": 94.15,
+     "max_deg": 94.98,
+     "falls_over": true,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 90.235,
+       "max": 91.48,
+       "min": 89.19,
+       "q90": 90.965
+      },
+      "deg": {
+       "n": 16,
+       "median": 88.84,
+       "max": 89.42,
+       "min": 88.35,
+       "q90": 89.31
+      },
+      "falls": 16,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    },
+    "mini_dust_pan": {
+     "pen_mm": 0.29,
+     "com_height_mm": 15.6,
+     "hand_mm": 10.2,
+     "support": {
+      "band1mm": {
+       "points": 94,
+       "com_margin_mm": 10.1
+      },
+      "band3mm": {
+       "points": 254,
+       "com_margin_mm": 26.0
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 114.5,
+     "settle_mm": 0.9,
+     "settle_deg": 2.34,
+     "max_mm": 0.96,
+     "max_deg": 2.53,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.99,
+       "max": 1.32,
+       "min": 0.8,
+       "q90": 1.135
+      },
+      "deg": {
+       "n": 16,
+       "median": 2.385,
+       "max": 2.65,
+       "min": 2.08,
+       "q90": 2.6
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": [
+      "held at f0 (hand 10.2 mm)"
+     ]
+    }
+   },
+   "pairs": {
+    "mini_sweeper|mini_dust_pan": 0.0
+   }
+  },
+  {
+   "frame": 201,
+   "kind": "first H30 rest of mini_dust_pan",
+   "hand_mm": {},
+   "objects": {
+    "mini_sweeper": {
+     "pen_mm": -32.99,
+     "com_height_mm": 75.7,
+     "hand_mm": 3.6,
+     "support": {
+      "band1mm": {
+       "points": 19,
+       "com_margin_mm": -65.8
+      },
+      "band3mm": {
+       "points": 55,
+       "com_margin_mm": -57.8
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 94.7,
+     "settle_mm": 65.18,
+     "settle_deg": 26.99,
+     "max_mm": 66.89,
+     "max_deg": 29.08,
+     "falls_over": false,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 64.925,
+       "max": 65.34,
+       "min": 64.3,
+       "q90": 65.245
+      },
+      "deg": {
+       "n": 16,
+       "median": 27.07,
+       "max": 27.67,
+       "min": 26.42,
+       "q90": 27.55
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [
+      "held at f201 (hand 3.6 mm)",
+      "floating 32.99 mm above the table"
+     ],
+     "flags": [
+      "held at f201 (hand 3.6 mm)",
+      "floating 32.99 mm above the table"
+     ]
+    },
+    "mini_dust_pan": {
+     "pen_mm": -0.01,
+     "com_height_mm": 16.0,
+     "hand_mm": 138.4,
+     "support": {
+      "band1mm": {
+       "points": 88,
+       "com_margin_mm": 11.5
+      },
+      "band3mm": {
+       "points": 229,
+       "com_margin_mm": 25.9
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 95.4,
+     "settle_mm": 0.94,
+     "settle_deg": 2.11,
+     "max_mm": 0.98,
+     "max_deg": 2.11,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.95,
+       "max": 1.56,
+       "min": 0.76,
+       "q90": 1.25
+      },
+      "deg": {
+       "n": 16,
+       "median": 2.205,
+       "max": 2.45,
+       "min": 1.66,
+       "q90": 2.39
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    }
+   },
+   "pairs": {
+    "mini_sweeper|mini_dust_pan": 0.0
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 7.4
+}
