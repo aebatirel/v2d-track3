@@ -1,7 +1,9 @@
 #!/bin/bash
 # Pre-registered ep13 arm (docs/research/grasp-ep13-20261101/PREREG.md): one solve + checks + jitter check.
-# Usage: S=<scratchpad> run_ep13.sh REF(P|O) METHOD(anneal|grasp)
-#   S/inputs/ep13_<REF>/processed/<seq>/<robot>/ref_in.parquet  (prep_inputs.py) -> S/ep13/<REF>_<METHOD>/
+# Usage: S=<scratchpad> run_ep13.sh REF(P|O|P2|O2) METHOD(anneal|grasp)
+#   P, O:   the twins' references, S/inputs/ep13_<REF>/processed/<seq>/<robot>/ref_in.parquet (prep_inputs.py)
+#   P2, O2: the two-hand rebuilds, S/gl2/ep13_<P|O>/processed/<seq>/<robot>/ref_gl_ilc.parquet (tools/cpu_glock_zero.sh)
+#   -> S/ep13/<REF>_<METHOD>/
 # Steps: solve.py (settings below, identical for both methods except --method and the GRASP options) -> official
 # zero-action replay of the written parquet (tools/trace_rollout.py zero) -> trace_score (replay and the solver's own truth
 # trajectory) -> bit-identity of replay vs truth -> jitter_check.py --k 17 --seed 0 (the gate metric). CPU only, no
@@ -9,7 +11,8 @@
 set -u; S=${S:?}; REF=$1; METHOD=$2; T=/home/user/v2d-track3/tools
 FCD=$S/src/video_to_data/robotic_grounding/flash_chord; FPY=$S/fcvenv/bin/python; BPY=$S/venv/bin/python
 export OMP_NUM_THREADS=1 EMB=sharpa_hands_mid DEV=cpu KIT=$S/kit/v2d_submission_kit
-P=$(ls $S/inputs/ep13_$REF/processed/*/*/ref_in.parquet); D=$(dirname $P); O=$S/ep13/${REF}_$METHOD; mkdir -p $O
+case $REF in P|O) P=$(ls $S/inputs/ep13_$REF/processed/*/*/ref_in.parquet) ;; P2|O2) P=$(ls $S/gl2/ep13_${REF:0:1}/processed/*/*/ref_gl_ilc.parquet) ;; *) exit 2 ;; esac
+D=$(dirname $P); O=$S/ep13/${REF}_$METHOD; mkdir -p $O
 OUTP=$D/ps_$METHOD.parquet; N=190
 COMMON="--workers 4 --worlds 32 --robust 4 --horizon 16 --knot 4 --ctrl 4 --iters 8 --ramp 1 4 --sig_pos 0.01 --sig_rot 0.05 \
 --sig_fin 0.15 --anneal 0.80 --retries 4 --retry 0.05 --back 3 --rob_pos 0.0005 --rob_fin 0.005 --seed 0"

@@ -6460,3 +6460,11 @@ Background agent, CPU only, $0, no ground truth read.
     construction: the same `ref_sf` inputs (P and O) re-locked with the box's GL_ARGS **minus** `--single_hand 1`
     (two-hand holds, the hand-over kept), then wrist ILC (4 iterations, kp 400), via `tools/cpu_glock_zero.sh`. No
     REPLAN stage (on ep13 the box's replan was "not better; kept the previous version"). Building now.
+- ~12:37 UTC: two-hand grasp-lock rebuilds done (CPU, `tools/cpu_glock_zero.sh`, code e919165, 3.5 min each) [M]. Holds:
+  P2 left f19–61 + right f46–104, O2 left f17–61 + right f46–99. ILC iteration 3 (left/right wrist error, mean): P2
+  2.3 / 0.8 cm, O2 1.2 / 0.7 cm. Nominal zero-action sim_vs_ref (single replays; report only): **P2 0.5268**,
+  **O2 0.6474** (floors 0.5561 / 0.5727; the twins' P / O give 0.5406 / 0.5724 on CPU). Outputs:
+  scratchpad `gl2/ep13_{P,O}/` (md5 501e928e / 7ad0e431).
+- PREREG draft updated (not frozen): test A = the twins' references (the owner's gate), test B = the two-hand rebuilds,
+  same gate per test; test B runs first. Dev sweep on ep31 G2–G5 still running; G1 (paper-like ESS 0.9) improved 0/8
+  windows vs the annealed sampler's 2/8.

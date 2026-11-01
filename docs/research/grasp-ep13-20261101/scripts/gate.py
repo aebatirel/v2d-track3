@@ -19,8 +19,13 @@ def quat_mat(q):
 
 
 res = {}; pts = np.random.default_rng(0).normal(size=(500, 3)); pts = 0.05 * pts / np.linalg.norm(pts, axis=1, keepdims=True)
-for ref in ('P', 'O'):
-    t = pq.read_table(glob.glob(f'{INP}/ep13_{ref}/processed/*/*/ref_in.parquet')[0])
+S_ = os.path.dirname(os.path.abspath(INP))
+for ref in ('P', 'O', 'P2', 'O2'):
+    src = glob.glob(f'{INP}/ep13_{ref}/processed/*/*/ref_in.parquet') if len(ref) == 1 else \
+        glob.glob(f'{S_}/gl2/ep13_{ref[0]}/processed/*/*/ref_gl_ilc.parquet')
+    if not src:
+        continue
+    t = pq.read_table(src[0])
     names = t.column('object_body_names')[0].as_py(); B = len(names); T = len(t.column('robot_left_wrist_position')[0].as_py())
     OP = np.array(t.column('object_body_position')[0].as_py()).reshape(T, B, 3)
     OQ = np.array(t.column('object_body_wxyz')[0].as_py()).reshape(T, B, 4)[..., [1, 2, 3, 0]]
@@ -40,18 +45,24 @@ for ref in ('P', 'O'):
                                    cup_first_lasting_loss=lost[1:], cup_add_cm_f110=np.round(100 * add[110, 1:], 1).tolist(),
                                    cup_add_cm_end=np.round(100 * add[-1, 1:], 1).tolist())
 G = {}
-for ref in ('P', 'O'):
+for ref in ('P', 'O', 'P2', 'O2'):
     a, g = res.get(f'{ref}_anneal'), res.get(f'{ref}_grasp')
     if a and g:
         diff = np.array(g['scores'][1:]) - np.array(a['scores'][1:]); rng = np.random.default_rng(0)
         bs = [rng.choice(diff, len(diff)).mean() for _ in range(10000)]
         G[ref] = dict(delta=round(float(diff.mean()), 4), ci95=np.round(np.percentile(bs, [2.5, 97.5]), 4).tolist(),
                       wins=int((diff > 0).sum()), n=len(diff), delta_nominal=round(g['nominal'] - a['nominal'], 4))
-ok = 'P' in G and 'O' in G
-verdict = ('PASS' if ok and G['P']['delta'] >= 0.05 and min(G['P']['delta'], G['O']['delta']) >= -0.05 else 'FAIL') if ok else 'INCOMPLETE'
-out = dict(arms=res, deltas=G, verdict=verdict, rule='d_b = jit_mean(grasp,P) - jit_mean(anneal,P) >= +0.05 and neither d_a nor d_b < -0.05')
+def verdict(b, a_):
+    if b not in G or a_ not in G:
+        return 'INCOMPLETE'
+    return 'PASS' if G[b]['delta'] >= 0.05 and min(G[b]['delta'], G[a_]['delta']) >= -0.05 else 'FAIL'
+
+
+V = dict(test_A=verdict('P', 'O'), test_B=verdict('P2', 'O2'))
+out = dict(arms=res, deltas=G, verdict=V, rule='per test: d_b = jit_mean(grasp, perceived) - jit_mean(anneal, perceived) '
+           '>= +0.05 and neither d_a (oracle) nor d_b < -0.05; test A = the twins\' references P/O, test B = the two-hand rebuilds P2/O2')
 json.dump(out, open(OUT, 'w'), indent=1)
 for k, v in res.items():
     print(f"{k:10s} nominal {v['nominal']:.4f} jittered {v['jit_mean']:.4f} ± {v['jit_sd']:.4f} [{v['jit_min']:.4f}, {v['jit_max']:.4f}] "
           f"cup<=3cm {v['cup_within_3cm']:.3f} lost@ {v['cup_first_lasting_loss']}")
-print('deltas', json.dumps(G)); print('VERDICT', verdict)
+print('deltas', json.dumps(G)); print('VERDICT', json.dumps(V))
