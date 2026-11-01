@@ -1,0 +1,1 @@
+GATE NOT MET (training-box gate not met: no confirmation draws) (bar > 0.8933 vs P) :: s42 VERIFIED n 10 mean 0.3653 margin -0.528; s43 VERIFIED n 10 mean 0.3652 margin -0.5281

@@ -1,0 +1,16 @@
+> split=eval perc=e20b1s42 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=unset FC_DR_PATCH=unset EVAL_CS_REF=unset EVAL_E20B1=1 :: ALLOWED pre=e20b1s42_ rc=0
+> split=eval perc=e20b1s42 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=unset FC_DR_PATCH=unset EVAL_CS_REF=1 EVAL_E20B1=1 :: ALLOWED pre=e20b1s42_ rc=0
+> split=eval perc=e20b1s42 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=unset FC_DR_PATCH=1 EVAL_CS_REF=unset EVAL_E20B1=1 :: ALLOWED pre=e20b1s42_ rc=0
+> split=eval perc=e20b1s42 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=unset FC_DR_PATCH=1 EVAL_CS_REF=1 EVAL_E20B1=1 :: ALLOWED pre=e20b1s42_ rc=0
+> split=eval perc=e20b1s42 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=1 FC_DR_PATCH=unset EVAL_CS_REF=unset EVAL_E20B1=1 :: ALLOWED pre=e20b1s42_ rc=0
+> split=eval perc=e20b1s42 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=1 FC_DR_PATCH=unset EVAL_CS_REF=1 EVAL_E20B1=1 :: ALLOWED pre=e20b1s42_ rc=0
+> split=eval perc=e20b1s42 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=1 FC_DR_PATCH=1 EVAL_CS_REF=unset EVAL_E20B1=1 :: ALLOWED pre=e20b1s42_ rc=0
+> split=eval perc=e20b1s42 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=1 FC_DR_PATCH=1 EVAL_CS_REF=1 EVAL_E20B1=1 :: ALLOWED pre=e20b1s42_ rc=0
+> split=eval perc=e20b1s43 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=unset FC_DR_PATCH=unset EVAL_CS_REF=unset EVAL_E20B1=1 :: ALLOWED pre=e20b1s43_ rc=0
+> split=eval perc=e20b1s43 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=unset FC_DR_PATCH=unset EVAL_CS_REF=1 EVAL_E20B1=1 :: ALLOWED pre=e20b1s43_ rc=0
+> split=eval perc=e20b1s43 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=unset FC_DR_PATCH=1 EVAL_CS_REF=unset EVAL_E20B1=1 :: ALLOWED pre=e20b1s43_ rc=0
+> split=eval perc=e20b1s43 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=unset FC_DR_PATCH=1 EVAL_CS_REF=1 EVAL_E20B1=1 :: ALLOWED pre=e20b1s43_ rc=0
+> split=eval perc=e20b1s43 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=1 FC_DR_PATCH=unset EVAL_CS_REF=unset EVAL_E20B1=1 :: ALLOWED pre=e20b1s43_ rc=0
+> split=eval perc=e20b1s43 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=1 FC_DR_PATCH=unset EVAL_CS_REF=1 EVAL_E20B1=1 :: ALLOWED pre=e20b1s43_ rc=0
+> split=eval perc=e20b1s43 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=1 FC_DR_PATCH=1 EVAL_CS_REF=unset EVAL_E20B1=1 :: ALLOWED pre=e20b1s43_ rc=0
+> split=eval perc=e20b1s43 run=local REQUIRE_REUSE=1 ep=20 EVAL_LOCAL_REF=1 FC_DR_PATCH=1 EVAL_CS_REF=1 EVAL_E20B1=1 :: ALLOWED pre=e20b1s43_ rc=0

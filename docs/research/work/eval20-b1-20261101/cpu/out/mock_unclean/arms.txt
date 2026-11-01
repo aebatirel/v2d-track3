@@ -1,0 +1,1 @@
+ARMS OK :: P 14e7cdd782773af94810f214c2811a7a (fingerprint c1e09fcc24b9), seeds ['42', '43'], blue_cup 0.3 kg URDF 31cd001d, water_pitcher 0.3 kg URDF 77b395a5

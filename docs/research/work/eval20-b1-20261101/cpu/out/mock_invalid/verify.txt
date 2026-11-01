@@ -1,0 +1,1 @@
+VERIFY FAILED (1): s43: ["saved config differs from the packed eval-20 checkpoint in ['training.mock_extra_setting']"] :: set ev20b1 :: chosen None :: confirmation draws 0 (rc None) :: own-reference checks 31/31

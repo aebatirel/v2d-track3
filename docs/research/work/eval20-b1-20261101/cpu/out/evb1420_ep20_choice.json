@@ -1,0 +1,39 @@
+{
+ "ep": 20,
+ "chosen": "glock",
+ "checkpoint": "/content/runs/glock/ep20-s42/policy_70004736.safetensors",
+ "yardstick": "/content/results/hard_ab/ep20/mcks-s42/r1/episode_000020.parquet",
+ "rule": "max mean sim_vs_ref",
+ "candidates": [
+  {
+   "name": "std",
+   "checkpoint": "/content/runs/perc2mcks/ep20-s42/policy_170008576.safetensors",
+   "mean": 0.1461,
+   "scores": [
+    0.2532,
+    0.2215,
+    0.0727,
+    0.0791,
+    0.1038
+   ],
+   "ref_offset_m": 0.0,
+   "ok": true,
+   "errors": null
+  },
+  {
+   "name": "glock",
+   "checkpoint": "/content/runs/glock/ep20-s42/policy_70004736.safetensors",
+   "mean": 0.8923,
+   "scores": [
+    0.9123,
+    0.8304,
+    0.9149,
+    0.8874,
+    0.9166
+   ],
+   "ref_offset_m": 0.0,
+   "ok": true,
+   "errors": null
+  }
+ ]
+}

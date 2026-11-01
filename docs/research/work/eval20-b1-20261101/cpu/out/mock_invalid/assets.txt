@@ -1,0 +1,1 @@
+ASSETS OK :: changed ['urdf/water_pitcher_rigid.urdf'], added 41, removed 0; water_pitcher URDF 6772f954 -> 77b395a5, 9 -> 41 collisions, inertial equal True, visual equal True, mass 0.3; blue_cup URDF 31cd001d -> 31cd001d, 1 -> 1 collisions, inertial equal True, visual equal True, mass 0.3
