@@ -12,7 +12,7 @@
 #      off; each object's settled pose until its first hold closes): no start jolt from overlapping collision pieces;
 #   2. pipeline/grasp_lock.py with GL_ARGS (single-hand carry per object, anatomy closing, palm press, wrap only where
 #      the human holds a narrow part, copied grasps snapped to the surface), lift feed-forward for the kp 400 wrist;
-#   3. pipeline/wrist_ilc.py with the kp 400 embodiment (EMB=sharpa_hands_mid; the human hand with HUMAN=1);
+#   3. pipeline/wrist_ilc.py with the kp 400 embodiment (EMB=sharpa_hands_mid);
 #      ILC_HOLD=1 (2026-10-26): object-level ILC while a hand carries an object (wrist_ilc.py --hold; ILC_ITERS, ILC_GAIN),
 #      keeping the best-scoring iteration (eval 10: the beige cup sat 3-6 cm low in the grip and hit the blue cup's rim);
 #   4. zero-action replay (tools/trace_rollout.py) scored with tools/trace_score.py (sim_vs_ref, our reference) and
@@ -106,10 +106,6 @@ if [ "${REQUIRE_REUSE:-0}" = 1 ]; then                           # every pair mu
   done
 fi
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
-# MA_ARGS (2026-10-30): extra make_assets.py arguments, e.g. --physics <props.json> (object physics study).
-# HUMAN=1 (2026-10-30, physics study): per episode, build the perceived-size human capsule hand (pipeline/human_hand.py P,
-# config human_P<ep>), turn the base reference into its human-hand reference, and run every later stage (grasp lock via
-# GL_EMB, ILC, evolution, replays, training) on that hand instead of sharpa_hands_mid. Default off: unchanged.
 # PIECES (2026-10-26): collision-copy pieces (e.g. meshes/carve/ev10, the hybrid cups) for the simulator copy, as in
 # hard_ab.sh; use with SF=0 (support_fill would rebuild those objects' collision from the library mesh). References
 # without SF name /content/assets (fix_assets), so they train and evaluate on the pieces.
@@ -222,8 +218,6 @@ one() {
     fi
   fi
   if [ "${REUSE_REF:-0}" = 1 ] && ls /content/refs/${pre}glockt/ep$ep/processed/*/*/ref_gl_ilc.parquet > /dev/null 2>&1 \
-  local ep=$1 run=$2 base=$3 R0 P0 hive G RD N RUN LG=/content/glock_ep$1.log ck reuse=0 emb=sharpa_hands_mid gle=
-  if [ "${REUSE_REF:-0}" = 1 ] && ls /content/refs/glockt/ep$ep/processed/*/*/ref_gl_ilc.parquet > /dev/null 2>&1 \
       && [ -f $O/ep$ep/rest_check.json ]; then                     # finish an episode whose training failed on this box:
     reuse=1                                                        # keep its finished reference (grasp lock, ILC, search)
   fi
@@ -253,8 +247,6 @@ one() {
   fi
   mkdir -p $G/$hive $RD/$hive $RUN $O/ep$ep; cp -r $R0/reconstructed_stage $G/; cp -r $R0/reconstructed_stage $RD/
   log "glock $tg: base $base ($P0)$([ $reuse = 1 ] && echo "; REUSE_REF: training on this box's finished reference $RD/$hive/ref_gl_ilc.parquet")" >> $J
-  log "glock ep$ep: base $base ($P0)$([ $reuse = 1 ] && echo "; REUSE_REF: training on this box's finished reference $RD/$hive/ref_gl_ilc.parquet")" >> $J
-  if [ "${HUMAN:-0}" = 1 ]; then emb=human_P$ep; gle=$emb; fi
   if [ $reuse = 0 ]; then                                          # reference stages (skipped with REUSE_REF)
   if [ "$SF" = 1 ]; then                                           # support-consistent meshes; the reference then names them
     local SFT=/content/refs/${pre}sf/ep$ep; mkdir -p $SFT/$hive; cp -r $R0/reconstructed_stage $SFT/
@@ -269,32 +261,19 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
     local SST=/content/refs/${pre}settle/ep$ep; mkdir -p $SST/$hive; cp -r $R0/reconstructed_stage $SST/
     ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/sim_settle.py $P0 $SST/$hive/ref_settled.parquet ) > $LG.settle 2>&1 \
       || { log "glock $tg: sim_settle FAILED ($(tail -1 $LG.settle | cut -c1-200))" >> $J; return 1; }
-    local SST=/content/refs/settle/ep$ep; mkdir -p $SST/$hive; cp -r $R0/reconstructed_stage $SST/
-    ( cd $FC && EMB=$emb DEV=cuda .venv/bin/python $T/sim_settle.py $P0 $SST/$hive/ref_settled.parquet ) > $LG.settle 2>&1 \
-      || { log "glock ep$ep: sim_settle FAILED ($(tail -1 $LG.settle | cut -c1-200))" >> $J; return 1; }
     cp $SST/$hive/ref_settled_settle.json $O/ep$ep/settle.json; P0=$SST/$hive/ref_settled.parquet
     log "glock $tg: sim_settle $(tail -1 $LG.settle | cut -c1-500)" >> $J
   fi
   ( cd $FC && FC=$FC GL_WRIST_KP=400 .venv/bin/python $P/grasp_lock.py $P0 $G/$hive/ref_gl.parquet $GL_ARGS ) >> $LG 2>&1 \
     || { log "glock $tg: grasp_lock FAILED" >> $J; return 1; }
   ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl.parquet $G/$hive/ref_gl_ilc.parquet --iters ${ILC_ITERS:-4} --device cuda \
-  if [ "${HUMAN:-0}" = 1 ]; then                                 # human hand: its URDFs, config and reference
-    local HD=/content/human/P$ep
-    python $P/human_hand.py urdf P $HD --ref $P0 --name $emb >> $LG 2>&1 && cp $HD/$emb.yaml $FC/src/flash_chord/configs/embodiment/ \
-      && python $P/human_hand.py ref $HD $P0 $G/$hive/ref_human.parquet >> $LG 2>&1 || { log "glock ep$ep: human hand FAILED" >> $J; return 1; }
-    P0=$G/$hive/ref_human.parquet
-    log "glock ep$ep: human hand $emb ($(grep -a 'variant P' $LG | tr '\n' ' ' | cut -c1-300)); $(grep -a 'bone-direction' $LG | cut -c1-120 | tr '\n' ' ')" >> $J
-  fi
-  ( cd $FC && FC=$FC GL_EMB=$gle GL_WRIST_KP=400 .venv/bin/python $P/grasp_lock.py $P0 $G/$hive/ref_gl.parquet $GL_ARGS ) >> $LG 2>&1 \
-    || { log "glock ep$ep: grasp_lock FAILED" >> $J; return 1; }
-  ( cd $FC && EMB=$emb .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl.parquet $G/$hive/ref_gl_ilc.parquet --iters ${ILC_ITERS:-4} --device cuda \
       ${ILC_HOLD:+--hold $G/$hive/ref_gl_grasp_lock.json --gain ${ILC_GAIN:-0.6}} ) >> $LG 2>&1 \
     || { log "glock $tg: wrist_ilc FAILED" >> $J; return 1; }
   if [ "${EVOLVE:-0}" = 1 ]; then                                  # evolutionary grasp refinement, one hold at a time
     local EV=$O/ep$ep/evolve np_ k; mkdir -p $EV; cp $G/$hive/ref_gl_ilc.parquet $EV/ref_before_evolve.parquet
     np_=$(python -c "import json; print(len(json.load(open('$G/$hive/ref_gl_grasp_lock.json'))['phases']))")
     for k in $(seq 0 $((np_ - 1))); do
-      ( cd $FC && EMB=$emb DEV=cuda .venv/bin/python $T/grasp_evolve.py $G/$hive/ref_gl_ilc.parquet $G/$hive/ref_gl_grasp_lock.json \
+      ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/grasp_evolve.py $G/$hive/ref_gl_ilc.parquet $G/$hive/ref_gl_grasp_lock.json \
           $EV/phase$k.json --phase $k --all_objects --pop ${EV_POP:-256} --gens ${EV_GENS:-20} --sigma_pos 0.03 --sigma_fin 0.3 \
           --robust ${EV_ROBUST:-4} --jitter ${EV_JITTER:-0.005} --keep_env \
           --bake $EV/phase$k.parquet ) > $EV/phase$k.log 2>&1 && [ -s $EV/phase$k.parquet ] && cp $EV/phase$k.parquet $G/$hive/ref_gl_ilc.parquet
@@ -303,7 +282,7 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
   fi
   cp $G/$hive/ref_gl_ilc.parquet $RD/$hive/
   N=$(python -c "import numpy as np, pyarrow.parquet as pq; print(len(np.array(pq.read_table('$P0').column('robot_left_wrist_position')[0].as_py()).reshape(-1, 3)))")
-  ( cd $FC && EMB=$emb DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero.npz $RD/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1
+  ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero.npz $RD/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1
   ( cd $REPO_DIR && python $T/trace_score.py $RD/$hive/ref_gl_ilc.parquet $O/ep$ep/zero.npz:zero_action ) > $O/ep$ep/zero_score.txt 2>&1
   python $T/rest_check.py $O/ep$ep/zero.npz $RD/$hive/ref_gl_ilc.parquet > $O/ep$ep/rest_check.json 2>&1
   log "glock $tg: rest check $(cut -c1-400 $O/ep$ep/rest_check.json)" >> $J
@@ -316,15 +295,10 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
       n=$(python -c "import json; print(sum(1 for x in json.load(open('$G/$hive/ref_gl_r${it}_grasp_lock.json'))['phases'] if x.get('replan')))")
       [ "${n:-0}" -gt 0 ] || { log "glock $tg: replan $it: every object is where its reference says before its grasp; nothing to re-plan" >> $J; break; }
       ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl_r$it.parquet $G/$hive/ref_gl_r${it}_ilc.parquet --iters ${ILC_ITERS:-4} --device cuda \
-      ( cd $FC && FC=$FC GL_EMB=$gle GL_WRIST_KP=400 .venv/bin/python $P/grasp_lock.py $P0 $G/$hive/ref_gl_r$it.parquet $GL_ARGS --sim_trace $tr ) >> $LG 2>&1 \
-        || { log "glock ep$ep: replan $it: grasp_lock FAILED" >> $J; break; }
-      n=$(python -c "import json; print(sum(1 for x in json.load(open('$G/$hive/ref_gl_r${it}_grasp_lock.json'))['phases'] if x.get('replan')))")
-      [ "${n:-0}" -gt 0 ] || { log "glock ep$ep: replan $it: every object is where its reference says before its grasp; nothing to re-plan" >> $J; break; }
-      ( cd $FC && EMB=$emb .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl_r$it.parquet $G/$hive/ref_gl_r${it}_ilc.parquet --iters ${ILC_ITERS:-4} --device cuda \
         ${ILC_HOLD:+--hold $G/$hive/ref_gl_r${it}_grasp_lock.json --gain ${ILC_GAIN:-0.6}} ) >> $LG 2>&1 \
         || { log "glock $tg: replan $it: wrist_ilc FAILED" >> $J; break; }
       RT=$RD.r$it; mkdir -p $RT/$hive; cp -r $R0/reconstructed_stage $RT/; cp $G/$hive/ref_gl_r${it}_ilc.parquet $RT/$hive/ref_gl_ilc.parquet
-      ( cd $FC && EMB=$emb DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero_r$it.npz $RT/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1
+      ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero_r$it.npz $RT/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1
       ( cd $REPO_DIR && python $T/trace_score.py $RT/$hive/ref_gl_ilc.parquet $O/ep$ep/zero_r$it.npz:zero_action ) > $O/ep$ep/zero_score_r$it.txt 2>&1
       python $T/rest_check.py $O/ep$ep/zero_r$it.npz $RT/$hive/ref_gl_ilc.parquet > $O/ep$ep/rest_check_r$it.json 2>&1
       sc=$(grep -a 'zero_action:' $O/ep$ep/zero_score_r$it.txt | awk '{print $NF}')
@@ -346,7 +320,7 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
   while :; do
     slot=$(train_slot); esp=
     ( cd $FC && env ${TRAIN_ENV:-} MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py experiment=sharpa_flash_sac \
-        embodiment=$emb "task.parquet='$RD/$hive'" task.motion_speed=1.0 reset.seed=$SEED logging.mode=disabled \
+        embodiment=sharpa_hands_mid "task.parquet='$RD/$hive'" task.motion_speed=1.0 reset.seed=$SEED logging.mode=disabled \
         output_dir=$RUN training.total_environment_steps=$STEPS $TRAIN_ARGS ) >> $RUN/train.log 2>&1 &
     tp=$!
     if [ "$ES" = 1 ]; then J=$J REPO_DIR=$REPO_DIR bash $T/early_stop.sh $RUN $O/ep$ep/curve $ep $tp & esp=$!; fi
