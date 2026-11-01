@@ -1,0 +1,191 @@
+{
+ "ep": 41,
+ "variant": "D",
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 299,
+ "changed_frames": {
+  "white_pot": 0
+ },
+ "rest_frames": {
+  "white_pot": 72
+ },
+ "segments": [
+  {
+   "obj": "white_pot",
+   "start": 0,
+   "end": 15,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.055139,
+    0.069209,
+    0.58437
+   ],
+   "constraint_frames": 16,
+   "pair_frames": {},
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": 32.2,
+   "lowest_above_table_mm_median": -8.45,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 0.0,
+    "max_mm": 9.46,
+    "median_mm": 8.45
+   }
+  },
+  {
+   "obj": "white_pot",
+   "start": 92,
+   "end": 109,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    -0.005621,
+    0.009506,
+    0.420879
+   ],
+   "constraint_frames": 18,
+   "pair_frames": {},
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": Infinity,
+   "lowest_above_table_mm_median": 121.77,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   }
+  },
+  {
+   "obj": "white_pot",
+   "start": 261,
+   "end": 298,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.065842,
+    0.084603,
+    0.565627
+   ],
+   "constraint_frames": 38,
+   "pair_frames": {},
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": 33.0,
+   "lowest_above_table_mm_median": -5.42,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 0.0,
+    "max_mm": 6.92,
+    "median_mm": 5.42
+   }
+  }
+ ],
+ "seconds": 1.3
+}

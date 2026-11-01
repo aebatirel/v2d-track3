@@ -1,0 +1,2060 @@
+{
+ "fi4_rev": 16,
+ "fi416": {
+  "identity": {
+   "cases": {
+    "w1_t6": {
+     "decisions_rev15": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": null,
+     "gate_rev16": null,
+     "built_rev15": true,
+     "built_rev16": true,
+     "pieces_identical": true,
+     "slot_rev15": {
+      "A": {
+       "w_mm": 7.84,
+       "c_L_mm": 0.1,
+       "D_mm": 69.13,
+       "n_slotted": 80,
+       "n_default": 60
+      },
+      "B": {
+       "w_mm": 7.84,
+       "c_L_mm": -0.18,
+       "D_mm": 66.4,
+       "n_slotted": 69,
+       "n_default": 52
+      }
+     },
+     "slot_rev16": {
+      "A": {
+       "w_mm": 7.84,
+       "c_L_mm": 0.1,
+       "D_mm": 69.13,
+       "n_slotted": 80,
+       "n_default": 60
+      },
+      "B": {
+       "w_mm": 7.84,
+       "c_L_mm": -0.18,
+       "D_mm": 66.4,
+       "n_slotted": 69,
+       "n_default": 52
+      }
+     },
+     "ladder_rev16": {
+      "A": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 124,
+         "reflex_vertices": 60,
+         "default_prisms": 60,
+         "slotted_prisms": 80,
+         "d_max_mm": 0.894
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 108,
+         "reflex_vertices": 55,
+         "default_prisms": 55,
+         "slotted_prisms": 66,
+         "d_max_mm": 1.455
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 16,
+         "reflex_vertices": 6,
+         "default_prisms": 8,
+         "slotted_prisms": 8,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 8,
+         "reflex_vertices": 1,
+         "default_prisms": 3,
+         "slotted_prisms": 4,
+         "d_max_mm": 2.683
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.661
+        }
+       ]
+      },
+      "B": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 110,
+         "reflex_vertices": 53,
+         "default_prisms": 52,
+         "slotted_prisms": 69,
+         "d_max_mm": 0.986
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 91,
+         "reflex_vertices": 47,
+         "default_prisms": 49,
+         "slotted_prisms": 56,
+         "d_max_mm": 1.414
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 6,
+         "reflex_vertices": 1,
+         "default_prisms": 3,
+         "slotted_prisms": 5,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 6,
+         "reflex_vertices": 1,
+         "default_prisms": 3,
+         "slotted_prisms": 5,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.687
+        }
+       ]
+      }
+     },
+     "rung_1_0_both": true,
+     "sec": 159.5
+    },
+    "w1_t10": {
+     "decisions_rev15": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": null,
+     "gate_rev16": null,
+     "built_rev15": true,
+     "built_rev16": true,
+     "pieces_identical": true,
+     "slot_rev15": {
+      "A": {
+       "w_mm": 11.72,
+       "c_L_mm": 0.04,
+       "D_mm": 69.16,
+       "n_slotted": 38,
+       "n_default": 32
+      },
+      "B": {
+       "w_mm": 11.73,
+       "c_L_mm": -0.27,
+       "D_mm": 66.58,
+       "n_slotted": 51,
+       "n_default": 42
+      }
+     },
+     "slot_rev16": {
+      "A": {
+       "w_mm": 11.72,
+       "c_L_mm": 0.04,
+       "D_mm": 69.16,
+       "n_slotted": 38,
+       "n_default": 32
+      },
+      "B": {
+       "w_mm": 11.73,
+       "c_L_mm": -0.27,
+       "D_mm": 66.58,
+       "n_slotted": 51,
+       "n_default": 42
+      }
+     },
+     "ladder_rev16": {
+      "A": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 64,
+         "reflex_vertices": 30,
+         "default_prisms": 32,
+         "slotted_prisms": 38,
+         "d_max_mm": 0.997
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 53,
+         "reflex_vertices": 27,
+         "default_prisms": 25,
+         "slotted_prisms": 28,
+         "d_max_mm": 1.414
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 12,
+         "reflex_vertices": 3,
+         "default_prisms": 4,
+         "slotted_prisms": 5,
+         "d_max_mm": 1.999
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 6,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.103
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.811
+        }
+       ]
+      },
+      "B": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 82,
+         "reflex_vertices": 39,
+         "default_prisms": 42,
+         "slotted_prisms": 51,
+         "d_max_mm": 0.992
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 65,
+         "reflex_vertices": 34,
+         "default_prisms": 38,
+         "slotted_prisms": 38,
+         "d_max_mm": 1.495
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 12,
+         "reflex_vertices": 4,
+         "default_prisms": 5,
+         "slotted_prisms": 7,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 5,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.219
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.907
+        }
+       ]
+      }
+     },
+     "rung_1_0_both": true,
+     "sec": 103.3
+    },
+    "w1_t13": {
+     "decisions_rev15": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": null,
+     "gate_rev16": null,
+     "built_rev15": true,
+     "built_rev16": true,
+     "pieces_identical": true,
+     "slot_rev15": {
+      "A": {
+       "w_mm": 14.63,
+       "c_L_mm": -0.11,
+       "D_mm": 70.79,
+       "n_slotted": 58,
+       "n_default": 53
+      },
+      "B": {
+       "w_mm": 14.63,
+       "c_L_mm": -0.58,
+       "D_mm": 64.0,
+       "n_slotted": 56,
+       "n_default": 50
+      }
+     },
+     "slot_rev16": {
+      "A": {
+       "w_mm": 14.63,
+       "c_L_mm": -0.11,
+       "D_mm": 70.79,
+       "n_slotted": 58,
+       "n_default": 53
+      },
+      "B": {
+       "w_mm": 14.63,
+       "c_L_mm": -0.58,
+       "D_mm": 64.0,
+       "n_slotted": 56,
+       "n_default": 50
+      }
+     },
+     "ladder_rev16": {
+      "A": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 96,
+         "reflex_vertices": 46,
+         "default_prisms": 53,
+         "slotted_prisms": 58,
+         "d_max_mm": 0.0
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 76,
+         "reflex_vertices": 43,
+         "default_prisms": 30,
+         "slotted_prisms": 40,
+         "d_max_mm": 1.414
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 9,
+         "reflex_vertices": 1,
+         "default_prisms": 2,
+         "slotted_prisms": 4,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 6,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.757
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.353
+        }
+       ]
+      },
+      "B": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 90,
+         "reflex_vertices": 43,
+         "default_prisms": 50,
+         "slotted_prisms": 56,
+         "d_max_mm": 0.0
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 73,
+         "reflex_vertices": 37,
+         "default_prisms": 43,
+         "slotted_prisms": 47,
+         "d_max_mm": 1.455
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 9,
+         "reflex_vertices": 1,
+         "default_prisms": 2,
+         "slotted_prisms": 4,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 9,
+         "reflex_vertices": 1,
+         "default_prisms": 2,
+         "slotted_prisms": 4,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 4.0
+        }
+       ]
+      }
+     },
+     "rung_1_0_both": true,
+     "sec": 98.1
+    },
+    "w1_t18": {
+     "decisions_rev15": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": null,
+     "gate_rev16": null,
+     "built_rev15": true,
+     "built_rev16": true,
+     "pieces_identical": true,
+     "slot_rev15": {
+      "A": {
+       "w_mm": 19.47,
+       "c_L_mm": 0.12,
+       "D_mm": 69.58,
+       "n_slotted": 62,
+       "n_default": 46
+      },
+      "B": {
+       "w_mm": 19.48,
+       "c_L_mm": -0.13,
+       "D_mm": 66.55,
+       "n_slotted": 63,
+       "n_default": 59
+      }
+     },
+     "slot_rev16": {
+      "A": {
+       "w_mm": 19.47,
+       "c_L_mm": 0.12,
+       "D_mm": 69.58,
+       "n_slotted": 62,
+       "n_default": 46
+      },
+      "B": {
+       "w_mm": 19.48,
+       "c_L_mm": -0.13,
+       "D_mm": 66.55,
+       "n_slotted": 63,
+       "n_default": 59
+      }
+     },
+     "ladder_rev16": {
+      "A": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 100,
+         "reflex_vertices": 48,
+         "default_prisms": 46,
+         "slotted_prisms": 62,
+         "d_max_mm": 0.0
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 77,
+         "reflex_vertices": 45,
+         "default_prisms": 33,
+         "slotted_prisms": 35,
+         "d_max_mm": 1.488
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 5,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 5,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.353
+        }
+       ]
+      },
+      "B": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 106,
+         "reflex_vertices": 51,
+         "default_prisms": 59,
+         "slotted_prisms": 63,
+         "d_max_mm": 0.894
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 91,
+         "reflex_vertices": 48,
+         "default_prisms": 44,
+         "slotted_prisms": 51,
+         "d_max_mm": 1.414
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 5,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 5,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.966
+        }
+       ]
+      }
+     },
+     "rung_1_0_both": true,
+     "sec": 109.4
+    },
+    "w1_t25": {
+     "decisions_rev15": {
+      "A": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_push"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_push"
+       ]
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_push"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_push"
+       ]
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": null,
+     "gate_rev16": null,
+     "built_rev15": false,
+     "built_rev16": false,
+     "pieces_identical": true,
+     "slot_rev15": {},
+     "slot_rev16": {},
+     "ladder_rev16": {},
+     "rung_1_0_both": null,
+     "sec": 75.8
+    },
+    "w6_t10": {
+     "decisions_rev15": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       []
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": null,
+     "gate_rev16": null,
+     "built_rev15": true,
+     "built_rev16": true,
+     "pieces_identical": true,
+     "slot_rev15": {
+      "A": {
+       "w_mm": 11.73,
+       "c_L_mm": 0.38,
+       "D_mm": 69.32,
+       "n_slotted": 69,
+       "n_default": 55
+      },
+      "B": {
+       "w_mm": 11.7,
+       "c_L_mm": 0.63,
+       "D_mm": 68.3,
+       "n_slotted": 65,
+       "n_default": 54
+      }
+     },
+     "slot_rev16": {
+      "A": {
+       "w_mm": 11.73,
+       "c_L_mm": 0.38,
+       "D_mm": 69.32,
+       "n_slotted": 69,
+       "n_default": 55
+      },
+      "B": {
+       "w_mm": 11.7,
+       "c_L_mm": 0.63,
+       "D_mm": 68.3,
+       "n_slotted": 65,
+       "n_default": 54
+      }
+     },
+     "ladder_rev16": {
+      "A": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 118,
+         "reflex_vertices": 57,
+         "default_prisms": 55,
+         "slotted_prisms": 69,
+         "d_max_mm": 0.0
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 95,
+         "reflex_vertices": 51,
+         "default_prisms": 46,
+         "slotted_prisms": 48,
+         "d_max_mm": 1.414
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 13,
+         "reflex_vertices": 3,
+         "default_prisms": 4,
+         "slotted_prisms": 5,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 5,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.846
+        }
+       ]
+      },
+      "B": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 106,
+         "reflex_vertices": 51,
+         "default_prisms": 54,
+         "slotted_prisms": 65,
+         "d_max_mm": 0.894
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 88,
+         "reflex_vertices": 45,
+         "default_prisms": 47,
+         "slotted_prisms": 47,
+         "d_max_mm": 1.495
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 14,
+         "reflex_vertices": 4,
+         "default_prisms": 5,
+         "slotted_prisms": 7,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 11,
+         "reflex_vertices": 1,
+         "default_prisms": 2,
+         "slotted_prisms": 4,
+         "d_max_mm": 2.683
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 4.0
+        }
+       ]
+      }
+     },
+     "rung_1_0_both": true,
+     "sec": 84.0
+    },
+    "w4_o2a_t10": {
+     "decisions_rev15": {
+      "A": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_disagree",
+        "interlock_push",
+        "interlock_slot_inconsistent"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_disagree",
+        "interlock_push",
+        "interlock_slot_inconsistent"
+       ]
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_disagree",
+        "interlock_push",
+        "interlock_slot_inconsistent"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_disagree",
+        "interlock_push",
+        "interlock_slot_inconsistent"
+       ]
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": "interlock_slot_inconsistent",
+     "gate_rev16": "interlock_slot_inconsistent",
+     "built_rev15": false,
+     "built_rev16": false,
+     "pieces_identical": true,
+     "slot_rev15": {},
+     "slot_rev16": {},
+     "ladder_rev16": {
+      "A": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 64,
+         "reflex_vertices": 30,
+         "default_prisms": 32,
+         "slotted_prisms": 38,
+         "d_max_mm": 0.997
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 53,
+         "reflex_vertices": 27,
+         "default_prisms": 25,
+         "slotted_prisms": 28,
+         "d_max_mm": 1.414
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 12,
+         "reflex_vertices": 3,
+         "default_prisms": 4,
+         "slotted_prisms": 5,
+         "d_max_mm": 1.999
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 6,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.103
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.811
+        }
+       ]
+      },
+      "B": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 82,
+         "reflex_vertices": 39,
+         "default_prisms": 42,
+         "slotted_prisms": 51,
+         "d_max_mm": 0.992
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 65,
+         "reflex_vertices": 34,
+         "default_prisms": 38,
+         "slotted_prisms": 38,
+         "d_max_mm": 1.495
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 12,
+         "reflex_vertices": 4,
+         "default_prisms": 5,
+         "slotted_prisms": 7,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 5,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.219
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.907
+        }
+       ]
+      }
+     },
+     "rung_1_0_both": true,
+     "sec": 87.9
+    },
+    "w4_o2b_t10": {
+     "decisions_rev15": {
+      "A": [
+       "PUSH",
+       "T2",
+       [
+        "interlock_push",
+        "interlock_slot_inconsistent",
+        "o_residual_push"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T2",
+       [
+        "interlock_push",
+        "interlock_slot_inconsistent"
+       ]
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "PUSH",
+       "T2",
+       [
+        "interlock_push",
+        "interlock_slot_inconsistent",
+        "o_residual_push"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T2",
+       [
+        "interlock_push",
+        "interlock_slot_inconsistent"
+       ]
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": "interlock_slot_inconsistent",
+     "gate_rev16": "interlock_slot_inconsistent",
+     "built_rev15": false,
+     "built_rev16": false,
+     "pieces_identical": true,
+     "slot_rev15": {},
+     "slot_rev16": {},
+     "ladder_rev16": {
+      "A": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 64,
+         "reflex_vertices": 30,
+         "default_prisms": 32,
+         "slotted_prisms": 38,
+         "d_max_mm": 0.997
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 53,
+         "reflex_vertices": 27,
+         "default_prisms": 25,
+         "slotted_prisms": 28,
+         "d_max_mm": 1.414
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 12,
+         "reflex_vertices": 3,
+         "default_prisms": 4,
+         "slotted_prisms": 5,
+         "d_max_mm": 1.999
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 6,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.103
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.811
+        }
+       ]
+      },
+      "B": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 82,
+         "reflex_vertices": 39,
+         "default_prisms": 42,
+         "slotted_prisms": 51,
+         "d_max_mm": 0.992
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 65,
+         "reflex_vertices": 34,
+         "default_prisms": 38,
+         "slotted_prisms": 38,
+         "d_max_mm": 1.495
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 12,
+         "reflex_vertices": 4,
+         "default_prisms": 5,
+         "slotted_prisms": 7,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 5,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.219
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.907
+        }
+       ]
+      }
+     },
+     "rung_1_0_both": true,
+     "sec": 90.2
+    },
+    "w3_rod15_t10": {
+     "decisions_rev15": {
+      "A": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_push"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T0",
+       [
+        "budget_iv_fail",
+        "interlock_push"
+       ]
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_push"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T0",
+       [
+        "budget_iv_fail",
+        "interlock_push"
+       ]
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": null,
+     "gate_rev16": null,
+     "built_rev15": false,
+     "built_rev16": false,
+     "pieces_identical": true,
+     "slot_rev15": {},
+     "slot_rev16": {},
+     "ladder_rev16": {},
+     "rung_1_0_both": null,
+     "sec": 70.1
+    },
+    "w3_rod8_t10": {
+     "decisions_rev15": {
+      "A": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_pair_fail",
+        "interlock_push",
+        "interlock_unresolved"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T0",
+       [
+        "budget_iv_fail",
+        "interlock_push"
+       ]
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "PUSH",
+       "T0",
+       [
+        "interlock_pair_fail",
+        "interlock_push",
+        "interlock_unresolved"
+       ]
+      ],
+      "B": [
+       "PUSH",
+       "T0",
+       [
+        "budget_iv_fail",
+        "interlock_push"
+       ]
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": null,
+     "gate_rev16": null,
+     "built_rev15": false,
+     "built_rev16": false,
+     "pieces_identical": true,
+     "slot_rev15": {},
+     "slot_rev16": {},
+     "ladder_rev16": {},
+     "rung_1_0_both": null,
+     "sec": 71.3
+    },
+    "w7_t10": {
+     "decisions_rev15": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       [
+        "plate_t_partner_prior"
+       ]
+      ]
+     },
+     "decisions_rev16": {
+      "A": [
+       "CARVE",
+       "T1",
+       []
+      ],
+      "B": [
+       "CARVE",
+       "T1",
+       [
+        "plate_t_partner_prior"
+       ]
+      ]
+     },
+     "same_decisions": true,
+     "gate_rev15": "plate_body_over_cap",
+     "gate_rev16": null,
+     "built_rev15": false,
+     "built_rev16": true,
+     "pieces_identical": false,
+     "slot_rev15": {},
+     "slot_rev16": {
+      "A": {
+       "w_mm": 11.73,
+       "c_L_mm": 0.18,
+       "D_mm": 69.16,
+       "n_slotted": 38,
+       "n_default": 32
+      },
+      "B": {
+       "w_mm": 11.73,
+       "c_L_mm": -0.23,
+       "D_mm": 67.53,
+       "n_slotted": 69,
+       "n_default": 70
+      }
+     },
+     "ladder_rev16": {
+      "A": {
+       "chosen": 1.0,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 64,
+         "reflex_vertices": 30,
+         "default_prisms": 32,
+         "slotted_prisms": 38,
+         "d_max_mm": 0.997
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 53,
+         "reflex_vertices": 27,
+         "default_prisms": 25,
+         "slotted_prisms": 28,
+         "d_max_mm": 1.414
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 12,
+         "reflex_vertices": 3,
+         "default_prisms": 4,
+         "slotted_prisms": 5,
+         "d_max_mm": 1.999
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 6,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 2.103
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 4,
+         "reflex_vertices": 0,
+         "default_prisms": 1,
+         "slotted_prisms": 3,
+         "d_max_mm": 3.811
+        }
+       ]
+      },
+      "B": {
+       "chosen": 1.5,
+       "rows": [
+        {
+         "eps_mm": 1.0,
+         "simple": true,
+         "fits": false,
+         "vertices": 184,
+         "reflex_vertices": 90,
+         "default_prisms": 111,
+         "slotted_prisms": 111,
+         "d_max_mm": 0.992
+        },
+        {
+         "eps_mm": 1.5,
+         "simple": true,
+         "fits": true,
+         "vertices": 117,
+         "reflex_vertices": 57,
+         "default_prisms": 70,
+         "slotted_prisms": 69,
+         "d_max_mm": 1.488
+        },
+        {
+         "eps_mm": 2.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 86,
+         "reflex_vertices": 41,
+         "default_prisms": 51,
+         "slotted_prisms": 50,
+         "d_max_mm": 2.0
+        },
+        {
+         "eps_mm": 3.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 60,
+         "reflex_vertices": 29,
+         "default_prisms": 35,
+         "slotted_prisms": 35,
+         "d_max_mm": 2.971
+        },
+        {
+         "eps_mm": 4.0,
+         "simple": true,
+         "fits": true,
+         "vertices": 40,
+         "reflex_vertices": 16,
+         "default_prisms": 21,
+         "slotted_prisms": 22,
+         "d_max_mm": 4.0
+        }
+       ]
+      }
+     },
+     "rung_1_0_both": false,
+     "sec": 61.1
+    }
+   },
+   "bad": [],
+   "note": "w7 is reported only (REV 15: B over the cap at 1.0 mm)"
+  },
+  "w6c_rev16": {
+   "t6_s1.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 7.238,
+    "t_all_mm": 5.844,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 150100,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 2.922,
+      "per_frame_median_offset_mm_5_50_95": [
+       2.871,
+       2.918,
+       2.977
+      ]
+     },
+     {
+      "n_pts": 149900,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -2.922,
+      "per_frame_median_offset_mm_5_50_95": [
+       -2.975,
+       -2.927,
+       -2.865
+      ]
+     }
+    ]
+   },
+   "t6_s3.0": {
+    "plate": true,
+    "t_source": "camera_side_pair",
+    "why": null,
+    "t_down_mm": 5.823,
+    "t_all_mm": 5.846,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 150100,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 2.923,
+      "per_frame_median_offset_mm_5_50_95": [
+       2.875,
+       2.924,
+       2.978
+      ]
+     },
+     {
+      "n_pts": 149900,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -2.923,
+      "per_frame_median_offset_mm_5_50_95": [
+       -2.977,
+       -2.923,
+       -2.863
+      ]
+     }
+    ]
+   },
+   "t10_s1.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 10.169,
+    "t_all_mm": 9.73,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 152600,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 4.865,
+      "per_frame_median_offset_mm_5_50_95": [
+       4.811,
+       4.867,
+       4.919
+      ]
+     },
+     {
+      "n_pts": 147400,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -4.865,
+      "per_frame_median_offset_mm_5_50_95": [
+       -4.914,
+       -4.869,
+       -4.812
+      ]
+     }
+    ]
+   },
+   "t10_s3.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 8.068,
+    "t_all_mm": 9.699,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 150500,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 4.849,
+      "per_frame_median_offset_mm_5_50_95": [
+       4.785,
+       4.851,
+       4.905
+      ]
+     },
+     {
+      "n_pts": 149500,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -4.849,
+      "per_frame_median_offset_mm_5_50_95": [
+       -4.9,
+       -4.851,
+       -4.789
+      ]
+     }
+    ]
+   },
+   "t18_s1.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 18.117,
+    "t_all_mm": 17.475,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 151000,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 8.738,
+      "per_frame_median_offset_mm_5_50_95": [
+       8.682,
+       8.739,
+       8.791
+      ]
+     },
+     {
+      "n_pts": 149000,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -8.738,
+      "per_frame_median_offset_mm_5_50_95": [
+       -8.793,
+       -8.739,
+       -8.683
+      ]
+     }
+    ]
+   },
+   "t18_s3.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 18.041,
+    "t_all_mm": 17.476,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 151000,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 8.738,
+      "per_frame_median_offset_mm_5_50_95": [
+       8.681,
+       8.739,
+       8.789
+      ]
+     },
+     {
+      "n_pts": 149000,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -8.738,
+      "per_frame_median_offset_mm_5_50_95": [
+       -8.792,
+       -8.74,
+       -8.681
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "fi415_res": {
+  "w6c": {
+   "t6_s1.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 7.238,
+    "t_all_mm": 5.844,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 150100,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 2.922,
+      "per_frame_median_offset_mm_5_50_95": [
+       2.871,
+       2.918,
+       2.977
+      ]
+     },
+     {
+      "n_pts": 149900,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -2.922,
+      "per_frame_median_offset_mm_5_50_95": [
+       -2.975,
+       -2.927,
+       -2.865
+      ]
+     }
+    ]
+   },
+   "t6_s3.0": {
+    "plate": true,
+    "t_source": "camera_side_pair",
+    "why": null,
+    "t_down_mm": 5.823,
+    "t_all_mm": 5.846,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 150100,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 2.923,
+      "per_frame_median_offset_mm_5_50_95": [
+       2.875,
+       2.924,
+       2.978
+      ]
+     },
+     {
+      "n_pts": 149900,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -2.923,
+      "per_frame_median_offset_mm_5_50_95": [
+       -2.977,
+       -2.923,
+       -2.863
+      ]
+     }
+    ]
+   },
+   "t10_s1.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 10.169,
+    "t_all_mm": 9.73,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 152600,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 4.865,
+      "per_frame_median_offset_mm_5_50_95": [
+       4.811,
+       4.867,
+       4.919
+      ]
+     },
+     {
+      "n_pts": 147400,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -4.865,
+      "per_frame_median_offset_mm_5_50_95": [
+       -4.914,
+       -4.869,
+       -4.812
+      ]
+     }
+    ]
+   },
+   "t10_s3.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 8.068,
+    "t_all_mm": 9.699,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 150500,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 4.849,
+      "per_frame_median_offset_mm_5_50_95": [
+       4.785,
+       4.851,
+       4.905
+      ]
+     },
+     {
+      "n_pts": 149500,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -4.849,
+      "per_frame_median_offset_mm_5_50_95": [
+       -4.9,
+       -4.851,
+       -4.789
+      ]
+     }
+    ]
+   },
+   "t18_s1.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 18.117,
+    "t_all_mm": 17.475,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 151000,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 8.738,
+      "per_frame_median_offset_mm_5_50_95": [
+       8.682,
+       8.739,
+       8.791
+      ]
+     },
+     {
+      "n_pts": 149000,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -8.738,
+      "per_frame_median_offset_mm_5_50_95": [
+       -8.793,
+       -8.739,
+       -8.683
+      ]
+     }
+    ]
+   },
+   "t18_s3.0": {
+    "plate": true,
+    "t_source": "plane_pair",
+    "why": null,
+    "t_down_mm": 18.041,
+    "t_all_mm": 17.476,
+    "ok": true,
+    "checks": {
+     "sides": true,
+     "material_between": true,
+     "window": true
+    },
+    "faces": [
+     {
+      "n_pts": 151000,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": 8.738,
+      "per_frame_median_offset_mm_5_50_95": [
+       8.681,
+       8.739,
+       8.789
+      ]
+     },
+     {
+      "n_pts": 149000,
+      "frames": 100,
+      "frame_range": [
+       0,
+       99
+      ],
+      "median_offset_mm": -8.738,
+      "per_frame_median_offset_mm_5_50_95": [
+       -8.792,
+       -8.74,
+       -8.681
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "test_interlock_results": {}
+}

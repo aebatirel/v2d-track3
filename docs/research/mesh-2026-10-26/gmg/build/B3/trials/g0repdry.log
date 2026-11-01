@@ -1,0 +1,9 @@
+fake box written 4
+[    1.0s] 4 ok SAM 3D records; bundle P1 ['white_pot', 'white_pot_lid']; t0 5.36 mm ({'source': 'dev_constants.json', 'run': '20261030-t0dev-e207a14'})
+[  422.8s] shell white_pot: fsv_far 0.0008 (422 s)
+[  514.9s] shell white_pot_lid: fsv_far 0.0192 (92 s)
+[  578.6s] ep2_white_pot_lid_primary_k132 s0: fsv 0.0132 (shell 0.0192, diff -0.0059) V2 ok -> PASS; scale 1.000 m; pca ratio [0.45, 1.055, 1.387] (64 s)
+[  642.0s] ep2_white_pot_lid_primary_k132 s1: fsv 0.0132 (shell 0.0192, diff -0.0059) V2 ok -> PASS; scale 1.000 m; pca ratio [0.45, 1.055, 1.387] (63 s)
+[  856.9s] ep2_white_pot_primary_k246 s0: fsv 0.0009 (shell 0.0008, diff +0.0002) V2 ok -> PASS; scale 1.000 m; pca ratio [0.906, 1.059, 1.071] (215 s)
+[ 1072.2s] ep2_white_pot_primary_k246 s1: fsv 0.0009 (shell 0.0008, diff +0.0002) V2 ok -> PASS; scale 1.000 m; pca ratio [0.906, 1.059, 1.071] (215 s)
+[ 1072.4s] B.12: K-a 2/2 K-b 2/2 -> SUPPORTED; controls {'white_pot': {'n': 0, 'pass_': 0}, 'white_pot_lid': {'n': 0, 'pass_': 0}}

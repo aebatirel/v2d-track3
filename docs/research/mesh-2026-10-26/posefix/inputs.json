@@ -1,0 +1,462 @@
+{
+ "meshes": {
+  "beige_cup": {
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T1-beige-lathe/meshes/ep11_beige_cup_sep_g1.glb",
+   "md5": "8c8be2b0747d234706913a2360e90570",
+   "sha256": "60e398b0f8006c6608e40b1988047aa89e35533e8bb85906c36cf9f9f8370078"
+  },
+  "blue_cup": {
+   "source": "meshes/library_v3/blue_cup.glb",
+   "md5": "7542631493e3a0564f6d74009de67d54",
+   "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+  },
+  "mini_dust_pan": {
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T2-probe-picks/meshes/mini_dust_pan_k297_s42_lib.glb",
+   "md5": "1976540525ecca181c9ed83ba953e165",
+   "sha256": "2fb147b535c9f8b863b56ec80239f28809b10fe9ca881a10a5c724f209777d02"
+  },
+  "mini_sweeper": {
+   "source": "meshes/library_v3/mini_sweeper.glb",
+   "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+   "sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e"
+  },
+  "plastic_dish_rack": {
+   "source": "meshes/library_c0/plastic_dish_rack.glb",
+   "md5": "bbca8ec0c26e6e37baaa145cef4e48e5",
+   "sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02"
+  },
+  "water_pitcher": {
+   "source": "meshes/library_v3/water_pitcher.glb",
+   "md5": "fc824fc5b0a9325c91b630c19ba32677",
+   "sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2"
+  },
+  "white_pot": {
+   "source": "meshes/library_c0/white_pot.glb",
+   "md5": "0264da83fc0e396c652a43d282dbc0ea",
+   "sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263"
+  },
+  "white_pot_lid": {
+   "source": "meshes/library_c0/white_pot_lid.glb",
+   "md5": "35727a10bca407594f41d108b4dc03ab",
+   "sha256": "0bac47f4b86e9ae36b082ffde7e04ce29bf1170481e02151d4cfbdb393c5a53b"
+  },
+  "wooden_piece_1": {
+   "source": "meshes/library_v3/wooden_piece_1.glb",
+   "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+   "sha256": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79"
+  },
+  "wooden_piece_2": {
+   "source": "meshes/library_v3/wooden_piece_2.glb",
+   "md5": "825a7fe364d280603f36226595137f43",
+   "sha256": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b"
+  }
+ },
+ "tracks": {
+  "0": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep0/poses.npz",
+   "source_sha256": "35dd7c228959264c8b1a87939b3998c3b616ab5923b54005da48a4ceddaddfb5",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep0/poses_world_vo.npz",
+   "stored_sha256": "77b98d2e22b097ebf3916b7b59fca3c6fbda73bb1ba8a430550430da0712f8c0",
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames": 373,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "white_pot": 0,
+    "white_pot_lid": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep0/hands.npz",
+   "hands_sha256": "c3804353ef6f9df05383961c7251484a7e1742e209e2088d8138cbce46c222f3",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep0/episode.json",
+   "bundle_episode_sha256": "1246abad473ec41b6d162426bc09096ec4d19c4fb213ea9dd226c61c5742e239"
+  },
+  "2": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+   "source_sha256": "ae4c9b3c59ff927edbb814c91a905be769bf76c2f17fbca45daf6333ee28ba2c",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep2/poses_world_vo.npz",
+   "stored_sha256": "129dce52d359a179d90eb98a97bb464b41774caf803aa13c00346cbc72cf565e",
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames": 343,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "white_pot": 0,
+    "white_pot_lid": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep2/hands.npz",
+   "hands_sha256": "0a038bccecc54ca7785663eba804d342a6599e6801e94a6029020c219eb6cedf",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2/episode.json",
+   "bundle_episode_sha256": "11f7a4d9d1ba5a0a888325e3f9b446d5c0f1b24197591d46d97d4b618e14cc3f"
+  },
+  "11": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz",
+   "source_sha256": "99d845e316714119623ff8df9f1368109aeb31ee5804281a72a00239a8568f75",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep11/poses_world_vo.npz",
+   "stored_sha256": "c09ea1d089424b2fddfe098e36bd88e197fbd1ffcb932f6528b0cf209899c147",
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "frames": 137,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "blue_cup": 0,
+    "beige_cup": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep11/hands.npz",
+   "hands_sha256": "e3f94372546e966a73ac443a9bda064e5eab43d94bdf0ccd71cf09cf3b24d9f0",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11/episode.json",
+   "bundle_episode_sha256": "17eadad4c1184e7daffeb648fc5931ae53bcf10bbd729db1194c205244b7c5ee"
+  },
+  "12": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep12/poses.npz",
+   "source_sha256": "3e0411f7b388090fd6e94c825fd8c9f7d2ec72b724d2cb71132ca081ef30e4f6",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep12/poses_world_vo.npz",
+   "stored_sha256": "e538fb7633ca4d9d2a3c7db8cffd979436693c5fa3906cd9b36a7fbaf6c40b12",
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames": 181,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "blue_cup": 0,
+    "plastic_dish_rack": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep12/hands.npz",
+   "hands_sha256": "0bdc4ab72ed787f0588c2a2a4a6b7c259de4369ddba44187f891eb41f1e4198f",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12/episode.json",
+   "bundle_episode_sha256": "eefc92c223b95a7ad259f2042914ee857dd4a8dafc896d9344e9b7e809d8484c"
+  },
+  "13": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep13/poses.npz",
+   "source_sha256": "db6d9e1c5654b0bceb7b287e095be71081dd91cd81520ff6d11380e43afe8a3d",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep13/poses_world_vo.npz",
+   "stored_sha256": "3e1a00a4677b58ba0280650d9d6d15e7dfee137902f3b3af6cc0415fc15ba974",
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames": 190,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "blue_cup": 0,
+    "plastic_dish_rack": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep13/hands.npz",
+   "hands_sha256": "0ca8e373c3746268acb4ba1c53f05e5901efd9d20d9ae69b43e345935ffbb1d4",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep13/episode.json",
+   "bundle_episode_sha256": "d32acb46f68606289861485dadffc16adc8014db9dfe71f2b003b0966a29667c"
+  },
+  "18": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep18/poses.npz",
+   "source_sha256": "823772af6c7733b8d4625ec888e3c618ff5c4156b04a2db9fafde199d05cc899",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t2/auc/tracks/ep18/poses_world_vo.npz",
+   "stored_sha256": "b198d95f8110067334f56c83d343135961ff67e2356536f446f5b86c09ee0fc5",
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "frames": 353,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "mini_sweeper": 0,
+    "mini_dust_pan": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep18/hands.npz",
+   "hands_sha256": "6dda8ac268909e0cec470279c68ab931f09dda9f0859ebd229a8cd17c63bb4ed",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep18/episode.json",
+   "bundle_episode_sha256": "9178d7a92a014e8df85a4a349449f307aec4e596230cf24a2d2289886260256f"
+  },
+  "21": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep21/poses.npz",
+   "source_sha256": "7e4dae9cc06e613f64ce3788736225a046c991ef359fd745d31225ebd8e18a8c",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep21/poses_world_vo.npz",
+   "stored_sha256": "3307012737ef10b9fd8ad0e7ad619f60396163ac8779178ccad406564f562b16",
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames": 186,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "blue_cup": 0,
+    "water_pitcher": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep21/hands.npz",
+   "hands_sha256": "fd92feba51fe1950cecb23c16683a436e269281cccb6f91160f4d60d2ecfe99a",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep21/episode.json",
+   "bundle_episode_sha256": "a7b273f85a948d4f140ba48aaea199ab77116e61d1e041a940dc510ca9a4fc79"
+  },
+  "22": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep22/poses.npz",
+   "source_sha256": "50acd616da0921046a3474b2cf108f4450b0ce25af3800985563fc972e444e4c",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep22/poses_world_vo.npz",
+   "stored_sha256": "a8d876274d9dde8c5d368e9a7422cefbd5c6af5b4cc0184db6ff1d93423733a4",
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames": 189,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "blue_cup": 0,
+    "water_pitcher": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep22/hands.npz",
+   "hands_sha256": "6266e3e6647f1ef55746ed96a8c270ccf660bf3146f513a4e7ae6c784af2aca0",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep22/episode.json",
+   "bundle_episode_sha256": "99f532d38e76ae959b9cfec06f0d7d4b302dd6b0159e135339a4263abd8b84e6"
+  },
+  "23": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep23/poses.npz",
+   "source_sha256": "f827196a80698e9e0fe9126b7a6039ef01a5b3190403e95e20bb741c70808d73",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t3/auc/tracks/ep23/poses_world_vo.npz",
+   "stored_sha256": "df80ebd0e74efbaf90cb439909a05590cd9ee75a681174ca16362aff885dc51d",
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "frames": 325,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "wooden_piece_1": 0,
+    "wooden_piece_2": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep23/hands.npz",
+   "hands_sha256": "b8eaaf5a1cb569764e3c5d3ef8425407b05863b83c99fa974f54245052ba77a1",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep23/episode.json",
+   "bundle_episode_sha256": "e25c39545155f5cadfd142e2cbcd21edef757c2fafffda13d40cbd9894203e44"
+  },
+  "24": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "source_sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t3/auc/tracks/ep24/poses_world_vo.npz",
+   "stored_sha256": "050c1e22487ea9900397a42bd6db4187f8644548222d4bf8fe0e2bc1ac646959",
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "frames": 275,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "wooden_piece_1": 0,
+    "wooden_piece_2": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep24/hands.npz",
+   "hands_sha256": "b21f0eaa1a276737a6ec0a86dee0f30971b142f2b921a8ae1a183dae1e34021f",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep24/episode.json",
+   "bundle_episode_sha256": "8502b2f85a8d87c311b15a47400cf52082bff996ac15624855cc90bff56648fe"
+  },
+  "26": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep26/poses.npz",
+   "source_sha256": "18349d36fcefbf4e9f5c2d7294d205e1f6bf0b5598c7b756b9dd9193f7377c19",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep26/poses_world_vo.npz",
+   "stored_sha256": "e93274ded98f474333eb6b872b8247248b92a15bccc7f2ae02226dc748aabb37",
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames": 158,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "plastic_dish_rack": 0,
+    "white_pot": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep26/hands.npz",
+   "hands_sha256": "036ab33c4a3a452bfd84d4c888db36aaf64d501c7d858cf9338d29b1b3426fb5",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep26/episode.json",
+   "bundle_episode_sha256": "ebadea309af0907b8c9b8054d68741f69ebc1cbeb5e23013294e61626b005710"
+  },
+  "27": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep27/poses.npz",
+   "source_sha256": "1dd8b00aa6c7eaa19a61eea76b26a3c3e265c48d47c4ea3070cb888f7b0c3ab9",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep27/poses_world_vo.npz",
+   "stored_sha256": "2578bdc58e6d5f30fd00b87dd53e2fdddd75b7be86a34abda93cd0bfc9ebefec",
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames": 246,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "plastic_dish_rack": 0,
+    "white_pot": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep27/hands.npz",
+   "hands_sha256": "396cd33f916acf23c643e6c999b558028169d34314d37cc1eef5a65c6ad40941",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep27/episode.json",
+   "bundle_episode_sha256": "9615bb946117cdd6dc1c9b7849b6ca6a453faff3d1ceb08878def27285aa8e00"
+  },
+  "31": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz",
+   "source_sha256": "997c6807837fd2adc602a0ee32de79926d9a304e4d2d9c4c603a56c517314a22",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep31/poses_world_vo.npz",
+   "stored_sha256": "ba5996e431e8acb1ead46f1004540353b61477a841c10de1a81b4a03d06c82eb",
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "frames": 290,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "mini_sweeper": 0,
+    "plastic_dish_rack": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep31/hands.npz",
+   "hands_sha256": "7978b4b9458a7215a679db3c8a33f6cfec9b59c2acab1d37c05d6dd176d3a2b5",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/episode.json",
+   "bundle_episode_sha256": "1f4b01378600e20ef495509cf7712e1b2a115e8428f6aee93353382bfb29cf1e"
+  },
+  "39": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep39/poses.npz",
+   "source_sha256": "06c14b0e056950f720865ad16ae715c4cacd336fd0bd1848bb26714797a5a3b5",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t2/auc/tracks/ep39/poses_world_vo.npz",
+   "stored_sha256": "2b06718eeaa9f2a793ce455b754c37d37c89e72d3a0de83742b45c23104ddf14",
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "frames": 319,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "mini_dust_pan": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep39/hands.npz",
+   "hands_sha256": "615191ce7173453b657399b8dbf990821af9d5e9bbb1ecac953d6a09cd95ad6c",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep39/episode.json",
+   "bundle_episode_sha256": "5c8d8cb3c2893280aa7910291df571958aced01bff3916d2ce1d7bd57d0f4341"
+  },
+  "40": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep40/poses.npz",
+   "source_sha256": "91fcf0ac22aa6632e02e1c49c2d9325ac8af3442c5708ef267f74c81c527cfa7",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t2/auc/tracks/ep40/poses_world_vo.npz",
+   "stored_sha256": "dcdef66c15c16b6029b31d27d3b887c3c6116ca35be30921997a9e54991e8a90",
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "frames": 260,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "mini_dust_pan": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep40/hands.npz",
+   "hands_sha256": "dc2051ecdb24616081a1d7ff94f29ee01e54509522cc6bba4400daf6ec8d37e8",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep40/episode.json",
+   "bundle_episode_sha256": "49aabf1f96b6128e7eab1fc695150a3f29f68afd060209c594d1e8a8c738531f"
+  },
+  "41": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep41/poses.npz",
+   "source_sha256": "1b3ec73b16a0b5af9285cbb0bf7d530811a6f0696623c5751d8b5498877b59ee",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep41/poses_world_vo.npz",
+   "stored_sha256": "717b93d2ee3f413c3a5edaec9bcfec55c51dc6b784f01c9d0b13c38954056fd0",
+   "objects": [
+    "white_pot"
+   ],
+   "frames": 299,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "white_pot": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep41/hands.npz",
+   "hands_sha256": "da6ad9582148457b57bdbbc64226b620425d67b47516322a51325bbde2642c01",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep41/episode.json",
+   "bundle_episode_sha256": "66a6f6f91f40612f744f1ede4376d9d09246dd5898814f1a4d96f6a68c26dd7e"
+  },
+  "42": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep42/poses.npz",
+   "source_sha256": "82cbf15eb46b6a3e3f3d9ae464d9d1383ba2fb33496816d5dc2da1d394fec22a",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep42/poses_world_vo.npz",
+   "stored_sha256": "cc65534b0bfa356ccd083c2ffd4bff5f3d2af828b461ffe930d1eb318bb4e928",
+   "objects": [
+    "white_pot"
+   ],
+   "frames": 257,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "white_pot": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep42/hands.npz",
+   "hands_sha256": "aa828bdc366531ecaafe8ec4a51ecebf57b666d484502c60f9db8b9c3e607079",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep42/episode.json",
+   "bundle_episode_sha256": "c2cddd841bcf17fa427040c87d6a00b30e48c0bbe8bab5f873d0d3a4b7f9517e"
+  },
+  "43": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep43/poses.npz",
+   "source_sha256": "f88c893a323a54334e0ddb0774dd2d34f7b20f16d43f67d43ca2e454046466fb",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep43/poses_world_vo.npz",
+   "stored_sha256": "bb9658978c3bd62d4f0ce3f33ef8c3d128525364c7b4fcd5f5c5885657b037c4",
+   "objects": [
+    "white_pot"
+   ],
+   "frames": 326,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "white_pot": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep43/hands.npz",
+   "hands_sha256": "e84b9f12dafa5e206535ddad9d599c0846fedfb611b96b6094c837c2a89a67f9",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep43/episode.json",
+   "bundle_episode_sha256": "160e77e871b76a1296387597287d36a1b5fc56674515536d1cb9b279c942d414"
+  },
+  "44": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep44/poses.npz",
+   "source_sha256": "2f8ffd77a328db3cae6ed3b96a29a62be2d336d39f77831d7b8f61d453b1c043",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep44/poses_world_vo.npz",
+   "stored_sha256": "c13ec6cb30854c3ac05692d929a9964e23aa8dddaf7391b843f0231ce4cb1003",
+   "objects": [
+    "white_pot"
+   ],
+   "frames": 249,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "white_pot": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep44/hands.npz",
+   "hands_sha256": "7a162508bdb4d5d3f6247df2cb365593bd68a970c862c71c2e61e75b9f459f71",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep44/episode.json",
+   "bundle_episode_sha256": "09044d9584abab0c493e410a278b99cd1ec07de2462101d9024dbd5464c5951b"
+  },
+  "45": {
+   "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep45/poses.npz",
+   "source_sha256": "d9f48118aa8618d9f74354514ab6a8540c8ec74c69aa897001e0467f7d20f9f0",
+   "stored": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0/tracks/ep45/poses_world_vo.npz",
+   "stored_sha256": "50ca4e70f7f472b3a322b55b6da8910fc82c7e92c9b5a603fb3d7fdfbf56825c",
+   "objects": [
+    "white_pot"
+   ],
+   "frames": 290,
+   "equal_to_source": true,
+   "nonfinite_frames": {
+    "white_pot": 0
+   },
+   "world_T_cam0_is_identity": true,
+   "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/hands/public/ep45/hands.npz",
+   "hands_sha256": "f64ec2e3a08be24fe15b316c9fa902e32a41ed473c6de04127caf118942af5c7",
+   "bundle_episode": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep45/episode.json",
+   "bundle_episode_sha256": "d70d963ce10a69410e6d255d836e6b3802841578a6cc32ec3b385d055979db4b"
+  }
+ }
+}

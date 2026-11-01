@@ -1,0 +1,86 @@
+{
+ "object": "white_pot_lid",
+ "variant": "fit",
+ "n_pts": 60787,
+ "tilt_last_deg": 0.035,
+ "axis": [
+  0.9985,
+  -0.0459,
+  0.0298
+ ],
+ "centre": [
+  0.0033,
+  -0.0026,
+  0.0029
+ ],
+ "t_mm": 2.5,
+ "r_edge_mm": 93.0,
+ "dome_mm": 5.3,
+ "prof_bins": 47,
+ "residual_pts": 7235,
+ "arch": {
+  "n": 5715,
+  "width_mm": 14.6,
+  "T_mm": 3.0,
+  "T_src": "side",
+  "span_mm": 93.0,
+  "height_mm": 28.9
+ },
+ "markers": [
+  {
+   "n": 761,
+   "rejected": "size",
+   "diag_mm": 94.6,
+   "level": 0
+  },
+  {
+   "n": 419,
+   "free_r_mm": 7.74,
+   "free_res_mm": 1.1,
+   "spread": 0.308,
+   "mode": "free",
+   "centre": [
+    0.0029,
+    -0.0511,
+    0.0174
+   ],
+   "r_mm": 7.74,
+   "gap_mm": -2.1,
+   "diag_mm": 20.6,
+   "res_mm": 1.1
+  },
+  {
+   "n": 333,
+   "free_r_mm": 12.07,
+   "free_res_mm": 0.97,
+   "spread": 0.11,
+   "mode": "prior",
+   "centre": [
+    0.0032,
+    -0.0573,
+    -0.0295
+   ],
+   "r_mm": 7.0,
+   "gap_mm": -1.4,
+   "diag_mm": 19.9,
+   "res_mm": 1.12
+  },
+  {
+   "n": 268,
+   "rejected": "size",
+   "diag_mm": 75.2,
+   "level": 0
+  },
+  {
+   "n": 184,
+   "rejected": "size",
+   "diag_mm": 58.1,
+   "level": 1
+  }
+ ],
+ "out": "/content/results/e0/cand/white_pot_lid/white_pot_lid_ep1_t2.5_fit.glb",
+ "obs": "/content/results/e0/obs/ep1_white_pot_lid.npz",
+ "faces": 9488,
+ "watertight": true,
+ "bodies": 1
+}

@@ -1,0 +1,159 @@
+{
+ "ring": {
+  "frac_area": 0.346,
+  "lo_cm": [
+   -2.33,
+   -3.44,
+   -0.57
+  ],
+  "hi_cm": [
+   2.17,
+   3.6,
+   8.12
+  ],
+  "ext_cm": [
+   4.5,
+   7.04,
+   8.69
+  ]
+ },
+ "head": {
+  "frac_area": 0.204,
+  "lo_cm": [
+   -0.82,
+   -5.19,
+   -6.0
+  ],
+  "hi_cm": [
+   0.74,
+   5.36,
+   2.14
+  ],
+  "ext_cm": [
+   1.56,
+   10.55,
+   8.15
+  ]
+ },
+ "bristle": {
+  "frac_area": 0.383,
+  "lo_cm": [
+   -0.81,
+   -5.63,
+   -6.04
+  ],
+  "hi_cm": [
+   0.71,
+   5.76,
+   -0.57
+  ],
+  "ext_cm": [
+   1.52,
+   11.39,
+   5.47
+  ]
+ },
+ "ball": {
+  "frac_area": 0.044,
+  "lo_cm": [
+   -2.42,
+   -2.3,
+   -0.46
+  ],
+  "hi_cm": [
+   2.34,
+   2.33,
+   1.01
+  ],
+  "ext_cm": [
+   4.76,
+   4.64,
+   1.48
+  ]
+ },
+ "post": {
+  "frac_area": 0.023,
+  "lo_cm": [
+   -1.47,
+   -2.37,
+   -4.6
+  ],
+  "hi_cm": [
+   1.24,
+   2.49,
+   1.08
+  ],
+  "ext_cm": [
+   2.71,
+   4.86,
+   5.68
+  ]
+ },
+ "balls": [
+  {
+   "n": 9738,
+   "centre_cm": [
+    1.64,
+    -1.57,
+    0.31
+   ],
+   "radius_mm": 7.1
+  },
+  {
+   "n": 8800,
+   "centre_cm": [
+    1.64,
+    1.67,
+    0.26
+   ],
+   "radius_mm": 6.9
+  },
+  {
+   "n": 8131,
+   "centre_cm": [
+    -1.75,
+    -1.42,
+    0.22
+   ],
+   "radius_mm": 6.8
+  }
+ ],
+ "symmetry": {
+  "C2 about x": {
+   "all_mean_mm": 5.47,
+   "all_p90": 13.7,
+   "no_markers_mean_mm": 5.55,
+   "no_markers_p90": 13.82
+  },
+  "C2 about y": {
+   "all_mean_mm": 5.45,
+   "all_p90": 13.54,
+   "no_markers_mean_mm": 5.56,
+   "no_markers_p90": 13.79
+  },
+  "C2 about z (long axis)": {
+   "all_mean_mm": 1.15,
+   "all_p90": 1.95,
+   "no_markers_mean_mm": 0.99,
+   "no_markers_p90": 1.83
+  },
+  "mirror x (front/back)": {
+   "all_mean_mm": 0.94,
+   "all_p90": 1.78,
+   "no_markers_mean_mm": 0.8,
+   "no_markers_p90": 1.72
+  },
+  "mirror y (left/right)": {
+   "all_mean_mm": 0.97,
+   "all_p90": 1.68,
+   "no_markers_mean_mm": 0.82,
+   "no_markers_p90": 1.64
+  },
+  "identity (other sample)": {
+   "all_mean_mm": 0.0,
+   "all_p90": 0.0,
+   "no_markers_mean_mm": 0.0,
+   "no_markers_p90": 0.0
+  }
+ }
+}

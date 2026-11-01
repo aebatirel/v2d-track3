@@ -1,0 +1,18 @@
+## points: M_sep (t<=62)
+{"mesh": "ep11_beige_cup_sep_g1.glb", "obs_to_mesh_mm": 1.359, "mesh_to_obs_mm": 4.464, "sum_mm": 5.823}
+{"mesh": "ep11_beige_cup_sephf_g1.glb", "obs_to_mesh_mm": 1.152, "mesh_to_obs_mm": 4.662, "sum_mm": 5.814}
+{"mesh": "ep11_beige_cup_g1.glb", "obs_to_mesh_mm": 0.914, "mesh_to_obs_mm": 3.225, "sum_mm": 4.139}
+{"mesh": "library_v3_beige_cup.glb", "obs_to_mesh_mm": 1.554, "mesh_to_obs_mm": 1.854, "sum_mm": 3.408}
+{"mesh": "library_v3x_beige_cup.glb", "obs_to_mesh_mm": 1.218, "mesh_to_obs_mm": 2.197, "sum_mm": 3.415}
+## points: all frames
+{"mesh": "ep11_beige_cup_sep_g1.glb", "obs_to_mesh_mm": 1.416, "mesh_to_obs_mm": 4.256, "sum_mm": 5.672}
+{"mesh": "ep11_beige_cup_sephf_g1.glb", "obs_to_mesh_mm": 1.201, "mesh_to_obs_mm": 4.424, "sum_mm": 5.625}
+{"mesh": "ep11_beige_cup_g1.glb", "obs_to_mesh_mm": 0.938, "mesh_to_obs_mm": 3.849, "sum_mm": 4.787}
+{"mesh": "library_v3_beige_cup.glb", "obs_to_mesh_mm": 1.611, "mesh_to_obs_mm": 1.836, "sum_mm": 3.446}
+{"mesh": "library_v3x_beige_cup.glb", "obs_to_mesh_mm": 1.269, "mesh_to_obs_mm": 2.167, "sum_mm": 3.437}
+## points: M_sephf (t<=12)
+{"mesh": "ep11_beige_cup_sep_g1.glb", "obs_to_mesh_mm": 1.057, "mesh_to_obs_mm": 6.202, "sum_mm": 7.259}
+{"mesh": "ep11_beige_cup_sephf_g1.glb", "obs_to_mesh_mm": 0.917, "mesh_to_obs_mm": 6.067, "sum_mm": 6.984}
+{"mesh": "ep11_beige_cup_g1.glb", "obs_to_mesh_mm": 0.706, "mesh_to_obs_mm": 4.098, "sum_mm": 4.805}
+{"mesh": "library_v3_beige_cup.glb", "obs_to_mesh_mm": 1.277, "mesh_to_obs_mm": 2.48, "sum_mm": 3.757}
+{"mesh": "library_v3x_beige_cup.glb", "obs_to_mesh_mm": 1.061, "mesh_to_obs_mm": 3.035, "sum_mm": 4.096}

@@ -1,0 +1,7 @@
+[2026-10-31T19:55:44Z] C2/R build: commit 945baa5704309b510f61a0820ea5fdb38f23c533 dirty=0 T=0.004559400604354957 PAR=2
+[2026-10-31T19:55:44Z] runs: 8 commands
+[2026-10-31T21:13:04Z] runs done: OK base OK E OK K OK Q OK EK OK EQ OK KQ OK EKQ 
+[2026-10-31T21:13:04Z] meshes: 96
+[2026-10-31T21:19:56Z] fidelity: 96 files, checks: 96
+[2026-10-31T21:19:56Z] select: {"pick": "K__ep12_nomk", "fid": 5.483, "gate": "pass: the pick has a new part", "best_base": ["base__ep12_nomk", 5.533]}
+[2026-10-31T21:19:56Z] C2R-BUILD-DONE

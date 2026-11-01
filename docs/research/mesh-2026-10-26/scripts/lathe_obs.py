@@ -198,8 +198,13 @@ def main():
     p.add_argument('--appendages', type=int, default=1); p.add_argument('--app_d', type=float, default=0.004)
     p.add_argument('--app_min', type=int, default=400); p.add_argument('--spheres', type=int, default=0)
     p.add_argument('--vox_ds', type=float, default=0.0015); p.add_argument('--tmin', type=float, default=0.0015)
-    p.add_argument('--floor', choices=['base', 'observed'], default='base',
-                   help='base: cavity down to base + t; observed: cavity only as deep as the inner wall was seen')
+    p.add_argument('--floor', choices=['base', 'observed', 'base_t'], default='base',
+                   help='base: cavity down to base + t; observed: cavity only as deep as the inner wall was seen; '
+                        'base_t (C0b): floor top = base + t always, no cap-point density rule')
+    # C0b options (PREREG cdo-sprint/C0b 3.3, 3.5, 3.7); unset = the behaviour above, byte for byte
+    p.add_argument('--tie', type=float, default=None, help='C0b: axis near-tie factor (TIE)')
+    p.add_argument('--t_fallback', type=float, default=None, help='C0b: wall when < 3 two-wall bins (m)')
+    p.add_argument('--tmax', type=float, default=None, help='C0b: upper clamp of the wall thickness (m)')
     p.add_argument('--gap', type=int, default=3)
     p.add_argument('--minsec', type=int, default=6)
     p.add_argument('--dh', type=float, default=DH, help='height bin (m)')
@@ -207,6 +212,9 @@ def main():
     p.add_argument('--knn', type=int, default=24, help='neighbours for normals')
     a = p.parse_args()
     DH = a.dh
+    global TIE
+    if a.tie is not None:
+        TIE = a.tie
     Z = np.load(a.obs); P = Z['pts'].astype(np.float64); C = Z['cam'].astype(np.float64)
     # voxel downsample (keep one point per voxel, the first)
     key = np.floor(P / a.vox_ds).astype(np.int64)
@@ -241,8 +249,13 @@ def main():
     if not open_top:                              # flip so the open end is +h
         d = -d; h = -h; hlo, hhi = -hhi, -hlo
         r_out, r_in, vo, vi, hc = r_out[::-1], r_in[::-1], vo[::-1], vi[::-1], -hc[::-1]
-    t = float(np.median((r_out - r_in)[vi])) if vi.sum() >= 3 else 0.003
+    if vi.sum() < 3 and a.t_fallback is not None and a.t_fallback < 0:
+        raise SystemExit('C0b: wall fallback needed (< 3 two-wall bins) but no fallback thickness (t0_C0b not fittable)')
+    t = float(np.median((r_out - r_in)[vi])) if vi.sum() >= 3 else (0.003 if a.t_fallback is None else a.t_fallback)
+    t_src = 'measured' if vi.sum() >= 3 else 'fallback'
     t = max(t, a.tmin)
+    if a.tmax is not None:
+        t = min(t, a.tmax)
     sel = (hc >= hlo) & (hc <= hhi)
     hc, r_out, r_in, vo, vi = hc[sel], r_out[sel], r_in[sel], vo[sel], vi[sel]
     ro = smooth_fill(r_out, vo)
@@ -253,7 +266,7 @@ def main():
     # through the opening); anything else (stray inner samples, hands) is not floor evidence -> base + t
     hfloor = hlo + t
     low = capin & (h < hlo + 0.4 * (hhi - hlo))
-    if low.sum() > 200 and not a.solid:
+    if low.sum() > 200 and not a.solid and a.floor != 'base_t':
         q10, q50, q90 = np.percentile(h[low], [10, 50, 90])
         if q90 - q10 < 0.01:
             hfloor = max(float(q50), hlo + t)
@@ -286,6 +299,9 @@ def main():
     parts = [mesh]; info = dict(axis_rotcons_mm=cost, axis_cands=int(k), t_mm=t * 1e3, height_mm=(top - base) * 1e3,
                                 rmax_mm=float(ro.max() * 1e3), open_top=bool(open_top), n_outer=int(outer.sum()),
                                 n_inner=int(inner.sum()), hfloor_mm=(hfloor - base) * 1e3)
+    if a.tie is not None or a.t_fallback is not None or a.tmax is not None or a.floor == 'base_t':
+        info.update(c0b=dict(tie=TIE, t_fallback=a.t_fallback, tmax=a.tmax, floor=a.floor, app_d=a.app_d,
+                             tmin=a.tmin, t_src=t_src, bins_both=int(vi.sum())))
     if a.appendages:
         # points well outside the lathe body (radius beyond the outer profile at their height, or beyond the ends)
         h2 = (P - c) @ d; Q = P - c - h2[:, None] * d; r2 = np.linalg.norm(Q, axis=1)

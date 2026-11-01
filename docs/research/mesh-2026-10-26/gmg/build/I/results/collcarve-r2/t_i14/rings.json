@@ -1,0 +1,658 @@
+{
+ "r1": {
+  "round1_self_check": {
+   "ok": true,
+   "gaps": 0,
+   "checked": 64440
+  },
+  "intrusion_construction": {
+   "max_mm": 3.262145,
+   "rays": 32040,
+   "rays_hit": 32040,
+   "max_m": 0.0032621446026665293,
+   "n_positive": 32024
+  },
+  "continuity2": {
+   "worst_height_mm": 94.75,
+   "radial_rays": 64080,
+   "radial_gaps": 30736,
+   "cover_share_min": 0.3142,
+   "cover_share_median": 0.5118,
+   "intrusion_max_mm": 3.2725,
+   "gap_h_mm": [
+    6.25,
+    94.75
+   ],
+   "axial_rays": 15480,
+   "axial_gaps": 824,
+   "rays": 79560,
+   "gaps": 31560,
+   "gap_share": 0.39668,
+   "worst_height_gap_share": 0.5556,
+   "ok": false
+  }
+ },
+ "r2": {
+  "default": {
+   "worst_height_mm": 0.25,
+   "radial_rays": 64080,
+   "radial_gaps": 0,
+   "cover_share_min": 0.6493,
+   "cover_share_median": 0.6818,
+   "intrusion_max_mm": 0.0026,
+   "axial_rays": 12600,
+   "axial_gaps": 288,
+   "rays": 76680,
+   "gaps": 288,
+   "gap_share": 0.00376,
+   "worst_height_gap_share": 0.0,
+   "ok": true
+  },
+  "forced_ring": {
+   "worst_height_mm": 6.25,
+   "radial_rays": 64080,
+   "radial_gaps": 720,
+   "cover_share_min": 0.0,
+   "cover_share_median": 0.6813,
+   "intrusion_max_mm": 0.0026,
+   "gap_h_mm": [
+    6.25,
+    6.75
+   ],
+   "axial_rays": 12600,
+   "axial_gaps": 288,
+   "rays": 76680,
+   "gaps": 1008,
+   "gap_share": 0.01315,
+   "worst_height_gap_share": 1.0,
+   "ok": false
+  },
+  "thin": {
+   "self_check": true,
+   "continuity2": {
+    "worst_height_mm": 6.25,
+    "radial_rays": 64080,
+    "radial_gaps": 64080,
+    "cover_share_min": 0.2145,
+    "cover_share_median": 0.2418,
+    "intrusion_max_mm": 0.0026,
+    "gap_h_mm": [
+     6.25,
+     94.75
+    ],
+    "axial_rays": 12600,
+    "axial_gaps": 288,
+    "rays": 76680,
+    "gaps": 64368,
+    "gap_share": 0.83944,
+    "worst_height_gap_share": 1.0,
+    "ok": false
+   }
+  }
+ },
+ "r3_intrusion": {
+  "cup": {
+   "8": {
+    "n_r": 9,
+    "min_wall_mm": 0.9706,
+    "ring_cm3": 43.909,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_positive_rays": 0,
+    "construction_rays": 32040,
+    "continuity": {
+     "worst_height_mm": 6.25,
+     "radial_rays": 64080,
+     "radial_gaps": 64080,
+     "cover_share_min": 0.239,
+     "cover_share_median": 0.2946,
+     "intrusion_max_mm": 0.0154,
+     "gap_h_mm": [
+      6.25,
+      94.75
+     ],
+     "axial_rays": 12600,
+     "axial_gaps": 648,
+     "rays": 76680,
+     "gaps": 64728,
+     "gap_share": 0.84413,
+     "worst_height_gap_share": 1.0,
+     "ok": false
+    }
+   },
+   "12": {
+    "n_r": 13,
+    "min_wall_mm": 2.5957,
+    "ring_cm3": 75.947,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_positive_rays": 0,
+    "construction_rays": 32040,
+    "continuity": {
+     "worst_height_mm": 0.25,
+     "radial_rays": 64080,
+     "radial_gaps": 0,
+     "cover_share_min": 0.6493,
+     "cover_share_median": 0.6818,
+     "intrusion_max_mm": 0.0026,
+     "axial_rays": 12600,
+     "axial_gaps": 288,
+     "rays": 76680,
+     "gaps": 288,
+     "gap_share": 0.00376,
+     "worst_height_gap_share": 0.0,
+     "ok": true
+    }
+   },
+   "16": {
+    "n_r": 17,
+    "min_wall_mm": 3.2391,
+    "ring_cm3": 88.167,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_positive_rays": 0,
+    "construction_rays": 32040,
+    "continuity": {
+     "worst_height_mm": 0.25,
+     "radial_rays": 64080,
+     "radial_gaps": 0,
+     "cover_share_min": 0.81,
+     "cover_share_median": 0.8269,
+     "intrusion_max_mm": 0.0,
+     "axial_rays": 12600,
+     "axial_gaps": 176,
+     "rays": 76680,
+     "gaps": 176,
+     "gap_share": 0.0023,
+     "worst_height_gap_share": 0.0,
+     "ok": true
+    }
+   }
+  },
+  "pot": {
+   "8": {
+    "n_r": 9,
+    "min_wall_mm": -3.8874,
+    "ring_cm3": 169.706,
+    "intrusion_construction_mm": null,
+    "intrusion_positive_rays": 0,
+    "construction_rays": 41040,
+    "continuity": {
+     "worst_height_mm": 6.25,
+     "radial_rays": 82080,
+     "radial_gaps": 82080,
+     "cover_share_min": 0.0,
+     "cover_share_median": 0.0,
+     "intrusion_max_mm": null,
+     "gap_h_mm": [
+      6.25,
+      119.75
+     ],
+     "axial_rays": 36000,
+     "axial_gaps": 1840,
+     "rays": 118080,
+     "gaps": 83920,
+     "gap_share": 0.7107,
+     "worst_height_gap_share": 1.0,
+     "ok": false
+    }
+   },
+   "12": {
+    "n_r": 13,
+    "min_wall_mm": 0.5667,
+    "ring_cm3": 220.71,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_positive_rays": 0,
+    "construction_rays": 41040,
+    "continuity": {
+     "worst_height_mm": 6.25,
+     "radial_rays": 82080,
+     "radial_gaps": 82080,
+     "cover_share_min": 0.1417,
+     "cover_share_median": 0.1464,
+     "intrusion_max_mm": -0.0017,
+     "gap_h_mm": [
+      6.25,
+      119.75
+     ],
+     "axial_rays": 36000,
+     "axial_gaps": 792,
+     "rays": 118080,
+     "gaps": 82872,
+     "gap_share": 0.70183,
+     "worst_height_gap_share": 1.0,
+     "ok": false
+    }
+   },
+   "16": {
+    "n_r": 17,
+    "min_wall_mm": 2.0888,
+    "ring_cm3": 330.764,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_positive_rays": 0,
+    "construction_rays": 41040,
+    "continuity": {
+     "worst_height_mm": 0.25,
+     "radial_rays": 82080,
+     "radial_gaps": 0,
+     "cover_share_min": 0.5223,
+     "cover_share_median": 0.5249,
+     "intrusion_max_mm": 0.0,
+     "axial_rays": 36000,
+     "axial_gaps": 480,
+     "rays": 118080,
+     "gaps": 480,
+     "gap_share": 0.00407,
+     "worst_height_gap_share": 0.0,
+     "ok": true
+    }
+   }
+  },
+  "r3": {
+   "8": {
+    "n_r": 9,
+    "min_wall_mm": 0.959,
+    "ring_cm3": 43.694,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_positive_rays": 0,
+    "construction_rays": 32040,
+    "continuity": {
+     "worst_height_mm": 6.25,
+     "radial_rays": 64080,
+     "radial_gaps": 64080,
+     "cover_share_min": 0.239,
+     "cover_share_median": 0.2917,
+     "intrusion_max_mm": 0.0039,
+     "gap_h_mm": [
+      6.25,
+      94.75
+     ],
+     "axial_rays": 12600,
+     "axial_gaps": 648,
+     "rays": 76680,
+     "gaps": 64728,
+     "gap_share": 0.84413,
+     "worst_height_gap_share": 1.0,
+     "ok": false
+    },
+    "formula_note": "min over both band ends of R cos(theta) - rho and R - rho / cos(theta), round profile",
+    "formula_min_wall_mm": 0.9552,
+    "formula_continuous_min_wall_mm": 0.9552
+   },
+   "12": {
+    "n_r": 13,
+    "min_wall_mm": 2.6344,
+    "ring_cm3": 76.472,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_positive_rays": 0,
+    "construction_rays": 32040,
+    "continuity": {
+     "worst_height_mm": 0.25,
+     "radial_rays": 64080,
+     "radial_gaps": 0,
+     "cover_share_min": 0.6588,
+     "cover_share_median": 0.6868,
+     "intrusion_max_mm": 0.0008,
+     "axial_rays": 12600,
+     "axial_gaps": 264,
+     "rays": 76680,
+     "gaps": 264,
+     "gap_share": 0.00344,
+     "worst_height_gap_share": 0.0,
+     "ok": true
+    },
+    "formula_note": "min over both band ends of R cos(theta) - rho and R - rho / cos(theta), round profile",
+    "formula_min_wall_mm": 2.637,
+    "formula_continuous_min_wall_mm": 2.637
+   },
+   "16": {
+    "n_r": 17,
+    "min_wall_mm": 3.2333,
+    "ring_cm3": 88.063,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_positive_rays": 0,
+    "construction_rays": 32040,
+    "continuity": {
+     "worst_height_mm": 0.25,
+     "radial_rays": 64080,
+     "radial_gaps": 0,
+     "cover_share_min": 0.8084,
+     "cover_share_median": 0.8249,
+     "intrusion_max_mm": 0.0,
+     "axial_rays": 12600,
+     "axial_gaps": 176,
+     "rays": 76680,
+     "gaps": 176,
+     "gap_share": 0.0023,
+     "worst_height_gap_share": 0.0,
+     "ok": true
+    },
+    "formula_note": "min over both band ends of R cos(theta) - rho and R - rho / cos(theta), round profile",
+    "formula_min_wall_mm": 3.2314,
+    "formula_continuous_min_wall_mm": 3.2314
+   }
+  }
+ },
+ "r4_r5": {
+  "r4": {
+   "accepted": {
+    "n_s": 12,
+    "base": "b1",
+    "n_r": 13,
+    "n_h": 0
+   },
+   "tried": [
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 1,
+     "n_r": 9,
+     "ring_cm3": 77.105,
+     "min_wall_mm": 1.746,
+     "intrusion_construction_mm": 0.0,
+     "continuity": {
+      "worst_height_mm": 6.25,
+      "radial_rays": 64080,
+      "radial_gaps": 64080,
+      "cover_share_min": 0.3242,
+      "cover_share_median": 0.3683,
+      "intrusion_max_mm": 0.009,
+      "gap_h_mm": [
+       6.25,
+       94.75
+      ],
+      "axial_rays": 15480,
+      "axial_gaps": 944,
+      "rays": 79560,
+      "gaps": 65024,
+      "gap_share": 0.8173,
+      "worst_height_gap_share": 1.0,
+      "ok": false
+     },
+     "fail": "lathe_wall_gap"
+    },
+    {
+     "n_s": 12,
+     "base": "b1",
+     "B_w": 1,
+     "n_r": 13,
+     "ring_cm3": 123.822,
+     "min_wall_mm": 3.726,
+     "intrusion_construction_mm": 0.0,
+     "continuity": {
+      "worst_height_mm": 0.25,
+      "radial_rays": 64080,
+      "radial_gaps": 0,
+      "cover_share_min": 0.6953,
+      "cover_share_median": 0.7193,
+      "intrusion_max_mm": -0.0007,
+      "axial_rays": 15480,
+      "axial_gaps": 504,
+      "rays": 79560,
+      "gaps": 504,
+      "gap_share": 0.00633,
+      "worst_height_gap_share": 0.0,
+      "ok": true
+     },
+     "n_h": 0,
+     "gate": {
+      "pass_": true,
+      "n": 13,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     },
+     "share": 0.731,
+     "accepted": true
+    }
+   ],
+   "sec": 46.8
+  },
+  "r5": {
+   "accepted": {
+    "n_s": 16,
+    "base": "b1",
+    "n_r": 17,
+    "n_h": 0
+   },
+   "tried": [
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 1,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 2,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 3,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 4,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 5,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 6,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 7,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 8,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 9,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b1",
+     "B_w": 10,
+     "n_r": 1,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b2",
+     "B_w": 1,
+     "n_r": 9,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b2",
+     "B_w": 2,
+     "n_r": 9,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b2",
+     "B_w": 3,
+     "n_r": 9,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b2",
+     "B_w": 4,
+     "n_r": 9,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b2",
+     "B_w": 5,
+     "n_r": 9,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b2",
+     "B_w": 6,
+     "n_r": 9,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b2",
+     "B_w": 7,
+     "n_r": 9,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b2",
+     "B_w": 8,
+     "n_r": 9,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 8,
+     "base": "b2",
+     "B_w": 9,
+     "n_r": 9,
+     "ring_cm3": 148.127,
+     "min_wall_mm": -2.284,
+     "fail": "min_wall"
+    },
+    {
+     "n_s": 12,
+     "base": "b1",
+     "B_w": 1,
+     "n_r": 13,
+     "ring_cm3": 265.812,
+     "min_wall_mm": 1.982,
+     "intrusion_construction_mm": 0.0,
+     "continuity": {
+      "worst_height_mm": 6.25,
+      "radial_rays": 64080,
+      "radial_gaps": 64080,
+      "cover_share_min": 0.3699,
+      "cover_share_median": 0.3913,
+      "intrusion_max_mm": -0.0016,
+      "gap_h_mm": [
+       6.25,
+       94.75
+      ],
+      "axial_rays": 33840,
+      "axial_gaps": 1032,
+      "rays": 97920,
+      "gaps": 65112,
+      "gap_share": 0.66495,
+      "worst_height_gap_share": 1.0,
+      "ok": false
+     },
+     "fail": "lathe_wall_gap"
+    },
+    {
+     "n_s": 16,
+     "base": "b1",
+     "B_w": 1,
+     "n_r": 17,
+     "ring_cm3": 344.875,
+     "min_wall_mm": 3.479,
+     "intrusion_construction_mm": 0.0,
+     "continuity": {
+      "worst_height_mm": 0.25,
+      "radial_rays": 64080,
+      "radial_gaps": 0,
+      "cover_share_min": 0.6492,
+      "cover_share_median": 0.6618,
+      "intrusion_max_mm": 0.0,
+      "axial_rays": 33840,
+      "axial_gaps": 616,
+      "rays": 97920,
+      "gaps": 616,
+      "gap_share": 0.00629,
+      "worst_height_gap_share": 0.0,
+      "ok": true
+     },
+     "n_h": 0,
+     "gate": {
+      "pass_": true,
+      "n": 17,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     },
+     "share": 0.7671,
+     "accepted": true
+    }
+   ],
+   "sec": 92.9
+  }
+ }
+}

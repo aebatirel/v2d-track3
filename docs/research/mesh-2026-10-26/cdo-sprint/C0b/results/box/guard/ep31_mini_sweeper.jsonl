@@ -1,0 +1,4 @@
+{"file": "/content/results/c0b/pts/A/ep31_mini_sweeper.npz", "half_m": 0.3, "kept": 788803, "near_face": 103029, "share": 0.130614, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/A/ep31_mini_sweeper.npz", "half_m": 0.45, "kept": 1003308, "near_face": 0, "share": 0.0, "max_abs_mm": 321.9, "rebuild": false}
+{"file": "/content/results/c0b/pts/B/ep31_mini_sweeper.npz", "half_m": 0.3, "kept": 594953, "near_face": 19144, "share": 0.032177, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/B/ep31_mini_sweeper.npz", "half_m": 0.45, "kept": 616026, "near_face": 0, "share": 0.0, "max_abs_mm": 318.0, "rebuild": false}

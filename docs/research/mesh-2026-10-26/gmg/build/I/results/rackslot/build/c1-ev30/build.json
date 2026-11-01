@@ -1,0 +1,713 @@
+{
+ "scope": "30",
+ "episodes": {
+  "30": {
+   "R": [
+    0,
+    1,
+    2,
+    4,
+    244,
+    245,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262
+   ],
+   "n_base": 22,
+   "runs": [
+    [
+     0,
+     2
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     244,
+     245
+    ],
+    [
+     247,
+     262
+    ]
+   ],
+   "excluded": {
+    "flagged": []
+   },
+   "n_H30": 22
+  }
+ },
+ "constants": {
+  "MAX_CLIP": 6,
+  "MAX_DEPTH": 5,
+  "TOL_F": 20,
+  "KDEC": 0.001,
+  "W_COLL": 0.25,
+  "MERGE_MAX_CM3": 2.0,
+  "SAMPLE_M": 0.0003,
+  "CLEAR": 0.001,
+  "PITCH": 0.001
+ },
+ "RV_cm3": 29.402,
+ "F_all_cm3": 10.756,
+ "F_target_cm3": 7.625,
+ "touched": [
+  {
+   "piece": 24,
+   "F_cells": 214,
+   "K": 24806,
+   "leaves": 2,
+   "vol_cm3": 10.45
+  },
+  {
+   "piece": 29,
+   "F_cells": 273,
+   "K": 41033,
+   "leaves": 3,
+   "vol_cm3": 13.91
+  },
+  {
+   "piece": 36,
+   "F_cells": 1504,
+   "K": 49917,
+   "leaves": 7,
+   "vol_cm3": 20.94
+  },
+  {
+   "piece": 41,
+   "F_cells": 5518,
+   "K": 59981,
+   "leaves": 15,
+   "vol_cm3": 27.84
+  },
+  {
+   "piece": 42,
+   "F_cells": 116,
+   "K": 15162,
+   "leaves": 2,
+   "vol_cm3": 4.41
+  }
+ ],
+ "merges": [],
+ "pieces": [
+  {
+   "file": "piece_00.obj",
+   "src": 0,
+   "kind": "packed",
+   "tag": null,
+   "verts": 212,
+   "vol_cm3": 99.782,
+   "watertight": true
+  },
+  {
+   "file": "piece_01.obj",
+   "src": 1,
+   "kind": "packed",
+   "tag": null,
+   "verts": 97,
+   "vol_cm3": 24.389,
+   "watertight": true
+  },
+  {
+   "file": "piece_02.obj",
+   "src": 2,
+   "kind": "packed",
+   "tag": null,
+   "verts": 99,
+   "vol_cm3": 26.072,
+   "watertight": true
+  },
+  {
+   "file": "piece_03.obj",
+   "src": 3,
+   "kind": "packed",
+   "tag": null,
+   "verts": 166,
+   "vol_cm3": 58.725,
+   "watertight": true
+  },
+  {
+   "file": "piece_04.obj",
+   "src": 4,
+   "kind": "packed",
+   "tag": null,
+   "verts": 128,
+   "vol_cm3": 117.49,
+   "watertight": true
+  },
+  {
+   "file": "piece_05.obj",
+   "src": 5,
+   "kind": "packed",
+   "tag": null,
+   "verts": 118,
+   "vol_cm3": 70.061,
+   "watertight": true
+  },
+  {
+   "file": "piece_06.obj",
+   "src": 6,
+   "kind": "packed",
+   "tag": null,
+   "verts": 96,
+   "vol_cm3": 26.513,
+   "watertight": true
+  },
+  {
+   "file": "piece_07.obj",
+   "src": 7,
+   "kind": "packed",
+   "tag": null,
+   "verts": 109,
+   "vol_cm3": 8.581,
+   "watertight": true
+  },
+  {
+   "file": "piece_08.obj",
+   "src": 8,
+   "kind": "packed",
+   "tag": null,
+   "verts": 90,
+   "vol_cm3": 33.391,
+   "watertight": true
+  },
+  {
+   "file": "piece_09.obj",
+   "src": 9,
+   "kind": "packed",
+   "tag": null,
+   "verts": 49,
+   "vol_cm3": 20.56,
+   "watertight": true
+  },
+  {
+   "file": "piece_10.obj",
+   "src": 10,
+   "kind": "packed",
+   "tag": null,
+   "verts": 175,
+   "vol_cm3": 59.639,
+   "watertight": true
+  },
+  {
+   "file": "piece_11.obj",
+   "src": 11,
+   "kind": "packed",
+   "tag": null,
+   "verts": 175,
+   "vol_cm3": 40.311,
+   "watertight": true
+  },
+  {
+   "file": "piece_12.obj",
+   "src": 12,
+   "kind": "packed",
+   "tag": null,
+   "verts": 109,
+   "vol_cm3": 25.046,
+   "watertight": true
+  },
+  {
+   "file": "piece_13.obj",
+   "src": 13,
+   "kind": "packed",
+   "tag": null,
+   "verts": 136,
+   "vol_cm3": 82.701,
+   "watertight": true
+  },
+  {
+   "file": "piece_14.obj",
+   "src": 14,
+   "kind": "packed",
+   "tag": null,
+   "verts": 104,
+   "vol_cm3": 16.917,
+   "watertight": true
+  },
+  {
+   "file": "piece_15.obj",
+   "src": 15,
+   "kind": "packed",
+   "tag": null,
+   "verts": 115,
+   "vol_cm3": 18.6,
+   "watertight": true
+  },
+  {
+   "file": "piece_16.obj",
+   "src": 16,
+   "kind": "packed",
+   "tag": null,
+   "verts": 118,
+   "vol_cm3": 13.053,
+   "watertight": true
+  },
+  {
+   "file": "piece_17.obj",
+   "src": 17,
+   "kind": "packed",
+   "tag": null,
+   "verts": 125,
+   "vol_cm3": 26.219,
+   "watertight": true
+  },
+  {
+   "file": "piece_18.obj",
+   "src": 18,
+   "kind": "packed",
+   "tag": null,
+   "verts": 63,
+   "vol_cm3": 5.72,
+   "watertight": true
+  },
+  {
+   "file": "piece_19.obj",
+   "src": 19,
+   "kind": "packed",
+   "tag": null,
+   "verts": 158,
+   "vol_cm3": 63.978,
+   "watertight": true
+  },
+  {
+   "file": "piece_20.obj",
+   "src": 20,
+   "kind": "packed",
+   "tag": null,
+   "verts": 127,
+   "vol_cm3": 32.857,
+   "watertight": true
+  },
+  {
+   "file": "piece_21.obj",
+   "src": 21,
+   "kind": "packed",
+   "tag": null,
+   "verts": 79,
+   "vol_cm3": 11.673,
+   "watertight": true
+  },
+  {
+   "file": "piece_22.obj",
+   "src": 22,
+   "kind": "packed",
+   "tag": null,
+   "verts": 99,
+   "vol_cm3": 20.315,
+   "watertight": true
+  },
+  {
+   "file": "piece_23.obj",
+   "src": 23,
+   "kind": "packed",
+   "tag": null,
+   "verts": 107,
+   "vol_cm3": 25.961,
+   "watertight": true
+  },
+  {
+   "file": "piece_24.obj",
+   "src": 24,
+   "kind": "cut",
+   "tag": "p24a",
+   "verts": 62,
+   "vol_cm3": 4.903,
+   "watertight": true
+  },
+  {
+   "file": "piece_25.obj",
+   "src": 24,
+   "kind": "cut",
+   "tag": "p24b",
+   "verts": 67,
+   "vol_cm3": 5.323,
+   "watertight": true
+  },
+  {
+   "file": "piece_26.obj",
+   "src": 25,
+   "kind": "packed",
+   "tag": null,
+   "verts": 132,
+   "vol_cm3": 33.167,
+   "watertight": true
+  },
+  {
+   "file": "piece_27.obj",
+   "src": 26,
+   "kind": "packed",
+   "tag": null,
+   "verts": 79,
+   "vol_cm3": 10.647,
+   "watertight": true
+  },
+  {
+   "file": "piece_28.obj",
+   "src": 27,
+   "kind": "packed",
+   "tag": null,
+   "verts": 114,
+   "vol_cm3": 8.769,
+   "watertight": true
+  },
+  {
+   "file": "piece_29.obj",
+   "src": 28,
+   "kind": "packed",
+   "tag": null,
+   "verts": 142,
+   "vol_cm3": 16.109,
+   "watertight": true
+  },
+  {
+   "file": "piece_30.obj",
+   "src": 29,
+   "kind": "cut",
+   "tag": "p29a",
+   "verts": 113,
+   "vol_cm3": 9.548,
+   "watertight": true
+  },
+  {
+   "file": "piece_31.obj",
+   "src": 29,
+   "kind": "cut",
+   "tag": "p29ba",
+   "verts": 72,
+   "vol_cm3": 2.18,
+   "watertight": true
+  },
+  {
+   "file": "piece_32.obj",
+   "src": 29,
+   "kind": "cut",
+   "tag": "p29bb",
+   "verts": 60,
+   "vol_cm3": 1.865,
+   "watertight": true
+  },
+  {
+   "file": "piece_33.obj",
+   "src": 30,
+   "kind": "packed",
+   "tag": null,
+   "verts": 102,
+   "vol_cm3": 14.258,
+   "watertight": true
+  },
+  {
+   "file": "piece_34.obj",
+   "src": 31,
+   "kind": "packed",
+   "tag": null,
+   "verts": 118,
+   "vol_cm3": 15.669,
+   "watertight": true
+  },
+  {
+   "file": "piece_35.obj",
+   "src": 32,
+   "kind": "packed",
+   "tag": null,
+   "verts": 49,
+   "vol_cm3": 1.435,
+   "watertight": true
+  },
+  {
+   "file": "piece_36.obj",
+   "src": 33,
+   "kind": "packed",
+   "tag": null,
+   "verts": 108,
+   "vol_cm3": 8.664,
+   "watertight": true
+  },
+  {
+   "file": "piece_37.obj",
+   "src": 34,
+   "kind": "packed",
+   "tag": null,
+   "verts": 45,
+   "vol_cm3": 3.292,
+   "watertight": true
+  },
+  {
+   "file": "piece_38.obj",
+   "src": 35,
+   "kind": "packed",
+   "tag": null,
+   "verts": 101,
+   "vol_cm3": 13.555,
+   "watertight": true
+  },
+  {
+   "file": "piece_39.obj",
+   "src": 36,
+   "kind": "cut",
+   "tag": "p36aa",
+   "verts": 72,
+   "vol_cm3": 5.079,
+   "watertight": true
+  },
+  {
+   "file": "piece_40.obj",
+   "src": 36,
+   "kind": "cut",
+   "tag": "p36aba",
+   "verts": 12,
+   "vol_cm3": 0.385,
+   "watertight": true
+  },
+  {
+   "file": "piece_41.obj",
+   "src": 36,
+   "kind": "cut",
+   "tag": "p36abb",
+   "verts": 8,
+   "vol_cm3": 0.358,
+   "watertight": true
+  },
+  {
+   "file": "piece_42.obj",
+   "src": 36,
+   "kind": "cut",
+   "tag": "p36ba",
+   "verts": 46,
+   "vol_cm3": 1.357,
+   "watertight": true
+  },
+  {
+   "file": "piece_43.obj",
+   "src": 36,
+   "kind": "cut",
+   "tag": "p36bbaa",
+   "verts": 38,
+   "vol_cm3": 1.469,
+   "watertight": true
+  },
+  {
+   "file": "piece_44.obj",
+   "src": 36,
+   "kind": "cut",
+   "tag": "p36bbab",
+   "verts": 20,
+   "vol_cm3": 1.438,
+   "watertight": true
+  },
+  {
+   "file": "piece_45.obj",
+   "src": 36,
+   "kind": "cut",
+   "tag": "p36bbb",
+   "verts": 89,
+   "vol_cm3": 9.119,
+   "watertight": true
+  },
+  {
+   "file": "piece_46.obj",
+   "src": 37,
+   "kind": "packed",
+   "tag": null,
+   "verts": 58,
+   "vol_cm3": 8.367,
+   "watertight": true
+  },
+  {
+   "file": "piece_47.obj",
+   "src": 38,
+   "kind": "packed",
+   "tag": null,
+   "verts": 142,
+   "vol_cm3": 16.804,
+   "watertight": true
+  },
+  {
+   "file": "piece_48.obj",
+   "src": 39,
+   "kind": "packed",
+   "tag": null,
+   "verts": 168,
+   "vol_cm3": 32.556,
+   "watertight": true
+  },
+  {
+   "file": "piece_49.obj",
+   "src": 40,
+   "kind": "packed",
+   "tag": null,
+   "verts": 92,
+   "vol_cm3": 21.216,
+   "watertight": true
+  },
+  {
+   "file": "piece_50.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41aaa",
+   "verts": 23,
+   "vol_cm3": 3.516,
+   "watertight": true
+  },
+  {
+   "file": "piece_51.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41aab",
+   "verts": 50,
+   "vol_cm3": 3.297,
+   "watertight": true
+  },
+  {
+   "file": "piece_52.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41abaa",
+   "verts": 58,
+   "vol_cm3": 0.507,
+   "watertight": true
+  },
+  {
+   "file": "piece_53.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41abab",
+   "verts": 48,
+   "vol_cm3": 0.514,
+   "watertight": true
+  },
+  {
+   "file": "piece_54.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41abbaa",
+   "verts": 43,
+   "vol_cm3": 3.613,
+   "watertight": true
+  },
+  {
+   "file": "piece_55.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41abbab",
+   "verts": 54,
+   "vol_cm3": 2.296,
+   "watertight": true
+  },
+  {
+   "file": "piece_56.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41abbba",
+   "verts": 14,
+   "vol_cm3": 1.53,
+   "watertight": true
+  },
+  {
+   "file": "piece_57.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41abbbb",
+   "verts": 20,
+   "vol_cm3": 0.256,
+   "watertight": true
+  },
+  {
+   "file": "piece_58.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41baaa",
+   "verts": 18,
+   "vol_cm3": 0.899,
+   "watertight": true
+  },
+  {
+   "file": "piece_59.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41baab",
+   "verts": 14,
+   "vol_cm3": 0.251,
+   "watertight": true
+  },
+  {
+   "file": "piece_60.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41baba",
+   "verts": 24,
+   "vol_cm3": 0.184,
+   "watertight": true
+  },
+  {
+   "file": "piece_61.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41babba",
+   "verts": 23,
+   "vol_cm3": 0.91,
+   "watertight": true
+  },
+  {
+   "file": "piece_62.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41babbb",
+   "verts": 17,
+   "vol_cm3": 0.889,
+   "watertight": true
+  },
+  {
+   "file": "piece_63.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41bba",
+   "verts": 46,
+   "vol_cm3": 1.321,
+   "watertight": true
+  },
+  {
+   "file": "piece_64.obj",
+   "src": 41,
+   "kind": "cut",
+   "tag": "p41bbb",
+   "verts": 28,
+   "vol_cm3": 1.338,
+   "watertight": true
+  },
+  {
+   "file": "piece_65.obj",
+   "src": 42,
+   "kind": "cut",
+   "tag": "p42a",
+   "verts": 44,
+   "vol_cm3": 3.529,
+   "watertight": true
+  },
+  {
+   "file": "piece_66.obj",
+   "src": 42,
+   "kind": "cut",
+   "tag": "p42b",
+   "verts": 29,
+   "vol_cm3": 0.794,
+   "watertight": true
+  }
+ ],
+ "n_pieces": 67,
+ "secs": 659.9
+}

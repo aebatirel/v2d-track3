@@ -1,0 +1,140 @@
+{
+ "log": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/audit/b7-deva-3f7f661.strace",
+ "policy": "gmg",
+ "mode": "dev",
+ "manifest": null,
+ "events": 1765,
+ "opens_ok": 1559,
+ "forbidden": [
+  {
+   "pid": 7335,
+   "exe": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+   "call": "openat",
+   "kind": "open",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_plastic_dish_rack.npz",
+   "rpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_plastic_dish_rack.npz",
+   "ok": true,
+   "read": true,
+   "write": false,
+   "reason": "refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode dev)"
+  },
+  {
+   "pid": 7335,
+   "exe": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+   "call": "openat",
+   "kind": "open",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_plastic_dish_rack.npz",
+   "rpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_plastic_dish_rack.npz",
+   "ok": true,
+   "read": true,
+   "write": false,
+   "reason": "refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode dev)"
+  },
+  {
+   "pid": 7335,
+   "exe": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+   "call": "openat",
+   "kind": "open",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_plastic_dish_rack.npz",
+   "rpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_plastic_dish_rack.npz",
+   "ok": true,
+   "read": true,
+   "write": false,
+   "reason": "refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode dev)"
+  },
+  {
+   "pid": 7335,
+   "exe": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+   "call": "openat",
+   "kind": "open",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_plastic_dish_rack.npz",
+   "rpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_plastic_dish_rack.npz",
+   "ok": true,
+   "read": true,
+   "write": false,
+   "reason": "refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode dev)"
+  },
+  {
+   "pid": 7335,
+   "exe": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+   "call": "openat",
+   "kind": "open",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_white_pot.npz",
+   "rpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_white_pot.npz",
+   "ok": true,
+   "read": true,
+   "write": false,
+   "reason": "refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode dev)"
+  },
+  {
+   "pid": 7335,
+   "exe": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+   "call": "openat",
+   "kind": "open",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_white_pot.npz",
+   "rpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_white_pot.npz",
+   "ok": true,
+   "read": true,
+   "write": false,
+   "reason": "refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode dev)"
+  },
+  {
+   "pid": 7335,
+   "exe": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+   "call": "openat",
+   "kind": "open",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_white_pot.npz",
+   "rpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_white_pot.npz",
+   "ok": true,
+   "read": true,
+   "write": false,
+   "reason": "refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode dev)"
+  },
+  {
+   "pid": 7335,
+   "exe": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+   "call": "openat",
+   "kind": "open",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_white_pot.npz",
+   "rpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep27_white_pot.npz",
+   "ok": true,
+   "read": true,
+   "write": false,
+   "reason": "refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode dev)"
+  }
+ ],
+ "unlisted": [],
+ "unrecorded": [],
+ "writes_outside_run": [],
+ "network": [],
+ "local_sockets": 0,
+ "system": 1311,
+ "system_files": 15,
+ "code_outside_interp": 33,
+ "git": 35,
+ "git_tree_reads": 1,
+ "data_reads": [
+  "/home/user/v2d-track3/.gitignore",
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/roster_public.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep27/poses.npz"
+ ],
+ "det_reads": {},
+ "written": [
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-b7deva-3f7f661/run_tier.json"
+ ],
+ "moves": 0,
+ "links": 0,
+ "symlinks": 0,
+ "interp_dirs": [
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/lib/python3.13/",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/lib/python3.13/site-packages/",
+  "/usr/lib/python3.13/",
+  "/usr/lib/python3.13/site-packages/"
+ ],
+ "cwd0": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "allow_net": false,
+ "forbidden_opens": 8,
+ "forbidden_attempted_failed": 0
+}

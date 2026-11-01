@@ -1,0 +1,317 @@
+{
+ "ep": 24,
+ "variant": "B",
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 275,
+ "changed_frames": {
+  "wooden_piece_1": 0,
+  "wooden_piece_2": 107
+ },
+ "rest_frames": {
+  "wooden_piece_1": 35,
+  "wooden_piece_2": 134
+ },
+ "segments": [
+  {
+   "obj": "wooden_piece_2",
+   "start": 0,
+   "end": 26,
+   "status": "shift_t",
+   "t_mm": [
+    -2.09,
+    -11.383,
+    -10.638
+   ],
+   "t_norm_mm": 15.72,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.293625,
+    0.150602,
+    0.569319
+   ],
+   "constraint_frames": 27,
+   "pair_frames": {
+    "wooden_piece_1": 0
+   },
+   "before": {
+    "ok": 0.0,
+    "max_mm": 18.61,
+    "median_mm": 16.22
+   },
+   "hand_min_mm": 34.0,
+   "lowest_above_table_mm_median": -16.22,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 18.61,
+    "median_mm": 16.22
+   },
+   "clearance_mm": -0.5,
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 18.61,
+    "median_mm": 16.22
+   },
+   "stage1": {
+    "it": 7,
+    "ok": 0.778,
+    "max_mm": 2.89,
+    "viol": 1003,
+    "t_mm": [
+     -2.09,
+     -11.38,
+     -10.64
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.778,
+    "max_mm": 2.89,
+    "median_mm": 0.5
+   },
+   "after_all_rest_partners": {
+    "ok": 0.778,
+    "max_mm": 2.89,
+    "median_mm": 0.5
+   }
+  },
+  {
+   "obj": "wooden_piece_2",
+   "start": 28,
+   "end": 103,
+   "status": "shift_t",
+   "t_mm": [
+    -0.665,
+    -3.621,
+    -3.384
+   ],
+   "t_norm_mm": 5.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.292717,
+    0.148558,
+    0.549895
+   ],
+   "constraint_frames": 76,
+   "pair_frames": {
+    "wooden_piece_1": 0
+   },
+   "before": {
+    "ok": 0.355,
+    "max_mm": 17.25,
+    "median_mm": 3.63
+   },
+   "hand_min_mm": 39.8,
+   "lowest_above_table_mm_median": -3.63,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.355,
+    "max_mm": 17.25,
+    "median_mm": 3.63
+   },
+   "clearance_mm": 1.37,
+   "sweep1_start": {
+    "ok": 0.355,
+    "max_mm": 17.25,
+    "median_mm": 3.63
+   },
+   "stage1": {
+    "it": 1,
+    "ok": 0.697,
+    "max_mm": 12.25,
+    "viol": 61393,
+    "t_mm": [
+     -0.66,
+     -3.62,
+     -3.38
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.697,
+    "max_mm": 12.25,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 0.697,
+    "max_mm": 12.25,
+    "median_mm": 0.0
+   }
+  },
+  {
+   "obj": "wooden_piece_1",
+   "start": 240,
+   "end": 274,
+   "status": "unresolved",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.109946,
+    0.111277,
+    0.504358
+   ],
+   "constraint_frames": 35,
+   "pair_frames": {
+    "wooden_piece_2": 31
+   },
+   "before": {
+    "ok": 0.114,
+    "max_mm": 6.34,
+    "median_mm": 6.16
+   },
+   "hand_min_mm": 33.2,
+   "lowest_above_table_mm_median": 26.49,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.114,
+    "max_mm": 6.34,
+    "median_mm": 6.16
+   },
+   "sweep1_start": {
+    "ok": 0.114,
+    "max_mm": 6.34,
+    "median_mm": 6.16
+   },
+   "stage1": {
+    "it": 20,
+    "ok": 0.0,
+    "max_mm": 5.64,
+    "viol": 28464,
+    "t_mm": [
+     3.83,
+     21.44,
+     20.38
+    ],
+    "r_deg": 0.0,
+    "stop": "stall"
+   },
+   "stage1b": {
+    "stop": "translation cap",
+    "lift_mm": 29.5
+   },
+   "stage2": {
+    "it": 15,
+    "ok": 0.057,
+    "max_mm": 5.64,
+    "viol": 27816,
+    "t_mm": [
+     3.07,
+     19.93,
+     19.01
+    ],
+    "r_deg": 3.18,
+    "stop": "translation cap"
+   },
+   "after": {
+    "ok": 0.114,
+    "max_mm": 6.34,
+    "median_mm": 6.16
+   },
+   "after_all_rest_partners": {
+    "ok": 0.114,
+    "max_mm": 6.34,
+    "median_mm": 6.16
+   }
+  },
+  {
+   "obj": "wooden_piece_2",
+   "start": 244,
+   "end": 274,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.123486,
+    0.105287,
+    0.515963
+   ],
+   "constraint_frames": 31,
+   "pair_frames": {
+    "wooden_piece_1": 0
+   },
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": 47.0,
+   "lowest_above_table_mm_median": 16.59,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "clearance_mm": -4.84,
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 0.0,
+    "max_mm": 6.34,
+    "median_mm": 6.18
+   }
+  }
+ ],
+ "seconds": 82.2
+}

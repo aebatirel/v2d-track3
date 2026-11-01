@@ -1,0 +1,432 @@
+{
+ "rule": "M_sep(own) PREREG C0b 10",
+ "obj": "beige_cup",
+ "others": [
+  "blue_cup"
+ ],
+ "T": 137,
+ "stride": 2,
+ "frames_evaluated": 69,
+ "frames_kept": 32,
+ "frames_kept_with_points": 32,
+ "pts_in": 511462,
+ "pts_out": 502266,
+ "qualifies": true,
+ "rows": [
+  {
+   "t": 0,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 16871
+  },
+  {
+   "t": 2,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 17037
+  },
+  {
+   "t": 4,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 17225
+  },
+  {
+   "t": 6,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 16827
+  },
+  {
+   "t": 8,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 16760
+  },
+  {
+   "t": 10,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 16663
+  },
+  {
+   "t": 12,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 16630
+  },
+  {
+   "t": 14,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 12305
+  },
+  {
+   "t": 16,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 12103
+  },
+  {
+   "t": 18,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 10083
+  },
+  {
+   "t": 20,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 10466
+  },
+  {
+   "t": 22,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 10721
+  },
+  {
+   "t": 24,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 13192
+  },
+  {
+   "t": 26,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 12057
+  },
+  {
+   "t": 28,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 12764
+  },
+  {
+   "t": 30,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 18216
+  },
+  {
+   "t": 32,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 18678
+  },
+  {
+   "t": 34,
+   "near_frac": 0.0,
+   "keep": true,
+   "n_obs": 22468
+  },
+  {
+   "t": 36,
+   "near_frac": 0.0001,
+   "keep": true,
+   "n_obs": 20899
+  },
+  {
+   "t": 38,
+   "near_frac": 0.029,
+   "keep": true,
+   "n_obs": 22435
+  },
+  {
+   "t": 40,
+   "near_frac": 0.0457,
+   "keep": true,
+   "n_obs": 21578
+  },
+  {
+   "t": 42,
+   "near_frac": 0.059,
+   "keep": true,
+   "n_obs": 20449
+  },
+  {
+   "t": 44,
+   "near_frac": 0.0452,
+   "keep": true,
+   "n_obs": 20522
+  },
+  {
+   "t": 46,
+   "near_frac": 0.0679,
+   "keep": true,
+   "n_obs": 18590
+  },
+  {
+   "t": 48,
+   "near_frac": 0.0515,
+   "keep": true,
+   "n_obs": 17343
+  },
+  {
+   "t": 50,
+   "near_frac": 0.0759,
+   "keep": true,
+   "n_obs": 16747
+  },
+  {
+   "t": 52,
+   "near_frac": 0.1018,
+   "keep": true,
+   "n_obs": 15498
+  },
+  {
+   "t": 54,
+   "near_frac": 0.127,
+   "keep": true,
+   "n_obs": 13839
+  },
+  {
+   "t": 56,
+   "near_frac": 0.1482,
+   "keep": true,
+   "n_obs": 13184
+  },
+  {
+   "t": 58,
+   "near_frac": 0.2053,
+   "keep": true,
+   "n_obs": 11617
+  },
+  {
+   "t": 60,
+   "near_frac": 0.2606,
+   "keep": true,
+   "n_obs": 9897
+  },
+  {
+   "t": 62,
+   "near_frac": 0.2939,
+   "keep": true,
+   "n_obs": 8602
+  },
+  {
+   "t": 64,
+   "near_frac": 0.5219,
+   "keep": false,
+   "n_obs": 6321
+  },
+  {
+   "t": 66,
+   "near_frac": 0.8178,
+   "keep": false,
+   "n_obs": 1806
+  },
+  {
+   "t": 68,
+   "near_frac": 0.9874,
+   "keep": false,
+   "n_obs": 9
+  },
+  {
+   "t": 70,
+   "near_frac": 0.9768,
+   "keep": false,
+   "n_obs": 33
+  },
+  {
+   "t": 72,
+   "near_frac": 0.9853,
+   "keep": false,
+   "n_obs": 11
+  },
+  {
+   "t": 74,
+   "near_frac": 0.9828,
+   "keep": false,
+   "n_obs": 22
+  },
+  {
+   "t": 76,
+   "near_frac": 0.9809,
+   "keep": false,
+   "n_obs": 41
+  },
+  {
+   "t": 78,
+   "near_frac": 0.9898,
+   "keep": false,
+   "n_obs": 0
+  },
+  {
+   "t": 80,
+   "near_frac": 0.9869,
+   "keep": false,
+   "n_obs": 2
+  },
+  {
+   "t": 82,
+   "near_frac": 0.9865,
+   "keep": false,
+   "n_obs": 0
+  },
+  {
+   "t": 84,
+   "near_frac": 0.9871,
+   "keep": false,
+   "n_obs": 0
+  },
+  {
+   "t": 86,
+   "near_frac": 0.9879,
+   "keep": false,
+   "n_obs": 12
+  },
+  {
+   "t": 88,
+   "near_frac": 0.9798,
+   "keep": false,
+   "n_obs": 21
+  },
+  {
+   "t": 90,
+   "near_frac": 0.9856,
+   "keep": false,
+   "n_obs": 36
+  },
+  {
+   "t": 92,
+   "near_frac": 0.9823,
+   "keep": false,
+   "n_obs": 17
+  },
+  {
+   "t": 94,
+   "near_frac": 0.9859,
+   "keep": false,
+   "n_obs": 22
+  },
+  {
+   "t": 96,
+   "near_frac": 0.9759,
+   "keep": false,
+   "n_obs": 59
+  },
+  {
+   "t": 98,
+   "near_frac": 0.9836,
+   "keep": false,
+   "n_obs": 45
+  },
+  {
+   "t": 100,
+   "near_frac": 0.9892,
+   "keep": false,
+   "n_obs": 2
+  },
+  {
+   "t": 102,
+   "near_frac": 0.9953,
+   "keep": false,
+   "n_obs": 0
+  },
+  {
+   "t": 104,
+   "near_frac": 0.9949,
+   "keep": false,
+   "n_obs": 17
+  },
+  {
+   "t": 106,
+   "near_frac": 0.9932,
+   "keep": false,
+   "n_obs": 103
+  },
+  {
+   "t": 108,
+   "near_frac": 0.9939,
+   "keep": false,
+   "n_obs": 133
+  },
+  {
+   "t": 110,
+   "near_frac": 0.9926,
+   "keep": false,
+   "n_obs": 87
+  },
+  {
+   "t": 112,
+   "near_frac": 0.9957,
+   "keep": false,
+   "n_obs": 12
+  },
+  {
+   "t": 114,
+   "near_frac": 0.9946,
+   "keep": false,
+   "n_obs": 15
+  },
+  {
+   "t": 116,
+   "near_frac": 0.9938,
+   "keep": false,
+   "n_obs": 19
+  },
+  {
+   "t": 118,
+   "near_frac": 0.9912,
+   "keep": false,
+   "n_obs": 48
+  },
+  {
+   "t": 120,
+   "near_frac": 0.9902,
+   "keep": false,
+   "n_obs": 52
+  },
+  {
+   "t": 122,
+   "near_frac": 0.9918,
+   "keep": false,
+   "n_obs": 35
+  },
+  {
+   "t": 124,
+   "near_frac": 0.9908,
+   "keep": false,
+   "n_obs": 58
+  },
+  {
+   "t": 126,
+   "near_frac": 0.9897,
+   "keep": false,
+   "n_obs": 49
+  },
+  {
+   "t": 128,
+   "near_frac": 0.9908,
+   "keep": false,
+   "n_obs": 28
+  },
+  {
+   "t": 130,
+   "near_frac": 0.9889,
+   "keep": false,
+   "n_obs": 28
+  },
+  {
+   "t": 132,
+   "near_frac": 0.9909,
+   "keep": false,
+   "n_obs": 22
+  },
+  {
+   "t": 134,
+   "near_frac": 0.9914,
+   "keep": false,
+   "n_obs": 30
+  },
+  {
+   "t": 136,
+   "near_frac": 0.9952,
+   "keep": false,
+   "n_obs": 1
+  }
+ ],
+ "out": "/content/results/c0b/pts/B/ep11_beige_cup_sep.npz"
+}

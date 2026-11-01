@@ -1,0 +1,14 @@
+{
+ "rule": "PREREG F-I5.16 (1)(g): G2 (budget.py, max_nefc_per_world <= 380) has not run; the folder is not called usable until a passing G2 is recorded",
+ "can_run": false,
+ "why": [
+  "no mujoco_warp in this environment",
+  "no warp in this environment",
+  "no newton in this environment",
+  "no FlashCHORD source tree (FLASHCHORD_DIR unset or missing)"
+ ],
+ "r0": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep12-fi5r2/r0",
+ "bound": 380,
+ "caveat": "zero-action rollouts; a grasping policy may add hand-object contacts",
+ "hand_off": "determined-wright (budget.py at 9c1d100, build/I/budget_py_usage.md)"
+}

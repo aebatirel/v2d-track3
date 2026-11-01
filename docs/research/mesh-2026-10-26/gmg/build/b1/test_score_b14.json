@@ -1,0 +1,117 @@
+{
+ "T-V2a": {
+  "expect": "veto",
+  "veto": true,
+  "detail": {
+   "beige_cup": {
+    "contact_frames": 51,
+    "band_mm": 8.0,
+    "threshold": 32.85,
+    "n_median": 192.0,
+    "a_median": 0.0,
+    "b_median": 192.0,
+    "n_max": 344,
+    "frames_violating": 38,
+    "veto": true,
+    "inside_method": "signed ray crossings (checked against gwn)"
+   }
+  },
+  "medoid_frame": 124,
+  "contact_frames": 51,
+  "control_blue_shell_alone": {
+   "veto": false,
+   "detail": {
+    "beige_cup": {
+     "contact_frames": 51,
+     "band_mm": 8.0,
+     "threshold": 32.85,
+     "n_median": 8.0,
+     "a_median": 0.0,
+     "b_median": 8.0,
+     "n_max": 22,
+     "frames_violating": 0,
+     "veto": false,
+     "inside_method": "signed ray crossings (checked against gwn)"
+    }
+   }
+  }
+ },
+ "T-V2b": {
+  "expect": "veto",
+  "veto": true,
+  "detail": {
+   "beige_cup": {
+    "contact_frames": 51,
+    "band_mm": 8.0,
+    "threshold": 32.85,
+    "n_median": 978.0,
+    "a_median": 798.0,
+    "b_median": 146.0,
+    "n_max": 1237,
+    "frames_violating": 48,
+    "veto": true,
+    "inside_method": "signed ray crossings (checked against gwn)"
+   }
+  },
+  "hull_faces": 1020
+ },
+ "T-V2c": {
+  "expect": "veto",
+  "veto": true,
+  "detail": {
+   "white_pot": {
+    "contact_frames": 79,
+    "band_mm": 6.0833,
+    "threshold": 105.43,
+    "n_median": 4009.0,
+    "a_median": 0.0,
+    "b_median": 4009.0,
+    "n_max": 5383,
+    "frames_violating": 72,
+    "veto": true,
+    "inside_method": "signed ray crossings (checked against gwn)"
+   }
+  },
+  "medoid_frame": 26,
+  "contact_frames": 79,
+  "control_lid_shell_alone": {
+   "veto": false,
+   "detail": {
+    "white_pot": {
+     "contact_frames": 79,
+     "band_mm": 6.0833,
+     "threshold": 105.43,
+     "n_median": 9.0,
+     "a_median": 0.0,
+     "b_median": 9.0,
+     "n_max": 22,
+     "frames_violating": 0,
+     "veto": false,
+     "inside_method": "signed ray crossings (checked against gwn)"
+    }
+   }
+  }
+ },
+ "T-V2d": {
+  "expect": "no veto",
+  "veto": false,
+  "detail": {
+   "white_pot": {
+    "contact_frames": 79,
+    "band_mm": 6.0833,
+    "threshold": 105.43,
+    "n_median": 10.0,
+    "a_median": 0.0,
+    "b_median": 10.0,
+    "n_max": 25,
+    "frames_violating": 0,
+    "veto": false,
+    "inside_method": "signed ray crossings (checked against gwn)"
+   }
+  },
+  "fixture_sha1_16": "e1be3218a8608793",
+  "fixture_sha256": "4bd1751e84052f05db9bd8e71c66add0fcccf97e558d1968e70be71342113125",
+  "faces": 9464,
+  "watertight": true
+ }
+}

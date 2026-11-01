@@ -1,0 +1,945 @@
+{
+ "prereg": "B.15",
+ "P22_prediction": "flags ep23 board 2 and no other public object-episode; lid and beige cup not testable",
+ "flagged": [
+  "ep0:white_pot_lid",
+  "ep11:blue_cup",
+  "ep18:mini_sweeper",
+  "ep22:blue_cup",
+  "ep23:wooden_piece_1",
+  "ep23:wooden_piece_2",
+  "ep24:wooden_piece_1",
+  "ep24:wooden_piece_2",
+  "ep31:mini_sweeper"
+ ],
+ "cross_flagged": [
+  "ep0:white_pot_lid",
+  "ep11:blue_cup",
+  "ep18:mini_sweeper",
+  "ep22:blue_cup",
+  "ep23:wooden_piece_1",
+  "ep23:wooden_piece_2",
+  "ep24:wooden_piece_1",
+  "ep24:wooden_piece_2",
+  "ep31:mini_sweeper"
+ ],
+ "split_flagged": [
+  "ep24:wooden_piece_1"
+ ],
+ "P22": {
+  "cross_flags_exactly_ep23_board2": false,
+  "lid_and_beige_cup_not_testable": false
+ },
+ "P22_supported": false,
+ "track_fail": [
+  "ep0:white_pot_lid"
+ ],
+ "not_testable_cross": [
+  "ep2:white_pot_lid",
+  "ep11:beige_cup"
+ ],
+ "rows": [
+  {
+   "ep": 0,
+   "obj": "white_pot",
+   "flags": [],
+   "n_good": 187,
+   "n_frames": 187,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 187,
+    "n_frames_with_points": 187,
+    "n_extraction_frames": 187,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "white_pot_lid": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep2:white_pot",
+    "d_own_mm": 4.141,
+    "d_other_mm": 19.048
+   }
+  },
+  {
+   "ep": 0,
+   "obj": "white_pot_lid",
+   "flags": [
+    "TRACK_FAIL",
+    "IDENTITY_SWAP"
+   ],
+   "n_good": 30,
+   "n_frames": 32,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": true,
+    "n_good": 30,
+    "n_frames_with_points": 32,
+    "n_extraction_frames": 187,
+    "good_frac_all_frames": 0.1604
+   },
+   "split": {
+    "white_pot": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": false,
+    "nearest": "ep23:wooden_piece_1",
+    "d_own_mm": 24.843,
+    "d_other_mm": 7.922
+   }
+  },
+  {
+   "ep": 2,
+   "obj": "white_pot",
+   "flags": [],
+   "n_good": 172,
+   "n_frames": 172,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 172,
+    "n_frames_with_points": 172,
+    "n_extraction_frames": 172,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "white_pot_lid": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep0:white_pot",
+    "d_own_mm": 4.077,
+    "d_other_mm": 19.309
+   }
+  },
+  {
+   "ep": 2,
+   "obj": "white_pot_lid",
+   "flags": [],
+   "n_good": 165,
+   "n_frames": 172,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 165,
+    "n_frames_with_points": 172,
+    "n_extraction_frames": 172,
+    "good_frac_all_frames": 0.9593
+   },
+   "split": {
+    "white_pot": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": false,
+    "reason": "no other good public episode of this object"
+   }
+  },
+  {
+   "ep": 11,
+   "obj": "blue_cup",
+   "flags": [
+    "IDENTITY_SWAP"
+   ],
+   "n_good": 69,
+   "n_frames": 69,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 69,
+    "n_frames_with_points": 69,
+    "n_extraction_frames": 69,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "beige_cup": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": false,
+    "nearest": "ep11:beige_cup",
+    "d_own_mm": 3.807,
+    "d_other_mm": 3.607
+   }
+  },
+  {
+   "ep": 11,
+   "obj": "beige_cup",
+   "flags": [],
+   "n_good": 69,
+   "n_frames": 69,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 69,
+    "n_frames_with_points": 69,
+    "n_extraction_frames": 69,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "blue_cup": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": false,
+    "reason": "no other good public episode of this object"
+   }
+  },
+  {
+   "ep": 12,
+   "obj": "blue_cup",
+   "flags": [],
+   "n_good": 77,
+   "n_frames": 91,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 77,
+    "n_frames_with_points": 91,
+    "n_extraction_frames": 91,
+    "good_frac_all_frames": 0.8462
+   },
+   "split": {
+    "plastic_dish_rack": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep21:blue_cup",
+    "d_own_mm": 6.681,
+    "d_other_mm": 7.701
+   }
+  },
+  {
+   "ep": 12,
+   "obj": "plastic_dish_rack",
+   "flags": [],
+   "n_good": 91,
+   "n_frames": 91,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 91,
+    "n_frames_with_points": 91,
+    "n_extraction_frames": 91,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "blue_cup": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep26:plastic_dish_rack",
+    "d_own_mm": 5.623,
+    "d_other_mm": 28.49
+   }
+  },
+  {
+   "ep": 13,
+   "obj": "blue_cup",
+   "flags": [],
+   "n_good": 53,
+   "n_frames": 95,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 53,
+    "n_frames_with_points": 95,
+    "n_extraction_frames": 95,
+    "good_frac_all_frames": 0.5579
+   },
+   "split": {
+    "plastic_dish_rack": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep12:blue_cup",
+    "d_own_mm": 6.591,
+    "d_other_mm": 7.623
+   }
+  },
+  {
+   "ep": 13,
+   "obj": "plastic_dish_rack",
+   "flags": [],
+   "n_good": 95,
+   "n_frames": 95,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 95,
+    "n_frames_with_points": 95,
+    "n_extraction_frames": 95,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "blue_cup": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep12:plastic_dish_rack",
+    "d_own_mm": 10.157,
+    "d_other_mm": 36.643
+   }
+  },
+  {
+   "ep": 18,
+   "obj": "mini_sweeper",
+   "flags": [
+    "IDENTITY_SWAP"
+   ],
+   "n_good": 177,
+   "n_frames": 177,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 177,
+    "n_frames_with_points": 177,
+    "n_extraction_frames": 177,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "mini_dust_pan": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": false,
+    "nearest": "ep39:mini_dust_pan",
+    "d_own_mm": 8.78,
+    "d_other_mm": 7.291
+   }
+  },
+  {
+   "ep": 18,
+   "obj": "mini_dust_pan",
+   "flags": [],
+   "n_good": 176,
+   "n_frames": 177,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 176,
+    "n_frames_with_points": 177,
+    "n_extraction_frames": 177,
+    "good_frac_all_frames": 0.9944
+   },
+   "split": {
+    "mini_sweeper": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep40:mini_dust_pan",
+    "d_own_mm": 3.352,
+    "d_other_mm": 7.948
+   }
+  },
+  {
+   "ep": 21,
+   "obj": "blue_cup",
+   "flags": [],
+   "n_good": 93,
+   "n_frames": 93,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 93,
+    "n_frames_with_points": 93,
+    "n_extraction_frames": 93,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "water_pitcher": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep22:blue_cup",
+    "d_own_mm": 3.139,
+    "d_other_mm": 3.787
+   }
+  },
+  {
+   "ep": 21,
+   "obj": "water_pitcher",
+   "flags": [],
+   "n_good": 93,
+   "n_frames": 93,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 93,
+    "n_frames_with_points": 93,
+    "n_extraction_frames": 93,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "blue_cup": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep22:water_pitcher",
+    "d_own_mm": 5.452,
+    "d_other_mm": 18.556
+   }
+  },
+  {
+   "ep": 22,
+   "obj": "blue_cup",
+   "flags": [
+    "IDENTITY_SWAP"
+   ],
+   "n_good": 95,
+   "n_frames": 95,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 95,
+    "n_frames_with_points": 95,
+    "n_extraction_frames": 95,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "water_pitcher": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": false,
+    "nearest": "ep11:beige_cup",
+    "d_own_mm": 3.794,
+    "d_other_mm": 3.682
+   }
+  },
+  {
+   "ep": 22,
+   "obj": "water_pitcher",
+   "flags": [],
+   "n_good": 95,
+   "n_frames": 95,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 95,
+    "n_frames_with_points": 95,
+    "n_extraction_frames": 95,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "blue_cup": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep21:water_pitcher",
+    "d_own_mm": 5.377,
+    "d_other_mm": 18.908
+   }
+  },
+  {
+   "ep": 23,
+   "obj": "wooden_piece_1",
+   "flags": [
+    "IDENTITY_SWAP"
+   ],
+   "n_good": 72,
+   "n_frames": 73,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 72,
+    "n_frames_with_points": 73,
+    "n_extraction_frames": 163,
+    "good_frac_all_frames": 0.4417
+   },
+   "split": {
+    "wooden_piece_2": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": false,
+    "nearest": "ep31:mini_sweeper",
+    "d_own_mm": 18.023,
+    "d_other_mm": 4.945
+   }
+  },
+  {
+   "ep": 23,
+   "obj": "wooden_piece_2",
+   "flags": [
+    "IDENTITY_SWAP"
+   ],
+   "n_good": 127,
+   "n_frames": 163,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 127,
+    "n_frames_with_points": 163,
+    "n_extraction_frames": 163,
+    "good_frac_all_frames": 0.7791
+   },
+   "split": {
+    "wooden_piece_1": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": false,
+    "nearest": "ep24:wooden_piece_1",
+    "d_own_mm": 4.502,
+    "d_other_mm": 4.2
+   }
+  },
+  {
+   "ep": 24,
+   "obj": "wooden_piece_1",
+   "flags": [
+    "IDENTITY_SWAP"
+   ],
+   "n_good": 102,
+   "n_frames": 138,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 102,
+    "n_frames_with_points": 138,
+    "n_extraction_frames": 138,
+    "good_frac_all_frames": 0.7391
+   },
+   "split": {
+    "wooden_piece_2": [
+     true,
+     false
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": false,
+    "nearest": "ep24:wooden_piece_2",
+    "d_own_mm": 18.043,
+    "d_other_mm": 2.815
+   }
+  },
+  {
+   "ep": 24,
+   "obj": "wooden_piece_2",
+   "flags": [
+    "IDENTITY_SWAP"
+   ],
+   "n_good": 101,
+   "n_frames": 130,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 101,
+    "n_frames_with_points": 130,
+    "n_extraction_frames": 138,
+    "good_frac_all_frames": 0.7319
+   },
+   "split": {
+    "wooden_piece_1": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": false,
+    "nearest": "ep24:wooden_piece_1",
+    "d_own_mm": 4.122,
+    "d_other_mm": 2.811
+   }
+  },
+  {
+   "ep": 26,
+   "obj": "plastic_dish_rack",
+   "flags": [],
+   "n_good": 79,
+   "n_frames": 79,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 79,
+    "n_frames_with_points": 79,
+    "n_extraction_frames": 79,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "white_pot": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep12:plastic_dish_rack",
+    "d_own_mm": 6.025,
+    "d_other_mm": 27.14
+   }
+  },
+  {
+   "ep": 26,
+   "obj": "white_pot",
+   "flags": [],
+   "n_good": 48,
+   "n_frames": 79,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 48,
+    "n_frames_with_points": 79,
+    "n_extraction_frames": 79,
+    "good_frac_all_frames": 0.6076
+   },
+   "split": {
+    "plastic_dish_rack": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep43:white_pot",
+    "d_own_mm": 7.793,
+    "d_other_mm": 19.939
+   }
+  },
+  {
+   "ep": 27,
+   "obj": "plastic_dish_rack",
+   "flags": [],
+   "n_good": 123,
+   "n_frames": 123,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 123,
+    "n_frames_with_points": 123,
+    "n_extraction_frames": 123,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "white_pot": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep26:plastic_dish_rack",
+    "d_own_mm": 6.821,
+    "d_other_mm": 23.725
+   }
+  },
+  {
+   "ep": 27,
+   "obj": "white_pot",
+   "flags": [],
+   "n_good": 102,
+   "n_frames": 123,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 102,
+    "n_frames_with_points": 123,
+    "n_extraction_frames": 123,
+    "good_frac_all_frames": 0.8293
+   },
+   "split": {
+    "plastic_dish_rack": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep43:white_pot",
+    "d_own_mm": 5.713,
+    "d_other_mm": 19.335
+   }
+  },
+  {
+   "ep": 31,
+   "obj": "mini_sweeper",
+   "flags": [
+    "IDENTITY_SWAP"
+   ],
+   "n_good": 144,
+   "n_frames": 144,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 144,
+    "n_frames_with_points": 144,
+    "n_extraction_frames": 145,
+    "good_frac_all_frames": 0.9931
+   },
+   "split": {
+    "plastic_dish_rack": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": false,
+    "nearest": "ep23:wooden_piece_1",
+    "d_own_mm": 8.29,
+    "d_other_mm": 5.289
+   }
+  },
+  {
+   "ep": 31,
+   "obj": "plastic_dish_rack",
+   "flags": [],
+   "n_good": 145,
+   "n_frames": 145,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 145,
+    "n_frames_with_points": 145,
+    "n_extraction_frames": 145,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {
+    "mini_sweeper": [
+     true,
+     true
+    ]
+   },
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep12:plastic_dish_rack",
+    "d_own_mm": 6.242,
+    "d_other_mm": 25.489
+   }
+  },
+  {
+   "ep": 39,
+   "obj": "mini_dust_pan",
+   "flags": [],
+   "n_good": 160,
+   "n_frames": 160,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 160,
+    "n_frames_with_points": 160,
+    "n_extraction_frames": 160,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {},
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep40:mini_dust_pan",
+    "d_own_mm": 3.151,
+    "d_other_mm": 7.545
+   }
+  },
+  {
+   "ep": 40,
+   "obj": "mini_dust_pan",
+   "flags": [],
+   "n_good": 130,
+   "n_frames": 130,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 130,
+    "n_frames_with_points": 130,
+    "n_extraction_frames": 130,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {},
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep39:mini_dust_pan",
+    "d_own_mm": 3.228,
+    "d_other_mm": 8.423
+   }
+  },
+  {
+   "ep": 41,
+   "obj": "white_pot",
+   "flags": [],
+   "n_good": 150,
+   "n_frames": 150,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 150,
+    "n_frames_with_points": 150,
+    "n_extraction_frames": 150,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {},
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep42:white_pot",
+    "d_own_mm": 5.561,
+    "d_other_mm": 17.861
+   }
+  },
+  {
+   "ep": 42,
+   "obj": "white_pot",
+   "flags": [],
+   "n_good": 129,
+   "n_frames": 129,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 129,
+    "n_frames_with_points": 129,
+    "n_extraction_frames": 129,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {},
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep41:white_pot",
+    "d_own_mm": 5.628,
+    "d_other_mm": 18.808
+   }
+  },
+  {
+   "ep": 43,
+   "obj": "white_pot",
+   "flags": [],
+   "n_good": 152,
+   "n_frames": 163,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 152,
+    "n_frames_with_points": 163,
+    "n_extraction_frames": 163,
+    "good_frac_all_frames": 0.9325
+   },
+   "split": {},
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep27:white_pot",
+    "d_own_mm": 5.827,
+    "d_other_mm": 18.314
+   }
+  },
+  {
+   "ep": 44,
+   "obj": "white_pot",
+   "flags": [],
+   "n_good": 125,
+   "n_frames": 125,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 125,
+    "n_frames_with_points": 125,
+    "n_extraction_frames": 125,
+    "good_frac_all_frames": 1.0
+   },
+   "split": {},
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep0:white_pot",
+    "d_own_mm": 5.934,
+    "d_other_mm": 19.568
+   }
+  },
+  {
+   "ep": 45,
+   "obj": "white_pot",
+   "flags": [],
+   "n_good": 93,
+   "n_frames": 145,
+   "track_fail_readings": {
+    "frames_with_points": false,
+    "all_frames": false,
+    "n_good": 93,
+    "n_frames_with_points": 145,
+    "n_extraction_frames": 145,
+    "good_frac_all_frames": 0.6414
+   },
+   "split": {},
+   "cross": {
+    "testable": true,
+    "pass_": true,
+    "nearest": "ep41:white_pot",
+    "d_own_mm": 7.008,
+    "d_other_mm": 17.909
+   }
+  }
+ ]
+}

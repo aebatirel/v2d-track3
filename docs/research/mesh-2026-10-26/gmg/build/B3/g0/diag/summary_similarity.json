@@ -1,0 +1,1011 @@
+{
+ "what": "G0 post-hoc diagnostic (not pre-registered; does not change the B.12 outcome)",
+ "icp": {
+  "iters": 40,
+  "trim": 0.8,
+  "start": "layout placement",
+  "scale": "free"
+ },
+ "rows": [
+  {
+   "tag": "ep2_white_pot_primary_k246",
+   "seed": 0,
+   "obj": "white_pot",
+   "kind": "primary",
+   "icp": {
+    "scale": 1.0808,
+    "rot_deg": 1.97,
+    "trans_mm": 43.0,
+    "trimmed_resid_mm": 2.4,
+    "resid_p90_mm": 8.71
+   },
+   "fsv_far": 0.1637,
+   "fsv_shell": 0.0008,
+   "fsv_diff": 0.163,
+   "v2_veto": false,
+   "v2": {
+    "white_pot_lid": {
+     "contact_frames": 79,
+     "n_p": 4244,
+     "band_mm": 6.0132,
+     "threshold": 42.44,
+     "n_median": 0.0,
+     "a_median": 0.0,
+     "b_median": 0.0,
+     "n_max": 305,
+     "frames_violating": 4,
+     "veto": false,
+     "inside_method": "signed ray crossings (checked against gwn)",
+     "inside_check": {
+      "checked": 2000,
+      "disagree": 0
+     }
+    }
+   },
+   "would_pass": false,
+   "v1": true,
+   "remesh_flags": [],
+   "pca": {
+    "all": {
+     "axes": [
+      [
+       0.0003,
+       0.004,
+       1.0
+      ],
+      [
+       -0.039,
+       0.9992,
+       -0.004
+      ],
+      [
+       -0.9992,
+       -0.039,
+       0.0004
+      ]
+     ],
+     "owned_mm": [
+      340.5,
+      175.2,
+      120.2
+     ],
+     "mesh_mm": [
+      413.8,
+      196.0,
+      150.6
+     ],
+     "ratio": [
+      1.215,
+      1.119,
+      1.253
+     ]
+    },
+    "core": {
+     "axes": [
+      [
+       0.0003,
+       0.004,
+       1.0
+      ],
+      [
+       -0.039,
+       0.9992,
+       -0.004
+      ],
+      [
+       -0.9992,
+       -0.039,
+       0.0004
+      ]
+     ],
+     "owned_mm": [
+      340.5,
+      175.2,
+      120.2
+     ],
+     "mesh_mm": [
+      413.8,
+      196.0,
+      150.6
+     ],
+     "ratio": [
+      1.215,
+      1.119,
+      1.253
+     ]
+    },
+    "core_share": 1.0,
+    "ratio": [
+     1.215,
+     1.119,
+     1.253
+    ]
+   },
+   "thin_axis_mm": {
+    "owned": [
+     -63.9,
+     56.3
+    ],
+    "mesh": [
+     -93.8,
+     56.4
+    ]
+   }
+  },
+  {
+   "tag": "ep2_white_pot_primary_k246",
+   "seed": 1,
+   "obj": "white_pot",
+   "kind": "primary",
+   "icp": {
+    "scale": 1.1383,
+    "rot_deg": 5.35,
+    "trans_mm": 52.7,
+    "trimmed_resid_mm": 2.2,
+    "resid_p90_mm": 9.78
+   },
+   "fsv_far": 0.1733,
+   "fsv_shell": 0.0008,
+   "fsv_diff": 0.1726,
+   "v2_veto": false,
+   "v2": {
+    "white_pot_lid": {
+     "contact_frames": 79,
+     "n_p": 4244,
+     "band_mm": 6.0132,
+     "threshold": 42.44,
+     "n_median": 1.0,
+     "a_median": 0.0,
+     "b_median": 1.0,
+     "n_max": 247,
+     "frames_violating": 3,
+     "veto": false,
+     "inside_method": "signed ray crossings (checked against gwn)",
+     "inside_check": {
+      "checked": 2000,
+      "disagree": 0
+     }
+    }
+   },
+   "would_pass": false,
+   "v1": true,
+   "remesh_flags": [],
+   "pca": {
+    "all": {
+     "axes": [
+      [
+       0.0003,
+       0.004,
+       1.0
+      ],
+      [
+       -0.039,
+       0.9992,
+       -0.004
+      ],
+      [
+       -0.9992,
+       -0.039,
+       0.0004
+      ]
+     ],
+     "owned_mm": [
+      340.5,
+      175.2,
+      120.2
+     ],
+     "mesh_mm": [
+      419.6,
+      187.3,
+      136.6
+     ],
+     "ratio": [
+      1.232,
+      1.069,
+      1.136
+     ]
+    },
+    "core": {
+     "axes": [
+      [
+       0.0003,
+       0.004,
+       1.0
+      ],
+      [
+       -0.039,
+       0.9992,
+       -0.004
+      ],
+      [
+       -0.9992,
+       -0.039,
+       0.0004
+      ]
+     ],
+     "owned_mm": [
+      340.5,
+      175.2,
+      120.2
+     ],
+     "mesh_mm": [
+      419.6,
+      187.3,
+      136.6
+     ],
+     "ratio": [
+      1.232,
+      1.069,
+      1.136
+     ]
+    },
+    "core_share": 1.0,
+    "ratio": [
+     1.232,
+     1.069,
+     1.136
+    ]
+   },
+   "thin_axis_mm": {
+    "owned": [
+     -63.9,
+     56.3
+    ],
+    "mesh": [
+     -84.4,
+     51.7
+    ]
+   }
+  },
+  {
+   "tag": "ep2_white_pot_control_k24",
+   "seed": 0,
+   "obj": "white_pot",
+   "kind": "control",
+   "icp": {
+    "scale": 1.1063,
+    "rot_deg": 3.87,
+    "trans_mm": 47.2,
+    "trimmed_resid_mm": 2.53,
+    "resid_p90_mm": 11.21
+   },
+   "fsv_far": 0.3733,
+   "fsv_shell": 0.0008,
+   "fsv_diff": 0.3725,
+   "v2_veto": true,
+   "v2": {
+    "white_pot_lid": {
+     "contact_frames": 79,
+     "n_p": 4244,
+     "band_mm": 6.0132,
+     "threshold": 42.44,
+     "n_median": 88.0,
+     "a_median": 0.0,
+     "b_median": 88.0,
+     "n_max": 1579,
+     "frames_violating": 74,
+     "veto": true,
+     "inside_method": "signed ray crossings (checked against gwn)",
+     "inside_check": {
+      "checked": 2000,
+      "disagree": 0
+     }
+    }
+   },
+   "would_pass": false,
+   "v1": true,
+   "remesh_flags": [],
+   "pca": {
+    "all": {
+     "axes": [
+      [
+       0.0003,
+       0.004,
+       1.0
+      ],
+      [
+       -0.039,
+       0.9992,
+       -0.004
+      ],
+      [
+       -0.9992,
+       -0.039,
+       0.0004
+      ]
+     ],
+     "owned_mm": [
+      340.5,
+      175.2,
+      120.2
+     ],
+     "mesh_mm": [
+      423.9,
+      192.0,
+      149.7
+     ],
+     "ratio": [
+      1.245,
+      1.096,
+      1.245
+     ]
+    },
+    "core": {
+     "axes": [
+      [
+       0.0003,
+       0.004,
+       1.0
+      ],
+      [
+       -0.039,
+       0.9992,
+       -0.004
+      ],
+      [
+       -0.9992,
+       -0.039,
+       0.0004
+      ]
+     ],
+     "owned_mm": [
+      340.5,
+      175.2,
+      120.2
+     ],
+     "mesh_mm": [
+      423.9,
+      192.0,
+      149.7
+     ],
+     "ratio": [
+      1.245,
+      1.096,
+      1.245
+     ]
+    },
+    "core_share": 1.0,
+    "ratio": [
+     1.245,
+     1.096,
+     1.245
+    ]
+   },
+   "thin_axis_mm": {
+    "owned": [
+     -63.9,
+     56.3
+    ],
+    "mesh": [
+     -96.4,
+     53.7
+    ]
+   }
+  },
+  {
+   "tag": "ep2_white_pot_control_k24",
+   "seed": 1,
+   "obj": "white_pot",
+   "kind": "control",
+   "icp": {
+    "scale": 0.8762,
+    "rot_deg": 4.55,
+    "trans_mm": 29.2,
+    "trimmed_resid_mm": 2.68,
+    "resid_p90_mm": 14.71
+   },
+   "fsv_far": 0.3512,
+   "fsv_shell": 0.0008,
+   "fsv_diff": 0.3505,
+   "v2_veto": true,
+   "v2": {
+    "white_pot_lid": {
+     "contact_frames": 79,
+     "n_p": 4244,
+     "band_mm": 6.0132,
+     "threshold": 42.44,
+     "n_median": 206.0,
+     "a_median": 7.0,
+     "b_median": 196.0,
+     "n_max": 2045,
+     "frames_violating": 72,
+     "veto": true,
+     "inside_method": "signed ray crossings (checked against gwn)",
+     "inside_check": {
+      "checked": 2000,
+      "disagree": 0
+     }
+    }
+   },
+   "would_pass": false,
+   "v1": true,
+   "remesh_flags": [],
+   "pca": {
+    "all": {
+     "axes": [
+      [
+       0.0003,
+       0.004,
+       1.0
+      ],
+      [
+       -0.039,
+       0.9992,
+       -0.004
+      ],
+      [
+       -0.9992,
+       -0.039,
+       0.0004
+      ]
+     ],
+     "owned_mm": [
+      340.5,
+      175.2,
+      120.2
+     ],
+     "mesh_mm": [
+      452.0,
+      181.3,
+      132.2
+     ],
+     "ratio": [
+      1.327,
+      1.035,
+      1.1
+     ]
+    },
+    "core": {
+     "axes": [
+      [
+       0.0003,
+       0.004,
+       1.0
+      ],
+      [
+       -0.039,
+       0.9992,
+       -0.004
+      ],
+      [
+       -0.9992,
+       -0.039,
+       0.0004
+      ]
+     ],
+     "owned_mm": [
+      340.5,
+      175.2,
+      120.2
+     ],
+     "mesh_mm": [
+      452.0,
+      181.3,
+      132.2
+     ],
+     "ratio": [
+      1.327,
+      1.035,
+      1.1
+     ]
+    },
+    "core_share": 1.0,
+    "ratio": [
+     1.327,
+     1.035,
+     1.1
+    ]
+   },
+   "thin_axis_mm": {
+    "owned": [
+     -63.9,
+     56.3
+    ],
+    "mesh": [
+     -89.5,
+     42.7
+    ]
+   }
+  },
+  {
+   "tag": "ep2_white_pot_lid_primary_k132",
+   "seed": 0,
+   "obj": "white_pot_lid",
+   "kind": "primary",
+   "icp": {
+    "scale": 1.3802,
+    "rot_deg": 5.15,
+    "trans_mm": 39.9,
+    "trimmed_resid_mm": 1.48,
+    "resid_p90_mm": 7.69
+   },
+   "fsv_far": 0.3074,
+   "fsv_shell": 0.0192,
+   "fsv_diff": 0.2882,
+   "v2_veto": false,
+   "v2": {
+    "white_pot": {
+     "contact_frames": 79,
+     "n_p": 10088,
+     "band_mm": 6.1332,
+     "threshold": 100.88,
+     "n_median": 35.0,
+     "a_median": 0.0,
+     "b_median": 35.0,
+     "n_max": 57,
+     "frames_violating": 0,
+     "veto": false,
+     "inside_method": "signed ray crossings (checked against gwn)",
+     "inside_check": {
+      "checked": 2000,
+      "disagree": 0
+     }
+    }
+   },
+   "would_pass": false,
+   "v1": true,
+   "remesh_flags": [],
+   "pca": {
+    "all": {
+     "axes": [
+      [
+       0.0069,
+       -0.4379,
+       -0.899
+      ],
+      [
+       -0.0509,
+       -0.898,
+       0.437
+      ],
+      [
+       -0.9987,
+       0.0427,
+       -0.0285
+      ]
+     ],
+     "owned_mm": [
+      170.7,
+      173.9,
+      43.9
+     ],
+     "mesh_mm": [
+      206.1,
+      204.9,
+      64.8
+     ],
+     "ratio": [
+      1.207,
+      1.179,
+      1.476
+     ]
+    },
+    "core": {
+     "axes": [
+      [
+       0.0069,
+       -0.4379,
+       -0.899
+      ],
+      [
+       -0.0509,
+       -0.898,
+       0.437
+      ],
+      [
+       -0.9987,
+       0.0427,
+       -0.0285
+      ]
+     ],
+     "owned_mm": [
+      170.7,
+      173.9,
+      43.9
+     ],
+     "mesh_mm": [
+      206.1,
+      204.9,
+      64.8
+     ],
+     "ratio": [
+      1.207,
+      1.179,
+      1.476
+     ]
+    },
+    "core_share": 1.0,
+    "ratio": [
+     1.207,
+     1.179,
+     1.476
+    ]
+   },
+   "thin_axis_mm": {
+    "owned": [
+     -35.1,
+     8.8
+    ],
+    "mesh": [
+     -53.2,
+     11.4
+    ]
+   }
+  },
+  {
+   "tag": "ep2_white_pot_lid_primary_k132",
+   "seed": 1,
+   "obj": "white_pot_lid",
+   "kind": "primary",
+   "icp": {
+    "scale": 1.3162,
+    "rot_deg": 10.08,
+    "trans_mm": 28.3,
+    "trimmed_resid_mm": 1.38,
+    "resid_p90_mm": 6.51
+   },
+   "fsv_far": 0.2041,
+   "fsv_shell": 0.0192,
+   "fsv_diff": 0.1849,
+   "v2_veto": false,
+   "v2": {
+    "white_pot": {
+     "contact_frames": 79,
+     "n_p": 10088,
+     "band_mm": 6.1332,
+     "threshold": 100.88,
+     "n_median": 1.0,
+     "a_median": 0.0,
+     "b_median": 1.0,
+     "n_max": 21,
+     "frames_violating": 0,
+     "veto": false,
+     "inside_method": "signed ray crossings (checked against gwn)",
+     "inside_check": {
+      "checked": 2000,
+      "disagree": 0
+     }
+    }
+   },
+   "would_pass": false,
+   "v1": true,
+   "remesh_flags": [],
+   "pca": {
+    "all": {
+     "axes": [
+      [
+       0.0069,
+       -0.4379,
+       -0.899
+      ],
+      [
+       -0.0509,
+       -0.898,
+       0.437
+      ],
+      [
+       -0.9987,
+       0.0427,
+       -0.0285
+      ]
+     ],
+     "owned_mm": [
+      170.7,
+      173.9,
+      43.9
+     ],
+     "mesh_mm": [
+      193.5,
+      193.8,
+      70.4
+     ],
+     "ratio": [
+      1.133,
+      1.115,
+      1.605
+     ]
+    },
+    "core": {
+     "axes": [
+      [
+       0.0069,
+       -0.4379,
+       -0.899
+      ],
+      [
+       -0.0509,
+       -0.898,
+       0.437
+      ],
+      [
+       -0.9987,
+       0.0427,
+       -0.0285
+      ]
+     ],
+     "owned_mm": [
+      170.7,
+      173.9,
+      43.9
+     ],
+     "mesh_mm": [
+      193.5,
+      193.8,
+      70.4
+     ],
+     "ratio": [
+      1.133,
+      1.115,
+      1.605
+     ]
+    },
+    "core_share": 1.0,
+    "ratio": [
+     1.133,
+     1.115,
+     1.605
+    ]
+   },
+   "thin_axis_mm": {
+    "owned": [
+     -35.1,
+     8.8
+    ],
+    "mesh": [
+     -59.6,
+     10.8
+    ]
+   }
+  },
+  {
+   "tag": "ep2_white_pot_lid_control_k318",
+   "seed": 0,
+   "obj": "white_pot_lid",
+   "kind": "control",
+   "icp": {
+    "scale": 1.1156,
+    "rot_deg": 3.69,
+    "trans_mm": 31.2,
+    "trimmed_resid_mm": 1.54,
+    "resid_p90_mm": 4.11
+   },
+   "fsv_far": 0.0432,
+   "fsv_shell": 0.0192,
+   "fsv_diff": 0.024,
+   "v2_veto": true,
+   "v2": {
+    "white_pot": {
+     "contact_frames": 79,
+     "n_p": 10088,
+     "band_mm": 6.1332,
+     "threshold": 100.88,
+     "n_median": 724.0,
+     "a_median": 0.0,
+     "b_median": 724.0,
+     "n_max": 891,
+     "frames_violating": 71,
+     "veto": true,
+     "inside_method": "signed ray crossings (checked against gwn)",
+     "inside_check": {
+      "checked": 2000,
+      "disagree": 0
+     }
+    }
+   },
+   "would_pass": false,
+   "v1": true,
+   "remesh_flags": [],
+   "pca": {
+    "all": {
+     "axes": [
+      [
+       0.0069,
+       -0.4379,
+       -0.899
+      ],
+      [
+       -0.0509,
+       -0.898,
+       0.437
+      ],
+      [
+       -0.9987,
+       0.0427,
+       -0.0285
+      ]
+     ],
+     "owned_mm": [
+      170.7,
+      173.9,
+      43.9
+     ],
+     "mesh_mm": [
+      240.3,
+      172.3,
+      110.5
+     ],
+     "ratio": [
+      1.408,
+      0.991,
+      2.519
+     ]
+    },
+    "core": {
+     "axes": [
+      [
+       0.0069,
+       -0.4379,
+       -0.899
+      ],
+      [
+       -0.0509,
+       -0.898,
+       0.437
+      ],
+      [
+       -0.9987,
+       0.0427,
+       -0.0285
+      ]
+     ],
+     "owned_mm": [
+      170.7,
+      173.9,
+      43.9
+     ],
+     "mesh_mm": [
+      240.3,
+      172.3,
+      110.5
+     ],
+     "ratio": [
+      1.408,
+      0.991,
+      2.519
+     ]
+    },
+    "core_share": 1.0,
+    "ratio": [
+     1.408,
+     0.991,
+     2.519
+    ]
+   },
+   "thin_axis_mm": {
+    "owned": [
+     -35.1,
+     8.8
+    ],
+    "mesh": [
+     -31.0,
+     79.5
+    ]
+   }
+  },
+  {
+   "tag": "ep2_white_pot_lid_control_k318",
+   "seed": 1,
+   "obj": "white_pot_lid",
+   "kind": "control",
+   "icp": {
+    "scale": 1.0417,
+    "rot_deg": 21.54,
+    "trans_mm": 22.2,
+    "trimmed_resid_mm": 6.29,
+    "resid_p90_mm": 22.46
+   },
+   "fsv_far": 0.2609,
+   "fsv_shell": 0.0192,
+   "fsv_diff": 0.2417,
+   "v2_veto": false,
+   "v2": {
+    "white_pot": {
+     "contact_frames": 79,
+     "n_p": 10088,
+     "band_mm": 6.1332,
+     "threshold": 100.88,
+     "n_median": 17.0,
+     "a_median": 0.0,
+     "b_median": 17.0,
+     "n_max": 215,
+     "frames_violating": 5,
+     "veto": false,
+     "inside_method": "signed ray crossings (checked against gwn)",
+     "inside_check": {
+      "checked": 2000,
+      "disagree": 0
+     }
+    }
+   },
+   "would_pass": false,
+   "v1": true,
+   "remesh_flags": [],
+   "pca": {
+    "all": {
+     "axes": [
+      [
+       0.0069,
+       -0.4379,
+       -0.899
+      ],
+      [
+       -0.0509,
+       -0.898,
+       0.437
+      ],
+      [
+       -0.9987,
+       0.0427,
+       -0.0285
+      ]
+     ],
+     "owned_mm": [
+      170.7,
+      173.9,
+      43.9
+     ],
+     "mesh_mm": [
+      216.4,
+      154.8,
+      118.1
+     ],
+     "ratio": [
+      1.267,
+      0.89,
+      2.692
+     ]
+    },
+    "core": {
+     "axes": [
+      [
+       0.0069,
+       -0.4379,
+       -0.899
+      ],
+      [
+       -0.0509,
+       -0.898,
+       0.437
+      ],
+      [
+       -0.9987,
+       0.0427,
+       -0.0285
+      ]
+     ],
+     "owned_mm": [
+      170.7,
+      173.9,
+      43.9
+     ],
+     "mesh_mm": [
+      216.4,
+      154.8,
+      118.1
+     ],
+     "ratio": [
+      1.267,
+      0.89,
+      2.692
+     ]
+    },
+    "core_share": 1.0,
+    "ratio": [
+     1.267,
+     0.89,
+     2.692
+    ]
+   },
+   "thin_axis_mm": {
+    "owned": [
+     -35.1,
+     8.8
+    ],
+    "mesh": [
+     -52.2,
+     66.1
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,1743 @@
+{
+ "candidate": "PUBOWN",
+ "description": "One clean mesh per public (episode, object) pair, built only from that episode's own observed points with C0b's scan-free constants and picked within the episode (C0b PREREG s5 with ALL = own points). For the score session's perception re-track test (perc2 with these meshes as templates). Not scored here.",
+ "plan": "docs/research/mesh-2026-10-26/cdo-sprint/PUBOWN/PLAN.md",
+ "box_report": "docs/research/mesh-2026-10-26/cdo-sprint/PUBOWN/BOX.md",
+ "run": {
+  "run_id": "mesh-20261031-pubown-ed7171c",
+  "store": "aebatirel/v2d-store runs/mesh-20261031-pubown-ed7171c/",
+  "results": "runs/mesh-20261031-pubown-ed7171c/results/pubown/",
+  "c0b_run": "mesh-20261031-c0b-00e8584",
+  "c0b_code_commit": "00e858434419b3e6bb11508ec8b35e092d76199f"
+ },
+ "frame": "object frame of the library_v3-seeded sweep track, as fitted (no alignment); same frame as meshes/library_v3",
+ "gt_free": "inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or scan-derived constants",
+ "counts": {
+  "pairs": 25,
+  "pubown": 20,
+  "library_v3": 5
+ },
+ "e0_frame_gate": {
+  "note": "REPORT ONLY. PUBOWN's rule (C0b s5) has no frame gate and its picks are unchanged. The E0 PREREG s4 identity frame gate (3x the C0 public mesh value vs library_v3; E0 inputs/thresholds.json, fixed before PUBOWN) is applied here as a reading, and alt_e0_gated is C0b s5 re-applied to the candidates that also pass it (library_v3 when none does). beige_cup has no E0 threshold: not gated.",
+  "thresholds": "docs/research/mesh-2026-10-26/cdo-sprint/E0/inputs/thresholds.json",
+  "script": "docs/research/mesh-2026-10-26/cdo-sprint/PUBOWN/scripts/pubown_gate_alt.py"
+ },
+ "episodes": {
+  "ep0": {
+   "white_pot": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep0/white_pot.glb",
+    "sha256": "a1b0f9ea142a7ff46f6fca46fb74b118b99f7a2ab3b40f4210fcd5ba29c0af91",
+    "md5": "b662b1d18200ca3781d756a428ccd1e4",
+    "bytes": 270876,
+    "method": "prim_potlid.py pot --c0b (C0b kit-of-parts pot; own pass-B points, own thickness chain, own-episode marker balls)",
+    "candidate": "pot/ep0/nomk",
+    "variant": "nomk",
+    "candidate_src": "cand/white_pot/white_pot_ep0_nomk.glb",
+    "build": {
+     "label": "pot/ep0/nomk",
+     "log": "logs/build/pot__ep0__nomk.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep0_white_pot.npz cand/white_pot/white_pot_ep0_fit.glb --variant fit --c0b --sigma 0.00130823 --t_fallback 0.0045594 --bar_t0 0.0045594 --markers_json markers/ep0.json --axis_cache axis/ep0_white_pot.json > logs/build/pot__ep0__fit.log 2>&1; echo \"fit rc=$?\"; ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep0_white_pot.npz cand/white_pot/white_pot_ep0_nostem.glb --variant nostem --c0b --sigma 0.00130823 --t_fallback 0.0045594 --bar_t0 0.0045594 --markers_json markers/ep0.json --axis_cache axis/ep0_white_pot.json > logs/build/pot__ep0__nostem.log 2>&1; echo \"nostem rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep0_white_pot.npz cand/white_pot/white_pot_ep0_nomk.glb --variant nomk --c0b --sigma 0.00130823 --t_fallback 0.0045594 --bar_t0 0.0045594 --markers_json markers/ep0.json --axis_cache axis/ep0_white_pot.json > logs/build/pot__ep0__nomk.log 2>&1; echo \"nomk rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep0_white_pot.npz cand/white_pot/white_pot_ep0_thick.glb --variant thick --c0b --sigma 0.00130823 --t_fallback 0.0045594 --bar_t0 0.0045594 --markers_json markers/ep0.json --axis_cache axis/ep0_white_pot.json > logs/build/pot__ep0__thick.log 2>&1; echo \"thick rc=$?\" ) & wait"
+    },
+    "params": {
+     "pot/ep0": {
+      "sigma_m": 0.001308228820466034,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=35)"
+     }
+    },
+    "fid_own_sum_mm": 4.217,
+    "faces_raw": 15004,
+    "n_candidates": 4,
+    "n_eligible": 4,
+    "runner_up": "pot/ep0/nostem",
+    "runner_up_fid_mm": 4.341,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 8.144,
+     "axis_angle_deg": [
+      2.383,
+      2.417,
+      3.368
+     ],
+     "surf_sym_median_mm": 2.901,
+     "icp_rot_deg": 0.884,
+     "icp_centroid_motion_mm": 2.413,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      3.169,
+      3.046
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "quality_flags": [],
+     "payload_chars": 83968
+    },
+    "e0_frame_gate": {
+     "reading": "pass",
+     "extent_mm": [
+      136.1,
+      182.5,
+      354.2
+     ],
+     "bodies": 1,
+     "main_body_extent_mm": [
+      136.1,
+      182.5,
+      354.2
+     ],
+     "main_body_area_frac": 1.0,
+     "largest_other_body_mm": 0.0,
+     "farthest_other_body_mm": 0.0,
+     "pass": true
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   },
+   "white_pot_lid": {
+    "source": "library_v3",
+    "repo_path": "meshes/library_v3/white_pot_lid.glb",
+    "sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+    "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+    "bytes": 195652,
+    "reason": "no eligible PUBOWN candidate",
+    "excluded": {},
+    "n_candidates": 0
+   }
+  },
+  "ep2": {
+   "white_pot": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep2/white_pot.glb",
+    "sha256": "da20383e7c89cc124ecf4b1ff7fe23eb46ebb4344d858b7565e5150d3694230a",
+    "md5": "e6e9b79d3e34a2b9a3afd544b10adeb5",
+    "bytes": 441748,
+    "method": "prim_potlid.py pot --c0b (C0b kit-of-parts pot; own pass-B points, own thickness chain, own-episode marker balls)",
+    "candidate": "pot/ep2/nostem",
+    "variant": "nostem",
+    "candidate_src": "cand/white_pot/white_pot_ep2_nostem.glb",
+    "build": {
+     "label": "pot/ep2/nostem",
+     "log": "logs/build/pot__ep2__nostem.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep2_white_pot.npz cand/white_pot/white_pot_ep2_fit.glb --variant fit --c0b --sigma 0.00143981 --t_fallback 0.0015 --bar_t0 0.0045594 --markers_json markers/ep2.json --axis_cache axis/ep2_white_pot.json > logs/build/pot__ep2__fit.log 2>&1; echo \"fit rc=$?\"; ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep2_white_pot.npz cand/white_pot/white_pot_ep2_nostem.glb --variant nostem --c0b --sigma 0.00143981 --t_fallback 0.0015 --bar_t0 0.0045594 --markers_json markers/ep2.json --axis_cache axis/ep2_white_pot.json > logs/build/pot__ep2__nostem.log 2>&1; echo \"nostem rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep2_white_pot.npz cand/white_pot/white_pot_ep2_nomk.glb --variant nomk --c0b --sigma 0.00143981 --t_fallback 0.0015 --bar_t0 0.0045594 --markers_json markers/ep2.json --axis_cache axis/ep2_white_pot.json > logs/build/pot__ep2__nomk.log 2>&1; echo \"nomk rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep2_white_pot.npz cand/white_pot/white_pot_ep2_thick.glb --variant thick --c0b --sigma 0.00143981 --t_fallback 0.0015 --bar_t0 0.0045594 --markers_json markers/ep2.json --axis_cache axis/ep2_white_pot.json > logs/build/pot__ep2__thick.log 2>&1; echo \"thick rc=$?\" ) & wait"
+    },
+    "params": {
+     "pot/ep2": {
+      "sigma_m": 0.001439805518900431,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.001500000013038516,
+      "t_src": "thickness.py (n=253)"
+     },
+     "pot/ep26": {
+      "sigma_m": 0.0013185365985938456,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.004809178877621889,
+      "t_src": "thickness.py (n=42524)"
+     },
+     "pot/ep27": {
+      "sigma_m": 0.0015335135214169103,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.004307593684643507,
+      "t_src": "thickness.py (n=71882)"
+     }
+    },
+    "fid_own_sum_mm": 4.995,
+    "faces_raw": 24348,
+    "n_candidates": 4,
+    "n_eligible": 4,
+    "runner_up": "pot/ep2/fit",
+    "runner_up_fid_mm": 5.161,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 9.298,
+     "axis_angle_deg": [
+      6.176,
+      6.157,
+      2.725
+     ],
+     "surf_sym_median_mm": 2.694,
+     "icp_rot_deg": 1.104,
+     "icp_centroid_motion_mm": 1.922,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      3.112,
+      2.852
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2056,
+     "watertight": false,
+     "bodies": 7,
+     "quality_flags": [],
+     "payload_chars": 84336
+    },
+    "e0_frame_gate": {
+     "reading": "pass",
+     "extent_mm": [
+      135.5,
+      189.4,
+      411.5
+     ],
+     "bodies": 4,
+     "main_body_extent_mm": [
+      135.5,
+      186.0,
+      358.5
+     ],
+     "main_body_area_frac": 0.9729,
+     "largest_other_body_mm": 24.1,
+     "farthest_other_body_mm": 237.7,
+     "pass": true
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   },
+   "white_pot_lid": {
+    "source": "library_v3",
+    "repo_path": "meshes/library_v3/white_pot_lid.glb",
+    "sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+    "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+    "bytes": 195652,
+    "reason": "no eligible PUBOWN candidate",
+    "excluded": {},
+    "n_candidates": 0
+   }
+  },
+  "ep11": {
+   "blue_cup": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep11/blue_cup.glb",
+    "sha256": "78969bb9ed3da61c82f2046058a355cf64d0b86e5ab8c46db08dda286e21e6de",
+    "md5": "1df2dc778c3db8db54236ea54fa99d4c",
+    "bytes": 483788,
+    "method": "lathe_obs.py with C0b lathe flags on the own pass-B points",
+    "candidate": "cup/ep11/g1",
+    "variant": "g1",
+    "candidate_src": "cand/blue_cup/ep11_blue_cup_g1.glb",
+    "build": {
+     "label": "cup/ep11/g1",
+     "log": "logs/build/cup__ep11__g1.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep11_blue_cup.npz cand/blue_cup/ep11_blue_cup_g1.glb --tie 1.0 --floor base_t --t_fallback 0.0045594 --tmax 0.008 --tmin 0.0015 --app_d 0.00229151"
+    },
+    "params": {
+     "cup/ep11": {
+      "sigma_m": 0.0007638374656261876,
+      "app_d_m": 0.002291512396878563,
+      "t_fallback_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=158)"
+     }
+    },
+    "fid_own_sum_mm": 5.171,
+    "faces_raw": 26832,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "cup/ep11/g0",
+    "runner_up_fid_mm": 5.741,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 5.224,
+     "axis_angle_deg": [
+      4.227,
+      6.416,
+      5.175
+     ],
+     "surf_sym_median_mm": 2.3,
+     "icp_rot_deg": 1.714,
+     "icp_centroid_motion_mm": 9.038,
+     "icp_symaxis_tilt_deg": 1.629,
+     "icp_med_before_after_mm": [
+      2.385,
+      1.785
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2052,
+     "watertight": false,
+     "bodies": 12,
+     "quality_flags": [],
+     "payload_chars": 86168
+    },
+    "e0_frame_gate": {
+     "reading": "pass",
+     "extent_mm": [
+      92.8,
+      94.8,
+      157.2
+     ],
+     "bodies": 3,
+     "main_body_extent_mm": [
+      92.8,
+      92.8,
+      157.2
+     ],
+     "main_body_area_frac": 0.9099,
+     "largest_other_body_mm": 73.7,
+     "farthest_other_body_mm": 39.8,
+     "pass": true
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   },
+   "beige_cup": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep11/beige_cup.glb",
+    "sha256": "5c39b6561c9b17f1caf729397bfa708936b29d5e2601c0b2a5284d690b4f59a3",
+    "md5": "752a51d66171fb6144b8b0ac83d9a3e6",
+    "bytes": 788720,
+    "method": "lathe_obs.py with C0b lathe flags on the M_sep(own) separated-frame points (C0b PREREG item 10, C1/T1 rule)",
+    "candidate": "beige/ep11/g1",
+    "variant": "g1",
+    "candidate_src": "cand/beige_cup/ep11_beige_cup_sep_g1.glb",
+    "build": {
+     "label": "beige/ep11/g1",
+     "log": "logs/build/beige__ep11__g1.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep11_beige_cup_sep.npz cand/beige_cup/ep11_beige_cup_sep_g1.glb --tie 1.0 --floor base_t --t_fallback 0.0045594 --tmax 0.008 --tmin 0.0015 --app_d 0.0026367"
+    },
+    "params": {
+     "beige/ep11": {
+      "qualifies": true,
+      "sigma_m": 0.0008789009729270934,
+      "app_d_m": 0.0026367029187812805,
+      "t_fallback_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=60)"
+     }
+    },
+    "fid_own_sum_mm": 3.91,
+    "faces_raw": 43778,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "beige/ep11/g0",
+    "runner_up_fid_mm": 5.167,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 10.531,
+     "axis_angle_deg": [
+      24.334,
+      34.701,
+      24.819
+     ],
+     "surf_sym_median_mm": 2.596,
+     "icp_rot_deg": 8.271,
+     "icp_centroid_motion_mm": 2.318,
+     "icp_symaxis_tilt_deg": 5.931,
+     "icp_med_before_after_mm": [
+      4.035,
+      4.215
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2043,
+     "watertight": false,
+     "bodies": 25,
+     "quality_flags": [],
+     "payload_chars": 86556
+    },
+    "e0_frame_gate": {
+     "reading": "no E0 threshold for this object (reported only)",
+     "extent_mm": [
+      101.2,
+      105.1,
+      175.6
+     ],
+     "bodies": 4,
+     "main_body_extent_mm": [
+      91.6,
+      91.7,
+      168.4
+     ],
+     "main_body_area_frac": 0.7408,
+     "largest_other_body_mm": 174.4,
+     "farthest_other_body_mm": 53.8,
+     "pass": null
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   }
+  },
+  "ep12": {
+   "blue_cup": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep12/blue_cup.glb",
+    "sha256": "e3c75bf86c396537fb2821d6f1c1986d641372f8ff58e12fe968d823fa979c35",
+    "md5": "b34ee6fa686b74a3e8a689c3c6ce79ab",
+    "bytes": 1452872,
+    "method": "lathe_obs.py with C0b lathe flags on the own pass-B points",
+    "candidate": "cup/ep12/g1",
+    "variant": "g1",
+    "candidate_src": "cand/blue_cup/ep12_blue_cup_g1.glb",
+    "build": {
+     "label": "cup/ep12/g1",
+     "log": "logs/build/cup__ep12__g1.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep12_blue_cup.npz cand/blue_cup/ep12_blue_cup_g1.glb --tie 1.0 --floor base_t --t_fallback 0.00351626 --tmax 0.008 --tmin 0.0015 --app_d 0.00339381"
+    },
+    "params": {
+     "cup/ep12": {
+      "sigma_m": 0.0011312704856763778,
+      "app_d_m": 0.0033938114570291333,
+      "t_fallback_m": 0.0035162607673555613,
+      "t_src": "thickness.py (n=13978)"
+     }
+    },
+    "fid_own_sum_mm": 3.407,
+    "faces_raw": 80678,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "cup/ep12/g0",
+    "runner_up_fid_mm": 9.571,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 52.374,
+     "axis_angle_deg": [
+      80.564,
+      83.074,
+      73.845
+     ],
+     "surf_sym_median_mm": 2.83,
+     "icp_rot_deg": 65.056,
+     "icp_centroid_motion_mm": 54.925,
+     "icp_symaxis_tilt_deg": 64.663,
+     "icp_med_before_after_mm": [
+      3.969,
+      30.937
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2052,
+     "watertight": false,
+     "bodies": 32,
+     "quality_flags": [],
+     "payload_chars": 87380
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 52.37 > 10.58; axis0 80.59 > 9.43",
+     "extent_mm": [
+      361.5,
+      290.0,
+      184.4
+     ],
+     "bodies": 5,
+     "main_body_extent_mm": [
+      85.9,
+      96.3,
+      179.8
+     ],
+     "main_body_area_frac": 0.5526,
+     "largest_other_body_mm": 183.5,
+     "farthest_other_body_mm": 285.7,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "pubown_candidate",
+     "candidate": "cup/ep12/g0",
+     "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/cand/blue_cup/ep12_blue_cup_g0.glb",
+     "sha256": "8362277196ddd4446ed2036148a85de62ceba267dfcd71e89b8616d2cb53682c",
+     "md5": "07703cca0ece60a3d62a017e7b4425ae",
+     "bytes": 408620,
+     "fid_own_sum_mm": 9.571,
+     "build": {
+      "label": "cup/ep12/g0",
+      "log": "logs/build/cup__ep12__g0.log",
+      "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep12_blue_cup.npz cand/blue_cup/ep12_blue_cup_g0.glb --tie 1.0 --floor base_t --t_fallback 0.00351626 --tmax 0.008 --tmin 0.0015 --app_d 0.00339381 --appendages 0"
+     }
+    }
+   },
+   "plastic_dish_rack": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep12/plastic_dish_rack.glb",
+    "sha256": "c845d4f9dab3a964c651884abeae650387a4c3177023cf7d53f6acf6f096449f",
+    "md5": "86d9bdb1b63b6646f0b071a2337c0d7a",
+    "bytes": 242756,
+    "method": "PRIM_CUP_LEAN=1 prim_rack.py run --episodes <e> (one run per episode: own floor depth, own wall thickness or t0_C0b, own marker balls)",
+    "candidate": "rack/ep12/full",
+    "variant": "full",
+    "candidate_src": "cand/rack/ep12/plastic_dish_rack/ep12_full.glb",
+    "build": {
+     "label": "rack/ep12",
+     "log": "logs/build/rack__ep12.log",
+     "command": "PRIM_CUP_LEAN=1 <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_rack.py run --obs_dir pts/B --out cand/rack/ep12 --episodes 12 --t_wall 0.0045594 --s0_min_t --markers_dir markers"
+    },
+    "params": {
+     "rack/ep12": {
+      "t_wall_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=0) (own episode only)"
+     }
+    },
+    "fid_own_sum_mm": 49.289,
+    "faces_raw": 13128,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "rack/ep12/nomk",
+    "runner_up_fid_mm": 76.204,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 6475.488,
+     "axis_angle_deg": [
+      81.841,
+      89.751,
+      89.584
+     ],
+     "surf_sym_median_mm": 52.822,
+     "icp_rot_deg": 120.533,
+     "icp_centroid_motion_mm": 6365.542,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      6240.944,
+      3386.638
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2063,
+     "watertight": false,
+     "bodies": 12,
+     "quality_flags": [],
+     "payload_chars": 74152
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 6475.49 > 34.39; median 53.06 > 10.28; axis0 81.85 > 7.34; axis1 89.72 > 5.89; axis2 89.65 > 9.37",
+     "extent_mm": [
+      16341.7,
+      719.2,
+      2290.3
+     ],
+     "bodies": 11,
+     "main_body_extent_mm": [
+      16341.7,
+      719.2,
+      2290.3
+     ],
+     "main_body_area_frac": 0.8202,
+     "largest_other_body_mm": 13490.2,
+     "farthest_other_body_mm": 6744.5,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "library_v3",
+     "repo_path": "meshes/library_v3/plastic_dish_rack.glb",
+     "reason": "library_v3 (all candidates fail the E0 gate)"
+    }
+   }
+  },
+  "ep13": {
+   "blue_cup": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep13/blue_cup.glb",
+    "sha256": "eaf11af123a48406a1a9018624def12e6ef6678774e25e1188e3d75f9078b56c",
+    "md5": "ca34ed974cb2093686a8a02c9aec21f9",
+    "bytes": 668756,
+    "method": "lathe_obs.py with C0b lathe flags on the own pass-B points",
+    "candidate": "cup/ep13/g1",
+    "variant": "g1",
+    "candidate_src": "cand/blue_cup/ep13_blue_cup_g1.glb",
+    "build": {
+     "label": "cup/ep13/g1",
+     "log": "logs/build/cup__ep13__g1.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep13_blue_cup.npz cand/blue_cup/ep13_blue_cup_g1.glb --tie 1.0 --floor base_t --t_fallback 0.00431604 --tmax 0.008 --tmin 0.0015 --app_d 0.00328867"
+    },
+    "params": {
+     "cup/ep13": {
+      "sigma_m": 0.0010962243185522519,
+      "app_d_m": 0.0032886729556567554,
+      "t_fallback_m": 0.004316043574362993,
+      "t_src": "thickness.py (n=9235)"
+     }
+    },
+    "fid_own_sum_mm": 2.882,
+    "faces_raw": 37112,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "cup/ep13/g0",
+    "runner_up_fid_mm": 3.136,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 12.493,
+     "axis_angle_deg": [
+      5.06,
+      70.061,
+      70.192
+     ],
+     "surf_sym_median_mm": 2.252,
+     "icp_rot_deg": 2.594,
+     "icp_centroid_motion_mm": 4.047,
+     "icp_symaxis_tilt_deg": 2.009,
+     "icp_med_before_after_mm": [
+      2.843,
+      2.539
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2044,
+     "watertight": false,
+     "bodies": 8,
+     "quality_flags": [],
+     "payload_chars": 86220
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 12.49 > 10.58",
+     "extent_mm": [
+      100.3,
+      93.7,
+      183.0
+     ],
+     "bodies": 2,
+     "main_body_extent_mm": [
+      92.9,
+      92.9,
+      180.3
+     ],
+     "main_body_area_frac": 0.817,
+     "largest_other_body_mm": 179.0,
+     "farthest_other_body_mm": 16.1,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "pubown_candidate",
+     "candidate": "cup/ep13/g0",
+     "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/cand/blue_cup/ep13_blue_cup_g0.glb",
+     "sha256": "1c819b7e4612325af12a20fc00a9c92c685b6d494dc9c56d5921dcd95a2662de",
+     "md5": "45feea10abdb93795ddb5c2e37874c7b",
+     "bytes": 415528,
+     "fid_own_sum_mm": 3.136,
+     "build": {
+      "label": "cup/ep13/g0",
+      "log": "logs/build/cup__ep13__g0.log",
+      "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep13_blue_cup.npz cand/blue_cup/ep13_blue_cup_g0.glb --tie 1.0 --floor base_t --t_fallback 0.00431604 --tmax 0.008 --tmin 0.0015 --app_d 0.00328867 --appendages 0"
+     }
+    }
+   },
+   "plastic_dish_rack": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep13/plastic_dish_rack.glb",
+    "sha256": "6c996a0a7739196183e034bac3891b2cddefdae4c92d069d02e7313d56f8edfd",
+    "md5": "c793636d51d6b967a59f08a0f60688b3",
+    "bytes": 316212,
+    "method": "PRIM_CUP_LEAN=1 prim_rack.py run --episodes <e> (one run per episode: own floor depth, own wall thickness or t0_C0b, own marker balls)",
+    "candidate": "rack/ep13/full",
+    "variant": "full",
+    "candidate_src": "cand/rack/ep13/plastic_dish_rack/ep13_full.glb",
+    "build": {
+     "label": "rack/ep13",
+     "log": "logs/build/rack__ep13.log",
+     "command": "PRIM_CUP_LEAN=1 <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_rack.py run --obs_dir pts/B --out cand/rack/ep13 --episodes 13 --t_wall 0.0045594 --s0_min_t --markers_dir markers"
+    },
+    "params": {
+     "rack/ep13": {
+      "t_wall_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=0) (own episode only)"
+     }
+    },
+    "fid_own_sum_mm": 21.634,
+    "faces_raw": 17224,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "rack/ep13/nomk",
+    "runner_up_fid_mm": 25.936,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 48.033,
+     "axis_angle_deg": [
+      12.3,
+      12.269,
+      1.494
+     ],
+     "surf_sym_median_mm": 4.972,
+     "icp_rot_deg": 8.439,
+     "icp_centroid_motion_mm": 32.002,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      8.212,
+      12.695
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2062,
+     "watertight": false,
+     "bodies": 8,
+     "quality_flags": [],
+     "payload_chars": 80860
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 48.03 > 34.39; axis0 12.11 > 7.34; axis1 12.07 > 5.89",
+     "extent_mm": [
+      125.5,
+      265.1,
+      487.2
+     ],
+     "bodies": 7,
+     "main_body_extent_mm": [
+      125.5,
+      261.8,
+      183.8
+     ],
+     "main_body_area_frac": 0.6066,
+     "largest_other_body_mm": 307.2,
+     "farthest_other_body_mm": 247.6,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "library_v3",
+     "repo_path": "meshes/library_v3/plastic_dish_rack.glb",
+     "reason": "library_v3 (all candidates fail the E0 gate)"
+    }
+   }
+  },
+  "ep21": {
+   "blue_cup": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep21/blue_cup.glb",
+    "sha256": "27957f760653bb05237d275b712deb49b9b7d18ed0f88365bc0e12cb7aad1c0f",
+    "md5": "8eec59da3b6f8121db9fc76208406c1b",
+    "bytes": 972784,
+    "method": "lathe_obs.py with C0b lathe flags on the own pass-B points",
+    "candidate": "cup/ep21/g1",
+    "variant": "g1",
+    "candidate_src": "cand/blue_cup/ep21_blue_cup_g1.glb",
+    "build": {
+     "label": "cup/ep21/g1",
+     "log": "logs/build/cup__ep21__g1.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep21_blue_cup.npz cand/blue_cup/ep21_blue_cup_g1.glb --tie 1.0 --floor base_t --t_fallback 0.00165847 --tmax 0.008 --tmin 0.0015 --app_d 0.0039088"
+    },
+    "params": {
+     "cup/ep21": {
+      "sigma_m": 0.0013029342455257071,
+      "app_d_m": 0.003908802736577122,
+      "t_fallback_m": 0.0016584685072302818,
+      "t_src": "thickness.py (n=321)"
+     }
+    },
+    "fid_own_sum_mm": 3.375,
+    "faces_raw": 53996,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "cup/ep21/g0",
+    "runner_up_fid_mm": 11.225,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 29.592,
+     "axis_angle_deg": [
+      73.496,
+      73.28,
+      5.35
+     ],
+     "surf_sym_median_mm": 2.97,
+     "icp_rot_deg": 23.31,
+     "icp_centroid_motion_mm": 23.372,
+     "icp_symaxis_tilt_deg": 23.243,
+     "icp_med_before_after_mm": [
+      3.374,
+      7.572
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2055,
+     "watertight": false,
+     "bodies": 13,
+     "quality_flags": [],
+     "payload_chars": 86368
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 29.59 > 10.58; axis0 73.38 > 9.43",
+     "extent_mm": [
+      136.9,
+      325.9,
+      167.8
+     ],
+     "bodies": 6,
+     "main_body_extent_mm": [
+      92.6,
+      92.6,
+      167.8
+     ],
+     "main_body_area_frac": 0.6601,
+     "largest_other_body_mm": 115.2,
+     "farthest_other_body_mm": 242.5,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "pubown_candidate",
+     "candidate": "cup/ep21/g0",
+     "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/cand/blue_cup/ep21_blue_cup_g0.glb",
+     "sha256": "df11a449e25b705389339e2d341512a7b524c5c26663985f3ce023f09c7f58d2",
+     "md5": "9b7602afa3f292bb4cf2d8d1ac24afd7",
+     "bytes": 394792,
+     "fid_own_sum_mm": 11.225,
+     "build": {
+      "label": "cup/ep21/g0",
+      "log": "logs/build/cup__ep21__g0.log",
+      "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep21_blue_cup.npz cand/blue_cup/ep21_blue_cup_g0.glb --tie 1.0 --floor base_t --t_fallback 0.00165847 --tmax 0.008 --tmin 0.0015 --app_d 0.0039088 --appendages 0"
+     }
+    }
+   },
+   "water_pitcher": {
+    "source": "library_v3",
+    "repo_path": "meshes/library_v3/water_pitcher.glb",
+    "sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+    "md5": "fc824fc5b0a9325c91b630c19ba32677",
+    "bytes": 637688,
+    "reason": "no PUBOWN method"
+   }
+  },
+  "ep22": {
+   "blue_cup": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep22/blue_cup.glb",
+    "sha256": "3275ecced7550141fbd8950936387e7beb85d7940dd393feb0ec70f93d672753",
+    "md5": "abbe1319a0a348351efc8c659004522a",
+    "bytes": 906212,
+    "method": "lathe_obs.py with C0b lathe flags on the own pass-B points",
+    "candidate": "cup/ep22/g1",
+    "variant": "g1",
+    "candidate_src": "cand/blue_cup/ep22_blue_cup_g1.glb",
+    "build": {
+     "label": "cup/ep22/g1",
+     "log": "logs/build/cup__ep22__g1.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep22_blue_cup.npz cand/blue_cup/ep22_blue_cup_g1.glb --tie 1.0 --floor base_t --t_fallback 0.0045594 --tmax 0.008 --tmin 0.0015 --app_d 0.00348493"
+    },
+    "params": {
+     "cup/ep22": {
+      "sigma_m": 0.0011616441837279017,
+      "app_d_m": 0.003484932551183705,
+      "t_fallback_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=104)"
+     }
+    },
+    "fid_own_sum_mm": 4.814,
+    "faces_raw": 50296,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "cup/ep22/g0",
+    "runner_up_fid_mm": 9.628,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 24.126,
+     "axis_angle_deg": [
+      68.223,
+      68.274,
+      2.322
+     ],
+     "surf_sym_median_mm": 2.839,
+     "icp_rot_deg": 7.557,
+     "icp_centroid_motion_mm": 9.584,
+     "icp_symaxis_tilt_deg": 7.546,
+     "icp_med_before_after_mm": [
+      3.269,
+      3.642
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2058,
+     "watertight": false,
+     "bodies": 12,
+     "quality_flags": [],
+     "payload_chars": 86320
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 24.13 > 10.58; axis0 68.03 > 9.43",
+     "extent_mm": [
+      167.9,
+      316.0,
+      177.8
+     ],
+     "bodies": 6,
+     "main_body_extent_mm": [
+      93.1,
+      92.7,
+      170.7
+     ],
+     "main_body_area_frac": 0.7026,
+     "largest_other_body_mm": 123.5,
+     "farthest_other_body_mm": 224.3,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "pubown_candidate",
+     "candidate": "cup/ep22/g0",
+     "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/cand/blue_cup/ep22_blue_cup_g0.glb",
+     "sha256": "6d76fac07150fc2e8cc164469a83822b6b68ea6500e2b49a593a19e5e098e7e7",
+     "md5": "775e202614acde6ef5b7a1ba2d3259de",
+     "bytes": 394792,
+     "fid_own_sum_mm": 9.628,
+     "build": {
+      "label": "cup/ep22/g0",
+      "log": "logs/build/cup__ep22__g0.log",
+      "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/lathe_obs.py pts/B/ep22_blue_cup.npz cand/blue_cup/ep22_blue_cup_g0.glb --tie 1.0 --floor base_t --t_fallback 0.0045594 --tmax 0.008 --tmin 0.0015 --app_d 0.00348493 --appendages 0"
+     }
+    }
+   },
+   "water_pitcher": {
+    "source": "library_v3",
+    "repo_path": "meshes/library_v3/water_pitcher.glb",
+    "sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+    "md5": "fc824fc5b0a9325c91b630c19ba32677",
+    "bytes": 637688,
+    "reason": "no PUBOWN method"
+   }
+  },
+  "ep26": {
+   "plastic_dish_rack": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep26/plastic_dish_rack.glb",
+    "sha256": "803a28516ddf187994d02bc060409af7589cba578d941e97a2370b25acd2fc02",
+    "md5": "feee52ce46211c527af9685d79becbc4",
+    "bytes": 315596,
+    "method": "PRIM_CUP_LEAN=1 prim_rack.py run --episodes <e> (one run per episode: own floor depth, own wall thickness or t0_C0b, own marker balls)",
+    "candidate": "rack/ep26/full",
+    "variant": "full",
+    "candidate_src": "cand/rack/ep26/plastic_dish_rack/ep26_full.glb",
+    "build": {
+     "label": "rack/ep26",
+     "log": "logs/build/rack__ep26.log",
+     "command": "PRIM_CUP_LEAN=1 <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_rack.py run --obs_dir pts/B --out cand/rack/ep26 --episodes 26 --t_wall 0.0045594 --s0_min_t --markers_dir markers"
+    },
+    "params": {
+     "rack/ep26": {
+      "t_wall_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=0) (own episode only)"
+     }
+    },
+    "fid_own_sum_mm": 49.712,
+    "faces_raw": 17106,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "rack/ep26/nomk",
+    "runner_up_fid_mm": 66.875,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 2923.937,
+     "axis_angle_deg": [
+      5.676,
+      4.224,
+      6.979
+     ],
+     "surf_sym_median_mm": 32.56,
+     "icp_rot_deg": 14.381,
+     "icp_centroid_motion_mm": 3208.551,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      2809.283,
+      1194.455
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2092,
+     "watertight": true,
+     "bodies": 23,
+     "quality_flags": [],
+     "payload_chars": 77440
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 2923.94 > 34.39; median 32.66 > 10.28",
+     "extent_mm": [
+      643.6,
+      653.0,
+      5858.1
+     ],
+     "bodies": 23,
+     "main_body_extent_mm": [
+      643.6,
+      653.0,
+      5858.1
+     ],
+     "main_body_area_frac": 0.9941,
+     "largest_other_body_mm": 51.4,
+     "farthest_other_body_mm": 2877.3,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "library_v3",
+     "repo_path": "meshes/library_v3/plastic_dish_rack.glb",
+     "reason": "library_v3 (all candidates fail the E0 gate)"
+    }
+   },
+   "white_pot": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep26/white_pot.glb",
+    "sha256": "10c147c6a0217cc36ad965084bb994765e6650c677bcd6375ab5004547bf8688",
+    "md5": "fb2449b6e6ef117efec161b4c3cb57bc",
+    "bytes": 518776,
+    "method": "prim_potlid.py pot --c0b (C0b kit-of-parts pot; own pass-B points, own thickness chain, own-episode marker balls)",
+    "candidate": "pot/ep26/fit",
+    "variant": "fit",
+    "candidate_src": "cand/white_pot/white_pot_ep26_fit.glb",
+    "build": {
+     "label": "pot/ep26/fit",
+     "log": "logs/build/pot__ep26__fit.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep26_white_pot.npz cand/white_pot/white_pot_ep26_fit.glb --variant fit --c0b --sigma 0.00131854 --t_fallback 0.00480918 --bar_t0 0.0045594 --markers_json markers/ep26.json --axis_cache axis/ep26_white_pot.json > logs/build/pot__ep26__fit.log 2>&1; echo \"fit rc=$?\"; ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep26_white_pot.npz cand/white_pot/white_pot_ep26_nostem.glb --variant nostem --c0b --sigma 0.00131854 --t_fallback 0.00480918 --bar_t0 0.0045594 --markers_json markers/ep26.json --axis_cache axis/ep26_white_pot.json > logs/build/pot__ep26__nostem.log 2>&1; echo \"nostem rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep26_white_pot.npz cand/white_pot/white_pot_ep26_nomk.glb --variant nomk --c0b --sigma 0.00131854 --t_fallback 0.00480918 --bar_t0 0.0045594 --markers_json markers/ep26.json --axis_cache axis/ep26_white_pot.json > logs/build/pot__ep26__nomk.log 2>&1; echo \"nomk rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep26_white_pot.npz cand/white_pot/white_pot_ep26_thick.glb --variant thick --c0b --sigma 0.00131854 --t_fallback 0.00480918 --bar_t0 0.0045594 --markers_json markers/ep26.json --axis_cache axis/ep26_white_pot.json > logs/build/pot__ep26__thick.log 2>&1; echo \"thick rc=$?\" ) & wait"
+    },
+    "params": {
+     "pot/ep26": {
+      "sigma_m": 0.0013185365985938456,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.004809178877621889,
+      "t_src": "thickness.py (n=42524)"
+     }
+    },
+    "fid_own_sum_mm": 4.171,
+    "faces_raw": 28566,
+    "n_candidates": 4,
+    "n_eligible": 4,
+    "runner_up": "pot/ep26/nostem",
+    "runner_up_fid_mm": 4.172,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 8.739,
+     "axis_angle_deg": [
+      1.542,
+      1.406,
+      0.743
+     ],
+     "surf_sym_median_mm": 2.983,
+     "icp_rot_deg": 2.844,
+     "icp_centroid_motion_mm": 4.474,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      3.489,
+      3.241
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2050,
+     "watertight": false,
+     "bodies": 4,
+     "quality_flags": [],
+     "payload_chars": 84060
+    },
+    "e0_frame_gate": {
+     "reading": "pass",
+     "extent_mm": [
+      147.1,
+      191.7,
+      321.4
+     ],
+     "bodies": 1,
+     "main_body_extent_mm": [
+      147.1,
+      191.7,
+      321.4
+     ],
+     "main_body_area_frac": 1.0,
+     "largest_other_body_mm": 0.0,
+     "farthest_other_body_mm": 0.0,
+     "pass": true
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   }
+  },
+  "ep27": {
+   "plastic_dish_rack": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep27/plastic_dish_rack.glb",
+    "sha256": "04ae6f1b78c161490dea41603f0c9d00499967f73e13eefa04f89f57ddc4fc38",
+    "md5": "8a53a374c538396488b2f6ae919bd68c",
+    "bytes": 417676,
+    "method": "PRIM_CUP_LEAN=1 prim_rack.py run --episodes <e> (one run per episode: own floor depth, own wall thickness or t0_C0b, own marker balls)",
+    "candidate": "rack/ep27/full",
+    "variant": "full",
+    "candidate_src": "cand/rack/ep27/plastic_dish_rack/ep27_full.glb",
+    "build": {
+     "label": "rack/ep27",
+     "log": "logs/build/rack__ep27.log",
+     "command": "PRIM_CUP_LEAN=1 <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_rack.py run --obs_dir pts/B --out cand/rack/ep27 --episodes 27 --t_wall 0.0045594 --s0_min_t --markers_dir markers"
+    },
+    "params": {
+     "rack/ep27": {
+      "t_wall_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=3) (own episode only)"
+     }
+    },
+    "fid_own_sum_mm": 44.138,
+    "faces_raw": 22678,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "rack/ep27/nomk",
+    "runner_up_fid_mm": 62.93,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 73.062,
+     "axis_angle_deg": [
+      28.197,
+      25.215,
+      18.536
+     ],
+     "surf_sym_median_mm": 13.011,
+     "icp_rot_deg": 29.483,
+     "icp_centroid_motion_mm": 28.105,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      91.625,
+      75.83
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2072,
+     "watertight": false,
+     "bodies": 17,
+     "quality_flags": [],
+     "payload_chars": 75360
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 73.06 > 34.39; median 12.76 > 10.28; axis0 28.22 > 7.34; axis1 25.25 > 5.89; axis2 18.57 > 9.37",
+     "extent_mm": [
+      411.5,
+      653.8,
+      825.6
+     ],
+     "bodies": 14,
+     "main_body_extent_mm": [
+      411.5,
+      653.8,
+      825.6
+     ],
+     "main_body_area_frac": 0.9777,
+     "largest_other_body_mm": 25.0,
+     "farthest_other_body_mm": 317.8,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "library_v3",
+     "repo_path": "meshes/library_v3/plastic_dish_rack.glb",
+     "reason": "library_v3 (all candidates fail the E0 gate)"
+    }
+   },
+   "white_pot": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep27/white_pot.glb",
+    "sha256": "f4a298a2f981ffbc862626554fac8a2fff981fd0a6a0197ac329541978f0eee0",
+    "md5": "7ad5baca9c7cbdb1a781b4eb92669848",
+    "bytes": 522788,
+    "method": "prim_potlid.py pot --c0b (C0b kit-of-parts pot; own pass-B points, own thickness chain, own-episode marker balls)",
+    "candidate": "pot/ep27/fit",
+    "variant": "fit",
+    "candidate_src": "cand/white_pot/white_pot_ep27_fit.glb",
+    "build": {
+     "label": "pot/ep27/fit",
+     "log": "logs/build/pot__ep27__fit.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep27_white_pot.npz cand/white_pot/white_pot_ep27_fit.glb --variant fit --c0b --sigma 0.00153351 --t_fallback 0.00430759 --bar_t0 0.0045594 --markers_json markers/ep27.json --axis_cache axis/ep27_white_pot.json > logs/build/pot__ep27__fit.log 2>&1; echo \"fit rc=$?\"; ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep27_white_pot.npz cand/white_pot/white_pot_ep27_nostem.glb --variant nostem --c0b --sigma 0.00153351 --t_fallback 0.00430759 --bar_t0 0.0045594 --markers_json markers/ep27.json --axis_cache axis/ep27_white_pot.json > logs/build/pot__ep27__nostem.log 2>&1; echo \"nostem rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep27_white_pot.npz cand/white_pot/white_pot_ep27_nomk.glb --variant nomk --c0b --sigma 0.00153351 --t_fallback 0.00430759 --bar_t0 0.0045594 --markers_json markers/ep27.json --axis_cache axis/ep27_white_pot.json > logs/build/pot__ep27__nomk.log 2>&1; echo \"nomk rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep27_white_pot.npz cand/white_pot/white_pot_ep27_thick.glb --variant thick --c0b --sigma 0.00153351 --t_fallback 0.00430759 --bar_t0 0.0045594 --markers_json markers/ep27.json --axis_cache axis/ep27_white_pot.json > logs/build/pot__ep27__thick.log 2>&1; echo \"thick rc=$?\" ) & wait"
+    },
+    "params": {
+     "pot/ep27": {
+      "sigma_m": 0.0015335135214169103,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.004307593684643507,
+      "t_src": "thickness.py (n=71882)"
+     }
+    },
+    "fid_own_sum_mm": 6.059,
+    "faces_raw": 28768,
+    "n_candidates": 4,
+    "n_eligible": 4,
+    "runner_up": "pot/ep27/nostem",
+    "runner_up_fid_mm": 6.068,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 40.384,
+     "axis_angle_deg": [
+      8.708,
+      9.681,
+      7.635
+     ],
+     "surf_sym_median_mm": 4.469,
+     "icp_rot_deg": 5.1,
+     "icp_centroid_motion_mm": 11.616,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      5.115,
+      4.191
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2064,
+     "watertight": false,
+     "bodies": 12,
+     "quality_flags": [],
+     "payload_chars": 84936
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 40.38 > 16.31",
+     "extent_mm": [
+      204.9,
+      200.2,
+      526.3
+     ],
+     "bodies": 8,
+     "main_body_extent_mm": [
+      204.9,
+      200.2,
+      526.3
+     ],
+     "main_body_area_frac": 0.9503,
+     "largest_other_body_mm": 24.7,
+     "farthest_other_body_mm": 238.1,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "library_v3",
+     "repo_path": "meshes/library_v3/white_pot.glb",
+     "reason": "library_v3 (all candidates fail the E0 gate)"
+    }
+   }
+  },
+  "ep31": {
+   "mini_sweeper": {
+    "source": "library_v3",
+    "repo_path": "meshes/library_v3/mini_sweeper.glb",
+    "sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+    "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+    "bytes": 88960,
+    "reason": "no PUBOWN method"
+   },
+   "plastic_dish_rack": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep31/plastic_dish_rack.glb",
+    "sha256": "56153ee52f91a88b98932b7370cc527ee245a702d205162ffd06dff229929e4b",
+    "md5": "4c7828a572594e8cb7bb1c8bfdb8dd2f",
+    "bytes": 320992,
+    "method": "PRIM_CUP_LEAN=1 prim_rack.py run --episodes <e> (one run per episode: own floor depth, own wall thickness or t0_C0b, own marker balls)",
+    "candidate": "rack/ep31/full",
+    "variant": "full",
+    "candidate_src": "cand/rack/ep31/plastic_dish_rack/ep31_full.glb",
+    "build": {
+     "label": "rack/ep31",
+     "log": "logs/build/rack__ep31.log",
+     "command": "PRIM_CUP_LEAN=1 <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_rack.py run --obs_dir pts/B --out cand/rack/ep31 --episodes 31 --t_wall 0.0045594 --s0_min_t --markers_dir markers"
+    },
+    "params": {
+     "rack/ep31": {
+      "t_wall_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=0) (own episode only)"
+     }
+    },
+    "fid_own_sum_mm": 48.092,
+    "faces_raw": 17390,
+    "n_candidates": 2,
+    "n_eligible": 2,
+    "runner_up": "rack/ep31/nomk",
+    "runner_up_fid_mm": 82.766,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 2502.936,
+     "axis_angle_deg": [
+      55.632,
+      85.11,
+      88.196
+     ],
+     "surf_sym_median_mm": 47.08,
+     "icp_rot_deg": 89.323,
+     "icp_centroid_motion_mm": 2250.08,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      2443.736,
+      1260.654
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2076,
+     "watertight": false,
+     "bodies": 21,
+     "quality_flags": [],
+     "payload_chars": 72956
+    },
+    "e0_frame_gate": {
+     "reading": "centroid 2502.94 > 34.39; median 47.36 > 10.28; axis0 55.61 > 7.34; axis1 85.07 > 5.89; axis2 88.13 > 9.37",
+     "extent_mm": [
+      6094.0,
+      852.6,
+      4245.5
+     ],
+     "bodies": 20,
+     "main_body_extent_mm": [
+      6094.0,
+      832.3,
+      4245.5
+     ],
+     "main_body_area_frac": 0.9946,
+     "largest_other_body_mm": 459.5,
+     "farthest_other_body_mm": 2875.6,
+     "pass": false
+    },
+    "alt_e0_gated": {
+     "source": "library_v3",
+     "repo_path": "meshes/library_v3/plastic_dish_rack.glb",
+     "reason": "library_v3 (all candidates fail the E0 gate)"
+    }
+   }
+  },
+  "ep41": {
+   "white_pot": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep41/white_pot.glb",
+    "sha256": "1368cb42a3bbddc3379c6f7d47c5064c2ea2e3e57063cfd29c9219c885bff7f3",
+    "md5": "148e42d1f1bdb655cce83fb3c0f45cb7",
+    "bytes": 271060,
+    "method": "prim_potlid.py pot --c0b (C0b kit-of-parts pot; own pass-B points, own thickness chain, own-episode marker balls)",
+    "candidate": "pot/ep41/nomk",
+    "variant": "nomk",
+    "candidate_src": "cand/white_pot/white_pot_ep41_nomk.glb",
+    "build": {
+     "label": "pot/ep41/nomk",
+     "log": "logs/build/pot__ep41__nomk.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep41_white_pot.npz cand/white_pot/white_pot_ep41_fit.glb --variant fit --c0b --sigma 0.00156683 --t_fallback 0.00451252 --bar_t0 0.0045594 --markers_json markers/ep41.json --axis_cache axis/ep41_white_pot.json > logs/build/pot__ep41__fit.log 2>&1; echo \"fit rc=$?\"; ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep41_white_pot.npz cand/white_pot/white_pot_ep41_nostem.glb --variant nostem --c0b --sigma 0.00156683 --t_fallback 0.00451252 --bar_t0 0.0045594 --markers_json markers/ep41.json --axis_cache axis/ep41_white_pot.json > logs/build/pot__ep41__nostem.log 2>&1; echo \"nostem rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep41_white_pot.npz cand/white_pot/white_pot_ep41_nomk.glb --variant nomk --c0b --sigma 0.00156683 --t_fallback 0.00451252 --bar_t0 0.0045594 --markers_json markers/ep41.json --axis_cache axis/ep41_white_pot.json > logs/build/pot__ep41__nomk.log 2>&1; echo \"nomk rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep41_white_pot.npz cand/white_pot/white_pot_ep41_thick.glb --variant thick --c0b --sigma 0.00156683 --t_fallback 0.00451252 --bar_t0 0.0045594 --markers_json markers/ep41.json --axis_cache axis/ep41_white_pot.json > logs/build/pot__ep41__thick.log 2>&1; echo \"thick rc=$?\" ) & wait"
+    },
+    "params": {
+     "pot/ep41": {
+      "sigma_m": 0.0015668299031009615,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.004512521903961897,
+      "t_src": "thickness.py (n=32263)"
+     }
+    },
+    "fid_own_sum_mm": 3.683,
+    "faces_raw": 15014,
+    "n_candidates": 4,
+    "n_eligible": 4,
+    "runner_up": "pot/ep41/fit",
+    "runner_up_fid_mm": 3.692,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 6.34,
+     "axis_angle_deg": [
+      2.793,
+      4.088,
+      3.693
+     ],
+     "surf_sym_median_mm": 2.758,
+     "icp_rot_deg": 1.861,
+     "icp_centroid_motion_mm": 1.378,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      3.152,
+      2.99
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "quality_flags": [],
+     "payload_chars": 84060
+    },
+    "e0_frame_gate": {
+     "reading": "pass",
+     "extent_mm": [
+      137.5,
+      182.5,
+      344.9
+     ],
+     "bodies": 1,
+     "main_body_extent_mm": [
+      137.5,
+      182.5,
+      344.9
+     ],
+     "main_body_area_frac": 1.0,
+     "largest_other_body_mm": 0.0,
+     "farthest_other_body_mm": 0.0,
+     "pass": true
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   }
+  },
+  "ep42": {
+   "white_pot": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep42/white_pot.glb",
+    "sha256": "dff67c4cb9e99c325f09f1b6af7fc033bf6cbc546444f0eb4a84741274ff1a20",
+    "md5": "10f2dae37ebeca6fe1e4659263cb1e94",
+    "bytes": 275520,
+    "method": "prim_potlid.py pot --c0b (C0b kit-of-parts pot; own pass-B points, own thickness chain, own-episode marker balls)",
+    "candidate": "pot/ep42/nomk",
+    "variant": "nomk",
+    "candidate_src": "cand/white_pot/white_pot_ep42_nomk.glb",
+    "build": {
+     "label": "pot/ep42/nomk",
+     "log": "logs/build/pot__ep42__nomk.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep42_white_pot.npz cand/white_pot/white_pot_ep42_fit.glb --variant fit --c0b --sigma 0.00159662 --t_fallback 0.00460628 --bar_t0 0.0045594 --markers_json markers/ep42.json --axis_cache axis/ep42_white_pot.json > logs/build/pot__ep42__fit.log 2>&1; echo \"fit rc=$?\"; ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep42_white_pot.npz cand/white_pot/white_pot_ep42_nostem.glb --variant nostem --c0b --sigma 0.00159662 --t_fallback 0.00460628 --bar_t0 0.0045594 --markers_json markers/ep42.json --axis_cache axis/ep42_white_pot.json > logs/build/pot__ep42__nostem.log 2>&1; echo \"nostem rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep42_white_pot.npz cand/white_pot/white_pot_ep42_nomk.glb --variant nomk --c0b --sigma 0.00159662 --t_fallback 0.00460628 --bar_t0 0.0045594 --markers_json markers/ep42.json --axis_cache axis/ep42_white_pot.json > logs/build/pot__ep42__nomk.log 2>&1; echo \"nomk rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep42_white_pot.npz cand/white_pot/white_pot_ep42_thick.glb --variant thick --c0b --sigma 0.00159662 --t_fallback 0.00460628 --bar_t0 0.0045594 --markers_json markers/ep42.json --axis_cache axis/ep42_white_pot.json > logs/build/pot__ep42__thick.log 2>&1; echo \"thick rc=$?\" ) & wait"
+    },
+    "params": {
+     "pot/ep42": {
+      "sigma_m": 0.0015966209703810645,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.004606279544532299,
+      "t_src": "thickness.py (n=21526)"
+     }
+    },
+    "fid_own_sum_mm": 3.27,
+    "faces_raw": 15262,
+    "n_candidates": 4,
+    "n_eligible": 4,
+    "runner_up": "pot/ep42/fit",
+    "runner_up_fid_mm": 3.519,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 8.045,
+     "axis_angle_deg": [
+      2.859,
+      2.27,
+      2.946
+     ],
+     "surf_sym_median_mm": 2.799,
+     "icp_rot_deg": 1.677,
+     "icp_centroid_motion_mm": 2.949,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      3.121,
+      2.982
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "quality_flags": [],
+     "payload_chars": 83892
+    },
+    "e0_frame_gate": {
+     "reading": "pass",
+     "extent_mm": [
+      137.8,
+      183.4,
+      354.4
+     ],
+     "bodies": 1,
+     "main_body_extent_mm": [
+      137.8,
+      183.4,
+      354.4
+     ],
+     "main_body_area_frac": 1.0,
+     "largest_other_body_mm": 0.0,
+     "farthest_other_body_mm": 0.0,
+     "pass": true
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   }
+  },
+  "ep43": {
+   "white_pot": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep43/white_pot.glb",
+    "sha256": "3dea9a786a8691b40135a6d6586b56fd0b745823ed6b7985406c7b8201513b0c",
+    "md5": "d6573fbd7a75840b542efe53164e4c85",
+    "bytes": 271024,
+    "method": "prim_potlid.py pot --c0b (C0b kit-of-parts pot; own pass-B points, own thickness chain, own-episode marker balls)",
+    "candidate": "pot/ep43/nomk",
+    "variant": "nomk",
+    "candidate_src": "cand/white_pot/white_pot_ep43_nomk.glb",
+    "build": {
+     "label": "pot/ep43/nomk",
+     "log": "logs/build/pot__ep43__nomk.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep43_white_pot.npz cand/white_pot/white_pot_ep43_fit.glb --variant fit --c0b --sigma 0.00169152 --t_fallback 0.00491297 --bar_t0 0.0045594 --markers_json markers/ep43.json --axis_cache axis/ep43_white_pot.json > logs/build/pot__ep43__fit.log 2>&1; echo \"fit rc=$?\"; ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep43_white_pot.npz cand/white_pot/white_pot_ep43_nostem.glb --variant nostem --c0b --sigma 0.00169152 --t_fallback 0.00491297 --bar_t0 0.0045594 --markers_json markers/ep43.json --axis_cache axis/ep43_white_pot.json > logs/build/pot__ep43__nostem.log 2>&1; echo \"nostem rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep43_white_pot.npz cand/white_pot/white_pot_ep43_nomk.glb --variant nomk --c0b --sigma 0.00169152 --t_fallback 0.00491297 --bar_t0 0.0045594 --markers_json markers/ep43.json --axis_cache axis/ep43_white_pot.json > logs/build/pot__ep43__nomk.log 2>&1; echo \"nomk rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep43_white_pot.npz cand/white_pot/white_pot_ep43_thick.glb --variant thick --c0b --sigma 0.00169152 --t_fallback 0.00491297 --bar_t0 0.0045594 --markers_json markers/ep43.json --axis_cache axis/ep43_white_pot.json > logs/build/pot__ep43__thick.log 2>&1; echo \"thick rc=$?\" ) & wait"
+    },
+    "params": {
+     "pot/ep43": {
+      "sigma_m": 0.0016915150918195307,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.004912965930998325,
+      "t_src": "thickness.py (n=82932)"
+     }
+    },
+    "fid_own_sum_mm": 3.001,
+    "faces_raw": 15012,
+    "n_candidates": 4,
+    "n_eligible": 4,
+    "runner_up": "pot/ep43/fit",
+    "runner_up_fid_mm": 3.054,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 5.844,
+     "axis_angle_deg": [
+      2.618,
+      1.897,
+      3.048
+     ],
+     "surf_sym_median_mm": 2.639,
+     "icp_rot_deg": 3.167,
+     "icp_centroid_motion_mm": 2.833,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      2.905,
+      2.546
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "quality_flags": [],
+     "payload_chars": 83924
+    },
+    "e0_frame_gate": {
+     "reading": "pass",
+     "extent_mm": [
+      135.0,
+      185.3,
+      356.0
+     ],
+     "bodies": 1,
+     "main_body_extent_mm": [
+      135.0,
+      185.3,
+      356.0
+     ],
+     "main_body_area_frac": 1.0,
+     "largest_other_body_mm": 0.0,
+     "farthest_other_body_mm": 0.0,
+     "pass": true
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   }
+  },
+  "ep44": {
+   "white_pot": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep44/white_pot.glb",
+    "sha256": "e82688ff294d07ea4fffa6fa0ed88d8547cd955e425f704a6f5892c006c82903",
+    "md5": "05a3ae308f8e5da338c4b1e65e3f999f",
+    "bytes": 638656,
+    "method": "prim_potlid.py pot --c0b (C0b kit-of-parts pot; own pass-B points, own thickness chain, own-episode marker balls)",
+    "candidate": "pot/ep44/nostem",
+    "variant": "nostem",
+    "candidate_src": "cand/white_pot/white_pot_ep44_nostem.glb",
+    "build": {
+     "label": "pot/ep44/nostem",
+     "log": "logs/build/pot__ep44__nostem.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep44_white_pot.npz cand/white_pot/white_pot_ep44_fit.glb --variant fit --c0b --sigma 0.00154711 --t_fallback 0.0045594 --bar_t0 0.0045594 --markers_json markers/ep44.json --axis_cache axis/ep44_white_pot.json > logs/build/pot__ep44__fit.log 2>&1; echo \"fit rc=$?\"; ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep44_white_pot.npz cand/white_pot/white_pot_ep44_nostem.glb --variant nostem --c0b --sigma 0.00154711 --t_fallback 0.0045594 --bar_t0 0.0045594 --markers_json markers/ep44.json --axis_cache axis/ep44_white_pot.json > logs/build/pot__ep44__nostem.log 2>&1; echo \"nostem rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep44_white_pot.npz cand/white_pot/white_pot_ep44_nomk.glb --variant nomk --c0b --sigma 0.00154711 --t_fallback 0.0045594 --bar_t0 0.0045594 --markers_json markers/ep44.json --axis_cache axis/ep44_white_pot.json > logs/build/pot__ep44__nomk.log 2>&1; echo \"nomk rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep44_white_pot.npz cand/white_pot/white_pot_ep44_thick.glb --variant thick --c0b --sigma 0.00154711 --t_fallback 0.0045594 --bar_t0 0.0045594 --markers_json markers/ep44.json --axis_cache axis/ep44_white_pot.json > logs/build/pot__ep44__thick.log 2>&1; echo \"thick rc=$?\" ) & wait"
+    },
+    "params": {
+     "pot/ep44": {
+      "sigma_m": 0.001547107129600234,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.004559400604354957,
+      "t_src": "t0_C0b (n=0)"
+     }
+    },
+    "fid_own_sum_mm": 5.459,
+    "faces_raw": 35144,
+    "n_candidates": 4,
+    "n_eligible": 4,
+    "runner_up": "pot/ep44/thick",
+    "runner_up_fid_mm": 5.997,
+    "ties_at_3_decimals": [],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 8.008,
+     "axis_angle_deg": [
+      7.128,
+      8.049,
+      3.866
+     ],
+     "surf_sym_median_mm": 3.101,
+     "icp_rot_deg": 1.192,
+     "icp_centroid_motion_mm": 3.628,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      3.398,
+      3.301
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2063,
+     "watertight": false,
+     "bodies": 11,
+     "quality_flags": [],
+     "payload_chars": 84952
+    },
+    "e0_frame_gate": {
+     "reading": "pass",
+     "extent_mm": [
+      186.8,
+      365.5,
+      469.2
+     ],
+     "bodies": 8,
+     "main_body_extent_mm": [
+      142.2,
+      195.8,
+      359.6
+     ],
+     "main_body_area_frac": 0.9377,
+     "largest_other_body_mm": 24.6,
+     "farthest_other_body_mm": 340.4,
+     "pass": true
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   }
+  },
+  "ep45": {
+   "white_pot": {
+    "source": "pubown",
+    "store_repo": "aebatirel/v2d-store",
+    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep45/white_pot.glb",
+    "sha256": "9647bf5b7230eaef3c0fe1f70f59aa62390dfd0a6f3d4e8816446a8f111e1aca",
+    "md5": "0c981332bfb0b15563589465ed65cbf4",
+    "bytes": 637648,
+    "method": "prim_potlid.py pot --c0b (C0b kit-of-parts pot; own pass-B points, own thickness chain, own-episode marker balls)",
+    "candidate": "pot/ep45/fit",
+    "variant": "fit",
+    "candidate_src": "cand/white_pot/white_pot_ep45_fit.glb",
+    "build": {
+     "label": "pot/ep45/fit",
+     "log": "logs/build/pot__ep45__fit.log",
+     "command": "<work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep45_white_pot.npz cand/white_pot/white_pot_ep45_fit.glb --variant fit --c0b --sigma 0.00165693 --t_fallback 0.00749796 --bar_t0 0.0045594 --markers_json markers/ep45.json --axis_cache axis/ep45_white_pot.json > logs/build/pot__ep45__fit.log 2>&1; echo \"fit rc=$?\"; ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep45_white_pot.npz cand/white_pot/white_pot_ep45_nostem.glb --variant nostem --c0b --sigma 0.00165693 --t_fallback 0.00749796 --bar_t0 0.0045594 --markers_json markers/ep45.json --axis_cache axis/ep45_white_pot.json > logs/build/pot__ep45__nostem.log 2>&1; echo \"nostem rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep45_white_pot.npz cand/white_pot/white_pot_ep45_nomk.glb --variant nomk --c0b --sigma 0.00165693 --t_fallback 0.00749796 --bar_t0 0.0045594 --markers_json markers/ep45.json --axis_cache axis/ep45_white_pot.json > logs/build/pot__ep45__nomk.log 2>&1; echo \"nomk rc=$?\" ) & ( <work>/venv/bin/python -I -W ignore <code@00e8584>/docs/research/mesh-2026-10-26/scripts/prim_potlid.py pot pts/B/ep45_white_pot.npz cand/white_pot/white_pot_ep45_thick.glb --variant thick --c0b --sigma 0.00165693 --t_fallback 0.00749796 --bar_t0 0.0045594 --markers_json markers/ep45.json --axis_cache axis/ep45_white_pot.json > logs/build/pot__ep45__thick.log 2>&1; echo \"thick rc=$?\" ) & wait"
+    },
+    "params": {
+     "pot/ep45": {
+      "sigma_m": 0.0016569277762245674,
+      "bar_t0_m": 0.004559400604354957,
+      "bar_t0_src": "t0_C0b",
+      "t_fallback_m": 0.007497955113649368,
+      "t_src": "thickness.py (n=39498)"
+     }
+    },
+    "fid_own_sum_mm": 4.806,
+    "faces_raw": 35048,
+    "n_candidates": 4,
+    "n_eligible": 4,
+    "runner_up": "pot/ep45/nostem",
+    "runner_up_fid_mm": 4.806,
+    "ties_at_3_decimals": [
+     "pot/ep45/nostem"
+    ],
+    "excluded": {},
+    "frame_vs_library_v3": {
+     "centroid_offset_mm": 15.272,
+     "axis_angle_deg": [
+      6.912,
+      4.935,
+      6.891
+     ],
+     "surf_sym_median_mm": 2.792,
+     "icp_rot_deg": 3.315,
+     "icp_centroid_motion_mm": 8.898,
+     "icp_symaxis_tilt_deg": null,
+     "icp_med_before_after_mm": [
+      3.702,
+      3.755
+     ]
+    },
+    "kit_budget": {
+     "nonpad_faces": 4096,
+     "vertices": 2054,
+     "watertight": false,
+     "bodies": 9,
+     "quality_flags": [],
+     "payload_chars": 83808
+    },
+    "e0_frame_gate": {
+     "reading": "pass",
+     "extent_mm": [
+      167.1,
+      190.1,
+      363.9
+     ],
+     "bodies": 3,
+     "main_body_extent_mm": [
+      167.1,
+      190.1,
+      363.9
+     ],
+     "main_body_area_frac": 0.9896,
+     "largest_other_body_mm": 21.0,
+     "farthest_other_body_mm": 144.5,
+     "pass": true
+    },
+    "alt_e0_gated": {
+     "source": "pubown",
+     "same_as_pick": true
+    }
+   }
+  }
+ }
+}

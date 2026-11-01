@@ -1,0 +1,41 @@
+{
+ "ep": 13,
+ "note": "post hoc, report only (PREREG F-I5.14 (7)); decides nothing",
+ "pairs": {
+  "blue_cup|plastic_dish_rack": {
+   "contact_frames": 95,
+   "static_runs": [
+    [
+     142,
+     150
+    ]
+   ],
+   "receiver": "plastic_dish_rack",
+   "guest": "blue_cup",
+   "containment": {
+    "blue_cup": 0.0,
+    "plastic_dish_rack": 0.1881
+   },
+   "hands_off_static": 5,
+   "s_frames": [
+    146
+   ],
+   "flags": [],
+   "S": [
+    {
+     "frame": 146,
+     "default": {
+      "disp_mm": 90.601,
+      "dz_mm": 28.861,
+      "lateral_mm": 85.093,
+      "tilt_deg": 115.303,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": false
+     }
+    }
+   ]
+  }
+ }
+}

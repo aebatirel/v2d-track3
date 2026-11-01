@@ -1,0 +1,94 @@
+{
+ "reference": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/runs/20261031-gmgref24-5468bbf/refs/ep24/processed/sequence_id=t3_ep024/robot_name=none/ref.parquet",
+ "reference_sha256": "bdb39df2db895db26f906f22d65f80f677d072bc32e3dd8897fefd5345fcb18e",
+ "T_table_from_world": [
+  [
+   -0.9812399518984534,
+   0.0,
+   0.19279044789180022,
+   0.025924760978625973
+  ],
+  [
+   -0.1396083939803753,
+   0.6896469052248806,
+   -0.7105607943335778,
+   0.32080179419547544
+  ],
+  [
+   -0.13295733574549864,
+   -0.7241458044577381,
+   -0.6767090961097791,
+   0.5296297412296221
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "names": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "T": 275,
+ "exports": [
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/e0.npz",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/e0fit.npz"
+ ],
+ "steps": [
+  {
+   "cmd": [
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/emb_tool/tools/intrusion.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/runs/20261031-gmgref24-5468bbf/refs/ep24/processed/sequence_id=t3_ep024/robot_name=none/ref.parquet",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-r1evalsem/r0",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/e0.npz",
+    "--round",
+    "0"
+   ],
+   "rc": 0,
+   "sec": 22.1,
+   "stdout": "gmg-intrusion/2: 130848 samples in 227/482 frame-pairs, T=275, B=2, f_star=240, max vol 7.53 cm3; flags ['reference_provenance_incomplete']; {'setup': 2.04, 'loop': 16.89, 'fit': 0.0, 'total': 19.31} s -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/e0.npz\n",
+   "stderr": ""
+  },
+  {
+   "cmd": [
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/emb_tool/pipeline/phys_fit.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/fitin",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/fit",
+    "--meshes",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-r1evalsem/r0/_fit",
+    "--props",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-r1evalsem/r0/props_gmg.json",
+    "--max_nfev",
+    "3"
+   ],
+   "rc": 0,
+   "sec": 690.8,
+   "stdout": "candidates {'wooden_piece_1': {'hand': 2295, 'table': 120, 'object': 691}, 'wooden_piece_2': {'hand': 1175, 'table': 761, 'object': 685}} (519 s)\nwooden_piece_1 {\"mass_kg\": 0.3, \"nfev\": 3, \"seconds\": 83.1, \"cost0\": 228.0427699499948, \"cost1\": 25.668346387658, \"force_violation_mg_median_before\": 0.004, \"force_violation_mg_median_after\": 0.004, \"force_violation_mg_p90_before\": 0.65, \"force_violation_mg_p90_after\": 0.643, \"frames_violation_gt_1mg_before\": 0, \"frames_violation_gt_1mg_after\": 0, \"frames_without_contact\": 0, \"correction_cm_median\": 0.0, \"correction_cm_max\": 0.64, \"correction_deg_median\": 0.0}\nwooden_piece_2 {\"mass_kg\": 0.3, \"nfev\": 3, \"seconds\": 82.1, \"cost0\": 11509.744137502737, \"cost1\": 5562.744487204868, \"force_violation_mg_median_before\": 0.003, \"force_violation_mg_median_after\": 0.003, \"force_violation_mg_p90_before\": 0.171, \"force_violation_mg_p90_after\": 0.171, \"frames_violation_gt_1mg_before\": 0, \"frames_violation_gt_1mg_after\": 0, \"frames_without_contact\": 0, \"correction_cm_median\": 0.0, \"correction_cm_max\": 0.51, \"correction_deg_median\": 0.0}\nwrote /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/fit (688.8 s)\n",
+   "stderr": "only got 394/400 samples!\n"
+  },
+  {
+   "cmd": [
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/emb_tool/tools/intrusion.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/runs/20261031-gmgref24-5468bbf/refs/ep24/processed/sequence_id=t3_ep024/robot_name=none/ref.parquet",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-r1evalsem/r0",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/e0fit.npz",
+    "--round",
+    "0",
+    "--fit",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/fit",
+    "--fit_commit",
+    "48cda9f5ee4f8c94d5fdf15a9173aa72f6cfc66e"
+   ],
+   "rc": 0,
+   "sec": 2598.6,
+   "stdout": "gmg-intrusion/2: 130848 samples in 227/482 frame-pairs, T=275, B=2, f_star=240, max vol 7.53 cm3; flags ['reference_provenance_incomplete']; {'setup': 2.17, 'loop': 20.19, 'fit': 2573.17, 'total': 2595.95} s -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24/e0fit.npz\n",
+   "stderr": ""
+  }
+ ],
+ "note": "reference built from OUR tracks (stand-in for their perceived ep24 reference); phys_fit max_nfev = plumbing only"
+}

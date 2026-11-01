@@ -1,0 +1,32 @@
+{
+ "rule": "PREREG F-I5.15 (3), (7): frames and pairs for the pose lanes",
+ "entries": [
+  {
+   "pair": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frame": 13,
+   "check": "c_overlap",
+   "kind": "pose_impossible (floor)"
+  },
+  {
+   "pair": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frame": 32,
+   "check": "c_overlap",
+   "kind": "pose_impossible (floor)"
+  },
+  {
+   "pair": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frame": 316,
+   "check": "c_overlap",
+   "kind": "pose_impossible (floor)"
+  }
+ ]
+}

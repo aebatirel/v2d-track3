@@ -1,0 +1,1 @@
+{"all_ok": false, "mm": 5.0, "deg": 2.0, "objects": {"blue_cup": {"until_frame": 12, "max_mm": 4.0, "max_deg": 2.4, "worst_frame": 11, "ok": false}, "plastic_dish_rack": {"until_frame": 12, "max_mm": 2.8, "max_deg": 1.6, "worst_frame": 3, "ok": true}}}

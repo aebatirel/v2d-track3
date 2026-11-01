@@ -1,0 +1,1488 @@
+[
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 173.8,
+   "straightness": 0.792,
+   "d": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "assembled": [
+    170,
+    180
+   ],
+   "n_assembled": 6,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 38,
+  "region_voxels": 38,
+  "cm3": 2.43,
+  "nmin": 5,
+  "split": {
+   "through_column": false,
+   "exit_share_entry_end": 0.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 25.0
+  },
+  "linked": true,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 7.0,
+  "image_width_info": {
+   "views": 20,
+   "p10_p90": [
+    5.0,
+    11.02
+   ]
+  },
+  "gap_topology": {
+   "before": [
+    2,
+    -23
+   ],
+   "after": [
+    2,
+    -25
+   ]
+  },
+  "class_mix": {
+   "U": 25,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 13,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.342,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 69.6,
+   "entering_samples_mm": 27.25,
+   "partner_collider_mm": 67.6,
+   "w_sub_mm": 62.64,
+   "centre_n_mm": 50.17,
+   "axes_dnm": [
+    [
+     -0.9892,
+     -0.076,
+     0.1256
+    ],
+    [
+     0.0109,
+     -0.8913,
+     -0.4532
+    ],
+    [
+     0.1464,
+     -0.4469,
+     0.8825
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "blue_cup": "PUSH",
+   "plastic_dish_rack": "PUSH"
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    116,
+    180
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 173.8,
+   "straightness": 0.792,
+   "d": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "assembled": [
+    170,
+    180
+   ],
+   "n_assembled": 6,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 6,
+  "region_voxels": 6,
+  "cm3": 0.38,
+  "nmin": 5,
+  "split": {
+   "through_column": false,
+   "exit_share_entry_end": 0.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 9.0
+  },
+  "linked": true,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 4.66,
+  "image_width_info": {
+   "views": 11,
+   "p10_p90": [
+    3.47,
+    7.0
+   ]
+  },
+  "gap_topology": {
+   "before": [
+    2,
+    -23
+   ],
+   "after": [
+    2,
+    -24
+   ]
+  },
+  "class_mix": {
+   "U": 2,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 4,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.667,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 69.6,
+   "entering_samples_mm": 6.82,
+   "partner_collider_mm": 67.6,
+   "w_sub_mm": 62.64,
+   "centre_n_mm": 67.97,
+   "axes_dnm": [
+    [
+     -0.9892,
+     -0.076,
+     0.1256
+    ],
+    [
+     0.0109,
+     -0.8913,
+     -0.4532
+    ],
+    [
+     0.1464,
+     -0.4469,
+     0.8825
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "blue_cup": "PUSH",
+   "plastic_dish_rack": "PUSH"
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    116,
+    180
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 173.8,
+   "straightness": 0.792,
+   "d": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "assembled": [
+    170,
+    180
+   ],
+   "n_assembled": 6,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 152,
+  "region_voxels": 152,
+  "cm3": 9.73,
+  "nmin": 5,
+  "split": {
+   "through_column": false,
+   "exit_share_entry_end": 0.769,
+   "exit_share_far_end": 0.444,
+   "extent_along_d_mm": 44.9
+  },
+  "linked": true,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 13.28,
+  "image_width_info": {
+   "views": 52,
+   "p10_p90": [
+    11.0,
+    19.35
+   ]
+  },
+  "class_mix": {
+   "U": 8,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 144,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.947,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 69.6,
+   "entering_samples_mm": 34.25,
+   "partner_collider_mm": 67.6,
+   "w_sub_mm": 62.64,
+   "centre_n_mm": 56.11,
+   "axes_dnm": [
+    [
+     -0.9892,
+     -0.076,
+     0.1256
+    ],
+    [
+     0.0109,
+     -0.8913,
+     -0.4532
+    ],
+    [
+     0.1464,
+     -0.4469,
+     0.8825
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "blue_cup": "PUSH",
+   "plastic_dish_rack": "PUSH"
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    116,
+    180
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 173.8,
+   "straightness": 0.792,
+   "d": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "assembled": [
+    170,
+    180
+   ],
+   "n_assembled": 6,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 8,
+  "region_voxels": 6,
+  "cm3": 0.38,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 0.667,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 9.3,
+   "plane_point": [
+    0.041,
+    -0.0095,
+    -0.076
+   ],
+   "plane_normal": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": false,
+   "kept_voxels": 2,
+   "carved_side_voxels": 6
+  },
+  "linked": false,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 4.66,
+  "image_width_info": {
+   "views": 15,
+   "p10_p90": [
+    3.47,
+    5.0
+   ]
+  },
+  "gap_topology": {
+   "before": [
+    2,
+    -23
+   ],
+   "after": [
+    2,
+    -22
+   ]
+  },
+  "class_mix": {
+   "U": 2,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 4,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.667,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 69.6,
+   "entering_samples_mm": 0.0,
+   "partner_collider_mm": 67.6,
+   "w_sub_mm": 62.64,
+   "centre_n_mm": 43.36,
+   "axes_dnm": [
+    [
+     -0.9892,
+     -0.076,
+     0.1256
+    ],
+    [
+     0.0109,
+     -0.8913,
+     -0.4532
+    ],
+    [
+     0.1464,
+     -0.4469,
+     0.8825
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    116,
+    180
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 173.8,
+   "straightness": 0.792,
+   "d": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "assembled": [
+    170,
+    180
+   ],
+   "n_assembled": 6,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 2,
+  "region_voxels": 1,
+  "cm3": 0.06,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 8.0,
+   "plane_point": [
+    0.04,
+    -0.002,
+    -0.082
+   ],
+   "plane_normal": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": false,
+   "kept_voxels": 1,
+   "carved_side_voxels": 1
+  },
+  "linked": false,
+  "flags": [],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 69.6,
+   "entering_samples_mm": 0.0,
+   "partner_collider_mm": 67.6,
+   "w_sub_mm": 62.64,
+   "centre_n_mm": 39.38,
+   "axes_dnm": [
+    [
+     -0.9892,
+     -0.076,
+     0.1256
+    ],
+    [
+     0.0109,
+     -0.8913,
+     -0.4532
+    ],
+    [
+     0.1464,
+     -0.4469,
+     0.8825
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 173.8,
+   "straightness": 0.792,
+   "d": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "assembled": [
+    170,
+    180
+   ],
+   "n_assembled": 6,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 22,
+  "region_voxels": 22,
+  "cm3": 1.41,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 0.929,
+   "extent_along_d_mm": 13.2,
+   "plane_point": [
+    0.01893,
+    -0.02625,
+    -0.05787
+   ],
+   "plane_normal": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": true,
+   "kept_voxels": 0,
+   "carved_side_voxels": 22
+  },
+  "linked": true,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 9.0,
+  "image_width_info": {
+   "views": 47,
+   "p10_p90": [
+    7.94,
+    13.06
+   ]
+  },
+  "class_mix": {
+   "U": 15,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 7,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.318,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 69.6,
+   "entering_samples_mm": 15.01,
+   "partner_collider_mm": 67.6,
+   "w_sub_mm": 62.64,
+   "centre_n_mm": 13.74,
+   "axes_dnm": [
+    [
+     -0.9892,
+     -0.076,
+     0.1256
+    ],
+    [
+     0.0109,
+     -0.8913,
+     -0.4532
+    ],
+    [
+     0.1464,
+     -0.4469,
+     0.8825
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "blue_cup": "PUSH",
+   "plastic_dish_rack": "PUSH"
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    116,
+    180
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 173.8,
+   "straightness": 0.792,
+   "d": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "assembled": [
+    170,
+    180
+   ],
+   "n_assembled": 6,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 2,
+  "region_voxels": 1,
+  "cm3": 0.06,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 8.0,
+   "plane_point": [
+    0.048,
+    -0.022,
+    -0.058
+   ],
+   "plane_normal": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": false,
+   "kept_voxels": 1,
+   "carved_side_voxels": 1
+  },
+  "linked": false,
+  "flags": [],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 69.6,
+   "entering_samples_mm": 3.77,
+   "partner_collider_mm": 67.6,
+   "w_sub_mm": 62.64,
+   "centre_n_mm": 46.47,
+   "axes_dnm": [
+    [
+     -0.9892,
+     -0.076,
+     0.1256
+    ],
+    [
+     0.0109,
+     -0.8913,
+     -0.4532
+    ],
+    [
+     0.1464,
+     -0.4469,
+     0.8825
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 173.8,
+   "straightness": 0.792,
+   "d": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "assembled": [
+    170,
+    180
+   ],
+   "n_assembled": 6,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 3,
+  "region_voxels": 3,
+  "cm3": 0.19,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 4.8,
+   "plane_point": [
+    0.01705,
+    -0.03141,
+    -0.0565
+   ],
+   "plane_normal": [
+    -0.9892,
+    -0.076,
+    0.1256
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": true,
+   "kept_voxels": 0,
+   "carved_side_voxels": 3
+  },
+  "linked": true,
+  "flags": [
+   "interlock_pair_fail",
+   "interlock_push"
+  ],
+  "image_width_px": 3.47,
+  "image_width_info": {
+   "views": 10,
+   "p10_p90": [
+    3.47,
+    3.47
+   ]
+  },
+  "gap_topology": {
+   "before": [
+    2,
+    -23
+   ],
+   "after": [
+    2,
+    -23
+   ]
+  },
+  "class_mix": {
+   "U": 1,
+   "SIL": 0,
+   "GAP": 2,
+   "O": 0,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.0,
+  "ru_topology": {
+   "before": [
+    2,
+    -23
+   ],
+   "after": [
+    2,
+    -23
+   ]
+  },
+  "swept_share": 1.0,
+  "run_kind": "INSERTION",
+  "push_mm": 2.0,
+  "push_frames": 14,
+  "silgap_share": 1.0,
+  "i": true,
+  "ii": false,
+  "iii": true,
+  "ro": "PUSH (a pose correction within the prior removes it)",
+  "step": 4,
+  "carve_voxels": 1,
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 69.6,
+   "entering_samples_mm": 5.86,
+   "partner_collider_mm": 67.6,
+   "w_sub_mm": 62.64,
+   "centre_n_mm": 38.05,
+   "axes_dnm": [
+    [
+     -0.9892,
+     -0.076,
+     0.1256
+    ],
+    [
+     0.0109,
+     -0.8913,
+     -0.4532
+    ],
+    [
+     0.1464,
+     -0.4469,
+     0.8825
+    ]
+   ]
+  },
+  "budget": {
+   "carve_cm3": 0.1,
+   "vol_share": 0.0005,
+   "reach": 0.063,
+   "topology": {
+    "before": [
+     3,
+     -55
+    ],
+    "after": [
+     3,
+     -55
+    ]
+   },
+   "applies": true,
+   "ok": true,
+   "base_cm3": 223.66,
+   "carved_before_cm3": 0.0,
+   "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+  },
+  "own_decision": "CARVE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "blue_cup": "CARVE",
+   "plastic_dish_rack": "PUSH"
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    116,
+    180
+   ],
+   "push_mm": 2.0,
+   "why": "PUSH (a pose correction within the prior removes it)"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "plastic_dish_rack",
+  "partner": "blue_cup",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 58.5,
+   "straightness": 0.848,
+   "d": [
+    -0.9398,
+    -0.3265,
+    0.1011
+   ],
+   "assembled": [
+    164,
+    180
+   ],
+   "n_assembled": 9,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 211,
+  "region_voxels": 130,
+  "cm3": 8.32,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 0.667,
+   "extent_along_d_mm": 87.3,
+   "plane_point": [
+    0.02677,
+    0.03283,
+    0.14395
+   ],
+   "plane_normal": [
+    0.0462,
+    -0.9435,
+    -0.328
+   ],
+   "carve_side": "entry of the partner pair (s > 0)",
+   "shared": true,
+   "kept_voxels": 81,
+   "carved_side_voxels": 130
+  },
+  "linked": true,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 12.42,
+  "image_width_info": {
+   "views": 64,
+   "p10_p90": [
+    11.65,
+    12.42
+   ]
+  },
+  "class_mix": {
+   "U": 47,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 83,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.638,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 69.32,
+   "entering_samples_mm": 23.45,
+   "partner_collider_mm": 67.32,
+   "w_sub_mm": 62.58,
+   "centre_n_mm": 108.41,
+   "axes_dnm": [
+    [
+     -0.9398,
+     -0.3265,
+     0.1011
+    ],
+    [
+     0.2644,
+     -0.507,
+     0.8204
+    ],
+    [
+     -0.2166,
+     0.7977,
+     0.5628
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    116,
+    180
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "plastic_dish_rack",
+  "partner": "blue_cup",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 58.5,
+   "straightness": 0.848,
+   "d": [
+    -0.9398,
+    -0.3265,
+    0.1011
+   ],
+   "assembled": [
+    164,
+    180
+   ],
+   "n_assembled": 9,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 6,
+  "region_voxels": 3,
+  "cm3": 0.19,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 19.4,
+   "plane_point": [
+    0.014,
+    -0.03,
+    0.148
+   ],
+   "plane_normal": [
+    -0.9398,
+    -0.3265,
+    0.1011
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": true,
+   "kept_voxels": 3,
+   "carved_side_voxels": 3
+  },
+  "linked": true,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 3.0,
+  "image_width_info": {
+   "views": 10,
+   "p10_p90": [
+    3.0,
+    3.0
+   ]
+  },
+  "gap_topology": {
+   "before": [
+    2,
+    -11
+   ],
+   "after": [
+    2,
+    -12
+   ]
+  },
+  "class_mix": {
+   "U": 0,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 3,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 1.0,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 69.32,
+   "entering_samples_mm": 4.89,
+   "partner_collider_mm": 67.32,
+   "w_sub_mm": 62.58,
+   "centre_n_mm": 140.61,
+   "axes_dnm": [
+    [
+     -0.9398,
+     -0.3265,
+     0.1011
+    ],
+    [
+     0.2644,
+     -0.507,
+     0.8204
+    ],
+    [
+     -0.2166,
+     0.7977,
+     0.5628
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    116,
+    180
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "plastic_dish_rack",
+  "partner": "blue_cup",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 58.5,
+   "straightness": 0.848,
+   "d": [
+    -0.9398,
+    -0.3265,
+    0.1011
+   ],
+   "assembled": [
+    164,
+    180
+   ],
+   "n_assembled": 9,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 18,
+  "region_voxels": 9,
+  "cm3": 0.58,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 14.5,
+   "plane_point": [
+    0.016,
+    0.04467,
+    0.19733
+   ],
+   "plane_normal": [
+    -0.9398,
+    -0.3265,
+    0.1011
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": true,
+   "kept_voxels": 9,
+   "carved_side_voxels": 9
+  },
+  "linked": true,
+  "flags": [
+   "budget_iv_fail",
+   "interlock_push"
+  ],
+  "image_width_px": 5.32,
+  "image_width_info": {
+   "views": 10,
+   "p10_p90": [
+    5.0,
+    5.32
+   ]
+  },
+  "gap_topology": {
+   "before": [
+    2,
+    -11
+   ],
+   "after": [
+    2,
+    -11
+   ]
+  },
+  "class_mix": {
+   "U": 8,
+   "SIL": 0,
+   "GAP": 1,
+   "O": 0,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.0,
+  "ru_topology": {
+   "before": [
+    2,
+    -11
+   ],
+   "after": [
+    2,
+    -11
+   ]
+  },
+  "swept_share": 0.0,
+  "run_kind": "INSERTION",
+  "push_mm": 10.0,
+  "push_frames": 13,
+  "silgap_share": 1.0,
+  "i": false,
+  "ii": false,
+  "iii": true,
+  "ro": "PUSH (a pose correction within the prior removes it)",
+  "step": 4,
+  "carve_voxels": 8,
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 69.32,
+   "entering_samples_mm": 26.92,
+   "partner_collider_mm": 67.32,
+   "w_sub_mm": 62.58,
+   "centre_n_mm": 140.95,
+   "axes_dnm": [
+    [
+     -0.9398,
+     -0.3265,
+     0.1011
+    ],
+    [
+     0.2644,
+     -0.507,
+     0.8204
+    ],
+    [
+     -0.2166,
+     0.7977,
+     0.5628
+    ]
+   ]
+  },
+  "budget": {
+   "carve_cm3": 1.09,
+   "vol_share": 0.0031,
+   "reach": 0.081,
+   "topology": {
+    "before": [
+     4,
+     -30
+    ],
+    "after": [
+     9,
+     -24
+    ]
+   },
+   "applies": true,
+   "ok": false,
+   "base_cm3": 355.82,
+   "carved_before_cm3": 0.0,
+   "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    116,
+    180
+   ],
+   "push_mm": 10.0,
+   "why": "PUSH (a pose correction within the prior removes it)"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "plastic_dish_rack",
+  "partner": "blue_cup",
+  "run": {
+   "frames": [
+    116,
+    180
+   ],
+   "n": 33,
+   "kind": "INSERTION",
+   "travel_mm": 58.5,
+   "straightness": 0.848,
+   "d": [
+    -0.9398,
+    -0.3265,
+    0.1011
+   ],
+   "assembled": [
+    164,
+    180
+   ],
+   "n_assembled": 9,
+   "n_build": 20,
+   "n_check": 13,
+   "flags": []
+  },
+  "voxels": 2,
+  "region_voxels": 1,
+  "cm3": 0.06,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 0.5,
+   "extent_along_d_mm": 4.4,
+   "plane_point": [
+    0.022,
+    0.058,
+    0.156
+   ],
+   "plane_normal": [
+    -0.9398,
+    -0.3265,
+    0.1011
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": false,
+   "kept_voxels": 1,
+   "carved_side_voxels": 1
+  },
+  "linked": false,
+  "flags": [],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 69.32,
+   "entering_samples_mm": 0.0,
+   "partner_collider_mm": 67.32,
+   "w_sub_mm": 62.58,
+   "centre_n_mm": 104.4,
+   "axes_dnm": [
+    [
+     -0.9398,
+     -0.3265,
+     0.1011
+    ],
+    [
+     0.2644,
+     -0.507,
+     0.8204
+    ],
+    [
+     -0.2166,
+     0.7977,
+     0.5628
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ }
+]

@@ -1,0 +1,14 @@
+{
+ "obj": "plastic_dish_rack",
+ "ep": 13,
+ "file": "/content/results/c0b/pts/B/ep13_plastic_dish_rack.npz",
+ "n": 0,
+ "median_m": null,
+ "info": {
+  "points": 2291202,
+  "samples": 54489,
+  "measured": 0,
+  "median_mm": null
+ },
+ "sec": 70.4
+}

@@ -1,0 +1,502 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T12:56:38Z",
+ "commit": "3cb6fd1fd47215bf0269ea35acdd084c268b3942",
+ "code_dirty": false,
+ "code_dirty_files": [],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "gmg/tools/g0_inputs.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-g0in-937f9d7",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/bundles/b4ext4-b61e8aa/public/ep2"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 1102,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-g0in-937f9d7"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-g0in-937f9d7",
+  "root": "runs-dev",
+  "pid": 1102,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T12:44:34Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/hands.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep2/white_pot.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep2/white_pot_lid.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "calib",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "sha256": "23e2d9c46369292cdda492a777e7a6083815369a25d1af4bb82560669fde5d52",
+   "bytes": 16640,
+   "tier": "P0"
+  },
+  {
+   "role": "depth",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/depth/ep2/depths_fs0.5.npy",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/depth/ep2/depths_fs0.5.npy",
+   "sha256": "c8d71bfc3e85617267e04aaab91feda17fd174b6cfa11b08983e3b9332dd4d07",
+   "bytes": 2195200128,
+   "tier": "P0"
+  },
+  {
+   "role": "video",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2_a.mp4",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2_a.mp4",
+   "sha256": "ccefecc6a10f41e321315a02d99ba8a8cf4e35aa6b06f6757d7915c994202417",
+   "bytes": 39538104,
+   "tier": "P0"
+  },
+  {
+   "role": "dev_hands",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/hands.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/hands.npz",
+   "sha256": "8d14170425f0aeb45657bed53626d16d5926aeef2f74e61d0d6520a6be3ff38d",
+   "bytes": 193527,
+   "tier": "DEV",
+   "keys": [
+    "a_offset",
+    "joints_left",
+    "joints_right",
+    "valid_left",
+    "valid_right"
+   ],
+   "keys_not_read": [
+    "Da",
+    "KR",
+    "Ka",
+    "T",
+    "T_rect_a",
+    "chir_left",
+    "chir_right",
+    "depth_ok_left",
+    "depth_ok_right",
+    "dz_med_left",
+    "dz_med_right",
+    "filled_left",
+    "filled_right",
+    "measured_left",
+    "measured_right",
+    "n_depth_inl_left",
+    "n_depth_inl_right",
+    "n_depth_left",
+    "n_depth_right",
+    "n_det",
+    "rms_px_left",
+    "rms_px_right",
+    "scale_left",
+    "scale_right",
+    "score_left",
+    "score_right",
+    "size_a",
+    "swap",
+    "uv_a_left",
+    "uv_a_right",
+    "wl_mirror",
+    "world_frame"
+   ]
+  },
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+   "sha256": "ae4c9b3c59ff927edbb814c91a905be769bf76c2f17fbca45daf6333ee28ba2c",
+   "bytes": 88616,
+   "tier": "P1",
+   "keys": [
+    "cam_T_white_pot",
+    "cam_T_white_pot_lid",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep2/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep2/episode.json",
+   "sha256": "102967ae4c3d986eaa5bd9a97893962a8a503e5b2f70e3a8eea9cc75a996b58d",
+   "bytes": 54364,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep2/white_pot.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep2/white_pot.npz",
+   "sha256": "6b3dc2bc49fb932fb0c3a7a28cf679882908d245255a4c7c2c0a2dc81d773b74",
+   "bytes": 37568168,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep2/white_pot_lid.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep2/white_pot_lid.npz",
+   "sha256": "08db80ad6da0243c69383fa3fbf3b7d77cdf125a5aadbd2d379418ec1b51b124",
+   "bytes": 23892376,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "weights",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/config.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/config.json",
+   "sha256": "860aff9751b139d83a4ad7df1e5535416fded533e0ead02625edbefcb9953cce",
+   "bytes": 5695,
+   "tier": "P0"
+  },
+  {
+   "role": "weights",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/model.safetensors",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/model.safetensors",
+   "sha256": "48c14467e5cf9e51870511feb72c89688e82dd74523142c0538b663e193ac2a7",
+   "bytes": 155908064,
+   "tier": "P0"
+  },
+  {
+   "role": "weights",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/preprocessor_config.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/preprocessor_config.json",
+   "sha256": "6ebf229ee259368ce4a8d4f2fe893a72b053023710853e257253939e601f583d",
+   "bytes": 683,
+   "tier": "P0"
+  },
+  {
+   "role": "weights",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/processor_config.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/processor_config.json",
+   "sha256": "f8a68e865cfad115c1c2763f3d93eca7b1c622da06da2a9273eb437fb2389b6d",
+   "bytes": 95,
+   "tier": "P0"
+  },
+  {
+   "role": "weights",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/video_preprocessor_config.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights/sam2.1-hiera-tiny/video_preprocessor_config.json",
+   "sha256": "9fccfe5f464ec38c2f236d0e6a68e95511c80c22132fc2fa4b9f7b65f24fad95",
+   "bytes": 705,
+   "tier": "P0"
+  }
+ ],
+ "constants": [
+  {
+   "name": "genview_hands_max_share",
+   "value": 0.25,
+   "origin": "generic:PREREG A.6 generator views, hands <= 25 % of the mask",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:54"
+  },
+  {
+   "name": "genview_visible_min_share",
+   "value": 0.6,
+   "origin": "generic:PREREG A.6 generator views, visible >= 0.6 x episode max",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:56"
+  },
+  {
+   "name": "genview_depth_min_share",
+   "value": 0.6,
+   "origin": "generic:PREREG A.6 generator views, valid depth >= 0.6 of the mask",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:58"
+  },
+  {
+   "name": "genview_n_max",
+   "value": 6,
+   "origin": "generic:PREREG A.6 generator views, <= 6 views",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:60"
+  },
+  {
+   "name": "genview_min_sep_deg",
+   "value": 8.0,
+   "origin": "generic:PREREG A.6 generator views, >= 8 deg apart",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:61"
+  },
+  {
+   "name": "genview_mv_min_views",
+   "value": 3,
+   "origin": "generic:PREREG A.6 Pixal3D-MV only with >= 3 views",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:62"
+  },
+  {
+   "name": "genmask_partner_dilate_px_rect",
+   "value": 10,
+   "origin": "generic:PREREG A.6 / SPEC section 4: partner pixels dilated by 10 px (10 px ~ 10 mm at 0.5-0.6 m, focal 600 px)",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:63"
+  },
+  {
+   "name": "hand_capsule_r_m",
+   "value": 0.03,
+   "origin": "generic:SPEC section 7 M2 hand radius 30 mm (obs_points.py)",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:66"
+  },
+  {
+   "name": "forearm_capsule_r_m",
+   "value": 0.045,
+   "origin": "generic:SPEC section 7 M2 forearm radius 45 mm (obs_points.py)",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:68"
+  },
+  {
+   "name": "forearm_capsule_len_m",
+   "value": 0.15,
+   "origin": "generic:obs_points.py forearm length 0.15 m",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:70"
+  },
+  {
+   "name": "depth_valid_zmax_m",
+   "value": 1.5,
+   "origin": "generic:obs_points.py zmax",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:71"
+  },
+  {
+   "name": "depth_edge_thr_m",
+   "value": 0.02,
+   "origin": "generic:obs_points.py edge filter (5x5 range > 2 cm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:72"
+  },
+  {
+   "name": "genmask_occluder_gap_m",
+   "value": 0.02,
+   "origin": "generic:PREREG A.6 separated-frame 3-D gap 20 mm (a surface farther than it in front of the target is not the target); chosen over the 10 mm contact gap after a GT-free dev check (DEVIATIONS 67)",
+   "where": "docs/research/mesh-2026-10-26/gmg/gen_inputs.py:73"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "g0/inputs/ep2_white_pot_control_k24.json",
+   "sha256": "f878d222d67440a8fed8f8394a2f02ec0522a28e31120a38909aa88b000d5fa7",
+   "bytes": 1824,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_control_k24.png",
+   "sha256": "86760d062fa7eaec56bcc611d52c5a06b49f29318d0dd73e0f14fed8f0dbc8dd",
+   "bytes": 2777876,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_control_k24_mask.png",
+   "sha256": "50978b9d8415b40aef02c8ad63f2e0e8dc72ee4bda20918a6a2437f5ba7aab0d",
+   "bytes": 5306,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_control_k24_pointmap.npz",
+   "sha256": "52de7b578b4b78ca1470455ed5b62b5fc6abb40df8ac8fbde19e39aec27f6125",
+   "bytes": 973867,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_lid_control_k318.json",
+   "sha256": "99a5355f6bb24bb066bb1d141e3e28736652f5e971ec4850361fc9d821bf3b77",
+   "bytes": 1847,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_lid_control_k318.png",
+   "sha256": "a09f15dbcced767a1b352da255e98221cff0e45b73e1398c68068cdd1f46f2af",
+   "bytes": 2741892,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_lid_control_k318_mask.png",
+   "sha256": "2a3b4cc184c94aafc47b2191473ef15516eed2097d539b22e5cc27b03cd4da40",
+   "bytes": 4638,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_lid_control_k318_pointmap.npz",
+   "sha256": "cb685500982875e20b464d94f21de79c7e855e94621d75115a1f7fdf0f31f56e",
+   "bytes": 714401,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_lid_primary_k132.json",
+   "sha256": "12c3c650d461298af0c9153a9097ece2849b3b63147ada71329101350ec49a47",
+   "bytes": 1811,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_lid_primary_k132.png",
+   "sha256": "e905b61ad8b28d8891752e0a970c88ab91b7259885dafdf954d5ad6a0f755919",
+   "bytes": 2533638,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_lid_primary_k132_mask.png",
+   "sha256": "4a55ef187098acfb1af100a1a1f71aa3f49275227fa1de84b2b9bb7918676008",
+   "bytes": 4334,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_lid_primary_k132_pointmap.npz",
+   "sha256": "42af884fd025cdae82ba9ef957fa70edda31d148c00d134d6404d5933b90e447",
+   "bytes": 667591,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_primary_k246.json",
+   "sha256": "56104dcec801b3941a687c81cf9bca33495c41624368e1fcbecf5de0c46c6801",
+   "bytes": 1806,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_primary_k246.png",
+   "sha256": "5e0884a4b07c51dea0c35041e17ab656e4ef267ce1cceaf72af9a0e24969a685",
+   "bytes": 2630531,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_primary_k246_mask.png",
+   "sha256": "0a83a8dc09334d84afd0d2acbfcddbe0ab6f5312523a77c4043df36a4a8f2dfc",
+   "bytes": 5366,
+   "how": "python"
+  },
+  {
+   "path": "g0/inputs/ep2_white_pot_primary_k246_pointmap.npz",
+   "sha256": "5ffd9b390783752b9ca3ac979d4accb17fcec7594cc5fe7abfed41d324c6d5ab",
+   "bytes": 926092,
+   "how": "python"
+  },
+  {
+   "path": "g0/jobs.json",
+   "sha256": "faae4254a4bfe98298c085091a11dc79d7c33a04347527ee9be6ddd3eb80b140",
+   "bytes": 1564,
+   "how": "python"
+  },
+  {
+   "path": "g0/montage_white_pot.png",
+   "sha256": "b731ef0e2d215d6b987f2853794eef35b07a4c3160aefbf1fb0be19ba9a7213e",
+   "bytes": 128860,
+   "how": "python"
+  },
+  {
+   "path": "g0/montage_white_pot_lid.png",
+   "sha256": "6ddb0d653fa481798887302931898ad7a819ac18caaaf8475f2a02ce97acad9f",
+   "bytes": 130485,
+   "how": "python"
+  },
+  {
+   "path": "g0/report.json",
+   "sha256": "37dc1f47a91dcba4eaa2a9918425e58c7c0f44adb981f226b0a77f790b5d3fda",
+   "bytes": 11607,
+   "how": "python"
+  },
+  {
+   "path": "g0/table.json",
+   "sha256": "c2e7d7e0870ed544085ca3fa1d751a23d2e90d6cfb0cb4b98b6ecf3339bfe26c",
+   "bytes": 88236,
+   "how": "python"
+  }
+ ],
+ "extra": {
+  "step": "B3",
+  "prereg": "B.11 (clean ep2) + B.12 inputs",
+  "b11_pass": true,
+  "start_commit": "937f9d70a8bfdc5caf6d15bf7461d28adf610ebe",
+  "start_code_dirty_files": [
+   "M docs/research/mesh-2026-10-26/gmg/PREREG.md",
+   " M docs/research/mesh-2026-10-26/gmg/build/I.md",
+   " M docs/research/mesh-2026-10-26/gmg/build/I/i_png.py",
+   " M docs/research/mesh-2026-10-26/gmg/interlock.py",
+   " M docs/research/mesh-2026-10-26/gmg/physcheck.py",
+   " M docs/research/mesh-2026-10-26/gmg/producers/__init__.py",
+   " M docs/research/mesh-2026-10-26/gmg/score.py",
+   " M docs/research/mesh-2026-10-26/gmg/select.py",
+   " M docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py",
+   " M docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py",
+   "?? docs/research/mesh-2026-10-26/gmg/build/I/p27.py",
+   "?? docs/research/mesh-2026-10-26/gmg/build/I/png/"
+  ]
+ }
+}

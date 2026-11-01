@@ -1,0 +1,7 @@
+{
+ "do_not_use": {
+  "wooden_piece_1": "contact_budget (F-I4.17.1 part 1): delivered max nefc 124 / max ncon 31 (overflow copies 0), control max nefc 32, ratio 3.875 (<= 2.0), default max nefc 112; F-I4.7 failing: ['contact_gate_part1'] (F-I4.8: written for the record)",
+  "wooden_piece_2": "contact_budget (F-I4.17.1 part 1): delivered max nefc 124 / max ncon 31 (overflow copies 0), control max nefc 32, ratio 3.875 (<= 2.0), default max nefc 112; F-I4.7 failing: ['contact_gate_part1'] (F-I4.8: written for the record)"
+ },
+ "rule": "F-I3.8 / F-I4.8"
+}

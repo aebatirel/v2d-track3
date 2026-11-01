@@ -1,0 +1,605 @@
+{
+ "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+ "routes": {
+  "blue_cup": {
+   "route": "4_voxels",
+   "n": 29,
+   "gate": {
+    "pass_": true,
+    "n": 29,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 1.598
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "2_lathe",
+     "report": {
+      "profile": {
+       "bins": 93,
+       "h_span_mm": [
+        -93.98,
+        91.05
+       ],
+       "material_bins": 93,
+       "max_intervals": 2.0,
+       "wall_threshold_mm": 2.975,
+       "wall_bins": 90,
+       "solid_bins": 3,
+       "two_interval_bins": 4,
+       "r_out_mm": [
+        15.22,
+        46.04
+       ]
+      },
+      "n_sectors": 8,
+      "ring_pieces": 65,
+      "continuity": {
+       "ok": true,
+       "gaps": 0,
+       "checked": 129240
+      },
+      "handle": {
+       "points": 3184,
+       "components": [
+        {
+         "cm3": 1.8,
+         "pieces": 2
+        },
+        {
+         "cm3": 3.104,
+         "pieces": 3
+        },
+        {
+         "cm3": 2.52,
+         "pieces": 2
+        },
+        {
+         "cm3": 0.8,
+         "pieces": 1
+        },
+        {
+         "cm3": 1.424,
+         "pieces": 1
+        },
+        {
+         "cm3": 0.552,
+         "pieces": 1
+        },
+        {
+         "cm3": 2.92,
+         "pieces": 3
+        },
+        {
+         "cm3": 1.48,
+         "pieces": 1
+        },
+        {
+         "cm3": 2.664,
+         "pieces": 2
+        },
+        {
+         "cm3": 0.392,
+         "pieces": 1
+        },
+        {
+         "cm3": 1.648,
+         "pieces": 1
+        },
+        {
+         "cm3": 1.104,
+         "pieces": 1
+        },
+        {
+         "cm3": 0.656,
+         "pieces": 1
+        },
+        {
+         "cm3": 0.304,
+         "pieces": 1
+        },
+        {
+         "cm3": 0.704,
+         "pieces": 1
+        }
+       ]
+      },
+      "why": "lathe_over_cap (with the handle)"
+     }
+    },
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 4.864,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 1020.3
+     },
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 4.864,
+      "sum_cm3": 41.592,
+      "over_tol": 36,
+      "keepout_points": 5053,
+      "keepout_cm3": 40.424
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 29,
+      "cells": 55,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 29,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  },
+  "plastic_dish_rack": {
+   "route": "4_voxels",
+   "n": 45,
+   "gate": {
+    "pass_": true,
+    "n": 45,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 14.6123
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 6.608,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 286.8
+     },
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 6.608,
+      "sum_cm3": 114.648,
+      "over_tol": 75,
+      "keepout_points": 14263,
+      "keepout_cm3": 114.104
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 45,
+      "cells": 108,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 45,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  }
+ },
+ "diag_sink": true,
+ "pairs": {
+  "blue_cup|plastic_dish_rack": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "gates": {
+    "blue_cup<-plastic_dish_rack#0": {
+     "voxels": 6,
+     "run_kind": "INSERTION",
+     "run": [
+      142,
+      180
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 5,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "plastic_dish_rack<-blue_cup#1": {
+     "voxels": 9,
+     "run_kind": "SEAT",
+     "run": [
+      142,
+      180
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 8,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "in_scope": false,
+   "why": "no persistent component passes the kept gates"
+  }
+ },
+ "overlap_track": {
+  "blue_cup|plastic_dish_rack": {
+   "max_cm3": 0.232,
+   "median_cm3": 0.0
+  }
+ },
+ "decisions": [
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "run": {
+    "frames": [
+     142,
+     180
+    ],
+    "n": 20,
+    "kind": "INSERTION",
+    "travel_mm": 40.8,
+    "straightness": 0.802,
+    "d": [
+     -0.9434,
+     0.3315,
+     -0.0111
+    ],
+    "assembled": [
+     170,
+     180
+    ],
+    "n_assembled": 6,
+    "n_build": 10,
+    "n_check": 10,
+    "flags": []
+   },
+   "voxels": 6,
+   "region_voxels": 4,
+   "cm3": 0.26,
+   "nmin": 5,
+   "split": {
+    "through_column": true,
+    "exit_share_entry_end": 1.0,
+    "exit_share_far_end": 0.667,
+    "extent_along_d_mm": 7.8,
+    "plane_point": [
+     0.01058,
+     -0.03794,
+     -0.06804
+    ],
+    "plane_normal": [
+     -0.9434,
+     0.3315,
+     -0.0111
+    ],
+    "carve_side": "entry (s < 0)",
+    "shared": true,
+    "kept_voxels": 2,
+    "carved_side_voxels": 4
+   },
+   "linked": true,
+   "flags": [
+    "interlock_push",
+    "waiver_gate_fail:sweep"
+   ],
+   "image_width_px": null,
+   "image_width_info": {
+    "views": 0
+   },
+   "class_mix": {
+    "U": 1,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 3,
+    "O_testable_solid": 0
+   },
+   "class_o_share": 0.75,
+   "step": 2,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 9.43,
+    "entering_samples_mm": 7.43,
+    "partner_collider_mm": 6.05,
+    "w_sub_mm": 9.43,
+    "centre_n_mm": 31.79,
+    "axes_dnm": [
+     [
+      -0.9434,
+      0.3315,
+      -0.0111
+     ],
+     [
+      0.2179,
+      0.5944,
+      -0.7741
+     ],
+     [
+      -0.25,
+      -0.7327,
+      -0.633
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    },
+    "ab": null
+   },
+   "pair_status": {
+    "blue_cup": "PUSH",
+    "plastic_dish_rack": "CARVE"
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     142,
+     180
+    ],
+    "push_mm": null,
+    "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false,
+   "round": 0,
+   "waiver_fi5_gates": {
+    "voxels": 6,
+    "run_kind": "INSERTION",
+    "run": [
+     142,
+     180
+    ],
+    "n_build": 10,
+    "sweep_share": 0.0,
+    "observed_voxels": 5,
+    "persistent_nmin": 5,
+    "pass_": false,
+    "fail": "sweep"
+   },
+   "decision_f_i3": "PUSH",
+   "tier_f_i3": "T0",
+   "waiver_fi5": {
+    "scope": "out",
+    "why": "no persistent component passes the kept gates"
+   }
+  },
+  {
+   "target": "plastic_dish_rack",
+   "partner": "blue_cup",
+   "run": {
+    "frames": [
+     142,
+     180
+    ],
+    "n": 20,
+    "kind": "SEAT",
+    "travel_mm": 7.5,
+    "straightness": 0.611,
+    "d": [
+     0.5615,
+     0.7119,
+     -0.4218
+    ],
+    "assembled": [
+     164,
+     180
+    ],
+    "n_assembled": 9,
+    "n_build": 10,
+    "n_check": 10,
+    "flags": []
+   },
+   "voxels": 9,
+   "region_voxels": 4,
+   "cm3": 0.26,
+   "nmin": 5,
+   "split": {
+    "through_column": true,
+    "exit_share_entry_end": 1.0,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 11.3,
+    "plane_point": [
+     0.01446,
+     0.02894,
+     0.13678
+    ],
+    "plane_normal": [
+     -0.0669,
+     -0.994,
+     0.086
+    ],
+    "carve_side": "entry of the partner pair (s > 0)",
+    "shared": true,
+    "kept_voxels": 5,
+    "carved_side_voxels": 4
+   },
+   "linked": true,
+   "flags": [
+    "interlock_pair_fail",
+    "interlock_push",
+    "waiver_gate_fail:sweep"
+   ],
+   "image_width_px": 3.47,
+   "image_width_info": {
+    "views": 12,
+    "p10_p90": [
+     3.47,
+     3.47
+    ]
+   },
+   "gap_topology": {
+    "before": [
+     33,
+     33
+    ],
+    "after": [
+     33,
+     33
+    ]
+   },
+   "class_mix": {
+    "U": 1,
+    "SIL": 0,
+    "GAP": 3,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "class_o_share": 0.0,
+   "ru_topology": {
+    "before": [
+     33,
+     33
+    ],
+    "after": [
+     33,
+     33
+    ]
+   },
+   "swept_share": 0.0,
+   "run_kind": "SEAT",
+   "push_mm": 2.0,
+   "push_frames": 10,
+   "silgap_share": 1.0,
+   "i": false,
+   "ii": false,
+   "iii": true,
+   "ro": "PUSH (a pose correction within the prior removes it)",
+   "step": 4,
+   "carve_voxels": 1,
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 20.04,
+    "entering_samples_mm": 6.54,
+    "partner_collider_mm": 18.04,
+    "w_sub_mm": 20.04,
+    "centre_n_mm": -120.55,
+    "axes_dnm": [
+     [
+      0.5615,
+      0.7119,
+      -0.4218
+     ],
+     [
+      -0.5817,
+      -0.0229,
+      -0.8131
+     ],
+     [
+      -0.5885,
+      0.7019,
+      0.4012
+     ]
+    ]
+   },
+   "budget": {
+    "carve_cm3": 0.23,
+    "vol_share": 0.0099,
+    "reach": 0.026,
+    "topology": {
+     "before": [
+      33,
+      33
+     ],
+     "after": [
+      33,
+      33
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 23.33,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "own_decision": "CARVE",
+   "sources": {
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    },
+    "ab": null
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     142,
+     180
+    ],
+    "push_mm": 2.0,
+    "why": "PUSH (a pose correction within the prior removes it)"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false,
+   "round": 0,
+   "waiver_fi5_gates": {
+    "voxels": 9,
+    "run_kind": "SEAT",
+    "run": [
+     142,
+     180
+    ],
+    "n_build": 10,
+    "sweep_share": 0.0,
+    "observed_voxels": 8,
+    "persistent_nmin": 5,
+    "pass_": false,
+    "fail": "sweep"
+   },
+   "decision_f_i3": "PUSH",
+   "tier_f_i3": "T0",
+   "waiver_fi5": {
+    "scope": "out",
+    "why": "no persistent component passes the kept gates"
+   }
+  }
+ ],
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep12-fi5/r0",
+ "do_not_use": null,
+ "sec": 3405.1
+}

@@ -1,0 +1,23 @@
+{
+ "label": "c2r/rack/K_ep12_nomk",
+ "sha1_16": "7f4eab701769d264",
+ "cdo_eval": 0.4413,
+ "cdo_all": 0.44302857142857144,
+ "add_med": 6.56,
+ "add_eval": 6.651999999999999,
+ "add_max": 7.64,
+ "flips_all": 0,
+ "amb_mm": 11.798359883965682,
+ "thresholds": {
+  "cdo_le": 0.43604,
+  "add_med_le": 7.79,
+  "flips_all": 0
+ },
+ "checks": {
+  "cdo": false,
+  "add": true,
+  "flips": true
+ },
+ "WIN": false,
+ "H_R_strong": false
+}

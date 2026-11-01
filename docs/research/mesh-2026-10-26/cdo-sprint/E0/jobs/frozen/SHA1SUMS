@@ -1,0 +1,7 @@
+ca8add36c44879b0c8386f4f8232bd1a99f575b9  ./docs/research/mesh-2026-10-26/scripts/lathe_obs.py
+53d90e5dd336dcd690e9ee44962b1fbe19c98d28  ./docs/research/mesh-2026-10-26/scripts/obs_fidelity.py
+fd1fec9941009a7c133cd70bffda70edd7e98b13  ./docs/research/mesh-2026-10-26/scripts/obs_points.py
+c2627630baa064bf9f5460c7bc1ea5b3aca3a50d  ./docs/research/mesh-2026-10-26/scripts/prim_potlid.py
+18a923c3517723a58a897e4c277e4875a396cd06  ./docs/research/mesh-2026-10-26/scripts/prim_rack.py
+433d5008628485d69c4487dfc0dd2e288dfd4028  ./pipeline/hands_mp.py
+b388084efffb1694e2e31409a155f8923e75438e  ./pipeline/recon_mesh.py

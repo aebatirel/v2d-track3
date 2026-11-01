@@ -1,0 +1,107 @@
+{
+ "source": "docs/research/mesh-2026-10-26/cdo-sprint/C0/frame_check.json (C0 public mesh vs library_v3, no registration)",
+ "factor": 3.0,
+ "ill_defined_rule": "an axis is ill-defined (angle not checked, reported only) when its library_v3 PCA eigenvalue is within a ratio >= 0.8 of a neighbouring eigenvalue (lathe-like symmetry); fixed here from C0 frame_check lib pca_sd_mm",
+ "objects": {
+  "white_pot": {
+   "c0_centroid_offset_mm": 5.436923189719203,
+   "c0_surf_symmetric_median_mm": 2.728743047891517,
+   "c0_axis_angle_deg": [
+    3.012578335690115,
+    4.665902510012972,
+    4.601621908045129
+   ],
+   "lib_eig_ratios": [
+    0.4464639162805433,
+    0.35997884452348594
+   ],
+   "axis_checked": [
+    true,
+    true,
+    true
+   ],
+   "max_centroid_offset_mm": 16.31076956915761,
+   "max_surf_symmetric_median_mm": 8.186229143674552,
+   "max_axis_angle_deg": [
+    9.037735007070344,
+    13.997707530038916,
+    13.804865724135386
+   ]
+  },
+  "white_pot_lid": {
+   "c0_centroid_offset_mm": 7.313375644072095,
+   "c0_surf_symmetric_median_mm": 2.353262153115695,
+   "c0_axis_angle_deg": [
+    38.23848666941861,
+    38.24451839112861,
+    0.7953637489062443
+   ],
+   "lib_eig_ratios": [
+    0.8278434202994257,
+    0.05051145855106313
+   ],
+   "axis_checked": [
+    false,
+    false,
+    true
+   ],
+   "max_centroid_offset_mm": 21.940126932216284,
+   "max_surf_symmetric_median_mm": 7.059786459347086,
+   "max_axis_angle_deg": [
+    null,
+    null,
+    2.386091246718733
+   ]
+  },
+  "plastic_dish_rack": {
+   "c0_centroid_offset_mm": 11.46171886759938,
+   "c0_surf_symmetric_median_mm": 3.427692218470331,
+   "c0_axis_angle_deg": [
+    2.4459510875298127,
+    1.9618257355614253,
+    3.1239502475980125
+   ],
+   "lib_eig_ratios": [
+    0.09432571272982536,
+    0.2354125220565948
+   ],
+   "axis_checked": [
+    true,
+    true,
+    true
+   ],
+   "max_centroid_offset_mm": 34.38515660279814,
+   "max_surf_symmetric_median_mm": 10.283076655410994,
+   "max_axis_angle_deg": [
+    7.337853262589438,
+    5.885477206684276,
+    9.371850742794038
+   ]
+  },
+  "blue_cup": {
+   "c0_centroid_offset_mm": 3.52503005837455,
+   "c0_surf_symmetric_median_mm": 2.53249803740408,
+   "c0_axis_angle_deg": [
+    3.1435421399432024,
+    14.959360427435678,
+    15.258285012783182
+   ],
+   "lib_eig_ratios": [
+    0.33084019573257717,
+    0.8419901802122348
+   ],
+   "axis_checked": [
+    true,
+    false,
+    false
+   ],
+   "max_centroid_offset_mm": 10.57509017512365,
+   "max_surf_symmetric_median_mm": 7.597494112212241,
+   "max_axis_angle_deg": [
+    9.430626419829608,
+    null,
+    null
+   ]
+  }
+ }
+}

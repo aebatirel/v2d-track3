@@ -1,0 +1,6 @@
+[10:25:40] b4_extract ep40 objects ['mini_dust_pan'] det False start {'commit': '3a24ee40c63d29fd625af14dc2a884cc6d555912', 'dirty': 'M docs/research/mesh-2026-10-26/gmg/interlock.py\n?? docs/research/mesh-2026-10-26/gmg/gen_slot.py\n?? docs/research/mesh-2026-10-26/gmg/physcheck.py\n?? docs/research/mesh-2026-10-26/gmg/simphys.py\n?? docs/research/mesh-2026-10-26/gmg/simpieces.py\n?? docs/research/mesh-2026-10-26/gmg/tools/interlock_cands.py'}
+[10:30:15] hands 274.8 s: frames with hand 259 / 260
+[10:32:07] ep40 pass 0: 130 frames, 7640321 samples, voxels [101649], 111.7 s
+[10:32:57] extract timing {"table_s": 0.5, "pass0_samples_s": 103.9, "pass0_votes_s": 7.8, "pass0_s": 111.7, "pass0_voxels": [101649], "pass1_s": 4.1, "pass2_s": 5.4, "pass3_s": 0.6, "pass4_grids_s": 8.6, "sigma_s": 28.2, "total_s": 159.3}
+[10:33:04] sanity mini_dust_pan: 130/130 good, flags [], below 0.0, resid {'median': 0.981, 'p90': 1.047, 'max': 1.128}
+[10:33:36] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep40 total 475.8 s

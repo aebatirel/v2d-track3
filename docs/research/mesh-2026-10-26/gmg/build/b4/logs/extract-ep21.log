@@ -1,0 +1,9 @@
+[09:55:40] b4_extract ep21 objects ['blue_cup', 'water_pitcher'] det True start {'commit': '626ce130e6eaafc2a88e73e0c9b30bf479a6b405', 'dirty': ''}
+[10:00:30] hands 289.4 s: frames with hand 185 / 186
+[10:02:37] ep21 pass 0: 93 frames, 11644606 samples, voxels [82312, 86682], 126.8 s
+[10:16:09] extract timing {"table_s": 0.7, "pass0_samples_s": 120.8, "pass0_votes_s": 6.0, "pass0_s": 126.8, "pass0_voxels": [82312, 86682], "pass1_s": 250.8, "pass2_s": 2.4, "pass3_s": 2.2, "pass4_grids_s": 254.2, "sigma_s": 289.8, "total_s": 932.7}
+[10:16:20] sanity blue_cup: 93/93 good, flags [], below 0.0, resid {'median': 0.978, 'p90': 1.091, 'max': 1.156}
+[10:16:55] sanity water_pitcher: 93/93 good, flags [], below 0.0, resid {'median': 1.006, 'p90': 1.059, 'max': 1.235}
+[10:21:24] split test blue_cup: {"water_pitcher": [true, 3.176, 23.921, 23.87]}
+[10:24:26] split test water_pitcher: {"blue_cup": [true, 5.715, 24.28, 24.72]}
+[10:24:33] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep21 total 1732.5 s

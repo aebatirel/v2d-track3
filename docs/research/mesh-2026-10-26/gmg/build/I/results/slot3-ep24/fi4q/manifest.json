@@ -1,0 +1,1132 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T23:14:53Z",
+ "commit": "ced42fd2771b1a228885fc880d50e1fa7e417570",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/build/I.md",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/fi417_summary.py"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13",
+  "--ep",
+  "24",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24",
+  "--cands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/cand/public/ep24",
+  "--pick",
+  "wooden_piece_1=shell_t5p36,wooden_piece_2=shell_t5p36",
+  "--video",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+  "--calib",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz",
+  "--proxy-copies",
+  "16",
+  "--identity",
+  "eval",
+  "--waiver-fi4",
+  "--no-physcheck",
+  "--tag",
+  "fi4q"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 21288,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-i2probe-626ce13",
+  "root": "runs-dev",
+  "pid": 26444,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T10:23:17Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_1.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_2.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "calib",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "sha256": "23e2d9c46369292cdda492a777e7a6083815369a25d1af4bb82560669fde5d52",
+   "bytes": 16640,
+   "tier": "P0"
+  },
+  {
+   "role": "video",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+   "sha256": "30d08191dbe3f02880d4950197ab6a1d1d6c97de7483255835152c1ee1a5d3b3",
+   "bytes": 31443302,
+   "tier": "P0"
+  },
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60",
+   "bytes": 71220,
+   "tier": "P1",
+   "keys": [
+    "cam_T_wooden_piece_1",
+    "cam_T_wooden_piece_2",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz",
+   "sha256": "b21f0eaa1a276737a6ec0a86dee0f30971b142f2b921a8ae1a183dae1e34021f",
+   "bytes": 205692,
+   "tier": "DEV",
+   "keys": [
+    "Da",
+    "KR",
+    "Ka",
+    "T",
+    "T_rect_a",
+    "a_offset",
+    "chir_left",
+    "chir_right",
+    "depth_ok_left",
+    "depth_ok_right",
+    "dz_med_left",
+    "dz_med_right",
+    "filled_left",
+    "filled_right",
+    "joints_left",
+    "joints_right",
+    "measured_left",
+    "measured_right",
+    "n_depth_inl_left",
+    "n_depth_inl_right",
+    "n_depth_left",
+    "n_depth_right",
+    "n_det",
+    "rms_px_left",
+    "rms_px_right",
+    "scale_left",
+    "scale_right",
+    "score_left",
+    "score_right",
+    "size_a",
+    "swap",
+    "uv_a_left",
+    "uv_a_right",
+    "valid_left",
+    "valid_right",
+    "wl_mirror",
+    "world_frame"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/episode.json",
+   "sha256": "df9393261b3a9e0975833ce18a6df311bb642bb272ccd6fff418b1bec064f522",
+   "bytes": 45765,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_1.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_1.npz",
+   "sha256": "a0f0976d53905189875d9b3b697b8e39d3eccbe60046e27391918f8903569b19",
+   "bytes": 28119499,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_2.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_2.npz",
+   "sha256": "3edfbd1da7f363302ee7a8c56c429b46a4d2115e81bd18d16c69667570b73fb6",
+   "bytes": 16391151,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "sil.hand_mask_max",
+   "value": 0.25,
+   "origin": "generic:F-I1.2 hands <= 25 % of the mask",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.hand_px",
+   "value": 16,
+   "origin": "generic:F-I1.2 no hand pixel within 16 px",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.max_frames",
+   "value": 24,
+   "origin": "generic:numerical cap of qualifying frames used (evenly spaced)",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.tex_win",
+   "value": 5,
+   "origin": "generic:F-I1.14 5 x 5 texture",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.pos_inset_px",
+   "value": 3,
+   "origin": "generic:F-I1.2 positives >= 3 px from the outline",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.max_pixels",
+   "value": 60000,
+   "origin": "generic:numerical cap of training pixels per class",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.holdout",
+   "value": 0.2,
+   "origin": "generic:F-I1.14 20 % pixel split",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.gmm_k",
+   "value": 3,
+   "origin": "generic:F-I1.14 GMM 3 components",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.interior_hits",
+   "value": 10,
+   "origin": "generic:F-I1.2 strongly observed: hits >= 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.acc_min",
+   "value": 0.9,
+   "origin": "generic:F-I1.2 held-out pixel accuracy >= 0.9",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "il.engaged_min_vox",
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.gap_bridge_frames",
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.transient_frames",
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_speed_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_min_frames",
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.block_frames",
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.holdout_min_frames",
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_min",
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_share",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_min_m",
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_k_j",
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.max_rounds",
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.link_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 linking share 50 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.through_beyond_vox",
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.depth_scale",
+   "value": 0.5,
+   "origin": "sensor:depth input at half the 1600 x 1000 rectified resolution (depths_fs0.5)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.w_bridge_px",
+   "value": 8.0,
+   "origin": "generic:F-I1.14 w_bridge 8 depth pixels [H]",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.class_o_max",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 25 % class O",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.min_testable",
+   "value": 3,
+   "origin": "generic:INTERLOCK 3.4 fewer than 3 testable voxels = absent",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.agree_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.offset_grid_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 OFFSET 2 mm grid",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.offset_lateral",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 OFFSET lateral share 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "pb.near_m",
+   "value": 0.006,
+   "origin": "generic:F-I2.10 owned points within 6 mm of the pick",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "struct_vox_m",
+   "value": 0.002,
+   "origin": "generic:obs-first sym_probe / rot_probe voxel downsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:58"
+  },
+  {
+   "name": "struct_max_points",
+   "value": 60000,
+   "origin": "generic:obs-first probe cap (numerical)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:59"
+  },
+  {
+   "name": "rot_consistency_trim",
+   "value": 0.8,
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:60"
+  },
+  {
+   "name": "rot_consistency_angles_deg",
+   "value": [
+    45,
+    90,
+    135
+   ],
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:61"
+  },
+  {
+   "name": "rot_consistency_subsample",
+   "value": 20000,
+   "origin": "generic:lathe_obs.fit_axis subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:62"
+  },
+  {
+   "name": "sym_accept_rotc_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (rotational consistency)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:63"
+  },
+  {
+   "name": "sym_accept_resid_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (mirror residual)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:64"
+  },
+  {
+   "name": "sym_accept_observed_share",
+   "value": 0.7,
+   "origin": "generic:PREREG A.6 symmetry acceptance (observed share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:65"
+  },
+  {
+   "name": "sym_accept_free_share",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6 symmetry acceptance (free share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:66"
+  },
+  {
+   "name": "noise_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 / SPEC section 8 noise band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:67"
+  },
+  {
+   "name": "sym_moved_min_share",
+   "value": 0.5,
+   "origin": "generic:a symmetry must move at least half the points",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:68"
+  },
+  {
+   "name": "sym_resid_trim",
+   "value": 0.8,
+   "origin": "generic:obs-first sym_probe trimmed mean",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:69"
+  },
+  {
+   "name": "mirror_search_normals",
+   "value": 400,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:70"
+  },
+  {
+   "name": "sym_search_subsample",
+   "value": 6000,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:71"
+  },
+  {
+   "name": "sym_eval_subsample",
+   "value": 20000,
+   "origin": "generic:obs-first sym_probe evaluation",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:72"
+  },
+  {
+   "name": "mirror_distinct_deg",
+   "value": 20.0,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:73"
+  },
+  {
+   "name": "mirror_top",
+   "value": 3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:74"
+  },
+  {
+   "name": "mirror_search_min_observed",
+   "value": 0.3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:75"
+  },
+  {
+   "name": "mirror_search_free_weight_m",
+   "value": 0.02,
+   "origin": "generic:obs-first sym_probe ranking weight",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:76"
+  },
+  {
+   "name": "sym_perturb_deg",
+   "value": [
+    4.0,
+    1.5
+   ],
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:77"
+  },
+  {
+   "name": "sym_perturb_n",
+   "value": 12,
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:78"
+  },
+  {
+   "name": "sym_nm_step",
+   "value": 2.0,
+   "origin": "generic:numerical refinement (initial simplex 2 deg / 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:79"
+  },
+  {
+   "name": "sym_nm_xatol",
+   "value": 0.02,
+   "origin": "generic:numerical refinement (deg / mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:80"
+  },
+  {
+   "name": "sym_nm_maxfev",
+   "value": 400,
+   "origin": "generic:numerical refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:81"
+  },
+  {
+   "name": "sym_pairing_iters",
+   "value": 4,
+   "origin": "generic:numerical refinement (sym_probe refine_offset passes)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:82"
+  },
+  {
+   "name": "axis_search_rim_w_s",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6b E1 (lathe.rim_w) = 0.05 s",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:83"
+  },
+  {
+   "name": "plane_min_pts",
+   "value": 300,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:84"
+  },
+  {
+   "name": "plane_max",
+   "value": 4,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:85"
+  },
+  {
+   "name": "plane_seeds",
+   "value": 200,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:86"
+  },
+  {
+   "name": "plane_deg",
+   "value": 30.0,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:87"
+  },
+  {
+   "name": "plane_conn_vox_m",
+   "value": 0.003,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:88"
+  },
+  {
+   "name": "slab_two_face_thickness_m",
+   "value": [
+    0.003,
+    0.025
+   ],
+   "origin": "informed:slab two-face thickness (PREREG A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:89"
+  },
+  {
+   "name": "plane_pair_overlap_min",
+   "value": 0.5,
+   "origin": "generic:footprints of a plate's two faces overlap",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:90"
+  },
+  {
+   "name": "repeat_orders",
+   "value": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "origin": "generic:discrete rotations C2..C6",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:91"
+  },
+  {
+   "name": "pb.frames_min",
+   "value": 3,
+   "origin": "generic:F-I4.11 >= 3 frames per outline cell (= OBSERVED hits >= 3, A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "il.push_step_m",
+   "value": 0.002,
+   "origin": "generic:numerical 2 mm (one sub-voxel)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_cap_m",
+   "value": 0.06,
+   "origin": "generic:numerical cap of the push search (6 x the prior)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_frames_max",
+   "value": 12,
+   "origin": "generic:numerical subsample of the build frames for the push proxy",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_prior_m",
+   "value": 0.01,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 10 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.swept_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "pb.slab_sigma",
+   "value": 3.0,
+   "origin": "generic:F-I4.11 outline slab margin 3 sigma (A.6 noise band)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.raster_m",
+   "value": 0.002,
+   "origin": "generic:F-I4.11 outline raster 2 mm (= the carve sub-grid)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.fill_min",
+   "value": 0.9,
+   "origin": "generic:F-I4.11 rectangle fill share 0.9",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.depth_margin_m",
+   "value": 0.002,
+   "origin": "generic:F-I4.11 depth margin 2.0 mm at the slot bottom",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.extend_m",
+   "value": 0.003,
+   "origin": "generic:carve_solid 3 mm extension past the entry edge and the faces",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.ladder_mm",
+   "value": [
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    4.0
+   ],
+   "origin": "generic:F-I4.16.8 Douglas-Peucker ladder, smallest fitting rung first (2 mm raster: 1.0 = half a cell ... 4.0 = two cells)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.grid_m",
+   "value": 0.002,
+   "origin": "generic:F-I4.3 W_x on a 2 mm grid",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.lp_end_frac",
+   "value": 3,
+   "origin": "generic:F-I4.17.8 an end rectangle is at most floor(n_L / 3) cells long",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.lp_tie",
+   "value": 1e-12,
+   "origin": "generic:F-I4.17.8 IoU ties within 1e-12",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.lp_passes",
+   "value": 10,
+   "origin": "generic:F-I4.17.8 at most 10 coordinate passes of the low-piece search",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.box_snap_mm",
+   "value": 1e-05,
+   "origin": "generic:F-I4.17.2 box partition: vertex coordinates within 1e-5 mm are one cut line",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.centre_trim_m",
+   "value": 0.008,
+   "origin": "generic:F-I4.16.8 slot-centre depth band trimmed by 8 mm at each end (report only)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.centre_win_m",
+   "value": 0.03,
+   "origin": "generic:F-I4.16.8 slot-centre window |u - c_L| <= 30 mm, 1 mm bins (report only)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.centre_min_pts",
+   "value": 100,
+   "origin": "generic:F-I4.16.8 slot centre observable with >= 100 below-face points (report only)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.centre_run_w",
+   "value": 3.0,
+   "origin": "generic:F-I4.16.8 slot centre observable when the half-peak run is <= 3 w wide (report only)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.centre_flag_m",
+   "value": 0.001,
+   "origin": "generic:F-I4.16.8 slot-centre flag |u_obs - c_L| > 1.0 mm (the clearance per side, F-I4.3)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.consist_m",
+   "value": 0.01,
+   "origin": "generic:F-I4.11 cross-lap consistency window 10 mm (= K-c)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "il.budget_vol",
+   "value": 0.1,
+   "origin": "generic:F-I1.14 budget 10 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.budget_reach",
+   "value": 0.6,
+   "origin": "generic:F-I1.14 reach 0.6",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "sp.pitch_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.8 solid at 1.5-2 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "sp.near_vox",
+   "value": 2,
+   "origin": "generic:F-I1.8 keep-out within 2 voxels of the surface",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "sp.lam",
+   "value": 10.0,
+   "origin": "generic:collision_decomp.py partner weight 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "ph.mc_points",
+   "value": 200000,
+   "origin": "generic:F-I1.8 200,000 points in the guest box",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.travel_cap_m",
+   "value": 0.06,
+   "origin": "generic:numerical cap of the travel search",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.travel_step_m",
+   "value": 0.0005,
+   "origin": "generic:F-I1.8 0.5 mm steps",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.travel_thr_cm3",
+   "value": 0.05,
+   "origin": "generic:F-I1.8 0.05 cm3",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.p7_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.8 P7 half the default",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.jit_m",
+   "value": 0.0005,
+   "origin": "generic:F-I1.8 jitter 0.5 mm (jitter_check.py settings)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.jit_rad",
+   "value": 0.005,
+   "origin": "generic:F-I1.8 jitter 0.005 rad",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.fps",
+   "value": 20.0,
+   "origin": "kit:reference frame rate 20 Hz",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.sub",
+   "value": 25,
+   "origin": "generic:interaction_carve.py 25 substeps (2 ms)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "sp.mass_kg",
+   "value": 0.3,
+   "origin": "generic:F-I1.14 placeholder mass 0.3 kg (make_assets default; owner decision D-I1 open)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "interlock/public/ep24-fi4q/T_asm.npy",
+   "sha256": "a0c835c274ef48b10b9a4289b68baa3d6d0be2769a41871ae95db3e515c3c877",
+   "bytes": 256,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4q/contact_gate_wooden_piece_1_wooden_piece_2.json",
+   "sha256": "c452ab15fecc714e5baa9c4a421d43e282aee850cc015aa4a7c738604806788e",
+   "bytes": 47969,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4q/decisions.json",
+   "sha256": "aa613e215310d40a8c8d9d696f1edcfc08c84f2ba1df01f9a6e87f2045b2b525",
+   "bytes": 79966,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4q/physcheck.json",
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4q/physics_wooden_piece_1_wooden_piece_2.json",
+   "sha256": "351054b3f170675bf9981cba581099b595a9b06d733408ace3c5b0a5a9931251",
+   "bytes": 5364,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4q/push_list.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4q/report.json",
+   "sha256": "d82da126a7517de9bfd6db257c3b0bdbc6f49724b3f4700cdae03e31bbf9fa7b",
+   "bytes": 32872,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4q/sil_wooden_piece_2.npz",
+   "sha256": "c32554412ac36d01419524b8b69959fc3f6259bcc9def87b1529ba189c09a899",
+   "bytes": 3829,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4q/voxels_wooden_piece_1.npz",
+   "sha256": "25dc3ca2842730e05707c9b9e0e859ed326588321072440b47d9290b4f481b7f",
+   "bytes": 3448,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4q/voxels_wooden_piece_2.npz",
+   "sha256": "b79d0ceef6c35bc586468af749b219f46ed97c7e03219934ba292ff42a87644a",
+   "bytes": 3197,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/DO_NOT_USE.json",
+   "sha256": "e695f32160a61e6bf1242f808525f49bec14b165d145034791299ded8c9b8d6d",
+   "bytes": 556,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/_default/wooden_piece_1/piece_00.obj",
+   "sha256": "76d3491a3819e230c2b896c87ea5ef63ab80730d922888ed81e2c216e6c83839",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/_default/wooden_piece_1/piece_01.obj",
+   "sha256": "309a0f27072ef8416db686ac5841e8ceb321a319ee44362f3e6fa908fdb8ae6e",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/_default/wooden_piece_1/piece_02.obj",
+   "sha256": "f20c82c6746493f23e249bcd8171e5ec8532e1b48f9eb238499c1a3325b2ff78",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/_default/wooden_piece_2/piece_00.obj",
+   "sha256": "a345d6a5ba8cc6584ff9064ea63ea03b82efd68b9031e7b1b729272b94a11c14",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/_default/wooden_piece_2/piece_01.obj",
+   "sha256": "7d6dd60dfd7b54ecb46a3f74c22566385ecaabecb16686384c486ef76b8bf05b",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/_default/wooden_piece_2/piece_02.obj",
+   "sha256": "2f844ba2b05900c9d2a3eb27735a5369da8fa2b9a970b6139502f50f97f79238",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/_fit/wooden_piece_1.glb",
+   "sha256": "932f08738a3b2e0335750b38920c7962010942edfce17016dc3ebab667f30b93",
+   "bytes": 2252,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/_fit/wooden_piece_2.glb",
+   "sha256": "bd1747b26bdefb5747dbc974b7a46b6abe87e790ffc37537f1b95226caf417b7",
+   "bytes": 2600,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/manifest.json",
+   "sha256": "665db2b43eea59f8e8979482ae58e3c62d32154ca328f3bc02b13a90dc6b6a9b",
+   "bytes": 69743,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/props_gmg.json",
+   "sha256": "2a5df9829033e832cc067f09fe286b96db007a8d8f700dc5483488d6f204c17c",
+   "bytes": 1673,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/sources/wooden_piece_1.npz",
+   "sha256": "1e1421158f3c9f4165836a9b67629d19be203bd263fa4e9056a79176f4a52246",
+   "bytes": 1611,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/sources/wooden_piece_2.npz",
+   "sha256": "20e47faa07f8960e216578f2307ccef6b76d5958ed4398a153a6876db75ce9a3",
+   "bytes": 21822,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_1/carve.json",
+   "sha256": "4d5c57779cc3171264a692e6c3b0b447857c18650ce1b72a9816afeda0070d6e",
+   "bytes": 53179,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_1/inertia.json",
+   "sha256": "34a8bee8ba26d73d59df14e056200bb070af3a865cb00177f46196d61c2cc1b1",
+   "bytes": 405,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_1/piece_00.obj",
+   "sha256": "76d3491a3819e230c2b896c87ea5ef63ab80730d922888ed81e2c216e6c83839",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_1/piece_01.obj",
+   "sha256": "897a62cf4d48a5c7a33b5258294e65662b2e661895e4b0b79af1c5bca23a3d36",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_1/piece_02.obj",
+   "sha256": "24338e9af0a594005ff89545d0ca9ff3e2da8f64fc65814f9b123a697357c0a3",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_1/piece_03.obj",
+   "sha256": "e7160b9b8a542a7bb6128515448fdc7b8b6d69683c1ebf1aaca8e5473d320a3f",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_1/piece_04.obj",
+   "sha256": "f20c82c6746493f23e249bcd8171e5ec8532e1b48f9eb238499c1a3325b2ff78",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_1/wooden_piece_1.glb",
+   "sha256": "3a949482d5dad09688825b14aa42443101e5eb622f30fac8396bb8e0e0bb604b",
+   "bytes": 70188,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_2/carve.json",
+   "sha256": "967ebac7bd2b67b0f566b27df410dc0090bec2c0e682e57bc99e8e076a399118",
+   "bytes": 51657,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_2/inertia.json",
+   "sha256": "a8229b51d71e0b8a0a2e1b136dbf16057296733c2fece57017695271ca9b41f1",
+   "bytes": 409,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_2/piece_00.obj",
+   "sha256": "a345d6a5ba8cc6584ff9064ea63ea03b82efd68b9031e7b1b729272b94a11c14",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_2/piece_01.obj",
+   "sha256": "4b3ee66e8c524e2575d868d1b0f618feeae459b04658b935d4ba213c0e7f025c",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_2/piece_02.obj",
+   "sha256": "e15024ffa1827f3bc60f1a8a63a2d5183c5ff9910538e3d4473056129e28139c",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_2/piece_03.obj",
+   "sha256": "b641b1d60a315954e81ae732825212846b8fce4891cbefdbed40ec210cb80328",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_2/piece_04.obj",
+   "sha256": "2f844ba2b05900c9d2a3eb27735a5369da8fa2b9a970b6139502f50f97f79238",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4q/r0/wooden_piece_2/wooden_piece_2.glb",
+   "sha256": "60b5fc1f58e548aa1bfeb3ba7bdd9f07d8443ea2db2464c2ada1ec8e079ab198",
+   "bytes": 71892,
+   "how": "python"
+  }
+ ]
+}

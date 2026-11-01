@@ -1,0 +1,275 @@
+{
+ "method": "C0 GT-free frame and format check (CD-O sprint, stage 1).\n\nFor each swapped mesh vs the library_v3 mesh it replaces, with NO registration (both are read in their own file\nframes, which should be the library_v3 object frame):\n  - centroid offset (area-weighted surface centroid), mm;\n  - angles between matched principal axes of the area-weighted surface (PCA), deg, with the eigenvalue spectra so a\n    near-degenerate pair (lathes) is visible;\n  - symmetric surface distance: exact closest-point distance from N surface samples of each mesh to the other mesh,\n    median of each direction and of the pooled set, mm.\nAfter the kit's budget_mesh(path, 4096, 4096) (v2dlb/mesh_budget.py, what Kaggle receives):\n  - non-padding faces <= 4096, vertices <= 4096; watertight; number of bodies (face-connected components).\nReads only mesh files (ours). No scan, no mocap, no parquet.\n\nUsage: python -I frame_check.py KIT_DIR OUT.json NAME:NEW.glb:LIB.glb [...]\n",
+ "n_samples": 20000,
+ "seed": 0,
+ "results": {
+  "white_pot": {
+   "new": {
+    "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/white_pot_c0b_pot_ep43_fit.glb",
+    "sha256": "098ade9d079094afbad2cba01d8f3a1fd08e6d91cc7c3d7256da903071fc7a31",
+    "faces_raw": 25922,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "extent_mm": [
+     137.37621903419495,
+     188.51125240325928,
+     361.774779856205
+    ],
+    "pca_sd_mm": [
+     81.9987443732861,
+     53.39305489782681,
+     33.90990877412948
+    ]
+   },
+   "lib": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+    "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+    "faces_raw": 23734,
+    "extent_mm": [
+     130.9845894575119,
+     190.40847569704056,
+     362.26194351911545
+    ],
+    "pca_sd_mm": [
+     80.22942165736531,
+     53.607659174506864,
+     32.16365041117373
+    ]
+   },
+   "centroid_offset_mm": 7.067257151940001,
+   "centroid_delta_mm": [
+    -2.6409371352571793,
+    4.233385336436304,
+    5.004999829421852
+   ],
+   "axis_angle_deg": [
+    5.527278720001951,
+    2.594189685934264,
+    5.323275901796563
+   ],
+   "axis_note": "angles of matched PCA axes (major, middle, minor); an axis whose eigenvalue is within ~10% of another is ill-defined (lathe symmetry) and its angle is not meaningful",
+   "surf_new_to_lib_median_mm": 3.015104831305341,
+   "surf_lib_to_new_median_mm": 2.137723515840424,
+   "surf_symmetric_median_mm": 2.524807513684279,
+   "surf_symmetric_p90_mm": 7.494386400960134,
+   "budget_new": {
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": false,
+    "bodies": 4,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "budget_lib": {
+    "faces": 4096,
+    "vertices": 2042,
+    "watertight": false,
+    "bodies": 6,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "budgeted_surf_symmetric_median_mm": 2.506394205156873
+  },
+  "plastic_dish_rack": {
+   "new": {
+    "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/plastic_dish_rack_c0b_rack_ep13_full.glb",
+    "sha256": "985ded99b877bfa2927fde2bdc3448df3cf3418a8767fb21149bc58a13621d9a",
+    "faces_raw": 16910,
+    "watertight_raw": true,
+    "bodies_raw": 6,
+    "extent_mm": [
+     151.20641514658928,
+     265.22914320230484,
+     487.2463345527649
+    ],
+    "pca_sd_mm": [
+     138.24786212357296,
+     71.73886162310102,
+     34.26584978648652
+    ]
+   },
+   "lib": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+    "sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+    "faces_raw": 32912,
+    "extent_mm": [
+     109.43450778722763,
+     159.11681950092316,
+     495.97638845443726
+    ],
+    "pca_sd_mm": [
+     152.52117585240848,
+     46.843052999547446,
+     22.727934679682026
+    ]
+   },
+   "centroid_offset_mm": 36.95003844700096,
+   "centroid_delta_mm": [
+    -3.8171984418207163,
+    33.94588802759965,
+    -14.085844785041381
+   ],
+   "axis_angle_deg": [
+    11.886305513518431,
+    11.899825337696406,
+    0.712963342766625
+   ],
+   "axis_note": "angles of matched PCA axes (major, middle, minor); an axis whose eigenvalue is within ~10% of another is ill-defined (lathe symmetry) and its angle is not meaningful",
+   "surf_new_to_lib_median_mm": 14.991174735217921,
+   "surf_lib_to_new_median_mm": 4.106207030357185,
+   "surf_symmetric_median_mm": 6.828138431794509,
+   "surf_symmetric_p90_mm": 52.63056406713901,
+   "budget_new": {
+    "faces": 4096,
+    "vertices": 2060,
+    "watertight": false,
+    "bodies": 9,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "budget_lib": {
+    "faces": 4096,
+    "vertices": 2033,
+    "watertight": false,
+    "bodies": 10,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "budgeted_surf_symmetric_median_mm": 6.744837053071722
+  },
+  "blue_cup": {
+   "new": {
+    "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/blue_cup_c0b_cup_ep21_g1.glb",
+    "sha256": "27957f760653bb05237d275b712deb49b9b7d18ed0f88365bc0e12cb7aad1c0f",
+    "faces_raw": 53996,
+    "watertight_raw": true,
+    "bodies_raw": 6,
+    "extent_mm": [
+     136.85407862067223,
+     325.8771449327469,
+     167.7558720111847
+    ],
+    "pca_sd_mm": [
+     83.76253465948373,
+     43.793425584166215,
+     25.961922942133853
+    ]
+   },
+   "lib": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+    "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+    "faces_raw": 11986,
+    "extent_mm": [
+     95.07513418793678,
+     96.46908566355705,
+     167.01818257570267
+    ],
+    "pca_sd_mm": [
+     47.833648818077975,
+     27.513297568378682,
+     25.246208148560548
+    ]
+   },
+   "centroid_offset_mm": 29.591773679662104,
+   "centroid_delta_mm": [
+    10.87817208999323,
+    -27.509619316723395,
+    0.7478546234356367
+   ],
+   "axis_angle_deg": [
+    73.47368108533452,
+    73.17776294485027,
+    5.809339031175853
+   ],
+   "axis_note": "angles of matched PCA axes (major, middle, minor); an axis whose eigenvalue is within ~10% of another is ill-defined (lathe symmetry) and its angle is not meaningful",
+   "surf_new_to_lib_median_mm": 3.3871415775282268,
+   "surf_lib_to_new_median_mm": 2.465410724549627,
+   "surf_symmetric_median_mm": 2.957880356087193,
+   "surf_symmetric_p90_mm": 13.885070550531694,
+   "budget_new": {
+    "faces": 4096,
+    "vertices": 2055,
+    "watertight": false,
+    "bodies": 13,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "budget_lib": {
+    "faces": 4096,
+    "vertices": 2046,
+    "watertight": false,
+    "bodies": 6,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "budgeted_surf_symmetric_median_mm": 2.943700113647311
+  },
+  "beige_cup": {
+   "new": {
+    "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/beige_cup_c0b_beige_ep11_g1.glb",
+    "sha256": "5c39b6561c9b17f1caf729397bfa708936b29d5e2601c0b2a5284d690b4f59a3",
+    "faces_raw": 43778,
+    "watertight_raw": true,
+    "bodies_raw": 4,
+    "extent_mm": [
+     101.2444756925106,
+     105.08528351783752,
+     175.62060058116913
+    ],
+    "pca_sd_mm": [
+     49.06382087731961,
+     29.024698063463536,
+     25.575927497180917
+    ]
+   },
+   "lib": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/beige_cup.glb",
+    "sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+    "faces_raw": 7526,
+    "extent_mm": [
+     99.30200129747391,
+     110.43184250593185,
+     173.87954890727997
+    ],
+    "pca_sd_mm": [
+     48.23478558793942,
+     28.69476736241681,
+     22.59166545090659
+    ]
+   },
+   "centroid_offset_mm": 10.530833682651657,
+   "centroid_delta_mm": [
+    0.9110007181134896,
+    -3.9838485617517216,
+    9.705538953623138
+   ],
+   "axis_angle_deg": [
+    24.466459235046827,
+    34.39778744490865,
+    24.260831996561535
+   ],
+   "axis_note": "angles of matched PCA axes (major, middle, minor); an axis whose eigenvalue is within ~10% of another is ill-defined (lathe symmetry) and its angle is not meaningful",
+   "surf_new_to_lib_median_mm": 3.912086894500788,
+   "surf_lib_to_new_median_mm": 1.6317535251229307,
+   "surf_symmetric_median_mm": 2.5411455517694725,
+   "surf_symmetric_p90_mm": 14.987861252171996,
+   "budget_new": {
+    "faces": 4096,
+    "vertices": 2043,
+    "watertight": false,
+    "bodies": 25,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "budget_lib": {
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": true,
+    "bodies": 2,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "budgeted_surf_symmetric_median_mm": 2.5393854356493506
+  }
+ }
+}

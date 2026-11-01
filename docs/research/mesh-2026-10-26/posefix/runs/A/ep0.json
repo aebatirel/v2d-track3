@@ -1,0 +1,42 @@
+{
+ "episode": 0,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 373,
+ "meshes": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/posefix/mesh9a",
+ "registration": {
+  "white_pot": {
+   "rot_deg": 0.94,
+   "anchor_shift_cm": 0.26,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "white_pot_lid": {
+   "rot_deg": 1.81,
+   "anchor_shift_cm": 0.4,
+   "axis": [
+    1.0,
+    -0.003,
+    0.005
+   ],
+   "order": 2
+  }
+ },
+ "perception": {
+  "AUC": 0.495,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 12.3481,
+  "RPE_cm": 22.9998,
+  "per_obj_AUC": {
+   "white_pot": 0.9899,
+   "white_pot_lid": 0.0
+  }
+ }
+}

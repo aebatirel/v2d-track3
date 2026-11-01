@@ -1,0 +1,18 @@
+ok
+A box resting 6 mm inside an observed face for 40 frames (no motion): PUSH or IGNORE, never CARVE. ... ok
+n3: an inner cylinder lowered 12 mm below an outer cup's observed floor (floor testable in the silhouette, ... ok
+test_n4_short_contact (__main__.Controls.test_n4_short_contact) ... ok
+test_n5_random_intrusions (__main__.Controls.test_n5_random_intrusions) ... ok
+Inner cup lowered into an outer cup whose candidate fills the cavity rim to floor (cavity UNKNOWN): no ... ok
+Track offset 11 mm along A's long axis (lateral to d); silhouette see-through at the TRUE slots. ... ok
+test_o2_along_d (__main__.Offset.test_o2_along_d) ... ok
+Partner's collider = a 60 mm thick box (a HULL-like partner): w_sim breaks the budget -> PUSH. ... ok
+simpieces.remove_box cuts an exact slot out of convex hulls; n7: a thin tall guest in a holder slot whose ... ok
+test_n8_one_side_solid (__main__.Silhouette.test_n8_one_side_solid) ... ok
+test_s1_see_through (__main__.Silhouette.test_s1_see_through) ... ok
+KNOWN MISS of P26 (logged in build/I.md, PREREG F-I2): at t = 6 mm the 4 mm motion region overhangs the ... expected failure
+(g) a slotted generator plate placed with 4 mm / 5 deg error + see-through silhouette + motion: T3 on both ... ok
+n6: the main case with a testable silhouette that is NOT see-through in the slots: PUSH both. ... ok
+test_sweep (__main__.Sweep.test_sweep) ... ok
+Ran 16 tests in 617.469s
+OK (expected failures=1)

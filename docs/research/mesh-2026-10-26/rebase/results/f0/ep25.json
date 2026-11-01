@@ -1,0 +1,149 @@
+{
+ "ep": 25,
+ "mode": "std",
+ "source_run": "20261026-c25s42-feb0407",
+ "lib": "library_v3",
+ "pieces": "meshes/carve/ev25",
+ "md5_listed": "71ac95f3764170f29f02fa657e7c057c",
+ "ref": "20261026-c25s42-feb0407/refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+ "ref_md5": "71ac95f3764170f29f02fa657e7c057c",
+ "md5_match": true,
+ "names": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "b39c9287bc8b1f643a4af940e2d4d5ea",
+  "radius": 0.236176
+ },
+ "shared_assets": {
+  "lib": "library_v3",
+  "pieces": "meshes/carve/ev25",
+  "make_assets": [
+   "wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm, 21 collision pieces",
+   "wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm, 11 collision pieces"
+  ]
+ },
+ "f0_hand_mm": {
+  "wooden_piece_1": 143.4,
+  "wooden_piece_2": 119.8
+ },
+ "first_H30_rest_frame": 0,
+ "objects": {
+  "wooden_piece_1": {
+   "urdf_md5": "3f877a01c97fe39a26eb418fbfca5497",
+   "pieces": 21,
+   "collision": [
+    "21 piece files"
+   ],
+   "mass": 0.3
+  },
+  "wooden_piece_2": {
+   "urdf_md5": "8ee8fe77cb73582a4ed8ccc2c090371f",
+   "pieces": 11,
+   "collision": [
+    "11 piece files"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "wooden_piece_1": {
+     "pen_mm": -0.19,
+     "com_height_mm": 12.3,
+     "hand_mm": 143.4,
+     "support": {
+      "band1mm": {
+       "points": 21,
+       "com_margin_mm": 22.5
+      },
+      "band3mm": {
+       "points": 63,
+       "com_margin_mm": 25.3
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 125.2,
+     "settle_mm": 0.43,
+     "settle_deg": 0.51,
+     "max_mm": 1.06,
+     "max_deg": 1.03,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.29,
+       "max": 0.77,
+       "min": 0.12,
+       "q90": 0.59
+      },
+      "deg": {
+       "n": 16,
+       "median": 0.655,
+       "max": 1.07,
+       "min": 0.19,
+       "q90": 1.005
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    },
+    "wooden_piece_2": {
+     "pen_mm": -0.07,
+     "com_height_mm": 10.1,
+     "hand_mm": 119.8,
+     "support": {
+      "band1mm": {
+       "points": 13,
+       "com_margin_mm": 2.6
+      },
+      "band3mm": {
+       "points": 94,
+       "com_margin_mm": 56.1
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 125.1,
+     "settle_mm": 0.51,
+     "settle_deg": 1.93,
+     "max_mm": 0.98,
+     "max_deg": 2.02,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.63,
+       "max": 1.1,
+       "min": 0.36,
+       "q90": 1.055
+      },
+      "deg": {
+       "n": 16,
+       "median": 2.055,
+       "max": 2.32,
+       "min": 1.48,
+       "q90": 2.26
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    }
+   },
+   "pairs": {
+    "wooden_piece_1|wooden_piece_2": 0.0
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 7.3
+}

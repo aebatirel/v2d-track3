@@ -1,0 +1,145 @@
+{
+ "obj": "beige_cup",
+ "profile": {
+  "rows": 203,
+  "azimuths": 360,
+  "h_span_mm": [
+   -72.5,
+   130.12
+  ],
+  "wall_threshold_mm": 2.688,
+  "runs": [
+   [
+    "wall",
+    -72.5,
+    130.12
+   ]
+  ]
+ },
+ "runs": [
+  {
+   "kind": "wall",
+   "lo_mm": -72.5,
+   "hi_mm": 130.12,
+   "rows": 203,
+   "rays": 73080,
+   "rays_hit": 43955,
+   "rays_no_hit": 29125,
+   "nint_hist": {
+    "1": 40720,
+    "2": 2584,
+    "3": 498,
+    "4": 126,
+    "5": 24,
+    "6": 1,
+    "7": 2
+   },
+   "r_out_median_mm": [
+    27.51,
+    47.42
+   ],
+   "r_in_median_mm": [
+    23.69,
+    42.24
+   ],
+   "wall_median_mm": 5.41,
+   "rays_rout_10mm_below_median": 25,
+   "rows_with_such_rays": 16,
+   "rays_starting_in_material": 2,
+   "lowest_rout_rays": [
+    {
+     "h_mm": 128.0,
+     "phi_deg": 63,
+     "r_in_mm": 17.0,
+     "r_out_mm": 17.41,
+     "nint": 2,
+     "row_median_out_mm": 28.53
+    },
+    {
+     "h_mm": 127.0,
+     "phi_deg": 54,
+     "r_in_mm": 17.53,
+     "r_out_mm": 17.96,
+     "nint": 2,
+     "row_median_out_mm": 29.65
+    },
+    {
+     "h_mm": 127.0,
+     "phi_deg": 55,
+     "r_in_mm": 17.57,
+     "r_out_mm": 18.51,
+     "nint": 2,
+     "row_median_out_mm": 29.65
+    },
+    {
+     "h_mm": 127.0,
+     "phi_deg": 56,
+     "r_in_mm": 17.62,
+     "r_out_mm": 19.1,
+     "nint": 2,
+     "row_median_out_mm": 29.65
+    },
+    {
+     "h_mm": 27.0,
+     "phi_deg": 289,
+     "r_in_mm": 26.88,
+     "r_out_mm": 26.93,
+     "nint": 3,
+     "row_median_out_mm": 37.22
+    },
+    {
+     "h_mm": -28.0,
+     "phi_deg": 192,
+     "r_in_mm": 31.96,
+     "r_out_mm": 32.01,
+     "nint": 2,
+     "row_median_out_mm": 46.05
+    },
+    {
+     "h_mm": -34.0,
+     "phi_deg": 147,
+     "r_in_mm": 35.1,
+     "r_out_mm": 35.2,
+     "nint": 4,
+     "row_median_out_mm": 46.65
+    },
+    {
+     "h_mm": -26.0,
+     "phi_deg": 187,
+     "r_in_mm": 34.65,
+     "r_out_mm": 35.24,
+     "nint": 2,
+     "row_median_out_mm": 45.76
+    }
+   ],
+   "azimuths_with_low_rays": 20,
+   "low_rays_rout_over_median": {
+    "q10": 0.632,
+    "q50": 0.76
+   }
+  }
+ ],
+ "layout": {
+  "n_s": 12,
+  "base": "b1",
+  "n_r": 12,
+  "ring_cm3": 0.0,
+  "min_wall_mm": -23.57201295472837,
+  "dropped_negative_wall": 11,
+  "pieces": [
+   {
+    "kind": "wall",
+    "s": 2,
+    "n_s": 12,
+    "run": 0,
+    "h0": -0.0725,
+    "h1": 0.13012,
+    "rho0": 0.04192,
+    "rho1": 0.03494,
+    "R0": 0.04341,
+    "R1": 0.01735,
+    "wall_min_mm": -18.82
+   }
+  ]
+ }
+}

@@ -1,0 +1,1223 @@
+{
+ "rings_r3": {
+  "cup": {
+   "8": {
+    "min_wall_mm": 0.9706,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_continuity_mm": 0.0154,
+    "continuity_ok": false,
+    "gap_share": 0.84413,
+    "formula_min_wall_mm": null
+   },
+   "12": {
+    "min_wall_mm": 2.5957,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_continuity_mm": 0.0026,
+    "continuity_ok": true,
+    "gap_share": 0.00376,
+    "formula_min_wall_mm": null
+   },
+   "16": {
+    "min_wall_mm": 3.2391,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_continuity_mm": 0.0,
+    "continuity_ok": true,
+    "gap_share": 0.0023,
+    "formula_min_wall_mm": null
+   }
+  },
+  "pot": {
+   "8": {
+    "min_wall_mm": -3.8874,
+    "intrusion_construction_mm": null,
+    "intrusion_continuity_mm": null,
+    "continuity_ok": false,
+    "gap_share": 0.7107,
+    "formula_min_wall_mm": null
+   },
+   "12": {
+    "min_wall_mm": 0.5667,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_continuity_mm": -0.0017,
+    "continuity_ok": false,
+    "gap_share": 0.70183,
+    "formula_min_wall_mm": null
+   },
+   "16": {
+    "min_wall_mm": 2.0888,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_continuity_mm": 0.0,
+    "continuity_ok": true,
+    "gap_share": 0.00407,
+    "formula_min_wall_mm": null
+   }
+  },
+  "r3": {
+   "8": {
+    "min_wall_mm": 0.959,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_continuity_mm": 0.0039,
+    "continuity_ok": false,
+    "gap_share": 0.84413,
+    "formula_min_wall_mm": 0.9552
+   },
+   "12": {
+    "min_wall_mm": 2.6344,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_continuity_mm": 0.0008,
+    "continuity_ok": true,
+    "gap_share": 0.00344,
+    "formula_min_wall_mm": 2.637
+   },
+   "16": {
+    "min_wall_mm": 3.2333,
+    "intrusion_construction_mm": 0.0,
+    "intrusion_continuity_mm": 0.0,
+    "continuity_ok": true,
+    "gap_share": 0.0023,
+    "formula_min_wall_mm": 3.2314
+   }
+  }
+ },
+ "r1": {
+  "round1_self_check": true,
+  "intrusion_mm": 3.262145,
+  "continuity2_ok": false,
+  "gap_share": 0.39668
+ },
+ "r2": {
+  "default_ok": true,
+  "forced_ring_ok": false,
+  "forced_ring_worst_height": 1.0,
+  "thin_self_check": true,
+  "thin_continuity2_ok": false
+ },
+ "search": {
+  "r4": {
+   "accepted": {
+    "n_s": 12,
+    "base": "b1",
+    "n_r": 13,
+    "n_h": 0
+   },
+   "tried": [
+    [
+     8,
+     "b1",
+     9,
+     "lathe_wall_gap"
+    ],
+    [
+     12,
+     "b1",
+     13,
+     "accepted"
+    ]
+   ]
+  },
+  "r5": {
+   "accepted": {
+    "n_s": 16,
+    "base": "b1",
+    "n_r": 17,
+    "n_h": 0
+   },
+   "tried": [
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b1",
+     1,
+     "min_wall"
+    ],
+    [
+     8,
+     "b2",
+     9,
+     "min_wall"
+    ],
+    [
+     8,
+     "b2",
+     9,
+     "min_wall"
+    ],
+    [
+     8,
+     "b2",
+     9,
+     "min_wall"
+    ],
+    [
+     8,
+     "b2",
+     9,
+     "min_wall"
+    ],
+    [
+     8,
+     "b2",
+     9,
+     "min_wall"
+    ],
+    [
+     8,
+     "b2",
+     9,
+     "min_wall"
+    ],
+    [
+     8,
+     "b2",
+     9,
+     "min_wall"
+    ],
+    [
+     8,
+     "b2",
+     9,
+     "min_wall"
+    ],
+    [
+     8,
+     "b2",
+     9,
+     "min_wall"
+    ],
+    [
+     12,
+     "b1",
+     13,
+     "lathe_wall_gap"
+    ],
+    [
+     16,
+     "b1",
+     17,
+     "accepted"
+    ]
+   ]
+  }
+ },
+ "precheck": {
+  "p1": [
+   "a_table"
+  ],
+  "p2": [
+   "b_support"
+  ],
+  "p3": [
+   "c_overlap"
+  ],
+  "p4": []
+ },
+ "gate_g1_g3": {
+  "g1_2x77": {
+   "pass_": false,
+   "fail": "contact_overflow",
+   "gated_rows": 1,
+   "delivered_overflow_copies": 16,
+   "delivered_max_nefc": 5600,
+   "packed_max_nefc": 32,
+   "ratio": 175.0,
+   "ratio_max": 1.5,
+   "delivered_max_ncon": 1400,
+   "limits": {
+    "njmax": 512,
+    "nconmax": 256
+   }
+  },
+  "g3_packed_control": {
+   "pass_": true,
+   "fail": null,
+   "gated_rows": 1,
+   "delivered_overflow_copies": 0,
+   "delivered_max_nefc": 32,
+   "packed_max_nefc": 32,
+   "ratio": 1.0,
+   "ratio_max": 1.5,
+   "delivered_max_ncon": 8,
+   "limits": {
+    "njmax": 512,
+    "nconmax": 256
+   }
+  }
+ },
+ "gate_g2": {
+  "pass_": false,
+  "fail": "contact_ratio",
+  "gated_rows": 1,
+  "delivered_overflow_copies": 0,
+  "delivered_max_nefc": 224,
+  "packed_max_nefc": 32,
+  "ratio": 7.0,
+  "ratio_max": 1.5,
+  "delivered_max_ncon": 56,
+  "limits": {
+   "njmax": 512,
+   "nconmax": 256
+  }
+ },
+ "x6_x10_r2": {
+  "n": 2,
+  "decisions": [
+   "CARVE",
+   "CARVE"
+  ],
+  "same_off": true,
+  "same_plate_r2": true,
+  "same_plate_r1": true,
+  "scope": "plate pair: F-I4 decides (F-I5.0); nothing changed here",
+  "rev_default": 1
+ },
+ "rev1_reachable": {
+  "rev_default": 1,
+  "x9_builder": true,
+  "x9_forced_ring": false
+ },
+ "n1": {
+  "deliver": "default",
+  "why": null,
+  "n_s": {
+   "A": 12,
+   "B": 12
+  },
+  "components": [
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.05,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.05,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.05,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.05,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.05,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.05,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.95,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.95,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": null,
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 0.249,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": false,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   }
+  ],
+  "caps_fail": "wall_integrity_fail",
+  "tests": null,
+  "failing": null,
+  "S_delivered": [
+   {
+    "src": "floor",
+    "frame": 81,
+    "disp_mm": 4.869,
+    "tilt_deg": 4.076,
+    "pass_": false,
+    "ref_pass": true,
+    "ref_disp_mm": 1.771
+   },
+   {
+    "src": "floor",
+    "frame": 62,
+    "disp_mm": 4.789,
+    "tilt_deg": 4.415,
+    "pass_": false,
+    "ref_pass": true,
+    "ref_disp_mm": 2.839
+   }
+  ],
+  "floor_pass": false,
+  "floor_fails": [
+   {
+    "kind": "S",
+    "pair": [
+     "A",
+     "B"
+    ],
+    "frame": 81,
+    "S_disp_mm": 4.869,
+    "S_ref_disp_mm": 1.771
+   },
+   {
+    "kind": "S",
+    "pair": [
+     "A",
+     "B"
+    ],
+    "frame": 62,
+    "S_disp_mm": 4.789,
+    "S_ref_disp_mm": 2.839
+   }
+  ],
+  "g1": true,
+  "g1_pairs": {
+   "A|B": {
+    "pass_": true,
+    "fail": null,
+    "gated_rows": 3,
+    "delivered_overflow_copies": 0,
+    "delivered_max_nefc": 304,
+    "packed_max_nefc": 756,
+    "ratio": 0.4021,
+    "ratio_max": 1.5,
+    "delivered_max_ncon": 76,
+    "flag_packed": "packed_overflow",
+    "limits": {
+     "njmax": 512,
+     "nconmax": 256
+    }
+   }
+  }
+ },
+ "n3": {
+  "deliver": "default",
+  "why": "off_axis_nest",
+  "n_s": {
+   "A": 12,
+   "B": 12
+  },
+  "components": [
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   }
+  ],
+  "caps_fail": null,
+  "tests": null,
+  "failing": null,
+  "S_delivered": [
+   {
+    "src": "floor",
+    "frame": 81,
+    "disp_mm": 4.834,
+    "tilt_deg": 4.582,
+    "pass_": false,
+    "ref_pass": true,
+    "ref_disp_mm": 1.917
+   },
+   {
+    "src": "floor",
+    "frame": 62,
+    "disp_mm": 4.756,
+    "tilt_deg": 4.712,
+    "pass_": false,
+    "ref_pass": true,
+    "ref_disp_mm": 2.156
+   }
+  ],
+  "floor_pass": false,
+  "floor_fails": [
+   {
+    "kind": "S",
+    "pair": [
+     "A",
+     "B"
+    ],
+    "frame": 81,
+    "S_disp_mm": 4.834,
+    "S_ref_disp_mm": 1.917
+   },
+   {
+    "kind": "S",
+    "pair": [
+     "A",
+     "B"
+    ],
+    "frame": 62,
+    "S_disp_mm": 4.756,
+    "S_ref_disp_mm": 2.156
+   }
+  ],
+  "g1": true,
+  "g1_pairs": {
+   "A|B": {
+    "pass_": true,
+    "fail": null,
+    "gated_rows": 3,
+    "delivered_overflow_copies": 0,
+    "delivered_max_nefc": 304,
+    "packed_max_nefc": 764,
+    "ratio": 0.3979,
+    "ratio_max": 1.5,
+    "delivered_max_ncon": 76,
+    "flag_packed": "packed_overflow",
+    "limits": {
+     "njmax": 512,
+     "nconmax": 256
+    }
+   }
+  }
+ },
+ "tn0": {
+  "deliver": "default",
+  "why": "no persistent component passes the kept gates",
+  "n_s": {
+   "A": 12,
+   "B": 12
+  },
+  "components": [],
+  "caps_fail": null,
+  "tests": null,
+  "failing": null,
+  "S_delivered": [
+   {
+    "src": "floor",
+    "frame": 81,
+    "disp_mm": 0.728,
+    "tilt_deg": 0.544,
+    "pass_": true,
+    "ref_pass": null,
+    "ref_disp_mm": null
+   },
+   {
+    "src": "floor",
+    "frame": 62,
+    "disp_mm": 1.052,
+    "tilt_deg": 0.82,
+    "pass_": true,
+    "ref_pass": null,
+    "ref_disp_mm": null
+   }
+  ],
+  "floor_pass": true,
+  "floor_fails": [],
+  "g1": true,
+  "g1_pairs": {
+   "A|B": {
+    "pass_": true,
+    "fail": null,
+    "gated_rows": 2,
+    "delivered_overflow_copies": 0,
+    "delivered_max_nefc": 184,
+    "packed_max_nefc": 720,
+    "ratio": 0.2556,
+    "ratio_max": 1.5,
+    "delivered_max_ncon": 46,
+    "flag_packed": "packed_overflow",
+    "limits": {
+     "njmax": 512,
+     "nconmax": 256
+    }
+   }
+  }
+ },
+ "tn1": {
+  "deliver": "default",
+  "why": "off_axis_nest",
+  "n_s": {
+   "A": 12,
+   "B": 12
+  },
+  "components": [
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.35,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.35,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   },
+   {
+    "why": "off_axis_nest",
+    "ok_frames": [
+     81,
+     62
+    ],
+    "c_mm": 0.1,
+    "off_axis": {
+     "nest": true,
+     "e_ax_mm": 1.087,
+     "c_mm": 0.1,
+     "t_min_mm": 2.596,
+     "w_min_mm": 1.5,
+     "not_carved": true,
+     "rule": "e_ax + c > t_min - w_min"
+    }
+   }
+  ],
+  "caps_fail": null,
+  "tests": null,
+  "failing": null,
+  "S_delivered": [
+   {
+    "src": "floor",
+    "frame": 81,
+    "disp_mm": 1.264,
+    "tilt_deg": 0.553,
+    "pass_": true,
+    "ref_pass": null,
+    "ref_disp_mm": null
+   },
+   {
+    "src": "floor",
+    "frame": 62,
+    "disp_mm": 1.267,
+    "tilt_deg": 0.557,
+    "pass_": true,
+    "ref_pass": null,
+    "ref_disp_mm": null
+   }
+  ],
+  "floor_pass": true,
+  "floor_fails": [],
+  "g1": true,
+  "g1_pairs": {
+   "A|B": {
+    "pass_": true,
+    "fail": null,
+    "gated_rows": 3,
+    "delivered_overflow_copies": 0,
+    "delivered_max_nefc": 192,
+    "packed_max_nefc": 736,
+    "ratio": 0.2609,
+    "ratio_max": 1.5,
+    "delivered_max_ncon": 48,
+    "flag_packed": "packed_overflow",
+    "limits": {
+     "njmax": 512,
+     "nconmax": 256
+    }
+   }
+  }
+ },
+ "n2a": {
+  "deliver": "default",
+  "why": "no persistent component passes the kept gates",
+  "n_s": {
+   "A": 12,
+   "B": 12
+  },
+  "components": [],
+  "caps_fail": null,
+  "tests": null,
+  "failing": null,
+  "S_delivered": [
+   {
+    "src": "floor",
+    "frame": 81,
+    "disp_mm": 14.094,
+    "tilt_deg": 0.341,
+    "pass_": false,
+    "ref_pass": true,
+    "ref_disp_mm": 0.354
+   },
+   {
+    "src": "floor",
+    "frame": 62,
+    "disp_mm": 14.383,
+    "tilt_deg": 0.409,
+    "pass_": false,
+    "ref_pass": true,
+    "ref_disp_mm": 0.47
+   }
+  ],
+  "floor_pass": false,
+  "floor_fails": [
+   {
+    "kind": "S",
+    "pair": [
+     "A",
+     "B"
+    ],
+    "frame": 81,
+    "S_disp_mm": 14.094,
+    "S_ref_disp_mm": 0.354
+   },
+   {
+    "kind": "S",
+    "pair": [
+     "A",
+     "B"
+    ],
+    "frame": 62,
+    "S_disp_mm": 14.383,
+    "S_ref_disp_mm": 0.47
+   }
+  ],
+  "g1": true,
+  "g1_pairs": {
+   "A|B": {
+    "pass_": true,
+    "fail": null,
+    "gated_rows": 2,
+    "delivered_overflow_copies": 0,
+    "delivered_max_nefc": 252,
+    "packed_max_nefc": 684,
+    "ratio": 0.3684,
+    "ratio_max": 1.5,
+    "delivered_max_ncon": 63,
+    "flag_packed": "packed_overflow",
+    "limits": {
+     "njmax": 512,
+     "nconmax": 256
+    }
+   }
+  }
+ }
+}

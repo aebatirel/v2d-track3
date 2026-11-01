@@ -1,0 +1,400 @@
+{
+ "ep": 24,
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24",
+ "tier": "P1",
+ "picks": {
+  "wooden_piece_1": "shell_t5p36",
+  "wooden_piece_2": "shell_t5p36"
+ },
+ "constants": {
+  "engaged_min_vox": {
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels"
+  },
+  "gap_bridge_frames": {
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged"
+  },
+  "transient_frames": {
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames"
+  },
+  "static_speed_m": {
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame"
+  },
+  "static_min_frames": {
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames"
+  },
+  "insert_travel_m": {
+   "value": 0.02,
+   "origin": "informed:F-I1.14 travel 20 mm (XCarve design 22 Oct)"
+  },
+  "insert_straightness": {
+   "value": 0.7,
+   "origin": "informed:F-I1.14 straightness 0.7 (XCarve design 22 Oct)"
+  },
+  "block_frames": {
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks"
+  },
+  "holdout_min_frames": {
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum"
+  },
+  "persist_min": {
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count"
+  },
+  "persist_share": {
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile"
+  },
+  "sweep_min_m": {
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)"
+  },
+  "sweep_k_j": {
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)"
+  },
+  "through_beyond_vox": {
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel"
+  },
+  "class_o_max": {
+   "value": 0.25,
+   "origin": "generic:F-I1.14 25 % class O"
+  },
+  "swept_share": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority"
+  },
+  "push_prior_m": {
+   "value": 0.01,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 10 mm"
+  },
+  "push_prior_deg": {
+   "value": 3.0,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 3 deg"
+  },
+  "push_step_m": {
+   "value": 0.002,
+   "origin": "generic:numerical 2 mm (one sub-voxel)"
+  },
+  "push_cap_m": {
+   "value": 0.06,
+   "origin": "generic:numerical cap of the push search (6 x the prior)"
+  },
+  "push_frames_max": {
+   "value": 12,
+   "origin": "generic:numerical subsample of the build frames for the push proxy"
+  },
+  "silgap_share": {
+   "value": 0.75,
+   "origin": "generic:F-I1.3 (iii) 75 %"
+  },
+  "budget_vol": {
+   "value": 0.1,
+   "origin": "generic:F-I1.14 budget 10 %"
+  },
+  "budget_reach": {
+   "value": 0.6,
+   "origin": "generic:F-I1.14 reach 0.6"
+  },
+  "w_bridge_px": {
+   "value": 8.0,
+   "origin": "generic:F-I1.14 w_bridge 8 depth pixels [H]"
+  },
+  "depth_scale": {
+   "value": 0.5,
+   "origin": "sensor:depth input at half the 1600 x 1000 rectified resolution (depths_fs0.5)"
+  },
+  "clearance_m": {
+   "value": 0.001,
+   "origin": "informed:F-I1.14 1 mm clearance (26 Oct pre-registered carve rule)"
+  },
+  "link_share": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 linking share 50 %"
+  },
+  "agree_dist_m": {
+   "value": 0.01,
+   "origin": "generic:F-I1.14 = K-c 10 mm"
+  },
+  "agree_deg": {
+   "value": 15.0,
+   "origin": "generic:F-I1.14 = K-c 15 deg"
+  },
+  "agree_share": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority"
+  },
+  "min_testable": {
+   "value": 3,
+   "origin": "generic:INTERLOCK 3.4 fewer than 3 testable voxels = absent"
+  },
+  "offset_tmax_m": {
+   "value": 0.02,
+   "origin": "informed:F-I1.14 OFFSET t_max 20 mm (dev offset 10.5-12.9 mm seen)"
+  },
+  "offset_lateral": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 OFFSET lateral share 0.5"
+  },
+  "offset_grid_m": {
+   "value": 0.002,
+   "origin": "generic:F-I1.14 OFFSET 2 mm grid"
+  },
+  "sub_m": {
+   "value": 0.002,
+   "origin": "generic:INTERLOCK 3 2 mm refinement"
+  },
+  "fid_tol_m": {
+   "value": 0.0005,
+   "origin": "generic:F-I1.14 fiducials 0.5 mm"
+  },
+  "contain_share": {
+   "value": 0.99,
+   "origin": "generic:F-I1.14 99 % containment"
+  },
+  "contain_n": {
+   "value": 10000,
+   "origin": "generic:INTERLOCK 11.2 10,000 samples"
+  },
+  "max_rounds": {
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds"
+  }
+ },
+ "identity_semantics": "eval",
+ "owner_waiver_fi4": true,
+ "sanity_flags": {
+  "wooden_piece_1": [
+   "IDENTITY_SWAP"
+  ],
+  "wooden_piece_2": [
+   "IDENTITY_SWAP"
+  ]
+ },
+ "sim_pose": "P_sel (flag sim_pose_fallback: no provenance-checked replay reference for public dev)",
+ "pairs": {
+  "wooden_piece_1|wooden_piece_2": {
+   "wooden_piece_1<-wooden_piece_2": {
+    "contact_frames": 76,
+    "runs": [
+     {
+      "frames": [
+       164,
+       274
+      ],
+      "n": 56,
+      "kind": "INSERTION",
+      "travel_mm": 122.3,
+      "straightness": 0.908,
+      "d": [
+       0.0419,
+       -0.9979,
+       -0.0496
+      ],
+      "assembled": [
+       218,
+       274
+      ],
+      "n_assembled": 29,
+      "n_build": 30,
+      "n_check": 26,
+      "flags": []
+     }
+    ],
+    "components": [
+     {
+      "voxels": 127,
+      "swept": 114,
+      "cm3": 8.13
+     },
+     {
+      "voxels": 1,
+      "swept": 0,
+      "cm3": 0.06
+     }
+    ],
+    "good_share": [
+     1.0
+    ],
+    "track_ok": true,
+    "gate": {
+     "good_share": [
+      1.0
+     ],
+     "flags": [
+      "IDENTITY_SWAP"
+     ],
+     "identity": "eval",
+     "track_ok": true
+    }
+   },
+   "wooden_piece_2<-wooden_piece_1": {
+    "contact_frames": 76,
+    "runs": [
+     {
+      "frames": [
+       162,
+       274
+      ],
+      "n": 57,
+      "kind": "INSERTION",
+      "travel_mm": 127.7,
+      "straightness": 0.915,
+      "d": [
+       -0.038,
+       -0.9991,
+       0.0211
+      ],
+      "assembled": [
+       218,
+       274
+      ],
+      "n_assembled": 29,
+      "n_build": 30,
+      "n_check": 27,
+      "flags": []
+     }
+    ],
+    "components": [
+     {
+      "voxels": 222,
+      "swept": 201,
+      "cm3": 14.21
+     }
+    ],
+    "good_share": [
+     1.0
+    ],
+    "track_ok": true,
+    "gate": {
+     "good_share": [
+      1.0
+     ],
+     "flags": [
+      "IDENTITY_SWAP"
+     ],
+     "identity": "eval",
+     "track_ok": true
+    }
+   },
+   "collider_overlap_track": {
+    "coacd": {
+     "median": 0.0,
+     "max": 18.498
+    },
+    "default": {
+     "median": 0.0,
+     "max": 7.45
+    }
+   },
+   "pieces_gate": {
+    "wooden_piece_1": {
+     "choice": "gmg",
+     "report": {
+      "gmg": {
+       "n": 32,
+       "max_cm3": 0.72,
+       "sum_cm3": 8.6,
+       "over_tol": 13
+      },
+      "coacd": {
+       "n": 13,
+       "max_cm3": 52.936,
+       "sum_cm3": 84.664,
+       "over_tol": 12
+      }
+     },
+     "do_not_use": "no piece set holds <= 0.3 cm3 of keep-out per hull (F-I1.8): gmg max 0.72 cm3, coacd max 52.936 cm3"
+    },
+    "wooden_piece_2": {
+     "choice": "gmg",
+     "report": {
+      "gmg": {
+       "n": 32,
+       "max_cm3": 2.0,
+       "sum_cm3": 25.992,
+       "over_tol": 21
+      },
+      "coacd": {
+       "n": 15,
+       "max_cm3": 77.272,
+       "sum_cm3": 128.768,
+       "over_tol": 12
+      }
+     },
+     "do_not_use": "no piece set holds <= 0.3 cm3 of keep-out per hull (F-I1.8): gmg max 2.0 cm3, coacd max 77.272 cm3"
+    }
+   }
+  }
+ },
+ "silhouette": {
+  "wooden_piece_1": {
+   "gate_ok": false,
+   "gate": {
+    "reason": "no qualifying frame"
+   },
+   "frames": [],
+   "qualifying": {
+    "good_sep": 34,
+    "kept": 0,
+    "rejected": {
+     "hand_cover": 1,
+     "hand_near": 33
+    },
+    "hands": true
+   },
+   "notch_voxels": []
+  },
+  "wooden_piece_2": {
+   "gate_ok": true,
+   "gate": {
+    "heldout_acc": 0.9166,
+    "false_free": 0.0027,
+    "interior_voxels": 1125,
+    "interior_testable": 1125,
+    "pos": 60000,
+    "neg": 60000,
+    "heldout_acc_pos": 0.9281,
+    "heldout_acc_neg": 0.9048,
+    "frames": 9
+   },
+   "frames": [
+    26,
+    28,
+    98,
+    100,
+    102,
+    110,
+    112,
+    114,
+    134
+   ],
+   "qualifying": {
+    "good_sep": 30,
+    "kept": 9,
+    "rejected": {
+     "hand_cover": 7,
+     "hand_near": 14
+    },
+    "hands": true
+   },
+   "sil_voxels": 38,
+   "notch_voxels": [
+    8,
+    10,
+    3,
+    5,
+    5
+   ]
+  }
+ },
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-fi4evalsem/r0",
+ "sec": 454.6
+}

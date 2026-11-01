@@ -1,0 +1,42 @@
+{
+ "episode": 21,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 186,
+ "meshes": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t3/auc/single_blue_cup",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 105.3,
+   "anchor_shift_cm": 0.3,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "water_pitcher": {
+   "rot_deg": 2.65,
+   "anchor_shift_cm": 0.65,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.8906,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.5942,
+  "RPE_cm": 1.1695,
+  "per_obj_AUC": {
+   "blue_cup": 0.9792,
+   "water_pitcher": 0.8021
+  }
+ }
+}

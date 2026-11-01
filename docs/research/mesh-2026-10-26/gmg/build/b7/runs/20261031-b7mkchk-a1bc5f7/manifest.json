@@ -1,0 +1,554 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T06:35:50Z",
+ "commit": "14e7b7e8f783a140a7b7610b4785c4fdf2ac1f48",
+ "code_dirty": false,
+ "code_dirty_files": [],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "gmg/tools/b7_dev.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-b7mkchk-a1bc5f7",
+  "--eps",
+  "2",
+  "--no-structure"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 19108,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-b7mkchk-a1bc5f7"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-b7mkchk-a1bc5f7",
+  "root": "runs-dev",
+  "pid": 19108,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T06:00:22Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz": 2,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot_lid.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "roster",
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/roster_public.json",
+   "realpath": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/roster_public.json",
+   "sha256": "796639b037fc6b95f70a281678ae4e25afbc562dcdbb03d1126d6b3e6f8c8983",
+   "bytes": 10097,
+   "tier": "P0"
+  },
+  {
+   "role": "calib",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "sha256": "23e2d9c46369292cdda492a777e7a6083815369a25d1af4bb82560669fde5d52",
+   "bytes": 16640,
+   "tier": "P0"
+  },
+  {
+   "role": "det",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "sha256": "fd45153d963477966b94767975732a8dc6d7eee7fe3ca0ada1f37f462107bdea",
+   "bytes": 416345,
+   "tier": "P0",
+   "det_identity": "det file name 'det_f0.npz'",
+   "keys": [
+    "K",
+    "depth"
+   ],
+   "keys_not_read": [
+    "area",
+    "centroid",
+    "chosen",
+    "extent",
+    "extent_eroded",
+    "frame",
+    "gdino",
+    "image",
+    "intensity",
+    "mask_shape",
+    "masks",
+    "names",
+    "params",
+    "reprop",
+    "rules",
+    "score",
+    "score_rules",
+    "sim",
+    "template_extent",
+    "template_intensity",
+    "verify",
+    "verify_matched"
+   ],
+   "key_filter": "det"
+  },
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+   "sha256": "ae4c9b3c59ff927edbb814c91a905be769bf76c2f17fbca45daf6333ee28ba2c",
+   "bytes": 88616,
+   "tier": "P1",
+   "keys": [
+    "cam_T_white_pot",
+    "cam_T_white_pot_lid",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "obs_all",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot.npz",
+   "sha256": "c7880faf2e781abec956cd42930534c4e7d1be6ee9dc200a1b588d5533864263",
+   "bytes": 35034728,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "pts",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "obs_all",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot_lid.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot_lid.npz",
+   "sha256": "d608aeb9e30357d3abe4c25e5154cd4b636468bd212ee5af5eab45fc7ec82881",
+   "bytes": 16719096,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "pts",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "vote_voxel_m",
+   "value": 0.004,
+   "origin": "generic:PREREG A.6 vote voxel 4 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:241"
+  },
+  {
+   "name": "observed_min_hits",
+   "value": 3,
+   "origin": "generic:PREREG A.6 keep / OBSERVED (obs_points.py default)",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:57"
+  },
+  {
+   "name": "observed_min_ratio",
+   "value": 0.5,
+   "origin": "generic:PREREG A.6 keep / OBSERVED",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:58"
+  },
+  {
+   "name": "free_min_count",
+   "value": 3,
+   "origin": "generic:PREREG A.6 FREE",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:59"
+  },
+  {
+   "name": "free_max_ratio",
+   "value": 0.2,
+   "origin": "generic:PREREG A.6 FREE",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:60"
+  },
+  {
+   "name": "extraction_stride",
+   "value": 2,
+   "origin": "generic:SPEC section 7 M2 stride 2",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:262"
+  },
+  {
+   "name": "table_band_m",
+   "value": 0.008,
+   "origin": "generic:PREREG A.6 crop / SPEC M2 table band 8 mm (obs_points.py)",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:263"
+  },
+  {
+   "name": "contact_frame_gap3d_m",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 contact frame, > 10 sigma of depth noise and 2.5 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:33"
+  },
+  {
+   "name": "contact_frame_gap2d_px",
+   "value": 10,
+   "origin": "generic:PREREG A.6 contact frame, 10 px ~ 10 mm at 0.5-0.6 m",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:35"
+  },
+  {
+   "name": "separated_gap3d_m",
+   "value": 0.02,
+   "origin": "generic:PREREG A.6 separated frame, twice the contact gap",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:37"
+  },
+  {
+   "name": "separated_gap2d_px",
+   "value": 16,
+   "origin": "generic:PREREG A.6 separated frame, two 8-px cells",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:38"
+  },
+  {
+   "name": "sigma_clamp_lo_m",
+   "value": 0.0005,
+   "origin": "sensor:PREREG A.6 sigma clamp",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:140"
+  },
+  {
+   "name": "sigma_clamp_hi_m",
+   "value": 0.003,
+   "origin": "sensor:PREREG A.6 sigma clamp",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:141"
+  },
+  {
+   "name": "sigma_odd_sample_n",
+   "value": 50000,
+   "origin": "generic:numerical estimate of the A.2 median",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:142"
+  },
+  {
+   "name": "v2_band_cap_m",
+   "value": 0.008,
+   "origin": "generic:PREREG A.6 V2 cap 8 mm = two voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:109"
+  },
+  {
+   "name": "v2_band_k",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 V2 band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:110"
+  },
+  {
+   "name": "rest_speed_max_m_per_frame",
+   "value": 0.002,
+   "origin": "generic:PREREG A.6 V4 rest < 2 mm/frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:190"
+  },
+  {
+   "name": "rest_near_table_m",
+   "value": 0.005,
+   "origin": "generic:PREREG A.6 V4 rest within 5 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:191"
+  },
+  {
+   "name": "rest_share_min",
+   "value": 0.1,
+   "origin": "generic:PREREG A.6 V4 rest >= 10 % of good frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:192"
+  },
+  {
+   "name": "marker_radius_window_m",
+   "value": [
+    0.0015,
+    0.0125
+   ],
+   "origin": "generic:PREREG A.6 ball radius window (passive markers about 3-25 mm diameter)",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_seeds",
+   "value": 15000,
+   "origin": "informed:ball detector seed count (PREREG A.6: changed once after a first run)",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_min_frames",
+   "value": 3,
+   "origin": "generic:PREREG A.6 ball detector",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_resid_max_sigma",
+   "value": 1.5,
+   "origin": "generic:PREREG A.6 ball detector",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_cap_min_deg",
+   "value": 90.0,
+   "origin": "generic:PREREG A.6 ball detector",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_both_halves",
+   "value": true,
+   "origin": "generic:PREREG A.6 ball detector",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_second_pass_rel",
+   "value": 0.1,
+   "origin": "generic:PREREG A.6 ball detector",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_convex_min",
+   "value": 0.8,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_vox_m",
+   "value": 0.0015,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_max_points",
+   "value": 1500000,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_nbhd_m",
+   "value": [
+    0.006,
+    0.009,
+    0.013,
+    0.017
+   ],
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_min_pts",
+   "value": 25,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_inlier_min",
+   "value": 0.6,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_res_sigma",
+   "value": 1.5,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_res_rel",
+   "value": 0.12,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_convex_min",
+   "value": 0.8,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_spread_min",
+   "value": 0.12,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_iso_min",
+   "value": 0.35,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_vote_min_frames",
+   "value": 3,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_cluster_rel",
+   "value": 0.6,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_cluster_min_votes",
+   "value": 3,
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_fit_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 noise band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_fit_nbhd",
+   "value": "r_cluster + fit band",
+   "origin": "informed:ball detector (implementation setting, B7 dev run 1: ep2 robust fits grew from vote radii 5-7 mm to 10-13 mm through host points; DEVIATIONS 82)",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_settings_version",
+   "value": 2,
+   "origin": "generic:settings file version",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_ransac_hypotheses",
+   "value": 400,
+   "origin": "generic:autokit parts default",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_ransac_top",
+   "value": 5,
+   "origin": "generic:autokit parts default",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_consensus",
+   "value": "median of accepted radii pooled over the episode objects",
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_nms",
+   "value": "centre distance < r_a + r_b: the ball with more votes stays",
+   "origin": "generic:obs-first ball_probe / ball_nms setting named by SPEC section 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_stem_min",
+   "value": 15,
+   "origin": "generic:autokit parts default",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_stem_r_rel",
+   "value": 0.6,
+   "origin": "generic:autokit parts default",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_sphere_segments",
+   "value": 24,
+   "origin": "generic:autokit parts default",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_unimodal_band",
+   "value": 0.15,
+   "origin": "generic:PREREG B.4 unimodal radius band (reported only)",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:119"
+  },
+  {
+   "name": "marker_settings_sha256",
+   "value": "488ac3b638aa7e68c12843a5b761ed8882106bc78d8307d9e3059932502aa128",
+   "origin": "generic:hash of the frozen marker settings (B7)",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:120"
+  },
+  {
+   "name": "marker_diag_pca_radius_m",
+   "value": 0.003,
+   "origin": "generic:diagnostic only (corner_stats normals, 2 x 1.5 mm voxel)",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:121"
+  },
+  {
+   "name": "marker_diag_max_inliers",
+   "value": 300,
+   "origin": "generic:diagnostic only (corner_stats subsample)",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:122"
+  },
+  {
+   "name": "marker_r_consensus_m_ep2_public",
+   "value": 0.008975231933909693,
+   "origin": "fitted:own accepted ball radii of this episode (SPEC section 10 consensus)",
+   "where": "docs/research/mesh-2026-10-26/gmg/markers.py:468"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "b7/ep2.json",
+   "sha256": "8abd458609b83727e9a982efce6a112062a8c05945f3146917c1d9f549a81f55",
+   "bytes": 316017,
+   "how": "python"
+  },
+  {
+   "path": "b7_summary.json",
+   "sha256": "91a43053808beef204a475056907405c8507c6f9a5044b8349fd83cc5d8ac7a5",
+   "bytes": 4619,
+   "how": "python"
+  }
+ ]
+}

@@ -1,0 +1,471 @@
++ export OMP_NUM_THREADS=1
++ OMP_NUM_THREADS=1
+++ wc -l
++ '[' 8 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 8 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 8 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 8 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 9 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 9 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 9 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 9 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 9 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 10 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 10 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 10 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 10 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 12 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 12 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 12 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 12 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 12 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 13 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 13 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 13 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 13 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 13 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 14 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 14 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 14 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 16 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 16 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 16 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 17 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 17 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 17 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 18 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 18 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 18 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 20 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 20 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 20 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 21 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 21 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 21 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 22 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 22 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 22 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 24 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 24 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 24 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 25 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 25 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 25 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 26 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 26 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 26 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 28 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 28 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 28 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 29 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 29 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 29 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 30 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 30 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 30 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 32 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 32 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 33 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 33 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 34 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 34 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 36 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 36 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 37 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 37 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 38 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 38 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 40 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 40 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 41 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 41 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 42 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 42 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 44 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 44 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 44 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 45 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 45 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 46 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 46 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 48 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 48 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 48 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 49 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 49 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 49 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 50 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 50 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 52 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 52 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 52 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 52 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 53 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 53 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 54 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 54 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 55 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 56 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 56 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 56 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 57 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 57 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 57 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 58 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 58 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 60 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 60 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 60 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 61 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 61 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 61 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 62 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 62 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 64 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 64 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 65 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 65 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 66 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 66 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 66 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 68 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 68 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 69 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 69 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 69 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 70 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 70 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 72 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 72 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 72 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 73 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 73 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 74 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 74 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 74 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 75 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 76 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 76 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 77 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 77 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 77 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 78 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 78 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 78 -ge 80 ']'
++ sleep 10
+++ wc -l
++ '[' 80 -ge 80 ']'
++ kill 14729
++ sleep 1
+++ pgrep -f 'decomp.py --models pixal_mv,hy21'
++ for p in $(pgrep -f "decomp.py --models pixal_mv,hy21")
++ kill 23316
++ mv decomp_other.jsonl decomp_other_partial.jsonl
++ ../../venv/bin/python hyp.py
++ ../../venv/bin/python analyze.py
++ ../../venv/bin/python /home/user/v2d-track3/docs/research/mesh-2026-10-26/scripts/mesh_metric.py run --out metric_lib_vis.jsonl --workers 1 diag/sam3d_lib_vis/white_pot_s42=white_pot=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/white_pot_k279_s42.ply diag/sam3d_lib_vis/white_pot_lid_s42=white_pot_lid=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/white_pot_lid_k321_s42.ply diag/sam3d_lib_vis/blue_cup_s42=blue_cup=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/blue_cup_k156_s42.ply diag/sam3d_lib_vis/water_pitcher_s42=water_pitcher=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/water_pitcher_k174_s42.ply diag/sam3d_lib_vis/wooden_piece_1_s42=wooden_piece_1=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/wooden_piece_1_k27_s42.ply diag/sam3d_lib_vis/wooden_piece_2_s42=wooden_piece_2=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/wooden_piece_2_k6_s42.ply diag/sam3d_lib_vis/plastic_dish_rack_s42=plastic_dish_rack=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/plastic_dish_rack_k144_s42.ply diag/sam3d_lib_vis/mini_sweeper_s42=mini_sweeper=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/mini_sweeper_k270_s42.ply diag/sam3d_lib_vis/mini_dust_pan_s42=mini_dust_pan=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/mini_dust_pan_k297_s42.ply diag/sam3d_lib_vis/beige_cup_s42=beige_cup=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/beige_cup_k6_s42.ply
++ ../../venv/bin/python decomp.py --models pixal_mv,hy21 --seeds 42 --out decomp_other.jsonl
++ ../../venv/bin/python analyze.py
++ ../../venv/bin/python render.py
++ echo CHAIN2-DONE
+CHAIN2-DONE

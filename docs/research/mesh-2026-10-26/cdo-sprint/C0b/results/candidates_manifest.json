@@ -1,0 +1,1554 @@
+{
+ "run": "mesh-20261031-c0b-00e8584",
+ "rule": "PREREG C0b section 5",
+ "candidates": [
+  {
+   "object": "white_pot",
+   "label": "pot/ep2/fit",
+   "episode": "2",
+   "variant": "fit",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep2_fit.glb",
+   "sha256": "b5634d789e14ea53b5aa56d2a4d9b254176d265d4caeebd25513c7d052a06106",
+   "faces_raw": 24642,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 3.588,
+   "fid_all_obs_to_mesh_mm": 2.469,
+   "fid_all_mesh_to_obs_mm": 1.12,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.289,
+    "ep2": 5.161,
+    "ep26": 4.519,
+    "ep27": 10.694,
+    "ep41": 3.579,
+    "ep42": 2.961,
+    "ep43": 3.251,
+    "ep44": 6.486,
+    "ep45": 3.987
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep2/nostem",
+   "episode": "2",
+   "variant": "nostem",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep2_nostem.glb",
+   "sha256": "da20383e7c89cc124ecf4b1ff7fe23eb46ebb4344d858b7565e5150d3694230a",
+   "faces_raw": 24348,
+   "watertight_raw": true,
+   "bodies_raw": 4,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2056,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 3.558,
+   "fid_all_obs_to_mesh_mm": 2.468,
+   "fid_all_mesh_to_obs_mm": 1.09,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.16,
+    "ep2": 4.995,
+    "ep26": 4.469,
+    "ep27": 10.6,
+    "ep41": 3.581,
+    "ep42": 2.952,
+    "ep43": 3.248,
+    "ep44": 6.283,
+    "ep45": 3.986
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep2/nomk",
+   "episode": "2",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep2_nomk.glb",
+   "sha256": "6b330aec0a42610bb153081ac582337052c3b5a6516c87fceb07304f14ae25ce",
+   "faces_raw": 15034,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 4.126,
+   "fid_all_obs_to_mesh_mm": 3.085,
+   "fid_all_mesh_to_obs_mm": 1.041,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.66,
+    "ep2": 5.511,
+    "ep26": 4.887,
+    "ep27": 11.769,
+    "ep41": 4.014,
+    "ep42": 3.061,
+    "ep43": 3.392,
+    "ep44": 7.206,
+    "ep45": 4.493
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep2/thick",
+   "episode": "2",
+   "variant": "thick",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep2_thick.glb",
+   "sha256": "bdf191bb71d1a5f6be466a2cdb0825c1e6e9d2b8332833f3b109ac139af6375e",
+   "faces_raw": 23122,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 4.038,
+   "fid_all_obs_to_mesh_mm": 2.68,
+   "fid_all_mesh_to_obs_mm": 1.358,
+   "fid_per_episode_sum_mm": {
+    "ep0": 5.461,
+    "ep2": 6.066,
+    "ep26": 5.489,
+    "ep27": 10.686,
+    "ep41": 4.218,
+    "ep42": 4.799,
+    "ep43": 4.099,
+    "ep44": 6.728,
+    "ep45": 4.408
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep26/fit",
+   "episode": "26",
+   "variant": "fit",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep26_fit.glb",
+   "sha256": "10c147c6a0217cc36ad965084bb994765e6650c677bcd6375ab5004547bf8688",
+   "faces_raw": 28566,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 4.423,
+   "fid_all_obs_to_mesh_mm": 3.289,
+   "fid_all_mesh_to_obs_mm": 1.134,
+   "fid_per_episode_sum_mm": {
+    "ep0": 6.031,
+    "ep2": 6.86,
+    "ep26": 4.171,
+    "ep27": 14.387,
+    "ep41": 4.75,
+    "ep42": 3.713,
+    "ep43": 3.264,
+    "ep44": 8.891,
+    "ep45": 5.109
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep26/nostem",
+   "episode": "26",
+   "variant": "nostem",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep26_nostem.glb",
+   "sha256": "d52644d11de7742bc8ea0ae586f006576405c2979c5a3bd6bf88cd82863f5afc",
+   "faces_raw": 28396,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 4.429,
+   "fid_all_obs_to_mesh_mm": 3.292,
+   "fid_all_mesh_to_obs_mm": 1.136,
+   "fid_per_episode_sum_mm": {
+    "ep0": 6.037,
+    "ep2": 6.864,
+    "ep26": 4.172,
+    "ep27": 14.388,
+    "ep41": 4.756,
+    "ep42": 3.714,
+    "ep43": 3.265,
+    "ep44": 8.904,
+    "ep45": 5.11
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep26/nomk",
+   "episode": "26",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep26_nomk.glb",
+   "sha256": "d4c01de83a7e6429b79d4891ad75a5c43613401daa0bd81c4a7a1e7d3c5eaaa8",
+   "faces_raw": 15258,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 5.028,
+   "fid_all_obs_to_mesh_mm": 3.943,
+   "fid_all_mesh_to_obs_mm": 1.086,
+   "fid_per_episode_sum_mm": {
+    "ep0": 6.46,
+    "ep2": 7.064,
+    "ep26": 4.488,
+    "ep27": 15.993,
+    "ep41": 5.185,
+    "ep42": 3.685,
+    "ep43": 3.317,
+    "ep44": 9.61,
+    "ep45": 5.602
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep26/thick",
+   "episode": "26",
+   "variant": "thick",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep26_thick.glb",
+   "sha256": "1828b8e57bb5ecbc089d5062544dc3c96456bce3e5be866329fb2b54a2ad869e",
+   "faces_raw": 24520,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 5.528,
+   "fid_all_obs_to_mesh_mm": 3.952,
+   "fid_all_mesh_to_obs_mm": 1.576,
+   "fid_per_episode_sum_mm": {
+    "ep0": 7.764,
+    "ep2": 8.43,
+    "ep26": 5.614,
+    "ep27": 16.274,
+    "ep41": 5.939,
+    "ep42": 5.56,
+    "ep43": 5.136,
+    "ep44": 10.068,
+    "ep45": 5.924
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep27/fit",
+   "episode": "27",
+   "variant": "fit",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep27_fit.glb",
+   "sha256": "f4a298a2f981ffbc862626554fac8a2fff981fd0a6a0197ac329541978f0eee0",
+   "faces_raw": 28768,
+   "watertight_raw": true,
+   "bodies_raw": 8,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2064,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 5.306,
+   "fid_all_obs_to_mesh_mm": 3.447,
+   "fid_all_mesh_to_obs_mm": 1.859,
+   "fid_per_episode_sum_mm": {
+    "ep0": 7.97,
+    "ep2": 8.919,
+    "ep26": 6.977,
+    "ep27": 6.059,
+    "ep41": 6.58,
+    "ep42": 6.519,
+    "ep43": 5.481,
+    "ep44": 10.514,
+    "ep45": 7.176
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep27/nostem",
+   "episode": "27",
+   "variant": "nostem",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep27_nostem.glb",
+   "sha256": "fead4f11127dc0e6a302dac9541e74bd9c268cb7441f2a5423f9e93faaa6852e",
+   "faces_raw": 28654,
+   "watertight_raw": true,
+   "bodies_raw": 9,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2066,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 5.313,
+   "fid_all_obs_to_mesh_mm": 3.447,
+   "fid_all_mesh_to_obs_mm": 1.866,
+   "fid_per_episode_sum_mm": {
+    "ep0": 7.97,
+    "ep2": 8.923,
+    "ep26": 6.976,
+    "ep27": 6.068,
+    "ep41": 6.581,
+    "ep42": 6.517,
+    "ep43": 5.481,
+    "ep44": 10.52,
+    "ep45": 7.171
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep27/nomk",
+   "episode": "27",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep27_nomk.glb",
+   "sha256": "d4dadf3c2269f5755c64627e8f62b8fee9fac103e768c92e32110562ff20387d",
+   "faces_raw": 15688,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 6.913,
+   "fid_all_obs_to_mesh_mm": 5.093,
+   "fid_all_mesh_to_obs_mm": 1.82,
+   "fid_per_episode_sum_mm": {
+    "ep0": 9.677,
+    "ep2": 9.054,
+    "ep26": 7.256,
+    "ep27": 8.684,
+    "ep41": 8.166,
+    "ep42": 6.498,
+    "ep43": 5.5,
+    "ep44": 15.429,
+    "ep45": 9.477
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep27/thick",
+   "episode": "27",
+   "variant": "thick",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep27_thick.glb",
+   "sha256": "20fe097d5ceb0080274a991adb567dc670e6649aece5b340c36ef4b311e13d00",
+   "faces_raw": 27868,
+   "watertight_raw": true,
+   "bodies_raw": 8,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2062,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 5.155,
+   "fid_all_obs_to_mesh_mm": 3.13,
+   "fid_all_mesh_to_obs_mm": 2.025,
+   "fid_per_episode_sum_mm": {
+    "ep0": 7.891,
+    "ep2": 8.802,
+    "ep26": 6.994,
+    "ep27": 6.188,
+    "ep41": 6.492,
+    "ep42": 6.511,
+    "ep43": 5.415,
+    "ep44": 10.472,
+    "ep45": 7.085
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep41/fit",
+   "episode": "41",
+   "variant": "fit",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep41_fit.glb",
+   "sha256": "e5ca19709e4470d68515473354a52a25bdbf3bc08eff05e42e95fdab358ccd1c",
+   "faces_raw": 27556,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 3.522,
+   "fid_all_obs_to_mesh_mm": 2.411,
+   "fid_all_mesh_to_obs_mm": 1.111,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.674,
+    "ep2": 5.765,
+    "ep26": 4.577,
+    "ep27": 8.869,
+    "ep41": 3.692,
+    "ep42": 3.327,
+    "ep43": 3.092,
+    "ep44": 6.589,
+    "ep45": 4.208
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep41/nostem",
+   "episode": "41",
+   "variant": "nostem",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep41_nostem.glb",
+   "sha256": "859af232490a724156886ee569e1051766095ef642f507ec17c7a47ca9c060f8",
+   "faces_raw": 27556,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 3.522,
+   "fid_all_obs_to_mesh_mm": 2.411,
+   "fid_all_mesh_to_obs_mm": 1.111,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.674,
+    "ep2": 5.765,
+    "ep26": 4.577,
+    "ep27": 8.869,
+    "ep41": 3.692,
+    "ep42": 3.327,
+    "ep43": 3.092,
+    "ep44": 6.589,
+    "ep45": 4.208
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep41/nomk",
+   "episode": "41",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep41_nomk.glb",
+   "sha256": "1368cb42a3bbddc3379c6f7d47c5064c2ea2e3e57063cfd29c9219c885bff7f3",
+   "faces_raw": 15014,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 3.782,
+   "fid_all_obs_to_mesh_mm": 2.765,
+   "fid_all_mesh_to_obs_mm": 1.017,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.7,
+    "ep2": 5.663,
+    "ep26": 4.491,
+    "ep27": 12.006,
+    "ep41": 3.683,
+    "ep42": 3.032,
+    "ep43": 2.999,
+    "ep44": 6.694,
+    "ep45": 4.35
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep41/thick",
+   "episode": "41",
+   "variant": "thick",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep41_thick.glb",
+   "sha256": "3bd7d7c1f7c15870dd5801f5bbb7d22c77ecc2179a7e18f9f5314b1cb81c923d",
+   "faces_raw": 25252,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 4.445,
+   "fid_all_obs_to_mesh_mm": 3.034,
+   "fid_all_mesh_to_obs_mm": 1.411,
+   "fid_per_episode_sum_mm": {
+    "ep0": 6.225,
+    "ep2": 7.074,
+    "ep26": 5.636,
+    "ep27": 9.93,
+    "ep41": 4.76,
+    "ep42": 5.336,
+    "ep43": 4.563,
+    "ep44": 7.287,
+    "ep45": 5.026
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep42/fit",
+   "episode": "42",
+   "variant": "fit",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep42_fit.glb",
+   "sha256": "95fd95111c5d96cc5227cb9cc82335b0ae345319f76f85d1afd9dd25b5e3dee7",
+   "faces_raw": 27792,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 3.696,
+   "fid_all_obs_to_mesh_mm": 2.522,
+   "fid_all_mesh_to_obs_mm": 1.174,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.909,
+    "ep2": 6.621,
+    "ep26": 4.463,
+    "ep27": 9.448,
+    "ep41": 4.084,
+    "ep42": 3.519,
+    "ep43": 3.301,
+    "ep44": 6.715,
+    "ep45": 4.439
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep42/nostem",
+   "episode": "42",
+   "variant": "nostem",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep42_nostem.glb",
+   "sha256": "95fd95111c5d96cc5227cb9cc82335b0ae345319f76f85d1afd9dd25b5e3dee7",
+   "faces_raw": 27792,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 3.696,
+   "fid_all_obs_to_mesh_mm": 2.522,
+   "fid_all_mesh_to_obs_mm": 1.174,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.909,
+    "ep2": 6.621,
+    "ep26": 4.463,
+    "ep27": 9.448,
+    "ep41": 4.084,
+    "ep42": 3.519,
+    "ep43": 3.301,
+    "ep44": 6.715,
+    "ep45": 4.439
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep42/nomk",
+   "episode": "42",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep42_nomk.glb",
+   "sha256": "dff67c4cb9e99c325f09f1b6af7fc033bf6cbc546444f0eb4a84741274ff1a20",
+   "faces_raw": 15262,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 3.737,
+   "fid_all_obs_to_mesh_mm": 2.691,
+   "fid_all_mesh_to_obs_mm": 1.046,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.639,
+    "ep2": 6.125,
+    "ep26": 4.358,
+    "ep27": 10.379,
+    "ep41": 3.936,
+    "ep42": 3.27,
+    "ep43": 3.17,
+    "ep44": 6.316,
+    "ep45": 4.311
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep42/thick",
+   "episode": "42",
+   "variant": "thick",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep42_thick.glb",
+   "sha256": "f4f43c3f34376ab08f964ca41fd30830026e6eb9e3a26aece80560c452effd45",
+   "faces_raw": 24964,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 4.755,
+   "fid_all_obs_to_mesh_mm": 3.154,
+   "fid_all_mesh_to_obs_mm": 1.602,
+   "fid_per_episode_sum_mm": {
+    "ep0": 6.485,
+    "ep2": 8.017,
+    "ep26": 5.82,
+    "ep27": 11.167,
+    "ep41": 5.356,
+    "ep42": 5.592,
+    "ep43": 4.963,
+    "ep44": 7.754,
+    "ep45": 5.325
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep43/fit",
+   "episode": "43",
+   "variant": "fit",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep43_fit.glb",
+   "sha256": "098ade9d079094afbad2cba01d8f3a1fd08e6d91cc7c3d7256da903071fc7a31",
+   "faces_raw": 25922,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 3.407,
+   "fid_all_obs_to_mesh_mm": 2.31,
+   "fid_all_mesh_to_obs_mm": 1.097,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.685,
+    "ep2": 5.772,
+    "ep26": 4.298,
+    "ep27": 6.439,
+    "ep41": 3.739,
+    "ep42": 3.582,
+    "ep43": 3.054,
+    "ep44": 6.428,
+    "ep45": 4.318
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep43/nostem",
+   "episode": "43",
+   "variant": "nostem",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep43_nostem.glb",
+   "sha256": "9b993a13e8980324b501c5cc1f5522d7da05de407ade3b43ef7a4c275b9b8323",
+   "faces_raw": 25922,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 3.407,
+   "fid_all_obs_to_mesh_mm": 2.31,
+   "fid_all_mesh_to_obs_mm": 1.097,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.685,
+    "ep2": 5.772,
+    "ep26": 4.298,
+    "ep27": 6.439,
+    "ep41": 3.739,
+    "ep42": 3.582,
+    "ep43": 3.054,
+    "ep44": 6.428,
+    "ep45": 4.318
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep43/nomk",
+   "episode": "43",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep43_nomk.glb",
+   "sha256": "3dea9a786a8691b40135a6d6586b56fd0b745823ed6b7985406c7b8201513b0c",
+   "faces_raw": 15012,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 3.634,
+   "fid_all_obs_to_mesh_mm": 2.608,
+   "fid_all_mesh_to_obs_mm": 1.026,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.401,
+    "ep2": 5.382,
+    "ep26": 4.108,
+    "ep27": 9.492,
+    "ep41": 3.711,
+    "ep42": 3.255,
+    "ep43": 3.001,
+    "ep44": 6.502,
+    "ep45": 4.319
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep43/thick",
+   "episode": "43",
+   "variant": "thick",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep43_thick.glb",
+   "sha256": "f38ac78a093d7caf1ee2001df9fd2e3784af0c1a5275506ee11e046000ee9ee5",
+   "faces_raw": 23234,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 5.106,
+   "fid_all_obs_to_mesh_mm": 3.474,
+   "fid_all_mesh_to_obs_mm": 1.631,
+   "fid_per_episode_sum_mm": {
+    "ep0": 7.217,
+    "ep2": 8.053,
+    "ep26": 6.282,
+    "ep27": 9.081,
+    "ep41": 5.62,
+    "ep42": 6.281,
+    "ep43": 5.487,
+    "ep44": 8.052,
+    "ep45": 5.69
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep44/fit",
+   "episode": "44",
+   "variant": "fit",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep44_fit.glb",
+   "sha256": "6a6c420ce1b2aec95188c4bd4a57f02003e2a549effc8720eeb45fd29578d478",
+   "faces_raw": 36088,
+   "watertight_raw": true,
+   "bodies_raw": 3,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2053,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 3.949,
+   "fid_all_obs_to_mesh_mm": 2.614,
+   "fid_all_mesh_to_obs_mm": 1.335,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.855,
+    "ep2": 6.035,
+    "ep26": 5.333,
+    "ep27": 9.189,
+    "ep41": 3.606,
+    "ep42": 3.402,
+    "ep43": 3.745,
+    "ep44": 6.206,
+    "ep45": 4.168
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep44/nostem",
+   "episode": "44",
+   "variant": "nostem",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep44_nostem.glb",
+   "sha256": "e82688ff294d07ea4fffa6fa0ed88d8547cd955e425f704a6f5892c006c82903",
+   "faces_raw": 35144,
+   "watertight_raw": true,
+   "bodies_raw": 8,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2063,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 3.735,
+   "fid_all_obs_to_mesh_mm": 2.63,
+   "fid_all_mesh_to_obs_mm": 1.106,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.665,
+    "ep2": 5.675,
+    "ep26": 5.221,
+    "ep27": 10.819,
+    "ep41": 3.598,
+    "ep42": 3.352,
+    "ep43": 3.731,
+    "ep44": 5.459,
+    "ep45": 4.149
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep44/nomk",
+   "episode": "44",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep44_nomk.glb",
+   "sha256": "6ad21a5c128a5d34bf410d41b59f618939b5b61c1f43a603ff314fa8faedc3d2",
+   "faces_raw": 15504,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 4.617,
+   "fid_all_obs_to_mesh_mm": 3.702,
+   "fid_all_mesh_to_obs_mm": 0.916,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.91,
+    "ep2": 5.497,
+    "ep26": 5.36,
+    "ep27": 13.716,
+    "ep41": 4.212,
+    "ep42": 3.122,
+    "ep43": 3.892,
+    "ep44": 7.002,
+    "ep45": 5.251
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep44/thick",
+   "episode": "44",
+   "variant": "thick",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep44_thick.glb",
+   "sha256": "395f595b163dbc2461311271adc0cbdf0492a55c54aa5fc95d32529c493ca807",
+   "faces_raw": 34756,
+   "watertight_raw": true,
+   "bodies_raw": 4,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2056,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 3.708,
+   "fid_all_obs_to_mesh_mm": 2.416,
+   "fid_all_mesh_to_obs_mm": 1.292,
+   "fid_per_episode_sum_mm": {
+    "ep0": 4.736,
+    "ep2": 5.835,
+    "ep26": 5.092,
+    "ep27": 9.306,
+    "ep41": 3.56,
+    "ep42": 3.403,
+    "ep43": 3.576,
+    "ep44": 5.997,
+    "ep45": 4.051
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep45/fit",
+   "episode": "45",
+   "variant": "fit",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep45_fit.glb",
+   "sha256": "9647bf5b7230eaef3c0fe1f70f59aa62390dfd0a6f3d4e8816446a8f111e1aca",
+   "faces_raw": 35048,
+   "watertight_raw": true,
+   "bodies_raw": 3,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2054,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 5.045,
+   "fid_all_obs_to_mesh_mm": 3.412,
+   "fid_all_mesh_to_obs_mm": 1.632,
+   "fid_per_episode_sum_mm": {
+    "ep0": 6.505,
+    "ep2": 10.242,
+    "ep26": 6.037,
+    "ep27": 12.532,
+    "ep41": 5.75,
+    "ep42": 5.171,
+    "ep43": 4.44,
+    "ep44": 9.185,
+    "ep45": 4.806
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep45/nostem",
+   "episode": "45",
+   "variant": "nostem",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep45_nostem.glb",
+   "sha256": "5e3e161c540ca3e306feb55ce472040ca1c65aa8a7e9a6987b067af2a217cb59",
+   "faces_raw": 35048,
+   "watertight_raw": true,
+   "bodies_raw": 3,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2054,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 5.045,
+   "fid_all_obs_to_mesh_mm": 3.412,
+   "fid_all_mesh_to_obs_mm": 1.632,
+   "fid_per_episode_sum_mm": {
+    "ep0": 6.505,
+    "ep2": 10.242,
+    "ep26": 6.037,
+    "ep27": 12.532,
+    "ep41": 5.75,
+    "ep42": 5.171,
+    "ep43": 4.44,
+    "ep44": 9.185,
+    "ep45": 4.806
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep45/nomk",
+   "episode": "45",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep45_nomk.glb",
+   "sha256": "158fc2c50c6d5e147ab36cc41d509e4ffb7f737c240185a0663d4a8857a3ccef",
+   "faces_raw": 16064,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 5.528,
+   "fid_all_obs_to_mesh_mm": 4.138,
+   "fid_all_mesh_to_obs_mm": 1.39,
+   "fid_per_episode_sum_mm": {
+    "ep0": 6.875,
+    "ep2": 10.2,
+    "ep26": 6.357,
+    "ep27": 14.004,
+    "ep41": 5.983,
+    "ep42": 5.202,
+    "ep43": 4.591,
+    "ep44": 9.301,
+    "ep45": 5.225
+   },
+   "excluded": null
+  },
+  {
+   "object": "white_pot",
+   "label": "pot/ep45/thick",
+   "episode": "45",
+   "variant": "thick",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep45_thick.glb",
+   "sha256": "4560bed1dfd2b711b4d6eaf55ad23bead9432f1900b221f0116beecd363a162b",
+   "faces_raw": 29130,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 5.897,
+   "fid_all_obs_to_mesh_mm": 3.669,
+   "fid_all_mesh_to_obs_mm": 2.227,
+   "fid_per_episode_sum_mm": {
+    "ep0": 7.866,
+    "ep2": 10.58,
+    "ep26": 7.317,
+    "ep27": 13.761,
+    "ep41": 6.382,
+    "ep42": 7.131,
+    "ep43": 6.485,
+    "ep44": 9.186,
+    "ep45": 5.693
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep12/full",
+   "episode": "12",
+   "variant": "full",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep12_full.glb",
+   "sha256": "31b23aa08973b879df47e85e201566d6f59cc93f6e4f53232874af25101e64ce",
+   "faces_raw": 13408,
+   "watertight_raw": true,
+   "bodies_raw": 11,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2061,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 77.782,
+   "fid_all_obs_to_mesh_mm": 14.8,
+   "fid_all_mesh_to_obs_mm": 62.982,
+   "fid_per_episode_sum_mm": {
+    "ep12": 50.624,
+    "ep13": 61.785,
+    "ep26": 83.64,
+    "ep27": 123.925,
+    "ep31": 54.2
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep12/nomk",
+   "episode": "12",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep12_nomk.glb",
+   "sha256": "24fc14659d0d5b4ea0133ddb28b841d3e591cb722f60a59dc9064e55b8fac5c5",
+   "faces_raw": 568,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 568,
+    "vertices": 282,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 108.491,
+   "fid_all_obs_to_mesh_mm": 36.378,
+   "fid_all_mesh_to_obs_mm": 72.113,
+   "fid_per_episode_sum_mm": {
+    "ep12": 80.832,
+    "ep13": 101.442,
+    "ep26": 121.179,
+    "ep27": 153.564,
+    "ep31": 75.965
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep13/full",
+   "episode": "13",
+   "variant": "full",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep13_full.glb",
+   "sha256": "985ded99b877bfa2927fde2bdc3448df3cf3418a8767fb21149bc58a13621d9a",
+   "faces_raw": 16910,
+   "watertight_raw": true,
+   "bodies_raw": 6,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2060,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 33.32,
+   "fid_all_obs_to_mesh_mm": 19.193,
+   "fid_all_mesh_to_obs_mm": 14.127,
+   "fid_per_episode_sum_mm": {
+    "ep12": 20.84,
+    "ep13": 23.838,
+    "ep26": 53.244,
+    "ep27": 84.802,
+    "ep31": 22.797
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep13/nomk",
+   "episode": "13",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep13_nomk.glb",
+   "sha256": "1b0e9cb66b964bae1a167c26a139127d4052232064cfb5af00a092f9f2414d4e",
+   "faces_raw": 1932,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 1932,
+    "vertices": 968,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 37.811,
+   "fid_all_obs_to_mesh_mm": 22.566,
+   "fid_all_mesh_to_obs_mm": 15.245,
+   "fid_per_episode_sum_mm": {
+    "ep12": 24.895,
+    "ep13": 28.524,
+    "ep26": 57.567,
+    "ep27": 89.289,
+    "ep31": 25.967
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep26/full",
+   "episode": "26",
+   "variant": "full",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep26_full.glb",
+   "sha256": "7aa32c47094d4feca6bb2c286ca3771b9a5d2e4b87083a315c51ca90a1b89b01",
+   "faces_raw": 17152,
+   "watertight_raw": true,
+   "bodies_raw": 22,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2088,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 50.925,
+   "fid_all_obs_to_mesh_mm": 13.661,
+   "fid_all_mesh_to_obs_mm": 37.264,
+   "fid_per_episode_sum_mm": {
+    "ep12": 49.495,
+    "ep13": 62.283,
+    "ep26": 54.059,
+    "ep27": 79.404,
+    "ep31": 56.02
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep26/nomk",
+   "episode": "26",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep26_nomk.glb",
+   "sha256": "76c2eeaedd5bf5fe1cb29b1a263ee3bf36b4034381e9e831b2b9db196ae4e7c0",
+   "faces_raw": 1174,
+   "watertight_raw": true,
+   "bodies_raw": 5,
+   "budget": {
+    "ok": true,
+    "faces": 1174,
+    "vertices": 593,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 65.929,
+   "fid_all_obs_to_mesh_mm": 24.426,
+   "fid_all_mesh_to_obs_mm": 41.503,
+   "fid_per_episode_sum_mm": {
+    "ep12": 61.476,
+    "ep13": 79.116,
+    "ep26": 78.487,
+    "ep27": 102.683,
+    "ep31": 63.271
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep27/full",
+   "episode": "27",
+   "variant": "full",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep27_full.glb",
+   "sha256": "04ae6f1b78c161490dea41603f0c9d00499967f73e13eefa04f89f57ddc4fc38",
+   "faces_raw": 22678,
+   "watertight_raw": true,
+   "bodies_raw": 14,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2072,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 41.147,
+   "fid_all_obs_to_mesh_mm": 8.357,
+   "fid_all_mesh_to_obs_mm": 32.79,
+   "fid_per_episode_sum_mm": {
+    "ep12": 35.507,
+    "ep13": 37.992,
+    "ep26": 77.43,
+    "ep27": 44.138,
+    "ep31": 39.312
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep27/nomk",
+   "episode": "27",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep27_nomk.glb",
+   "sha256": "f6be4a1f6f3cfc59f3881e35ac3fb82d95589ac6e292d5c30325ec26f1f0bf6c",
+   "faces_raw": 504,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 504,
+    "vertices": 254,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 58.85,
+   "fid_all_obs_to_mesh_mm": 22.604,
+   "fid_all_mesh_to_obs_mm": 36.247,
+   "fid_per_episode_sum_mm": {
+    "ep12": 56.844,
+    "ep13": 61.308,
+    "ep26": 101.231,
+    "ep27": 62.93,
+    "ep31": 48.007
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep31/full",
+   "episode": "31",
+   "variant": "full",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep31_full.glb",
+   "sha256": "9635c8d2c78628fc55f74bd5d8441c1764659b9aed96756f3a9d6ac586bb9fd3",
+   "faces_raw": 16596,
+   "watertight_raw": true,
+   "bodies_raw": 18,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2082,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 75.734,
+   "fid_all_obs_to_mesh_mm": 17.835,
+   "fid_all_mesh_to_obs_mm": 57.899,
+   "fid_per_episode_sum_mm": {
+    "ep12": 51.564,
+    "ep13": 86.229,
+    "ep26": 108.225,
+    "ep27": 151.863,
+    "ep31": 49.313
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/ep31/nomk",
+   "episode": "31",
+   "variant": "nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep31_nomk.glb",
+   "sha256": "72c717d39d2c93eeb26120041dd7afadb1628e387fd4f425bd557b3d3cc1b86d",
+   "faces_raw": 634,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 634,
+    "vertices": 321,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 115.072,
+   "fid_all_obs_to_mesh_mm": 48.631,
+   "fid_all_mesh_to_obs_mm": 66.44,
+   "fid_per_episode_sum_mm": {
+    "ep12": 96.43,
+    "ep13": 154.814,
+    "ep26": 150.745,
+    "ep27": 186.304,
+    "ep31": 83.318
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/joint/joint",
+   "episode": "joint",
+   "variant": "joint",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/joint_joint.glb",
+   "sha256": "4e7b81bf7fb7e710e4a7127b0f0b3a3558b8df72a8088683d932b9861a0cb686",
+   "faces_raw": 16688,
+   "watertight_raw": true,
+   "bodies_raw": 23,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2090,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 39.519,
+   "fid_all_obs_to_mesh_mm": 11.423,
+   "fid_all_mesh_to_obs_mm": 28.096,
+   "fid_per_episode_sum_mm": {
+    "ep12": 38.334,
+    "ep13": 39.798,
+    "ep26": 79.312,
+    "ep27": 42.013,
+    "ep31": 43.605
+   },
+   "excluded": null
+  },
+  {
+   "object": "plastic_dish_rack",
+   "label": "rack/joint/joint_nomk",
+   "episode": "joint",
+   "variant": "joint_nomk",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/joint_joint_nomk.glb",
+   "sha256": "6fc639ae2cf94bec54b32ea05449cec832aa94706412f8f584f53c28d9b24d9c",
+   "faces_raw": 510,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "ok": true,
+    "faces": 510,
+    "vertices": 257,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 57.146,
+   "fid_all_obs_to_mesh_mm": 24.898,
+   "fid_all_mesh_to_obs_mm": 32.248,
+   "fid_per_episode_sum_mm": {
+    "ep12": 61.104,
+    "ep13": 63.86,
+    "ep26": 102.905,
+    "ep27": 59.503,
+    "ep31": 53.819
+   },
+   "excluded": null
+  },
+  {
+   "object": "blue_cup",
+   "label": "cup/ep21/g1",
+   "episode": "21",
+   "variant": "g1",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/blue_cup/ep21_blue_cup_g1.glb",
+   "sha256": "27957f760653bb05237d275b712deb49b9b7d18ed0f88365bc0e12cb7aad1c0f",
+   "faces_raw": 53996,
+   "watertight_raw": true,
+   "bodies_raw": 6,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2055,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 3.377,
+   "fid_all_obs_to_mesh_mm": 2.16,
+   "fid_all_mesh_to_obs_mm": 1.218,
+   "fid_per_episode_sum_mm": {
+    "ep11": 8.587,
+    "ep12": 11.335,
+    "ep13": 4.304,
+    "ep21": 3.375,
+    "ep22": 6.111
+   },
+   "excluded": null
+  },
+  {
+   "object": "blue_cup",
+   "label": "cup/ep21/g0",
+   "episode": "21",
+   "variant": "g0",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/blue_cup/ep21_blue_cup_g0.glb",
+   "sha256": "df11a449e25b705389339e2d341512a7b524c5c26663985f3ce023f09c7f58d2",
+   "faces_raw": 21888,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 4.867,
+   "fid_all_obs_to_mesh_mm": 3.83,
+   "fid_all_mesh_to_obs_mm": 1.037,
+   "fid_per_episode_sum_mm": {
+    "ep11": 10.142,
+    "ep12": 12.347,
+    "ep13": 5.174,
+    "ep21": 11.225,
+    "ep22": 8.827
+   },
+   "excluded": null
+  },
+  {
+   "object": "blue_cup",
+   "label": "cup/ep22/g1",
+   "episode": "22",
+   "variant": "g1",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/blue_cup/ep22_blue_cup_g1.glb",
+   "sha256": "3275ecced7550141fbd8950936387e7beb85d7940dd393feb0ec70f93d672753",
+   "faces_raw": 50296,
+   "watertight_raw": true,
+   "bodies_raw": 6,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2058,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 3.518,
+   "fid_all_obs_to_mesh_mm": 2.296,
+   "fid_all_mesh_to_obs_mm": 1.222,
+   "fid_per_episode_sum_mm": {
+    "ep11": 8.327,
+    "ep12": 10.246,
+    "ep13": 4.493,
+    "ep21": 5.985,
+    "ep22": 4.814
+   },
+   "excluded": null
+  },
+  {
+   "object": "blue_cup",
+   "label": "cup/ep22/g0",
+   "episode": "22",
+   "variant": "g0",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/blue_cup/ep22_blue_cup_g0.glb",
+   "sha256": "6d76fac07150fc2e8cc164469a83822b6b68ea6500e2b49a593a19e5e098e7e7",
+   "faces_raw": 21888,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 4.508,
+   "fid_all_obs_to_mesh_mm": 3.487,
+   "fid_all_mesh_to_obs_mm": 1.02,
+   "fid_per_episode_sum_mm": {
+    "ep11": 8.47,
+    "ep12": 10.598,
+    "ep13": 4.628,
+    "ep21": 12.526,
+    "ep22": 9.628
+   },
+   "excluded": null
+  },
+  {
+   "object": "blue_cup",
+   "label": "cup/merged/g1",
+   "episode": "merged",
+   "variant": "g1",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/blue_cup/merged_blue_cup_g1.glb",
+   "sha256": "565a4d9758d69870ed257eca9d014e7bd74ebdd615616135b6df5a2197bf172f",
+   "faces_raw": 95518,
+   "watertight_raw": true,
+   "bodies_raw": 5,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 6.991,
+   "fid_all_obs_to_mesh_mm": 3.676,
+   "fid_all_mesh_to_obs_mm": 3.315,
+   "fid_per_episode_sum_mm": {
+    "ep11": 8.965,
+    "ep12": 18.569,
+    "ep13": 6.303,
+    "ep21": 8.45,
+    "ep22": 10.221
+   },
+   "excluded": null
+  },
+  {
+   "object": "beige_cup",
+   "label": "beige/ep11/g1",
+   "episode": "11",
+   "variant": "g1",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/beige_cup/ep11_beige_cup_sep_g1.glb",
+   "sha256": "5c39b6561c9b17f1caf729397bfa708936b29d5e2601c0b2a5284d690b4f59a3",
+   "faces_raw": 43778,
+   "watertight_raw": true,
+   "bodies_raw": 4,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2043,
+    "watertight": false
+   },
+   "fid_all_sum_mm": 3.91,
+   "fid_all_obs_to_mesh_mm": 0.94,
+   "fid_all_mesh_to_obs_mm": 2.97,
+   "fid_per_episode_sum_mm": {
+    "ep11": 3.91
+   },
+   "excluded": null
+  },
+  {
+   "object": "beige_cup",
+   "label": "beige/ep11/g0",
+   "episode": "11",
+   "variant": "g0",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/beige_cup/ep11_beige_cup_sep_g0.glb",
+   "sha256": "05557e8cc815bb44bda424367da0b8031b207377ad1b7963300f98dbc5f36ec9",
+   "faces_raw": 22080,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "ok": true,
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true
+   },
+   "fid_all_sum_mm": 5.167,
+   "fid_all_obs_to_mesh_mm": 1.035,
+   "fid_all_mesh_to_obs_mm": 4.132,
+   "fid_per_episode_sum_mm": {
+    "ep11": 5.167
+   },
+   "excluded": null
+  }
+ ]
+}

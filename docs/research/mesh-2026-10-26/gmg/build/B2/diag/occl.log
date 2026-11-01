@@ -1,0 +1,14 @@
+# GT-free dev diagnostic (B2, 2026-10-30 ~23:15 UTC): (reprojected depth - target projected front depth) in mm inside
+# each target's footprint on cam_a. Command (scratchpad copy of build/B2/diag/occl.py, gen_inputs at d863fab):
+#   GMG_MODE=dev <venv>/bin/python -W ignore occl.py 2 78,152,190,20,300
+# Dev bundle (obs_all + tracks; sigma stubbed: not used here). No scan, mocap or library file read.
+2 78 white_pot n 133315 of 148775 pct(1,5,25,50,75,95,99) mm [-15.   -7.    2.2   6.2  10.4  36.9 116.4] frac < -10mm 0.031  < -20mm 0.000  < -30mm 0.000
+2 78 white_pot_lid n 80598 of 89008 pct(1,5,25,50,75,95,99) mm [-85.6 -76.5   0.6   3.2   5.8  10.6  54.5] frac < -10mm 0.223  < -20mm 0.212  < -30mm 0.198
+2 152 white_pot n 169926 of 185943 pct(1,5,25,50,75,95,99) mm [-18.8 -12.1   1.9   7.2  11.5 100.1 968.5] frac < -10mm 0.067  < -20mm 0.006  < -30mm 0.000
+2 152 white_pot_lid n 78456 of 82717 pct(1,5,25,50,75,95,99) mm [-2.7  0.1  2.9  4.2  5.8  9.  15.3] frac < -10mm 0.000  < -20mm 0.000  < -30mm 0.000
+2 190 white_pot n 152708 of 166562 pct(1,5,25,50,75,95,99) mm [-18.4 -11.7   1.9   4.3   6.7 105.3 949.6] frac < -10mm 0.068  < -20mm 0.007  < -30mm 0.000
+2 190 white_pot_lid n 76985 of 81294 pct(1,5,25,50,75,95,99) mm [-1.7  0.7  2.8  4.2  6.3  9.1 16. ] frac < -10mm 0.000  < -20mm 0.000  < -30mm 0.000
+2 20 white_pot n 137637 of 151016 pct(1,5,25,50,75,95,99) mm [-123.5 -108.3  -93.3  -15.4    5.5   17.4   97.4] frac < -10mm 0.515  < -20mm 0.487  < -30mm 0.458
+2 20 white_pot_lid n 94313 of 101395 pct(1,5,25,50,75,95,99) mm [ -0.2   1.    2.8   4.4   6.5  10.6 115.5] frac < -10mm 0.000  < -20mm 0.000  < -30mm 0.000
+2 300 white_pot n 140220 of 154316 pct(1,5,25,50,75,95,99) mm [-187.8 -177.5 -102.8  -28.9    5.3   17.9   89.9] frac < -10mm 0.583  < -20mm 0.524  < -30mm 0.497
+2 300 white_pot_lid n 93216 of 102373 pct(1,5,25,50,75,95,99) mm [-97.6 -84.5 -0.7 2.9 5.9 10.9 910.4] frac < -10mm 0.241  < -20mm 0.234  < -30mm 0.217

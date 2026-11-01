@@ -1,0 +1,441 @@
+{
+ "rule": "C0b PREREG 9 (c)-(e) re-applied by e0b_package.py; equals the box selection.json",
+ "objects": {
+  "white_pot": {
+   "adopted": true,
+   "ships": "e0b",
+   "e0b_pick": {
+    "label": "pot/ep3/thick",
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/white_pot_e0b_pot_ep3_thick.glb",
+    "sha256": "265ab3410fac9e42a7dc3b40112b98a0d326cc685a40a190625cacc628f7768c",
+    "md5": "073872f4d0bdd0935a27fa985ae0063d",
+    "bytes": 520172,
+    "build_records": [
+     "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/white_pot_e0b_pot_ep3_thick.build.json",
+     "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/white_pot_e0b_pot_ep3_thick.axis.json"
+    ],
+    "box_path": "runs/mesh-20261031-e0b-c8f1c33/results/e0b/cand/white_pot/white_pot_ep3_thick.glb",
+    "n_balls": 32,
+    "fid_all_sum_mm": 3.275,
+    "faces_raw": 28650
+   },
+   "n_candidates": 24,
+   "n_eligible": 24,
+   "excluded": {},
+   "ranking": [
+    {
+     "label": "pot/ep3/thick",
+     "fid_all_sum_mm": 3.275,
+     "faces_raw": 28650,
+     "sha256_16": "265ab3410fac9e42"
+    },
+    {
+     "label": "pot/ep3/fit",
+     "fid_all_sum_mm": 3.319,
+     "faces_raw": 29732,
+     "sha256_16": "3d0133c58cc522e8"
+    },
+    {
+     "label": "pot/ep3/nostem",
+     "fid_all_sum_mm": 3.319,
+     "faces_raw": 29732,
+     "sha256_16": "3d0133c58cc522e8"
+    },
+    {
+     "label": "pot/ep3/nomk",
+     "fid_all_sum_mm": 3.377,
+     "faces_raw": 14992,
+     "sha256_16": "e61f7ad5b2918665"
+    },
+    {
+     "label": "pot/ep1/thick",
+     "fid_all_sum_mm": 3.528,
+     "faces_raw": 28042,
+     "sha256_16": "152d3cc8f551ef25"
+    },
+    {
+     "label": "pot/ep8/fit",
+     "fid_all_sum_mm": 3.532,
+     "faces_raw": 28238,
+     "sha256_16": "98bdbda6cda74fdb"
+    },
+    {
+     "label": "pot/ep8/nostem",
+     "fid_all_sum_mm": 3.567,
+     "faces_raw": 27710,
+     "sha256_16": "6f19fe6366b84cce"
+    },
+    {
+     "label": "pot/ep28/thick",
+     "fid_all_sum_mm": 3.681,
+     "faces_raw": 27446,
+     "sha256_16": "adc839e6e8ea167d"
+    },
+    {
+     "label": "pot/ep1/nostem",
+     "fid_all_sum_mm": 3.743,
+     "faces_raw": 27948,
+     "sha256_16": "3199cfe62e663836"
+    },
+    {
+     "label": "pot/ep1/fit",
+     "fid_all_sum_mm": 3.779,
+     "faces_raw": 28444,
+     "sha256_16": "2e3c96aeacc9439e"
+    },
+    {
+     "label": "pot/ep28/nomk",
+     "fid_all_sum_mm": 3.959,
+     "faces_raw": 15270,
+     "sha256_16": "bd58ef1c7ce4dd69"
+    },
+    {
+     "label": "pot/ep28/fit",
+     "fid_all_sum_mm": 3.966,
+     "faces_raw": 28152,
+     "sha256_16": "2217966393f76721"
+    },
+    {
+     "label": "pot/ep28/nostem",
+     "fid_all_sum_mm": 3.966,
+     "faces_raw": 28152,
+     "sha256_16": "2217966393f76721"
+    },
+    {
+     "label": "pot/ep1/nomk",
+     "fid_all_sum_mm": 4.161,
+     "faces_raw": 14764,
+     "sha256_16": "5b0d1f25e33cbbe0"
+    },
+    {
+     "label": "pot/ep5/fit",
+     "fid_all_sum_mm": 4.164,
+     "faces_raw": 23338,
+     "sha256_16": "a9b6639d0038e9fc"
+    },
+    {
+     "label": "pot/ep5/nostem",
+     "fid_all_sum_mm": 4.164,
+     "faces_raw": 23338,
+     "sha256_16": "a9b6639d0038e9fc"
+    },
+    {
+     "label": "pot/ep5/nomk",
+     "fid_all_sum_mm": 4.286,
+     "faces_raw": 15248,
+     "sha256_16": "f6bd2f6d9a84dd19"
+    },
+    {
+     "label": "pot/ep8/nomk",
+     "fid_all_sum_mm": 4.35,
+     "faces_raw": 14920,
+     "sha256_16": "43afd2eb7e613e6d"
+    },
+    {
+     "label": "pot/ep8/thick",
+     "fid_all_sum_mm": 4.44,
+     "faces_raw": 26136,
+     "sha256_16": "768e595986c26a04"
+    },
+    {
+     "label": "pot/ep6/fit",
+     "fid_all_sum_mm": 4.497,
+     "faces_raw": 28550,
+     "sha256_16": "9332a81c210b78fd"
+    },
+    {
+     "label": "pot/ep6/nostem",
+     "fid_all_sum_mm": 4.497,
+     "faces_raw": 28550,
+     "sha256_16": "9332a81c210b78fd"
+    },
+    {
+     "label": "pot/ep6/nomk",
+     "fid_all_sum_mm": 4.634,
+     "faces_raw": 15284,
+     "sha256_16": "157fedb6085c080f"
+    },
+    {
+     "label": "pot/ep5/thick",
+     "fid_all_sum_mm": 4.634,
+     "faces_raw": 22370,
+     "sha256_16": "22513256cf275da7"
+    },
+    {
+     "label": "pot/ep6/thick",
+     "fid_all_sum_mm": 6.012,
+     "faces_raw": 25314,
+     "sha256_16": "588c41b21311d545"
+    }
+   ],
+   "c0b_public_pick": {
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/white_pot_c0b_pot_ep43_fit.glb",
+    "fid_all_eval_sum_mm": 3.602
+   },
+   "c0b_public_over_e0b_pick": 1.099847328244275,
+   "rule_e_result": "e0b",
+   "frame_check": "excludes",
+   "box_selection_agrees": true
+  },
+  "white_pot_lid": {
+   "adopted": false,
+   "ships": "library_v3 / library_v3x (not adopted)",
+   "e0b_pick": {
+    "label": "lid/ep1/a6b2_nomk",
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/white_pot_lid_e0b_lid_ep1_a6b2_nomk.glb",
+    "sha256": "70f877f1fd3964c845d5df315b36fa9854e715a5b30fade10e12140174236028",
+    "md5": "0caeac8c32517f290659e4ee6b2b179f",
+    "bytes": 165844,
+    "build_records": [
+     "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/white_pot_lid_e0b_lid_ep1_a6b2_nomk.build.json"
+    ],
+    "box_path": "runs/mesh-20261031-e0b-c8f1c33/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b2_nomk.glb",
+    "n_balls": 0,
+    "fid_all_sum_mm": 2.976,
+    "faces_raw": 9170
+   },
+   "n_candidates": 8,
+   "n_eligible": 8,
+   "excluded": {},
+   "ranking": [
+    {
+     "label": "lid/ep1/a6b2_nomk",
+     "fid_all_sum_mm": 2.976,
+     "faces_raw": 9170,
+     "sha256_16": "70f877f1fd3964c8"
+    },
+    {
+     "label": "lid/ep1/a6b1_nomk",
+     "fid_all_sum_mm": 2.979,
+     "faces_raw": 9166,
+     "sha256_16": "1e15dabc68c2410b"
+    },
+    {
+     "label": "lid/ep1/a6b2_fit",
+     "fid_all_sum_mm": 3.517,
+     "faces_raw": 18490,
+     "sha256_16": "a95532ca5ba2554a"
+    },
+    {
+     "label": "lid/ep1/a6b2_nostem",
+     "fid_all_sum_mm": 3.517,
+     "faces_raw": 18490,
+     "sha256_16": "42ded7816f54b0e0"
+    },
+    {
+     "label": "lid/ep1/a6b1_fit",
+     "fid_all_sum_mm": 3.52,
+     "faces_raw": 18492,
+     "sha256_16": "2985451013cea870"
+    },
+    {
+     "label": "lid/ep1/a6b1_nostem",
+     "fid_all_sum_mm": 3.52,
+     "faces_raw": 18492,
+     "sha256_16": "bfbec18056df98f5"
+    },
+    {
+     "label": "lid/ep1/a6b1_thick",
+     "fid_all_sum_mm": 4.899,
+     "faces_raw": 17242,
+     "sha256_16": "340906ea99bdd08f"
+    },
+    {
+     "label": "lid/ep1/a6b2_thick",
+     "fid_all_sum_mm": 4.901,
+     "faces_raw": 17262,
+     "sha256_16": "7f00d589f140cd55"
+    }
+   ],
+   "c0b_public_pick": null,
+   "c0b_public_over_e0b_pick": null,
+   "rule_e_result": "e0b",
+   "frame_check": "not possible (no C0b public pick)",
+   "box_selection_agrees": true
+  },
+  "plastic_dish_rack": {
+   "adopted": false,
+   "ships": "library_v3 / library_v3x (not adopted)",
+   "e0b_pick": null,
+   "n_candidates": 0,
+   "n_eligible": 0,
+   "excluded": {},
+   "ranking": [],
+   "c0b_public_pick": {
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/plastic_dish_rack_c0b_rack_ep13_full.glb",
+    "fid_all_eval_sum_mm": 19.067
+   },
+   "c0b_public_over_e0b_pick": null,
+   "rule_e_result": "c0b_public",
+   "frame_check": "excludes",
+   "box_selection_agrees": true
+  },
+  "blue_cup": {
+   "adopted": false,
+   "ships": "library_v3 / library_v3x (not adopted)",
+   "e0b_pick": {
+    "label": "cup/merged/g1",
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/blue_cup_e0b_cup_merged_g1.glb",
+    "sha256": "7d995e572519e55fce45ac179762dea28301054da3d77361fcb1c3da015827a9",
+    "md5": "7152916e0fa6d3723a6e5d70e4ba3d54",
+    "bytes": 1752980,
+    "build_records": [
+     "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/blue_cup_e0b_cup_merged_g1.lathe.json"
+    ],
+    "box_path": "runs/mesh-20261031-e0b-c8f1c33/results/e0b/cand/blue_cup/merged_blue_cup_g1.glb",
+    "n_balls": null,
+    "fid_all_sum_mm": 5.033,
+    "faces_raw": 97344
+   },
+   "n_candidates": 11,
+   "n_eligible": 9,
+   "excluded": {
+    "cup/ep20/g1": [
+     "frame"
+    ],
+    "cup/ep20/g0": [
+     "frame"
+    ]
+   },
+   "ranking": [
+    {
+     "label": "cup/merged/g1",
+     "fid_all_sum_mm": 5.033,
+     "faces_raw": 97344,
+     "sha256_16": "7d995e572519e55f"
+    },
+    {
+     "label": "cup/ep33/g1",
+     "fid_all_sum_mm": 5.154,
+     "faces_raw": 41346,
+     "sha256_16": "8a7bde7f43dee479"
+    },
+    {
+     "label": "cup/ep14/g0",
+     "fid_all_sum_mm": 13.757,
+     "faces_raw": 22656,
+     "sha256_16": "6f4552b71463b750"
+    },
+    {
+     "label": "cup/ep32/g1",
+     "fid_all_sum_mm": 13.762,
+     "faces_raw": 23308,
+     "sha256_16": "3c7eb64f73872c58"
+    },
+    {
+     "label": "cup/ep14/g1",
+     "fid_all_sum_mm": 13.773,
+     "faces_raw": 41250,
+     "sha256_16": "3c86a0a80a488c3f"
+    },
+    {
+     "label": "cup/ep32/g0",
+     "fid_all_sum_mm": 13.796,
+     "faces_raw": 22464,
+     "sha256_16": "46575046a09e6a55"
+    },
+    {
+     "label": "cup/ep33/g0",
+     "fid_all_sum_mm": 14.198,
+     "faces_raw": 21696,
+     "sha256_16": "981ea9e7fc455c40"
+    },
+    {
+     "label": "cup/ep10/g1",
+     "fid_all_sum_mm": 14.738,
+     "faces_raw": 24280,
+     "sha256_16": "94493f4a9a4fa1c7"
+    },
+    {
+     "label": "cup/ep10/g0",
+     "fid_all_sum_mm": 14.765,
+     "faces_raw": 20928,
+     "sha256_16": "4fc87f0350651fa3"
+    }
+   ],
+   "c0b_public_pick": {
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/blue_cup_c0b_cup_ep21_g1.glb",
+    "fid_all_eval_sum_mm": 5.181
+   },
+   "c0b_public_over_e0b_pick": 1.0294059209219153,
+   "rule_e_result": "e0b",
+   "frame_check": "excludes",
+   "box_selection_agrees": true
+  },
+  "beige_cup": {
+   "adopted": true,
+   "ships": "e0b",
+   "e0b_pick": {
+    "label": "beige/ep8/g1",
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/beige_cup_e0b_beige_ep8_g1.glb",
+    "sha256": "aa3d87995e15c343b937e38492055439a0f9b8aeecc0718b8de0147049f28359",
+    "md5": "0d926da1b444f4982de50ceb0e90ade7",
+    "bytes": 836308,
+    "build_records": [
+     "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/beige_cup_e0b_beige_ep8_g1.lathe.json"
+    ],
+    "box_path": "runs/mesh-20261031-e0b-c8f1c33/results/e0b/cand/beige_cup/ep8_beige_cup_sep_g1.glb",
+    "n_balls": null,
+    "fid_all_sum_mm": 3.322,
+    "faces_raw": 46426
+   },
+   "n_candidates": 5,
+   "n_eligible": 5,
+   "excluded": {},
+   "ranking": [
+    {
+     "label": "beige/ep8/g1",
+     "fid_all_sum_mm": 3.322,
+     "faces_raw": 46426,
+     "sha256_16": "aa3d87995e15c343"
+    },
+    {
+     "label": "beige/merged/g1",
+     "fid_all_sum_mm": 3.403,
+     "faces_raw": 64714,
+     "sha256_16": "a29f39872caeb60d"
+    },
+    {
+     "label": "beige/ep10/g1",
+     "fid_all_sum_mm": 4.006,
+     "faces_raw": 49980,
+     "sha256_16": "022538e96dd9569f"
+    },
+    {
+     "label": "beige/ep8/g0",
+     "fid_all_sum_mm": 4.343,
+     "faces_raw": 22080,
+     "sha256_16": "1a86857538d4ca64"
+    },
+    {
+     "label": "beige/ep10/g0",
+     "fid_all_sum_mm": 5.566,
+     "faces_raw": 22656,
+     "sha256_16": "41f8d9bef53d8d51"
+    }
+   ],
+   "c0b_public_pick": {
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/beige_cup_c0b_beige_ep11_g1.glb",
+    "fid_all_eval_sum_mm": 3.277
+   },
+   "c0b_public_over_e0b_pick": 0.9864539434075859,
+   "rule_e_result": "e0b",
+   "frame_check": "reported only (no reference from another public episode)",
+   "box_selection_agrees": true
+  }
+ },
+ "ship": {
+  "white_pot": {
+   "kind": "e0b",
+   "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/white_pot_e0b_pot_ep3_thick.glb",
+   "label": "pot/ep3/thick",
+   "flags": []
+  },
+  "beige_cup": {
+   "kind": "e0b",
+   "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0b/meshes/beige_cup_e0b_beige_ep8_g1.glb",
+   "label": "beige/ep8/g1",
+   "flags": []
+  }
+ }
+}

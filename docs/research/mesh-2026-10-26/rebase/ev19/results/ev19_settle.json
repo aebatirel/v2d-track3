@@ -1,0 +1,694 @@
+{
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl2/runs/20261025-std1928-ee7ba8e/refs/perc2mcks/ep19/processed/sequence_id=t3_ep019/robot_name=sharpa_wave/afc53914ae7542d7b565119fc4892688-0.parquet",
+ "ref_md5": "201f338aba02911d7fc15998911219ea",
+ "names": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "support_top": 0.6,
+ "variants": {
+  "packed": {
+   "pieces": {
+    "mini_sweeper": 19,
+    "mini_dust_pan": 26
+   },
+   "urdf_md5": {
+    "mini_sweeper": "68762128a0acdcc36e8b4c2d6cf2b635",
+    "mini_dust_pan": "ad816644d1057ce09445fdcdb61bca19"
+   },
+   "collision": {
+    "mini_sweeper": [
+     "mini_sweeper.glb c32f43de -> CoACD 19"
+    ],
+    "mini_dust_pan": [
+     "mini_dust_pan.glb 9ac90016 -> CoACD 26"
+    ]
+   },
+   "visual_md5": {
+    "mini_sweeper": "c32f43de78088cfb1a9e3ceddfdda580",
+    "mini_dust_pan": "9ac900162c18bd3ea55ae66ab502ecc5"
+   },
+   "frames": {
+    "f0": {
+     "frame": 0,
+     "exact": {
+      "abs": [
+       [
+        90.20500261535733,
+        88.79007543494767
+       ],
+       [
+        0.9009382837001582,
+        2.3357015745393874
+       ]
+      ],
+      "max_nefc": 176,
+      "rel": [
+       285.0041939019348,
+       88.05910762516235
+      ]
+     },
+     "jitter": {
+      "nan": 0,
+      "abs": {
+       "mini_sweeper": {
+        "mm": {
+         "n": 16,
+         "median": 90.231,
+         "max": 91.483,
+         "min": 89.186,
+         "q90": 90.964
+        },
+        "deg": {
+         "n": 16,
+         "median": 88.838,
+         "max": 89.418,
+         "min": 88.345,
+         "q90": 89.31
+        },
+        "falls": 16
+       },
+       "mini_dust_pan": {
+        "mm": {
+         "n": 16,
+         "median": 0.988,
+         "max": 1.32,
+         "min": 0.802,
+         "q90": 1.133
+        },
+        "deg": {
+         "n": 16,
+         "median": 2.384,
+         "max": 2.654,
+         "min": 2.076,
+         "q90": 2.598
+        },
+        "falls": 0
+       }
+      },
+      "rel": {
+       "mm": {
+        "n": 16,
+        "median": 285.844,
+        "max": 286.982,
+        "min": 283.696,
+        "q90": 286.705
+       },
+       "deg": {
+        "n": 16,
+        "median": 88.017,
+        "max": 89.236,
+        "min": 87.605,
+        "q90": 88.519
+       }
+      },
+      "max_nefc": 196
+     }
+    },
+    "first H30 rest, mini_sweeper": {
+     "frame": 2,
+     "exact": {
+      "abs": [
+       [
+        92.34875540321367,
+        90.12534100023015
+       ],
+       [
+        0.8378120004502437,
+        2.1550261329140534
+       ]
+      ],
+      "max_nefc": 196,
+      "rel": [
+       292.0041861110201,
+       90.74699224429145
+      ]
+     },
+     "jitter": {
+      "nan": 0,
+      "abs": {
+       "mini_sweeper": {
+        "mm": {
+         "n": 16,
+         "median": 91.468,
+         "max": 93.402,
+         "min": 90.496,
+         "q90": 92.089
+        },
+        "deg": {
+         "n": 16,
+         "median": 90.161,
+         "max": 90.782,
+         "min": 89.657,
+         "q90": 90.646
+        },
+        "falls": 16
+       },
+       "mini_dust_pan": {
+        "mm": {
+         "n": 16,
+         "median": 0.931,
+         "max": 1.351,
+         "min": 0.699,
+         "q90": 1.058
+        },
+        "deg": {
+         "n": 16,
+         "median": 2.255,
+         "max": 2.483,
+         "min": 1.691,
+         "q90": 2.429
+        },
+        "falls": 0
+       }
+      },
+      "rel": {
+       "mm": {
+        "n": 16,
+        "median": 291.677,
+        "max": 293.701,
+        "min": 289.546,
+        "q90": 293.093
+       },
+       "deg": {
+        "n": 16,
+        "median": 90.71,
+        "max": 91.982,
+        "min": 90.212,
+        "q90": 91.203
+       }
+      },
+      "max_nefc": 196
+     }
+    },
+    "first H30 rest, mini_dust_pan": {
+     "frame": 201,
+     "exact": {
+      "abs": [
+       [
+        65.18064966199293,
+        26.986423115482495
+       ],
+       [
+        0.9362316653263858,
+        2.1117808266418243
+       ]
+      ],
+      "max_nefc": 124,
+      "rel": [
+       45.79025778438173,
+       27.5720938315867
+      ]
+     },
+     "jitter": {
+      "nan": 0,
+      "abs": {
+       "mini_sweeper": {
+        "mm": {
+         "n": 16,
+         "median": 64.924,
+         "max": 65.337,
+         "min": 64.298,
+         "q90": 65.247
+        },
+        "deg": {
+         "n": 16,
+         "median": 27.07,
+         "max": 27.675,
+         "min": 26.425,
+         "q90": 27.549
+        },
+        "falls": 0
+       },
+       "mini_dust_pan": {
+        "mm": {
+         "n": 16,
+         "median": 0.951,
+         "max": 1.559,
+         "min": 0.763,
+         "q90": 1.249
+        },
+        "deg": {
+         "n": 16,
+         "median": 2.203,
+         "max": 2.452,
+         "min": 1.662,
+         "q90": 2.391
+        },
+        "falls": 0
+       }
+      },
+      "rel": {
+       "mm": {
+        "n": 16,
+        "median": 46.447,
+        "max": 48.873,
+        "min": 43.685,
+        "q90": 48.188
+       },
+       "deg": {
+        "n": 16,
+        "median": 27.594,
+        "max": 28.777,
+        "min": 26.938,
+        "q90": 28.083
+       }
+      },
+      "max_nefc": 148
+     }
+    },
+    "first H30 rest, both": null,
+    "f2 (requested)": {
+     "frame": 2,
+     "exact": {
+      "abs": [
+       [
+        92.34875540321367,
+        90.12534100023015
+       ],
+       [
+        0.8378120004502437,
+        2.1550261329140534
+       ]
+      ],
+      "max_nefc": 196,
+      "rel": [
+       292.0041861110201,
+       90.74699224429145
+      ]
+     },
+     "jitter": {
+      "nan": 0,
+      "abs": {
+       "mini_sweeper": {
+        "mm": {
+         "n": 16,
+         "median": 91.468,
+         "max": 93.402,
+         "min": 90.496,
+         "q90": 92.089
+        },
+        "deg": {
+         "n": 16,
+         "median": 90.161,
+         "max": 90.782,
+         "min": 89.657,
+         "q90": 90.646
+        },
+        "falls": 16
+       },
+       "mini_dust_pan": {
+        "mm": {
+         "n": 16,
+         "median": 0.931,
+         "max": 1.351,
+         "min": 0.699,
+         "q90": 1.058
+        },
+        "deg": {
+         "n": 16,
+         "median": 2.255,
+         "max": 2.483,
+         "min": 1.691,
+         "q90": 2.429
+        },
+        "falls": 0
+       }
+      },
+      "rel": {
+       "mm": {
+        "n": 16,
+        "median": 291.677,
+        "max": 293.701,
+        "min": 289.546,
+        "q90": 293.093
+       },
+       "deg": {
+        "n": 16,
+        "median": 90.71,
+        "max": 91.982,
+        "min": 90.212,
+        "q90": 91.203
+       }
+      },
+      "max_nefc": 196
+     }
+    }
+   }
+  },
+  "candidate": {
+   "pieces": {
+    "mini_sweeper": 23,
+    "mini_dust_pan": 26
+   },
+   "urdf_md5": {
+    "mini_sweeper": "90df047ac819ae31a270ad400d75c917",
+    "mini_dust_pan": "ad816644d1057ce09445fdcdb61bca19"
+   },
+   "collision": {
+    "mini_sweeper": [
+     "mini_sweeper_sf.glb f27eb335 -> CoACD 23"
+    ],
+    "mini_dust_pan": [
+     "mini_dust_pan.glb 9ac90016 -> CoACD 26"
+    ]
+   },
+   "visual_md5": {
+    "mini_sweeper": "c32f43de78088cfb1a9e3ceddfdda580",
+    "mini_dust_pan": "9ac900162c18bd3ea55ae66ab502ecc5"
+   },
+   "frames": {
+    "f0": {
+     "frame": 0,
+     "exact": {
+      "abs": [
+       [
+        0.007541910079706879,
+        0.006039955788944089
+       ],
+       [
+        0.9009382837002115,
+        2.33570157453943
+       ]
+      ],
+      "max_nefc": 80,
+      "rel": [
+       0.8985958458800095,
+       2.337218806333028
+      ]
+     },
+     "jitter": {
+      "nan": 0,
+      "abs": {
+       "mini_sweeper": {
+        "mm": {
+         "n": 16,
+         "median": 0.694,
+         "max": 1.263,
+         "min": 0.181,
+         "q90": 1.031
+        },
+        "deg": {
+         "n": 16,
+         "median": 0.5,
+         "max": 0.861,
+         "min": 0.149,
+         "q90": 0.748
+        },
+        "falls": 0
+       },
+       "mini_dust_pan": {
+        "mm": {
+         "n": 16,
+         "median": 0.988,
+         "max": 1.32,
+         "min": 0.802,
+         "q90": 1.133
+        },
+        "deg": {
+         "n": 16,
+         "median": 2.384,
+         "max": 2.654,
+         "min": 2.076,
+         "q90": 2.598
+        },
+        "falls": 0
+       }
+      },
+      "rel": {
+       "mm": {
+        "n": 16,
+        "median": 1.295,
+        "max": 2.235,
+        "min": 0.837,
+        "q90": 1.982
+       },
+       "deg": {
+        "n": 16,
+        "median": 2.528,
+        "max": 3.234,
+        "min": 1.684,
+        "q90": 3.028
+       }
+      },
+      "max_nefc": 160
+     }
+    },
+    "first H30 rest, mini_sweeper": {
+     "frame": 2,
+     "exact": {
+      "abs": [
+       [
+        1.7008058035732085,
+        1.5298681641263452
+       ],
+       [
+        0.8378120004503078,
+        2.155026132914159
+       ]
+      ],
+      "max_nefc": 72,
+      "rel": [
+       4.7510783731437,
+       2.3520580795921937
+      ]
+     },
+     "jitter": {
+      "nan": 0,
+      "abs": {
+       "mini_sweeper": {
+        "mm": {
+         "n": 16,
+         "median": 1.974,
+         "max": 2.27,
+         "min": 1.177,
+         "q90": 2.192
+        },
+        "deg": {
+         "n": 16,
+         "median": 1.715,
+         "max": 2.027,
+         "min": 0.916,
+         "q90": 1.972
+        },
+        "falls": 0
+       },
+       "mini_dust_pan": {
+        "mm": {
+         "n": 16,
+         "median": 0.931,
+         "max": 1.351,
+         "min": 0.699,
+         "q90": 1.058
+        },
+        "deg": {
+         "n": 16,
+         "median": 2.255,
+         "max": 2.483,
+         "min": 1.691,
+         "q90": 2.429
+        },
+        "falls": 0
+       }
+      },
+      "rel": {
+       "mm": {
+        "n": 16,
+        "median": 4.394,
+        "max": 6.614,
+        "min": 2.811,
+        "q90": 5.988
+       },
+       "deg": {
+        "n": 16,
+        "median": 2.432,
+        "max": 3.538,
+        "min": 1.583,
+        "q90": 3.081
+       }
+      },
+      "max_nefc": 144
+     }
+    },
+    "first H30 rest, mini_dust_pan": {
+     "frame": 201,
+     "exact": {
+      "abs": [
+       [
+        65.98793407834364,
+        27.059635366662224
+       ],
+       [
+        0.9362316653263323,
+        2.1117808266418083
+       ]
+      ],
+      "max_nefc": 100,
+      "rel": [
+       47.257990440151815,
+       27.659082859309212
+      ]
+     },
+     "jitter": {
+      "nan": 0,
+      "abs": {
+       "mini_sweeper": {
+        "mm": {
+         "n": 16,
+         "median": 65.777,
+         "max": 66.14,
+         "min": 65.084,
+         "q90": 66.078
+        },
+        "deg": {
+         "n": 16,
+         "median": 27.122,
+         "max": 27.736,
+         "min": 26.484,
+         "q90": 27.594
+        },
+        "falls": 0
+       },
+       "mini_dust_pan": {
+        "mm": {
+         "n": 16,
+         "median": 0.951,
+         "max": 1.559,
+         "min": 0.763,
+         "q90": 1.249
+        },
+        "deg": {
+         "n": 16,
+         "median": 2.203,
+         "max": 2.452,
+         "min": 1.662,
+         "q90": 2.391
+        },
+        "falls": 0
+       }
+      },
+      "rel": {
+       "mm": {
+        "n": 16,
+        "median": 47.645,
+        "max": 50.022,
+        "min": 45.13,
+        "q90": 49.361
+       },
+       "deg": {
+        "n": 16,
+        "median": 27.661,
+        "max": 28.837,
+        "min": 27.006,
+        "q90": 28.142
+       }
+      },
+      "max_nefc": 136
+     }
+    },
+    "first H30 rest, both": null,
+    "f2 (requested)": {
+     "frame": 2,
+     "exact": {
+      "abs": [
+       [
+        1.7008058035732085,
+        1.5298681641263452
+       ],
+       [
+        0.8378120004503078,
+        2.155026132914159
+       ]
+      ],
+      "max_nefc": 72,
+      "rel": [
+       4.7510783731437,
+       2.3520580795921937
+      ]
+     },
+     "jitter": {
+      "nan": 0,
+      "abs": {
+       "mini_sweeper": {
+        "mm": {
+         "n": 16,
+         "median": 1.974,
+         "max": 2.27,
+         "min": 1.177,
+         "q90": 2.192
+        },
+        "deg": {
+         "n": 16,
+         "median": 1.715,
+         "max": 2.027,
+         "min": 0.916,
+         "q90": 1.972
+        },
+        "falls": 0
+       },
+       "mini_dust_pan": {
+        "mm": {
+         "n": 16,
+         "median": 0.931,
+         "max": 1.351,
+         "min": 0.699,
+         "q90": 1.058
+        },
+        "deg": {
+         "n": 16,
+         "median": 2.255,
+         "max": 2.483,
+         "min": 1.691,
+         "q90": 2.429
+        },
+        "falls": 0
+       }
+      },
+      "rel": {
+       "mm": {
+        "n": 16,
+        "median": 4.394,
+        "max": 6.614,
+        "min": 2.811,
+        "q90": 5.988
+       },
+       "deg": {
+        "n": 16,
+        "median": 2.432,
+        "max": 3.538,
+        "min": 1.583,
+        "q90": 3.081
+       }
+      },
+      "max_nefc": 144
+     }
+    }
+   }
+  }
+ },
+ "frames": {
+  "f0": 0,
+  "first H30 rest, mini_sweeper": 2,
+  "first H30 rest, mini_dust_pan": 201,
+  "first H30 rest, both": null,
+  "f2 (requested)": 2
+ },
+ "hand_mm": {
+  "f0": [
+   170.2,
+   10.2
+  ],
+  "first H30 rest, mini_sweeper": [
+   159.2,
+   8.9
+  ],
+  "first H30 rest, mini_dust_pan": [
+   3.6,
+   138.4
+  ],
+  "f2 (requested)": [
+   159.2,
+   8.9
+  ]
+ }
+}

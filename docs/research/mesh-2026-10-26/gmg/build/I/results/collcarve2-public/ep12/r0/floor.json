@@ -1,0 +1,117 @@
+{
+ "rule": "PREREG F-I5.15 (4c)",
+ "objects": {
+  "blue_cup": {
+   "share": 0.0497,
+   "detail": {
+    "share": 0.05,
+    "shell_cm3": 230.019,
+    "inside_cm3": 11.442,
+    "outside_cm3": 0.438,
+    "union_cm3": 11.88
+   },
+   "pieces": 29,
+   "pass_": false,
+   "delivered": "default"
+  },
+  "plastic_dish_rack": {
+   "share": 0.0607,
+   "detail": {
+    "share": 0.061,
+    "shell_cm3": 357.212,
+    "inside_cm3": 21.672,
+    "outside_cm3": 1.656,
+    "union_cm3": 23.328
+   },
+   "pieces": 45,
+   "pass_": false,
+   "delivered": "default"
+  }
+ },
+ "pairs": {
+  "blue_cup|plastic_dish_rack": {
+   "receiver": "plastic_dish_rack",
+   "guest": "blue_cup",
+   "frames": [
+    176
+   ],
+   "info": {
+    "static_stretches": 1,
+    "containment": {
+     "blue_cup": 0.0443,
+     "plastic_dish_rack": 0.3561
+    },
+    "hands_off_segments": 1,
+    "segment_gaps": [
+     {
+      "frame": 176,
+      "gap_mm": 0.0,
+      "seg": [
+       171,
+       180
+      ]
+     }
+    ],
+    "flags": []
+   },
+   "rows": [
+    {
+     "frame": 176,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": -3.08,
+       "lowest_mesh_mm": -2.2,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 0.0,
+       "receiver_mm": 0.0,
+       "receiver_mesh_mm": 0.02,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 7.408,
+       "removed_share": 0.0237,
+       "topology": {
+        "default": [
+         7,
+         72
+        ],
+        "cut": [
+         22,
+         67
+        ]
+       },
+       "samples_inside": 15346,
+       "wall_samples_needing": 14769,
+       "wall_samples_bad": 4785,
+       "min_wall_left_mm": 0.049,
+       "ok_topology": false,
+       "ok_wall": false,
+       "ok_removed": true,
+       "pass_": false
+      },
+      "fail": "c_overlap",
+      "fails": [
+       "c_overlap"
+      ],
+      "pass_": false
+     }
+    }
+   ]
+  }
+ },
+ "fails": [
+  {
+   "kind": "share",
+   "obj": "blue_cup",
+   "share": 0.0497
+  },
+  {
+   "kind": "share",
+   "obj": "plastic_dish_rack",
+   "share": 0.0607
+  }
+ ],
+ "pass_": false
+}

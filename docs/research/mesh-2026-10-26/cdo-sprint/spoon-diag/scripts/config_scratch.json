@@ -1,0 +1,40 @@
+{
+ "lathe_json": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.lathe.json",
+ "cup_floor_m": 0.005,
+ "episodes": {
+  "32": {
+   "ref": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/dl/runs/20261026-fr32s46b-5e0e100/refs/glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_store_path": "runs/20261026-fr32s46b-5e0e100/refs/glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_md5": "36e600c8346f9d2bd89dc47447ea55fc",
+   "container": "blue_cup",
+   "container_mesh": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/dl/runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/blue_cup/blue_cup.glb",
+   "container_mesh_label": "runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/blue_cup/blue_cup.glb (library_v3 + support fill, md5 0e2bb5f5)",
+   "hulls": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/out/cup_ep32sf_coacd.npz",
+   "spoon_mesh": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/dl/runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/wooden_spoon/wooden_spoon.glb",
+   "spoon_mesh_label": "runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/wooden_spoon/wooden_spoon.glb (library_v3 + support fill, md5 6bf5b0e3)"
+  },
+  "33": {
+   "ref": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/dl/runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_store_path": "runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_md5": "2a7173ab1d4248433bd049bc43f6878a",
+   "container": "blue_cup",
+   "container_mesh": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+   "container_mesh_label": "meshes/library_v3/blue_cup.glb (= runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/assets blue_cup.glb, identical vertices and faces)",
+   "hulls": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/out/cup_lib_coacd.npz",
+   "spoon_mesh": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/dl/runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/assets/mesh/wooden_spoon/wooden_spoon.glb",
+   "spoon_mesh_label": "runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/assets/mesh/wooden_spoon/wooden_spoon.glb (= library_v3 geometry)"
+  },
+  "16": {
+   "ref": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/dl/runs/20261024-pack-31ef267/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_store_path": "runs/20261024-pack-31ef267/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_md5": "f7e2ea9260106425be6163553aac5af9",
+   "container": "plastic_dish_rack",
+   "container_mesh": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+   "container_mesh_label": "meshes/library_v3/plastic_dish_rack.glb (= runs/20261024-pack-31ef267/refs/sf/ep16/assets, same geometry)",
+   "hulls": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/out/rack_lib_coacd.npz",
+   "spoon_mesh": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/dl/runs/20261024-pack-31ef267/refs/sf/ep16/assets/mesh/wooden_spoon/wooden_spoon.glb",
+   "spoon_mesh_label": "runs/20261024-pack-31ef267/refs/sf/ep16/assets/mesh/wooden_spoon/wooden_spoon.glb (= library_v3 geometry)"
+  }
+ },
+ "cup_frame_mesh": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb"
+}

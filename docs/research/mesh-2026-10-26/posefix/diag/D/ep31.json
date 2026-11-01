@@ -1,0 +1,196 @@
+{
+ "ep": 31,
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "frames": 290,
+ "auc_before": 0.8611,
+ "add_cm_before": {
+  "mini_sweeper": 1.5988,
+  "plastic_dish_rack": 2.843
+ },
+ "auc_after": 0.8611,
+ "add_cm_after": {
+  "mini_sweeper": 1.5988,
+  "plastic_dish_rack": 2.843
+ },
+ "auc_before_scorer": 0.8611,
+ "auc_after_scorer": 0.8611,
+ "direction": [],
+ "mesh_check": [
+  {
+   "pair": "mini_sweeper|plastic_dish_rack",
+   "rest_frames": 30,
+   "sampled": 15,
+   "ours_at_ours": {
+    "median_cm3": 5.39,
+    "max_cm3": 7.91,
+    "median_depth_mm": 8.6
+   },
+   "ours_at_mocap": {
+    "median_cm3": 11.14,
+    "max_cm3": 12.16,
+    "median_depth_mm": 8.57
+   },
+   "scans_at_mocap": {
+    "median_cm3": 0.74,
+    "max_cm3": 1.42,
+    "median_depth_mm": 3.02
+   },
+   "frames": [
+    [
+     0.0,
+     0.81,
+     2.13,
+     8.18,
+     8.49,
+     0.24,
+     3.02
+    ],
+    [
+     2.0,
+     2.65,
+     4.98,
+     8.19,
+     8.48,
+     0.24,
+     3.02
+    ],
+    [
+     4.0,
+     1.59,
+     4.64,
+     8.26,
+     8.56,
+     0.24,
+     3.04
+    ],
+    [
+     6.0,
+     1.52,
+     4.32,
+     8.3,
+     8.43,
+     0.27,
+     3.1
+    ],
+    [
+     8.0,
+     1.66,
+     5.51,
+     8.3,
+     8.39,
+     0.27,
+     3.08
+    ],
+    [
+     270.0,
+     5.0,
+     7.83,
+     12.16,
+     9.92,
+     1.04,
+     3.5
+    ],
+    [
+     272.0,
+     6.34,
+     8.86,
+     11.14,
+     9.64,
+     1.04,
+     4.05
+    ],
+    [
+     274.0,
+     5.22,
+     7.54,
+     11.93,
+     10.01,
+     1.42,
+     4.58
+    ],
+    [
+     276.0,
+     6.25,
+     9.59,
+     12.15,
+     10.02,
+     1.17,
+     3.74
+    ],
+    [
+     278.0,
+     7.87,
+     10.12,
+     11.09,
+     8.54,
+     0.71,
+     2.83
+    ],
+    [
+     280.0,
+     5.87,
+     8.85,
+     11.27,
+     8.67,
+     0.89,
+     2.69
+    ],
+    [
+     282.0,
+     7.36,
+     10.24,
+     11.22,
+     8.61,
+     0.84,
+     2.73
+    ],
+    [
+     284.0,
+     6.92,
+     9.96,
+     11.16,
+     8.57,
+     0.75,
+     2.88
+    ],
+    [
+     286.0,
+     5.39,
+     8.6,
+     11.15,
+     8.57,
+     0.74,
+     2.87
+    ],
+    [
+     288.0,
+     7.91,
+     10.04,
+     11.1,
+     8.51,
+     0.73,
+     2.82
+    ]
+   ]
+  }
+ ],
+ "bottom_check": [
+  {
+   "obj": "mini_sweeper",
+   "rest_frames_sampled": 22,
+   "ours_minus_scan_lowest_mm_median": 1.42,
+   "scan_lowest_z_mm_median": 605.57,
+   "scan_lowest_z_mm_iqr": 0.19
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "rest_frames_sampled": 15,
+   "ours_minus_scan_lowest_mm_median": 4.11,
+   "scan_lowest_z_mm_median": 598.83,
+   "scan_lowest_z_mm_iqr": 0.32
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "obj": "mini_sweeper",
+ "ep": 31,
+ "file": "/content/results/c0b/pts/B/ep31_mini_sweeper.npz",
+ "n": 13,
+ "median_m": 0.0056425019183531325,
+ "info": {
+  "points": 616026,
+  "samples": 12839,
+  "measured": 13,
+  "median_mm": 5.6425
+ },
+ "sec": 15.2
+}

@@ -1,0 +1,338 @@
+{
+ "out_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/interlock/public/ep2-fi5",
+ "sec": 3663.6,
+ "fi5_sec": 3534.1,
+ "launch_code": {
+  "commit": "407a18e6af2224955960ee50cbf178254a5a0873",
+  "dirty": false,
+  "dirty_files": []
+ },
+ "picks": {
+  "white_pot": "shell_t5p36",
+  "white_pot_lid": "hull"
+ },
+ "fi5_body": {
+  "white_pot": "shell_t5p36",
+  "white_pot_lid": "shell_t5p36"
+ },
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2",
+ "identity": "eval",
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep2-fi5/r0",
+ "do_not_use": null,
+ "diag_sink": true,
+ "routes": {
+  "white_pot": {
+   "route": "4_voxels",
+   "n": 42,
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 2.3899
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 42,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0
+   },
+   "tried": [
+    {
+     "route": "2_lathe",
+     "skipped": null,
+     "error": null,
+     "gate": null,
+     "report": {
+      "n_sectors": 12,
+      "ring_pieces": 73,
+      "continuity": {
+       "ok": true,
+       "gaps": 0,
+       "checked": 82080
+      },
+      "why": "lathe_over_cap (with the handle)"
+     }
+    },
+    {
+     "route": "3_coacd",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 4.232,
+      "over_tol": 51
+     },
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 4.232,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 538.8
+     }
+    },
+    {
+     "route": "4_voxels",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": true,
+      "n": 42,
+      "max_cm3": 0.0,
+      "over_tol": 0
+     },
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 42,
+      "cells": 109,
+      "cap": 82
+     }
+    }
+   ]
+  },
+  "white_pot_lid": {
+   "route": "4_voxels",
+   "n": 25,
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 1.8551
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 25,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0
+   },
+   "tried": [
+    {
+     "route": "2_lathe",
+     "skipped": null,
+     "error": null,
+     "gate": null,
+     "report": {
+      "why": "lathe_profile_complex (more than two radial intervals in a bin)"
+     }
+    },
+    {
+     "route": "3_coacd",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 1.304,
+      "over_tol": 16
+     },
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 1.304,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 516.6
+     }
+    },
+    {
+     "route": "4_voxels",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": true,
+      "n": 25,
+      "max_cm3": 0.0,
+      "over_tol": 0
+     },
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 25,
+      "cells": 78,
+      "cap": 82
+     }
+    }
+   ]
+  }
+ },
+ "overlap_track": {
+  "white_pot|white_pot_lid": {
+   "max_cm3": 0.16,
+   "median_cm3": 0.0
+  }
+ },
+ "decisions_fi5": [
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [
+    "waiver_gate_fail:sweep"
+   ],
+   "voxels": 3,
+   "decision_f_i3": "IGNORE",
+   "fi5_delivered": null
+  },
+  {
+   "target": "white_pot_lid",
+   "partner": "white_pot",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push",
+    "waiver_gate_fail:sweep"
+   ],
+   "voxels": 4,
+   "decision_f_i3": "PUSH",
+   "fi5_delivered": null
+  }
+ ],
+ "decisions_flag_off_no_silhouette": [
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 916
+  },
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 630
+  },
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [],
+   "voxels": 2
+  },
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 10
+  },
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 3
+  },
+  {
+   "target": "white_pot_lid",
+   "partner": "white_pot",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 1165
+  },
+  {
+   "target": "white_pot_lid",
+   "partner": "white_pot",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 1132
+  },
+  {
+   "target": "white_pot_lid",
+   "partner": "white_pot",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 4
+  },
+  {
+   "target": "white_pot_lid",
+   "partner": "white_pot",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 7
+  }
+ ],
+ "pairs": {
+  "white_pot|white_pot_lid": {
+   "in_scope": false,
+   "scope": null,
+   "why": "no persistent component passes the kept gates",
+   "gates": {
+    "white_pot<-white_pot_lid#0": {
+     "voxels": 3,
+     "run_kind": "SEAT",
+     "run": [
+      48,
+      58
+     ],
+     "n_build": 6,
+     "sweep_share": 0.0,
+     "observed_voxels": 2,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "white_pot_lid<-white_pot#1": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      48,
+      58
+     ],
+     "n_build": 6,
+     "sweep_share": 0.0,
+     "observed_voxels": 2,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "receiver": null,
+   "guest": null,
+   "containment": null,
+   "rest": null,
+   "overshoot_frames": 0,
+   "carve_frames": null,
+   "build_frames_entered": null,
+   "R_voxels": null,
+   "Rplus_voxels": null,
+   "c_mm": null,
+   "sigma_sup": null,
+   "carve": null,
+   "caps": null,
+   "rigid_shift": null,
+   "carve_of_pose_error": null,
+   "one_sided": null,
+   "decision_flag_off": null,
+   "deliver": null
+  }
+ }
+}

@@ -1,0 +1,179 @@
+{
+ "10": {
+  "reference": "runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "1a5003d94852c275519066645a1b9869",
+  "md5_listed": "1a5003d94852c275519066645a1b9869",
+  "md5_match": true,
+  "files": {
+   "runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet": "1a5003d94852c275519066645a1b9869",
+   "runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/reconstructed_stage/t3_ep010_support.usda": "cd611b11f86a313620e750e438f7c34d",
+   "runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/contact_retarget.json": "5c14d71eea9be184ad65b3a341128100",
+   "runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/e2s_reference.parquet": "499a3df76603680422d5a26229c6244a",
+   "runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/hands_refined.json": "aa8e379cb8b921dae2d92296b723433f",
+   "runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/a865e22731864ebc80e0c4419efc4bfb-0.parquet": "2a2f5413d63f142cde434f1be0d5def4",
+   "runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/qa_ref.json": "f1caa371d95c7b51aabffa24cff17658",
+   "runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/reconstructed_stage/t3_ep010_support.usda": "cd611b11f86a313620e750e438f7c34d",
+   "runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/ref_summary.json": "1a1614f0e3d30474087e35241cf81fa0",
+   "runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/table_frame.npz": "5646861b1ebea1fc54818e04d37bf06a"
+  }
+ },
+ "1": {
+  "reference": "runs/20261024-pack-31ef267/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+  "md5": "FAIL RemoteEntryNotFoundError 404 Client Error. (Request ID: Root=1-6ae6854e-526c522d12ba839d6eb4f27b;396f3ae9-f889-40d4-bac2-1ac1605c9287)\n\nEntry Not Found for url: https://huggin",
+  "md5_listed": "7f2304663b4e3c55a0a1ad12503174c1",
+  "md5_match": false,
+  "files": {
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep1/contact_retarget.json": "19b04d03d2193e7de25915c55b6b301d",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep1/e2s_reference.parquet": "d29e8fb49e8881411011c2189373a4a1",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep1/hands_refined.json": "1d2f82bd4fad9ec65ec93e14d0071029",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet": "7f2304663b4e3c55a0a1ad12503174c1",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep1/qa_ref.json": "36c4192ad999340c98f731f94dcb62ee",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep1/reconstructed_stage/t3_ep001_support.usda": "8b57b982ea3beb8e4efe1ca56af9c32d",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep1/ref_summary.json": "3f0ff6746502d2f1360ed7c9a66a53f5",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep1/table_frame.npz": "aad1f253a323581ce7ec21d0a2aad8e4",
+   "runs/20261024-pack-31ef267/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet": "FAIL RemoteEntryNotFoundError 404 Client Error. (Request ID: Root=1-6ae6854e-526c522d12ba839d6eb4f27b;396f3ae9-f889-40d4-bac2-1ac1605c9287)\n\nEntry Not Found for url: https://huggin"
+  }
+ },
+ "14": {
+  "reference": "runs/20261025-evb1420-ee7ba8e/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+  "md5_listed": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+  "md5_match": true,
+  "files": {
+   "runs/20261025-evb1420-ee7ba8e/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+   "runs/20261025-evb1420-ee7ba8e/refs/glockt/ep14/reconstructed_stage/t3_ep014_support.usda": "85d27bbd5fb872770be430cf513852fd",
+   "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/contact_retarget.json": "9a61359e21cc8a077b6c419384cce39f",
+   "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/e2s_reference.parquet": "2f8c391517a8f7dd1c7323cc367211ff",
+   "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/hands_refined.json": "1e2b88c73a14f54b16ff2b4df5585f6f",
+   "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/f29e0a6542874341a5c3503ed1d63fff-0.parquet": "54375ec2dae7ae29c7f8818e83827962",
+   "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/qa_ref.json": "c7f31b1765767133e30edf83475136d7",
+   "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/reconstructed_stage/t3_ep014_support.usda": "85d27bbd5fb872770be430cf513852fd",
+   "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/ref_summary.json": "265c43cb034f2ae22def11c2e838c5a6",
+   "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/table_frame.npz": "9ec62ab44eec06143c893219b7c438a9",
+   "runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_sf.parquet": "95d2b198ea440063a150209701bd8db7",
+   "runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_sf_support_fill.json": "ca90e5ccf0f5837460c6096650fffd5b",
+   "runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/reconstructed_stage/t3_ep014_support.usda": "85d27bbd5fb872770be430cf513852fd",
+   "runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/assets/mesh/blue_cup/blue_cup.glb": "0435d5d24cd88789d4a913ba63b4cca4",
+   "runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb": "99bc3983ccc7ab5fbc06a1a8f3bf3034",
+   "runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/assets/urdf/blue_cup_rigid.urdf": "31cd001d2618ee2972dc922b77109b9f",
+   "runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/assets/urdf/plastic_dish_rack_rigid.urdf": "ae549ee0201ce085c71a7164806047f6"
+  }
+ },
+ "15": {
+  "reference": "runs/20261024-pack-31ef267/refs/glockt/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "1d7f2d1c086f825c575d8845131222c9",
+  "md5_listed": "1d7f2d1c086f825c575d8845131222c9",
+  "md5_match": true,
+  "files": {
+   "runs/20261024-pack-31ef267/refs/glockt/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/ref_gl_ilc.parquet": "1d7f2d1c086f825c575d8845131222c9",
+   "runs/20261024-pack-31ef267/refs/glockt/ep15/reconstructed_stage/t3_ep015_support.usda": "3fa1a4b1df8e53fe1482dbab677ee63d",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep15/contact_retarget.json": "7967871b4378c3225f415d28bb6b9a74",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep15/e2s_reference.parquet": "1b7f8bf6b2dd9acbf181b7ff8df96bde",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep15/hands_refined.json": "5013346bae73959145cc67139e9970e9",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/f8443c43623a461baa9f635e5c257cf7-0.parquet": "b0a5fc78a366bd364a99c61f1402e068",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep15/qa_ref.json": "67fd73601abb22b56ddfebaae72dd135",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep15/reconstructed_stage/t3_ep015_support.usda": "3fa1a4b1df8e53fe1482dbab677ee63d",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep15/ref_summary.json": "4b73d335ee83fed522bd3f1b7227ca2b",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep15/table_frame.npz": "ebc93e74e251de81f26324f749d72451",
+   "runs/20261024-pack-31ef267/refs/sf/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/ref_sf.parquet": "59c2935221e43a8a3d37aa43ae30097a",
+   "runs/20261024-pack-31ef267/refs/sf/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/ref_sf_support_fill.json": "43c1f9c83b7fbec268f9788cd06c705d",
+   "runs/20261024-pack-31ef267/refs/sf/ep15/reconstructed_stage/t3_ep015_support.usda": "3fa1a4b1df8e53fe1482dbab677ee63d",
+   "runs/20261024-pack-31ef267/refs/sf/ep15/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb": "99bc3983ccc7ab5fbc06a1a8f3bf3034",
+   "runs/20261024-pack-31ef267/refs/sf/ep15/assets/mesh/wooden_spoon/wooden_spoon.glb": "2ba0ecb4d366403f21ca17a0dee372ec",
+   "runs/20261024-pack-31ef267/refs/sf/ep15/assets/urdf/plastic_dish_rack_rigid.urdf": "ae549ee0201ce085c71a7164806047f6",
+   "runs/20261024-pack-31ef267/refs/sf/ep15/assets/urdf/wooden_spoon_rigid.urdf": "59f7268c34f1fd07dbb24fb80d9fd907"
+  }
+ },
+ "16": {
+  "reference": "runs/20261024-pack-31ef267/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "f7e2ea9260106425be6163553aac5af9",
+  "md5_listed": "f7e2ea9260106425be6163553aac5af9",
+  "md5_match": true,
+  "files": {
+   "runs/20261024-pack-31ef267/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet": "f7e2ea9260106425be6163553aac5af9",
+   "runs/20261024-pack-31ef267/refs/glockt/ep16/reconstructed_stage/t3_ep016_support.usda": "3e0a32942213aa7bbd1431f1cf14c6e1",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep16/contact_retarget.json": "2e2f4b52daa7b3104be632603d1557b6",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep16/e2s_reference.parquet": "49aa950359803bb6acc883ae85e01f43",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep16/hands_refined.json": "8984ab8e8bf2dbddfd1f6b67c7732358",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/a1f8c27c659c4b579b6a77beff22d2a9-0.parquet": "32ccc58c380c956eba20ae5a3e6e18c5",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep16/qa_ref.json": "7562fa41dbd4a6d1e190bf63221e91c9",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep16/reconstructed_stage/t3_ep016_support.usda": "3e0a32942213aa7bbd1431f1cf14c6e1",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep16/ref_summary.json": "e1c976be5d51d3bd7224fa5f407b8cca",
+   "runs/20261024-pack-31ef267/refs/perc2mck/ep16/table_frame.npz": "b5ebf79fadb0883d7707a664f2c3c5f1",
+   "runs/20261024-pack-31ef267/refs/sf/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_sf.parquet": "789b616f38aec687ea04c7d74a159394",
+   "runs/20261024-pack-31ef267/refs/sf/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_sf_support_fill.json": "a76e86c67dfbf9642154e1f8c5b3c9c8",
+   "runs/20261024-pack-31ef267/refs/sf/ep16/reconstructed_stage/t3_ep016_support.usda": "3e0a32942213aa7bbd1431f1cf14c6e1",
+   "runs/20261024-pack-31ef267/refs/sf/ep16/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb": "99bc3983ccc7ab5fbc06a1a8f3bf3034",
+   "runs/20261024-pack-31ef267/refs/sf/ep16/assets/mesh/wooden_spoon/wooden_spoon.glb": "2ba0ecb4d366403f21ca17a0dee372ec",
+   "runs/20261024-pack-31ef267/refs/sf/ep16/assets/urdf/plastic_dish_rack_rigid.urdf": "ae549ee0201ce085c71a7164806047f6",
+   "runs/20261024-pack-31ef267/refs/sf/ep16/assets/urdf/wooden_spoon_rigid.urdf": "59f7268c34f1fd07dbb24fb80d9fd907"
+  }
+ },
+ "30": {
+  "reference": "runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+  "md5": "dd464c96184e84400e62ffcfa17a6ac4",
+  "md5_listed": "dd464c96184e84400e62ffcfa17a6ac4",
+  "md5_match": true,
+  "files": {
+   "runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/contact_retarget.json": "4da98e5ab0ecd95d9e6ca8708ef3fbd6",
+   "runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/e2s_reference.parquet": "29f919ecedd11c460382f9a405948fe3",
+   "runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/hands_refined.json": "fa2738317b91cb693ac7ffda22049a1e",
+   "runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet": "dd464c96184e84400e62ffcfa17a6ac4",
+   "runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/qa_ref.json": "7c3c5d757ecf9c43efb29243e1527add",
+   "runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/reconstructed_stage/t3_ep030_support.usda": "e508bc26e90d62e5040bfaaf8200c995",
+   "runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/ref_summary.json": "d2f1150cf17af61f69a9002b1b192082",
+   "runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/table_frame.npz": "b9781e6eeb8ed7339e9cc4ff6a327187",
+   "runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet": "dd464c96184e84400e62ffcfa17a6ac4"
+  }
+ },
+ "32": {
+  "reference": "runs/20261026-fr32s46b-5e0e100/refs/glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "36e600c8346f9d2bd89dc47447ea55fc",
+  "md5_listed": "36e600c8346f9d2bd89dc47447ea55fc",
+  "md5_match": true,
+  "files": {
+   "runs/20261026-fr32s46b-5e0e100/refs/glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet": "36e600c8346f9d2bd89dc47447ea55fc",
+   "runs/20261026-fr32s46b-5e0e100/refs/glockt/ep32/reconstructed_stage/t3_ep032_support.usda": "2ef5dc709e916f9f07fc3ca144aafe8f",
+   "runs/20261026-fr32s46b-5e0e100/refs/perc2mck/ep32/contact_retarget.json": "2bc7606466c1f6d6a680378d32a50704",
+   "runs/20261026-fr32s46b-5e0e100/refs/perc2mck/ep32/e2s_reference.parquet": "146f652f92d5b498165dc09e545efcf1",
+   "runs/20261026-fr32s46b-5e0e100/refs/perc2mck/ep32/hands_refined.json": "c12e14f012c5b2c12f25601eda68561a",
+   "runs/20261026-fr32s46b-5e0e100/refs/perc2mck/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/983a0ed996974b75a92e4fb9ba91deaf-0.parquet": "7cdb1337e0cb43c70411144eecd536c8",
+   "runs/20261026-fr32s46b-5e0e100/refs/perc2mck/ep32/qa_ref.json": "e1a761c2a9a3b352fae7321782197c02",
+   "runs/20261026-fr32s46b-5e0e100/refs/perc2mck/ep32/reconstructed_stage/t3_ep032_support.usda": "2ef5dc709e916f9f07fc3ca144aafe8f",
+   "runs/20261026-fr32s46b-5e0e100/refs/perc2mck/ep32/ref_summary.json": "043eee6a262e939486c2d32657d9b801",
+   "runs/20261026-fr32s46b-5e0e100/refs/perc2mck/ep32/table_frame.npz": "b739872d01ff2f6eef46a79fb43274b3",
+   "runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_sf.parquet": "a5bbaf492caa2d34f4574b025321825b",
+   "runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_sf_support_fill.json": "0b339f41526d63e4ddfb102140a999c6",
+   "runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/reconstructed_stage/t3_ep032_support.usda": "2ef5dc709e916f9f07fc3ca144aafe8f",
+   "runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/blue_cup/blue_cup.glb": "0e2bb5f5a185ecf91f5689e95a7f61b1",
+   "runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/wooden_spoon/wooden_spoon.glb": "6bf5b0e37789cac13e6939e4c7c0ae08",
+   "runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/urdf/blue_cup_rigid.urdf": "31cd001d2618ee2972dc922b77109b9f",
+   "runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/urdf/wooden_spoon_rigid.urdf": "59f7268c34f1fd07dbb24fb80d9fd907"
+  }
+ },
+ "33": {
+  "reference": "runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "2a7173ab1d4248433bd049bc43f6878a",
+  "md5_listed": "2a7173ab1d4248433bd049bc43f6878a",
+  "md5_match": true,
+  "files": {
+   "runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet": "2a7173ab1d4248433bd049bc43f6878a",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/reconstructed_stage/t3_ep033_support.usda": "2cf9765ce63793028bbe83da3db15a24",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/perc2mck/ep33/contact_retarget.json": "49852ccc25ae0caee2548cec46234f5c",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/perc2mck/ep33/e2s_reference.parquet": "fb7384a68fe8f54096f69d205bfa60a0",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/perc2mck/ep33/hands_refined.json": "eaeb63f5dc0678c4369d07929e5b2d81",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/perc2mck/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/db9e55f30af04c2484989a903a40b75c-0.parquet": "77b8e949411ac91f945e0a6d0b8af905",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/perc2mck/ep33/qa_ref.json": "dbe3e74398801b94e43944f6bde108bb",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/perc2mck/ep33/reconstructed_stage/t3_ep033_support.usda": "2cf9765ce63793028bbe83da3db15a24",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/perc2mck/ep33/ref_summary.json": "7f4d7dbaf6cc870bc488241384f499c7",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/perc2mck/ep33/table_frame.npz": "da7c298d8996a7b27c89b13a4649c89b",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_sf.parquet": "bd65d10e1c2be2536c54e7188c52c4cd",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_sf_support_fill.json": "b7eb73249beb756df360b0fe3e8e955c",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/reconstructed_stage/t3_ep033_support.usda": "2cf9765ce63793028bbe83da3db15a24",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/assets/mesh/blue_cup/blue_cup.glb": "0435d5d24cd88789d4a913ba63b4cca4",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/assets/mesh/wooden_spoon/wooden_spoon.glb": "2ba0ecb4d366403f21ca17a0dee372ec",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/assets/urdf/blue_cup_rigid.urdf": "31cd001d2618ee2972dc922b77109b9f",
+   "runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/assets/urdf/wooden_spoon_rigid.urdf": "59f7268c34f1fd07dbb24fb80d9fd907"
+  }
+ }
+}

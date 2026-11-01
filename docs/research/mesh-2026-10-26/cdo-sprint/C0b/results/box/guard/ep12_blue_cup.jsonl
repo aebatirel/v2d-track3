@@ -1,0 +1,4 @@
+{"file": "/content/results/c0b/pts/A/ep12_blue_cup.npz", "half_m": 0.3, "kept": 2164504, "near_face": 17319, "share": 0.008001, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/A/ep12_blue_cup.npz", "half_m": 0.45, "kept": 2223630, "near_face": 0, "share": 0.0, "max_abs_mm": 378.0, "rebuild": false}
+{"file": "/content/results/c0b/pts/B/ep12_blue_cup.npz", "half_m": 0.3, "kept": 1857469, "near_face": 11429, "share": 0.006153, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/B/ep12_blue_cup.npz", "half_m": 0.45, "kept": 1888264, "near_face": 0, "share": 0.0, "max_abs_mm": 378.0, "rebuild": false}

@@ -1,0 +1,63 @@
+{
+ "ep": 2,
+ "note": "post hoc, report only (PREREG F-I5.14 (7)); decides nothing",
+ "pairs": {
+  "white_pot|white_pot_lid": {
+   "contact_frames": 79,
+   "static_runs": [
+    [
+     0,
+     58
+    ],
+    [
+     278,
+     308
+    ],
+    [
+     312,
+     342
+    ]
+   ],
+   "receiver": "white_pot",
+   "guest": "white_pot_lid",
+   "containment": {
+    "white_pot": 0.9506,
+    "white_pot_lid": 0.0
+   },
+   "hands_off_static": 43,
+   "s_frames": [
+    24,
+    328
+   ],
+   "flags": [],
+   "S": [
+    {
+     "frame": 24,
+     "default": {
+      "disp_mm": 84.797,
+      "dz_mm": 80.562,
+      "lateral_mm": 26.438,
+      "tilt_deg": 12.541,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": false
+     }
+    },
+    {
+     "frame": 328,
+     "default": {
+      "disp_mm": 87.993,
+      "dz_mm": 87.051,
+      "lateral_mm": 12.674,
+      "tilt_deg": 6.195,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": false
+     }
+    }
+   ]
+  }
+ }
+}

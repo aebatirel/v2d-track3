@@ -1,0 +1,534 @@
+{
+ "schema": "gmg-sim/2",
+ "episode": 11,
+ "split": "public",
+ "round": 0,
+ "p_sim": {
+  "source": "P_sel",
+  "flag": "sim_pose_fallback",
+  "tracks": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz",
+   "sha256": "99d845e316714119623ff8df9f1368109aeb31ee5804281a72a00239a8568f75"
+  }
+ },
+ "objects": {
+  "blue_cup": {
+   "files": {
+    "piece_06.obj": "93f48737c00f72bac425e5273270786cb496c43a0c28a53ff3a2eab485aa5251",
+    "piece_13.obj": "6b990d049359be498963565545710963c609da9c8b6f417af120b3b1c9345c26",
+    "piece_15.obj": "bfdc3fdfefdfe6cd2acc2550c49ab87ae4904a219b5c6040974e9d464b30c818",
+    "piece_05.obj": "efcb3cb5eb9cd5fabd55ed60e3eace69739a8728fca489117f6de890463f2477",
+    "piece_07.obj": "f765417cbd060c577202b44d2db230429aa07ff70c0add21d72a57f078c194b4",
+    "carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+    "blue_cup.glb": "98ee2d8b60cafbcb46bcacf53922cc1c000aa0b70571c53e9d365753d23910b8",
+    "piece_08.obj": "4d3cf23bea905dfdc1cc5d008691106f27bcfdf373453bb557227fc3f2c7ad53",
+    "piece_00.obj": "19c87c5739a1e1a54d7d1e3183dbda1829c720422521d9018c1ac7dd0cc766b8",
+    "piece_11.obj": "219f209f2a64e8558e8459e2c1406ec47feae71bcf9fb4509e516f47315e1fd0",
+    "piece_01.obj": "8aca424690e5319a2f607ae0f0d45991091416d42f2ef9d51ea4e0ff15602c1c",
+    "piece_02.obj": "d5c410653510a9534f75149bc9b42847e6c7d716fff6059d61aa2049c14b3173",
+    "piece_04.obj": "33327f06db2f8a26fd0d75231cc2e75f8ddf605e3c53bd0904975aebbcae7246",
+    "inertia.json": "81e91747e2da33c83be9cdec557e261f99c78f8df3e38c2d54f0654be809848b",
+    "piece_10.obj": "e3c3d9e090469d7d7511d9933c97760185811d68e414b39aa2d86e2e5878bb25",
+    "piece_03.obj": "f29d8837d880e0b090e8a90bd1e50e5a2a953ab68d222e12ccf98dfe8fb87803",
+    "piece_12.obj": "1e25784ae761a54133b924762b0433bc4006ae145a4e56fcb4a928ac96cdc691",
+    "piece_14.obj": "19ce026ddb20c33641e4520d6d84219c37f365ba193c93f6925d4a0aecdb2ee2",
+    "piece_09.obj": "c717a2315fdda45462d0ba02cfbad2153225e0e1a2b0203d6dda7d1df31fbd50",
+    "piece_16.obj": "0763416a1068a0c457a297b0d03278e2b302ad0a9d8fa51a68edb586d8d5dff6"
+   },
+   "fiducials": [
+    [
+     -0.031303020935793714,
+     -0.03278951238137479,
+     -0.08506584287937244
+    ],
+    [
+     0.043776502571453525,
+     -0.01759037074290045,
+     -0.09642559329965225
+    ],
+    [
+     -0.04579833096868354,
+     0.050210253708795116,
+     -0.06981689602783794
+    ],
+    [
+     0.0292811925385637,
+     0.06540939534726946,
+     -0.08117664644811776
+    ],
+    [
+     -0.010249216554028315,
+     -0.05035880253282154,
+     0.030576792116660388
+    ],
+    [
+     0.06483030695321892,
+     -0.035159660894347196,
+     0.019217041696380582
+    ],
+    [
+     -0.024744526586918142,
+     0.032640963557348364,
+     0.04582573896819488
+    ],
+    [
+     0.0503349969203291,
+     0.047840105195822706,
+     0.03446598854791507
+    ]
+   ],
+   "gate": {
+    "choice": "4_voxels",
+    "report": {
+     "pass_": true,
+     "n": 17,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "do_not_use": null
+   }
+  },
+  "beige_cup": {
+   "files": {
+    "piece_06.obj": "e35474b84fb4c7d5703eabe7d297a2829515ff9aacc179e81844a9cdd602b464",
+    "piece_13.obj": "f0d14f3c98e1162669aef7073ff8975290897856bb482d27067998e2dce3ba30",
+    "piece_15.obj": "9bbe0211b6ac462c2f8b99f50632a581cd9a0bb8be8016577843cbc8a8c2f03e",
+    "piece_18.obj": "04daca9912373f78159f0179598c20089403a950907199f13f5a6710b41b1d26",
+    "piece_05.obj": "b3caac97cf7a3e21312b2d8ae4bf65fc34391e39a2c0ce5d85321bc317a7a9c2",
+    "piece_07.obj": "448e2b8a56c96d21cc6b95adc324989caee12f462b7a53c119981d50bd05cfa4",
+    "carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+    "piece_08.obj": "053f4dc11ed1f4fffc45b44abb7e1cdfba22e4b2236fa883f1ae7861a0036236",
+    "piece_00.obj": "dd47464b847842a5abb64e6ab03593e1e016c3513a203730110673f5d633ff99",
+    "piece_11.obj": "e9c12fdf2e4c928957ad674b5f324baad6deb65182f6c4f3456be0bd1d09836c",
+    "piece_19.obj": "bbb19ddd84e2902c301cec0cf365313027c214d8906b870000f6ae8b0a1ce646",
+    "piece_01.obj": "96257662a7e7c6954e669387ae64ae5e1ea848aaaebc54894c050bfb62557221",
+    "piece_02.obj": "70c484780090c586b96b5d80df3efd20f1b090c7157730b0ba20234a33a51505",
+    "piece_04.obj": "399f8c999af9d250e139f0727c53be094621ad9f862ad9d7ea459dc674da4e29",
+    "inertia.json": "ede9195697f7775aa75baa08d6262797f040a18924bba778e68dc33dd76ea6f1",
+    "piece_10.obj": "9d0c26283f40b0bc9eacb2daad6aa508f724b228ce88eb6ea238f46131cdba8a",
+    "piece_03.obj": "7b57522cb89cc8b22f779ccb839ca2e7de6287641ef6854aeaa21f9d554f272a",
+    "piece_12.obj": "65e014057f7ff14835a1edaa13ddbc4b7a7c7f186dde2afdf0c8d480dfa66206",
+    "piece_14.obj": "eadd4db1d7af4c100cd5ae41a3fa48689a5871b8cb7e16451c2272e79e1b0c8f",
+    "piece_17.obj": "56b66252c77628d06d137d5fb15f8f88b1a97e39f3eaf136bb7e07a4d9f556f6",
+    "piece_09.obj": "176895bbe7b995d66745de8fb4e5728a19e272626f20332286748e8638aaf124",
+    "piece_16.obj": "ca3ef0d7b768b3e0e9dc363e7a2804e81e89dab09cb70a3112e727c23ceaba20",
+    "beige_cup.glb": "9bb98d74ce9db959b328055b13c577df8a5454e2cff4c767b4c67b393be84b4e"
+   },
+   "fiducials": [
+    [
+     -0.08068080056165569,
+     -0.03751402885667389,
+     0.09367448260121912
+    ],
+    [
+     -0.044834961948847396,
+     0.029375252955912454,
+     0.11154901228088193
+    ],
+    [
+     0.002598678904286854,
+     -0.08266283762920944,
+     0.09561851208991534
+    ],
+    [
+     0.038444517517095156,
+     -0.015773555816623087,
+     0.11349304176957815
+    ],
+    [
+     -0.05699817790779379,
+     -0.0016533622796815616,
+     -0.08801520436878624
+    ],
+    [
+     -0.021152339294985487,
+     0.06523591953290478,
+     -0.07014067468912341
+    ],
+    [
+     0.026281301558148763,
+     -0.0468021710522171,
+     -0.08607117488009002
+    ],
+    [
+     0.062127140170957065,
+     0.020087110760369238,
+     -0.06819664520042719
+    ]
+   ],
+   "gate": {
+    "choice": "4_voxels",
+    "report": {
+     "pass_": true,
+     "n": 20,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "do_not_use": null
+   }
+  }
+ },
+ "object_order": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "files": {
+  "props_gmg.json": "3fc15bbb8994f89f6254a9e5eb1c0efb2634f2bb299708a1f26c13e11ff407ee",
+  "beige_cup/piece_06.obj": "e35474b84fb4c7d5703eabe7d297a2829515ff9aacc179e81844a9cdd602b464",
+  "beige_cup/piece_13.obj": "f0d14f3c98e1162669aef7073ff8975290897856bb482d27067998e2dce3ba30",
+  "beige_cup/piece_15.obj": "9bbe0211b6ac462c2f8b99f50632a581cd9a0bb8be8016577843cbc8a8c2f03e",
+  "beige_cup/piece_18.obj": "04daca9912373f78159f0179598c20089403a950907199f13f5a6710b41b1d26",
+  "beige_cup/piece_05.obj": "b3caac97cf7a3e21312b2d8ae4bf65fc34391e39a2c0ce5d85321bc317a7a9c2",
+  "beige_cup/piece_07.obj": "448e2b8a56c96d21cc6b95adc324989caee12f462b7a53c119981d50bd05cfa4",
+  "beige_cup/carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+  "beige_cup/piece_08.obj": "053f4dc11ed1f4fffc45b44abb7e1cdfba22e4b2236fa883f1ae7861a0036236",
+  "beige_cup/piece_00.obj": "dd47464b847842a5abb64e6ab03593e1e016c3513a203730110673f5d633ff99",
+  "beige_cup/piece_11.obj": "e9c12fdf2e4c928957ad674b5f324baad6deb65182f6c4f3456be0bd1d09836c",
+  "beige_cup/piece_19.obj": "bbb19ddd84e2902c301cec0cf365313027c214d8906b870000f6ae8b0a1ce646",
+  "beige_cup/piece_01.obj": "96257662a7e7c6954e669387ae64ae5e1ea848aaaebc54894c050bfb62557221",
+  "beige_cup/piece_02.obj": "70c484780090c586b96b5d80df3efd20f1b090c7157730b0ba20234a33a51505",
+  "beige_cup/piece_04.obj": "399f8c999af9d250e139f0727c53be094621ad9f862ad9d7ea459dc674da4e29",
+  "beige_cup/inertia.json": "ede9195697f7775aa75baa08d6262797f040a18924bba778e68dc33dd76ea6f1",
+  "beige_cup/piece_10.obj": "9d0c26283f40b0bc9eacb2daad6aa508f724b228ce88eb6ea238f46131cdba8a",
+  "beige_cup/piece_03.obj": "7b57522cb89cc8b22f779ccb839ca2e7de6287641ef6854aeaa21f9d554f272a",
+  "beige_cup/piece_12.obj": "65e014057f7ff14835a1edaa13ddbc4b7a7c7f186dde2afdf0c8d480dfa66206",
+  "beige_cup/piece_14.obj": "eadd4db1d7af4c100cd5ae41a3fa48689a5871b8cb7e16451c2272e79e1b0c8f",
+  "beige_cup/piece_17.obj": "56b66252c77628d06d137d5fb15f8f88b1a97e39f3eaf136bb7e07a4d9f556f6",
+  "beige_cup/piece_09.obj": "176895bbe7b995d66745de8fb4e5728a19e272626f20332286748e8638aaf124",
+  "beige_cup/piece_16.obj": "ca3ef0d7b768b3e0e9dc363e7a2804e81e89dab09cb70a3112e727c23ceaba20",
+  "beige_cup/beige_cup.glb": "9bb98d74ce9db959b328055b13c577df8a5454e2cff4c767b4c67b393be84b4e",
+  "blue_cup/piece_06.obj": "93f48737c00f72bac425e5273270786cb496c43a0c28a53ff3a2eab485aa5251",
+  "blue_cup/piece_13.obj": "6b990d049359be498963565545710963c609da9c8b6f417af120b3b1c9345c26",
+  "blue_cup/piece_15.obj": "bfdc3fdfefdfe6cd2acc2550c49ab87ae4904a219b5c6040974e9d464b30c818",
+  "blue_cup/piece_05.obj": "efcb3cb5eb9cd5fabd55ed60e3eace69739a8728fca489117f6de890463f2477",
+  "blue_cup/piece_07.obj": "f765417cbd060c577202b44d2db230429aa07ff70c0add21d72a57f078c194b4",
+  "blue_cup/carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+  "blue_cup/blue_cup.glb": "98ee2d8b60cafbcb46bcacf53922cc1c000aa0b70571c53e9d365753d23910b8",
+  "blue_cup/piece_08.obj": "4d3cf23bea905dfdc1cc5d008691106f27bcfdf373453bb557227fc3f2c7ad53",
+  "blue_cup/piece_00.obj": "19c87c5739a1e1a54d7d1e3183dbda1829c720422521d9018c1ac7dd0cc766b8",
+  "blue_cup/piece_11.obj": "219f209f2a64e8558e8459e2c1406ec47feae71bcf9fb4509e516f47315e1fd0",
+  "blue_cup/piece_01.obj": "8aca424690e5319a2f607ae0f0d45991091416d42f2ef9d51ea4e0ff15602c1c",
+  "blue_cup/piece_02.obj": "d5c410653510a9534f75149bc9b42847e6c7d716fff6059d61aa2049c14b3173",
+  "blue_cup/piece_04.obj": "33327f06db2f8a26fd0d75231cc2e75f8ddf605e3c53bd0904975aebbcae7246",
+  "blue_cup/inertia.json": "81e91747e2da33c83be9cdec557e261f99c78f8df3e38c2d54f0654be809848b",
+  "blue_cup/piece_10.obj": "e3c3d9e090469d7d7511d9933c97760185811d68e414b39aa2d86e2e5878bb25",
+  "blue_cup/piece_03.obj": "f29d8837d880e0b090e8a90bd1e50e5a2a953ab68d222e12ccf98dfe8fb87803",
+  "blue_cup/piece_12.obj": "1e25784ae761a54133b924762b0433bc4006ae145a4e56fcb4a928ac96cdc691",
+  "blue_cup/piece_14.obj": "19ce026ddb20c33641e4520d6d84219c37f365ba193c93f6925d4a0aecdb2ee2",
+  "blue_cup/piece_09.obj": "c717a2315fdda45462d0ba02cfbad2153225e0e1a2b0203d6dda7d1df31fbd50",
+  "blue_cup/piece_16.obj": "0763416a1068a0c457a297b0d03278e2b302ad0a9d8fa51a68edb586d8d5dff6",
+  "_default/beige_cup/piece_06.obj": "e35474b84fb4c7d5703eabe7d297a2829515ff9aacc179e81844a9cdd602b464",
+  "_default/beige_cup/piece_13.obj": "f0d14f3c98e1162669aef7073ff8975290897856bb482d27067998e2dce3ba30",
+  "_default/beige_cup/piece_15.obj": "9bbe0211b6ac462c2f8b99f50632a581cd9a0bb8be8016577843cbc8a8c2f03e",
+  "_default/beige_cup/piece_18.obj": "04daca9912373f78159f0179598c20089403a950907199f13f5a6710b41b1d26",
+  "_default/beige_cup/piece_05.obj": "b3caac97cf7a3e21312b2d8ae4bf65fc34391e39a2c0ce5d85321bc317a7a9c2",
+  "_default/beige_cup/piece_07.obj": "448e2b8a56c96d21cc6b95adc324989caee12f462b7a53c119981d50bd05cfa4",
+  "_default/beige_cup/piece_08.obj": "053f4dc11ed1f4fffc45b44abb7e1cdfba22e4b2236fa883f1ae7861a0036236",
+  "_default/beige_cup/piece_00.obj": "dd47464b847842a5abb64e6ab03593e1e016c3513a203730110673f5d633ff99",
+  "_default/beige_cup/piece_11.obj": "e9c12fdf2e4c928957ad674b5f324baad6deb65182f6c4f3456be0bd1d09836c",
+  "_default/beige_cup/piece_19.obj": "bbb19ddd84e2902c301cec0cf365313027c214d8906b870000f6ae8b0a1ce646",
+  "_default/beige_cup/piece_01.obj": "96257662a7e7c6954e669387ae64ae5e1ea848aaaebc54894c050bfb62557221",
+  "_default/beige_cup/piece_02.obj": "70c484780090c586b96b5d80df3efd20f1b090c7157730b0ba20234a33a51505",
+  "_default/beige_cup/piece_04.obj": "399f8c999af9d250e139f0727c53be094621ad9f862ad9d7ea459dc674da4e29",
+  "_default/beige_cup/piece_10.obj": "9d0c26283f40b0bc9eacb2daad6aa508f724b228ce88eb6ea238f46131cdba8a",
+  "_default/beige_cup/piece_03.obj": "7b57522cb89cc8b22f779ccb839ca2e7de6287641ef6854aeaa21f9d554f272a",
+  "_default/beige_cup/piece_12.obj": "65e014057f7ff14835a1edaa13ddbc4b7a7c7f186dde2afdf0c8d480dfa66206",
+  "_default/beige_cup/piece_14.obj": "eadd4db1d7af4c100cd5ae41a3fa48689a5871b8cb7e16451c2272e79e1b0c8f",
+  "_default/beige_cup/piece_17.obj": "56b66252c77628d06d137d5fb15f8f88b1a97e39f3eaf136bb7e07a4d9f556f6",
+  "_default/beige_cup/piece_09.obj": "176895bbe7b995d66745de8fb4e5728a19e272626f20332286748e8638aaf124",
+  "_default/beige_cup/piece_16.obj": "ca3ef0d7b768b3e0e9dc363e7a2804e81e89dab09cb70a3112e727c23ceaba20",
+  "_default/blue_cup/piece_06.obj": "93f48737c00f72bac425e5273270786cb496c43a0c28a53ff3a2eab485aa5251",
+  "_default/blue_cup/piece_13.obj": "6b990d049359be498963565545710963c609da9c8b6f417af120b3b1c9345c26",
+  "_default/blue_cup/piece_15.obj": "bfdc3fdfefdfe6cd2acc2550c49ab87ae4904a219b5c6040974e9d464b30c818",
+  "_default/blue_cup/piece_05.obj": "efcb3cb5eb9cd5fabd55ed60e3eace69739a8728fca489117f6de890463f2477",
+  "_default/blue_cup/piece_07.obj": "f765417cbd060c577202b44d2db230429aa07ff70c0add21d72a57f078c194b4",
+  "_default/blue_cup/piece_08.obj": "4d3cf23bea905dfdc1cc5d008691106f27bcfdf373453bb557227fc3f2c7ad53",
+  "_default/blue_cup/piece_00.obj": "19c87c5739a1e1a54d7d1e3183dbda1829c720422521d9018c1ac7dd0cc766b8",
+  "_default/blue_cup/piece_11.obj": "219f209f2a64e8558e8459e2c1406ec47feae71bcf9fb4509e516f47315e1fd0",
+  "_default/blue_cup/piece_01.obj": "8aca424690e5319a2f607ae0f0d45991091416d42f2ef9d51ea4e0ff15602c1c",
+  "_default/blue_cup/piece_02.obj": "d5c410653510a9534f75149bc9b42847e6c7d716fff6059d61aa2049c14b3173",
+  "_default/blue_cup/piece_04.obj": "33327f06db2f8a26fd0d75231cc2e75f8ddf605e3c53bd0904975aebbcae7246",
+  "_default/blue_cup/piece_10.obj": "e3c3d9e090469d7d7511d9933c97760185811d68e414b39aa2d86e2e5878bb25",
+  "_default/blue_cup/piece_03.obj": "f29d8837d880e0b090e8a90bd1e50e5a2a953ab68d222e12ccf98dfe8fb87803",
+  "_default/blue_cup/piece_12.obj": "1e25784ae761a54133b924762b0433bc4006ae145a4e56fcb4a928ac96cdc691",
+  "_default/blue_cup/piece_14.obj": "19ce026ddb20c33641e4520d6d84219c37f365ba193c93f6925d4a0aecdb2ee2",
+  "_default/blue_cup/piece_09.obj": "c717a2315fdda45462d0ba02cfbad2153225e0e1a2b0203d6dda7d1df31fbd50",
+  "_default/blue_cup/piece_16.obj": "0763416a1068a0c457a297b0d03278e2b302ad0a9d8fa51a68edb586d8d5dff6",
+  "_fit/blue_cup.glb": "a02ea362c0310c5fc6f046ade7e523bbaad6ee6a9265717b8d40ff0135ea261a",
+  "_fit/beige_cup.glb": "4907ea89ab579ad1e88963c70a620cdb818e130d816f9fccb75dd6e70b4581e6"
+ },
+ "fiducials": {
+  "blue_cup": [
+   [
+    -0.031303020935793714,
+    -0.03278951238137479,
+    -0.08506584287937244
+   ],
+   [
+    0.043776502571453525,
+    -0.01759037074290045,
+    -0.09642559329965225
+   ],
+   [
+    -0.04579833096868354,
+    0.050210253708795116,
+    -0.06981689602783794
+   ],
+   [
+    0.0292811925385637,
+    0.06540939534726946,
+    -0.08117664644811776
+   ],
+   [
+    -0.010249216554028315,
+    -0.05035880253282154,
+    0.030576792116660388
+   ],
+   [
+    0.06483030695321892,
+    -0.035159660894347196,
+    0.019217041696380582
+   ],
+   [
+    -0.024744526586918142,
+    0.032640963557348364,
+    0.04582573896819488
+   ],
+   [
+    0.0503349969203291,
+    0.047840105195822706,
+    0.03446598854791507
+   ]
+  ],
+  "beige_cup": [
+   [
+    -0.08068080056165569,
+    -0.03751402885667389,
+    0.09367448260121912
+   ],
+   [
+    -0.044834961948847396,
+    0.029375252955912454,
+    0.11154901228088193
+   ],
+   [
+    0.002598678904286854,
+    -0.08266283762920944,
+    0.09561851208991534
+   ],
+   [
+    0.038444517517095156,
+    -0.015773555816623087,
+    0.11349304176957815
+   ],
+   [
+    -0.05699817790779379,
+    -0.0016533622796815616,
+    -0.08801520436878624
+   ],
+   [
+    -0.021152339294985487,
+    0.06523591953290478,
+    -0.07014067468912341
+   ],
+   [
+    0.026281301558148763,
+    -0.0468021710522171,
+    -0.08607117488009002
+   ],
+   [
+    0.062127140170957065,
+    0.020087110760369238,
+    -0.06819664520042719
+   ]
+  ]
+ },
+ "code": {
+  "commit": "f0327eeba6e2092bf35630fd5f8a58f2b7514f01",
+  "dirty": false,
+  "dirty_files": [],
+  "sha256": {
+   "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+   "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+   "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+   "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+   "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+   "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+   "tools/interlock_dev.py": "11b746537993c5f8854c578c2cab8182514888c03acb03363cb592f2737dbd7b",
+   "platebody.py": "da173d6b979a5b4f819b73419c5d9fe7a38fe12b504ee2520d653743e99df468",
+   "collcarve.py": "203eda41fdef5f9cf285cc6598eeefe326908280d65d312f7288e0ade7a52ec8",
+   "cavpieces.py": "4b931e0d579862a77e82fb3e73718b90e7606f7289f62b22e8d77a0fb0c243ae"
+  }
+ },
+ "commit": "f0327eeba6e2092bf35630fd5f8a58f2b7514f01",
+ "interlock": null,
+ "do_not_use": null,
+ "fiducial_definition": "8 corners of the PCA-oriented bounding box of all piece vertices, each coordinate 1 mm inward along each box axis (simpieces.fiducials)",
+ "note": "visual <obj>.glb = submitted mesh (geometry only); collisions = piece_XX.obj (make_assets.py --pieces); _fit/<obj>.glb = union of the pieces for phys_fit --meshes; props_gmg.json for phys_fit --props",
+ "owner_waiver_fi5": {
+  "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+  "quote": "but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it",
+  "scope": "every non-plate pair whose simulator colliders interpenetrate persistently, simulator copy only (F-I5.0)",
+  "routes": {
+   "blue_cup": "4_voxels",
+   "beige_cup": "4_voxels"
+  },
+  "pairs": {
+   "blue_cup|beige_cup": {
+    "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+    "pair": [
+     "blue_cup",
+     "beige_cup"
+    ],
+    "rev": 2,
+    "gates": {
+     "blue_cup<-beige_cup#0": {
+      "voxels": 3,
+      "run_kind": "SEAT",
+      "run": [
+       92,
+       136
+      ],
+      "n_build": 13,
+      "sweep_share": 1.0,
+      "observed_voxels": 0,
+      "persistent_nmin": 5,
+      "pass_": true
+     },
+     "blue_cup<-beige_cup#1": {
+      "voxels": 4,
+      "run_kind": "SEAT",
+      "run": [
+       92,
+       136
+      ],
+      "n_build": 13,
+      "sweep_share": 0.0,
+      "observed_voxels": 2,
+      "persistent_nmin": 5,
+      "pass_": false,
+      "fail": "sweep"
+     },
+     "beige_cup<-blue_cup#2": {
+      "voxels": 11,
+      "run_kind": "SEAT",
+      "run": [
+       96,
+       136
+      ],
+      "n_build": 11,
+      "sweep_share": 1.0,
+      "observed_voxels": 6,
+      "persistent_nmin": 5,
+      "pass_": true
+     }
+    },
+    "in_scope": true,
+    "receiver": "beige_cup",
+    "guest": "blue_cup",
+    "receiver_info": {
+     "containment": {
+      "blue_cup": 0.4005,
+      "beige_cup": 0.6173
+     },
+     "frames": 14
+    },
+    "settle_frame": 126,
+    "components": [
+     {
+      "gates": {
+       "voxels": 11,
+       "run_kind": "SEAT",
+       "run": [
+        96,
+        136
+       ],
+       "n_build": 11,
+       "sweep_share": 1.0,
+       "observed_voxels": 6,
+       "persistent_nmin": 5,
+       "pass_": true
+      },
+      "rest": {
+       "static_frames": 11,
+       "hands_off_static": 11,
+       "s_frames": [
+        126
+       ],
+       "segments": [
+        [
+         116,
+         136
+        ]
+       ],
+       "flags": []
+      },
+      "precheck": {
+       "126": {
+        "a_table": {
+         "lowest_mm": 3.25,
+         "lowest_mesh_mm": 3.22,
+         "pass_": true
+        },
+        "b_support": {
+         "table_mm": 3.25,
+         "receiver_mm": 0.0,
+         "receiver_mesh_mm": 0.0,
+         "pass_": true
+        },
+        "c_overlap": {
+         "V_ov_cm3": 85.248,
+         "removed_share": 0.5288,
+         "topology": {
+          "default": [
+           2,
+           79
+          ],
+          "cut": [
+           119,
+           127
+          ]
+         },
+         "samples_inside": 126204,
+         "samples_used": 20000,
+         "wall_samples_needing": 19881,
+         "wall_samples_bad": 8532,
+         "min_wall_left_mm": 0.049,
+         "ok_topology": false,
+         "ok_wall": false,
+         "ok_removed": false,
+         "pass_": false
+        },
+        "fail": "c_overlap",
+        "fails": [
+         "c_overlap"
+        ],
+        "pass_": false
+       }
+      },
+      "ok_frames": [],
+      "R_voxels": 11,
+      "why": "pose_impossible_all"
+     }
+    ],
+    "deliver": "default",
+    "why": "pose_impossible_all"
+   }
+  },
+  "default_pieces": "_default/<obj>/piece_XX.obj"
+ },
+ "p1_pending": true,
+ "fi5_rev": 2,
+ "rule_fi5r2": "PREREG F-I5.15, F-I5.16",
+ "owner_quotes": {
+  "fi4": "Okay I waive that camera rule",
+  "fi5": "but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it",
+  "mandate_2122": "anything that improves the score within the competition rules"
+ }
+}

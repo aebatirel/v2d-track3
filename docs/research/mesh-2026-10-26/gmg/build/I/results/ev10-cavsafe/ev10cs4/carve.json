@@ -1,0 +1,43 @@
+{
+ "note": "ev10cs4 (v4, amendment A4 of GATES.md, with its conditional F2): CANDIDATE eval-10 collision copy for the simulator only (1 Nov 2026, CPU). As ev10cs3 (cavity-safe blue walls, inscribed beige, one-piece blue floor, 8 sectors) with 8 cm bands (2 per wall), a beige ring base of 1 + 4 rim sectors, and a 6 mm blue floor plate [h_base - 6 mm, h_base] (F2: the drop check of the 3 mm build found guest-table contacts); the blue cavity floor is therefore 3 mm higher than in v1-v3. Blue 24 = 16 wall + 1 floor plate + 7 ev10 base hulls clipped to h >= h_base; beige 21 = 16 wall + 1 centre + 4 rim. NOT packed; measured candidate (README.md section 9).",
+ "layout": "as meshes/carve/ev10: <obj>/piece_NN.obj (one convex hull each), <obj>/inertia.json (uniform solid of the pieces, 0.3 kg; make_assets.py --pieces reads it), <obj>/lathe_collision.json",
+ "use": "python pipeline/make_assets.py meshes/library_v3 OUT --pieces docs/research/mesh-2026-10-26/gmg/build/I/results/ev10-cavsafe/ev10cs4",
+ "pairs_with": {
+  "reference": "runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "1a5003d94852c275519066645a1b9869",
+  "store": "HF aebatirel/v2d-store",
+  "listed_in": "docs/research/work/masses-eval-20261031/packed_refs.json (branch claude/focused-pascal-2nz9s1), eval 10",
+  "visual_meshes": {
+   "blue_cup": [
+    "meshes/library_v3/blue_cup.glb",
+    "7542631493e3a0564f6d74009de67d54"
+   ],
+   "beige_cup": [
+    "meshes/library_v3/beige_cup.glb",
+    "6226281f120192c52bffec7680fa9d8f"
+   ]
+  },
+  "frame": "the pieces are in the library_v3 mesh (= URDF link) frame, as ev10"
+ },
+ "critical_frames": {
+  "nested_hands_off_rest": "f124-f160 (all 37 frames have no hand-contact label; gate 1)",
+  "pair_scene_gate": "f111, f142, f116 (the precheck frames; gate 2)",
+  "determined_wright_explicit": "f0, f124, f142, f160",
+  "pair_scene_in_hand": "f111, f116 (in hand in the reference; the hands-free pair scene drops the pair 32 mm)"
+ },
+ "commands": [
+  "python docs/research/approaches-2026-10-25/approach2-scripts/lathe_fit2.py blue_cup meshes/library_v3/blue_cup.glb PROF/blue_cup",
+  "python docs/research/approaches-2026-10-25/approach2-scripts/lathe_fit2.py beige_cup_v3 meshes/library_v3/beige_cup.glb PROF/beige_cup_v3",
+  "python -I S/lathe_cavsafe.py PROF/blue_cup_profile.npz PROF/blue_cup.json OUT/blue_cup --seg 8 --band 0.08 --wall 0.003 --base_pieces meshes/carve/ev10/blue_cup --base_first 36 --inner_circ --outer_circ --floor_plate --plate_t 0.006",
+  "python -I S/lathe_cavsafe.py PROF/beige_cup_v3_profile.npz PROF/beige_cup_v3.json OUT/beige_cup --seg 8 --band 0.08 --shrink 0.008 --base_to_mesh meshes/library_v3/beige_cup.glb --ext_max 0.0071 --outer_insc --base_rim 4"
+ ],
+ "scripts": "S = docs/research/mesh-2026-10-26/gmg/build/I/results/ev10-cavsafe/scripts (lathe_cavsafe.py = focused-pascal pipeline/lathe_collision.py blob 680cc2f9 + opt-in options; without them it rebuilds ev10 at vertex Hausdorff 0.0 mm)",
+ "inputs_sha256": {
+  "PROF/blue_cup_profile.npz": "e8dfcff6939094db4ecaa2b3da947a41cc344601d2fcc3b4d1a02544645edc02",
+  "PROF/blue_cup.json": "4b92dd8d42970c178a8a3534d9fae90ebe30c75e54a741612ccf2730ae574020",
+  "PROF/beige_cup_v3_profile.npz": "d10d8eae34aa789c80db131bba20c94d0533201fa9d42d477e85587940d791fc",
+  "PROF/beige_cup_v3.json": "2c6736a6684cb051d3a092cf8ee634d9a4e3e21a9f9d6a2594eecdeb056d3b80"
+ },
+ "environment": "Python 3.13, trimesh 5.2.0, numpy 2.5.4, scipy 1.18.1 (HiGHS linprog); profiles regenerated here (their bytes differ from ev10w 4.12.2 profiles, the rebuilt ev10 geometry is identical)",
+ "rest_robustness": "not run (no FlashCHORD here); see README for what the pack lane should run"
+}

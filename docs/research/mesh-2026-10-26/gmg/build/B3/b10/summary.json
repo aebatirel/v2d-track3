@@ -1,0 +1,67 @@
+{
+ "prereg": "B.10",
+ "n": 104,
+ "n_manifest": 104,
+ "watertight_after_decode": 103,
+ "pass_min": 100,
+ "pass_": true,
+ "by_model": {
+  "pixal_mv": {
+   "n": 20,
+   "raw_watertight": 0,
+   "watertight_after_decode": 19,
+   "thin_union": 10
+  },
+  "trellis2": {
+   "n": 20,
+   "raw_watertight": 0,
+   "watertight_after_decode": 20,
+   "thin_union": 7
+  },
+  "triposg": {
+   "n": 20,
+   "raw_watertight": 2,
+   "watertight_after_decode": 20,
+   "thin_union": 12
+  },
+  "hy21": {
+   "n": 20,
+   "raw_watertight": 6,
+   "watertight_after_decode": 20,
+   "thin_union": 5
+  },
+  "sam3d": {
+   "n": 20,
+   "raw_watertight": 13,
+   "watertight_after_decode": 20,
+   "thin_union": 7
+  },
+  "pixal_v1": {
+   "n": 4,
+   "raw_watertight": 0,
+   "watertight_after_decode": 4,
+   "thin_union": 2
+  }
+ },
+ "failures": [
+  {
+   "tag": "gen/pixal_mv/ep26_plastic_dish_rack_s42",
+   "error": null,
+   "v1": {
+    "veto": true,
+    "watertight": false,
+    "faces": 3998,
+    "vertices": 1681,
+    "bodies": 4,
+    "volume_cm3": null
+   }
+  }
+ ],
+ "coverage": {
+  "min": 0.0083,
+  "median": 0.9566,
+  "below_0_9": 43
+ },
+ "faces_max": 4000,
+ "sec_total": 4780.6
+}

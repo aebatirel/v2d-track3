@@ -1,0 +1,9 @@
+[08:39:50] b4_extract ep18 objects ['mini_sweeper', 'mini_dust_pan'] det False start {'commit': 'b61e8aae9a773b17d3d3308ac54f5d924eae2be5', 'dirty': '?? docs/research/mesh-2026-10-26/gmg/build/P.md'}
+[08:44:54] hands 304.2 s: frames with hand 352 / 353
+[08:48:26] ep18 pass 0: 177 frames, 9270790 samples, voxels [119424, 76994], 211.1 s
+[08:56:29] extract timing {"table_s": 0.5, "pass0_samples_s": 197.2, "pass0_votes_s": 13.9, "pass0_s": 211.1, "pass0_voxels": [119424, 76994], "pass1_s": 315.1, "pass2_s": 6.2, "pass3_s": 1.2, "pass4_grids_s": 99.5, "sigma_s": 56.0, "total_s": 691.1}
+[08:56:35] sanity mini_sweeper: 177/177 good, flags [], below 0.0, resid {'median': 0.988, 'p90': 1.043, 'max': 1.111}
+[08:56:43] sanity mini_dust_pan: 176/177 good, flags [], below 0.0, resid {'median': 0.941, 'p90': 1.014, 'max': 3.158}
+[08:58:00] split test mini_sweeper: {"mini_dust_pan": [true, 2.794, 7.716, 7.381]}
+[08:58:40] split test mini_dust_pan: {"mini_sweeper": [true, 4.559, 7.77, 10.689]}
+[08:58:42] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep18 total 1131.7 s

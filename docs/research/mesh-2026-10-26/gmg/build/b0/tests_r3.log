@@ -1,0 +1,77 @@
+commit 56e1b2ad8e654049a217524939ea1a41b64844ee 2026-10-30T18:24:16Z
+test_dev_mode (__main__.TestAllowed.test_dev_mode) ... ok
+test_dev_outputs_never_enter_a_clean_run (__main__.TestAllowed.test_dev_outputs_never_enter_a_clean_run)
+Verification round 1: a dev process writes a bundle from obs_all; a clean process must never take it as ... ok
+test_every_clean_role_passes (__main__.TestAllowed.test_every_clean_role_passes) ... ok
+test_mode_default_and_invalid (__main__.TestAllowed.test_mode_default_and_invalid) ... ok
+test_named_fixture_prefix (__main__.TestAllowed.test_named_fixture_prefix)
+PREREG B.14 T-V2d: the raw hand-kit lid (prefix 4bd1751e84052f05) passes as a dev fixture; clean refuses. ... ok
+test_roster_public_json_allowed (__main__.TestAllowed.test_roster_public_json_allowed) ... ok
+test_run_markers (__main__.TestAllowed.test_run_markers) ... ok
+test_set_run_rules (__main__.TestAllowed.test_set_run_rules) ... ok
+test_constants (__main__.TestConstants.test_constants) ... ok
+test_informed_rows_match_prereg (__main__.TestConstants.test_informed_rows_match_prereg)
+INFORMED_A6 equals the PREREG A.6 rows whose origin says 'informed' (names only). ... ok
+test_a_det_only_through_load_npz (__main__.TestDetIdentity.test_a_det_only_through_load_npz) ... ok
+test_b_copies (__main__.TestDetIdentity.test_b_copies) ... ok
+test_b_real_det_copy_via_registry (__main__.TestDetIdentity.test_b_real_det_copy_via_registry) ... ok
+test_c_future_allowlist_change (__main__.TestDetIdentity.test_c_future_allowlist_change) ... ok
+test_d_kit_and_weights_roots (__main__.TestDetIdentity.test_d_kit_and_weights_roots) ... ok
+test_det_key_filter (__main__.TestDetIdentity.test_det_key_filter) ... ok
+test_hook_allows_ordinary_and_code_opens (__main__.TestHook.test_hook_allows_ordinary_and_code_opens) ... ok
+test_hook_code_exemption_by_suffix_only (__main__.TestHook.test_hook_code_exemption_by_suffix_only)
+A non-code file under the interpreter prefix gets the substrings (round 1: prefixes were exempt). ... ok
+test_hook_dev_admitted_only (__main__.TestHook.test_hook_dev_admitted_only) ... ok
+test_hook_refuses_forbidden_opens (__main__.TestHook.test_hook_refuses_forbidden_opens) ... ok
+test_hook_write_rules (__main__.TestHook.test_hook_write_rules) ... ok
+test_a_plus_b_det_copy (__main__.TestHookEvents.test_a_plus_b_det_copy) ... ok
+test_hard_link_read_by_the_hook (__main__.TestHookEvents.test_hard_link_read_by_the_hook) ... ok
+test_hf_dataset_scans (__main__.TestHookEvents.test_hf_dataset_scans) ... ok
+test_kit_scorer_import_refused (__main__.TestHookEvents.test_kit_scorer_import_refused) ... ok
+test_private_doors_need_a_guard_frame (__main__.TestHookEvents.test_private_doors_need_a_guard_frame) ... ok
+test_process_arguments_and_urls (__main__.TestHookEvents.test_process_arguments_and_urls) ... ok
+test_dev_mode_io_gt_obs_all (__main__.TestIoGt.test_dev_mode_io_gt_obs_all) ... ok
+test_gmg_refuses_io_gt_roots_not_on_allowlist (__main__.TestIoGt.test_gmg_refuses_io_gt_roots_not_on_allowlist) ... ok
+test_io_gt_deny_sha (__main__.TestIoGt.test_io_gt_deny_sha) ... ok
+test_io_gt_denylist (__main__.TestIoGt.test_io_gt_denylist) ... ok
+test_mesh_roots_dropped (__main__.TestIoGt.test_mesh_roots_dropped) ... ok
+test_dev_roles_refused_in_clean (__main__.TestRefusals.test_dev_roles_refused_in_clean) ... ok
+test_env_can_only_add_deny_entries (__main__.TestRefusals.test_env_can_only_add_deny_entries) ... ok
+test_expect_sha256 (__main__.TestRefusals.test_expect_sha256) ... ok
+test_extra_denylist_sha_and_glob (__main__.TestRefusals.test_extra_denylist_sha_and_glob) ... ok
+test_frozen_eval_tracks (__main__.TestRefusals.test_frozen_eval_tracks)
+SPEC section 17: eval tracks must equal the frozen store run (gmg/frozen_eval_tracks.json); with the ... ok
+test_gt_substrings_refused (__main__.TestRefusals.test_gt_substrings_refused) ... ok
+test_hard_link_copy_refused (__main__.TestRefusals.test_hard_link_copy_refused) ... ok
+test_kit_scorer_refused (__main__.TestRefusals.test_kit_scorer_refused) ... ok
+test_real_denylist_globs_refused (__main__.TestRefusals.test_real_denylist_globs_refused) ... ok
+test_real_library_and_scan_paths_refused_without_opening (__main__.TestRefusals.test_real_library_and_scan_paths_refused_without_opening) ... ok
+test_refusal_survives_a_future_allowlist_change (__main__.TestRefusals.test_refusal_survives_a_future_allowlist_change) ... ok
+test_refused_folders_clean (__main__.TestRefusals.test_refused_folders_clean) ... ok
+test_refused_folders_real_scratchpad (__main__.TestRefusals.test_refused_folders_real_scratchpad) ... ok
+test_symlinks_resolved (__main__.TestRefusals.test_symlinks_resolved) ... ok
+test_track_key_filter (__main__.TestRefusals.test_track_key_filter) ... ok
+test_unlisted_and_unknown (__main__.TestRefusals.test_unlisted_and_unknown) ... ok
+test_ledger_rules (__main__.TestRunProvenance.test_ledger_rules) ... ok
+test_probe1_dev_replace_and_rename_into_a_clean_run (__main__.TestRunProvenance.test_probe1_dev_replace_and_rename_into_a_clean_run) ... ok
+test_probe2_self_written_marker_and_moved_dev_run (__main__.TestRunProvenance.test_probe2_self_written_marker_and_moved_dev_run) ... ok
+test_register_output (__main__.TestRunProvenance.test_register_output) ... ok
+test_removals_and_other_runs (__main__.TestRunProvenance.test_removals_and_other_runs) ... ok
+test_audit_detects_unguarded_opens (__main__.TestStrace.test_audit_detects_unguarded_opens)
+Negative control: an unguarded process that reads GT-pattern, refused, deny-sha and unlisted files, also ... ok
+test_audit_git_attribution (__main__.TestStrace.test_audit_git_attribution)
+Verification round 2, blocking item 2: opens a pid made before it execs git are checked like any other ... ok
+test_audit_manifest_outputs_written_by_the_command (__main__.TestStrace.test_audit_manifest_outputs_written_by_the_command)
+register_output of a file the audited command did not write is caught by the audit. ... ok
+test_audit_moves_links_symlinks_network (__main__.TestStrace.test_audit_moves_links_symlinks_network)
+rename*, link*, symlink* and connect are traced: a file moved into the run from outside, a hard link into ... ok
+test_audit_reconciles_det_opens (__main__.TestStrace.test_audit_reconciles_det_opens)
+A guarded process loads the det dump through load_npz and writes its manifest; a child `cat` of the same ... ok
+test_audit_roster_policy (__main__.TestStrace.test_audit_roster_policy)
+Policy roster (M0r): the --src parquets may be read (the auditor does not hash them: its own hook refuses ... ok
+test_dummy_clean_run_zero_forbidden_opens (__main__.TestStrace.test_dummy_clean_run_zero_forbidden_opens) ... ok
+
+----------------------------------------------------------------------
+Ran 60 tests in 30.693s
+
+OK

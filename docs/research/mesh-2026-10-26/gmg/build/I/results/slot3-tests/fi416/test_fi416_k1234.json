@@ -1,0 +1,2588 @@
+{
+ "fi4_rev": 16,
+ "fi416": {
+  "w10_k1": {
+   "fixture": {
+    "k": 1,
+    "t_mm": 6,
+    "sigma_e_mm": 1.0,
+    "sigma_n_mm": 1.0,
+    "declared_sigma_mm": 1.0,
+    "T": 100,
+    "seeds": {
+     "pose": 4161,
+     "noise": 4261,
+     "sample_A": 4361,
+     "sample_B": 4461
+    },
+    "A": {
+     "samples": 3000
+    },
+    "B": {
+     "samples": 3000
+    }
+   },
+   "summary": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4"
+     ],
+     "submitted": false,
+     "old": "CARVE",
+     "in_scope": true,
+     "gate_fail": null,
+     "plate_t_mm": 5.83,
+     "crosslap": {
+      "W_x_mm": 130.01,
+      "grid_points": 585,
+      "D_sum_mm": 134.26,
+      "diff_mm": 4.25,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "w_mm": 7.7,
+     "D_mm": 67.89,
+     "centre_mm": 0.07,
+     "centre_component_mm": -1.01,
+     "n_pieces": 68,
+     "budget": {
+      "slot_cm3": 3.05,
+      "body_cm3": 182.59,
+      "vol_share": 0.0167,
+      "reach": 0.47,
+      "footprint_mm": [
+       -3.79,
+       3.91,
+       -75.19,
+       1.7
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7590.9,
+       7703.7
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     },
+     "body": [
+      238.5,
+      144.4,
+      5.832
+     ],
+     "fi4_rev": 16,
+     "t_down_mm": 7.259,
+     "t_all_mm": 5.832,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.5,
+      "vertices_raw": 136,
+      "vertices": 103,
+      "reflex_vertices": 52,
+      "area_cm2": 313.08,
+      "area_vs_cells": 0.9996,
+      "extent_mm": [
+       238.0,
+       144.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 130.0,
+      "ends_outer_10": 141.6,
+      "end_lo": 141.0,
+      "end_hi": 142.0,
+      "end_minus_waist": 11.6,
+      "max": 143.9
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 23479,
+       "free": 0.0417,
+       "unknown": 0.0,
+       "observed": 0.9583,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 25704,
+       "free": 0.1242,
+       "unknown": 0.0,
+       "observed": 0.8758,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 7.83,
+      "rectangle_free_cm3": 25.54,
+      "ratio_polygon_to_rectangle": 0.336
+     },
+     "default_pieces": {
+      "n": 59,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 31308.0,
+      "parts_area_mm2": 31308.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 68,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 12,
+      "all_convex": true,
+      "ring_area_mm2": 30785.051,
+      "parts_area_mm2": 30785.051,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 73.89,
+     "u_e_poly_mm": -66.19,
+     "u_rect_mm": -72.19,
+     "entry_edge_shift_mm": 6.0,
+     "body_why": null,
+     "keepout": {
+      "n": 68,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -3.795,
+       3.909,
+       -75.187,
+       1.699
+      ],
+      "vertices_raw": 136,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": false,
+        "vertices": 126,
+        "reflex_vertices": 61,
+        "area_cm2": 313.2,
+        "d_max_mm": 0.992,
+        "waist_mm": 130.0,
+        "ends_mm": 142.0,
+        "end_minus_waist_mm": 12.0,
+        "default_prisms": 73,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 83
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 103,
+        "reflex_vertices": 52,
+        "area_cm2": 313.08,
+        "d_max_mm": 1.455,
+        "waist_mm": 130.0,
+        "ends_mm": 141.6,
+        "end_minus_waist_mm": 11.6,
+        "default_prisms": 59,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 68
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 22,
+        "reflex_vertices": 7,
+        "area_cm2": 313.42,
+        "d_max_mm": 2.0,
+        "waist_mm": 130.0,
+        "ends_mm": 142.4,
+        "end_minus_waist_mm": 12.4,
+        "default_prisms": 10,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 12
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 18,
+        "reflex_vertices": 6,
+        "area_cm2": 312.34,
+        "d_max_mm": 2.428,
+        "waist_mm": 130.0,
+        "ends_mm": 142.3,
+        "end_minus_waist_mm": 12.3,
+        "default_prisms": 9,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 11
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 12,
+        "reflex_vertices": 5,
+        "area_cm2": 306.2,
+        "d_max_mm": 3.847,
+        "waist_mm": 127.5,
+        "ends_mm": 140.1,
+        "end_minus_waist_mm": 12.5,
+        "default_prisms": 8,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 9
+       }
+      ],
+      "chosen_eps_mm": 1.5,
+      "free_share_rung_1_0": {
+       "grid_mm": 2.0,
+       "polygon": {
+        "points": 23490,
+        "free": 0.0421,
+        "unknown": 0.0,
+        "observed": 0.9579,
+        "outside_grid": 0.0
+       },
+       "rectangle": {
+        "points": 25704,
+        "free": 0.1242,
+        "unknown": 0.0,
+        "observed": 0.8758,
+        "outside_grid": 0.0
+       },
+       "polygon_free_cm3": 7.91,
+       "rectangle_free_cm3": 25.54,
+       "ratio_polygon_to_rectangle": 0.339
+      }
+     },
+     "chosen_eps_mm": 1.5,
+     "coverage": {
+      "frame": 0.9091,
+      "polygon_cm2": 313.08,
+      "frame_cm2": 344.4,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "coverage_report": {
+      "coverage_frame": 0.9091,
+      "same_stock": true,
+      "same_stock_by": "all-point t differ by 0.129 mm",
+      "polygon_cm2": 313.08,
+      "partner_polygon_cm2": 312.4,
+      "coverage_partner": 1.0022,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "c_L_mm": 0.06,
+     "bottom_mm": 1.7,
+     "body_gate": null,
+     "budget_full": {
+      "slot_cm3": 3.05,
+      "body_cm3": 182.59,
+      "vol_share": 0.0167,
+      "reach": 0.47,
+      "footprint_mm": [
+       -3.79,
+       3.91,
+       -75.19,
+       1.7
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7590.9,
+       7703.7
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     }
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4"
+     ],
+     "submitted": false,
+     "old": "CARVE",
+     "in_scope": true,
+     "gate_fail": null,
+     "plate_t_mm": 5.7,
+     "crosslap": {
+      "W_x_mm": 130.01,
+      "grid_points": 585,
+      "D_sum_mm": 134.26,
+      "diff_mm": 4.25,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "w_mm": 7.83,
+     "D_mm": 66.38,
+     "centre_mm": 0.12,
+     "centre_component_mm": 1.02,
+     "n_pieces": 70,
+     "budget": {
+      "slot_cm3": 2.965,
+      "body_cm3": 178.17,
+      "vol_share": 0.0166,
+      "reach": 0.461,
+      "footprint_mm": [
+       -3.91,
+       3.92,
+       -0.73,
+       75.35
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7486.6,
+       7509.6
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     },
+     "body": [
+      238.6,
+      144.7,
+      5.703
+     ],
+     "fi4_rev": 16,
+     "t_down_mm": 6.289,
+     "t_all_mm": 5.703,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 116,
+      "vertices": 110,
+      "reflex_vertices": 53,
+      "area_cm2": 312.4,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       238.0,
+       144.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 132.0,
+      "ends_outer_10": 142.0,
+      "end_lo": 141.9,
+      "end_hi": 142.0,
+      "end_minus_waist": 10.0,
+      "max": 144.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 23430,
+       "free": 0.1537,
+       "unknown": 0.0,
+       "observed": 0.8463,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 25704,
+       "free": 0.2269,
+       "unknown": 0.0,
+       "observed": 0.7731,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 28.81,
+      "rectangle_free_cm3": 46.66,
+      "ratio_polygon_to_rectangle": 0.677
+     },
+     "default_pieces": {
+      "n": 72,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 31240.0,
+      "parts_area_mm2": 31240.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 70,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 30720.132,
+      "parts_area_mm2": 30720.132,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 73.08,
+     "u_e_poly_mm": 65.65,
+     "u_rect_mm": 72.35,
+     "entry_edge_shift_mm": 6.7,
+     "body_why": null,
+     "keepout": {
+      "n": 70,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -3.913,
+       3.919,
+       -0.726,
+       75.35
+      ],
+      "vertices_raw": 116,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 110,
+        "reflex_vertices": 53,
+        "area_cm2": 312.4,
+        "d_max_mm": 0.894,
+        "waist_mm": 132.0,
+        "ends_mm": 142.0,
+        "end_minus_waist_mm": 10.0,
+        "default_prisms": 72,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 70
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 75,
+        "reflex_vertices": 36,
+        "area_cm2": 312.26,
+        "d_max_mm": 1.495,
+        "waist_mm": 132.0,
+        "ends_mm": 142.0,
+        "end_minus_waist_mm": 10.0,
+        "default_prisms": 46,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 45
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 33,
+        "reflex_vertices": 13,
+        "area_cm2": 312.8,
+        "d_max_mm": 1.997,
+        "waist_mm": 131.0,
+        "ends_mm": 142.6,
+        "end_minus_waist_mm": 11.5,
+        "default_prisms": 18,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 19
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 29,
+        "reflex_vertices": 11,
+        "area_cm2": 312.78,
+        "d_max_mm": 2.341,
+        "waist_mm": 131.0,
+        "ends_mm": 142.6,
+        "end_minus_waist_mm": 11.6,
+        "default_prisms": 16,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 18
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 15,
+        "reflex_vertices": 5,
+        "area_cm2": 306.66,
+        "d_max_mm": 3.922,
+        "waist_mm": 128.9,
+        "ends_mm": 141.2,
+        "end_minus_waist_mm": 12.2,
+        "default_prisms": 7,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 8
+       }
+      ],
+      "chosen_eps_mm": 1.0,
+      "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+     },
+     "chosen_eps_mm": 1.0,
+     "coverage": {
+      "frame": 0.9048,
+      "polygon_cm2": 312.4,
+      "frame_cm2": 345.27,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "coverage_report": {
+      "coverage_frame": 0.9048,
+      "same_stock": true,
+      "same_stock_by": "all-point t differ by 0.129 mm",
+      "polygon_cm2": 312.4,
+      "partner_polygon_cm2": 313.08,
+      "coverage_partner": 0.9978,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "c_L_mm": 0.0,
+     "bottom_mm": -0.73,
+     "body_gate": null,
+     "budget_full": {
+      "slot_cm3": 2.965,
+      "body_cm3": 178.17,
+      "vol_share": 0.0166,
+      "reach": 0.461,
+      "footprint_mm": [
+       -3.91,
+       3.92,
+       -0.73,
+       75.35
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7486.6,
+       7509.6
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     }
+    }
+   },
+   "misses_b": [],
+   "predictions": {
+    "A": {
+     "chosen_eps_mm": 1.5,
+     "end_minus_waist_mm": 11.6,
+     "i_shape_ok": true,
+     "entry_edge_shift_mm": 6.0,
+     "waist_edge_ok": true,
+     "dmax_ok": true
+    },
+    "B": {
+     "chosen_eps_mm": 1.0,
+     "end_minus_waist_mm": 10.0,
+     "i_shape_ok": true,
+     "entry_edge_shift_mm": 6.7,
+     "waist_edge_ok": true,
+     "dmax_ok": true
+    },
+    "P62_cell": true,
+    "P63_cell": true
+   },
+   "fi4_rev": 16,
+   "sec": 85.5
+  },
+  "w10_k2": {
+   "fixture": {
+    "k": 2,
+    "t_mm": 6,
+    "sigma_e_mm": 2.0,
+    "sigma_n_mm": 1.0,
+    "declared_sigma_mm": 1.0,
+    "T": 100,
+    "seeds": {
+     "pose": 4162,
+     "noise": 4262,
+     "sample_A": 4362,
+     "sample_B": 4462
+    },
+    "A": {
+     "samples": 3000
+    },
+    "B": {
+     "samples": 3000
+    }
+   },
+   "summary": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4"
+     ],
+     "submitted": false,
+     "old": "CARVE",
+     "in_scope": true,
+     "gate_fail": null,
+     "plate_t_mm": 5.91,
+     "crosslap": {
+      "W_x_mm": 136.0,
+      "grid_points": 589,
+      "D_sum_mm": 139.24,
+      "diff_mm": 3.23,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "w_mm": 7.79,
+     "D_mm": 69.63,
+     "centre_mm": 1.36,
+     "centre_component_mm": -1.0,
+     "n_pieces": 76,
+     "budget": {
+      "slot_cm3": 3.201,
+      "body_cm3": 192.48,
+      "vol_share": 0.0166,
+      "reach": 0.469,
+      "footprint_mm": [
+       -5.28,
+       2.5,
+       -77.22,
+       1.41
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7923.1,
+       8045.7
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     },
+     "body": [
+      242.1,
+      148.4,
+      5.906
+     ],
+     "fi4_rev": 16,
+     "t_down_mm": 4.318,
+     "t_all_mm": 5.906,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.5,
+      "vertices_raw": 174,
+      "vertices": 123,
+      "reflex_vertices": 65,
+      "area_cm2": 325.92,
+      "area_vs_cells": 0.9983,
+      "extent_mm": [
+       242.0,
+       148.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 134.0,
+      "ends_outer_10": 146.0,
+      "end_lo": 145.6,
+      "end_hi": 146.2,
+      "end_minus_waist": 12.0,
+      "max": 148.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 24441,
+       "free": 0.1503,
+       "unknown": 0.0,
+       "observed": 0.8497,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 26862,
+       "free": 0.2269,
+       "unknown": 0.0,
+       "observed": 0.7731,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 29.39,
+      "rectangle_free_cm3": 48.76,
+      "ratio_polygon_to_rectangle": 0.662
+     },
+     "default_pieces": {
+      "n": 69,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 32592.0,
+      "parts_area_mm2": 32592.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 76,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 32049.932,
+      "parts_area_mm2": 32049.932,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 75.63,
+     "u_e_poly_mm": -68.22,
+     "u_rect_mm": -74.22,
+     "entry_edge_shift_mm": 6.0,
+     "body_why": null,
+     "keepout": {
+      "n": 76,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -5.281,
+       2.504,
+       -77.216,
+       1.412
+      ],
+      "vertices_raw": 174,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": false,
+        "vertices": 166,
+        "reflex_vertices": 81,
+        "area_cm2": 326.48,
+        "d_max_mm": 0.894,
+        "waist_mm": 134.0,
+        "ends_mm": 146.0,
+        "end_minus_waist_mm": 12.0,
+        "default_prisms": 96,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 111
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 123,
+        "reflex_vertices": 65,
+        "area_cm2": 325.92,
+        "d_max_mm": 1.495,
+        "waist_mm": 134.0,
+        "ends_mm": 146.0,
+        "end_minus_waist_mm": 12.0,
+        "default_prisms": 69,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 76
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 28,
+        "reflex_vertices": 9,
+        "area_cm2": 329.28,
+        "d_max_mm": 2.0,
+        "waist_mm": 134.9,
+        "ends_mm": 145.6,
+        "end_minus_waist_mm": 10.7,
+        "default_prisms": 13,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 14
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 22,
+        "reflex_vertices": 7,
+        "area_cm2": 326.18,
+        "d_max_mm": 2.855,
+        "waist_mm": 133.6,
+        "ends_mm": 145.1,
+        "end_minus_waist_mm": 11.5,
+        "default_prisms": 9,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 11
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 14,
+        "reflex_vertices": 5,
+        "area_cm2": 319.42,
+        "d_max_mm": 3.887,
+        "waist_mm": 131.0,
+        "ends_mm": 145.1,
+        "end_minus_waist_mm": 14.1,
+        "default_prisms": 7,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 9
+       }
+      ],
+      "chosen_eps_mm": 1.5,
+      "free_share_rung_1_0": {
+       "grid_mm": 2.0,
+       "polygon": {
+        "points": 24486,
+        "free": 0.1519,
+        "unknown": 0.0,
+        "observed": 0.8481,
+        "outside_grid": 0.0
+       },
+       "rectangle": {
+        "points": 26862,
+        "free": 0.2269,
+        "unknown": 0.0,
+        "observed": 0.7731,
+        "outside_grid": 0.0
+       },
+       "polygon_free_cm3": 29.76,
+       "rectangle_free_cm3": 48.76,
+       "ratio_polygon_to_rectangle": 0.669
+      }
+     },
+     "chosen_eps_mm": 1.5,
+     "coverage": {
+      "frame": 0.9071,
+      "polygon_cm2": 325.92,
+      "frame_cm2": 359.28,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "coverage_report": {
+      "coverage_frame": 0.9071,
+      "same_stock": true,
+      "same_stock_by": "all-point t differ by 0.121 mm",
+      "polygon_cm2": 325.92,
+      "partner_polygon_cm2": 324.8,
+      "coverage_partner": 1.0034,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "c_L_mm": -1.39,
+     "bottom_mm": 1.41,
+     "body_gate": null,
+     "budget_full": {
+      "slot_cm3": 3.201,
+      "body_cm3": 192.48,
+      "vol_share": 0.0166,
+      "reach": 0.469,
+      "footprint_mm": [
+       -5.28,
+       2.5,
+       -77.22,
+       1.41
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7923.1,
+       8045.7
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     }
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4"
+     ],
+     "submitted": false,
+     "old": "CARVE",
+     "in_scope": true,
+     "gate_fail": null,
+     "plate_t_mm": 5.79,
+     "crosslap": {
+      "W_x_mm": 136.0,
+      "grid_points": 589,
+      "D_sum_mm": 139.24,
+      "diff_mm": 3.23,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "w_mm": 7.91,
+     "D_mm": 69.61,
+     "centre_mm": -1.22,
+     "centre_component_mm": 1.0,
+     "n_pieces": 77,
+     "budget": {
+      "slot_cm3": 3.093,
+      "body_cm3": 187.9,
+      "vol_share": 0.0165,
+      "reach": 0.465,
+      "footprint_mm": [
+       -3.23,
+       4.67,
+       -78.03,
+       0.58
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7929.5,
+       7758.2
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     },
+     "body": [
+      242.3,
+      150.1,
+      5.785
+     ],
+     "fi4_rev": 16,
+     "t_down_mm": 4.33,
+     "t_all_mm": 5.785,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.5,
+      "vertices_raw": 182,
+      "vertices": 123,
+      "reflex_vertices": 66,
+      "area_cm2": 324.8,
+      "area_vs_cells": 0.9989,
+      "extent_mm": [
+       242.0,
+       150.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 134.0,
+      "ends_outer_10": 144.0,
+      "end_lo": 144.2,
+      "end_hi": 143.3,
+      "end_minus_waist": 10.0,
+      "max": 149.5
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 24349,
+       "free": 0.1693,
+       "unknown": 0.0,
+       "observed": 0.8307,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 27225,
+       "free": 0.257,
+       "unknown": 0.0,
+       "observed": 0.743,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 32.98,
+      "rectangle_free_cm3": 55.97,
+      "ratio_polygon_to_rectangle": 0.659
+     },
+     "default_pieces": {
+      "n": 60,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 12,
+      "all_convex": true,
+      "ring_area_mm2": 32480.0,
+      "parts_area_mm2": 32480.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 77,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 12,
+      "all_convex": true,
+      "ring_area_mm2": 31945.306,
+      "parts_area_mm2": 31945.306,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 75.61,
+     "u_e_poly_mm": -69.03,
+     "u_rect_mm": -75.03,
+     "entry_edge_shift_mm": 6.0,
+     "body_why": null,
+     "keepout": {
+      "n": 77,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -3.234,
+       4.672,
+       -78.026,
+       0.584
+      ],
+      "vertices_raw": 182,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": false,
+        "vertices": 158,
+        "reflex_vertices": 77,
+        "area_cm2": 325.16,
+        "d_max_mm": 0.992,
+        "waist_mm": 134.0,
+        "ends_mm": 144.0,
+        "end_minus_waist_mm": 10.0,
+        "default_prisms": 86,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 101
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 123,
+        "reflex_vertices": 66,
+        "area_cm2": 324.8,
+        "d_max_mm": 1.495,
+        "waist_mm": 134.0,
+        "ends_mm": 144.0,
+        "end_minus_waist_mm": 10.0,
+        "default_prisms": 60,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 77
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 38,
+        "reflex_vertices": 16,
+        "area_cm2": 329.74,
+        "d_max_mm": 2.0,
+        "waist_mm": 137.2,
+        "ends_mm": 145.4,
+        "end_minus_waist_mm": 8.1,
+        "default_prisms": 18,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 22
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 30,
+        "reflex_vertices": 12,
+        "area_cm2": 326.78,
+        "d_max_mm": 3.0,
+        "waist_mm": 134.8,
+        "ends_mm": 145.8,
+        "end_minus_waist_mm": 11.0,
+        "default_prisms": 14,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 19
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 14,
+        "reflex_vertices": 5,
+        "area_cm2": 322.64,
+        "d_max_mm": 4.0,
+        "waist_mm": 131.0,
+        "ends_mm": 144.8,
+        "end_minus_waist_mm": 13.8,
+        "default_prisms": 5,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 7
+       }
+      ],
+      "chosen_eps_mm": 1.5,
+      "free_share_rung_1_0": {
+       "grid_mm": 2.0,
+       "polygon": {
+        "points": 24387,
+        "free": 0.1706,
+        "unknown": 0.0,
+        "observed": 0.8294,
+        "outside_grid": 0.0
+       },
+       "rectangle": {
+        "points": 27225,
+        "free": 0.257,
+        "unknown": 0.0,
+        "observed": 0.743,
+        "outside_grid": 0.0
+       },
+       "polygon_free_cm3": 33.28,
+       "rectangle_free_cm3": 55.97,
+       "ratio_polygon_to_rectangle": 0.664
+      }
+     },
+     "chosen_eps_mm": 1.5,
+     "coverage": {
+      "frame": 0.8934,
+      "polygon_cm2": 324.8,
+      "frame_cm2": 363.55,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "coverage_report": {
+      "coverage_frame": 0.8934,
+      "same_stock": true,
+      "same_stock_by": "all-point t differ by 0.121 mm",
+      "polygon_cm2": 324.8,
+      "partner_polygon_cm2": 325.92,
+      "coverage_partner": 0.9966,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "c_L_mm": 0.72,
+     "bottom_mm": 0.58,
+     "body_gate": null,
+     "budget_full": {
+      "slot_cm3": 3.093,
+      "body_cm3": 187.9,
+      "vol_share": 0.0165,
+      "reach": 0.465,
+      "footprint_mm": [
+       -3.23,
+       4.67,
+       -78.03,
+       0.58
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7929.5,
+       7758.2
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     }
+    }
+   },
+   "misses_b": [],
+   "predictions": {
+    "A": {
+     "chosen_eps_mm": 1.5,
+     "end_minus_waist_mm": 12.0,
+     "i_shape_ok": true,
+     "entry_edge_shift_mm": 6.0,
+     "waist_edge_ok": true,
+     "dmax_ok": true
+    },
+    "B": {
+     "chosen_eps_mm": 1.5,
+     "end_minus_waist_mm": 10.0,
+     "i_shape_ok": true,
+     "entry_edge_shift_mm": 6.0,
+     "waist_edge_ok": true,
+     "dmax_ok": true
+    },
+    "P62_cell": true,
+    "P63_cell": true
+   },
+   "fi4_rev": 16,
+   "sec": 110.2
+  },
+  "w10_k3": {
+   "fixture": {
+    "k": 3,
+    "t_mm": 6,
+    "sigma_e_mm": 3.0,
+    "sigma_n_mm": 1.0,
+    "declared_sigma_mm": 1.0,
+    "T": 100,
+    "seeds": {
+     "pose": 4163,
+     "noise": 4263,
+     "sample_A": 4363,
+     "sample_B": 4463
+    },
+    "A": {
+     "samples": 3000
+    },
+    "B": {
+     "samples": 3000
+    }
+   },
+   "summary": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4"
+     ],
+     "submitted": false,
+     "old": "CARVE",
+     "in_scope": true,
+     "gate_fail": null,
+     "plate_t_mm": 5.83,
+     "crosslap": {
+      "W_x_mm": 136.01,
+      "grid_points": 612,
+      "D_sum_mm": 138.89,
+      "diff_mm": 2.89,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "w_mm": 7.82,
+     "D_mm": 70.39,
+     "centre_mm": 0.14,
+     "centre_component_mm": -1.0,
+     "n_pieces": 77,
+     "budget": {
+      "slot_cm3": 3.208,
+      "body_cm3": 196.72,
+      "vol_share": 0.0163,
+      "reach": 0.469,
+      "footprint_mm": [
+       -3.91,
+       3.91,
+       -1.48,
+       78.08
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       8116.1,
+       8208.9
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     },
+     "body": [
+      245.0,
+      150.2,
+      5.827
+     ],
+     "fi4_rev": 16,
+     "t_down_mm": 7.168,
+     "t_all_mm": 5.827,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 116,
+      "vertices": 112,
+      "reflex_vertices": 54,
+      "area_cm2": 337.6,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       244.0,
+       150.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 138.0,
+      "ends_outer_10": 148.0,
+      "end_lo": 146.0,
+      "end_hi": 150.0,
+      "end_minus_waist": 10.0,
+      "max": 150.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 25320,
+       "free": 0.1109,
+       "unknown": 0.0,
+       "observed": 0.8891,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 27675,
+       "free": 0.1866,
+       "unknown": 0.0,
+       "observed": 0.8134,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 22.46,
+      "rectangle_free_cm3": 41.31,
+      "ratio_polygon_to_rectangle": 0.594
+     },
+     "default_pieces": {
+      "n": 71,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 12,
+      "all_convex": true,
+      "ring_area_mm2": 33760.0,
+      "parts_area_mm2": 33760.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 77,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 12,
+      "all_convex": true,
+      "ring_area_mm2": 33209.445,
+      "parts_area_mm2": 33209.445,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 76.56,
+     "u_e_poly_mm": 68.92,
+     "u_rect_mm": 75.08,
+     "entry_edge_shift_mm": 6.17,
+     "body_why": null,
+     "keepout": {
+      "n": 77,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -3.909,
+       3.912,
+       -1.479,
+       78.084
+      ],
+      "vertices_raw": 116,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 112,
+        "reflex_vertices": 54,
+        "area_cm2": 337.6,
+        "d_max_mm": 0.894,
+        "waist_mm": 138.0,
+        "ends_mm": 148.0,
+        "end_minus_waist_mm": 10.0,
+        "default_prisms": 71,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 77
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 74,
+        "reflex_vertices": 37,
+        "area_cm2": 336.84,
+        "d_max_mm": 1.499,
+        "waist_mm": 136.0,
+        "ends_mm": 147.7,
+        "end_minus_waist_mm": 11.7,
+        "default_prisms": 43,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 43
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 23,
+        "reflex_vertices": 9,
+        "area_cm2": 337.82,
+        "d_max_mm": 2.0,
+        "waist_mm": 136.6,
+        "ends_mm": 147.5,
+        "end_minus_waist_mm": 10.9,
+        "default_prisms": 12,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 13
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 20,
+        "reflex_vertices": 7,
+        "area_cm2": 337.62,
+        "d_max_mm": 2.828,
+        "waist_mm": 136.6,
+        "ends_mm": 146.2,
+        "end_minus_waist_mm": 9.7,
+        "default_prisms": 9,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 11
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 13,
+        "reflex_vertices": 5,
+        "area_cm2": 331.3,
+        "d_max_mm": 3.923,
+        "waist_mm": 134.1,
+        "ends_mm": 145.0,
+        "end_minus_waist_mm": 10.9,
+        "default_prisms": 8,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 9
+       }
+      ],
+      "chosen_eps_mm": 1.0,
+      "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+     },
+     "chosen_eps_mm": 1.0,
+     "coverage": {
+      "frame": 0.9175,
+      "polygon_cm2": 337.6,
+      "frame_cm2": 367.94,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "coverage_report": {
+      "coverage_frame": 0.9175,
+      "same_stock": true,
+      "same_stock_by": "all-point t differ by 0.006 mm",
+      "polygon_cm2": 337.6,
+      "partner_polygon_cm2": 335.96,
+      "coverage_partner": 1.0049,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "c_L_mm": 0.0,
+     "bottom_mm": -1.48,
+     "body_gate": null,
+     "budget_full": {
+      "slot_cm3": 3.208,
+      "body_cm3": 196.72,
+      "vol_share": 0.0163,
+      "reach": 0.469,
+      "footprint_mm": [
+       -3.91,
+       3.91,
+       -1.48,
+       78.08
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       8116.1,
+       8208.9
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     }
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4"
+     ],
+     "submitted": false,
+     "old": "CARVE",
+     "in_scope": true,
+     "gate_fail": null,
+     "plate_t_mm": 5.82,
+     "crosslap": {
+      "W_x_mm": 136.01,
+      "grid_points": 612,
+      "D_sum_mm": 138.89,
+      "diff_mm": 2.89,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "w_mm": 7.83,
+     "D_mm": 68.5,
+     "centre_mm": -0.49,
+     "centre_component_mm": 1.0,
+     "n_pieces": 61,
+     "budget": {
+      "slot_cm3": 3.121,
+      "body_cm3": 195.56,
+      "vol_share": 0.016,
+      "reach": 0.451,
+      "footprint_mm": [
+       -3.43,
+       4.4,
+       -0.5,
+       79.0
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       8015.9,
+       7995.4
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     },
+     "body": [
+      244.0,
+      152.0,
+      5.821
+     ],
+     "fi4_rev": 16,
+     "t_down_mm": 7.221,
+     "t_all_mm": 5.821,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 102,
+      "vertices": 94,
+      "reflex_vertices": 45,
+      "area_cm2": 335.96,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       244.0,
+       152.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 136.0,
+      "ends_outer_10": 148.0,
+      "end_lo": 148.0,
+      "end_hi": 148.0,
+      "end_minus_waist": 12.0,
+      "max": 152.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 25197,
+       "free": 0.1066,
+       "unknown": 0.0,
+       "observed": 0.8934,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 27816,
+       "free": 0.1907,
+       "unknown": 0.0,
+       "observed": 0.8093,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 21.49,
+      "rectangle_free_cm3": 42.44,
+      "ratio_polygon_to_rectangle": 0.559
+     },
+     "default_pieces": {
+      "n": 55,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 33596.0,
+      "parts_area_mm2": 33596.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 61,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 33059.87,
+      "parts_area_mm2": 33059.87,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 76.5,
+     "u_e_poly_mm": 68.0,
+     "u_rect_mm": 76.0,
+     "entry_edge_shift_mm": 8.0,
+     "body_why": null,
+     "keepout": {
+      "n": 61,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -3.428,
+       4.399,
+       -0.498,
+       79.0
+      ],
+      "vertices_raw": 102,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 94,
+        "reflex_vertices": 45,
+        "area_cm2": 335.96,
+        "d_max_mm": 0.894,
+        "waist_mm": 136.0,
+        "ends_mm": 148.0,
+        "end_minus_waist_mm": 12.0,
+        "default_prisms": 55,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 61
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 64,
+        "reflex_vertices": 30,
+        "area_cm2": 336.14,
+        "d_max_mm": 1.499,
+        "waist_mm": 136.0,
+        "ends_mm": 148.0,
+        "end_minus_waist_mm": 12.0,
+        "default_prisms": 38,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 44
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 26,
+        "reflex_vertices": 10,
+        "area_cm2": 337.98,
+        "d_max_mm": 2.0,
+        "waist_mm": 137.3,
+        "ends_mm": 148.0,
+        "end_minus_waist_mm": 10.7,
+        "default_prisms": 14,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 14
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 20,
+        "reflex_vertices": 7,
+        "area_cm2": 337.12,
+        "d_max_mm": 2.998,
+        "waist_mm": 137.3,
+        "ends_mm": 148.0,
+        "end_minus_waist_mm": 10.7,
+        "default_prisms": 10,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 11
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 13,
+        "reflex_vertices": 5,
+        "area_cm2": 329.6,
+        "d_max_mm": 3.889,
+        "waist_mm": 134.8,
+        "ends_mm": 146.3,
+        "end_minus_waist_mm": 11.5,
+        "default_prisms": 7,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 9
+       }
+      ],
+      "chosen_eps_mm": 1.0,
+      "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+     },
+     "chosen_eps_mm": 1.0,
+     "coverage": {
+      "frame": 0.9058,
+      "polygon_cm2": 335.96,
+      "frame_cm2": 370.88,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "coverage_report": {
+      "coverage_frame": 0.9058,
+      "same_stock": true,
+      "same_stock_by": "all-point t differ by 0.006 mm",
+      "polygon_cm2": 335.96,
+      "partner_polygon_cm2": 337.6,
+      "coverage_partner": 0.9951,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "c_L_mm": 0.49,
+     "bottom_mm": -0.5,
+     "body_gate": null,
+     "budget_full": {
+      "slot_cm3": 3.121,
+      "body_cm3": 195.56,
+      "vol_share": 0.016,
+      "reach": 0.451,
+      "footprint_mm": [
+       -3.43,
+       4.4,
+       -0.5,
+       79.0
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       8015.9,
+       7995.4
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     }
+    }
+   },
+   "misses_b": [],
+   "predictions": {
+    "A": {
+     "chosen_eps_mm": 1.0,
+     "end_minus_waist_mm": 10.0,
+     "i_shape_ok": true,
+     "entry_edge_shift_mm": 6.17,
+     "waist_edge_ok": true,
+     "dmax_ok": true
+    },
+    "B": {
+     "chosen_eps_mm": 1.0,
+     "end_minus_waist_mm": 12.0,
+     "i_shape_ok": true,
+     "entry_edge_shift_mm": 8.0,
+     "waist_edge_ok": true,
+     "dmax_ok": true
+    },
+    "P62_cell": true,
+    "P63_cell": true
+   },
+   "fi4_rev": 16,
+   "sec": 56.8
+  },
+  "w10_k4": {
+   "fixture": {
+    "k": 4,
+    "t_mm": 8,
+    "sigma_e_mm": 1.0,
+    "sigma_n_mm": 1.0,
+    "declared_sigma_mm": 1.0,
+    "T": 100,
+    "seeds": {
+     "pose": 4164,
+     "noise": 4264,
+     "sample_A": 4364,
+     "sample_B": 4464
+    },
+    "A": {
+     "samples": 3000
+    },
+    "B": {
+     "samples": 3000
+    }
+   },
+   "summary": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4"
+     ],
+     "submitted": false,
+     "old": "CARVE",
+     "in_scope": true,
+     "gate_fail": null,
+     "plate_t_mm": 7.77,
+     "crosslap": {
+      "W_x_mm": 132.0,
+      "grid_points": 1041,
+      "D_sum_mm": 134.98,
+      "diff_mm": 2.97,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "w_mm": 9.76,
+     "D_mm": 71.04,
+     "centre_mm": -0.18,
+     "centre_component_mm": -0.96,
+     "n_pieces": 63,
+     "budget": {
+      "slot_cm3": 5.386,
+      "body_cm3": 243.81,
+      "vol_share": 0.0221,
+      "reach": 0.493,
+      "footprint_mm": [
+       -4.85,
+       4.91,
+       -5.48,
+       75.44
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       8007.2,
+       8068.2
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     },
+     "body": [
+      239.0,
+      144.9,
+      7.768
+     ],
+     "fi4_rev": 16,
+     "t_down_mm": 8.728,
+     "t_all_mm": 7.768,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 102,
+      "vertices": 96,
+      "reflex_vertices": 46,
+      "area_cm2": 313.88,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       238.0,
+       144.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 130.0,
+      "ends_outer_10": 142.0,
+      "end_lo": 142.0,
+      "end_hi": 143.0,
+      "end_minus_waist": 12.0,
+      "max": 144.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 31388,
+       "free": 0.0442,
+       "unknown": 0.0,
+       "observed": 0.9558,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 34560,
+       "free": 0.1315,
+       "unknown": 0.0,
+       "observed": 0.8685,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 11.1,
+      "rectangle_free_cm3": 36.36,
+      "ratio_polygon_to_rectangle": 0.336
+     },
+     "default_pieces": {
+      "n": 48,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 31388.0,
+      "parts_area_mm2": 31388.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 63,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 30694.572,
+      "parts_area_mm2": 30694.572,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 77.92,
+     "u_e_poly_mm": 65.56,
+     "u_rect_mm": 72.44,
+     "entry_edge_shift_mm": 6.89,
+     "body_why": null,
+     "keepout": {
+      "n": 63,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -4.851,
+       4.91,
+       -5.48,
+       75.443
+      ],
+      "vertices_raw": 102,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 96,
+        "reflex_vertices": 46,
+        "area_cm2": 313.88,
+        "d_max_mm": 0.894,
+        "waist_mm": 130.0,
+        "ends_mm": 142.0,
+        "end_minus_waist_mm": 12.0,
+        "default_prisms": 48,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 63
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 70,
+        "reflex_vertices": 35,
+        "area_cm2": 313.82,
+        "d_max_mm": 1.463,
+        "waist_mm": 130.5,
+        "ends_mm": 142.0,
+        "end_minus_waist_mm": 11.5,
+        "default_prisms": 38,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 42
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 17,
+        "reflex_vertices": 5,
+        "area_cm2": 314.64,
+        "d_max_mm": 2.0,
+        "waist_mm": 131.2,
+        "ends_mm": 143.3,
+        "end_minus_waist_mm": 12.1,
+        "default_prisms": 8,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 10
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 16,
+        "reflex_vertices": 5,
+        "area_cm2": 314.56,
+        "d_max_mm": 2.219,
+        "waist_mm": 131.2,
+        "ends_mm": 143.1,
+        "end_minus_waist_mm": 12.0,
+        "default_prisms": 8,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 10
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 11,
+        "reflex_vertices": 4,
+        "area_cm2": 311.4,
+        "d_max_mm": 3.95,
+        "waist_mm": 130.6,
+        "ends_mm": 141.1,
+        "end_minus_waist_mm": 10.5,
+        "default_prisms": 5,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 7
+       }
+      ],
+      "chosen_eps_mm": 1.0,
+      "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+     },
+     "chosen_eps_mm": 1.0,
+     "coverage": {
+      "frame": 0.9063,
+      "polygon_cm2": 313.88,
+      "frame_cm2": 346.31,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "coverage_report": {
+      "coverage_frame": 0.9063,
+      "same_stock": true,
+      "same_stock_by": "all-point t differ by 0.006 mm",
+      "polygon_cm2": 313.88,
+      "partner_polygon_cm2": 312.84,
+      "coverage_partner": 1.0033,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "c_L_mm": 0.03,
+     "bottom_mm": -5.48,
+     "body_gate": null,
+     "budget_full": {
+      "slot_cm3": 5.386,
+      "body_cm3": 243.81,
+      "vol_share": 0.0221,
+      "reach": 0.493,
+      "footprint_mm": [
+       -4.85,
+       4.91,
+       -5.48,
+       75.44
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       8007.2,
+       8068.2
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     }
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4"
+     ],
+     "submitted": false,
+     "old": "CARVE",
+     "in_scope": true,
+     "gate_fail": null,
+     "plate_t_mm": 7.76,
+     "crosslap": {
+      "W_x_mm": 132.0,
+      "grid_points": 1041,
+      "D_sum_mm": 134.98,
+      "diff_mm": 2.97,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "w_mm": 9.77,
+     "D_mm": 63.94,
+     "centre_mm": 0.04,
+     "centre_component_mm": -0.25,
+     "n_pieces": 76,
+     "budget": {
+      "slot_cm3": 4.728,
+      "body_cm3": 242.81,
+      "vol_share": 0.0195,
+      "reach": 0.444,
+      "footprint_mm": [
+       -4.87,
+       4.89,
+       2.72,
+       74.34
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7074.9,
+       7113.4
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     },
+     "body": [
+      238.5,
+      142.7,
+      7.761
+     ],
+     "fi4_rev": 16,
+     "t_down_mm": 8.748,
+     "t_all_mm": 7.761,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 132,
+      "vertices": 124,
+      "reflex_vertices": 60,
+      "area_cm2": 312.84,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       238.0,
+       144.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 130.0,
+      "ends_outer_10": 142.0,
+      "end_lo": 142.0,
+      "end_hi": 142.0,
+      "end_minus_waist": 12.0,
+      "max": 144.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 31260,
+       "free": 0.0407,
+       "unknown": 0.0,
+       "observed": 0.9593,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 33796,
+       "free": 0.1118,
+       "unknown": 0.0,
+       "observed": 0.8882,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 10.18,
+      "rectangle_free_cm3": 30.23,
+      "ratio_polygon_to_rectangle": 0.364
+     },
+     "default_pieces": {
+      "n": 80,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 31284.0,
+      "parts_area_mm2": 31284.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 76,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 30674.771,
+      "parts_area_mm2": 30674.771,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 68.62,
+     "u_e_poly_mm": 66.66,
+     "u_rect_mm": 71.34,
+     "entry_edge_shift_mm": 4.68,
+     "body_why": null,
+     "keepout": {
+      "n": 76,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -4.873,
+       4.894,
+       2.723,
+       74.339
+      ],
+      "vertices_raw": 132,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 124,
+        "reflex_vertices": 60,
+        "area_cm2": 312.84,
+        "d_max_mm": 0.986,
+        "waist_mm": 130.0,
+        "ends_mm": 142.0,
+        "end_minus_waist_mm": 12.0,
+        "default_prisms": 80,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 76
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 102,
+        "reflex_vertices": 55,
+        "area_cm2": 312.5,
+        "d_max_mm": 1.455,
+        "waist_mm": 130.0,
+        "ends_mm": 142.0,
+        "end_minus_waist_mm": 12.0,
+        "default_prisms": 58,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 57
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 25,
+        "reflex_vertices": 10,
+        "area_cm2": 312.0,
+        "d_max_mm": 2.0,
+        "waist_mm": 129.5,
+        "ends_mm": 142.4,
+        "end_minus_waist_mm": 13.0,
+        "default_prisms": 12,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 14
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 19,
+        "reflex_vertices": 7,
+        "area_cm2": 311.6,
+        "d_max_mm": 2.862,
+        "waist_mm": 129.5,
+        "ends_mm": 141.9,
+        "end_minus_waist_mm": 12.5,
+        "default_prisms": 8,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 10
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 14,
+        "reflex_vertices": 5,
+        "area_cm2": 310.94,
+        "d_max_mm": 3.881,
+        "waist_mm": 131.4,
+        "ends_mm": 141.9,
+        "end_minus_waist_mm": 10.6,
+        "default_prisms": 6,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 8
+       }
+      ],
+      "chosen_eps_mm": 1.0,
+      "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+     },
+     "chosen_eps_mm": 1.0,
+     "coverage": {
+      "frame": 0.9195,
+      "polygon_cm2": 312.84,
+      "frame_cm2": 340.22,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "coverage_report": {
+      "coverage_frame": 0.9195,
+      "same_stock": true,
+      "same_stock_by": "all-point t differ by 0.006 mm",
+      "polygon_cm2": 312.84,
+      "partner_polygon_cm2": 313.88,
+      "coverage_partner": 0.9967,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "c_L_mm": 0.01,
+     "bottom_mm": 2.72,
+     "body_gate": null,
+     "budget_full": {
+      "slot_cm3": 4.728,
+      "body_cm3": 242.81,
+      "vol_share": 0.0195,
+      "reach": 0.444,
+      "footprint_mm": [
+       -4.87,
+       4.89,
+       2.72,
+       74.34
+      ],
+      "one_simple_polygon": true,
+      "area_consistent": true,
+      "bottom_inside": true,
+      "D_lt_W": true,
+      "prong_area_mm2": [
+       7074.9,
+       7113.4
+      ],
+      "topology": true,
+      "rings": 1,
+      "hole": false,
+      "nudge_mm": 0.0,
+      "ok": true
+     }
+    }
+   },
+   "misses_b": [],
+   "predictions": {
+    "A": {
+     "chosen_eps_mm": 1.0,
+     "end_minus_waist_mm": 12.0,
+     "i_shape_ok": true,
+     "entry_edge_shift_mm": 6.89,
+     "waist_edge_ok": true,
+     "dmax_ok": true
+    },
+    "B": {
+     "chosen_eps_mm": 1.0,
+     "end_minus_waist_mm": 12.0,
+     "i_shape_ok": true,
+     "entry_edge_shift_mm": 4.68,
+     "waist_edge_ok": true,
+     "dmax_ok": true
+    },
+    "P62_cell": true,
+    "P63_cell": true
+   },
+   "fi4_rev": 16,
+   "sec": 63.8
+  }
+ },
+ "fi415_res": {},
+ "test_interlock_results": {}
+}

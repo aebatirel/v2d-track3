@@ -1,0 +1,1353 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-11-01T01:30:56Z",
+ "commit": "f0327eeba6e2092bf35630fd5f8a58f2b7514f01",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/build/I.md",
+  " M docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/scripts/evalcheck.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/scripts/tables.py"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df",
+  "--ep",
+  "11",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11",
+  "--cands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/cand/public/ep11",
+  "--pick",
+  "blue_cup=shell_t5p36,beige_cup=shell_t5p36",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands11/hands.npz",
+  "--proxy-copies",
+  "16",
+  "--identity",
+  "eval",
+  "--waiver-fi5",
+  "--no-physcheck",
+  "--tag",
+  "fi5r2"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 17814,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261101-fi5r2pub-88f49df",
+  "root": "runs-dev",
+  "pid": 17578,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-11-01T00:18:01Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands11/hands.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11/beige_cup.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11/blue_cup.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz",
+   "sha256": "99d845e316714119623ff8df9f1368109aeb31ee5804281a72a00239a8568f75",
+   "bytes": 35870,
+   "tier": "P1",
+   "keys": [
+    "cam_T_beige_cup",
+    "cam_T_blue_cup",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands11/hands.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands11/hands.npz",
+   "sha256": "e3f94372546e966a73ac443a9bda064e5eab43d94bdf0ccd71cf09cf3b24d9f0",
+   "bytes": 110707,
+   "tier": "DEV",
+   "keys": [
+    "Da",
+    "KR",
+    "Ka",
+    "T",
+    "T_rect_a",
+    "a_offset",
+    "chir_left",
+    "chir_right",
+    "depth_ok_left",
+    "depth_ok_right",
+    "dz_med_left",
+    "dz_med_right",
+    "filled_left",
+    "filled_right",
+    "joints_left",
+    "joints_right",
+    "measured_left",
+    "measured_right",
+    "n_depth_inl_left",
+    "n_depth_inl_right",
+    "n_depth_left",
+    "n_depth_right",
+    "n_det",
+    "rms_px_left",
+    "rms_px_right",
+    "scale_left",
+    "scale_right",
+    "score_left",
+    "score_right",
+    "size_a",
+    "swap",
+    "uv_a_left",
+    "uv_a_right",
+    "valid_left",
+    "valid_right",
+    "wl_mirror",
+    "world_frame"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11/beige_cup.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11/beige_cup.npz",
+   "sha256": "e0f6045841dad5a93285828fc8d958ea264067b1540d1914135bf9106088c921",
+   "bytes": 10753918,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11/blue_cup.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11/blue_cup.npz",
+   "sha256": "2a137f4ae19a9fd92b3ddffb1c17ea45509098c5eb86d29e4553820570daff5e",
+   "bytes": 6310293,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11/episode.json",
+   "sha256": "17eadad4c1184e7daffeb648fc5931ae53bcf10bbd729db1194c205244b7c5ee",
+   "bytes": 31490,
+   "tier": "DEV"
+  }
+ ],
+ "constants": [
+  {
+   "name": "il.engaged_min_vox",
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.gap_bridge_frames",
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.transient_frames",
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_speed_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_min_frames",
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.block_frames",
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.holdout_min_frames",
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_min",
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_share",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_min_m",
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_k_j",
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.max_rounds",
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.link_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 linking share 50 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.through_beyond_vox",
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.depth_scale",
+   "value": 0.5,
+   "origin": "sensor:depth input at half the 1600 x 1000 rectified resolution (depths_fs0.5)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.w_bridge_px",
+   "value": 8.0,
+   "origin": "generic:F-I1.14 w_bridge 8 depth pixels [H]",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.class_o_max",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 25 % class O",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "struct_vox_m",
+   "value": 0.002,
+   "origin": "generic:obs-first sym_probe / rot_probe voxel downsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:58"
+  },
+  {
+   "name": "struct_max_points",
+   "value": 60000,
+   "origin": "generic:obs-first probe cap (numerical)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:59"
+  },
+  {
+   "name": "rot_consistency_trim",
+   "value": 0.8,
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:60"
+  },
+  {
+   "name": "rot_consistency_angles_deg",
+   "value": [
+    45,
+    90,
+    135
+   ],
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:61"
+  },
+  {
+   "name": "rot_consistency_subsample",
+   "value": 20000,
+   "origin": "generic:lathe_obs.fit_axis subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:62"
+  },
+  {
+   "name": "sym_accept_rotc_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (rotational consistency)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:63"
+  },
+  {
+   "name": "sym_accept_resid_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (mirror residual)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:64"
+  },
+  {
+   "name": "sym_accept_observed_share",
+   "value": 0.7,
+   "origin": "generic:PREREG A.6 symmetry acceptance (observed share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:65"
+  },
+  {
+   "name": "sym_accept_free_share",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6 symmetry acceptance (free share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:66"
+  },
+  {
+   "name": "noise_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 / SPEC section 8 noise band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:67"
+  },
+  {
+   "name": "sym_moved_min_share",
+   "value": 0.5,
+   "origin": "generic:a symmetry must move at least half the points",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:68"
+  },
+  {
+   "name": "sym_resid_trim",
+   "value": 0.8,
+   "origin": "generic:obs-first sym_probe trimmed mean",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:69"
+  },
+  {
+   "name": "mirror_search_normals",
+   "value": 400,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:70"
+  },
+  {
+   "name": "sym_search_subsample",
+   "value": 6000,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:71"
+  },
+  {
+   "name": "sym_eval_subsample",
+   "value": 20000,
+   "origin": "generic:obs-first sym_probe evaluation",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:72"
+  },
+  {
+   "name": "mirror_distinct_deg",
+   "value": 20.0,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:73"
+  },
+  {
+   "name": "mirror_top",
+   "value": 3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:74"
+  },
+  {
+   "name": "mirror_search_min_observed",
+   "value": 0.3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:75"
+  },
+  {
+   "name": "mirror_search_free_weight_m",
+   "value": 0.02,
+   "origin": "generic:obs-first sym_probe ranking weight",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:76"
+  },
+  {
+   "name": "sym_perturb_deg",
+   "value": [
+    4.0,
+    1.5
+   ],
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:77"
+  },
+  {
+   "name": "sym_perturb_n",
+   "value": 12,
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:78"
+  },
+  {
+   "name": "sym_nm_step",
+   "value": 2.0,
+   "origin": "generic:numerical refinement (initial simplex 2 deg / 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:79"
+  },
+  {
+   "name": "sym_nm_xatol",
+   "value": 0.02,
+   "origin": "generic:numerical refinement (deg / mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:80"
+  },
+  {
+   "name": "sym_nm_maxfev",
+   "value": 400,
+   "origin": "generic:numerical refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:81"
+  },
+  {
+   "name": "sym_pairing_iters",
+   "value": 4,
+   "origin": "generic:numerical refinement (sym_probe refine_offset passes)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:82"
+  },
+  {
+   "name": "axis_search_rim_w_s",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6b E1 (lathe.rim_w) = 0.05 s",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:83"
+  },
+  {
+   "name": "plane_min_pts",
+   "value": 300,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:84"
+  },
+  {
+   "name": "plane_max",
+   "value": 4,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:85"
+  },
+  {
+   "name": "plane_seeds",
+   "value": 200,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:86"
+  },
+  {
+   "name": "plane_deg",
+   "value": 30.0,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:87"
+  },
+  {
+   "name": "plane_conn_vox_m",
+   "value": 0.003,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:88"
+  },
+  {
+   "name": "slab_two_face_thickness_m",
+   "value": [
+    0.003,
+    0.025
+   ],
+   "origin": "informed:slab two-face thickness (PREREG A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:89"
+  },
+  {
+   "name": "plane_pair_overlap_min",
+   "value": 0.5,
+   "origin": "generic:footprints of a plate's two faces overlap",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:90"
+  },
+  {
+   "name": "repeat_orders",
+   "value": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "origin": "generic:discrete rotations C2..C6",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:91"
+  },
+  {
+   "name": "pb.near_m",
+   "value": 0.006,
+   "origin": "generic:F-I2.10 owned points within 6 mm of the pick",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.frames_min",
+   "value": 3,
+   "origin": "generic:F-I4.11 >= 3 frames per outline cell (= OBSERVED hits >= 3, A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "cp.coacd_thr",
+   "value": 0.02,
+   "origin": "generic:F-I5.10 CoACD 0.02 (finer than its 0.05 default)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.pitch_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.10 2 mm keep-out / topology grid",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.vox_pitches",
+   "value": [
+    0.002,
+    0.004,
+    0.006,
+    0.008
+   ],
+   "origin": "generic:F-I5.10 voxel grids 2 / 4 / 6 / 8 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp2.ray_dh_m",
+   "value": 0.001,
+   "origin": "generic:F-I5.15 (10) construction rays every 1 mm (the topology pitch)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.eps_h_m",
+   "value": 1.3e-07,
+   "origin": "generic:numerical ray heights offset 1.3e-7 m off the mesh vertex levels",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.ray_dphi_deg",
+   "value": 1.0,
+   "origin": "generic:F-I5.15 (10) construction rays every 1 deg",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.hit_dedup_m",
+   "value": 1e-07,
+   "origin": "generic:numerical duplicate ray hits within 1e-7 m",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp.wall_k_sigma",
+   "value": 3.0,
+   "origin": "generic:F-I5.10 wall if inner radius > max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.wall_min_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.10 wall if inner radius > max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp2.sectors",
+   "value": [
+    8,
+    12,
+    16,
+    20,
+    24,
+    32
+   ],
+   "origin": "generic:F-I5.15 (10) sector set {8, 12, 16, 20, 24, 32}",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.w_min_m",
+   "value": 0.0015,
+   "origin": "generic:F-I5.15 (10) w_min 1.5 mm (one 1 mm cell plus half a cell; Andres et al. 1997)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cc.sample_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.1 2 mm grid inside the partner pieces (the Embodiment export definition)",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "il.swept_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_step_m",
+   "value": 0.002,
+   "origin": "generic:numerical 2 mm (one sub-voxel)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_cap_m",
+   "value": 0.06,
+   "origin": "generic:numerical cap of the push search (6 x the prior)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_frames_max",
+   "value": 12,
+   "origin": "generic:numerical subsample of the build frames for the push proxy",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_prior_m",
+   "value": 0.01,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 10 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.silgap_share",
+   "value": 0.75,
+   "origin": "generic:F-I1.3 (iii) 75 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.budget_vol",
+   "value": 0.1,
+   "origin": "generic:F-I1.14 budget 10 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.budget_reach",
+   "value": 0.6,
+   "origin": "generic:F-I1.14 reach 0.6",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "cc.tie",
+   "value": 0.1,
+   "origin": "generic:F-I5.10 containment tie 0.1",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc.hand_m",
+   "value": 0.03,
+   "origin": "generic:F-I5.10 hands distance 30 mm (F-I1.9 rest distance)",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc.s_frames",
+   "value": 3,
+   "origin": "generic:F-I5.5 up to 3 hands-off static frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc2.sup_samples",
+   "value": 4000,
+   "origin": "generic:numerical 4,000 guest surface samples for the exact-mesh support distance",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cc2.s_rm",
+   "value": 0.5,
+   "origin": "generic:F-I5.15 (10) removed share s_rm 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cc.surf_m",
+   "value": 0.0005,
+   "origin": "generic:F-I5.3 (d) guest surface samples at 0.5 mm spacing",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc2.wall_rays_max",
+   "value": 20000,
+   "origin": "generic:numerical precheck (c) mesh rays: a seeded subset of 20,000 samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cc2.floor_frames",
+   "value": 3,
+   "origin": "generic:F-I5.15 (4c) up to 3 floor S frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cg5.coacd_thr",
+   "value": 0.05,
+   "origin": "kit:FlashCHORD fc_mesh.py threshold 0.05 (the evaluator code)",
+   "where": "docs/research/mesh-2026-10-26/gmg/contactgate5.py:66"
+  },
+  {
+   "name": "sp.mass_kg",
+   "value": 0.3,
+   "origin": "generic:F-I1.14 placeholder mass 0.3 kg (make_assets default; owner decision D-I1 open)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "interlock/public/ep11-fi5r2/T_asm.npy",
+   "sha256": "5af71bb02e367c9774bd9c6f9211bb2b7cedc5f918b6412b61542267b2a93902",
+   "bytes": 256,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep11-fi5r2/decisions.json",
+   "sha256": "fe9736396d09d9b8ad0966fb1a6a4af8f97903225d3b0388a19add38289bf99d",
+   "bytes": 8918,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep11-fi5r2/fi5.json",
+   "sha256": "af7a0c0222d13bf24cb635c0cda29f02e51642e518496a2ee61ab1c5fdfb657f",
+   "bytes": 26613,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep11-fi5r2/physcheck.json",
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep11-fi5r2/push_list.json",
+   "sha256": "56667923ae31f39820c202bda3486343a9966306268b6b4c25194e59dd542bac",
+   "bytes": 434,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep11-fi5r2/report.json",
+   "sha256": "785742a71b26c684b3fe7f16559042a7ce00cf1b9d8e2d2f40db7af8b3fff916",
+   "bytes": 34212,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep11-fi5r2/structure_beige_cup.json",
+   "sha256": "ed6f99650485be046848aa69fe09421092091470753fd97871da3270fb9e0595",
+   "bytes": 7366,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep11-fi5r2/structure_blue_cup.json",
+   "sha256": "6e9e9b6ef888eb4548608bd72266eed362fb2499e8c8d9ce85cf2adaa58dab55",
+   "bytes": 7372,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep11-fi5r2/voxels_beige_cup.npz",
+   "sha256": "c9667657c48d4f92e40b16159854dc1a32093abcad3fbbd9ca70cc49d1c20c46",
+   "bytes": 9244,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep11-fi5r2/voxels_blue_cup.npz",
+   "sha256": "b4ef42d1bc74fe7483819b5971d808fc050f9de1744e322cf490f7bf5496f65d",
+   "bytes": 10679,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/CONTACT_GATE_PENDING.json",
+   "sha256": "0dda6b52603304417cc5161698ede88100c2f91ff64ff97688e368b6cdba7b8c",
+   "bytes": 701,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/DO_NOT_USE.json",
+   "sha256": "ba725b06dd53763a93b3a0c935dae1d8c4c0cf6a0bda30308276835a6ef6b165",
+   "bytes": 264,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_00.obj",
+   "sha256": "dd47464b847842a5abb64e6ab03593e1e016c3513a203730110673f5d633ff99",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_01.obj",
+   "sha256": "96257662a7e7c6954e669387ae64ae5e1ea848aaaebc54894c050bfb62557221",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_02.obj",
+   "sha256": "70c484780090c586b96b5d80df3efd20f1b090c7157730b0ba20234a33a51505",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_03.obj",
+   "sha256": "7b57522cb89cc8b22f779ccb839ca2e7de6287641ef6854aeaa21f9d554f272a",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_04.obj",
+   "sha256": "399f8c999af9d250e139f0727c53be094621ad9f862ad9d7ea459dc674da4e29",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_05.obj",
+   "sha256": "b3caac97cf7a3e21312b2d8ae4bf65fc34391e39a2c0ce5d85321bc317a7a9c2",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_06.obj",
+   "sha256": "e35474b84fb4c7d5703eabe7d297a2829515ff9aacc179e81844a9cdd602b464",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_07.obj",
+   "sha256": "448e2b8a56c96d21cc6b95adc324989caee12f462b7a53c119981d50bd05cfa4",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_08.obj",
+   "sha256": "053f4dc11ed1f4fffc45b44abb7e1cdfba22e4b2236fa883f1ae7861a0036236",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_09.obj",
+   "sha256": "176895bbe7b995d66745de8fb4e5728a19e272626f20332286748e8638aaf124",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_10.obj",
+   "sha256": "9d0c26283f40b0bc9eacb2daad6aa508f724b228ce88eb6ea238f46131cdba8a",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_11.obj",
+   "sha256": "e9c12fdf2e4c928957ad674b5f324baad6deb65182f6c4f3456be0bd1d09836c",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_12.obj",
+   "sha256": "65e014057f7ff14835a1edaa13ddbc4b7a7c7f186dde2afdf0c8d480dfa66206",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_13.obj",
+   "sha256": "f0d14f3c98e1162669aef7073ff8975290897856bb482d27067998e2dce3ba30",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_14.obj",
+   "sha256": "eadd4db1d7af4c100cd5ae41a3fa48689a5871b8cb7e16451c2272e79e1b0c8f",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_15.obj",
+   "sha256": "9bbe0211b6ac462c2f8b99f50632a581cd9a0bb8be8016577843cbc8a8c2f03e",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_16.obj",
+   "sha256": "ca3ef0d7b768b3e0e9dc363e7a2804e81e89dab09cb70a3112e727c23ceaba20",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_17.obj",
+   "sha256": "56b66252c77628d06d137d5fb15f8f88b1a97e39f3eaf136bb7e07a4d9f556f6",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_18.obj",
+   "sha256": "04daca9912373f78159f0179598c20089403a950907199f13f5a6710b41b1d26",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/beige_cup/piece_19.obj",
+   "sha256": "bbb19ddd84e2902c301cec0cf365313027c214d8906b870000f6ae8b0a1ce646",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_00.obj",
+   "sha256": "19c87c5739a1e1a54d7d1e3183dbda1829c720422521d9018c1ac7dd0cc766b8",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_01.obj",
+   "sha256": "8aca424690e5319a2f607ae0f0d45991091416d42f2ef9d51ea4e0ff15602c1c",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_02.obj",
+   "sha256": "d5c410653510a9534f75149bc9b42847e6c7d716fff6059d61aa2049c14b3173",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_03.obj",
+   "sha256": "f29d8837d880e0b090e8a90bd1e50e5a2a953ab68d222e12ccf98dfe8fb87803",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_04.obj",
+   "sha256": "33327f06db2f8a26fd0d75231cc2e75f8ddf605e3c53bd0904975aebbcae7246",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_05.obj",
+   "sha256": "efcb3cb5eb9cd5fabd55ed60e3eace69739a8728fca489117f6de890463f2477",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_06.obj",
+   "sha256": "93f48737c00f72bac425e5273270786cb496c43a0c28a53ff3a2eab485aa5251",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_07.obj",
+   "sha256": "f765417cbd060c577202b44d2db230429aa07ff70c0add21d72a57f078c194b4",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_08.obj",
+   "sha256": "4d3cf23bea905dfdc1cc5d008691106f27bcfdf373453bb557227fc3f2c7ad53",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_09.obj",
+   "sha256": "c717a2315fdda45462d0ba02cfbad2153225e0e1a2b0203d6dda7d1df31fbd50",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_10.obj",
+   "sha256": "e3c3d9e090469d7d7511d9933c97760185811d68e414b39aa2d86e2e5878bb25",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_11.obj",
+   "sha256": "219f209f2a64e8558e8459e2c1406ec47feae71bcf9fb4509e516f47315e1fd0",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_12.obj",
+   "sha256": "1e25784ae761a54133b924762b0433bc4006ae145a4e56fcb4a928ac96cdc691",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_13.obj",
+   "sha256": "6b990d049359be498963565545710963c609da9c8b6f417af120b3b1c9345c26",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_14.obj",
+   "sha256": "19ce026ddb20c33641e4520d6d84219c37f365ba193c93f6925d4a0aecdb2ee2",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_15.obj",
+   "sha256": "bfdc3fdfefdfe6cd2acc2550c49ab87ae4904a219b5c6040974e9d464b30c818",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_default/blue_cup/piece_16.obj",
+   "sha256": "0763416a1068a0c457a297b0d03278e2b302ad0a9d8fa51a68edb586d8d5dff6",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_fit/beige_cup.glb",
+   "sha256": "4907ea89ab579ad1e88963c70a620cdb818e130d816f9fccb75dd6e70b4581e6",
+   "bytes": 5484,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/_fit/blue_cup.glb",
+   "sha256": "a02ea362c0310c5fc6f046ade7e523bbaad6ee6a9265717b8d40ff0135ea261a",
+   "bytes": 4836,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/beige_cup.glb",
+   "sha256": "9bb98d74ce9db959b328055b13c577df8a5454e2cff4c767b4c67b393be84b4e",
+   "bytes": 72128,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/carve.json",
+   "sha256": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+   "bytes": 109,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/inertia.json",
+   "sha256": "ede9195697f7775aa75baa08d6262797f040a18924bba778e68dc33dd76ea6f1",
+   "bytes": 405,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_00.obj",
+   "sha256": "dd47464b847842a5abb64e6ab03593e1e016c3513a203730110673f5d633ff99",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_01.obj",
+   "sha256": "96257662a7e7c6954e669387ae64ae5e1ea848aaaebc54894c050bfb62557221",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_02.obj",
+   "sha256": "70c484780090c586b96b5d80df3efd20f1b090c7157730b0ba20234a33a51505",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_03.obj",
+   "sha256": "7b57522cb89cc8b22f779ccb839ca2e7de6287641ef6854aeaa21f9d554f272a",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_04.obj",
+   "sha256": "399f8c999af9d250e139f0727c53be094621ad9f862ad9d7ea459dc674da4e29",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_05.obj",
+   "sha256": "b3caac97cf7a3e21312b2d8ae4bf65fc34391e39a2c0ce5d85321bc317a7a9c2",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_06.obj",
+   "sha256": "e35474b84fb4c7d5703eabe7d297a2829515ff9aacc179e81844a9cdd602b464",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_07.obj",
+   "sha256": "448e2b8a56c96d21cc6b95adc324989caee12f462b7a53c119981d50bd05cfa4",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_08.obj",
+   "sha256": "053f4dc11ed1f4fffc45b44abb7e1cdfba22e4b2236fa883f1ae7861a0036236",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_09.obj",
+   "sha256": "176895bbe7b995d66745de8fb4e5728a19e272626f20332286748e8638aaf124",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_10.obj",
+   "sha256": "9d0c26283f40b0bc9eacb2daad6aa508f724b228ce88eb6ea238f46131cdba8a",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_11.obj",
+   "sha256": "e9c12fdf2e4c928957ad674b5f324baad6deb65182f6c4f3456be0bd1d09836c",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_12.obj",
+   "sha256": "65e014057f7ff14835a1edaa13ddbc4b7a7c7f186dde2afdf0c8d480dfa66206",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_13.obj",
+   "sha256": "f0d14f3c98e1162669aef7073ff8975290897856bb482d27067998e2dce3ba30",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_14.obj",
+   "sha256": "eadd4db1d7af4c100cd5ae41a3fa48689a5871b8cb7e16451c2272e79e1b0c8f",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_15.obj",
+   "sha256": "9bbe0211b6ac462c2f8b99f50632a581cd9a0bb8be8016577843cbc8a8c2f03e",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_16.obj",
+   "sha256": "ca3ef0d7b768b3e0e9dc363e7a2804e81e89dab09cb70a3112e727c23ceaba20",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_17.obj",
+   "sha256": "56b66252c77628d06d137d5fb15f8f88b1a97e39f3eaf136bb7e07a4d9f556f6",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_18.obj",
+   "sha256": "04daca9912373f78159f0179598c20089403a950907199f13f5a6710b41b1d26",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/beige_cup/piece_19.obj",
+   "sha256": "bbb19ddd84e2902c301cec0cf365313027c214d8906b870000f6ae8b0a1ce646",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/blue_cup.glb",
+   "sha256": "98ee2d8b60cafbcb46bcacf53922cc1c000aa0b70571c53e9d365753d23910b8",
+   "bytes": 72156,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/carve.json",
+   "sha256": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+   "bytes": 109,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/inertia.json",
+   "sha256": "81e91747e2da33c83be9cdec557e261f99c78f8df3e38c2d54f0654be809848b",
+   "bytes": 398,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_00.obj",
+   "sha256": "19c87c5739a1e1a54d7d1e3183dbda1829c720422521d9018c1ac7dd0cc766b8",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_01.obj",
+   "sha256": "8aca424690e5319a2f607ae0f0d45991091416d42f2ef9d51ea4e0ff15602c1c",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_02.obj",
+   "sha256": "d5c410653510a9534f75149bc9b42847e6c7d716fff6059d61aa2049c14b3173",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_03.obj",
+   "sha256": "f29d8837d880e0b090e8a90bd1e50e5a2a953ab68d222e12ccf98dfe8fb87803",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_04.obj",
+   "sha256": "33327f06db2f8a26fd0d75231cc2e75f8ddf605e3c53bd0904975aebbcae7246",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_05.obj",
+   "sha256": "efcb3cb5eb9cd5fabd55ed60e3eace69739a8728fca489117f6de890463f2477",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_06.obj",
+   "sha256": "93f48737c00f72bac425e5273270786cb496c43a0c28a53ff3a2eab485aa5251",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_07.obj",
+   "sha256": "f765417cbd060c577202b44d2db230429aa07ff70c0add21d72a57f078c194b4",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_08.obj",
+   "sha256": "4d3cf23bea905dfdc1cc5d008691106f27bcfdf373453bb557227fc3f2c7ad53",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_09.obj",
+   "sha256": "c717a2315fdda45462d0ba02cfbad2153225e0e1a2b0203d6dda7d1df31fbd50",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_10.obj",
+   "sha256": "e3c3d9e090469d7d7511d9933c97760185811d68e414b39aa2d86e2e5878bb25",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_11.obj",
+   "sha256": "219f209f2a64e8558e8459e2c1406ec47feae71bcf9fb4509e516f47315e1fd0",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_12.obj",
+   "sha256": "1e25784ae761a54133b924762b0433bc4006ae145a4e56fcb4a928ac96cdc691",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_13.obj",
+   "sha256": "6b990d049359be498963565545710963c609da9c8b6f417af120b3b1c9345c26",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_14.obj",
+   "sha256": "19ce026ddb20c33641e4520d6d84219c37f365ba193c93f6925d4a0aecdb2ee2",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_15.obj",
+   "sha256": "bfdc3fdfefdfe6cd2acc2550c49ab87ae4904a219b5c6040974e9d464b30c818",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/blue_cup/piece_16.obj",
+   "sha256": "0763416a1068a0c457a297b0d03278e2b302ad0a9d8fa51a68edb586d8d5dff6",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/contact_gate.json",
+   "sha256": "575862ae96ee24e0e26cff353d7f76c27fb377ffbde18d1444de6494e6b74346",
+   "bytes": 2667,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/floor.json",
+   "sha256": "0b5317471f4310ae1a6c5e310bf159aca9bfdf2a14b74bd63a05ad10b4eef85a",
+   "bytes": 3047,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/manifest.json",
+   "sha256": "d18576e7818515f4ecf2953f7d40009af56b4644fb4a82ca4777cc2d7a63d3f1",
+   "bytes": 21492,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/props_gmg.json",
+   "sha256": "3fc15bbb8994f89f6254a9e5eb1c0efb2634f2bb299708a1f26c13e11ff407ee",
+   "bytes": 1640,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep11-fi5r2/r0/push_list_fi5r2.json",
+   "sha256": "14dbbfd7526f0362a81aaa825c5354cb0c2d5c9b45969b65560c35a79ee936af",
+   "bytes": 1197,
+   "how": "python"
+  }
+ ]
+}

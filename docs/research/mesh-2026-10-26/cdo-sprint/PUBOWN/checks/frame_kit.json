@@ -1,0 +1,1676 @@
+{
+ "script": "docs/research/mesh-2026-10-26/cdo-sprint/PUBOWN/scripts/pubown_frame_kit.py",
+ "library": "meshes/library_v3",
+ "pairs": {
+  "ep0/white_pot": {
+   "mesh": "meshes/ep0/white_pot.glb",
+   "sha256": "a1b0f9ea142a7ff46f6fca46fb74b118b99f7a2ab3b40f4210fcd5ba29c0af91",
+   "sha256_selection": "a1b0f9ea142a7ff46f6fca46fb74b118b99f7a2ab3b40f4210fcd5ba29c0af91",
+   "lib_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "frame": {
+    "extent_mm_new": [
+     136.1,
+     182.53,
+     354.2
+    ],
+    "extent_mm_lib": [
+     130.98,
+     190.41,
+     362.26
+    ],
+    "centroid_offset_mm": 8.144204266364058,
+    "centroid_delta_mm": [
+     -0.513,
+     7.545,
+     -3.024
+    ],
+    "axis_angle_deg": [
+     2.383,
+     2.417,
+     3.368
+    ],
+    "surf_sym_median_mm": 2.900793175472002,
+    "icp_rot_deg": 0.8840180822231838,
+    "icp_trans_mm": 2.418083218242818,
+    "icp_centroid_motion_mm": 2.413339007395111,
+    "icp_trans_vec_mm": [
+     1.348,
+     -1.97,
+     -0.39
+    ],
+    "icp_med_before_mm": 3.168793868137951,
+    "icp_med_after_mm": 3.0456519106590862,
+    "raw_new": {
+     "faces": 15004,
+     "vertices": 7504,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 407.7225539230139,
+     "bodies": 1
+    }
+   },
+   "kit": {
+    "payload_chars": 83968,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2050,
+    "watertight": true,
+    "volume_cm3": 407.19172731199086,
+    "bodies": 1,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.5156880810304173,
+     1.7793590020403214
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.5189195877752999,
+     1.625788298361427
+    ]
+   }
+  },
+  "ep2/white_pot": {
+   "mesh": "meshes/ep2/white_pot.glb",
+   "sha256": "da20383e7c89cc124ecf4b1ff7fe23eb46ebb4344d858b7565e5150d3694230a",
+   "sha256_selection": "da20383e7c89cc124ecf4b1ff7fe23eb46ebb4344d858b7565e5150d3694230a",
+   "lib_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "frame": {
+    "extent_mm_new": [
+     135.5,
+     189.43,
+     411.46
+    ],
+    "extent_mm_lib": [
+     130.98,
+     190.41,
+     362.26
+    ],
+    "centroid_offset_mm": 9.297525465569366,
+    "centroid_delta_mm": [
+     -1.085,
+     8.601,
+     3.36
+    ],
+    "axis_angle_deg": [
+     6.176,
+     6.157,
+     2.725
+    ],
+    "surf_sym_median_mm": 2.693800866067818,
+    "icp_rot_deg": 1.1038580077105764,
+    "icp_trans_mm": 1.8746265848857797,
+    "icp_centroid_motion_mm": 1.921602614554447,
+    "icp_trans_vec_mm": [
+     0.211,
+     -1.862,
+     0.035
+    ],
+    "icp_med_before_mm": 3.111649525551782,
+    "icp_med_after_mm": 2.8521481526496304,
+    "raw_new": {
+     "faces": 24348,
+     "vertices": 12182,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 511.36249448346666,
+     "bodies": 4
+    }
+   },
+   "kit": {
+    "payload_chars": 84336,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2056,
+    "watertight": false,
+    "volume_cm3": 502.2956097654484,
+    "bodies": 7,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.606608080870414,
+     4.607352514948126
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.6054282057241422,
+     2.729342056653132
+    ]
+   }
+  },
+  "ep26/white_pot": {
+   "mesh": "meshes/ep26/white_pot.glb",
+   "sha256": "10c147c6a0217cc36ad965084bb994765e6650c677bcd6375ab5004547bf8688",
+   "sha256_selection": "10c147c6a0217cc36ad965084bb994765e6650c677bcd6375ab5004547bf8688",
+   "lib_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "frame": {
+    "extent_mm_new": [
+     147.11,
+     191.67,
+     321.42
+    ],
+    "extent_mm_lib": [
+     130.98,
+     190.41,
+     362.26
+    ],
+    "centroid_offset_mm": 8.738577705633043,
+    "centroid_delta_mm": [
+     -4.336,
+     2.51,
+     -7.16
+    ],
+    "axis_angle_deg": [
+     1.542,
+     1.406,
+     0.743
+    ],
+    "surf_sym_median_mm": 2.982607926915018,
+    "icp_rot_deg": 2.8437289073009584,
+    "icp_trans_mm": 4.127520690921294,
+    "icp_centroid_motion_mm": 4.474461094554366,
+    "icp_trans_vec_mm": [
+     3.512,
+     1.59,
+     -1.475
+    ],
+    "icp_med_before_mm": 3.4891581918893473,
+    "icp_med_after_mm": 3.2411484410604148,
+    "raw_new": {
+     "faces": 28566,
+     "vertices": 14285,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 576.8564417316776,
+     "bodies": 1
+    }
+   },
+   "kit": {
+    "payload_chars": 84060,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2050,
+    "watertight": false,
+    "volume_cm3": 563.8255751811532,
+    "bodies": 4,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.6200340761085136,
+     3.8122712505302507
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.6181288968916835,
+     3.6455727741770136
+    ]
+   }
+  },
+  "ep27/white_pot": {
+   "mesh": "meshes/ep27/white_pot.glb",
+   "sha256": "f4a298a2f981ffbc862626554fac8a2fff981fd0a6a0197ac329541978f0eee0",
+   "sha256_selection": "f4a298a2f981ffbc862626554fac8a2fff981fd0a6a0197ac329541978f0eee0",
+   "lib_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "frame": {
+    "extent_mm_new": [
+     204.86,
+     200.16,
+     526.34
+    ],
+    "extent_mm_lib": [
+     130.98,
+     190.41,
+     362.26
+    ],
+    "centroid_offset_mm": 40.3840003766984,
+    "centroid_delta_mm": [
+     -6.684,
+     -6.164,
+     39.347
+    ],
+    "axis_angle_deg": [
+     8.708,
+     9.681,
+     7.635
+    ],
+    "surf_sym_median_mm": 4.46924163007303,
+    "icp_rot_deg": 5.100178668509627,
+    "icp_trans_mm": 9.908586093114572,
+    "icp_centroid_motion_mm": 11.616164102980715,
+    "icp_trans_vec_mm": [
+     4.122,
+     6.94,
+     -5.747
+    ],
+    "icp_med_before_mm": 5.1151665752931255,
+    "icp_med_after_mm": 4.190882085409886,
+    "raw_new": {
+     "faces": 28768,
+     "vertices": 14400,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 518.3041954595416,
+     "bodies": 8
+    }
+   },
+   "kit": {
+    "payload_chars": 84936,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2064,
+    "watertight": false,
+    "volume_cm3": 493.7524425939958,
+    "bodies": 12,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.710385019781619,
+     3.8474773335371424
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.7188447117777801,
+     3.92396585575822
+    ]
+   }
+  },
+  "ep41/white_pot": {
+   "mesh": "meshes/ep41/white_pot.glb",
+   "sha256": "1368cb42a3bbddc3379c6f7d47c5064c2ea2e3e57063cfd29c9219c885bff7f3",
+   "sha256_selection": "1368cb42a3bbddc3379c6f7d47c5064c2ea2e3e57063cfd29c9219c885bff7f3",
+   "lib_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "frame": {
+    "extent_mm_new": [
+     137.45,
+     182.52,
+     344.85
+    ],
+    "extent_mm_lib": [
+     130.98,
+     190.41,
+     362.26
+    ],
+    "centroid_offset_mm": 6.339991071274715,
+    "centroid_delta_mm": [
+     -0.523,
+     6.041,
+     -1.853
+    ],
+    "axis_angle_deg": [
+     2.793,
+     4.088,
+     3.693
+    ],
+    "surf_sym_median_mm": 2.7584984699643638,
+    "icp_rot_deg": 1.8613958075722783,
+    "icp_trans_mm": 1.4465797345955804,
+    "icp_centroid_motion_mm": 1.377606736620191,
+    "icp_trans_vec_mm": [
+     0.405,
+     -0.865,
+     -1.086
+    ],
+    "icp_med_before_mm": 3.152200216397393,
+    "icp_med_after_mm": 2.990000993546153,
+    "raw_new": {
+     "faces": 15014,
+     "vertices": 7509,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 468.3763590578642,
+     "bodies": 1
+    }
+   },
+   "kit": {
+    "payload_chars": 84060,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2050,
+    "watertight": true,
+    "volume_cm3": 467.1140968135698,
+    "bodies": 1,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.5097542089489976,
+     1.7985156993516802
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.5112577570657063,
+     1.775920494113704
+    ]
+   }
+  },
+  "ep42/white_pot": {
+   "mesh": "meshes/ep42/white_pot.glb",
+   "sha256": "dff67c4cb9e99c325f09f1b6af7fc033bf6cbc546444f0eb4a84741274ff1a20",
+   "sha256_selection": "dff67c4cb9e99c325f09f1b6af7fc033bf6cbc546444f0eb4a84741274ff1a20",
+   "lib_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "frame": {
+    "extent_mm_new": [
+     137.83,
+     183.37,
+     354.41
+    ],
+    "extent_mm_lib": [
+     130.98,
+     190.41,
+     362.26
+    ],
+    "centroid_offset_mm": 8.044600315221889,
+    "centroid_delta_mm": [
+     -3.675,
+     4.171,
+     -5.815
+    ],
+    "axis_angle_deg": [
+     2.859,
+     2.27,
+     2.946
+    ],
+    "surf_sym_median_mm": 2.799013596868203,
+    "icp_rot_deg": 1.6768689196749098,
+    "icp_trans_mm": 2.985628270482473,
+    "icp_centroid_motion_mm": 2.9491204782015257,
+    "icp_trans_vec_mm": [
+     2.495,
+     1.602,
+     -0.352
+    ],
+    "icp_med_before_mm": 3.1211941408761787,
+    "icp_med_after_mm": 2.982211763579759,
+    "raw_new": {
+     "faces": 15262,
+     "vertices": 7633,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 484.9120921914108,
+     "bodies": 1
+    }
+   },
+   "kit": {
+    "payload_chars": 83892,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2050,
+    "watertight": true,
+    "volume_cm3": 483.89297152123055,
+    "bodies": 1,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.508973416882177,
+     1.8834632766476915
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.5121696321775762,
+     1.8355579596206983
+    ]
+   }
+  },
+  "ep43/white_pot": {
+   "mesh": "meshes/ep43/white_pot.glb",
+   "sha256": "3dea9a786a8691b40135a6d6586b56fd0b745823ed6b7985406c7b8201513b0c",
+   "sha256_selection": "3dea9a786a8691b40135a6d6586b56fd0b745823ed6b7985406c7b8201513b0c",
+   "lib_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "frame": {
+    "extent_mm_new": [
+     135.02,
+     185.25,
+     355.96
+    ],
+    "extent_mm_lib": [
+     130.98,
+     190.41,
+     362.26
+    ],
+    "centroid_offset_mm": 5.843512512054018,
+    "centroid_delta_mm": [
+     -1.895,
+     4.31,
+     -3.461
+    ],
+    "axis_angle_deg": [
+     2.618,
+     1.897,
+     3.048
+    ],
+    "surf_sym_median_mm": 2.6388947496138537,
+    "icp_rot_deg": 3.1665384780592896,
+    "icp_trans_mm": 3.1809789029034707,
+    "icp_centroid_motion_mm": 2.8327306123901623,
+    "icp_trans_vec_mm": [
+     1.009,
+     2.203,
+     -2.062
+    ],
+    "icp_med_before_mm": 2.905457288427833,
+    "icp_med_after_mm": 2.5461902805498697,
+    "raw_new": {
+     "faces": 15012,
+     "vertices": 7508,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 518.5702587868617,
+     "bodies": 1
+    }
+   },
+   "kit": {
+    "payload_chars": 83924,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2050,
+    "watertight": true,
+    "volume_cm3": 516.1360654351405,
+    "bodies": 1,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.5291582653236356,
+     1.766263403410234
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.5214610013933294,
+     1.5898389520612235
+    ]
+   }
+  },
+  "ep44/white_pot": {
+   "mesh": "meshes/ep44/white_pot.glb",
+   "sha256": "e82688ff294d07ea4fffa6fa0ed88d8547cd955e425f704a6f5892c006c82903",
+   "sha256_selection": "e82688ff294d07ea4fffa6fa0ed88d8547cd955e425f704a6f5892c006c82903",
+   "lib_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "frame": {
+    "extent_mm_new": [
+     186.84,
+     365.52,
+     469.22
+    ],
+    "extent_mm_lib": [
+     130.98,
+     190.41,
+     362.26
+    ],
+    "centroid_offset_mm": 8.007848988125065,
+    "centroid_delta_mm": [
+     -6.819,
+     3.536,
+     2.264
+    ],
+    "axis_angle_deg": [
+     7.128,
+     8.049,
+     3.866
+    ],
+    "surf_sym_median_mm": 3.101207411558448,
+    "icp_rot_deg": 1.1922057057957307,
+    "icp_trans_mm": 3.6088189020989714,
+    "icp_centroid_motion_mm": 3.628200684852995,
+    "icp_trans_vec_mm": [
+     2.653,
+     -1.193,
+     2.136
+    ],
+    "icp_med_before_mm": 3.397762619098847,
+    "icp_med_after_mm": 3.300846446987844,
+    "raw_new": {
+     "faces": 35144,
+     "vertices": 17586,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 442.2772810641106,
+     "bodies": 8
+    }
+   },
+   "kit": {
+    "payload_chars": 84952,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2063,
+    "watertight": false,
+    "volume_cm3": 410.12492799434665,
+    "bodies": 11,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.7403749391793972,
+     4.3597270438499685
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.7363285187527032,
+     4.15168540962228
+    ]
+   }
+  },
+  "ep45/white_pot": {
+   "mesh": "meshes/ep45/white_pot.glb",
+   "sha256": "9647bf5b7230eaef3c0fe1f70f59aa62390dfd0a6f3d4e8816446a8f111e1aca",
+   "sha256_selection": "9647bf5b7230eaef3c0fe1f70f59aa62390dfd0a6f3d4e8816446a8f111e1aca",
+   "lib_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "frame": {
+    "extent_mm_new": [
+     167.1,
+     190.06,
+     363.92
+    ],
+    "extent_mm_lib": [
+     130.98,
+     190.41,
+     362.26
+    ],
+    "centroid_offset_mm": 15.27210333468371,
+    "centroid_delta_mm": [
+     -11.348,
+     2.534,
+     -9.902
+    ],
+    "axis_angle_deg": [
+     6.912,
+     4.935,
+     6.891
+    ],
+    "surf_sym_median_mm": 2.7917172068986544,
+    "icp_rot_deg": 3.315212369182606,
+    "icp_trans_mm": 8.207200735674162,
+    "icp_centroid_motion_mm": 8.897750420914521,
+    "icp_trans_vec_mm": [
+     7.779,
+     0.799,
+     2.492
+    ],
+    "icp_med_before_mm": 3.701620117794088,
+    "icp_med_after_mm": 3.754775649462102,
+    "raw_new": {
+     "faces": 35048,
+     "vertices": 17530,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 777.7991859929222,
+     "bodies": 3
+    }
+   },
+   "kit": {
+    "payload_chars": 83808,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2054,
+    "watertight": false,
+    "volume_cm3": 749.1353228680003,
+    "bodies": 9,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.7122079701332121,
+     7.593978514459649
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.7102106486029762,
+     3.981662436588729
+    ]
+   }
+  },
+  "ep11/beige_cup": {
+   "mesh": "meshes/ep11/beige_cup.glb",
+   "sha256": "5c39b6561c9b17f1caf729397bfa708936b29d5e2601c0b2a5284d690b4f59a3",
+   "sha256_selection": "5c39b6561c9b17f1caf729397bfa708936b29d5e2601c0b2a5284d690b4f59a3",
+   "lib_sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+   "frame": {
+    "extent_mm_new": [
+     101.24,
+     105.09,
+     175.62
+    ],
+    "extent_mm_lib": [
+     99.3,
+     110.43,
+     173.88
+    ],
+    "centroid_offset_mm": 10.530833682651657,
+    "centroid_delta_mm": [
+     0.911,
+     -3.984,
+     9.706
+    ],
+    "axis_angle_deg": [
+     24.334,
+     34.701,
+     24.819
+    ],
+    "surf_sym_median_mm": 2.5962855033122394,
+    "icp_rot_deg": 8.271320221736818,
+    "icp_trans_mm": 2.746673191953514,
+    "icp_centroid_motion_mm": 2.318016891693914,
+    "icp_trans_vec_mm": [
+     -2.588,
+     -0.845,
+     0.364
+    ],
+    "icp_med_before_mm": 4.034562844886487,
+    "icp_med_after_mm": 4.215455309365688,
+    "icp_symaxis_tilt_deg": 5.931449400076036,
+    "symaxis_angle_identity_deg": 24.3339051914565,
+    "raw_new": {
+     "faces": 43778,
+     "vertices": 21883,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 6.945063256159958,
+     "bodies": 4
+    }
+   },
+   "kit": {
+    "payload_chars": 86556,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2043,
+    "watertight": false,
+    "volume_cm3": 8.276941242420913,
+    "bodies": 25,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.4615880962838651,
+     2.472198418674904
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.4563394485112639,
+     2.737548163178383
+    ]
+   }
+  },
+  "ep11/blue_cup": {
+   "mesh": "meshes/ep11/blue_cup.glb",
+   "sha256": "78969bb9ed3da61c82f2046058a355cf64d0b86e5ab8c46db08dda286e21e6de",
+   "sha256_selection": "78969bb9ed3da61c82f2046058a355cf64d0b86e5ab8c46db08dda286e21e6de",
+   "lib_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "frame": {
+    "extent_mm_new": [
+     92.78,
+     94.85,
+     157.21
+    ],
+    "extent_mm_lib": [
+     95.08,
+     96.47,
+     167.02
+    ],
+    "centroid_offset_mm": 5.2240335772267095,
+    "centroid_delta_mm": [
+     3.372,
+     3.928,
+     -0.705
+    ],
+    "axis_angle_deg": [
+     4.227,
+     6.416,
+     5.175
+    ],
+    "surf_sym_median_mm": 2.2995242081543177,
+    "icp_rot_deg": 1.7138713587904555,
+    "icp_trans_mm": 8.9259513995174,
+    "icp_centroid_motion_mm": 9.038304233146386,
+    "icp_trans_vec_mm": [
+     -1.551,
+     -1.891,
+     8.584
+    ],
+    "icp_med_before_mm": 2.384531078107865,
+    "icp_med_after_mm": 1.784693701626559,
+    "icp_symaxis_tilt_deg": 1.6294236654103613,
+    "symaxis_angle_identity_deg": 4.226836142422569,
+    "raw_new": {
+     "faces": 26832,
+     "vertices": 13418,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 94.94311594582192,
+     "bodies": 3
+    }
+   },
+   "kit": {
+    "payload_chars": 86168,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2052,
+    "watertight": false,
+    "volume_cm3": 96.0766845108022,
+    "bodies": 12,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.39887037402647774,
+     1.8296921817648175
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.407060260996308,
+     1.5145727814316345
+    ]
+   }
+  },
+  "ep12/blue_cup": {
+   "mesh": "meshes/ep12/blue_cup.glb",
+   "sha256": "e3c75bf86c396537fb2821d6f1c1986d641372f8ff58e12fe968d823fa979c35",
+   "sha256_selection": "e3c75bf86c396537fb2821d6f1c1986d641372f8ff58e12fe968d823fa979c35",
+   "lib_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "frame": {
+    "extent_mm_new": [
+     361.51,
+     289.98,
+     184.44
+    ],
+    "extent_mm_lib": [
+     95.08,
+     96.47,
+     167.02
+    ],
+    "centroid_offset_mm": 52.37437382282081,
+    "centroid_delta_mm": [
+     40.335,
+     31.365,
+     -11.505
+    ],
+    "axis_angle_deg": [
+     80.564,
+     83.074,
+     73.845
+    ],
+    "surf_sym_median_mm": 2.829778708205981,
+    "icp_rot_deg": 65.05571731105454,
+    "icp_trans_mm": 75.71739703025177,
+    "icp_centroid_motion_mm": 54.92510092600613,
+    "icp_trans_vec_mm": [
+     -2.712,
+     -0.919,
+     75.663
+    ],
+    "icp_med_before_mm": 3.968891173929205,
+    "icp_med_after_mm": 30.937456474598868,
+    "icp_symaxis_tilt_deg": 64.66345143403392,
+    "symaxis_angle_identity_deg": 80.56417219952223,
+    "raw_new": {
+     "faces": 80678,
+     "vertices": 40329,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": -118.14402884695807,
+     "bodies": 5
+    }
+   },
+   "kit": {
+    "payload_chars": 87380,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2052,
+    "watertight": false,
+    "volume_cm3": -108.47803359619598,
+    "bodies": 32,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.6920074359409358,
+     5.195981279508229
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.7024850243571997,
+     4.380399431419147
+    ]
+   }
+  },
+  "ep12/plastic_dish_rack": {
+   "mesh": "meshes/ep12/plastic_dish_rack.glb",
+   "sha256": "c845d4f9dab3a964c651884abeae650387a4c3177023cf7d53f6acf6f096449f",
+   "sha256_selection": "c845d4f9dab3a964c651884abeae650387a4c3177023cf7d53f6acf6f096449f",
+   "lib_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "frame": {
+    "extent_mm_new": [
+     16341.73,
+     719.24,
+     2290.27
+    ],
+    "extent_mm_lib": [
+     109.43,
+     159.12,
+     495.98
+    ],
+    "centroid_offset_mm": 6475.488156017683,
+    "centroid_delta_mm": [
+     -6424.36,
+     375.069,
+     720.322
+    ],
+    "axis_angle_deg": [
+     81.841,
+     89.751,
+     89.584
+    ],
+    "surf_sym_median_mm": 52.822096904831,
+    "icp_rot_deg": 120.53317277102356,
+    "icp_trans_mm": 5703.101448382734,
+    "icp_centroid_motion_mm": 6365.541957441205,
+    "icp_trans_vec_mm": [
+     619.056,
+     -713.878,
+     -5624.279
+    ],
+    "icp_med_before_mm": 6240.944018532237,
+    "icp_med_after_mm": 3386.6379362817956,
+    "raw_new": {
+     "faces": 13128,
+     "vertices": 6578,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 244360.6240507268,
+     "bodies": 11
+    }
+   },
+   "kit": {
+    "payload_chars": 74152,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2063,
+    "watertight": false,
+    "volume_cm3": 244103.5490547397,
+    "bodies": 12,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     5.4741209319921875,
+     36.556021418716554
+    ],
+    "budget_to_raw_p50_max_mm": [
+     5.458794605110737,
+     19.233608405975158
+    ]
+   }
+  },
+  "ep13/blue_cup": {
+   "mesh": "meshes/ep13/blue_cup.glb",
+   "sha256": "eaf11af123a48406a1a9018624def12e6ef6678774e25e1188e3d75f9078b56c",
+   "sha256_selection": "eaf11af123a48406a1a9018624def12e6ef6678774e25e1188e3d75f9078b56c",
+   "lib_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "frame": {
+    "extent_mm_new": [
+     100.31,
+     93.74,
+     183.0
+    ],
+    "extent_mm_lib": [
+     95.08,
+     96.47,
+     167.02
+    ],
+    "centroid_offset_mm": 12.49303723970857,
+    "centroid_delta_mm": [
+     -3.983,
+     -1.535,
+     11.741
+    ],
+    "axis_angle_deg": [
+     5.06,
+     70.061,
+     70.192
+    ],
+    "surf_sym_median_mm": 2.2524400248418313,
+    "icp_rot_deg": 2.593981454664398,
+    "icp_trans_mm": 3.8284284184453887,
+    "icp_centroid_motion_mm": 4.047280889071603,
+    "icp_trans_vec_mm": [
+     2.04,
+     1.168,
+     -3.022
+    ],
+    "icp_med_before_mm": 2.8432069530358786,
+    "icp_med_after_mm": 2.5387858233612906,
+    "icp_symaxis_tilt_deg": 2.008658603463123,
+    "symaxis_angle_identity_deg": 5.060359129910544,
+    "raw_new": {
+     "faces": 37112,
+     "vertices": 18552,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 223.90366340674024,
+     "bodies": 2
+    }
+   },
+   "kit": {
+    "payload_chars": 86220,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2044,
+    "watertight": false,
+    "volume_cm3": 225.27371402254528,
+    "bodies": 8,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.44750904610645986,
+     2.25114733006642
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.4504431124098326,
+     2.095027954890376
+    ]
+   }
+  },
+  "ep13/plastic_dish_rack": {
+   "mesh": "meshes/ep13/plastic_dish_rack.glb",
+   "sha256": "6c996a0a7739196183e034bac3891b2cddefdae4c92d069d02e7313d56f8edfd",
+   "sha256_selection": "6c996a0a7739196183e034bac3891b2cddefdae4c92d069d02e7313d56f8edfd",
+   "lib_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "frame": {
+    "extent_mm_new": [
+     125.46,
+     265.11,
+     487.24
+    ],
+    "extent_mm_lib": [
+     109.43,
+     159.12,
+     495.98
+    ],
+    "centroid_offset_mm": 48.03272013328474,
+    "centroid_delta_mm": [
+     7.48,
+     36.933,
+     -29.786
+    ],
+    "axis_angle_deg": [
+     12.3,
+     12.269,
+     1.494
+    ],
+    "surf_sym_median_mm": 4.971538693327832,
+    "icp_rot_deg": 8.438606535673937,
+    "icp_trans_mm": 31.855463048376173,
+    "icp_centroid_motion_mm": 32.00193888710249,
+    "icp_trans_vec_mm": [
+     -14.014,
+     -21.702,
+     18.639
+    ],
+    "icp_med_before_mm": 8.212222752452185,
+    "icp_med_after_mm": 12.694541616534014,
+    "raw_new": {
+     "faces": 17224,
+     "vertices": 8626,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 1504.5739719222504,
+     "bodies": 7
+    }
+   },
+   "kit": {
+    "payload_chars": 80860,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2062,
+    "watertight": false,
+    "volume_cm3": 1416.0525677152714,
+    "bodies": 8,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.9250997219360347,
+     5.830801032561504
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.9157158654174926,
+     5.093751087657795
+    ]
+   }
+  },
+  "ep21/blue_cup": {
+   "mesh": "meshes/ep21/blue_cup.glb",
+   "sha256": "27957f760653bb05237d275b712deb49b9b7d18ed0f88365bc0e12cb7aad1c0f",
+   "sha256_selection": "27957f760653bb05237d275b712deb49b9b7d18ed0f88365bc0e12cb7aad1c0f",
+   "lib_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "frame": {
+    "extent_mm_new": [
+     136.85,
+     325.88,
+     167.76
+    ],
+    "extent_mm_lib": [
+     95.08,
+     96.47,
+     167.02
+    ],
+    "centroid_offset_mm": 29.591773679662104,
+    "centroid_delta_mm": [
+     10.878,
+     -27.51,
+     0.748
+    ],
+    "axis_angle_deg": [
+     73.496,
+     73.28,
+     5.35
+    ],
+    "surf_sym_median_mm": 2.969761299911867,
+    "icp_rot_deg": 23.310394443031104,
+    "icp_trans_mm": 18.33075174484256,
+    "icp_centroid_motion_mm": 23.37218061627828,
+    "icp_trans_vec_mm": [
+     -7.362,
+     16.693,
+     -1.772
+    ],
+    "icp_med_before_mm": 3.3739185053416296,
+    "icp_med_after_mm": 7.571567993502778,
+    "icp_symaxis_tilt_deg": 23.242977619813768,
+    "symaxis_angle_identity_deg": 73.49623692715917,
+    "raw_new": {
+     "faces": 53996,
+     "vertices": 27004,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": -81.02475784189176,
+     "bodies": 6
+    }
+   },
+   "kit": {
+    "payload_chars": 86368,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2055,
+    "watertight": false,
+    "volume_cm3": -75.78150514628686,
+    "bodies": 13,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.5185550740112631,
+     3.062761800819602
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.5113598496394374,
+     3.0860019323439554
+    ]
+   }
+  },
+  "ep22/blue_cup": {
+   "mesh": "meshes/ep22/blue_cup.glb",
+   "sha256": "3275ecced7550141fbd8950936387e7beb85d7940dd393feb0ec70f93d672753",
+   "sha256_selection": "3275ecced7550141fbd8950936387e7beb85d7940dd393feb0ec70f93d672753",
+   "lib_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "frame": {
+    "extent_mm_new": [
+     167.9,
+     316.0,
+     177.78
+    ],
+    "extent_mm_lib": [
+     95.08,
+     96.47,
+     167.02
+    ],
+    "centroid_offset_mm": 24.126116807586623,
+    "centroid_delta_mm": [
+     9.305,
+     -22.096,
+     2.691
+    ],
+    "axis_angle_deg": [
+     68.223,
+     68.274,
+     2.322
+    ],
+    "surf_sym_median_mm": 2.8389588849535397,
+    "icp_rot_deg": 7.557472331831061,
+    "icp_trans_mm": 7.565143863729911,
+    "icp_centroid_motion_mm": 9.583890090811726,
+    "icp_trans_vec_mm": [
+     -3.141,
+     6.473,
+     2.336
+    ],
+    "icp_med_before_mm": 3.269461281806829,
+    "icp_med_after_mm": 3.641754680050812,
+    "icp_symaxis_tilt_deg": 7.546267088664649,
+    "symaxis_angle_identity_deg": 68.22348019232798,
+    "raw_new": {
+     "faces": 50296,
+     "vertices": 25156,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": -39.65189114967898,
+     "bodies": 6
+    }
+   },
+   "kit": {
+    "payload_chars": 86320,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2058,
+    "watertight": false,
+    "volume_cm3": -37.18686239213368,
+    "bodies": 12,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     0.5351060222060666,
+     3.8194873156689297
+    ],
+    "budget_to_raw_p50_max_mm": [
+     0.5357134355408391,
+     2.617695382405269
+    ]
+   }
+  },
+  "ep26/plastic_dish_rack": {
+   "mesh": "meshes/ep26/plastic_dish_rack.glb",
+   "sha256": "803a28516ddf187994d02bc060409af7589cba578d941e97a2370b25acd2fc02",
+   "sha256_selection": "803a28516ddf187994d02bc060409af7589cba578d941e97a2370b25acd2fc02",
+   "lib_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "frame": {
+    "extent_mm_new": [
+     643.59,
+     652.96,
+     5858.12
+    ],
+    "extent_mm_lib": [
+     109.43,
+     159.12,
+     495.98
+    ],
+    "centroid_offset_mm": 2923.9367287634573,
+    "centroid_delta_mm": [
+     208.24,
+     -3.901,
+     2916.509
+    ],
+    "axis_angle_deg": [
+     5.676,
+     4.224,
+     6.979
+    ],
+    "surf_sym_median_mm": 32.560393532724454,
+    "icp_rot_deg": 14.380786373688338,
+    "icp_trans_mm": 3220.499685077235,
+    "icp_centroid_motion_mm": 3208.551209025017,
+    "icp_trans_vec_mm": [
+     297.695,
+     -506.086,
+     -3166.524
+    ],
+    "icp_med_before_mm": 2809.283440195583,
+    "icp_med_after_mm": 1194.4554973521347,
+    "raw_new": {
+     "faces": 17106,
+     "vertices": 8597,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 23658.098118518577,
+     "bodies": 23
+    }
+   },
+   "kit": {
+    "payload_chars": 77440,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2092,
+    "watertight": true,
+    "volume_cm3": 23867.72143185629,
+    "bodies": 23,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     3.3180180477871795,
+     9.934890831080189
+    ],
+    "budget_to_raw_p50_max_mm": [
+     3.3261701943017425,
+     10.800402300402485
+    ]
+   }
+  },
+  "ep27/plastic_dish_rack": {
+   "mesh": "meshes/ep27/plastic_dish_rack.glb",
+   "sha256": "04ae6f1b78c161490dea41603f0c9d00499967f73e13eefa04f89f57ddc4fc38",
+   "sha256_selection": "04ae6f1b78c161490dea41603f0c9d00499967f73e13eefa04f89f57ddc4fc38",
+   "lib_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "frame": {
+    "extent_mm_new": [
+     411.49,
+     653.83,
+     825.62
+    ],
+    "extent_mm_lib": [
+     109.43,
+     159.12,
+     495.98
+    ],
+    "centroid_offset_mm": 73.06177088293488,
+    "centroid_delta_mm": [
+     37.747,
+     18.765,
+     59.675
+    ],
+    "axis_angle_deg": [
+     28.197,
+     25.215,
+     18.536
+    ],
+    "surf_sym_median_mm": 13.010516651052889,
+    "icp_rot_deg": 29.483367576947515,
+    "icp_trans_mm": 39.650906817760145,
+    "icp_centroid_motion_mm": 28.10474922246176,
+    "icp_trans_vec_mm": [
+     -2.829,
+     -36.811,
+     -14.461
+    ],
+    "icp_med_before_mm": 91.62474101611711,
+    "icp_med_after_mm": 75.82968244533753,
+    "raw_new": {
+     "faces": 22678,
+     "vertices": 11363,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 7974.750352539516,
+     "bodies": 14
+    }
+   },
+   "kit": {
+    "payload_chars": 75360,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2072,
+    "watertight": false,
+    "volume_cm3": 7989.614719906073,
+    "bodies": 17,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     1.2850902515495128,
+     4.8386960272706805
+    ],
+    "budget_to_raw_p50_max_mm": [
+     1.2765599716656337,
+     4.887311040367458
+    ]
+   }
+  },
+  "ep31/plastic_dish_rack": {
+   "mesh": "meshes/ep31/plastic_dish_rack.glb",
+   "sha256": "56153ee52f91a88b98932b7370cc527ee245a702d205162ffd06dff229929e4b",
+   "sha256_selection": "56153ee52f91a88b98932b7370cc527ee245a702d205162ffd06dff229929e4b",
+   "lib_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "frame": {
+    "extent_mm_new": [
+     6094.02,
+     852.57,
+     4245.51
+    ],
+    "extent_mm_lib": [
+     109.43,
+     159.12,
+     495.98
+    ],
+    "centroid_offset_mm": 2502.935507648647,
+    "centroid_delta_mm": [
+     -1334.472,
+     515.273,
+     2053.866
+    ],
+    "axis_angle_deg": [
+     55.632,
+     85.11,
+     88.196
+    ],
+    "surf_sym_median_mm": 47.07975879164658,
+    "icp_rot_deg": 89.32304092973571,
+    "icp_trans_mm": 2244.0830024655074,
+    "icp_centroid_motion_mm": 2250.0796006154446,
+    "icp_trans_vec_mm": [
+     -706.086,
+     890.37,
+     -1935.095
+    ],
+    "icp_med_before_mm": 2443.7362713058083,
+    "icp_med_after_mm": 1260.6535761098266,
+    "raw_new": {
+     "faces": 17390,
+     "vertices": 8721,
+     "watertight": true,
+     "winding_consistent": true,
+     "volume_cm3": 239452.3778022342,
+     "bodies": 20
+    }
+   },
+   "kit": {
+    "payload_chars": 72956,
+    "decoded_shape": [
+     [
+      4096,
+      3
+     ],
+     [
+      4096,
+      3
+     ]
+    ],
+    "decoded_equal": true,
+    "nonpad_faces": 4096,
+    "vertices_used": 2076,
+    "watertight": false,
+    "volume_cm3": 239404.58043239458,
+    "bodies": 21,
+    "finite": true,
+    "quality_flags": [],
+    "raw_to_budget_p50_max_mm": [
+     8.283087686971328,
+     28.263950217996765
+    ],
+    "budget_to_raw_p50_max_mm": [
+     8.304953151850238,
+     27.862228848589645
+    ]
+   }
+  }
+ },
+ "library_kit": {
+  "white_pot": {
+   "payload_chars": 86304,
+   "decoded_shape": [
+    [
+     4096,
+     3
+    ],
+    [
+     4096,
+     3
+    ]
+   ],
+   "decoded_equal": true,
+   "nonpad_faces": 4096,
+   "vertices_used": 2042,
+   "watertight": false,
+   "volume_cm3": 616.9142948720371,
+   "bodies": 6,
+   "finite": true,
+   "quality_flags": [],
+   "raw_to_budget_p50_max_mm": [
+    0.5452893230834966,
+    4.050282309038652
+   ],
+   "budget_to_raw_p50_max_mm": [
+    0.54541549438322,
+    2.6744329012951336
+   ]
+  },
+  "beige_cup": {
+   "payload_chars": 73004,
+   "decoded_shape": [
+    [
+     4096,
+     3
+    ],
+    [
+     4096,
+     3
+    ]
+   ],
+   "decoded_equal": true,
+   "nonpad_faces": 4096,
+   "vertices_used": 2052,
+   "watertight": true,
+   "volume_cm3": 157.33423280505102,
+   "bodies": 2,
+   "finite": true,
+   "quality_flags": [],
+   "raw_to_budget_p50_max_mm": [
+    0.2743406885721573,
+    1.826304229503488
+   ],
+   "budget_to_raw_p50_max_mm": [
+    0.27471232157272263,
+    1.1679709413347228
+   ]
+  },
+  "blue_cup": {
+   "payload_chars": 81436,
+   "decoded_shape": [
+    [
+     4096,
+     3
+    ],
+    [
+     4096,
+     3
+    ]
+   ],
+   "decoded_equal": true,
+   "nonpad_faces": 4096,
+   "vertices_used": 2046,
+   "watertight": false,
+   "volume_cm3": 398.9989187002177,
+   "bodies": 6,
+   "finite": true,
+   "quality_flags": [],
+   "raw_to_budget_p50_max_mm": [
+    0.3615886731162107,
+    2.9139488803706475
+   ],
+   "budget_to_raw_p50_max_mm": [
+    0.3564419087813404,
+    1.2663851840379772
+   ]
+  },
+  "plastic_dish_rack": {
+   "payload_chars": 88668,
+   "decoded_shape": [
+    [
+     4096,
+     3
+    ],
+    [
+     4096,
+     3
+    ]
+   ],
+   "decoded_equal": true,
+   "nonpad_faces": 4096,
+   "vertices_used": 2033,
+   "watertight": false,
+   "volume_cm3": 837.6836958640522,
+   "bodies": 10,
+   "finite": true,
+   "quality_flags": [],
+   "raw_to_budget_p50_max_mm": [
+    0.7109714691816647,
+    5.3436637231684445
+   ],
+   "budget_to_raw_p50_max_mm": [
+    0.6976771348386286,
+    4.708848074527814
+   ]
+  }
+ }
+}

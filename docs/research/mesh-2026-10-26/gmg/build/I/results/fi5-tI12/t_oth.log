@@ -1,0 +1,242 @@
+test_sweeper (__main__.Others.test_sweeper) ... [2026-10-31 18:11:07.659] [CoACD] [info] threshold               0.02
+[2026-10-31 18:11:07.668] [CoACD] [info] max # convex hull       82
+[2026-10-31 18:11:07.668] [CoACD] [info] preprocess mode         auto
+[2026-10-31 18:11:07.668] [CoACD] [info] preprocess resolution   50
+[2026-10-31 18:11:07.668] [CoACD] [info] pca                     false
+[2026-10-31 18:11:07.668] [CoACD] [info] mcts max depth          3
+[2026-10-31 18:11:07.668] [CoACD] [info] mcts nodes              20
+[2026-10-31 18:11:07.668] [CoACD] [info] mcts iterations         150
+[2026-10-31 18:11:07.668] [CoACD] [info] merge                   true
+[2026-10-31 18:11:07.668] [CoACD] [info] decimate                false
+[2026-10-31 18:11:07.668] [CoACD] [info] max_ch_vertex           256
+[2026-10-31 18:11:07.668] [CoACD] [info] extrude                 false
+[2026-10-31 18:11:07.668] [CoACD] [info] extrude margin          0.01
+[2026-10-31 18:11:07.668] [CoACD] [info] approximate mode        ch
+[2026-10-31 18:11:07.668] [CoACD] [info] seed                    0
+[2026-10-31 18:11:07.668] [CoACD] [info]  - Manifold Check
+[2026-10-31 18:11:07.668] [CoACD] [info] [1/3] Edge check finish
+[2026-10-31 18:11:07.668] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-31 18:11:07.668] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-31 18:11:07.668] [CoACD] [info] Manifold Check Time: 0.000166s
+[2026-10-31 18:11:07.668] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-31 18:11:07.668] [CoACD] [info] # Points: 16
+[2026-10-31 18:11:07.668] [CoACD] [info] # Triangles: 28
+[2026-10-31 18:11:07.668] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-31 18:11:07.668] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-31 18:11:07.696] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:11:09.125] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:11:09.125] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-31 18:11:09.125] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:11:09.144] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:11:10.869] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:11:10.869] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-31 18:11:10.888] [CoACD] [info] Processing [75.0%]
+[2026-10-31 18:11:10.900] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:11:10.904] [CoACD] [info] Processing [25.0%]
+[2026-10-31 18:11:10.912] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:11:13.478] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:11:13.478] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-31 18:11:13.492] [CoACD] [info] Processing [75.0%]
+[2026-10-31 18:11:13.501] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:11:13.508] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:11:13.520] [CoACD] [info] Processing [25.0%]
+[2026-10-31 18:11:14.020] [CoACD] [info] Processing [12.5%]
+[2026-10-31 18:11:15.226] [CoACD] [info] Processing [87.5%]
+[2026-10-31 18:11:15.430] [CoACD] [info] Processing [62.5%]
+[2026-10-31 18:11:15.511] [CoACD] [info] Processing [37.5%]
+[2026-10-31 18:11:16.556] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:11:16.556] [CoACD] [info] iter 4 ---- waiting pool: 10
+[2026-10-31 18:11:16.568] [CoACD] [info] Processing [60.0%]
+[2026-10-31 18:11:16.576] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:11:16.588] [CoACD] [info] Processing [80.0%]
+[2026-10-31 18:11:16.836] [CoACD] [info] Processing [40.0%]
+[2026-10-31 18:11:17.039] [CoACD] [info] Processing [20.0%]
+[2026-10-31 18:11:18.248] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:11:18.248] [CoACD] [info] iter 5 ---- waiting pool: 2
+[2026-10-31 18:11:18.248] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:11:18.256] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:11:18.415] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:11:18.415] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-31 18:11:24.236] [CoACD] [info] Compute Time: 16.567728432994045s
+[2026-10-31 18:11:24.236] [CoACD] [info] # Convex Hulls: 14
+18:11:26 pieces A 3_coacd 14 {'pass_': True, 'n': 14, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+[2026-10-31 18:11:27.015] [CoACD] [info] threshold               0.02
+[2026-10-31 18:11:27.024] [CoACD] [info] max # convex hull       82
+[2026-10-31 18:11:27.024] [CoACD] [info] preprocess mode         auto
+[2026-10-31 18:11:27.024] [CoACD] [info] preprocess resolution   50
+[2026-10-31 18:11:27.024] [CoACD] [info] pca                     false
+[2026-10-31 18:11:27.024] [CoACD] [info] mcts max depth          3
+[2026-10-31 18:11:27.024] [CoACD] [info] mcts nodes              20
+[2026-10-31 18:11:27.024] [CoACD] [info] mcts iterations         150
+[2026-10-31 18:11:27.024] [CoACD] [info] merge                   true
+[2026-10-31 18:11:27.024] [CoACD] [info] decimate                false
+[2026-10-31 18:11:27.024] [CoACD] [info] max_ch_vertex           256
+[2026-10-31 18:11:27.024] [CoACD] [info] extrude                 false
+[2026-10-31 18:11:27.024] [CoACD] [info] extrude margin          0.01
+[2026-10-31 18:11:27.024] [CoACD] [info] approximate mode        ch
+[2026-10-31 18:11:27.024] [CoACD] [info] seed                    0
+[2026-10-31 18:11:27.024] [CoACD] [info]  - Manifold Check
+[2026-10-31 18:11:27.024] [CoACD] [info] [1/3] Edge check finish
+[2026-10-31 18:11:27.024] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-31 18:11:27.024] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-31 18:11:27.024] [CoACD] [info] Manifold Check Time: 5.8e-05s
+[2026-10-31 18:11:27.024] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-31 18:11:27.024] [CoACD] [info] # Points: 8
+[2026-10-31 18:11:27.024] [CoACD] [info] # Triangles: 12
+[2026-10-31 18:11:27.024] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-31 18:11:27.024] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-31 18:11:27.028] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:11:27.104] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:11:27.104] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-31 18:11:27.104] [CoACD] [info] Compute Time: 0.07996463400195353s
+[2026-10-31 18:11:27.104] [CoACD] [info] # Convex Hulls: 1
+18:11:27 pieces B 3_coacd 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:12:04 F-I5 A <- B [{"gates": {"voxels": 38, "run_kind": "SLIDE", "run": [42, 52], "n_build": 11, "sweep_share": 1.0, "observed_voxels": 38, "persistent_nmin": 5, "pass_": true}, "rest": {"static_frames": 0, "hands_off_static": 0, "assembled_hands_off": 0, "s_frames": [], "flags": [], "rest_source": null}, "T_rest": null, "overshoot_frames": [], "carve_frames": 8, "build_frames_entered": 8, "clearance": {"surface_samples": 67212, "in_Rplus": 5331, "sigma_sup": 1.0, "c_mm": 1.0}, "R_voxels": 38, "Rplus_voxels": 207}, {"gates": {"voxels": 15, "run_kind": "SEAT", "run": [27, 37], "n_build": 11, "sweep_share": 1.0, "observed_voxels": 15, "persistent_nmin": 5, "pass_": true}, "rest": {"static_frames": 5, "hands_off_static": 0, "assembled_hands_off": 0, "s_frames": [], "flags": [], "rest_source": null}, "T_rest": null, "overshoot_frames": [], "carve_frames": 7, "build_frames_entered": 7, "clearance": {"surface_samples": 67212, "in_Rplus": 2572, "sigma_sup": 0.00107, "c_mm": 0.0, "flag_c_zero": "c_zero"}, "R_voxels": 15, "Rplus_voxels": 105}]
+[2026-10-31 18:12:06.939] [CoACD] [info] threshold               0.02
+[2026-10-31 18:12:06.939] [CoACD] [info] max # convex hull       82
+[2026-10-31 18:12:06.940] [CoACD] [info] preprocess mode         auto
+[2026-10-31 18:12:06.940] [CoACD] [info] preprocess resolution   50
+[2026-10-31 18:12:06.940] [CoACD] [info] pca                     false
+[2026-10-31 18:12:06.940] [CoACD] [info] mcts max depth          3
+[2026-10-31 18:12:06.940] [CoACD] [info] mcts nodes              20
+[2026-10-31 18:12:06.940] [CoACD] [info] mcts iterations         150
+[2026-10-31 18:12:06.940] [CoACD] [info] merge                   true
+[2026-10-31 18:12:06.940] [CoACD] [info] decimate                false
+[2026-10-31 18:12:06.940] [CoACD] [info] max_ch_vertex           256
+[2026-10-31 18:12:06.940] [CoACD] [info] extrude                 false
+[2026-10-31 18:12:06.940] [CoACD] [info] extrude margin          0.01
+[2026-10-31 18:12:06.940] [CoACD] [info] approximate mode        ch
+[2026-10-31 18:12:06.940] [CoACD] [info] seed                    0
+[2026-10-31 18:12:06.940] [CoACD] [info]  - Manifold Check
+[2026-10-31 18:12:06.940] [CoACD] [info] [1/3] Edge check finish
+[2026-10-31 18:12:06.943] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-31 18:12:06.952] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-31 18:12:06.952] [CoACD] [info] Manifold Check Time: 0.004653s
+[2026-10-31 18:12:06.952] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-31 18:12:06.952] [CoACD] [info] # Points: 71
+[2026-10-31 18:12:06.952] [CoACD] [info] # Triangles: 138
+[2026-10-31 18:12:06.952] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-31 18:12:06.952] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-31 18:12:06.952] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:08.808] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:08.808] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-31 18:12:08.824] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:08.844] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:11.488] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:11.488] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-31 18:12:11.488] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:11.488] [CoACD] [info] Processing [25.0%]
+[2026-10-31 18:12:11.488] [CoACD] [info] Processing [75.0%]
+[2026-10-31 18:12:11.496] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:15.180] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:15.180] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-31 18:12:15.184] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:15.196] [CoACD] [info] Processing [75.0%]
+[2026-10-31 18:12:15.200] [CoACD] [info] Processing [25.0%]
+[2026-10-31 18:12:15.212] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:18.099] [CoACD] [info] Processing [12.5%]
+[2026-10-31 18:12:18.495] [CoACD] [info] Processing [87.5%]
+[2026-10-31 18:12:18.526] [CoACD] [info] Processing [62.5%]
+[2026-10-31 18:12:19.232] [CoACD] [info] Processing [37.5%]
+[2026-10-31 18:12:21.260] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:21.260] [CoACD] [info] iter 4 ---- waiting pool: 12
+[2026-10-31 18:12:21.280] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:21.284] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:21.354] [CoACD] [info] Processing [83.3%]
+[2026-10-31 18:12:21.825] [CoACD] [info] Processing [16.7%]
+[2026-10-31 18:12:22.919] [CoACD] [info] Processing [33.3%]
+[2026-10-31 18:12:23.609] [CoACD] [info] Processing [66.7%]
+[2026-10-31 18:12:24.464] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:24.464] [CoACD] [info] iter 5 ---- waiting pool: 6
+[2026-10-31 18:12:24.476] [CoACD] [info] Processing [66.7%]
+[2026-10-31 18:12:24.492] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:24.492] [CoACD] [info] Processing [83.3%]
+[2026-10-31 18:12:24.516] [CoACD] [info] Processing [33.3%]
+[2026-10-31 18:12:24.649] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:26.358] [CoACD] [info] Processing [16.7%]
+[2026-10-31 18:12:26.996] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:26.996] [CoACD] [info] iter 6 ---- waiting pool: 6
+[2026-10-31 18:12:27.020] [CoACD] [info] Processing [33.3%]
+[2026-10-31 18:12:27.032] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:27.040] [CoACD] [info] Processing [66.7%]
+[2026-10-31 18:12:27.052] [CoACD] [info] Processing [83.3%]
+[2026-10-31 18:12:28.126] [CoACD] [info] Processing [16.7%]
+[2026-10-31 18:12:29.514] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:30.712] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:30.712] [CoACD] [info] iter 7 ---- waiting pool: 6
+[2026-10-31 18:12:30.720] [CoACD] [info] Processing [33.3%]
+[2026-10-31 18:12:30.728] [CoACD] [info] Processing [83.3%]
+[2026-10-31 18:12:30.740] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:30.748] [CoACD] [info] Processing [66.7%]
+[2026-10-31 18:12:30.752] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:30.772] [CoACD] [info] Processing [16.7%]
+[2026-10-31 18:12:31.724] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:31.724] [CoACD] [info] iter 8 ---- waiting pool: 2
+[2026-10-31 18:12:31.764] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:31.776] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:31.830] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:31.830] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-31 18:12:38.918] [CoACD] [info] Compute Time: 31.965700035005284s
+[2026-10-31 18:12:38.918] [CoACD] [info] # Convex Hulls: 24
+18:12:44 F-I5 carve A {"route": "3_coacd", "K_pieces": 15, "cut_cm3": 6.93, "carved_body_cm3": 194.346, "ladder": [{"route": "3_coacd", "report": {"steps": 3, "stuck": 0, "pieces": 27, "max_excess_cm3": 0.08, "cap": 82, "coacd_pieces": 24, "sec": 37.7}, "gate": {"pass_": true, "n": 27, "max_cm3": 0.08, "sum_cm3": 0.08, "over_tol": 0, "keepout_points": 1, "keepout_cm3": 0.08}}], "carved_route": "3_coacd", "sec": 40.1}
+18:12:55 sweeper {"in_scope": true, "receiver": "A", "deliver": "default", "containment": {"A": 0.18, "B": 0.0072}, "c_mm": 1.0, "sigma_sup": 1.0, "overshoot": 0, "caps": {"removed_cm3": 4.076, "cumulative_share": 0.0212, "vol0_cm3": 192.39, "reach": 0.963, "topology": {"default": [1, 1], "carved": [1, 1]}, "ok_vol": true, "ok_reach": false, "ok_topology": true, "pass_": false, "fail": "budget_iv_fail"}, "tests": null, "failing": null, "S": [], "P2": null, "P2_default": null, "shift": 1.0, "one_sided": null, "gates": {"A<-B#0": {"voxels": 15, "run_kind": "SEAT", "run": [27, 37], "n_build": 11, "sweep_share": 1.0, "observed_voxels": 15, "persistent_nmin": 5, "pass_": true}, "A<-B#1": {"voxels": 38, "run_kind": "SLIDE", "run": [42, 52], "n_build": 11, "sweep_share": 1.0, "observed_voxels": 38, "persistent_nmin": 5, "pass_": true}, "A<-B#2": {"voxels": 50, "run_kind": "SEAT", "run": [66, 89], "n_build": 14, "sweep_share": 0.0, "observed_voxels": 50, "persistent_nmin": 5, "pass_": false, "fail": "sweep"}, "B<-A#3": {"voxels": 50, "run_kind": "INSERTION", "run": [20, 89], "n_build": 40, "sweep_share": 0.8, "observed_voxels": 50, "persistent_nmin": 10, "pass_": true}}, "carve": {"route": "3_coacd", "K_pieces": 15, "cut_cm3": 6.93, "carved_body_cm3": 194.346, "ladder": [{"route": "3_coacd", "report": {"steps": 3, "stuck": 0, "pieces": 27, "max_excess_cm3": 0.08, "cap": 82, "coacd_pieces": 24, "sec": 37.7}, "gate": {"pass_": true, "n": 27, "max_cm3": 0.08, "sum_cm3": 0.08, "over_tol": 0, "keepout_points": 1, "keepout_cm3": 0.08}}], "carved_route": "3_coacd", "sec": 40.1}}
+ok
+test_rack (__main__.Others.test_rack) ... [2026-10-31 18:12:58.156] [CoACD] [info] threshold               0.02
+[2026-10-31 18:12:58.164] [CoACD] [info] max # convex hull       82
+[2026-10-31 18:12:58.164] [CoACD] [info] preprocess mode         auto
+[2026-10-31 18:12:58.164] [CoACD] [info] preprocess resolution   50
+[2026-10-31 18:12:58.164] [CoACD] [info] pca                     false
+[2026-10-31 18:12:58.164] [CoACD] [info] mcts max depth          3
+[2026-10-31 18:12:58.164] [CoACD] [info] mcts nodes              20
+[2026-10-31 18:12:58.164] [CoACD] [info] mcts iterations         150
+[2026-10-31 18:12:58.164] [CoACD] [info] merge                   true
+[2026-10-31 18:12:58.164] [CoACD] [info] decimate                false
+[2026-10-31 18:12:58.164] [CoACD] [info] max_ch_vertex           256
+[2026-10-31 18:12:58.164] [CoACD] [info] extrude                 false
+[2026-10-31 18:12:58.164] [CoACD] [info] extrude margin          0.01
+[2026-10-31 18:12:58.164] [CoACD] [info] approximate mode        ch
+[2026-10-31 18:12:58.164] [CoACD] [info] seed                    0
+[2026-10-31 18:12:58.164] [CoACD] [info]  - Manifold Check
+[2026-10-31 18:12:58.164] [CoACD] [info] [1/3] Edge check finish
+[2026-10-31 18:12:58.164] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-31 18:12:58.164] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-31 18:12:58.164] [CoACD] [info] Manifold Check Time: 0.000344s
+[2026-10-31 18:12:58.164] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-31 18:12:58.164] [CoACD] [info] # Points: 24
+[2026-10-31 18:12:58.164] [CoACD] [info] # Triangles: 44
+[2026-10-31 18:12:58.164] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-31 18:12:58.164] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-31 18:12:58.172] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:59.104] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:59.104] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-31 18:12:59.104] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:12:59.116] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:59.928] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:12:59.928] [CoACD] [info] iter 2 ---- waiting pool: 2
+[2026-10-31 18:12:59.944] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:12:59.964] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:13:00.060] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:13:00.060] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-31 18:13:00.468] [CoACD] [info] Compute Time: 2.3035503459977917s
+[2026-10-31 18:13:00.468] [CoACD] [info] # Convex Hulls: 3
+18:13:07 pieces A 3_coacd 3 {'pass_': True, 'n': 3, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:13:19 pieces B 2_lathe 65 {'pass_': True, 'n': 65, 'max_cm3': 0.168, 'sum_cm3': 4.816, 'over_tol': 0, 'keepout_points': 601, 'keepout_cm3': 4.808}
+18:13:35 F-I5 A <- B [{"gates": {"voxels": 50, "run_kind": "INSERTION", "run": [29, 89], "n_build": 31, "sweep_share": 1.0, "observed_voxels": 2, "persistent_nmin": 8, "pass_": true}, "rest": {"static_frames": 41, "hands_off_static": 30, "assembled_hands_off": 18, "s_frames": [81, 62], "flags": [], "rest_source": "assembled"}, "T_rest": [[0.999998, 3.7e-05, 0.001846, 0.00555], [-3.7e-05, 1.0, -0.000338, -0.00017], [-0.001846, 0.000338, 0.999998, 0.009963], [0.0, 0.0, 0.0, 1.0]], "overshoot_frames": [], "carve_frames": 29, "build_frames_entered": 29, "clearance": {"surface_samples": 279984, "in_Rplus": 16165, "sigma_sup": 1.0, "c_mm": 1.0}, "R_voxels": 50, "Rplus_voxels": 282}]
+[2026-10-31 18:14:10.603] [CoACD] [info] threshold               0.02
+[2026-10-31 18:14:10.612] [CoACD] [info] max # convex hull       82
+[2026-10-31 18:14:10.612] [CoACD] [info] preprocess mode         auto
+[2026-10-31 18:14:10.612] [CoACD] [info] preprocess resolution   50
+[2026-10-31 18:14:10.612] [CoACD] [info] pca                     false
+[2026-10-31 18:14:10.612] [CoACD] [info] mcts max depth          3
+[2026-10-31 18:14:10.612] [CoACD] [info] mcts nodes              20
+[2026-10-31 18:14:10.612] [CoACD] [info] mcts iterations         150
+[2026-10-31 18:14:10.612] [CoACD] [info] merge                   true
+[2026-10-31 18:14:10.612] [CoACD] [info] decimate                false
+[2026-10-31 18:14:10.612] [CoACD] [info] max_ch_vertex           256
+[2026-10-31 18:14:10.612] [CoACD] [info] extrude                 false
+[2026-10-31 18:14:10.612] [CoACD] [info] extrude margin          0.01
+[2026-10-31 18:14:10.612] [CoACD] [info] approximate mode        ch
+[2026-10-31 18:14:10.612] [CoACD] [info] seed                    0
+[2026-10-31 18:14:10.612] [CoACD] [info]  - Manifold Check
+[2026-10-31 18:14:10.613] [CoACD] [info] [1/3] Edge check finish
+python: /project/src/intersection.h:664: static void threeyd::moeller::TriangleIntersects<TemplatedVec>::isect2(const TemplatedVec&, const TemplatedVec&, const TemplatedVec&, threeyd::moeller::TriangleIntersects<TemplatedVec>::declfloat, threeyd::moeller::TriangleIntersects<TemplatedVec>::declfloat, threeyd::moeller::TriangleIntersects<TemplatedVec>::declfloat, threeyd::moeller::TriangleIntersects<TemplatedVec>::declfloat, threeyd::moeller::TriangleIntersects<TemplatedVec>::declfloat, threeyd::moeller::TriangleIntersects<TemplatedVec>::declfloat, threeyd::moeller::TriangleIntersects<TemplatedVec>::declfloat&, threeyd::moeller::TriangleIntersects<TemplatedVec>::declfloat&, TemplatedVec&, TemplatedVec&) [with TemplatedVec = coacd::IntersectVector3; threeyd::moeller::TriangleIntersects<TemplatedVec>::declfloat = float]: Assertion `d0 != d2' failed.

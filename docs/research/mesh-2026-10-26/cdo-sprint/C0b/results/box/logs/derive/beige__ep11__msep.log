@@ -1,0 +1,1 @@
+{"rule": "M_sep(own) PREREG C0b 10", "obj": "beige_cup", "others": ["blue_cup"], "T": 137, "stride": 2, "frames_evaluated": 69, "frames_kept": 32, "frames_kept_with_points": 32, "pts_in": 511462, "pts_out": 502266, "qualifies": true, "out": "/content/results/c0b/pts/B/ep11_beige_cup_sep.npz"}

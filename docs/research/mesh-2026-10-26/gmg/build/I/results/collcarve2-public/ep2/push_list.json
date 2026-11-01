@@ -1,0 +1,90 @@
+[
+ {
+  "target": "white_pot",
+  "partner": "white_pot_lid",
+  "kind": "PUSH",
+  "frames": [
+   0,
+   60
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "white_pot",
+  "partner": "white_pot_lid",
+  "kind": "PUSH",
+  "frames": [
+   272,
+   342
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "white_pot",
+  "partner": "white_pot_lid",
+  "kind": "PUSH",
+  "frames": [
+   272,
+   342
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "white_pot",
+  "partner": "white_pot_lid",
+  "kind": "PUSH",
+  "frames": [
+   272,
+   342
+  ],
+  "push_mm": 2.0,
+  "why": "PUSH (a pose correction within the prior removes it)"
+ },
+ {
+  "target": "white_pot_lid",
+  "partner": "white_pot",
+  "kind": "PUSH",
+  "frames": [
+   0,
+   60
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "white_pot_lid",
+  "partner": "white_pot",
+  "kind": "PUSH",
+  "frames": [
+   272,
+   342
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "white_pot_lid",
+  "partner": "white_pot",
+  "kind": "PUSH",
+  "frames": [
+   272,
+   342
+  ],
+  "push_mm": 2.0,
+  "why": "PUSH (a pose correction within the prior removes it)"
+ },
+ {
+  "target": "white_pot_lid",
+  "partner": "white_pot",
+  "kind": "PUSH",
+  "frames": [
+   272,
+   342
+  ],
+  "push_mm": 4.0,
+  "why": "PUSH (a pose correction within the prior removes it)"
+ }
+]

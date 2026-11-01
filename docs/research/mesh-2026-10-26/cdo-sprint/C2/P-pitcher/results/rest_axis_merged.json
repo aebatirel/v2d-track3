@@ -1,0 +1,88 @@
+{
+ "rule": "mean of R^T n over resting frames on the table (PREREG A1)",
+ "axis_dir": [
+  0.03888226975891882,
+  0.6201338446278101,
+  0.7835318652393951
+ ],
+ "n_frames": 17,
+ "spread_deg": {
+  "max": 2.06,
+  "median": 0.91
+ },
+ "episodes": [
+  {
+   "poses": "data/sweep/ep21/poses.npz",
+   "table": "cdo_c2/P/diag/table_ep21.json",
+   "rest_frames": [
+    0,
+    1,
+    23,
+    131,
+    147,
+    157,
+    171,
+    185
+   ],
+   "kept": [
+    0,
+    1,
+    23,
+    131,
+    147,
+    157,
+    171,
+    185
+   ],
+   "origin_height_mm": {
+    "0": 129.5,
+    "1": 128.8,
+    "23": 129.9,
+    "131": 132.1,
+    "147": 130.8,
+    "157": 131.2,
+    "171": 133.8,
+    "185": 136.8
+   },
+   "min_origin_height_mm": 127.4
+  },
+  {
+   "poses": "data/sweep/ep22/poses.npz",
+   "table": "cdo_c2/P/diag/table_ep22.json",
+   "rest_frames": [
+    0,
+    1,
+    18,
+    119,
+    132,
+    147,
+    157,
+    174,
+    188
+   ],
+   "kept": [
+    0,
+    1,
+    18,
+    119,
+    132,
+    147,
+    157,
+    174,
+    188
+   ],
+   "origin_height_mm": {
+    "0": 130.1,
+    "1": 129.4,
+    "18": 130.2,
+    "119": 127.4,
+    "132": 127.4,
+    "147": 130.2,
+    "157": 130.9,
+    "174": 130.4,
+    "188": 129.5
+   },
+   "min_origin_height_mm": 124.2
+  }
+ ]
+}

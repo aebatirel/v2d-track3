@@ -1,0 +1,14 @@
+{
+ "obj": "blue_cup",
+ "ep": 21,
+ "file": "/content/results/c0b/pts/B/ep21_blue_cup.npz",
+ "n": 321,
+ "median_m": 0.0016584684806464885,
+ "info": {
+  "points": 1426212,
+  "samples": 27598,
+  "measured": 321,
+  "median_mm": 1.6585
+ },
+ "sec": 26.1
+}

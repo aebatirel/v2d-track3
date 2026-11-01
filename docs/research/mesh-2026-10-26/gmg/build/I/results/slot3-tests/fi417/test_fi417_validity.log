@@ -1,0 +1,28 @@
+test_round2_r0 (__main__.GateValidity.test_round2_r0) ... /home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi417.py:333: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/build/I/results/slot2-ep24/fi4o/r0/manifest.json' mode='r' encoding='utf-8'>
+  man = json.load(open(os.path.join(R2_R0, 'manifest.json')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi417.py:335: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/build/I/results/slot2-ep24/fi4o/physics_wooden_piece_1_wooden_piece_2.json' mode='r' encoding='utf-8'>
+  ph = json.load(open(os.path.join(os.path.dirname(R2_R0), f'physics_{o}_{p}.json')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi417.py:336: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/build/I/results/slot2-ep24/fi4o/decisions.json' mode='r' encoding='utf-8'>
+  dec = json.load(open(os.path.join(os.path.dirname(R2_R0), 'decisions.json')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ERROR
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3b/tests/test_fi417_validity.json
+
+======================================================================
+ERROR: test_round2_r0 (__main__.GateValidity.test_round2_r0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi417.py", line 360, in test_round2_r0
+    self.assertFalse(g['pass_'], CG.summary_line(g))
+                                 ~~~~~~~~~~~~~~~^^^
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/contactgate_fi4.py", line 403, in summary_line
+    return (f"delivered max nefc {s['delivered']['max_nefc']} / max ncon {s['delivered']['max_ncon']} (overflow copies "
+                                  ~^^^^^^^^^^^^^
+KeyError: 'delivered'
+
+----------------------------------------------------------------------
+Ran 1 test in 46.063s
+
+FAILED (errors=1)

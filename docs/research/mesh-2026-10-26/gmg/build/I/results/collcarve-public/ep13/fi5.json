@@ -1,0 +1,229 @@
+{
+ "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+ "routes": {
+  "blue_cup": {
+   "route": "4_voxels",
+   "n": 25,
+   "gate": {
+    "pass_": true,
+    "n": 25,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 1.7651
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "2_lathe",
+     "report": {
+      "profile": {
+       "bins": 97,
+       "h_span_mm": [
+        -106.11,
+        86.21
+       ],
+       "material_bins": 95,
+       "max_intervals": 2.0,
+       "wall_threshold_mm": 3.342,
+       "wall_bins": 92,
+       "solid_bins": 3,
+       "two_interval_bins": 5,
+       "r_out_mm": [
+        9.4,
+        47.68
+       ]
+      },
+      "n_sectors": 8,
+      "ring_pieces": 65,
+      "continuity": {
+       "ok": true,
+       "gaps": 0,
+       "checked": 131760
+      },
+      "handle": {
+       "points": 3982,
+       "components": [
+        {
+         "cm3": 0.68,
+         "pieces": 1
+        },
+        {
+         "cm3": 7.792,
+         "pieces": 4
+        },
+        {
+         "cm3": 1.008,
+         "pieces": 1
+        },
+        {
+         "cm3": 0.68,
+         "pieces": 1
+        },
+        {
+         "cm3": 1.552,
+         "pieces": 3
+        },
+        {
+         "cm3": 0.4,
+         "pieces": 1
+        },
+        {
+         "cm3": 8.584,
+         "pieces": 2
+        },
+        {
+         "cm3": 2.616,
+         "pieces": 1
+        },
+        {
+         "cm3": 3.568,
+         "pieces": 1
+        },
+        {
+         "cm3": 2.896,
+         "pieces": 1
+        }
+       ]
+      }
+     },
+     "gate": {
+      "pass_": false,
+      "n": 81,
+      "max_cm3": 2.008,
+      "sum_cm3": 27.04,
+      "over_tol": 22,
+      "keepout_points": 3380,
+      "keepout_cm3": 27.04
+     }
+    },
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 5.184,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 1073.5
+     },
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 5.184,
+      "sum_cm3": 32.936,
+      "over_tol": 31,
+      "keepout_points": 4056,
+      "keepout_cm3": 32.448
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 25,
+      "cells": 50,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 25,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  },
+  "plastic_dish_rack": {
+   "route": "4_voxels",
+   "n": 24,
+   "gate": {
+    "pass_": true,
+    "n": 24,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 12.8035
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 2,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 3.528,
+      "cap": 82,
+      "coacd_pieces": 80,
+      "sec": 286.1
+     },
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 3.528,
+      "sum_cm3": 87.776,
+      "over_tol": 66,
+      "keepout_points": 10946,
+      "keepout_cm3": 87.568
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 24,
+      "cells": 51,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 24,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  }
+ },
+ "diag_sink": true,
+ "pairs": {
+  "blue_cup|plastic_dish_rack": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "gates": {},
+   "in_scope": false,
+   "why": "no persistent component passes the kept gates"
+  }
+ },
+ "overlap_track": {
+  "blue_cup|plastic_dish_rack": {
+   "max_cm3": 0.0,
+   "median_cm3": 0.0
+  }
+ },
+ "decisions": [],
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep13-fi5/r0",
+ "do_not_use": null,
+ "sec": 4791.1
+}

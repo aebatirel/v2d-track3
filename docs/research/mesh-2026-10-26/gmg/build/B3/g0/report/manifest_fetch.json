@@ -1,0 +1,384 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T13:21:31Z",
+ "commit": "0b001826a113ae683a4f3d1a6d2bf888bd0a2468",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/build/B3.md"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "gmg/tools/g0_report.py",
+  "fetch",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-g0rep-6122232",
+  "--store-run",
+  "mesh-20261031-g0-937f9d7"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 13001,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-g0rep-6122232"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-g0rep-6122232",
+  "root": "runs-dev",
+  "pid": 13001,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T13:16:40Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {},
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [],
+ "constants": [],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "box/COMMIT",
+   "sha256": "6825a31921c8f2b1e259e2f4b267681c188233f16a1e9a8239ee32b2f62a63af",
+   "bytes": 41,
+   "how": "python"
+  },
+  {
+   "path": "box/SHA256SUMS",
+   "sha256": "ad50d62f527459e8c51b0d9dae824c9b2b7ca24b42d0f50b8e9cff23365bf73b",
+   "bytes": 1716,
+   "how": "python"
+  },
+  {
+   "path": "box/cloudflared.log",
+   "sha256": "ab2aa61a084dbdd2ccc9ebba658cc5237f59f5df865d3318e18193e9104f3e43",
+   "bytes": 5707,
+   "how": "python"
+  },
+  {
+   "path": "box/g0_job.log",
+   "sha256": "75bc49c097ee55f776f4e58d4addfc1ec3a24e8fb93ac0dd2ff46c451bb698fe",
+   "bytes": 2396,
+   "how": "python"
+  },
+  {
+   "path": "box/job.log",
+   "sha256": "c83a44db02e6b7cb7615d2a85aba6242923d76437714eb05d6cca395fe26e4cf",
+   "bytes": 67,
+   "how": "python"
+  },
+  {
+   "path": "box/jobs.json",
+   "sha256": "faae4254a4bfe98298c085091a11dc79d7c33a04347527ee9be6ddd3eb80b140",
+   "bytes": 1564,
+   "how": "python"
+  },
+  {
+   "path": "box/pip_freeze_genv3.txt",
+   "sha256": "c2b6f1791a03d15c68909aa0b8bb311846cbd269219e5e329f1f13418df20ae3",
+   "bytes": 3579,
+   "how": "python"
+  },
+  {
+   "path": "box/rexec.log",
+   "sha256": "71b16b96ce891910c024aed1b4dd6ad866f81d7d5960e7318d4c2ddf4a12806d",
+   "bytes": 968,
+   "how": "python"
+  },
+  {
+   "path": "box/run_job.log",
+   "sha256": "4c7f823ab1290f3cb2e3e2975e47b7b0038c414417c38c20c88da77989224e76",
+   "bytes": 687,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d.log",
+   "sha256": "c27e7b83fd7d6a63936b3b913b97aba0f6d886935b045bab8632344481f12b55",
+   "bytes": 30382,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_control_k24_s0.json",
+   "sha256": "2c9f54d77c3df0cf9178fcdf6bcdaea32d3ca301e4254b0821a09f1605d93db6",
+   "bytes": 2393,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_control_k24_s0.ply",
+   "sha256": "6f74a1b52610c6811b4226602ac7d782b39ad554eb422e8be74d6fa237b79616",
+   "bytes": 3946469,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_control_k24_s1.json",
+   "sha256": "f5ed3bceb78c56637b08ff9ab8e7c6c30f6fb644941074e8313fe7c033787c6f",
+   "bytes": 2393,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_control_k24_s1.ply",
+   "sha256": "5c8338152c1e3b47264359377a5f6776c135bfb525eae5f76d63d0c13e395111",
+   "bytes": 3151528,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_lid_control_k318_s0.json",
+   "sha256": "6c895f3a0e6167924a0776a23ee9310ce39dcc5c0dd55b9a398f255aed473b2a",
+   "bytes": 2442,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_lid_control_k318_s0.ply",
+   "sha256": "0f24838325e226dd6e69a752360a66ceb8306e85618acc77353abfc58bb275ab",
+   "bytes": 7600413,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_lid_control_k318_s1.json",
+   "sha256": "5a6b27f2546ee1c7fda506691fa20c0623d43e16cd8a7d3850b7249f6f664e39",
+   "bytes": 2451,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_lid_control_k318_s1.ply",
+   "sha256": "688c4445287847e6081dde037901886fc0ca7cf7a790c63eefd2790652d1ae05",
+   "bytes": 7600533,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_lid_primary_k132_s0.json",
+   "sha256": "80e5079a6a263bce4e09f4b4d935a28061854f8800a4c8482d37cd872e7fed02",
+   "bytes": 2435,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_lid_primary_k132_s0.ply",
+   "sha256": "9717079cd7477f2badd023379973f455dfa80c136f6a95fae87e66df2cdc2751",
+   "bytes": 7600749,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_lid_primary_k132_s1.json",
+   "sha256": "076002a3a904f4c51b7a92a6d2e3dfa069cc36c68b9943283b64934f4790431a",
+   "bytes": 2435,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_lid_primary_k132_s1.ply",
+   "sha256": "3425dbd99caf3549ac21bd4f1ecd383455aaf4c6127c4e8f1e8b283e298cc5d6",
+   "bytes": 7600605,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_primary_k246_s0.json",
+   "sha256": "c52ad1345202c32e4d4941e8333fb184795dff5ff5d0f2c62b8e3f5bd820ad9b",
+   "bytes": 2385,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_primary_k246_s0.ply",
+   "sha256": "a62abe8ec45ebee2a18cf9b430ab907edfe90cfc0d0c451bdc7d43d27a844cdc",
+   "bytes": 3765916,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_primary_k246_s1.json",
+   "sha256": "50be699491dcfd7442d65dcae0cfe2be980ca2aed8d0b8d755ab10f88b88ced8",
+   "bytes": 2394,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/ep2_white_pot_primary_k246_s1.ply",
+   "sha256": "bd83eb87fa783dc56dca0986ffe3e994ba2db67a1f3be5ca4e8ed80f0261be8b",
+   "bytes": 3369092,
+   "how": "python"
+  },
+  {
+   "path": "box/sam3d/gen_log.jsonl",
+   "sha256": "13ff03b843bfe8aca8b56c66a23140f0760e253f9ac075b99111ea4d34f6c1cf",
+   "bytes": 16612,
+   "how": "python"
+  },
+  {
+   "path": "box/setup.log",
+   "sha256": "02cfe739ca31ad2f0a32bddc167864eca09ca6430545dbcc28c461b410681b4b",
+   "bytes": 1565,
+   "how": "python"
+  },
+  {
+   "path": "box/tunnel.log",
+   "sha256": "30d7cd170f965a624d49346021c4900b07a27c12a3af8aa0fc4a0f5b1394e498",
+   "bytes": 472,
+   "how": "python"
+  },
+  {
+   "path": "box/watchdog.log",
+   "sha256": "c83a44db02e6b7cb7615d2a85aba6242923d76437714eb05d6cca395fe26e4cf",
+   "bytes": 67,
+   "how": "python"
+  },
+  {
+   "path": "inputs/SHA256SUMS",
+   "sha256": "ad50d62f527459e8c51b0d9dae824c9b2b7ca24b42d0f50b8e9cff23365bf73b",
+   "bytes": 1716,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_control_k24.json",
+   "sha256": "f878d222d67440a8fed8f8394a2f02ec0522a28e31120a38909aa88b000d5fa7",
+   "bytes": 1824,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_control_k24.png",
+   "sha256": "86760d062fa7eaec56bcc611d52c5a06b49f29318d0dd73e0f14fed8f0dbc8dd",
+   "bytes": 2777876,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_control_k24_mask.png",
+   "sha256": "50978b9d8415b40aef02c8ad63f2e0e8dc72ee4bda20918a6a2437f5ba7aab0d",
+   "bytes": 5306,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_control_k24_pointmap.npz",
+   "sha256": "52de7b578b4b78ca1470455ed5b62b5fc6abb40df8ac8fbde19e39aec27f6125",
+   "bytes": 973867,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_lid_control_k318.json",
+   "sha256": "99a5355f6bb24bb066bb1d141e3e28736652f5e971ec4850361fc9d821bf3b77",
+   "bytes": 1847,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_lid_control_k318.png",
+   "sha256": "a09f15dbcced767a1b352da255e98221cff0e45b73e1398c68068cdd1f46f2af",
+   "bytes": 2741892,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_lid_control_k318_mask.png",
+   "sha256": "2a3b4cc184c94aafc47b2191473ef15516eed2097d539b22e5cc27b03cd4da40",
+   "bytes": 4638,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_lid_control_k318_pointmap.npz",
+   "sha256": "cb685500982875e20b464d94f21de79c7e855e94621d75115a1f7fdf0f31f56e",
+   "bytes": 714401,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_lid_primary_k132.json",
+   "sha256": "12c3c650d461298af0c9153a9097ece2849b3b63147ada71329101350ec49a47",
+   "bytes": 1811,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_lid_primary_k132.png",
+   "sha256": "e905b61ad8b28d8891752e0a970c88ab91b7259885dafdf954d5ad6a0f755919",
+   "bytes": 2533638,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_lid_primary_k132_mask.png",
+   "sha256": "4a55ef187098acfb1af100a1a1f71aa3f49275227fa1de84b2b9bb7918676008",
+   "bytes": 4334,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_lid_primary_k132_pointmap.npz",
+   "sha256": "42af884fd025cdae82ba9ef957fa70edda31d148c00d134d6404d5933b90e447",
+   "bytes": 667591,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_primary_k246.json",
+   "sha256": "56104dcec801b3941a687c81cf9bca33495c41624368e1fcbecf5de0c46c6801",
+   "bytes": 1806,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_primary_k246.png",
+   "sha256": "5e0884a4b07c51dea0c35041e17ab656e4ef267ce1cceaf72af9a0e24969a685",
+   "bytes": 2630531,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_primary_k246_mask.png",
+   "sha256": "0a83a8dc09334d84afd0d2acbfcddbe0ab6f5312523a77c4043df36a4a8f2dfc",
+   "bytes": 5366,
+   "how": "python"
+  },
+  {
+   "path": "inputs/ep2_white_pot_primary_k246_pointmap.npz",
+   "sha256": "5ffd9b390783752b9ca3ac979d4accb17fcec7594cc5fe7abfed41d324c6d5ab",
+   "bytes": 926092,
+   "how": "python"
+  },
+  {
+   "path": "inputs/jobs.json",
+   "sha256": "faae4254a4bfe98298c085091a11dc79d7c33a04347527ee9be6ddd3eb80b140",
+   "bytes": 1564,
+   "how": "python"
+  }
+ ],
+ "extra": {
+  "step": "B3",
+  "what": "G0 fetch",
+  "store_run": "mesh-20261031-g0-937f9d7"
+ }
+}

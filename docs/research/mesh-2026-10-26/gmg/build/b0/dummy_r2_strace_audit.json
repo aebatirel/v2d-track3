@@ -1,0 +1,55 @@
+{
+ "log": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/audit/b0r2final-af30e98.strace",
+ "policy": "gmg",
+ "mode": "clean",
+ "manifest": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/manifest.json",
+ "events": 1809,
+ "opens_ok": 1558,
+ "forbidden": [],
+ "unlisted": [],
+ "unrecorded": [],
+ "writes_outside_run": [],
+ "system": 1292,
+ "system_files": 3,
+ "code_outside_interp": 21,
+ "git": 158,
+ "data_reads": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/roster_public.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep1/poses.npz",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep1_a.mp4",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2_a.mp4",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/bundle/note.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/run_tier.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/config/tracks.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/data/track_3_evaluation_objects.json"
+ ],
+ "det_reads": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz": 3
+ },
+ "written": [
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/bundle/hl_src.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/bundle/note.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/dummy_result.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/manifest.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/run_tier.json"
+ ],
+ "interp_dirs": [
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/lib/python3.13/",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/lib/python3.13/site-packages/",
+  "/usr/lib/python3.13/",
+  "/usr/lib/python3.13/site-packages/"
+ ],
+ "forbidden_opens": 0,
+ "forbidden_attempted_failed": 0,
+ "command": [
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/dummy_clean_run.py",
+  "--tag",
+  "b0r2final"
+ ],
+ "returncode": 0
+}

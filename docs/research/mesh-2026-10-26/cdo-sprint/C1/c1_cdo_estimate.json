@@ -1,0 +1,61 @@
+{
+ "label": "[E] same assumptions as C0/cdo_estimate.json (hidden scans = public scans; per-pair CD-O = public one-shot CD-O at the eval seed)",
+ "pairs": [
+  {
+   "ep": 10,
+   "slot": 1,
+   "object": "beige_cup",
+   "old_label": "library_v3/beige_cup",
+   "new": 0.2475,
+   "src": "C1/T1",
+   "old": 0.85625,
+   "delta_cm": -0.60875,
+   "board_delta_cm": -0.01691
+  },
+  {
+   "ep": 8,
+   "slot": 0,
+   "object": "beige_cup",
+   "old_label": "library_v3x/beige_cup",
+   "new": 0.2549,
+   "src": "C1/T1",
+   "old": 0.72995,
+   "delta_cm": -0.47505,
+   "board_delta_cm": -0.0132
+  },
+  {
+   "ep": 19,
+   "slot": 1,
+   "object": "mini_dust_pan",
+   "old_label": "library_v3/mini_dust_pan",
+   "new": 0.2587,
+   "src": "C1/T2",
+   "old": 0.3307,
+   "delta_cm": -0.072,
+   "board_delta_cm": -0.002
+  },
+  {
+   "ep": 38,
+   "slot": 0,
+   "object": "mini_dust_pan",
+   "old_label": "library_v3/mini_dust_pan",
+   "new": 0.2601,
+   "src": "C1/T2",
+   "old": 0.3307,
+   "delta_cm": -0.0706,
+   "board_delta_cm": -0.00196
+  }
+ ],
+ "board_delta_beige_both_cm": -0.0301,
+ "board_delta_beige_eval10_only_cm": -0.0169,
+ "board_delta_beige_eval8_only_cm": -0.0132,
+ "board_delta_dust_pan_cm": -0.004,
+ "board_delta_c1_cm": -0.0341,
+ "board_pack7_cm": 0.402,
+ "board_pack9a_cm": 0.3667,
+ "board_pack9a_c0_file_cm": 0.3667,
+ "board_pack9a_plus_c1_cm": 0.3327,
+ "board_pack9a_plus_c1_beige_eval10_only_cm": 0.3459,
+ "board_pack9a_plus_held_blue_cup_plus_c1_cm": 0.3004,
+ "board_pack7_plus_c1_only_cm": 0.3679
+}

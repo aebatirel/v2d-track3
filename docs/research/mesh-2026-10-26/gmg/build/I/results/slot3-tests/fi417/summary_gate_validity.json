@@ -1,0 +1,198 @@
+{
+ "gate_validity": {
+  "source": "test_fi417_validity2.json",
+  "P125_flagged": true,
+  "frames": {
+   "S1": 246,
+   "S2": 218
+  },
+  "pieces": {
+   "r2_prisms": [
+    57,
+    77
+   ],
+   "r2_default": [
+    50,
+    71
+   ],
+   "control": [
+    1,
+    1
+   ]
+  },
+  "sec": 111.8,
+  "gate_r2": {
+   "pass_": false,
+   "ratio": 27.125,
+   "no_overflow": false,
+   "scenes": {
+    "S1": {
+     "frame": 246,
+     "table_kind": "bundle",
+     "table_n": [
+      -0.132957,
+      -0.724146,
+      -0.676709
+     ],
+     "table_d": 0.52963
+    },
+    "S2": {
+     "frame": 218,
+     "table_kind": "bundle",
+     "table_n": [
+      -0.132957,
+      -0.724146,
+      -0.676709
+     ],
+     "table_d": 0.52963
+    }
+   },
+   "sec": 108.7,
+   "r2_prisms": {
+    "max_nefc": 868,
+    "max_ncon": 217,
+    "overflow_copies": 3,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 868,
+      "max_ncon": 217,
+      "median_max_nefc": 318.0,
+      "overflow_copies": 3
+     },
+     "S2": {
+      "max_nefc": 512,
+      "max_ncon": 128,
+      "median_max_nefc": 432.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "r2_default": {
+    "max_nefc": 880,
+    "max_ncon": 220,
+    "overflow_copies": 1,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 880,
+      "max_ncon": 220,
+      "median_max_nefc": 396.0,
+      "overflow_copies": 1
+     },
+     "S2": {
+      "max_nefc": 432,
+      "max_ncon": 108,
+      "median_max_nefc": 394.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 32,
+    "max_ncon": 8,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 32,
+      "max_ncon": 8,
+      "median_max_nefc": 32.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 32,
+      "max_ncon": 8,
+      "median_max_nefc": 32.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "r2_prisms": {
+     "S1": {
+      "max_nefc": 868,
+      "max_ncon": 217,
+      "overflow_copies": 1,
+      "lowered_by_mm": 16.702
+     },
+     "S2": {
+      "max_nefc": 408,
+      "max_ncon": 102,
+      "overflow_copies": 0,
+      "lowered_by_mm": 16.993
+     }
+    },
+    "r2_default": {
+     "S1": {
+      "max_nefc": 448,
+      "max_ncon": 112,
+      "overflow_copies": 0,
+      "lowered_by_mm": 16.702
+     },
+     "S2": {
+      "max_nefc": 412,
+      "max_ncon": 103,
+      "overflow_copies": 0,
+      "lowered_by_mm": 16.993
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 40,
+      "max_ncon": 10,
+      "overflow_copies": 0,
+      "lowered_by_mm": 16.702
+     },
+     "S2": {
+      "max_nefc": 40,
+      "max_ncon": 10,
+      "overflow_copies": 0,
+      "lowered_by_mm": 16.993
+     }
+    }
+   }
+  },
+  "control_vs_control": {
+   "pass_": true,
+   "ratio": 1.0,
+   "summary": {
+    "control_as_delivered": {
+     "max_nefc": 32,
+     "max_ncon": 8,
+     "overflow_copies": 0,
+     "by_scene": {
+      "S1": {
+       "max_nefc": 32,
+       "max_ncon": 8,
+       "median_max_nefc": 32.0,
+       "overflow_copies": 0
+      },
+      "S2": {
+       "max_nefc": 32,
+       "max_ncon": 8,
+       "median_max_nefc": 32.0,
+       "overflow_copies": 0
+      }
+     }
+    },
+    "control": {
+     "max_nefc": 32,
+     "max_ncon": 8,
+     "overflow_copies": 0,
+     "by_scene": {
+      "S1": {
+       "max_nefc": 32,
+       "max_ncon": 8,
+       "median_max_nefc": 32.0,
+       "overflow_copies": 0
+      },
+      "S2": {
+       "max_nefc": 32,
+       "max_ncon": 8,
+       "median_max_nefc": 32.0,
+       "overflow_copies": 0
+      }
+     }
+    }
+   }
+  }
+ }
+}

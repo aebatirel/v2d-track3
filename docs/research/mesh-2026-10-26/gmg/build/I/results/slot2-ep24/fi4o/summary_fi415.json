@@ -1,0 +1,773 @@
+{
+ "out_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/interlock/public/ep24-fi4o",
+ "sec": 2612.7,
+ "fi4_rev": 15,
+ "launch_code": {
+  "commit": "3484d8d6bb047d0a33aea041a7fc3ce4aa19b46e",
+  "dirty": false,
+  "dirty_files": []
+ },
+ "boards": {
+  "wooden_piece_1": {
+   "decision": "CARVE",
+   "tier": "T1",
+   "flags": [
+    "owner_waiver_fi4",
+    "plate_pair_camera_side"
+   ],
+   "decision_f_i3": "PUSH",
+   "in_scope": true,
+   "gate_fail": null,
+   "plate": {
+    "plate": true,
+    "t_source": "camera_side_pair",
+    "why": null,
+    "t_mm": 7.401,
+    "t_down_mm": 6.212,
+    "t_all": {
+     "t_mm": 7.401,
+     "faces": [
+      {
+       "n_pts": 736196,
+       "frames": 38,
+       "frame_range": [
+        0,
+        74
+       ],
+       "median_offset_mm": 3.701,
+       "per_frame_median_offset_mm_5_50_95": [
+        2.41,
+        3.55,
+        4.695
+       ]
+      },
+      {
+       "n_pts": 1023648,
+       "frames": 101,
+       "frame_range": [
+        74,
+        274
+       ],
+       "median_offset_mm": -3.701,
+       "per_frame_median_offset_mm_5_50_95": [
+        -4.612,
+        -3.748,
+        -3.063
+       ]
+      }
+     ],
+     "checks": {
+      "sides": true,
+      "material_between": true,
+      "window": true
+     },
+     "slab_points": 1759844
+    },
+    "flags": [
+     "plate_pair_camera_side"
+    ],
+    "points": {
+     "owned": 2535338,
+     "in_box": 1759879,
+     "within_6mm": 1759844
+    },
+    "sigma_mm": 3.0
+   },
+   "body": {
+    "ok": true,
+    "why": null,
+    "frame": {
+     "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+     "L_mm": 234.5,
+     "W_mm": 142.3,
+     "fill": 0.895,
+     "component_cells": 7470,
+     "cells": 7470,
+     "points_in_slab": 1746819
+    },
+    "L_mm": 234.5,
+    "W_mm": 142.3,
+    "t_mm": 7.401,
+    "volume_cm3": 220.52,
+    "polygon": {
+     "used": "simplified",
+     "tolerance_mm": 1.0,
+     "vertices_raw": 92,
+     "vertices": 86,
+     "reflex_vertices": 41,
+     "area_cm2": 297.96,
+     "area_vs_cells": 1.0,
+     "extent_mm": [
+      234.0,
+      142.0
+     ]
+    },
+    "raster": {
+     "axes": "rectangle (a_L, a_W)",
+     "cells": 7449,
+     "cell_area_cm2": 297.96,
+     "pinch_vertices": 0,
+     "loops": 1
+    },
+    "widths_mm": {
+     "waist_30_70": 130.0,
+     "ends_outer_10": 137.0,
+     "end_lo": 142.0,
+     "end_hi": 136.0,
+     "end_minus_waist": 7.0,
+     "max": 142.0
+    },
+    "free_share": {
+     "grid_mm": 2.0,
+     "polygon": {
+      "points": 29796,
+      "free": 0.0408,
+      "unknown": 0.0581,
+      "observed": 0.9011,
+      "outside_grid": 0.0
+     },
+     "rectangle": {
+      "points": 33228,
+      "free": 0.1292,
+      "unknown": 0.0606,
+      "observed": 0.8102,
+      "outside_grid": 0.0
+     },
+     "polygon_free_cm3": 9.73,
+     "rectangle_free_cm3": 34.34,
+     "ratio_polygon_to_rectangle": 0.316
+    },
+    "default_pieces": {
+     "n": 50,
+     "cap": 82,
+     "over_cap": false,
+     "max_vertices_per_prism": 10,
+     "all_convex": true,
+     "ring_area_mm2": 29796.0,
+     "parts_area_mm2": 29796.0,
+     "tiling_diff_mm2": 0.0,
+     "tiling_ok": true,
+     "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+    },
+    "slotted_pieces": {
+     "n": 57,
+     "cap": 82,
+     "over_cap": false,
+     "max_vertices_per_prism": 10,
+     "all_convex": true,
+     "ring_area_mm2": 29164.763,
+     "parts_area_mm2": 29164.763,
+     "tiling_diff_mm2": 0.0,
+     "tiling_ok": true,
+     "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+    },
+    "flags": [
+     "plate_body_no_markers"
+    ]
+   },
+   "slot": {
+    "ok": true,
+    "why": null,
+    "w_mm": 9.4,
+    "t_partner_mm": 7.4,
+    "c_L_mm": 3.97,
+    "c_L_component_mm": -0.43,
+    "c_L_shift_mm": 4.4,
+    "centre_from": "partner's plate mid plane at the median assembled pose (F-I4.12)",
+    "D_mm": 67.55,
+    "P_mm": 65.55,
+    "D_rect_mm": 77.55,
+    "P_rect_mm": 75.55,
+    "P99_mm": 75.9,
+    "cap_mm": 75.55,
+    "u_rect_mm": -71.17,
+    "u_e_poly_mm": -61.17,
+    "bottom_mm": 6.38,
+    "entry_edge_shift_mm": 10.0,
+    "depth_is": "prior [E] (split share of the constrained depth sum)",
+    "angle_d_aW_deg": 4.04,
+    "angle_partner_normal_aL_deg": 2.06,
+    "samples": 6146
+   },
+   "budget": {
+    "slot_cm3": 4.672,
+    "body_cm3": 220.52,
+    "vol_share": 0.0212,
+    "reach": 0.443,
+    "footprint_mm": [
+     -0.73,
+     8.67,
+     -74.17,
+     6.38
+    ],
+    "one_simple_polygon": true,
+    "area_consistent": true,
+    "bottom_inside": true,
+    "D_lt_W": true,
+    "prong_area_mm2": [
+     7626.7,
+     7198.5
+    ],
+    "topology": true,
+    "rings": 1,
+    "hole": false,
+    "nudge_mm": 0.0,
+    "ok": true
+   },
+   "gates": {
+    "region_voxels": 67,
+    "run_kind": "INSERTION",
+    "sweep_share": 1.0,
+    "sweep": true,
+    "not_pushable": true,
+    "push_mm": 19.0,
+    "push_frames": 30,
+    "reused": false
+   }
+  },
+  "wooden_piece_2": {
+   "decision": "CARVE",
+   "tier": "T1",
+   "flags": [
+    "interlock_disagree",
+    "owner_waiver_fi4",
+    "plate_t_partner_prior"
+   ],
+   "decision_f_i3": "PUSH",
+   "in_scope": true,
+   "gate_fail": null,
+   "plate": {
+    "plate": true,
+    "t_source": "partner_prior",
+    "why": null,
+    "t_mm": 7.401,
+    "t_down_mm": null,
+    "t_all": null,
+    "flags": [
+     "plate_t_partner_prior"
+    ],
+    "points": {
+     "owned": 1460641,
+     "in_box": 1408262,
+     "within_6mm": 1408169
+    },
+    "sigma_mm": 0.74
+   },
+   "body": {
+    "ok": true,
+    "why": null,
+    "frame": {
+     "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+     "L_mm": 231.1,
+     "W_mm": 142.0,
+     "fill": 0.868,
+     "component_cells": 7122,
+     "cells": 7122,
+     "points_in_slab": 1310948
+    },
+    "L_mm": 231.1,
+    "W_mm": 142.0,
+    "t_mm": 7.401,
+    "volume_cm3": 212.53,
+    "polygon": {
+     "used": "simplified",
+     "tolerance_mm": 1.0,
+     "vertices_raw": 138,
+     "vertices": 126,
+     "reflex_vertices": 61,
+     "area_cm2": 287.16,
+     "area_vs_cells": 1.0,
+     "extent_mm": [
+      230.0,
+      142.0
+     ]
+    },
+    "raster": {
+     "axes": "rectangle (a_L, a_W)",
+     "cells": 7179,
+     "cell_area_cm2": 287.16,
+     "pinch_vertices": 0,
+     "loops": 1
+    },
+    "widths_mm": {
+     "waist_30_70": 126.0,
+     "ends_outer_10": 135.9,
+     "end_lo": 134.0,
+     "end_hi": 138.0,
+     "end_minus_waist": 9.9,
+     "max": 140.0
+    },
+    "free_share": {
+     "grid_mm": 2.0,
+     "polygon": {
+      "points": 28716,
+      "free": 0.0189,
+      "unknown": 0.4941,
+      "observed": 0.487,
+      "outside_grid": 0.0
+     },
+     "rectangle": {
+      "points": 32944,
+      "free": 0.1033,
+      "unknown": 0.4671,
+      "observed": 0.4296,
+      "outside_grid": 0.0
+     },
+     "polygon_free_cm3": 4.34,
+     "rectangle_free_cm3": 27.22,
+     "ratio_polygon_to_rectangle": 0.183
+    },
+    "default_pieces": {
+     "n": 71,
+     "cap": 82,
+     "over_cap": false,
+     "max_vertices_per_prism": 10,
+     "all_convex": true,
+     "ring_area_mm2": 28716.0,
+     "parts_area_mm2": 28716.0,
+     "tiling_diff_mm2": 0.0,
+     "tiling_ok": true,
+     "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+    },
+    "slotted_pieces": {
+     "n": 77,
+     "cap": 82,
+     "over_cap": false,
+     "max_vertices_per_prism": 10,
+     "all_convex": true,
+     "ring_area_mm2": 28155.694,
+     "parts_area_mm2": 28155.694,
+     "tiling_diff_mm2": 0.0,
+     "tiling_ok": true,
+     "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+    },
+    "flags": [
+     "plate_body_no_markers"
+    ]
+   },
+   "slot": {
+    "ok": true,
+    "why": null,
+    "w_mm": 9.4,
+    "t_partner_mm": 7.4,
+    "c_L_mm": 1.36,
+    "c_L_component_mm": 1.5,
+    "c_L_shift_mm": -0.14,
+    "centre_from": "partner's plate mid plane at the median assembled pose (F-I4.12)",
+    "D_mm": 66.56,
+    "P_mm": 64.56,
+    "D_rect_mm": 66.56,
+    "P_rect_mm": 64.56,
+    "P99_mm": 64.56,
+    "cap_mm": 66.19,
+    "u_rect_mm": -71.0,
+    "u_e_poly_mm": -71.0,
+    "bottom_mm": -4.44,
+    "entry_edge_shift_mm": -0.0,
+    "depth_is": "prior [E] (split share of the constrained depth sum)",
+    "angle_d_aW_deg": 3.03,
+    "angle_partner_normal_aL_deg": 1.51,
+    "samples": 7070
+   },
+   "budget": {
+    "slot_cm3": 4.147,
+    "body_cm3": 212.53,
+    "vol_share": 0.0195,
+    "reach": 0.46,
+    "footprint_mm": [
+     -3.34,
+     6.06,
+     -74.0,
+     -4.44
+    ],
+    "one_simple_polygon": true,
+    "area_consistent": true,
+    "bottom_inside": true,
+    "D_lt_W": true,
+    "prong_area_mm2": [
+     6396.2,
+     6658.4
+    ],
+    "topology": true,
+    "rings": 1,
+    "hole": false,
+    "nudge_mm": 0.0,
+    "ok": true
+   },
+   "gates": {
+    "region_voxels": 118,
+    "run_kind": "INSERTION",
+    "sweep_share": 1.0,
+    "sweep": true,
+    "not_pushable": true,
+    "push_mm": 22.0,
+    "push_frames": 30,
+    "reused": false
+   }
+  }
+ },
+ "pair": {
+  "crosslap": {
+   "W_x_mm": 128.23,
+   "grid_points": 913,
+   "D_sum_mm": 134.11,
+   "diff_mm": 5.88,
+   "window_mm": 10.0,
+   "ok": true
+  },
+  "decision": "CARVE (simulator copy only, T1)",
+  "gate_fail": null,
+  "in_scope": true,
+  "why_out": null
+ },
+ "acceptance": {
+  "tests": {
+   "P2": true,
+   "P3": true,
+   "P4_wooden_piece_1": true,
+   "P4_wooden_piece_2": true,
+   "P5": true,
+   "P6": true,
+   "P7": true,
+   "keepout_wooden_piece_1": true,
+   "keepout_wooden_piece_2": true
+  },
+  "P5": {
+   "shapes": 134,
+   "cap": 165,
+   "pass_": true
+  },
+  "failing": [],
+  "pass_all_but_P1": true,
+  "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I2.12, F-I4.8)",
+  "shapes": {
+   "wooden_piece_1": 57,
+   "wooden_piece_2": 77
+  },
+  "sec": 1938.3
+ },
+ "physics": {
+  "P2": {
+   "frame": 246,
+   "carved_mm": {
+    "gravity": 0.5,
+    "+d": 0.5,
+    "+n": 0.0,
+    "-n": 2.0
+   },
+   "default_mm": {
+    "gravity": 60.0,
+    "+d": 60.0,
+    "+n": 60.0,
+    "-n": 60.0
+   },
+   "overlap_at_pose_cm3": [
+    6.84,
+    0.017
+   ],
+   "pass_": true
+  },
+  "P4": {
+   "wooden_piece_1": {
+    "removed_cm3": 4.54,
+    "carve_cm3": 4.67,
+    "default_cm3": 226.9,
+    "carved_cm3": 222.36,
+    "kept_share": 0.98,
+    "pass_": true
+   },
+   "wooden_piece_2": {
+    "removed_cm3": 4.32,
+    "carve_cm3": 4.15,
+    "default_cm3": 212.57,
+    "carved_cm3": 208.26,
+    "kept_share": 0.98,
+    "pass_": true
+   }
+  },
+  "P6": {
+   "frames": 84,
+   "worse_frames": [],
+   "n_worse": 0,
+   "pass_": true,
+   "default_asm_median": 6.789,
+   "carved_asm_median": 0.04
+  },
+  "P7": {
+   "check_frames": 26,
+   "default_sum_cm3": 146.45,
+   "carved_sum_cm3": 3.8,
+   "default_median": 6.756,
+   "carved_median": 0.03,
+   "pass_": true
+  },
+  "P3": {
+   "carved": {
+    "lag_cm_asm": 0.078,
+    "lag_cm_asm_sd": 0.027,
+    "lag_deg_asm": 0.74,
+    "lag_cm_after_max": 0.347,
+    "copies": 16,
+    "nan": 0
+   },
+   "default": {
+    "lag_cm_asm": 2.805,
+    "lag_cm_asm_sd": 2.664,
+    "lag_deg_asm": 103.66,
+    "lag_cm_after_max": 7.823,
+    "copies": 16,
+    "nan": 0
+   },
+   "nocollide": {
+    "lag_cm_asm": 0.032,
+    "lag_cm_asm_sd": 0.0,
+    "lag_deg_asm": 0.09,
+    "lag_cm_after_max": 0.13,
+    "copies": 16,
+    "nan": 0
+   },
+   "judge": {
+    "pass_": true,
+    "slot_not_limiting": false,
+    "overlap_asm_cm3": 0.04,
+    "overlap_ok": true
+   },
+   "sec": 71.2,
+   "frames": [
+    124,
+    274
+   ]
+  },
+  "P1_precheck": {
+   "host_drift": 2.272,
+   "guest_drift": 2.0,
+   "host_tilt": 0.841,
+   "guest_tilt": 1.661,
+   "rel_sink": -0.275,
+   "units": "drift/sink cm, tilt deg",
+   "copies": 16,
+   "nan": 0,
+   "fall_through": 0,
+   "pass_": false,
+   "decides": false,
+   "note": "plain-MuJoCo pre-check; INTERLOCK 6.2: P1 is decided in the FlashCHORD scene"
+  },
+  "P1_precheck_default": {
+   "host_drift": 1.951,
+   "guest_drift": 2.075,
+   "host_tilt": 9.881,
+   "guest_tilt": 7.999,
+   "rel_sink": 0.146,
+   "units": "drift/sink cm, tilt deg",
+   "copies": 16,
+   "nan": 0,
+   "fall_through": 0,
+   "pass_": false,
+   "decides": false,
+   "note": "plain-MuJoCo pre-check; INTERLOCK 6.2: P1 is decided in the FlashCHORD scene"
+  },
+  "P2_P7_pass": true
+ },
+ "pieces_gate": {
+  "wooden_piece_1": {
+   "choice": "slotted_plate",
+   "report": {
+    "slotted_plate": {
+     "n": 57,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   },
+   "do_not_use": null,
+   "keepout_points": 42680
+  },
+  "wooden_piece_2": {
+   "choice": "slotted_plate",
+   "report": {
+    "slotted_plate": {
+     "n": 77,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   },
+   "do_not_use": null,
+   "keepout_points": 25127
+  }
+ },
+ "round": {
+  "dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-fi4o/r0",
+  "delivered": "carved_p1_pending",
+  "p1_pending": true,
+  "do_not_use": null,
+  "fi4_rev": 15,
+  "objects": {
+   "wooden_piece_1": [
+    "carve.json",
+    "inertia.json",
+    "piece_00.obj",
+    "piece_01.obj",
+    "piece_02.obj",
+    "piece_03.obj",
+    "piece_04.obj",
+    "piece_05.obj",
+    "piece_06.obj",
+    "piece_07.obj",
+    "piece_08.obj",
+    "piece_09.obj",
+    "piece_10.obj",
+    "piece_11.obj",
+    "piece_12.obj",
+    "piece_13.obj",
+    "piece_14.obj",
+    "piece_15.obj",
+    "piece_16.obj",
+    "piece_17.obj",
+    "piece_18.obj",
+    "piece_19.obj",
+    "piece_20.obj",
+    "piece_21.obj",
+    "piece_22.obj",
+    "piece_23.obj",
+    "piece_24.obj",
+    "piece_25.obj",
+    "piece_26.obj",
+    "piece_27.obj",
+    "piece_28.obj",
+    "piece_29.obj",
+    "piece_30.obj",
+    "piece_31.obj",
+    "piece_32.obj",
+    "piece_33.obj",
+    "piece_34.obj",
+    "piece_35.obj",
+    "piece_36.obj",
+    "piece_37.obj",
+    "piece_38.obj",
+    "piece_39.obj",
+    "piece_40.obj",
+    "piece_41.obj",
+    "piece_42.obj",
+    "piece_43.obj",
+    "piece_44.obj",
+    "piece_45.obj",
+    "piece_46.obj",
+    "piece_47.obj",
+    "piece_48.obj",
+    "piece_49.obj",
+    "piece_50.obj",
+    "piece_51.obj",
+    "piece_52.obj",
+    "piece_53.obj",
+    "piece_54.obj",
+    "piece_55.obj",
+    "piece_56.obj",
+    "wooden_piece_1.glb"
+   ],
+   "wooden_piece_2": [
+    "carve.json",
+    "inertia.json",
+    "piece_00.obj",
+    "piece_01.obj",
+    "piece_02.obj",
+    "piece_03.obj",
+    "piece_04.obj",
+    "piece_05.obj",
+    "piece_06.obj",
+    "piece_07.obj",
+    "piece_08.obj",
+    "piece_09.obj",
+    "piece_10.obj",
+    "piece_11.obj",
+    "piece_12.obj",
+    "piece_13.obj",
+    "piece_14.obj",
+    "piece_15.obj",
+    "piece_16.obj",
+    "piece_17.obj",
+    "piece_18.obj",
+    "piece_19.obj",
+    "piece_20.obj",
+    "piece_21.obj",
+    "piece_22.obj",
+    "piece_23.obj",
+    "piece_24.obj",
+    "piece_25.obj",
+    "piece_26.obj",
+    "piece_27.obj",
+    "piece_28.obj",
+    "piece_29.obj",
+    "piece_30.obj",
+    "piece_31.obj",
+    "piece_32.obj",
+    "piece_33.obj",
+    "piece_34.obj",
+    "piece_35.obj",
+    "piece_36.obj",
+    "piece_37.obj",
+    "piece_38.obj",
+    "piece_39.obj",
+    "piece_40.obj",
+    "piece_41.obj",
+    "piece_42.obj",
+    "piece_43.obj",
+    "piece_44.obj",
+    "piece_45.obj",
+    "piece_46.obj",
+    "piece_47.obj",
+    "piece_48.obj",
+    "piece_49.obj",
+    "piece_50.obj",
+    "piece_51.obj",
+    "piece_52.obj",
+    "piece_53.obj",
+    "piece_54.obj",
+    "piece_55.obj",
+    "piece_56.obj",
+    "piece_57.obj",
+    "piece_58.obj",
+    "piece_59.obj",
+    "piece_60.obj",
+    "piece_61.obj",
+    "piece_62.obj",
+    "piece_63.obj",
+    "piece_64.obj",
+    "piece_65.obj",
+    "piece_66.obj",
+    "piece_67.obj",
+    "piece_68.obj",
+    "piece_69.obj",
+    "piece_70.obj",
+    "piece_71.obj",
+    "piece_72.obj",
+    "piece_73.obj",
+    "piece_74.obj",
+    "piece_75.obj",
+    "piece_76.obj",
+    "wooden_piece_2.glb"
+   ]
+  },
+  "default_dir": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "code": {
+   "commit": "74025530b0754c7f21ef9b1615581143fea4cc0e",
+   "dirty": false,
+   "dirty_files": [],
+   "sha256": {
+    "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+    "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+    "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+    "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+    "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+    "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+    "tools/interlock_dev.py": "f3ea47dc22d4a9c98bdef6414531ef558ab826dd7ba851eb82e0fe4cf0d249fe",
+    "platebody.py": "a1ca8960b0d7980509e76ebcba18f873e2df4877064146ed57c39bff91a866b9",
+    "collcarve.py": "a27f7b950fbee73e83b0727fd1a7f2854d9c9118212c0902fadc3d1aa6b728ad",
+    "cavpieces.py": "2f5a3776425ef836063c42d09da889f72908f2b3169a80b673a69d5079ef8235"
+   }
+  }
+ }
+}

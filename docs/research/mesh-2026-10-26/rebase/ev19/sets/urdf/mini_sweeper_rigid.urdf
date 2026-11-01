@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="track3_mini_sweeper">
+  <!-- Our reconstruction (pipeline/recon_mesh.py). Placeholder mass 0.3 kg as in the public assets; COM/inertia are a uniform triangle-surface estimate over this mesh. -->
+  <mujoco><compiler balanceinertia="true" discardvisual="false"/></mujoco>
+  <link name="object">
+    <inertial>
+      <origin xyz="-0.001585 -0.000276 0.000007" rpy="0 0 0"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.000741415781" ixy="2.84206579e-06" ixz="-1.47786627e-05" iyy="0.00057651828" iyz="-1.33062692e-05" izz="0.000194184273"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/mini_sweeper/mini_sweeper.glb" scale="1 1 1"/></geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/mini_sweeper/mini_sweeper_sf.glb" scale="1 1 1"/></geometry>
+    </collision>
+  </link>
+</robot>
