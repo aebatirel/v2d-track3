@@ -5998,3 +5998,11 @@ Advice given:
   ASSET_PIECES="…/meshes/carve/ev25 …/meshes/carve/ev10" bash ops/jobs/sub_videos.sh'` → instance 58698678 (United
   Kingdom, $1.348/h); ledger planned $2.50; credit $23.56 before launch. Output: store runs/20261101-vid3-b96ae95/
   results/sub_videos/{ep14_r1,ep14_r2,ep14_r3,ep25,ep30}.mp4. Reporting only; nothing is chosen from the videos.
+- 19:28 UTC **robot-hand videos done** (run 20261101-vid3-b96ae95, code b96ae95, instance 58698678 UK $1.347/h; run_job.log
+  RTX PRO 6000 Server driver 595.58.03, env restored, job rc 0 after 30 min — narrowed pulls ~11 min vs ~6 h on 30 Oct;
+  ledger actual $0.70). Store runs/20261101-vid3-b96ae95/results/sub_videos/: ep14_r1.mp4 2,060,257 B, ep14_r2.mp4
+  2,005,295 B, ep14_r3.mp4 2,099,219 B (7.9 s each), ep25.mp4 3,754,269 B (17.8 s), ep30.mp4 2,127,355 B (13.2 s); all
+  H.264 (ffprobe). Replay sim_vs_ref vs our reference (the replay tool, not the official evaluator) [M]: eval 14 r1 0.560
+  (bad mode), r2 0.285 (below every H5p7 draw), r3 0.749 (between the modes; H5p7: good ~0.87–0.91, bad ~0.51–0.66) —
+  no good-mode replay captured; eval 25 0.897 (H5p7 mean 0.878); eval 30 0.901 (0.897). Eval 25 rendered this time
+  (PICK ck= fix). Eval 10 ck512 skipped (in no PACK_RUN submission). Reporting only; nothing is chosen from them.

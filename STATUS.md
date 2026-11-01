@@ -10,6 +10,9 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-01 19:28 UTC: robot-hand videos of evals 14 (×3), 25, 30 delivered (store runs/20261101-vid3-b96ae95/results/sub_videos/)
+- Eval-14 replays 0.560 / 0.285 / 0.749 (none in the good mode); eval 25 0.897; eval 30 0.901. Cost $0.70. Nothing running.
+
 ## 2026-11-01 11:44 UTC: PACK 11 UPLOADED (keen-heisenberg's session) — new bests AUC 0.83921, MP-SR 0.70, RPE 3.179, MPPE 2.545
 - vs pack 10: AUC +0.020, SP-SR 0.85 (back from 0.80), MP-SR 0.70 (from 0.65), RPE −0.50, MPPE −0.30; CD-O unchanged.
 - Only eval 10 changed: the policy trained with njmax 1024 (training only), evaluated at stock 512 / 256.
