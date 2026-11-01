@@ -1,0 +1,6 @@
+ok   rc 1 (refused at the start)  [rc=1]
+ok   the refusal names PIECESET  [[2026-11-01T06:00:29Z] ev10_cs: PIECESET 'ev10cs6' must be ev10cs4 or ev10cs5 (PREREG section 2.2)
+]
+ok   nothing pulled, trained, evaluated or pushed  [(0, 0, 0, 0)]
+{"mr": "<S>/e10cs/mock/badset", "expect": "REFUSED", "checks": 3, "failed": []}
+3/3 checks pass

@@ -1,0 +1,154 @@
+{
+ "rule": "PREREG section 2.2 clause (a): every piece other than the blue floor plate byte-identical; the records that follow the plate (blue inertia.json, blue lathe_collision.json, carve.json, FROZEN.md) may differ",
+ "base": {
+  "dir": "<R>/meshes/carve/ev10cs4",
+  "name": "ev10cs4",
+  "md5sums_md5": "c745ebc8c3e86cadc5301a7b2351c5c1",
+  "frozen_md5": "d43d965d2505ce33add07981c498d1e7",
+  "files": 50,
+  "cups": {
+   "blue_cup": {
+    "pieces": 24,
+    "pieces_md5_of_md5_list": "8ca4996cfbdebb81b966f42869baa44e",
+    "inertia": {
+     "mass": 0.3,
+     "com_mm": [
+      0.537,
+      1.145,
+      15.774
+     ],
+     "diag": [
+      0.000988371288926903,
+      0.0009878504671094893,
+      0.0004578988986437286
+     ]
+    }
+   },
+   "beige_cup": {
+    "pieces": 21,
+    "pieces_md5_of_md5_list": "7f8bff4ca01817775aa893e25148a232",
+    "inertia": {
+     "mass": 0.3,
+     "com_mm": [
+      1.535,
+      5.508,
+      -5.568
+     ],
+     "diag": [
+      0.0009044063583356942,
+      0.0009043267644688728,
+      0.00026830360555469104
+     ]
+    }
+   }
+  },
+  "floor_plate": {
+   "piece": "blue_cup/piece_16.obj",
+   "plate_t_mm": 6.0,
+   "plate_h_mm": [
+    72.39,
+    78.39
+   ],
+   "plate_cm3_record": 22.665,
+   "piece_cm3": 22.665
+  },
+  "ok": true,
+  "failures": []
+ },
+ "cand": {
+  "dir": "<R>/meshes/carve/ev10cs5",
+  "name": "ev10cs5",
+  "md5sums_md5": "045d8921d5fe548ffebbee3cc21e798b",
+  "frozen_md5": "72e0dc82d737f80d55e58e1251677e78",
+  "files": 50,
+  "cups": {
+   "blue_cup": {
+    "pieces": 24,
+    "pieces_md5_of_md5_list": "8088c016d50a081fb031bb688b60b1b1",
+    "inertia": {
+     "mass": 0.3,
+     "com_mm": [
+      0.464,
+      1.038,
+      19.052
+     ],
+     "diag": [
+      0.0010036100694235212,
+      0.0010030842669006342,
+      0.00044478927515019686
+     ]
+    }
+   },
+   "beige_cup": {
+    "pieces": 21,
+    "pieces_md5_of_md5_list": "7f8bff4ca01817775aa893e25148a232",
+    "inertia": {
+     "mass": 0.3,
+     "com_mm": [
+      1.535,
+      5.508,
+      -5.568
+     ],
+     "diag": [
+      0.0009044063583356942,
+      0.0009043267644688728,
+      0.00026830360555469104
+     ]
+    }
+   }
+  },
+  "floor_plate": {
+   "piece": "blue_cup/piece_16.obj",
+   "plate_t_mm": 8.0,
+   "plate_h_mm": [
+    70.39,
+    78.39
+   ],
+   "plate_cm3_record": 30.933,
+   "piece_cm3": 30.933
+  },
+  "ok": true,
+  "failures": []
+ },
+ "plate": "blue_cup/piece_16.obj",
+ "plate_base": {
+  "piece": "blue_cup/piece_16.obj",
+  "plate_t_mm": 6.0,
+  "plate_h_mm": [
+   72.39,
+   78.39
+  ],
+  "plate_cm3_record": 22.665,
+  "piece_cm3": 22.665
+ },
+ "plate_cand": {
+  "piece": "blue_cup/piece_16.obj",
+  "plate_t_mm": 8.0,
+  "plate_h_mm": [
+   70.39,
+   78.39
+  ],
+  "plate_cm3_record": 30.933,
+  "piece_cm3": 30.933
+ },
+ "files_compared": 51,
+ "identical": 46,
+ "differ": [
+  "FROZEN.md",
+  "blue_cup/inertia.json",
+  "blue_cup/lathe_collision.json",
+  "blue_cup/piece_16.obj",
+  "carve.json"
+ ],
+ "pieces_differ": [
+  "blue_cup/piece_16.obj"
+ ],
+ "records_differ": [
+  "FROZEN.md",
+  "blue_cup/inertia.json",
+  "blue_cup/lathe_collision.json",
+  "carve.json"
+ ],
+ "clause_a": true,
+ "failures": []
+}

@@ -1,0 +1,12 @@
+{
+ "v_parquet": "<MR>/store/runs/20261031-e10v-caf38fb/refs/perc2e10v_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "v_md5_before": "520b7676589ef42ee66877a4e2b07958",
+ "v_md5_after": "44f5157e6031d023a64940d0a85f1250",
+ "fingerprint": "a9bcfef01803a6fec3fe47a5f6759828",
+ "base_md5": "520b7676589ef42ee66877a4e2b07958",
+ "urdf_paths_after": [
+  "<MR>/content/assets/urdf/blue_cup_rigid.urdf",
+  "<MR>/content/assets/urdf/beige_cup_rigid.urdf"
+ ],
+ "e10cs_py_pins": "V_MD5 / V_FP / BASE_MD5 of the repo copy set to the mock V (real values: 5d22fc57... / 8f408d51... / ca4ae8dc...)"
+}

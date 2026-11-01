@@ -1,0 +1,14 @@
+ok   label INVALID  [INVALID; ["job stopped: piece set check FAILED (PIECES FAILED: e10cs_pieces check failed: CHECK FAILED: md5 differs from MD5SUMS: ['blue_cup/piece_03.obj'] :: ev10cs5 50 input files, MD5SUMS 045d8921d5fe; blue_cup 24 pieces (md5 list 1bfb2e4b, COM mm [0.464, 1.038, 19.052]), beige_cup 21 pieces (md5 list 7f8bff4c, COM mm ["]]
+ok   rc 1 (stopped)  [rc=1]
+ok   RESULT line in the job log
+ok   no store listing (single-file downloads only)  [0]
+ok   every download is e10v's run or the packed side's H5p7 draws  [[]]
+ok   exactly one store upload (the final push), holding summary.json  [[{'kind': 'upload', 'src': '<MR>/content/push/20261101-e10cs-mocksha', 'dst': 'runs/20261101-e10cs-mocksha', 'msg': 'run 20261101-e10cs-mocksha: 2026-11-01T06:00:32Z'}]]
+ok   the push holds no e10v or njmax result folder (results/ev10_v4p, results/ev10_nj, perc2e10vs*, perc2e10nj*)
+ok   nothing written under the packed or e10v result names on this box
+ok   hands_mp / hand_refine / perc2 / score_registered never ran
+ok   stopped for: piece set check FAILED  [piece set check FAILED (PIECES FAILED: e10cs_pieces check failed: CHECK FAILED: md5 differs from MD5SUMS: ['blue_cup/piece_03.obj'] :: ev10cs5 50 input files, MD5SUMS 045d8921d5fe; blue_cup 24 pieces (md5 list 1bfb2e4b, COM mm [0.464, 1.038, 19.052]), beige_cup 21 pieces (md5 list 7f8bff4c, COM mm [1.535, 5.508, -5.568]); )]
+ok   piece check reported the edited file  [["e10cs_pieces check failed: CHECK FAILED: md5 differs from MD5SUMS: ['blue_cup/piece_03.obj'] :: ev10cs5 50 input files, MD5SUMS 045d8921d5fe; blue_cup 24 pieces (md5 list 1bfb2e4b, COM mm [0.464, 1.038, 19.052]), beige_cup 21 pieces (md5 list 7f8bff4c, COM mm [1.535, 5.508, -5.568]); floor plate blue_cup/piece_16.obj 8.0 mm, ", 'clause (a) vs ev10cs4 failed: CLAUSE (a) FAILS: check failed: base [], cand ["md5 differs from MD5SUMS: [\'blue_cup/piece_03.obj\']"] | pieces other than the floor plate differ: [\'blue_cup/piece_03.obj\'] :: ev10cs5 vs ev10cs4: 45/51 files identical; differ [\'FROZEN.md\', \'blue_cup/inertia.json\', \'blue_cup/lathe_collision.json\', \'bl']]
+ok   nothing pulled, trained or evaluated after the STOP  [(0, 0, 0)]
+{"mr": "<S>/e10cs/mock/tamper5", "expect": "INVALID:piece set check FAILED", "label": "INVALID", "checks": 12, "failed": []}
+12/12 checks pass

@@ -1,0 +1,166 @@
+{
+ "ok": true,
+ "cases": [
+  {
+   "word": "20261101-e10cs-abc1234",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "runs/20261101-e10cs-abc1234/results/ev10_cs/conf/r1/ep10/episode_000010.parquet",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "perc2e10css42",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "perc2e10css43",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "refs/perc2e10css43_glockt/ep10",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "runs/perc2e10css42_glock/ep10-s42",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "results/perc2e10css42_glock_public/ep10/best/policy.safetensors",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "results/ev10_cs",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "ev10_cs.sh",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "e10cs",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "eval10-cs4-20261101",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "meshes/carve/ev10cs4",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "meshes/carve/ev10cs5",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "<R>/meshes/carve/ev10cs4",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "<R>/meshes/carve/ev10cs5",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "10:results/ev10_cs/conf/r1/ep10",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "<S>/e10cs/cfgdiff/standin_e10cs_s43/policy.safetensors",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "<W>/checkpoints.json",
+   "want": "accept",
+   "rc": 0,
+   "ok": true,
+   "why": "no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "word": "20261101-e10nj-451b82d",
+   "want": "refuse",
+   "rc": 1,
+   "ok": true,
+   "why": "  20261101-e10nj-451b82d"
+  },
+  {
+   "word": "results/ev10_nj",
+   "want": "refuse",
+   "rc": 1,
+   "ok": true,
+   "why": "  results/ev10_nj"
+  },
+  {
+   "word": "perc2e10njs43",
+   "want": "refuse",
+   "rc": 1,
+   "ok": true,
+   "why": "  perc2e10njs43"
+  },
+  {
+   "word": "<S>/e10cs/cfgdiff/neg_njmax1024/policy.safetensors",
+   "want": "refuse",
+   "rc": 1,
+   "ok": true,
+   "why": "  <S>/e10cs/cfgdiff/neg_njmax1024/policy.safetensors (checkpoint config: sim njmax 1024 / nconmax 512, not the stock 512"
+  },
+  {
+   "word": "<W>/checkpoints_neg.json",
+   "want": "refuse",
+   "rc": 1,
+   "ok": true,
+   "why": "  <S>/e10cs/guard/checkpoints_neg.json: /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratch"
+  }
+ ]
+}

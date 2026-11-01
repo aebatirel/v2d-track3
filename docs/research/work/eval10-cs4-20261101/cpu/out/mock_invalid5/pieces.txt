@@ -1,0 +1,1 @@
+PIECES OK :: set ev10cs5, MD5SUMS 045d8921d5fe548ffebbee3cc21e798b, CHECK OK :: ev10cs5 50 input files, MD5SUMS 045d8921d5fe; blue_cup 24 pieces (md5 list 8088c016, COM mm [0.464, 1.038, 19.052]), beige_cup 21 pieces (md5 list 7f8bff4c, COM mm [1.535, 5.508, -5.568]); floor plate blue_cup/piece_16.obj 8.0 mm, 30.933 cm3
