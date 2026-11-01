@@ -6589,3 +6589,20 @@ Background agent, CPU only, $0, no ground truth read.
   GPU). Plan and gate sent (pipeline/hold_filter.py; gate on the 20 public episodes: registered ref-vs-mocap AUC mean
   Δ ≥ −0.002 and no episode < −0.01, AND zero-action jittered sim_vs_ref mean Δ ≥ +0.02); the gate will be written here
   before any result. Waiting for its answer on which public reference set to use.
+- 20:30 UTC: **repair (b) tool `pipeline/hold_filter.py` + `pipeline/test_hold_filter.py` (8 checks PASS)** (GT-free; only
+  object_body_position / _wxyz change; holds from hold_phases.py; MANO wrist as the hand).
+  - First design (`--mode rigid`: tie the object to the MANO wrist in every hold, Hampel + moving median, freeze at rest)
+    **made ep13 worse vs mocap [M]** (public diagnostic, the oracle reference's object track): cup centre error mean
+    1.26 → 2.54 cm, in the left hold f19–54 0.86 → 4.36 cm (max 9.9). On ep13 our perceived CUP is accurate and the
+    perceived HAND is off by several cm, so tying the object to the hand imports the hand's error. Kept as an option for
+    comparison only.
+  - Default `--mode glitch` (minimal change): a frame is a glitch only if the object leaves its own long-window (61 f)
+    moving median by > 5 cm AND, inside a hold, its hand-relative position also departs by > 5 cm (the hand did not go
+    along: eval 32's case), widened to bounding velocity spikes (> 150 cm/s). Glitches are filled from the neighbouring
+    good frames (hand-relative interpolation inside holds, world interpolation elsewhere); rest motion ≤ 1.5 cm outside
+    holds is frozen, larger no-hand motion is flagged and kept. ep13: 26 cup frames changed (runs f65–71, f84–85), rack
+    rest jitter (0.4 cm) frozen; cup vs mocap mean 1.258 → 1.296 cm (unchanged within noise), as intended for an
+    accurate track.
+  - Next: the public gate on all 20 public episodes (pre-registered below before any result), once the perfect-following
+    session names the reference set. Public dataset downloaded for scoring only (HF nvidia/video_to_data_challenge
+    track_3, 1.5 GB, scratchpad content/t3).
