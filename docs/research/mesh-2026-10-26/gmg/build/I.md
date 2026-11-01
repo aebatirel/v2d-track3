@@ -1902,3 +1902,16 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   304 / 264 / 324 rows, eval 14 300 / 260 / 312); G4 S on the packed rack throws the guest: eval 30 mean 133-230 mm,
   eval 14 670-692 mm (rack fixed, 2 s), so S fails on the packed rack at every frame; G1 packed 15.4 / 16.1 cm3 median
   with the guest-pieces-in-rack-mesh floor at 9.0 / 11.9; G2 swept 26.7 / 7.8 cm3.
+- 03:34 [M] packed baseline under H30 (`meas/`; same code as for candidates): eval 30 G1 14.2 / 18.7 cm3 (median /
+  max over 22 R frames), floors V_vv 6.2 / 8.4 and V_pm 8.1 / 10.4, G1x 6.2 / 8.3, G2 swept 10.8 cm3; eval 14 G1 15.7 /
+  17.6, V_vv 9.2 / 10.8, V_pm 11.7 / 13.4, G1x 4.0 / 4.4, G2 6.9. G3 (plain MuJoCo, indicative) eval 30 f257/f249/f1:
+  304 / 264 / 288 rows, eval 14 f149/f144/f153: 300 / 336 / 320, no overflow. G4 S fails on the packed rack at all six
+  frames (guest thrown 134-217 mm eval 30, 432-780 mm eval 14, medians, rack fixed). G6 pair-scene throw (medians):
+  eval 30 38 / 23 / 25 mm, eval 14 140 / 136 / 134 mm (reproduces the round-2 "23-62" and "132-140").
+- 03:34 Build try 1 (H30 R, depth 3, TOL 40 cells, merges capped by all-frames swept volume): touched pieces 24, 29,
+  36, 41, 42 (F 0.4 / 0.8 / 2.3 / 6.9 / 0.4 cm3) -> 32 leaves, 70 pieces, 2.42 cm3 of F left, no admissible merge.
+  Not a candidate (not measured): kept as `<scratch>/rackslot/c1-ev30-try1` (build.log, build.json). Piece 41 slices:
+  the sweeper's swept volume overlaps the top of that mesh part (pose floor) and F lies in the gap between that part and
+  the mesh below, so the hull must be split between them. Revised build (03:33): depth <= 5, TOL 20 cells per leaf,
+  split candidates with 5 offsets + PCA axes, merges that only restore packed fill (no RV cell) first, then capped
+  new-fill merges only while > 43.
