@@ -6622,3 +6622,10 @@ Background agent, CPU only, $0, no ground truth read.
     F changes nothing (Δ = 0 by construction there).
   - PASS → hand `hold_filter.py` to the perfect-following session for eval retrains (their gate). FAIL → (b) as built
     is not used; the write-up says which metric failed.
+- 20:37 UTC: **repair (b) gate: set fixed before any scoring (deviation from the 20-episode pre-registration).** No stored
+  set covers all 20 public episodes (stored public grasp-lock references exist only for subsets; episodes 39–45 may never
+  have had one; building the missing ones needs the GPU perception stage). Per the pre-registered fallback, the set is the
+  public episodes with a complete stored support-filled pre-lock tree (`refs/sf/ep<N>` + assets + support) in the newest
+  run: **ep2, ep12** (`runs/20261031-mass-2ed46ea`), **ep13, ep24** (`runs/20261031-mv2a2-b5043ce`), **ep11, ep31**
+  (`runs/20261031-mv2b-b5043ce`); GL_ARGS from each run's job.log. Rule unchanged (M1 mean Δ ≥ −0.002 and no episode
+  < −0.010; M2 mean Δ ≥ +0.02; PASS iff both), now over these 6 episodes.
