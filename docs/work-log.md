@@ -5942,3 +5942,7 @@ score.
   Its reading: covers GPU work and Kaggle uploads of packs where every swapped episode passes its pre-registered swap
   rule and the pack checks pass. Not covered: njmax-1024 policies, the C0 blue cup, anything that reads GT or is tuned
   on eval results. Pack checks at 05:00 (9b), 07:30 and 10:30 UTC.
+- 04:04 UTC focused-pascal: pack 9b record ≈ 05:30 UTC (the D confirmation box 20261101-drC-a1a7e25 spent ~50 min on
+  store pulls; dr_pack_check passed at 04:02). All five D training boxes VERIFIED; candidates 14 s43, 16 s43, 25 s42,
+  30 s42, 33 s42. Next: "pack 9b ready" with sha256 and per-episode verdicts, or "no 9b". Upload stays with
+  keen-heisenberg.
