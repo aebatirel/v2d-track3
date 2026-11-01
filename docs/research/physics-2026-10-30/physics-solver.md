@@ -1225,6 +1225,34 @@ all. A single-episode Δ of that size is within training noise.
   cost stated; the swap rule decides per episode.
 - **harm or inconclusive:** V is not used.
 
+### 10.1 Results (1 Nov 2026, merged 00:05 UTC)
+
+**Runs** (code 0636f20; costs are ledger actuals, estimated):
+
+| run | Vast | GPU, price | job end | cost |
+|---|---|---|---|---|
+| 20261031-rscrV42-0636f20 | 58580313 | RTX PRO 6000 WS, Serbia, $1.497/h | exit 0, 00:02 UTC | $3.97 |
+| 20261031-rscrV43-0636f20 | 58580297 | RTX PRO 6000 WS, Spain, $1.377/h | exit 0, 23:39 UTC | $3.05 |
+
+- Box 2 ran the C/ep24-s43 re-score first: 0.2333 (§8.1).
+- Merge: the 6 box summaries, `gpu/recipe_screen_V_merged.{json,txt}`. No missing cells, no INVALID. The V configs
+  carry `actor_object_velocity: true`; the C configs do not.
+
+**Cells.** AUC mean (draw sd), 10 draws; the chosen checkpoint in brackets.
+
+| ep | V seed 42 | V seed 43 | V seed-mean | C seed-mean | Δ |
+|---|---|---|---|---|---|
+| 2 | .971 (.009) [50M] | .757 (.312) [30M] | .864 | .912 | −0.049 |
+| 12 | .548 (.023) [30M] | .587 (.019) [30M] | .568 | .594 | −0.026 |
+| 18 | .604 (.037) [30M] | .614 (.018) [20M] | .609 | .622 | −0.013 |
+| 24 | .241 (.002) [20M] | .212 (.002) [20M] | .226 | .234 | −0.007 |
+
+**Verdict: inconclusive** (mean Δ −0.024, min −0.049). **V is not used.**
+- All 4 episodes are slightly lower.
+- ep2 shows the usual seed split: seed 42 is very steady at .971 ± .009, seed 43 erratic at .757 ± .312.
+- Every per-episode Δ is within the training noise registered in §10 (the ep18 replicate: up to 0.07).
+- Giving the actor the objects' velocity does not help this recipe within 70M steps. [H-v] is not supported.
+
 ## 11. Command smoothing test A (pre-registered 31 Oct 2026 ~21:50 UTC, CPU, $0, written before any result)
 
 **Request.** keen-heisenberg relayed the owner (21:10 UTC). [H-cmdsmooth]: the robot's own targets jitter (wrist

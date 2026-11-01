@@ -1,5 +1,18 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~00:05 UTC: arm V inconclusive (not used); the recipe screen is complete; nothing of mine is running
+- **Arm V** (the actor sees object velocity, §10.1): Δ ep2 −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007 →
+  inconclusive, V not used.
+- **Screen verdicts, all complete:** K inconclusive, D inconclusive, S no signal, V inconclusive. No recipe change for
+  pack 10 from this lane.
+- **Spend on 31 Oct:** $30.15 [E] over 6 boxes. No boxes of mine are running.
+- **Open for the owner:**
+  - solver v2 (recommended skip);
+  - synergy test B (not done, past the reference cut-off);
+  - [H-njmax-train]: ep2/ep12 training overflows njmax 512 (≈ 0.6 M lines on ep2; none in scoring). A `sim.njmax=1024`
+    arm on ep2/ep12 × 2 seeds would cost ≈ $7 [E].
+- **Pending for the mesh session:** P1 + contact check on their low-piece ep24 r0 when it lands.
+
 ## 2026-10-31 ~21:27 UTC: arm V running (2 boxes); D skip option delivered; owner asleep
 - **Arm V** (the actor sees object velocity; physics-solver.md §10; owner "Go" ~21:09 UTC, ≈ $7–9 [E]):
   - Vast 58580313 (seed 42, run 20261031-rscrV42-0636f20) and 58580297 (seed 43 + re-score of C/ep24-s43, run

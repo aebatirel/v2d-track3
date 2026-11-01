@@ -6226,3 +6226,13 @@ Background agent, CPU only, $0, no ground truth read.
   - V/ep12: s42 .548 (sd .023; C .576), s43 .587 (sd .019; C .612);
   - V/ep2-s43: .757 (sd .311; C .869, sd .174).
   - Remaining: V/ep2-s42, ep18 ×2, ep24 ×2.
+
+### 2026-11-01 00:05 UTC — determined-wright: arm V verdict — inconclusive, V not used
+- Both boxes self-destroyed: V43 at 23:39 UTC, V42 at 00:02 UTC. Ledger actuals $3.97 and $3.05 (estimates), $7.02 in
+  total against the ≈ $7–9 plan.
+- Merge of all 6 summaries → `gpu/recipe_screen_V_merged.{json,txt}`. Seed-mean Δ(V − C): ep2 −0.049, ep12 −0.026,
+  ep18 −0.013, ep24 −0.007; mean −0.024 → **inconclusive**, so V is not used. Record: physics-solver.md §10.1.
+- Final verdicts of the screen (C/K/D/S/V, all complete): K inconclusive, D inconclusive, S no signal, V
+  inconclusive. No recipe change for pack 10 from this lane.
+- This lane's GPU spend for 31 Oct: rscr42 $8.22 + rscr43 $7.73 + rscrS42 $3.30 + rscrS43 $3.88 + rscrV42 $3.97 +
+  rscrV43 $3.05 = **$30.15** (estimates).
