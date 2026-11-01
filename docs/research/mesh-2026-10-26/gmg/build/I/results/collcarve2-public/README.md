@@ -13,7 +13,9 @@ delivered, and all five round folders are marked do-not-use.** Two steps fail on
   make the two shapes cross each other's walls. Examples: the ep11 cups overlap by 77-85 cm3, the ep2 lid sits 21-27
   cm3 inside the pot's rim, and the ep12 / ep13 cup overlaps the rack's wires. In ep13 the cup also sits 5.7 mm inside
   the table. The ep31 sweeper floats 12 mm from the rack. The rule therefore runs no hands-off test and no contact
-  count; these frames go to the pose lanes' list.
+  count; these frames go to the pose lanes' list. A side check (it decides nothing) confirms the precheck: even on
+  faithful copies of our shapes the guest moves 4.8-13 mm at every such frame, and on the delivered boxes it falls
+  through by 54-110 mm.
 
 Our own points also show no cup-in-cup nest in ep11: the two cups' rims stand within 3.3 mm of each other. So a real
 nest is tested only on synthetic cups. Eval 10 is the only real nest, and it has no public twin. Machine: this
@@ -34,7 +36,7 @@ container, 90 min, no rental, $0.
   gmg.tools.collcarve2_dev --fi5-rev 2 --run <run> --ep N --bundle <v6>/epN --cands <run>/cand/public/epN --pick
   <picks> --hands <run>/in/handsN/hands.npz --proxy-copies 16 --identity eval --waiver-fi5 --no-physcheck --tag fi5r2`.
 - Labels: [M] measured here, [E] estimate, [H] hypothesis. Timed log: `build/I.md`, section "Collision carve round 2",
-  entries 00:17-01:55 tagged (T-I16).
+  entries 00:17-02:06 tagged (T-I16).
 
 ## Files
 - `ep<N>/`: `fi5.json` (the round-2 report: routes with every layout candidate, pairs, components, precheck), `report.json`,
@@ -92,7 +94,25 @@ receiver is chosen by containment on the faithful colliders. Every frame fails t
 S_ref there (F-I5.15 (3)). The S columns come from the report-only diagnostic `diag/s_diag.json`: delivered pieces with
 16 copies, faithful 2 mm SHELL boxes with 4 copies. It decides nothing.
 
-(The diagnostic is running at this commit; its table follows in the next commit.)
+| ep | pair (receiver <- guest) | frame | precheck (rule) | S delivered, 16 copies: disp / dz (+ down) / tilt | S faithful 2 mm boxes, 4 copies: disp / dz / tilt (s) | rule outcome |
+|---|---|---|---|---|---|---|
+| 12 | plastic_dish_rack <- blue_cup | f176 | FAIL c (a -3.08 mm; V_ov 7.408 cm3) | 130.9 / +58.5 / 85.1 deg: fail | 13.2 / -4.6 / 9.8 deg: fail (43) | pose_impossible: no S, pushed |
+| 13 | plastic_dish_rack <- blue_cup | f181 | FAIL a, c (a -5.73 mm; V_ov 2.656 cm3) | 121.8 / +53.8 / 121.3 deg: fail | 12.2 / -7.0 / 8.6 deg: fail (29) | pose_impossible: no S, pushed |
+| 31 | plastic_dish_rack <- mini_sweeper | - | s_floor_vacuous (faithful gap at the hands-off segments: f285 12.0 mm, f278 11.9 mm) | - | - | no S |
+| 11 | beige_cup <- blue_cup | f127 | FAIL c (a 3.14 mm; V_ov 84.504 cm3) | 96.2 / +91.2 / 50.2 deg: fail | 10.1 / +1.9 / 6.4 deg: fail (222) | pose_impossible: no S, pushed |
+| 11 | beige_cup <- blue_cup | f108 | FAIL c (a -2.71 mm; V_ov 76.728 cm3) | 122.0 / +110.3 / 148.8 deg: fail | 9.8 / +2.7 / 13.9 deg: fail (164) | pose_impossible: no S, pushed |
+| 2 | white_pot <- white_pot_lid | f13 | FAIL c (a 61.29 mm; V_ov 23.848 cm3) | 84.8 / +80.7 / 13.5 deg: fail | 5.0 / -1.2 / 7.8 deg: fail (115) | pose_impossible: no S, pushed |
+| 2 | white_pot <- white_pot_lid | f32 | FAIL c (a 60.75 mm; V_ov 26.976 cm3) | 86.4 / +82.7 / 9.7 deg: fail | 7.9 / -6.1 / 9.6 deg: fail (127) | pose_impossible: no S, pushed |
+| 2 | white_pot <- white_pot_lid | f316 | FAIL c (a 62.33 mm; V_ov 20.92 cm3) | 87.6 / +85.1 / 13.4 deg: fail | 4.8 / -2.3 / 6.1 deg: fail (107) | pose_impossible: no S, pushed |
+
+- The S diagnostic was launched at 01:49 and done at 02:04 (nice 5, this container). Same scene, jitters and measures as
+  the floor's S (`collcarve.sink_test2`: receiver fixed at its tracked pose, guest free, our table plane, 0.3 kg, 2 s
+  at 2 ms, pass at a mean of 4 mm and 5 deg). [M] On the delivered boxes the guest falls through: 54-110 mm down and 85-131
+  mm displaced. On the faithful SHELL boxes it is pushed 4.8-13.2 mm and tilted 6.1-13.9 deg: out of the table in ep13
+  (dz -7.0 mm), out of the rack's wires in ep12 (-4.6 mm), up out of the pot's rim in ep2 (-1.2 to -6.1 mm), and
+  sideways out of the overlapping cup in ep11 (9.3-9.9 mm lateral). So with faithful shapes too, S fails at every
+  floor frame, because the tracked poses interpenetrate. This is the case the precheck now removes from the test,
+  consistent with verify_cc_1 B2 at round 1's frames.
 
 - Precheck thresholds (F-I5.15 (3), informed: s_max = 4 mm, S's own bound F-I1.14): (a) guest lowest faithful point
   more than 4 mm below our table plane; (b) more than 4 mm from both the table and the receiver; (c) overlap V_ov > 0

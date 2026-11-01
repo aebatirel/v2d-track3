@@ -1684,3 +1684,10 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   `build/I/results/collcarve2-public/` (README, tables, per-episode records, diag/). Launched 01:49 (nice 5, report
   only): `build/I/fi517_s_diag.py`, S at the 7 floor frames on the delivered boxes (16 copies) and on the faithful
   2 mm SHELL boxes (4 copies), `<run>/diag/s_diag.json`.
+- 02:06 (T-I16) [M] S diagnostic done (01:49-02:04, report only, `build/I/fi517_s_diag.py`, results
+  `collcarve2-public/diag/s_diag.json`): at the 7 floor frames (all pose_impossible), S on the delivered boxes (16
+  copies): the guest falls 54-110 mm (disp 85-131 mm, tilt 10-149 deg); S on the faithful 2 mm SHELL boxes (4 copies,
+  29-222 s each frame): disp 4.8-13.2 mm, tilt 6.1-13.9 deg, every frame fails (ep13 pushed up out of the table, dz
+  -7.0 mm; ep12 -4.6 mm; ep2 lid pushed up 1.2-6.1 mm; ep11 9.3-9.9 mm lateral). The precheck's verdicts agree with
+  faithful S at every frame (verify_cc_1 B2 at round 1's frames likewise). README table filled. T-I16 step done:
+  code 88f49df (runs), results 4023e4f + this commit. No rental, $0.
