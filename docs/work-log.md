@@ -5560,7 +5560,7 @@ Advice given:
   656–1,296 constraint rows / 164–324 contacts (> 512 / 256) at step 0 in all 16 copies × 3 frames; no other eval pair
   overflows. Smaller: evals 14/30 rack CoACD collider fills ~10.5 cm³ of the slot; eval 14 cup 16.6 mm in the table at
   f42; eval 32 cup 19.5 mm in the table f32–33; evals 15/16 spoon 44–61 mm from support in ~20 hands-off frames.
-- 02:40 UTC **measured on the eval-10 V4p retrain's own training logs** (store runs/20261031-e10v-caf38fb/runs/
+- ~02:36 UTC **measured on the eval-10 V4p retrain's own training logs** (store runs/20261031-e10v-caf38fb/runs/
   perc2e10vs{42,43}_glock/ep10-s*/train.log, 270 / 263 MB): "nefc overflow - please increase njmax to N" on 6,010,501
   (s42) and 5,846,480 (s43) lines; requested njmax median 580, p95 752, p99 808, max 1,057 / 1,006 vs the 512 limit; first
   line at log line 77 (before 1 % of training); 3.58 M lines in the first 50 % of s43's steps. No "broadphase overflow".
@@ -5569,7 +5569,7 @@ Advice given:
   recipe, one seed): overflow lines → 0 and the cup still never lifted ⇒ not the main cause. Not run (needs the owner's
   go; ~1.3–1.6 h, ~$2–3). Not checked yet: whether the packed eval-10 policy's training overflowed the same way, and
   whether the official evaluator's eval-10 rollouts overflow (scoring path).
-- 02:50 UTC **eval 10 vs ep11 contact budget [M]** (store train.logs, single-file pulls): the ep11 gate's treatment
+- ~02:38 UTC **eval 10 vs ep11 contact budget [M]** (store train.logs, single-file pulls): the ep11 gate's treatment
   trainings (run 20261031-e11g-663b7df, same ev10 pieces, same V4p method; RESULT s42 0.6226, s43 0.8564) logged 62 (s42)
   and 123 (s43) "nefc overflow" lines, requested njmax median 517 / 518, p95 532 / 539, max 547 / 559 — vs 6.0 M / 5.8 M
   lines, median 580, p95 752, max ~1,050 on eval 10 (e10v). ~5×10⁴ times more overflow on eval 10.
@@ -5578,7 +5578,7 @@ Advice given:
   this would explain why the ep11 gate's gain did not transfer and why the cup is never lifted. Falsifiers: (1) one
   eval-10 training at njmax 1024 / nconmax 512; (2) or a reference whose nested rest has no piece overlap (overflow → ~0
   in a one-world rollout). Either needs the owner's go; nothing launched.
-- 03:00 UTC overflow vs weak cells (keen-heisenberg's CPU check) [M]: D std training logs — S25 s42 (0.816) 6 lines (max
+- ~02:41 UTC overflow vs weak cells (keen-heisenberg's CPU check) [M]: D std training logs — S25 s42 (0.816) 6 lines (max
   541), S25 s43 (0.482, weak) 0, S30 s42 0, S30 s43 0; eval 1 packed std0116 ep1-s42 (H5 0.822 ± 0.239, min 0.150) 0;
   carved c01s43 ep1-s43 39 (max 581). No broadphase overflow anywhere. Overflow does not track the weak / high-variance
   cells; it stays an eval-10 finding (~6 M lines per run there). G's logs (14/16/33) to be counted after the box ends.
