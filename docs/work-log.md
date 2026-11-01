@@ -5947,3 +5947,15 @@ arm and a no-policy replay floor to stage B.
   - Lesson [I]: when the expected gain is within noise, a swap is a coin flip on the board. The swap rule protects
     against large losses but not small ones. Worth adding for pack 10: skip uploads whose expected AUC change is below
     the board's noise.
+- 05:00–05:12 UTC 1 Nov **morning check-in** (trig_01LXuo1FHsj3WPgu5F4Q2PHt).
+  - Pack 9b had already been uploaded at 04:57–05:02 by this session, so there was no second upload.
+  - `ops/vast.sh show`: one instance, 58615195 20261101-e10nj-451b82d (the njmax diagnostic), running, $1.389/h.
+  - Credit **$29.93** at 05:06 (it was $56.52 at 22:58 31 Oct).
+  - drawdiv on ep2 masses-check draws (run 20261031-mass-2ed46ea; docs/analysis/drawdiv-20261031/ f58f638) [M]:
+    - good draws: mass0 4/10 and 3/10, mass1 6/10 and 8/10;
+    - draws split at 10 µm by f1–4 and at 5 mm by f5–11;
+    - the lid fails first;
+    - the 88 g lid removes most f54–61 failures (10 → 2), while early (< f30) lid failures stay (8 vs 9).
+    - [H] The early failures are the pot+lid rest-pose interpenetration (the eval-1 analogue). Sent to
+      determined-wright.
+  - Morning summary given to the owner in this chat.
