@@ -5498,3 +5498,15 @@ Advice given:
   velocity) INCONCLUSIVE, not used (Δ V − C seed means ep2 −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007; mean −0.024).
   Screen complete: K inconclusive, D inconclusive, S no signal, V inconclusive → no recipe change for pack 10 from that
   lane; the targeted D cells (running) are decided by the swap rule only. rscrV42/V43 self-destroyed (their ~$7.02 [E]).
+- 00:50 UTC mv2b closed: job rc 0 at 23:11:59 after 390 min (box A took 242); final push FAILED at 23:12:09, box held
+  60 min, retried, and was gone by 00:15. Ledger actual $10.45 (~16:36–00:12Z at $1.375/h; plan $9.00).
+  [M] Cause of the failed push (code read + the run_job.log line): `cp: '<results/…/curve/policy_70004736/r3/
+  episode_000011.parquet>' and '/content/push/<run>/…' are the same file`. ops/box/watchdog.sh starts its 30-min interim
+  `store.sh push-run` in the background (`&`); when one is still running as the job's final push-run (lib.sh self_destroy)
+  starts, both rebuild the same /content/push/$RUN_ID with `ln || cp`, the second's cp hits the first's hard link → cp
+  error → push-run fails under set -e. Same symptom as h5p7's failed final push. Effect so far: results were in the store
+  from the interim push (mv2b 30/30, h5p7 all draws); the cost is the 60-min hold (~$1.4 per box).
+  Not fixed tonight: the D boxes and their confirmation box stay on the reviewed commit a1a7e25. Operational rule for
+  tonight: if a D box shows PUSH-FAILED, pull its summary/verify (and what the merge needs) from the store, check them,
+  then destroy it by hand. Fix later (separate change): serialise push-run with flock on /content/push.lock, or give
+  the interim push its own staging folder.
