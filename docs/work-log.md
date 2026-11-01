@@ -10779,3 +10779,5 @@ score.
 - 21:02 UTC 1 Nov pfC-97095b8 failed at the bridge (`rtree` missing on the box image; job exit 1, box on HOLD) and pfD-97095b8
   showed CLONE-FAIL; both destroyed (≈ 15 min each, ≈ $0.7 total). pf_arms.sh now installs rtree before guard_bridge.
   Relaunched below with the same job strings.
+- 21:05 UTC 1 Nov **batch 2 relaunched** (code f38b324, same job strings): 20261101-pfC-f38b324 (58712560, Michigan $1.34/h),
+  20261101-pfD-f38b324 (58712562, Spain WS $1.38/h; the Texas host of the CLONE-FAIL avoided).
