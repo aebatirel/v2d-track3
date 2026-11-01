@@ -94,3 +94,28 @@ def swing(a, b):
         return np.eye(3)
     K = np.array([[0, -v[2], v[1]], [v[2], 0, -v[0]], [-v[1], v[0], 0]])
     return np.eye(3) + K + K @ K * ((1 - c) / s ** 2)
+
+
+@functools.lru_cache(None)
+def revolution_axis(mpath, n=20000, iters=30, keep=0.6):
+    """Axis direction of the best-fitting surface of revolution (normals of a revolution surface meet its axis:
+    linear line complex c.(p x n) + cb.n = 0, Pottmann & Randrup 1998). Iteratively reweighted: keep the `keep`
+    fraction of samples with the smallest residual (handle, spout, base rim are outliers). Returns (unit axis, the
+    inlier rms residual in m, a point on the axis)."""
+    m = mesh(mpath)
+    p, fi = trimesh.sample.sample_surface_even(m, n, seed=1)
+    nn = np.asarray(m.face_normals[fi], np.float64); p = np.asarray(p, np.float64)
+    mu = p.mean(0); p = p - mu
+    L = np.hstack([np.cross(p, nn), nn])
+    w = np.ones(len(p), bool)
+    for _ in range(iters):
+        M = L[w].T @ L[w]
+        ev, V = np.linalg.eigh(M)
+        C = V[:, 0]
+        c, cb = C[:3], C[3:]
+        s = np.linalg.norm(c)
+        r = np.abs(L @ C) / max(s, 1e-12)
+        w = r <= np.quantile(r, keep)
+    a = c / s
+    x0 = np.cross(a, cb / s) + mu       # Plucker: for the axis, cb/s = x0 x a  -> x0 = a x (cb/s) (closest point)
+    return a, float(np.sqrt(np.mean(r[w] ** 2))), x0

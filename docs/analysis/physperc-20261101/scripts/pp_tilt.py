@@ -12,6 +12,10 @@ plane from frame-0 depth) and our hands. Never reads a parquet or mocap.
     facet; otherwise the prior is wrong, e.g. dust pan 13 deg, pitcher 60 deg in D1).
   SEL = anchor: the scorer's alignment object only (first slot whose name has no declared symmetry, else slot 0);
         all: every gated object.
+  PRIOR (env PP_PRIOR, default facet = T1 exactly): axis = T2: if our mesh is a surface of revolution (physlib.revolution_axis
+    inlier rms <= REV_RMS_MM) the prior down axis is +-that axis (sign nearest the tracker; a revolution body resting
+    upright on a flat table has a vertical axis) fused with weight W_AXIS (env PP_W_AXIS); otherwise the facet prior
+    with weight W. The match gate uses the prior actually used.
 Usage: python -I pp_tilt.py SCRATCH MESHDIR TRACKS_IN OUT_ROOT W SEL [EPS...]"""
 import json, os, sys, numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +25,7 @@ HAND_MM, GAP_LO, GAP_HI, MATCH_DEG = 50.0, -20.0, 10.0, 6.0
 SYM = {'beige_cup', 'blue_cup', 'white_pot_lid'}   # names with a declared symmetry axis (kit); from the object list
 S, MD, TIN, OUT, W, SEL = sys.argv[1:7]
 W = float(W)
+PRIOR = os.environ.get('PP_PRIOR', 'facet'); W_AXIS = float(os.environ.get('PP_W_AXIS', '0.75')); REV_RMS_MM = 4.0
 EPS = [int(x) for x in sys.argv[7:]] or [0, 2, 11, 12, 13, 18, 21, 22, 23, 24, 26, 27, 31, 39, 40, 41, 42, 43, 44, 45]
 for p in (TIN, MD):
     assert 'parquet' not in p and '/t3' not in p, p
@@ -43,7 +48,7 @@ for e in EPS:
     up, d = PL.table_up(S, e, P, MD)
     J = PL.hand_joints(S, e)
     anchor = next((n for n in names if n not in SYM), names[0])
-    rec = {'anchor': anchor, 'W': W, 'SEL': SEL, 'objects': {}}
+    rec = {'anchor': anchor, 'W': W, 'SEL': SEL, 'PRIOR': PRIOR, 'W_AXIS': W_AXIS, 'objects': {}}
     for n in names:
         r = rec['objects'][n] = {}
         if SEL == 'anchor' and n != anchor:
@@ -53,10 +58,20 @@ for e in EPS:
         hd = PL.hand_dist(J, 0, mp, X0) * 1000; gap = PL.lowest_gap(mp, X0, up, d) * 1000
         g = X0[:3, :3].T @ -up
         sp = PL.stable_poses(mp); k, match = PL.nearest_stable(sp, g)
+        prior, w = sp['down'][k], W
+        if PRIOR == 'axis':
+            ax, rms, _ = PL.revolution_axis(mp)
+            if rms * 1000 <= REV_RMS_MM:
+                ax = ax if ax @ g > 0 else -ax
+                prior, w = ax, W_AXIS
+                match = float(np.degrees(np.arccos(np.clip(ax @ g / np.linalg.norm(g), -1, 1))))
+                r['prior'] = f'axis rms {rms * 1000:.2f} mm'
+            else:
+                r['prior'] = f'facet (axis rms {rms * 1000:.1f} mm)'
         r.update(hand_mm=round(hd, 1), gap_mm=round(gap, 1), match_deg=round(match, 2))
         if not (hd > HAND_MM and GAP_LO <= gap <= GAP_HI and match <= MATCH_DEG):
             r['skip'] = 'gate'; continue
-        gf = slerp_dir(g, sp['down'][k], W)
+        gf = slerp_dir(g, prior, w)
         C = PL.swing(g, gf)
         c = PL.shell_com(mp)
         Rn = np.einsum('tij,kj->tik', P[n][:, :3, :3], C)          # R(t) C^T
