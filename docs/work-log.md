@@ -5536,3 +5536,7 @@ Advice given:
   610.57.04, env restored, job rc 0 after 134 min; ledger actual $3.19. Store has the candidate checkpoint
   runs/…/runs/perc2mckdr/ep25-s42/policy_250003456.safetensors and selection.json. summary/verify/job.log copied to
   docs/research/work/pack9b-20261031/results/drS25s42/.
+- 01:42 UTC **D S30b (20261031-drS30s43-a1a7e25, 58591555) RESULT [M, exec]: ep30 VERIFIED** — s43 n 10 sim_vs_ref mean
+  0.8173 sd 0.141 (hard_ab 0.1337) min 0.4804 max 0.9212; cut 0/0; D-line ok; hook md5 = expected; no stray logs. Main
+  pipeline sim_vs_ref 0.9224 (floor 0.7277); checkpoint policy_250003456 (same cosmetic chosen() line as S25a). Seed choice
+  between S30a/S30b is the merge's (PREREG 2). Box is saving, then destroys.
