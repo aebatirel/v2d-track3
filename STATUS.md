@@ -12,6 +12,12 @@ Branch `claude/perfect-following-20261101`; report `docs/analysis/perfect-follow
   - pfB: evals 14 and 16 retrained on two-hand references, 2 seeds, 10 fresh draws, swap rule + ≥ +0.02 bar.
   - Results ≈ 00:00–01:00 UTC. The GRASP session is asked for the "no mover, no motion" reference repair (for evals 32,
     16, 25) with its public gate.
+- 20:48 UTC **new finding [M]:** the losses of evals 14 / 32 / 33 sit exactly where perception's track guard re-found the
+  cup: a one-frame jump of 11–20 cm (eval 32: the cup also flips upside down for 13 frames). Before the jump the tracked
+  cup has drifted 3–14 cm out of the human's hand. New repair tools/guard_bridge.py smooths over the drift (GT-free).
+  No public episode has such an event, so it is judged on eval against both our old and the repaired reference.
+- GPU batch 2 running (pre-registered, docs/research/work/pf-bridge-20261101/PREREG.md), ≈ $12 [E]: eval 14 repaired
+  (single / two-hand), evals 32 / 33 repaired, eval 15 two-hand. 4 boxes ≈ $5.7/h.
 
 ## 2026-11-01 ~11:44 UTC: PACK 11 UPLOADED: AUC 0.83921, our best on every board (MP-SR 0.70, RPE 3.179, MPPE 2.545, SP-SR 0.85)
 - Pack 11 = pack 10 with eval 10's policy trained at njmax 1024 (training-only) and evaluated at stock 512 / 256
