@@ -6068,3 +6068,7 @@ arm and a no-policy replay floor to stage B.
     parallel only if credit stays ≥ $10 after both runs and confirmations.
   - Asked determined-wright for that budget.py run, and bold-albattani to freeze b1 and list other eval objects that
     are unstable in a hands-free settle at f0 (report only).
+- 06:33 UTC 1 Nov bold-albattani: eval-20 b1 pitcher frozen by md5 (rebase/sets/ev20/FROZEN.md, 83d18d0; 41 pieces).
+  f0 settle survey started (CPU, $0, report-only): every reconstructable eval episode, a hands-free plain-MuJoCo settle
+  at f0 with the packed geometry, plus the first H30 rest frame if a hand is near at f0. Per object: translation,
+  rotation, fall-over and visible cause, ranked by displacement.
