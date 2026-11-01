@@ -5751,3 +5751,15 @@ arm and a no-policy replay floor to stage B.
   - Our tracked board pose at assembly differs from the packed eval-25 reference by 9.8 mm / 2.5°, against a 1 mm
     clearance.
   - Pack 10 keeps `meshes/carve/ev25`.
+- ~01:00 UTC 1 Nov Roman (forwarded by the owner):
+  - (1) estimate the table plane / camera tilt from an independent reference such as the background velocity field
+    (drone optical flow);
+  - (2) Yoon et al. 2017, Sensors 17(9):2075 (UAV video, 25 fps, cross-correlation of tracked points cancels camera
+    motion; modal frequencies within ~1 % of accelerometers): use natural frequencies to infer the forces, i.e. whether
+    an object is held firmly.
+  - Assessment given to the owner:
+    - (1) our camera motion is already estimated from the static background (stereo VO); the costly tilt is the
+      anchor object's frame-0 orientation (template-driven), not the camera's;
+    - (2) 20 fps (Nyquist 10 Hz) and the 0.15 cm tracking noise make grip vibrations unobservable, and the robot's
+      grip is designed, not copied.
+  - A paste-ready reply was drafted asking Roman about estimating an object's starting orientation.
