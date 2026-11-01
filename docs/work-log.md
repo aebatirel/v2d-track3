@@ -6490,3 +6490,15 @@ Background agent, CPU only, $0, no ground truth read.
   (16 copies; min 0.118, max 0.555), nominal 0.5270; its input P2 0.3435 ± 0.162; floor 0.5561. Official replay vs
   solver truth bit-identical over all 190 frames; fresh-load buffers identical. 4 rollbacks used (cup lost at f24
   repeatedly); the cup is ~20 cm off by f96. Solve ≈ 74 min. Arm 2 (P2 grasp) started 14:26.
+- 15:38 UTC: ep13 arm 2/8 done [M]: **P2 grasp** (GRASP mode, config G5): jittered mean **0.4176 ± 0.166** (min 0.077,
+  max 0.557), nominal **0.6266**; replay vs truth bit-identical (190 frames); 4 rollbacks; solve ≈ 71 min.
+  - **Test B primary: d_b = 0.4176 − 0.3935 = +0.024** (paired over the 16 common-noise copies: bootstrap 95 % CI
+    −0.071 to +0.115; GRASP ahead on 9 / 16). Below the +0.05 bar, so **test B cannot pass**, whatever the O2 arms show
+    (they can only add a harm flag). Nominal (copy 0) Δ +0.100: the nominal gain mostly vanishes under 0.5 mm / 0.005 rad
+    noise, as for the CPU solver on ep12 (30 Oct).
+  - Report-only: the cup stays within 3 cm on 8 % of frames in every P2 arm (input, anneal, grasp) and is lost (> 3 cm
+    for 8 frames) at f15–17 in every copy; neither solver keeps the cup through the hand-over from our perceived motion.
+    The O2 input keeps it within 3 cm on 22 % of frames, lost at f27–69.
+  - Single nominal trajectories looked very different mid-solve (f52: GRASP 4.3 cm vs anneal 18.7 cm off): a reminder
+    that only the jittered means are the measure.
+  - Remaining (pre-registered, running): O2 anneal (started 15:38), O2 grasp, then test A (P, O × 2).
