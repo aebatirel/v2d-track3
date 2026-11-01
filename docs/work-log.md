@@ -6683,3 +6683,11 @@ Background agent, CPU only, $0, no ground truth read.
     Its real target (eval 32's flipped segment) has no public counterpart, so it cannot pass a public gate on its merits;
     the event-triggered guard_bridge (perfect-following) covers those eval cases. Report-only: M1 rose on ep31 (+0.011)
     and ep12 (+0.006), so rest freezing may help accuracy on static objects, but M2 says it does not help the robot.
+- 21:20 UTC: physics-perception tested `twist_canon.canonicalise` (41383b4, copied verbatim; held twist following a
+  MediaPipe palm frame because their npz tracks have no robot wrist) on the 5 public cup episodes vs mocap [their M]:
+  twist error WORSE on 5 / 6 cups (ep21 blue 4.0 → 36.4°, ep22 1.9 → 32.6°, ep11 blue 12.2 → 25.3°, beige 5.2 → 15.8°,
+  ep12 22.9 → 43.0°; ep13 74.6 → 74.3°) and registered AUC down (ep11 −0.0084, ep21 −0.003). Their exploratory rest-only
+  variant (remove twist increments only on static, hand-free frames; keep the tracker's increments elsewhere) improved
+  twist error on 6 / 6 (ep13 74.6 → 57.7°) with AUC unchanged (±0.0003). Consistent with my ep13 result: the
+  hand-following part of twist_canon is harmful; if anyone uses twist canonicalisation, use the rest-only form. Not pursued
+  tonight (the leaderboard is symmetric for cups; the gain is our proxy only).
