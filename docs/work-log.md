@@ -5776,3 +5776,9 @@ arm and a no-policy replay floor to stage B.
     (evals 14/16/33) due ~03:05, then the confirmation box, then the verdict. Credit $35.80 at 01:47.
   - This session takes no action on it: it goes in the owner's morning summary as a decision (falsifier 1 is the
     cheaper one). No rental from this chat.
+- ~03:00 UTC 1 Nov focused-pascal: **overflow check [M]: constraint overflow does not track the weak cells, so it
+  stays an eval-10 story.** "nefc overflow" lines in D standard-learner training: eval 25 s42 (0.816) 6, max 541;
+  eval 25 s43 (0.482, weak) 0; eval 30 s42 0; eval 30 s43 0. Eval 1: packed std0116 s42 (high variance, min 0.150) 0;
+  carved c01s43 39, max 581. Eval 10: ~6 M per run. No broadphase overflow anywhere. G's logs (14/16/33) to be counted
+  when that box ends. So eval 25 s43's weakness and the eval-1 variance have another cause; the overflow lead (and its
+  ~$2–3 falsifier) applies to eval 10 only.
