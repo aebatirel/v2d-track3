@@ -6568,7 +6568,7 @@ Background agent, CPU only, $0, no ground truth read.
   "rent cheap Vast CPU" permission came via another session, not from the owner in this chat, and CPU here suffices.
 - 20:14 UTC: ep13 arm 7/8 done [M]: **O anneal** (test A oracle input): active 45 improved 0 rollbacks 4 wall 3411.1 nonzero offset frames 0 ; jittered 0.5707 ± 0.003 = its
   input copy for copy (nominal 0.5724); replay bit-identical. Arm 8 (O grasp) started 20:14.
-- 20:35 UTC: **repair (a) test on ep13 [M]** (`scripts/twist_ep13.sh`, code 41383b4): twist canon on P_sf / O_sf BEFORE the
+- 20:21 UTC: **repair (a) test on ep13 [M]** (`scripts/twist_ep13.sh`, code 41383b4): twist canon on P_sf / O_sf BEFORE the
   two-hand lock + ILC (same GL_ARGS as P2 / O2), then jitter_check --k 17 --seed 0. Twist removed: P up to 174°, O 49°;
   tilt unchanged (9e-7°). Results (jittered, 16 copies; floors in brackets):
   - P2T: plain 0.520 (0.553), **symmetric 0.521 ± 0.026** (0.574), cup within 3 cm (symmetric) on 5 % of frames, lost at
@@ -6582,7 +6582,7 @@ Background agent, CPU only, $0, no ground truth read.
     chosen (a score rise without following); the cup-tracking readout is the honest one. Conclusion: twist
     canonicalisation alone does not make ep13's pick followable; the lock's hand placement at the pick is the gap.
     On O the canon replaces a real twist (mocap turns 22–34° by f32–36) and slightly hurts (−0.035).
-- 20:45 UTC: perfect-following session (session_01D9UJC8Nz9EEFNmz2yzimzN) reported [their M]: H5p7 rollouts rescored
+- 20:24 UTC: perfect-following session (session_01D9UJC8Nz9EEFNmz2yzimzN) reported [their M]: H5p7 rollouts rescored
   symmetric move ≤ +0.009 (cup twist not where RL loses); eval 32's perceived cup swings ~15 cm inside the left-hand
   hold (f15–33) then jumps back at 322 cm/s, failing all 10 draws; evals 16 / 25 / 30 have objects moving with no robot
   hand near; eval 14's right hand grips 0 % of its phase. It proposed I build repair (b) on CPU; accepted (it owns all
