@@ -5849,3 +5849,9 @@ arm and a no-policy replay floor to stage B.
       cavity intrusion ≤ 0; kept volume ≥ 80 %.
     - Eval-30 rack slot, then eval 14: same overlap gates; rack fill beyond the mesh ≤ 1 cm³; hands-off settle within
       4 mm / 5°; kept volume ≥ 90 %. The eval-14 cup 16.6 mm inside the table is flagged as a reference issue.
+- 02:56 UTC 1 Nov determined-wright: no duplicate njmax launch, no rental (CPU checks only).
+  - Packed baselines [M] (budget.py, sim=rl): eval 10 overflows (nefc max 536, 13 % of world-steps > 512); evals 30
+    and 14 do not (max 244 and 385).
+  - So for evals 30 / 14 the overlap matters through noise-decided separation (draw variance), not dropped
+    contacts. Their gates are overlap, settle and kept volume.
+  - It will run budget.py on each mesh candidate within ~10 min of it landing.
