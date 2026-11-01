@@ -1,0 +1,32 @@
+{
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/inputs/ep13_P/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/ps_anneal.parquet",
+ "device": "cpu",
+ "k": 17,
+ "sig_pos": 0.0005,
+ "sig_fin": 0.005,
+ "seed": 0,
+ "nominal": 0.5406,
+ "jittered": [
+  0.5485,
+  0.5558,
+  0.5556,
+  0.5574,
+  0.5561,
+  0.5423,
+  0.5538,
+  0.5567,
+  0.5556,
+  0.5566,
+  0.5561,
+  0.5516,
+  0.5554,
+  0.5561,
+  0.5564,
+  0.5536
+ ],
+ "mean": 0.5542,
+ "sd": 0.0038,
+ "min": 0.5423,
+ "max": 0.5574,
+ "wall_s": 58.9
+}

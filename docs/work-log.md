@@ -6691,3 +6691,7 @@ Background agent, CPU only, $0, no ground truth read.
   twist error on 6 / 6 (ep13 74.6 → 57.7°) with AUC unchanged (±0.0003). Consistent with my ep13 result: the
   hand-following part of twist_canon is harmful; if anyone uses twist canonicalisation, use the rest-only form. Not pursued
   tonight (the leaderboard is symmetric for cups; the gain is our proxy only).
+- 21:22 UTC: ep13 arm 8/8 done [M]: **O grasp** (test A oracle): 0 of 45 windows improved, 4 rollbacks, 0 edited frames;
+  jittered 0.5707 = its input. **Final pre-registered gate (`scripts/gate.py`, results/gate_final.json): test A FAIL
+  (d_b 0.000, d_a 0.000), test B FAIL (d_b +0.024, d_a −0.027). [H-grasp] falsified at this CPU budget on ep13; no GPU step
+  proposed.** All eight outputs replay bit-identically to their solver trajectories (190 frames each). Runs 13:09–21:22.

@@ -1,12 +1,12 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-01 ~21:10 UTC: GRASP-mode test on public ep13 — FAIL, no GPU step; reference-side findings (branch `claude/grasp-ep13-20261101`, CPU, $0)
+## 2026-11-01 ~21:25 UTC: GRASP-mode test on public ep13 — FAIL (final), no GPU step; reference-side findings (branch `claude/grasp-ep13-20261101`, CPU, $0)
 Report: `docs/research/grasp-ep13-20261101/README.md`; PREREG frozen at d8544cf before any ep13 solve.
 - **GRASP mode built** (`solve.py --method grasp`, `tools/physics_solve/grasp_window.py`; GRASP's own MIT optimiser maths, no
   SPIDER code). Default path bit-identical to the old solver; outputs replay bit-identically to the committed trajectory [M].
 - **Gate [M]** (jittered sim_vs_ref, 16 copies): test A (twins' references, the owner's gate) d_b = 0.000 (neither solver
   changes a frame: the left hand is parked); test B (two-hand rebuild) d_b = +0.024 (CI −0.07..+0.12), d_a −0.027. Bar
-  +0.05: **both FAIL, no GPU step proposed.** The last test-A oracle arm cannot change it.
+  +0.05: **both FAIL (final, all 8 arms done 21:22 UTC), no GPU step proposed.**
 - **Findings [M]:**
   - the ep13 twin references (single-hand lock) park the left hand; the right hand holds only after the cup has risen.
     Eval 14's packed lock keeps its first picker (left) instead;

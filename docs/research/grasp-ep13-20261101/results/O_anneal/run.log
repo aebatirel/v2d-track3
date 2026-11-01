@@ -1,0 +1,11 @@
+2026-11-01T19:16:08Z ep13 O anneal code 6fe24c17 solve.py 39e9307f grasp_window.py 1150c763 jitter_check.py 3522b860 input md5 f7ca85ed
+args: --workers 4 --worlds 32 --robust 4 --horizon 16 --knot 4 --ctrl 4 --iters 8 --ramp 1 4 --sig_pos 0.01 --sig_rot 0.05 --sig_fin 0.15 --anneal 0.80 --retries 4 --retry 0.05 --back 3 --rob_pos 0.0005 --rob_fin 0.005 --seed 0 --method anneal 
+solve rc=0 3422 s
+zero replay rc=0
+floor_vs_ref 0.5727
+zero_action: sim_vs_ref 0.5724
+truth: sim_vs_ref 0.5724
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[3419s] fresh load of ps_anneal.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 52 s: ps_anneal.parquet: copy 0 (no noise) 0.5724; jittered copies [0.5717, 0.5727, 0.5711, 0.5724, 0.5724, 0.5727, 0.572, 0.5727, 0.5623, 0.5664, 0.5676, 0.5719, 0.5725, 0.5727, 0.5725, 0.5674]; jittered mean 0.5707 sd 0.0030 min 0.5623 max 0.5727
+2026-11-01T20:14:32Z DONE

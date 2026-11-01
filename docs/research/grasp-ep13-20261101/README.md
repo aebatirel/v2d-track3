@@ -66,13 +66,15 @@ zero-action replay was bit-identical to its committed trajectory over all 190 fr
 | P2 two-hand, perceived | 0.3435 ± 0.162 | 0.5270 / 0.3935 ± 0.146 | 0.6266 / 0.4176 ± 0.166 | **+0.024** (−0.071, +0.115; 9) |
 | O2 two-hand, oracle | 0.6041 ± 0.093 | 0.6957 / **0.6507** ± 0.092 | 0.6929 / 0.6241 ± 0.107 | −0.027 (−0.101, +0.050; 5) |
 | P twins', perceived | 0.5542 ± 0.004 | 0.5406 / 0.5542 ± 0.004 | 0.5406 / 0.5542 ± 0.004 | **0.000** (both outputs = the input: 0 windows improved) |
-| O twins', oracle | 0.5707 ± 0.003 | PENDING_OA | PENDING_OG | PENDING_DA |
+| O twins', oracle | 0.5707 ± 0.003 | 0.5724 / 0.5707 ± 0.003 | 0.5724 / 0.5707 ± 0.003 | **0.000** (both outputs = the input: 0 of 45 windows improved) |
 
 Floors: 0.5561 (P, P2), 0.5727 (O, O2).
 
 **Verdicts (pre-registered rule: d_b ≥ +0.05 on the perceived input, neither d below −0.05):**
 - **Test B (two-hand): FAIL** (d_b +0.024; no harm flag).
-- **Test A (the owner's gate, twins' references): FAIL** (d_b 0.000). PENDING_A_NOTE
+- **Test A (the owner's gate, twins' references): FAIL** (d_b 0.000, d_a 0.000): with the left hand parked, neither solver
+  found any plan better than the input in any window (37 / 37 and 45 / 45 windows unimproved), so all four outputs equal
+  their inputs copy for copy. `scripts/gate.py` → `results/gate_final.json`: test_A FAIL, test_B FAIL.
 - So [H-grasp] is falsified at this CPU budget on ep13, and **no GPU step is proposed**.
 
 Report-only readings:
@@ -98,8 +100,8 @@ Report-only readings:
   the left wrist–cup distance differs (f24: 17.7 vs 14.1 cm).
 
 ## 6. Cost
-$0: everything ran on this container's 4 CPUs (setup ~20 min; dev sweep ~45 min; eight ep13 arms ~8 h). No GPU was
-rented.
+$0: everything ran on this container's 4 CPUs (setup ~20 min; dev sweep ~45 min; eight ep13 arms 13:09–21:22 UTC,
+8.2 h; repairs ~1.5 h). No GPU was rented; nothing sent to Kaggle.
 
 ## 7. For the follow-up work (owner's "perfect following" lane)
 **Where things are.**

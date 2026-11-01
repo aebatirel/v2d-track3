@@ -1,0 +1,91 @@
+2026-11-01T13:09:13Z run_all start; GRASP_ARGS [--g_sig_abs 0.0044 0.0044 0.044 --g_ess 0.5 --g_moves 2]
+==> /tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/ep13/O2_input/jitter.log <==
+ref_gl_ilc.parquet: copy 0 (no noise) 0.6474; jittered copies [0.6477, 0.6479, 0.5632, 0.6405, 0.659, 0.5531, 0.6475, 0.3692, 0.6564, 0.6512, 0.647, 0.6457, 0.6459, 0.6429, 0.6735, 0.3753]; jittered mean 0.6041 sd 0.0930 min 0.3692 max 0.6735
+
+==> /tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/ep13/O_input/jitter.log <==
+ref_in.parquet: copy 0 (no noise) 0.5724; jittered copies [0.5717, 0.5727, 0.5711, 0.5724, 0.5724, 0.5727, 0.572, 0.5727, 0.5623, 0.5664, 0.5676, 0.5719, 0.5725, 0.5727, 0.5725, 0.5674]; jittered mean 0.5707 sd 0.0030 min 0.5623 max 0.5727
+
+==> /tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/ep13/P2_input/jitter.log <==
+ref_gl_ilc.parquet: copy 0 (no noise) 0.5268; jittered copies [0.5622, 0.1845, 0.1475, 0.5048, 0.3439, 0.5559, 0.126, 0.3891, 0.5572, 0.3822, 0.1546, 0.4194, 0.1595, 0.1439, 0.3678, 0.4979]; jittered mean 0.3435 sd 0.1618 min 0.1260 max 0.5622
+
+==> /tmp/claude-0/-home-user-v2d-track3/733d7dc1-0497-5e95-9318-e9e75aa073b5/scratchpad/ep13/P_input/jitter.log <==
+ref_in.parquet: copy 0 (no noise) 0.5406; jittered copies [0.5485, 0.5558, 0.5556, 0.5574, 0.5561, 0.5423, 0.5538, 0.5567, 0.5556, 0.5566, 0.5561, 0.5516, 0.5554, 0.5561, 0.5564, 0.5536]; jittered mean 0.5542 sd 0.0038 min 0.5423 max 0.5574
+2026-11-01T13:10:14Z arm P2 anneal
+floor_vs_ref 0.5561
+zero_action: sim_vs_ref 0.5270
+truth: sim_vs_ref 0.5270
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[4462s] fresh load of ps_anneal.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 63 s: ps_anneal.parquet: copy 0 (no noise) 0.5270; jittered copies [0.4607, 0.5273, 0.4334, 0.5541, 0.4326, 0.5536, 0.1661, 0.264, 0.5316, 0.3128, 0.4112, 0.5061, 0.275, 0.1944, 0.5553, 0.1184]; jittered mean 0.3935 sd 0.1457 min 0.1184 max 0.5553
+2026-11-01T14:26:12Z DONE
+2026-11-01T14:26:12Z arm P2 grasp
+floor_vs_ref 0.5561
+zero_action: sim_vs_ref 0.6266
+truth: sim_vs_ref 0.6266
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[4243s] fresh load of ps_grasp.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 60 s: ps_grasp.parquet: copy 0 (no noise) 0.6266; jittered copies [0.1289, 0.5072, 0.5316, 0.5257, 0.0766, 0.5536, 0.1234, 0.2803, 0.5538, 0.5567, 0.5252, 0.5549, 0.3715, 0.4683, 0.4076, 0.5156]; jittered mean 0.4176 sd 0.1656 min 0.0766 max 0.5567
+2026-11-01T15:38:25Z DONE
+2026-11-01T15:38:25Z arm O2 anneal
+floor_vs_ref 0.5727
+zero_action: sim_vs_ref 0.6957
+truth: sim_vs_ref 0.6957
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[4332s] fresh load of ps_anneal.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 63 s: ps_anneal.parquet: copy 0 (no noise) 0.6957; jittered copies [0.6513, 0.6938, 0.6974, 0.6854, 0.6939, 0.6766, 0.4143, 0.6919, 0.6924, 0.6939, 0.6906, 0.6734, 0.4026, 0.6686, 0.6956, 0.6888]; jittered mean 0.6507 sd 0.0923 min 0.4026 max 0.6974
+2026-11-01T16:52:10Z DONE
+2026-11-01T16:52:10Z arm O2 grasp
+floor_vs_ref 0.5727
+zero_action: sim_vs_ref 0.6929
+truth: sim_vs_ref 0.6929
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[4593s] fresh load of ps_grasp.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 56 s: ps_grasp.parquet: copy 0 (no noise) 0.6929; jittered copies [0.6947, 0.6936, 0.6778, 0.628, 0.4209, 0.6653, 0.6531, 0.6651, 0.4074, 0.689, 0.6939, 0.6934, 0.6936, 0.6502, 0.3888, 0.6702]; jittered mean 0.6241 sd 0.1067 min 0.3888 max 0.6947
+2026-11-01T18:10:08Z DONE
+2026-11-01T18:10:08Z arm P anneal
+floor_vs_ref 0.5561
+zero_action: sim_vs_ref 0.5406
+truth: sim_vs_ref 0.5406
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[1808s] fresh load of ps_anneal.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 62 s: ps_anneal.parquet: copy 0 (no noise) 0.5406; jittered copies [0.5485, 0.5558, 0.5556, 0.5574, 0.5561, 0.5423, 0.5538, 0.5567, 0.5556, 0.5566, 0.5561, 0.5516, 0.5554, 0.5561, 0.5564, 0.5536]; jittered mean 0.5542 sd 0.0038 min 0.5423 max 0.5574
+2026-11-01T18:41:51Z DONE
+2026-11-01T18:41:51Z arm P grasp
+floor_vs_ref 0.5561
+zero_action: sim_vs_ref 0.5406
+truth: sim_vs_ref 0.5406
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[1953s] fresh load of ps_grasp.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 65 s: ps_grasp.parquet: copy 0 (no noise) 0.5406; jittered copies [0.5485, 0.5558, 0.5556, 0.5574, 0.5561, 0.5423, 0.5538, 0.5567, 0.5556, 0.5566, 0.5561, 0.5516, 0.5554, 0.5561, 0.5564, 0.5536]; jittered mean 0.5542 sd 0.0038 min 0.5423 max 0.5574
+2026-11-01T19:16:07Z DONE
+2026-11-01T19:16:07Z arm O anneal
+floor_vs_ref 0.5727
+zero_action: sim_vs_ref 0.5724
+truth: sim_vs_ref 0.5724
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[3419s] fresh load of ps_anneal.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 52 s: ps_anneal.parquet: copy 0 (no noise) 0.5724; jittered copies [0.5717, 0.5727, 0.5711, 0.5724, 0.5724, 0.5727, 0.572, 0.5727, 0.5623, 0.5664, 0.5676, 0.5719, 0.5725, 0.5727, 0.5725, 0.5674]; jittered mean 0.5707 sd 0.0030 min 0.5623 max 0.5727
+2026-11-01T20:14:32Z DONE
+2026-11-01T20:14:32Z arm O grasp
+floor_vs_ref 0.5727
+zero_action: sim_vs_ref 0.5724
+truth: sim_vs_ref 0.5724
+replay vs solver truth: frames 190 max |dq| 0.0 bit-identical True
+[3979s] fresh load of ps_grasp.parquet: target buffers bit-identical to the truth env: {'wrist_pos_w': True, 'wrist_quat_w': True, 'finger_joint_pos': True}
+jitter rc=0 56 s: ps_grasp.parquet: copy 0 (no noise) 0.5724; jittered copies [0.5717, 0.5727, 0.5711, 0.5724, 0.5724, 0.5727, 0.572, 0.5727, 0.5623, 0.5664, 0.5676, 0.5719, 0.5725, 0.5727, 0.5725, 0.5674]; jittered mean 0.5707 sd 0.0030 min 0.5623 max 0.5727
+2026-11-01T21:22:18Z DONE
+P_input    nominal 0.5406 jittered 0.5542 ± 0.0038 [0.5423, 0.5574] cup<=3cm 0.080 lost@ [15, 15, 15, 23, 15, 12, 15, 17, 15, 17, 15, 15, 15, 15, 17, 12]
+P_anneal   nominal 0.5406 jittered 0.5542 ± 0.0038 [0.5423, 0.5574] cup<=3cm 0.080 lost@ [15, 15, 15, 23, 15, 12, 15, 17, 15, 17, 15, 15, 15, 15, 17, 12]
+P_grasp    nominal 0.5406 jittered 0.5542 ± 0.0038 [0.5423, 0.5574] cup<=3cm 0.080 lost@ [15, 15, 15, 23, 15, 12, 15, 17, 15, 17, 15, 15, 15, 15, 17, 12]
+O_input    nominal 0.5724 jittered 0.5707 ± 0.0030 [0.5623, 0.5727] cup<=3cm 0.141 lost@ [26, 27, 27, 27, 27, 27, 26, 27, 27, 27, 27, 26, 27, 27, 27, 26]
+O_anneal   nominal 0.5724 jittered 0.5707 ± 0.0030 [0.5623, 0.5727] cup<=3cm 0.141 lost@ [26, 27, 27, 27, 27, 27, 26, 27, 27, 27, 27, 26, 27, 27, 27, 26]
+O_grasp    nominal 0.5724 jittered 0.5707 ± 0.0030 [0.5623, 0.5727] cup<=3cm 0.141 lost@ [26, 27, 27, 27, 27, 27, 26, 27, 27, 27, 27, 26, 27, 27, 27, 26]
+P2_input   nominal 0.5268 jittered 0.3435 ± 0.1618 [0.1260, 0.5622] cup<=3cm 0.080 lost@ [15, 15, 17, 15, 15, 15, 15, 15, 15, 15, 15, 15, 19, 15, 15, 15]
+P2_anneal  nominal 0.5270 jittered 0.3935 ± 0.1457 [0.1184, 0.5553] cup<=3cm 0.079 lost@ [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15]
+P2_grasp   nominal 0.6266 jittered 0.4176 ± 0.1656 [0.0766, 0.5567] cup<=3cm 0.080 lost@ [15, 17, 15, 15, 15, 15, 17, 15, 15, 17, 15, 15, 15, 15, 15, 15]
+O2_input   nominal 0.6474 jittered 0.6041 ± 0.0930 [0.3692, 0.6735] cup<=3cm 0.218 lost@ [27, 48, 46, 50, 48, 35, 39, 45, 48, 45, 39, 49, 45, 38, 69, 39]
+O2_anneal  nominal 0.6957 jittered 0.6507 ± 0.0923 [0.4026, 0.6974] cup<=3cm 0.352 lost@ [27, 82, 80, 77, 78, 35, 79, 81, 80, 82, 80, 60, 59, 65, 81, 81]
+O2_grasp   nominal 0.6929 jittered 0.6241 ± 0.1067 [0.3888, 0.6947] cup<=3cm 0.355 lost@ [79, 80, 68, 70, 71, 52, 63, 56, 71, 79, 77, 76, 79, 40, 69, 70]
+deltas {"P": {"delta": 0.0, "ci95": [0.0, 0.0], "wins": 0, "n": 16, "delta_nominal": 0.0}, "O": {"delta": 0.0, "ci95": [0.0, 0.0], "wins": 0, "n": 16, "delta_nominal": 0.0}, "P2": {"delta": 0.024, "ci95": [-0.0705, 0.1149], "wins": 9, "n": 16, "delta_nominal": 0.0996}, "O2": {"delta": -0.0266, "ci95": [-0.1014, 0.05], "wins": 5, "n": 16, "delta_nominal": -0.0028}}
+VERDICT {"test_A": "FAIL", "test_B": "FAIL"}
+2026-11-01T21:22:23Z run_all DONE
