@@ -1869,3 +1869,6 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
 - 03:14 Amendment A3 in GATES.md (before any v3 number): v3 = v2 with --seg 8 (blue 32, beige 33 pieces); piece-count
   target <= 2/3 of ev10; FlashCHORD criterion recorded (determined-wright measures). v2 folder `ev10cs2/` laid out
   (make_assets --pieces tested: 44 / 49 collisions); committing v2 + A3 before building v3.
+- 03:16 v3 built (blue 32: 24 wall + floor plate 10.78 cm3 + 7 hulls, 136.1 cm3; beige 33, 250.1 cm3; wall minima as
+  v2: 0.25 mm mouth bin, 0.875 mm bottom bin); folder `ev10cs3/` laid out (make_assets tested: 32 / 33); committed
+  before our own v3 numbers so FlashCHORD can run in parallel. v3 evalcheck / contacts / settle running.

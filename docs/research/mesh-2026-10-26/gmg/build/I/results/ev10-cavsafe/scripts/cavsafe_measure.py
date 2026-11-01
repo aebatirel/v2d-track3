@@ -99,7 +99,8 @@ for tag, d in (('packed', packed_dir), ('cand', cand_dir)):
         per.append(round(float(m) * 1e3, 4) if np.isfinite(m) else None)
         perr.append(round(float(mr) * 1e3, 4) if np.isfinite(mr) else None)
         dmax = max(dmax, m); vol += int((dg > 0).sum())
-        if i < 36:
+        if i < 36:                    # ev10 layout; for 8-sector sets the extra indices are floor / base pieces,
+                                      # whose points lie at h >= h_floor and so never count
             dradw = max(dradw, mr)
     rec['receiver'] = dict(pieces=len(bp), cavity_depth_max_mm=round(float(dmax) * 1e3, 4),
                            depth_radial_wall_pieces_max_mm=round(float(dradw) * 1e3, 4),
