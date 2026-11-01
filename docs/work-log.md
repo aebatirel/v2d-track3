@@ -5944,7 +5944,7 @@ Advice given:
   (run 20261101-e10nj-451b82d results/ev10_nj/solver_build.json; the 1024 checkpoint builds 1024 / 512); 10 conf512
   official draws all rc 0, 0 overflow lines in every evaluator log, every rollout names aaa077eb…; checkpoint_sha256
   covers the whole .safetensors file (tensors + stored config). Re-scored on CPU (e10v_score.py, V md5 5d22fc57…,
-  P md5 1a5003d9…), both sides together: new vs V 0.8342 vs packed (pack 10's ev10cs5 s43) 0.4630 (+0.371), vs P
+  P md5 1a5003d9…), both sides together: new vs V 0.9034 vs packed (pack 10's ev10cs5 s43) 0.5322 (+0.371) [corrected 11:50: first written as 0.8342 / 0.4630], vs P 0.873 vs 0.5116
   +0.361; fail rate (RPE > 5 cm) 0 / 10 vs 10 / 10; median RPE margin 11.9 / 11.3 cm; draw 1 vs V 0.9175 (RPE 1.89 cm)
   vs old 0.5120. Bar +0.02 on both → INCLUDE. Files: eval10-njmax-20261101/results/pack11/.
   **Pack 11 NOT built**: the guard exception (an allowlist entry for this one sha in tools/no_oracle.py +
@@ -5965,3 +5965,11 @@ Advice given:
   refused. By-content limit noted: a json on a neutral path claiming the allowed sha is accepted; the pack builder
   additionally requires parquet metadata = json = --expect-checkpoint. Regression: oracle / leak / scanlib / t3 mesh /
   r5ks / perc2scan still refused; pack 10's inputs accepted; 9a+ pure repack still byte-identical.
+- 11:50 UTC **pack 11 ready: results/submissions/20261101-track3l-candidate/build_11/track3_submission.parquet** (9,120 rows,
+  sha256 3c428350ec8a3558…055ec, code commit 50312319). Pack 10 (e1bef1e5…) + eval 10's conf512 draw-1 rollout (ck512,
+  aaa077eb…; trained njmax 1024 / nconmax 512, evaluated at stock 512 / 256). Checks pass [M]: vs pack 10 only ep10's
+  322 pose + checkpoint rows differ (other episodes' checkpoints identical), meshes and eval / packer / uploader hashes
+  identical, CD-O xyz identical (sha256 ca3c2875…), uploader offline validation, no_oracle (accepted the two swap files
+  only through the owner-approved exception). README there (disclosure line included). Not uploaded from this session.
+  Correction: the 11:25 entry first quoted the means as 0.8342 / 0.4630 vs V; the verdict file's means are vs V 0.9034
+  vs 0.5322 and vs P 0.873 vs 0.5116 (gains +0.3712 / +0.3614 were right).

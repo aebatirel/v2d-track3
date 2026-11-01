@@ -10,12 +10,18 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-01 11:50 UTC: PACK 11 READY — results/submissions/20261101-track3l-candidate/build_11/ (not uploaded here)
+- sha256 3c428350…055ec, code 50312319: pack 10 with eval 10 = the njmax-1024-trained policy evaluated at stock 512/256
+  (ck512 aaa077eb…); vs pack 10's eval-10 policy +0.371 (V) / +0.361 (P), 0/10 vs 10/10 fails; only ep10 rows differ.
+- Guard: the owner approved in this session a single sha-specific exception in tools/no_oracle.py (tests 17/17).
+
 ## 2026-11-01 11:25 UTC: pack-11 verdict INCLUDE (njmax-1024-trained eval-10 policy at stock limits) — pack NOT built
 - Owner's go (relayed by keen-heisenberg, 09:11): pack the 1024-trained eval-10 policy scored at stock 512 / 256.
-- Verdict (amendment 998385b0, standing rule on already-seen draws): vs pack 10's eval-10 policy +0.371 (V) / +0.361 (P),
+- Verdict (amendment 998385b0, standing rule on already-seen draws): vs pack 10's eval-10 policy 0.9034 vs 0.5322 (V,
+  +0.371) / 0.873 vs 0.5116 (P, +0.361),
   fail rate 0/10 vs 10/10; stock evaluation proven (stored config 512/256; solver built 512/256; 0 overflow in all draws).
-- Blocked: the sha-specific no_oracle exception was denied by this session's permission check (security weakening on a
-  relayed go). Not worked around. Needs the owner's own word here to add the allowlist entry, then the CPU build ($0).
+- (11:25) The sha-specific exception was first denied by this session's permission check on the relayed go; the owner
+  then approved it here directly (11:40) and it was added.
 
 ## 2026-11-01 09:00 UTC: wrap-up — nothing running; credit $23.63; ledger closed ($200.12 actual)
 - Eval-20 b1 retrain NO-SWAP (gate missed: s43 0.8929 vs > 0.8933; overflow 1.2–1.3 k lines) → no pack 10b.
