@@ -6236,3 +6236,4 @@ Background agent, CPU only, $0, no ground truth read.
   inconclusive. No recipe change for pack 10 from this lane.
 - This lane's GPU spend for 31 Oct: rscr42 $8.22 + rscr43 $7.73 + rscrS42 $3.30 + rscrS43 $3.88 + rscrV42 $3.97 +
   rscrV43 $3.05 = **$30.15** (estimates).
+- 00:07 UTC: push board v5 (physics lane: arm V result, 6-box total). Copy in docs/research/physics-2026-10-30/pages/push-board.html.

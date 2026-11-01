@@ -154,7 +154,7 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 <div class="wrap">
 
 <header>
-  <span class="eyebrow">V2D Challenge · Track 3 · as of 31 Oct, 19:20 TRT · physics lane updated 23:35 TRT</span>
+  <span class="eyebrow">V2D Challenge · Track 3 · as of 31 Oct, 19:20 TRT · physics lane updated 1 Nov 03:06 TRT</span>
   <h1>We are 11th. 10th is two rank points away.</h1>
   <p class="lede">The final place is the sum of our ranks on six leaderboards, lowest wins. Below: where we stand on each board, what every session is running right now, what each run has to show, and when it lands. All times are Turkish time (TRT, UTC+3).</p>
   <div class="summary">
@@ -228,9 +228,9 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   <div class="legend"><span class="lg-gpu">GPU box, billing</span><span class="lg-cpu">CPU work, free</span><span class="lg-next">queued, needs launch</span></div>
   <div class="jobs">
     <div class="job">
-      <div class="hd"><h3>Recipe screen + solver re-test</h3><span class="tag t-wait">finished 23:26 TRT</span></div>
-      <span class="who">physics session · 4 boxes, all self-destroyed · $23.13 total [E]</span>
-      <p>Nothing adopted. K: no gain. D: +0.33 on ep12 but worse and less steady on ep2; you chose not to use it. Solved references: ep2 down 0.13, so eval solving was not started.</p>
+      <div class="hd"><h3>Recipe screen, solver re-test, slip-aware arm V</h3><span class="tag t-wait">all finished 03:02 TRT</span></div>
+      <span class="who">physics session · 6 boxes, all self-destroyed · $30.15 total [E]</span>
+      <p>Nothing adopted. K: no gain. D: +0.33 on ep12 but worse and less steady on ep2 (targeted D cells run in the pack lane). Solved references: ep2 down 0.13, so eval solving was not started. Slip-aware V (robot sees object speed): slightly lower on all 4 episodes (mean −0.024), not used.</p>
       <p class="pass">Results table below. One control cell lost 6 of its 10 runs to a box thread limit, so the rules read "incomplete"; that cannot change K or the solver outcome.</p>
     </div>
     <div class="job gpu">
@@ -322,7 +322,8 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
     <li><span class="d">31 Oct 16:05</span><div class="b"><h3>Realistic masses <span class="tag t-bad">not adopted</span> → fair re-test</h3><p>ep2 gained +0.157 but ep12, already at 0.92, could not clear the +0.03 bar. You pointed out the test was unfair to a near-perfect episode; masses v2 re-tests on episodes with room to grow.</p></div></li>
     <li><span class="d">31 Oct 18:10–18:50</span><div class="b"><h3>Your push: "get me into that top tier"</h3><p>Every planned improvement goes into one combined pack 10, with a quick pack 9a tonight. The shape board is the anchor; the error boards need fewer failed runs.</p></div></li>
     <li><span class="d">31 Oct 23:26</span><div class="b"><h3>Solver clean re-test <span class="tag t-bad">no signal</span></h3><p>The test you asked for: solved references against normal ones, 2 seeds, only the reference differing. ep12 gained +0.22, but ep2 lost 0.13 on both seeds, so the solver stays out of eval. This settles the "strong start, not settled" item above.</p></div></li>
-    <li><span class="d">31 Oct 23:29</span><div class="b"><h3>Recipe screen <span class="tag t-wait">nothing adopted</span></h3><p>K gave no gain. D lifted ep12 from 0.59 to 0.92 but made ep2 worse and less steady. You chose not to add D to pack 10.</p></div></li>
+    <li><span class="d">31 Oct 23:29</span><div class="b"><h3>Recipe screen <span class="tag t-wait">nothing adopted</span></h3><p>K gave no gain. D lifted ep12 from 0.59 to 0.92 but made ep2 worse and less steady. You first chose no D, then approved targeted D cells on 5 unstable evals (pack lane, swap rule decides).</p></div></li>
+    <li><span class="d">1 Nov 03:05</span><div class="b"><h3>Slip-aware robot (arm V) <span class="tag t-bad">no gain</span></h3><p>The robot policy also saw each object's velocity: ep2 −0.05, ep12 −0.03, ep18 −0.01, ep24 −0.01. Command smoothing (test A, CPU) also failed its rule. No robot-side change goes into pack 10 from this lane.</p></div></li>
   </ul>
 </section>
 
