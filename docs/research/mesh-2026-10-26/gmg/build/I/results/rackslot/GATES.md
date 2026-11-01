@@ -70,7 +70,7 @@ commit 2d9bfc5; `../collcarve2-eval/`). The rule's hands-off set is H30, not H0.
 The H0-based R table and frames in "Definitions" and "G3" below are kept for the record. They are superseded by items
 1-2.
 
-## Amendment 2 (1 Nov 2026, 03:52 UTC), before any candidate was measured
+## Amendment 2 (1 Nov 2026, 03:48 UTC), before any candidate was measured
 
 **What prompted it.** Two development builds, try1 and try2, were made under Amendment 1. They are not candidates and
 were never run through `measure.py` or `phys.py`. A construction diagnostic on them (`scripts/diag_left.py`) showed

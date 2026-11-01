@@ -1915,9 +1915,23 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   the mesh below, so the hull must be split between them. Revised build (03:33): depth <= 5, TOL 20 cells per leaf,
   split candidates with 5 offsets + PCA axes, merges that only restore packed fill (no RV cell) first, then capped
   new-fill merges only while > 43.
-- 03:52 Dev build try2 (depth 5, TOL 20, F all): eval 30 107 pieces / 1.32 cm3 F left, eval 14 102 / 1.04; no merge
+- 03:48 Dev build try2 (depth 5, TOL 20, F all): eval 30 107 pieces / 1.32 cm3 F left, eval 14 102 / 1.04; no merge
   admissible (every sibling merge re-covers F). Diagnostic (`scripts/diag_left.py`, construction only, no gate code):
   of the F left, 1.20 (eval 30) / 0.98 (eval 14) cm3 lie within 1.0 mm of the rack-mesh surface (cells straddling the
   surface at 1 mm). GATES.md Amendment 2 (before any candidate is measured): G2 judged as G2b = swept cells more than
   0.87 mm (half a 1 mm cell diagonal) from the mesh surface, G2 as written still reported with its verdict; the build
   targets F' = F beyond that band; merges may add band cells, never F' cells. try1 / try2 stay unmeasured dev builds.
+- 04:02 Candidate builds (build.py at 8fd2c00 + timestamp fixes; F' target): c1-ev30 67 pieces (38 packed kept, 29
+  cut cells from pieces 24, 29, 36, 41, 42; piece 41 -> 15), F' left 0.37 cm3 of 7.62, 0 admissible merges (every
+  sibling merge re-covers F', no pair of other pieces merges with <= 2 cm3 new fill outside the guest's all-frames swept
+  volume). c1-ev14 62 pieces after the cut (F' left 0.29 of 4.30), c1-both in merges. make_assets.py (focused-pascal
+  6bbb52a) default on library_v3 reproduces the sf/ep14 rack and cup URDF inertials exactly; with `--pieces
+  pieces/c1-ev30` the rack URDF lists 67 collisions, the sweeper 1, rack inertia unchanged. Measuring c1-ev30 (04:00).
+- 04:10 [M] c1-ev30 measured (measure.py, phys.py; packed in the same code): G1 9.8 / 12.3 cm3 (packed 14.2 / 18.7;
+  FAIL on the pose floor V_pm 8.1 / 10.4); G1x 1.69 / 2.03 (FAIL on the median; packed 6.15 / 8.29); G2 as written
+  2.90 (FAIL), G2b 0.37 (pass; packed 10.76 all cells); G5 0.999; C1 67 > 43 (reason needed); C2 pass (0 mesh cells
+  lost, 0.09 mm); C3 FAIL as written (4 pieces fail trimesh is_convex: slivers of 4-12 um, every vertex on the hull,
+  volume = hull volume to 1e-6; coacd 1.0.11 returns one part for all 67). G3 (plain MuJoCo, indicative) f257 544
+  rows, 1 / 16 copies over 512 (packed 304) -> FAIL; f249 324, f1 344. G4 S still fails (mean 62 / 46 / 27 mm, packed
+  133 / 230 / 144). G6 pair-scene throw WORSE: 49 / 41 / 40 mm median (packed 38 / 23 / 25); S throw better (55 / 44 /
+  23 vs 138 / 217 / 134). c1-ev14 (62 pieces) and c1-both (86) packaged; measuring.
