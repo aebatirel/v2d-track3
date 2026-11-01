@@ -1,0 +1,1346 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-11-01T01:33:43Z",
+ "commit": "f0327eeba6e2092bf35630fd5f8a58f2b7514f01",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/build/I.md",
+  " M docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/scripts/evalcheck.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/scripts/tables.py"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df",
+  "--ep",
+  "31",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31",
+  "--cands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/cand/public/ep31",
+  "--pick",
+  "mini_sweeper=shell_t5p36,plastic_dish_rack=shell_t5p36",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands31/hands.npz",
+  "--proxy-copies",
+  "16",
+  "--identity",
+  "eval",
+  "--waiver-fi5",
+  "--no-physcheck",
+  "--tag",
+  "fi5r2"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 17789,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261101-fi5r2pub-88f49df",
+  "root": "runs-dev",
+  "pid": 17578,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-11-01T00:18:01Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands31/hands.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/mini_sweeper.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/plastic_dish_rack.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz",
+   "sha256": "997c6807837fd2adc602a0ee32de79926d9a304e4d2d9c4c603a56c517314a22",
+   "bytes": 75062,
+   "tier": "P1",
+   "keys": [
+    "cam_T_mini_sweeper",
+    "cam_T_plastic_dish_rack",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands31/hands.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands31/hands.npz",
+   "sha256": "7978b4b9458a7215a679db3c8a33f6cfec9b59c2acab1d37c05d6dd176d3a2b5",
+   "bytes": 228282,
+   "tier": "DEV",
+   "keys": [
+    "Da",
+    "KR",
+    "Ka",
+    "T",
+    "T_rect_a",
+    "a_offset",
+    "chir_left",
+    "chir_right",
+    "depth_ok_left",
+    "depth_ok_right",
+    "dz_med_left",
+    "dz_med_right",
+    "filled_left",
+    "filled_right",
+    "joints_left",
+    "joints_right",
+    "measured_left",
+    "measured_right",
+    "n_depth_inl_left",
+    "n_depth_inl_right",
+    "n_depth_left",
+    "n_depth_right",
+    "n_det",
+    "rms_px_left",
+    "rms_px_right",
+    "scale_left",
+    "scale_right",
+    "score_left",
+    "score_right",
+    "size_a",
+    "swap",
+    "uv_a_left",
+    "uv_a_right",
+    "valid_left",
+    "valid_right",
+    "wl_mirror",
+    "world_frame"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/episode.json",
+   "sha256": "1f4b01378600e20ef495509cf7712e1b2a115e8428f6aee93353382bfb29cf1e",
+   "bytes": 50201,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/mini_sweeper.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/mini_sweeper.npz",
+   "sha256": "bf5a461bd398a17802fab8e01287509b88073e051a6ab2e46cd49250ff9763c8",
+   "bytes": 3726673,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/plastic_dish_rack.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/plastic_dish_rack.npz",
+   "sha256": "557c2e274875f0eabd419fd1dc1ae6bbe442344ecf86e2f6d50ddf67766ba938",
+   "bytes": 45165416,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "il.engaged_min_vox",
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.gap_bridge_frames",
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.transient_frames",
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_speed_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_min_frames",
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.block_frames",
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.holdout_min_frames",
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_min",
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_share",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_min_m",
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_k_j",
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.max_rounds",
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.through_beyond_vox",
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "struct_vox_m",
+   "value": 0.002,
+   "origin": "generic:obs-first sym_probe / rot_probe voxel downsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:58"
+  },
+  {
+   "name": "struct_max_points",
+   "value": 60000,
+   "origin": "generic:obs-first probe cap (numerical)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:59"
+  },
+  {
+   "name": "rot_consistency_trim",
+   "value": 0.8,
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:60"
+  },
+  {
+   "name": "rot_consistency_angles_deg",
+   "value": [
+    45,
+    90,
+    135
+   ],
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:61"
+  },
+  {
+   "name": "rot_consistency_subsample",
+   "value": 20000,
+   "origin": "generic:lathe_obs.fit_axis subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:62"
+  },
+  {
+   "name": "sym_accept_rotc_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (rotational consistency)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:63"
+  },
+  {
+   "name": "sym_accept_resid_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (mirror residual)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:64"
+  },
+  {
+   "name": "sym_accept_observed_share",
+   "value": 0.7,
+   "origin": "generic:PREREG A.6 symmetry acceptance (observed share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:65"
+  },
+  {
+   "name": "sym_accept_free_share",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6 symmetry acceptance (free share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:66"
+  },
+  {
+   "name": "noise_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 / SPEC section 8 noise band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:67"
+  },
+  {
+   "name": "sym_moved_min_share",
+   "value": 0.5,
+   "origin": "generic:a symmetry must move at least half the points",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:68"
+  },
+  {
+   "name": "sym_resid_trim",
+   "value": 0.8,
+   "origin": "generic:obs-first sym_probe trimmed mean",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:69"
+  },
+  {
+   "name": "mirror_search_normals",
+   "value": 400,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:70"
+  },
+  {
+   "name": "sym_search_subsample",
+   "value": 6000,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:71"
+  },
+  {
+   "name": "sym_eval_subsample",
+   "value": 20000,
+   "origin": "generic:obs-first sym_probe evaluation",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:72"
+  },
+  {
+   "name": "mirror_distinct_deg",
+   "value": 20.0,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:73"
+  },
+  {
+   "name": "mirror_top",
+   "value": 3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:74"
+  },
+  {
+   "name": "mirror_search_min_observed",
+   "value": 0.3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:75"
+  },
+  {
+   "name": "mirror_search_free_weight_m",
+   "value": 0.02,
+   "origin": "generic:obs-first sym_probe ranking weight",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:76"
+  },
+  {
+   "name": "sym_perturb_deg",
+   "value": [
+    4.0,
+    1.5
+   ],
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:77"
+  },
+  {
+   "name": "sym_perturb_n",
+   "value": 12,
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:78"
+  },
+  {
+   "name": "sym_nm_step",
+   "value": 2.0,
+   "origin": "generic:numerical refinement (initial simplex 2 deg / 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:79"
+  },
+  {
+   "name": "sym_nm_xatol",
+   "value": 0.02,
+   "origin": "generic:numerical refinement (deg / mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:80"
+  },
+  {
+   "name": "sym_nm_maxfev",
+   "value": 400,
+   "origin": "generic:numerical refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:81"
+  },
+  {
+   "name": "sym_pairing_iters",
+   "value": 4,
+   "origin": "generic:numerical refinement (sym_probe refine_offset passes)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:82"
+  },
+  {
+   "name": "axis_search_rim_w_s",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6b E1 (lathe.rim_w) = 0.05 s",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:83"
+  },
+  {
+   "name": "plane_min_pts",
+   "value": 300,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:84"
+  },
+  {
+   "name": "plane_max",
+   "value": 4,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:85"
+  },
+  {
+   "name": "plane_seeds",
+   "value": 200,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:86"
+  },
+  {
+   "name": "plane_deg",
+   "value": 30.0,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:87"
+  },
+  {
+   "name": "plane_conn_vox_m",
+   "value": 0.003,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:88"
+  },
+  {
+   "name": "slab_two_face_thickness_m",
+   "value": [
+    0.003,
+    0.025
+   ],
+   "origin": "informed:slab two-face thickness (PREREG A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:89"
+  },
+  {
+   "name": "plane_pair_overlap_min",
+   "value": 0.5,
+   "origin": "generic:footprints of a plate's two faces overlap",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:90"
+  },
+  {
+   "name": "repeat_orders",
+   "value": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "origin": "generic:discrete rotations C2..C6",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:91"
+  },
+  {
+   "name": "pb.near_m",
+   "value": 0.006,
+   "origin": "generic:F-I2.10 owned points within 6 mm of the pick",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.frames_min",
+   "value": 3,
+   "origin": "generic:F-I4.11 >= 3 frames per outline cell (= OBSERVED hits >= 3, A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "cp.coacd_thr",
+   "value": 0.02,
+   "origin": "generic:F-I5.10 CoACD 0.02 (finer than its 0.05 default)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.pitch_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.10 2 mm keep-out / topology grid",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.vox_pitches",
+   "value": [
+    0.002,
+    0.004,
+    0.006,
+    0.008
+   ],
+   "origin": "generic:F-I5.10 voxel grids 2 / 4 / 6 / 8 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cc.sample_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.1 2 mm grid inside the partner pieces (the Embodiment export definition)",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc.hand_m",
+   "value": 0.03,
+   "origin": "generic:F-I5.10 hands distance 30 mm (F-I1.9 rest distance)",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc2.floor_frames",
+   "value": 3,
+   "origin": "generic:F-I5.15 (4c) up to 3 floor S frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cg5.coacd_thr",
+   "value": 0.05,
+   "origin": "kit:FlashCHORD fc_mesh.py threshold 0.05 (the evaluator code)",
+   "where": "docs/research/mesh-2026-10-26/gmg/contactgate5.py:66"
+  },
+  {
+   "name": "sp.mass_kg",
+   "value": 0.3,
+   "origin": "generic:F-I1.14 placeholder mass 0.3 kg (make_assets default; owner decision D-I1 open)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "interlock/public/ep31-fi5r2/T_asm.npy",
+   "sha256": "11c4fc9cf63b3620239e5df734576666be9ed44ed173f3d5ec52ed8364c8e0f0",
+   "bytes": 256,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-fi5r2/decisions.json",
+   "sha256": "7f28c32e2cec5461e7fe225776f7429ea1c0dfb447f8b14d4bd30b10be19e961",
+   "bytes": 1427,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-fi5r2/fi5.json",
+   "sha256": "80a38e24f4d0a4afb0678cd9eb7c116ec530b485dddb5d28a7b91d2364d9d752",
+   "bytes": 4630,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-fi5r2/physcheck.json",
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-fi5r2/push_list.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-fi5r2/report.json",
+   "sha256": "0eb4c9fe169765c09dd341ade042f9497d59e7e480e3c3e2da17f28b3df9f9f5",
+   "bytes": 14801,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-fi5r2/structure_mini_sweeper.json",
+   "sha256": "5b973bba71cb3268909b57150cd99e796c09252904611ca6e559ccd07f94cf60",
+   "bytes": 5965,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-fi5r2/structure_plastic_dish_rack.json",
+   "sha256": "f552a2d19a4fe16f609ba78a1fc07e6f9dcc3763b09243432b923a25ab024acf",
+   "bytes": 7366,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-fi5r2/voxels_mini_sweeper.npz",
+   "sha256": "95119f0c90d8f427363926e0719f656dfe24dae226b8d16a9282d78fd706ec07",
+   "bytes": 1735,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-fi5r2/voxels_plastic_dish_rack.npz",
+   "sha256": "3895bc2ec3f8ebc9779283dae9c1f888c64f4a369e044d9c9a34823c9788f7b4",
+   "bytes": 4719,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/CONTACT_GATE_PENDING.json",
+   "sha256": "7aca6eadd6f7b60d9c9ca13a6322df409ea56c41b96dcc2aa89c5ccb80d7a01a",
+   "bytes": 701,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/DO_NOT_USE.json",
+   "sha256": "fda35a5c6dea45fe63350b9b7e02dcc44085f6c0d9020dbcb0ded04d15fd695f",
+   "bytes": 277,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/mini_sweeper/piece_00.obj",
+   "sha256": "9db5a8fb01501e585ab371a6a1e7270029e8898f83f031de10cda7545aafdbd4",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/mini_sweeper/piece_01.obj",
+   "sha256": "df64a3e1c03d170d0c9eedd21988154cf8c661f8f4e31759d10a9fc050a4ec74",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/mini_sweeper/piece_02.obj",
+   "sha256": "cc6f4da0bd4b2986a9f88a66a7bc9fc27f0e50f1e971b18fcec3d5912ee6f1b7",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_00.obj",
+   "sha256": "40c092b2fa1fb9e9b68167726553982a8ac4faf810411554fd58e5602119f559",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_01.obj",
+   "sha256": "77dc03a8dd808a56e8912a98c6ba602cb0c42c7f2b54d55ff49b77f3f0561631",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_02.obj",
+   "sha256": "1df92038d95ed6a5b3200700f647b9ade896b3de93a15ddffc402c9400870c9f",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_03.obj",
+   "sha256": "c052bdcf45914f17555b3954297e8e6b224bb8fdb8d544a1323095caf4269d99",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_04.obj",
+   "sha256": "3e369904b15f48cd96883dc320a74f0b02302f6198ee80eb56b4562a8fd285ac",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_05.obj",
+   "sha256": "e6957bfb61037bf7d472a2e0813f72c9c94db97785894b9a6e03429ed146df4b",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_06.obj",
+   "sha256": "83be9d60738499f96e9f4ebcef68e52f051209cf81fe44bb5dd1c804bc7e8901",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_07.obj",
+   "sha256": "acaf795a85729cb5d9051ccc7f11830079c8bc9d0542fe3e3e306dc5bb3482dc",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_08.obj",
+   "sha256": "00d63df0569b8da15d613073565f076ddae1889303670e589a54e1180a31e561",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_09.obj",
+   "sha256": "94e039f398e9c24b4a54e196b355d5d169ce08a2d075f346a9ce7fd3d9c9444d",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_10.obj",
+   "sha256": "e9bb6bccf047675feebb2b93760924f7a7928a298d2d3b09f9e8bf9475d0eafd",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_11.obj",
+   "sha256": "5ce241aa214c04de64c83cf225940e00d9eefd38461f28ad3a4cb5efca0674f4",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_12.obj",
+   "sha256": "b09e3d1e23d4bd45d8b5c3d00208c64234ac82e7d9c513fe9d7993e18cecdf10",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_13.obj",
+   "sha256": "0eeb6e0eda1f794459dbaf2c9bdea5bcf534b0004dddbeffe8958a8a5f778861",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_14.obj",
+   "sha256": "8888eb679755bf3147c5243ba514affb59771c44dd1f733a92f79b71721238f9",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_15.obj",
+   "sha256": "b5cf8c3f7cf794f7f820efe08445530b11f58061d258417c3ea7d3e21012af23",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_16.obj",
+   "sha256": "c039e31b319fcb33a51925433cbcd2c0dc1b72e627c7832e4883e12c5d3df2b1",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_17.obj",
+   "sha256": "6e9f3cf6faf15d3a1881fe7899d06ad487a0693c71b09f886a518aa2d8b422cb",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_18.obj",
+   "sha256": "99c300321d9303ad75aee9709c603a54f20356f04870f8db3f3bec01474dc2bb",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_19.obj",
+   "sha256": "945b3f998d9e7bf3efc9512db2cec45eb497d8afeb7e745df88db106d63f3ea8",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_20.obj",
+   "sha256": "f6efbbad60ef5c8f0cc3070e624e5b3a97c09d36546ac73c0f5d51d5cdb4d40f",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_21.obj",
+   "sha256": "25480fbabd5261996cfc5f6a15c835295818bbfadb7d88d41cd3504e6ede6b26",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_22.obj",
+   "sha256": "4abc7fabacfbea7fa3b6bfc5cee91104f55f3381f4b69018b38f2f89c6baaae2",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_23.obj",
+   "sha256": "54d3530064a69df33d7965d046003f0401e868d4b06a3d15b688d46a1ab53481",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_24.obj",
+   "sha256": "7b7d420ad7b7707bfbe1e92bb0a45d74d69d6496fe9f98faf94d5a8969b8738c",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_25.obj",
+   "sha256": "948190e99a5b8627550321739e088f20c60f1d64462581367c48550efdea43d6",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_26.obj",
+   "sha256": "5714aa3752b280bec586d8025842314d00b02b174de818fff02693f19510277b",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_27.obj",
+   "sha256": "71d8e22ad8a64f76f649c7c3a9ab63f67ea1d9eea29bb54b79ebe57b1454f3dd",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_28.obj",
+   "sha256": "226e3ac9c337bcd13f50520e98b66dcc4dc9d131a51ed315bc19ec570b743a64",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_29.obj",
+   "sha256": "7eddc447d06a269ce151953c9dce84609ca360d6945dcf45a1bdcd49d48b9932",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_30.obj",
+   "sha256": "d20998cb2a6ae4ef4cf951a5020daa8b55a533ccc8e42297a7e2638acf67cbc0",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_31.obj",
+   "sha256": "d5beddeb132d02960d52e82e1f4615865b58837296a0b67247e400cd5eb43275",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_32.obj",
+   "sha256": "b21498daf06885ed5ef29f4a0f5103c5e6b4e27e95639108facfd68594a9a4f0",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_33.obj",
+   "sha256": "d19b49fd238dbf295e29c0f148e3c814e415af81b6a0e9ec712b3c92edc66eed",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_34.obj",
+   "sha256": "03d249053f82f13fb72c866b94001f03cc7ae9a4eb0b768136a4f40d8ac3db71",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_35.obj",
+   "sha256": "f0376839c3df465089bad7a7e661db350ddc77d76b871833c8bd93b3383e14ea",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_36.obj",
+   "sha256": "80a399eb96575c0ebd66e9da837e79592258e91b4d5d1e08c17b011f88b57833",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_37.obj",
+   "sha256": "bf984de8034e772f5ef9e04b7d60cb06ef4c3926921779ccb5756bbcb3a087cc",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_38.obj",
+   "sha256": "f15811c3fa0596dfcd786f5ae3e9be71f777809188da8716ea27773f883b90ed",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_39.obj",
+   "sha256": "d40726ddcba5883f5028998e50cf2ac41ef7b8b57ef8610d08c39d1a6793cd06",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_40.obj",
+   "sha256": "b7686d03733eb847d4aee4c179f9c468a3f78c672699d600813c04acbf3f140c",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_41.obj",
+   "sha256": "9c5f1d6e19f6026ee12164d0c96131cbdbdafdd85370a0e430cad0cdc42fad53",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_42.obj",
+   "sha256": "29eeb20e9a50ac7188b89a441ce7a6d65a8ab6ed9619d90cd629e92a5b66ec65",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_43.obj",
+   "sha256": "c7d7c52819c281347cafdf1856cd5724a9fd23dcb0950614b658e260ef0187b6",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_44.obj",
+   "sha256": "7d8e101c04682e075affa8d31ad9e36cd971e838967968defd7dc8275af8350c",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_45.obj",
+   "sha256": "44dd3ef081a3332042d1915ec82de91d8ba7b1cb69be9b4d5c0f3fca901ecb72",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_default/plastic_dish_rack/piece_46.obj",
+   "sha256": "ed4daee85dc160e3e85908215b6cac29c1df561c05e95072fdc5818cc75162a5",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_fit/mini_sweeper.glb",
+   "sha256": "fd301107aef126c201ce2a5490fc84c48c56026e41efd4e3534d09b158304066",
+   "bytes": 1472,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/_fit/plastic_dish_rack.glb",
+   "sha256": "7c77b959db0429eaa9d000821b1ab85382dc018b0bedfb49243c6cd20e42967f",
+   "bytes": 12096,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/contact_gate.json",
+   "sha256": "eb4abc69f3f3334bb8783fd1823f94ad0eacf2cd297b36bc3c7feab9d6636f06",
+   "bytes": 2474,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/floor.json",
+   "sha256": "3d41b5643d3a405afca2db303475f260a7e385bd4acfcc003750f56ba1704c12",
+   "bytes": 1334,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/manifest.json",
+   "sha256": "977a797165b8e1c2194bd7c14c698cf58de487caa0b94b648c7271e5c2648cbd",
+   "bytes": 23656,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/mini_sweeper/carve.json",
+   "sha256": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+   "bytes": 109,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/mini_sweeper/inertia.json",
+   "sha256": "0ef99879650e7cb334fc235e678b2916845f195546df7456db30a7417e77bd1f",
+   "bytes": 403,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/mini_sweeper/mini_sweeper.glb",
+   "sha256": "812b6d88a17dd5767f9390a331343cd359d972dbb1670a94787d6b4a297263cf",
+   "bytes": 71652,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/mini_sweeper/piece_00.obj",
+   "sha256": "9db5a8fb01501e585ab371a6a1e7270029e8898f83f031de10cda7545aafdbd4",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/mini_sweeper/piece_01.obj",
+   "sha256": "df64a3e1c03d170d0c9eedd21988154cf8c661f8f4e31759d10a9fc050a4ec74",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/mini_sweeper/piece_02.obj",
+   "sha256": "cc6f4da0bd4b2986a9f88a66a7bc9fc27f0e50f1e971b18fcec3d5912ee6f1b7",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/carve.json",
+   "sha256": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+   "bytes": 109,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/inertia.json",
+   "sha256": "566f38eaa13dc67c0ea915dafe198dcbeecec2a031939f1720591f0798bd1d24",
+   "bytes": 406,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_00.obj",
+   "sha256": "40c092b2fa1fb9e9b68167726553982a8ac4faf810411554fd58e5602119f559",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_01.obj",
+   "sha256": "77dc03a8dd808a56e8912a98c6ba602cb0c42c7f2b54d55ff49b77f3f0561631",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_02.obj",
+   "sha256": "1df92038d95ed6a5b3200700f647b9ade896b3de93a15ddffc402c9400870c9f",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_03.obj",
+   "sha256": "c052bdcf45914f17555b3954297e8e6b224bb8fdb8d544a1323095caf4269d99",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_04.obj",
+   "sha256": "3e369904b15f48cd96883dc320a74f0b02302f6198ee80eb56b4562a8fd285ac",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_05.obj",
+   "sha256": "e6957bfb61037bf7d472a2e0813f72c9c94db97785894b9a6e03429ed146df4b",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_06.obj",
+   "sha256": "83be9d60738499f96e9f4ebcef68e52f051209cf81fe44bb5dd1c804bc7e8901",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_07.obj",
+   "sha256": "acaf795a85729cb5d9051ccc7f11830079c8bc9d0542fe3e3e306dc5bb3482dc",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_08.obj",
+   "sha256": "00d63df0569b8da15d613073565f076ddae1889303670e589a54e1180a31e561",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_09.obj",
+   "sha256": "94e039f398e9c24b4a54e196b355d5d169ce08a2d075f346a9ce7fd3d9c9444d",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_10.obj",
+   "sha256": "e9bb6bccf047675feebb2b93760924f7a7928a298d2d3b09f9e8bf9475d0eafd",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_11.obj",
+   "sha256": "5ce241aa214c04de64c83cf225940e00d9eefd38461f28ad3a4cb5efca0674f4",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_12.obj",
+   "sha256": "b09e3d1e23d4bd45d8b5c3d00208c64234ac82e7d9c513fe9d7993e18cecdf10",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_13.obj",
+   "sha256": "0eeb6e0eda1f794459dbaf2c9bdea5bcf534b0004dddbeffe8958a8a5f778861",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_14.obj",
+   "sha256": "8888eb679755bf3147c5243ba514affb59771c44dd1f733a92f79b71721238f9",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_15.obj",
+   "sha256": "b5cf8c3f7cf794f7f820efe08445530b11f58061d258417c3ea7d3e21012af23",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_16.obj",
+   "sha256": "c039e31b319fcb33a51925433cbcd2c0dc1b72e627c7832e4883e12c5d3df2b1",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_17.obj",
+   "sha256": "6e9f3cf6faf15d3a1881fe7899d06ad487a0693c71b09f886a518aa2d8b422cb",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_18.obj",
+   "sha256": "99c300321d9303ad75aee9709c603a54f20356f04870f8db3f3bec01474dc2bb",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_19.obj",
+   "sha256": "945b3f998d9e7bf3efc9512db2cec45eb497d8afeb7e745df88db106d63f3ea8",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_20.obj",
+   "sha256": "f6efbbad60ef5c8f0cc3070e624e5b3a97c09d36546ac73c0f5d51d5cdb4d40f",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_21.obj",
+   "sha256": "25480fbabd5261996cfc5f6a15c835295818bbfadb7d88d41cd3504e6ede6b26",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_22.obj",
+   "sha256": "4abc7fabacfbea7fa3b6bfc5cee91104f55f3381f4b69018b38f2f89c6baaae2",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_23.obj",
+   "sha256": "54d3530064a69df33d7965d046003f0401e868d4b06a3d15b688d46a1ab53481",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_24.obj",
+   "sha256": "7b7d420ad7b7707bfbe1e92bb0a45d74d69d6496fe9f98faf94d5a8969b8738c",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_25.obj",
+   "sha256": "948190e99a5b8627550321739e088f20c60f1d64462581367c48550efdea43d6",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_26.obj",
+   "sha256": "5714aa3752b280bec586d8025842314d00b02b174de818fff02693f19510277b",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_27.obj",
+   "sha256": "71d8e22ad8a64f76f649c7c3a9ab63f67ea1d9eea29bb54b79ebe57b1454f3dd",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_28.obj",
+   "sha256": "226e3ac9c337bcd13f50520e98b66dcc4dc9d131a51ed315bc19ec570b743a64",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_29.obj",
+   "sha256": "7eddc447d06a269ce151953c9dce84609ca360d6945dcf45a1bdcd49d48b9932",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_30.obj",
+   "sha256": "d20998cb2a6ae4ef4cf951a5020daa8b55a533ccc8e42297a7e2638acf67cbc0",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_31.obj",
+   "sha256": "d5beddeb132d02960d52e82e1f4615865b58837296a0b67247e400cd5eb43275",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_32.obj",
+   "sha256": "b21498daf06885ed5ef29f4a0f5103c5e6b4e27e95639108facfd68594a9a4f0",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_33.obj",
+   "sha256": "d19b49fd238dbf295e29c0f148e3c814e415af81b6a0e9ec712b3c92edc66eed",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_34.obj",
+   "sha256": "03d249053f82f13fb72c866b94001f03cc7ae9a4eb0b768136a4f40d8ac3db71",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_35.obj",
+   "sha256": "f0376839c3df465089bad7a7e661db350ddc77d76b871833c8bd93b3383e14ea",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_36.obj",
+   "sha256": "80a399eb96575c0ebd66e9da837e79592258e91b4d5d1e08c17b011f88b57833",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_37.obj",
+   "sha256": "bf984de8034e772f5ef9e04b7d60cb06ef4c3926921779ccb5756bbcb3a087cc",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_38.obj",
+   "sha256": "f15811c3fa0596dfcd786f5ae3e9be71f777809188da8716ea27773f883b90ed",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_39.obj",
+   "sha256": "d40726ddcba5883f5028998e50cf2ac41ef7b8b57ef8610d08c39d1a6793cd06",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_40.obj",
+   "sha256": "b7686d03733eb847d4aee4c179f9c468a3f78c672699d600813c04acbf3f140c",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_41.obj",
+   "sha256": "9c5f1d6e19f6026ee12164d0c96131cbdbdafdd85370a0e430cad0cdc42fad53",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_42.obj",
+   "sha256": "29eeb20e9a50ac7188b89a441ce7a6d65a8ab6ed9619d90cd629e92a5b66ec65",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_43.obj",
+   "sha256": "c7d7c52819c281347cafdf1856cd5724a9fd23dcb0950614b658e260ef0187b6",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_44.obj",
+   "sha256": "7d8e101c04682e075affa8d31ad9e36cd971e838967968defd7dc8275af8350c",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_45.obj",
+   "sha256": "44dd3ef081a3332042d1915ec82de91d8ba7b1cb69be9b4d5c0f3fca901ecb72",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/piece_46.obj",
+   "sha256": "ed4daee85dc160e3e85908215b6cac29c1df561c05e95072fdc5818cc75162a5",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/plastic_dish_rack/plastic_dish_rack.glb",
+   "sha256": "398777aa8bde56fec2d169cb10665079050d8caa9d42f11844380582d6857e6c",
+   "bytes": 71432,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/props_gmg.json",
+   "sha256": "46efa807ee8e2752d51460efc82fc77b3bb8a2a06eb4b5bdca5dd5d18ce3d923",
+   "bytes": 1670,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep31-fi5r2/r0/push_list_fi5r2.json",
+   "sha256": "401dd2009540d9ce7e1cfa43de44fde950abc12b03180ef5986cb7eeca86f207",
+   "bytes": 91,
+   "how": "python"
+  }
+ ]
+}

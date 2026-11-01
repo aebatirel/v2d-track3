@@ -1638,6 +1638,30 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   segments, mid f285 / f278, have the faithful sweeper 12.0 / 11.9 mm from the faithful rack: the sweeper floats,
   verify_cc_1 B2); G1 vacuous (packed default 98 + 46 hulls, not counted); floor fails on the shares:
   DO_NOT_USE.json, CONTACT_GATE_PENDING.json.
+- 01:38 (T-I16) [M] **L0 on ep11** (`build/I/fi515_l0_ep11.py`, report only, `<run>/diag/l0_ep11.json`): frames 116-136
+  (the pair's hands-off static segment = the run's assembled stretch; points at the 11 even frames), owned points only
+  (own == 0), height above our table plane per frame: blue_cup 99th percentile 193.5 mm (44,391 points, median 137.8),
+  beige_cup 196.8 mm (79,909 points, median 149.0); rim difference 3.3 mm < 5 mm: **P90 falsified**. Our own
+  observations of ep11 do not show one cup's rim standing above the other's, so no public episode shows a real
+  cup-in-cup nest in our data (ep11 is the only two-cup episode); the nest stays synthetic-only, and eval 10 is the
+  only real nest, with no public twin.
+- 01:42 (T-I16) [M] **ep13 done** (4,945 s): blue_cup route 2 (no layout) -> 3 (75 hulls, 7 over 0.3 cm3, max 0.70)
+  -> 4 (25 boxes, share 0.049); rack route 3 -> 4 (24 boxes, share 0.036); no persistent component (collider overlap
+  0.00 cm3: out of scope); one floor frame f181 (containment rack 0.46), precheck fails (a) (cup -5.7 mm in the
+  table) and (c) (V_ov 2.7 cm3): pose_impossible, pushed; G1 vacuous (packed 66 + 24 hulls); floor fails on the
+  shares: DO_NOT_USE.json, CONTACT_GATE_PENDING.json. ep12: rack route 3 -> 4 (45 boxes), pairs running; ep2: lid
+  route 2 `lathe_profile_complex` -> route 3 running.
+- 01:47 (T-I16) [M] **ep12 done** (5,236 s): blue_cup route 2 (no layout) -> 3 (82 hulls, 12 over 0.3 cm3, max
+  0.48) -> 4 (29 boxes, share 0.050); rack route 3 (82 hulls, 22 over, max 0.98) -> 4 (45 boxes, share 0.061); two
+  components, both fail the sweep gate (sweep 0.0): out of scope; floor frame f176 (containment rack 0.36) fails (c)
+  (V_ov 7.4 cm3): pose_impossible; G1 vacuous (packed 103 + 37 hulls); DO_NOT_USE.json (shares),
+  CONTACT_GATE_PENDING.json. ep2 lid: route 2 `lathe_profile_complex` -> route 3 = CoACD 41 + 17 splits -> 58 hulls;
+  the repair stopped at its own max excess 0.296 cm3, but the gate then finds 10 hulls over 0.3 (max 0.488) ->
+  route 4 (25 boxes). [M, code reading] the repair scores keep-out on a 2 mm grid anchored at the ORIGINAL hulls'
+  bounds and the gate re-samples a grid anchored at the REPAIRED hulls' bounds (`cavpieces.keepout`), so the two
+  disagree by up to ~25 grid points (0.2 cm3) at the 0.3 cm3 tolerance (sweeper 0.28 vs 0.344, lid 0.296 vs 0.488).
+  [H] H-d: with one fixed grid (e.g. the body's) in both, the lid and the sweeper pass route 3; falsifier: they still
+  fail the gate with the same grid. Not changed (code frozen for the run; a rule-level choice for the orchestrator).
 - 01:46 (Eval precheck) [M] done (diagnostic only; nothing carved, decided or tuned): results
   `build/I/results/collcarve2-evalcheck/` (README, `evalcheck_summary.json`, `eval_contact_precheck.json`,
   `per_frame/`, scripts). Runs: this container, nice 15, `<scratch>/evck/out/geo2` + `contacts2` (01:08-01:42; a first
@@ -1651,3 +1675,12 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   sim=rl limits, plain MuJoCo): **eval 10 overflows in 16/16 copies at all 3 frames (656-1,296 rows, 164-324
   contacts; > 512 rows at step 0)**; all others 104-436 rows, no overflow. P103 falsified on eval 10; budget.py (b)
   not run (no FlashCHORD / warp here): hand-off to determined-wright via the orchestrator. $0.
+- 01:53 (T-I16) [M] **ep2 done** (5,384 s): pot route 2 (no layout, min wall -49 to -173 mm) -> 3 (82, 9 over, max
+  1.14) -> 4 (42 boxes, share 0.061); lid -> 4 (25 boxes, share 0.086); pair out of scope (sweep 0.0); floor frames
+  f13, f32, f316 (containment pot 0.95): all fail (c) (V_ov 23.8 / 27.0 / 20.9 cm3; lid 60.8-62.3 mm above the table,
+  0 mm from the pot, so (a) and (b) pass); G1 vacuous (packed 41 + 61); DO_NOT_USE. **All five T-I16 folders are
+  DO_NOT_USE (floor share 0.018-0.086 < 0.5); nothing carved or delivered (P79, P80 hold); every floor frame is
+  pose_impossible or vacuous, so no S, no S_ref, no G1 count ran under the rule.** Results copied to
+  `build/I/results/collcarve2-public/` (README, tables, per-episode records, diag/). Launched 01:49 (nice 5, report
+  only): `build/I/fi517_s_diag.py`, S at the 7 floor frames on the delivered boxes (16 copies) and on the faithful
+  2 mm SHELL boxes (4 copies), `<run>/diag/s_diag.json`.

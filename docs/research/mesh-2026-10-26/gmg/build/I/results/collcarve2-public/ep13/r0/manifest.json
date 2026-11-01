@@ -1,0 +1,442 @@
+{
+ "schema": "gmg-sim/2",
+ "episode": 13,
+ "split": "public",
+ "round": 0,
+ "p_sim": {
+  "source": "P_sel",
+  "flag": "sim_pose_fallback",
+  "tracks": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep13/poses.npz",
+   "sha256": "db6d9e1c5654b0bceb7b287e095be71081dd91cd81520ff6d11380e43afe8a3d"
+  }
+ },
+ "objects": {
+  "blue_cup": {
+   "files": {
+    "piece_06.obj": "d802b146f4e190e1c9beeb7125b0f42ef3465cd2ca24694464478e5091851812",
+    "piece_13.obj": "83e5b9b35d906f61d6bd118a9954ba5a9081764f139a184c9c040278b43ea1dd",
+    "piece_15.obj": "6e268b348d432ff868662fcf8821a5280853a4b9ef0a5a71d52feb928d9fb9bc",
+    "piece_18.obj": "dd04c76a3f5665ffc4af9615f19c353642524224dcc2a408117d90ed3bb839ba",
+    "piece_05.obj": "93eb1b5bc50b3bb68acf85d2cf37813c86c7bab2ca66d8ca3c7c0bf3a2f5b349",
+    "piece_07.obj": "d3b1de9ece80c4d7897c3b1fce37e2e4428231c3cbb3ea8db16162686e5877a4",
+    "piece_20.obj": "d45af062509f87d8e52cda9ded4900e7749a079503615d6e1f540f98924ed51e",
+    "carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+    "blue_cup.glb": "a3a48cd79809874099456ad60ce64fecc4bf188f3e2911cf64fe254efaa16222",
+    "piece_08.obj": "e9752bf66f6dcb1b42c0b9bf445436994b8038ca4354d0d79554223d26f315d8",
+    "piece_00.obj": "55534fe4a1776fdecc6d752734ca3cac6cfe8a6fbc2cfce01491863f8db72184",
+    "piece_11.obj": "5375e74c1d24fdbe0f6c92c43f015b8535fe2d6dbbaee2a57ce129bd26e971d3",
+    "piece_19.obj": "867e5e285a50a37f5d5a1019ec45d2fe4d38149c7f58ffc96665884c5a9f2517",
+    "piece_23.obj": "5c1e0afbd09b4692ce727b2e4b0fba15da26b66434195852d3e820248a77e7b9",
+    "piece_01.obj": "c1fccddf1becb76890bc3dfa97d163df05db11bbf276a52191ee386dea97bc9b",
+    "piece_21.obj": "a2bbcee9b4bb91c8291c70b10411915887fc310ad495f9dcdceb04beecdf779a",
+    "piece_02.obj": "1b0638cd7c63cb54f5022dac23052e8e6c2ab74a29a11474ea08dcece28aeb49",
+    "piece_04.obj": "e1fa43866ea22d517acb4e4b73d50edd04460bdd9e9e77e46c43844108bf5a50",
+    "inertia.json": "892fafab5065212521cfd23ff629bdde3e759a1615fbc60cd21b05ef1cc9591f",
+    "piece_10.obj": "56ec84909924146a5ac36ebbb5e237beee71c324e3a3a9e5de92c48660b8397f",
+    "piece_24.obj": "b27690d6b8494899e85f6a114d47d3a410e87642adbc1816fefc00079f57c27a",
+    "piece_03.obj": "e66ae2b9ea2bfe8849324ca0c5ae79bf557fb21af000aed491c1aa4f596cba93",
+    "piece_12.obj": "ca3f46421af9aa87b7c42c572db359905695f7f85926cbd6217921ab8919580f",
+    "piece_14.obj": "b0ae9debc68166387f063fd700f86787f76c5e75fde7e6c7f34f85fc8f88d658",
+    "piece_22.obj": "4c1d9935efbace2dce5e2e58bcfc3196b5e7529ddf65738775230fee03ab0edb",
+    "piece_17.obj": "35d6b4bfc24a32eca47a022fbd01d67636908cbbc50c4f49db611fb234a30a23",
+    "piece_09.obj": "30c33292715a41aa8011c8849871fb79ff91d90fb72cf1b75f5ae2223ebd0bdc",
+    "piece_16.obj": "d7605a733c5266e4e1a6262f3b5bd6c487c0d2323238bad71cb92fc718cbce49"
+   },
+   "fiducials": [
+    [
+     -0.07903430694855539,
+     -0.020496973427228178,
+     0.07206841235551521
+    ],
+    [
+     -0.018746226795890598,
+     0.0323981522852163,
+     0.09493983339253838
+    ],
+    [
+     -0.018734910829077342,
+     -0.08671689691130005,
+     0.06626974996216181
+    ],
+    [
+     0.04155316932358744,
+     -0.03382177119885557,
+     0.08914117099918498
+    ],
+    [
+     -0.05256940755020065,
+     0.017381500042791494,
+     -0.08529411384372451
+    ],
+    [
+     0.007718672602464134,
+     0.07027662575523598,
+     -0.062422692806701346
+    ],
+    [
+     0.007729988569277387,
+     -0.04883842344128038,
+     -0.09109277623707791
+    ],
+    [
+     0.06801806872194217,
+     0.004056702271164095,
+     -0.06822135520005475
+    ]
+   ],
+   "gate": {
+    "choice": "4_voxels",
+    "report": {
+     "pass_": true,
+     "n": 25,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "do_not_use": null
+   }
+  },
+  "plastic_dish_rack": {
+   "files": {
+    "piece_06.obj": "59460c946fa431b31f8feb314dd11b5693f7f8fe66c1eae4b7806af66d71047f",
+    "piece_13.obj": "daca284d7b2c12daa2b8966b55f06c8234993510703b6744e7e353b1517686f9",
+    "piece_15.obj": "6a04dc561b4cd6b87192e6bde31228203439e4e813c666a95956c5e5dc46eddf",
+    "piece_18.obj": "8378799ba946b7874d002251cf73e143ca33a40b05656c906ac01a533bb6b988",
+    "piece_05.obj": "41053dd182357043e917be0f863d1112b3fb274d57b7fd9ba3422c9c41adea38",
+    "piece_07.obj": "62a4487107de1d74b104673fd5dc7f508ad2c77099f5f50ba9cfd84e4c039f5c",
+    "piece_20.obj": "752d65e3dd26f25c5f84b7b146625fa6a699a8fe5a3b6f46156e2453df45549e",
+    "carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+    "piece_08.obj": "0cb35acac2594471b24e0aa356f766834618ece16a3ed59cc2b4648d1dfcbd99",
+    "plastic_dish_rack.glb": "60d01790687665e41f494c87fbfeb70f38150e05615002ebdcae17408824c8dc",
+    "piece_00.obj": "d82b1bf3712e83d8f4cc22e2593183ee0c0a77cc6979dd2791f8e5a47583d517",
+    "piece_11.obj": "79165d0fdc585d0d30eda729334702551125af51b80e15d9ca3a24e8136035f3",
+    "piece_19.obj": "ab649674efd2507b97e04c502a862d9aae808e7838323c851399eb5a10372615",
+    "piece_23.obj": "7d015e3c439f2b5c2f28615229420e437741b59b7b1e0392c373461ac9613c2a",
+    "piece_01.obj": "1689e580b1f6e181d350c9493ecd053abac241956a2d1379e01acf26241bddec",
+    "piece_21.obj": "42abf1164e95a30a57664c767cfd88b943be9b60ad38367cc42c61e2e378a64a",
+    "piece_02.obj": "57191408d45dc6e075fa9e84198ed9bdc8c2c20325864726f0a11cdb190c9183",
+    "piece_04.obj": "c4ec9fad299f940c784688f72cd1ec8d30cd56e3acec46995f185f58697a9b58",
+    "inertia.json": "f8a5fb2561dc708a034e4a0128f8bcd4aaa78c0efad50175b41847f88bce3c99",
+    "piece_10.obj": "aeeb281540a6ab65fd6435c6eca0230cda815f59212acf85b4524ee536693852",
+    "piece_03.obj": "4c935e1e255aad0774ec63de4fa631a191c5caeafefcc1f24a9cd3ccedbd3acb",
+    "piece_12.obj": "208c65aa7193eb681b944779c0e3457e486a12b0c618fdf5c632041ff6c57986",
+    "piece_14.obj": "857808b077a5e4564dccc81a3694cfeb79eb4294cec0843ad776d42438fa0c9d",
+    "piece_22.obj": "0e415641da63a1c421c386f22de75ba42da0ce358bd49ff89cd94e00d0f12619",
+    "piece_17.obj": "03d32d98123373e8f971e7fcbb766fc8e1bac2d185628e6fb2cfddf55fec1d94",
+    "piece_09.obj": "2c6becc88e71347d7e6a0903aeaf8686b9da321bec9c0a0f07497d80c49a969e",
+    "piece_16.obj": "48c2eddf188226c49d937ee212e9b35fa2a8bcaf0bda61e4a8164e35395e561d"
+   },
+   "fiducials": [
+    [
+     -0.02218720070312875,
+     -0.0792544033438536,
+     -0.19610287690663866
+    ],
+    [
+     0.0703353649740773,
+     -0.07373964406327398,
+     -0.19528158809895213
+    ],
+    [
+     -0.030716195304221327,
+     0.06477794021925576,
+     -0.20240911191154112
+    ],
+    [
+     0.061806370372984726,
+     0.0702926994998354,
+     -0.2015878231038546
+    ],
+    [
+     -0.027519437099968676,
+     -0.05917304559257942,
+     0.26976045232256907
+    ],
+    [
+     0.06500312857723738,
+     -0.053658286311999794,
+     0.2705817411302556
+    ],
+    [
+     -0.036048431701061256,
+     0.08485929797052993,
+     0.26345421731766666
+    ],
+    [
+     0.0564741339761448,
+     0.09037405725110956,
+     0.2642755061253532
+    ]
+   ],
+   "gate": {
+    "choice": "4_voxels",
+    "report": {
+     "pass_": true,
+     "n": 24,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "do_not_use": null
+   }
+  }
+ },
+ "object_order": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "files": {
+  "props_gmg.json": "3010f2023e7e68dd8207cea09be1fecc17e8c1495a959b9b77ff876840b659f2",
+  "blue_cup/piece_06.obj": "d802b146f4e190e1c9beeb7125b0f42ef3465cd2ca24694464478e5091851812",
+  "blue_cup/piece_13.obj": "83e5b9b35d906f61d6bd118a9954ba5a9081764f139a184c9c040278b43ea1dd",
+  "blue_cup/piece_15.obj": "6e268b348d432ff868662fcf8821a5280853a4b9ef0a5a71d52feb928d9fb9bc",
+  "blue_cup/piece_18.obj": "dd04c76a3f5665ffc4af9615f19c353642524224dcc2a408117d90ed3bb839ba",
+  "blue_cup/piece_05.obj": "93eb1b5bc50b3bb68acf85d2cf37813c86c7bab2ca66d8ca3c7c0bf3a2f5b349",
+  "blue_cup/piece_07.obj": "d3b1de9ece80c4d7897c3b1fce37e2e4428231c3cbb3ea8db16162686e5877a4",
+  "blue_cup/piece_20.obj": "d45af062509f87d8e52cda9ded4900e7749a079503615d6e1f540f98924ed51e",
+  "blue_cup/carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+  "blue_cup/blue_cup.glb": "a3a48cd79809874099456ad60ce64fecc4bf188f3e2911cf64fe254efaa16222",
+  "blue_cup/piece_08.obj": "e9752bf66f6dcb1b42c0b9bf445436994b8038ca4354d0d79554223d26f315d8",
+  "blue_cup/piece_00.obj": "55534fe4a1776fdecc6d752734ca3cac6cfe8a6fbc2cfce01491863f8db72184",
+  "blue_cup/piece_11.obj": "5375e74c1d24fdbe0f6c92c43f015b8535fe2d6dbbaee2a57ce129bd26e971d3",
+  "blue_cup/piece_19.obj": "867e5e285a50a37f5d5a1019ec45d2fe4d38149c7f58ffc96665884c5a9f2517",
+  "blue_cup/piece_23.obj": "5c1e0afbd09b4692ce727b2e4b0fba15da26b66434195852d3e820248a77e7b9",
+  "blue_cup/piece_01.obj": "c1fccddf1becb76890bc3dfa97d163df05db11bbf276a52191ee386dea97bc9b",
+  "blue_cup/piece_21.obj": "a2bbcee9b4bb91c8291c70b10411915887fc310ad495f9dcdceb04beecdf779a",
+  "blue_cup/piece_02.obj": "1b0638cd7c63cb54f5022dac23052e8e6c2ab74a29a11474ea08dcece28aeb49",
+  "blue_cup/piece_04.obj": "e1fa43866ea22d517acb4e4b73d50edd04460bdd9e9e77e46c43844108bf5a50",
+  "blue_cup/inertia.json": "892fafab5065212521cfd23ff629bdde3e759a1615fbc60cd21b05ef1cc9591f",
+  "blue_cup/piece_10.obj": "56ec84909924146a5ac36ebbb5e237beee71c324e3a3a9e5de92c48660b8397f",
+  "blue_cup/piece_24.obj": "b27690d6b8494899e85f6a114d47d3a410e87642adbc1816fefc00079f57c27a",
+  "blue_cup/piece_03.obj": "e66ae2b9ea2bfe8849324ca0c5ae79bf557fb21af000aed491c1aa4f596cba93",
+  "blue_cup/piece_12.obj": "ca3f46421af9aa87b7c42c572db359905695f7f85926cbd6217921ab8919580f",
+  "blue_cup/piece_14.obj": "b0ae9debc68166387f063fd700f86787f76c5e75fde7e6c7f34f85fc8f88d658",
+  "blue_cup/piece_22.obj": "4c1d9935efbace2dce5e2e58bcfc3196b5e7529ddf65738775230fee03ab0edb",
+  "blue_cup/piece_17.obj": "35d6b4bfc24a32eca47a022fbd01d67636908cbbc50c4f49db611fb234a30a23",
+  "blue_cup/piece_09.obj": "30c33292715a41aa8011c8849871fb79ff91d90fb72cf1b75f5ae2223ebd0bdc",
+  "blue_cup/piece_16.obj": "d7605a733c5266e4e1a6262f3b5bd6c487c0d2323238bad71cb92fc718cbce49",
+  "plastic_dish_rack/piece_06.obj": "59460c946fa431b31f8feb314dd11b5693f7f8fe66c1eae4b7806af66d71047f",
+  "plastic_dish_rack/piece_13.obj": "daca284d7b2c12daa2b8966b55f06c8234993510703b6744e7e353b1517686f9",
+  "plastic_dish_rack/piece_15.obj": "6a04dc561b4cd6b87192e6bde31228203439e4e813c666a95956c5e5dc46eddf",
+  "plastic_dish_rack/piece_18.obj": "8378799ba946b7874d002251cf73e143ca33a40b05656c906ac01a533bb6b988",
+  "plastic_dish_rack/piece_05.obj": "41053dd182357043e917be0f863d1112b3fb274d57b7fd9ba3422c9c41adea38",
+  "plastic_dish_rack/piece_07.obj": "62a4487107de1d74b104673fd5dc7f508ad2c77099f5f50ba9cfd84e4c039f5c",
+  "plastic_dish_rack/piece_20.obj": "752d65e3dd26f25c5f84b7b146625fa6a699a8fe5a3b6f46156e2453df45549e",
+  "plastic_dish_rack/carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+  "plastic_dish_rack/piece_08.obj": "0cb35acac2594471b24e0aa356f766834618ece16a3ed59cc2b4648d1dfcbd99",
+  "plastic_dish_rack/plastic_dish_rack.glb": "60d01790687665e41f494c87fbfeb70f38150e05615002ebdcae17408824c8dc",
+  "plastic_dish_rack/piece_00.obj": "d82b1bf3712e83d8f4cc22e2593183ee0c0a77cc6979dd2791f8e5a47583d517",
+  "plastic_dish_rack/piece_11.obj": "79165d0fdc585d0d30eda729334702551125af51b80e15d9ca3a24e8136035f3",
+  "plastic_dish_rack/piece_19.obj": "ab649674efd2507b97e04c502a862d9aae808e7838323c851399eb5a10372615",
+  "plastic_dish_rack/piece_23.obj": "7d015e3c439f2b5c2f28615229420e437741b59b7b1e0392c373461ac9613c2a",
+  "plastic_dish_rack/piece_01.obj": "1689e580b1f6e181d350c9493ecd053abac241956a2d1379e01acf26241bddec",
+  "plastic_dish_rack/piece_21.obj": "42abf1164e95a30a57664c767cfd88b943be9b60ad38367cc42c61e2e378a64a",
+  "plastic_dish_rack/piece_02.obj": "57191408d45dc6e075fa9e84198ed9bdc8c2c20325864726f0a11cdb190c9183",
+  "plastic_dish_rack/piece_04.obj": "c4ec9fad299f940c784688f72cd1ec8d30cd56e3acec46995f185f58697a9b58",
+  "plastic_dish_rack/inertia.json": "f8a5fb2561dc708a034e4a0128f8bcd4aaa78c0efad50175b41847f88bce3c99",
+  "plastic_dish_rack/piece_10.obj": "aeeb281540a6ab65fd6435c6eca0230cda815f59212acf85b4524ee536693852",
+  "plastic_dish_rack/piece_03.obj": "4c935e1e255aad0774ec63de4fa631a191c5caeafefcc1f24a9cd3ccedbd3acb",
+  "plastic_dish_rack/piece_12.obj": "208c65aa7193eb681b944779c0e3457e486a12b0c618fdf5c632041ff6c57986",
+  "plastic_dish_rack/piece_14.obj": "857808b077a5e4564dccc81a3694cfeb79eb4294cec0843ad776d42438fa0c9d",
+  "plastic_dish_rack/piece_22.obj": "0e415641da63a1c421c386f22de75ba42da0ce358bd49ff89cd94e00d0f12619",
+  "plastic_dish_rack/piece_17.obj": "03d32d98123373e8f971e7fcbb766fc8e1bac2d185628e6fb2cfddf55fec1d94",
+  "plastic_dish_rack/piece_09.obj": "2c6becc88e71347d7e6a0903aeaf8686b9da321bec9c0a0f07497d80c49a969e",
+  "plastic_dish_rack/piece_16.obj": "48c2eddf188226c49d937ee212e9b35fa2a8bcaf0bda61e4a8164e35395e561d",
+  "_default/blue_cup/piece_06.obj": "d802b146f4e190e1c9beeb7125b0f42ef3465cd2ca24694464478e5091851812",
+  "_default/blue_cup/piece_13.obj": "83e5b9b35d906f61d6bd118a9954ba5a9081764f139a184c9c040278b43ea1dd",
+  "_default/blue_cup/piece_15.obj": "6e268b348d432ff868662fcf8821a5280853a4b9ef0a5a71d52feb928d9fb9bc",
+  "_default/blue_cup/piece_18.obj": "dd04c76a3f5665ffc4af9615f19c353642524224dcc2a408117d90ed3bb839ba",
+  "_default/blue_cup/piece_05.obj": "93eb1b5bc50b3bb68acf85d2cf37813c86c7bab2ca66d8ca3c7c0bf3a2f5b349",
+  "_default/blue_cup/piece_07.obj": "d3b1de9ece80c4d7897c3b1fce37e2e4428231c3cbb3ea8db16162686e5877a4",
+  "_default/blue_cup/piece_20.obj": "d45af062509f87d8e52cda9ded4900e7749a079503615d6e1f540f98924ed51e",
+  "_default/blue_cup/piece_08.obj": "e9752bf66f6dcb1b42c0b9bf445436994b8038ca4354d0d79554223d26f315d8",
+  "_default/blue_cup/piece_00.obj": "55534fe4a1776fdecc6d752734ca3cac6cfe8a6fbc2cfce01491863f8db72184",
+  "_default/blue_cup/piece_11.obj": "5375e74c1d24fdbe0f6c92c43f015b8535fe2d6dbbaee2a57ce129bd26e971d3",
+  "_default/blue_cup/piece_19.obj": "867e5e285a50a37f5d5a1019ec45d2fe4d38149c7f58ffc96665884c5a9f2517",
+  "_default/blue_cup/piece_23.obj": "5c1e0afbd09b4692ce727b2e4b0fba15da26b66434195852d3e820248a77e7b9",
+  "_default/blue_cup/piece_01.obj": "c1fccddf1becb76890bc3dfa97d163df05db11bbf276a52191ee386dea97bc9b",
+  "_default/blue_cup/piece_21.obj": "a2bbcee9b4bb91c8291c70b10411915887fc310ad495f9dcdceb04beecdf779a",
+  "_default/blue_cup/piece_02.obj": "1b0638cd7c63cb54f5022dac23052e8e6c2ab74a29a11474ea08dcece28aeb49",
+  "_default/blue_cup/piece_04.obj": "e1fa43866ea22d517acb4e4b73d50edd04460bdd9e9e77e46c43844108bf5a50",
+  "_default/blue_cup/piece_10.obj": "56ec84909924146a5ac36ebbb5e237beee71c324e3a3a9e5de92c48660b8397f",
+  "_default/blue_cup/piece_24.obj": "b27690d6b8494899e85f6a114d47d3a410e87642adbc1816fefc00079f57c27a",
+  "_default/blue_cup/piece_03.obj": "e66ae2b9ea2bfe8849324ca0c5ae79bf557fb21af000aed491c1aa4f596cba93",
+  "_default/blue_cup/piece_12.obj": "ca3f46421af9aa87b7c42c572db359905695f7f85926cbd6217921ab8919580f",
+  "_default/blue_cup/piece_14.obj": "b0ae9debc68166387f063fd700f86787f76c5e75fde7e6c7f34f85fc8f88d658",
+  "_default/blue_cup/piece_22.obj": "4c1d9935efbace2dce5e2e58bcfc3196b5e7529ddf65738775230fee03ab0edb",
+  "_default/blue_cup/piece_17.obj": "35d6b4bfc24a32eca47a022fbd01d67636908cbbc50c4f49db611fb234a30a23",
+  "_default/blue_cup/piece_09.obj": "30c33292715a41aa8011c8849871fb79ff91d90fb72cf1b75f5ae2223ebd0bdc",
+  "_default/blue_cup/piece_16.obj": "d7605a733c5266e4e1a6262f3b5bd6c487c0d2323238bad71cb92fc718cbce49",
+  "_default/plastic_dish_rack/piece_06.obj": "59460c946fa431b31f8feb314dd11b5693f7f8fe66c1eae4b7806af66d71047f",
+  "_default/plastic_dish_rack/piece_13.obj": "daca284d7b2c12daa2b8966b55f06c8234993510703b6744e7e353b1517686f9",
+  "_default/plastic_dish_rack/piece_15.obj": "6a04dc561b4cd6b87192e6bde31228203439e4e813c666a95956c5e5dc46eddf",
+  "_default/plastic_dish_rack/piece_18.obj": "8378799ba946b7874d002251cf73e143ca33a40b05656c906ac01a533bb6b988",
+  "_default/plastic_dish_rack/piece_05.obj": "41053dd182357043e917be0f863d1112b3fb274d57b7fd9ba3422c9c41adea38",
+  "_default/plastic_dish_rack/piece_07.obj": "62a4487107de1d74b104673fd5dc7f508ad2c77099f5f50ba9cfd84e4c039f5c",
+  "_default/plastic_dish_rack/piece_20.obj": "752d65e3dd26f25c5f84b7b146625fa6a699a8fe5a3b6f46156e2453df45549e",
+  "_default/plastic_dish_rack/piece_08.obj": "0cb35acac2594471b24e0aa356f766834618ece16a3ed59cc2b4648d1dfcbd99",
+  "_default/plastic_dish_rack/piece_00.obj": "d82b1bf3712e83d8f4cc22e2593183ee0c0a77cc6979dd2791f8e5a47583d517",
+  "_default/plastic_dish_rack/piece_11.obj": "79165d0fdc585d0d30eda729334702551125af51b80e15d9ca3a24e8136035f3",
+  "_default/plastic_dish_rack/piece_19.obj": "ab649674efd2507b97e04c502a862d9aae808e7838323c851399eb5a10372615",
+  "_default/plastic_dish_rack/piece_23.obj": "7d015e3c439f2b5c2f28615229420e437741b59b7b1e0392c373461ac9613c2a",
+  "_default/plastic_dish_rack/piece_01.obj": "1689e580b1f6e181d350c9493ecd053abac241956a2d1379e01acf26241bddec",
+  "_default/plastic_dish_rack/piece_21.obj": "42abf1164e95a30a57664c767cfd88b943be9b60ad38367cc42c61e2e378a64a",
+  "_default/plastic_dish_rack/piece_02.obj": "57191408d45dc6e075fa9e84198ed9bdc8c2c20325864726f0a11cdb190c9183",
+  "_default/plastic_dish_rack/piece_04.obj": "c4ec9fad299f940c784688f72cd1ec8d30cd56e3acec46995f185f58697a9b58",
+  "_default/plastic_dish_rack/piece_10.obj": "aeeb281540a6ab65fd6435c6eca0230cda815f59212acf85b4524ee536693852",
+  "_default/plastic_dish_rack/piece_03.obj": "4c935e1e255aad0774ec63de4fa631a191c5caeafefcc1f24a9cd3ccedbd3acb",
+  "_default/plastic_dish_rack/piece_12.obj": "208c65aa7193eb681b944779c0e3457e486a12b0c618fdf5c632041ff6c57986",
+  "_default/plastic_dish_rack/piece_14.obj": "857808b077a5e4564dccc81a3694cfeb79eb4294cec0843ad776d42438fa0c9d",
+  "_default/plastic_dish_rack/piece_22.obj": "0e415641da63a1c421c386f22de75ba42da0ce358bd49ff89cd94e00d0f12619",
+  "_default/plastic_dish_rack/piece_17.obj": "03d32d98123373e8f971e7fcbb766fc8e1bac2d185628e6fb2cfddf55fec1d94",
+  "_default/plastic_dish_rack/piece_09.obj": "2c6becc88e71347d7e6a0903aeaf8686b9da321bec9c0a0f07497d80c49a969e",
+  "_default/plastic_dish_rack/piece_16.obj": "48c2eddf188226c49d937ee212e9b35fa2a8bcaf0bda61e4a8164e35395e561d",
+  "_fit/blue_cup.glb": "6c41726315aed33d54ac5167c83225afc04e9d2f4f2cc864da58b034810502d6",
+  "_fit/plastic_dish_rack.glb": "479690d070f428cf435e164696ab5b1b4d63da9ffb2ceefd4c9a6b30a950da15"
+ },
+ "fiducials": {
+  "blue_cup": [
+   [
+    -0.07903430694855539,
+    -0.020496973427228178,
+    0.07206841235551521
+   ],
+   [
+    -0.018746226795890598,
+    0.0323981522852163,
+    0.09493983339253838
+   ],
+   [
+    -0.018734910829077342,
+    -0.08671689691130005,
+    0.06626974996216181
+   ],
+   [
+    0.04155316932358744,
+    -0.03382177119885557,
+    0.08914117099918498
+   ],
+   [
+    -0.05256940755020065,
+    0.017381500042791494,
+    -0.08529411384372451
+   ],
+   [
+    0.007718672602464134,
+    0.07027662575523598,
+    -0.062422692806701346
+   ],
+   [
+    0.007729988569277387,
+    -0.04883842344128038,
+    -0.09109277623707791
+   ],
+   [
+    0.06801806872194217,
+    0.004056702271164095,
+    -0.06822135520005475
+   ]
+  ],
+  "plastic_dish_rack": [
+   [
+    -0.02218720070312875,
+    -0.0792544033438536,
+    -0.19610287690663866
+   ],
+   [
+    0.0703353649740773,
+    -0.07373964406327398,
+    -0.19528158809895213
+   ],
+   [
+    -0.030716195304221327,
+    0.06477794021925576,
+    -0.20240911191154112
+   ],
+   [
+    0.061806370372984726,
+    0.0702926994998354,
+    -0.2015878231038546
+   ],
+   [
+    -0.027519437099968676,
+    -0.05917304559257942,
+    0.26976045232256907
+   ],
+   [
+    0.06500312857723738,
+    -0.053658286311999794,
+    0.2705817411302556
+   ],
+   [
+    -0.036048431701061256,
+    0.08485929797052993,
+    0.26345421731766666
+   ],
+   [
+    0.0564741339761448,
+    0.09037405725110956,
+    0.2642755061253532
+   ]
+  ]
+ },
+ "code": {
+  "commit": "e213dd39b8b1983000523575292282243ce735d2",
+  "dirty": false,
+  "dirty_files": [],
+  "sha256": {
+   "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+   "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+   "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+   "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+   "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+   "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+   "tools/interlock_dev.py": "11b746537993c5f8854c578c2cab8182514888c03acb03363cb592f2737dbd7b",
+   "platebody.py": "da173d6b979a5b4f819b73419c5d9fe7a38fe12b504ee2520d653743e99df468",
+   "collcarve.py": "203eda41fdef5f9cf285cc6598eeefe326908280d65d312f7288e0ade7a52ec8",
+   "cavpieces.py": "4b931e0d579862a77e82fb3e73718b90e7606f7289f62b22e8d77a0fb0c243ae"
+  }
+ },
+ "commit": "e213dd39b8b1983000523575292282243ce735d2",
+ "interlock": null,
+ "do_not_use": null,
+ "fiducial_definition": "8 corners of the PCA-oriented bounding box of all piece vertices, each coordinate 1 mm inward along each box axis (simpieces.fiducials)",
+ "note": "visual <obj>.glb = submitted mesh (geometry only); collisions = piece_XX.obj (make_assets.py --pieces); _fit/<obj>.glb = union of the pieces for phys_fit --meshes; props_gmg.json for phys_fit --props",
+ "owner_waiver_fi5": {
+  "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+  "quote": "but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it",
+  "scope": "every non-plate pair whose simulator colliders interpenetrate persistently, simulator copy only (F-I5.0)",
+  "routes": {
+   "blue_cup": "4_voxels",
+   "plastic_dish_rack": "4_voxels"
+  },
+  "pairs": {
+   "blue_cup|plastic_dish_rack": {
+    "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+    "pair": [
+     "blue_cup",
+     "plastic_dish_rack"
+    ],
+    "rev": 2,
+    "gates": {},
+    "in_scope": false,
+    "why": "no persistent component passes the kept gates",
+    "deliver": "default"
+   }
+  },
+  "default_pieces": "_default/<obj>/piece_XX.obj"
+ },
+ "p1_pending": true,
+ "fi5_rev": 2,
+ "rule_fi5r2": "PREREG F-I5.15, F-I5.16",
+ "owner_quotes": {
+  "fi4": "Okay I waive that camera rule",
+  "fi5": "but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it",
+  "mandate_2122": "anything that improves the score within the competition rules"
+ }
+}

@@ -1,0 +1,1699 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-11-01T01:48:11Z",
+ "commit": "cea13424fb892398a43531218013e42b41945f0e",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/build/I.md"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df",
+  "--ep",
+  "2",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2",
+  "--cands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/cand/public/ep2",
+  "--pick",
+  "white_pot=shell_t5p36,white_pot_lid=hull",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands2/hands.npz",
+  "--proxy-copies",
+  "16",
+  "--identity",
+  "eval",
+  "--waiver-fi5",
+  "--no-physcheck",
+  "--tag",
+  "fi5r2"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 17836,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261101-fi5r2pub-88f49df",
+  "root": "runs-dev",
+  "pid": 17578,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-11-01T00:18:01Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands2/hands.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2/white_pot.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2/white_pot_lid.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+   "sha256": "ae4c9b3c59ff927edbb814c91a905be769bf76c2f17fbca45daf6333ee28ba2c",
+   "bytes": 88616,
+   "tier": "P1",
+   "keys": [
+    "cam_T_white_pot",
+    "cam_T_white_pot_lid",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands2/hands.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands2/hands.npz",
+   "sha256": "0a038bccecc54ca7785663eba804d342a6599e6801e94a6029020c219eb6cedf",
+   "bytes": 193526,
+   "tier": "DEV",
+   "keys": [
+    "Da",
+    "KR",
+    "Ka",
+    "T",
+    "T_rect_a",
+    "a_offset",
+    "chir_left",
+    "chir_right",
+    "depth_ok_left",
+    "depth_ok_right",
+    "dz_med_left",
+    "dz_med_right",
+    "filled_left",
+    "filled_right",
+    "joints_left",
+    "joints_right",
+    "measured_left",
+    "measured_right",
+    "n_depth_inl_left",
+    "n_depth_inl_right",
+    "n_depth_left",
+    "n_depth_right",
+    "n_det",
+    "rms_px_left",
+    "rms_px_right",
+    "scale_left",
+    "scale_right",
+    "score_left",
+    "score_right",
+    "size_a",
+    "swap",
+    "uv_a_left",
+    "uv_a_right",
+    "valid_left",
+    "valid_right",
+    "wl_mirror",
+    "world_frame"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2/episode.json",
+   "sha256": "11f7a4d9d1ba5a0a888325e3f9b446d5c0f1b24197591d46d97d4b618e14cc3f",
+   "bytes": 57395,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2/white_pot.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2/white_pot.npz",
+   "sha256": "e8f1eb4fb87d642598679940f3c1b90809117f1601390fbc4cdaaa2310808dfb",
+   "bytes": 37568166,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2/white_pot_lid.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2/white_pot_lid.npz",
+   "sha256": "882dfe3d273e4ab55a93a86b9d522ba018c9c45c8a3f980c18daf53eeef8591f",
+   "bytes": 23892377,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "il.engaged_min_vox",
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.gap_bridge_frames",
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.transient_frames",
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_speed_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_min_frames",
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.block_frames",
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.holdout_min_frames",
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_min",
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_share",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_min_m",
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_k_j",
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.max_rounds",
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.link_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 linking share 50 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.through_beyond_vox",
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.depth_scale",
+   "value": 0.5,
+   "origin": "sensor:depth input at half the 1600 x 1000 rectified resolution (depths_fs0.5)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.w_bridge_px",
+   "value": 8.0,
+   "origin": "generic:F-I1.14 w_bridge 8 depth pixels [H]",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.class_o_max",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 25 % class O",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.swept_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_step_m",
+   "value": 0.002,
+   "origin": "generic:numerical 2 mm (one sub-voxel)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_cap_m",
+   "value": 0.06,
+   "origin": "generic:numerical cap of the push search (6 x the prior)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_frames_max",
+   "value": 12,
+   "origin": "generic:numerical subsample of the build frames for the push proxy",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_prior_m",
+   "value": 0.01,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 10 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.silgap_share",
+   "value": 0.75,
+   "origin": "generic:F-I1.3 (iii) 75 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "struct_vox_m",
+   "value": 0.002,
+   "origin": "generic:obs-first sym_probe / rot_probe voxel downsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:58"
+  },
+  {
+   "name": "struct_max_points",
+   "value": 60000,
+   "origin": "generic:obs-first probe cap (numerical)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:59"
+  },
+  {
+   "name": "rot_consistency_trim",
+   "value": 0.8,
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:60"
+  },
+  {
+   "name": "rot_consistency_angles_deg",
+   "value": [
+    45,
+    90,
+    135
+   ],
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:61"
+  },
+  {
+   "name": "rot_consistency_subsample",
+   "value": 20000,
+   "origin": "generic:lathe_obs.fit_axis subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:62"
+  },
+  {
+   "name": "sym_accept_rotc_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (rotational consistency)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:63"
+  },
+  {
+   "name": "sym_accept_resid_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (mirror residual)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:64"
+  },
+  {
+   "name": "sym_accept_observed_share",
+   "value": 0.7,
+   "origin": "generic:PREREG A.6 symmetry acceptance (observed share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:65"
+  },
+  {
+   "name": "sym_accept_free_share",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6 symmetry acceptance (free share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:66"
+  },
+  {
+   "name": "noise_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 / SPEC section 8 noise band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:67"
+  },
+  {
+   "name": "sym_moved_min_share",
+   "value": 0.5,
+   "origin": "generic:a symmetry must move at least half the points",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:68"
+  },
+  {
+   "name": "sym_resid_trim",
+   "value": 0.8,
+   "origin": "generic:obs-first sym_probe trimmed mean",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:69"
+  },
+  {
+   "name": "mirror_search_normals",
+   "value": 400,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:70"
+  },
+  {
+   "name": "sym_search_subsample",
+   "value": 6000,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:71"
+  },
+  {
+   "name": "sym_eval_subsample",
+   "value": 20000,
+   "origin": "generic:obs-first sym_probe evaluation",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:72"
+  },
+  {
+   "name": "mirror_distinct_deg",
+   "value": 20.0,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:73"
+  },
+  {
+   "name": "mirror_top",
+   "value": 3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:74"
+  },
+  {
+   "name": "mirror_search_min_observed",
+   "value": 0.3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:75"
+  },
+  {
+   "name": "mirror_search_free_weight_m",
+   "value": 0.02,
+   "origin": "generic:obs-first sym_probe ranking weight",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:76"
+  },
+  {
+   "name": "sym_perturb_deg",
+   "value": [
+    4.0,
+    1.5
+   ],
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:77"
+  },
+  {
+   "name": "sym_perturb_n",
+   "value": 12,
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:78"
+  },
+  {
+   "name": "sym_nm_step",
+   "value": 2.0,
+   "origin": "generic:numerical refinement (initial simplex 2 deg / 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:79"
+  },
+  {
+   "name": "sym_nm_xatol",
+   "value": 0.02,
+   "origin": "generic:numerical refinement (deg / mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:80"
+  },
+  {
+   "name": "sym_nm_maxfev",
+   "value": 400,
+   "origin": "generic:numerical refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:81"
+  },
+  {
+   "name": "sym_pairing_iters",
+   "value": 4,
+   "origin": "generic:numerical refinement (sym_probe refine_offset passes)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:82"
+  },
+  {
+   "name": "axis_search_rim_w_s",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6b E1 (lathe.rim_w) = 0.05 s",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:83"
+  },
+  {
+   "name": "plane_min_pts",
+   "value": 300,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:84"
+  },
+  {
+   "name": "plane_max",
+   "value": 4,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:85"
+  },
+  {
+   "name": "plane_seeds",
+   "value": 200,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:86"
+  },
+  {
+   "name": "plane_deg",
+   "value": 30.0,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:87"
+  },
+  {
+   "name": "plane_conn_vox_m",
+   "value": 0.003,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:88"
+  },
+  {
+   "name": "slab_two_face_thickness_m",
+   "value": [
+    0.003,
+    0.025
+   ],
+   "origin": "informed:slab two-face thickness (PREREG A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:89"
+  },
+  {
+   "name": "plane_pair_overlap_min",
+   "value": 0.5,
+   "origin": "generic:footprints of a plate's two faces overlap",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:90"
+  },
+  {
+   "name": "repeat_orders",
+   "value": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "origin": "generic:discrete rotations C2..C6",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:91"
+  },
+  {
+   "name": "pb.near_m",
+   "value": 0.006,
+   "origin": "generic:F-I2.10 owned points within 6 mm of the pick",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.frames_min",
+   "value": 3,
+   "origin": "generic:F-I4.11 >= 3 frames per outline cell (= OBSERVED hits >= 3, A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "cp2.ray_dh_m",
+   "value": 0.001,
+   "origin": "generic:F-I5.15 (10) construction rays every 1 mm (the topology pitch)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.eps_h_m",
+   "value": 1.3e-07,
+   "origin": "generic:numerical ray heights offset 1.3e-7 m off the mesh vertex levels",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.ray_dphi_deg",
+   "value": 1.0,
+   "origin": "generic:F-I5.15 (10) construction rays every 1 deg",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.hit_dedup_m",
+   "value": 1e-07,
+   "origin": "generic:numerical duplicate ray hits within 1e-7 m",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp.wall_k_sigma",
+   "value": 3.0,
+   "origin": "generic:F-I5.10 wall if inner radius > max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.wall_min_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.10 wall if inner radius > max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp2.sectors",
+   "value": [
+    8,
+    12,
+    16,
+    20,
+    24,
+    32
+   ],
+   "origin": "generic:F-I5.15 (10) sector set {8, 12, 16, 20, 24, 32}",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.axial_dr_m",
+   "value": 0.001,
+   "origin": "generic:F-I5.15 (10) axial rays every 1 mm in radius",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.base_band_m",
+   "value": 0.03,
+   "origin": "generic:F-I5.15 (10) base bands <= 30 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.w_min_m",
+   "value": 0.0015,
+   "origin": "generic:F-I5.15 (10) w_min 1.5 mm (one 1 mm cell plus half a cell; Andres et al. 1997)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp.coacd_thr",
+   "value": 0.02,
+   "origin": "generic:F-I5.10 CoACD 0.02 (finer than its 0.05 default)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.pitch_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.10 2 mm keep-out / topology grid",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.vox_pitches",
+   "value": [
+    0.002,
+    0.004,
+    0.006,
+    0.008
+   ],
+   "origin": "generic:F-I5.10 voxel grids 2 / 4 / 6 / 8 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cc.sample_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.1 2 mm grid inside the partner pieces (the Embodiment export definition)",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc.hand_m",
+   "value": 0.03,
+   "origin": "generic:F-I5.10 hands distance 30 mm (F-I1.9 rest distance)",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc2.floor_frames",
+   "value": 3,
+   "origin": "generic:F-I5.15 (4c) up to 3 floor S frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cc2.sup_samples",
+   "value": 4000,
+   "origin": "generic:numerical 4,000 guest surface samples for the exact-mesh support distance",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cc2.s_rm",
+   "value": 0.5,
+   "origin": "generic:F-I5.15 (10) removed share s_rm 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cc.surf_m",
+   "value": 0.0005,
+   "origin": "generic:F-I5.3 (d) guest surface samples at 0.5 mm spacing",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc2.wall_rays_max",
+   "value": 20000,
+   "origin": "generic:numerical precheck (c) mesh rays: a seeded subset of 20,000 samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cg5.coacd_thr",
+   "value": 0.05,
+   "origin": "kit:FlashCHORD fc_mesh.py threshold 0.05 (the evaluator code)",
+   "where": "docs/research/mesh-2026-10-26/gmg/contactgate5.py:66"
+  },
+  {
+   "name": "sp.mass_kg",
+   "value": 0.3,
+   "origin": "generic:F-I1.14 placeholder mass 0.3 kg (make_assets default; owner decision D-I1 open)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "interlock/public/ep2-fi5r2/T_asm.npy",
+   "sha256": "f6a91346c198d71931ea48fd66cfb4c2313273d70048a71e6bd3e2bd4879fa12",
+   "bytes": 256,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep2-fi5r2/decisions.json",
+   "sha256": "6e8b9894f17dc63da52cdd2fd0fa0a3d156c4c139050cb91f4143ae429906dd8",
+   "bytes": 16514,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep2-fi5r2/fi5.json",
+   "sha256": "5daa7d051070e0785a914495eebaa2a4b09a3ea0e99b13c6f1ed051a6ec1fac1",
+   "bytes": 18433,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep2-fi5r2/physcheck.json",
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep2-fi5r2/push_list.json",
+   "sha256": "e3f833686b9abfd1fa1ee1b323edde801743f1b2a2b3bc2de61a89cfbce99bd9",
+   "bytes": 1694,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep2-fi5r2/report.json",
+   "sha256": "53430e914c081c2293121364c5e4190419964ac00d68e10734725f3f39d4bc36",
+   "bytes": 30096,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep2-fi5r2/structure_white_pot.json",
+   "sha256": "f29319ad1279a5177f57f618ca9333832816cfcd2f8d4399894c6cbc21026de7",
+   "bytes": 7329,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep2-fi5r2/structure_white_pot_lid.json",
+   "sha256": "fd984a288aaebcebc9d0e8e2b170cc2dda0b8f3c34494165c1bc1832d4fa0b0f",
+   "bytes": 7468,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep2-fi5r2/voxels_white_pot.npz",
+   "sha256": "3f7f8b984d903060fbb129fef0b8394ad61af457eedb288ef85d5e9e4154ac25",
+   "bytes": 14543,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep2-fi5r2/voxels_white_pot_lid.npz",
+   "sha256": "4e16d70640c04cdb30b78b763e30351c5dc6c106764a2cffce2fb1d7d7122b37",
+   "bytes": 12829,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/CONTACT_GATE_PENDING.json",
+   "sha256": "d8a00a41a9ab6acfc97c31cf6a20d02acaba423e8672c0a35e0bf53e487b8f85",
+   "bytes": 700,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/DO_NOT_USE.json",
+   "sha256": "07c80611e11e067ca8c6bc37dc1755ef7d77ccb7e126f114f5d969dc5868aa45",
+   "bytes": 270,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_00.obj",
+   "sha256": "7eadab15ea9849e9b70bc08106d7c910e2352b07ac3f0f30e5b6ed128fce1890",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_01.obj",
+   "sha256": "f73e75adf4eefb0a4415d28a9bb004f032016faedc89c5b82c6e4d2138a53ab6",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_02.obj",
+   "sha256": "58a1be5d89364a737a26dede88957979c36b7c67068b54fea7570e0b8b76e73e",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_03.obj",
+   "sha256": "d8d01a14ef098d25cbd34f75708c9d1e098313cae6a959fb9c2922e6bbb762ab",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_04.obj",
+   "sha256": "49d8dbdd7bed83a97576326c65403508e1970c6e8fadaf57614b919a48f1871f",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_05.obj",
+   "sha256": "db60991c24c2864183ada2cbb588749075b157cb51e58a982d53d85357cc8fd4",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_06.obj",
+   "sha256": "344ce8898dd06376bb75079d3fe2cc7bf4a4a1cbbd0cb164a03393f3b4cd6f38",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_07.obj",
+   "sha256": "5006625ec70431600f0011a20dc6b33d324a436a34480c99272b48d1305d3fa5",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_08.obj",
+   "sha256": "84afcf4bd889cbadb3510396afe64c13a5355a47f7511c01ea449db1fb1a4c9a",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_09.obj",
+   "sha256": "2330669f91220610493bb477a5555f8ad78a3179935c4c565b9cd8b02f2dd31b",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_10.obj",
+   "sha256": "1a8f07385ac5492f78033f66816e44fa062d7f8957d9eb35525a957a3a72482e",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_11.obj",
+   "sha256": "2fe080d2e0767f209a22620ebce53e171252f6443e013bd664ef4e4668e7dc1f",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_12.obj",
+   "sha256": "5e21e1cc0cc5070e2a04710aad4039abf38488defda97b88f1fa78ff6c9e44c5",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_13.obj",
+   "sha256": "8ae3682d07baf25f08b0de6221a7c0a773c823b7d82e74189c74ef636c2e1d01",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_14.obj",
+   "sha256": "a19e9a5e862fa93e1649b7f5ef783aeae2084f4aa6021853cfdde4f63b6c6680",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_15.obj",
+   "sha256": "3be74a7cd6205d5ef3a42539bc3f2751ed61edd7ba500e78627c40874dd84659",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_16.obj",
+   "sha256": "3a13dae243189585f5eccd8f5d1165eb7cc409f9558cf317f1d5843958ba3fe2",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_17.obj",
+   "sha256": "c6872788dcc00eaeaa72e19a6154e82ce60df9ea60903328fbf7046125553b2c",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_18.obj",
+   "sha256": "410e5ca9a2ed42ae07bb26b1a1f1203f54c7054e92769476d2c89c3560c0a5c0",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_19.obj",
+   "sha256": "b71b8876a0997569b40c3d732fa9265e4fd4e129069ede2ee6df80dd24d3acbd",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_20.obj",
+   "sha256": "bea4ae5a973001b03ec3e26b1831ee6dbc9b7e16318131fb5843be4d61d4beed",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_21.obj",
+   "sha256": "a53db603cbb9c9adfc955f6a5c5209df9dbd3691e77cb6fc8be74d7d99ada83f",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_22.obj",
+   "sha256": "54f8897c3340f9f9323160ec287ae812445d326041cf14716539872ba5e0d0ca",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_23.obj",
+   "sha256": "89532088c1d8cb641e02701ed31f2c3ac95b977bd173dae422448aa86d335376",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_24.obj",
+   "sha256": "a9326c0f11a82473b6c8208e395d1c616a868bdb48672615daa4cb3a251e8a0e",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_25.obj",
+   "sha256": "11efee0e6d51fcb08be822852242e69339861f3f3c38708f9196656bb45c7e10",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_26.obj",
+   "sha256": "c89f9afc2d4cae8ad195a620e0f4261e3b66aced5db6351f2e2fe11a2f1a94f3",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_27.obj",
+   "sha256": "7e6649b4c5b19fe433c6011ec12dc35257c4672beb819a7d1f87bdf578249ffc",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_28.obj",
+   "sha256": "fff0ac1044c0d8a65b1126b7c1f963530cd601b1b9825651d5714a1d57869718",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_29.obj",
+   "sha256": "bef796a43cf143d855d583e99f53050c2612352e6f4b12f4c0e6ab0f570e8b7a",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_30.obj",
+   "sha256": "b9e362fe27a52f23f7abf59e9b98ed4f8f9b48641f2bf39ff0efabc1b12aed9f",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_31.obj",
+   "sha256": "20f9fd94c3752b684e10929691b38430a1b58e9e0117e7964caf5e4457266e17",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_32.obj",
+   "sha256": "0c87ecc479a9b5d076617de6664207ea47b7c12d8601c7d2b82bffce2b3d4f80",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_33.obj",
+   "sha256": "01eb8189b1445d6b5779bf9c5f981f38d68b81a6eb5429c2e33e270be13ef8f4",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_34.obj",
+   "sha256": "701b6cc3e9e7c282bc77be6672376968884c43429cd35e00d389066478aa6af0",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_35.obj",
+   "sha256": "9448703f815bfbe0ebdd42ff69b307fe5163b36a26a192840c1b47cfd464552a",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_36.obj",
+   "sha256": "2fc10eb87673633e253c2b49aba1a9fee5a555453463e6abaf147c741a185c2c",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_37.obj",
+   "sha256": "402bffb58355b1c10ef4d2b234983799b793b5671db8f319c89d1a8dcb3a8ff0",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_38.obj",
+   "sha256": "740a036b4f6e89aaadbb2b7d0e2234e2677a4a3c20dde81f33c278f4e1ecabde",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_39.obj",
+   "sha256": "b049940c3ca050af688249960ce0c5c8e8de7673b23bcf327dbd5978273ce063",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_40.obj",
+   "sha256": "7ab9055fb6fdf24425f4db932be2debee922c0a055ee267d2739ef11e88ba5f3",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot/piece_41.obj",
+   "sha256": "bcdb3c8e481cd92c81146f834068314cd81a10c705d669340cb2d0223575a791",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_00.obj",
+   "sha256": "4709a25b1dece9b2d3f82b73cfb921f406538ef08e5b1b69c83242c3e1eb7713",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_01.obj",
+   "sha256": "772bf2a40d41d77b2545b72c61aed494b1c54861a93ea04614887bfb2a1d51dd",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_02.obj",
+   "sha256": "81b756f47afbae8c2d616d40d3cb2a25d58db00f5ca91fe7923311022e3e01fc",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_03.obj",
+   "sha256": "826d10bfe812ad56a05ea0b2f8ecba4d3e56c3f5bfacd68b60e0c08e046e15d3",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_04.obj",
+   "sha256": "224284ce1b942e0737f30debddffa6b9e39211fed2aded472ad283c41b43b686",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_05.obj",
+   "sha256": "2aa121a2375151bcba61e6b5f804497187f5cd210cf7f9b7d6fb70a32cdb48d4",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_06.obj",
+   "sha256": "721cd280575dc52505ce832bc53c5a17194ac3f5904a1e7ff7fac9801b58a0f0",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_07.obj",
+   "sha256": "ce1ceba0f270ee729f4bfd61f3e248129b15adf0e2d99658396d04c3878d86e2",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_08.obj",
+   "sha256": "1afea600ee3ad8fc3eb3f2de2b58bf8ebfd654758e46c0e3d4b72d3a9fefd018",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_09.obj",
+   "sha256": "ea91fe40a7cb18a3e7f4e2dbd4274a1ee885af602ed747b9395b9468e9efcc13",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_10.obj",
+   "sha256": "424979d2120db6bf965a90aae16ce01140cfa26ccf0a1e1f2daab31abcfb955b",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_11.obj",
+   "sha256": "5f9ef17b2efb311a307a9a4ddbff86362efe7fe72407ede56b0c7795b0f18760",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_12.obj",
+   "sha256": "7dd76ac5b486f1ce1dc36e2248ccfdbe511fb6e5d604737b3530b6d71cb89250",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_13.obj",
+   "sha256": "365d19e0efe28abc15768c8bc53e3f1d4c39eb62a1acd8a35746ecf7c78437f7",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_14.obj",
+   "sha256": "a8430cc76d34440f287d0262c0f6af624f69ea24a17be9c53815fa0e450bcee3",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_15.obj",
+   "sha256": "08f446d6d3b86ebc6d3634f85d4f65e32dcdb4de5edb9bf2c7c47c056e038bcc",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_16.obj",
+   "sha256": "ebaa6d292e1c3b0df8c2ed0766cff63dba569ffd6563f774d5ce5d4e84657f1a",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_17.obj",
+   "sha256": "1453275935c2ef468b7bb962f797db0613f07b850191b3576de78260c21558d4",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_18.obj",
+   "sha256": "880e981dcce1748681c830cbdfb441c9a2a0150dead4de649bbae99c2c07e118",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_19.obj",
+   "sha256": "90f426b19bc747994c233974440cc7c80df86ca9b601d49d350d211c37d4a180",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_20.obj",
+   "sha256": "50b212e27e713bbf7da2e01aa00a33a803aabe97b22486eded5e3cf4bea68f32",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_21.obj",
+   "sha256": "4e708686b3a8b6a16655870ef4303080f867809c2796db254f9d3aa3ea0db67b",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_22.obj",
+   "sha256": "9a08a001e11a3c658e053b7be85d0956e4f1f37abff2947e73720a0ee86afc99",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_23.obj",
+   "sha256": "156676d0bb8b244d93f85ce527f095965b52bead31af0fff998e39e68bd3e4ee",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_default/white_pot_lid/piece_24.obj",
+   "sha256": "fe9537627f27a8f3acc8f40309cee6bdf7c889aeafce4744cd441bf9b5214f83",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_fit/white_pot.glb",
+   "sha256": "aebde1a83afee23a649e4945ce4236ef5651aa72cd1b4aa7af11c3bbc1946994",
+   "bytes": 11136,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/_fit/white_pot_lid.glb",
+   "sha256": "c105dd1d42274e007502e734e6bc8360d18a893961c3acf562d9d13daf850bc4",
+   "bytes": 6876,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/contact_gate.json",
+   "sha256": "781fff78aff75f9f2fa5525765969ae5845382d2764c5329020a24bcbac28e1d",
+   "bytes": 2466,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/floor.json",
+   "sha256": "77da07acb19bfab6ae3348687d67d627b90fdeb63a7ac544b08bb7ba9ff8d0d8",
+   "bytes": 4177,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/manifest.json",
+   "sha256": "25880639913e9e52a944b30c63f321c0c752e4d2a29b788625f483ea15f21392",
+   "bytes": 28436,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/props_gmg.json",
+   "sha256": "90682dbc9ebc2e7db3b90107d9c6c982a478709a4f68f8a7478bc674461eba3b",
+   "bytes": 1659,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/push_list_fi5r2.json",
+   "sha256": "5781dcf5b020d24ba21ab1c6e702a92240569d2ebd2af7e65a6c6b0298942f2e",
+   "bytes": 522,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/carve.json",
+   "sha256": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+   "bytes": 109,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/inertia.json",
+   "sha256": "83393955818805ea7663511c7b05dc774cc7fc1414dca87137f0b1a958d2adde",
+   "bytes": 402,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_00.obj",
+   "sha256": "7eadab15ea9849e9b70bc08106d7c910e2352b07ac3f0f30e5b6ed128fce1890",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_01.obj",
+   "sha256": "f73e75adf4eefb0a4415d28a9bb004f032016faedc89c5b82c6e4d2138a53ab6",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_02.obj",
+   "sha256": "58a1be5d89364a737a26dede88957979c36b7c67068b54fea7570e0b8b76e73e",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_03.obj",
+   "sha256": "d8d01a14ef098d25cbd34f75708c9d1e098313cae6a959fb9c2922e6bbb762ab",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_04.obj",
+   "sha256": "49d8dbdd7bed83a97576326c65403508e1970c6e8fadaf57614b919a48f1871f",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_05.obj",
+   "sha256": "db60991c24c2864183ada2cbb588749075b157cb51e58a982d53d85357cc8fd4",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_06.obj",
+   "sha256": "344ce8898dd06376bb75079d3fe2cc7bf4a4a1cbbd0cb164a03393f3b4cd6f38",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_07.obj",
+   "sha256": "5006625ec70431600f0011a20dc6b33d324a436a34480c99272b48d1305d3fa5",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_08.obj",
+   "sha256": "84afcf4bd889cbadb3510396afe64c13a5355a47f7511c01ea449db1fb1a4c9a",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_09.obj",
+   "sha256": "2330669f91220610493bb477a5555f8ad78a3179935c4c565b9cd8b02f2dd31b",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_10.obj",
+   "sha256": "1a8f07385ac5492f78033f66816e44fa062d7f8957d9eb35525a957a3a72482e",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_11.obj",
+   "sha256": "2fe080d2e0767f209a22620ebce53e171252f6443e013bd664ef4e4668e7dc1f",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_12.obj",
+   "sha256": "5e21e1cc0cc5070e2a04710aad4039abf38488defda97b88f1fa78ff6c9e44c5",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_13.obj",
+   "sha256": "8ae3682d07baf25f08b0de6221a7c0a773c823b7d82e74189c74ef636c2e1d01",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_14.obj",
+   "sha256": "a19e9a5e862fa93e1649b7f5ef783aeae2084f4aa6021853cfdde4f63b6c6680",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_15.obj",
+   "sha256": "3be74a7cd6205d5ef3a42539bc3f2751ed61edd7ba500e78627c40874dd84659",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_16.obj",
+   "sha256": "3a13dae243189585f5eccd8f5d1165eb7cc409f9558cf317f1d5843958ba3fe2",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_17.obj",
+   "sha256": "c6872788dcc00eaeaa72e19a6154e82ce60df9ea60903328fbf7046125553b2c",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_18.obj",
+   "sha256": "410e5ca9a2ed42ae07bb26b1a1f1203f54c7054e92769476d2c89c3560c0a5c0",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_19.obj",
+   "sha256": "b71b8876a0997569b40c3d732fa9265e4fd4e129069ede2ee6df80dd24d3acbd",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_20.obj",
+   "sha256": "bea4ae5a973001b03ec3e26b1831ee6dbc9b7e16318131fb5843be4d61d4beed",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_21.obj",
+   "sha256": "a53db603cbb9c9adfc955f6a5c5209df9dbd3691e77cb6fc8be74d7d99ada83f",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_22.obj",
+   "sha256": "54f8897c3340f9f9323160ec287ae812445d326041cf14716539872ba5e0d0ca",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_23.obj",
+   "sha256": "89532088c1d8cb641e02701ed31f2c3ac95b977bd173dae422448aa86d335376",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_24.obj",
+   "sha256": "a9326c0f11a82473b6c8208e395d1c616a868bdb48672615daa4cb3a251e8a0e",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_25.obj",
+   "sha256": "11efee0e6d51fcb08be822852242e69339861f3f3c38708f9196656bb45c7e10",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_26.obj",
+   "sha256": "c89f9afc2d4cae8ad195a620e0f4261e3b66aced5db6351f2e2fe11a2f1a94f3",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_27.obj",
+   "sha256": "7e6649b4c5b19fe433c6011ec12dc35257c4672beb819a7d1f87bdf578249ffc",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_28.obj",
+   "sha256": "fff0ac1044c0d8a65b1126b7c1f963530cd601b1b9825651d5714a1d57869718",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_29.obj",
+   "sha256": "bef796a43cf143d855d583e99f53050c2612352e6f4b12f4c0e6ab0f570e8b7a",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_30.obj",
+   "sha256": "b9e362fe27a52f23f7abf59e9b98ed4f8f9b48641f2bf39ff0efabc1b12aed9f",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_31.obj",
+   "sha256": "20f9fd94c3752b684e10929691b38430a1b58e9e0117e7964caf5e4457266e17",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_32.obj",
+   "sha256": "0c87ecc479a9b5d076617de6664207ea47b7c12d8601c7d2b82bffce2b3d4f80",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_33.obj",
+   "sha256": "01eb8189b1445d6b5779bf9c5f981f38d68b81a6eb5429c2e33e270be13ef8f4",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_34.obj",
+   "sha256": "701b6cc3e9e7c282bc77be6672376968884c43429cd35e00d389066478aa6af0",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_35.obj",
+   "sha256": "9448703f815bfbe0ebdd42ff69b307fe5163b36a26a192840c1b47cfd464552a",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_36.obj",
+   "sha256": "2fc10eb87673633e253c2b49aba1a9fee5a555453463e6abaf147c741a185c2c",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_37.obj",
+   "sha256": "402bffb58355b1c10ef4d2b234983799b793b5671db8f319c89d1a8dcb3a8ff0",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_38.obj",
+   "sha256": "740a036b4f6e89aaadbb2b7d0e2234e2677a4a3c20dde81f33c278f4e1ecabde",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_39.obj",
+   "sha256": "b049940c3ca050af688249960ce0c5c8e8de7673b23bcf327dbd5978273ce063",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_40.obj",
+   "sha256": "7ab9055fb6fdf24425f4db932be2debee922c0a055ee267d2739ef11e88ba5f3",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/piece_41.obj",
+   "sha256": "bcdb3c8e481cd92c81146f834068314cd81a10c705d669340cb2d0223575a791",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot/white_pot.glb",
+   "sha256": "a5ce09991f833f282c129d4c271c6bf38b957d8ac5d27dd8de7e6eb7e4867eb1",
+   "bytes": 71744,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/carve.json",
+   "sha256": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+   "bytes": 109,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/inertia.json",
+   "sha256": "2b247ae0700bee262d9a5021db99fb80f9f5a65b1d1188a9914fdb7b1e0772d4",
+   "bytes": 410,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_00.obj",
+   "sha256": "4709a25b1dece9b2d3f82b73cfb921f406538ef08e5b1b69c83242c3e1eb7713",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_01.obj",
+   "sha256": "772bf2a40d41d77b2545b72c61aed494b1c54861a93ea04614887bfb2a1d51dd",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_02.obj",
+   "sha256": "81b756f47afbae8c2d616d40d3cb2a25d58db00f5ca91fe7923311022e3e01fc",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_03.obj",
+   "sha256": "826d10bfe812ad56a05ea0b2f8ecba4d3e56c3f5bfacd68b60e0c08e046e15d3",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_04.obj",
+   "sha256": "224284ce1b942e0737f30debddffa6b9e39211fed2aded472ad283c41b43b686",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_05.obj",
+   "sha256": "2aa121a2375151bcba61e6b5f804497187f5cd210cf7f9b7d6fb70a32cdb48d4",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_06.obj",
+   "sha256": "721cd280575dc52505ce832bc53c5a17194ac3f5904a1e7ff7fac9801b58a0f0",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_07.obj",
+   "sha256": "ce1ceba0f270ee729f4bfd61f3e248129b15adf0e2d99658396d04c3878d86e2",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_08.obj",
+   "sha256": "1afea600ee3ad8fc3eb3f2de2b58bf8ebfd654758e46c0e3d4b72d3a9fefd018",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_09.obj",
+   "sha256": "ea91fe40a7cb18a3e7f4e2dbd4274a1ee885af602ed747b9395b9468e9efcc13",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_10.obj",
+   "sha256": "424979d2120db6bf965a90aae16ce01140cfa26ccf0a1e1f2daab31abcfb955b",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_11.obj",
+   "sha256": "5f9ef17b2efb311a307a9a4ddbff86362efe7fe72407ede56b0c7795b0f18760",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_12.obj",
+   "sha256": "7dd76ac5b486f1ce1dc36e2248ccfdbe511fb6e5d604737b3530b6d71cb89250",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_13.obj",
+   "sha256": "365d19e0efe28abc15768c8bc53e3f1d4c39eb62a1acd8a35746ecf7c78437f7",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_14.obj",
+   "sha256": "a8430cc76d34440f287d0262c0f6af624f69ea24a17be9c53815fa0e450bcee3",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_15.obj",
+   "sha256": "08f446d6d3b86ebc6d3634f85d4f65e32dcdb4de5edb9bf2c7c47c056e038bcc",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_16.obj",
+   "sha256": "ebaa6d292e1c3b0df8c2ed0766cff63dba569ffd6563f774d5ce5d4e84657f1a",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_17.obj",
+   "sha256": "1453275935c2ef468b7bb962f797db0613f07b850191b3576de78260c21558d4",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_18.obj",
+   "sha256": "880e981dcce1748681c830cbdfb441c9a2a0150dead4de649bbae99c2c07e118",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_19.obj",
+   "sha256": "90f426b19bc747994c233974440cc7c80df86ca9b601d49d350d211c37d4a180",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_20.obj",
+   "sha256": "50b212e27e713bbf7da2e01aa00a33a803aabe97b22486eded5e3cf4bea68f32",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_21.obj",
+   "sha256": "4e708686b3a8b6a16655870ef4303080f867809c2796db254f9d3aa3ea0db67b",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_22.obj",
+   "sha256": "9a08a001e11a3c658e053b7be85d0956e4f1f37abff2947e73720a0ee86afc99",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_23.obj",
+   "sha256": "156676d0bb8b244d93f85ce527f095965b52bead31af0fff998e39e68bd3e4ee",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/piece_24.obj",
+   "sha256": "fe9537627f27a8f3acc8f40309cee6bdf7c889aeafce4744cd441bf9b5214f83",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep2-fi5r2/r0/white_pot_lid/white_pot_lid.glb",
+   "sha256": "53ec459097bb8dc2851f93148b382749ab975db79de051a94f43d5d9ecc75f8e",
+   "bytes": 71460,
+   "how": "python"
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+[
+ {
+  "target": "mini_sweeper",
+  "partner": "plastic_dish_rack",
+  "run": {
+   "frames": [
+    18,
+    40
+   ],
+   "n": 12,
+   "kind": "SLIDE",
+   "travel_mm": 42.8,
+   "straightness": 0.554,
+   "d": [
+    -0.531,
+    -0.2118,
+    -0.8205
+   ],
+   "assembled": [],
+   "n_assembled": 0,
+   "n_build": 12,
+   "n_check": 0,
+   "flags": [
+    "no_holdout"
+   ]
+  },
+  "voxels": 2,
+  "region_voxels": 1,
+  "cm3": 0.06,
+  "nmin": 5,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 0.5,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 6.1,
+   "plane_point": [
+    0.004,
+    0.03,
+    -0.01
+   ],
+   "plane_normal": [
+    -0.531,
+    -0.2118,
+    -0.8205
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": false,
+   "kept_voxels": 1,
+   "carved_side_voxels": 1
+  },
+  "linked": false,
+  "flags": [
+   "one_sided_region"
+  ],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 6.36,
+   "entering_samples_mm": 4.36,
+   "partner_collider_mm": null,
+   "w_sub_mm": 6.36,
+   "centre_n_mm": -10.97,
+   "axes_dnm": [
+    [
+     -0.531,
+     -0.2118,
+     -0.8205
+    ],
+    [
+     -0.8375,
+     -0.016,
+     0.5462
+    ],
+    [
+     -0.1288,
+     0.9772,
+     -0.1689
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ }
+]

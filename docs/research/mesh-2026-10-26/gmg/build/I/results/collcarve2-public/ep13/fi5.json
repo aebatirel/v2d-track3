@@ -1,0 +1,641 @@
+{
+ "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+ "fi5_rev": 2,
+ "routes": {
+  "blue_cup": {
+   "route": "4_voxels",
+   "n": 25,
+   "gate": {
+    "pass_": true,
+    "n": 25,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 1.7651
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "2_lathe",
+     "report": {
+      "profile": {
+       "rows": 193,
+       "azimuths": 360,
+       "h_span_mm": [
+        -106.11,
+        86.21
+       ],
+       "wall_threshold_mm": 3.342,
+       "runs": [
+        [
+         "wall",
+         -106.11,
+         -92.11
+        ],
+        [
+         "solid",
+         -92.11,
+         -86.11
+        ],
+        [
+         "wall",
+         -86.11,
+         86.21
+        ]
+       ]
+      },
+      "tried": [
+       {
+        "n_s": 8,
+        "base": "b1",
+        "B_w": 2,
+        "n_r": 17,
+        "ring_cm3": 0.127,
+        "min_wall_mm": -51.519,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b2",
+        "B_w": 2,
+        "n_r": 25,
+        "ring_cm3": 1.767,
+        "min_wall_mm": -51.59,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b1",
+        "B_w": 3,
+        "n_r": 25,
+        "ring_cm3": 0.127,
+        "min_wall_mm": -56.348,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 12,
+        "base": "b1",
+        "B_w": 2,
+        "n_r": 25,
+        "ring_cm3": 0.123,
+        "min_wall_mm": -31.804,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b2",
+        "B_w": 3,
+        "n_r": 33,
+        "ring_cm3": 1.767,
+        "min_wall_mm": -56.525,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 16,
+        "base": "b1",
+        "B_w": 2,
+        "n_r": 33,
+        "ring_cm3": 0.129,
+        "min_wall_mm": -50.02,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b1",
+        "B_w": 4,
+        "n_r": 33,
+        "ring_cm3": 0.127,
+        "min_wall_mm": -74.117,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 12,
+        "base": "b2",
+        "B_w": 2,
+        "n_r": 37,
+        "ring_cm3": 1.812,
+        "min_wall_mm": -31.793,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 12,
+        "base": "b1",
+        "B_w": 3,
+        "n_r": 37,
+        "ring_cm3": 0.123,
+        "min_wall_mm": -36.87,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b2",
+        "B_w": 4,
+        "n_r": 41,
+        "ring_cm3": 1.767,
+        "min_wall_mm": -74.674,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b1",
+        "B_w": 5,
+        "n_r": 41,
+        "ring_cm3": 0.127,
+        "min_wall_mm": -74.117,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 20,
+        "base": "b1",
+        "B_w": 2,
+        "n_r": 41,
+        "ring_cm3": 0.126,
+        "min_wall_mm": -34.91,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 12,
+        "base": "b1",
+        "B_w": 4,
+        "n_r": 49,
+        "ring_cm3": 9.398,
+        "min_wall_mm": -49.719,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b1",
+        "B_w": 6,
+        "n_r": 49,
+        "ring_cm3": 2.691,
+        "min_wall_mm": -57.862,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 16,
+        "base": "b2",
+        "B_w": 2,
+        "n_r": 49,
+        "ring_cm3": 2.674,
+        "min_wall_mm": -50.087,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 12,
+        "base": "b2",
+        "B_w": 3,
+        "n_r": 49,
+        "ring_cm3": 1.812,
+        "min_wall_mm": -37.107,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b2",
+        "B_w": 5,
+        "n_r": 49,
+        "ring_cm3": 1.767,
+        "min_wall_mm": -74.674,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 16,
+        "base": "b1",
+        "B_w": 3,
+        "n_r": 49,
+        "ring_cm3": 0.129,
+        "min_wall_mm": -55.734,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 24,
+        "base": "b1",
+        "B_w": 2,
+        "n_r": 49,
+        "ring_cm3": 0.127,
+        "min_wall_mm": -46.499,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b2",
+        "B_w": 6,
+        "n_r": 57,
+        "ring_cm3": 4.331,
+        "min_wall_mm": -57.862,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b1",
+        "B_w": 7,
+        "n_r": 57,
+        "ring_cm3": 3.436,
+        "min_wall_mm": -57.862,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 12,
+        "base": "b1",
+        "B_w": 5,
+        "n_r": 61,
+        "ring_cm3": 12.67,
+        "min_wall_mm": -49.719,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 12,
+        "base": "b2",
+        "B_w": 4,
+        "n_r": 61,
+        "ring_cm3": 11.087,
+        "min_wall_mm": -50.239,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 20,
+        "base": "b2",
+        "B_w": 2,
+        "n_r": 61,
+        "ring_cm3": 2.737,
+        "min_wall_mm": -34.954,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 20,
+        "base": "b1",
+        "B_w": 3,
+        "n_r": 61,
+        "ring_cm3": 0.126,
+        "min_wall_mm": -39.472,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 16,
+        "base": "b1",
+        "B_w": 4,
+        "n_r": 65,
+        "ring_cm3": 10.848,
+        "min_wall_mm": -87.476,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b2",
+        "B_w": 7,
+        "n_r": 65,
+        "ring_cm3": 5.075,
+        "min_wall_mm": -57.862,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b1",
+        "B_w": 8,
+        "n_r": 65,
+        "ring_cm3": 4.611,
+        "min_wall_mm": -62.515,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 16,
+        "base": "b2",
+        "B_w": 3,
+        "n_r": 65,
+        "ring_cm3": 2.674,
+        "min_wall_mm": -55.934,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 32,
+        "base": "b1",
+        "B_w": 2,
+        "n_r": 65,
+        "ring_cm3": 0.179,
+        "min_wall_mm": -45.408,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 12,
+        "base": "b1",
+        "B_w": 6,
+        "n_r": 73,
+        "ring_cm3": 20.6,
+        "min_wall_mm": -49.624,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 12,
+        "base": "b2",
+        "B_w": 5,
+        "n_r": 73,
+        "ring_cm3": 14.359,
+        "min_wall_mm": -50.239,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b1",
+        "B_w": 9,
+        "n_r": 73,
+        "ring_cm3": 7.371,
+        "min_wall_mm": -62.515,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b2",
+        "B_w": 8,
+        "n_r": 73,
+        "ring_cm3": 6.251,
+        "min_wall_mm": -62.515,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 24,
+        "base": "b2",
+        "B_w": 2,
+        "n_r": 73,
+        "ring_cm3": 2.717,
+        "min_wall_mm": -46.557,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 24,
+        "base": "b1",
+        "B_w": 3,
+        "n_r": 73,
+        "ring_cm3": 1.105,
+        "min_wall_mm": -50.46,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 16,
+        "base": "b1",
+        "B_w": 5,
+        "n_r": 81,
+        "ring_cm3": 16.358,
+        "min_wall_mm": -87.476,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 16,
+        "base": "b2",
+        "B_w": 4,
+        "n_r": 81,
+        "ring_cm3": 13.393,
+        "min_wall_mm": -88.434,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 20,
+        "base": "b1",
+        "B_w": 4,
+        "n_r": 81,
+        "ring_cm3": 12.032,
+        "min_wall_mm": -65.646,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b2",
+        "B_w": 9,
+        "n_r": 81,
+        "ring_cm3": 9.01,
+        "min_wall_mm": -62.515,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 8,
+        "base": "b1",
+        "B_w": 10,
+        "n_r": 81,
+        "ring_cm3": 7.371,
+        "min_wall_mm": -62.515,
+        "fail": "min_wall"
+       },
+       {
+        "n_s": 20,
+        "base": "b2",
+        "B_w": 3,
+        "n_r": 81,
+        "ring_cm3": 2.737,
+        "min_wall_mm": -39.618,
+        "fail": "min_wall"
+       }
+      ],
+      "why": "no_accepted_layout",
+      "sec": 101.2
+     }
+    },
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 34,
+      "stuck": 0,
+      "pieces": 75,
+      "max_excess_cm3": 0.272,
+      "cap": 82,
+      "coacd_asked": 41,
+      "coacd_pieces": 41,
+      "sec": 615.1
+     },
+     "gate": {
+      "pass_": false,
+      "n": 75,
+      "max_cm3": 0.704,
+      "sum_cm3": 9.408,
+      "over_tol": 7,
+      "keepout_points": 1150,
+      "keepout_cm3": 9.2
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 25,
+      "cells": 50,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 25,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  },
+  "plastic_dish_rack": {
+   "route": "4_voxels",
+   "n": 24,
+   "gate": {
+    "pass_": true,
+    "n": 24,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 12.8035
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 41,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 0.736,
+      "cap": 82,
+      "coacd_asked": 41,
+      "coacd_pieces": 41,
+      "sec": 254.2
+     },
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 0.776,
+      "sum_cm3": 10.016,
+      "over_tol": 11,
+      "keepout_points": 1226,
+      "keepout_cm3": 9.808
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 24,
+      "cells": 51,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 24,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  }
+ },
+ "pairs": {
+  "blue_cup|plastic_dish_rack": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "rev": 2,
+   "gates": {},
+   "in_scope": false,
+   "why": "no persistent component passes the kept gates",
+   "deliver": "default"
+  }
+ },
+ "overlap_track": {
+  "blue_cup|plastic_dish_rack": {
+   "max_cm3": 0.0,
+   "median_cm3": 0.0
+  }
+ },
+ "decisions": [],
+ "floor": {
+  "pass_": false,
+  "fails": [
+   {
+    "kind": "share",
+    "obj": "blue_cup",
+    "share": 0.0485
+   },
+   {
+    "kind": "share",
+    "obj": "plastic_dish_rack",
+    "share": 0.0361
+   }
+  ],
+  "shares": {
+   "blue_cup": 0.0485,
+   "plastic_dish_rack": 0.0361
+  }
+ },
+ "contact_gate": {
+  "g1_pass": true,
+  "g2": {
+   "can_run": false,
+   "why": [
+    "no mujoco_warp in this environment",
+    "no warp in this environment",
+    "no newton in this environment",
+    "no FlashCHORD source tree (FLASHCHORD_DIR unset or missing)"
+   ],
+   "r0": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep13-fi5r2/r0",
+   "bound": 380,
+   "caveat": "zero-action rollouts; a grasping policy may add hand-object contacts",
+   "hand_off": "determined-wright (budget.py at 9c1d100, build/I/budget_py_usage.md)"
+  },
+  "pairs": {}
+ },
+ "records": {
+  "do_not_use": true,
+  "reasons": {
+   "floor": [
+    {
+     "kind": "share",
+     "obj": "blue_cup",
+     "share": 0.0485
+    },
+    {
+     "kind": "share",
+     "obj": "plastic_dish_rack",
+     "share": 0.0361
+    }
+   ]
+  },
+  "contact_gate_pending": true
+ },
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep13-fi5r2/r0",
+ "do_not_use": {
+  "floor": [
+   {
+    "kind": "share",
+    "obj": "blue_cup",
+    "share": 0.0485
+   },
+   {
+    "kind": "share",
+    "obj": "plastic_dish_rack",
+    "share": 0.0361
+   }
+  ]
+ },
+ "push_list": [
+  {
+   "pair": [
+    "plastic_dish_rack",
+    "blue_cup"
+   ],
+   "frame": 181,
+   "check": "a_table",
+   "kind": "pose_impossible (floor)"
+  }
+ ],
+ "sec": 4802.5
+}

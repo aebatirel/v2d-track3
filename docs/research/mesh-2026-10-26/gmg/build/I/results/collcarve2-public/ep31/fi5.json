@@ -1,0 +1,218 @@
+{
+ "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+ "fi5_rev": 2,
+ "routes": {
+  "mini_sweeper": {
+   "route": "4_voxels",
+   "n": 3,
+   "gate": {
+    "pass_": true,
+    "n": 3,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 3.0684
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 4,
+      "stuck": 0,
+      "pieces": 45,
+      "max_excess_cm3": 0.28,
+      "cap": 82,
+      "coacd_asked": 41,
+      "coacd_pieces": 41,
+      "sec": 771.4
+     },
+     "gate": {
+      "pass_": false,
+      "n": 45,
+      "max_cm3": 0.344,
+      "sum_cm3": 4.024,
+      "over_tol": 1,
+      "keepout_points": 480,
+      "keepout_cm3": 3.84
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 3,
+      "cells": 3,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 3,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  },
+  "plastic_dish_rack": {
+   "route": "4_voxels",
+   "n": 47,
+   "gate": {
+    "pass_": true,
+    "n": 47,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 9.1493
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 41,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 1.536,
+      "cap": 82,
+      "coacd_asked": 41,
+      "coacd_pieces": 41,
+      "sec": 332.4
+     },
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 1.736,
+      "sum_cm3": 27.144,
+      "over_tol": 22,
+      "keepout_points": 3344,
+      "keepout_cm3": 26.752
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 47,
+      "cells": 94,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 47,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  }
+ },
+ "pairs": {
+  "mini_sweeper|plastic_dish_rack": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "rev": 2,
+   "gates": {},
+   "in_scope": false,
+   "why": "no persistent component passes the kept gates",
+   "deliver": "default"
+  }
+ },
+ "overlap_track": {
+  "mini_sweeper|plastic_dish_rack": {
+   "max_cm3": 0.0,
+   "median_cm3": 0.0
+  }
+ },
+ "decisions": [],
+ "floor": {
+  "pass_": false,
+  "fails": [
+   {
+    "kind": "share",
+    "obj": "mini_sweeper",
+    "share": 0.0185
+   },
+   {
+    "kind": "share",
+    "obj": "plastic_dish_rack",
+    "share": 0.0468
+   }
+  ],
+  "shares": {
+   "mini_sweeper": 0.0185,
+   "plastic_dish_rack": 0.0468
+  }
+ },
+ "contact_gate": {
+  "g1_pass": true,
+  "g2": {
+   "can_run": false,
+   "why": [
+    "no mujoco_warp in this environment",
+    "no warp in this environment",
+    "no newton in this environment",
+    "no FlashCHORD source tree (FLASHCHORD_DIR unset or missing)"
+   ],
+   "r0": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep31-fi5r2/r0",
+   "bound": 380,
+   "caveat": "zero-action rollouts; a grasping policy may add hand-object contacts",
+   "hand_off": "determined-wright (budget.py at 9c1d100, build/I/budget_py_usage.md)"
+  },
+  "pairs": {}
+ },
+ "records": {
+  "do_not_use": true,
+  "reasons": {
+   "floor": [
+    {
+     "kind": "share",
+     "obj": "mini_sweeper",
+     "share": 0.0185
+    },
+    {
+     "kind": "share",
+     "obj": "plastic_dish_rack",
+     "share": 0.0468
+    }
+   ]
+  },
+  "contact_gate_pending": true
+ },
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep31-fi5r2/r0",
+ "do_not_use": {
+  "floor": [
+   {
+    "kind": "share",
+    "obj": "mini_sweeper",
+    "share": 0.0185
+   },
+   {
+    "kind": "share",
+    "obj": "plastic_dish_rack",
+    "share": 0.0468
+   }
+  ]
+ },
+ "push_list": [],
+ "sec": 4400.9
+}

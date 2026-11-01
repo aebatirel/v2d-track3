@@ -1,0 +1,232 @@
+{
+ "rule": "PREREG F-I5.15 (4c)",
+ "objects": {
+  "white_pot": {
+   "share": 0.0609,
+   "detail": {
+    "share": 0.061,
+    "shell_cm3": 369.917,
+    "inside_cm3": 22.543,
+    "outside_cm3": 1.001,
+    "union_cm3": 23.544
+   },
+   "pieces": 42,
+   "pass_": false,
+   "delivered": "default"
+  },
+  "white_pot_lid": {
+   "share": 0.0865,
+   "detail": {
+    "share": 0.086,
+    "shell_cm3": 180.697,
+    "inside_cm3": 15.626,
+    "outside_cm3": 1.222,
+    "union_cm3": 16.848
+   },
+   "pieces": 25,
+   "pass_": false,
+   "delivered": "default"
+  }
+ },
+ "pairs": {
+  "white_pot|white_pot_lid": {
+   "receiver": "white_pot",
+   "guest": "white_pot_lid",
+   "frames": [
+    13,
+    32,
+    316
+   ],
+   "info": {
+    "static_stretches": 9,
+    "containment": {
+     "white_pot": 0.9473,
+     "white_pot_lid": 0.153
+    },
+    "hands_off_segments": 6,
+    "segment_gaps": [
+     {
+      "frame": 13,
+      "gap_mm": 0.0,
+      "seg": [
+       0,
+       25
+      ]
+     },
+     {
+      "frame": 100,
+      "gap_mm": 59.13,
+      "seg": [
+       95,
+       105
+      ]
+     },
+     {
+      "frame": 32,
+      "gap_mm": 0.0,
+      "seg": [
+       28,
+       36
+      ]
+     },
+     {
+      "frame": 316,
+      "gap_mm": 0.0,
+      "seg": [
+       312,
+       320
+      ]
+     }
+    ],
+    "flags": []
+   },
+   "rows": [
+    {
+     "frame": 13,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": 61.29,
+       "lowest_mesh_mm": 60.96,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 61.29,
+       "receiver_mm": 0.0,
+       "receiver_mesh_mm": 0.0,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 23.848,
+       "removed_share": 0.0749,
+       "topology": {
+        "default": [
+         8,
+         44
+        ],
+        "cut": [
+         13,
+         98
+        ]
+       },
+       "samples_inside": 53643,
+       "samples_used": 20000,
+       "wall_samples_needing": 19327,
+       "wall_samples_bad": 6059,
+       "min_wall_left_mm": 0.05,
+       "ok_topology": false,
+       "ok_wall": false,
+       "ok_removed": true,
+       "pass_": false
+      },
+      "fail": "c_overlap",
+      "fails": [
+       "c_overlap"
+      ],
+      "pass_": false
+     }
+    },
+    {
+     "frame": 32,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": 60.75,
+       "lowest_mesh_mm": 60.43,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 60.75,
+       "receiver_mm": 0.0,
+       "receiver_mesh_mm": 0.0,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 26.976,
+       "removed_share": 0.0824,
+       "topology": {
+        "default": [
+         8,
+         44
+        ],
+        "cut": [
+         32,
+         105
+        ]
+       },
+       "samples_inside": 58188,
+       "samples_used": 20000,
+       "wall_samples_needing": 19497,
+       "wall_samples_bad": 6773,
+       "min_wall_left_mm": 0.049,
+       "ok_topology": false,
+       "ok_wall": false,
+       "ok_removed": true,
+       "pass_": false
+      },
+      "fail": "c_overlap",
+      "fails": [
+       "c_overlap"
+      ],
+      "pass_": false
+     }
+    },
+    {
+     "frame": 316,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": 62.33,
+       "lowest_mesh_mm": 61.51,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 62.33,
+       "receiver_mm": 0.0,
+       "receiver_mesh_mm": 0.01,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 20.92,
+       "removed_share": 0.0629,
+       "topology": {
+        "default": [
+         8,
+         44
+        ],
+        "cut": [
+         12,
+         60
+        ]
+       },
+       "samples_inside": 47940,
+       "samples_used": 20000,
+       "wall_samples_needing": 19571,
+       "wall_samples_bad": 5563,
+       "min_wall_left_mm": 0.049,
+       "ok_topology": false,
+       "ok_wall": false,
+       "ok_removed": true,
+       "pass_": false
+      },
+      "fail": "c_overlap",
+      "fails": [
+       "c_overlap"
+      ],
+      "pass_": false
+     }
+    }
+   ]
+  }
+ },
+ "fails": [
+  {
+   "kind": "share",
+   "obj": "white_pot",
+   "share": 0.0609
+  },
+  {
+   "kind": "share",
+   "obj": "white_pot_lid",
+   "share": 0.0865
+  }
+ ],
+ "pass_": false
+}
