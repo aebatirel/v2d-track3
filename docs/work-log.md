@@ -5641,3 +5641,6 @@ Advice given:
 - 03:06 UTC overflow in G's six D training logs [M]: ep14 s42 18,953 lines (median 525, max 650) / s43 15,925 (527, 634);
   ep16 0 / 0; ep33 s42 29,846 (524, 617) / s43 31,981 (524, 647). Moderate (~10⁴, requests ≤ 650) vs eval 10's ~6×10⁶
   (requests up to ~1,050); ep33 learns best (0.94) despite ~3×10⁴. Overflow does not track the weak cells here either.
+- 03:13 UTC determined-wright: eval-10 no-overlap candidate **ev10cs not clean** (full scene, sim=rl, sampled training
+  resets: nefc max 510 vs packed 536, 4 overflow lines requesting 515–518; explicit nested frames 409, none). Agreed rule
+  → no eval-10 retrain on it (priority item 3 waits); they check bold-albattani's v2 when it lands.
