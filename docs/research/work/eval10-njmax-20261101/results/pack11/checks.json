@@ -1,0 +1,58 @@
+{
+ "ok": true,
+ "failures": [],
+ "evidence": {
+  "stored_config": {
+   "sim.njmax": 512,
+   "sim.nconmax": 256,
+   "env.sim.njmax": 512,
+   "env.sim.nconmax": 256
+  },
+  "buffer_identical_to_1024_ckpt": true,
+  "config_diff": [
+   "env.sim.nconmax",
+   "env.sim.njmax",
+   "sim.nconmax",
+   "sim.njmax"
+  ],
+  "solver_build_ck512": {
+   "njmax": 512,
+   "naconmax": 256,
+   "njmax_nnz": 11320,
+   "nworld": 1,
+   "nv": 74,
+   "ngeom": 156,
+   "nbody": 56,
+   "data_bytes_one_world": 204564,
+   "device": "cuda:0",
+   "seconds": 3.2
+  },
+  "solver_build_note": "run 20261101-e10nj-451b82d results/ev10_nj/solver_build.json: FlashCHORD evaluation path on the pristine tree (cuda:0), exact ck512 file",
+  "eval_rc": {
+   "1": "0",
+   "2": "0",
+   "3": "0",
+   "4": "0",
+   "5": "0",
+   "6": "0",
+   "7": "0",
+   "8": "0",
+   "9": "0",
+   "10": "0"
+  },
+  "overflow_lines_per_draw": {
+   "1": 0,
+   "2": 0,
+   "3": 0,
+   "4": 0,
+   "5": 0,
+   "6": 0,
+   "7": 0,
+   "8": 0,
+   "9": 0,
+   "10": 0
+  },
+  "ck512_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+  "sha256_covers": "the whole .safetensors file: tensors + header incl. user.resolved_config_json (weights and stored config in one file)"
+ }
+}

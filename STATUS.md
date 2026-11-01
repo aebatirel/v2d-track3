@@ -10,6 +10,13 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-01 11:25 UTC: pack-11 verdict INCLUDE (njmax-1024-trained eval-10 policy at stock limits) — pack NOT built
+- Owner's go (relayed by keen-heisenberg, 09:11): pack the 1024-trained eval-10 policy scored at stock 512 / 256.
+- Verdict (amendment 998385b0, standing rule on already-seen draws): vs pack 10's eval-10 policy +0.371 (V) / +0.361 (P),
+  fail rate 0/10 vs 10/10; stock evaluation proven (stored config 512/256; solver built 512/256; 0 overflow in all draws).
+- Blocked: the sha-specific no_oracle exception was denied by this session's permission check (security weakening on a
+  relayed go). Not worked around. Needs the owner's own word here to add the allowlist entry, then the CPU build ($0).
+
 ## 2026-11-01 09:00 UTC: wrap-up — nothing running; credit $23.63; ledger closed ($200.12 actual)
 - Eval-20 b1 retrain NO-SWAP (gate missed: s43 0.8929 vs > 0.8933; overflow 1.2–1.3 k lines) → no pack 10b.
 - Best board: pack 10 (AUC 0.81915, RPE 3.683, MPPE 2.848) + 9a+ (SP-SR 0.85, MP-SR 0.65, CD-O 0.332).

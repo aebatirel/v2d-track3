@@ -1,0 +1,1 @@
+p11 RESULT: SWAP-ELIGIBLE :: pack 11: INCLUDE (gain {'V': 0.3712, 'P': 0.3614}; bar 0.02) :: a_V ok margin 0.3712 | b_V ok margin 1.0 | c_V ok margin 11.9078 | s_V ok margin 0.4555 | a_P ok margin 0.3614 | b_P ok margin 1.0 | c_P ok margin 11.3281 | s_P ok margin 0.4347 :: every clause holds on both references

@@ -5936,3 +5936,18 @@ Advice given:
   Plan: CPU only, $0 (reuse the stored conf512 draws); amendment committed first
   (eval10-njmax-20261101/PREREG_AMENDMENT_pack11.md), then downloads, checks, re-scoring of both sides with
   e10v_score.py, verdict, guard allowlist, pack 11 build on pack 10's inputs.
+- 11:25 UTC **pack-11 verdict (PREREG_AMENDMENT_pack11.md, 998385b0, committed before scoring; tools/p11_verdict.py
+  b8bc0aa7 = e10v_verdict unchanged with the packed side set to pack 10's eval-10 policy): SWAP-ELIGIBLE → INCLUDE**
+  (standing rule on already-seen draws; not a blind test). Required checks [M], all pass: ck512 (sha256 aaa077eb…)
+  stored config 512 / 256 in sim and env.sim, weights buffer byte-identical to the 1024 checkpoint, only those 4 keys
+  differ; SolverMuJoCo built at njmax 512 / naconmax 256 for that exact file on the pristine evaluator tree, cuda:0
+  (run 20261101-e10nj-451b82d results/ev10_nj/solver_build.json; the 1024 checkpoint builds 1024 / 512); 10 conf512
+  official draws all rc 0, 0 overflow lines in every evaluator log, every rollout names aaa077eb…; checkpoint_sha256
+  covers the whole .safetensors file (tensors + stored config). Re-scored on CPU (e10v_score.py, V md5 5d22fc57…,
+  P md5 1a5003d9…), both sides together: new vs V 0.8342 vs packed (pack 10's ev10cs5 s43) 0.4630 (+0.371), vs P
+  +0.361; fail rate (RPE > 5 cm) 0 / 10 vs 10 / 10; median RPE margin 11.9 / 11.3 cm; draw 1 vs V 0.9175 (RPE 1.89 cm)
+  vs old 0.5120. Bar +0.02 on both → INCLUDE. Files: eval10-njmax-20261101/results/pack11/.
+  **Pack 11 NOT built**: the guard exception (an allowlist entry for this one sha in tools/no_oracle.py +
+  ops/provenance/allow_checkpoints.json) was denied by this session's permission check as a security-control weakening
+  (the owner's go reached me relayed). Not worked around (no --skip-no-oracle, no other session asked to do it). It needs
+  the owner's own word in this session, or the owner deciding another route.
