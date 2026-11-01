@@ -6568,3 +6568,17 @@ Background agent, CPU only, $0, no ground truth read.
   "rent cheap Vast CPU" permission came via another session, not from the owner in this chat, and CPU here suffices.
 - 20:14 UTC: ep13 arm 7/8 done [M]: **O anneal** (test A oracle input): active 45 improved 0 rollbacks 4 wall 3411.1 nonzero offset frames 0 ; jittered 0.5707 ± 0.003 = its
   input copy for copy (nominal 0.5724); replay bit-identical. Arm 8 (O grasp) started 20:14.
+- 20:35 UTC: **repair (a) test on ep13 [M]** (`scripts/twist_ep13.sh`, code 41383b4): twist canon on P_sf / O_sf BEFORE the
+  two-hand lock + ILC (same GL_ARGS as P2 / O2), then jitter_check --k 17 --seed 0. Twist removed: P up to 174°, O 49°;
+  tilt unchanged (9e-7°). Results (jittered, 16 copies; floors in brackets):
+  - P2T: plain 0.520 (0.553), **symmetric 0.521 ± 0.026** (0.574), cup within 3 cm (symmetric) on 5 % of frames, lost at
+    f10–12 in every copy. P2: plain 0.344, symmetric 0.377 ± 0.154, within 3 cm 16 %, lost f22–52.
+  - O2T: plain 0.570, symmetric 0.572 ± 0.122, within 22 %, lost f39–68. O2: symmetric 0.606 ± 0.093, within 22 %, lost
+    f27–69.
+  - Reading: the stated bar for [H-lock-twist] (P2 symmetric +0.05) is met numerically (+0.144), **but I do not count it
+    as support**: the cup is followed worse (lost at f10 instead of f22–27; within 3 cm 5 % vs 16 %) and the score stays
+    below the floor. With the twist removed the lock places the left hand differently; it pushes the cup a few cm at
+    ~f10 (before its hold from f15) instead of flinging it later; a milder failure scores higher. The bar was badly
+    chosen (a score rise without following); the cup-tracking readout is the honest one. Conclusion: twist
+    canonicalisation alone does not make ep13's pick followable; the lock's hand placement at the pick is the gap.
+    On O the canon replaces a real twist (mocap turns 22–34° by f32–36) and slightly hurts (−0.035).
