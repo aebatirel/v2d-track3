@@ -196,3 +196,66 @@ Counts: blue 24 + 1 + 7 = 32, beige 24 + 9 = 33.
   beige, and the blue's inner faces stay tangent. Falsifier: gate 1 median above v1's 1.92 cm3.
 
 v2 (`ev10cs2`) is delivered as built.
+
+## Amendment A4 (1 Nov, 04:50 UTC): variant v4 (`ev10cs4`), written before building it and before any v4 number
+
+**Inputs (data, relayed by the orchestrator).** determined-wright, 04:47 UTC, contact_budget/README.md "Large-sample
+standard", 6b04fba [R]:
+- FlashCHORD budget.py at 32 worlds x 60 steps, paired; the hold window is steps < 20.
+- The non-overlapping packed evals 30 / 14 give 0 overflow lines there.
+- Eval 10:
+
+  | Set | Overflow lines, sampled / explicit | Hold-window max | Steps > 512 |
+  |---|---|---|---|
+  | packed | 380 / 9,723 | 661 | 100 % |
+  | ev10cs | 104 / 7,086 | 598 | 75 % |
+  | ev10cs3 | 110 / 576 | 534 | 15 % |
+
+- A v4 needs about 30-80 fewer rows at the hold maximum.
+
+**Before writing this:** only profile-level build dry runs (`<scratch>/cavsafe/feas`): piece counts, volumes and
+mid-sector walls for bands 6 / 8 cm x sectors 6 / 8. No overlap, contact or settle number of any v4 candidate exists.
+
+**Design rule.** v4 = v3 (cavity-safe blue walls R1' / R2, inscribed beige G1, one-piece blue floor F1, 8 sectors),
+with these changes:
+- **B1, bands 6 -> 8 cm, both cups (`--band 0.08`).** Fewer wall bands is the lever named for the rows that come from
+  the hands and from cup-cup contact.
+  - 8 cm is half the wall height (158 mm on both cups), rounded up to the cm, so each wall becomes exactly 2 bands.
+  - Dry run: blue mid-sector wall minima become 0.54 mm at the mouth bin and 1.39 mm at the bottom bin (v3: 0.25 /
+    0.875).
+  - Beige G1 lowering becomes at most 2.39 mm (v3: 4.83). With the longer band, the profile step at h 42-52 mm no longer
+    forces the minorant down. Piece volumes: blue 142.8 cm3, beige about 285 cm3.
+- **B2, beige ring base 1 + 8 -> 1 + 4 rim sectors (each 90 deg, chord points at a0, mid, a1).** Fewer guest pieces
+  where the blue floor and the table touch the beige.
+  - 4 = SEG / 2, the smallest symmetric count above the 3 points a static stand needs.
+  - The rim sectors still span r/2 to r, so a contact the simulator reports at any of their vertices lies at least r/2
+    off the axis (lathe_collision.py's own reason for rim sectors). The centre disc closes the base.
+- **Not changed:** the 8 sectors on the walls (3.3 mm outer chord error on the blue at r = 40 mm, 3.9 mm at the 47 mm
+  lip, 3.0 mm inside on the beige), the 3 mm wall, the 8 mm shrink, the floor plate, the 7 footing hulls and every
+  cavity-safety rule.
+- **Counts:** blue 2 x 8 + 1 + 7 = **24** (v3 32, ev10 53); beige 2 x 8 + 1 + 4 = **21** (v3 33, ev10 49).
+- **Conditional F2 (floor thickening), fixed now.**
+  - Drop check: guest-table contacts at any step of the settle trace at f124 / f142 / f160, or at the max-nefc step of
+    any of the 16 copies at f111 / f142 / f116 / f124 / f160.
+  - If it finds any, `ev10cs4` gets a 6 mm floor plate [h_base - 2t, h_base] instead of 3 mm.
+    - The cup's bottom below the plate is only 1.6 mm, so the floor can only grow upward.
+    - The cavity floor of gates 1-3 then moves to h_base - 2t, which is stated and still about 20 mm below the blue
+      visual mesh's own solid fill (solid from h ~ 52 mm down [M, `<scratch>` axis scan]).
+  - Trade: the beige settles 3 mm higher, which is closer to the reference.
+  - This is applied once, with no further iteration. Both builds are reported.
+
+**Target.**
+- **FlashCHORD 32 x 60 (determined-wright measures; final): 0 overflow lines (sampled and explicit), and a hold-window
+  max <= 480 rows** (a 32-row margin, i.e. 8 contacts at 4 rows each).
+- Our plain-MuJoCo numbers (gates 1-4 as defined above, same frames, settle and drop checks) are indicative only. Gate
+  verdicts are reported as before.
+
+**Expected [H].**
+- Gate 1 between v1 and v3 (2 bands of hull bridging lose less; the inscribed 8-gons stay).
+- Plain-MuJoCo settled rows <= v3's 160.
+- Falsifiers: gate-1 median > 1.92 cm3, or settled rows > 160.
+
+**Trades stated now.**
+- The blue outer surface lies up to 3.3-3.9 mm outside its lathe profile at the sector edges (as in v3).
+- The beige stays 8 mm plus up to 3 mm inside its mesh, and the beige base has 4 rim pieces.
+- The beige still settles to the blue floor, 4-27 mm deeper than the reference puts it (3 mm less with F2).

@@ -1954,3 +1954,9 @@ Results: `build/I/results/rackslot/` (one folder for both episodes). Work dir `<
   c1-ev14 is the only set with a possible value (pair-scene throw 136 -> 79 mm median) if FlashCHORD budget.py keeps it
   <= 512 rows (plain MuJoCo 552-612) and the owner accepts its failed gates. Pieces in the make_assets --pieces layout
   under results/rackslot/pieces/; make_assets.py (6bbb52a) default reproduces the sf/ep14 URDF inertials exactly.
+- 04:50 Orchestrator: build ONE more candidate, ev10cs4 (owner's 02:50 permission; CPU, $0). determined-wright's
+  32x60 standard [R, 6b04fba]: eval 10 packed 380 / 9,723 overflow lines, hold max 661; ev10cs 104 / 7,086, 598;
+  ev10cs3 110 / 576, 534; a v4 needs ~30-80 fewer rows. Profile-only dry runs (bands 6 / 8 cm x 6 / 8 sectors; no
+  reference number). Amendment A4 in GATES.md: v4 = v3 + bands 8 cm (2 per wall) + beige base 1 + 4 rim sectors;
+  counts 24 / 21; conditional F2 (6 mm floor if the drop check shows guest-table contacts); target FlashCHORD 32x60
+  0 lines, hold max <= 480. Committing before building.
