@@ -6265,3 +6265,17 @@ Background agent, CPU only, $0, no ground truth read.
     is stored in the resolved config, survives the evaluator's composition, and the evaluator's solver is built with
     1024 / 512. No evaluator code change.
   - Packed gl10A2: 8.37 M lines in training, 0 in its 5 scored draws.
+
+### 2026-11-01 02:58 UTC — determined-wright: collision-overlap fixes — budget checks queued; baselines measured
+- keen-heisenberg relayed (02:52 UTC):
+  - the owner's go at 02:43 for focused-pascal's eval-10 njmax-1024 diagnostic (theirs to run; not duplicated here);
+  - the owner's words at 02:50, "I give you permission for everything", for fixing the collision overlaps behind
+    evals 10, 30 and 14.
+  - My part is CPU only: run budget.py on each bold-albattani candidate as it lands. focused-pascal retrains only after
+    the check shows no overflow at 512. I rent nothing.
+- Packed baselines (`contact_budget/`, f2100c6; sampled / explicit nefc max):
+  - eval 30: 244 / 223;
+  - eval 14: 297 / 385;
+  - eval 10: 536 / 441, 13 % of steps over 512.
+- bold-albattani's `ev10-cavsafe/GATES.md` (98ddccf) was written before any candidate. No pieces yet; watcher
+  `b41ahbswb` is on their branch.
