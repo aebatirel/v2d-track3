@@ -10784,3 +10784,6 @@ score.
 - 21:06 UTC 1 Nov GRASP: repair (b) hold_filter public gate **FAIL** (pre-registered; ff2d078): M1 ref-vs-mocap ΔAUC
   mean +0.0017 (holds), M2 zero-action symmetric sim_vs_ref mean −0.018 (needs ≥ +0.02). Not used anywhere; guard_bridge
   stays for 14 / 32 / 33. GRASP lane done for tonight.
+- 21:13 UTC 1 Nov physics-perception: offers a read-only GT-free QA flagger (qa_physics.py @ ef4cfb5b; flags only ep0 lid and
+  ep23 on public, one false positive); its best transform stack +0.00298 on public misses its +0.003 gate (not handed
+  over). Not run on eval here: this lane's jump scan already covers JUMP-type flags (14 / 32 / 33 only).
