@@ -62,3 +62,5 @@ PCA of the 22 finger joints:
   - No RL follow-up. Record: `docs/research/physics-2026-10-30/cmd_smooth/` (9c1d100) on claude/determined-wright-3joens.
 - **[H-syn] not run.** Its CPU prototype needs the solver on CPU (hours per episode). The solver is already closed for
   eval (arm S: no signal), so the test is parked unless the owner asks.
+- **Arm V (slip signal) INCONCLUSIVE, not used** (determined-wright §10.1, 00:05 UTC 1 Nov): Δ vs the control ep2
+  −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007, mean −0.024. The slip-aware robot side has no adopted change.

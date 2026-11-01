@@ -5741,3 +5741,7 @@ arm and a no-policy replay floor to stage B.
   - **D arm:** 5 boxes (G: 14/16/33; S25 ×2; S30 ×2), the last launching ~23:45; reading after ~2.5–4 h of training plus
     one confirmation box. Pack 9b = 9a+ plus passing D cells only.
   - Credit $56.52 at 22:58 UTC. Tonight's actuals: e10v $3.25, h5p7 $5.85, h5e1 $6.95, mv2a2 $6.20, rtkA/B $1.54.
+- 00:05 UTC 1 Nov determined-wright: **arm V (actor sees object velocity) INCONCLUSIVE, not used** (§10.1, ee8ad41;
+  $7.02 [E]): Δ vs C ep2 −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007, mean −0.024 (leaning negative, short of
+  the harm bar). With test A failed and arm S showing no signal, no robot-side item from that lane changes pack 10. V+D
+  is not run.
