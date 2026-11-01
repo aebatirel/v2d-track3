@@ -1,0 +1,149 @@
+[
+ {
+  "ckpt_M": 10,
+  "sim_vs_ref": 0.458,
+  "floor": 0.4557,
+  "blue_cup": {
+   "lift_cm": 0.1,
+   "ref_lift_cm": 1.5,
+   "within3cm": 0.27,
+   "moves_from": 43,
+   "lost_at": null,
+   "frames": 161
+  },
+  "beige_cup": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 23.5,
+   "within3cm": 0.23,
+   "moves_from": 37,
+   "lost_at": 40,
+   "frames": 161
+  }
+ },
+ {
+  "ckpt_M": 20,
+  "sim_vs_ref": 0.4636,
+  "floor": 0.4557,
+  "blue_cup": {
+   "lift_cm": 0.1,
+   "ref_lift_cm": 1.5,
+   "within3cm": 0.27,
+   "moves_from": 43,
+   "lost_at": null,
+   "frames": 161
+  },
+  "beige_cup": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 23.5,
+   "within3cm": 0.23,
+   "moves_from": 37,
+   "lost_at": 40,
+   "frames": 161
+  }
+ },
+ {
+  "ckpt_M": 30,
+  "sim_vs_ref": 0.4413,
+  "floor": 0.4557,
+  "blue_cup": {
+   "lift_cm": 0.1,
+   "ref_lift_cm": 1.5,
+   "within3cm": 0.27,
+   "moves_from": 43,
+   "lost_at": null,
+   "frames": 161
+  },
+  "beige_cup": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 23.5,
+   "within3cm": 0.23,
+   "moves_from": 37,
+   "lost_at": 40,
+   "frames": 161
+  }
+ },
+ {
+  "ckpt_M": 40,
+  "sim_vs_ref": 0.4479,
+  "floor": 0.4557,
+  "blue_cup": {
+   "lift_cm": 0.1,
+   "ref_lift_cm": 1.5,
+   "within3cm": 0.27,
+   "moves_from": 43,
+   "lost_at": null,
+   "frames": 161
+  },
+  "beige_cup": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 23.5,
+   "within3cm": 0.23,
+   "moves_from": 37,
+   "lost_at": 40,
+   "frames": 161
+  }
+ },
+ {
+  "ckpt_M": 50,
+  "sim_vs_ref": 0.4644,
+  "floor": 0.4557,
+  "blue_cup": {
+   "lift_cm": 0.1,
+   "ref_lift_cm": 1.5,
+   "within3cm": 0.27,
+   "moves_from": 43,
+   "lost_at": null,
+   "frames": 161
+  },
+  "beige_cup": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 23.5,
+   "within3cm": 0.23,
+   "moves_from": 37,
+   "lost_at": 40,
+   "frames": 161
+  }
+ },
+ {
+  "ckpt_M": 60,
+  "sim_vs_ref": 0.4604,
+  "floor": 0.4557,
+  "blue_cup": {
+   "lift_cm": 0.1,
+   "ref_lift_cm": 1.5,
+   "within3cm": 0.27,
+   "moves_from": 43,
+   "lost_at": null,
+   "frames": 161
+  },
+  "beige_cup": {
+   "lift_cm": 2.5,
+   "ref_lift_cm": 23.5,
+   "within3cm": 0.23,
+   "moves_from": 37,
+   "lost_at": 40,
+   "frames": 161
+  }
+ },
+ {
+  "ckpt_M": 70,
+  "sim_vs_ref": 0.4623,
+  "floor": 0.4557,
+  "blue_cup": {
+   "lift_cm": 0.1,
+   "ref_lift_cm": 1.5,
+   "within3cm": 0.27,
+   "moves_from": 43,
+   "lost_at": null,
+   "frames": 161
+  },
+  "beige_cup": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 23.5,
+   "within3cm": 0.23,
+   "moves_from": 37,
+   "lost_at": 40,
+   "frames": 161
+  }
+ }
+]

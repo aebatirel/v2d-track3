@@ -69,6 +69,12 @@
 # prefix drs<seed> (the D arm's byte copy of a packed eval reference, tools/dr_arm.py) with RUN local and
 # REQUIRE_REUSE=1 only; folders refs/drs<seed>_glock*, runs/drs<seed>_glock, results/drs<seed>_glock_public. Unset,
 # nothing of this runs.
+# EVAL_NJ_DIAG=1 (2026-11-01, eval-10 njmax diagnostic, ops/jobs/ev10_nj.sh; docs/research/work/eval10-njmax-20261101/;
+# opt-in, off by default): with SPLIT=eval, eval 10 may also use a PERC prefix perc2e10njs<seed> (the diagnostic's byte copy
+# of e10v's stored V4p reference) with RUN local and REQUIRE_REUSE=1 only; folders refs/perc2e10njs<seed>_glock*,
+# runs/perc2e10njs<seed>_glock, results/perc2e10njs<seed>_glock_public (tools/no_oracle.py refuses every one of them: the
+# caller trains them with TRAIN_ARGS="sim.njmax=1024 sim.nconmax=512", changed physics, never packed). Unset, every PERC
+# decision is exactly as before.
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log. Each rollout's
 # summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -184,6 +190,7 @@ one() {
       else
       { [[ $perc =~ ^mass[0-9]+s[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
         || { [ "${EVAL_LOCAL_REF:-0}" = 1 ] && [ "$ep" = 10 ] && [[ $perc =~ ^perc2e10v(s[0-9]+)?$ ]] && [ "$run" = local ]; } \
+        || { [ "${EVAL_NJ_DIAG:-0}" = 1 ] && [ "$ep" = 10 ] && [[ $perc =~ ^perc2e10njs[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
         || { log "glock ep$ep: PERC $perc with SPLIT=eval needs a mass<A>s<seed> prefix, RUN local and REQUIRE_REUSE=1" >> $J; return 1; }
       fi
     else
