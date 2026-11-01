@@ -5881,3 +5881,7 @@ Advice given:
   create 58449260 20261101-e20b1-4207ce4 'bash ops/jobs/ev20_b1.sh'` → instance 58631864 (France, $1.410/h; the UK offer
   had gone); ledger planned $3.50 (PREREG $2.3 / $3.2 / $5.4). Credit $27.03 before launch; with ev10cs5 running both
   stay above the $10 reserve.
+- 07:48 UTC interim overflow [M, exec; not readings]: eval-20 b1 s42 train.log 542 lines at 31 % ([E] ~1,700 at 100 %;
+  the packed eval-20 log ≈ 1.2 k by size); ev10cs5 s43 645 lines at 98 % (s42 ended at 992). Both pieces were 0 / 0 at
+  32 × 60 in determined-wright's budget runs; 4096-world training with sampled resets still finds ~10³ rows-overflow
+  events. PREREG labels apply as written (> 1,000 → "pieces not clean in training", reported; the rule still decides).
