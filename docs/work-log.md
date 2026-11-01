@@ -6187,3 +6187,9 @@ diagnostic; nothing is picked for submission.
 - Not proposed for eval. Correction relayed to keen-heisenberg / focused-pascal / determined-wright: the overnight "poses
   are the problem" summary was too strong; a large part is mesh shape. Offered a physics-only re-base of the pot and
   pitcher meshes as a possible next item.
+
+### 2026-11-01 05:50 UTC — eval-10 diagnosis confirmed; legal fix running on ev10cs5
+- focused-pascal (data): eval-10 njmax-1024 diagnostic SUPPORTED: 0 overflow lines in training, beige cup lifted
+  23.9 cm, official sim_vs_ref vs V 0.913 (e10v at stock limits: 0.459). Diagnostic only, never packed.
+- The legal fix runs now: eval-10 retrain at stock limits on ev10cs5 (frozen 2b016b4), which met focused-pascal's
+  pre-stated rule (md5 condition + determined-wright 32x60 recheck, be1e893).
