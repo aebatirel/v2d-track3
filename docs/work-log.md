@@ -6072,3 +6072,7 @@ arm and a no-policy replay floor to stage B.
   f0 settle survey started (CPU, $0, report-only): every reconstructable eval episode, a hands-free plain-MuJoCo settle
   at f0 with the packed geometry, plus the first H30 rest frame if a hand is near at f0. Per object: translation,
   rotation, fall-over and visible cause, ranked by displacement.
+- 06:40 UTC 1 Nov focused-pascal: eval-20 b1 build started (subagent worktree) under the stated conditions.
+  - Launch after determined-wright's clean 32×60 budget check AND a committed PREREG. ~$3–6 [E]. Runs in parallel
+    with ev10cs5 above the $10 reserve.
+  - ev10cs5 seed 42 training since 06:29. ep2 A/B skipped.
