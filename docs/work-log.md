@@ -6502,3 +6502,7 @@ arm and a no-policy replay floor to stage B.
   zero-action followability −0.018 on ep2/12/13/31), consistent with the earlier "no mover, no motion" results.
 - 07:12 UTC 2 Nov physperc: the owner asked (via keen-heisenberg) not to use the method name for now; removed it from
   STATUS.md and docs/analysis/physperc-20261101/README.md. Past commits stay as history.
+- 07:20 UTC 2 Nov physperc: handover message sent to the owner's new GPU perception session
+  (session_01D9UJC9EUCs5sUCbTVZgvcC): harness recipe (store paths, b4ext4 hands/bundles, 9a+ meshes, scorer deps),
+  findings (anchor-tilt oracle, pitcher 6 deg systematic + candidate meshes failing, offset decomposition, ep0/ep23
+  failures + qa_physics), and the do-not-repeat list. GPU work is theirs; this session offers CPU help only.
