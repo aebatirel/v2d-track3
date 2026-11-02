@@ -6775,3 +6775,8 @@ arm and a no-policy replay floor to stage B.
   with the pitcher snapped +1.00 cm, rotations identical [M]. The fit therefore uses the REFERENCE body poses
   (inv(W) inv(T_table) ref) so Δ is relative to what the robot follows. Missing input: SAM2 video masks for eval 20 →
   `ops/jobs/eval_vos.sh` (perception with TRACK_VOS=1 and every VOS use off, masks only), one RTX 5090, ≈ $0.5.
+- 22:30 UTC **Test B (track with the submitted M13 meshes) FAIL [D]** (ptrkF, same-box control Ct, both scored with
+  M13): mean ΔAUC −0.043, 8 better / 12 worse, min ep0 −0.901 (lid lost), ep11 −0.710 (cups), ep21 −0.105, ep31
+  −0.064; MPPE +0.63, RPE +0.10 cm; > 3 cm 1069 → 1044. ep23 +0.898 is a different board assignment by chance
+  (template change), not a method effect. Tracker sensitivity again; nothing handed over.
+  `results/gate_f_T13_vs_f_Ct.json`. ptrkF cost ≈ $2.7 [E].
