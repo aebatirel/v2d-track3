@@ -7159,3 +7159,14 @@ arm and a no-policy replay floor to stage B.
   - Fixed in b0b4a31. pfN / pfO / pfP destroyed (≈ $1.5 lost) and relaunched: pfN2 58875108 (eval 20), pfO2 58875116
     (eval 28), pfP2 58875136 (eval 30).
   - pfR (eval 14) is unaffected. Results ≈ 01:00–02:00 UTC.
+- ~21:16 UTC 2 Nov **C4 audit complete** [D] (52 meshes × 50 seeds, budget reference; 2a4d020;
+  C4-audit/results/audit_table.md).
+  - **No candidate passes rule (A) / (B): 13g is empty.** The shipped 13f / 13f1 meshes are already the best existing
+    ones on scan CD-O for every object.
+  - The board-2 GT-free grafts all fail (B): the thickness that removes flips costs ≈ +0.05 CD-O.
+  - Rule (C) approved for the G2 candidates only, committed before G2 scoring: registration ADD −2 mm, CD-O
+    ≤ +0.005, W30 not worse, D1.
+  - Post-hoc observations (pot tsdf ep43: ADD 2.9 vs 6.3 mm at equal CD-O; dust pan Pixal s7) were not taken on the
+    scan metric. They are routed as candidates to perception-tracking's pre-registered public-pose leave-one-out test
+    (independent mocap evidence).
+  - G2: the first box was preempted (≈ $2.80, nothing kept); now on an H200 at $4.03/h, within the $25 cap.
