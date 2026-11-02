@@ -10862,3 +10862,7 @@ score.
 - 04:24 UTC 2 Nov **pfG seed 42 (eval 16, training box vs P)** [M]: p0 (packed reference, current recipe) 0.769 ± 0.057;
   **pz (packed reference, right hand kept on the spoon from f107) 0.975 ± 0.009** (min 0.952). Packed H5p7 0.850. Seed 43
   running (~2 h on this box), then the gate and 10 fresh draws.
+- 06:30 UTC 2 Nov **eval 16, hand kept on the spoon (pz, packed reference): PASS + INCLUDE** [M] (pfG-86cfc19, on-box verdict,
+  self-destroyed 06:27, 256 min ≈ $4.8): seeds 0.975 / 0.972 → seed 43 (lower sd); 10 fresh official draws **0.974**
+  (packed H5p7 0.850), fails 0 / 0, median RPE 1.18 vs 1.79 cm, draw 1 0.974 vs the board's old draw 0.908; gain +0.124.
+  Control p0 (packed reference, current recipe) 0.769 / 0.787: NO-SWAP. Checkpoint sha256 ed25dc5f8312b861b8ec3be6d96fdafecb3c939e89a29fef8e4a8b56b4966882.

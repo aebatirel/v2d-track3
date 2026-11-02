@@ -1,0 +1,129 @@
+{
+ "ep": 16,
+ "rule": "pack-9b PREREG section 4 + pf-hands / pf-bridge PREREG section 4",
+ "refs": [
+  "P"
+ ],
+ "choice": "CONFIRM",
+ "sides": {
+  "conf": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.974,
+     "sd": 0.0045,
+     "min": 0.9651,
+     "max": 0.9792,
+     "median": 0.9745
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 1.1946,
+     "sd": 0.0958,
+     "min": 1.0408,
+     "max": 1.3631,
+     "median": 1.177
+    },
+    "fails": 0
+   }
+  },
+  "packed": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.8498,
+     "sd": 0.0526,
+     "min": 0.7892,
+     "max": 0.916,
+     "median": 0.8322
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 2.4605,
+     "sd": 1.167,
+     "min": 1.4469,
+     "max": 4.7087,
+     "median": 1.7925
+    },
+    "fails": 0
+   }
+  },
+  "old": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 1,
+     "mean": 0.9079,
+     "sd": 0.0,
+     "min": 0.9079,
+     "max": 0.9079,
+     "median": 0.9079
+    },
+    "RPE": {
+     "n": 1,
+     "mean": 1.5763,
+     "sd": 0.0,
+     "min": 1.5763,
+     "max": 1.5763,
+     "median": 1.5763
+    },
+    "fails": 0
+   }
+  },
+  "train42": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.975,
+     "sd": 0.0095,
+     "min": 0.9516,
+     "max": 0.9837,
+     "median": 0.9774
+    }
+   }
+  },
+  "train43": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.972,
+     "sd": 0.0031,
+     "min": 0.9684,
+     "max": 0.9776,
+     "median": 0.9718
+    }
+   }
+  }
+ },
+ "clauses": {
+  "P": {
+   "a": {
+    "conf": 0.974,
+    "packed": 0.8498,
+    "holds": true
+   },
+   "b": {
+    "conf": 0.0,
+    "packed": 0.0,
+    "holds": true
+   },
+   "c": {
+    "conf": 1.177,
+    "packed": 1.793,
+    "holds": true
+   },
+   "s": {
+    "conf_draw1": 0.9743,
+    "old": 0.9079,
+    "holds": true
+   },
+   "gain": 0.1242
+  }
+ },
+ "label": "PASS",
+ "inclusion": {
+  "bar": 0.02,
+  "on": "P",
+  "gain": 0.1242,
+  "include": true
+ }
+}
