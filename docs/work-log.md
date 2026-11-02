@@ -6518,3 +6518,11 @@ arm and a no-policy replay floor to stage B.
   - AUC is above DSAIL's 0.84391 and MP-SR above their 0.70 (standings refresh requested from score-status).
   - Receipt + UPLOAD.md: build_12b on this branch (7c7dfb67).
   - Night report artifact updated to v3 with the new scores.
+- 06:42 UTC 2 Nov score-status: standings after pack 12b.
+  - Ours: AUC 0.84405 (8), SP-SR 0.85 (10), MP-SR 0.75 (9; three-way tie with SoySauceChicken 7 and DSAIL 8),
+    RPE 3.023 (10), MPPE 2.495 (10), CD-O 0.332 (14).
+  - **Rank sum 61, now 10th** (was 11th). 9th DSAIL 60; 8th sam&alex 50; 7th SoySauceChicken 46; 11th Gravity Aligned
+    80.
+  - DSAIL also moved: AUC 0.84925, RPE 2.671, MPPE 2.312.
+  - To pass DSAIL: AUC +0.0052; MPPE −0.18 cm; MP-SR one more episode (0.80); CD-O −0.012 (+1 rank).
+  - Night report updated (10th overall).
