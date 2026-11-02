@@ -43,3 +43,20 @@ Objects that fail keep 13f.
 
 ## Cost
 CPU here, $0 (≈ 120 multi-seed scorer runs at ≈ 65 s, 4 cores).
+
+## Addendum 1 (21:25 UTC, pushed before any score of these candidates)
+Two more candidates, from the coordinator via bold-albattani (branch claude/bold-albattani-6qmxsv, commit 30186bb,
+library_v3 body frame, transform none, not adopted by the CD-O rules; GT-informed: best existing by scan-registration
+ADD):
+- **white_pot "X":** `docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes/white_pot_potlid_tsdf_ep43.glb`,
+  md5 3591440e2dbf2029be908d46b29bfc96. Eval 1, 3, 5, 6 (slot 0); 8, 28 (slot 1).
+- **mini_dust_pan "X":** `.../C4-audit/meshes/mini_dust_pan_pixal_mv_ep39_s7_lib.glb`,
+  md5 35de47337b6385a1effdbc23257bded7. Eval 19 (slot 1); 38 (slot 0).
+
+They join k ∈ {12c, 9a+, X} for these two objects. The rule is unchanged:
+- leave-one-episode-out over {13f, 12c, 9a+, X};
+- mean held-out gain ≥ +0.005, no held-out episode below −0.01;
+- 10-seed means;
+- D1 at the eval seeds of the listed eval slots (plus focused-pascal's d1gate.py before any pack).
+
+Caveat: the X dust pan was generated from public ep39 frames, and ep39 is also one of its CV episodes.
