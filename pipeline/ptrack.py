@@ -44,10 +44,14 @@ p.add_argument('--e_back', type=float, default=0.01)
 p.add_argument('--n_back', type=int, default=5)
 p.add_argument('--lag_margin', type=float, default=0.01)
 p.add_argument('--ramp', type=int, default=10)
+p.add_argument('--restart', type=int, default=10)
 p.add_argument('--min_inl', type=int, default=12)
 p.add_argument('--max_pts', type=int, default=300)
 p.add_argument('--reseed_frac', type=float, default=0.6)
 p.add_argument('--ransac_thr', type=float, default=0.01)
+p.add_argument('--tracks', default=None, help='npz of external 2-D tracks from f0 queries: q_<obj> (Q,2 x,y at f0), uv_<obj> (Q,T,2), vis_<obj> (Q,T)')
+p.add_argument('--mask', default='render', choices=['render', 'det'])
+p.add_argument('--lib', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'meshes', 'library_v3'))
 p.add_argument('--max_frames', type=int, default=0, help='debug: stop after this many frames')
 a = p.parse_args()
 os.makedirs(a.out, exist_ok=True)
@@ -84,12 +88,38 @@ log('ep', a.ep, 'objects', names, 'frames', N)
 # frame-0 masks perc2 chose (half resolution, packed)
 ms = tuple(det['mask_shape']); allm = np.unpackbits(det['masks'], axis=-1)[..., :ms[2]].astype(bool)
 chosen = det['chosen']
-MASK0 = {}
-for i, n in enumerate(names):
-    m = allm[chosen[i]] if chosen[i] >= 0 else np.zeros(ms[1:], bool)
-    MASK0[n] = cv2.resize(m.astype(np.uint8), RSZ, interpolation=cv2.INTER_NEAREST).astype(bool)
 GUARD = json.load(open(f'{a.run}/track_guard.json')) if os.path.exists(f'{a.run}/track_guard.json') else {}
 P_fp = {n: np.stack([W_C[t] @ P[f'cam_T_{n}'][t] for t in range(N)]) for n in names}
+
+# visible-surface masks rendered from the tracking templates (perc2's MESH_DIR) at a pose: a point splat z-buffer over
+# all objects at half resolution, kept where it agrees with our depth (2 cm; hands and other occluders drop out).
+# MASK=det uses perc2's frame-0 detection masks instead (ep0 showed the lid's mask on the pot handle).
+import trimesh
+SURF = {n: np.asarray(trimesh.sample.sample_surface(trimesh.load(f'{a.lib}/{n}.glb', force='mesh'), 60000, seed=0)[0]) for n in names}
+def render_masks(t, poses_w):
+    H2, W2 = RSZ[1] // 2, RSZ[0] // 2; zb = np.full(H2 * W2, np.inf); lab = np.full(H2 * W2, -1)
+    cam_T_w = np.linalg.inv(W_C[t])
+    for i, n in enumerate(names):
+        M = cam_T_w @ poses_w[n]; X = SURF[n] @ M[:3, :3].T + M[:3, 3]; X = X[X[:, 2] > 0.1]
+        u = np.round((X[:, 0] * fx / X[:, 2] + cx) / 2).astype(int); v = np.round((X[:, 1] * fx / X[:, 2] + cy) / 2).astype(int)
+        ok = (u >= 0) & (u < W2) & (v >= 0) & (v < H2); idx = v[ok] * W2 + u[ok]; z = X[ok, 2]
+        order = np.argsort(-z); idx, z = idx[order], z[order]            # nearest last -> wins the assignment
+        better = z < zb[idx]; zb[idx[better]] = z[better]; lab[idx[better]] = i
+    zb, lab = zb.reshape(H2, W2), lab.reshape(H2, W2)
+    dep = np.asarray(DEP[t][::2, ::2])
+    out = {}
+    for i, n in enumerate(names):
+        m = (lab == i).astype(np.uint8); m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8)).astype(bool)
+        zf = cv2.morphologyEx(np.where(lab == i, zb, 0).astype(np.float32), cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+        m &= (dep > 0) & (np.abs(dep - zf) < 0.02)
+        out[n] = cv2.resize(m.astype(np.uint8), RSZ, interpolation=cv2.INTER_NEAREST).astype(bool)
+    return out
+if a.mask == 'render':
+    MASK0 = render_masks(0, {n: P_fp[n][0] for n in names})
+else:
+    MASK0 = {n: cv2.resize((allm[chosen[i]] if chosen[i] >= 0 else np.zeros(ms[1:], bool)).astype(np.uint8), RSZ,
+                           interpolation=cv2.INTER_NEAREST).astype(bool) for i, n in enumerate(names)}
+log('f0 mask pixels', {n: int(m.sum()) for n, m in MASK0.items()})
 
 def lift(t, uv):
     """3x3-median depth at the points; NaN where invalid or at a depth edge (3x3 spread > 2 cm)."""
@@ -159,6 +189,21 @@ def seed(t, mask, k):
 def angle_deg(R_):
     return float(np.degrees(np.arccos(np.clip((np.trace(R_) - 1) / 2, -1, 1))))
 
+def track_object_ext(n):
+    """External tracks (e.g. BootsTAPIR, f0 queries): per-frame robust fit of the visible points; no re-seeding."""
+    TR = np.load(a.tracks); q, UV, VIS = TR[f'q_{n}'], TR[f'uv_{n}'], TR[f'vis_{n}']
+    Tpt = np.full((N, 4, 4), np.nan); Tpt[0] = P_fp[n][0]
+    X0 = lift(0, q); ok0 = np.isfinite(X0).all(1)
+    inv0 = np.linalg.inv(Tpt[0]); Xo = np.full_like(X0, np.nan); Xo[ok0] = X0[ok0] @ inv0[:3, :3].T + inv0[:3, 3]
+    ninl = np.zeros(N, int); ninl[0] = int(ok0.sum()); last = Tpt[0]
+    for t in range(1, N):
+        X = lift(t, UV[:, t]); fin = np.isfinite(X).all(1) & ok0 & VIS[:, t]
+        if fin.sum() < a.min_inl: continue
+        M, inl = robust_fit(Xo[fin], X[fin], last)
+        if M is not None:
+            Tpt[t] = M; last = M; ninl[t] = int(inl.sum())
+    return Tpt, ninl, np.zeros(N, int), {}
+
 def track_object(n):
     """KLT point tracks of one object -> T_pt (world_T_obj per frame, NaN where invalid), inliers, object-frame points."""
     Tpt = np.full((N, 4, 4), np.nan); Tpt[0] = P_fp[n][0]
@@ -167,8 +212,19 @@ def track_object(n):
     inv0 = np.linalg.inv(Tpt[0]); Xo = Xw @ inv0[:3, :3].T + inv0[:3, 3]
     bad = np.zeros(len(uv), int); n_seed = max(len(uv), 1)
     ninl = np.zeros(N, int); ninl[0] = len(uv); reseeds = 0
-    last = Tpt[0]
+    last = Tpt[0]; seg = np.zeros(N, int); lost = 0; restarts = 0
     for t in range(1, N):
+        seg[t] = seg[t - 1]
+        if lost >= a.restart:
+            # lost for RESTART frames: restart from FoundationPose's pose (seeds only where its render agrees with
+            # our depth, so a wrong FoundationPose pose seeds nothing); a new segment (no motion compared across it)
+            m0 = render_masks(t, {o: P_fp[o][t] for o in names})[n]
+            uv0 = seed(t, m0, a.max_pts); X0 = lift(t, uv0); k0 = np.isfinite(X0).all(1)
+            if k0.sum() >= a.min_inl:
+                inv_ = np.linalg.inv(P_fp[n][t]); uv = uv0[k0]; Xo = X0[k0] @ inv_[:3, :3].T + inv_[:3, 3]
+                bad = np.zeros(len(uv), int); n_seed = len(uv); Tpt[t] = P_fp[n][t]; last = Tpt[t]; ninl[t] = len(uv)
+                seg[t] += 1; lost = 0; restarts += 1
+                continue
         if len(uv):
             p1, st, _ = cv2.calcOpticalFlowPyrLK(rc[t - 1], rc[t], uv.reshape(-1, 1, 2), None, **LK)
             p0, st2, _ = cv2.calcOpticalFlowPyrLK(rc[t], rc[t - 1], p1, None, **LK)
@@ -180,17 +236,16 @@ def track_object(n):
         M, inl = robust_fit(Xo[fin], X[fin], last) if fin.sum() >= a.min_inl else (None, np.zeros(fin.sum(), bool))
         full_inl = np.zeros(len(uv), bool); full_inl[np.nonzero(fin)[0][inl]] = True
         if M is not None:
-            Tpt[t] = M; last = M; ninl[t] = int(full_inl.sum())
+            Tpt[t] = M; last = M; ninl[t] = int(full_inl.sum()); lost = 0
             bad = np.where(full_inl, 0, bad + 1)
         else:
-            bad = bad + 1
+            bad = bad + 1; lost += 1
         keepm = bad < 3; uv, Xo, bad = uv[keepm], Xo[keepm], bad[keepm]
         if M is not None and len(uv) < a.reseed_frac * n_seed and ninl[t] >= a.min_inl:
-            # mesh-free re-seed: hull of the current inliers, gated to the inliers' object-frame box (+1 cm)
-            iu = uv[full_inl[keepm]]
-            hull = cv2.convexHull(iu.astype(np.float32)).astype(np.int32)
-            m = np.zeros(rc[t].shape, np.uint8); cv2.fillConvexPoly(m, hull, 1)
-            new = seed(t, m.astype(bool), a.max_pts)
+            # re-seed in the template's visible, depth-consistent surface at the point-track pose (others at
+            # FoundationPose's), gated to the inliers' object-frame box (+1 cm)
+            pw = {o: P_fp[o][t] for o in names}; pw[n] = M
+            new = seed(t, render_masks(t, pw)[n], a.max_pts)
             if len(uv) and len(new):
                 dmin = np.min(np.linalg.norm(new[:, None] - uv[None], axis=2), 1); new = new[dmin > 4]
             Xn = lift(t, new); okn = np.isfinite(Xn).all(1); new, Xn = new[okn], Xn[okn]
@@ -200,7 +255,7 @@ def track_object(n):
             if g.sum():
                 uv = np.vstack([uv, new[g]]).astype(np.float32); Xo = np.vstack([Xo, Xon[g]]); bad = np.r_[bad, np.zeros(g.sum(), int)]
                 n_seed = max(n_seed, len(uv)); reseeds += 1
-    return Tpt, ninl, Xo, reseeds
+    return Tpt, ninl, seg, dict(reseeds=reseeds, restarts=restarts)
 
 def blend(A_, B_, w):
     """(1-w) A + w B on SE(3): lerp translation, slerp rotation."""
@@ -214,10 +269,9 @@ def pt_err(A_, B_, X):
 out, info, traj = {}, {}, {}
 for n in names:
     t0 = time.time()
-    Tpt, ninl, Xo, reseeds = track_object(n)
+    Tpt, ninl, seg, tinfo = track_object_ext(n) if a.tracks else track_object(n)
     valid = np.isfinite(Tpt[:, 0, 0]) & (ninl >= a.min_inl)
-    Xs = Xo if len(Xo) >= 10 else np.array([[0, 0, 0.0]])
-    if len(Xs) > 200: Xs = Xs[RNG.choice(len(Xs), 200, replace=False)]
+    Xs = SURF[n][::300]                                            # 200 template surface points (ADD-like errors)
     Pf = P_fp[n]; Pout = Pf.copy()
     e = np.full(N, np.nan); typ = [''] * N
     spans = []; state = 'fp'; run = 0; anchor = None; back = 0; held = 0
@@ -225,7 +279,7 @@ for n in names:
     while t < N:
         s = t - a.W
         if state == 'fp':
-            if valid[t] and valid[s]:
+            if valid[t] and valid[s] and seg[t] == seg[s]:
                 D = Tpt[t] @ np.linalg.inv(Tpt[s]); Qt = D @ Pout[s]
                 e[t] = pt_err(Qt, Pf[t], Xs)
                 m_pt = pt_err(D @ Pf[s], Pf[s], Xs); m_fp = pt_err(Pf[t], Pf[s], Xs)
@@ -240,32 +294,34 @@ for n in names:
                 if do:
                     anchor = max(onset - a.W, 0); state = 'rep'; back = 0
                     for k in range(anchor + 1, t + 1):
-                        Pout[k] = (Tpt[k] @ np.linalg.inv(Tpt[anchor]) @ Pout[anchor]) if valid[k] and valid[anchor] else Pout[k - 1]
+                        Pout[k] = (Tpt[k] @ np.linalg.inv(Tpt[anchor]) @ Pout[anchor]) if valid[k] and valid[anchor] and seg[k] == seg[anchor] else Pout[k - 1]
                 run = 0
             t += 1
         else:                                                      # repairing: follow the points from the anchor
-            if valid[t] and valid[anchor]:
+            if valid[t] and valid[anchor] and seg[t] == seg[anchor]:
                 Pout[t] = Tpt[t] @ np.linalg.inv(Tpt[anchor]) @ Pout[anchor]
             else:
                 Pout[t] = Pout[t - 1]; held += 1
-                if valid[t]:                                       # re-anchor on the held pose
-                    anchor = t; Pout[t] = Pout[t - 1]
+                if valid[t] and seg[t] == seg[anchor]:              # re-anchor on the held pose
+                    anchor = t
             e[t] = pt_err(Pout[t], Pf[t], Xs)
             back = back + 1 if e[t] < a.e_back else 0
+            if seg[t] != seg[anchor]:     # the points restarted from FoundationPose's depth-consistent pose: hand back
+                back = a.n_back
             if back >= a.n_back:                                   # FoundationPose agrees again: ramp back
                 spans[-1]['end'] = int(t)
                 for k in range(1, a.ramp + 1):
                     if t + k >= N: break
-                    Qk = Tpt[t + k] @ np.linalg.inv(Tpt[anchor]) @ Pout[anchor] if valid[t + k] and valid[anchor] else Pout[t + k - 1]
+                    Qk = Tpt[t + k] @ np.linalg.inv(Tpt[anchor]) @ Pout[anchor] if valid[t + k] and valid[anchor] and seg[t + k] == seg[anchor] else Pout[t + k - 1]
                     Pout[t + k] = blend(Qk, Pf[t + k], k / (a.ramp + 1))
                 state = 'fp'; run = 0; t += a.ramp + 1; continue
             t += 1
     out[n] = Pout
     rep = int(sum(((Pout[k] - Pf[k]) ** 2).sum() > 1e-12 for k in range(N)))
-    info[n] = dict(seeded=int(ninl[0]), median_inliers=int(np.median(ninl)), frames_valid=int(valid.sum()), reseeds=reseeds,
+    info[n] = dict(seeded=int(ninl[0]), median_inliers=int(np.median(ninl)), frames_valid=int(valid.sum()), **tinfo,
                    spans=spans, frames_changed=rep, held=held, guard=GUARD.get(n), sec=round(time.time() - t0, 1),
                    e_max_cm=round(float(np.nanmax(e)) * 100, 2) if np.isfinite(e).any() else None)
-    traj[f'Tpt_{n}'] = Tpt; traj[f'e_{n}'] = e; traj[f'ninl_{n}'] = ninl
+    traj[f'Tpt_{n}'] = Tpt; traj[f'e_{n}'] = e; traj[f'ninl_{n}'] = ninl; traj[f'seg_{n}'] = seg
     log(n, info[n])
 np.savez(f'{a.out}/poses_world_vo.npz', **out)
 np.savez_compressed(f'{a.out}/ptrack_traj.npz', **traj)
