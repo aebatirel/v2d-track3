@@ -6119,3 +6119,9 @@ Advice given:
   (package caches) and two finished D-arm mock-store copies in scratch (darm/msA, darm/msE; regenerable, results already
   committed). 8.2 GB now free. Kept every pack's packer inputs (p12c, p12d, p12e, p13e, p13f), the kit, and the pack venvs
   (pack_venv305 verified working).
+- ~20:35 UTC **flip check confirms tracking-perception's report** (docs/research/work/flipcheck-20261102, diagnostic [D],
+  public scans as stand-ins): the 12e/13f wooden_piece_2 payload registers **upside down at eval 25 slot 1** (kit
+  seed: rot 179.2°, tilt 179.1°; library_v3 0.7°). All other pairs are fine: blue-cup spins up to 144° have tilt ≤ 4° and
+  are axially symmetric in the kit; everything else ≤ 4.7°. pack_swap_meshes' kit proxy had flagged this flip (179.9°) at
+  12e packing; the sign-off rested on a wrong "eval seed does not flip" claim. Fix = payload-only revert of eval 25 slot 1
+  to library_v3 (825a7fe3). Building it on 13f.
