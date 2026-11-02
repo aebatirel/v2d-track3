@@ -10911,3 +10911,10 @@ score.
 - 13:05 UTC 2 Nov pack 12c fetched from claude/focused-pascal-2nz9s1 (sha256 3542f8e5… verified; CD-O 116a9751…).
   tools/pack_swap_rows.py self-test on it (no swap, 12c's commit URL): output byte-identical (same sha256), CD-O rows
   changed 0, kit validation pass [M]. Pack 13 builds on it.
+- 13:10–13:15 UTC 2 Nov all five boxes training seed 42, lift hook active in every training process [M, train.log
+  "v2d FC_LIFT_WINDOWS: N window frames"]: pfK eval 25 63 frames (26..178), pfL eval 30 42 (37..148), pfM eval 28 42 (5..60).
+- 14:08 UTC 2 Nov **pfL-0fab401 replaced** (host fault, not a time cut): on the same code and GPU model it trained at
+  14.4k env steps/s with the GPU at its 500 W SW power cap and 840 MHz SM clock, while pfK / pfM ran ~50k env steps/s at
+  ~2.74 GHz and ~390 W; the original eval-30 std run (20261025-std30) trained at 46k env steps/s [M]. At that pace pfL needed
+  ~10 h (~$14) instead of ~5 h. Destroyed after ~62 min (≈ $1.45); **pfL2** 20261102-pfL2-0fab401 (Portugal WS $1.69/h,
+  offer 51767470), same job string `EP=30 SPLIT=eval ARMS=slw bash ops/jobs/pf_arms.sh`, same commit 0fab401.
