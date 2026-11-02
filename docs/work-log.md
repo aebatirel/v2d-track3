@@ -6700,3 +6700,11 @@ arm and a no-policy replay floor to stage B.
   scores worse (0.036; meshes must be re-registered on the other masks). Detector test so far: ISMa leaves ep23
   unchanged, ISMr makes it worse (0.009), so the SAM-6D-style scores do not fix this swap. Eval 25 (same boards) has the
   same risk; flagged to point-track / perfect-following.
+- 18:10 UTC **ep23 reconciled, existing knob rule (CPU, $0) [D]:** `pipeline/identity_fix.py` (GT-free board knob
+  darkness, 25 Oct) is wired only into `ops/jobs/eval_idfix.sh`, so none of the public controls carries it (wiring gap,
+  not a new failure). On the ep23 control (ptrkD Cr) it picks "swapped + Rx flip" (as-tracked ranks 21 / 32):
+  **ep23 AUC 0.041 → 0.663** (piece 1 0.083 → 0.959, piece 2 0.000 → 0.368; MPPE 16.3 → 5.4 cm, RPE 16.1 → 7.3 cm).
+  ep24 (no harm): as-tracked ranks 1 / 32, unchanged 0.8343. On the 20-episode public mean that is ≈ +0.031.
+  Eval: eval 25's packed reference already uses it (coordinator: ev25idfix, rank 1 of 32), so no eval action follows;
+  the public controls / public tests of all lanes should apply it before scoring ep23 (one CPU step).
+  `results/idfix/`.

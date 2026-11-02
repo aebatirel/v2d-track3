@@ -1,0 +1,55 @@
+{
+ "frames": [
+  0,
+  2,
+  4,
+  6
+ ],
+ "best": [
+  -33.3,
+  "swapped",
+  "Rx",
+  "I"
+ ],
+ "as_tracked": [
+  63.1,
+  "as tracked",
+  "I",
+  "I"
+ ],
+ "as_tracked_rank": 21,
+ "n": 32,
+ "top5": [
+  [
+   -33.3,
+   "swapped",
+   "Rx",
+   "I"
+  ],
+  [
+   -12.3,
+   "swapped",
+   "Rx",
+   "Rx"
+  ],
+  [
+   -8.5,
+   "swapped",
+   "Ry",
+   "I"
+  ],
+  [
+   -7.5,
+   "swapped",
+   "I",
+   "I"
+  ],
+  [
+   9.7,
+   "swapped",
+   "Rz",
+   "I"
+  ]
+ ],
+ "applied": true
+}

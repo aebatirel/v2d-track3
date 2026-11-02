@@ -1,0 +1,55 @@
+{
+ "frames": [
+  0,
+  2,
+  4,
+  6
+ ],
+ "best": [
+  -79.5,
+  "as tracked",
+  "I",
+  "I"
+ ],
+ "as_tracked": [
+  -79.5,
+  "as tracked",
+  "I",
+  "I"
+ ],
+ "as_tracked_rank": 1,
+ "n": 32,
+ "top5": [
+  [
+   -79.5,
+   "as tracked",
+   "I",
+   "I"
+  ],
+  [
+   -51.7,
+   "as tracked",
+   "Rz",
+   "I"
+  ],
+  [
+   -41.1,
+   "as tracked",
+   "Rx",
+   "I"
+  ],
+  [
+   -24.5,
+   "as tracked",
+   "Ry",
+   "I"
+  ],
+  [
+   -22.9,
+   "as tracked",
+   "I",
+   "Rx"
+  ]
+ ],
+ "applied": false
+}
