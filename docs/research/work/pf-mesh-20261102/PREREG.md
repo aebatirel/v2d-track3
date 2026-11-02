@@ -41,7 +41,7 @@ S2 (needs references rebuilt from perception; rebuilt references lost to packed 
 the 13f blue cup / dust pan as collision (not asked); the spoon anchor (planned, not run).
 Cost [E]: 4 boxes × ~4–4.5 h × ~$1.4/h ≈ $24.
 
-## Addendum 1 (2 Nov 20:28 UTC, before any result; coordinator's message of 20:18 crossed the launch)
+## Addendum 1 (2 Nov ~20:24 UTC, before any result; coordinator's message of 20:18 crossed the launch)
 - **Eval 1 dropped** ("skip eval 1": plain reseed, low value): pfQ destroyed in setup at ~20:24 UTC (no result).
 - **Eval 14 added**, arm **p0m** (ops/jobs/pf_arms.sh): the board policy's own reference (pack 12b / 13f: run
   20261101-pfC-f38b324, bridged reference refs/pfss43_glockt, table docs/research/work/pf-lift-20261102/packed_refs_12b.json)

@@ -10998,7 +10998,7 @@ score.
   **pfQ destroyed in setup** (~2 min, ≈ $0.1; ledger actual). Eval 14 chosen (lower control 0.875, 1/10 fails; rack +
   blue cup changed): arm p0m (board reference reused + Tier B rack / 13f cup collision, cup decimated 400k → 20k faces,
   Chamfer 0.9 mm); 13f row of eval 14 = pfC conf draw 1 [M]. PREREG addendum 1 (f06a0c1, before any result).
-- 20:30 UTC **pfR launched**: 20261102-pfR-f06a0c1 (Virginia WS $1.64/h, offer 57962419, instance 58873476):
+- 20:25 UTC **pfR launched**: 20261102-pfR-f06a0c1 (Virginia WS $1.64/h, offer 57962419, instance 58873476):
   `EP=14 SPLIT=eval ARMS=p0m MESH_OBJS_EP14="blue_cup plastic_dish_rack" TAB_OVERRIDE=…/pf-lift-20261102/packed_refs_12b.json
   PACKED_DRAWS_EP14=runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s OLD_EP14=…/conf_ep14_s/r1/ep14/episode_000014`
   (first offer 39434926 gone: no_such_ask).
