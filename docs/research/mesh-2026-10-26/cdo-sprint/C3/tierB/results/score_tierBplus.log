@@ -1,0 +1,65 @@
+2026-11-02T19:09:40Z start extras (optional B+), code 6476b25
+{
+ "label": "C3B+/sam3d_ep22_blue_cup_k156_s7_lib",
+ "sha": "f8b8be7c21d88997",
+ "eval": [
+  {
+   "ep": 10,
+   "slot": 0,
+   "seed": 10000030,
+   "cdo_cm": 0.2595,
+   "add_mm": 5.32,
+   "anchor_mm": 4.47,
+   "rot_deg": 2.77,
+   "rot_raw_deg": 96.02,
+   "flip": false
+  },
+  {
+   "ep": 14,
+   "slot": 0,
+   "seed": 14000042,
+   "cdo_cm": 0.2647,
+   "add_mm": 9.0,
+   "anchor_mm": 7.26,
+   "rot_deg": 5.03,
+   "rot_raw_deg": 150.07,
+   "flip": false
+  },
+  {
+   "ep": 20,
+   "slot": 0,
+   "seed": 20000060,
+   "cdo_cm": 0.2674,
+   "add_mm": 8.6,
+   "anchor_mm": 7.29,
+   "rot_deg": 4.37,
+   "rot_raw_deg": 95.09,
+   "flip": false
+  },
+  {
+   "ep": 32,
+   "slot": 0,
+   "seed": 32000096,
+   "cdo_cm": 0.2683,
+   "add_mm": 8.73,
+   "anchor_mm": 7.09,
+   "rot_deg": 4.84,
+   "rot_raw_deg": 152.35,
+   "flip": false
+  },
+  {
+   "ep": 33,
+   "slot": 0,
+   "seed": 33000099,
+   "cdo_cm": 0.2664,
+   "add_mm": 9.03,
+   "anchor_mm": 7.17,
+   "rot_deg": 5.13,
+   "rot_raw_deg": 166.26,
+   "flip": false
+  }
+ ],
+ "flips_all": 0,
+ "n_seeds": 35
+}
+2026-11-02T19:13:53Z blue rc=0
