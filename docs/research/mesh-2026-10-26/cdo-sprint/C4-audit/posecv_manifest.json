@@ -1,0 +1,1694 @@
+[
+ {
+  "index": 0,
+  "object": "beige_cup",
+  "label": "S13f/beige_cup",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/000_beige_cup.glb",
+  "md5": "8c8be2b0747d234706913a2360e90570",
+  "bytes": 653516,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T1-beige-lathe/meshes/ep11_beige_cup_sep_g1.glb",
+  "source_md5": "8c8be2b0747d234706913a2360e90570",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2501,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 4.69,
+   "add_med": 5.81,
+   "rot_p90": 3.5
+  }
+ },
+ {
+  "index": 1,
+  "object": "blue_cup",
+  "label": "S13f/blue_cup",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/001_blue_cup.glb",
+  "md5": "672c4048e11afe9b2b9a7eafebbefe58",
+  "bytes": 7200984,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/blue_cup_sam3d_ep22_k156_s7_lib.glb",
+  "source_md5": "672c4048e11afe9b2b9a7eafebbefe58",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2646,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 6.95,
+   "add_med": 8.13,
+   "rot_p90": 4.92
+  }
+ },
+ {
+  "index": 2,
+  "object": "mini_dust_pan",
+  "label": "S13f/mini_dust_pan",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/002_mini_dust_pan.glb",
+  "md5": "1530b1d3be77507730b00e1c5047cad1",
+  "bytes": 7200756,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/mini_dust_pan_hy21_ep39_k297_s42_lib.glb",
+  "source_md5": "1530b1d3be77507730b00e1c5047cad1",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2291,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 6.05,
+   "add_med": 6.12,
+   "rot_p90": 1.55
+  }
+ },
+ {
+  "index": 3,
+  "object": "mini_sweeper",
+  "label": "S13f/mini_sweeper",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/003_mini_sweeper.glb",
+  "md5": "55fe1682f09721ca5d4e98477bfef150",
+  "bytes": 154020,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/mini_sweeper_P1_partprog.glb",
+  "source_md5": "55fe1682f09721ca5d4e98477bfef150",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.222,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 3.22,
+   "add_med": 3.22,
+   "rot_p90": 1.21
+  }
+ },
+ {
+  "index": 4,
+  "object": "plastic_dish_rack",
+  "label": "S13f/plastic_dish_rack",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/004_plastic_dish_rack.glb",
+  "md5": "1176443c748ece893ffdb64a1cc82c9a",
+  "bytes": 48056,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/plastic_dish_rack_dev1_ep31_full.glb",
+  "source_md5": "1176443c748ece893ffdb64a1cc82c9a",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4182,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 9.03,
+   "add_med": 10.02,
+   "rot_p90": 2.57
+  }
+ },
+ {
+  "index": 5,
+  "object": "water_pitcher",
+  "label": "S13f/water_pitcher",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/005_water_pitcher.glb",
+  "md5": "e59c15a3e4a442ebc52e7cd72ab73124",
+  "bytes": 7200548,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/water_pitcher_hy21_ep22_k174_s42_lib.glb",
+  "source_md5": "e59c15a3e4a442ebc52e7cd72ab73124",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3713,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 14.03,
+   "add_med": 15.63,
+   "rot_p90": 3.83
+  }
+ },
+ {
+  "index": 6,
+  "object": "white_pot",
+  "label": "S13f/white_pot",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/006_white_pot.glb",
+  "md5": "b19b2e2876945cba4d932ad531f049ce",
+  "bytes": 72852,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T3-gen-fit/meshes/white_pot_t3fit.glb",
+  "source_md5": "b19b2e2876945cba4d932ad531f049ce",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3107,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 5.56,
+   "add_med": 6.33,
+   "rot_p90": 3.82
+  }
+ },
+ {
+  "index": 7,
+  "object": "white_pot_lid",
+  "label": "S13f/white_pot_lid",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/007_white_pot_lid.glb",
+  "md5": "35727a10bca407594f41d108b4dc03ab",
+  "bytes": 172708,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_c0/white_pot_lid.glb",
+  "source_md5": "35727a10bca407594f41d108b4dc03ab",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2177,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 4.7,
+   "add_med": 4.96,
+   "rot_p90": 2.18
+  }
+ },
+ {
+  "index": 8,
+  "object": "wooden_piece_1",
+  "label": "S13f/wooden_piece_1",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/008_wooden_piece_1.glb",
+  "md5": "015aaae3183760cd8a48d82b5599d32c",
+  "bytes": 80688,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/wooden_piece_1_ep24_occ_d2.glb",
+  "source_md5": "015aaae3183760cd8a48d82b5599d32c",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1872,
+   "flip": 0.06,
+   "w30": 0.06,
+   "anc_med": 4.44,
+   "add_med": 4.63,
+   "rot_p90": 1.8
+  }
+ },
+ {
+  "index": 9,
+  "object": "wooden_piece_2",
+  "label": "S13f/wooden_piece_2",
+  "role": "shipped_13f",
+  "hf_path": "runs/c4-audit-20261102/meshes/009_wooden_piece_2.glb",
+  "md5": "bf82e385cac24a586168b4f14bf5b245",
+  "bytes": 23408,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/wooden_piece_2_ep24_occ.glb",
+  "source_md5": "bf82e385cac24a586168b4f14bf5b245",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1649,
+   "flip": 0.34,
+   "w30": 0.34,
+   "anc_med": 3.46,
+   "add_med": 4.42,
+   "rot_p90": 179.71
+  }
+ },
+ {
+  "index": 10,
+  "object": "blue_cup",
+  "label": "S13e/blue_cup",
+  "role": "shipped_13e_only",
+  "hf_path": "runs/c4-audit-20261102/meshes/010_blue_cup.glb",
+  "md5": "9e3a74fd98921c4c589cee7956da457c",
+  "bytes": 557540,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_c0/blue_cup.glb",
+  "source_md5": "9e3a74fd98921c4c589cee7956da457c",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2909,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 2.88,
+   "add_med": 3.86,
+   "rot_p90": 2.59
+  }
+ },
+ {
+  "index": 11,
+  "object": "mini_dust_pan",
+  "label": "S13e/mini_dust_pan",
+  "role": "shipped_13e_only",
+  "hf_path": "runs/c4-audit-20261102/meshes/011_mini_dust_pan.glb",
+  "md5": "1976540525ecca181c9ed83ba953e165",
+  "bytes": 5585744,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T2-probe-picks/meshes/mini_dust_pan_k297_s42_lib.glb",
+  "source_md5": "1976540525ecca181c9ed83ba953e165",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2603,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 4.82,
+   "add_med": 4.83,
+   "rot_p90": 1.55
+  }
+ },
+ {
+  "index": 12,
+  "object": "beige_cup",
+  "label": "library_v3/beige_cup",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/012_beige_cup.glb",
+  "md5": "6226281f120192c52bffec7680fa9d8f",
+  "bytes": 151640,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/beige_cup.glb",
+  "source_md5": "6226281f120192c52bffec7680fa9d8f",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.8646,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 6.3,
+   "add_med": 7.44,
+   "rot_p90": 4.17
+  }
+ },
+ {
+  "index": 13,
+  "object": "blue_cup",
+  "label": "library_v3/blue_cup",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/013_blue_cup.glb",
+  "md5": "7542631493e3a0564f6d74009de67d54",
+  "bytes": 240760,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/blue_cup.glb",
+  "source_md5": "7542631493e3a0564f6d74009de67d54",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.5205,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 9.8,
+   "add_med": 9.91,
+   "rot_p90": 1.63
+  }
+ },
+ {
+  "index": 14,
+  "object": "mini_dust_pan",
+  "label": "library_v3/mini_dust_pan",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/014_mini_dust_pan.glb",
+  "md5": "c33fa41118944a7da340cc82fc6449d8",
+  "bytes": 134356,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/mini_dust_pan.glb",
+  "source_md5": "c33fa41118944a7da340cc82fc6449d8",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3332,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 5.73,
+   "add_med": 5.75,
+   "rot_p90": 2.76
+  }
+ },
+ {
+  "index": 15,
+  "object": "mini_sweeper",
+  "label": "library_v3/mini_sweeper",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/015_mini_sweeper.glb",
+  "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+  "bytes": 88960,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/mini_sweeper.glb",
+  "source_md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3162,
+   "flip": 0.06,
+   "w30": 0.06,
+   "anc_med": 4.8,
+   "add_med": 5.03,
+   "rot_p90": 3.57
+  }
+ },
+ {
+  "index": 16,
+  "object": "plastic_dish_rack",
+  "label": "library_v3/plastic_dish_rack",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/016_plastic_dish_rack.glb",
+  "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+  "bytes": 659028,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/plastic_dish_rack.glb",
+  "source_md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.5525,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 5.61,
+   "add_med": 5.87,
+   "rot_p90": 2.3
+  }
+ },
+ {
+  "index": 17,
+  "object": "water_pitcher",
+  "label": "library_v3/water_pitcher",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/017_water_pitcher.glb",
+  "md5": "fc824fc5b0a9325c91b630c19ba32677",
+  "bytes": 637688,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/water_pitcher.glb",
+  "source_md5": "fc824fc5b0a9325c91b630c19ba32677",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.8827,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 7.03,
+   "add_med": 8.41,
+   "rot_p90": 3.19
+  }
+ },
+ {
+  "index": 18,
+  "object": "white_pot",
+  "label": "library_v3/white_pot",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/018_white_pot.glb",
+  "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+  "bytes": 475632,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/white_pot.glb",
+  "source_md5": "b97d460ae26d6ced15ebe53f7addc10c",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4385,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 6.67,
+   "add_med": 6.67,
+   "rot_p90": 2.05
+  }
+ },
+ {
+  "index": 19,
+  "object": "white_pot_lid",
+  "label": "library_v3/white_pot_lid",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/019_white_pot_lid.glb",
+  "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+  "bytes": 195652,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/white_pot_lid.glb",
+  "source_md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4155,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 7.43,
+   "add_med": 7.5,
+   "rot_p90": 2.04
+  }
+ },
+ {
+  "index": 20,
+  "object": "wooden_piece_1",
+  "label": "library_v3/wooden_piece_1",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/020_wooden_piece_1.glb",
+  "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+  "bytes": 165136,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/wooden_piece_1.glb",
+  "source_md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2238,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 2.18,
+   "add_med": 2.33,
+   "rot_p90": 0.94
+  }
+ },
+ {
+  "index": 21,
+  "object": "wooden_piece_2",
+  "label": "library_v3/wooden_piece_2",
+  "role": "library_v3",
+  "hf_path": "runs/c4-audit-20261102/meshes/021_wooden_piece_2.glb",
+  "md5": "825a7fe364d280603f36226595137f43",
+  "bytes": 173988,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "meshes/library_v3/wooden_piece_2.glb",
+  "source_md5": "825a7fe364d280603f36226595137f43",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2169,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 3.28,
+   "add_med": 3.36,
+   "rot_p90": 1.1
+  }
+ },
+ {
+  "index": 22,
+  "object": "white_pot_lid",
+  "label": "C/clean/lid/t4.0_tsdf",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/022_white_pot_lid.glb",
+  "md5": "cda44ce24ec22323c087082cf088511e",
+  "bytes": 177916,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/lid/t4.0_tsdf.glb",
+  "source_md5": "cda44ce24ec22323c087082cf088511e",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2182,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 4.29,
+   "add_med": 4.69,
+   "rot_p90": 2.76
+  }
+ },
+ {
+  "index": 23,
+  "object": "white_pot_lid",
+  "label": "C/clean/lid/t2.5_tsdf",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/023_white_pot_lid.glb",
+  "md5": "a4b9ea19223af33745a26cd4fc380291",
+  "bytes": 177916,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/lid/t2.5_tsdf.glb",
+  "source_md5": "a4b9ea19223af33745a26cd4fc380291",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2165,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 4.04,
+   "add_med": 4.41,
+   "rot_p90": 2.06
+  }
+ },
+ {
+  "index": 24,
+  "object": "white_pot_lid",
+  "label": "C/potlid/fit/ep2",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/024_white_pot_lid.glb",
+  "md5": "043468f8aedd7331f97afe1cd4f4e516",
+  "bytes": 171208,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_lid_ep2_fit.glb",
+  "source_md5": "043468f8aedd7331f97afe1cd4f4e516",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2176,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 4.57,
+   "add_med": 4.91,
+   "rot_p90": 2.19
+  }
+ },
+ {
+  "index": 25,
+  "object": "white_pot",
+  "label": "C/potlid/tsdf/ep43",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/025_white_pot.glb",
+  "md5": "3591440e2dbf2029be908d46b29bfc96",
+  "bytes": 357292,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep43_tsdf.glb",
+  "source_md5": "3591440e2dbf2029be908d46b29bfc96",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3097,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 2.56,
+   "add_med": 2.91,
+   "rot_p90": 1.88
+  }
+ },
+ {
+  "index": 26,
+  "object": "white_pot",
+  "label": "C/potlid/tsdf/ep44",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/026_white_pot.glb",
+  "md5": "6214111bafce7c4775eaaa6f8a78eac0",
+  "bytes": 363772,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep44_tsdf.glb",
+  "source_md5": "6214111bafce7c4775eaaa6f8a78eac0",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3123,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 4.32,
+   "add_med": 4.42,
+   "rot_p90": 1.73
+  }
+ },
+ {
+  "index": 27,
+  "object": "white_pot",
+  "label": "C/gen/trellis2/ep41_white_pot_k279_s7",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/027_white_pot.glb",
+  "md5": "774c5aaceed421e15cea89d76b7617f5",
+  "bytes": 6787220,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s7.ply",
+  "source_md5": "beffbe7fa8e41c57826321c7b9d94a50",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3253,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 6.38,
+   "add_med": 6.95,
+   "rot_p90": 2.54
+  }
+ },
+ {
+  "index": 28,
+  "object": "blue_cup",
+  "label": "C/diag/sam3d_lib_vis/blue_cup_s42",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/028_blue_cup.glb",
+  "md5": "d036fab62696b9eec7997d639b8e751f",
+  "bytes": 7201016,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/blue_cup_k156_s42.ply",
+  "source_md5": "3222b6f7bd79a2af0c10a2886ad428f8",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2954,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 10.53,
+   "add_med": 10.79,
+   "rot_p90": 3.26
+  }
+ },
+ {
+  "index": 29,
+  "object": "blue_cup",
+  "label": "C/gen/hy21/ep22_blue_cup_k156_s42",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/029_blue_cup.glb",
+  "md5": "17a1078ab93296e02e2e573a9fc0461f",
+  "bytes": 7200476,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s42.ply",
+  "source_md5": "9bb1d2d6a0bc421aa66da05a7134faff",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2981,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 5.25,
+   "add_med": 5.67,
+   "rot_p90": 3.97
+  }
+ },
+ {
+  "index": 30,
+  "object": "blue_cup",
+  "label": "C/gen/sam3d/ep22_blue_cup_k156_s42",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/030_blue_cup.glb",
+  "md5": "a0ad1120597a4d578de4b68bb89d5c16",
+  "bytes": 7201020,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s42.ply",
+  "source_md5": "3b14c2e900df2e4af1379a737be0e284",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2972,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 7.99,
+   "add_med": 8.22,
+   "rot_p90": 3.65
+  }
+ },
+ {
+  "index": 31,
+  "object": "beige_cup",
+  "label": "C/gen/pixal_mv/ep11_beige_cup_s42",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/031_beige_cup.glb",
+  "md5": "5c8f737062ec7f934ebc07b81aca966e",
+  "bytes": 7024364,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s42.ply",
+  "source_md5": "a452c149d4ec749726aa7220e18db09a",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2629,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 8.22,
+   "add_med": 10.86,
+   "rot_p90": 6.92
+  }
+ },
+ {
+  "index": 32,
+  "object": "beige_cup",
+  "label": "C/C0b/beige_cup",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/032_beige_cup.glb",
+  "md5": "752a51d66171fb6144b8b0ac83d9a3e6",
+  "bytes": 788720,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/beige_cup_c0b_beige_ep11_g1.glb",
+  "source_md5": "752a51d66171fb6144b8b0ac83d9a3e6",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3006,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 1.55,
+   "add_med": 2.96,
+   "rot_p90": 2.62
+  }
+ },
+ {
+  "index": 33,
+  "object": "beige_cup",
+  "label": "C/gen/sam3d/ep11_beige_cup_k6_s7",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/033_beige_cup.glb",
+  "md5": "7ff60335936d008e7a9d5dae8679e4ed",
+  "bytes": 7201040,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s7.ply",
+  "source_md5": "23b7246783a7b4bdea53b28c366607e8",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3215,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 9.71,
+   "add_med": 11.71,
+   "rot_p90": 7.74
+  }
+ },
+ {
+  "index": 34,
+  "object": "plastic_dish_rack",
+  "label": "C/rack/ep31_full",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/034_plastic_dish_rack.glb",
+  "md5": "e5252159bda4608da46ded4bae10f06f",
+  "bytes": 42296,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/rack/final/plastic_dish_rack/ep31_full.glb",
+  "source_md5": "e5252159bda4608da46ded4bae10f06f",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4226,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 9.61,
+   "add_med": 10.52,
+   "rot_p90": 2.45
+  }
+ },
+ {
+  "index": 35,
+  "object": "plastic_dish_rack",
+  "label": "C/rack/ep31_nomk",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/035_plastic_dish_rack.glb",
+  "md5": "c85c6ebf59d9dbe19c13e6700d396c20",
+  "bytes": 33344,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/rack/final/plastic_dish_rack/ep31_nomk.glb",
+  "source_md5": "c85c6ebf59d9dbe19c13e6700d396c20",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.425,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 9.75,
+   "add_med": 10.65,
+   "rot_p90": 2.42
+  }
+ },
+ {
+  "index": 36,
+  "object": "plastic_dish_rack",
+  "label": "C/c2r/rack/K_ep12_nomk",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/036_plastic_dish_rack.glb",
+  "md5": "270fd118771d7e10c2be8c2d4f347458",
+  "bytes": 33848,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C2/R-rack/meshes/plastic_dish_rack_c2r_K_ep12_nomk.glb",
+  "source_md5": "270fd118771d7e10c2be8c2d4f347458",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4413,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 3.0,
+   "add_med": 6.7,
+   "rot_p90": 3.57
+  }
+ },
+ {
+  "index": 37,
+  "object": "water_pitcher",
+  "label": "C/gen/hy21/ep22_water_pitcher_k174_s7",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/037_water_pitcher.glb",
+  "md5": "7b4987767072612aafa343ce09adc912",
+  "bytes": 7201028,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s7.ply",
+  "source_md5": "a98316ee383f5c37a64fae71c230ea18",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.5563,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 10.89,
+   "add_med": 12.47,
+   "rot_p90": 3.53
+  }
+ },
+ {
+  "index": 38,
+  "object": "water_pitcher",
+  "label": "C/gen/sam3d/ep22_water_pitcher_k174_s7",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/038_water_pitcher.glb",
+  "md5": "204c4d6c51fa023a4ecedc4f7e018e53",
+  "bytes": 4034312,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s7.ply",
+  "source_md5": "ef17ed79b612d19992dbd2b2b6cb969d",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.6439,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 22.66,
+   "add_med": 25.24,
+   "rot_p90": 6.93
+  }
+ },
+ {
+  "index": 39,
+  "object": "water_pitcher",
+  "label": "C/gen/trellis2/ep22_water_pitcher_k174_s42",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/039_water_pitcher.glb",
+  "md5": "c63682cc5be310a2a51af2ad0794680d",
+  "bytes": 6793424,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s42.ply",
+  "source_md5": "d8928d4e650aaf471e4b2758f0045335",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.679,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 20.66,
+   "add_med": 22.55,
+   "rot_p90": 5.64
+  }
+ },
+ {
+  "index": 40,
+  "object": "mini_dust_pan",
+  "label": "C/gen/pixal_mv/ep39_mini_dust_pan_s7",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/040_mini_dust_pan.glb",
+  "md5": "35de47337b6385a1effdbc23257bded7",
+  "bytes": 7161740,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s7.ply",
+  "source_md5": "5241fe1de7efb4afaf302a4189cf2d81",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2341,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 3.02,
+   "add_med": 4.0,
+   "rot_p90": 4.05
+  }
+ },
+ {
+  "index": 41,
+  "object": "mini_dust_pan",
+  "label": "C/gen/pixal_mv/ep39_mini_dust_pan_s42",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/041_mini_dust_pan.glb",
+  "md5": "1a952d2a2f03c19d582ca9f08bd48536",
+  "bytes": 7203360,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s42.ply",
+  "source_md5": "22cd5a287dc7ccbc9087e79869ea3cbd",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2382,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 3.45,
+   "add_med": 4.42,
+   "rot_p90": 4.11
+  }
+ },
+ {
+  "index": 42,
+  "object": "mini_dust_pan",
+  "label": "C/t3fit/mini_dust_pan",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/042_mini_dust_pan.glb",
+  "md5": "1b777f0256e2da77219bd9fbcac5b691",
+  "bytes": 73056,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T3-gen-fit/meshes/mini_dust_pan_t3fit.glb",
+  "source_md5": "1b777f0256e2da77219bd9fbcac5b691",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2562,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 5.91,
+   "add_med": 6.69,
+   "rot_p90": 5.14
+  }
+ },
+ {
+  "index": 43,
+  "object": "mini_sweeper",
+  "label": "C/M2_libsym_balls",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/043_mini_sweeper.glb",
+  "md5": "80ed00fe9c69c6e2aae9c0ef3a11186f",
+  "bytes": 182356,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/diag-2026-10-30/sweeper/meshes/M2_libsym_balls.glb",
+  "source_md5": "80ed00fe9c69c6e2aae9c0ef3a11186f",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2836,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 3.21,
+   "add_med": 3.45,
+   "rot_p90": 3.43
+  }
+ },
+ {
+  "index": 44,
+  "object": "mini_sweeper",
+  "label": "C/M2b_libsym_balls_base",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/044_mini_sweeper.glb",
+  "md5": "2897964f8ff4117734b2e921f1f96e93",
+  "bytes": 196284,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/diag-2026-10-30/sweeper/meshes/M2b_libsym_balls_base.glb",
+  "source_md5": "2897964f8ff4117734b2e921f1f96e93",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2918,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 3.93,
+   "add_med": 4.12,
+   "rot_p90": 3.39
+  }
+ },
+ {
+  "index": 45,
+  "object": "mini_sweeper",
+  "label": "C/P1v0_partprog_preleak",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/045_mini_sweeper.glb",
+  "md5": "7cfb112ff6684836d7e6a0169c1c2371",
+  "bytes": 156828,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "docs/research/mesh-2026-10-26/diag-2026-10-30/sweeper/meshes/P1v0_partprog_preleak.glb",
+  "source_md5": "7cfb112ff6684836d7e6a0169c1c2371",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.418,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 3.25,
+   "add_med": 3.5,
+   "rot_p90": 3.48
+  }
+ },
+ {
+  "index": 46,
+  "object": "wooden_piece_1",
+  "label": "C/gen/pixal_mv/ep23_wooden_piece_1_s42",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/046_wooden_piece_1.glb",
+  "md5": "37ac22a312fbab48d16a6790043997f1",
+  "bytes": 6819828,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s42.ply",
+  "source_md5": "3168f1561609f53fe1beccabbc9e721c",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1831,
+   "flip": 0.86,
+   "w30": 0.86,
+   "anc_med": 2.05,
+   "add_med": 84.2,
+   "rot_p90": 179.87
+  }
+ },
+ {
+  "index": 47,
+  "object": "wooden_piece_1",
+  "label": "C/boards/wooden_piece_1/ep24_occ",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/047_wooden_piece_1.glb",
+  "md5": "91818248bf467807541fc04cdc290310",
+  "bytes": 79212,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_1/ep24_occ.glb",
+  "source_md5": "91818248bf467807541fc04cdc290310",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1895,
+   "flip": 0.02,
+   "w30": 0.02,
+   "anc_med": 4.87,
+   "add_med": 4.98,
+   "rot_p90": 1.36
+  }
+ },
+ {
+  "index": 48,
+  "object": "wooden_piece_1",
+  "label": "C/diag/sam3d_lib_vis/wooden_piece_1_s42",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/048_wooden_piece_1.glb",
+  "md5": "36ecee70fc5be35917c99928cf2287f6",
+  "bytes": 5625776,
+  "frame": "library_v3 body frame (transform none); generated mesh placed GT-free with C1/T2 place.py",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/wooden_piece_1_k27_s42.ply",
+  "source_md5": "dcb950fdc983cf005cf26968687269f4",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1889,
+   "flip": 0.34,
+   "w30": 0.34,
+   "anc_med": 2.12,
+   "add_med": 2.83,
+   "rot_p90": 179.86
+  }
+ },
+ {
+  "index": 49,
+  "object": "wooden_piece_2",
+  "label": "C/boards/wooden_piece_2/ep24_occ_d2",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/049_wooden_piece_2.glb",
+  "md5": "46f3b64ef4d816f7c27bf3ef6b59a9c7",
+  "bytes": 24200,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_2/ep24_occ_d2.glb",
+  "source_md5": "46f3b64ef4d816f7c27bf3ef6b59a9c7",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1619,
+   "flip": 0.22,
+   "w30": 0.22,
+   "anc_med": 3.57,
+   "add_med": 4.0,
+   "rot_p90": 179.5
+  }
+ },
+ {
+  "index": 50,
+  "object": "wooden_piece_2",
+  "label": "C/boards/wooden_piece_2/ep24_occ_nm",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/050_wooden_piece_2.glb",
+  "md5": "74ff68928157c8351ddad9d317c8168b",
+  "bytes": 5044,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_2/ep24_occ_nm.glb",
+  "source_md5": "74ff68928157c8351ddad9d317c8168b",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1673,
+   "flip": 0.5,
+   "w30": 0.5,
+   "anc_med": 3.48,
+   "add_med": 41.27,
+   "rot_p90": 179.63
+  }
+ },
+ {
+  "index": 51,
+  "object": "wooden_piece_2",
+  "label": "C/boards/wooden_piece_2/ep24_rect",
+  "role": "candidate",
+  "hf_path": "runs/c4-audit-20261102/meshes/051_wooden_piece_2.glb",
+  "md5": "045837f1ce9eff62097105cfcd6fe938",
+  "bytes": 17180,
+  "frame": "library_v3 body frame (transform none)",
+  "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_2/ep24_rect.glb",
+  "source_md5": "045837f1ce9eff62097105cfcd6fe938",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1784,
+   "flip": 0.44,
+   "w30": 0.44,
+   "anc_med": 6.29,
+   "add_med": 7.29,
+   "rot_p90": 179.56
+  }
+ }
+]
