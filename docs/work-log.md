@@ -10964,10 +10964,19 @@ score.
 - 20:07 UTC 2 Nov keen-heisenberg (owner: "do as much work as you can for tonight"): packs 12e / 13e / 13f (Tier B meshes)
   uploaded, best AUC 0.87225, rank sum 47 (7th). Task: spoon anchor on evals 32 / 33 / 35 / 36 / 37, plan + cost first;
   retrains (13f collision meshes for 20 / 28 / 30), eval 1 and S2 after the owner's top-up.
-- 20:15 UTC plan + cost sent (one box ≈ $2, no training; caveat: the same estimator gave +0.001 on public anchors, A-f0).
-- 20:20–20:50 UTC CPU build [M]: tools/anchor_rest.py → docs/research/work/pf-anchor-20261102/refs/ep<N>.parquet (spoon
+- ~20:09 UTC plan + cost sent (one box ≈ $2, no training; caveat: the same estimator gave +0.001 on public anchors, A-f0).
+- ~20:09–20:14 UTC CPU build [M]: tools/anchor_rest.py → docs/research/work/pf-anchor-20261102/refs/ep<N>.parquet (spoon
   frame-0 change 2.02 / 1.77 / 3.15 / 6.09 / 5.22°; only spoon frames 0..onset+9 changed; no_oracle pass; eval 37's
   raw → reference mapping weak, residual median 5.3°). Checkpoints store the reference path + frame count only (no hash),
   so R' is placed at that path. Board rows checked: 35 / 36 / 37 = pack 6 draws, 33 = c33B submission draw, 32 = pfD conf r1.
   tools/anchor_verdict.py (CPU mock on eval 35: INVALID on the own-reference check as designed), ops/jobs/pf_anchor.sh,
   PREREG committed 27c43cf4 (before any draw); pack_swap_rows --same-checkpoint (self-test still byte-identical) 66bf9480.
+- 20:15 UTC 2 Nov correction: my messages / notes of the last hour stated times ~35 min late ("20:45", "20:52"); the
+  commits show the pf-anchor CPU work at 20:08–20:14 UTC (fixed above and in the PREREG header).
+- 20:15 UTC keen-heisenberg: **NO-GO on the spoon-anchor box** (expected value ≈ 0: references already on the nearest
+  stable facet; A-f0 +0.001); recorded "planned, not run" in the PREREG; auto-launch timer cancelled; no box rented.
+  Owner topped up (credit $127.97 at 20:12 UTC; "go crazy, let's win this"): **GO for retrains, ≤ $45 for this lane,
+  stop if credit < $15**: evals 20 / 28 / 30 / 1 (+ others with failed / low draws), S2 where the recipe allows, the 13f
+  meshes as collision meshes where the shape changed (contact budget first), 2 seeds, swap rule + ≥ +0.02 on 10 fresh
+  draws; passing → pack 14 on 13f (claude/focused-pascal-2nz9s1 build_13f, sha fa1e31f5…; contains 13b's eval 15 / 20 rows).
+  13b uploaded (AUC 0.84985). Room-map cameras for eval 35 noted (optional, separate arm).

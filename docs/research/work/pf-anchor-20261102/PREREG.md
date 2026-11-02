@@ -1,4 +1,4 @@
-# Spoon-anchor re-evaluation — PRE-REGISTRATION (2 Nov 2026 ~20:45 UTC, before any draw)
+# Spoon-anchor re-evaluation — PRE-REGISTRATION (2 Nov 2026 ~20:14 UTC, before any draw)
 
 Owner (via keen-heisenberg, 20:10 UTC): "do as much work as you can for tonight"; coordinator's task: spoon anchor on
 evals 32 / 33 / 35 / 36 / 37 (docs/research/spoon-2026-10-25/README.md). GT-free; eval episodes only; no training.
@@ -41,3 +41,10 @@ the truth. That is a variance argument only: the public test of the same estimat
 (low power, 3 / 4 within 2°). On 36 / 37 our reference may sit on a real stable facet and the raw mean between facets;
 eval 37's raw → reference mapping is weak (residual median 5.3° vs ~1° elsewhere). Board effect per episode [E]:
 0 ± 0.03–0.15, sign unknown.
+
+## STATUS: PLANNED, NOT RUN (2 Nov 20:14 UTC, coordinator keen-heisenberg; no draw was made)
+Expected value ≈ 0 (physics facet argument vs variance argument): every reference spoon already sits within 0.4–0.7° of a
+stable facet of our mesh, the facets are ~14° apart, and on 36 / 37 the raw rest mean lies 5–6° away, between facets;
+on 32 / 33 / 35 the change is ≤ 3.2°; the same estimator gained +0.001 on public anchors (A-f0); eval 37's raw →
+reference mapping is weak. Uploading it would test a coin flip on the eval board, which this project does not do.
+The R' references, the job and the verdict tool stay committed for the record; no box was rented.
