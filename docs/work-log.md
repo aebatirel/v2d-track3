@@ -7009,3 +7009,11 @@ arm and a no-policy replay floor to stage B.
   - Candidates are still running (~60 min); the frozen rule is applied after. Reverting the boards to library_v3 fails
     rule (B) (CD-O +0.05); a less-symmetric occupancy variant is a priority build. Pose-only board reverts are outside
     the rule and are not taken.
+- ~20:04 UTC 2 Nov **room-map step 1 DONE**, $0 (9162a3b, docs/analysis/roommap-20261102/README.md):
+  - public leave-out vs mocap, 19 eps [M]: mean ΔAUC +0.0070, ΔMPPE −0.081 cm, RPE unchanged;
+  - ep24 +0.148 (perc2 camera 37 mm off; its GT-free bound of 0.176 predicted it); the other 18 eps −0.0008; ep22
+    −0.0164;
+  - verdict: G1 and G2 fail. Step 2 and retrains are off; no spend.
+  - Post-hoc suggestion, not pre-registered: use map cameras only where the GT-free bound is ≥ 0.02. On eval that is
+    ep35 only (+0.047 on the episode, ≈ +0.002 board [E]), costing one retrain ($3–6). Public support is one episode.
+    Kept as a low-priority option for the owner.
