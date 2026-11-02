@@ -6148,3 +6148,6 @@ Advice given:
   (116dfe70). sha256 3134dfc6…c2ed; vs 13f1 only commit URL + 11 payload rows; CD-O those 11 pairs; offline validation
   pass; guard on. **D1 PASS in both modes** (new d1pairs.py; 0/7 flips on all 11 pairs; pot ≤ 2.6°, rack ≤ 3.5°). Frame
   flags: pot vs T3 centroid 9.8 mm, ICP 5.9 mm. Staged as results/submissions/20261102-track3t-candidate.
+- 21:36 UTC coordinator: the same spec as "pose pack 13p on 13f1" (13p = my 13f1p, already built); README gets their
+  disclosure line verbatim. A later 13p2 adds the eval-20 pitcher placement from depth. Waiting for bold-albattani's pot
+  sign-off.

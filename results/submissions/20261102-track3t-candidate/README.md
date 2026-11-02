@@ -1,8 +1,12 @@
-# Track 3 pack-13f1p candidate ("pose pack"), 2 Nov 2026 — 13f1 + TSDF white pot + library_c0 rack (public pose CV)
+# Track 3 pack-13f1p (= the coordinator's "13p") candidate ("pose pack"), 2 Nov 2026 — 13f1 + TSDF white pot + library_c0 rack (public pose CV)
 
 **STATUS: PENDING frame sign-off on the white pot (mesh lane). Not ready, not uploaded.** keen-heisenberg's session uploads,
 on the owner's word there. This is a pose-board variant. CD-O is expected to be slightly worse (the Tier B rack is
 reverted); the best-per-board rule absorbs that.
+
+**Disclosure (coordinator's wording, 21:36 UTC):** "pose-board mesh choice by public mocap pose evidence (pre-registered
+CV); CD-O board keeps 13f by best-per-board; the TSDF pot was built from public video and listed as a candidate by the
+scan audit".
 
 **Disclosure: how these meshes were chosen.**
 - Both swaps were adopted by tracking-perception's pre-registered **public pose cross-validation**: a 10-seed,
