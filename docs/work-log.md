@@ -7047,3 +7047,8 @@ arm and a no-policy replay floor to stage B.
     runs/20261102-roommap-6438495/world_T_cam/.
   - Eval 35 map-camera arm passed to perfect-following as an optional, separately pre-registered arm after the
     top-up.
+- ~20:08 UTC 2 Nov room-map asked about the "camera guard" (map camera only where the GT-free bound is large).
+  Coordinator: stop.
+  - Its threshold would be chosen after seeing the public scores, and new seeds on the same episodes are not
+    independent evidence; the prize is ≈ +0.002 board.
+  - Eval 35 stays an optional, separately pre-registered arm after the top-up. The room-map lane is closed.
