@@ -1,5 +1,14 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 16:00 TRT (13:00 UTC): lift-window training scaled to the eval episodes; 3 boxes running
+- **pfI** (evals 3 / 14 / 32, grasp lock on the board reference + lift windows): training seed 42 since 15:55 TRT, each
+  episode with its own windows [M, box log]. **pfJ** (evals 20 / 15, same arm): setting up. **pfK** (eval 25, standard
+  learner + lift windows, new arm `slw`, addendum C): setting up. Each box: 2 seeds, then 10 fresh official draws and the
+  swap rule (+0.02 inclusion bar); passing episodes go into **pack 13 on top of pack 12c**.
+- Results expected [E]: pfI / pfJ ≈ 20:30–21:30 TRT, pfK ≈ 22:00 TRT.
+- Spend: credit $70.53 at 15:56 TRT; the $50 window ends at $41.35 credit. These boxes use most of what is left, so
+  eval 30 (and 28 / 1) wait for the owner's go.
+
 ## 2026-11-02 14:35 TRT (11:35 UTC): lift-window training passed its public test; eval retrains running
 - Public ep31 (eval 30's twin), AUC vs mocap: lift windows 0.730 / 0.704 vs control 0.589 / 0.707 (2 seeds) → mean
   +0.069, PASS by the pre-registered rule. Honest reading: it mainly removes failed draws (worst draw 0.69 / 0.62 vs
