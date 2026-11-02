@@ -6595,3 +6595,13 @@ arm and a no-policy replay floor to stage B.
   - The 6.6 / 9.9 mm flags measure C0 against library_v3. Kit registration against the public scan as a stand-in [D]
     puts library_v3 9–10 mm off the anchor and C0 2–3.6 mm off, so most of the flag is library_v3's own error.
   - That explains why pack 12c also improved AUC / RPE / MPPE [I].
+- 08:48 UTC 2 Nov bold-albattani: next CD-O variant (docs/research/mesh-2026-10-26/cdo-sprint/C3/README.md, 25b0c54).
+  - **Tier A (clean):** single pre-registered outputs of the C1 T3 track (PREREG 2d2a8ee), passing its pre-registered
+    CD-O gate.
+    - white_pot t3fit (6 pairs, evals 1 / 3 / 5 / 6 / 8 / 28): [D] 0.3417 → 0.3112, board −0.0051 [E];
+    - water_pitcher t3fit (eval 20): [D] 0.894 → 0.723, board −0.0048 [E]; pose risk on eval 20.
+    - Expected CD-O ≈ 0.300 → 0.290 [E].
+  - **Tier B (GT-informed, best of many by public-scan score):** pitcher Hunyuan s42, sweeper part program, rack
+    ep31_full, boards. ≈ −0.023 more (≈ 0.267 [E]). Owner decision only.
+  - 08:50: Tier A go under the standing permission. focused-pascal asked to build 12d = 12c + Tier A (same procedure as
+    12c); Tier B put to the owner.
