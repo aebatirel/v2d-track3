@@ -6451,3 +6451,17 @@ arm and a no-policy replay floor to stage B.
   - Twist: GRASP's canonicaliser is worse vs mocap on 5 / 6 cups; a rest-only hold is better on 6 / 6 and AUC-neutral.
   - qa_physics.py (GT-free audit) flags both catastrophic public failures (ep0 lid, ep23 swap) plus 1 false positive;
     offered to perfect-following.
+- 00:45 UTC 2 Nov perfect-following (heads-up, not yet "pack ready"):
+  - **Eval 14 fixed (KURSAD reference repair).** The perception track guard had left a 19 cm one-frame cup jump after a
+    3–14 cm drift out of the hand; tools/guard_bridge.py bridges it (GT-free).
+    - Retrain (packed recipe, 2 seeds) + 10 fresh draws: sim_vs_ref 0.861 vs the old reference (packed 0.727), 0.875 vs
+      the repaired one (packed 0.706); fails 1 / 10 vs 4 / 10.
+    - Swap rule PASS + inclusion (+0.169). PREREG docs/research/work/pf-bridge-20261101/PREREG.md.
+  - Candidate results/submissions/20261102-track3m-candidate/ = pack 11 + eval 14 (sha 66fc37c3…).
+    - Caveat: pack 11's eval-14 rollout is pack 6's lucky draw (0.909 vs P) against the new draw 1 at 0.882, so the
+      board may not gain from this swap alone. Robustness gains a lot (fails 4 → 1 in 10), which matters for the
+      organisers' reproduce check. Owner decision at the morning summary.
+  - Running: eval 32 (repaired) + eval 15 (two-hand) confirmations (pfD); eval 16 hold-to-end (pfF, ~3.5 h).
+    "pack 12 ready" expected after pfD (~1–1.5 h).
+  - Not working: two-hand references (evals 14 / 16 NO-SWAP); GRASP hold filter (public gate FAIL).
+  - Spend $22.08 of $102 (credit $100.77 at 00:33 UTC).
