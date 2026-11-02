@@ -1,0 +1,12 @@
+pack_swap_meshes: <SCRATCH>/p12c/build_12c
+swapped 5 (episode, object) pairs of 36: blue_cup -> eps [10, 14, 20, 32, 33]
+file md5 changed: 10:blue_cup 75426314->9e3a74fd, 14:blue_cup 75426314->9e3a74fd, 20:blue_cup 75426314->9e3a74fd, 32:blue_cup 75426314->9e3a74fd, 33:blue_cup 75426314->9e3a74fd
+frame report (mm; base = the mesh being replaced):
+  blue_cup           eps [10, 14, 20, 32, 33] base library_v3 | centroid offset 3.53 | AABB centre offset 8.21 | extent base [95.08, 96.47, 167.02] new [92.95, 103.61, 167.27] | surface median/p95/max 2.578/8.514/34.327 (spacing 0.701) | ICP 6.64 mm 2.549 deg (median after 1.923) | kit proxy 9.91 mm 118.639 deg (symmetry axial) | FLAG: ICP corrects 6.64 mm / 2.549 deg (limits 5.0 mm / 5.0 deg); kit-registration proxy moves the body 9.91 mm > 5.0
+parquet: 1313130 B sha256 3542f8e546e8e3212594d28dc398fd7e27a4a9abb0e3fb4f1f1c85719c4c8567 | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 5}
+mesh payloads changed: ['10:blue_cup', '14:blue_cup', '20:blue_cup', '32:blue_cup', '33:blue_cup'] | unchanged: []
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 116a97512432d518... | CD-O pairs changed vs base: ['10:blue_cup', '14:blue_cup', '20:blue_cup', '32:blue_cup', '33:blue_cup']
+pack.log MESH WARNINGs: 0
+FLAG: blue_cup (episodes [10, 14, 20, 32, 33]): ICP corrects 6.64 mm / 2.549 deg (limits 5.0 mm / 5.0 deg)
+FLAG: blue_cup (episodes [10, 14, 20, 32, 33]): kit-registration proxy moves the body 9.91 mm > 5.0
+STATUS NEEDS REVIEW (flags) (exit 2)
