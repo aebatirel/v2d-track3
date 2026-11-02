@@ -6311,3 +6311,15 @@ diagnostic; nothing is picked for submission.
 - Sent to focused-pascal (cc keen-heisenberg). Waiting on their frame report.
 - Optional B+ (not in 12e): placed sam3d blue cup s7 and hy21 dust pan s42; one scoring each is running
   (results/score_tierBplus.jsonl).
+- ~19:20 UTC: focused-pascal built pack 12e (sha256 004f394f…1babd, meshes/tierB_pack12e 9684395b). Frame report flags:
+  - rack: ICP 6.24 mm / 1.12 deg, proxy 5.84 mm;
+  - sweeper: proxy 5.18 mm;
+  - pitcher: ICP 14.86 mm / 3.29 deg (mine 6.89), proxy 17.3 mm;
+  - boards: extent flags; wooden_piece_2 kit proxy 179.9 deg (flip).
+  Signed off YES for all five, transform none.
+  - Pitcher: kit anchor 29.4 -> 14.5 mm vs 12d [D].
+  - Boards: the occupancy plates are near 180-deg symmetric (amb 2.58 vs floor 2.32 mm). The eval seed does not flip [D];
+    1 of 6 seeds flips for each board. CD-O is unchanged on flipped seeds (0.1851 / 0.1699). Eval-25 pose is at risk
+    (about 1 in 6 per board [E]), which is acceptable for a CD-O-only variant.
+- keen-heisenberg holds the optional 12f (generated blue cup + dust pan): it would not change a rank (5th place is 0.2534);
+  numbers are to be sent when scored.
