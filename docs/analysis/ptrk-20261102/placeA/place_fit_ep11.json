@@ -1,0 +1,99 @@
+{
+ "episode": 11,
+ "test": "A place_fit",
+ "settings": {
+  "trim": 0.7,
+  "iters": 40,
+  "every": 2,
+  "max_pts": 1500,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0
+ },
+ "inputs": {
+  "poses": "store/runs/20261102-ptrkA-7fbc3215/results/ptrk/C/ep11/poses.npz",
+  "depth": "store/cache/depth/public/ep11/depths_fs0.5.npy",
+  "vos": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/MRr/ep11/vos_masks.npz",
+  "ksrc": "store/runs/20261102-ptrkA-7fbc3215/results/ptrk/C/ep11/det_f0.npz",
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "sub": "/tmp/claude-0/-home-user-v2d-track3/179e384c-3df3-5902-b468-f503474d35e9/scratchpad/m13f"
+ },
+ "objects": {
+  "blue_cup": {
+   "points": 10499,
+   "frames": 9,
+   "rms_before_mm": 1.7,
+   "rms_after_mm": 1.31,
+   "iters": 25,
+   "move_cm": 0.18,
+   "rot_deg": 1.4,
+   "kept": "fit",
+   "delta": [
+    [
+     0.999998,
+     0.001924,
+     -3.7e-05,
+     -0.001796
+    ],
+    [
+     -0.001924,
+     0.999701,
+     -0.024386,
+     0.000192
+    ],
+    [
+     -1e-05,
+     0.024386,
+     0.999703,
+     -6.7e-05
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  "beige_cup": {
+   "points": 28042,
+   "frames": 39,
+   "rms_before_mm": 1.8,
+   "rms_after_mm": 1.68,
+   "iters": 40,
+   "move_cm": 0.07,
+   "rot_deg": 2.06,
+   "kept": "fit",
+   "delta": [
+    [
+     0.99968,
+     -0.004936,
+     -0.024813,
+     0.00057
+    ],
+    [
+     0.004298,
+     0.999661,
+     -0.025685,
+     0.00047
+    ],
+    [
+     0.024932,
+     0.02557,
+     0.999362,
+     -1.8e-05
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  }
+ },
+ "sha256": {
+  "blue_cup": "0b4572d79d2c53da3ced8c6a6a40a83f1b8931729ae3ff457e7517523173cde3",
+  "beige_cup": "517d304f419d91d949dcb4bd5724c1ebc7faa13fc53f07fc34816c57734d00f4"
+ }
+}

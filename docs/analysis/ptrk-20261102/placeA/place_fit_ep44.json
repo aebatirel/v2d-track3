@@ -1,0 +1,62 @@
+{
+ "episode": 44,
+ "test": "A place_fit",
+ "settings": {
+  "trim": 0.7,
+  "iters": 40,
+  "every": 2,
+  "max_pts": 1500,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0
+ },
+ "inputs": {
+  "poses": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep44/poses.npz",
+  "depth": "store/cache/depth/public/ep44/depths_fs0.5.npy",
+  "vos": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/MRr/ep44/vos_masks.npz",
+  "ksrc": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep44/det_f0.npz",
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "sub": "/tmp/claude-0/-home-user-v2d-track3/179e384c-3df3-5902-b468-f503474d35e9/scratchpad/m13f"
+ },
+ "objects": {
+  "white_pot": {
+   "points": 132000,
+   "frames": 88,
+   "rms_before_mm": 2.05,
+   "rms_after_mm": 1.96,
+   "iters": 20,
+   "move_cm": 0.17,
+   "rot_deg": 0.28,
+   "kept": "fit",
+   "delta": [
+    [
+     0.999994,
+     0.003082,
+     -0.001588,
+     0.000685
+    ],
+    [
+     -0.003088,
+     0.999989,
+     -0.00342,
+     0.000838
+    ],
+    [
+     0.001577,
+     0.003425,
+     0.999993,
+     0.001335
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  }
+ },
+ "sha256": {
+  "white_pot": "d2695bf5489e0d2d755e8ce641bffa332b71c81b2f8157e9711368ff9ef5467b"
+ }
+}
