@@ -11021,3 +11021,8 @@ score.
   plain board-policy draw, NOT a collision result. Fix c1a5471: the asset root comes from the reference's own
   object_urdf_paths; a failed swap drops the episode. pfR destroyed 21:28 (≈ $1.7); **pfR2** 20261102-pfR2-c1a5471
   (US S $1.51/h, offer 56137474, instance 58879342), same job string.
+- 21:51–22:53 UTC 2 Nov pf-mesh results [M]: eval 14 p0m zero-shot (valid, new rack + cup) **0.878** (control 0.875);
+  eval 14 p0m s42 box **0.938 ± 0.010** (min 0.919; gate 0.875); eval 20 pm s42 **0.293**, s43 **0.604 ± 0.266** →
+  **eval 20 NO-SWAP at the gate** (0.926; [I] the board reference's grasp was built on the old pitcher, up to 2.5 cm off,
+  and retraining does not recover it; pfN2 self-destroys); eval 30 sm s42 **0.938 ± 0.008** (min 0.921; gate 0.897;
+  earlier eval-30 retrains had low draws 0.41–0.60) — [H] the Tier B shapes remove eval 30's low mode; s43 tests it.
