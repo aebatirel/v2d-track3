@@ -6760,3 +6760,21 @@ arm and a no-policy replay floor to stage B.
       clips via table-plane tilt over time;
     - only if the bound is ≥ +0.01, a GT-free map rebuild; the note-18 code is on the owner's Mac, not in git;
     - retrains for the eval references that change.
+- 16:04 UTC 2 Nov owner: "do all, go the distance" on the room-map / camera-drift proposal. **Room-map session
+  launched:** session_01D9UJC6AegGiAjYM6ukSfHj, branch claude/room-map-20261102.
+  - Step 1 ($0 CPU):
+    - GT-free rebuild of note 18's public-only map in the repo;
+    - perc2 VO drift against the map on the 20 eval clips (GT-free);
+    - leave-episode-out public ΔAUC from recomposing the perception control outputs with map cameras.
+  - Steps 2–3: eval recomposition, then reference rebuilds and retrains via perfect-following. GPU waits for a top-up;
+    PREREG before any scoring.
+  - Fact checked [M, kit AUC.py `_align_registered_scene`]: the scorer aligns the scene rigidly at frame 0, so only
+    camera motion after frame 0 matters and the GT registration in note 18 is not needed.
+  - Perception-tracking informed (overlap with its rest-segment design).
+- 16:06 UTC 2 Nov owner asked whether our lift work is ReLift (relift3d.github.io). No.
+  - ReLift (Technion / NVIDIA, arXiv 2610.42136): dense 3D point tracking from monocular video. It lifts 2D tracks with
+    depth and cameras, then a learned corrector repairs the 3D residuals.
+  - Our "lift" is **lift-window training starts**: RL episodes started around object-lift moments
+    (ops/box/patch_flashchord_lift.py). Same word only.
+  - Possible later use [H]: dense point tracks through hand occlusion as correspondences for the offline joint pose
+    fit. Low priority: we have metric stereo depth and model-based poses.
