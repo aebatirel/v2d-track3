@@ -1,0 +1,129 @@
+{
+ "ep": 15,
+ "rule": "pack-9b PREREG section 4 + pf-hands / pf-bridge PREREG section 4",
+ "refs": [
+  "P"
+ ],
+ "choice": "CONFIRM",
+ "sides": {
+  "conf": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9583,
+     "sd": 0.0099,
+     "min": 0.9388,
+     "max": 0.9708,
+     "median": 0.9597
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 1.3558,
+     "sd": 0.0629,
+     "min": 1.2346,
+     "max": 1.4469,
+     "median": 1.3461
+    },
+    "fails": 0
+   }
+  },
+  "packed": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9057,
+     "sd": 0.1268,
+     "min": 0.6203,
+     "max": 0.9761,
+     "median": 0.9618
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 2.412,
+     "sd": 2.9116,
+     "min": 1.2042,
+     "max": 10.5467,
+     "median": 1.2988
+    },
+    "fails": 1
+   }
+  },
+  "old": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 1,
+     "mean": 0.9465,
+     "sd": 0.0,
+     "min": 0.9465,
+     "max": 0.9465,
+     "median": 0.9465
+    },
+    "RPE": {
+     "n": 1,
+     "mean": 1.5059,
+     "sd": 0.0,
+     "min": 1.5059,
+     "max": 1.5059,
+     "median": 1.5059
+    },
+    "fails": 0
+   }
+  },
+  "train42": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9528,
+     "sd": 0.013,
+     "min": 0.9303,
+     "max": 0.9699,
+     "median": 0.9555
+    }
+   }
+  },
+  "train43": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9454,
+     "sd": 0.0309,
+     "min": 0.8599,
+     "max": 0.9688,
+     "median": 0.9528
+    }
+   }
+  }
+ },
+ "clauses": {
+  "P": {
+   "a": {
+    "conf": 0.9583,
+    "packed": 0.9057,
+    "holds": true
+   },
+   "b": {
+    "conf": 0.0,
+    "packed": 0.1,
+    "holds": true
+   },
+   "c": {
+    "conf": 1.346,
+    "packed": 1.299,
+    "holds": false
+   },
+   "s": {
+    "conf_draw1": 0.965,
+    "old": 0.9465,
+    "holds": true
+   },
+   "gain": 0.0525
+  }
+ },
+ "label": "NO-SWAP",
+ "inclusion": {
+  "bar": 0.02,
+  "on": "P",
+  "gain": 0.0525,
+  "include": false
+ }
+}

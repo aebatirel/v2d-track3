@@ -1,0 +1,129 @@
+{
+ "ep": 20,
+ "rule": "pack-9b PREREG section 4 + pf-hands / pf-bridge PREREG section 4",
+ "refs": [
+  "P"
+ ],
+ "choice": "CONFIRM",
+ "sides": {
+  "conf": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9259,
+     "sd": 0.0179,
+     "min": 0.8796,
+     "max": 0.9406,
+     "median": 0.9307
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 1.8022,
+     "sd": 0.96,
+     "min": 1.2272,
+     "max": 4.3759,
+     "median": 1.3776
+    },
+    "fails": 0
+   }
+  },
+  "packed": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.8933,
+     "sd": 0.028,
+     "min": 0.8193,
+     "max": 0.9146,
+     "median": 0.9013
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 1.9024,
+     "sd": 0.8066,
+     "min": 1.3144,
+     "max": 4.1011,
+     "median": 1.6712
+    },
+    "fails": 0
+   }
+  },
+  "old": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 1,
+     "mean": 0.8948,
+     "sd": 0.0,
+     "min": 0.8948,
+     "max": 0.8948,
+     "median": 0.8948
+    },
+    "RPE": {
+     "n": 1,
+     "mean": 1.2986,
+     "sd": 0.0,
+     "min": 1.2986,
+     "max": 1.2986,
+     "median": 1.2986
+    },
+    "fails": 0
+   }
+  },
+  "train42": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.2972,
+     "sd": 0.0515,
+     "min": 0.2302,
+     "max": 0.4033,
+     "median": 0.2927
+    }
+   }
+  },
+  "train43": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9206,
+     "sd": 0.0195,
+     "min": 0.8852,
+     "max": 0.9423,
+     "median": 0.9242
+    }
+   }
+  }
+ },
+ "clauses": {
+  "P": {
+   "a": {
+    "conf": 0.9259,
+    "packed": 0.8933,
+    "holds": true
+   },
+   "b": {
+    "conf": 0.0,
+    "packed": 0.0,
+    "holds": true
+   },
+   "c": {
+    "conf": 1.378,
+    "packed": 1.671,
+    "holds": true
+   },
+   "s": {
+    "conf_draw1": 0.9384,
+    "old": 0.8948,
+    "holds": true
+   },
+   "gain": 0.0326
+  }
+ },
+ "label": "PASS",
+ "inclusion": {
+  "bar": 0.02,
+  "on": "P",
+  "gain": 0.0326,
+  "include": true
+ }
+}
