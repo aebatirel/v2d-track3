@@ -53,3 +53,8 @@ Spec: `../C4-audit/PREREG.md` section 7 (addendum 2, e573235), sections 2-3. Tim
   (large) starts beside the small Hunyuan job instead of after it: one large model at a time still holds, and the
   H200 has 143 GB (Hunyuan ~10 GB, TRELLIS.2 needed <= ~85 GB on 29 Oct). Logged in g2_queue.log. TRELLIS.2 1536
   started 21:14:00Z, all 22 crops x 4 seeds in one process.
+- ~21:18Z coordinator update (PREREG s10 at 63e2c39, before any G2 scoring): stage 2 also takes, per object, the 2
+  lowest stage-1 ADD medians (median of the 6 seeds' add_mm = screen summary add_med) among G2 meshes with stage-1
+  CD-O median <= shipped 50-seed median + 0.005 (pot 0.3157, blue cup 0.2696, rack 0.4232, pitcher 0.3763), when not
+  already among the 4 by CD-O; field why = "cdo_top4" | "add_ext". Read literally: the 2 lowest are taken first and any
+  already in the top 4 is not replaced. `scripts/stage2.py` updated before any score exists.
