@@ -6370,3 +6370,4 @@ diagnostic; nothing is picked for submission.
   flips of our spoon against 30 plausible spoons. The spoon's loss is frame-0 anchor roll (pose / tracking), not the
   mesh. A GT-free spoon criterion was proposed to the coordinator (flip test, held-out fidelity >= 0.3 mm better,
   amb ratio >= 2.4, eval silhouette not worse); it is not pre-registered yet.
+- 20:08 UTC: the C4 main audit was stopped at the tool's 30-min background limit (indices 0-13 done; 14-17 were mid-run with no output). Relaunched detached with setsid/nohup; finished indices are skipped. No mesh has a second completed run.
