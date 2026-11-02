@@ -6760,3 +6760,14 @@ arm and a no-policy replay floor to stage B.
       clips via table-plane tilt over time;
     - only if the bound is ≥ +0.01, a GT-free map rebuild; the note-18 code is on the owner's Mac, not in git;
     - retrains for the eval references that change.
+- 16:10–16:30 UTC 2 Nov **room-map session** (branch claude/room-map-20261102; owner via keen-heisenberg: "do all, go
+  the distance"). Step 1 ($0, this container, 4 CPU):
+  - `pipeline/roommap.py` = note 18 rewritten GT-free (ego b/c only, public frames only, no mocap registration,
+    per-frame relocalisation + temporal gate). `pipeline/roommap_compose.py` recomposes perc2 poses with map cameras
+    and measures drift GT-free.
+  - PREREG `docs/analysis/roommap-20261102/PREREG.md` pushed at be2f920, before any map existed (gates G0–G2,
+    materiality 10 mm).
+  - Harness [M]: score_registered.py + 9a+ meshes (md5 10/10) reproduces ptrk control C ep12 = 0.9584.
+  - [M] perc2 control on public uses 2–17 keyframes per episode; evperc eval ep5: 5 keyframes / 288 frames.
+  - Map run3: 370 public b/c images (every 30th frame, 20 episodes), 8,489 pairs, matching 4.3 min; SfM running
+    (init needed relaxed constraints: 74 % of pairs PLANAR_OR_PANORAMIC, as note 18 A2).
