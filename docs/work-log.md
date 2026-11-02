@@ -10938,3 +10938,12 @@ score.
   non-lift swaps matched (eval 14 s: box 0.880 / 0.892 → fresh 0.875; eval 16 pz: 0.975 → 0.974).
   [H] lift-window policies overfit something of the training box (the patched training-tree evaluator or its start
   state) so box draws overstate them; falsified if eval 15's fresh mean stays near its box mean 0.953.
+- 17:20–17:37 UTC 2 Nov pfJ verdicts [M]: **eval 20 plw PASS + INCLUDE** (seed 43: box 0.921, s42 collapsed 0.297; 10 fresh
+  official draws 0.926 vs board H5p7 0.893, fails 0 / 0, median RPE 1.378 vs 1.671, draw 1 0.938 vs old 0.895, gain
+  +0.033). [M] fresh ≈ box here (0.926 vs 0.921), so the eval-14 box→fresh drop is not general to lift policies.
+  **Eval 15 plw NO-SWAP on clause c only**: fresh 0.958 vs 0.906 (gain +0.053), fails 0 vs 1/10, draw 1 0.965 vs 0.947,
+  but median RPE 1.346 vs 1.299 cm. Rule applied as written; flagged to keen-heisenberg as an owner's call.
+  Eval 30 slw s43 0.839 ± 0.113 (with s42 0.787, both < 0.897 → NO-SWAP).
+- 17:40 UTC 2 Nov **pack 13 ready**: results/submissions/20261102-track3m-candidate/build_13/track3_submission.parquet
+  (sha256 791c3922…; = pack 12c + eval 20 plw s43 conf draw 1; code b45b377; checks pass; the board's eval-20 row equals the
+  pack-6 draw: max |diff| 0.0). NOT uploaded; sent to keen-heisenberg (17:42 UTC).

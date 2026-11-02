@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 20:42 TRT (17:42 UTC): PACK 13 READY (not uploaded) — pack 12c + eval 20
+- **File:** results/submissions/20261102-track3m-candidate/build_13/track3_submission.parquet (sha256 791c3922…), built on
+  pack 12c (blue-cup meshes kept). All checks pass. keen-heisenberg uploads on the owner's word.
+- **Eval 20** (lift-window training on the packed reference, seed 43): 10 fresh official draws 0.926 vs the board
+  policy's 0.893; no failed draws; median error 1.38 vs 1.67 cm → passes the swap rule, gain +0.033.
+- **Eval 15 near-miss (owner's call):** 0.958 vs 0.906 on fresh draws, no failed draws, but the median error is 0.05 mm
+  worse (1.346 vs 1.299 cm), so the pre-registered rule says no. Can be added as pack 13b in minutes if waived.
+- Not passing: eval 14 (good on the training box 0.923, worse on fresh draws 0.826 vs 0.875), evals 3 / 25 / 28 / 30 / 32
+  (below the board policy already on the training box).
+- Spend: credit $33.41 at 20:00 TRT; no new boxes until the owner tops up.
+
 ## 2026-11-02 16:00 TRT (13:00 UTC): lift-window training scaled to the eval episodes; 3 boxes running
 - **pfI** (evals 3 / 14 / 32, grasp lock on the board reference + lift windows): training seed 42 since 15:55 TRT, each
   episode with its own windows [M, box log]. **pfJ** (evals 20 / 15, same arm): setting up. **pfK** (eval 25, standard
