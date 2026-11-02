@@ -6375,3 +6375,14 @@ diagnostic; nothing is picked for submission.
   - Shipped board 2: W30 0.34, CD-O 0.1649, anchor 3.46 mm.
   - graft_v1 (+2 balls): W30 0.18 (-16 points, short of the -20 bar), CD-O 0.1628, anchor 3.75 mm. Not adopted.
   - graft_v2 (+ all clusters, including the stray library_v3 face sheet): W30 0.70, CD-O 0.2035. Worse; not adopted.
+
+## 2026-11-02 20:15 UTC — owner top-up; G2 generation batch launched (pre-registered)
+- keen-heisenberg relayed the owner (20:13 UTC): credit $127.97, "go crazy, let's win this". New candidates for the weakest
+  shipped meshes (rack, pitcher, pot, blue cup, board-2 flip). GPU spend <= $25; stop if credit < $15. Packs 13g
+  (current audit) and 13h (new candidates).
+- PREREG section 7 (addendum 2, G2) was pushed at e573235 before any generation or rental.
+  - Plan: SAM 3D + Hunyuan3D-2.1 + TRELLIS.2, 4 seeds, <= 6 GT-free crops per object (pot, blue cup, rack, pitcher).
+  - GT-free Sim(3) fit, then a SHA256 freeze before any scan read.
+  - 6-seed screen, then the top 4 per object, placed (+ a T3 fit copy), then the 50-seed C4 audit and rule (A)/(B).
+- A helper agent runs G2: crops, rental, generation, freeze, screen, `C4-audit/candidates_g2.json`, `cdo-sprint/G2/README.md`.
+  Vast credit at launch was $127.93 (another session's box 20261102-ptrkF is running).
