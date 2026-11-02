@@ -168,10 +168,10 @@ def make_bank(work, name):
     descs, pids, owner, imgs = [], [], [], []
     for iid, im in rec.images.items():
         if not im.has_pose: continue
-        d = D.read_descriptors(iid)
-        p2 = im.points2D; ids = np.array([p.point3D_id for p in p2], np.int64)
-        has = np.array([p.has_point3D() for p in p2], bool)
-        k = np.nonzero(has)[0]
+        d = np.asarray(D.read_descriptors(iid).data)
+        p2 = im.points2D
+        k = np.array([j for j, p in enumerate(p2) if p.has_point3D()], int)
+        ids = np.zeros(len(p2), np.int64); ids[k] = [p2[j].point3D_id for j in k]
         if len(k) == 0: continue
         T = im.cam_from_world().matrix()                    # 3x4 cam <- world
         R, t = T[:, :3], T[:, 3]
@@ -203,7 +203,10 @@ class Reloc:
         eo = pc.FeatureExtractionOptions(); eo.sift.first_octave = 0; eo.sift.peak_threshold = 0.004
         eo.sift.max_num_features = 8192; eo.num_threads = 1
         self.sift = pc.Sift(eo, pc.Device.cpu); self.m = mask_img() > 0
-        self.bf = cv2.BFMatcher(cv2.NORM_L2)
+        # FLANN kd-tree (4 trees, 48 checks): 5.7x faster than brute force, same poses to <= 0.15 mm / 0.003 deg
+        # (eval ep10, 8 frames, 2 Nov); ROOMMAP_BF=1 restores note 18's brute-force matcher.
+        self.bf = (cv2.BFMatcher(cv2.NORM_L2) if os.environ.get('ROOMMAP_BF') == '1' else
+                   cv2.FlannBasedMatcher(dict(algorithm=1, trees=4), dict(checks=48)))
         self.dscale = 512.0                                   # COLMAP stores float SIFT x 512 as uint8
         self.prev_axis = self.axes.mean(0); self.prev_axis /= np.linalg.norm(self.prev_axis)
 
@@ -286,6 +289,7 @@ def gate(T, ok, thr_mm=5.0, k=5):
 
 
 def cmd_reloc(a):
+    cv2.setNumThreads(1)
     R = Reloc(a.work, a.name, a.t3, ncand=a.ncand)
     vd = f'{a.t3}/v' if a.split == 'public' else f'{a.t3}/eval/v'
     fc, N = read_video(f'{vd}/ep{a.ep}_c.mp4'); fb, Nb = read_video(f'{vd}/ep{a.ep}_b.mp4')
