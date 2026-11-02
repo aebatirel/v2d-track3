@@ -6833,3 +6833,13 @@ arm and a no-policy replay floor to stage B.
     (tests [H] "box overstates lift policies");
   - eval 30 seed 43 still training;
   - no new retrain boxes.
+- 17:13 UTC 2 Nov point-track plan (base ad1af12). Coordinator: go; KLT arm verdict first; thresholds fixed in the
+  PREREG before reading per-episode scores; ask before renting.
+  - Tools: BootsTAPIR (tapnet, code and weights Apache-2.0), plus OpenCV KLT as a $0 baseline arm.
+  - Rejected: CoTracker3 (CC-BY-NC), TAPIP3D (weight licence unstated), ReLift (non-commercial front ends) for now.
+  - Method:
+    - points in perc2's f0 mask, lifted with the cached stereo depth and world_T_cam;
+    - trimmed Kabsch per object;
+    - detector: > 2 cm or > 10° divergence for ≥ 5 frames; repair over the flagged spans.
+  - Base: the perception-tracking control (likely ptrkD Cr).
+  - Compute: CPU here first. GPU (≈ $2–3) only if needed, asked first. First public verdict in ≈ 4–5 h.
