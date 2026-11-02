@@ -7216,3 +7216,12 @@ arm and a no-policy replay floor to stage B.
     ep23 +0.90 is a lucky board re-assignment.
   - No eval perception re-run, so the conditional ~$80 is not needed. ptrkF self-destroyed (≈ $2.7).
   - Eval 20 pitcher placement: box G (masks) running.
+- ~22:12 UTC 2 Nov bold-albattani G2 status.
+  - 264 meshes generated, SHA freeze before any scan read. GPU cost **$8.31** of $25 (preempted H100 ≈ $2.80 + H200
+    $5.50; both destroyed).
+  - Stage-1 screen [D] (best of 48–72, flattering): pot 0.2852 vs 0.3107; blue cup 0.2430 vs 0.2646; rack 0.4027 vs
+    0.4182; pitcher worse.
+  - 32 stage-2 candidates (8e8c405a) are in the frozen 50-seed audit (~50 min) → rules (A) / (B) / (C) + D1 for the
+    CD-O board → 13h.
+  - All 32 were offered to perception's round-2 pose CV (manifest 6b0d5c80). Rule (C)'s committed reading was kept,
+    not widened after seeing scores.
