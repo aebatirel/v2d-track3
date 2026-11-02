@@ -7225,3 +7225,9 @@ arm and a no-policy replay floor to stage B.
     CD-O board → 13h.
   - All 32 were offered to perception's round-2 pose CV (manifest 6b0d5c80). Rule (C)'s committed reading was kept,
     not widened after seeing scores.
+- ~22:13 UTC 2 Nov perception-tracking (c) done.
+  - Eval 20 pitcher placement Δ 2.89° / 0.47 cm; guards pass; D1 3.4° vs 3.3°.
+  - Sent to focused-pascal for 13p2 (meshes/pose_pack_13p2 @ 0b067405).
+  - [E] about +0.004–0.006 board AUC if it transfers; the eval tilt (2.9°) is smaller than on the public twins
+    (5–5.6°), so expect the low end.
+  - Box G destroyed (≈ $0.6). Round 2 (157 + 21 runs, CPU) ≈ 1.5–2 h. Tonight's GPU in this lane ≈ $3.3.
