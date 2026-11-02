@@ -6843,3 +6843,21 @@ arm and a no-policy replay floor to stage B.
     - detector: > 2 cm or > 10° divergence for ≥ 5 frames; repair over the flagged spans.
   - Base: the perception-tracking control (likely ptrkD Cr).
   - Compute: CPU here first. GPU (≈ $2–3) only if needed, asked first. First public verdict in ≈ 4–5 h.
+- 17:25 UTC 2 Nov **point-track interim (2934c0b) [D]: ep23 is a board identity swap** hidden by the frame-0
+  alignment, not a freeze. Our piece_2 displacement matches mocap piece_1 and vice versa; swapped residuals are
+  3.2 / 5.0 cm vs 7.8 / 7.4 cm.
+  - This contradicts perception-tracking's 14:55 reading; asked it to reconcile and to check whether its public
+    control runs pipeline/identity_fix.py (the knob rule was wired only into eval_idfix.sh on 25 Oct).
+  - Eval 25 is protected: its packed reference is the identity-correct ev25idfix (knob rule rank 1 of 32, work log
+    25 Oct 15:32).
+  - Point tracks continue on ep18 / ep0 / spoon with KLT at $0 (it loses fast motion). BootsTAPIR needs a box: ≤ $3,
+    only if KLT's detector shows true positives.
+- 17:57 UTC (session clock) 2 Nov **perception-tracking Stage 1 rest-segment fit: FAIL, falsifier fired [D]**
+  (PREREG before transform; CPU, $0):
+  - ΔAUC −0.0088 (7 better / 12 worse; worst ep18 −0.062); MPPE +0.05; RPE +0.21 cm; rest-frame ADD lower on 9 / 20
+    (bar 14).
+  - Post hoc [I]: it helps where the tracker's bias is large (pitcher ep21 +0.051, ep22 +0.019; rack ep31 +0.013;
+    dust pan ep39 +0.012) and hurts where the tracker is already within mesh error (pots −0.01 to −0.03, cups ep12 / 13
+    −0.03). Fitting depth to a wrong shape moves a good pose.
+  - The +0.032 rest oracle is not reachable with our meshes. The map-camera arm was dropped (room-map (b) measures
+    cameras directly); no post-hoc per-object gate.
