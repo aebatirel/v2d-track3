@@ -6605,3 +6605,13 @@ arm and a no-policy replay floor to stage B.
     ep31_full, boards. ≈ −0.023 more (≈ 0.267 [E]). Owner decision only.
   - 08:50: Tier A go under the standing permission. focused-pascal asked to build 12d = 12c + Tier A (same procedure as
     12c); Tier B put to the owner.
+- ~09:00 UTC 2 Nov focused-pascal: pack 12d built and staged (results/submissions/20261102-track3o-candidate/build_12d/,
+  sha 643794c6…), pending the frame sign-off.
+  - 12c reproduced byte for byte first. vs 12c only code_commit_url + the 7 payload rows differ; CD-O changes exactly
+    those 7 pairs; validation pass; 0 MESH warnings.
+  - Flags [M]: pot centroid 8.5 mm / kit proxy 5.7 mm; pitcher centroid 10.3 mm, ICP 5.8 mm / 3.5°, proxy 8.0 mm,
+    surface p95 25.5 mm.
+  - Known risks in the README: the pot's public pose guard failed (−0.0099 mean); the pitcher's ADD gate failed
+    (33 mm).
+  - As a CD-O-only submission the pose boards keep their best (12c), but this file may not be the single final file
+    for all boards.
