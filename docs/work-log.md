@@ -6686,3 +6686,13 @@ arm and a no-policy replay floor to stage B.
   - Next: the standard-learner lift path for evals 25 / 30 (then 28 / 1), with a PREREG addendum and a CPU check
     before launch.
   - Packs are built on 12c and announced as "pack 13 ready".
+- 13:00 UTC 2 Nov perfect-following:
+  - pfI training with per-episode lift windows.
+  - Standard-learner lift path built (addendum C, 0f695c94; window share 0.21 → 0.35).
+  - pfK launched for eval 25 (20261102-pfK-0f695c9, ≈ 6 h, ≈ $8).
+  - Credit $70.53 at 12:56; the $50 window ends at credit $41.35.
+  - Results: pfI / pfJ ≈ 17:30–18:30 UTC, pfK ≈ 19:00 UTC.
+- 13:00 UTC approved evals 30 and 28 (+~$16 beyond the window) under the owner's "scale up" instruction; credit stays
+  ≈ $25 > the $10 reserve. Eval 1 waits for a top-up.
+  - Gave the session the 12c paths (claude/focused-pascal-2nz9s1, results/submissions/20261102-track3n-candidate/
+    build_12c/). Pack 13 is built on 12c.
