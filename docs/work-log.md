@@ -10994,3 +10994,11 @@ score.
   - pfP 20261102-pfP-59d62bf (Washington Max-Q $1.51/h, 58872822, 58873281): `EP=30 SPLIT=eval ARMS=sm MESH_OBJS_EP30="mini_sweeper plastic_dish_rack" TAB_OVERRIDE=…`;
   - pfQ 20261102-pfQ-59d62bf (Oregon S $1.51/h, 47684641, 58873297): `EP=1 SPLIT=eval ARMS=s0 SEEDS="44 45" TAB_OVERRIDE=…
     PACKED_DRAWS_EP1=runs/20261031-h5e1-1a7cdff/results/h5 OLD_EP1=runs/20261030-e1conf2-d41382e/results/h5/r1/ep1/episode_000001`.
+- 20:24 UTC 2 Nov coordinator's 20:18 message (crossed the launch): skip eval 1; optional 4th arm on eval 14 or 32.
+  **pfQ destroyed in setup** (~2 min, ≈ $0.1; ledger actual). Eval 14 chosen (lower control 0.875, 1/10 fails; rack +
+  blue cup changed): arm p0m (board reference reused + Tier B rack / 13f cup collision, cup decimated 400k → 20k faces,
+  Chamfer 0.9 mm); 13f row of eval 14 = pfC conf draw 1 [M]. PREREG addendum 1 (f06a0c1, before any result).
+- 20:30 UTC **pfR launched**: 20261102-pfR-f06a0c1 (Virginia WS $1.64/h, offer 57962419, instance 58873476):
+  `EP=14 SPLIT=eval ARMS=p0m MESH_OBJS_EP14="blue_cup plastic_dish_rack" TAB_OVERRIDE=…/pf-lift-20261102/packed_refs_12b.json
+  PACKED_DRAWS_EP14=runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s OLD_EP14=…/conf_ep14_s/r1/ep14/episode_000014`
+  (first offer 39434926 gone: no_such_ask).
