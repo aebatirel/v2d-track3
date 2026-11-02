@@ -6770,3 +6770,8 @@ arm and a no-policy replay floor to stage B.
   - Per object, the stronger passing option: pot → X mesh, rack → 12c mesh, pitcher → placement (needs eval depth +
     the GT-free fit; pre-approved ≈ $5). Combinations (placement on a swapped mesh) were not tested.
   `results/cv_posemesh.json`, `results/d1_check.json`.
+- 22:10 UTC **pitcher placement on eval 20 (pre-approved, PREREG_posemesh Part 2 pass):** the packed eval-20 reference
+  (packed_refs: source run 20261025-evb1420-ee7ba8e, refs/glockt/ep20 ref_gl_ilc.parquet) equals T_table @ perc2 pose
+  with the pitcher snapped +1.00 cm, rotations identical [M]. The fit therefore uses the REFERENCE body poses
+  (inv(W) inv(T_table) ref) so Δ is relative to what the robot follows. Missing input: SAM2 video masks for eval 20 →
+  `ops/jobs/eval_vos.sh` (perception with TRACK_VOS=1 and every VOS use off, masks only), one RTX 5090, ≈ $0.5.
