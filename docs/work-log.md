@@ -6465,3 +6465,20 @@ arm and a no-policy replay floor to stage B.
     "pack 12 ready" expected after pfD (~1–1.5 h).
   - Not working: two-hand references (evals 14 / 16 NO-SWAP); GRASP hold filter (public gate FAIL).
   - Spend $22.08 of $102 (credit $100.77 at 00:33 UTC).
+- 01:03 UTC 2 Nov perfect-following: **"pack 12 ready"**: results/submissions/20261102-track3m-candidate/build_12
+  (branch claude/perfect-following-20261101, 5a09dac0) = pack 11 + eval 14 (ck 9da879d9…, run pfC) + eval 32
+  (ck 9a2c2f7c…, run pfD), guard-bridged references (KURSAD), stock limits.
+- 01:10–01:20 UTC verification by this session [M], all pass:
+  - sha 7b0cd7df…; 9,120 rows; code commit ab444c00 on origin; kit hashes match;
+  - byte diff vs pack 11 (3c428350): only e000014 (316) and e000032 (518) pose rows + checkpoint, plus code_commit_url;
+    meshes identical; CD-O equals the staged file;
+  - PREREG (pf-bridge, 96788f0c / 475fdf6b, 20:46 UTC 1 Nov) committed before the verdicts (00:31 / 00:55 UTC 2 Nov).
+    PASS = the full swap rule on B + clause (a) on P; inclusion bar binding on B ≥ +0.02.
+    - Eval 14: P 0.861 vs 0.727; B 0.875 vs 0.706; fails 1 vs 4.
+    - Eval 32: P 0.867 vs 0.852 (+0.015, clause a holds); B 0.890 vs 0.851 (+0.040 ≥ 0.02); fails 0 vs 1 (P) /
+      4 (B). Included per its PREREG.
+  - no_oracle (which refuses non-stock contact limits) passes on both checkpoints, so they are stock 512 / 256;
+  - dry run valid (20 uploads left per board).
+  - Board caveat [E]: new draw 1 vs the old packed draws: eval 14 0.882 vs 0.909 (P); eval 32 0.876 vs 0.866.
+  - **The upload was blocked by this session's permission classifier ("External System Writes").** Not retried; it
+    waits for the owner's word in the morning.
