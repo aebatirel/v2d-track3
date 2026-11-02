@@ -30,6 +30,9 @@ p.add_argument('--t3', default='/content/t3')
 p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
 p.add_argument('--out', default=None)
 p.add_argument('--n_points', type=int, default=1000)
+p.add_argument('--reg_seeds', type=int, default=1, help='(2026-11-02) mean over this many registration seeds '
+               '(seed + 7919 k); 1 = the kit-like single seed (default, unchanged)')
+p.add_argument('--scores_only', action='store_true', help='skip per-frame arrays (multi-seed runs)')
 p.add_argument('--per_frame', help='also save per-frame, per-object position error (cm), plain ADD (cm) and the '
                'symmetric ADD used by the AUC (<src>_adds_cm: cups any spin, lid 180 deg) after the alignment')
 a = p.parse_args()
@@ -116,11 +119,11 @@ gt = np.stack([[gt_xyzw([o for o in tab['observation.objects'].iloc[fr] if o['na
                for fr in frames])
 
 H = [host_geometry(n, s) for s, n in enumerate(names)]
-REG = []
-for s, n in enumerate(names):
-    cand = candidate_mesh(n)
-    ca, R = T3._register_object_body(cand, H[s]['mesh'], H[s]['anchor'], 1_000_003 * a.ep + 101 * s)
-    REG.append((ca, R))
+CANDS = [candidate_mesh(n) for n in names]
+def register(k):
+    return [T3._register_object_body(CANDS[s], H[s]['mesh'], H[s]['anchor'], 1_000_003 * a.ep + 101 * s + 7919 * k)
+            for s, n in enumerate(names)]
+REG = register(0)
 
 
 def score(ach):
@@ -154,6 +157,16 @@ res = {'episode': a.ep, 'objects': names, 'frames': int(len(frames)), 'meshes': 
                         for s, n in enumerate(names)}}
 for k, v in trajs.items():
     res[k] = score(v)
+if a.reg_seeds > 1:                                                   # seed-robust mean (scorer-side only)
+    per = []
+    for kk in range(a.reg_seeds):
+        REG = register(kk)
+        per.append({k: score(v) for k, v in trajs.items()})
+        per[-1]['rot_deg'] = {n: round(float(np.degrees(Rot.from_matrix(REG[s][1]).magnitude())), 2) for s, n in enumerate(names)}
+    for k in trajs:
+        res[k + '_seedmean'] = {m: round(float(np.mean([q[k][m] for q in per])), 4) for m, _ in METRICS}
+        res[k + '_seedmean']['per_obj_AUC'] = {n: round(float(np.mean([q[k]['per_obj_AUC'][n] for q in per])), 4) for n in names}
+    res['seeds'] = per
 print(json.dumps(res, indent=1))
 out = a.out or (a.source.replace('.npz', '_registered.json') if a.source.endswith('.npz')
                 else os.path.join(a.source, f'score_registered_ep{a.ep}.json'))
