@@ -10980,3 +10980,17 @@ score.
   meshes as collision meshes where the shape changed (contact budget first), 2 seeds, swap rule + ≥ +0.02 on 10 fresh
   draws; passing → pack 14 on 13f (claude/focused-pascal-2nz9s1 build_13f, sha fa1e31f5…; contains 13b's eval 15 / 20 rows).
   13b uploaded (AUC 0.84985). Room-map cameras for eval 35 noted (optional, separate arm).
+- 20:15–20:21 UTC 2 Nov pf-mesh prep (CPU) [M]: Tier B vs library_v3 in our frame (pitcher centroid −14 mm z, Chamfer
+  mean 8 / p95 25 mm; rack ~13 mm, 5–7 / 16 mm; sweeper 3 / 8 mm); pitcher decimated 400k → 20k faces (Chamfer 1.4 mm);
+  meshes/tierB_collision/ (GT-selected shapes: flagged); board rows of 13f checked = old draws for 1 (e1conf2 r1),
+  20 (pfJ conf r1), 28 / 30 (pack 6); eval 1's control = h5e1 (5625b86a…; H5p7 had the older f83e6ca0);
+  table docs/research/work/pf-mesh-20261102/packed_refs_13f.json; pf_arms arms pm / sm / s0 + zero-shot contact check
+  (one board-policy draw with the new collision; refuse on any overflow line); PREREG (before any box) 59d62bf.
+- 20:22 UTC 2 Nov **pf-mesh launched** (commit 59d62bf; credit $127.77 at 20:21; ledger planned $6 each):
+  - pfN 20261102-pfN-59d62bf (Spain WS $1.41/h, offer 39434926, instance 58873213): `EP=20 SPLIT=eval ARMS=pm
+    MESH_OBJS_EP20=water_pitcher TAB_OVERRIDE=…/packed_refs_13f.json PACKED_DRAWS_EP20=runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw
+    OLD_EP20=…/conf_ep20_plw/r1/ep20/episode_000020`;
+  - pfO 20261102-pfO-59d62bf (BC WS $1.42/h, 51256904, 58873272): `EP=28 SPLIT=eval ARMS=sm MESH_OBJS_EP28=plastic_dish_rack TAB_OVERRIDE=…`;
+  - pfP 20261102-pfP-59d62bf (Washington Max-Q $1.51/h, 58872822, 58873281): `EP=30 SPLIT=eval ARMS=sm MESH_OBJS_EP30="mini_sweeper plastic_dish_rack" TAB_OVERRIDE=…`;
+  - pfQ 20261102-pfQ-59d62bf (Oregon S $1.51/h, 47684641, 58873297): `EP=1 SPLIT=eval ARMS=s0 SEEDS="44 45" TAB_OVERRIDE=…
+    PACKED_DRAWS_EP1=runs/20261031-h5e1-1a7cdff/results/h5 OLD_EP1=runs/20261030-e1conf2-d41382e/results/h5/r1/ep1/episode_000001`.
