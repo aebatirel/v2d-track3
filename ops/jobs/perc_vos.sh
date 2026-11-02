@@ -27,7 +27,7 @@ for ep in $EPS; do
     rc=$?
     log "ptrk ep$ep $name rc=$rc $(( $(date +%s) - t0 ))s: $(grep -a 'vos summary\|^\[.*\] vo  ' $D/log.txt | tail -2 | cut -c1-220 | tr '\n' ' ')" >> $J
     [ $rc = 0 ] || tail -5 $D/log.txt >> $J
-    rm -f $D/depths_fs0.5.npy
+    rm -f $D/depths_fs*.npy                                   # depth caches never go to the store
   done
   bash $OPS/store.sh push-run > /dev/null 2>&1 || true
 done

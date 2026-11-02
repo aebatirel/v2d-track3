@@ -6563,7 +6563,7 @@ arm and a no-policy replay floor to stage B.
     - if it passes, evals 3 / 14 / 25 / 30 under the swap rule.
 
 ## 2026-11-02 tracking-perception session (branch claude/perception-tracking-20261102, session_01D9UJC9EUCs5sUCbTVZgvcC)
-- ~07:45 UTC start (owner via keen-heisenberg): GT-free tracker improvements on the 20 public episodes; GPU ≤ $30.
+- ~06:55 UTC start (owner via keen-heisenberg): GT-free tracker improvements on the 20 public episodes; GPU ≤ $30.
   Read STATUS, CLAUDE.md, overnight README, Roman notes, physperc README (its scope left alone: f0 tilt priors,
   no-float, twist, pitcher priors). Messages sent to physics-perception and perfect-following.
 - **S2 check [M, code read]:** `ops/jobs/eval_both.sh` → `glock_public.sh` → `pipeline/pipeline_ep.sh` never call
@@ -6583,12 +6583,24 @@ arm and a no-policy replay floor to stage B.
   tracker sets x,y, depth sets z); ObjectForesight (arXiv 2601.05237: bidirectional tracking from an anchor frame,
   re-registration when silhouette IoU, depth residual and jumps agree); EgoGrasp (hand pixels removed before scoring);
   YOTO (arXiv 2606.28899: FoundationPose latches onto the hand under occlusion, 15× error growth).
-- ~08:40 UTC **PREREG ptrk MG (mask-guided tracking)** pushed before any run: `docs/analysis/ptrk-20261102/PREREG.md`.
+- ~07:15 UTC **PREREG ptrk MG (mask-guided tracking)** pushed before any run: `docs/analysis/ptrk-20261102/PREREG.md`.
   Code: `pipeline/vos_guide.py` (new), `pipeline/perc2.py` (TRACK_VOS / VOS_* flags, default off: defaults unchanged),
   `ops/jobs/perc_vos.sh`. **Rental plan:** 2 × RTX 5090 (≈ $0.6–0.8/h), 20 public episodes split 10/10, variants
   C, C2, MG, MD, MR; ≈ 3–4 h each, ≈ $5–7 [E] of the $30 session budget. Run ids `20261102-ptrk{A,B}-<sha>`.
   Only other instance up: 58785113 (perfect-following's pfH), untouched.
-- ~08:50 UTC **launched** (code 7fbc321, ENV_SNAPSHOT pt2.11-cu130-py313-20261020, RTX 5090):
+- ~07:20 UTC **launched** (code 7fbc321, ENV_SNAPSHOT pt2.11-cu130-py313-20261020, RTX 5090):
   58786764 `20261102-ptrkA-7fbc3215` ($0.745/h; EPS 2 12 0 11 13 18 21 22 23 24) and 58786756 `20261102-ptrkB-7fbc3215`
   ($0.722/h; EPS 31 26 27 39 40 41 42 43 44 45); variants C, MG, MD, MR, C2 (`ops/jobs/perc_vos.sh`). First RTX 5090
   use for perception (same sm_120 as the PRO 6000; snapshot risk noted).
+- ~07:35 UTC **CPU diagnostics [D]** (base = store sweep base, mean AUC 0.8769, MPPE 2.395, RPE 2.755: equal to posefix
+  before): t4 0.8650 / 2.571 / 3.749; t8 0.8729 / 2.255 / 2.172 (9a+ meshes). `scripts/pf_split.py` → frames with
+  position error > 3 cm: base 1366, t4 1509, t8 1286. In base they are ep0 lid 373 (lost), ep23 boards 603 (swap),
+  pitcher ep21 / 22 140 / 54 and ep24 board 1 140 (bias), and only ≈ 55 elsewhere. Median symmetric ADD moving vs
+  static frames: e.g. pot 0.3–0.5 vs 0.6–1.0 cm, cups ≈ equal. **[I] No drift-then-snap pattern on public**
+  (perfect-following found none either); public room for a drift fix is small, the public loss is catastrophic losses
+  + bias. MG's public test therefore mostly measures harm and the ep0 / ep23 cases.
+- Replies: physics-perception (harness notes; pitcher is mine as tracker template and rest prior; its lane closed);
+  perfect-following (packed refs in docs/research/work/masses-eval-20261031/packed_refs.json; it never ran refine.py).
+  **S2 verdict sent to perfect-following:** not in any packed reference (12b included); apply `refine.py --steps S2`
+  before mkref only on episodes retrained anyway (+0.004 board [E]).
+- PREREG pitcher template (`PREREG_pitcher.md`) and PREREG full-resolution depth (`PREREG_fs1.md`) pushed before runs.
