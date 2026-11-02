@@ -6360,3 +6360,13 @@ diagnostic; nothing is picked for submission.
   - 13f's blue cup and dust pan carry larger anchor error than the 13e ones (7.0 vs 2.9 mm; 6.0 vs 4.8 mm).
   - Spoon: GT-free amb 3.41 / floor 1.41 mm at 177.5 deg ([H]: moderate flip risk; no scan to test).
   Table sent to keen-heisenberg; it is in `C4-audit/results/audit_table_part1.md`. Library_v3 and candidates are running.
+- 20:03-20:10 UTC (commit times): C4 addendum 1, a less-symmetric board 2.
+  - Pre-registered at 1afc882, before the build. `scripts/board_graft.py` grafts library_v3's board-2 protrusion clusters onto
+    the shipped occupancy plate (GT-free).
+  - v1 = plate + 2 extra balls (both supported by ep24 observed points; a weak check, since plate-face points near the
+    ball bases count). v2 = all clusters. Flaw found after the build: v2 includes a 2335-face sheet of library_v3's thicker
+    +1 face. Built at 7339606; both are in a 50-seed audit (`<scratch>/c4a1`).
+- Spoon, correcting my earlier [H]: the 25 Oct GT-free study (`docs/research/spoon-2026-10-25`, spoon_regflip) found 0/300
+  flips of our spoon against 30 plausible spoons. The spoon's loss is frame-0 anchor roll (pose / tracking), not the
+  mesh. A GT-free spoon criterion was proposed to the coordinator (flip test, held-out fidelity >= 0.3 mm better,
+  amb ratio >= 2.4, eval silhouette not worse); it is not pre-registered yet.
