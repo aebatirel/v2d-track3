@@ -1,0 +1,64 @@
+{
+ "control": "d_Cr",
+ "control2": "none",
+ "variant": "d_P",
+ "n": 2,
+ "missing": [],
+ "mean_dAUC": -0.2485,
+ "noise_mean_C2_minus_C": null,
+ "noise_abs_per_episode_mean": null,
+ "min_dAUC": -0.2614,
+ "better": 0,
+ "worse": 2,
+ "mean_dMPPE": 3.912,
+ "mean_dRPE": 5.6415,
+ "gt3C": 194,
+ "gt3V": 306,
+ "gate": {
+  "mean": false,
+  "min": false,
+  "mppe_rpe": false,
+  "drift": false
+ },
+ "pass": false,
+ "rows": [
+  {
+   "ep": 21,
+   "C": 0.8325,
+   "V": 0.5969,
+   "dAUC": -0.2356,
+   "dC2": null,
+   "dMPPE": 5.086,
+   "dRPE": 7.365,
+   "gt3C": 140,
+   "gt3V": 162,
+   "objC": {
+    "blue_cup": 0.9815,
+    "water_pitcher": 0.6835
+   },
+   "objV": {
+    "blue_cup": 0.9993,
+    "water_pitcher": 0.1946
+   }
+  },
+  {
+   "ep": 22,
+   "C": 0.8707,
+   "V": 0.6093,
+   "dAUC": -0.2614,
+   "dC2": null,
+   "dMPPE": 2.738,
+   "dRPE": 3.918,
+   "gt3C": 54,
+   "gt3V": 144,
+   "objC": {
+    "blue_cup": 0.9924,
+    "water_pitcher": 0.749
+   },
+   "objV": {
+    "blue_cup": 0.9987,
+    "water_pitcher": 0.2199
+   }
+  }
+ ]
+}

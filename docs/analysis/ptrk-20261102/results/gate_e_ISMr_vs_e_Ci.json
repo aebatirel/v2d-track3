@@ -1,0 +1,339 @@
+{
+ "control": "e_Ci",
+ "control2": "none",
+ "variant": "e_ISMr",
+ "n": 17,
+ "missing": [
+  11,
+  12,
+  31
+ ],
+ "mean_dAUC": -0.20374,
+ "noise_mean_C2_minus_C": null,
+ "noise_abs_per_episode_mean": null,
+ "min_dAUC": -0.9584,
+ "better": 4,
+ "worse": 7,
+ "mean_dMPPE": 19.9014,
+ "mean_dRPE": 31.3548,
+ "gt3C": 994,
+ "gt3V": 2147,
+ "gate": {
+  "mean": false,
+  "min": false,
+  "mppe_rpe": false,
+  "drift": false
+ },
+ "pass": false,
+ "rows": [
+  {
+   "ep": 0,
+   "C": 0.9941,
+   "V": 0.9927,
+   "dAUC": -0.0014,
+   "dC2": null,
+   "dMPPE": 0.071,
+   "dRPE": 0.142,
+   "gt3C": 1,
+   "gt3V": 2,
+   "objC": {
+    "white_pot": 0.9925,
+    "white_pot_lid": 0.9956
+   },
+   "objV": {
+    "white_pot": 0.9925,
+    "white_pot_lid": 0.993
+   }
+  },
+  {
+   "ep": 2,
+   "C": 0.9899,
+   "V": 0.9925,
+   "dAUC": 0.0026,
+   "dC2": null,
+   "dMPPE": -0.015,
+   "dRPE": -0.001,
+   "gt3C": 2,
+   "gt3V": 2,
+   "objC": {
+    "white_pot": 0.9934,
+    "white_pot_lid": 0.9863
+   },
+   "objV": {
+    "white_pot": 0.9936,
+    "white_pot_lid": 0.9914
+   }
+  },
+  {
+   "ep": 13,
+   "C": 0.964,
+   "V": 0.0056,
+   "dAUC": -0.9584,
+   "dC2": null,
+   "dMPPE": 59.768,
+   "dRPE": 93.169,
+   "gt3C": 2,
+   "gt3V": 346,
+   "objC": {
+    "blue_cup": 0.9395,
+    "plastic_dish_rack": 0.9885
+   },
+   "objV": {
+    "blue_cup": 0.0112,
+    "plastic_dish_rack": 0.0
+   }
+  },
+  {
+   "ep": 18,
+   "C": 0.9119,
+   "V": 0.9119,
+   "dAUC": 0.0,
+   "dC2": null,
+   "dMPPE": 0.0,
+   "dRPE": 0.0,
+   "gt3C": 41,
+   "gt3V": 41,
+   "objC": {
+    "mini_sweeper": 0.8978,
+    "mini_dust_pan": 0.926
+   },
+   "objV": {
+    "mini_sweeper": 0.8978,
+    "mini_dust_pan": 0.926
+   }
+  },
+  {
+   "ep": 21,
+   "C": 0.8325,
+   "V": 0.0,
+   "dAUC": -0.8325,
+   "dC2": null,
+   "dMPPE": 25.088,
+   "dRPE": 12.443,
+   "gt3C": 140,
+   "gt3V": 287,
+   "objC": {
+    "blue_cup": 0.9815,
+    "water_pitcher": 0.6835
+   },
+   "objV": {
+    "blue_cup": 0.0,
+    "water_pitcher": 0.0
+   }
+  },
+  {
+   "ep": 22,
+   "C": 0.8704,
+   "V": 0.0177,
+   "dAUC": -0.8527,
+   "dC2": null,
+   "dMPPE": 41.592,
+   "dRPE": 45.838,
+   "gt3C": 54,
+   "gt3V": 263,
+   "objC": {
+    "blue_cup": 0.9924,
+    "water_pitcher": 0.7483
+   },
+   "objV": {
+    "blue_cup": 0.0354,
+    "water_pitcher": 0.0
+   }
+  },
+  {
+   "ep": 23,
+   "C": 0.0414,
+   "V": 0.0088,
+   "dAUC": -0.0326,
+   "dC2": null,
+   "dMPPE": 90.268,
+   "dRPE": 187.432,
+   "gt3C": 603,
+   "gt3V": 648,
+   "objC": {
+    "wooden_piece_1": 0.0829,
+    "wooden_piece_2": 0.0
+   },
+   "objV": {
+    "wooden_piece_1": 0.0175,
+    "wooden_piece_2": 0.0
+   }
+  },
+  {
+   "ep": 24,
+   "C": 0.8117,
+   "V": 0.0084,
+   "dAUC": -0.8033,
+   "dC2": null,
+   "dMPPE": 121.787,
+   "dRPE": 193.995,
+   "gt3C": 140,
+   "gt3V": 547,
+   "objC": {
+    "wooden_piece_1": 0.7764,
+    "wooden_piece_2": 0.847
+   },
+   "objV": {
+    "wooden_piece_1": 0.0168,
+    "wooden_piece_2": 0.0
+   }
+  },
+  {
+   "ep": 26,
+   "C": 0.9775,
+   "V": 0.9913,
+   "dAUC": 0.0138,
+   "dC2": null,
+   "dMPPE": -0.175,
+   "dRPE": -0.002,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "plastic_dish_rack": 0.9937,
+    "white_pot": 0.9612
+   },
+   "objV": {
+    "plastic_dish_rack": 0.9988,
+    "white_pot": 0.9838
+   }
+  },
+  {
+   "ep": 27,
+   "C": 0.9893,
+   "V": 0.9905,
+   "dAUC": 0.0012,
+   "dC2": null,
+   "dMPPE": -0.062,
+   "dRPE": 0.016,
+   "gt3C": 1,
+   "gt3V": 1,
+   "objC": {
+    "plastic_dish_rack": 1.0,
+    "white_pot": 0.9787
+   },
+   "objV": {
+    "plastic_dish_rack": 1.0,
+    "white_pot": 0.9809
+   }
+  },
+  {
+   "ep": 39,
+   "C": 0.9755,
+   "V": 0.9755,
+   "dAUC": 0.0,
+   "dC2": null,
+   "dMPPE": 0.0,
+   "dRPE": 0.0,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "mini_dust_pan": 0.9755
+   },
+   "objV": {
+    "mini_dust_pan": 0.9755
+   }
+  },
+  {
+   "ep": 40,
+   "C": 0.9803,
+   "V": 0.9803,
+   "dAUC": 0.0,
+   "dC2": null,
+   "dMPPE": 0.0,
+   "dRPE": 0.0,
+   "gt3C": 10,
+   "gt3V": 10,
+   "objC": {
+    "mini_dust_pan": 0.9803
+   },
+   "objV": {
+    "mini_dust_pan": 0.9803
+   }
+  },
+  {
+   "ep": 41,
+   "C": 0.9902,
+   "V": 0.9893,
+   "dAUC": -0.0009,
+   "dC2": null,
+   "dMPPE": 0.011,
+   "dRPE": 0.0,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "white_pot": 0.9902
+   },
+   "objV": {
+    "white_pot": 0.9893
+   }
+  },
+  {
+   "ep": 42,
+   "C": 0.992,
+   "V": 0.992,
+   "dAUC": 0.0,
+   "dC2": null,
+   "dMPPE": 0.0,
+   "dRPE": 0.0,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "white_pot": 0.992
+   },
+   "objV": {
+    "white_pot": 0.992
+   }
+  },
+  {
+   "ep": 43,
+   "C": 0.9778,
+   "V": 0.9785,
+   "dAUC": 0.0007,
+   "dC2": null,
+   "dMPPE": -0.009,
+   "dRPE": 0.0,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "white_pot": 0.9778
+   },
+   "objV": {
+    "white_pot": 0.9785
+   }
+  },
+  {
+   "ep": 44,
+   "C": 0.9975,
+   "V": 0.9975,
+   "dAUC": 0.0,
+   "dC2": null,
+   "dMPPE": 0.0,
+   "dRPE": 0.0,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "white_pot": 0.9975
+   },
+   "objV": {
+    "white_pot": 0.9975
+   }
+  },
+  {
+   "ep": 45,
+   "C": 0.9759,
+   "V": 0.9759,
+   "dAUC": 0.0,
+   "dC2": null,
+   "dMPPE": 0.0,
+   "dRPE": 0.0,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "white_pot": 0.9759
+   },
+   "objV": {
+    "white_pot": 0.9759
+   }
+  }
+ ]
+}

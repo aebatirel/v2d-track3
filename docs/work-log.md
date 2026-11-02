@@ -6711,3 +6711,10 @@ arm and a no-policy replay floor to stage B.
 - 18:15 UTC room-map (6438495) [M, GT-free]: perc2's camera vs a public-only room map on the 20 eval clips: object
   position gap p95 2–9 mm on 19 / 20 (eval 35: 18 mm). [I] Consistent with Stage 1's failure: the rest-pose errors
   that matter are shape-driven, not camera-driven. Map-camera arm of Stage 1 dropped (coordinator: not needed).
+- 18:30 UTC **detector test (ptrkE, finished early: ≈ $4.6, self-destroyed) [D]:** ISMa (added) mean ΔAUC +0.0010,
+  6 better / 1 worse, min −0.0009, MPPE −0.020, RPE −0.168, > 3 cm 1030 → 1032 → **FAIL** (mean bar, drift clause).
+  ISMr (replace) crashes on ep11 / 12 / 31 (no proposal kept for an object) and loses whole objects on ep13 / 21 / 22 /
+  24 → mean −0.204 over 17 → **FAIL**, harmful. **Pitcher template (ptrkD P vs Cr, ep21 / 22): −0.249**, 10 guard
+  interventions → **FAIL**. Point-track session's own test also failed (its RESULT.md). Session report:
+  `docs/analysis/ptrk-20261102/README.md`; STATUS updated. Credit $28.86 at 18:21 [M]. ptrkD finishes report-only
+  crashed cells (ep0 / ep26) and self-destroys.

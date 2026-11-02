@@ -1,15 +1,26 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-02 ~12:05 UTC: tracking-perception session (branch claude/perception-tracking-20261102): first results
-- **S2 (half-frame advance) is in NO packed eval reference [M, code read]**; handed to perfect-following (apply
-  `refine.py --steps S2` on episodes it retrains anyway; +0.004 board AUC [E]).
-- **Mask-guided tracking (video masks guide the tracker): FAILED** its public gate [D]: ΔAUC −0.0009 (7 better /
-  7 worse, worst −0.069). Restricting depth to the mask hurts (−0.0077). Without that part (re-centre + re-register
-  only) +0.0029, MPPE / RPE better, fewer > 3 cm frames, but report-only: a pre-registered replication runs now.
-- [D] Public tracks show no drift-then-snap; their > 3 cm frames are lost objects (ep0 lid, ep23 boards) and bias.
-- Running: ptrkD (PRO 6000; replication + re-runs of out-of-memory crashes on 32 GB cards + pitcher template) and
-  ptrkC (full-resolution stereo depth, 20 episodes). PREREGs and results in `docs/analysis/ptrk-20261102/`.
-- Spend ≈ $9 of $30 [E]; ≈ $2.1/h running.
+## 2026-11-02 ~18:30 UTC: tracking-perception session: done; nothing passed except a wiring find
+Report: `docs/analysis/ptrk-20261102/README.md` (branch claude/perception-tracking-20261102).
+- **All five pre-registered perception tests FAIL on public [D]:**
+
+  | Test | ΔAUC |
+  |---|---|
+  | Mask-guided tracking | −0.0009 |
+  | Its re-register part (replication; loses ep0 lid) | ep0 −0.38 |
+  | Full-resolution depth | −0.0079 |
+  | Complete-base pitcher template | −0.249 |
+  | SAM-6D-style detector scores, added | +0.0010 (bar +0.005) |
+  | SAM-6D-style detector scores, replacing | harmful |
+  | Stage 1 rest-segment depth fit | −0.0088 |
+
+- **Handed over:** S2 (half-frame advance) is in no packed eval reference. perfect-following adds it on episodes it
+  retrains anyway (+0.004 board [E]).
+- **Wiring find [D]:** ep23 public 0.041 → 0.663 with the existing board identity rule. It is missing from public
+  controls only; eval 25 already has it.
+- **[I] Limit:** perfect rest poses would add +0.032 public AUC, but depth fitting to our meshes cannot reach it. The
+  meshes (pitcher, pot, cups) are the bottleneck, not cameras (2–9 mm) or the tracker.
+- **Spend:** ≈ $25–26 [E] of $40 granted ($30 + $6 + $4). ptrkD is finishing report-only cells and self-destroys.
 
 ## 2026-11-02 ~06:42 UTC: PACK 12b UPLOADED: AUC 0.84405, MP-SR 0.75, RPE 3.023, MPPE 2.495 (best on every board)
 - Pack 12b = pack 11 + evals 14 / 32 (perception track-guard jump bridged) + eval 16 (hand held through release),
