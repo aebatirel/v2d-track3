@@ -10961,3 +10961,13 @@ score.
 - 19:10 UTC 2 Nov **pack 13b ready** (owner waiver): results/submissions/20261102-track3m-candidate/build_13b/
   track3_submission.parquet, sha256 c8b85ba4…, 9,120 rows = pack 13 + eval 15 plw s42 conf draw 1 (checkpoint 395d727f…);
   code 8efca116; all checks pass; vs 12c only evals 15 / 20 differ (736 rows). NOT uploaded; sent to keen-heisenberg.
+- 20:07 UTC 2 Nov keen-heisenberg (owner: "do as much work as you can for tonight"): packs 12e / 13e / 13f (Tier B meshes)
+  uploaded, best AUC 0.87225, rank sum 47 (7th). Task: spoon anchor on evals 32 / 33 / 35 / 36 / 37, plan + cost first;
+  retrains (13f collision meshes for 20 / 28 / 30), eval 1 and S2 after the owner's top-up.
+- 20:15 UTC plan + cost sent (one box ≈ $2, no training; caveat: the same estimator gave +0.001 on public anchors, A-f0).
+- 20:20–20:50 UTC CPU build [M]: tools/anchor_rest.py → docs/research/work/pf-anchor-20261102/refs/ep<N>.parquet (spoon
+  frame-0 change 2.02 / 1.77 / 3.15 / 6.09 / 5.22°; only spoon frames 0..onset+9 changed; no_oracle pass; eval 37's
+  raw → reference mapping weak, residual median 5.3°). Checkpoints store the reference path + frame count only (no hash),
+  so R' is placed at that path. Board rows checked: 35 / 36 / 37 = pack 6 draws, 33 = c33B submission draw, 32 = pfD conf r1.
+  tools/anchor_verdict.py (CPU mock on eval 35: INVALID on the own-reference check as designed), ops/jobs/pf_anchor.sh,
+  PREREG committed 27c43cf4 (before any draw); pack_swap_rows --same-checkpoint (self-test still byte-identical) 66bf9480.
