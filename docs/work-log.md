@@ -6424,3 +6424,9 @@ diagnostic; nothing is picked for submission.
   - Reading: the extra thickness that stops flips costs about 0.05 cm CD-O, so there is no CD-O-neutral flip fix
     among these. Board 2 in pose-relevant packs = library_v3 (13f1). The occupancy plate is only for CD-O-only packs.
 - 20:42 UTC: focused-pascal's d1gate.py (REF_MODE=raw|budget, on decoded packed payloads; branch claude/focused-pascal-2nz9s1, docs/research/work/flipcheck-20261102) reports: 13f1 passes D1 in both modes (eval-25 slots 0/10 flips each); 13f's Tier B slot 1 flips 3/10 (budget) and 2/10 (raw). It will run on every 13g/13h build as an independent second check.
+- ~20:32 UTC: the G2 box (58873650, interruptible) was PREEMPTED ~4 min into generation: the whole 8-GPU machine was
+  rented on-demand. Destroyed 20:33:53 UTC, nothing kept. Cost ~$2.80 [estimate from the instance record: 70.4 GB
+  download at $37.33/TB + ~6 min at $1.398/h]; ledger actual written.
+- 20:35 UTC replacement, on-demand so it cannot be preempted: run `mesh-20261102-g2b-ff63482` (same commit), instance
+  58874418, H200 NVL 141 GB (Hopper sm_90 like the H100; enough memory for TRELLIS.2 at 1536), New Mexico, $4.033/h,
+  ~82 cores. Ledger planned $12. Image pull ~10 min; setup and queue launched 20:47 UTC (`G2/NOTES.md`).

@@ -45,3 +45,6 @@ Spec: `../C4-audit/PREREG.md` section 7 (addendum 2, e573235), sections 2-3. Tim
   H200 NVL 141 GB (Hopper sm_90 like the H100, so the compute_90 wheels apply; the memory also avoids TRELLIS.2's
   1536 OOM), New Mexico, $4.033/h, 85 cores, $2.67/TB. Ledger planned $12. Credit $123.65 at 20:34Z.
   Same launch line with `create 58415958 mesh-20261102-g2b-ff63482 ...` and no bid.
+- 20:47:17Z (box clock) box 58874418 up after a ~10 min image pull: H200 NVL 143.8 GB, cgroup quota ~82 cores.
+  Launched through exec `S/g2/launch_box.sh` (box_setup.sh; sam3d_setup.sh after UV-; the Hunyuan / TRELLIS.2
+  pipeline.json fetch with the Python API after UV-OK (hyfix.log); then `NP=64 box_g2.sh`).
