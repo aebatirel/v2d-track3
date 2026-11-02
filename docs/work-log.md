@@ -6792,3 +6792,15 @@ arm and a no-policy replay floor to stage B.
     (~4 h, maybe a ~$1 CPU box).
   - Noted [M]: the public control has only 2–17 keyframes and AUC 0.94–0.998 on most episodes, so public headroom is
     small; the eval drift is the real question.
+- 16:20 UTC 2 Nov owner: "I am trying to increase the perception, wouldn't this help" (ReLift).
+  - Re-assessed: yes for **tracking losses**, not for rest-phase bias.
+  - The public loss is concentrated in lost tracks:
+    - ep23: the boards freeze from f21 while mocap moves them ≈ 12 cm; control AUC 0.041;
+    - ep18: the sweeper is partly lost;
+    - ep0: the lid.
+  - A model-free point-track check (2D point tracks on the object mask, lifted with our stereo depth, rigid fit per
+    frame) can see motion that FoundationPose misses and re-seed it.
+  - ReLift (MIT code; front ends mostly non-commercial; 24–48 GB GPU) is the repair stage on top of such tracks.
+  - Our research notes already list this as alternative D (05-alternatives.md: TAPIP3D, Apache-2.0, RGB-D input); it
+    was never built. One competitor uses TAPIR (competitors-2026-10-21.md:186).
+  - Proposed public test: ep23 / ep18 / ep0 + spoon episodes; ≈ $3 GPU; PREREG gate. Awaiting the owner's word.
