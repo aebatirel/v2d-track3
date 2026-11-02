@@ -6635,3 +6635,9 @@ arm and a no-policy replay floor to stage B.
 - ~12:05 UTC **launched** 58815489 `20261102-ptrkD-95cecd7` (RTX PRO 6000 Max-Q, $1.362/h, code 95cecd7; tracker code
   = 7fbc321): Cr / MRr on 20 episodes, then P on ep21 / 22, then crashed cells (ep23 all, ep0 MG / MD / MR, ep26
   MG / MR). ≈ 3 h, ≈ $4 [E].
+- 13:58 UTC **MR replication: FAIL already decided [D]** (8 / 20 episodes in; the min clause cannot recover):
+  ep0 MRr 0.614 vs Cr 0.994 (−0.380; the lid is lost: 285 frames > 3 cm vs 1). ep18 reproduces (+0.048, sweeper
+  rescued, RPE −2.56 cm); others within ±0.002. In batch 1 MR's ep0 cell had crashed (out of memory), which hid this.
+  Verdict: the re-centre / re-register rule can throw a correctly tracked object onto a wrong mask region; **closed,
+  not handed over.** Box D keeps running (rule: never cut a job still making progress); its remaining output (rest of
+  the replication, pitcher template, crashed cells) is report-only. ptrkC is on FS1 ep42 (last episodes).
