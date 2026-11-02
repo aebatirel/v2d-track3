@@ -1,5 +1,23 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~17:05 UTC: perception tests first; retrains wait for the owner's top-up
+- Owner: "first do the tests and let me add more money once we increase the perception."
+- Public perception tests (GT used only for scoring):
+  - **room map** (session_01D9UJC6AegGiAjYM6ukSfHj, branch claude/room-map-20261102, $0 CPU): drift-free camera
+    relocalisation against a public-only map. It first measures perc2's camera drift on the 20 eval clips (GT-free).
+    The map is rebuilt (370 images, 1.11 px).
+  - **rest-segment pose fit** (perception-tracking, ≤ $4): Stage 1 of DESIGN_offline_joint (oracle +0.032 public
+    AUC).
+  - **point tracks** (session_01D9UJC72kCbx1mWTB2pwupw, branch claude/point-track-20261102, ≤ $4): catch and repair
+    lost tracks (ep23 control AUC 0.041, ep18, ep0).
+  - SAM-6D-style detector (ptrkE, ≤ $6): no gain so far.
+- Lift-window eval retrains:
+  - no swap on evals 3, 14 (fresh draws 0.826 vs 0.875), 25 and 32;
+  - evals 20 / 30 have a second seed running;
+  - eval 15 (0.953 vs 0.906 on the box) awaits fresh draws, and is the only pack-13 candidate.
+  - No new retrain boxes until the top-up.
+- Credit $33.41 at 17:00 UTC.
+
 ## 2026-11-02 ~08:43 UTC: PACK 12c UPLOADED: AUC 0.84738, CD-O 0.300, RPE 3.008, MPPE 2.467 (best on every board)
 - Pack 12c = pack 12b + the C0 blue-cup mesh (owner-accepted GT-informed public selection). Record
   results/submissions/20261102-track3n-candidate/build_12c/UPLOAD.md.
