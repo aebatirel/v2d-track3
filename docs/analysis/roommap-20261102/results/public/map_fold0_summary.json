@@ -1,0 +1,14 @@
+{
+ "name": "fold0",
+ "excluded": [
+  "p0",
+  "p18",
+  "p26",
+  "p41"
+ ],
+ "images_in": 288,
+ "registered": 288,
+ "points": 15174,
+ "mean_reproj_px": 1.0926665076877478,
+ "models": 1
+}

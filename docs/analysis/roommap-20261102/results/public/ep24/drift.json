@@ -1,0 +1,35 @@
+{
+ "frames": 275,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "reloc_ok": 1.0,
+ "gate_rejected": 0.0,
+ "inliers_min": 442,
+ "inliers_median": 573.0,
+ "camera": {
+  "pos_mm_max": 36.93514175511171,
+  "pos_mm_final": 36.458588010712354,
+  "rot_deg_max": 1.6631031259892803,
+  "rot_deg_final": 1.4145336992656512
+ },
+ "objects_mm": {
+  "wooden_piece_1": {
+   "median": 27.463346370087574,
+   "p95": 32.6189896345343,
+   "max": 34.12356517712415,
+   "final": 33.452103555070025
+  },
+  "wooden_piece_2": {
+   "median": 26.68150372620012,
+   "p95": 32.62469667070058,
+   "max": 34.12175056094148,
+   "final": 33.44383036498328
+  }
+ },
+ "max_obj_p95_mm": 32.62469667070058,
+ "camera_term_auc": 0.8245454545454546,
+ "camera_term_bound": 0.17545454545454542,
+ "camera_term_mppe_cm": 2.4177649263163006
+}

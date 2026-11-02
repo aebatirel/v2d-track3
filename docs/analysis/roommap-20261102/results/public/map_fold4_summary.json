@@ -1,0 +1,14 @@
+{
+ "name": "fold4",
+ "excluded": [
+  "p13",
+  "p24",
+  "p40",
+  "p45"
+ ],
+ "images_in": 298,
+ "registered": 298,
+ "points": 15569,
+ "mean_reproj_px": 1.1053194641659347,
+ "models": 1
+}

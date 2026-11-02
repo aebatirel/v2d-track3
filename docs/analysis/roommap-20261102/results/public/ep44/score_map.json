@@ -1,0 +1,30 @@
+{
+ "episode": 44,
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 249,
+ "meshes": "/home/user/m9a",
+ "registration": {
+  "white_pot": {
+   "rot_deg": 1.12,
+   "anchor_shift_cm": 0.21,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.9977,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.3646,
+  "RPE_cm": 0.0,
+  "per_obj_AUC": {
+   "white_pot": 0.9977
+  }
+ }
+}

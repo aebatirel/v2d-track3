@@ -6782,3 +6782,15 @@ arm and a no-policy replay floor to stage B.
   - [H] mechanism of the ep35 gap: perc2's PnP uses only points with depth ≤ 2 m (table, hands, moving objects);
     the map uses the static room. The public mocap test arbitrates.
   - Public leave-out (b) started: `ops/jobs/roommap_public.sh /home/user/rm 4` (5 fold maps, then relocalisation).
+- 17:50–20:10 UTC 2 Nov room-map: public leave-out (b) done.
+  - 5 fold maps (fold k = PUBLIC[k::5] excluded; 288–304 images, 1.09–1.11 px; 20–45 min each, 4 threads) and
+    per-frame relocalisation of 19 public episodes (ep23 has no control) [M]: G0 pass (min 442 inliers, ≤ 0.7 % gated).
+  - Control C (ptrkA/B 7fbc321) recomposed with map cameras, score_registered + 9a+ meshes [M]: mean ΔAUC +0.0070,
+    ΔMPPE −0.081, ΔRPE 0.000; 6 better / 10 worse; ep24 +0.1477 (perc2 camera 37 mm / 1.66 deg off; bound 0.176);
+    ep22 −0.0164 → **G2 fails** (clause 1). Without ep24: 18 eps −0.0008.
+  - Reading: the map is right where perc2 drifts (84 % of the GT-free bound realised on ep24); elsewhere a camera swap
+    is noise. [H] perc2's near-field PnP shares errors with the object poses, so small errors cancel.
+  - Step 2 does not proceed under the PREREG. A selective rule (bound ≥ 0.02 → map camera) is suggested for a new
+    PREREG; on eval it picks ep35 only (≈ +0.002 board [E]).
+  - HF: runs/20261102-roommap-6438495/{maps/run3, reloc/eval_run3, reloc/public_lo}. Report
+    docs/analysis/roommap-20261102/README.md.
