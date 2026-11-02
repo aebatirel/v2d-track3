@@ -107,3 +107,21 @@ of their method [I].
   every pose.
 - **Time and cost.** Every reference it changes needs a retrain to reach the board. Its board value is roughly 0.74 ×
   its public reference gain [E, measured transfer for the half-frame advance].
+
+## Related references (owner, via keen-heisenberg, 2 Nov 14:25 UTC) [L, not checked in code]
+- **SAM-6D** (Lin et al., CVPR 2024, github.com/JiehongLin/SAM-6D).
+  - What it is: zero-shot 6-D pose from one RGB-D image. Its instance-segmentation stage scores SAM proposals by
+    semantic, appearance and geometric match to rendered templates of the model.
+  - Where it fits: as a replacement or back-up for our frame-0 and guard re-detection. That is where today's two
+    catastrophic public failures sit:
+    - ep0: the lid's frame-0 mask, which also broke the re-centre / re-register replication;
+    - ep23: the board identity swap.
+
+    A better re-detector also serves this design's initialisation.
+  - Its pose stage is reported weaker than FoundationPose on unseen BOP objects, so keep FoundationPose for pose.
+  - Possible test [H]: replay detection on the stored det_f0 dumps (tools/det_replay.py, CPU) first. Falsifier: ep0
+    lid and ep23 boards not fixed.
+- **PRISM** (Amazon FAR / Berkeley / Stanford / CMU, CoRL 2026, github.com/amazon-far/PRISM).
+  - It targets generalisation of humanoid loco-manipulation, not per-episode precision.
+  - Relevant here only if its "physically feasible hand–object contact" correction is documented in code. It would
+    then inform Stage 2's contact term.
