@@ -6570,3 +6570,8 @@ arm and a no-policy replay floor to stage B.
     - First check: whether the S2 half-frame advance is applied in the eval references.
   - Perfect-following: lift-window plan approved; its cap from now on is $50 more (credit $91.35; ≥ $10 reserve).
   - The physics-perception session was told to share its harness and pitcher finding with the new session.
+- 08:10 UTC 2 Nov **owner: "For blue cup I give you mey yes"**. This approves the CD-O variant with bold-albattani's
+  C0 blue-cup mesh; the owner accepts the GT-informed public selector (written after scoring).
+  - Asked focused-pascal to build pack 12c = pack 12b + the C0 blue-cup mesh payloads (rollouts untouched;
+    tools/pack_swap_meshes.py; frame report; README disclosure). bold-albattani asked for the exact file / transform /
+    sign-off. Expected CD-O ≈ 0.332 → 0.300 [E].
