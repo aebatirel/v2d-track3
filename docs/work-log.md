@@ -7065,3 +7065,15 @@ arm and a no-policy replay floor to stage B.
     $100–200: 6th ≈ 30 %, 5th ≈ 10 %, top 3 < 5 % [E].
   - Recommended $100 now, with a larger ask only on a passing tracking test.
   - Stated limits: no leaderboard tuning, no tuning to the scorer's seed, no rollout edits, no scan copies.
+- ~20:12 UTC 2 Nov **owner topped up: credit $127.97** [M]. Owner: "you can upload as much as you want, go crazy,
+  lets win this".
+  - Budgets released (all stop if credit < $15):
+    - perfect-following ≤ $45: retrains of evals 20 / 28 / 30 / 1 (+ others with failed draws), S2, 13f collision
+      meshes → pack 14;
+    - perception-tracking ≤ $12 for public tests A / B, with eval application pre-approved on a gate pass
+      (A ≈ $5; B ≈ $5–8 plus a retrain plan first);
+    - bold-albattani ≤ $25: new mesh candidates for rack / pitcher / pot / blue cup / board 2 under C4's frozen rule
+      → packs 13g / 13h;
+    - focused-pascal builds the mesh packs on 13f.
+  - Integrity line unchanged: uploads only of pre-registered, positively justified packs; no coin-flip variants to
+    harvest the best-per-board max.

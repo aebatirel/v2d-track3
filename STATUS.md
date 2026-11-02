@@ -1,5 +1,14 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~20:15 UTC: owner top-up ($127.97); full push tonight
+- Best uploaded: 13f (AUC 0.87225, RPE 2.3826, CD-O 0.26249), 13e (MPPE 1.9218); SP-SR 0.90, MP-SR 0.80.
+  Rank sum 47, 7th.
+- Lanes (all pre-registered, stop below $15):
+  - retrains 20 / 28 / 30 / 1 with better collision meshes (perfect-following, ≤ $45) → pack 14;
+  - mesh placement from depth and tracking with 13f templates (perception-tracking, ≤ $12, eval application on a pass);
+  - new mesh candidates and the C4 audit (bold-albattani, ≤ $25) → packs 13g / 13h via focused-pascal.
+- Declined (expected value ≈ 0 or eval probing): spoon-anchor re-evaluation, room-map camera guard.
+
 ## 2026-11-02 ~19:25 UTC: PACK 12e UPLOADED (Tier B meshes): BEST ON EVERY BOARD; rank sum 47, 7th
 - AUC **0.86905**, SP-SR **0.90**, MP-SR **0.80**, RPE **2.39138**, MPPE **1.95269**, CD-O **0.26775**.
 - 12e = 12d + Tier B meshes (GT-informed selection by public-scan score, owner yes 19:00, disclosed in
