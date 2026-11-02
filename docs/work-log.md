@@ -7153,3 +7153,9 @@ arm and a no-policy replay floor to stage B.
     behaviour). Not used for selection; D1 stays as a veto.
   - focused-pascal's D1 gate [D]: library_v3 piece_2 0 / 10 flips; Tier B piece_1 0 / 10 (kept); 13f's plate 2 / 10,
     eval seed included.
+- ~20:45 UTC 2 Nov perfect-following correction: the zero-shot step on pfO / pfP failed with "no support asset" (the
+  job copied the board reference parquet without its reconstructed_stage folder; not an overflow). pfN would have
+  failed too.
+  - Fixed in b0b4a31. pfN / pfO / pfP destroyed (≈ $1.5 lost) and relaunched: pfN2 58875108 (eval 20), pfO2 58875116
+    (eval 28), pfP2 58875136 (eval 30).
+  - pfR (eval 14) is unaffected. Results ≈ 01:00–02:00 UTC.
