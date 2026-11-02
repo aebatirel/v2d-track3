@@ -6771,3 +6771,14 @@ arm and a no-policy replay floor to stage B.
   - [M] perc2 control on public uses 2–17 keyframes per episode; evperc eval ep5: 5 keyframes / 288 frames.
   - Map run3: 370 public b/c images (every 30th frame, 20 episodes), 8,489 pairs, matching 4.3 min; SfM running
     (init needed relaxed constraints: 74 % of pairs PLANAR_OR_PANORAMIC, as note 18 A2).
+- 16:45–17:45 UTC 2 Nov room-map:
+  - Map run3 done [M]: 370/370 images, 18.6k points, 1.11 px, 22 min (4 threads); bank 625k descriptors.
+  - Relocaliser: brute-force kNN single-threaded was ~5 s/frame; FLANN (4 trees, 48 checks) 1.7 s/frame with the same
+    poses to ≤ 0.15 mm / 0.003 deg (ep10, 8 frames) [M]. Adopted (a67523c).
+  - Eval (a) [M]: `ops/jobs/roommap_reloc.sh /home/user/rm run3 eval ... 4 <20 eps>` (container, 4 workers, ~55 min) +
+    `pipeline/roommap_compose.py` on runs/20261025-evperc-4f596df poses. G0 pass on all 20. Object gap p95 2–9 mm on
+    19/20, ep35 17.9 mm (bound 0.056; steps at keyframe hops, 12 mm by frame 30). Mean bound 0.0029 → G1 FAIL.
+    Results: docs/analysis/roommap-20261102/results/ (commit 6438495). Sent to coordinator and perception-tracking.
+  - [H] mechanism of the ep35 gap: perc2's PnP uses only points with depth ≤ 2 m (table, hands, moving objects);
+    the map uses the static room. The public mocap test arbitrates.
+  - Public leave-out (b) started: `ops/jobs/roommap_public.sh /home/user/rm 4` (5 fold maps, then relocalisation).
