@@ -6984,3 +6984,7 @@ arm and a no-policy replay floor to stage B.
   - Asked bold-albattani for a full mesh audit of 13e (every eval slot): public-scan CD-O; registration flip rate over
     ≥ 50 random seeds (never the scorer's exact seed as a criterion); candidates. Then a pre-registered adoption rule
     before building → pack 13g on top of 13f. Spoon first (10 / 20 episodes).
+- ~19:45 UTC 2 Nov **pack 13f UPLOADED** (57919615–57919621). Verified: vs 13e only 7 mesh rows.
+  - Scores: AUC **0.87225**, RPE **2.38260**, CD-O **0.26249** (best); MPPE 1.92530 (13e 1.92180 stays best);
+    SP-SR 0.90; MP-SR 0.80.
+  - Ranks unchanged (47, 7th). Next: the mesh audit, then 13g.
