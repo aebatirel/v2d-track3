@@ -12,7 +12,7 @@ keen-heisenberg; the owner decides the upload.
 | 15 | 0.906 | 0.947 (two-hand) — fails the median-RPE clause: not packed | two-hand reference |
 | 16 | 0.850 | two-hand 0.71 / 0.70 (worse); hold-to-end test running | — |
 Symmetric (board-style) sim_vs_ref differs from plain by ≤ 0.01 everywhere. Mean over 20 evals, packed → pack 12
-[E, using the confirmation means for 14 / 32 and H5p7 for the rest, eval 10 = pack 11's 0.903]: 0.921 → 0.929.
+[E, confirmation means for 14 / 32 vs P, H5p7 for the rest, eval 10 = pack 11's 0.903]: 0.921 → 0.928.
 - Board caveat [E]: the board scores the stored rollouts; pack 11's eval-14 row was a lucky good draw, so the stored gain
   is uncertain; the expected gain on re-runs is clear.
 - Spend ≈ $22 of the $102 cap (credit $100.77 at 00:33 UTC).
