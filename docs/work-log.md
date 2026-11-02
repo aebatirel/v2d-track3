@@ -6133,3 +6133,8 @@ Advice given:
   D1 no-flip gate. That is exactly 13f1 (already built). D1 [D] (eval seed + 9 seeds, scripts/d1gate.py): 13f1 slot 1
   (library_v3) 0/10 flips, 0.7° / 3.9 mm at the eval seed; slot 0 (Tier B piece 1) 0/10, 0.7° / 4.1 mm, so it is not
   swapped; 13f slot 1 2/10 including the eval seed (179.2°). README and flipcheck README updated; record sent.
+- ~20:42 UTC bold-albattani reconciled the flip: their sign-off check registered against a budgeted scan (1.05°); with the
+  raw scan they get 179.18° (same as mine). They pre-registered D1 as a veto for 13g / 13h (C4 PREREG §9, f21e456): 0
+  flips at each pair's kit seed + extras to ≥ 6 seeds, in both reference modes, plus 50-seed W30 ≤ 0.10. My flip-check
+  scripts now take REF_MODE=raw|budget. **13f1 passes D1 in both modes** (0/10 each slot); 13f slot 1 flips 3/10 in budget
+  mode (not at the eval seed) and 2/10 raw (at the eval seed). Both checks will run on every 13g / 13h build.

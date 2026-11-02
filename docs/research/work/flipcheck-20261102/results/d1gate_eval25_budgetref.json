@@ -1,0 +1,282 @@
+[
+ {
+  "pack": "13f1",
+  "ref_mode": "budget",
+  "slot": 0,
+  "name": "wooden_piece_1",
+  "seeds": {
+   "eval25": {
+    "seed": 25000075,
+    "rot": 0.54,
+    "tilt": 0.27,
+    "anchor_mm": 3.28
+   },
+   "ep21": {
+    "seed": 21000063,
+    "rot": 1.78,
+    "tilt": 1.74,
+    "anchor_mm": 5.16
+   },
+   "ep22": {
+    "seed": 22000066,
+    "rot": 1.74,
+    "tilt": 1.66,
+    "anchor_mm": 4.87
+   },
+   "ep23": {
+    "seed": 23000069,
+    "rot": 1.05,
+    "tilt": 0.93,
+    "anchor_mm": 5.08
+   },
+   "ep24": {
+    "seed": 24000072,
+    "rot": 0.61,
+    "tilt": 0.29,
+    "anchor_mm": 4.1
+   },
+   "ep26": {
+    "seed": 26000078,
+    "rot": 0.62,
+    "tilt": 0.23,
+    "anchor_mm": 4.68
+   },
+   "ep27": {
+    "seed": 27000081,
+    "rot": 0.46,
+    "tilt": 0.17,
+    "anchor_mm": 4.05
+   },
+   "s0": {
+    "seed": 0,
+    "rot": 0.7,
+    "tilt": 0.53,
+    "anchor_mm": 4.54
+   },
+   "s1": {
+    "seed": 1,
+    "rot": 0.51,
+    "tilt": 0.19,
+    "anchor_mm": 4.73
+   },
+   "s2": {
+    "seed": 2,
+    "rot": 0.95,
+    "tilt": 0.81,
+    "anchor_mm": 2.5
+   }
+  },
+  "flips": "0/10",
+  "eval_seed_flip": false
+ },
+ {
+  "pack": "13f",
+  "ref_mode": "budget",
+  "slot": 0,
+  "name": "wooden_piece_1",
+  "seeds": {
+   "eval25": {
+    "seed": 25000075,
+    "rot": 0.54,
+    "tilt": 0.27,
+    "anchor_mm": 3.28
+   },
+   "ep21": {
+    "seed": 21000063,
+    "rot": 1.78,
+    "tilt": 1.74,
+    "anchor_mm": 5.16
+   },
+   "ep22": {
+    "seed": 22000066,
+    "rot": 1.74,
+    "tilt": 1.66,
+    "anchor_mm": 4.87
+   },
+   "ep23": {
+    "seed": 23000069,
+    "rot": 1.05,
+    "tilt": 0.93,
+    "anchor_mm": 5.08
+   },
+   "ep24": {
+    "seed": 24000072,
+    "rot": 0.61,
+    "tilt": 0.29,
+    "anchor_mm": 4.1
+   },
+   "ep26": {
+    "seed": 26000078,
+    "rot": 0.62,
+    "tilt": 0.23,
+    "anchor_mm": 4.68
+   },
+   "ep27": {
+    "seed": 27000081,
+    "rot": 0.46,
+    "tilt": 0.17,
+    "anchor_mm": 4.05
+   },
+   "s0": {
+    "seed": 0,
+    "rot": 0.7,
+    "tilt": 0.53,
+    "anchor_mm": 4.54
+   },
+   "s1": {
+    "seed": 1,
+    "rot": 0.51,
+    "tilt": 0.19,
+    "anchor_mm": 4.73
+   },
+   "s2": {
+    "seed": 2,
+    "rot": 0.95,
+    "tilt": 0.81,
+    "anchor_mm": 2.5
+   }
+  },
+  "flips": "0/10",
+  "eval_seed_flip": false
+ },
+ {
+  "pack": "13f1",
+  "ref_mode": "budget",
+  "slot": 1,
+  "name": "wooden_piece_2",
+  "seeds": {
+   "eval25": {
+    "seed": 25000176,
+    "rot": 0.73,
+    "tilt": 0.64,
+    "anchor_mm": 3.44
+   },
+   "ep21": {
+    "seed": 21000164,
+    "rot": 0.5,
+    "tilt": 0.31,
+    "anchor_mm": 2.73
+   },
+   "ep22": {
+    "seed": 22000167,
+    "rot": 1.04,
+    "tilt": 0.89,
+    "anchor_mm": 2.34
+   },
+   "ep23": {
+    "seed": 23000170,
+    "rot": 0.99,
+    "tilt": 0.92,
+    "anchor_mm": 3.04
+   },
+   "ep24": {
+    "seed": 24000173,
+    "rot": 0.72,
+    "tilt": 0.47,
+    "anchor_mm": 2.85
+   },
+   "ep26": {
+    "seed": 26000179,
+    "rot": 0.57,
+    "tilt": 0.24,
+    "anchor_mm": 3.92
+   },
+   "ep27": {
+    "seed": 27000182,
+    "rot": 0.51,
+    "tilt": 0.23,
+    "anchor_mm": 3.05
+   },
+   "s0": {
+    "seed": 0,
+    "rot": 0.87,
+    "tilt": 0.81,
+    "anchor_mm": 3.41
+   },
+   "s1": {
+    "seed": 1,
+    "rot": 0.68,
+    "tilt": 0.41,
+    "anchor_mm": 3.57
+   },
+   "s2": {
+    "seed": 2,
+    "rot": 0.64,
+    "tilt": 0.29,
+    "anchor_mm": 1.97
+   }
+  },
+  "flips": "0/10",
+  "eval_seed_flip": false
+ },
+ {
+  "pack": "13f",
+  "ref_mode": "budget",
+  "slot": 1,
+  "name": "wooden_piece_2",
+  "seeds": {
+   "eval25": {
+    "seed": 25000176,
+    "rot": 1.05,
+    "tilt": 0.8,
+    "anchor_mm": 3.97
+   },
+   "ep21": {
+    "seed": 21000164,
+    "rot": 1.06,
+    "tilt": 0.83,
+    "anchor_mm": 3.49
+   },
+   "ep22": {
+    "seed": 22000167,
+    "rot": 178.35,
+    "tilt": 178.23,
+    "anchor_mm": 3.78
+   },
+   "ep23": {
+    "seed": 23000170,
+    "rot": 178.42,
+    "tilt": 178.29,
+    "anchor_mm": 3.4
+   },
+   "ep24": {
+    "seed": 24000173,
+    "rot": 179.41,
+    "tilt": 179.13,
+    "anchor_mm": 2.14
+   },
+   "ep26": {
+    "seed": 26000179,
+    "rot": 1.32,
+    "tilt": 1.14,
+    "anchor_mm": 3.18
+   },
+   "ep27": {
+    "seed": 27000182,
+    "rot": 1.24,
+    "tilt": 1.04,
+    "anchor_mm": 3.72
+   },
+   "s0": {
+    "seed": 0,
+    "rot": 1.05,
+    "tilt": 0.79,
+    "anchor_mm": 3.65
+   },
+   "s1": {
+    "seed": 1,
+    "rot": 1.4,
+    "tilt": 1.23,
+    "anchor_mm": 4.87
+   },
+   "s2": {
+    "seed": 2,
+    "rot": 1.01,
+    "tilt": 0.78,
+    "anchor_mm": 2.67
+   }
+  },
+  "flips": "3/10",
+  "eval_seed_flip": false
+ }
+]

@@ -6,12 +6,17 @@ Usage: d1gate.py KIT SCANROOT LABEL=PACK ..."""
 import sys, os, json, numpy as np, pandas as pd, trimesh
 sys.path.insert(0, sys.argv[1])
 from v2dlb import track3_pose as tp
+from v2dlb.mesh_budget import budget_mesh
+REF_MODE = os.environ.get("REF_MODE", "raw")   # raw scan or budget_mesh(scan, 4096, 4096): the hidden reference's processing is unknown
 kit, scanroot = sys.argv[1], sys.argv[2]
 packs = dict(a.split('=', 1) for a in sys.argv[3:])
 def ang(R): return float(np.degrees(np.arccos(np.clip((np.trace(R) - 1) / 2, -1, 1))))
 def tilt(R): return float(np.degrees(np.arccos(np.clip(R[2, 2], -1, 1))))
 def scan(name):
-    m = trimesh.load(f'{scanroot}/{name}/{name}_visual.glb', force='mesh', process=False)
+    f = f'{scanroot}/{name}/{name}_visual.glb'
+    if REF_MODE == 'budget':
+        v, fc = budget_mesh(f, 4096, 4096); return np.asarray(v, float), tp._mesh_faces(np.asarray(fc, float), len(v))
+    m = trimesh.load(f, force='mesh', process=False)
     return np.asarray(m.vertices, float), np.asarray(m.faces, np.int64)
 res = []
 for slot, name in ((0, 'wooden_piece_1'), (1, 'wooden_piece_2')):
@@ -21,7 +26,7 @@ for slot, name in ((0, 'wooden_piece_1'), (1, 'wooden_piece_2')):
     for label, p in packs.items():
         d = pd.read_parquet(p, columns=['row_id', 'object_mesh_b64']).set_index('row_id')['object_mesh_b64']
         cand = tp._decode_object_mesh(d[f'track_3/e000025/w000/f000000/o{slot}'])
-        row = dict(pack=label, slot=slot, name=name, seeds={})
+        row = dict(pack=label, ref_mode=REF_MODE, slot=slot, name=name, seeds={})
         for sl, sd in seeds:
             ca, R = tp._register_object_body(cand, ref, rc, sd)
             row['seeds'][sl] = dict(seed=sd, rot=round(ang(R), 2), tilt=round(tilt(R), 2), anchor_mm=round(float(np.linalg.norm(ca - rc)) * unit, 2))
@@ -29,5 +34,5 @@ for slot, name in ((0, 'wooden_piece_1'), (1, 'wooden_piece_2')):
         row['flips'] = f'{flips}/{len(seeds)}'
         row['eval_seed_flip'] = row['seeds']['eval25']['rot'] > 90
         res.append(row)
-        print(f"{label:5s} o{slot} {name:15s} flips {row['flips']:5s} | " + ' | '.join(f"{k} {v['rot']:.1f}°/{v['anchor_mm']:.1f}mm" for k, v in row['seeds'].items()), flush=True)
+        print(f"{REF_MODE:6s} {label:5s} o{slot} {name:15s} flips {row['flips']:5s} | " + ' | '.join(f"{k} {v['rot']:.1f}°/{v['anchor_mm']:.1f}mm" for k, v in row['seeds'].items()), flush=True)
 json.dump(res, open(os.environ.get('OUT', '/dev/null'), 'w'), indent=1)

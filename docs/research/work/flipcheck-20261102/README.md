@@ -49,3 +49,19 @@ the kit seeds of eps 21, 22, 23, 24, 26 and 27 at the same slot, plus seeds 0, 1
   anchor error is about 3 mm larger than library_v3's, a small pose cost [D].
 - 13f's slot 1 fails D1.
 - The C4 audit's 50-seed flip rates (34% for piece 2, 6% for piece 1) come from the coordinator's message; not re-measured here.
+
+## Both reference modes (bold-albattani's reconciliation, 20:34 UTC)
+Their sign-off check had put the public scan through budget_mesh(4096) before registering, and found 1.05° at the eval
+seed. With the raw scan they get 179.18°, the same as here. The hidden reference's processing is unknown, so both modes
+are now checked. The scripts take `REF_MODE=raw|budget`; raw is the default. In budget mode the scan goes through the
+kit's budget_mesh(scan, 4096, 4096) before registering. The candidate is always the decoded packed payload.
+- D1 with the budgeted reference (`results/d1gate_eval25_budgetref.json`):
+  - **13f1 passes both slots: 0/10 flips each.** Slot 1 at the eval seed 0.7° / 3.4 mm; slot 0 at the eval seed
+    0.5° / 3.3 mm.
+  - 13f slot 1: 3/10 flips (ep22, ep23 and ep24 seeds, about 178–179°), but not at the eval seed (1.1°).
+- So 13f's plate flips at the eval seed only against the raw scan. Either way it fails the ≥ 6-seed D1 rule; 13f1 passes
+  in both modes.
+- All pairs of 13f1 against budgeted scans (`results/flipall_13f1_budgetref.json`): no flips. The blue-cup rotations
+  (95–166°) have tilt ≤ 4°, i.e. axial spin; everything else ≤ 5°.
+- The scripts run standalone: `REF_MODE=raw|budget OUT=x.json python -I scripts/d1gate.py KIT SCANROOT LABEL=PACK ...`, and
+  the same for flipall.py. They need the kit's v2dlb (budget_mesh needs fast_simplification 0.2.0, as at packing).
