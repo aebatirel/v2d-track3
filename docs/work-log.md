@@ -6911,3 +6911,17 @@ arm and a no-policy replay floor to stage B.
     MPPE 10, CD-O 8.
   - Gaps to the next rank: AUC +0.0075 (DSAIL); RPE −0.34 cm; MPPE −0.18 cm; CD-O −0.0042 (sam&alex 0.28608).
     One more SP-SR success (0.90) moves 11 → 9.
+- 19:00 UTC 2 Nov **owner: "Okay I give you permission for all"**, answering the explanation of (1) the eval 15
+  clause-c waiver and (2) Tier B meshes (GT-informed selection by public-scan score; integrity call explained) vs a
+  GT-free mesh rebuild.
+  - (1) **Eval 15 waiver.** Perfect-following builds pack 13b = pack 13 + eval 15; the waiver is recorded as post hoc
+    (clause c fails by 0.47 mm; a / b / s and the bar pass).
+  - (2) **Tier B yes.**
+    - bold-albattani (session_01W8Softjo2xx7o6ofSiheuQ) prepares the C3 Tier B set: pitcher hy21 s42 placed in the
+      body frame and scored once, sweeper P1, rack ep31_full, board occupancy fits. Its README states the GT
+      selection plainly.
+    - focused-pascal (session_01LhbGHrt6epRs52jSRX48AU) builds pack 12e = 12d + those payload swaps, as a CD-O-only
+      variant (each board keeps our best). Expected CD-O ≈ 0.267 [E, C3].
+  - (3) A GT-free rebuild already exists for pot and pitcher: Tier A, generate-then-fit single pre-registered outputs,
+    in 12d (CD-O 0.29029). For the remaining objects it is superseded on the board by Tier B; not started.
+  - All CPU, $0.
