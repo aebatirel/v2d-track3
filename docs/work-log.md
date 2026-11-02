@@ -6839,3 +6839,13 @@ arm and a no-policy replay floor to stage B.
   swapped 3.2 / 5.0 cm. A plain name swap scores 0.036 (orientation carries the mesh's slot side), so the fix is
   re-registration, not relabelling. Sent to perception-tracking (detection is their lane). Eval 25 has the same boards.
   [I] A point-track second opinion cannot fix an identity swap; ep23 drops out of this test's expected gains.
+- ~18:05 UTC ptrack development (GT-free, ep0 / ep18 / ep23):
+  - [M] perc2's frame-0 detection mask for the ep0 lid lies on the pot handle (FoundationPose still tracks the lid
+    correctly), so masks from det_f0 send the pot's points onto the lid. Seeds now come from the library_v3 template
+    rendered at FoundationPose's frame-0 pose, visible surface agreeing with our depth. After that, the point tracks
+    agree with FoundationPose on ep0 (pot and lid, whole clip) and ep18's dust pan (incl. held edge-on).
+  - Added restarts from FoundationPose's pose after 10 lost frames (seeds only where its render agrees with depth).
+  - ep18 sweeper: flags of "jump" type only (FoundationPose moves ~10 cm at f140–165, points do not).
+- 18:12 UTC **PREREG pushed (9203ccd)** before any variant scoring: docs/analysis/ptrack-20261102/PREREG.md.
+  Primary PT-lag, report-only PT-all; gate mean ΔAUC ≥ +0.005, no episode < −0.01, mean ΔMPPE ≤ 0; ep23 expected not to
+  recover. Inference started on all 20 episodes in this container (CPU, $0; code 9203ccd; ~1 h incl. depth pulls).
