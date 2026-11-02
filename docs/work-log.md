@@ -6666,3 +6666,7 @@ arm and a no-policy replay floor to stage B.
   7 better / 10 worse, min −0.098 (ep13), MPPE +0.105, RPE −0.013, > 3 cm 368 → 418. **FAIL** (falsified).
   `results/gate_FS1_vs_C.json`. Coordinator: box D finishes on its own (option A); credit watch running (stop E if
   credit < $15).
+- 16:10 UTC ptrkE: runs ≈ 1 min each but ≈ 12 min per episode of store pull / push overhead → full set ≈ 19:20 UTC,
+  ≈ $6.5 (> $6 cap). Plan sent to the coordinator: destroy after saving at ≈ $6 (≈ 19:00 UTC) and report the missing
+  episodes. Early [D]: ISMa = Ci exactly on ep18 / ep23 / ep0; ISMr ep23 0.009 vs 0.041. Credit $41.74 (15:59).
+  Room-map session (camera drift) pointed to the control runs; asked for its per-episode drift vs the rest oracle.
