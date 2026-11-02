@@ -144,3 +144,31 @@ box's CPUs, but only after the hash list is committed.
 
 **Prediction.** [H8] At least one of pot / blue cup / pitcher gets a rule-(A) win (CD-O -0.02). The rack does not: the
 29 Oct generators' best rack was 0.604 vs our 0.418.
+
+## 8. Addendum 3 (2026-11-02, before any build of these variants): board 2, round 2
+**Evidence so far [D, 50 seeds]:**
+- library_v3 board 2: W30 0.00, CD-O 0.2169, anchor 3.28 mm.
+- Shipped occupancy plate: W30 0.34, CD-O 0.1649.
+- graft_v1 (plate + 2 library balls): W30 0.18, CD-O 0.1628.
+
+GT-free differences that remain between graft_v1 and library_v3:
+- (i) library_v3's plate slab is 12.5 mm thick; the occupancy plate uses a *default* thickness of 8.9 mm (`t_src:
+  default` in its fit record, not measured);
+- (ii) library_v3 has a 69-face feature on face +1 (graft cluster 1, unsupported by ep24 points: 9).
+
+**Variants (`scripts/board_graft2.py`; base = graft_v1, our meshes only):**
+- **v3** = graft_v1 + cluster 1.
+- **v4** = graft_v1 with the plate re-extruded to library_v3's slab thickness:
+  - vertices within the occupancy slab have their offset from the mid-plane scaled by t_lib / t_occ;
+  - vertices beyond it (the ball) are shifted outward by (t_lib - t_occ)/2;
+  - t_lib is the 10-90 percentile slab of library_v3 measured as in `board_graft.py`;
+  - the grafted library balls are not moved, since they already sit on library_v3's faces.
+- **v5** = v4 + cluster 1.
+
+**Evaluation, adoption and predictions.**
+- Evaluation: section 2, 50 seeds 3001-3050.
+- Adoption: rule (B) only, against the shipped board 2. Ties: lowest W30, then lowest CD-O.
+- Predictions:
+  - [H9] thickness (v4) matters more than the +1 feature (v3);
+  - [H10] v4 reaches W30 <= 0.14;
+  - CD-O stays <= 0.1699 [H, uncertain: a thicker plate may cost CD-O].
