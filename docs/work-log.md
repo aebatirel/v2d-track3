@@ -6798,3 +6798,6 @@ arm and a no-policy replay floor to stage B.
   identity_fix on both arms): +0.0013, camera gap ≤ 8.5 mm (ep23's frozen track is not the camera); 20-ep mean ΔAUC
   +0.0067, G2 still fails. Exported GT-free map world_T_cam for all public (leave-out) and eval clips to HF
   runs/20261102-roommap-6438495/world_T_cam/ for perception-tracking's rest-segment arm and the point-track session.
+- 20:10 UTC 2 Nov room-map: perception-tracking offered the camera-guard follow-up (map camera only where the GT-free
+  bound is large) to this session. Asked the coordinator to choose: (A) new PREREG tested on fresh public evidence
+  (C2 replicate, re-seeded maps; $0, ~2 h CPU) or (B) stop until the owner's top-up. Idle until answered.
