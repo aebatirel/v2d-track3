@@ -6676,3 +6676,8 @@ arm and a no-policy replay floor to stage B.
   - Pose boards worse as disclosed (AUC 0.84005, RPE 3.142, MPPE 2.525); 12c stays best on those.
   - Final selection: 12c for the pose boards, 12d for CD-O.
 - The owner also asked to scale the lift-window win to other episodes; relayed to perfect-following.
+- 12:50 UTC 2 Nov perfect-following: pfI-b558032's host stalled in setup (HF downloads); the watchdog destroyed it at
+  12:37 (≈ $0.9).
+  - Relaunched as 20261102-pfI-6c80007 (Croatia, 58821654): evals 3 / 14 / 32 with per-episode lift windows, 2 seeds,
+    swap rule + ≥ +0.02. Results ≈ 18:30–19:30 UTC.
+  - Spend since 07:32 ≈ $7.5 of $50.
