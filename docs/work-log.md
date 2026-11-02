@@ -6621,3 +6621,12 @@ arm and a no-policy replay floor to stage B.
   - kit hashes match; dry run valid; CD-O file equals the staged one.
   - **The upload was blocked by the permission classifier ("External System Writes")** and needs the owner's explicit
     word.
+- ~09:05 UTC 2 Nov owner asked about arXiv 2403.11948 (Fichera & Billard, EPFL LASA, 2024, "Learning Dynamical Systems
+  Encoding Non-Linearity within Space Curvature").
+  - [L] It learns stable non-linear dynamical-system motion generators (a damped oscillator on a learned manifold
+    embedding; obstacle avoidance by deforming the embedding), evaluated on 2-D vector fields and 3-D end-effector
+    motions.
+  - Assessment: no perception content and no hand–object contact. Its value is stable, perturbation-robust motion
+    generation toward a goal, while our robot must reproduce a specific demonstrated object trajectory under contact,
+    learned by RL and run by the official evaluator. Smoothing / re-generating targets (test A) already failed. Not
+    adopted.
