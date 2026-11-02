@@ -10877,3 +10877,4 @@ score.
   (CPU-checked: unset = upstream; P 0.5 → 53 % of starts in windows), tools/lift_windows.py, glock_public FC_LIFT_PATCH +
   per-pair TRAIN_ENV_pf*, pf_arms arms lw / plw, pf_verdict public generalised (arm vs s, bar +0.02 / floor −0.03).
   Pre-registered docs/research/work/pf-lift-20261102/PREREG.md; step 1 = public ep31 box pfH (≈ $4–4.5).
+- 07:53 UTC 2 Nov **pfH launched**: 20261102-pfH-a419bc9 (Japan Max-Q $1.30/h), `EP=31 SPLIT=public ARMS="s lw" SRC_RUN=20261030-orcB-38234d1`.
