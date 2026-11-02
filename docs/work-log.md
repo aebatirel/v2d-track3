@@ -11012,3 +11012,12 @@ score.
   ~20:43) and relaunched at b0b4a31, same job strings: **pfN2** 20261102-pfN2-b0b4a31 (Romania Max-Q $1.38/h, 57994872,
   instance 58875108), **pfO2** 20261102-pfO2-b0b4a31 (Texas Max-Q $1.61/h, 31194553, 58875116), **pfP2**
   20261102-pfP2-b0b4a31 (India WS $1.50/h, 58050641, 58875136). pfR (f06a0c1) keeps running.
+- 21:00–21:20 UTC 2 Nov pf-mesh zero-shot draws (board policy, Tier B collision, one official draw, no overflow anywhere)
+  [M]: eval 28 rack **0.906** (control mean 0.919); eval 20 pitcher **0.451** (control 0.926: the board grasp fails on the
+  new pitcher shape until retrained); eval 30 sweeper + rack **0.829** (control 0.897). N2 / O2 / P2 training.
+- 21:26 UTC **pfR (eval 14) INCOMPLETE, my bug**: the 12b table's asset_root for eval 14 is stale (refs/sf/ep14; pfC's
+  copy is refs/pfss43_sf/ep14), so the mesh swap found no file, the arm's reference copy was skipped (old `continue 3`),
+  and REQUIRE_REUSE refused training. The episode was not dropped, so its "zero-shot 0.931" ran on the OLD meshes: it is a
+  plain board-policy draw, NOT a collision result. Fix c1a5471: the asset root comes from the reference's own
+  object_urdf_paths; a failed swap drops the episode. pfR destroyed 21:28 (≈ $1.7); **pfR2** 20261102-pfR2-c1a5471
+  (US S $1.51/h, offer 56137474, instance 58879342), same job string.
