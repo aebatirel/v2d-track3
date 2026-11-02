@@ -6512,3 +6512,6 @@ diagnostic; nothing is picked for submission.
   meshes copied to `C4-audit/meshes_13h/`.
 - [H8] (at least one rule-A win among pot / blue cup / pitcher): held, for pot and blue cup.
   The rack prediction ("no win from generators") was falsified via rule C.
+- 23:04 UTC: D1 passes for all three G2 picks: 0/6 flips in both the budget and raw reference modes (pot, blue cup, rack).
+  So they are adopted for the CD-O board (pack 13h). The wait loop ran until the 30-min limit because pgrep matched
+  its own command line; the D1 runs themselves had finished at 23:04.
