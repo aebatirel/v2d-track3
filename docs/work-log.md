@@ -7172,3 +7172,12 @@ arm and a no-policy replay floor to stage B.
   - G2: the first box was preempted (≈ $2.80, nothing kept); now on an H200 at $4.03/h, within the $25 cap.
 - ~21:18 UTC 2 Nov perception-tracking: PREREG_posemesh frozen, scoring 74 / 119 done; the pot tsdf ep43 and dust pan
   Pixal s7 candidates are added by addendum before their own scoring (same rule). Test B (ptrkF) ≈ 13 / 20 episodes.
+- ~21:30 UTC 2 Nov perfect-following: zero-shot of the board policies with Tier B collision, one draw each, no
+  overflow [M]:
+  - eval 28: 0.906 vs control 0.919;
+  - eval 30: 0.829 vs 0.897;
+  - eval 20: **0.451 vs 0.926**; the grasp fails on the new pitcher shape until retrained.
+  - Eval 14 bug: a stale asset_root meant the mesh swap found no file and its zero-shot ran on the OLD meshes. Fixed in
+    c1a5471: the asset root is read from the reference URDF, and a failed swap drops the episode.
+  - pfR destroyed (≈ $1.7) and relaunched as pfR2 58879342. ≈ $6.5 lost so far on failed or replaced boxes.
+  - Results ≈ 01:00–02:00 UTC (pfR2 ≈ 02:30).
