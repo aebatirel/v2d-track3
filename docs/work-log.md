@@ -6080,3 +6080,15 @@ Advice given:
   flips a board, eval-25 pose breaks (~160 mm) [E ~1/6 per board]. Their disclosure line added to the README. Hashes
   re-verified. **pack 12e ready: results/submissions/20261102-track3p-candidate/build_12e/track3_submission.parquet**
   (sha256 004f394f…1babd, code 9684395b). Not uploaded from this session.
+- 19:22 UTC keen-heisenberg: **pack 12e uploaded** (that session). **Board [M]: AUC 0.86905, SP-SR 0.90, MP-SR 0.80, RPE
+  2.391, MPPE 1.953, CD-O 0.26775 — best on every board**; rank sum 47, 7th (was 54). CD-O estimate ≈ 0.268 [E] →
+  0.26775 [M]. The pose boards moved far more than expected (AUC +0.0217 over 12c), so the "pose worse" expectation for the
+  rack / plate pairs was wrong on net. [H] The meshes enter the pose boards through the kit's registration of the
+  submitted mesh to the scan, and a better-matching shape registers better; falsify by scoring 12e vs 12c per episode
+  (not available on the board).
+- ~19:25 UTC request (keen-heisenberg): **pack 13e = pack 13b's poses + pack 12e's mesh payloads**, CPU only, uploaded
+  there. 13b (claude/perfect-following-20261101, results/submissions/20261102-track3m-candidate/build_13b, c8b85ba4…) =
+  12c + the eval-15 and eval-20 lift-window rollouts (owner waiver of clause c for eval 15, recorded on that branch).
+  Prep: downloaded both rollouts from the store (runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep{15,20}_plw/r1); sha256
+  match 13b's manifests; no_oracle pass. **13b reproduced byte for byte** with the kit packer from 12c's inputs + those two
+  rollouts (c8b85ba4…).
