@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 09:43 TRT (06:43 UTC): PACK 12b UPLOADED by keen-heisenberg — AUC 0.84405 (+0.0048), our best on every board
+- MP-SR 0.75, RPE 3.023, MPPE 2.495; AUC now above DSAIL's 0.84391. Record: build_12b/UPLOAD.md on
+  claude/keen-heisenberg-engcwz. (The "upload needs your word" line in the report below is superseded.)
+
 ## 2026-11-02 ~06:40 UTC: MORNING REPORT — perfect-following (KURSAD) lane. PACK 12b READY (not uploaded)
 **Owner decision needed:** upload pack 12b? `results/submissions/20261102-track3m-candidate/build_12b/` (sha bde0ae84…)
 = pack 11 + evals 14, 16, 32 retrained on repaired references. Verified by keen-heisenberg (pack 12); its upload call was

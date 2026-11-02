@@ -10869,3 +10869,4 @@ score.
 - 06:36 UTC 2 Nov **pack 12b ready: results/submissions/20261102-track3m-candidate/build_12b/track3_submission.parquet**
   (sha256 bde0ae84…; pack 12 + eval 16 pz draw 1; code fa129a110aa4fd33bcdab199bcaa2c0c7fd3f9cd; all checks pass). NOT uploaded; record to keen-heisenberg.
 - 06:40 UTC 2 Nov morning report written in STATUS.md. Credit $91.37 (spend $31.48 of $102); 0 instances.
+- 06:43 UTC 2 Nov keen-heisenberg: **pack 12b uploaded**, AUC 0.84405 (+0.0048 over pack 11), MP-SR 0.75, RPE 3.023, MPPE 2.495; best on every board; AUC above DSAIL 0.84391. Record build_12b/UPLOAD.md on claude/keen-heisenberg-engcwz.
