@@ -6386,3 +6386,14 @@ diagnostic; nothing is picked for submission.
   - 6-seed screen, then the top 4 per object, placed (+ a T3 fit copy), then the 50-seed C4 audit and rule (A)/(B).
 - A helper agent runs G2: crops, rental, generation, freeze, screen, `C4-audit/candidates_g2.json`, `cdo-sprint/G2/README.md`.
   Vast credit at launch was $127.93 (another session's box 20261102-ptrkF is running).
+
+### 2026-11-02 ~20:30 UTC: G2 generation batch, inputs ready (helper agent; PREREG s7 at e573235)
+- Crops (local CPU, GT-free, `cdo-sprint/G2/scripts/make_crops.sh`, crops.py as on 29 Oct: every 3rd frame, top 2,
+  hand gate where hands.npz exists): all 11 planned (episode, object) pairs accepted, 22 crops. Pot ep41/43/44, blue cup
+  ep22/21/12 (ep12 has no hands.npz: rest gate only), rack ep31/12/26, pitcher ep22/21. Rankings and hashes in
+  `cdo-sprint/G2/inputs/`. Observed points for the Sim(3) fits: 40k-point subsamples of obs_all (`G2/scripts/obs_sub.py`).
+- Box queue `gen/box_g2.sh` (SAM 3D alongside Hunyuan3D-2.1, then TRELLIS.2 1536 alone with a 1024 fallback, Sim(3) on
+  the CPUs, SHA256SUMS at the end); screen script `C4-audit/scripts/screen6.py` (6 seeds 3001-3006, roster emptied; run
+  only after the hash freeze). Notes: `cdo-sprint/G2/NOTES.md`.
+- Rental plan: one H100 NVL (offer 31183486, Czechia, the 29 Oct machine), interruptible bid $1.30/h GPU (~$1.40/h
+  all-in), ~3 h, ~$7 with downloads [E]; cap $25; stop below $15 credit. Credit $127.84 at 20:20 UTC.
