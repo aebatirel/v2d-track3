@@ -6885,3 +6885,10 @@ arm and a no-policy replay floor to stage B.
   - Record: results/submissions/20261102-track3p-candidate/build_13/UPLOAD.md.
   - Eval 15 is a near miss (fresh 0.958 vs 0.906; fails clause c by 0.47 mm median RPE); a waiver is the owner's call.
   - Final lift batch [M]: no swap on evals 3, 14 (fresh), 25, 28, 30, 32.
+- 18:21 UTC 2 Nov **point-track verdict: FAIL, falsified** (1745c9f; PREREG 9203ccd; CPU, $0; 20 / 20 episodes):
+  - PT-lag (primary): ΔAUC −0.058 (0 better / 6 worse; min ep42 −0.366); ΔMPPE +0.27 cm.
+  - PT-all: −0.132; gains only on ep11 +0.053 and ep40 +0.010.
+  - Detector precision 5 / 17: FoundationPose was mostly right, and KLT points slipped in grasps.
+  - No GPU requested (the BootsTAPIR condition was not met); lane stopped.
+  - By-products: ep23 identity write-up; perc2's ep0 frame-0 lid mask sits on the pot handle.
+  - Record: docs/analysis/ptrack-20261102/RESULT.md on claude/point-track-20261102.
