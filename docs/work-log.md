@@ -7107,3 +7107,20 @@ arm and a no-policy replay floor to stage B.
   - Measured: Tier B vs library_v3 differ by up to 14 mm (pitcher) and 13 mm (rack), so the policies must adapt.
   - Coordinator: approved, **eval 1 skipped**; optional fourth arm on eval 14 or 32 (collision changed in 13f). No S2
     tonight.
+- ~20:23 UTC 2 Nov (session clock 20:55) **perception-tracking URGENT [M]:**
+  - **The 13f Tier B wooden_piece_2 registers flipped 179.2° at eval 25's eval seed, slot 1** (1,000,003·25 + 101),
+    against the public scan. The 9a+ board meshes register at ≤ 1° on every seed tested.
+  - On public ep24 the same flip takes piece_2 from 0.862 to 0.000 and the episode from 0.834 to 0.419 [D]. If the
+    hidden scan equals the public one [H], eval 25 is scored upside down in 12e / 13f: ≈ −0.02 board AUC [E].
+  - Public, same tracks, mesh sets only [D]: 9a+ 0.8998 vs 13f 0.8746. The Tier A pot loses on ep26 / 27 / 41–45 / 0
+    (−0.02 to −0.065); gains on ep31 +0.083, ep18 +0.026, ep12 +0.016.
+  - Test A (mesh placement from depth): FAIL, mean +0.0026 (10 better / 9 worse), min ep18 −0.137. Pitcher gains are
+    big (ep21 +0.127, ep22 +0.084; fit tilt 5.6° / 5.0°). Not handed over.
+- Coordinator actions:
+  - **Pack 13f2** (focused-pascal): 13f with eval 25 slot 1 back to 12c's board-2 payload. Basis: the repo's adopted
+    mesh-v5 spec D1 no-flip gate (no flip at every eval seed, ≥ 6 seeds) and the 34 % multi-seed flip rate — a safety
+    gate, not a selection score. Slot 0 is checked as well.
+  - bold-albattani: reconcile its earlier "eval seed does not flip" note; D1 becomes a hard safety gate for 13g / 13h.
+  - perception-tracking: pre-registered, seed-averaged, leave-one-episode-out per-object choice of pose-board meshes
+    (library_v3 / 9a+ vs 12c vs 13f) and of test A's placement (pitcher) → a pose pack on 13f2. The CD-O board keeps
+    13f by best-per-board.
