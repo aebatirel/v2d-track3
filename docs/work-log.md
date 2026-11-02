@@ -6138,3 +6138,7 @@ Advice given:
   flips at each pair's kit seed + extras to ≥ 6 seeds, in both reference modes, plus 50-seed W30 ≤ 0.10. My flip-check
   scripts now take REF_MODE=raw|budget. **13f1 passes D1 in both modes** (0/10 each slot); 13f slot 1 flips 3/10 in budget
   mode (not at the eval seed) and 2/10 raw (at the eval seed). Both checks will run on every 13g / 13h build.
+- 20:39 UTC keen-heisenberg: **13f1 uploaded. Board [M]: AUC 0.87191 (13f 0.87225 stays best), RPE 2.37520 (new best),
+  MPPE 1.92513, CD-O 0.26393, SR unchanged.** The +0.02 AUC hypothesis is falsified (−0.0003). Their reading [H]: the hidden
+  reference behaves like the budgeted scan, where the plate does not flip. Not used for selection; D1 stays a veto in both
+  modes. **Base for 13g / 13h = 13f1** (its board 2 passes D1; 13f's fails).

@@ -10,6 +10,11 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-02 20:39 UTC: 13f1 UPLOADED — AUC 0.87191 (13f 0.87225 stays best), RPE 2.375 (best); base for 13g / 13h = 13f1
+- The flip-fix hypothesis (+0.02 AUC) is falsified: −0.0003 vs 13f. [H] The hidden reference behaves like the budgeted scan.
+- D1 (no flip, raw AND budgeted scan, ≥ 6 seeds) stays a veto on every new mesh (C4 PREREG §9, f21e456). I run both modes
+  on every build.
+
 ## 2026-11-02 ~20:33 UTC: PACK 13f1 READY (flip fix) — results/submissions/20261102-track3s-candidate/build_13f1/ (not uploaded here)
 - 12e/13f's Tier B wooden_piece_2 registers UPSIDE DOWN at eval 25's kit seed against the public scan (179.2° [D];
   library_v3 0.7°). Found by tracking-perception, confirmed here (docs/research/work/flipcheck-20261102). The blue-cup

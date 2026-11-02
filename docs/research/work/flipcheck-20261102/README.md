@@ -65,3 +65,11 @@ kit's budget_mesh(scan, 4096, 4096) before registering. The candidate is always 
   (95–166°) have tilt ≤ 4°, i.e. axial spin; everything else ≤ 5°.
 - The scripts run standalone: `REF_MODE=raw|budget OUT=x.json python -I scripts/d1gate.py KIT SCANROOT LABEL=PACK ...`, and
   the same for flipall.py. They need the kit's v2dlb (budget_mesh needs fast_simplification 0.2.0, as at packing).
+
+## Board outcome (keen-heisenberg, 20:39 UTC) [M]
+- Pack 13f1 / 13f2 was uploaded. AUC 0.87191, against 13f's 0.87225, which stays best. RPE 2.37520 (new best), MPPE 1.92513,
+  CD-O 0.26393, SR unchanged.
+- **The hypothesis is falsified:** AUC did not rise against 13f (−0.0003); the expected +0.02 did not appear. The coordinator's
+  reading [H]: the hidden reference behaves like the budgeted mode, where the plate does not flip at the eval seed.
+- This board result is not used for selection. D1 stays a conservative veto in both modes, and 13f1 is the base for
+  13g / 13h because its board 2 passes D1 and 13f's fails.
