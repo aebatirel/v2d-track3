@@ -6804,3 +6804,13 @@ arm and a no-policy replay floor to stage B.
   - Our research notes already list this as alternative D (05-alternatives.md: TAPIP3D, Apache-2.0, RGB-D input); it
     was never built. One competitor uses TAPIR (competitors-2026-10-21.md:186).
   - Proposed public test: ep23 / ep18 / ep0 + spoon episodes; ≈ $3 GPU; PREREG gate. Awaiting the owner's word.
+- 17:00 UTC 2 Nov status [M]: 4 boxes (pfJ, pfL2, ptrkD, ptrkE); credit $33.41.
+  - Lift-window eval retrains (perfect-following log b45b377b):
+    - no swap: eval 3 (0.888 / 0.886 vs 0.933), eval 25 (0.529 / 0.541 vs 0.878);
+    - eval 14 no swap on fresh draws (box 0.923 → fresh 0.826 vs 0.875);
+    - eval 32 below the gate on both seeds;
+    - eval 20 seed 42 collapsed (0.297); evals 28 and 30 below the gate on seed 42;
+    - eval 15 seed 42 0.953 vs 0.906, still to be confirmed on fresh draws.
+  - [H, perfect-following] box draws overstate lift policies.
+  - Room map: run3 rebuilt GT-free (370 public images, 1.11 px, 22 min CPU); eval relocalisation running
+    (580–750 inliers per frame).
