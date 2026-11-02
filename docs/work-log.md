@@ -10842,3 +10842,7 @@ score.
   (sha256 7b0cd7df…, 9,120 rows; pack 11 + evals 14 and 32 guard-bridged retrains, confirmation draw 1 each; code
   ab444c0; built by tools/pack_swap_rows.py, all checks + kit offline validation pass, CD-O unchanged). NOT uploaded;
   record sent to keen-heisenberg (uploader). The earlier eval-14-only build is kept as build_12a_ep14only.
+- 01:20 UTC 2 Nov step 5 (contact-moment training) deferred, not run [I]: the remaining deterministic onsets are at lifts
+  (eval 14 f27–31 after the repair, 25 f41 / f173, 3 f66, 1 f129). ops/box/patch_flashchord_states.py already provides a
+  training-only reset-state bank, but a contact-moment bank needs the policy's own joint states (GPU traces), a public test
+  first, and the earlier solver–RL loop with this bank "barely acted". Listed as the next decision for the owner.
