@@ -1,5 +1,39 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~06:40 UTC: MORNING REPORT — perfect-following (KURSAD) lane. PACK 12b READY (not uploaded)
+**Owner decision needed:** upload pack 12b? `results/submissions/20261102-track3m-candidate/build_12b/` (sha bde0ae84…)
+= pack 11 + evals 14, 16, 32 retrained on repaired references. Verified by keen-heisenberg (pack 12); its upload call was
+blocked by that session's permission classifier, so it waits for your word. Pack 12 (evals 14 + 32 only) is the subset.
+
+Per-episode sim_vs_ref (10 official draws each; "plain" = vs our reference; board-style symmetric differs ≤ 0.01) [M]:
+| eval | before (packed) | after (new) | what changed |
+|---|---|---|---|
+| 14 | 0.727 (4 / 10 draws fail) | **0.861** vs the old reference, 0.875 vs the repaired one (1 / 10 fail) | perception jump repaired |
+| 16 | 0.850 | **0.974** (0 fails, draw 1 0.974 vs board draw 0.908) | robot hand keeps holding the spoon after release |
+| 32 | 0.852 | **0.867** vs old, 0.890 vs repaired (0 / 10 fail) | perception jump + upside-down flip repaired |
+| 33 | 0.923 | 0.935 (passes, gain +0.0196 < +0.02 bar: not packed) | same repair |
+| 15 | 0.906 | 0.947 two-hand (fails the median-RPE clause: not packed) | two-hand reference |
+| others | unchanged | unchanged | — |
+Mean over the 20 evals [E: new confirmation means for 14 / 16 / 32, H5p7 for the rest, eval 10 = pack 11's 0.903]:
+**0.921 → 0.934**. Symmetric scoring changes nothing material (cup spin was not the loss).
+
+What passed / failed:
+- PASS: guard-bridge repair on evals 14 and 32 (pf-bridge PREREG); hold-freeze on eval 16's packed reference (PREREG_B).
+- FAIL / not adopted: two-hand references on eval (14 / 16 worse; 15 fails clause c); public ep13 two-hand passes its rule
+  only through one seed (fragile); rebuilt references with today's grasp-lock code lose to the packed ones (eval 16
+  0.69–0.79); GRASP's hold filter failed its public gate; twist canonicalisation not useful.
+- Root causes found [M]: (1) perception's track guard re-found the cup after a 3–14 cm drift out of the hand, leaving
+  one-frame 11–20 cm jumps (evals 14 / 32 / 33); (2) eval 16's spoon falls in the simulator after the hand lets go while
+  our reference keeps it still.
+- Board caveat [E]: the board scores stored rollouts; pack 11's eval-14 row was a lucky draw (0.909 vs P) vs the new
+  draw 1 0.882, so eval 14 may not gain on the board; eval 16 should (0.908 → 0.974 vs our reference).
+
+Spend: **$31.48** of the $102 cap (credit $122.85 → $91.37); nothing running. No permission was blocked in this session;
+the upload is blocked in keen-heisenberg (classifier) pending your word.
+Next decision: (a) upload 12b; (b) if more is wanted: apply the hold-freeze idea and the "train on the packed reference"
+lesson elsewhere, and contact-moment training for the remaining lift losses (eval 14 f27–31, 25, 3, 1).
+Details: docs/analysis/perfect-following-20261101/README.md, docs/research/work/pf-*/, docs/work-log.md (1–2 Nov).
+
 ## 2026-11-02 ~01:15 UTC: PERFECT-FOLLOWING (KURSAD): PACK 12 READY (not uploaded) — evals 14 and 32 fixed
 `results/submissions/20261102-track3m-candidate/build_12/` (sha 7b0cd7df…) = pack 11 + evals 14 and 32. Record sent to
 keen-heisenberg; the owner decides the upload.
