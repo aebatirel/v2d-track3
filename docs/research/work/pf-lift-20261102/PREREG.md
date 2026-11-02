@@ -71,3 +71,5 @@ Standard-learner episodes, arm `slw` of ops/jobs/pf_arms.sh (job string: `EP=25 
   evals 25 / 30, checked: pose max |diff| 0.0, same checkpoint), inclusion ≥ +0.02.
 - Order: eval 25 first (box pfK, ≈ 5.5–6 h ≈ $8 [E]); eval 30 next (needs its own box: no pieces vs eval 25's ev25),
   then 28 / 1, as budget allows (owner asked before exceeding the $50 window).
+- (13:00 UTC) Owner's go via keen-heisenberg for evals 30 and 28 (+≈ $16 beyond the window; ≥ $10 reserve a hard stop):
+  boxes pfL (`EP=30 SPLIT=eval ARMS=slw`) and pfM (`EP=28 SPLIT=eval ARMS=slw`), same job and rule as above. Eval 1 waits.
