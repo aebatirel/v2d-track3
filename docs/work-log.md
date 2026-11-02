@@ -6063,3 +6063,12 @@ Advice given:
   (placed in the body frame), sweeper P1, rack ep31_full, wooden-piece occupancy fits. Prep done: **12d reproduced byte for
   byte** from its packer inputs (643794c6…). Expected pairs from 12d's meshes: water_pitcher eval 20; mini_sweeper evals
   19, 30; plastic_dish_rack evals 14, 15, 16, 28, 30; wooden_piece_1 / _2 eval 25. Waiting for the committed files.
+- ~19:20 UTC **pack 12e built, PENDING frame sign-off.** bold-albattani's Tier B @ 332eb5b (19:11 message; C3/tierB/README.md
+  states how GT entered the selection). md5s verified; no_oracle accepts all five; committed as meshes/tierB_pack12e
+  (9684395b). Build (pack_swap_meshes.py, guard on): sha256 004f394f…1babd; vs 12d only code_commit_url + 10 payload rows
+  (rack 14/15/16/28/30, sweeper 19/30, pitcher 20, wooden pieces 25 ×2); CD-O changes exactly those 10 pairs (36cce78b…);
+  offline validation pass; 0 MESH WARNINGs; every payload decodes at the 4,096 budget. Frame FLAGS [M]: rack centroid 5.8,
+  ICP 6.2 mm, proxy 5.8; sweeper centroid 5.2, proxy 5.2; pitcher centroid 21.9, ICP 14.9 mm / 3.3° (their ICP 6.9),
+  surface median 5.1, proxy 17.3; wooden_piece_1 thin-axis extent ratio 0.65; **wooden_piece_2 kit proxy rotates 179.9°**
+  (a flip; their eval-seed check had none). Staged as results/submissions/20261102-track3p-candidate (PENDING); frame report
+  sent to bold-albattani for sign-off.
