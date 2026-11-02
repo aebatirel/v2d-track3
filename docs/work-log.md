@@ -6681,3 +6681,8 @@ arm and a no-policy replay floor to stage B.
   - Relaunched as 20261102-pfI-6c80007 (Croatia, 58821654): evals 3 / 14 / 32 with per-episode lift windows, 2 seeds,
     swap rule + ≥ +0.02. Results ≈ 18:30–19:30 UTC.
   - Spend since 07:32 ≈ $7.5 of $50.
+- 12:51 UTC 2 Nov perfect-following: pfI-6c80007 confirmed running (evals 3 / 14 / 32 plw, seeds 42 / 43; job started
+  12:42, in setup). pfJ 20261102-pfJ-cf8cc34 (evals 20 / 15 plw) started 12:49, in setup.
+  - Next: the standard-learner lift path for evals 25 / 30 (then 28 / 1), with a PREREG addendum and a CPU check
+    before launch.
+  - Packs are built on 12c and announced as "pack 13 ready".
