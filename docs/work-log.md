@@ -10892,3 +10892,4 @@ score.
 - 11:52 UTC 2 Nov pfI-a89f5f3 destroyed after 20 min (≈ $0.5): the per-pair lift env was keyed by arm + seed only, so
   evals 3 and 14 trained with eval 32's windows (1–16, 41–61, 111–131) instead of their own (box log [M]). Fixed: the key is
   now TRAIN_ENV_<prefix>_ep<N>. pfH was unaffected (one episode). Relaunching pfI with the same job string.
+- 11:51 UTC 2 Nov **pfI relaunched**: 20261102-pfI-b558032 (offer 56700685), same job string.
