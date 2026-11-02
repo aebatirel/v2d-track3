@@ -10896,3 +10896,12 @@ score.
 - 12:45 UTC 2 Nov pfI-b558032 (Japan host 56700685) stalled in setup (HF downloads), destroyed by the watchdog at 12:37 (≈ 42 min ≈ $0.9). Relaunch on the California host (fast setup at 11:32).
 - 12:41 UTC 2 Nov **pfI relaunched (2)**: 20261102-pfI-6c80007 (Croatia Max-Q, offer 57455805), same job string.
 - 12:48 UTC 2 Nov **pfJ launched** (addendum B): 20261102-pfJ-cf8cc34 (offer 45274401), `EP="20 15" SPLIT=eval ARMS=plw`.
+- 12:55 UTC 2 Nov: told keen-heisenberg that pfI-6c80007 is running (job started 12:42 UTC, setup).
+- ~13:00 UTC 2 Nov **standard-learner lift path built** (pf-lift addendum C): pf_arms.sh arm `slw` (the mass_eval MODE=std
+  recipe via hard_ab.sh on the packed base byte copy, CR=0 SUF=lw, + FC_LIFT_PATCH / ENV_EP<N> lift env), hard_ab.sh
+  FC_LIFT_PATCH block. CPU check [M] on a patched FlashCHORD copy with all four std patches: frame-0 share 0.328 kept,
+  window share 0.210 → 0.349. Checked [M]: the pack-12b/12c rows of evals 25 / 30 equal the pack-6 draws (pose max |diff|
+  0.0, checkpoints = table packed_sha256), so the default old draw and H5p7 control apply.
+- 12:57 UTC 2 Nov **pfK launched**: 20261102-pfK-0f695c9 (Spain WS $1.38/h, offer 29519534), `EP=25 SPLIT=eval ARMS=slw bash ops/jobs/pf_arms.sh`.
+  Credit $70.53 at 12:56 UTC (floor $41.35 for the $50 window); after pfI / pfJ / pfK and the tracking boxes ≈ $0–3 left
+  [E], so eval 30 needs the owner's go (asked via keen-heisenberg).
