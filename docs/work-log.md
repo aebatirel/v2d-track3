@@ -7097,3 +7097,13 @@ arm and a no-policy replay floor to stage B.
   - Board-2 graft v1 cut flips 34 % → 18 %, short of rule (B)'s −20 points; further GT-free variants under a new
     addendum.
   - 13g after the 52-mesh audit (~60 min); 13h from G2.
+- ~20:18 UTC 2 Nov perfect-following retrain plan (4 boxes ≈ $24).
+  - Arms:
+    - eval 20 pm: plw recipe + Tier B pitcher collision, decimated to ~20k faces;
+    - eval 28 sm and eval 30 sm: std recipe + Tier B rack (and sweeper);
+    - eval 1 s0: reseed.
+  - Each mesh arm first runs a zero-shot draw with the new collision and is refused on any overflow.
+  - Flagged and labelled: Tier B collision meshes enter the rollouts (GT-informed; owner's permission).
+  - Measured: Tier B vs library_v3 differ by up to 14 mm (pitcher) and 13 mm (rack), so the policies must adapt.
+  - Coordinator: approved, **eval 1 skipped**; optional fourth arm on eval 14 or 32 (collision changed in 13f). No S2
+    tonight.
