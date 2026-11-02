@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 10:55 TRT (07:55 UTC): next step running — lift-window training, public test first
+- Your "what else" (via keen-heisenberg): hold-freeze does not fit evals 25 / 30 / 1 / 3 [M]: their losses start ~10
+  frames after the grasp (the lift), not after a release. So the matching lever is contact-moment training.
+- Built: training starts drawn 30 % of the time from grasp/lift windows (training-only patch; evaluation untouched).
+  Public test on ep31 (eval 30's twin), 2 seeds, pre-registered (docs/research/work/pf-lift-20261102/PREREG.md), ≈ $4.5,
+  result ≈ 14:00 TRT. Only if it passes: evals 3 / 14 (and 25 / 30 if feasible) on eval, ≈ $10–15.
+- Spend so far $31.48 of $102.
+
 ## 2026-11-02 09:43 TRT (06:43 UTC): PACK 12b UPLOADED by keen-heisenberg — AUC 0.84405 (+0.0048), our best on every board
 - MP-SR 0.75, RPE 3.023, MPPE 2.495; AUC now above DSAIL's 0.84391. Record: build_12b/UPLOAD.md on
   claude/keen-heisenberg-engcwz. (The "upload needs your word" line in the report below is superseded.)
