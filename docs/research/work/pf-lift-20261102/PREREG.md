@@ -1,4 +1,4 @@
-# Lift-window training starts (contact-moment training), pre-registered 2 Nov 2026 ~07:50 UTC (10:50 TRT), before any result
+# Lift-window training starts (contact-moment training), pre-registered 2 Nov 2026 ~07:15 UTC (10:15 TRT), before any result
 
 ## Evidence [M] (GT-free, H5p7 onsets vs our reference's hold starts)
 The remaining deterministic losses start ~10 frames after a grasp begins: eval 25 pieces f41 / f173 (holds from f31 /

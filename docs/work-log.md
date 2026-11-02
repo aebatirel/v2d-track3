@@ -10871,12 +10871,13 @@ score.
 - 06:40 UTC 2 Nov morning report written in STATUS.md. Credit $91.37 (spend $31.48 of $102); 0 instances.
 - 06:43 UTC 2 Nov keen-heisenberg: **pack 12b uploaded**, AUC 0.84405 (+0.0048 over pack 11), MP-SR 0.75, RPE 3.023, MPPE 2.495; best on every board; AUC above DSAIL 0.84391. Record build_12b/UPLOAD.md on claude/keen-heisenberg-engcwz.
 - 07:12 UTC 2 Nov owner (via keen-heisenberg): do not use the method name in new reports / STATUS / commits / artifacts for now; removed it from the current STATUS and the pack-12 README (history unchanged).
-- ~07:50 UTC 2 Nov keen-heisenberg relayed the owner's "what else" go (item 1 hold-freeze on 25 / 30 / 1, item 2
+- ~07:15 UTC 2 Nov keen-heisenberg relayed the owner's "what else" go (item 1 hold-freeze on 25 / 30 / 1, item 2
   contact-moment training). Checked first [M]: losses on 25 / 30 / 3 start ~10 frames after the grasp (lift); 1 mid-carry;
   no post-release growth → item 1 does not fit; told keen-heisenberg (07:25). Built item 2: ops/box/patch_flashchord_lift.py
   (CPU-checked: unset = upstream; P 0.5 → 53 % of starts in windows), tools/lift_windows.py, glock_public FC_LIFT_PATCH +
   per-pair TRAIN_ENV_pf*, pf_arms arms lw / plw, pf_verdict public generalised (arm vs s, bar +0.02 / floor −0.03).
   Pre-registered docs/research/work/pf-lift-20261102/PREREG.md; step 1 = public ep31 box pfH (≈ $4–4.5).
-- 07:53 UTC 2 Nov **pfH launched**: 20261102-pfH-a419bc9 (Japan Max-Q $1.30/h), `EP=31 SPLIT=public ARMS="s lw" SRC_RUN=20261030-orcB-38234d1`.
-- ~07:58 UTC 2 Nov keen-heisenberg relays the owner (verbatim): "Go do as much as you can lets go to top"; lift-window plan approved. Budget: **$50 more** from 07:32 UTC (credit then $91.35; ≥ $10 reserve); a new public-perception GPU session (≤ $30) starts — never touch its instances; check ops/vast.sh show before launching.
+- 07:19 UTC 2 Nov **pfH launched**: 20261102-pfH-a419bc9 (Japan Max-Q $1.30/h), `EP=31 SPLIT=public ARMS="s lw" SRC_RUN=20261030-orcB-38234d1`.
+- ~07:20 UTC 2 Nov keen-heisenberg relays the owner (verbatim): "Go do as much as you can lets go to top"; lift-window plan approved. Budget: **$50 more** from 07:32 UTC (credit then $91.35; ≥ $10 reserve); a new public-perception GPU session (≤ $30) starts — never touch its instances; check ops/vast.sh show before launching.
 - 07:40 UTC 2 Nov tracking-perception (session_01D9UJC9EUCs5sUCbTVZgvcC): [M, code read] no packed eval reference carries S2 (refine.py is never called); worth adding only where a reference is rebuilt anyway (≈ +0.004 board [E]). Noted; this lane's lesson is that rebuilt references lose to packed ones (eval 16), so S2 is not applied tonight without a same-box test.
+- 07:49 UTC 2 Nov correction: the times of the last four entries were estimated ~35 min late; the box log shows pfH started 07:20 UTC (fixed above, PREREG 07:15 UTC; all before any result).
