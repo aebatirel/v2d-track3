@@ -67,3 +67,16 @@ model is [D] -> [E]; it predicted 12c within about 0.001.
   - rack: `results/prim/rack/summary.json` (dev1/ep31_full);
   - boards: `results/prim/boards/scores.jsonl`.
 - Frame checks [M]: rigid ICP of 20k surface samples onto the replaced mesh (trimesh), as for 12c and 12d.
+
+## Optional B+ (scored, NOT in pack 12e; held by the coordinator because it would not change a rank)
+Same GT-informed kind: each is the best generator output by public-scan CD-O, placed GT-free with `place.py`, then
+scored once [D]. The placed meshes are in the HF store, `runs/cdo-c3-tierB-20261102/`.
+- **blue_cup** (eval 10, 14, 20, 32, 33, slot 0): SAM 3D, public ep22, seed 7.
+  - CD-O 0.2900 / 0.2894 / 0.2894 / 0.2930 / 0.2910 -> 0.2595 / 0.2647 / 0.2674 / 0.2683 / 0.2664.
+  - 0/35 flips; anchor 4.5-7.3 mm (C0 cup 2.1-3.6 mm).
+  - Board -0.0035 [E].
+- **mini_dust_pan** (eval 19 slot 1, eval 38 slot 0): Hunyuan3D-2.1, public ep39, seed 42.
+  - CD-O 0.2587 / 0.2601 -> 0.2294 / 0.2311.
+  - 0/32 flips; anchor 6.0 / 5.8 mm (T2 pick 4.7 / 6.0 mm).
+  - Board -0.0016 [E].
+- **Together:** 12e about 0.268 -> about 0.263 [E].

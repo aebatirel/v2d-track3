@@ -63,3 +63,34 @@
  "n_seeds": 35
 }
 2026-11-02T19:13:53Z blue rc=0
+{
+ "label": "C3B+/hy21_ep39_mini_dust_pan_k297_s42_lib",
+ "sha": "2655f4c0003443e3",
+ "eval": [
+  {
+   "ep": 19,
+   "slot": 1,
+   "seed": 19000158,
+   "cdo_cm": 0.2294,
+   "add_mm": 6.01,
+   "anchor_mm": 5.98,
+   "rot_deg": 0.67,
+   "rot_raw_deg": 0.67,
+   "flip": false
+  },
+  {
+   "ep": 38,
+   "slot": 0,
+   "seed": 38000114,
+   "cdo_cm": 0.2311,
+   "add_mm": 5.83,
+   "anchor_mm": 5.77,
+   "rot_deg": 0.97,
+   "rot_raw_deg": 0.97,
+   "flip": false
+  }
+ ],
+ "flips_all": 0,
+ "n_seeds": 32
+}
+2026-11-02T19:18:57Z dustpan rc=0
