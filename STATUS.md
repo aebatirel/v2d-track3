@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+- 2026-11-02 ~23:50 UTC: mesh lane, C4 + G2 summary.
+  - C4: 50-seed audit of 52 existing meshes; 13g empty. The only flip-prone mesh is the Tier B board 2 (34%; 13f1 restores library_v3).
+  - G2: generation $8.31 measured; 264 meshes, 32 audited.
+  - 13h handed to focused-pascal (8cd7fe77): pot sam3d ep44 s7 (0.2861 vs 0.3107, ADD 2.7 vs 6.3 mm), blue cup sam3d k159 s7 t3fit
+    (0.2335 vs 0.2646), rack hy21 ep31 t3fit (0.4016 vs 0.4182, ADD 4.3 vs 10.0 mm); all pass D1 in both reference modes.
+    Expected CD-O about 0.253 [E].
+  - Pose-board choice: tracking-perception's public-pose CV (13p: AUC 0.88257).
+  - Rules: C4-audit/PREREG.md sections 2-10.
 - 2026-11-02 ~19:30 UTC: pack 12e scored CD-O 0.26775 (est ~0.268), best on all boards, rank sum 47 (7th). B+ extras (generated blue cup, dust pan) added for pack 13f (4a3b67f), expected CD-O ~0.2627 [E]; awaiting frame report.
 - 2026-11-02 ~19:20 UTC: owner yes to C3 Tier B (GT-informed). Tier B set committed (332eb5b, C3/tierB/README.md) and sent to focused-pascal for pack 12e = 12d + pitcher hy21 (scored once [D] 0.3722), sweeper P1, rack ep31_full, boards occ. Expected CD-O ~0.268 [E]. Awaiting frame report; optional blue cup / dust pan extras being scored.
 - 2026-11-02 ~09:25 UTC: pack 12c live (CD-O 0.30008, 11th; AUC 0.84738). Proposed C3 (cdo-sprint/C3/README.md): tier A clean = C1 T3 pot + pitcher, CD-O-only, ~0.290 [E]; tier B GT-informed (~0.267 [E]) needs an owner yes. Tier A go (08:50 UTC); pack 12d built by focused-pascal; frame sign-off YES both, transform none (~09:40 UTC); pose boards expected worse than 12c on those 7 pairs, CD-O-only. Tier B with the owner.
