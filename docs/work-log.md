@@ -6034,3 +6034,7 @@ Advice given:
   all evidence at identity (CD-O 0.523 → 0.291 cm; AUC guard on 9a+ public twins mean +0.022, min −0.030 ep13).
   **pack 12c ready: results/submissions/20261102-track3n-candidate/build_12c/track3_submission.parquet** (sha256
   3542f8e5…c8567, code 7d7f8d3a); README updated with the sign-off and the disclosure. Not uploaded from this session.
+- 08:46 UTC keen-heisenberg: **pack 12c uploaded** by that session. **Board [M]: AUC 0.84738 (best; +0.0033 over 12b),
+  SP-SR 0.85, MP-SR 0.75, RPE 3.008 (best), MPPE 2.467 (best), CD-O 0.30008 (best; was 0.33234).** Best on every board, so
+  one file covers all six; the blue cup also helped the pose boards. CD-O estimate was ≈ 0.300 [E] → 0.30008 [M].
+  Standings (their read): 10th, rank sum 58; DSAIL 9th at 56. Receipt: build_12c/UPLOAD.md on claude/keen-heisenberg-engcwz.

@@ -10,6 +10,10 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-02 08:46 UTC: PACK 12c UPLOADED (keen-heisenberg's session) — best on every board
+- AUC 0.84738, SP-SR 0.85, MP-SR 0.75, RPE 3.008, MPPE 2.467, CD-O 0.30008 (from 0.33234). One file covers all six boards.
+- Standings (keen-heisenberg's read): 10th, rank sum 58 (DSAIL 9th at 56). Nothing running in this lane.
+
 ## 2026-11-02 ~09:00 UTC: PACK 12c READY — results/submissions/20261102-track3n-candidate/build_12c/ (not uploaded here)
 - Pack 12b (reproduced byte for byte first) + the C0 blue-cup mesh payloads on evals 10/14/20/32/33 (owner approved 08:10
   UTC via keen-heisenberg; GT-informed public selector disclosed). sha256 3542f8e5…c8567, code 7d7f8d3a. Only the 5
