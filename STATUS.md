@@ -1,5 +1,25 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~18:40 UTC: perception tests done (all fail); pack 13 verified, waits for the owner's word
+- **Pack 13 = 12c + eval 20** (lift-window plw s43; fresh 0.926 vs 0.893, gain +0.033).
+  - sha 791c3922…; record results/submissions/20261102-track3p-candidate/build_13/UPLOAD.md.
+  - Verified here, dry run valid, not uploaded.
+  - Eval 15 is a near miss (fails clause c by 0.47 mm); a waiver is the owner's call.
+- **Public perception tests [D], all pre-registered:**
+  - room map: perc2 camera drift is only 2–9 mm on 19 / 20 eval clips, bound +0.003, G1 fails (public (b) report-only
+    still running);
+  - rest-segment fit −0.0088 (mesh-limited);
+  - point tracks −0.058;
+  - SAM-6D-style detector scores +0.0010 (below the bar);
+  - full-resolution depth −0.0079;
+  - complete-base pitcher template −0.249;
+  - mask-guided tracking −0.0009.
+- Found: ep23's public 0.041 is an identity_fix wiring gap (0.663 with it); eval 25 already has it. Also, perc2's ep0
+  frame-0 lid mask sits on the pot handle.
+- Reading [I]: the remaining perception loss sits in mesh shape and frame-0 detection, not in cameras or the tracker.
+  The one direct mesh test failed, so any mesh lane needs its own public test.
+- Lift-window batch: only eval 20 passes; no swap on 3, 14, 25, 28, 30, 32.
+
 ## 2026-11-02 ~17:05 UTC: perception tests first; retrains wait for the owner's top-up
 - Owner: "first do the tests and let me add more money once we increase the perception."
 - Public perception tests (GT used only for scoring):
