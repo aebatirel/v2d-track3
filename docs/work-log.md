@@ -6548,3 +6548,16 @@ arm and a no-policy replay floor to stage B.
   - Owner decisions listed:
     - CD-O blue-cup variant (≈ 0.332 → 0.300 [E], CD-O rank 14 → ~11; enough to pass DSAIL in rank sum);
     - pitcher complete-base mesh (tilt; GPU ~$1–3 plus retrains).
+- 07:25 UTC 2 Nov perfect-following: **hold-freeze does NOT fit evals 25 / 30 / 1 / 3** [M, H5p7 onsets]. It checked
+  this against the measured timelines before spending.
+  - 25: piece_1 onset f41 (9 / 10), hold from f31; piece_2 f173 (10 / 10), hold from f163. Both ≈ 10 frames after the
+    grasp, i.e. at the lift.
+  - 30: sweeper f36–52 (6 / 10), hold from f42 (lift). 3: pot f66–68 (9 / 10), hold from f57 (lift).
+  - 1: pot f129–131 (7 / 10), mid-hold f96–159.
+  - A release scan over all 20 evals found post-release error growth only on 14, 16, 32 (all replaced in 12b).
+  - New plan, pre-registered before results:
+    - a training-only patch: a share P of FlashCHORD's sampled resets from windows [hold start − 5, + 15] (GT-free),
+      so the policy practises grasp and lift more;
+    - a public test first (ep31 or the pot twin; control vs lift windows; 2 seeds; gate mean ≥ +0.02, no seed < −0.03;
+      ≈ $5);
+    - if it passes, evals 3 / 14 / 25 / 30 under the swap rule.
