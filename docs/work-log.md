@@ -6277,3 +6277,6 @@ diagnostic; nothing is picked for submission.
   - boards.
   About -0.023 more, about 0.267 [E].
 - Sent to keen-heisenberg. Waiting for the owner's go / no-go.
+- ~09:30 UTC: keen-heisenberg (08:50): tier A is a go, under the owner's standing permission. focused-pascal is building pack 12d
+  (12c + the T3 pot + the T3 pitcher). Tier B goes to the owner as a decision. I sent focused-pascal the paths, md5s, transform
+  none and my frame numbers. Waiting on their frame report for sign-off.
