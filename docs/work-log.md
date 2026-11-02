@@ -10918,3 +10918,9 @@ score.
   ~2.74 GHz and ~390 W; the original eval-30 std run (20261025-std30) trained at 46k env steps/s [M]. At that pace pfL needed
   ~10 h (~$14) instead of ~5 h. Destroyed after ~62 min (≈ $1.45); **pfL2** 20261102-pfL2-0fab401 (Portugal WS $1.69/h,
   offer 51767470), same job string `EP=30 SPLIT=eval ARMS=slw bash ops/jobs/pf_arms.sh`, same commit 0fab401.
+- 14:08–14:45 UTC 2 Nov seed-42 training-box results [M] (10 box draws, sim_vs_ref vs the episode's own reference; gate =
+  the board policy's mean): pfI eval 3 plw **0.888 ± 0.020** (gate H5p7 0.933); eval 14 plw **0.923 ± 0.033** (gate =
+  pack-12b policy's conf draws vs B, 0.875); eval 32 plw **0.888 ± 0.009** (gate 0.890). pfI seed 42 took 109 min.
+  pfK eval 25 slw **0.529 ± 0.033** (sweep chose 150M; gate 0.878), 90 min. [M] eval 25 has always been bimodal by
+  seed (packed run s42 0.792 / s43 0.474; D retrains s42 0.816 / s43 0.482); [I] seed 42 with lift windows fell in the
+  low mode, so one seed says little about the lift effect on eval 25; seed 43 decides (rule unchanged).
