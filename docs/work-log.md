@@ -6754,3 +6754,8 @@ arm and a no-policy replay floor to stage B.
   (≈ −0.02 board AUC [E]); payload-only fix (no retrain). Sent to keen-heisenberg and focused-pascal.
 - Public mesh-set comparison, same tracks [D]: 9a+ 0.8998 vs M13 0.8746 (ep24 −0.415; pots −0.02..−0.05; ep0 lid
   −0.065; ep31 +0.083, ep18 +0.026). Tier B was chosen by public-scan CD-O, so this is not the eval picture.
+- 21:05 UTC **coordinator's new CPU task:** choose the pose-board mesh per object by public CV (13f vs 12c vs 9a+), and
+  test A's placement per object, with 10-seed mean scoring. PREREG_posemesh.md pushed before any candidate score.
+  `score_registered.py --reg_seeds N` added (default 1 = unchanged); seed 0 reproduces C13 ep24 0.4189; at 10 seeds
+  13f's boards flip on 6 / 10 seeds on ep24 (seed mean 0.546). 119 runs started (CPU, $0). Tracks: C with ep23 after
+  identity_fix. Coordinator: focused-pascal builds 13f2 (12c's board-2 payload on eval 25 slot 1, D1 no-flip gate).
