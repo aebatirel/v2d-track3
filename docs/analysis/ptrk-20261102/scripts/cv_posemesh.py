@@ -8,21 +8,21 @@ def auc(tag, e):
     return json.load(open(f'{S}/cv/{tag}/ep{e}.json'))['perception_seedmean']['AUC']
 out = {}
 for o, E in sorted(eo.items()):
-    g = {k: {e: auc(f'{o}_{k}', e) - auc('base', e) for e in E} for k in ('12c', '9a', 'place')}
+    g = {k: {e: auc(f'{o}_{k}', e) - auc('base', e) for e in E} for k in ('12c', '9a', 'place', 'X') if os.path.exists(f'{S}/cv/{o}_{k}')}
     r = dict(episodes=E, gains={k: {str(e): round(v, 4) for e, v in d.items()} for k, d in g.items()},
              mean_all={k: round(float(np.mean(list(d.values()))), 4) for k, d in g.items()})
     if len(E) >= 2:
         h1, h2 = {}, {}
         for e in E:
             rest = [x for x in E if x != e]
-            opts = {'13f': 0.0, **{k: float(np.mean([g[k][x] for x in rest])) for k in ('12c', '9a')}}
+            opts = {'13f': 0.0, **{k: float(np.mean([g[k][x] for x in rest])) for k in ('12c', '9a', 'X') if k in g}}
             kh = max(opts, key=opts.get); h1[e] = (kh, 0.0 if kh == '13f' else g[kh][e])
             pl = float(np.mean([g['place'][x] for x in rest])) > 0; h2[e] = (pl, g['place'][e] if pl else 0.0)
         m1 = [v for _, v in h1.values()]; m2 = [v for _, v in h2.values()]
         r['part1'] = dict(heldout={str(e): [k, round(v, 4)] for e, (k, v) in h1.items()}, mean=round(float(np.mean(m1)), 4),
                           min=round(float(np.min(m1)), 4), passes=bool(np.mean(m1) >= 0.005 and np.min(m1) >= -0.01))
         if r['part1']['passes']:
-            r['part1']['k_star'] = max(('12c', '9a'), key=lambda k: r['mean_all'][k])
+            r['part1']['k_star'] = max([k for k in ('12c', '9a', 'X') if k in g], key=lambda k: r['mean_all'][k])
         r['part2'] = dict(heldout={str(e): [bool(p), round(v, 4)] for e, (p, v) in h2.items()}, mean=round(float(np.mean(m2)), 4),
                           min=round(float(np.min(m2)), 4), passes=bool(np.mean(m2) >= 0.005 and np.min(m2) >= -0.01))
     else:
