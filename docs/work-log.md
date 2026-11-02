@@ -6494,3 +6494,17 @@ arm and a no-policy replay floor to stage B.
   - Status at 06:22: credit $91.52 (night spend ≈ $31.3); one box running (pfG, eval-16 confirmation).
   - Eval 16: pz (right hand kept on the spoon from f107) 0.975 ± 0.009 on seed 42; seed 43 + 10 draws pending.
   - Pack 12 still waiting for the owner's upload word.
+- 06:30 UTC 2 Nov perfect-following: **"pack 12b ready"**: build_12b (branch claude/perfect-following-20261101,
+  79ffe371) = pack 12 + eval 16 (run 20261102-pfG-86cfc19, arm pz seed 43, ck ed25dc5f…).
+  - Change: the packed eval-16 reference with the robot's right hand held on the spoon from release (f107) to the end
+    (tools/hold_freeze.py, GT-free; object poses unchanged); current packed recipe; stock limits.
+  - Verdict (PREREG_B committed 02:06 UTC, before results): 10 fresh draws 0.974 vs packed 0.850; fails 0 / 0; median
+    RPE 1.18 vs 1.79 cm; draw 1 0.974 vs the old packed draw 0.908; gain +0.124, so PASS + INCLUDE. Same-box control
+    without the freeze 0.769 / 0.787.
+- 06:35 UTC verification by this session [M], all pass:
+  - sha bde0ae84…; 9,120 rows; code commit fa129a11 on origin; kit hashes match;
+  - vs pack 11 only e000014 / e000016 / e000032 rows + checkpoints differ; vs pack 12 only e000016;
+  - CD-O equals the staged file; stock limits (no_oracle); dry run valid.
+  - 12b supersedes 12. The upload waits for the owner's word.
+  - The night-report artifact was updated with eval 16 and pack 12b.
+  - Night spend ≈ $31 of $102; nothing running.
