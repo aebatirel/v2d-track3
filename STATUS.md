@@ -1,5 +1,10 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~18:50 UTC: PACK 13 UPLOADED: AUC 0.84924, RPE 3.00841, MPPE 2.45263 (best); SP-SR 0.85, MP-SR 0.75, CD-O 0.30008
+- Pack 13 = 12c + eval 20. Record: results/submissions/20261102-track3p-candidate/build_13/UPLOAD.md.
+- Standings: rank sum 54, tied with DSAIL (9th / 10th). Final selection plan: pack 13 for five boards, 12d for CD-O.
+- Next-rank gaps: AUC +0.0075; RPE −0.34 cm; MPPE −0.18 cm; CD-O −0.0042; one more SP-SR success.
+
 ## 2026-11-02 ~18:40 UTC: perception tests done (all fail); pack 13 verified, waits for the owner's word
 - **Pack 13 = 12c + eval 20** (lift-window plw s43; fresh 0.926 vs 0.893, gain +0.033).
   - sha 791c3922…; record results/submissions/20261102-track3p-candidate/build_13/UPLOAD.md.
