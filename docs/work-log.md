@@ -7028,3 +7028,14 @@ arm and a no-policy replay floor to stage B.
   - No spoon mesh build; the GT-free criterion (a)–(d) is kept on file.
   - Option for the owner: a rest-averaged spoon anchor pose with re-evaluation of the 5 policies (GPU, ~$5–10 [E]).
     It cannot be validated on public data (no spoon GT; the public non-spoon anchor test A-f0 gave +0.001).
+- ~20:10 UTC 2 Nov **owner: "how much money do you need, and do as much work as you can for tonight".**
+  - Launched within the current $28:
+    - perception-tracking: public tests (A) mesh placement from depth (one constant mesh-in-tracker-frame transform
+      per episode and object, GT-free, no retrain on eval) and (B) tracking with the submitted 13f meshes; ≤ $8, PREREG
+      each;
+    - perfect-following: spoon anchor (evals 32 / 33 / 35 / 36 / 37), rest-averaged initial orientation +
+      re-evaluation, PREREG rule; it cannot be validated on public data, so upload once and no iteration on the board;
+    - bold-albattani: the mesh audit → 13g (running).
+  - Budget asked of the owner: about $100 now. It covers the tests above plus retrains of the failed-draw episodes with
+    better collision meshes (20 / 28 / 30) and eval 1. A further ~$80 only if test (B) passes and the eval perception
+    rerun plus retrains go ahead.
