@@ -6892,3 +6892,15 @@ arm and a no-policy replay floor to stage B.
   - No GPU requested (the BootsTAPIR condition was not met); lane stopped.
   - By-products: ep23 identity write-up; perc2's ep0 frame-0 lid mask sits on the pot handle.
   - Record: docs/analysis/ptrack-20261102/RESULT.md on claude/point-track-20261102.
+- 18:35 UTC (session clock) 2 Nov **perception-tracking FINAL** (docs/analysis/ptrk-20261102/README.md, 877f353 on its
+  branch). All pre-registered public tests FAIL [D]:
+  - mask-guided tracking −0.0009; its re-register part fails replication (ep0 −0.38);
+  - full-resolution depth −0.0079;
+  - **complete-base pitcher as the tracker template −0.249**;
+  - SAM-6D-style scores added to our rules +0.0010 (6 better / 1 worse; MPPE −0.02, RPE −0.17; below the +0.005 bar;
+    > 3 cm frames +2); replacing our rules −0.20 (3 crashes);
+  - Stage 1 rest-segment fit −0.0088.
+  - Kept / handed: S2 (to perfect-following, +0.004 board [E], only on retrains); ep23 identity_fix wiring gap.
+  - Spend ≈ $25–26 [E] of $40 (ptrkE $4.6 of $6); ptrkD self-destroys after its report-only cells. No further GPU.
+  - Caveat to the "meshes are the lever" reading [I]: the one direct mesh test (complete-base pitcher template) was
+    strongly negative. Better meshes are not a sure gain; any mesh lane needs its own public test.
