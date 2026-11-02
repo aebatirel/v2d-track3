@@ -10847,3 +10847,7 @@ score.
   training-only reset-state bank, but a contact-moment bank needs the policy's own joint states (GPU traces), a public test
   first, and the earlier solver–RL loop with this bank "barely acted". Listed as the next decision for the owner.
 - 01:20 UTC 2 Nov keen-heisenberg: pack 12 verified (sha, row diff, kit hashes, stock limits, PREREG timing, dry run valid); upload blocked by its permission classifier, waits for the owner's word. If eval 16 passes: pack 12b on pack 12.
+- 02:00 UTC 2 Nov pfF seed 42 (eval 16, training box vs P) [M]: s (packed construction, current recipe) 0.687 ± 0.083;
+  se (hold to end) **0.769 ± 0.021** (+0.08 over its same-box control); both below the packed policy 0.850, which was
+  trained by the 24 Oct recipe (run 20261024-seed43-61101f5). So on eval 16 the current recipe itself loses ~0.16 vs the
+  packed one [I]; hold-to-end helps within the recipe. Seed 43 running; the gate (> 0.8498) will likely fail.
