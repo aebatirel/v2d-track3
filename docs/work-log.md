@@ -10924,3 +10924,9 @@ score.
   pfK eval 25 slw **0.529 ± 0.033** (sweep chose 150M; gate 0.878), 90 min. [M] eval 25 has always been bimodal by
   seed (packed run s42 0.792 / s43 0.474; D retrains s42 0.816 / s43 0.482); [I] seed 42 with lift windows fell in the
   low mode, so one seed says little about the lift effect on eval 25; seed 43 decides (rule unchanged).
+- 14:54–16:12 UTC 2 Nov more training-box results [M]: eval 28 slw s42 0.864 ± 0.061 (gate 0.919); eval 15 plw s42
+  **0.953 ± 0.012** (gate 0.906); eval 20 plw s42 **0.297 ± 0.049** (chosen 60M; gate 0.893; collapse); eval 30 slw s42
+  0.787 ± 0.158 (chosen 100M; gate 0.897); eval 3 plw s43 0.886 ± 0.100 (→ eval 3 fails the gate on both seeds);
+  eval 14 plw s43 0.908 ± 0.022 (both seeds above the 0.875 gate; seed rule keeps s42 0.923); eval 25 slw s43
+  0.541 ± 0.031 (→ eval 25 NO-SWAP at the gate). [I] eval 25: both lift seeds in the low mode, while s42 reached the
+  high mode twice without lift (0.792, 0.816); 2 seeds cannot separate this from the usual seed split.
