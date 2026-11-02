@@ -10837,3 +10837,4 @@ score.
   gain on B +0.040 ≥ +0.02. Eval 33 bridged: seed 43 0.898 (s42 0.406), confirmation running.
 - 01:05 UTC 2 Nov **eval 33 guard-bridge candidate: PASS, NOT INCLUDED** [M]: seed 43; 10 draws vs B 0.9395 (packed
   0.9199), vs P 0.9347 (packed 0.9234); 0 fails both; gain on B **+0.0196 < +0.02** → stays out (rule as pre-registered).
+- 01:03 UTC 2 Nov **eval 15 two-hand: NO-SWAP** [M] (on-box verdict): mean 0.947 vs packed 0.906 (gain +0.042) but clause (c) median RPE 1.447 vs 1.299 cm fails. pfD done.
