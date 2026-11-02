@@ -105,3 +105,42 @@ anchor median <= S + 2.0 mm. If both pass: lowest W30, then lowest CD-O. If v1 =
 - [H5] v2 flips on < 10% of seeds, because library_v3 itself is expected to be near 0.
 - [H6] v1 keeps at least one of the two extra balls (ep24 sees face -1).
 - [H7] CD-O changes by < +0.005 cm, since the features are small.
+
+## 7. Addendum 2 (2026-11-02, written before any generation or rental): G2 generation batch for the weakest shipped meshes
+**Why.** The coordinator relayed the owner at 20:13 UTC: "go crazy, let's win this". Credit is $127.97. The task is new
+candidate generation for the weakest shipped meshes, with GPU spend <= $25, stopping if total Vast credit falls below
+$15. Board 2 is handled separately (addendum 3, CPU).
+
+**Objects and inputs (GT-free).**
+- Objects: white_pot (6 pairs), blue_cup (5), plastic_dish_rack (5), water_pitcher (1).
+- Inputs are `scripts/crops.py` RGBA crops from public episodes that contain the object. There are up to 3 episodes per
+  object and up to 2 crops per episode, under crops.py's own ranking. The plan per object:
+  - pot: ep41 / 43 / 44;
+  - blue cup: ep22 / 21 / 12;
+  - rack: ep31 / 12 / 26;
+  - pitcher: ep22 / 21.
+  The real episode list is fixed by what crops.py accepts, and it is logged.
+- No scan, mocap, parquet pose or *_align reaches the generation inputs.
+
+**Generation.**
+- Generators: SAM 3D Objects, Hunyuan3D-2.1 (shape) and TRELLIS.2 (1536; 1024 if it runs out of memory, labelled).
+- Seeds 42, 7, 123 and 2025, so at most 6 crops x 3 models x 4 seeds = 72 meshes per object.
+- Each output gets a GT-free Sim(3) fit to our observed points (`gen/sim3_fit.py`), as in the 29 Oct probe.
+- Every file is hashed (SHA256SUMS), and the hash list is committed **before any scan read** of these meshes.
+
+**Selection (GT-informed, disclosed as for Tier B).**
+1. Stage 1 screen [D]: one `mesh_metric` scoring per generated mesh (Sim(3) copy), 6 seeds 3001-3006, roster emptied.
+2. Stage 2: per object, the 4 lowest stage-1 CD-O medians. Each is placed in the library_v3 frame with the GT-free
+   C1/T2 `place.py`. A generate-then-fit copy is added with the C1/T3 GT-free fit, if its code runs unchanged. That is up
+   to 8 meshes per object.
+3. Stage 3: the section-2 audit (50 seeds 3001-3050) of every stage-2 mesh.
+4. Adoption: section-3 rules (A)/(B) against the then-current baseline (13f, or 13g if 13g adopts that object).
+
+No leaderboard input is used; the winners are fixed before any upload.
+
+**Cost.** One H100-class box (interruptible where sensible), expected 3-5 h, about $6-12 including downloads [E]; the cap
+is $25. Ledger planned line before creation (LEDGER_SESSION=mesh-bold). The box self-destroys. Stage 1 may run on that
+box's CPUs, but only after the hash list is committed.
+
+**Prediction.** [H8] At least one of pot / blue cup / pitcher gets a rule-(A) win (CD-O -0.02). The rack does not: the
+29 Oct generators' best rack was 0.604 vs our 0.418.
