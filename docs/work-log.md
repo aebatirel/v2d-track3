@@ -6086,9 +6086,15 @@ Advice given:
   rack / plate pairs was wrong on net. [H] The meshes enter the pose boards through the kit's registration of the
   submitted mesh to the scan, and a better-matching shape registers better; falsify by scoring 12e vs 12c per episode
   (not available on the board).
-- ~19:25 UTC request (keen-heisenberg): **pack 13e = pack 13b's poses + pack 12e's mesh payloads**, CPU only, uploaded
+- 19:22 UTC request (keen-heisenberg, same message): **pack 13e = pack 13b's poses + pack 12e's mesh payloads**, CPU only, uploaded
   there. 13b (claude/perfect-following-20261101, results/submissions/20261102-track3m-candidate/build_13b, c8b85ba4…) =
   12c + the eval-15 and eval-20 lift-window rollouts (owner waiver of clause c for eval 15, recorded on that branch).
   Prep: downloaded both rollouts from the store (runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep{15,20}_plw/r1); sha256
   match 13b's manifests; no_oracle pass. **13b reproduced byte for byte** with the kit packer from 12c's inputs + those two
   rollouts (c8b85ba4…).
+- ~19:26 UTC **pack 13e ready** (CPU, guard on): 13b's inputs (reproduced byte for byte) + the six 12e replacement meshes
+  via pack_swap_meshes.py. sha256 0ea45fcd…07ba1, code b96170b9. Checks [M]: vs 13b only code_commit_url + the 16 payload
+  rows where 12e differs from 12c; vs 12e object_mesh_b64 identical, only code_commit_url + eval 15/20 pose (735) and
+  checkpoint (736) rows differ; CD-O = 12e's except code_commit_url (74137f15…); offline validation pass; 0 MESH WARNINGs;
+  frame flags as signed off for 12d / 12e (pitcher now reported against library_v3: ICP 9.48 mm / 3.38°). Staged as
+  results/submissions/20261102-track3q-candidate; sent to keen-heisenberg. Not uploaded from this session.

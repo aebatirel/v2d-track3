@@ -1,0 +1,20 @@
+== 13e vs 12e
+  pos_x: 735 rows; episodes ['15', '20']
+  pos_y: 735 rows; episodes ['15', '20']
+  pos_z: 733 rows; episodes ['15', '20']
+  quat_x: 735 rows; episodes ['15', '20']
+  quat_y: 733 rows; episodes ['15', '20']
+  quat_z: 733 rows; episodes ['15', '20']
+  quat_w: 735 rows; episodes ['15', '20']
+  checkpoint_sha256: 736 rows; episodes ['15', '20']
+  code_commit_url: 9120 rows; episodes ['01', '03', '05', '06', '08', '10', '14', '15', '16', '19', '20', '25', '28', '30', '32', '33', '35', '36', '37', '38']
+  object_mesh_b64 identical to 12e: True
+== 13e vs 13b
+  code_commit_url: 9120 rows; episodes ['01', '03', '05', '06', '08', '10', '14', '15', '16', '19', '20', '25', '28', '30', '32', '33', '35', '36', '37', '38']
+  object_mesh_b64: 16 rows; episodes ['01', '03', '05', '06', '08', '14', '15', '16', '19', '20', '25', '28', '30']
+== mesh rows 12c vs 12e (should equal the 13e-vs-13b mesh rows)
+  12c->12e mesh rows 16 | same row set as 13b->13e: True
+== 13e equals 13b on every column but object_mesh_b64 / code_commit_url: True
+== 13e equals 12e on every column outside eps 15/20 but code_commit_url: True
+== CD-O columns ['row_id', 'x', 'y', 'z', 'code_commit_url'] 294912 294912
+  CD-O differing columns: {'code_commit_url': 294912}

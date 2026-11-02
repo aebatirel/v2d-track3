@@ -10,6 +10,15 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-02 ~19:26 UTC: PACK 13e READY — results/submissions/20261102-track3q-candidate/build_13e/ (not uploaded here)
+- = pack 13b's poses (12c + evals 15 / 20 lift-window rollouts; 13b reproduced byte for byte) + pack 12e's mesh payloads.
+  sha256 0ea45fcd…07ba1. vs 13b only the 16 payload rows (12c→12e) + commit URL; vs 12e only evals 15 / 20 pose and
+  checkpoint rows + commit URL; CD-O = 12e's. Offline validation pass; guard on. Sent to keen-heisenberg, who uploads.
+
+## 2026-11-02 19:22 UTC: PACK 12e UPLOADED (keen-heisenberg's session) — best on every board; rank sum 47, 7th
+- AUC 0.86905, SP-SR 0.90, MP-SR 0.80, RPE 2.391, MPPE 1.953, CD-O 0.26775 (estimate ≈ 0.268). The pose boards rose far
+  more than expected (AUC +0.0217 over 12c), so the "pose worse on the rack / plates" expectation was wrong on net.
+
 ## 2026-11-02 ~19:17 UTC: PACK 12e READY (frame sign-off YES) — results/submissions/20261102-track3p-candidate/build_12e/ (not uploaded here)
 - Pack 12d (reproduced byte for byte first) + bold-albattani's Tier B meshes @ 332eb5b, transform none: pitcher (eval 20),
   sweeper (19, 30), rack (14, 15, 16, 28, 30), wooden pieces (25). **GT-informed selection** (best by public-scan CD-O);
