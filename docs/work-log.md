@@ -6125,7 +6125,7 @@ Advice given:
   are axially symmetric in the kit; everything else ≤ 4.7°. pack_swap_meshes' kit proxy had flagged this flip (179.9°) at
   12e packing; the sign-off rested on a wrong "eval seed does not flip" claim. Fix = payload-only revert of eval 25 slot 1
   to library_v3 (825a7fe3). Building it on 13f.
-- ~20:35 UTC **pack 13f1 ready** = 13f with eval 25 slot 1 wooden_piece_2 reverted to library_v3 (payload byte-identical to
+- ~20:33 UTC **pack 13f1 ready** = 13f with eval 25 slot 1 wooden_piece_2 reverted to library_v3 (payload byte-identical to
   12c's). sha256 c25abef2…28cb12, code e182f362; vs 13f only code_commit_url + 1 payload row; CD-O only that pair changes;
   offline validation pass; guard on; scan check [D] eval 25 slot 1 0.7° (was 179.2°). Staged as
   results/submissions/20261102-track3s-candidate; sent to keen-heisenberg. Not uploaded from this session.

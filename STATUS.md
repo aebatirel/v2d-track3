@@ -10,7 +10,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
-## 2026-11-02 ~20:35 UTC: PACK 13f1 READY (flip fix) — results/submissions/20261102-track3s-candidate/build_13f1/ (not uploaded here)
+## 2026-11-02 ~20:33 UTC: PACK 13f1 READY (flip fix) — results/submissions/20261102-track3s-candidate/build_13f1/ (not uploaded here)
 - 12e/13f's Tier B wooden_piece_2 registers UPSIDE DOWN at eval 25's kit seed against the public scan (179.2° [D];
   library_v3 0.7°). Found by tracking-perception, confirmed here (docs/research/work/flipcheck-20261102). The blue-cup
   spins are axial (tilt ≤ 4°) and harmless; everything else ≤ 4.7°.
