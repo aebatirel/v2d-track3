@@ -6151,7 +6151,7 @@ Advice given:
 - 21:36 UTC coordinator: the same spec as "pose pack 13p on 13f1" (13p = my 13f1p, already built); README gets their
   disclosure line verbatim. A later 13p2 adds the eval-20 pitcher placement from depth. Waiting for bold-albattani's pot
   sign-off.
-- ~21:51 UTC bold-albattani **signs off the 13f1p TSDF pot: YES, transform NONE** (50-seed scan registration [D]: anchor
+- ~21:49 UTC bold-albattani **signs off the 13f1p TSDF pot: YES, transform NONE** (50-seed scan registration [D]: anchor
   median TSDF 2.6 vs T3 5.6 mm, ADD 2.9 vs 6.3 mm, 0/50 flips; my ICP / proxy flags reflect the T3 pot's own offset). Hashes
   re-verified. **pack 13p (= 13f1p) ready:
   results/submissions/20261102-track3t-candidate/build_13f1p/track3_submission.parquet** (sha256 3134dfc6…c2ed, code
