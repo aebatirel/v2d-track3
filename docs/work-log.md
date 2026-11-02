@@ -6952,3 +6952,12 @@ arm and a no-policy replay floor to stage B.
   - no_oracle accepts all five files; validation pass; 0 MESH warnings.
   - Flags: pitcher ICP 14.9 mm vs 12d's mesh; rack ICP 6.2 mm; the kit proxy flips wooden_piece_2 by 180°.
   - The upload waits for the sign-off and my check.
+- ~19:25 UTC 2 Nov **pack 12e UPLOADED** (57919161–57919177). Verified first: only 10 mesh rows changed; the CD-O
+  file changes only those 10 pairs.
+  - Scores: AUC **0.86905**, SP-SR **0.90**, MP-SR **0.80**, RPE **2.39138**, MPPE **1.95269**, CD-O **0.26775**. Best
+    on every board.
+  - **Rank sum 47, 7th** (from 54).
+  - Reading [I]: registered scoring aligns our mesh to the truth, so better meshes cut the pose errors on every board,
+    far beyond the CD-O estimate.
+  - Next: pack 13e = 13b's poses + 12e's meshes (merging two independently adopted changes; decided before seeing any
+    13e result).
