@@ -21,3 +21,27 @@ Spec: `../C4-audit/PREREG.md` section 7 (addendum 2, e573235), sections 2-3. Tim
   default_rng(0)), hashes `inputs/inputs_obs_sha256.txt`. Input tar S/g2/g2_inputs.tar sha256 de9fc1c9...
 - Box queue: `../../gen/box_g2.sh` (SAM 3D alongside Hunyuan3D-2.1, then TRELLIS.2 1536 alone, 1024 fallback; Sim(3)
   on the CPUs; SHA256SUMS at the end). Screen: `../C4-audit/scripts/screen6.py` (6 seeds 3001-3006, roster emptied).
+- 20:26:51Z rental: commit ff63482 pushed; inputs uploaded to the store `runs/mesh-20261102-g2-ff63482/inputs/g2_inputs.tar`;
+  ledger planned $7 (mesh-bold); credit $127.37 (other sessions now run 5 boxes, ~$7/h). Launch:
+  `SETUP=none DISK=120 IMAGE=vastai/pytorch:2.7.1-cu128-cuda-12.9-mini-py310-2026-10-23 V2D_COMMIT=ff63482f72a339cf8469780b760986a16409ebc4
+  ops/vast.sh create 31183486 mesh-20261102-g2-ff63482 'IDLE_MIN=300 bash docs/research/mesh-2026-10-26/gen/box_job.sh' 1.30`
+  -> instance 58873650 (H100 NVL, Czechia, interruptible bid $1.30/h GPU).
+- 20:28Z box: H100 NVL 95.8 GB, nproc 224 (host) but 28 effective cores (offer), so the queue runs with NP=24. Started
+  through exec: box_setup.sh, sam3d_setup.sh (after UV-OK), `NP=24 box_g2.sh` (INPUTS-OK de9fc1c9..., 22 crops).
+- Stage-1 location decided: the box's CPUs after the freeze commit (28 cores, ~264 x ~65 s / 24 workers ~ 12 min,
+  ~$0.3 [E]) instead of local (4 cores already at load 4.3 from another job; 2 workers ~ 4 h). The kit, the 4 public
+  scans and the 4 reference caches go to the box only after the freeze commit (`S/g2/screen_pkg`, 54 MB). Screen env:
+  a fresh py3.13 venv pinned to the local versions (numpy 2.5.4, scipy 1.18.1, trimesh 5.2.0, pandas 3.1.0).
+- 20:30Z setup fix: W-HY21-FAIL. The box's hf CLI is now 2.2.0; `hf download REPO --include A B` takes B as a file
+  name ("Ignoring --include since filenames have been explicitly set"), so Hunyuan3D-2.1 got no weights and
+  TRELLIS.2-4B got its ckpts but no pipeline.json. Fixed by hand through exec with the Python API
+  (snapshot_download allow_patterns hunyuan3d-dit-v2-1/*, hunyuan3d-vae-v2-1/*: 7.5 GB; hf_hub_download pipeline.json).
+  box_setup.sh is unchanged in git; the fix is logged here.
+- 20:32Z PREEMPTED: instance 58873650 went exited/stopped ~4 min into generation; the whole 8-GPU machine was rented
+  on-demand (its 1-GPU min bid jumped to $2.69). Destroyed 20:33:53Z (nothing kept; no output was hashed or pushed).
+  Instance record: 70.4 GB downloaded at $37.33/TB + ~6 min at $1.398/h, ~$2.80 [estimate from the record]; ledger actual.
+- 20:35:21Z replacement, on-demand to avoid another preemption: run `mesh-20261102-g2b-ff63482` (same commit ff63482,
+  inputs re-uploaded under runs/mesh-20261102-g2b-ff63482/inputs/, same sha256). Offer 58415958 -> instance 58874418,
+  H200 NVL 141 GB (Hopper sm_90 like the H100, so the compute_90 wheels apply; the memory also avoids TRELLIS.2's
+  1536 OOM), New Mexico, $4.033/h, 85 cores, $2.67/TB. Ledger planned $12. Credit $123.65 at 20:34Z.
+  Same launch line with `create 58415958 mesh-20261102-g2b-ff63482 ...` and no bid.
