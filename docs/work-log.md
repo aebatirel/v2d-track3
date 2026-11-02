@@ -10951,7 +10951,7 @@ score.
   (estimates from times): pfI $6.0, pfJ $5.2, pfK $4.6, pfL $1.45, pfL2 $5.9, pfM $5.0 → ≈ $28 for the lift batch.
   Credit $29.29 at 18:02 UTC. No new boxes until the owner tops up (owner via keen-heisenberg, 17:05 UTC).
   Lift-window batch summary [M]: 1 of 8 eval episodes swapped (20, +0.033); 15 passed every clause but c (median RPE
-  +0.05 mm); 14 passed the gate and failed fresh draws; 3 / 25 / 28 / 30 / 32 failed the gate. [I] the standard-learner
+  +0.47 mm); 14 passed the gate and failed fresh draws; 3 / 25 / 28 / 30 / 32 failed the gate. [I] the standard-learner
   arm (25 / 28 / 30) never reached its board policy: the lift windows did not fix those episodes' seed variance.
 - 18:50 UTC 2 Nov keen-heisenberg: **pack 13 uploaded** on the owner's word. Scores [M, board]: AUC **0.84924** (+0.00186 vs
   12c), MPPE 2.45263 (−0.0147), RPE 3.00841; SP-SR 0.85, MP-SR 0.75, CD-O 0.30008 unchanged. Rank sum 54, tied with DSAIL.
