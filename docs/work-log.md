@@ -7211,3 +7211,8 @@ arm and a no-policy replay floor to stage B.
     - eval depth pre-approved up to $10 more.
   - bold-albattani: offer every G2 and C4 mesh to the pose CV. The scan rules still govern the CD-O board, so a mesh
     can win either board family separately.
+- ~21:50 UTC 2 Nov **test B (track with the 13f meshes as FoundationPose templates): FAIL** [D].
+  - Mean ΔAUC −0.043 (8 better / 12 worse); ep0 −0.90 (lid lost), ep11 −0.71 (cups lost), ep21 −0.10; MPPE +0.63 cm.
+    ep23 +0.90 is a lucky board re-assignment.
+  - No eval perception re-run, so the conditional ~$80 is not needed. ptrkF self-destroyed (≈ $2.7).
+  - Eval 20 pitcher placement: box G (masks) running.
