@@ -7039,3 +7039,11 @@ arm and a no-policy replay floor to stage B.
   - Budget asked of the owner: about $100 now. It covers the tests above plus retrains of the failed-draw episodes with
     better collision meshes (20 / 28 / 30) and eval 1. A further ~$80 only if test (B) passes and the eval perception
     rerun plus retrains go ahead.
+- ~20:07 UTC 2 Nov room-map (b) final including ep23 (both arms with identity_fix), 20e9506 [M]:
+  - mean ΔAUC +0.0067, ΔMPPE −0.076 cm; G2 fails (ep22 −0.0164);
+  - closer to mocap: map 7, perc2 10, tie 3. The map is clearly right only where perc2 drifts (ep24, 37 mm).
+  - Eval 35 is the only eval clip like ep24 (18 mm p95, bound 0.056).
+  - Map cameras for all public (leave-out) and eval clips are exported to HF
+    runs/20261102-roommap-6438495/world_T_cam/.
+  - Eval 35 map-camera arm passed to perfect-following as an optional, separately pre-registered arm after the
+    top-up.
