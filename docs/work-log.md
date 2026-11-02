@@ -6861,3 +6861,11 @@ arm and a no-policy replay floor to stage B.
     −0.03). Fitting depth to a wrong shape moves a good pose.
   - The +0.032 rest oracle is not reachable with our meshes. The map-camera arm was dropped (room-map (b) measures
     cameras directly); no post-hoc per-object gate.
+- 17:27 UTC 2 Nov **room-map step 1(a) [M], $0** (6438495, docs/analysis/roommap-20261102/results/eval_drift.md):
+  - GT-free public-only map: all 20 eval clips relocalised at every frame (100 %, min 479 inliers, 0 gate rejections).
+  - perc2's camera vs the map: object gap p95 **2–9 mm on 19 / 20 clips**; ep35 18 mm, arriving in steps at keyframe
+    hops. This is far below note 18's own stereo VO (20–83 mm).
+  - Camera-term AUC bound mean 0.0029 (ep35 0.056) → **pre-registered G1 (≥ 0.01) fails; step 2 and retrains are
+    off.** Camera-term MPPE ≈ 0.13–1.3 cm per clip (mean ~0.3), if the map is right.
+  - The public leave-out test (b) continues, report-only (~1.5 h).
+  - Reading [I]: camera drift is not our perception bottleneck. The rest-segment result points at meshes.
