@@ -10866,3 +10866,5 @@ score.
   self-destroyed 06:27, 256 min ≈ $4.8): seeds 0.975 / 0.972 → seed 43 (lower sd); 10 fresh official draws **0.974**
   (packed H5p7 0.850), fails 0 / 0, median RPE 1.18 vs 1.79 cm, draw 1 0.974 vs the board's old draw 0.908; gain +0.124.
   Control p0 (packed reference, current recipe) 0.769 / 0.787: NO-SWAP. Checkpoint sha256 ed25dc5f8312b861b8ec3be6d96fdafecb3c939e89a29fef8e4a8b56b4966882.
+- 06:36 UTC 2 Nov **pack 12b ready: results/submissions/20261102-track3m-candidate/build_12b/track3_submission.parquet**
+  (sha256 bde0ae84…; pack 12 + eval 16 pz draw 1; code fa129a110aa4fd33bcdab199bcaa2c0c7fd3f9cd; all checks pass). NOT uploaded; record to keen-heisenberg.

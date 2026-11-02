@@ -43,3 +43,22 @@ The board scores the submitted trajectories as they are. Pack 11's eval-14 rollo
 (0.909 vs P) and its eval-32 rollout 0.866 vs P; the new draws 1 score 0.882 and 0.876 vs P. So on the stored-trajectory
 board the change is small and may be slightly negative for eval 14 (one draw each; vs ground truth unknown). The expected
 gain is real on re-runs (+0.13 / +0.015 mean on P). The owner decides.
+
+## Pack 12b (added 2 Nov ~06:35 UTC) = pack 12 + eval 16 — `build_12b/`
+- File: `build_12b/track3_submission.parquet`, 9,120 rows, sha256
+  `bde0ae84ccdaf442459308f0f806365cc79105e2f4af0b676c05103c14b0a0e1`; CD-O `985db0dd…` (rows identical to pack 11's).
+- Code commit on every row: https://github.com/aebatirel/v2d-track3/commit/fa129a110aa4fd33bcdab199bcaa2c0c7fd3f9cd.
+- Built by tools/pack_swap_rows.py on pack 12; checks as above [M]: vs pack 11 only e000014 (316), e000016 (346; 345 pose
+  rows changed) and e000032 (518) pose rows + checkpoints differ; evaluator stamps match; kit offline validation pass;
+  CD-O rows changed 0; no_oracle pass (rollout, reference path, checkpoint).
+- **Eval 16:** run `20261102-pfG-86cfc19`, arm pz seed 43, checkpoint
+  `ed25dc5f8312b861b8ec3be6d96fdafecb3c939e89a29fef8e4a8b56b4966882` (store
+  `runs/20261102-pfG-86cfc19/results/pfpzs43_glock_public/ep16/best/policy.safetensors`), confirmation draw 1.
+  - Reference: the PACKED eval-16 reference with the right hand's wrist / fingers / frames held at f106 from f107 to the
+    end (tools/hold_freeze.py): the robot hand keeps holding the spoon where our reference keeps it still, instead of
+    letting it fall in the simulator. Object poses unchanged (the packed reference P is the yardstick). Current packed
+    recipe, stock limits. Pre-registered: docs/research/work/pf-release-20261102/PREREG_B.md.
+  - Verdict [M] (10 fresh official draws, pristine evaluator): sim_vs_ref **0.974** vs packed H5p7 0.850; fails 0 / 0;
+    median RPE 1.18 vs 1.79 cm; draw 1 0.974 vs the board's old eval-16 draw 0.908; inclusion gain +0.124 → PASS + INCLUDE.
+  - Same-box control (packed reference, no freeze): 0.769 / 0.787, NO-SWAP.
+- Board expectation [E]: eval 16's stored draw rises 0.908 → 0.974 vs our reference; evals 14 / 32 as above.
