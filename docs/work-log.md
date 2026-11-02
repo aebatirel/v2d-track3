@@ -6740,3 +6740,23 @@ arm and a no-policy replay floor to stage B.
   - Credit $52.14 [M]; burn $8.38/h over 6 boxes (5 eval-retrain boxes: $7.02/h).
   - Estimate to about 19:00 UTC [E]: retrains ≈ $28, SAM-6D ≤ $6, ptrkD ≈ $3.5. That leaves about $14, so the
     SAM-6D test may reach its < $15 stop.
+- 16:05 UTC 2 Nov owner asked whether the SlamDunk report (LaMAria localisation, artifact CPZhtYvJzLGjcth3XBiodH) helps
+  perception. Read in full.
+  - Mostly does not transfer: its main fix is an IMU (V2D releases none, track3-requirements.md:32), and its failures
+    come from long, dark, outdoor mono sequences. Our clips are ~13 s of indoor metric stereo.
+  - What carries over:
+    - trimming beat robust kernels (Cauchy 70.85 m vs trimmed 0.34 m), relevant to the offline rest-segment fit;
+    - keep a lost track as a shadow and merge it only on verified evidence (as guard_bridge does);
+    - a frozen public dev / holdout split for perception changes (ep18 chaos);
+    - byte-identical repeats.
+  - It points back to our own **room map (note 18)**:
+    - public-only SfM; relocalised all 20 eval clips at ~1–2 mm with no drift, 0.31 CPU-s per frame;
+    - dropped on 22 Oct because its mocap registration used GT constants, with the gain taken as +0.01 "vs a decent
+      VO".
+  - Our current perc2 VO drift has never been isolated (robustness review 26 Oct §2.3). Note 18's own stereo VO drifted
+    20–83 mm on 12 / 20 eval clips; against that VO the map was worth ≈ +0.10 board AUC [E, note 18 C5].
+  - Proposed to the owner:
+    - $0 CPU check of perc2 VO drift: on public episodes against mocap-static objects (diagnostic), and GT-free on eval
+      clips via table-plane tilt over time;
+    - only if the bound is ≥ +0.01, a GT-free map rebuild; the note-18 code is on the owner's Mac, not in git;
+    - retrains for the eval references that change.
