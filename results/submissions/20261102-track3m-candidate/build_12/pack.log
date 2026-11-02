@@ -1,0 +1,4 @@
+base results/submissions/20261101-track3l-candidate/build_11/track3_submission.parquet sha256 3c428350ec8a3558ec39d8f2072236704e4c52d0538c80ebef125fcb26c055ec rows 9120
+ep14: 316 rows, checkpoint 05b13510629e -> 9da879d9c0e8, pose rows changed 316
+wrote <SCRATCH>/pack12/build_12/track3_submission.parquet sha256 66fc37c348c310d24e640e4f0bf598c5d7d7c87398cc3b7f64d2b9c64a65bcc1 rows 9120
+uploader offline validation pass; CD-O <SCRATCH>/pack12/build_12/track3_submission.cd-o.parquet sha256 7925706f6dc35d3ac1009ee074b4494db9e4330fec746d50552878d373cb560f rows changed vs base CD-O 0
