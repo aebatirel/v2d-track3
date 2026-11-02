@@ -6652,3 +6652,11 @@ arm and a no-policy replay floor to stage B.
 - 14:25 UTC **design note** `docs/analysis/ptrk-20261102/DESIGN_offline_joint.md` (keen-heisenberg's request: offline
   whole-video pose estimation; no build). **Rest-frame oracle [D]: +0.032 mean AUC** (19 eps; perfect poses on
   mocap-rest frames only; ep24 +0.118, ep31 +0.112, ep11 +0.088, ep21 +0.083), above the note's +0.01 build bar.
+- 14:55 UTC **owner (via keen-heisenberg): test SAM-6D's detector; ≤ $6 more GPU; stop if credit would fall < $15.**
+  Findings before building [M]: frame-0 assignments are right on all 20 public episodes in today's control; guard
+  re-detections only on ep18 (sweeper) and ep23 (piece 1). **ep23 is NOT an identity swap:** both boards keep their
+  mocap separation (27–30 cm) but freeze from f21 while mocap moves both ≈ 12 cm together (joint tracking loss).
+  Our detector already has ISM's semantic term (CLS avg-5 vs renders); added its appearance + geometric scores
+  (`pipeline/ism_score.py`, perc2 `DET_ISM=replace|add`, default off). CPU smoke test on a real dump OK (shapes,
+  geometric IoU). PREREG_ism.md pushed before any run. Asked keen-heisenberg whether to stop box D early (rule: never
+  cut a job that is progressing).

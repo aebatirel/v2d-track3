@@ -219,6 +219,24 @@ def desc(crops):
             x = (torch.as_tensor(np.stack(crops[k:k + 64])).cuda().float().permute(0, 3, 1, 2) / 255 - MEAN) / STD
             out.append(torch.nn.functional.normalize(dino(x), dim=-1))
     return torch.cat(out)
+# DET_ISM (2026-11-02, tracking-perception session, [H], off by default): SAM-6D ISM-style appearance + geometric scores
+# (pipeline/ism_score.py) in the detector, at frame 0 and at every track-guard re-detection. 'replace': the ISM final score
+# alone, plain Hungarian assignment, none of our detection rules; 'add': the ISM final score takes the place of the CLS
+# similarity inside our rules (gates, compact prior, on-table rule and re-proposal gate unchanged).
+DET_ISM = os.environ.get('DET_ISM', '')
+ISMT = {}
+if DET_ISM:
+    import ism_score
+def mcrop(m):
+    return crop(np.repeat(m[..., None].astype(np.uint8) * 255, 3, 2), m)[..., 0] > 127
+def ism_feats(crops, mcrops):
+    C_, P_, V_ = [], [], []
+    with torch.no_grad():
+        for k in range(0, len(crops), 32):
+            x = (torch.as_tensor(np.stack(crops[k:k + 32])).cuda().float().permute(0, 3, 1, 2) / 255 - MEAN) / STD
+            c_, p_ = ism_score.dino_feats(dino, x); C_.append(c_); P_.append(p_)
+            V_.append(ism_score.patch_valid(torch.as_tensor(np.stack(mcrops[k:k + 32])).cuda().float()))
+    return torch.cat(C_), torch.cat(P_), torch.cat(V_)
 def templates(n):
     m = meshes[n]; c = m.bounds.mean(0); r = float(np.linalg.norm(m.extents)) / 2; dist = 4 * r
     Kt = np.array([[0.8 * 112 * dist / r, 0, 112], [0, 0.8 * 112 * dist / r, 112], [0, 0, 1]]); TP = []
@@ -230,6 +248,10 @@ def templates(n):
                                     mesh_tensors=make_mesh_tensors(m), use_light=True)
     col = (col.clamp(0, 1) * 255).cpu().numpy().astype(np.uint8); msk = dep.cpu().numpy() > 0
     ks = [k for k in range(len(col)) if msk[k].sum() > 50]
+    if DET_ISM:                                                       # SAM-6D-style scoring data (pipeline/ism_score.py)
+        cls, pt, pv = ism_feats([crop(col[k], msk[k]) for k in ks], [mcrop(msk[k]) for k in ks])
+        pts = trimesh.sample.sample_surface(m, 2048, seed=0)[0] - c
+        ISMT[n] = (cls, pt, pv, np.stack([TP[k][:3, :3] for k in ks]), pts)
     return desc([crop(col[k], msk[k]) for k in ks]), float(np.mean([col[k][msk[k]].mean() for k in ks]))
 def centroid3d(m, dep):
     v, u = np.nonzero(m & (dep > 0))
@@ -338,10 +360,22 @@ def detect(k):
         S0[a] = np.where(ok, sim - LAM_I * np.abs(pint - tint) / 255, -10.0)               # the rule before 2026-10-23
         oks.append(ok & near)
         S[a] = np.where(oks[a], S0[a] - det_rules.size_penalty(pext_e, ext, R_LAM_S), -10.0)
+    ISM = None
+    if DET_ISM and props:
+        qc, qp, qv = ism_feats([crop(img, m) for m in props], [mcrop(m) for m in props])
+        ISM = {n: ism_score.final_scores(qc, qp, qv, *ISMT[n][:4], ISMT[n][4], props, dep, KR) for n in names}
+        for a, n in enumerate(names):
+            f = ISM[n]
+            log('ism', f'f{k}', n, [(int(j), round(float(f['final'][j]), 3), round(float(f['semantic'][j]), 3), round(float(f['appearance'][j]), 3),
+                                    round(float(f['geometric'][j]), 3), round(float(f['visible'][j]), 3)) for j in np.argsort(-f['final'])[:4]])
+            if DET_ISM == 'replace':
+                S[a] = np.where(f['semantic'] > 0.2, f['final'], -10.0)
+            else:
+                S[a] = np.where(S[a] > -10, S[a] - SIM[a] + f['final'], S[a])
     mk = np.stack([m[::2, ::2] for m in props]) if props else np.zeros((0, 1, 1), bool)
     dh = dep[::2, ::2].astype(np.float16).astype(np.float32); Kh = KR.copy(); Kh[:2] *= 0.5
     G = None
-    if gdet is not None and R_LAM_G > 0:
+    if gdet is not None and R_LAM_G > 0 and DET_ISM != 'replace':
         G, inside = det_rules.ground_scores(mk, dh, Kh, names, gdet, _GD['cam'])
         S = np.where(S > -10, S + det_rules.ground_term(G, inside, oks, R_LAM_G), S)
     log('det rules', f'f{k}', dict(lam_s=R_LAM_S, reach=R_REACH, lam_g=R_LAM_G if gdet is not None else 0.0),
@@ -350,6 +384,8 @@ def detect(k):
         log('det', f'f{k}', n, 'ext', round(EXT[n], 3), 'tint', round(TPL[n][1]), [(int(j), round(S[a, j], 3), round(pext[j], 3), round(pint[j])) for j in np.argsort(-S[a])[:4]])
     def assign(S):
         ri, ci = linear_sum_assignment(-S)
+        if DET_ISM == 'replace':
+            return ri, ci
         # DET_PRIOR=compact (2026-10-20, ep26: the rack went to a floor-tape proposal ~1 m away while the pot sat in the
         # rack): joint choice over each object's top-K proposals, penalising a spread of the chosen 3-D centroids beyond DET_D0.
         if DET_PRIOR == 'compact' and len(names) > 1:   # default since the 20-episode A/B
@@ -370,12 +406,12 @@ def detect(k):
                 ri, ci = np.arange(len(names)), np.array(best[1])
         return ri, ci
     table_ok = np.ones(len(props), bool)
-    if DET_TABLE and props:   # on-table rule (2026-10-25; public replay variant 2: ep11 f0 both cups fixed, no regression in
+    if DET_TABLE and props and DET_ISM != 'replace':   # on-table rule (2026-10-25; public replay variant 2: ep11 f0 both cups fixed, no regression in
         table_ok, tpl, th = det_rules.on_table_ok(mk, dh, Kh)   # 116 instances): barred after every score term
         S[:, ~table_ok] = -10.0
         log('on-table rule', f'f{k}', 'plane', None if tpl is None else (np.round(tpl[0], 3).tolist(), round(tpl[1], 3)),
             'barred', int((~table_ok).sum()), 'of', len(props))
-    if reprop.any():   # DET_REPROP gate (2026-10-25; public replay: plain re-proposal broke 2 instances, gated none):
+    if reprop.any() and DET_ISM != 'replace':   # DET_REPROP gate (2026-10-25; public replay: plain re-proposal broke 2 instances, gated none):
         S_off = S.copy(); S_off[:, reprop] = -10.0         # re-proposed masks only for an object whose choice without them
         ch0 = dict(zip(*assign(S_off)))                     # has grounding agreement G < REPROP_GMIN
         allow = [a for a in range(len(names)) if a not in ch0 or G is None or G[a, ch0[a]] < det_rules.REPROP_GMIN]
@@ -396,7 +432,8 @@ def detect(k):
                                 template_intensity=np.array([TPL[n][1] for n in names]), template_extent=np.array([EXT[n] for n in names]),
                                 chosen=chosen, depth=dep[::2, ::2].astype(np.float16), image=rc[k][::2, ::2], K=KR,
                                 params=np.array([LAM_I, K_, D0, LAM_D, float(DET_PRIOR == 'compact')]), verify=V, verify_matched=Vm,
-                                reprop=reprop, table_ok=table_ok)
+                                reprop=reprop, table_ok=table_ok,
+                                **({f'ism_{q}_{n}': ISM[n][q] for n in names for q in ISM[n]} if ISM else {}))
             log('det dump', f'{OUT}/det_f{k}.npz', len(props), 'proposals')
         except Exception as e:
             log('det dump failed (detection unaffected):', repr(e))
