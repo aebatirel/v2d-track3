@@ -6354,3 +6354,9 @@ diagnostic; nothing is picked for submission.
 - Run: `MESH_SCR=<scratch> python -I C4-audit/scripts/audit_multiseed.py C4-audit/candidates.json <scratch>/c4 --workers 4`,
   code d3db66c, this container, started 19:38Z, local CPU, $0.
 - Spoon: no public scan exists. GT-free self-ambiguity only; it cannot be adopted by this rule.
+- ~20:05 UTC: C4 part 1 is done: 12 shipped meshes, 50 seeds each, 0 crashes.
+  - Only the eval-25 boards flip: wooden_piece_2 34% (Tier B occupancy plate), wooden_piece_1 6%.
+  - Every other shipped mesh is 0/50, with rotation p90 <= 4.9 deg.
+  - 13f's blue cup and dust pan carry larger anchor error than the 13e ones (7.0 vs 2.9 mm; 6.0 vs 4.8 mm).
+  - Spoon: GT-free amb 3.41 / floor 1.41 mm at 177.5 deg ([H]: moderate flip risk; no scan to test).
+  Table sent to keen-heisenberg; it is in `C4-audit/results/audit_table_part1.md`. Library_v3 and candidates are running.
