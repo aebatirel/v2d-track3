@@ -68,15 +68,22 @@ model is [D] -> [E]; it predicted 12c within about 0.001.
   - boards: `results/prim/boards/scores.jsonl`.
 - Frame checks [M]: rigid ICP of 20k surface samples onto the replaced mesh (trimesh), as for 12c and 12d.
 
-## Optional B+ (scored, NOT in pack 12e; held by the coordinator because it would not change a rank)
-Same GT-informed kind: each is the best generator output by public-scan CD-O, placed GT-free with `place.py`, then
-scored once [D]. The placed meshes are in the HF store, `runs/cdo-c3-tierB-20261102/`.
-- **blue_cup** (eval 10, 14, 20, 32, 33, slot 0): SAM 3D, public ep22, seed 7.
-  - CD-O 0.2900 / 0.2894 / 0.2894 / 0.2930 / 0.2910 -> 0.2595 / 0.2647 / 0.2674 / 0.2683 / 0.2664.
-  - 0/35 flips; anchor 4.5-7.3 mm (C0 cup 2.1-3.6 mm).
-  - Board -0.0035 [E].
-- **mini_dust_pan** (eval 19 slot 1, eval 38 slot 0): Hunyuan3D-2.1, public ep39, seed 42.
-  - CD-O 0.2587 / 0.2601 -> 0.2294 / 0.2311.
-  - 0/32 flips; anchor 6.0 / 5.8 mm (T2 pick 4.7 / 6.0 mm).
-  - Board -0.0016 [E].
-- **Together:** 12e about 0.268 -> about 0.263 [E].
+## Added for pack 13f (B+; coordinator 19:22 UTC, under the same owner approval)
+Pack 13f = pack 13e (13b's poses + 12e's meshes) + these two payload swaps.
+- **Why they are now included.** At 19:12 UTC they were held because they would not change a CD-O rank. The coordinator
+  reversed the hold at 19:22 UTC. The reason given: meshes also drive the pose boards through registered scoring. Both
+  pass C3's pre-set rule (beat the shipped mesh by >= 0.02 cm public-scan CD-O). No leaderboard result was used to
+  choose between mesh variants.
+- **How ground truth entered.** The same way as for the rest of this tier. Each mesh is the best generator output, chosen
+  by its public-scan CD-O. Each was then placed in the library_v3 frame without ground truth (C1/T2 `place.py`) and
+  scored once [D] (`results/score_tierBplus.jsonl`). Neither is a byte copy of the public scan (md5 checked) or a scan
+  template; both were generated from public-episode video frames.
+
+| Object | File (md5) | Replaces (md5) | Eval (slot) | CD-O before -> after [D] | Faces in file | Frame vs shipped [M] | Anchor before -> after [D] | Selection |
+|---|---|---|---|---|---|---|---|---|
+| blue_cup | `blue_cup_sam3d_ep22_k156_s7_lib.glb` (672c4048e11afe9b2b9a7eafebbefe58) | C0 obs-lathe cup (9e3a74fd...) | 10, 14, 20, 32, 33 (0) | 0.2900 / 0.2894 / 0.2894 / 0.2930 / 0.2910 -> **0.2595 / 0.2647 / 0.2674 / 0.2683 / 0.2664** | 400,000 (budget at packing) | ICP 1.45 mm / 0.91 deg; axis 0.78 deg; closed end +z like C0 and library_v3 (no flip); extents 100x120x181 vs 93x104x167 mm | 2.1-3.6 -> 4.5-7.3 mm | SAM 3D on public ep22 frames, seed 7. Lowest blue-cup CD-O of the generator outputs. Placement: start pca02, residual 2.99 mm, scale 1.0004. 0/35 flips. |
+| mini_dust_pan | `mini_dust_pan_hy21_ep39_k297_s42_lib.glb` (1530b1d3be77507730b00e1c5047cad1) | C1 T2 SAM 3D pick (1976540...) | 19 (1), 38 (0) | 0.2587 / 0.2601 -> **0.2294 / 0.2311** | 400,000 (budget at packing) | ICP 1.61 mm / 0.47 deg; centroid 7.3 mm | 4.7 / 6.0 -> 6.0 / 5.8 mm | Hunyuan3D-2.1 on public ep39 frames, seed 42. Lowest dust-pan CD-O of the generator outputs. Placement: identity start, residual 2.52 mm, scale 1.04. 0/32 flips. |
+
+- **Board effect [E].** Blue cup -0.0035, dust pan -0.0016. Measured 12e was 0.26775, so 13f should be about **0.2627**.
+- **Pose.** The blue cup's kit anchor error roughly doubles (2-4 -> 5-7 mm), so the blue-cup pairs may score lower on the
+  pose boards than with the C0 cup. The dust pan is about unchanged. Each board keeps our best submission.

@@ -1,0 +1,200 @@
+{
+ "object": "blue_cup",
+ "candidate": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s7.ply",
+ "candidate_sha256": "2b83b07fceebf265b2af4f0dbaaa63a2272f040958caf186ebd0b3a1173f30e9",
+ "library": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+ "library_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+ "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/c3b/place/blue_cup_sam3d_k156_s7_lib.glb",
+ "out_sha256": "d9d52a1299d5081ecbf3d51b61b36189abe63024c98cc660c46028d20e1fdfb5",
+ "n_samples": 8000,
+ "iters": 30,
+ "keep": 0.9,
+ "best_start": "pca02",
+ "residual_mm": 2.9946,
+ "scale": 1.000438941548823,
+ "R": [
+  [
+   -0.95680958,
+   0.29067442,
+   -0.00487934
+  ],
+  [
+   -0.28848894,
+   -0.95142138,
+   -0.10757084
+  ],
+  [
+   -0.0359104,
+   -0.10151717,
+   0.99418545
+  ]
+ ],
+ "t": [
+  0.00300375,
+  -0.00113464,
+  0.02309343
+ ],
+ "rot_from_probe_deg": 163.141,
+ "trans_from_probe_mm": 23.316,
+ "centroid_shift_mm": 23.62,
+ "identity_start_residual_mm": 3.0869,
+ "second_distinct_residual_mm": 9.0507,
+ "second_distinct_start": "pca09",
+ "second_distinct_angle_deg": 31.2,
+ "all_starts": [
+  {
+   "start": "pca02",
+   "j_mm": 2.9946,
+   "scale": 1.00044,
+   "rot_from_best_deg": 0.0
+  },
+  {
+   "start": "pca03",
+   "j_mm": 3.0362,
+   "scale": 0.99956,
+   "rot_from_best_deg": 179.3
+  },
+  {
+   "start": "pca06",
+   "j_mm": 3.0649,
+   "scale": 0.99055,
+   "rot_from_best_deg": 91.5
+  },
+  {
+   "start": "identity",
+   "j_mm": 3.0869,
+   "scale": 1.02188,
+   "rot_from_best_deg": 162.6
+  },
+  {
+   "start": "pca07",
+   "j_mm": 3.0961,
+   "scale": 0.99252,
+   "rot_from_best_deg": 89.6
+  },
+  {
+   "start": "pca20",
+   "j_mm": 4.256,
+   "scale": 0.96389,
+   "rot_from_best_deg": 6.5
+  },
+  {
+   "start": "pca21",
+   "j_mm": 4.3669,
+   "scale": 0.94014,
+   "rot_from_best_deg": 179.5
+  },
+  {
+   "start": "pca23",
+   "j_mm": 4.5869,
+   "scale": 0.94463,
+   "rot_from_best_deg": 178.9
+  },
+  {
+   "start": "pca00",
+   "j_mm": 5.09,
+   "scale": 0.9526,
+   "rot_from_best_deg": 177.4
+  },
+  {
+   "start": "pca01",
+   "j_mm": 5.0992,
+   "scale": 0.95683,
+   "rot_from_best_deg": 178.8
+  },
+  {
+   "start": "pca05",
+   "j_mm": 5.1429,
+   "scale": 0.9556,
+   "rot_from_best_deg": 178.0
+  },
+  {
+   "start": "pca04",
+   "j_mm": 5.1514,
+   "scale": 0.95796,
+   "rot_from_best_deg": 179.7
+  },
+  {
+   "start": "pca16",
+   "j_mm": 6.1311,
+   "scale": 0.89408,
+   "rot_from_best_deg": 95.1
+  },
+  {
+   "start": "pca14",
+   "j_mm": 6.161,
+   "scale": 0.89239,
+   "rot_from_best_deg": 99.4
+  },
+  {
+   "start": "pca08",
+   "j_mm": 6.5274,
+   "scale": 0.89703,
+   "rot_from_best_deg": 162.5
+  },
+  {
+   "start": "pca13",
+   "j_mm": 6.6424,
+   "scale": 0.89752,
+   "rot_from_best_deg": 78.3
+  },
+  {
+   "start": "pca22",
+   "j_mm": 6.708,
+   "scale": 0.87827,
+   "rot_from_best_deg": 19.3
+  },
+  {
+   "start": "pca10",
+   "j_mm": 7.0312,
+   "scale": 0.898,
+   "rot_from_best_deg": 178.0
+  },
+  {
+   "start": "pca17",
+   "j_mm": 7.3837,
+   "scale": 0.89001,
+   "rot_from_best_deg": 107.0
+  },
+  {
+   "start": "pca12",
+   "j_mm": 7.5766,
+   "scale": 0.91999,
+   "rot_from_best_deg": 171.3
+  },
+  {
+   "start": "pca15",
+   "j_mm": 7.9509,
+   "scale": 0.92623,
+   "rot_from_best_deg": 162.7
+  },
+  {
+   "start": "pca18",
+   "j_mm": 8.4186,
+   "scale": 0.86236,
+   "rot_from_best_deg": 88.0
+  },
+  {
+   "start": "pca09",
+   "j_mm": 9.0507,
+   "scale": 0.87553,
+   "rot_from_best_deg": 176.3
+  },
+  {
+   "start": "pca19",
+   "j_mm": 9.0687,
+   "scale": 0.8619,
+   "rot_from_best_deg": 83.5
+  },
+  {
+   "start": "pca11",
+   "j_mm": 9.3041,
+   "scale": 0.87931,
+   "rot_from_best_deg": 146.1
+  }
+ ],
+ "glb_roundtrip_max_err_m": 3.7251961931827893e-09,
+ "n_vertices": 200017,
+ "n_faces": 400000,
+ "axis_angle_to_library_deg": 4.064
+}
