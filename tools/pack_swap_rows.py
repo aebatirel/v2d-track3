@@ -38,6 +38,8 @@ def main():
     ap.add_argument('--kit', required=True); ap.add_argument('--base', required=True); ap.add_argument('--base-cdo', required=True)
     ap.add_argument('--code-commit', required=True); ap.add_argument('--swap', action='append', default=[])
     ap.add_argument('--expect-checkpoint', action='append', default=[]); ap.add_argument('-o', required=True)
+    ap.add_argument('--same-checkpoint', action='append', default=[], type=int,
+                    help='episode N whose rollout re-runs the base checkpoint on an updated reference (pf-anchor PREREG): skip only the base-checkpoint check')
     a = ap.parse_args()
     os.makedirs(a.o, exist_ok=True); log = []
     def say(*x):
@@ -61,7 +63,8 @@ def main():
         if r.returncode: say('REFUSED by no_oracle:', r.stdout[-300:], r.stderr[-300:]); sys.exit(1)
         if n in map(int, exp) and exp[str(n)] != ck: say(f'ep{n}: checkpoint {ck} != expected {exp[str(n)]}'); sys.exit(1)
         m = key.e == n; rows = base[m]
-        if (rows.checkpoint_sha256 == ck).any(): say(f'ep{n}: the swap has the base checkpoint'); sys.exit(1)
+        if (rows.checkpoint_sha256 == ck).any() and n not in a.same_checkpoint: say(f'ep{n}: the swap has the base checkpoint'); sys.exit(1)
+        if n in a.same_checkpoint and set(rows.checkpoint_sha256) != {ck}: say(f'ep{n}: --same-checkpoint but the checkpoint differs'); sys.exit(1)
         for c in ('eval_code_sha256', 'eval_script_sha256'):
             if not meta.get(c) or set(rows[c]) != {meta[c]}:
                 say(f'ep{n}: {c} differs from the base rows ({meta[c]} vs {set(rows[c])})'); sys.exit(1)
