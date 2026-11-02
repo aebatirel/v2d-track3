@@ -7258,3 +7258,5 @@ arm and a no-policy replay floor to stage B.
   - Eval 20 no swap; eval 30 s43 ~01:00; eval 28 s42 0.841 vs 0.919, s43 training.
   - Coordinator: pack 14 on 13f is not uploaded. Requested **14p = 13p2 + eval 14 rows** (keeping 13p2's pose-CV
     meshes); 14p2 adds eval 30 if it passes.
+- ~23:35 UTC 2 Nov **pack 14p UPLOADED** (57924186–57924198). Verified: only the e000014 rows changed.
+  - Scores: AUC **0.88571**, RPE **2.21325**, MPPE **1.79779** (best); SP-SR 0.90; MP-SR 0.80; CD-O 0.26869.
