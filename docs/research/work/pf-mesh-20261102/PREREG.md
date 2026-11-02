@@ -40,3 +40,13 @@ official draws on the pristine evaluator, swap iff a (mean ≥ control) / b (fai
 S2 (needs references rebuilt from perception; rebuilt references lost to packed ones today, eval 16: 0.72–0.79 vs 0.85);
 the 13f blue cup / dust pan as collision (not asked); the spoon anchor (planned, not run).
 Cost [E]: 4 boxes × ~4–4.5 h × ~$1.4/h ≈ $24.
+
+## Addendum 1 (2 Nov 20:28 UTC, before any result; coordinator's message of 20:18 crossed the launch)
+- **Eval 1 dropped** ("skip eval 1": plain reseed, low value): pfQ destroyed in setup at ~20:24 UTC (no result).
+- **Eval 14 added**, arm **p0m** (ops/jobs/pf_arms.sh): the board policy's own reference (pack 12b / 13f: run
+  20261101-pfC-f38b324, bridged reference refs/pfss43_glockt, table docs/research/work/pf-lift-20261102/packed_refs_12b.json)
+  reused byte for byte, grasp-lock recipe as the board's (single-hand construction already in the reference; no lift
+  windows: lift failed eval 14's fresh draws today), with the collision MESH files of blue_cup (13f Tier B+ cup, decimated
+  400k → 20k faces, Chamfer 0.9 mm to source) and plastic_dish_rack (Tier B) replaced in its asset copy refs/sf/ep14/assets.
+  Control = pfC's 10 confirmation draws (9da879d9…, 0.875 vs P); old = pfC conf draw 1 (= the 13f row, checked). Same
+  zero-shot contact check, rule and bar. Box pfR.

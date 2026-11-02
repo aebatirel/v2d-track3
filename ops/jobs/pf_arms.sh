@@ -30,7 +30,7 @@ EPS=${EP:?EP}; SPLIT=${SPLIT:?SPLIT}; ARMS=${ARMS:?ARMS}; SEEDS=${SEEDS:-"42 43"
 TAB=${TAB_OVERRIDE:-$REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json}; H5P7_RUN=20261031-h5p7-1a7cdff
 GC="--mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15"
 arms_of() { local v=ARMS_EP$1; echo ${!v:-$ARMS}; }              # ARMS_EP<N>: that episode's arms (default ARMS)
-gl_of() { case $1 in s) echo "--single_hand 1 $GC" ;; f) echo "--single_hand 2 $GC" ;; se) echo "--single_hand 1 $GC --hold_to_end ${HOLD_TO_END:?HOLD_TO_END}" ;; p0|pz) echo "(packed reference reused: $GC)" ;; lw) echo "--single_hand 1 $GC" ;; plw) echo "(packed reference reused, lift windows: $GC)" ;; slw) echo "(standard learner: packed base reference byte copy, lift windows)" ;; sm) echo "(standard learner: packed base reference byte copy, Tier B collision MESH_OBJS_EP<N>)" ;; s0) echo "(standard learner: packed base reference byte copy, plain reseed)" ;; pm) echo "(packed reference reused, lift windows, Tier B collision MESH_OBJS_EP<N>: $GC)" ;; 2h) echo "$GC" ;; *) return 1 ;; esac; }
+gl_of() { case $1 in s) echo "--single_hand 1 $GC" ;; f) echo "--single_hand 2 $GC" ;; se) echo "--single_hand 1 $GC --hold_to_end ${HOLD_TO_END:?HOLD_TO_END}" ;; p0|pz) echo "(packed reference reused: $GC)" ;; lw) echo "--single_hand 1 $GC" ;; plw) echo "(packed reference reused, lift windows: $GC)" ;; slw) echo "(standard learner: packed base reference byte copy, lift windows)" ;; sm) echo "(standard learner: packed base reference byte copy, Tier B collision MESH_OBJS_EP<N>)" ;; s0) echo "(standard learner: packed base reference byte copy, plain reseed)" ;; pm) echo "(packed reference reused, lift windows, Tier B collision MESH_OBJS_EP<N>: $GC)" ;; p0m) echo "(packed reference reused, Tier B collision MESH_OBJS_EP<N>: $GC)" ;; 2h) echo "$GC" ;; *) return 1 ;; esac; }
 for a in $ARMS $(for e in $EPS; do arms_of $e; done); do gl_of $a > /dev/null || { log "pf_arms: unknown arm $a" >> $J; exit 1; }; done
 export LIB=$REPO_DIR/meshes/library_v3 SF=1 SETTLE=0 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=10 PAR=2 TRAIN_SLOTS=2 \
   STEPS=70004736 EVAL_TIMEOUT=1200 NO_PUSH=1 ASSETS=/content/assets SPLIT
@@ -90,14 +90,14 @@ for e in $EPS; do
     cp -r /content/refs/perc2mck/ep$e /content/refs/${pre}mck/ep$e
   done; done
   for s in $SEEDS; do for a in $(arms_of $e); do                  # (pf-release PREREG_B) arms on the PACKED reference P itself:
-    case $a in p0|pz|plw|pm) ;; *) continue ;; esac                    # p0 = byte copy, pz = tools/hold_freeze.py on it (FREEZE_EP<N>)
+    case $a in p0|pz|plw|pm|p0m) ;; *) continue ;; esac                    # p0 = byte copy, pz = tools/hold_freeze.py on it (FREEZE_EP<N>)
     [ $SPLIT = eval ] || { log "pf_arms ep$e: arm $a needs SPLIT=eval" >> $J; continue 2; }
     pre=pf${a}s$s; hive=$(dirname $(tabl $e reference)); hive=${hive#refs/*/ep$e/}; D_=/content/refs/${pre}_glockt/ep$e
     rm -rf $D_; mkdir -p $D_/$hive; cp -r /content/$(dirname $(dirname $(dirname $(tabl $e reference))))/reconstructed_stage $D_/ 2> /dev/null || cp -r /content/refs/perc2mck/ep$e/reconstructed_stage $D_/
     if [ $a = pz ]; then fv=FREEZE_EP$e; IFS=: read -r fs ff <<< "${!fv:?FREEZE_EP$e}"
       python $T/hold_freeze.py $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet --side $fs --from $ff >> $J 2>&1 || { log "pf_arms ep$e: hold_freeze FAILED" >> $J; continue; }
-    else cp $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet; fi   # p0 / plw / pm: a byte copy of P
-    if [ $a = pm ]; then                                            # (pf-mesh PREREG) Tier B collision: the mesh file only, in the
+    else cp $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet; fi   # p0 / plw / pm / p0m: a byte copy of P
+    if [ $a = pm ] || [ $a = p0m ]; then                            # (pf-mesh PREREG) Tier B collision: the mesh file only, in the
       AR=$(tabl $e asset_root); mv_=MESH_OBJS_EP$e                  # asset copy the reference names (URDF inertia / feet kept)
       for o in ${!mv_:?MESH_OBJS_EP$e}; do f=$AR/mesh/$o/$o.glb
         [ -f $f ] || { log "pf_arms ep$e: pm: no $f" >> $J; continue 3; }
@@ -175,7 +175,7 @@ print(find(c) or '')" $ck)
   [ "$ov" = 0 ] && [ "$svr" != none ]
 }
 for e in $OK; do                                                    # zero-shot contact budget before any training
-  case " $(arms_of $e) " in *" pm "*|*" sm "*) zeroshot $e || { log "pf_arms ep$e: REFUSED by the zero-shot contact check (no training)" >> $J; OK=$(echo " $OK " | sed "s/ $e / /; s/^ //; s/ $//"); STD_EPS=$(echo " $STD_EPS " | sed "s/ $e / /; s/^ //; s/ $//"); } ;; esac
+  case " $(arms_of $e) " in *" pm "*|*" p0m "*|*" sm "*) zeroshot $e || { log "pf_arms ep$e: REFUSED by the zero-shot contact check (no training)" >> $J; OK=$(echo " $OK " | sed "s/ $e / /; s/^ //; s/ $//"); STD_EPS=$(echo " $STD_EPS " | sed "s/ $e / /; s/^ //; s/ $//"); } ;; esac
 done
 [ -n "$OK" ] || { log "pf_arms: no episode left after the zero-shot check" >> $J; bash $OPS/store.sh push-run > /dev/null 2>&1; exit 1; }
 
@@ -189,7 +189,7 @@ for s in $SEEDS; do
     esac; done; done
   if [ -n "${PP# }" ]; then
   label "pf arms: seed $s [$PP ]"; log "pf_arms: seed $s, PAIRS [${PP# }]" >> $J; t0=$(date +%s)
-  RU=""; case " $ARMS $(for e in $OK; do arms_of $e; done) " in *" p0 "*|*" pz "*|*" plw "*|*" pm "*) RU="REUSE_REF=1 REQUIRE_REUSE=1" ;; esac   # all arms of the box then reuse
+  RU=""; case " $ARMS $(for e in $OK; do arms_of $e; done) " in *" p0 "*|*" pz "*|*" plw "*|*" pm "*|*" p0m "*) RU="REUSE_REF=1 REQUIRE_REUSE=1" ;; esac   # all arms of the box then reuse
   ( [ -n "$RU" ] && export $RU; SEED=$s PAIRS="${PP# }" bash $REPO_DIR/ops/jobs/glock_public.sh ) || log "pf_arms: seed $s returned $?" >> $J
   log "pf_arms: seed $s took $(( ($(date +%s) - t0) / 60 )) min" >> $J
   fi
