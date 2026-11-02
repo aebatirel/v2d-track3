@@ -6019,7 +6019,7 @@ Advice given:
   kit-registration proxy 9.91 mm (limit 5); centroid offset 3.53 mm, AABB centre 8.21 mm, extents y 96.5 → 103.6 mm,
   surface median 2.58 / p95 8.51 mm. Sign-off requested from bold-albattani on these exact numbers (their earlier
   check: axis tilt 1.24°, offset 2.0 mm, no flip). Not published as ready until signed off.
-- 08:58 UTC bold-albattani's hand-off message (queued 08:33, before my 08:50 sign-off request): file / md5 / sha256 as
+- ~08:36 UTC (corrected from "08:58"; commit times) bold-albattani's hand-off message (queued 08:33, before my 08:50 sign-off request): file / md5 / sha256 as
   built; transform none (built in the library_v3 blue_cup body frame); their measured rigid ICP to library_v3 6.7 mm /
   2.6° "most of it along the cup axis" (spin about the axis is not a frame error); sign-off YES for all five pairs, "if
   your frame report flags anything beyond the numbers above, send me the numbers". Format notes: 4,096 faces after the
@@ -6027,7 +6027,7 @@ Advice given:
   docs/research/mesh-2026-10-26/cdo-sprint/C0/bluecup-on-9aplus/README.md. → My ICP flag (6.64 mm / 2.55°) is within
   their signed-off numbers; the kit-registration proxy flag (9.91 mm) is beyond them — waiting for their answer to the
   08:50 request before publishing 12c as ready.
-- ~09:00 UTC bold-albattani signs off (08:37 UTC message): **YES, transform NONE, no translation correction**, evals
+- ~08:37 UTC (corrected from "~09:00"; commit e281ff6b) bold-albattani signs off (08:37 UTC message): **YES, transform NONE, no translation correction**, evals
   10/14/20/32/33 slot 0. Reason [D, public scan standing in for the confidential one]: the kit's own registration at the
   scan anchor errs 9.1–10.4 mm for library_v3 vs 2.1–3.6 mm for C0, so my 6.6 mm ICP / 9.9 mm proxy flags measure
   library_v3's own offset; registration converges (0/5 flips); rotation after registration C0 2.4–2.7° vs v3 0.7–2.0°;
@@ -6038,7 +6038,7 @@ Advice given:
   SP-SR 0.85, MP-SR 0.75, RPE 3.008 (best), MPPE 2.467 (best), CD-O 0.30008 (best; was 0.33234).** Best on every board, so
   one file covers all six; the blue cup also helped the pose boards. CD-O estimate was ≈ 0.300 [E] → 0.30008 [M].
   Standings (their read): 10th, rank sum 58; DSAIL 9th at 56. Receipt: build_12c/UPLOAD.md on claude/keen-heisenberg-engcwz.
-- ~08:58 UTC **pack 12d build** (keen-heisenberg 08:50: pack 12c + bold-albattani's Tier A meshes under the owner's
+- ~08:51 UTC **pack 12d build** (keen-heisenberg 08:50: pack 12c + bold-albattani's Tier A meshes under the owner's
   standing go; Tier B not included). Tier A = C1 T3 generate-then-fit single pre-registered outputs (PREREG 2d2a8ee;
   C3/README @ 25b0c54): white_pot_t3fit.glb (md5 b19b2e28…, evals 1/3/5/6/8/28) and water_pitcher_t3fit.glb (md5
   61503a91…, eval 20 slot 1), committed as meshes/tierA_pack12d (91342da4). 12c reproduced byte for byte from its
