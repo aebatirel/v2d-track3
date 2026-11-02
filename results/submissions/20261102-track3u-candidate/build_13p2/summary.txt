@@ -1,0 +1,12 @@
+pack_swap_meshes: <SCRATCH>/p13p2/build_13p2
+swapped 1 (episode, object) pairs of 36: water_pitcher -> eps [20]
+file md5 changed: 20:water_pitcher e59c15a3->fb2cb7ea
+frame report (mm; base = the mesh being replaced):
+  water_pitcher      eps [20] base e59c15a3 | centroid offset 4.98 | AABB centre offset 7.43 | extent base [139.88, 249.75, 404.79] new [138.79, 249.02, 404.62] | surface median/p95/max 2.243/7.748/15.753 (spacing 1.082) | ICP 5.01 mm 2.875 deg (median after 0.593) | kit proxy 5.03 mm 2.891 deg (symmetry none) | FLAG: ICP corrects 5.01 mm / 2.875 deg (limits 5.0 mm / 5.0 deg); kit-registration proxy moves the body 5.03 mm > 5.0
+parquet: 1315113 B sha256 19ac10e39e6ab3b95a43caee379e297616226131aca04fd69bc9a9a83990d45c | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 1}
+mesh payloads changed: ['20:water_pitcher'] | unchanged: []
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 02678b8f554b7e4b... | CD-O pairs changed vs base: ['20:water_pitcher']
+pack.log MESH WARNINGs: 0
+FLAG: water_pitcher (episodes [20]): ICP corrects 5.01 mm / 2.875 deg (limits 5.0 mm / 5.0 deg)
+FLAG: water_pitcher (episodes [20]): kit-registration proxy moves the body 5.03 mm > 5.0
+STATUS NEEDS REVIEW (flags) (exit 2)

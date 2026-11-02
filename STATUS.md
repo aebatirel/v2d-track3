@@ -10,6 +10,11 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-02 ~22:16 UTC: PACK 13p2 READY — results/submissions/20261102-track3u-candidate/build_13p2/ (not uploaded here)
+- 13p + the eval-20 pitcher placed from eval depth (GT-free fit; the procedure was chosen by public pose CV, held-out
+  +0.106). The file equals 13p's payload × Δ exactly. sha256 19ac10e3…d45c; vs 13p only 1 payload row + commit URL;
+  D1 PASS both modes. Sent to keen-heisenberg, who uploads.
+
 ## 2026-11-02 ~21:49 UTC: POSE PACK 13p (= 13f1p) READY (pot sign-off YES) — results/submissions/20261102-track3t-candidate/build_13f1p/ (not uploaded here)
 - 13f1 (reproduced byte for byte) + TSDF white pot (evals 1/3/5/6/8/28) + library_c0 rack (= 12c's; 14/15/16/28/30), both
   adopted by tracking-perception's pre-registered public pose CV (held-out +0.021 / +0.023). sha256 3134dfc6…c2ed.

@@ -1,0 +1,59 @@
+{
+ "pack": "build_13p2",
+ "ref_mode": "budget",
+ "all_pass": true,
+ "pairs": [
+  {
+   "object": "water_pitcher",
+   "ep": 20,
+   "slot": 1,
+   "ref_mode": "budget",
+   "seeds": {
+    "eval": {
+     "seed": 20000161,
+     "rot": 3.64,
+     "tilt": 3.59,
+     "anchor_mm": 14.11
+    },
+    "ep21": {
+     "seed": 21000164,
+     "rot": 3.89,
+     "tilt": 3.81,
+     "anchor_mm": 13.31
+    },
+    "ep22": {
+     "seed": 22000167,
+     "rot": 4.05,
+     "tilt": 3.99,
+     "anchor_mm": 15.19
+    },
+    "ep23": {
+     "seed": 23000170,
+     "rot": 4.17,
+     "tilt": 4.03,
+     "anchor_mm": 14.63
+    },
+    "s0": {
+     "seed": 0,
+     "rot": 3.7,
+     "tilt": 3.63,
+     "anchor_mm": 14.47
+    },
+    "s1": {
+     "seed": 1,
+     "rot": 3.85,
+     "tilt": 3.85,
+     "anchor_mm": 15.17
+    },
+    "s2": {
+     "seed": 2,
+     "rot": 3.67,
+     "tilt": 3.58,
+     "anchor_mm": 14.51
+    }
+   },
+   "flips": 0,
+   "pass": true
+  }
+ ]
+}

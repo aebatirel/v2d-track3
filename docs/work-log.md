@@ -6156,3 +6156,8 @@ Advice given:
   re-verified. **pack 13p (= 13f1p) ready:
   results/submissions/20261102-track3t-candidate/build_13f1p/track3_submission.parquet** (sha256 3134dfc6…c2ed, code
   116dfe70). Not uploaded from this session.
+- ~22:16 UTC **pack 13p2 ready** = 13p (reproduced byte for byte) + tracking-perception's eval-20 pitcher placed from
+  depth (@ 0b067405, fb2cb7ea…; GT-free fit; procedure chosen by public pose CV, held-out +0.106). Verified the file =
+  13p payload × README Δ to 0.0005 mm. sha256 19ac10e3…d45c, code b0bd91fc; vs 13p only commit URL + 1 payload row; CD-O
+  only that pair; offline validation pass; guard on; D1 PASS both modes (0/7; ≤ 4.4°). Staged as
+  results/submissions/20261102-track3u-candidate; sent to keen-heisenberg. Not uploaded from this session.
