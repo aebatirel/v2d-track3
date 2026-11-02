@@ -1,8 +1,8 @@
 # Track 3 pack-12c candidate, 2 Nov 2026 — pack 12b + the C0 blue-cup mesh payloads
 
-**STATUS: PENDING frame sign-off. Not ready, not uploaded.** The frame report flagged the blue cup (below), so the mesh
-lane (bold-albattani) must sign off on this exact file and transform before it is published as ready. The owner's word
-decides the upload, in the session where it is given.
+**STATUS: READY (2 Nov 2026 ~09:00 UTC). NOT UPLOADED from this session.** The frame report flagged the blue cup
+(below). The mesh lane (bold-albattani) signed off at 08:37 UTC on this exact file, with transform NONE and no translation
+correction (details below). The owner's word decides the upload, in the session where it is given (keen-heisenberg).
 
 ## Record
 - File: `build_12c/track3_submission.parquet`, 9,120 rows, 1,313,130 bytes.
@@ -30,6 +30,24 @@ decides the upload, in the session where it is given.
 - **FLAG:** ICP correction 6.64 mm / 2.55° (limits 5 mm / 5°).
 - **FLAG:** kit-registration proxy moves the body 9.91 mm (limit 5 mm).
 - The mesh lane's own check: axis tilt 1.24°, axis offset 2.0 mm, closed end +z, no flip.
+
+## Frame sign-off (bold-albattani, 08:37 UTC 2 Nov) — YES, transform NONE, evals 10/14/20/32/33 slot 0
+- **The flags measure distance to library_v3, which is itself off the true shape** [D].
+  - Setup: the kit's own registration (pipeline/score_registered.py → the kit's _register_object_body), with the public
+    scan standing in for the confidential one, over the same 5 eval-pair seeds.
+  - Error at the scan's anchor point: library_v3 blue_cup 9.1 / 10.0 / 9.8 / 10.4 / 10.1 mm; C0 2.9 / 3.1 / 3.5 / 2.1 / 3.6 mm.
+  - The 6.6 mm ICP and 9.9 mm kit-proxy moves are about library_v3's own ~10 mm error. A correction toward library_v3
+    would push C0 back toward that error.
+- **CD-O and the pose scorers register the submitted mesh to the scan before scoring.** A body-frame translation is absorbed.
+  - Registration converges: 0 of 5 flips for both meshes.
+  - Rotation error after registration: C0 2.4–2.7°, library_v3 0.7–2.0°.
+- **Every measurement was at identity:** CD-O 0.523 → 0.291 cm [D]; incremental AUC guard on 9a+ public twins, mean
+  dAUC +0.022, min −0.030 (ep13). A transform would be an untested configuration.
+- **Caveats:**
+  - the [D] numbers assume the public scan matches the confidential one;
+  - the pose boards can move either way (ep13 −0.03 AUC);
+  - rotation registers ~1° worse than library_v3;
+  - each board keeps its best submission.
 
 ## Disclosure
 - The selector that picked this lathe (obs_fidelity.py) was written after the 12 blue-cup lathes were scored against

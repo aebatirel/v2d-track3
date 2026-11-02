@@ -10,6 +10,13 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-02 ~09:00 UTC: PACK 12c READY — results/submissions/20261102-track3n-candidate/build_12c/ (not uploaded here)
+- Pack 12b (reproduced byte for byte first) + the C0 blue-cup mesh payloads on evals 10/14/20/32/33 (owner approved 08:10
+  UTC via keen-heisenberg; GT-informed public selector disclosed). sha256 3542f8e5…c8567, code 7d7f8d3a. Only the 5
+  blue_cup payload rows + commit URL differ from 12b; CD-O changes exactly those 5 pairs; offline validation pass.
+- Frame flags (ICP 6.6 mm, kit proxy 9.9 mm) signed off by the mesh lane: transform none. [E] CD-O ≈ 0.332 → 0.300;
+  pose boards may move either way.
+
 ## 2026-11-01 19:28 UTC: robot-hand videos of evals 14 (×3), 25, 30 delivered (store runs/20261101-vid3-b96ae95/results/sub_videos/)
 - Eval-14 replays 0.560 / 0.285 / 0.749 (none in the good mode); eval 25 0.897; eval 30 0.901. Cost $0.70. Nothing running.
 

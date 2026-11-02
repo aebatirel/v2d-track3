@@ -6027,3 +6027,10 @@ Advice given:
   docs/research/mesh-2026-10-26/cdo-sprint/C0/bluecup-on-9aplus/README.md. → My ICP flag (6.64 mm / 2.55°) is within
   their signed-off numbers; the kit-registration proxy flag (9.91 mm) is beyond them — waiting for their answer to the
   08:50 request before publishing 12c as ready.
+- ~09:00 UTC bold-albattani signs off (08:37 UTC message): **YES, transform NONE, no translation correction**, evals
+  10/14/20/32/33 slot 0. Reason [D, public scan standing in for the confidential one]: the kit's own registration at the
+  scan anchor errs 9.1–10.4 mm for library_v3 vs 2.1–3.6 mm for C0, so my 6.6 mm ICP / 9.9 mm proxy flags measure
+  library_v3's own offset; registration converges (0/5 flips); rotation after registration C0 2.4–2.7° vs v3 0.7–2.0°;
+  all evidence at identity (CD-O 0.523 → 0.291 cm; AUC guard on 9a+ public twins mean +0.022, min −0.030 ep13).
+  **pack 12c ready: results/submissions/20261102-track3n-candidate/build_12c/track3_submission.parquet** (sha256
+  3542f8e5…c8567, code 7d7f8d3a); README updated with the sign-off and the disclosure. Not uploaded from this session.
