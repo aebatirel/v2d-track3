@@ -6006,3 +6006,16 @@ Advice given:
   (bad mode), r2 0.285 (below every H5p7 draw), r3 0.749 (between the modes; H5p7: good ~0.87–0.91, bad ~0.51–0.66) —
   no good-mode replay captured; eval 25 0.897 (H5p7 mean 0.878); eval 30 0.901 (0.897). Eval 25 rendered this time
   (PICK ck= fix). Eval 10 ck512 skipped (in no PACK_RUN submission). Reporting only; nothing is chosen from them.
+- 08:30–08:50 UTC **pack 12c build** (keen-heisenberg relays the owner, verbatim "For blue cup I give you mey yes",
+  08:10 UTC: pack 12b + bold-albattani's C0 blue-cup payloads; GT-informed public selector accepted). CPU only.
+  (1) Reproduced pack 12b BYTE FOR BYTE (sha256 bde0ae84…) with tools/pack_swap_rollouts.py from pack 11's packer inputs +
+  12/12b's swapped rollouts (pfC ep14, pfD ep32, pfG ep16; sha256s = their manifests) and 12b's commit URL, in a
+  packing venv with pandas 3.0.5 (12b's; pandas 3.0.6 gave identical table content, only the metadata string differed).
+  (2) Mesh: meshes/c0_pack12c/blue_cup.glb = byte copy of meshes/library_c0/blue_cup.glb @ 5cce3d2 (md5 9e3a74fd…,
+  557,540 B; hand-off ab7c8a70: transform none, evals 10/14/20/32/33 slot 0) committed 7d7f8d3a with the disclosure.
+  (3) tools/pack_swap_meshes.py on 12b's inputs → build: sha256 3542f8e5…c8567, 9,120 rows; vs 12b only code_commit_url
+  (all rows) and object_mesh_b64 on the 5 blue_cup payload rows differ; CD-O changes exactly those 5 pairs (sha256
+  116a9751…); offline validation pass; 0 MESH WARNINGs. **Frame report FLAGS** [M]: ICP 6.64 mm / 2.55° (limit 5 mm),
+  kit-registration proxy 9.91 mm (limit 5); centroid offset 3.53 mm, AABB centre 8.21 mm, extents y 96.5 → 103.6 mm,
+  surface median 2.58 / p95 8.51 mm. Sign-off requested from bold-albattani on these exact numbers (their earlier
+  check: axis tilt 1.24°, offset 2.0 mm, no flip). Not published as ready until signed off.
