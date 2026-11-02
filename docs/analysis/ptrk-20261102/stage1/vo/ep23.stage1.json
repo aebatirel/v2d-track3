@@ -1,0 +1,173 @@
+{
+ "episode": 23,
+ "arm": "vo",
+ "settings": {
+  "trim": 0.7,
+  "iters": 40,
+  "every": 2,
+  "max_pts": 1500,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5
+ },
+ "inputs": {
+  "poses": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep23/poses.npz",
+  "depth": "store/cache/depth/public/ep23/depths_fs0.5.npy",
+  "vos": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/MRr/ep23/vos_masks.npz",
+  "ksrc": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep23/det_f0.npz",
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "cams": null
+ },
+ "objects": {
+  "wooden_piece_1": {
+   "segments": [
+    {
+     "frames": [
+      0,
+      105
+     ],
+     "fit": [
+      2,
+      103
+     ],
+     "points": 73918,
+     "rms_before_mm": 2.81,
+     "rms_after_mm": 1.25,
+     "iters": 7,
+     "move_cm": 0.29,
+     "rot_deg": 1.04,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      108,
+      126
+     ],
+     "fit": [
+      110,
+      124
+     ],
+     "points": 9961,
+     "rms_before_mm": 1.62,
+     "rms_after_mm": 1.29,
+     "iters": 10,
+     "move_cm": 0.14,
+     "rot_deg": 1.48,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      247,
+      325
+     ],
+     "fit": [
+      249,
+      323
+     ],
+     "points": 6312,
+     "rms_before_mm": 8.43,
+     "rms_after_mm": 4.57,
+     "iters": 17,
+     "move_cm": 1.19,
+     "rot_deg": 1.01,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 214,
+   "frames": 325
+  },
+  "wooden_piece_2": {
+   "segments": [
+    {
+     "frames": [
+      0,
+      21
+     ],
+     "fit": [
+      2,
+      19
+     ],
+     "points": 12738,
+     "rms_before_mm": 1.57,
+     "rms_after_mm": 0.92,
+     "iters": 7,
+     "move_cm": 0.1,
+     "rot_deg": 2.68,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      35,
+      45
+     ],
+     "fit": [
+      37,
+      43
+     ],
+     "points": 4500,
+     "rms_before_mm": 1.84,
+     "rms_after_mm": 1.72,
+     "iters": 9,
+     "move_cm": 0.04,
+     "rot_deg": 1.45,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      94,
+      144
+     ],
+     "fit": [
+      96,
+      142
+     ],
+     "points": 11126,
+     "rms_before_mm": 1.45,
+     "rms_after_mm": 1.36,
+     "iters": 7,
+     "move_cm": 0.02,
+     "rot_deg": 1.09,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      146,
+      194
+     ],
+     "fit": [
+      148,
+      192
+     ],
+     "points": 8021,
+     "rms_before_mm": 2.3,
+     "rms_after_mm": 1.77,
+     "iters": 19,
+     "move_cm": 0.08,
+     "rot_deg": 2.21,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      197,
+      325
+     ],
+     "fit": [
+      199,
+      323
+     ],
+     "points": 17022,
+     "rms_before_mm": 2.31,
+     "rms_after_mm": 1.32,
+     "iters": 14,
+     "move_cm": 0.22,
+     "rot_deg": 2.59,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 282,
+   "frames": 325
+  }
+ },
+ "sha256": "4d7822ba708174bb47523f6678af74d548c780698e0de00a2d53412d2f611f7b"
+}

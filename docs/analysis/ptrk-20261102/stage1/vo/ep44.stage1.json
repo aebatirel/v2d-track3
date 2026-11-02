@@ -1,0 +1,116 @@
+{
+ "episode": 44,
+ "arm": "vo",
+ "settings": {
+  "trim": 0.7,
+  "iters": 40,
+  "every": 2,
+  "max_pts": 1500,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5
+ },
+ "inputs": {
+  "poses": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep44/poses.npz",
+  "depth": "store/cache/depth/public/ep44/depths_fs0.5.npy",
+  "vos": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/MRr/ep44/vos_masks.npz",
+  "ksrc": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep44/det_f0.npz",
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "cams": null
+ },
+ "objects": {
+  "white_pot": {
+   "segments": [
+    {
+     "frames": [
+      0,
+      77
+     ],
+     "fit": [
+      2,
+      75
+     ],
+     "points": 55500,
+     "rms_before_mm": 2.03,
+     "rms_after_mm": 1.91,
+     "iters": 40,
+     "move_cm": 0.1,
+     "rot_deg": 1.56,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      94,
+      106
+     ],
+     "fit": [
+      96,
+      104
+     ],
+     "points": 6000,
+     "rms_before_mm": 2.8,
+     "rms_after_mm": 2.25,
+     "iters": 40,
+     "move_cm": 0.33,
+     "rot_deg": 2.2,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      110,
+      122
+     ],
+     "fit": [
+      112,
+      120
+     ],
+     "points": 6000,
+     "rms_before_mm": 2.43,
+     "rms_after_mm": 2.23,
+     "iters": 36,
+     "move_cm": 0.25,
+     "rot_deg": 1.29,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      131,
+      144
+     ],
+     "fit": [
+      133,
+      142
+     ],
+     "points": 7500,
+     "rms_before_mm": 2.77,
+     "rms_after_mm": 2.27,
+     "iters": 40,
+     "move_cm": 0.35,
+     "rot_deg": 1.56,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      169,
+      249
+     ],
+     "fit": [
+      171,
+      247
+     ],
+     "points": 57000,
+     "rms_before_mm": 2.64,
+     "rms_after_mm": 2.51,
+     "iters": 40,
+     "move_cm": 0.25,
+     "rot_deg": 1.01,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 227,
+   "frames": 249
+  }
+ },
+ "sha256": "372037d76f369b934f0fab46047a644c5d2460233ef757cb56ab9a6b97a672fd"
+}

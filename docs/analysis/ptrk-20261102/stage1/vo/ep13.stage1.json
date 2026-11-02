@@ -1,0 +1,71 @@
+{
+ "episode": 13,
+ "arm": "vo",
+ "settings": {
+  "trim": 0.7,
+  "iters": 40,
+  "every": 2,
+  "max_pts": 1500,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5
+ },
+ "inputs": {
+  "poses": "store/runs/20261102-ptrkA-7fbc3215/results/ptrk/C/ep13/poses.npz",
+  "depth": "store/cache/depth/public/ep13/depths_fs0.5.npy",
+  "vos": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/MRr/ep13/vos_masks.npz",
+  "ksrc": "store/runs/20261102-ptrkA-7fbc3215/results/ptrk/C/ep13/det_f0.npz",
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "cams": null
+ },
+ "objects": {
+  "blue_cup": {
+   "segments": [
+    {
+     "frames": [
+      171,
+      190
+     ],
+     "fit": [
+      173,
+      188
+     ],
+     "points": 5252,
+     "rms_before_mm": 3.54,
+     "rms_after_mm": 1.55,
+     "iters": 40,
+     "move_cm": 0.84,
+     "rot_deg": 3.47,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 24,
+   "frames": 190
+  },
+  "plastic_dish_rack": {
+   "segments": [
+    {
+     "frames": [
+      0,
+      190
+     ],
+     "fit": [
+      2,
+      188
+     ],
+     "points": 139500,
+     "rms_before_mm": 3.28,
+     "rms_after_mm": 2.36,
+     "iters": 17,
+     "move_cm": 0.33,
+     "rot_deg": 1.19,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 190,
+   "frames": 190
+  }
+ },
+ "sha256": "2bc269c3d1f3056e6421e880964f4aa5985020ea62349e96bc7be93dec97618c"
+}

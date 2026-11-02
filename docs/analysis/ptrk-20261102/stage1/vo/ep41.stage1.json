@@ -1,0 +1,167 @@
+{
+ "episode": 41,
+ "arm": "vo",
+ "settings": {
+  "trim": 0.7,
+  "iters": 40,
+  "every": 2,
+  "max_pts": 1500,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5
+ },
+ "inputs": {
+  "poses": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep41/poses.npz",
+  "depth": "store/cache/depth/public/ep41/depths_fs0.5.npy",
+  "vos": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/MRr/ep41/vos_masks.npz",
+  "ksrc": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep41/det_f0.npz",
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "cams": null
+ },
+ "objects": {
+  "white_pot": {
+   "segments": [
+    {
+     "frames": [
+      0,
+      32
+     ],
+     "fit": [
+      2,
+      30
+     ],
+     "points": 21000,
+     "rms_before_mm": 2.24,
+     "rms_after_mm": 2.06,
+     "iters": 13,
+     "move_cm": 0.16,
+     "rot_deg": 0.46,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      43,
+      53
+     ],
+     "fit": [
+      45,
+      51
+     ],
+     "points": 4500,
+     "rms_before_mm": 2.31,
+     "rms_after_mm": 2.18,
+     "iters": 25,
+     "move_cm": 0.09,
+     "rot_deg": 0.93,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      71,
+      87
+     ],
+     "fit": [
+      73,
+      85
+     ],
+     "points": 9000,
+     "rms_before_mm": 2.74,
+     "rms_after_mm": 2.41,
+     "iters": 39,
+     "move_cm": 0.3,
+     "rot_deg": 1.42,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      143,
+      154
+     ],
+     "fit": [
+      145,
+      152
+     ],
+     "points": 6000,
+     "rms_before_mm": 3.11,
+     "rms_after_mm": 2.75,
+     "iters": 37,
+     "move_cm": 0.32,
+     "rot_deg": 1.79,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      165,
+      178
+     ],
+     "fit": [
+      167,
+      176
+     ],
+     "points": 7500,
+     "rms_before_mm": 2.76,
+     "rms_after_mm": 2.49,
+     "iters": 37,
+     "move_cm": 0.29,
+     "rot_deg": 0.96,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      185,
+      198
+     ],
+     "fit": [
+      187,
+      196
+     ],
+     "points": 7500,
+     "rms_before_mm": 2.82,
+     "rms_after_mm": 2.47,
+     "iters": 38,
+     "move_cm": 0.3,
+     "rot_deg": 0.89,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      208,
+      226
+     ],
+     "fit": [
+      210,
+      224
+     ],
+     "points": 9489,
+     "rms_before_mm": 2.97,
+     "rms_after_mm": 2.58,
+     "iters": 40,
+     "move_cm": 0.41,
+     "rot_deg": 1.71,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      228,
+      299
+     ],
+     "fit": [
+      230,
+      297
+     ],
+     "points": 51000,
+     "rms_before_mm": 2.44,
+     "rms_after_mm": 2.19,
+     "iters": 40,
+     "move_cm": 0.25,
+     "rot_deg": 1.65,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 243,
+   "frames": 299
+  }
+ },
+ "sha256": "fdb93bd70d97cf520343bf06dfd53d27b7573cf930548674e2e9d1841f0d8383"
+}

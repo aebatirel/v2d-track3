@@ -1,0 +1,82 @@
+{
+ "episode": 40,
+ "arm": "vo",
+ "settings": {
+  "trim": 0.7,
+  "iters": 40,
+  "every": 2,
+  "max_pts": 1500,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5
+ },
+ "inputs": {
+  "poses": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep40/poses.npz",
+  "depth": "store/cache/depth/public/ep40/depths_fs0.5.npy",
+  "vos": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/MRr/ep40/vos_masks.npz",
+  "ksrc": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep40/det_f0.npz",
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "cams": null
+ },
+ "objects": {
+  "mini_dust_pan": {
+   "segments": [
+    {
+     "frames": [
+      0,
+      41
+     ],
+     "fit": [
+      2,
+      39
+     ],
+     "points": 11683,
+     "rms_before_mm": 2.13,
+     "rms_after_mm": 1.61,
+     "iters": 40,
+     "move_cm": 0.23,
+     "rot_deg": 2.64,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      55,
+      65
+     ],
+     "fit": [
+      57,
+      63
+     ],
+     "points": 4076,
+     "rms_before_mm": 2.13,
+     "rms_after_mm": 1.88,
+     "iters": 26,
+     "move_cm": 0.09,
+     "rot_deg": 2.63,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      200,
+      260
+     ],
+     "fit": [
+      202,
+      258
+     ],
+     "points": 15873,
+     "rms_before_mm": 2.65,
+     "rms_after_mm": 1.91,
+     "iters": 25,
+     "move_cm": 0.31,
+     "rot_deg": 2.91,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 131,
+   "frames": 260
+  }
+ },
+ "sha256": "311b36a7d75934ba9ce3cad0fada9812c6d0ce07f1cf0de79584692095079034"
+}

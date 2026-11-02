@@ -1,0 +1,156 @@
+{
+ "episode": 31,
+ "arm": "vo",
+ "settings": {
+  "trim": 0.7,
+  "iters": 40,
+  "every": 2,
+  "max_pts": 1500,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5
+ },
+ "inputs": {
+  "poses": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep31/poses.npz",
+  "depth": "store/cache/depth/public/ep31/depths_fs0.5.npy",
+  "vos": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/MRr/ep31/vos_masks.npz",
+  "ksrc": "store/runs/20261102-ptrkB-7fbc3215/results/ptrk/C/ep31/det_f0.npz",
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "cams": null
+ },
+ "objects": {
+  "mini_sweeper": {
+   "segments": [
+    {
+     "frames": [
+      0,
+      21
+     ],
+     "fit": [
+      2,
+      19
+     ],
+     "points": 1112,
+     "rms_before_mm": 2.4,
+     "rms_after_mm": 1.24,
+     "iters": 40,
+     "move_cm": 0.69,
+     "rot_deg": 5.04,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      32,
+      47
+     ],
+     "fit": [
+      34,
+      45
+     ],
+     "points": 376,
+     "rms_before_mm": 1.94,
+     "rms_after_mm": 1.25,
+     "iters": 40,
+     "move_cm": 0.84,
+     "rot_deg": 11.25,
+     "kept": "tracker (guard)"
+    },
+    {
+     "frames": [
+      75,
+      96
+     ],
+     "fit": [
+      77,
+      94
+     ],
+     "points": 3394,
+     "rms_before_mm": 2.34,
+     "rms_after_mm": 2.05,
+     "iters": 40,
+     "move_cm": 0.43,
+     "rot_deg": 4.05,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      218,
+      229
+     ],
+     "fit": [
+      220,
+      227
+     ],
+     "points": 415,
+     "rms_before_mm": 2.56,
+     "rms_after_mm": 2.18,
+     "iters": 40,
+     "move_cm": 0.3,
+     "rot_deg": 3.54,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      232,
+      244
+     ],
+     "fit": [
+      234,
+      242
+     ],
+     "points": 330,
+     "rms_before_mm": 1.76,
+     "rms_after_mm": 1.33,
+     "iters": 40,
+     "move_cm": 0.86,
+     "rot_deg": 6.51,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      268,
+      279
+     ],
+     "fit": [
+      270,
+      277
+     ],
+     "points": 585,
+     "rms_before_mm": 1.45,
+     "rms_after_mm": 1.18,
+     "iters": 40,
+     "move_cm": 0.32,
+     "rot_deg": 6.38,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 114,
+   "frames": 290
+  },
+  "plastic_dish_rack": {
+   "segments": [
+    {
+     "frames": [
+      0,
+      290
+     ],
+     "fit": [
+      2,
+      288
+     ],
+     "points": 214500,
+     "rms_before_mm": 3.74,
+     "rms_after_mm": 3.14,
+     "iters": 40,
+     "move_cm": 0.61,
+     "rot_deg": 1.58,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 290,
+   "frames": 290
+  }
+ },
+ "sha256": "7865cac4ace39655276af014917a521208c2dc54d42d24d2500c2b4f454d8504"
+}
