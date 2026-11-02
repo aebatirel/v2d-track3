@@ -6561,3 +6561,12 @@ arm and a no-policy replay floor to stage B.
     - a public test first (ep31 or the pot twin; control vs lift windows; 2 seeds; gate mean ≥ +0.02, no seed < −0.03;
       ≈ $5);
     - if it passes, evals 3 / 14 / 25 / 30 under the swap rule.
+- 07:30 UTC 2 Nov owner: "Go do as much as you can lets go to top also you can run another sesh for increasing general
+  perception and experiment in public eps".
+  - New session "Perception accuracy on public episodes" (session_01D9UJC9EUCs5sUCbTVZgvcC) for public-only,
+    ground-truth-free perception experiments: up to $30 GPU, hands passing changes to perfect-following.
+    - Ideas: drift-then-snap prevention, FoundationPose / FoundationStereo settings, per-object tracker templates
+      (complete-base pitcher, blue cup), cup spin handling.
+    - First check: whether the S2 half-frame advance is applied in the eval references.
+  - Perfect-following: lift-window plan approved; its cap from now on is $50 more (credit $91.35; ≥ $10 reserve).
+  - The physics-perception session was told to share its harness and pitcher finding with the new session.

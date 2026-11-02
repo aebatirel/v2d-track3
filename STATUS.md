@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~07:30 UTC: push to the top. Two GPU lanes running
+- Perfect-following (session_01D9UJC8Nz9EEFNmz2yzimzN): lift-window training (public test first, then evals 3 / 14 /
+  25 / 30); up to $50 more.
+- Perception accuracy on public episodes (session_01D9UJC9EUCs5sUCbTVZgvcC): GT-free perception improvements, public
+  only; up to $30. It hands passing changes to perfect-following.
+- Credit $91.35 at 07:12 UTC. Standings: 10th (rank sum 61); 9th DSAIL 60; AUC 0.84405 vs DSAIL 0.84925.
+- Open owner decision: the CD-O blue-cup variant ($0, about +3 CD-O ranks [E]).
+
 ## 2026-11-02 ~06:42 UTC: PACK 12b UPLOADED: AUC 0.84405, MP-SR 0.75, RPE 3.023, MPPE 2.495 (best on every board)
 - Pack 12b = pack 11 + evals 14 / 32 (perception track-guard jump bridged) + eval 16 (hand held through release),
   reference repairs, stock limits.
