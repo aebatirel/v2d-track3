@@ -32,7 +32,7 @@ scan anchor [D], per eval seed; it is a pose-risk indicator, not a frame error.
 | mini_sweeper | `mini_sweeper_P1_partprog.glb` (55fe1682f09721ca5d4e98477bfef150) | library_v3 (c126a8ff...) | 19 (0), 30 (0) | 0.3171 / 0.3168 -> **0.2212 / 0.2239** | 8,514 (budget at packing; scored at 4096) | ICP 2.17 mm / 1.97 deg; centroid 4.9 mm | 5.2 / 4.8 -> 4.0 / 3.3 mm (ADD) | Part program built from our ep18 observed points. Two of its rules were changed after comparing earlier versions with the scan. Lowest sweeper CD-O of all candidates. |
 | plastic_dish_rack | `plastic_dish_rack_dev1_ep31_full.glb` (1176443c748ece893ffdb64a1cc82c9a) | C0 joint rack (bbca8ec0...) | 14 (1), 15 (0), 16 (0), 28 (0), 30 (1) | 0.4537 / 0.4525 / 0.4595 / 0.4619 / 0.4526 -> **0.4203 / 0.4174 / 0.4181 / 0.4194 / 0.4188** | 2,624 | ICP 3.38 mm / 0.60 deg; centroid 5.9 mm | 1.5-3.8 -> 8.1-9.7 mm | Primitive rack fit to public ep31 points (dev build). Lowest rack CD-O of the primitive fits. |
 | wooden_piece_1 | `wooden_piece_1_ep24_occ_d2.glb` (015aaae3183760cd8a48d82b5599d32c) | library_v3 (d152b2b5...) | 25 (0) | 0.2219 -> **0.1893** | 4,438 (budget at packing; scored at 4096) | ICP 1.73 mm / 0.85 deg; centroid 2.6 mm | 2.4 -> 3.3 mm (ADD) | Occupancy plate fit to public ep24 points. Lowest occupancy variant by CD-O. 1 flip in 6 seeds (an extra seed, not the eval seed). |
-| wooden_piece_2 | `wooden_piece_2_ep24_occ.glb` (bf82e385cac24a586168b4f14bf5b245) | library_v3 (825a7fe3...) | 25 (1) | 0.2158 -> **0.1642** | 1,256 | ICP 0.73 mm / 0.59 deg; centroid 4.7 mm | 3.4 -> 4.1 mm (ADD) | Same as wooden_piece_1. 1 flip in 6 seeds (an extra seed). |
+| wooden_piece_2 (**see correction below**) | `wooden_piece_2_ep24_occ.glb` (bf82e385cac24a586168b4f14bf5b245) | library_v3 (825a7fe3...) | 25 (1) | 0.2158 -> **0.1642** | 1,256 | ICP 0.73 mm / 0.59 deg; centroid 4.7 mm | 3.4 -> 4.1 mm (ADD) | Same as wooden_piece_1. 1 flip in 6 seeds (an extra seed). |
 
 - **Not scan copies.** No file is a byte copy of a public scan; md5 was checked against all 10 scan files.
   - Every file was built from our own video-derived points (sweeper, rack, boards) or generated from video frames
@@ -87,3 +87,11 @@ Pack 13f = pack 13e (13b's poses + 12e's meshes) + these two payload swaps.
 - **Board effect [E].** Blue cup -0.0035, dust pan -0.0016. Measured 12e was 0.26775, so 13f should be about **0.2627**.
 - **Pose.** The blue cup's kit anchor error roughly doubles (2-4 -> 5-7 mm), so the blue-cup pairs may score lower on the
   pose boards than with the C0 cup. The dust pan is about unchanged. Each board keeps our best submission.
+
+## Correction (2026-11-02 ~20:30 UTC): wooden_piece_2 flips at the eval seed under a raw-scan reference
+Earlier statements here and in the work log said "the eval seed does not flip". That holds only with mesh_metric's
+default, budgeted (4096) reference. With the raw public scan as reference, the eval-25 slot-1 seed 25000176 registers
+this plate at 179.18 deg, a flip. This matches the perception lane's 179.2 deg [D].
+
+The C4 50-seed audit gives this plate a 34% flip rate (budget reference). The eval-seed outcome is therefore not robust.
+Pack 13f2 restores the library_v3 board 2 on eval 25 slot 1. See `../C4-audit/PREREG.md` sections 8-9.

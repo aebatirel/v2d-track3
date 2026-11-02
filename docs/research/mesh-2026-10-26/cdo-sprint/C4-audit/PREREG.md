@@ -172,3 +172,19 @@ GT-free differences that remain between graft_v1 and library_v3:
   - [H9] thickness (v4) matters more than the +1 feature (v3);
   - [H10] v4 reaches W30 <= 0.14;
   - CD-O stays <= 0.1699 [H, uncertain: a thicker plate may cost CD-O].
+
+## 9. Addendum 4 (2026-11-02, written before D1 is applied to any candidate): D1 safety gate (coordinator 20:24 UTC)
+**Finding that prompted it [D, re-run just now].** At eval 25 slot 1's eval seed 25000176, the shipped Tier B board 2
+(md5 bf82e385) registers:
+- with the budgeted public scan as reference (mesh_metric default, used by this audit's section 2): 1.05 deg, no flip;
+- with the **raw** public scan as reference: 179.18 deg, a flip. This matches the perception lane's 179.2 deg.
+
+library_v3 board 2 does not flip in either mode. A near-symmetric mesh's single-seed outcome depends on how the reference
+is sampled, and the hidden scorer's preparation is unknown.
+
+**D1, a hard veto on top of rules (A)/(B), not a selection score.** A mesh is adoptable for an (episode, slot) only if:
+- (a) the mesh_metric default seed set for the object (the scorer's eval seeds for every (episode, slot) the mesh goes
+  into, plus extras up to >= 6 seeds) gives **0 flips in both reference modes** (budget and raw); and
+- (b) its section-2 50-seed W30 is <= 0.10.
+
+Rules (A)/(B) still choose. D1 only removes candidates.

@@ -6397,3 +6397,9 @@ diagnostic; nothing is picked for submission.
   only after the hash freeze). Notes: `cdo-sprint/G2/NOTES.md`.
 - Rental plan: one H100 NVL (offer 31183486, Czechia, the 29 Oct machine), interruptible bid $1.30/h GPU (~$1.40/h
   all-in), ~3 h, ~$7 with downloads [E]; cap $25; stop below $15 credit. Credit $127.84 at 20:20 UTC.
+- ~20:30 UTC, correction: Tier B wooden_piece_2 flips at eval 25 slot 1's seed (25000176) when the raw public scan is the
+  reference (179.18 deg [D]; the perception lane measured 179.2 deg). It does not flip with mesh_metric's budgeted reference
+  (1.05 deg). My earlier "the eval seed does not flip" was budget-reference only; corrected in `C3/tierB/README.md`.
+  library_v3 board 2: no flip in either mode. The coordinator's 13f2 restores library_v3 board 2 on eval 25.
+  The D1 safety gate was pre-registered as C4 PREREG section 9: 0 flips at the eval seeds + extras (>= 6) in both
+  reference modes, and 50-seed W30 <= 0.10. It is a veto on top of rules (A)/(B).
