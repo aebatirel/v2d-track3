@@ -1,6 +1,6 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-- 2026-11-02 ~08:45 UTC: blue-cup payload (library_c0/blue_cup.glb @ 5cce3d2, md5 9e3a74fd…, transform none, eval 10/14/20/32/33 slot 0, frame sign-off YES) sent to focused-pascal for pack 12c (owner approved 08:10 UTC). Waiting on their frame report.
+- 2026-11-02 ~08:45 UTC: blue-cup payload (library_c0/blue_cup.glb @ 5cce3d2, md5 9e3a74fd…, transform none, eval 10/14/20/32/33 slot 0, frame sign-off YES) sent to focused-pascal for pack 12c (owner approved 08:10 UTC). Their frame report flagged translation vs library_v3 (ICP 6.6 mm, kit proxy 9.9 mm); signed off YES, transform none, ~09:00 UTC (library_v3 itself sits ~10 mm off the scan under kit registration [D], C0 ~3 mm).
 
 ## 2026-11-01 ~09:05 UTC: mesh lane wrap-up (owner asked to close loops; nothing running, all pushed)
 - **Finished tonight [M unless marked]:** ev10 cavity-safe pieces v1-v5. ev10cs4/cs5 pass FlashCHORD 32x60 with 0 / 0

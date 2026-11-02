@@ -6243,3 +6243,14 @@ diagnostic; nothing is picked for submission.
 - Expected effect [E]: CD-O board ~0.332 → ~0.300 (from [D] 0.523 → 0.291 on 5 of 36 pairs). AUC boards keep the best submission,
   so a CD-O-only variant cannot lower them.
 - An earlier send of the same content failed with a tool error; the re-send was delivered. Pending: their pack_swap_meshes.py frame report.
+
+## 2026-11-02 ~09:00 UTC — blue-cup frame sign-off for pack 12c: YES, transform none
+- focused-pascal's tools/pack_swap_meshes.py frame report (vs library_v3 blue_cup) flagged translation:
+  ICP 6.64 mm / 2.55° (limit 5 mm / 5°); kit-registration proxy 9.91 mm (limit 5); centroid 3.53, AABB centre 8.21 mm.
+- Sign-off YES, no translation correction. Evidence [D] (kit `_register_object_body` via score_registered.py, public scan as
+  stand-in for the confidential one, same 5 eval-pair seeds): anchor error library_v3 9.1/10.0/9.8/10.4/10.1 mm
+  (baseline_library.jsonl) vs C0 2.9/3.1/3.5/2.1/3.6 mm (lathe_obs.jsonl, sha1 1bd4c8f5). The flagged moves measure
+  library_v3's own ~10 mm offset, not a C0 frame error. Scoring registers the submitted mesh to the scan, so a body-frame
+  translation is absorbed; flips 0/5 for both meshes. Rot after registration: C0 2.4-2.7°, library_v3 0.7-2.0°.
+  All measured numbers (CD-O 0.523 -> 0.291 [D], AUC guard mean +0.022 / min -0.030 ep13) are at identity; a transform
+  would be untested.
