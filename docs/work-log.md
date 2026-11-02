@@ -7170,3 +7170,5 @@ arm and a no-policy replay floor to stage B.
     scan metric. They are routed as candidates to perception-tracking's pre-registered public-pose leave-one-out test
     (independent mocap evidence).
   - G2: the first box was preempted (≈ $2.80, nothing kept); now on an H200 at $4.03/h, within the $25 cap.
+- ~21:18 UTC 2 Nov perception-tracking: PREREG_posemesh frozen, scoring 74 / 119 done; the pot tsdf ep43 and dust pan
+  Pixal s7 candidates are added by addendum before their own scoring (same rule). Test B (ptrkF) ≈ 13 / 20 episodes.
