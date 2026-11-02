@@ -12,3 +12,59 @@ code d3db66c
 2026-11-02T19:56:49Z 9 S13f/wooden_piece_2 ok 279s
 2026-11-02T19:59:46Z 10 S13e/blue_cup ok 445s
 2026-11-02T20:00:28Z 11 S13e/mini_dust_pan ok 427s
+2026-11-02T20:03:24Z 12 library_v3/beige_cup ok 492s
+2026-11-02T20:04:44Z 13 library_v3/blue_cup ok 475s
+2026-11-02T20:08:21Z RESTART after the tool's 30-min background limit killed the first launch (indices 0-13 done; 14-17 were mid-run, no output); code fb95dde
+2026-11-02T20:08:21Z 52 meshes, 4 workers
+2026-11-02T20:08:21Z 0 S13f/beige_cup done-before
+2026-11-02T20:08:21Z 2 S13f/mini_dust_pan done-before
+2026-11-02T20:08:21Z 3 S13f/mini_sweeper done-before
+2026-11-02T20:08:21Z 4 S13f/plastic_dish_rack done-before
+2026-11-02T20:08:21Z 5 S13f/water_pitcher done-before
+2026-11-02T20:08:21Z 6 S13f/white_pot done-before
+2026-11-02T20:08:21Z 7 S13f/white_pot_lid done-before
+2026-11-02T20:08:21Z 8 S13f/wooden_piece_1 done-before
+2026-11-02T20:08:21Z 1 S13f/blue_cup done-before
+2026-11-02T20:08:21Z 10 S13e/blue_cup done-before
+2026-11-02T20:08:21Z 11 S13e/mini_dust_pan done-before
+2026-11-02T20:08:21Z 12 library_v3/beige_cup done-before
+2026-11-02T20:08:21Z 13 library_v3/blue_cup done-before
+2026-11-02T20:08:21Z 9 S13f/wooden_piece_2 done-before
+2026-11-02T20:14:41Z 16 library_v3/plastic_dish_rack ok 379s
+2026-11-02T20:15:39Z 15 library_v3/mini_sweeper ok 437s
+2026-11-02T20:16:25Z 14 library_v3/mini_dust_pan ok 483s
+2026-11-02T20:16:42Z 17 library_v3/water_pitcher ok 501s
+2026-11-02T20:21:02Z 18 library_v3/white_pot ok 381s
+2026-11-02T20:21:15Z 21 library_v3/wooden_piece_2 ok 273s
+2026-11-02T20:21:31Z 19 library_v3/white_pot_lid ok 352s
+2026-11-02T20:21:36Z 20 library_v3/wooden_piece_1 ok 311s
+2026-11-02T20:29:47Z 22 C/clean/lid/t4.0_tsdf ok 525s
+2026-11-02T20:29:53Z 23 C/clean/lid/t2.5_tsdf ok 518s
+2026-11-02T20:31:17Z 24 C/potlid/fit/ep2 ok 586s
+2026-11-02T20:33:00Z 25 C/potlid/tsdf/ep43 ok 684s
+2026-11-02T20:37:30Z 26 C/potlid/tsdf/ep44 ok 462s
+2026-11-02T20:37:55Z 27 C/gen/trellis2/ep41_white_pot_k279_s7 ok 482s
+2026-11-02T20:38:48Z 28 C/diag/sam3d_lib_vis/blue_cup_s42 ok 451s
+2026-11-02T20:39:49Z 29 C/gen/hy21/ep22_blue_cup_k156_s42 ok 409s
+2026-11-02T20:44:13Z 30 C/gen/sam3d/ep22_blue_cup_k156_s42 ok 404s
+2026-11-02T20:45:37Z 32 C/C0b/beige_cup ok 409s
+2026-11-02T20:45:43Z 31 C/gen/pixal_mv/ep11_beige_cup_s42 ok 469s
+2026-11-02T20:47:51Z 33 C/gen/sam3d/ep11_beige_cup_k6_s7 ok 482s
+2026-11-02T20:49:55Z 34 C/rack/ep31_full ok 342s
+2026-11-02T20:51:30Z 35 C/rack/ep31_nomk ok 353s
+2026-11-02T20:52:29Z 36 C/c2r/rack/K_ep12_nomk ok 406s
+2026-11-02T20:56:49Z 37 C/gen/hy21/ep22_water_pitcher_k174_s7 ok 538s
+2026-11-02T20:57:45Z 38 C/gen/sam3d/ep22_water_pitcher_k174_s7 ok 470s
+2026-11-02T20:59:18Z 39 C/gen/trellis2/ep22_water_pitcher_k174_s42 ok 468s
+2026-11-02T20:59:36Z 40 C/gen/pixal_mv/ep39_mini_dust_pan_s7 ok 427s
+2026-11-02T21:03:49Z 41 C/gen/pixal_mv/ep39_mini_dust_pan_s42 ok 420s
+2026-11-02T21:04:15Z 42 C/t3fit/mini_dust_pan ok 389s
+2026-11-02T21:05:30Z 43 C/M2_libsym_balls ok 372s
+2026-11-02T21:05:54Z 44 C/M2b_libsym_balls_base ok 378s
+2026-11-02T21:08:41Z 46 C/gen/pixal_mv/ep23_wooden_piece_1_s42 ok 267s
+2026-11-02T21:09:39Z 47 C/boards/wooden_piece_1/ep24_occ ok 249s
+2026-11-02T21:10:23Z 48 C/diag/sam3d_lib_vis/wooden_piece_1_s42 ok 269s
+2026-11-02T21:12:11Z 45 C/P1v0_partprog_preleak ok 502s
+2026-11-02T21:13:08Z 49 C/boards/wooden_piece_2/ep24_occ_d2 ok 267s
+2026-11-02T21:14:04Z 50 C/boards/wooden_piece_2/ep24_occ_nm ok 265s
+2026-11-02T21:14:42Z 51 C/boards/wooden_piece_2/ep24_rect ok 259s

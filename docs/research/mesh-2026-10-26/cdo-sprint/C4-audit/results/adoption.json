@@ -1,0 +1,212 @@
+{
+ "white_pot": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.3107,
+   "cdo_mean": 0.3108,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 5.56,
+   "anc_p90": 5.92,
+   "rot_med": 3.25,
+   "rot_p90": 3.82,
+   "add_med": 6.33,
+   "add_p90": 6.99,
+   "amb_mm": 12.244060285004918,
+   "amb_floor_mm": 3.3188964049157694,
+   "amb_rot": 102.6
+  },
+  "pending": [],
+  "priority_build": false
+ },
+ "plastic_dish_rack": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.4182,
+   "cdo_mean": 0.4187,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 9.03,
+   "anc_p90": 9.59,
+   "rot_med": 2.33,
+   "rot_p90": 2.57,
+   "add_med": 10.02,
+   "add_p90": 10.69,
+   "amb_mm": 12.719943731424003,
+   "amb_floor_mm": 4.289347051347154,
+   "amb_rot": 178.4
+  },
+  "pending": [],
+  "priority_build": false
+ },
+ "blue_cup": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.2646,
+   "cdo_mean": 0.264,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 6.95,
+   "anc_p90": 7.78,
+   "rot_med": 4.24,
+   "rot_p90": 4.92,
+   "add_med": 8.13,
+   "add_p90": 9.09,
+   "amb_mm": 7.494863188087746,
+   "amb_floor_mm": 2.3938916248555446,
+   "amb_rot": 173.9
+  },
+  "pending": [],
+  "priority_build": false
+ },
+ "beige_cup": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.2501,
+   "cdo_mean": 0.25,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 4.69,
+   "anc_p90": 5.19,
+   "rot_med": 3.3,
+   "rot_p90": 3.5,
+   "add_med": 5.81,
+   "add_p90": 6.3,
+   "amb_mm": 5.177221242948782,
+   "amb_floor_mm": 2.6881623057541395,
+   "amb_rot": 170.5
+  },
+  "pending": [],
+  "priority_build": false
+ },
+ "mini_dust_pan": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.2291,
+   "cdo_mean": 0.2293,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 6.05,
+   "anc_p90": 6.36,
+   "rot_med": 1.15,
+   "rot_p90": 1.55,
+   "add_med": 6.12,
+   "add_p90": 6.41,
+   "amb_mm": 7.173248996795179,
+   "amb_floor_mm": 1.9126502389431896,
+   "amb_rot": 110.2
+  },
+  "pending": [],
+  "priority_build": false
+ },
+ "mini_sweeper": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.222,
+   "cdo_mean": 0.2223,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 3.22,
+   "anc_p90": 3.58,
+   "rot_med": 0.7,
+   "rot_p90": 1.21,
+   "add_med": 3.22,
+   "add_p90": 3.58,
+   "amb_mm": 1.745493145465348,
+   "amb_floor_mm": 1.4245467454388954,
+   "amb_rot": 179.9
+  },
+  "pending": [],
+  "priority_build": false
+ },
+ "white_pot_lid": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.2177,
+   "cdo_mean": 0.2175,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 4.7,
+   "anc_p90": 5.69,
+   "rot_med": 1.9,
+   "rot_p90": 2.18,
+   "add_med": 4.96,
+   "add_p90": 6.04,
+   "amb_mm": 4.722836582876375,
+   "amb_floor_mm": 2.0951360299019255,
+   "amb_rot": 179.8
+  },
+  "pending": [],
+  "priority_build": false
+ },
+ "water_pitcher": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.3713,
+   "cdo_mean": 0.3721,
+   "flip": 0.0,
+   "w30": 0.0,
+   "anc_med": 14.03,
+   "anc_p90": 15.45,
+   "rot_med": 3.52,
+   "rot_p90": 3.83,
+   "add_med": 15.63,
+   "add_p90": 16.97,
+   "amb_mm": 11.690757253886723,
+   "amb_floor_mm": 3.804961666135221,
+   "amb_rot": 179.1
+  },
+  "pending": [],
+  "priority_build": false
+ },
+ "wooden_piece_1": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.1872,
+   "cdo_mean": 0.1875,
+   "flip": 0.06,
+   "w30": 0.06,
+   "anc_med": 4.44,
+   "anc_p90": 6.46,
+   "rot_med": 0.73,
+   "rot_p90": 1.8,
+   "add_med": 4.63,
+   "add_p90": 6.86,
+   "amb_mm": 2.5215055919911395,
+   "amb_floor_mm": 2.2846300528803116,
+   "amb_rot": 180.0
+  },
+  "pending": [],
+  "priority_build": false
+ },
+ "wooden_piece_2": {
+  "decision": "keep 13f",
+  "base": {
+   "n": 50,
+   "cdo_med": 0.1649,
+   "cdo_mean": 0.165,
+   "flip": 0.34,
+   "w30": 0.34,
+   "anc_med": 3.46,
+   "anc_p90": 4.27,
+   "rot_med": 1.25,
+   "rot_p90": 179.71,
+   "add_med": 4.42,
+   "add_p90": 156.62,
+   "amb_mm": 2.5788506048095434,
+   "amb_floor_mm": 2.319855932599543,
+   "amb_rot": 179.9
+  },
+  "pending": [],
+  "priority_build": true
+ }
+}

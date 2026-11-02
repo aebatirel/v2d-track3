@@ -6430,3 +6430,9 @@ diagnostic; nothing is picked for submission.
 - 20:35 UTC replacement, on-demand so it cannot be preempted: run `mesh-20261102-g2b-ff63482` (same commit), instance
   58874418, H200 NVL 141 GB (Hopper sm_90 like the H100; enough memory for TRELLIS.2 at 1536), New Mexico, $4.033/h,
   ~82 cores. Ledger planned $12. Image pull ~10 min; setup and queue launched 20:47 UTC (`G2/NOTES.md`).
+- 21:15 UTC: C4 main audit complete: 52/52 meshes, 0 errors. Relaunched once after the tool limit; no mesh scored twice.
+  - Verdict: no candidate passes rule (A)/(B), so 13g is empty and the 13f meshes stay. Board 2 is the only priority,
+    already handled by 13f1 (library_v3).
+  - Outside the rule (not acted on): pot tsdf/ep43 has the same CD-O and ADD 2.9 vs 6.3 mm; dust pan Pixal s7 has
+    CD-O +0.005 and ADD 4.0 vs 6.1 mm.
+  - Results: `C4-audit/README.md`, `results/audit_table.md`, `results/adoption.json`, `results/raw/`.
