@@ -7203,3 +7203,11 @@ arm and a no-policy replay floor to stage B.
     0.26249).
   - **Rank sum 46** (RPE now 8th); 7th overall.
   - The public-pose CV choice transferred: AUC +0.010 on the board.
+- ~21:58 UTC 2 Nov round 2 ordered:
+  - perception-tracking, pre-registered nested leave-one-out:
+    - (a) the wider pool (52 C4 meshes + G2) for the pose boards;
+    - (b) placement from depth on top of the round-1 choices;
+    - (c) eval 20 pitcher placement → 13p2 / 13p3 on 13p;
+    - eval depth pre-approved up to $10 more.
+  - bold-albattani: offer every G2 and C4 mesh to the pose CV. The scan rules still govern the CD-O board, so a mesh
+    can win either board family separately.

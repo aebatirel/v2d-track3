@@ -1,5 +1,15 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~21:55 UTC: PACK 13p UPLOADED: AUC 0.88257, RPE 2.22667, MPPE 1.82356 (best); rank sum 46, 7th
+- 13p = 13f1 + pose-board meshes chosen by pre-registered public-pose leave-one-episode-out CV (TSDF pot,
+  library_c0 rack). The CD-O board keeps 13f (0.26249).
+- Overnight uploads so far: 13f1 (eval 25 board D1 revert; RPE 2.3752 then), 13p.
+- Running:
+  - retrains 20 / 28 / 30 / 14 with Tier B collision (results ≈ 01:00–02:30 UTC);
+  - G2 mesh generation;
+  - test B (tracking with 13f templates);
+  - round-2 pose CV + eval 20 pitcher placement (13p2 / 13p3).
+
 ## 2026-11-02 ~20:15 UTC: owner top-up ($127.97); full push tonight
 - Best uploaded: 13f (AUC 0.87225, RPE 2.3826, CD-O 0.26249), 13e (MPPE 1.9218); SP-SR 0.90, MP-SR 0.80.
   Rank sum 47, 7th.
