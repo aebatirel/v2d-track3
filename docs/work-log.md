@@ -10846,3 +10846,4 @@ score.
   (eval 14 f27–31 after the repair, 25 f41 / f173, 3 f66, 1 f129). ops/box/patch_flashchord_states.py already provides a
   training-only reset-state bank, but a contact-moment bank needs the policy's own joint states (GPU traces), a public test
   first, and the earlier solver–RL loop with this bank "barely acted". Listed as the next decision for the owner.
+- 01:20 UTC 2 Nov keen-heisenberg: pack 12 verified (sha, row diff, kit hashes, stock limits, PREREG timing, dry run valid); upload blocked by its permission classifier, waits for the owner's word. If eval 16 passes: pack 12b on pack 12.
