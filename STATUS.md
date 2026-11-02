@@ -10,7 +10,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
-## 2026-11-02 ~19:20 UTC: PACK 12e BUILT, PENDING frame sign-off — results/submissions/20261102-track3p-candidate/build_12e/
+## 2026-11-02 ~19:14 UTC: PACK 12e BUILT, PENDING frame sign-off — results/submissions/20261102-track3p-candidate/build_12e/
 - Pack 12d (reproduced byte for byte first) + bold-albattani's Tier B meshes @ 332eb5b, transform none: pitcher (eval 20),
   sweeper (19, 30), rack (14, 15, 16, 28, 30), wooden pieces (25). **GT-informed selection** (best by public-scan CD-O);
   owner yes in keen-heisenberg's session (19:00). Guard on: no_oracle accepts all five. CD-O-only variant.
