@@ -1,0 +1,52 @@
+{
+ "episode": 39,
+ "objects": [
+  "mini_dust_pan"
+ ],
+ "frames": 319,
+ "settings": {
+  "ep": 39,
+  "run": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep39",
+  "depth": "depth/ep39.npy",
+  "t3": "t3",
+  "out": "runs/PT-lag/ep39",
+  "repair": "lag",
+  "W": 15,
+  "e_flag": 0.02,
+  "n_flag": 5,
+  "e_back": 0.01,
+  "n_back": 5,
+  "lag_margin": 0.01,
+  "ramp": 10,
+  "restart": 10,
+  "min_inl": 12,
+  "max_pts": 300,
+  "reseed_frac": 0.6,
+  "ransac_thr": 0.01,
+  "tracks": null,
+  "mask": "render",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "max_frames": 0
+ },
+ "objects_info": {
+  "mini_dust_pan": {
+   "seeded": 131,
+   "median_inliers": 200,
+   "frames_valid": 319,
+   "reseeds": 126,
+   "restarts": 0,
+   "spans": [],
+   "frames_changed": 0,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 17.3,
+   "e_max_cm": 2.09
+  }
+ }
+}

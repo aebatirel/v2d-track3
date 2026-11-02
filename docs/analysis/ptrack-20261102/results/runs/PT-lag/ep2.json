@@ -1,0 +1,72 @@
+{
+ "episode": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 343,
+ "settings": {
+  "ep": 2,
+  "run": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep2",
+  "depth": "depth/ep2.npy",
+  "t3": "t3",
+  "out": "runs/PT-lag/ep2",
+  "repair": "lag",
+  "W": 15,
+  "e_flag": 0.02,
+  "n_flag": 5,
+  "e_back": 0.01,
+  "n_back": 5,
+  "lag_margin": 0.01,
+  "ramp": 10,
+  "restart": 10,
+  "min_inl": 12,
+  "max_pts": 300,
+  "reseed_frac": 0.6,
+  "ransac_thr": 0.01,
+  "tracks": null,
+  "mask": "render",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "max_frames": 0
+ },
+ "objects_info": {
+  "white_pot": {
+   "seeded": 77,
+   "median_inliers": 91,
+   "frames_valid": 343,
+   "reseeds": 103,
+   "restarts": 0,
+   "spans": [],
+   "frames_changed": 0,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 19.2,
+   "e_max_cm": 1.55
+  },
+  "white_pot_lid": {
+   "seeded": 300,
+   "median_inliers": 228,
+   "frames_valid": 343,
+   "reseeds": 11,
+   "restarts": 0,
+   "spans": [],
+   "frames_changed": 0,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 14.2,
+   "e_max_cm": 0.22
+  }
+ }
+}

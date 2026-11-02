@@ -1,0 +1,122 @@
+{
+ "episode": 13,
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "frames": 190,
+ "settings": {
+  "ep": 13,
+  "run": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep13",
+  "depth": "depth/ep13.npy",
+  "t3": "t3",
+  "out": "runs/PT-lag/ep13",
+  "repair": "lag",
+  "W": 15,
+  "e_flag": 0.02,
+  "n_flag": 5,
+  "e_back": 0.01,
+  "n_back": 5,
+  "lag_margin": 0.01,
+  "ramp": 10,
+  "restart": 10,
+  "min_inl": 12,
+  "max_pts": 300,
+  "reseed_frac": 0.6,
+  "ransac_thr": 0.01,
+  "tracks": null,
+  "mask": "render",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "max_frames": 0
+ },
+ "objects_info": {
+  "blue_cup": {
+   "seeded": 240,
+   "median_inliers": 96,
+   "frames_valid": 180,
+   "reseeds": 154,
+   "restarts": 1,
+   "spans": [
+    {
+     "onset": 15,
+     "anchor": 0,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 20,
+     "anchor": 5,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 25,
+     "anchor": 10,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 30,
+     "anchor": 15,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 35,
+     "anchor": 20,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 40,
+     "anchor": 25,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 114,
+     "anchor": 99,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    }
+   ],
+   "frames_changed": 0,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 16.1,
+   "e_max_cm": 5.61
+  },
+  "plastic_dish_rack": {
+   "seeded": 300,
+   "median_inliers": 253,
+   "frames_valid": 180,
+   "reseeds": 21,
+   "restarts": 1,
+   "spans": [],
+   "frames_changed": 0,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 9.5,
+   "e_max_cm": 1.69
+  }
+ }
+}

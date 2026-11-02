@@ -1,0 +1,80 @@
+{
+ "episode": 22,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 189,
+ "settings": {
+  "ep": 22,
+  "run": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep22",
+  "depth": "depth/ep22.npy",
+  "t3": "t3",
+  "out": "runs/PT-all/ep22",
+  "repair": "all",
+  "W": 15,
+  "e_flag": 0.02,
+  "n_flag": 5,
+  "e_back": 0.01,
+  "n_back": 5,
+  "lag_margin": 0.01,
+  "ramp": 10,
+  "restart": 10,
+  "min_inl": 12,
+  "max_pts": 300,
+  "reseed_frac": 0.6,
+  "ransac_thr": 0.01,
+  "tracks": null,
+  "mask": "render",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "max_frames": 0
+ },
+ "objects_info": {
+  "blue_cup": {
+   "seeded": 163,
+   "median_inliers": 150,
+   "frames_valid": 189,
+   "reseeds": 39,
+   "restarts": 0,
+   "spans": [],
+   "frames_changed": 0,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 8.9,
+   "e_max_cm": 0.99
+  },
+  "water_pitcher": {
+   "seeded": 61,
+   "median_inliers": 88,
+   "frames_valid": 189,
+   "reseeds": 181,
+   "restarts": 0,
+   "spans": [
+    {
+     "onset": 82,
+     "anchor": 67,
+     "kind": "jump",
+     "repaired": true,
+     "end": null
+    }
+   ],
+   "frames_changed": 121,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 17.1,
+   "e_max_cm": 13.08
+  }
+ }
+}

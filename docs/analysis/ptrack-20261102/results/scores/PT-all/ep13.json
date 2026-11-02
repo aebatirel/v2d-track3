@@ -1,0 +1,42 @@
+{
+ "episode": 13,
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "frames": 190,
+ "meshes": "public scans",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 0.18,
+   "anchor_shift_cm": 0.06,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 0.3,
+   "anchor_shift_cm": 0.03,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.6036,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 6.5618,
+  "RPE_cm": 13.938,
+  "per_obj_AUC": {
+   "blue_cup": 0.2697,
+   "plastic_dish_rack": 0.9375
+  }
+ }
+}

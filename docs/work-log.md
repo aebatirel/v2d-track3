@@ -6849,3 +6849,9 @@ arm and a no-policy replay floor to stage B.
 - 17:33 UTC **PREREG pushed (9203ccd)** before any variant scoring: docs/analysis/ptrack-20261102/PREREG.md.
   Primary PT-lag, report-only PT-all; gate mean ΔAUC ≥ +0.005, no episode < −0.01, mean ΔMPPE ≤ 0; ep23 expected not to
   recover. Inference started on all 20 episodes in this container (CPU, $0; code 9203ccd; ~1 h incl. depth pulls).
+- 18:20 UTC **ptrack verdict [D]: FAIL, falsified** (20 / 20 eps, no crashes, code 9203ccd, CPU $0; scored after
+  inference with score_registered.py + public scans vs Cr): PT-lag mean ΔAUC −0.0578, min −0.366 (ep42), 0 better /
+  6 worse, ΔMPPE +0.27 cm, > 3 cm frames 955 → 1115; PT-all −0.1319 (gains only ep11 +0.053, ep40 +0.010). Detector
+  precision: 5 of 17 flagged spans cover real control errors (> 2 cm), one of them ep23's identity case. KLT points on
+  weakly textured surfaces slip during grasps; repairs rarely hand back. Not adopted; BootsTAPIR box not requested
+  (false flags, not dropouts, are the limit). docs/analysis/ptrack-20261102/RESULT.md.

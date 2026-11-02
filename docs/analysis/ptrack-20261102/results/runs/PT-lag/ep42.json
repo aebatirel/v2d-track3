@@ -1,0 +1,109 @@
+{
+ "episode": 42,
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 257,
+ "settings": {
+  "ep": 42,
+  "run": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep42",
+  "depth": "depth/ep42.npy",
+  "t3": "t3",
+  "out": "runs/PT-lag/ep42",
+  "repair": "lag",
+  "W": 15,
+  "e_flag": 0.02,
+  "n_flag": 5,
+  "e_back": 0.01,
+  "n_back": 5,
+  "lag_margin": 0.01,
+  "ramp": 10,
+  "restart": 10,
+  "min_inl": 12,
+  "max_pts": 300,
+  "reseed_frac": 0.6,
+  "ransac_thr": 0.01,
+  "tracks": null,
+  "mask": "render",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "max_frames": 0
+ },
+ "objects_info": {
+  "white_pot": {
+   "seeded": 300,
+   "median_inliers": 185,
+   "frames_valid": 257,
+   "reseeds": 165,
+   "restarts": 0,
+   "spans": [
+    {
+     "onset": 42,
+     "anchor": 27,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 47,
+     "anchor": 32,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 52,
+     "anchor": 37,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 64,
+     "anchor": 49,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 69,
+     "anchor": 54,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 74,
+     "anchor": 59,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 79,
+     "anchor": 64,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 114,
+     "anchor": 99,
+     "kind": "lag",
+     "repaired": true,
+     "end": null
+    }
+   ],
+   "frames_changed": 157,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 15.7,
+   "e_max_cm": 9.57
+  }
+ }
+}

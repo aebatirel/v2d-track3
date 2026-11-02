@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~18:20 UTC: point-track second opinion (public, CPU, $0): FAIL, falsified
+- PT-lag mean ΔAUC −0.058 (0 better / 6 worse, min −0.366), PT-all −0.132; detector precision 5 / 17 flags.
+  Not adopted; no GPU requested. Record: docs/analysis/ptrack-20261102/RESULT.md (branch claude/point-track-20261102).
+- By-product: ep23's loss is a board identity swap (ep23_identity.md); the existing identity_fix.py fixes it
+  (0.041 → 0.663, perception-tracking); it was never wired into the public controls.
+
 ## 2026-11-02 ~08:43 UTC: PACK 12c UPLOADED: AUC 0.84738, CD-O 0.300, RPE 3.008, MPPE 2.467 (best on every board)
 - Pack 12c = pack 12b + the C0 blue-cup mesh (owner-accepted GT-informed public selection). Record
   results/submissions/20261102-track3n-candidate/build_12c/UPLOAD.md.

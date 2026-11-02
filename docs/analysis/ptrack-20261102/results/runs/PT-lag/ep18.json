@@ -1,0 +1,108 @@
+{
+ "episode": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "settings": {
+  "ep": 18,
+  "run": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep18",
+  "depth": "depth/ep18.npy",
+  "t3": "t3",
+  "out": "runs/PT-lag/ep18",
+  "repair": "lag",
+  "W": 15,
+  "e_flag": 0.02,
+  "n_flag": 5,
+  "e_back": 0.01,
+  "n_back": 5,
+  "lag_margin": 0.01,
+  "ramp": 10,
+  "restart": 10,
+  "min_inl": 12,
+  "max_pts": 300,
+  "reseed_frac": 0.6,
+  "ransac_thr": 0.01,
+  "tracks": null,
+  "mask": "render",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "max_frames": 0
+ },
+ "objects_info": {
+  "mini_sweeper": {
+   "seeded": 68,
+   "median_inliers": 24,
+   "frames_valid": 300,
+   "reseeds": 22,
+   "restarts": 5,
+   "spans": [
+    {
+     "onset": 142,
+     "anchor": 127,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 147,
+     "anchor": 132,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 155,
+     "anchor": 140,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 160,
+     "anchor": 145,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    },
+    {
+     "onset": 165,
+     "anchor": 150,
+     "kind": "jump",
+     "repaired": false,
+     "end": null
+    }
+   ],
+   "frames_changed": 0,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 1,
+    "redetect": 1,
+    "reacquired": 1,
+    "held": 0
+   },
+   "sec": 11.3,
+   "e_max_cm": 16.14
+  },
+  "mini_dust_pan": {
+   "seeded": 169,
+   "median_inliers": 179,
+   "frames_valid": 353,
+   "reseeds": 54,
+   "restarts": 0,
+   "spans": [],
+   "frames_changed": 0,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 15.7,
+   "e_max_cm": 1.68
+  }
+ }
+}

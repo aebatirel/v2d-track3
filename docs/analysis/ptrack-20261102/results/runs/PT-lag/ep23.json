@@ -1,0 +1,80 @@
+{
+ "episode": 23,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 325,
+ "settings": {
+  "ep": 23,
+  "run": "store/runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep23",
+  "depth": "depth/ep23.npy",
+  "t3": "t3",
+  "out": "runs/PT-lag/ep23",
+  "repair": "lag",
+  "W": 15,
+  "e_flag": 0.02,
+  "n_flag": 5,
+  "e_back": 0.01,
+  "n_back": 5,
+  "lag_margin": 0.01,
+  "ramp": 10,
+  "restart": 10,
+  "min_inl": 12,
+  "max_pts": 300,
+  "reseed_frac": 0.6,
+  "ransac_thr": 0.01,
+  "tracks": null,
+  "mask": "render",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "max_frames": 0
+ },
+ "objects_info": {
+  "wooden_piece_1": {
+   "seeded": 300,
+   "median_inliers": 266,
+   "frames_valid": 315,
+   "reseeds": 80,
+   "restarts": 1,
+   "spans": [
+    {
+     "onset": 146,
+     "anchor": 131,
+     "kind": "lag",
+     "repaired": true,
+     "end": null
+    }
+   ],
+   "frames_changed": 193,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 5,
+    "redetect": 4,
+    "reacquired": 4,
+    "held": 1
+   },
+   "sec": 17.0,
+   "e_max_cm": 37.55
+  },
+  "wooden_piece_2": {
+   "seeded": 300,
+   "median_inliers": 83,
+   "frames_valid": 315,
+   "reseeds": 150,
+   "restarts": 1,
+   "spans": [],
+   "frames_changed": 0,
+   "held": 0,
+   "guard": {
+    "f0_retries": 0,
+    "implausible": 0,
+    "redetect": 0,
+    "reacquired": 0,
+    "held": 0
+   },
+   "sec": 21.6,
+   "e_max_cm": 3.61
+  }
+ }
+}

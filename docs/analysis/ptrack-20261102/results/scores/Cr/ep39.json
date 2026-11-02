@@ -1,0 +1,30 @@
+{
+ "episode": 39,
+ "objects": [
+  "mini_dust_pan"
+ ],
+ "frames": 319,
+ "meshes": "public scans",
+ "registration": {
+  "mini_dust_pan": {
+   "rot_deg": 0.26,
+   "anchor_shift_cm": 0.02,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.9765,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.8658,
+  "RPE_cm": 0.0,
+  "per_obj_AUC": {
+   "mini_dust_pan": 0.9765
+  }
+ }
+}

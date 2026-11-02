@@ -1,0 +1,30 @@
+{
+ "episode": 41,
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 299,
+ "meshes": "public scans",
+ "registration": {
+  "white_pot": {
+   "rot_deg": 0.17,
+   "anchor_shift_cm": 0.02,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.987,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.6689,
+  "RPE_cm": 0.0,
+  "per_obj_AUC": {
+   "white_pot": 0.987
+  }
+ }
+}
