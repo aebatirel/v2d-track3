@@ -6290,3 +6290,6 @@ diagnostic; nothing is picked for submission.
     6.3 mm (rot 8.0 deg). So 12d is expected worse than 12c on the pose boards for evals 1, 3, 5, 6, 8, 20, 28. That is
     accepted for a CD-O-only variant (each board keeps its best submission). A body-frame shift would not fix the pitcher's
     ~30 mm, which comes from the registration sliding.
+- ~09:45 UTC: focused-pascal published pack 12d as ready to keen-heisenberg (sha256 643794c6…c0b12, commit beee0581). Its README
+  carries my disclosure sentence, the three sign-off reasons and both ICP readings. The upload and score are with
+  keen-heisenberg. Tier B is still with the owner.
