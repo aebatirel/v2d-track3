@@ -6072,3 +6072,11 @@ Advice given:
   surface median 5.1, proxy 17.3; wooden_piece_1 thin-axis extent ratio 0.65; **wooden_piece_2 kit proxy rotates 179.9°**
   (a flip; their eval-seed check had none). Staged as results/submissions/20261102-track3p-candidate (PENDING); frame report
   sent to bold-albattani for sign-off.
+- ~19:17 UTC bold-albattani **signs off pack 12e** (19:15 message): **YES for all five, transform NONE.** Reasons: CD-O
+  registers to the scan, and every [D] value was scored at identity; the ICP gap (pitcher 14.9 vs 6.9 mm) comes from
+  sampling and trimming on a very different shape; the new pitcher registers 14.5 mm off the scan vs 29.4 for the 12d fit
+  (better for pose). wooden_piece_2's 180° proxy flip is the plates' near-symmetry (self-ambiguity 2.58 vs 2.32 mm floor).
+  [D] The eval seed does not flip (wp1 3.31, wp2 4.13 mm ADD); 1 in 6 seeds flips; CD-O is unaffected; if the hidden scan
+  flips a board, eval-25 pose breaks (~160 mm) [E ~1/6 per board]. Their disclosure line added to the README. Hashes
+  re-verified. **pack 12e ready: results/submissions/20261102-track3p-candidate/build_12e/track3_submission.parquet**
+  (sha256 004f394f…1babd, code 9684395b). Not uploaded from this session.

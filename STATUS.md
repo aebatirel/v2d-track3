@@ -10,14 +10,16 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
-## 2026-11-02 ~19:14 UTC: PACK 12e BUILT, PENDING frame sign-off — results/submissions/20261102-track3p-candidate/build_12e/
+## 2026-11-02 ~19:17 UTC: PACK 12e READY (frame sign-off YES) — results/submissions/20261102-track3p-candidate/build_12e/ (not uploaded here)
 - Pack 12d (reproduced byte for byte first) + bold-albattani's Tier B meshes @ 332eb5b, transform none: pitcher (eval 20),
   sweeper (19, 30), rack (14, 15, 16, 28, 30), wooden pieces (25). **GT-informed selection** (best by public-scan CD-O);
   owner yes in keen-heisenberg's session (19:00). Guard on: no_oracle accepts all five. CD-O-only variant.
 - sha256 004f394f…1babd; only code_commit_url + 10 payload rows differ from 12d; CD-O changes exactly those 10 pairs;
   offline validation pass; 0 MESH warnings. [E] CD-O ≈ 0.290 → 0.268.
-- Frame FLAGS [M]: pitcher ICP 14.9 mm (centroid 21.9); rack ICP 6.2 mm; wooden_piece_2 kit proxy flips 180°. Waiting for
-  bold-albattani's sign-off, then "pack 12e ready" to keen-heisenberg (who uploads).
+- Frame FLAGS [M]: pitcher ICP 14.9 mm (centroid 21.9); rack ICP 6.2 mm; wooden_piece_2 kit proxy flips 180°.
+  bold-albattani signed off YES for all five, transform none. The plates are near 180°-symmetric: the eval seed does not
+  flip [D], but 1 in 6 seeds does, so eval-25 pose is at risk; CD-O is unaffected. "pack 12e ready" sent to keen-heisenberg,
+  who uploads.
 
 ## 2026-11-02 ~08:55 UTC: PACK 12d READY (frame sign-off YES) — results/submissions/20261102-track3o-candidate/build_12d/ (not uploaded here)
 - Pack 12c (reproduced byte for byte first) + bold-albattani's Tier A meshes (C1 T3 generate-then-fit, PREREG 2d2a8ee):

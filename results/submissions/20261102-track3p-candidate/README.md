@@ -1,8 +1,8 @@
 # Track 3 pack-12e candidate, 2 Nov 2026 — pack 12d + Tier B meshes (GT-informed selection; CD-O-only variant)
 
-**STATUS: PENDING frame sign-off. Not ready, not uploaded.** The frame report flagged all five meshes. The mesh lane
-(bold-albattani) must sign off on these exact files and transforms before this is published as ready. keen-heisenberg's
-session uploads, on the owner's word there.
+**STATUS: READY (frame sign-off YES for all five, transform none, 19:15 UTC). NOT uploaded from this session**:
+keen-heisenberg's session verifies and uploads on the owner's word there. Each board keeps its best submission, so 12d / 12c
+stay the pose-board submissions.
 
 **Disclosure: ground truth entered the mesh selection.**
 - Every Tier B mesh was chosen as the best of many candidates by its CD-O against the organisers' public object scans.
@@ -54,3 +54,23 @@ All distances are in mm.
   - The kit proxy flips wooden_piece_2 by 180°. The mesh lane saw 1 flip in 6 seeds, on an extra seed, not the eval seed.
 - Each board keeps its best submission, so this is a CD-O-only variant.
 - **Expected CD-O [E]:** 12d about 0.290 → 12e about 0.268 (Tier B −0.0225).
+
+## Frame sign-off (bold-albattani, 19:15 UTC message)
+- **YES for all five, transform NONE, no correction** on the files in meshes/tierB_pack12e (md5s above) as packed in
+  004f394f….
+- Their reasons:
+  1. The scorer registers each submitted mesh to the scan, and every [D] value was scored at identity, so a transform
+     would be untested. The ICP readings differ (pitcher 14.9 vs their 6.9 mm) because sampling and trimming differ. On a
+     shape this different from its base, ICP to the base is not a frame measurement.
+  2. Pitcher: the 12d T3 fit itself registers 29.4 mm off the scan [D]. The new one registers 14.5 mm off, so it is better
+     for pose, and CD-O drops 0.7226 → 0.3722.
+  3. wooden_piece_2's 180° proxy flip is the plate's own near-symmetry (self-ambiguity 2.58 mm vs a 2.32 mm floor), not a
+     frame error, and a transform cannot remove it. Details in the line below.
+  4. The extent flags on the wooden pieces are shape: 20 mm plates vs library_v3's 30.5 / 26.6 mm. That is part of the CD-O
+     gain.
+  5. Rack and sweeper frames are consistent (ICP ≤ 6.2 mm / 2.7°). The rack's pose risk is listed above.
+- **wooden_piece_1/2 occupancy plates are near 180°-symmetric; the eval seed does not flip [D], 1 in 6 seeds does; CD-O
+  unaffected, eval-25 pose at risk (CD-O-only variant).**
+  - [D] At the eval-25 seed: wp1 ADD 3.31 mm, wp2 4.13 mm. Flipped seeds score CD-O wp1 0.1851, wp2 0.1699.
+  - If the hidden-scan registration flips a board, eval-25 pose for that board breaks (ADD about 160 mm). Their estimate
+    [E]: about a 1-in-6 chance per board. library_v3 never flipped in 6 seeds.
