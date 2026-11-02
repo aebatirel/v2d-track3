@@ -6423,3 +6423,4 @@ diagnostic; nothing is picked for submission.
     fails CD-O).
   - Reading: the extra thickness that stops flips costs about 0.05 cm CD-O, so there is no CD-O-neutral flip fix
     among these. Board 2 in pose-relevant packs = library_v3 (13f1). The occupancy plate is only for CD-O-only packs.
+- 20:42 UTC: focused-pascal's d1gate.py (REF_MODE=raw|budget, on decoded packed payloads; branch claude/focused-pascal-2nz9s1, docs/research/work/flipcheck-20261102) reports: 13f1 passes D1 in both modes (eval-25 slots 0/10 flips each); 13f's Tier B slot 1 flips 3/10 (budget) and 2/10 (raw). It will run on every 13g/13h build as an independent second check.
