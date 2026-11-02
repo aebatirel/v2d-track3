@@ -6741,3 +6741,16 @@ arm and a no-policy replay floor to stage B.
 - 20:15 UTC owner topped up (credit $127.97; "go crazy, let's win this"). Tests A + B budget ≤ $12; pre-approved if
   a test passes its PREREG gate: A on eval (eval depth + placement fit, ≈ $5, meshes to focused-pascal) and B on eval
   (perception with M13 templates, ≈ $5–8; reference / retrain plan to the coordinator first). Stop if credit < $15.
+- 20:55 UTC **Test A (mesh placement from depth) FAIL [D]** (fits + mesh sha256 pushed 91c5fc1 before scoring):
+  vs M13 as packed (C13), mean ΔAUC +0.0026, 10 better / 9 worse, min ep18 −0.137 (sweeper), ep31 −0.085; MPPE
+  −0.033, RPE −0.011; > 3 cm 954 → 1049. Gains: pitcher ep21 +0.127 / ep22 +0.084 (fitted tilt 5.6° / 5.0°, the known
+  6° bias), cups ep12 +0.023 / ep13 +0.028, pots ep0 / 2 / 26 / 27 +0.010..+0.028. Losses: sweeper (fitted rot 4–4.6°)
+  and dust pan ep39 / 40. Not handed over (adopting only the pitcher / cups would be a post-hoc selection).
+  `results/gate_A1_vs_C13.json`.
+- 20:55 UTC **URGENT finding [M]: the pack-13f (12e Tier B) wooden_piece_2 payload registers FLIPPED 180° to the
+  scan for some kit seeds** (`_register_object_body`, seed 1_000_003·ep + 101·slot): ep24 slot 1 180.0°, **eval 25
+  slot 1 179.2°**, ep23 slot 1 / ep25 slot 0 ≈ 1°; 9a+ piece_2 ≤ 1.0° at every seed. Public ep24 same tracks: piece_2
+  0.862 → 0.000. If the hidden scan equals the public scan [H], eval 25's piece_2 is scored upside down in 12e / 13f
+  (≈ −0.02 board AUC [E]); payload-only fix (no retrain). Sent to keen-heisenberg and focused-pascal.
+- Public mesh-set comparison, same tracks [D]: 9a+ 0.8998 vs M13 0.8746 (ep24 −0.415; pots −0.02..−0.05; ep0 lid
+  −0.065; ep31 +0.083, ep18 +0.026). Tier B was chosen by public-scan CD-O, so this is not the eval picture.
