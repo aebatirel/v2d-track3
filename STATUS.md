@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~19:25 UTC: PACK 12e UPLOADED (Tier B meshes): BEST ON EVERY BOARD; rank sum 47, 7th
+- AUC **0.86905**, SP-SR **0.90**, MP-SR **0.80**, RPE **2.39138**, MPPE **1.95269**, CD-O **0.26775**.
+- 12e = 12d + Tier B meshes (GT-informed selection by public-scan score, owner yes 19:00, disclosed in
+  C3/tierB/README.md). Record: results/submissions/20261102-track3p-candidate/build_12e/UPLOAD_keen.md.
+- Better meshes improve the pose boards through registered scoring, far beyond the CD-O estimate.
+- Next:
+  - pack 13e = 13b's poses + 12e's meshes (focused-pascal);
+  - pack 13f = 13e + generated blue cup and dust pan, which pass C3's pre-set ≥ 0.02 public-scan rule
+    (bold-albattani sign-off).
+  - Mesh variants are chosen by the pre-set rule only, never by leaderboard results.
+
 ## 2026-11-02 ~19:20 UTC: PACK 13b UPLOADED: AUC 0.84985, MPPE 2.43592 (best); RPE 3.01275 (13 keeps 3.00841)
 - Pack 13b = 13 + eval 15 (owner waiver of clause c, post hoc). Record:
   results/submissions/20261102-track3p-candidate/build_13b/UPLOAD.md.
