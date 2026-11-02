@@ -10,6 +10,12 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-02 ~21:48 UTC: POSE PACK 13f1p BUILT, PENDING the pot's frame sign-off — results/submissions/20261102-track3t-candidate/build_13f1p/
+- 13f1 (reproduced byte for byte) + TSDF white pot (evals 1/3/5/6/8/28) + library_c0 rack (= 12c's; 14/15/16/28/30), both
+  adopted by tracking-perception's pre-registered public pose CV (held-out +0.021 / +0.023). sha256 3134dfc6…c2ed.
+- D1 PASS in both reference modes (0/7 flips on all 11 pairs). [E] CD-O about +0.005 worse (a pose-board variant).
+- Next: bold-albattani's sign-off on the pot, then "pack 13f1p ready" to keen-heisenberg.
+
 ## 2026-11-02 20:39 UTC: 13f1 UPLOADED — AUC 0.87191 (13f 0.87225 stays best), RPE 2.375 (best); base for 13g / 13h = 13f1
 - The flip-fix hypothesis (+0.02 AUC) is falsified: −0.0003 vs 13f. [H] The hidden reference behaves like the budgeted scan.
 - D1 (no flip, raw AND budgeted scan, ≥ 6 seeds) stays a veto on every new mesh (C4 PREREG §9, f21e456). I run both modes

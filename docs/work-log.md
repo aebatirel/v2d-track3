@@ -6142,3 +6142,9 @@ Advice given:
   MPPE 1.92513, CD-O 0.26393, SR unchanged.** The +0.02 AUC hypothesis is falsified (−0.0003). Their reading [H]: the hidden
   reference behaves like the budgeted scan, where the plate does not flip. Not used for selection; D1 stays a veto in both
   modes. **Base for 13g / 13h = 13f1** (its board 2 passes D1; 13f's fails).
+- ~21:48 UTC **pose pack 13f1p built, PENDING the pot's frame sign-off** (tracking-perception 21:36: public pose-CV adoptions,
+  PREREG_posemesh.md + addendum 1 @ 029145e). 13f1 reproduced byte for byte; swaps: TSDF white_pot (3591440e…, @ 30186bb) on
+  1/3/5/6/8/28 and library_c0 rack (bbca8ec0…, = 12c payloads) on 14/15/16/28/30; committed as meshes/posepack_13f1p
+  (116dfe70). sha256 3134dfc6…c2ed; vs 13f1 only commit URL + 11 payload rows; CD-O those 11 pairs; offline validation
+  pass; guard on. **D1 PASS in both modes** (new d1pairs.py; 0/7 flips on all 11 pairs; pot ≤ 2.6°, rack ≤ 3.5°). Frame
+  flags: pot vs T3 centroid 9.8 mm, ICP 5.9 mm. Staged as results/submissions/20261102-track3t-candidate.
