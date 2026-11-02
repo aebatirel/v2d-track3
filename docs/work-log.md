@@ -6341,3 +6341,4 @@ diagnostic; nothing is picked for submission.
   - dust pan: centroid 6.84 mm flag, ICP 2.38 mm / 1.85 deg.
   Signed off YES for both, transform none: shape/size difference, axis within 0.8 deg, no flip. Expected CD-O about
   0.2627 [E].
+- ~19:40 UTC: focused-pascal published pack 13f as ready to keen-heisenberg (sha256 fa1e31f5…, commit a318721a). The README carries my sign-off. Upload and score are with keen-heisenberg.
