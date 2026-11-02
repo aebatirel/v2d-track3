@@ -10893,3 +10893,4 @@ score.
   evals 3 and 14 trained with eval 32's windows (1–16, 41–61, 111–131) instead of their own (box log [M]). Fixed: the key is
   now TRAIN_ENV_<prefix>_ep<N>. pfH was unaffected (one episode). Relaunching pfI with the same job string.
 - 11:51 UTC 2 Nov **pfI relaunched**: 20261102-pfI-b558032 (offer 56700685), same job string.
+- 12:45 UTC 2 Nov pfI-b558032 (Japan host 56700685) stalled in setup (HF downloads), destroyed by the watchdog at 12:37 (≈ 42 min ≈ $0.9). Relaunch on the California host (fast setup at 11:32).
