@@ -86,3 +86,22 @@ gain is real on re-runs (+0.13 / +0.015 mean on P). The owner decides.
   1.346 vs 1.299 cm); eval 14 NO-SWAP (fresh 0.826 vs 0.875 after box 0.923); evals 3 / 25 / 28 / 30 / 32 fail the gate.
 - Board expectation [E]: eval 20's stored draw 0.895 → 0.938 vs our reference (one episode of 20: ≈ +0.002 on the
   sim_vs_ref mean); vs ground truth unknown.
+
+## Pack 13b (added 2 Nov ~19:10 UTC) = pack 13 + eval 15 — `build_13b/` (OWNER WAIVER, post hoc)
+- Base: pack 13 (sha256 791c3922…, uploaded 18:50 UTC: AUC 0.84924).
+- File: `build_13b/track3_submission.parquet`, 9,120 rows, sha256
+  `c8b85ba4821182d19efed418d1de470d30b0e3c4419c4977ff912c8eae21115c`; CD-O `7922820a…` (rows identical to 13's / 12c's).
+- Code commit on every row: https://github.com/aebatirel/v2d-track3/commit/8efca11617fef836321890e0dd1e09f4abbe2b1a.
+- Checks [M] (tools/pack_swap_rows.py): vs pack 13 only e000015 (332 rows, all pose rows changed) + its checkpoint
+  (e459bb21… → 395d727f…); vs 12c only evals 15 and 20 differ (736 rows), mesh payloads identical; evaluator stamps match;
+  kit offline validation pass; CD-O rows changed 0; no_oracle pass. The board's eval-15 row equals the pack-6 draw (old).
+- **Eval 15:** run `20261102-pfJ-cf8cc34`, arm plw seed 42, checkpoint
+  `395d727f8de433e1abdd81ce5070e93c6caa838d3d5f8afeffe23907386bb705` (store
+  `runs/20261102-pfJ-cf8cc34/results/pfplws42_glock_public/ep15/best/policy.safetensors`), confirmation draw 1. Packed
+  grasp-lock recipe on the packed eval-15 reference reused byte for byte + lift-window starts (frames 29–54, share 0.3).
+- **Why it is in (owner waiver, made after the result):** 10 fresh official draws: sim_vs_ref 0.958 vs board policy 0.906
+  (gain +0.053), fails 0 vs 1 / 10, draw 1 0.965 vs old 0.947 — clauses a / b / s and the +0.02 bar pass; **clause c
+  (median RPE ≤ packed) FAILS: 1.346 vs 1.299 cm (+0.47 mm)**, so the pre-registered rule said NO-SWAP. The owner waived
+  clause c for eval 15 only (19:00 UTC via keen-heisenberg). Recorded as post hoc in docs/research/work/pf-lift-20261102/PREREG.md.
+- Board expectation [E]: eval 15's stored draw 0.947 → 0.965 vs our reference; RPE board may move slightly up or down
+  (median RPE of the candidate's draws is 0.47 mm higher, its mean similar).

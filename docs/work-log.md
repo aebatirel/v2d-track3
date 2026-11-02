@@ -10958,3 +10958,6 @@ score.
   Eval-15 waiver stays with the owner (no action unless forwarded).
 - 19:01 UTC 2 Nov owner waiver (post hoc) of clause c for eval 15, via keen-heisenberg ("Okay I give you permission for
   all"); recorded in pf-lift PREREG. Correction: the eval-15 clause-c miss is 0.47 mm (1.346 vs 1.299 cm), not 0.05 mm.
+- 19:10 UTC 2 Nov **pack 13b ready** (owner waiver): results/submissions/20261102-track3m-candidate/build_13b/
+  track3_submission.parquet, sha256 c8b85ba4…, 9,120 rows = pack 13 + eval 15 plw s42 conf draw 1 (checkpoint 395d727f…);
+  code 8efca116; all checks pass; vs 12c only evals 15 / 20 differ (736 rows). NOT uploaded; sent to keen-heisenberg.
