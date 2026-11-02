@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 21:50 TRT (18:50 UTC): PACK 13 UPLOADED — AUC 0.84924 (+0.0019 over 12c), rank sum 54 (tied with DSAIL)
+- keen-heisenberg uploaded pack 13 (12c + eval 20) on the owner's word: AUC 0.84924, MPPE 2.45263 (−0.0147), RPE 3.00841;
+  SP-SR / MP-SR / CD-O unchanged. Eval-15 waiver (pack 13b) waits for the owner. No boxes running; no rentals until a top-up.
+
 ## 2026-11-02 20:42 TRT (17:42 UTC): PACK 13 READY (not uploaded) — pack 12c + eval 20
 - **File:** results/submissions/20261102-track3m-candidate/build_13/track3_submission.parquet (sha256 791c3922…), built on
   pack 12c (blue-cup meshes kept). All checks pass. keen-heisenberg uploads on the owner's word.
