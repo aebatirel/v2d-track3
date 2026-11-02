@@ -6342,3 +6342,15 @@ diagnostic; nothing is picked for submission.
   Signed off YES for both, transform none: shape/size difference, axis within 0.8 deg, no flip. Expected CD-O about
   0.2627 [E].
 - ~19:40 UTC: focused-pascal published pack 13f as ready to keen-heisenberg (sha256 fa1e31f5…, commit a318721a). The README carries my sign-off. Upload and score are with keen-heisenberg.
+
+## 2026-11-02 ~19:40 UTC — C4 multi-seed registration audit started (coordinator request; owner: "push further")
+- The coordinator asked for a full mesh audit of 13e/13f with seed-independent registration quality (>= 50 seeds,
+  never the eval seed), then a pre-registered adoption rule, then pack 13g on top of 13f.
+- PREREG pushed before any run: `cdo-sprint/C4-audit/PREREG.md` (d3db66c).
+  - 50 seeds, 3001-3050; the roster is emptied.
+  - 52 meshes frozen in `candidates.json`.
+  - Rules (A) and (B) for adoption against the 13f baseline.
+  - The shipped md5 per slot came from focused-pascal's 13e/13f swap manifests (branch claude/focused-pascal-2nz9s1 @ a318721).
+- Run: `MESH_SCR=<scratch> python -I C4-audit/scripts/audit_multiseed.py C4-audit/candidates.json <scratch>/c4 --workers 4`,
+  code d3db66c, this container, started 19:38Z, local CPU, $0.
+- Spoon: no public scan exists. GT-free self-ambiguity only; it cannot be adopted by this rule.
