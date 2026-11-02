@@ -1,0 +1,199 @@
+{
+ "object": "water_pitcher",
+ "candidate": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s42.ply",
+ "candidate_sha256": "3b8078ad069260586c8eeb381c2c389f97272eaaeeab51c197683134529fe149",
+ "library": "/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb",
+ "library_sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+ "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/c3b/place/water_pitcher_hy21_k174_s42_lib.glb",
+ "out_sha256": "bf5046f25be589655c8816f358e62465cbc3b4cb8ceb9fec0ff26baf6b5d65e7",
+ "n_samples": 8000,
+ "iters": 30,
+ "keep": 0.9,
+ "best_start": "identity",
+ "residual_mm": 6.5595,
+ "scale": 0.9921108369123387,
+ "R": [
+  [
+   0.99909386,
+   -0.03109222,
+   -0.02906441
+  ],
+  [
+   0.03219389,
+   0.99874992,
+   0.03823814
+  ],
+  [
+   0.02783917,
+   -0.03913918,
+   0.99884589
+  ]
+ ],
+ "t": [
+  -0.00299198,
+  -0.01312049,
+  -0.01460696
+ ],
+ "rot_from_probe_deg": 3.297,
+ "trans_from_probe_mm": 19.861,
+ "centroid_shift_mm": 20.524,
+ "identity_start_residual_mm": 6.5595,
+ "second_distinct_residual_mm": 9.7822,
+ "second_distinct_start": "pca08",
+ "second_distinct_angle_deg": 180.0,
+ "all_starts": [
+  {
+   "start": "identity",
+   "j_mm": 6.5595,
+   "scale": 0.99211,
+   "rot_from_best_deg": 0.0
+  },
+  {
+   "start": "pca00",
+   "j_mm": 6.5756,
+   "scale": 0.98624,
+   "rot_from_best_deg": 0.8
+  },
+  {
+   "start": "pca04",
+   "j_mm": 8.4253,
+   "scale": 0.97621,
+   "rot_from_best_deg": 12.5
+  },
+  {
+   "start": "pca08",
+   "j_mm": 9.7822,
+   "scale": 0.95679,
+   "rot_from_best_deg": 180.0
+  },
+  {
+   "start": "pca01",
+   "j_mm": 9.857,
+   "scale": 0.95348,
+   "rot_from_best_deg": 166.7
+  },
+  {
+   "start": "pca22",
+   "j_mm": 10.644,
+   "scale": 0.94475,
+   "rot_from_best_deg": 22.1
+  },
+  {
+   "start": "pca21",
+   "j_mm": 10.8494,
+   "scale": 0.9179,
+   "rot_from_best_deg": 169.6
+  },
+  {
+   "start": "pca18",
+   "j_mm": 11.0688,
+   "scale": 0.97346,
+   "rot_from_best_deg": 163.4
+  },
+  {
+   "start": "pca16",
+   "j_mm": 11.1607,
+   "scale": 0.93703,
+   "rot_from_best_deg": 165.6
+  },
+  {
+   "start": "pca10",
+   "j_mm": 11.5761,
+   "scale": 0.91855,
+   "rot_from_best_deg": 112.2
+  },
+  {
+   "start": "pca20",
+   "j_mm": 11.7896,
+   "scale": 0.97155,
+   "rot_from_best_deg": 21.8
+  },
+  {
+   "start": "pca03",
+   "j_mm": 11.7905,
+   "scale": 0.94372,
+   "rot_from_best_deg": 128.8
+  },
+  {
+   "start": "pca09",
+   "j_mm": 11.9551,
+   "scale": 0.92922,
+   "rot_from_best_deg": 119.1
+  },
+  {
+   "start": "pca11",
+   "j_mm": 11.9572,
+   "scale": 0.93944,
+   "rot_from_best_deg": 174.4
+  },
+  {
+   "start": "pca19",
+   "j_mm": 12.2785,
+   "scale": 0.91253,
+   "rot_from_best_deg": 119.8
+  },
+  {
+   "start": "pca05",
+   "j_mm": 13.9557,
+   "scale": 0.90045,
+   "rot_from_best_deg": 145.9
+  },
+  {
+   "start": "pca13",
+   "j_mm": 14.3459,
+   "scale": 0.90583,
+   "rot_from_best_deg": 110.4
+  },
+  {
+   "start": "pca15",
+   "j_mm": 16.1165,
+   "scale": 0.92468,
+   "rot_from_best_deg": 150.9
+  },
+  {
+   "start": "pca02",
+   "j_mm": 16.5127,
+   "scale": 0.90415,
+   "rot_from_best_deg": 175.6
+  },
+  {
+   "start": "pca12",
+   "j_mm": 16.8053,
+   "scale": 0.91439,
+   "rot_from_best_deg": 111.0
+  },
+  {
+   "start": "pca06",
+   "j_mm": 16.9416,
+   "scale": 0.88975,
+   "rot_from_best_deg": 173.5
+  },
+  {
+   "start": "pca07",
+   "j_mm": 17.2187,
+   "scale": 0.90474,
+   "rot_from_best_deg": 177.4
+  },
+  {
+   "start": "pca14",
+   "j_mm": 18.2353,
+   "scale": 0.91466,
+   "rot_from_best_deg": 106.6
+  },
+  {
+   "start": "pca17",
+   "j_mm": 18.996,
+   "scale": 0.89059,
+   "rot_from_best_deg": 128.5
+  },
+  {
+   "start": "pca23",
+   "j_mm": 20.9331,
+   "scale": 0.92161,
+   "rot_from_best_deg": 162.0
+  }
+ ],
+ "glb_roundtrip_max_err_m": 1.4898246580852259e-08,
+ "n_vertices": 199981,
+ "n_faces": 400000
+}
