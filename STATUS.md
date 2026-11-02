@@ -1,5 +1,6 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+- 2026-11-02 ~09:25 UTC: pack 12c live (CD-O 0.30008, 11th; AUC 0.84738). Proposed C3 (cdo-sprint/C3/README.md): tier A clean = C1 T3 pot + pitcher, CD-O-only, ~0.290 [E]; tier B GT-informed (~0.267 [E]) needs an owner yes. Awaiting go/no-go via keen-heisenberg.
 - 2026-11-02 ~08:45 UTC: blue-cup payload (library_c0/blue_cup.glb @ 5cce3d2, md5 9e3a74fd…, transform none, eval 10/14/20/32/33 slot 0, frame sign-off YES) sent to focused-pascal for pack 12c (owner approved 08:10 UTC). Their frame report flagged translation vs library_v3 (ICP 6.6 mm, kit proxy 9.9 mm); signed off YES, transform none, ~09:00 UTC (library_v3 itself sits ~10 mm off the scan under kit registration [D], C0 ~3 mm).
 
 ## 2026-11-01 ~09:05 UTC: mesh lane wrap-up (owner asked to close loops; nothing running, all pushed)

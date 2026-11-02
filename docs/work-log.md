@@ -6257,3 +6257,23 @@ diagnostic; nothing is picked for submission.
 - ~09:05 UTC: keen-heisenberg asked (a) sign off as is vs (b) transform into the library_v3 frame. Answered (a): CD-O and the
   AUC guard were measured at identity, and (b) would reintroduce library_v3's ~10 mm kit-registration anchor error into the pose
   conversion [D]. Pose risk under (a) acknowledged; boards keep the best submission.
+
+## 2026-11-02 ~09:25 UTC — pack 12c live; C3 CD-O-only candidates proposed
+- keen-heisenberg (08:46 UTC): pack 12c is live. CD-O 0.30008 (was 0.33232; estimate ~0.300), rank 11th; AUC 0.84738,
+  MPPE 2.467. The owner wants to push for another clean, pre-registered CD-O gain (leaders are at 0.21-0.29).
+- Survey of the per-object gap (review/library_index.json, [D]). No new scoring.
+- Written `cdo-sprint/C3/README.md` (25b0c54).
+- Tier A, clean: the C1 T3 pot (0.3417 -> 0.3112, 6 pairs) and the T3 pitcher (0.8942 -> 0.7226, 1 pair). Each was the single
+  pre-registered output, scored once, and failed only the pose gates; those are dropped for a CD-O-only variant.
+  Expected [E]: about 0.300 -> about 0.290.
+- Frame checks [M]:
+  - pot vs C0: ICP 1.65 mm / 0.53 deg;
+  - pitcher vs library_v3: ICP 2.76 mm / 2.15 deg;
+  - dust pan T3 vs T2: ICP 2.4 mm / 1.96 deg. The dust pan is excluded (board -0.0003).
+- Tier B, GT-informed, owner decision only:
+  - pitcher hy21 s42;
+  - sweeper P1;
+  - rack ep31_full;
+  - boards.
+  About -0.023 more, about 0.267 [E].
+- Sent to keen-heisenberg. Waiting for the owner's go / no-go.
