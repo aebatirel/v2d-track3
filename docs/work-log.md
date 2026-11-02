@@ -6508,3 +6508,7 @@ arm and a no-policy replay floor to stage B.
   - 12b supersedes 12. The upload waits for the owner's word.
   - The night-report artifact was updated with eval 16 and pack 12b.
   - Night spend ≈ $31 of $102; nothing running.
+- 06:31 UTC 2 Nov scheduled morning check-in fired (trig_01WrgPaDQptP63JxeKgKLy6B). Everything in it was already done
+  minutes earlier: read the three sessions, verified pack 12b, published and updated the night report, wrote the owner's
+  summary. The upload was not retried: the owner is awake and was just asked for the word ("upload pack 12b"), since
+  the permission check blocked the 01:15 attempt.
