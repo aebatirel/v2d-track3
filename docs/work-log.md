@@ -7083,3 +7083,8 @@ arm and a no-policy replay floor to stage B.
   - Lanes report as results land.
   - Spend ceiling tonight ≈ $82 of $127.97 (floor $15). A full eval perception rerun (test B) would need more and is
     held for the owner's morning word unless it fits under the floor.
+- ~20:15 UTC 2 Nov perfect-following (its clock 20:52) had the spoon-anchor box ready, with a "launch in 20 min if
+  silent" default. The messages crossed.
+  - Coordinator reaffirmed **no-go** (all five episodes and option B; not even measure-only).
+  - R' refs are committed as planned-not-run (27c43cf4). Eval 37's raw→reference mapping is weak (5.3° residual).
+  - Base for pack 14 confirmed: 13f (fa1e31f5…), which contains 13b's eval 15 / 20 rows. Retrains are a go.
