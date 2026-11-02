@@ -10854,3 +10854,5 @@ score.
 - ~02:15 UTC 2 Nov pre-registered docs/research/work/pf-release-20261102/PREREG_B.md: eval 16 arms p0 (packed reference)
   and pz (packed reference, right hand frozen from f107; CPU zero-action 0.839 → 0.929) on the current recipe; box pfG.
 - 02:18 UTC 2 Nov **pfG launched**: 20261102-pfG-86cfc19 (Australia Max-Q $1.13/h), `EP=16 SPLIT=eval ARMS="p0 pz" FREEZE_EP16=right:107`.
+- 03:07 UTC 2 Nov pfF seed 43 [M]: s 0.719, se (hold to end) 0.792. Both seeds: se − s = +0.082 / +0.073 on the training
+  box, but both arms stay below the packed 0.850 → gate fails, NO-SWAP (verdict line follows from the box).
