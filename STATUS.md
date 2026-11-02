@@ -1,6 +1,6 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-01 ~22:15 UTC: physics-perception lane (KURSAD perception half) morning report, CPU, $0: NO gate passed
+## 2026-11-01 ~22:15 UTC: physics-perception lane morning report, CPU, $0: NO gate passed
 Branch claude/physics-perception-20261101; everything in docs/analysis/physperc-20261101/README.md.
 Public episodes only; mocap read only by scoring and diagnostics; each test pre-registered and pushed before scoring.
 Gate: mean ΔAUC >= +0.003, no episode < −0.01, MPPE / RPE not worse. Harness reproduces posefix runs/before 20 / 20.

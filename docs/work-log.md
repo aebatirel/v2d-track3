@@ -6500,3 +6500,5 @@ arm and a no-policy replay floor to stage B.
   harmful and only the rest-only form is worth keeping. GRASP will not use twist canon tonight (the board is
   symmetric for cups) and will run no gate on it. GRASP's hold_filter public gate FAILED (accuracy +0.0017,
   zero-action followability −0.018 on ep2/12/13/31), consistent with the earlier "no mover, no motion" results.
+- 07:12 UTC 2 Nov physperc: the owner asked (via keen-heisenberg) not to use the method name for now; removed it from
+  STATUS.md and docs/analysis/physperc-20261101/README.md. Past commits stay as history.

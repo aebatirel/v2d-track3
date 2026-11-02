@@ -1,4 +1,4 @@
-# Physics as a second sensor for perception (KURSAD perception half), public episodes, 1 Nov 2026
+# Physics as a second sensor for perception, public episodes, 1 Nov 2026
 
 Session physics-perception (branch `claude/physics-perception-20261101`), owner's ask: "attempt to correct the
 perception with the help of physics". CPU only (this container), **$0**. 20 public episodes only.
