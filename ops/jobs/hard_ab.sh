@@ -82,6 +82,10 @@ if [ "${FC_DR_PATCH:-0}" = 1 ]; then   # (2026-10-31, pack 9b D arm) after the p
   python $REPO_DIR/ops/box/patch_flashchord_dr.py $FC >> $J 2>&1 || { log "FlashCHORD DR patch FAILED" >> $J; exit 1; }
   log "patched FlashCHORD (start-state randomisation of sampled training resets, ops/box/patch_flashchord_dr.py md5 $(md5sum < $REPO_DIR/ops/box/patch_flashchord_dr.py | cut -c1-12)); per-episode env: $(env | grep '^ENV_EP[0-9]*=' | sort | tr '\n' ' ')" >> $J
 fi
+if [ "${FC_LIFT_PATCH:-0}" = 1 ]; then   # (2026-11-02, pf-lift PREREG addendum C) inert unless FC_LIFT_WINDOWS is set: per episode in ENV_EP<N>
+  python $REPO_DIR/ops/box/patch_flashchord_lift.py $FC >> $J 2>&1 || { log "FlashCHORD lift patch FAILED" >> $J; exit 1; }
+  log "patched FlashCHORD (lift-window training starts, ops/box/patch_flashchord_lift.py md5 $(md5sum < $REPO_DIR/ops/box/patch_flashchord_lift.py | cut -c1-12)); per-episode env: $(env | grep '^ENV_EP[0-9]*=' | sort | tr '\n' ' ')" >> $J
+fi
 for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u | grep -v '^local$'); do
   bash $OPS/store.sh pull-run $run >> $J 2>&1 || { log "pull-run $run FAILED" >> $J; exit 1; }
 done

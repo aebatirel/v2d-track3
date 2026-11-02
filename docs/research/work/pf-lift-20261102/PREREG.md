@@ -54,3 +54,20 @@ confidence), 15 (0.094 × 2/10). Eval 33 is out (its loss is the f91 guard re-ac
   reference byte copy), 2 seeds each, run after this job path is built and CPU/mock-checked; a further addendum names the
   exact job before launch.
 - Packs go on top of pack 12c (sha 3542f8e5…, the board's best pose pack; not 12d).
+
+## Addendum C (2 Nov ~13:00 UTC; written before any standard-learner lift result and before pfI / pfJ train)
+Standard-learner episodes, arm `slw` of ops/jobs/pf_arms.sh (job string: `EP=25 SPLIT=eval ARMS=slw bash ops/jobs/pf_arms.sh`):
+- Inputs: the table's pull_files (packed_refs.json); the base refs/perc2mck/ep<N> must equal the packed reference
+  (refs/perc2mcks, md5) byte for byte; P = that file.
+- Training: the packed standard-learner recipe as mass_eval.sh MODE=std runs it (hard_ab.sh SPLIT=eval CR=0 SUF=lw: FDR +
+  VOC + deployment-exact starts 0.25, 250,003,456 steps, checkpoint sweep 0.4 / 0.6 / 0.8, the table's library and pieces —
+  eval 25 meshes/carve/ev25 — no masses, NREP 10 box draws) + lift-window starts: hard_ab.sh FC_LIFT_PATCH=1,
+  ENV_EP<N>="FC_LIFT_WINDOWS=<tools/lift_windows.py on the base> FC_LIFT_P=0.3 FC_LIFT_SEED=<seed>" (eval 25: 26-46,74-94,158-178).
+  Seeds 42 / 43.
+- CPU check [M] (patched FlashCHORD copy, all four std patches + lift): deployment-exact starts 0.25 kept (frame-0 share
+  0.328 with and without lift), window share 0.210 → 0.349 with lift P 0.3.
+- Rule unchanged (addendum A): seed choice, training-box gate > the packed policy's H5p7 mean, 10 fresh official draws on
+  the pristine evaluator, pack-9b swap rule vs H5p7 on P, old draw = the board row (pack 6 draw = the pack-12c row for
+  evals 25 / 30, checked: pose max |diff| 0.0, same checkpoint), inclusion ≥ +0.02.
+- Order: eval 25 first (box pfK, ≈ 5.5–6 h ≈ $8 [E]); eval 30 next (needs its own box: no pieces vs eval 25's ev25),
+  then 28 / 1, as budget allows (owner asked before exceeding the $50 window).
