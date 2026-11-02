@@ -6115,3 +6115,7 @@ Advice given:
   bold-albattani; re-placed meshes from perception-tracking (test A) if it passes. Pack 14 (retrains) is built by
   perfect-following. Same procedure, guard on; keen-heisenberg uploads. 13f's packer inputs are kept in scratch
   (results 40 files, meshes 20 episodes) for byte-for-byte rebuilds. No GPU in this lane.
+- ~20:20 UTC disk housekeeping: the session disk was 98% full (1.2 GB free). Cleared /root/.cache/uv and /root/.cache/pip
+  (package caches) and two finished D-arm mock-store copies in scratch (darm/msA, darm/msE; regenerable, results already
+  committed). 8.2 GB now free. Kept every pack's packer inputs (p12c, p12d, p12e, p13e, p13f), the kit, and the pack venvs
+  (pack_venv305 verified working).
