@@ -6701,3 +6701,12 @@ arm and a no-policy replay floor to stage B.
   - 12c fetched and verified; the no-swap repack self-test on 12c is byte-identical, so the blue-cup meshes carry into
     pack 13.
   - Results: pfI / pfJ ≈ 17:30–18:30 UTC; pfK / pfL / pfM ≈ 19:00 UTC.
+- 14:08 UTC 2 Nov perception-tracking results [D, 20 public episodes, pre-registered]:
+  - (1) mask-guided tracking FAIL (ΔAUC −0.0009; worst ep11 −0.069; depth restricted to the mask −0.0077);
+  - (2) "re-centre + re-register" failed its replication (it loses the ep0 lid, −0.38, an edge case);
+  - (3) full-resolution stereo depth FAIL (−0.0097; worst ep13 −0.098);
+  - (4) ep18's sweeper track is chaotic: tracker changes can flip whole object tracks, so tracker-level changes are
+    high-variance on eval.
+  - Only S2 was handed over. Pitcher template still running (~1.5 h). Spend ≈ $13 of $30.
+  - 14:10 agreed: stop GPU after the pitcher result; final report plus a design note on offline whole-video multi-view
+    pose estimation (no build).
