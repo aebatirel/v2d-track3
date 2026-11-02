@@ -6794,3 +6794,7 @@ arm and a no-policy replay floor to stage B.
     PREREG; on eval it picks ep35 only (≈ +0.002 board [E]).
   - HF: runs/20261102-roommap-6438495/{maps/run3, reloc/eval_run3, reloc/public_lo}. Report
     docs/analysis/roommap-20261102/README.md.
+- 20:15 UTC 2 Nov room-map: read 6 queued messages (coordinator / perception-tracking). ep23 added (ptrkD Cr + GT-free
+  identity_fix on both arms): +0.0013, camera gap ≤ 8.5 mm (ep23's frozen track is not the camera); 20-ep mean ΔAUC
+  +0.0067, G2 still fails. Exported GT-free map world_T_cam for all public (leave-out) and eval clips to HF
+  runs/20261102-roommap-6438495/world_T_cam/ for perception-tracking's rest-segment arm and the point-track session.

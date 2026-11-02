@@ -59,3 +59,16 @@ FoundationStereo depth is far better, so note 18's +0.10 estimate does not apply
 - Control: runs/20261102-ptrk{A,B}-7fbc3215 results/ptrk/C (ep23 has no control). Eval perception:
   runs/20261025-evperc-4f596df. Open: whether every pack-12c reference used evperc's camera chain (the camera
   depends only on the videos and the cached FoundationStereo depth).
+
+## Additions (20:15 UTC)
+- ep23 added at the coordinator's request: control = runs/20261102-ptrkD-95cecd7 Cr/ep23 with `pipeline/identity_fix.py`
+  (GT-free knob rule, 9a+ board meshes; decision swapped + Rx, `results/public/ep23/identity_fix.json`), applied to
+  both arms before scoring. Control 0.663 (= perception-tracking's), map 0.6643 (+0.0013); camera gap ≤ 8.5 mm, so
+  ep23's frozen world track from f21 is not the camera. With ep23 (20 eps): mean ΔAUC +0.0067, ΔMPPE −0.076;
+  G2 still fails (ep22). `results/public/gate_map_vs_C_with_ep23.json`.
+- Rest-oracle overlap (perception-tracking's +0.032): only ep24's share is camera. ep31 / ep11 / ep21 have camera gaps
+  of 5–9 mm and the map does not help them (−0.0009 / −0.0041 / +0.0037).
+- Map cameras for other sessions: HF `runs/20261102-roommap-6438495/world_T_cam/{public,eval}/ep<N>.npz`, key
+  `world_T_cam` [T,4,4] in perc2's convention (world = rectified-left camera at frame 0, metres), plus reloc_ok /
+  gate_good / inliers. Public = leave-out fold maps (test episode never in its map); eval = run3 (public-only).
+  Index with sha256 prefixes: `results/world_T_cam_index.json`.
