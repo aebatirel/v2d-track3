@@ -6335,3 +6335,9 @@ diagnostic; nothing is picked for submission.
   - dust pan hy21 s42 vs T2: ICP 1.61 mm / 0.47 deg.
 - Committed meshes and README section (4a3b67f). Sent to focused-pascal for pack 13f (= 13e + 2 swaps).
 - Expected [E]: about 0.2627. Pose risk: blue-cup anchor 2-4 -> 5-7 mm.
+- ~19:35 UTC: focused-pascal built pack 13f (sha256 fa1e31f5…f89db, meshes/tierBplus_pack13f 158dd372; 13e reproduced
+  first). Frame report:
+  - blue cup: extent ratio flag (1.08 / 1.16 / 1.08: a larger cup), ICP 4.59 mm / 2.93 deg, kit proxy 2.74 mm / 2.92 deg;
+  - dust pan: centroid 6.84 mm flag, ICP 2.38 mm / 1.85 deg.
+  Signed off YES for both, transform none: shape/size difference, axis within 0.8 deg, no flip. Expected CD-O about
+  0.2627 [E].
