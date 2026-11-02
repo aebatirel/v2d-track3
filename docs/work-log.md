@@ -6961,3 +6961,11 @@ arm and a no-policy replay floor to stage B.
     far beyond the CD-O estimate.
   - Next: pack 13e = 13b's poses + 12e's meshes (merging two independently adopted changes; decided before seeing any
     13e result).
+- ~19:30 UTC 2 Nov coordinator:
+  - asked focused-pascal for **pack 13e** = 13b's poses + 12e's mesh payloads (merge of two independently adopted
+    changes);
+  - **reversed the 12f hold**: the generated blue cup (sam3d s7) and dust pan (hy21 s42) pass C3's pre-set rule
+    (≥ 0.02 public-scan CD-O gain). Meshes also drive the pose boards, so "no CD-O rank change" no longer applies.
+    After scoring and sign-off by bold-albattani they go into pack 13f = 13e + extras.
+  - Guard against eval tuning: mesh variants are chosen only by the pre-set public-scan rule, never by leaderboard
+    results.
