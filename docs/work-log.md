@@ -6540,3 +6540,11 @@ arm and a no-policy replay floor to stage B.
   - The night report artifact was rewritten without the name: title "V2D Track 3 Night Report", v5, same URL.
   - The name was removed from STATUS.md's current entries. Sessions were asked to stop using it in new reports,
     commits and artifacts. Past commit messages and logs are left as history.
+- 07:15 UTC 2 Nov owner: "is there anything else running that can increase our score".
+  - State: 0 instances; credit $91.35; perfect-following spend $31.48 of $102.
+  - Started (within the standing permission and budget): the perfect-following session applies the hold-freeze /
+    no-hand-motion repair to evals 25, 30, 1 (then 3), trained on the packed reference, 2 seeds, PREREG, swap rule.
+    Contact-moment training only after a public test, if credit remains.
+  - Owner decisions listed:
+    - CD-O blue-cup variant (≈ 0.332 → 0.300 [E], CD-O rank 14 → ~11; enough to pass DSAIL in rank sum);
+    - pitcher complete-base mesh (tilt; GPU ~$1–3 plus retrains).
