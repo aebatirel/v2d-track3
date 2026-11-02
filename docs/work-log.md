@@ -10851,3 +10851,5 @@ score.
   se (hold to end) **0.769 ± 0.021** (+0.08 over its same-box control); both below the packed policy 0.850, which was
   trained by the 24 Oct recipe (run 20261024-seed43-61101f5). So on eval 16 the current recipe itself loses ~0.16 vs the
   packed one [I]; hold-to-end helps within the recipe. Seed 43 running; the gate (> 0.8498) will likely fail.
+- ~02:15 UTC 2 Nov pre-registered docs/research/work/pf-release-20261102/PREREG_B.md: eval 16 arms p0 (packed reference)
+  and pz (packed reference, right hand frozen from f107; CPU zero-action 0.839 → 0.929) on the current recipe; box pfG.
