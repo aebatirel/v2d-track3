@@ -6671,3 +6671,8 @@ arm and a no-policy replay floor to stage B.
     Full-resolution stereo depth running (ptrkC). Spend ≈ $9 of $30.
   - [M] Today's tracking defaults score 0.945 on 19 public episodes vs 0.921 for the 25 Oct base.
   - Credit $71.67. Pack 12d upload and Tier B still wait for the owner.
+- 12:42–12:47 UTC 2 Nov **PACK 12d UPLOADED** (owner: "sure go ahead").
+  - CD-O **0.29029** (12c 0.30008).
+  - Pose boards worse as disclosed (AUC 0.84005, RPE 3.142, MPPE 2.525); 12c stays best on those.
+  - Final selection: 12c for the pose boards, 12d for CD-O.
+- The owner also asked to scale the lift-window win to other episodes; relayed to perfect-following.
