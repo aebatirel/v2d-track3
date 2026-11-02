@@ -1,0 +1,13 @@
+pack_swap_meshes: <SCRATCH>/p13f/build_13f
+swapped 7 (episode, object) pairs of 36: blue_cup -> eps [10, 14, 20, 32, 33], mini_dust_pan -> eps [19, 38]
+file md5 changed: 10:blue_cup 9e3a74fd->672c4048, 14:blue_cup 9e3a74fd->672c4048, 19:mini_dust_pan 19765405->1530b1d3, 20:blue_cup 9e3a74fd->672c4048, 32:blue_cup 9e3a74fd->672c4048, 33:blue_cup 9e3a74fd->672c4048, 38:mini_dust_pan 19765405->1530b1d3
+frame report (mm; base = the mesh being replaced):
+  blue_cup           eps [10, 14, 20, 32, 33] base 9e3a74fd | centroid offset 3.41 | AABB centre offset 10.28 | extent base [92.95, 103.61, 167.27] new [100.22, 120.1, 180.98] | surface median/p95/max 1.601/6.979/22.917 (spacing 0.701) | ICP 4.59 mm 2.931 deg (median after 0.938) | kit proxy 2.74 mm 2.918 deg (symmetry axial) | FLAG: extent ratio [1.0782, 1.1592, 1.082] outside +-15% (scale or axis order?)
+  mini_dust_pan      eps [19, 38] base 19765405 | centroid offset 6.84 | AABB centre offset 11.42 | extent base [41.17, 164.19, 167.67] new [46.71, 157.01, 166.64] | surface median/p95/max 1.938/10.355/14.254 (spacing 0.493) | ICP 2.38 mm 1.849 deg (median after 2.156) | kit proxy 1.37 mm 1.583 deg (symmetry none) | FLAG: surface centroid moved 6.84 mm > 5.0
+parquet: 1281353 B sha256 fa1e31f570e14537538ec1ab760d540cd1a584dfd0e78364e33adea5411f89db | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 7}
+mesh payloads changed: ['10:blue_cup', '14:blue_cup', '19:mini_dust_pan', '20:blue_cup', '32:blue_cup', '33:blue_cup', '38:mini_dust_pan'] | unchanged: []
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 f6e76b280b33c960... | CD-O pairs changed vs base: ['10:blue_cup', '14:blue_cup', '19:mini_dust_pan', '20:blue_cup', '32:blue_cup', '33:blue_cup', '38:mini_dust_pan']
+pack.log MESH WARNINGs: 0
+FLAG: blue_cup (episodes [10, 14, 20, 32, 33]): extent ratio [1.0782, 1.1592, 1.082] outside +-15% (scale or axis order?)
+FLAG: mini_dust_pan (episodes [19, 38]): surface centroid moved 6.84 mm > 5.0
+STATUS NEEDS REVIEW (flags) (exit 2)

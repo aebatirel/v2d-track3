@@ -10,6 +10,12 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-02 ~19:31 UTC: PACK 13f BUILT, PENDING frame sign-off — results/submissions/20261102-track3r-candidate/build_13f/
+- 13e (reproduced byte for byte) + Tier B+ blue cup (evals 10/14/20/32/33) and dust pan (19, 38); GT-informed selection.
+  sha256 fa1e31f5…f89db; only code_commit_url + 7 payload rows differ from 13e; offline validation pass; guard on.
+- Flags [M]: blue cup 16% larger (extent), dust pan centroid 6.8 mm. Blue-cup pose risk (anchor 2–4 → 5–7 mm [D]).
+  [E] CD-O ≈ 0.2627. Waiting for bold-albattani's sign-off, then "pack 13f ready" to keen-heisenberg.
+
 ## 2026-11-02 ~19:26 UTC: PACK 13e READY — results/submissions/20261102-track3q-candidate/build_13e/ (not uploaded here)
 - = pack 13b's poses (12c + evals 15 / 20 lift-window rollouts; 13b reproduced byte for byte) + pack 12e's mesh payloads.
   sha256 0ea45fcd…07ba1. vs 13b only the 16 payload rows (12c→12e) + commit URL; vs 12e only evals 15 / 20 pose and

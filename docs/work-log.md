@@ -6098,3 +6098,10 @@ Advice given:
   checkpoint (736) rows differ; CD-O = 12e's except code_commit_url (74137f15…); offline validation pass; 0 MESH WARNINGs;
   frame flags as signed off for 12d / 12e (pitcher now reported against library_v3: ICP 9.48 mm / 3.38°). Staged as
   results/submissions/20261102-track3q-candidate; sent to keen-heisenberg. Not uploaded from this session.
+- ~19:31 UTC **pack 13f built, PENDING frame sign-off**: 13e (reproduced byte for byte) + bold-albattani's Tier B+ @ 4a3b67f
+  (19:24 message; keen-heisenberg asked them at 19:22, reversing their 19:12 hold after 12e's board result). blue_cup
+  sam3d s7 (672c4048…) on evals 10/14/20/32/33 slot 0; mini_dust_pan hy21 s42 (1530b1d3…) on 19 slot 1 and 38 slot 0. GT-informed
+  selection by public-scan CD-O; no_oracle pass; committed as meshes/tierBplus_pack13f (158dd372). Build: sha256
+  fa1e31f5…f89db; vs 13e only code_commit_url + 7 payload rows; CD-O changes exactly those 7 pairs (f6e76b28…); offline
+  validation pass; 0 MESH WARNINGs. FLAGS [M]: blue cup extent ratio 1.159 (larger cup); dust pan centroid 6.84 mm. ICP
+  4.59 mm / 2.93° and 2.38 mm / 1.85°. Staged as results/submissions/20261102-track3r-candidate (PENDING).
