@@ -98,17 +98,19 @@ for e in $EPS; do
       python $T/hold_freeze.py $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet --side $fs --from $ff >> $J 2>&1 || { log "pf_arms ep$e: hold_freeze FAILED" >> $J; continue; }
     else cp $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet; fi   # p0 / plw / pm / p0m: a byte copy of P
     if [ $a = pm ] || [ $a = p0m ]; then                            # (pf-mesh PREREG) Tier B collision: the mesh file only, in the
-      AR=$(tabl $e asset_root); mv_=MESH_OBJS_EP$e                  # asset copy the reference names (URDF inertia / feet kept)
+      AR=$(python -c "import os, sys, pyarrow.parquet as pq; print(os.path.dirname(os.path.dirname(pq.read_table(sys.argv[1]).column('object_urdf_paths')[0].as_py()[0])))" $D_/$hive/ref_gl_ilc.parquet)
+      AR=${AR/#\/workspace\//\/content\/}; mv_=MESH_OBJS_EP$e            # the asset copy the reference itself names (URDF inertia / feet kept)
       for o in ${!mv_:?MESH_OBJS_EP$e}; do f=$AR/mesh/$o/$o.glb
-        [ -f $f ] || { log "pf_arms ep$e: pm: no $f" >> $J; continue 3; }
+        [ -f $f ] || { log "pf_arms ep$e: $a: no $f: episode DROPPED" >> $J; BADM=1; break; }
         [ -f $f.lib_orig ] || cp $f $f.lib_orig; cp $REPO_DIR/meshes/tierB_collision/$o.glb $f
-        log "pf_arms ep$e: pm: collision mesh $f <- meshes/tierB_collision/$o.glb md5 $(md5sum < $f | cut -c1-12) (was $(md5sum < $f.lib_orig | cut -c1-12))" >> $J
+        log "pf_arms ep$e: $a: collision mesh $f <- meshes/tierB_collision/$o.glb md5 $(md5sum < $f | cut -c1-12) (was $(md5sum < $f.lib_orig | cut -c1-12))" >> $J
       done
     fi
     mkdir -p /content/results/${pre}_glock_public/ep$e
     for f in $(tabl $e result_files); do pull1 $f && cp $HS/$f /content/results/${pre}_glock_public/ep$e/; done
     log "pf_arms ep$e: arm $a s$s on the packed reference: $D_/$hive/ref_gl_ilc.parquet md5 $(md5sum < $D_/$hive/ref_gl_ilc.parquet | cut -c1-12) (P $(md5sum < $I/ep$e/P.parquet | cut -c1-12))" >> $J
   done; done
+  [ -n "${BADM:-}" ] && { unset BADM; continue; }                   # (pf-mesh) a collision swap failed: no training, no zero-shot
   log "pf_arms ep$e: base $B (md5 $(md5sum < $B | cut -c1-12)); arm copies made" >> $J; OK="$OK $e"
 done
 OK=${OK# }; [ -n "$OK" ] || { log "pf_arms: no episode has its inputs" >> $J; bash $OPS/store.sh push-run > /dev/null 2>&1; exit 1; }
