@@ -6969,3 +6969,7 @@ arm and a no-policy replay floor to stage B.
     After scoring and sign-off by bold-albattani they go into pack 13f = 13e + extras.
   - Guard against eval tuning: mesh variants are chosen only by the pre-set public-scan rule, never by leaderboard
     results.
+- ~19:35 UTC 2 Nov **pack 13e UPLOADED** (57919442–57919454). Verified: vs 13b only mesh rows; vs 12e only eval 15 /
+  20 poses.
+  - Scores: AUC **0.87166**, MPPE **1.92180** (best), RPE 2.39478 (12e 2.39138 stays best), SP-SR 0.90, MP-SR 0.80,
+    CD-O 0.26775. Ranks unchanged (47, 7th). Next: 13f (+ blue cup and dust pan) after sign-off.
