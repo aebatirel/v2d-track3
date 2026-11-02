@@ -6878,3 +6878,10 @@ arm and a no-policy replay floor to stage B.
   - ≈ +0.031 on the public 20-episode mean. No eval action: eval 25 already uses it, and no other eval episode has
     look-alike objects.
   - All public lanes now apply it to ep23 before scoring; room-map told.
+- 17:42–17:55 UTC 2 Nov **pack 13 ready (perfect-following 6291a766), verified here; not uploaded, waits for the owner.**
+  - Content: 12c + eval 20, sha 791c3922…, only e000020 rows changed.
+  - Eval 20 lift-window plw s43: fresh 0.926 vs 0.893, gain +0.033, PASS + INCLUDE.
+  - CD-O equals 12c's (code URL aside); kit hashes as 12b / 12c; dry run valid.
+  - Record: results/submissions/20261102-track3p-candidate/build_13/UPLOAD.md.
+  - Eval 15 is a near miss (fresh 0.958 vs 0.906; fails clause c by 0.47 mm median RPE); a waiver is the owner's call.
+  - Final lift batch [M]: no swap on evals 3, 14 (fresh), 25, 28, 30, 32.
