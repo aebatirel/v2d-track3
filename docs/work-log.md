@@ -6946,3 +6946,9 @@ arm and a no-policy replay floor to stage B.
   - Expected CD-O [E] 0.290 → ≈ 0.268. The rack pose pairs may worsen; each board keeps our best.
   - Optional 12f (generated blue cup + dust pan, ≈ −0.0046 [E]): held by the coordinator. It would not change a CD-O
     rank (5th is 0.2534) and adds disclosure.
+- ~19:15 UTC 2 Nov focused-pascal: **pack 12e built, PENDING frame sign-off** from bold-albattani.
+  - sha 004f394f…, 9,120 rows, code 9684395b.
+  - Diff vs 12d: code URL + 10 mesh rows (rack 14 / 15 / 16 / 28 / 30, sweeper 19 / 30, pitcher 20, boards 25 ×2).
+  - no_oracle accepts all five files; validation pass; 0 MESH warnings.
+  - Flags: pitcher ICP 14.9 mm vs 12d's mesh; rack ICP 6.2 mm; the kit proxy flips wooden_piece_2 by 180°.
+  - The upload waits for the sign-off and my check.
