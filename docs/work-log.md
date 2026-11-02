@@ -10828,3 +10828,5 @@ score.
   - vs P (packed reference): mean **0.861** vs 0.727 (clause a holds); gain on B **+0.169** ≥ +0.02 → include;
   - symmetric vs plain (vs B): 0.876 / 0.875. Remaining onset f27–31 in every draw (the lift), one draw fails at f137.
   - Files: docs/research/work/pf-bridge-20261101/results/ (verdict, choice, score, bridge report).
+- ~00:40 UTC 2 Nov pre-registered docs/research/work/pf-release-20261102/PREREG.md (eval 16 spoon held to the end;
+  grasp_lock.py --hold_to_end, CPU-tested: zero-action 0.539 → 0.581). Spend so far $22.08 (credit $100.77 at 00:33).

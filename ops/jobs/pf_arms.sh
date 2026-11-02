@@ -30,7 +30,7 @@ EPS=${EP:?EP}; SPLIT=${SPLIT:?SPLIT}; ARMS=${ARMS:?ARMS}; SEEDS=${SEEDS:-"42 43"
 TAB=$REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json; H5P7_RUN=20261031-h5p7-1a7cdff
 GC="--mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15"
 arms_of() { local v=ARMS_EP$1; echo ${!v:-$ARMS}; }              # ARMS_EP<N>: that episode's arms (default ARMS)
-gl_of() { case $1 in s) echo "--single_hand 1 $GC" ;; f) echo "--single_hand 2 $GC" ;; 2h) echo "$GC" ;; *) return 1 ;; esac; }
+gl_of() { case $1 in s) echo "--single_hand 1 $GC" ;; f) echo "--single_hand 2 $GC" ;; se) echo "--single_hand 1 $GC --hold_to_end ${HOLD_TO_END:?HOLD_TO_END}" ;; 2h) echo "$GC" ;; *) return 1 ;; esac; }
 for a in $ARMS $(for e in $EPS; do arms_of $e; done); do gl_of $a > /dev/null || { log "pf_arms: unknown arm $a" >> $J; exit 1; }; done
 export LIB=$REPO_DIR/meshes/library_v3 SF=1 SETTLE=0 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=10 PAR=2 TRAIN_SLOTS=2 \
   STEPS=70004736 EVAL_TIMEOUT=1200 NO_PUSH=1 ASSETS=/content/assets SPLIT

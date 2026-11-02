@@ -125,6 +125,10 @@ def main():
                    'frame-0 position in OUR reference stays below this is not held (it rests); a hand left with no hold '
                    'stays parked at its frame-0 pose (2026-10-26, eval 10: the left hand steadying the blue cup, which '
                    'moves 5.6 cm, collides with the right hand and the carried beige cup during the stack)')
+    p.add_argument('--hold_to_end', default='', help='comma-separated objects whose LAST hold phase is extended to the end '
+                   'of the reference (the carrier never releases them; 2026-11-02, perfect-following lane: eval 16\'s '
+                   'spoon falls in simulation after the release at f107 while our reference keeps it still; hand tracks '
+                   'are not scored, object tracks are)')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
     # GL_EMB (2026-10-30): embodiment config for the geometry / FK model (default: FlashCHORD's default Sharpa, as before);
     # the physics study's human capsule hand needs its own (three human-hand runs had locked grasps on the Sharpa)
@@ -169,6 +173,11 @@ def main():
         held_by = {x['hand'] for x in merged}; parked = [sd for sd in ('left', 'right') if sd not in held_by]
         ph = merged
         print(f'single-hand carry: {[(x["hand"], x["object"], x["start"], x["end"]) for x in ph]}; parked {parked}', flush=True)
+    for o_ in [x for x in a.hold_to_end.split(',') if x]:          # (--hold_to_end) the last hold runs to the end
+        xs = [x for x in ph if x['object'] == o_]
+        if not xs: print(f'hold_to_end: no hold on {o_}', flush=True); continue
+        last = max(xs, key=lambda x: x['end']); old_end = last['end']; last['end'] = T; last['frames'] = T - last['start']
+        print(f'hold_to_end: {last["hand"]} {o_} {last["start"]}-{old_end} -> {last["start"]}-{T}', flush=True)
     obj_body = [next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/')) for n in names]
     SIM = {}                                                       # simulated object poses of the previous version
     if a.sim_trace:
