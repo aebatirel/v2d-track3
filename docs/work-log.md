@@ -11002,3 +11002,13 @@ score.
   `EP=14 SPLIT=eval ARMS=p0m MESH_OBJS_EP14="blue_cup plastic_dish_rack" TAB_OVERRIDE=…/pf-lift-20261102/packed_refs_12b.json
   PACKED_DRAWS_EP14=runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s OLD_EP14=…/conf_ep14_s/r1/ep14/episode_000014`
   (first offer 39434926 gone: no_such_ask).
+- 20:41 UTC 2 Nov **pf-mesh bug** [M]: pfP (eval 30) and pfO (eval 28) refused their episodes at the zero-shot step with
+  "sim_vs_ref none, overflow lines 0": the board checkpoint names refs/perc2mcks/ep<N>, the job placed only the parquet
+  there, and FlashCHORD's setup_scene needs <root>/reconstructed_stage/<seq>_support.usda ("scene support is enabled,
+  but no support asset could be resolved"). Not a contact result. pfO went to HOLD (rc 1, billing). pfN (eval 20) would
+  hit the same (board path refs/pfplws43_glockt/ep20 absent there); pfR (eval 14) not (its board path is pulled whole).
+  Fix b0b4a31: the zero-shot copies the support stage beside the board reference.
+- ~20:43 UTC destroyed pfN / pfO / pfP (≈ 20 min each, ≈ $0.5 each; ledger "~20:47" was an estimate, the real time was
+  ~20:43) and relaunched at b0b4a31, same job strings: **pfN2** 20261102-pfN2-b0b4a31 (Romania Max-Q $1.38/h, 57994872,
+  instance 58875108), **pfO2** 20261102-pfO2-b0b4a31 (Texas Max-Q $1.61/h, 31194553, 58875116), **pfP2**
+  20261102-pfP2-b0b4a31 (India WS $1.50/h, 58050641, 58875136). pfR (f06a0c1) keeps running.
