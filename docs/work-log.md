@@ -6561,3 +6561,25 @@ arm and a no-policy replay floor to stage B.
     - a public test first (ep31 or the pot twin; control vs lift windows; 2 seeds; gate mean ≥ +0.02, no seed < −0.03;
       ≈ $5);
     - if it passes, evals 3 / 14 / 25 / 30 under the swap rule.
+
+## 2026-11-02 tracking-perception session (branch claude/perception-tracking-20261102, session_01D9UJC9EUCs5sUCbTVZgvcC)
+- ~07:45 UTC start (owner via keen-heisenberg): GT-free tracker improvements on the 20 public episodes; GPU ≤ $30.
+  Read STATUS, CLAUDE.md, overnight README, Roman notes, physperc README (its scope left alone: f0 tilt priors,
+  no-float, twist, pitcher priors). Messages sent to physics-perception and perfect-following.
+- **S2 check [M, code read]:** `ops/jobs/eval_both.sh` → `glock_public.sh` → `pipeline/pipeline_ep.sh` never call
+  `pipeline/refine.py`; S2 (half-frame advance) is opt-in there. So eval references built by the standard pipeline do
+  NOT carry S2 unless a session applied it by hand (asked perfect-following to confirm for pack 12b).
+  Known value: +0.006 public kit AUC (17/20); × 0.74 measured transfer ≈ +0.004 board AUC [E], only through retrained
+  references.
+- **Harness [M]:** scratchpad venv + kit zip + HF public parquets/scans + 9a+ meshes (md5 equal to posefix
+  inputs.json 10/10). `score_registered.py` on store `runs/20261025-sweep-a894083` base ep2 = 0.9783, equal to
+  posefix "before". Scoring base / t4 / t8 per frame now (CPU, $0).
+- **Prior evidence re-read [M]:** the 25 Oct sweep (base / t4 / t8 iterations) differs by ≤ 0.01 except in
+  catastrophic object losses (ep0 lid base/t4; ep18 sweeper t4/t8 −0.25..−0.29; ep12 cup t8 −0.25). Best-of-3 per
+  object (oracle) 0.894 vs base 0.868, mostly ep0 (which the guard already fixes). So iteration settings are not a
+  precision lever; the tracker's failure mode is chaotic loss of track. Settings sweep (idea 2) is deprioritised.
+- **Literature [L]:** RRTrack (arXiv 2607.23669; VOS mask memory + FoundationPose refiner, geometric gating, DINOv2
+  re-acquisition; +66 % ADD-S AR over FoundationPose on its synthetic benchmark); FoundationPose++ (teal024: 2-D mask
+  tracker sets x,y, depth sets z); ObjectForesight (arXiv 2601.05237: bidirectional tracking from an anchor frame,
+  re-registration when silhouette IoU, depth residual and jumps agree); EgoGrasp (hand pixels removed before scoring);
+  YOTO (arXiv 2606.28899: FoundationPose latches onto the hand under occlusion, 15× error growth).
