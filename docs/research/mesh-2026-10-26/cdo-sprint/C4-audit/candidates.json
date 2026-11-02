@@ -1,0 +1,470 @@
+[
+ {
+  "object": "beige_cup",
+  "label": "S13f/beige_cup",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T1-beige-lathe/meshes/ep11_beige_cup_sep_g1.glb",
+  "md5": "8c8be2b0747d234706913a2360e90570",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "blue_cup",
+  "label": "S13f/blue_cup",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/blue_cup_sam3d_ep22_k156_s7_lib.glb",
+  "md5": "672c4048e11afe9b2b9a7eafebbefe58",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "mini_dust_pan",
+  "label": "S13f/mini_dust_pan",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/mini_dust_pan_hy21_ep39_k297_s42_lib.glb",
+  "md5": "1530b1d3be77507730b00e1c5047cad1",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "mini_sweeper",
+  "label": "S13f/mini_sweeper",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/mini_sweeper_P1_partprog.glb",
+  "md5": "55fe1682f09721ca5d4e98477bfef150",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "S13f/plastic_dish_rack",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/plastic_dish_rack_dev1_ep31_full.glb",
+  "md5": "1176443c748ece893ffdb64a1cc82c9a",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "water_pitcher",
+  "label": "S13f/water_pitcher",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/water_pitcher_hy21_ep22_k174_s42_lib.glb",
+  "md5": "e59c15a3e4a442ebc52e7cd72ab73124",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "white_pot",
+  "label": "S13f/white_pot",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T3-gen-fit/meshes/white_pot_t3fit.glb",
+  "md5": "b19b2e2876945cba4d932ad531f049ce",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "white_pot_lid",
+  "label": "S13f/white_pot_lid",
+  "path": "meshes/library_c0/white_pot_lid.glb",
+  "md5": "35727a10bca407594f41d108b4dc03ab",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "wooden_piece_1",
+  "label": "S13f/wooden_piece_1",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/wooden_piece_1_ep24_occ_d2.glb",
+  "md5": "015aaae3183760cd8a48d82b5599d32c",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "wooden_piece_2",
+  "label": "S13f/wooden_piece_2",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/wooden_piece_2_ep24_occ.glb",
+  "md5": "bf82e385cac24a586168b4f14bf5b245",
+  "role": "shipped_13f",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "blue_cup",
+  "label": "S13e/blue_cup",
+  "path": "meshes/library_c0/blue_cup.glb",
+  "md5": "9e3a74fd98921c4c589cee7956da457c",
+  "role": "shipped_13e_only",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "mini_dust_pan",
+  "label": "S13e/mini_dust_pan",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T2-probe-picks/meshes/mini_dust_pan_k297_s42_lib.glb",
+  "md5": "1976540525ecca181c9ed83ba953e165",
+  "role": "shipped_13e_only",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "beige_cup",
+  "label": "library_v3/beige_cup",
+  "path": "meshes/library_v3/beige_cup.glb",
+  "md5": "6226281f120192c52bffec7680fa9d8f",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "blue_cup",
+  "label": "library_v3/blue_cup",
+  "path": "meshes/library_v3/blue_cup.glb",
+  "md5": "7542631493e3a0564f6d74009de67d54",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "mini_dust_pan",
+  "label": "library_v3/mini_dust_pan",
+  "path": "meshes/library_v3/mini_dust_pan.glb",
+  "md5": "c33fa41118944a7da340cc82fc6449d8",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "mini_sweeper",
+  "label": "library_v3/mini_sweeper",
+  "path": "meshes/library_v3/mini_sweeper.glb",
+  "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "library_v3/plastic_dish_rack",
+  "path": "meshes/library_v3/plastic_dish_rack.glb",
+  "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "water_pitcher",
+  "label": "library_v3/water_pitcher",
+  "path": "meshes/library_v3/water_pitcher.glb",
+  "md5": "fc824fc5b0a9325c91b630c19ba32677",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "white_pot",
+  "label": "library_v3/white_pot",
+  "path": "meshes/library_v3/white_pot.glb",
+  "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "white_pot_lid",
+  "label": "library_v3/white_pot_lid",
+  "path": "meshes/library_v3/white_pot_lid.glb",
+  "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "wooden_piece_1",
+  "label": "library_v3/wooden_piece_1",
+  "path": "meshes/library_v3/wooden_piece_1.glb",
+  "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "wooden_piece_2",
+  "label": "library_v3/wooden_piece_2",
+  "path": "meshes/library_v3/wooden_piece_2.glb",
+  "md5": "825a7fe364d280603f36226595137f43",
+  "role": "library_v3",
+  "needs_place": false,
+  "cdo_rec": null
+ },
+ {
+  "object": "white_pot_lid",
+  "label": "C/clean/lid/t4.0_tsdf",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/lid/t4.0_tsdf.glb",
+  "md5": "cda44ce24ec22323c087082cf088511e",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.2162
+ },
+ {
+  "object": "white_pot_lid",
+  "label": "C/clean/lid/t2.5_tsdf",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/lid/t2.5_tsdf.glb",
+  "md5": "a4b9ea19223af33745a26cd4fc380291",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.2164
+ },
+ {
+  "object": "white_pot_lid",
+  "label": "C/potlid/fit/ep2",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_lid_ep2_fit.glb",
+  "md5": "043468f8aedd7331f97afe1cd4f4e516",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.2186
+ },
+ {
+  "object": "white_pot",
+  "label": "C/potlid/tsdf/ep43",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep43_tsdf.glb",
+  "md5": "3591440e2dbf2029be908d46b29bfc96",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.3087
+ },
+ {
+  "object": "white_pot",
+  "label": "C/potlid/tsdf/ep44",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep44_tsdf.glb",
+  "md5": "6214111bafce7c4775eaaa6f8a78eac0",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.3119
+ },
+ {
+  "object": "white_pot",
+  "label": "C/gen/trellis2/ep41_white_pot_k279_s7",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s7.ply",
+  "md5": "beffbe7fa8e41c57826321c7b9d94a50",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.3179
+ },
+ {
+  "object": "blue_cup",
+  "label": "C/diag/sam3d_lib_vis/blue_cup_s42",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/blue_cup_k156_s42.ply",
+  "md5": "3222b6f7bd79a2af0c10a2886ad428f8",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.2962
+ },
+ {
+  "object": "blue_cup",
+  "label": "C/gen/hy21/ep22_blue_cup_k156_s42",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s42.ply",
+  "md5": "9bb1d2d6a0bc421aa66da05a7134faff",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.2979
+ },
+ {
+  "object": "blue_cup",
+  "label": "C/gen/sam3d/ep22_blue_cup_k156_s42",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s42.ply",
+  "md5": "3b14c2e900df2e4af1379a737be0e284",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.2994
+ },
+ {
+  "object": "beige_cup",
+  "label": "C/gen/pixal_mv/ep11_beige_cup_s42",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s42.ply",
+  "md5": "a452c149d4ec749726aa7220e18db09a",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.2739
+ },
+ {
+  "object": "beige_cup",
+  "label": "C/C0b/beige_cup",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/beige_cup_c0b_beige_ep11_g1.glb",
+  "md5": "752a51d66171fb6144b8b0ac83d9a3e6",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.2995
+ },
+ {
+  "object": "beige_cup",
+  "label": "C/gen/sam3d/ep11_beige_cup_k6_s7",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s7.ply",
+  "md5": "23b7246783a7b4bdea53b28c366607e8",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.3211
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "C/rack/ep31_full",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/rack/final/plastic_dish_rack/ep31_full.glb",
+  "md5": "e5252159bda4608da46ded4bae10f06f",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.4221
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "C/rack/ep31_nomk",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/rack/final/plastic_dish_rack/ep31_nomk.glb",
+  "md5": "c85c6ebf59d9dbe19c13e6700d396c20",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.4256
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "C/c2r/rack/K_ep12_nomk",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C2/R-rack/meshes/plastic_dish_rack_c2r_K_ep12_nomk.glb",
+  "md5": "270fd118771d7e10c2be8c2d4f347458",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.4413
+ },
+ {
+  "object": "water_pitcher",
+  "label": "C/gen/hy21/ep22_water_pitcher_k174_s7",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s7.ply",
+  "md5": "a98316ee383f5c37a64fae71c230ea18",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.5701
+ },
+ {
+  "object": "water_pitcher",
+  "label": "C/gen/sam3d/ep22_water_pitcher_k174_s7",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s7.ply",
+  "md5": "ef17ed79b612d19992dbd2b2b6cb969d",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.6495
+ },
+ {
+  "object": "water_pitcher",
+  "label": "C/gen/trellis2/ep22_water_pitcher_k174_s42",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s42.ply",
+  "md5": "d8928d4e650aaf471e4b2758f0045335",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.6815
+ },
+ {
+  "object": "mini_dust_pan",
+  "label": "C/gen/pixal_mv/ep39_mini_dust_pan_s7",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s7.ply",
+  "md5": "5241fe1de7efb4afaf302a4189cf2d81",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.2361
+ },
+ {
+  "object": "mini_dust_pan",
+  "label": "C/gen/pixal_mv/ep39_mini_dust_pan_s42",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s42.ply",
+  "md5": "22cd5a287dc7ccbc9087e79869ea3cbd",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.2397
+ },
+ {
+  "object": "mini_dust_pan",
+  "label": "C/t3fit/mini_dust_pan",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T3-gen-fit/meshes/mini_dust_pan_t3fit.glb",
+  "md5": "1b777f0256e2da77219bd9fbcac5b691",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.2541
+ },
+ {
+  "object": "mini_sweeper",
+  "label": "C/M2_libsym_balls",
+  "path": "docs/research/mesh-2026-10-26/diag-2026-10-30/sweeper/meshes/M2_libsym_balls.glb",
+  "md5": "80ed00fe9c69c6e2aae9c0ef3a11186f",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.2833
+ },
+ {
+  "object": "mini_sweeper",
+  "label": "C/M2b_libsym_balls_base",
+  "path": "docs/research/mesh-2026-10-26/diag-2026-10-30/sweeper/meshes/M2b_libsym_balls_base.glb",
+  "md5": "2897964f8ff4117734b2e921f1f96e93",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.2909
+ },
+ {
+  "object": "mini_sweeper",
+  "label": "C/P1v0_partprog_preleak",
+  "path": "docs/research/mesh-2026-10-26/diag-2026-10-30/sweeper/meshes/P1v0_partprog_preleak.glb",
+  "md5": "7cfb112ff6684836d7e6a0169c1c2371",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.4132
+ },
+ {
+  "object": "wooden_piece_1",
+  "label": "C/gen/pixal_mv/ep23_wooden_piece_1_s42",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s42.ply",
+  "md5": "3168f1561609f53fe1beccabbc9e721c",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.1821
+ },
+ {
+  "object": "wooden_piece_1",
+  "label": "C/boards/wooden_piece_1/ep24_occ",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_1/ep24_occ.glb",
+  "md5": "91818248bf467807541fc04cdc290310",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.1901
+ },
+ {
+  "object": "wooden_piece_1",
+  "label": "C/diag/sam3d_lib_vis/wooden_piece_1_s42",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/wooden_piece_1_k27_s42.ply",
+  "md5": "dcb950fdc983cf005cf26968687269f4",
+  "role": "candidate",
+  "needs_place": true,
+  "cdo_rec": 0.1914
+ },
+ {
+  "object": "wooden_piece_2",
+  "label": "C/boards/wooden_piece_2/ep24_occ_d2",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_2/ep24_occ_d2.glb",
+  "md5": "46f3b64ef4d816f7c27bf3ef6b59a9c7",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.1651
+ },
+ {
+  "object": "wooden_piece_2",
+  "label": "C/boards/wooden_piece_2/ep24_occ_nm",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_2/ep24_occ_nm.glb",
+  "md5": "74ff68928157c8351ddad9d317c8168b",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.1653
+ },
+ {
+  "object": "wooden_piece_2",
+  "label": "C/boards/wooden_piece_2/ep24_rect",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_2/ep24_rect.glb",
+  "md5": "045837f1ce9eff62097105cfcd6fe938",
+  "role": "candidate",
+  "needs_place": false,
+  "cdo_rec": 0.1801
+ }
+]
