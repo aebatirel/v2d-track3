@@ -6575,3 +6575,6 @@ arm and a no-policy replay floor to stage B.
   - Asked focused-pascal to build pack 12c = pack 12b + the C0 blue-cup mesh payloads (rollouts untouched;
     tools/pack_swap_meshes.py; frame report; README disclosure). bold-albattani asked for the exact file / transform /
     sign-off. Expected CD-O ≈ 0.332 → 0.300 [E].
+- 08:33 UTC 2 Nov bold-albattani sent focused-pascal the blue-cup payload: meshes/library_c0/blue_cup.glb @ 5cce3d2
+  (md5 9e3a74fd…), no transform, evals 10 / 14 / 20 / 32 / 33 slot 0, payload swap only. Frame sign-off YES (axis 1.24°,
+  offset 2.0 mm, no flip). Expected CD-O ≈ 0.332 → 0.300 [E]. Waiting for "pack 12c ready".
