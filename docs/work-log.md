@@ -10881,3 +10881,5 @@ score.
 - ~07:20 UTC 2 Nov keen-heisenberg relays the owner (verbatim): "Go do as much as you can lets go to top"; lift-window plan approved. Budget: **$50 more** from 07:32 UTC (credit then $91.35; ≥ $10 reserve); a new public-perception GPU session (≤ $30) starts — never touch its instances; check ops/vast.sh show before launching.
 - 07:40 UTC 2 Nov tracking-perception (session_01D9UJC9EUCs5sUCbTVZgvcC): [M, code read] no packed eval reference carries S2 (refine.py is never called); worth adding only where a reference is rebuilt anyway (≈ +0.004 board [E]). Noted; this lane's lesson is that rebuilt references lose to packed ones (eval 16), so S2 is not applied tonight without a same-box test.
 - 07:49 UTC 2 Nov correction: the times of the last four entries were estimated ~35 min late; the box log shows pfH started 07:20 UTC (fixed above, PREREG 07:15 UTC; all before any result).
+- 09:54 UTC 2 Nov pfH seed 42 (public ep31, registered AUC vs mocap, NREP 10) [M]: lw **0.730 ± 0.017** (sim_vs_ref 0.734);
+  s 0.589 ± 0.198 (sim_vs_ref 0.593). Paired Δ +0.141. Seed 43 running; the rule needs both seeds.
