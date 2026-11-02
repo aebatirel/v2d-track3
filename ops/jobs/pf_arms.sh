@@ -156,7 +156,7 @@ for e in $OK; do
     if [ -f $I/ep$e/BRIDGED ]; then                                 # the candidate trained on P' (bridged): scored vs P and P'
       cs=$(python -c "import json, sys; print(json.load(open(sys.argv[1])).get('chosen') or '')" $G/choice_ep${e}_$a.json 2> /dev/null)
       PB=$(ls /content/refs/pf${a}s${cs:-42}_glockt/ep$e/processed/*/*/ref_gl_ilc.parquet 2> /dev/null | head -1)
-      [ -s "$PB" ] && { REFS+=(--ref B=$PB); VREFS="P B"; sets[0]="conf:B:$G/conf_ep${e}_$a/r*/ep$e/episode_$E6.parquet"
+      [ -s "$PB" ] && { REFS+=(--ref B=$PB); VREFS="P B"; sets[1]="conf:B:$G/conf_ep${e}_$a/r*/ep$e/episode_$E6.parquet"
         for s in $SEEDS; do sets+=(--set "trainB$s:B:/content/results/pf${a}s${s}_glock_public/ep$e/best/r*/episode_$E6.parquet"); done; }
     fi
     python $T/dr_score.py --kit $KIT --lib $LIB --ep $e "${REFS[@]}" --out $G/score_ep${e}_$a.json "${sets[@]}" > $G/score_ep${e}_$a.txt 2>&1 \

@@ -10815,3 +10815,8 @@ score.
 - 00:13 UTC 2 Nov pfE done (self-destroyed): first picker ep13 AUC 0.555 / 0.400; 2h − f mean +0.092 [M]. Two-hand not
   adopted on eval (pfB NO-SWAP). Eval 14 bridged single-hand: s42 0.880, s43 0.892 (training box vs own ref); s43 chosen,
   gate met (> 0.727), 10 confirmation draws running. Eval 14 bridged two-hand s43 0.647.
+- 00:17 UTC 2 Nov pfC: eval 14 bridged single-hand confirmation done (10 draws on the pristine evaluator; draw 10 0.926, 0
+  overflow), but the on-box scoring FAILED: pf_arms.sh replaced `sets[0]` (the `--set` flag) instead of `sets[1]` in the
+  bridged branch. Fixed in the repo; pfC / pfD run the old code, so their bridged verdicts are re-scored on CPU from the
+  stored rollouts with the same tools (dr_score.py + pf_verdict.py --refs "P B"), no rule change. Eval 32 bridged s43
+  0.895 (s42 0.877).
