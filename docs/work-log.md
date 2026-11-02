@@ -6855,3 +6855,6 @@ arm and a no-policy replay floor to stage B.
   precision: 5 of 17 flagged spans cover real control errors (> 2 cm), one of them ep23's identity case. KLT points on
   weakly textured surfaces slip during grasps; repairs rarely hand back. Not adopted; BootsTAPIR box not requested
   (false flags, not dropouts, are the limit). docs/analysis/ptrack-20261102/RESULT.md.
+- 20:07 UTC room-map sent its GT-free cameras (store runs/20261102-roommap-6438495/world_T_cam/). No map-camera arm
+  for ptrack: the test failed on false flags from slipping KLT points, and the detector compares point motion with
+  FoundationPose under the same camera, so a camera swap cannot change the verdict [I]. Lane closed at $0.
