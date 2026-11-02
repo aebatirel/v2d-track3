@@ -1,6 +1,6 @@
 # Pack 13b: verification record (not uploaded; the upload call was blocked by this session's permission classifier)
 
-Built by perfect-following (branch claude/perfect-following-20261101, commit 54e0a1d3):
+Built by perfect-following (branch claude/perfect-following-20261101, record commit edeced81; earlier quoted as 54e0a1d3):
 results/submissions/20261102-track3m-candidate/build_13b/.
 
 - **Content:** pack 13 (791c3922…) plus eval 15.
