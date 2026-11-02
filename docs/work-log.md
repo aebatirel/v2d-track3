@@ -6780,3 +6780,8 @@ arm and a no-policy replay floor to stage B.
   −0.064; MPPE +0.63, RPE +0.10 cm; > 3 cm 1069 → 1044. ep23 +0.898 is a different board assignment by chance
   (template change), not a method effect. Tracker sensitivity again; nothing handed over.
   `results/gate_f_T13_vs_f_Ct.json`. ptrkF cost ≈ $2.7 [E].
+- 22:55 UTC round 2 running (CPU): 13p baseline (10 seeds × 20 eps); (b) placement fits on 13p meshes for 16
+  episodes (`placeB/`); (a) bold-albattani's 52 C4-audit meshes (store runs/c4-audit-20261102, manifest
+  posecv_manifest.json @ 175089d4, all library_v3 frame, placed GT-free), 45 candidates after removing md5-identical
+  13p choices, 157 runs queued. Coordinator: pack 13p uploaded, AUC 0.88257 (+0.0103 vs 13f), RPE 2.22667, MPPE
+  1.82356. Box G (eval-20 masks) still in setup.
