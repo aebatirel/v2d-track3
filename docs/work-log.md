@@ -7136,3 +7136,12 @@ arm and a no-policy replay floor to stage B.
   - Fourth arm: pfR 58873476 (f06a0c1, PREREG addendum 1 before any result): eval 14, p0m, Tier B rack + 13f cup
     collision, board's bridged reference and grasp-lock recipe (no lift). Control: pfC conf draws 0.875.
   - Running: pfN (20), pfO (28), pfP (30), pfR (14), ≈ $24.
+- ~20:26 UTC 2 Nov bold-albattani **reconciled the board-2 flip** [D].
+  - Same slot, seed 25000176 and file. With the budget_mesh(4096) reference: 1.05°, no flip (its earlier claim, and
+    the C4 audit setting). With the raw public scan: 179.18°, a flip (matches perception).
+  - library_v3 board 2: 0.66° / 1.05°, no flip either way.
+  - So the Tier B plate is a coin toss on the reference preparation; 13f2 is the right call.
+  - D1 pre-registered as addendum 4, a veto only: 0 flips at every eval seed plus ≥ 6 seeds in both reference modes,
+    and 50-seed W30 ≤ 0.10.
+  - Caveat: the audit flip rates used the budget reference, so near-symmetric meshes may flip more under a raw
+    reference. All other shipped meshes were 0 / 50.
