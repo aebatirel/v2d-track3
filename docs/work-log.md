@@ -6293,3 +6293,21 @@ diagnostic; nothing is picked for submission.
 - ~09:45 UTC: focused-pascal published pack 12d as ready to keen-heisenberg (sha256 643794c6…c0b12, commit beee0581). Its README
   carries my disclosure sentence, the three sign-off reasons and both ICP readings. The upload and score are with
   keen-heisenberg. Tier B is still with the owner.
+
+## 2026-11-02 19:00-19:20 UTC — C3 Tier B (owner yes, GT-informed selection) prepared for pack 12e
+- keen-heisenberg (19:00 UTC) relayed the owner's yes to Tier B: "Okay I give you permission for all".
+- Pitcher hy21 ep22 s42 was placed GT-free with C1/T2 `place.py` (identity start, residual 6.56 mm, scale 0.992), then
+  scored once [D] with `C3/tierB/scripts/score_once.py` (19:03:56-19:09:08Z, code b3e4239). Result: ev20 CD-O 0.3722,
+  ADD 15.8 mm, anchor 14.5 mm, 0/31 flips.
+- The other four were already scored, and each file matches its scored record (sha1_16):
+  - sweeper P1: 0.2212 / 0.2239;
+  - rack dev1/ep31_full: 0.417-0.420;
+  - wooden_piece_1 occ_d2: 0.1893;
+  - wooden_piece_2 occ: 0.1642.
+- Frame checks [M]: every ICP onto the shipped mesh is <= 6.9 mm / 3.4 deg. No file is a byte copy of a public scan.
+- Committed: meshes, README (states how GT entered), results (6476b25, 332eb5b). The placed generated meshes are in the HF
+  store at runs/cdo-c3-tierB-20261102/ (commit 84801fd).
+- Expected [E]: 12d about 0.2902 -> 12e about 0.268. Pose risk: the rack pairs (anchor about 3 -> about 9 mm).
+- Sent to focused-pascal (cc keen-heisenberg). Waiting on their frame report.
+- Optional B+ (not in 12e): placed sam3d blue cup s7 and hy21 dust pan s42; one scoring each is running
+  (results/score_tierBplus.jsonl).
