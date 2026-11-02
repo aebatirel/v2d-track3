@@ -6710,3 +6710,14 @@ arm and a no-policy replay floor to stage B.
   - Only S2 was handed over. Pitcher template still running (~1.5 h). Spend ≈ $13 of $30.
   - 14:10 agreed: stop GPU after the pitcher result; final report plus a design note on offline whole-video multi-view
     pose estimation (no build).
+- ~14:25 UTC 2 Nov owner sent two references: PRISM (prism-real2sim2real.github.io) and SAM-6D (Semantic Scholar link).
+  - PRISM (Wang, Wu, Abbeel, Duan, Malik, Sferrazza, Liu, Shi, Kanazawa; Amazon FAR / Berkeley / Stanford / CMU; CoRL
+    2026; code github.com/amazon-far/PRISM) [L]: counterfactual video generation (box → bin / barrel / ball) from one
+    monocular video; contact-anchored reconstruction; retargeting to G1; teacher–student policies; zero-shot real.
+    - Targets generalisation, not per-episode precision. No pose-accuracy numbers.
+  - SAM-6D (Lin, Liu, Lu, Jia; CVPR 2024; github.com/JiehongLin/SAM-6D) [L]: single-image RGB-D zero-shot 6D pose.
+    ISM (SAM proposals + semantic / appearance / geometry template matching) + PEM (two-stage point matching). BOP-7
+    mean AR 62.2 (70.4 with full SAM).
+    - FoundationPose is listed at AR_Core 0.726 on the BOP unseen leaderboard (not like-for-like).
+    - Useful piece for us [H]: ISM as frame-0 / re-detection with our mesh templates.
+  - Neither is a quick score win. Both were passed to the perception session's design note.
