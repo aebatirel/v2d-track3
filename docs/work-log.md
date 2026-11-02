@@ -6827,3 +6827,9 @@ arm and a no-policy replay floor to stage B.
     until the top-up.
   - Room-map: step 1 is the main test; it shares fold-map cameras with both tests.
   - Credit $33.41 at 17:00 [M].
+- 17:08 UTC 2 Nov perfect-following [M]:
+  - eval 28 no swap (0.864 vs 0.919);
+  - eval 15 seed 43 on the box 0.945 (seed 42 0.953; gate 0.906); fresh-draw confirmation on pfJ in about 40 min
+    (tests [H] "box overstates lift policies");
+  - eval 30 seed 43 still training;
+  - no new retrain boxes.
