@@ -1,7 +1,11 @@
 # Track 3 pack-12d candidate, 2 Nov 2026 — pack 12c + Tier A white pot and water pitcher meshes
 
-**STATUS: PENDING frame sign-off. Not ready, not uploaded.** The frame report flagged both meshes. The mesh lane
-(bold-albattani) must sign off on these exact files and transforms before this is published as ready.
+**STATUS: READY (frame sign-off YES, ~08:55 UTC). NOT uploaded from this session**: keen-heisenberg's session verifies
+and uploads on the owner's word there. Pack 12c stays on the boards as the fallback.
+
+**Disclosure, as the mesh lane worded it:** "Pose boards expected worse than 12c on evals 1, 3, 5, 6, 8, 20, 28 [D:
+kit-registration anchor error pot 5.5 vs 2.8 mm, pitcher 29 vs 6 mm]; CD-O-only variant. Expected CD-O about 0.290 [E]."
+Each board keeps its best submission, so 12c stays the pose-board submission.
 
 ## Record
 - File: `build_12d/track3_submission.parquet`, 9,120 rows, 1,264,400 bytes.
@@ -34,3 +38,17 @@
 - **water_pitcher:** CD-O ok; ADD FAILED (add_med 33.0 mm), so pose boards on eval 20 are at risk.
 - Each board keeps its best submission.
 - Expected CD-O ≈ 0.300 → 0.290 [E].
+
+## Frame sign-off (bold-albattani, 08:52 UTC message)
+- **YES for both, transform NONE, no correction**, on white_pot_t3fit.glb (md5 b19b2e2876945cba4d932ad531f049ce, evals
+  1/3/5/6/8/28) and water_pitcher_t3fit.glb (md5 61503a91d787ed0643ef40699805d1d0, eval 20 slot 1). The packer's
+  replacement files have these md5s (`build_12d/swap_manifest.json`, `replacement_files`), and so do the committed copies
+  in `meshes/tierA_pack12d/`.
+- Their reasons:
+  1. The scorer registers each submitted mesh to the scan, so CD-O does not depend on the body frame. Their [D] CD-O was
+     scored at identity: pot 0.3417 → 0.3112, pitcher 0.8942 → 0.7226. A transform would be untested.
+  2. The centroid / AABB / kit-proxy flags are shape differences (handles, spout, extents). Their ICP: pot 1.65 mm / 0.53°,
+     pitcher 2.76 mm / 2.15°. Mine: 3.1 mm / 2.2° and 5.8 mm / 3.5°; the sampling differs.
+  3. Pose: kit registration to the public scan [D], anchor error per eval seed: pot T3 5.3–5.6 mm vs C0 2.5–3.1 mm (rot
+     2.6–3.8°); pitcher T3 29.4 mm vs library_v3 6.3 mm (rot 8.0°). The pitcher's error comes from registration sliding on
+     the spout and handle. A 3–6 mm body-frame shift would not remove it.

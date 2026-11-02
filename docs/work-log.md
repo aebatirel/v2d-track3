@@ -6047,3 +6047,11 @@ Advice given:
   [M]: white_pot centroid 8.52 mm, kit proxy 5.7 mm (ICP 3.1 mm ok); water_pitcher centroid 10.27 mm, ICP 5.83 mm /
   3.46°, kit proxy 7.95 mm, surface p95 25.5 mm. Known risks: pot pose guard failed (mean −0.0099, min −0.042), pitcher
   ADD failed (33 mm). Sign-off requested from bold-albattani; staged as PENDING.
+- ~08:55 UTC bold-albattani **signs off pack 12d** (08:52 message; an 08:49 hand-off message crossed my request): **YES
+  for both, transform NONE**, on white_pot_t3fit.glb b19b2e28… (evals 1/3/5/6/8/28) and water_pitcher_t3fit.glb 61503a91…
+  (eval 20 slot 1). Reasons: CD-O registers to the scan, so it does not depend on the frame; the centroid / AABB / proxy
+  flags are shape differences (their ICP pot 1.65 mm / 0.53°, pitcher 2.76 mm / 2.15°). Pose risk [D]: kit-registration
+  anchor error pot 5.5 vs 2.8 mm, pitcher 29 vs 6 mm, so 12d is a CD-O-only variant and 12c stays the pose-board
+  submission. Source md5s verified against the manifest and meshes/tierA_pack12d. README updated with their disclosure
+  text. **pack 12d ready: results/submissions/20261102-track3o-candidate/build_12d/track3_submission.parquet** (sha256
+  643794c6…c0b12, code 91342da4). Not uploaded from this session.
