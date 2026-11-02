@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~00:35 UTC: PERFECT-FOLLOWING (KURSAD lane): eval 14 fixed — 0.727 → 0.861 (old yardstick), passes the swap rule
+- Cause found [M]: our perception's track guard re-found the cup at f46 after the tracker had drifted 3–14 cm out of the
+  human's hand; the reference held a 19 cm one-frame jump no robot can follow.
+- Fix (GT-free, tools/guard_bridge.py): bridge the drift frames. Retrained with the packed recipe, 2 seeds, 10 fresh
+  official draws: sim_vs_ref 0.875 vs the repaired reference (packed 0.706), 0.861 vs the old one (packed 0.727);
+  failed draws 1 / 10 vs 4 / 10. Swap rule PASS, inclusion gain +0.169.
+- Did not work: two-hand references (evals 14 / 16 worse than packed: NO-SWAP); public ep13 two-hand passes its rule
+  only through one seed. GRASP's hold filter failed its public gate.
+- Still running: eval 32 (repaired) and eval 15 (two-hand) confirmations. Next: pack 12 = pack 11 + eval 14 (+ any
+  other PASS), built here, handed to keen-heisenberg for upload.
+
 ## 2026-11-01 ~20:20 UTC: PERFECT-FOLLOWING session: steps 1–2 done (CPU, $0); GPU batch next
 Branch `claude/perfect-following-20261101`; report `docs/analysis/perfect-following-20261101/README.md`.
 - Symmetric vs plain sim_vs_ref on the 200 H5p7 draws: ≤ +0.009 difference everywhere [M]. Cup spin is not the loss.

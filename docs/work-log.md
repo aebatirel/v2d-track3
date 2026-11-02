@@ -10820,3 +10820,11 @@ score.
   bridged branch. Fixed in the repo; pfC / pfD run the old code, so their bridged verdicts are re-scored on CPU from the
   stored rollouts with the same tools (dr_score.py + pf_verdict.py --refs "P B"), no rule change. Eval 32 bridged s43
   0.895 (s42 0.877).
+- 00:32 UTC 2 Nov **eval 14 guard-bridge candidate: PASS + INCLUDE** (pf-bridge PREREG §4; scored on CPU from the stored
+  rollouts because of the on-box scoring bug; same tools, rule unchanged) [M]:
+  - candidate: pfC-f38b324 arm s (packed single-hand construction) on the bridged reference B, seed 43 (training box 0.892
+    vs s42 0.880), checkpoint sha256 9da879d9c0e8…; 10 fresh official draws on the pristine evaluator, rc 0, 0 overflow;
+  - vs B: mean 0.875 (packed H5p7 0.706), fails 1 / 10 vs 4 / 10, median RPE 2.71 vs 4.38 cm, draw 1 0.895 vs old 0.890;
+  - vs P (packed reference): mean **0.861** vs 0.727 (clause a holds); gain on B **+0.169** ≥ +0.02 → include;
+  - symmetric vs plain (vs B): 0.876 / 0.875. Remaining onset f27–31 in every draw (the lift), one draw fails at f137.
+  - Files: docs/research/work/pf-bridge-20261101/results/ (verdict, choice, score, bridge report).
