@@ -6660,3 +6660,14 @@ arm and a no-policy replay floor to stage B.
     (ep11). So near-perfect perception plus failure-free tracking explains such scores without anything exotic.
   - The board is provisional until the organisers' container reproduce check (PR #215).
   - Answer given: their edge is sub-cm object poses on every episode, zero failed runs and near-scan meshes.
+- 12:40 UTC 2 Nov status check.
+  - pfH (public ep31, lift-window starts) **PASS** [M]: AUC vs mocap lw 0.730 / 0.704 vs control 0.589 (s); far fewer
+    failed draws (min 0.694 / 0.618 vs 0.245 / 0.400).
+  - Step 2 pfI (evals 3, 14, 32): the first launch was destroyed after 20 min (lift windows were keyed wrongly, so evals
+    3 / 14 got eval 32's windows; fixed). The relaunch logged at 11:51 is NOT in `ops/vast.sh show` at 12:39;
+    perfect-following asked to check.
+  - Perception-tracking: mask-guided tracking FAILED its public gate (ΔAUC −0.0009; depth restricted to the mask
+    −0.0077). Re-centre + re-register only is +0.0029 (report-only; a pre-registered replication is running on ptrkD).
+    Full-resolution stereo depth running (ptrkC). Spend ≈ $9 of $30.
+  - [M] Today's tracking defaults score 0.945 on 19 public episodes vs 0.921 for the 25 Oct base.
+  - Credit $71.67. Pack 12d upload and Tier B still wait for the owner.
