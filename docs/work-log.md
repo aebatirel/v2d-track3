@@ -10830,3 +10830,4 @@ score.
   - Files: docs/research/work/pf-bridge-20261101/results/ (verdict, choice, score, bridge report).
 - ~00:40 UTC 2 Nov pre-registered docs/research/work/pf-release-20261102/PREREG.md (eval 16 spoon held to the end;
   grasp_lock.py --hold_to_end, CPU-tested: zero-action 0.539 → 0.581). Spend so far $22.08 (credit $100.77 at 00:33).
+- 00:42 UTC 2 Nov **pfF launched**: 20261102-pfF-a0f39a4 (Spain WS $1.39/h), `EP=16 SPLIT=eval ARMS="s se" HOLD_TO_END=wooden_spoon`.
