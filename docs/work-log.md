@@ -6925,3 +6925,7 @@ arm and a no-policy replay floor to stage B.
   - (3) A GT-free rebuild already exists for pot and pitcher: Tier A, generate-then-fit single pre-registered outputs,
     in 12d (CD-O 0.29029). For the remaining objects it is superseded on the board by Tier B; not started.
   - All CPU, $0.
+- ~19:15 UTC 2 Nov **pack 13b verified** (perfect-following 54e0a1d3; sha c8b85ba4…; only e000015 changed; CD-O
+  meshes unchanged). The upload call was **blocked by the auto-mode classifier** ("External System Writes"); not
+  retried. Asked the owner for a direct "upload 13b". Record:
+  results/submissions/20261102-track3p-candidate/build_13b/UPLOAD.md.
