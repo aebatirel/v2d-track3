@@ -6738,3 +6738,6 @@ arm and a no-policy replay floor to stage B.
 - 20:35 UTC launched 58871713 `20261102-ptrkF-58a0f37` (RTX PRO 6000 Max-Q, $1.389/h, code 58a0f37): test (B), Ct and
   T13 on 20 public episodes (parallel depth prefetch). Test (A) running on CPU here (`scripts/place_fit.py`, 2
   workers). Credit $28.04 at 20:27 [M]; watch flags < $12.
+- 20:15 UTC owner topped up (credit $127.97; "go crazy, let's win this"). Tests A + B budget ≤ $12; pre-approved if
+  a test passes its PREREG gate: A on eval (eval depth + placement fit, ≈ $5, meshes to focused-pascal) and B on eval
+  (perception with M13 templates, ≈ $5–8; reference / retrain plan to the coordinator first). Stop if credit < $15.
