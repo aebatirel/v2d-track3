@@ -10947,3 +10947,9 @@ score.
 - 17:40 UTC 2 Nov **pack 13 ready**: results/submissions/20261102-track3m-candidate/build_13/track3_submission.parquet
   (sha256 791c3922…; = pack 12c + eval 20 plw s43 conf draw 1; code b45b377; checks pass; the board's eval-20 row equals the
   pack-6 draw: max |diff| 0.0). NOT uploaded; sent to keen-heisenberg (17:42 UTC).
+- 18:02 UTC 2 Nov batch closed: every pf box self-destroyed (only the tracking session's ptrkD runs). Ledger actuals
+  (estimates from times): pfI $6.0, pfJ $5.2, pfK $4.6, pfL $1.45, pfL2 $5.9, pfM $5.0 → ≈ $28 for the lift batch.
+  Credit $29.29 at 18:02 UTC. No new boxes until the owner tops up (owner via keen-heisenberg, 17:05 UTC).
+  Lift-window batch summary [M]: 1 of 8 eval episodes swapped (20, +0.033); 15 passed every clause but c (median RPE
+  +0.05 mm); 14 passed the gate and failed fresh draws; 3 / 25 / 28 / 30 / 32 failed the gate. [I] the standard-learner
+  arm (25 / 28 / 30) never reached its board policy: the lift windows did not fix those episodes' seed variance.
