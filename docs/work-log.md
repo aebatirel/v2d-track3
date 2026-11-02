@@ -6784,3 +6784,11 @@ arm and a no-policy replay floor to stage B.
     cap takes precedence. Coordinator agreed and suggested batching the store transfers.
   - Early result [D, 3 eps]: "add" leaves ep18 / ep23 / ep0 unchanged; "replace" is worse on ep23 (0.009 vs 0.041).
   - Credit $41.74 at 15:59 [M].
+- 16:10 UTC 2 Nov room-map step-1 plan ($0, in its container, 4 CPU). Coordinator: go.
+  - Rebuild the run3 map GT-free (~1–1.5 h).
+  - Eval drift of evperc-4f596df world_T_cam against the map, every 5th frame (~1 h). This decides; stop early if the
+    drift is small.
+  - Public leave-out: 5 folds × 4 eps, recomposing ptrk control C (7fbc321) and scoring; PREREG before scoring
+    (~4 h, maybe a ~$1 CPU box).
+  - Noted [M]: the public control has only 2–17 keyframes and AUC 0.94–0.998 on most episodes, so public headroom is
+    small; the eval drift is the real question.
