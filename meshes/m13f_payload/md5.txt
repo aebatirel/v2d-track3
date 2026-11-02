@@ -1,0 +1,11 @@
+6232c3cbd2e75cc205cc91df2bbbfe03  meshes/m13f_payload/beige_cup.glb
+33ec1f1ec4b619fe62c5effa1ddec78a  meshes/m13f_payload/blue_cup.glb
+3110eb2e01efb60ad4b3fcb099d30d81  meshes/m13f_payload/mini_dust_pan.glb
+8f0fdab4b39d021614de3faef957b0ae  meshes/m13f_payload/mini_sweeper.glb
+3b017188f1ad7664087f9fcaeafcdc83  meshes/m13f_payload/plastic_dish_rack.glb
+49a173701c49b6295f3807e44fd1d4ca  meshes/m13f_payload/water_pitcher.glb
+3984416ffc8140ea3a196077ee78dd33  meshes/m13f_payload/white_pot.glb
+a7b3c987328c22ceff0c013e48eba176  meshes/m13f_payload/white_pot_lid.glb
+16a85c503d63d7a6e7d530605487cf53  meshes/m13f_payload/wooden_piece_1.glb
+2bf189bafd657bec3c0fe4705d141b7d  meshes/m13f_payload/wooden_piece_2.glb
+c94abbf76e04780f8bb2935d009af3bb  meshes/m13f_payload/wooden_spoon.glb
