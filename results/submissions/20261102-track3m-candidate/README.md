@@ -1,4 +1,4 @@
-# Track 3 pack-12 candidate, 2 Nov 2026 — pack 11 with evals 14 and 32 retrained on guard-bridged references (KURSAD)
+# Track 3 pack-12 candidate, 2 Nov 2026 — pack 11 with evals 14 and 32 retrained on guard-bridged references
 
 **NOT UPLOADED from this session.** The uploader session (keen-heisenberg) uploads on the owner's word. Pack 11 stays on
 the boards as the fallback. `build_12a_ep14only/` is the earlier eval-14-only build (superseded, kept).

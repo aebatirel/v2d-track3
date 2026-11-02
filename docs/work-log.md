@@ -10870,3 +10870,4 @@ score.
   (sha256 bde0ae84…; pack 12 + eval 16 pz draw 1; code fa129a110aa4fd33bcdab199bcaa2c0c7fd3f9cd; all checks pass). NOT uploaded; record to keen-heisenberg.
 - 06:40 UTC 2 Nov morning report written in STATUS.md. Credit $91.37 (spend $31.48 of $102); 0 instances.
 - 06:43 UTC 2 Nov keen-heisenberg: **pack 12b uploaded**, AUC 0.84405 (+0.0048 over pack 11), MP-SR 0.75, RPE 3.023, MPPE 2.495; best on every board; AUC above DSAIL 0.84391. Record build_12b/UPLOAD.md on claude/keen-heisenberg-engcwz.
+- 07:12 UTC 2 Nov owner (via keen-heisenberg): do not use the method name in new reports / STATUS / commits / artifacts for now; removed it from the current STATUS and the pack-12 README (history unchanged).

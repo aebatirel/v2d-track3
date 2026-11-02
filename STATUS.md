@@ -4,7 +4,7 @@
 - MP-SR 0.75, RPE 3.023, MPPE 2.495; AUC now above DSAIL's 0.84391. Record: build_12b/UPLOAD.md on
   claude/keen-heisenberg-engcwz. (The "upload needs your word" line in the report below is superseded.)
 
-## 2026-11-02 ~06:40 UTC: MORNING REPORT — perfect-following (KURSAD) lane. PACK 12b READY (not uploaded)
+## 2026-11-02 ~06:40 UTC: MORNING REPORT — perfect-following lane. PACK 12b READY (not uploaded)
 **Owner decision needed:** upload pack 12b? `results/submissions/20261102-track3m-candidate/build_12b/` (sha bde0ae84…)
 = pack 11 + evals 14, 16, 32 retrained on repaired references. Verified by keen-heisenberg (pack 12); its upload call was
 blocked by that session's permission classifier, so it waits for your word. Pack 12 (evals 14 + 32 only) is the subset.
@@ -38,7 +38,7 @@ Next decision: (a) upload 12b; (b) if more is wanted: apply the hold-freeze idea
 lesson elsewhere, and contact-moment training for the remaining lift losses (eval 14 f27–31, 25, 3, 1).
 Details: docs/analysis/perfect-following-20261101/README.md, docs/research/work/pf-*/, docs/work-log.md (1–2 Nov).
 
-## 2026-11-02 ~01:15 UTC: PERFECT-FOLLOWING (KURSAD): PACK 12 READY (not uploaded) — evals 14 and 32 fixed
+## 2026-11-02 ~01:15 UTC: PERFECT-FOLLOWING: PACK 12 READY (not uploaded) — evals 14 and 32 fixed
 `results/submissions/20261102-track3m-candidate/build_12/` (sha 7b0cd7df…) = pack 11 + evals 14 and 32. Record sent to
 keen-heisenberg; the owner decides the upload.
 
@@ -55,7 +55,7 @@ Symmetric (board-style) sim_vs_ref differs from plain by ≤ 0.01 everywhere. Me
   is uncertain; the expected gain on re-runs is clear.
 - Spend ≈ $22 of the $102 cap (credit $100.77 at 00:33 UTC).
 
-## 2026-11-02 ~00:35 UTC: PERFECT-FOLLOWING (KURSAD lane): eval 14 fixed — 0.727 → 0.861 (old yardstick), passes the swap rule
+## 2026-11-02 ~00:35 UTC: PERFECT-FOLLOWING lane: eval 14 fixed — 0.727 → 0.861 (old yardstick), passes the swap rule
 - Cause found [M]: our perception's track guard re-found the cup at f46 after the tracker had drifted 3–14 cm out of the
   human's hand; the reference held a 19 cm one-frame jump no robot can follow.
 - Fix (GT-free, tools/guard_bridge.py): bridge the drift frames. Retrained with the packed recipe, 2 seeds, 10 fresh
