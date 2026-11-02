@@ -68,3 +68,15 @@ Spec: `../C4-audit/PREREG.md` section 7 (addendum 2, e573235), sections 2-3. Tim
   1024), rack 72, pitcher 48; 0 lost.
 - FREEZE: `results/SHA256SUMS`, `results/gen_logs/`, `results/sim3_fits/`, `results/box_logs/` (log tails) committed
   next, BEFORE any public-scan read of these meshes. No G2 mesh has been scored or compared with a scan.
+- 21:47Z after the freeze (1a3a044 pushed): screen_pkg.tar (kit + 4 public scans + 4 reference caches, sha256 91cf744b...)
+  uploaded to runs/mesh-20261102-g2b-ff63482/screen/; box checked out 1a3a044 (its SHA256SUMS == the box file, cmp);
+  `NP=64 box_screen.sh`: py3.13 venv with the local pins (numpy 2.5.4, scipy 1.18.1, trimesh 5.2.0, pandas 3.1.0),
+  manifest 264 meshes, 0 hash mismatches, screen6.py 64 workers. 21:48:13-21:51:20Z: 264 records, 0 errors
+  (`results/screen/screen6.jsonl`, sha256 356fd302...).
+- 21:52-21:54Z final store push (store.sh push-run, rc 0): runs/mesh-20261102-g2b-ff63482/ holds 564 files, 3.55 GB, all
+  528 .ply + results/screen/. The 16 stage-2 sources downloaded to S/g2/sim3dl and checked against SHA256SUMS (16/16).
+- 21:54:16Z box 58874418 destroyed, confirmed absent in `ops/vast.sh show`. Cost from the instance record: 1.315 h at
+  $4.033/h + 71.7 GB at $2.67/TB + upload = $5.50; ledger actual $5.51. G2 total with the preempted box ~$8.31.
+  Credit $108.53 at 21:55Z (other sessions' boxes included).
+- Note: G2 `sam3d/ep22_blue_cup_k156_s7` regenerates the shipped blue cup's source (same crop file, cmp-identical, same
+  seed) but is not byte-identical (SAM 3D is not deterministic across runs / GPUs); it is kept under the rule and flagged.

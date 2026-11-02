@@ -6456,3 +6456,10 @@ diagnostic; nothing is picked for submission.
     with 0/50 flips each.
   - focused-pascal's D1 passes in both modes.
   - Noted for its README: the pack's CD-O is about +0.005 worse (rack); boards keep the best submission.
+
+### 2026-11-02 ~21:55 UTC: G2 stage-1 screen done on the box after the freeze; box destroyed
+- Screen [D] (6 seeds 3001-3006, roster emptied) of all 264 Sim(3) copies on the box's CPUs, 3 min with 64 workers,
+  only after the freeze commit 1a3a044; 0 errors. `cdo-sprint/G2/results/screen/screen6.jsonl`.
+- Box 58874418 destroyed 21:54:16 UTC (confirmed). Measured from the instance record: $5.50 (1.315 h at $4.033/h +
+  71.7 GB at $2.67/TB). G2 GPU total ~$8.31 including the preempted box (~$2.80). Ledger actual lines written.
+  All 528 meshes and the screen are in the store under runs/mesh-20261102-g2b-ff63482/.
