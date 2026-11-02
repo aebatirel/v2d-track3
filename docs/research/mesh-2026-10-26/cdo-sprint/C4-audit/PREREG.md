@@ -74,3 +74,34 @@ Further rules:
 - `results/audit_table.md`: the table sent to the coordinator.
 - `results/adoption.json`: the rule applied.
 - `NOTES.md`: timestamped log.
+
+## 6. Addendum 1 (2026-11-02 ~20:20 UTC, before any build or score of these variants): less-symmetric board 2
+**Why.** Audit part 1: the shipped wooden_piece_2 (Tier B occupancy plate) flips on 34% of 50 seeds [D]. The coordinator
+(20:01 UTC) asked for a GT-free, less-symmetric board-2 variant, adoptable only under rule (B).
+
+**GT-free inputs (measured before this addendum):**
+- library_v3 wooden_piece_2 has 4 protrusion clusters beyond its plate slab. One is the marker ball the occupancy fit
+  also has; there are two more balls on the same face and a 32 mm ridge on the other face.
+- The occupancy plate keeps only the one ball.
+- Both meshes are ours and share a frame (ICP 0.73 mm / 0.59 deg).
+
+**Build (`scripts/board_graft.py`).** Base = the shipped `wooden_piece_2_ep24_occ.glb`.
+1. Take library_v3 faces whose centroid lies more than (t/2 + 1 mm) from the occupancy plate's mid-plane and inside
+   its outline expanded by 10 mm.
+2. Cluster them (single linkage, 10 mm, on face centroids). Drop clusters with < 20 faces, and any within 12 mm of an
+   occupancy-plate protrusion (already present).
+3. **v1** = base + the clusters that are *supported*: >= 30 ep24 observed board-2 points (`obs_all/ep24_wooden_piece_2.npz`,
+   GT-free) within 3 mm of the cluster surface.
+4. **v2** = base + all clusters.
+
+Faces are concatenated; no boolean is used.
+
+**Evaluation.** Exactly section 2: the same script, seeds 3001-3050 and summary.
+
+**Adoption.** Rule (B) only, against the shipped board 2: W30 <= W30(S) - 0.20, CD-O median <= S + 0.005,
+anchor median <= S + 2.0 mm. If both pass: lowest W30, then lowest CD-O. If v1 == v2 (all clusters supported), audit once.
+
+**Predictions.**
+- [H5] v2 flips on < 10% of seeds, because library_v3 itself is expected to be near 0.
+- [H6] v1 keeps at least one of the two extra balls (ep24 sees face -1).
+- [H7] CD-O changes by < +0.005 cm, since the features are small.
