@@ -6649,3 +6649,6 @@ arm and a no-policy replay floor to stage B.
   = 0) but recovered by every perturbation (MR +0.062, MG +0.060, FS1 +0.057, stored 25 Oct base 0.938; t4 / t8 lost
   it). Any public gain carried by ep18 alone should be read as tracker sensitivity. The same chaos is the eval-side
   risk: small perception changes can flip whole object tracks, so eval perception changes need per-episode checks.
+- 14:25 UTC **design note** `docs/analysis/ptrk-20261102/DESIGN_offline_joint.md` (keen-heisenberg's request: offline
+  whole-video pose estimation; no build). **Rest-frame oracle [D]: +0.032 mean AUC** (19 eps; perfect poses on
+  mocap-rest frames only; ep24 +0.118, ep31 +0.112, ep11 +0.088, ep21 +0.083), above the note's +0.01 build bar.

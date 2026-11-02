@@ -1,0 +1,185 @@
+[
+{
+"ep": 0,
+"auc_track": 0.994,
+"auc_rest_perfect": 0.9944,
+"gain": 0.0004,
+"rest_share": [
+0.74,
+0.77
+]
+},
+{
+"ep": 11,
+"auc_track": 0.8999,
+"auc_rest_perfect": 0.9877,
+"gain": 0.0878,
+"rest_share": [
+1.0,
+0.64
+]
+},
+{
+"ep": 12,
+"auc_track": 0.9584,
+"auc_rest_perfect": 0.9782,
+"gain": 0.0199,
+"rest_share": [
+0.45,
+0.97
+]
+},
+{
+"ep": 13,
+"auc_track": 0.9628,
+"auc_rest_perfect": 0.9834,
+"gain": 0.0206,
+"rest_share": [
+0.51,
+1.0
+]
+},
+{
+"ep": 18,
+"auc_track": 0.8984,
+"auc_rest_perfect": 0.9672,
+"gain": 0.0689,
+"rest_share": [
+0.67,
+0.71
+]
+},
+{
+"ep": 21,
+"auc_track": 0.8375,
+"auc_rest_perfect": 0.9207,
+"gain": 0.0832,
+"rest_share": [
+0.59,
+0.59
+]
+},
+{
+"ep": 22,
+"auc_track": 0.8704,
+"auc_rest_perfect": 0.9277,
+"gain": 0.0574,
+"rest_share": [
+0.65,
+0.6
+]
+},
+{
+"ep": 24,
+"auc_track": 0.8343,
+"auc_rest_perfect": 0.9524,
+"gain": 0.1181,
+"rest_share": [
+0.68,
+0.69
+]
+},
+{
+"ep": 26,
+"auc_track": 0.9802,
+"auc_rest_perfect": 0.9907,
+"gain": 0.0105,
+"rest_share": [
+0.92,
+0.7
+]
+},
+{
+"ep": 27,
+"auc_track": 0.9902,
+"auc_rest_perfect": 0.9916,
+"gain": 0.0014,
+"rest_share": [
+1.0,
+0.4
+]
+},
+{
+"ep": 2,
+"auc_track": 0.983,
+"auc_rest_perfect": 0.9906,
+"gain": 0.0077,
+"rest_share": [
+0.72,
+0.69
+]
+},
+{
+"ep": 31,
+"auc_track": 0.8647,
+"auc_rest_perfect": 0.9769,
+"gain": 0.1123,
+"rest_share": [
+0.47,
+1.0
+]
+},
+{
+"ep": 39,
+"auc_track": 0.9753,
+"auc_rest_perfect": 0.9775,
+"gain": 0.0022,
+"rest_share": [
+0.29
+]
+},
+{
+"ep": 40,
+"auc_track": 0.9728,
+"auc_rest_perfect": 0.9779,
+"gain": 0.005,
+"rest_share": [
+0.43
+]
+},
+{
+"ep": 41,
+"auc_track": 0.99,
+"auc_rest_perfect": 0.9921,
+"gain": 0.0021,
+"rest_share": [
+0.43
+]
+},
+{
+"ep": 42,
+"auc_track": 0.9934,
+"auc_rest_perfect": 0.9934,
+"gain": 0.0,
+"rest_share": [
+0.39
+]
+},
+{
+"ep": 43,
+"auc_track": 0.9764,
+"auc_rest_perfect": 0.978,
+"gain": 0.0015,
+"rest_share": [
+0.36
+]
+},
+{
+"ep": 44,
+"auc_track": 0.9975,
+"auc_rest_perfect": 0.9975,
+"gain": 0.0,
+"rest_share": [
+0.67
+]
+},
+{
+"ep": 45,
+"auc_track": 0.975,
+"auc_rest_perfect": 0.978,
+"gain": 0.003,
+"rest_share": [
+0.41
+]
+}
+]
