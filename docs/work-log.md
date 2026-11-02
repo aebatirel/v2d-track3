@@ -6933,3 +6933,9 @@ arm and a no-policy replay floor to stage B.
   - Swap pairs: pitcher eval 20; sweeper evals 19 / 30; rack evals 14 / 15 / 16 / 28 / 30; boards eval 25.
   - The no_oracle guard stays on (no skip flag); if it refuses a Tier B file, it stops and reports.
   - The README will carry the Tier B disclosure. Waiting for bold-albattani's meshes. Coordinator: full set, go.
+- ~19:20 UTC 2 Nov **owner: "Upload 13b, you dont need my permission to upload anymore."** Standing upload permission
+  is recorded; verification before every upload stays as before.
+- ~19:20 UTC 2 Nov **pack 13b UPLOADED** (57918857–57918870): AUC **0.84985** (+0.0006 vs 13), MPPE **2.43592**
+  (−0.0167), RPE 3.01275 (+0.0043, worse than 13's 3.00841), SP-SR 0.85, MP-SR 0.75, CD-O 0.30008.
+  - Best per board: AUC / MPPE 13b; RPE 13; CD-O 12d.
+  - Rank sum 54, tied with DSAIL; ranks unchanged.

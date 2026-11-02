@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~19:20 UTC: PACK 13b UPLOADED: AUC 0.84985, MPPE 2.43592 (best); RPE 3.01275 (13 keeps 3.00841)
+- Pack 13b = 13 + eval 15 (owner waiver of clause c, post hoc). Record:
+  results/submissions/20261102-track3p-candidate/build_13b/UPLOAD.md.
+- Owner (19:20): "you dont need my permission to upload anymore". Verification before upload continues.
+- Final selection plan: AUC / SP-SR / MP-SR / MPPE → 13b; RPE → 13; CD-O → 12d (or 12e).
+- Rank sum 54, tied with DSAIL. Pack 12e (Tier B meshes, owner yes 19:00) is being built by focused-pascal and
+  bold-albattani.
+
 ## 2026-11-02 ~18:50 UTC: PACK 13 UPLOADED: AUC 0.84924, RPE 3.00841, MPPE 2.45263 (best); SP-SR 0.85, MP-SR 0.75, CD-O 0.30008
 - Pack 13 = 12c + eval 20. Record: results/submissions/20261102-track3p-candidate/build_13/UPLOAD.md.
 - Standings: rank sum 54, tied with DSAIL (9th / 10th). Final selection plan: pack 13 for five boards, 12d for CD-O.

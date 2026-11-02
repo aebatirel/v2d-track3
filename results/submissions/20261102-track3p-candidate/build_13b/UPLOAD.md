@@ -1,4 +1,4 @@
-# Pack 13b: verification record (not uploaded; the upload call was blocked by this session's permission classifier)
+# Pack 13b: UPLOADED 2 Nov ~19:20 UTC (owner: "Upload 13b")
 
 Built by perfect-following (branch claude/perfect-following-20261101, record commit edeced81; earlier quoted as 54e0a1d3):
 results/submissions/20261102-track3m-candidate/build_13b/.
@@ -19,3 +19,21 @@ results/submissions/20261102-track3m-candidate/build_13b/.
 - Builder: uploader offline validation pass, no_oracle pass, evaluator stamps match.
 - The upload call (kaggle_upload.py --wait) was denied by the auto-mode classifier ("External System Writes"). It
   was not retried and not worked around; it waits for the owner's direct word.
+
+## Upload (2 Nov ~19:20 UTC, owner: "Upload 13b, you dont need my permission to upload anymore")
+Submissions 57918857 (AUC), 57918861 (SP-SR), 57918863 (MP-SR), 57918865 (RPE), 57918869 (MPPE), 57918870 (CD-O).
+Receipt in this folder.
+
+| Board | 13b | 13 | 12c |
+|---|---|---|---|
+| AUC | **0.84985** | 0.84924 | 0.84738 |
+| SP-SR | 0.85 | 0.85 | 0.85 |
+| MP-SR | 0.75 | 0.75 | 0.75 |
+| RPE (cm) | 3.01275 | **3.00841** | 3.00843 |
+| MPPE (cm) | **2.43592** | 2.45263 | 2.46736 |
+| CD-O (cm) | 0.30008 | 0.30008 | 0.30008 (12d 0.29029 best) |
+
+Best per board: AUC / MPPE → 13b; RPE → 13; CD-O → 12d; SP-SR / MP-SR tied.
+Final-selection plan: AUC, SP-SR, MP-SR, MPPE → 13b; RPE → 13; CD-O → 12d (or 12e if better).
+Standings (API ~19:22 UTC): rank sum 54, tied with DSAIL; ranks unchanged (AUC 8, SP-SR 11, MP-SR 7, RPE 10, MPPE 10,
+CD-O 8).
