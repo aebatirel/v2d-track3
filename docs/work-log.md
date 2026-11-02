@@ -6670,3 +6670,9 @@ arm and a no-policy replay floor to stage B.
   ≈ $6.5 (> $6 cap). Plan sent to the coordinator: destroy after saving at ≈ $6 (≈ 19:00 UTC) and report the missing
   episodes. Early [D]: ISMa = Ci exactly on ep18 / ep23 / ep0; ISMr ep23 0.009 vs 0.041. Credit $41.74 (15:59).
   Room-map session (camera drift) pointed to the control runs; asked for its per-episode drift vs the rest oracle.
+- 16:57 UTC **ptrkE speed-up (coordinator's suggestion, nothing restarted):** the per-episode overhead was the job's
+  `store.sh pull-depth` (`hf download --include` lists the whole store repo, ≈ 12–15 min each), not compute. All
+  remaining episodes' depth was prefetched in parallel on the box (16:10, done), and `/content/skip_pull.sh` ends the
+  job's redundant pull once the prefetched file is linked (the job then logs "no cached depth" but perc2 reads the
+  linked cache: ep12 "depth ready" at 0.8 s). Results unchanged by this (same files). ISMr crashed on ep11
+  (`track_one` with no registered pose: under 'replace' an object got no proposal), counted as a failure of ISMr.
