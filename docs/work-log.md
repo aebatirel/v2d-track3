@@ -6615,3 +6615,9 @@ arm and a no-policy replay floor to stage B.
     (33 mm).
   - As a CD-O-only submission the pose boards keep their best (12c), but this file may not be the single final file
     for all boards.
+- ~08:56 UTC 2 Nov focused-pascal: "pack 12d ready" (beee0581).
+- 08:58 UTC verification by this session [M], all pass:
+  - sha 643794c6…; 9,120 rows; vs 12c only code_commit_url + 7 payload rows (e1 / e3 / e5 / e6 o0, e8 / e20 / e28 o1);
+  - kit hashes match; dry run valid; CD-O file equals the staged one.
+  - **The upload was blocked by the permission classifier ("External System Writes")** and needs the owner's explicit
+    word.
