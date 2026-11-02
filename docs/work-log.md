@@ -10883,3 +10883,8 @@ score.
 - 07:49 UTC 2 Nov correction: the times of the last four entries were estimated ~35 min late; the box log shows pfH started 07:20 UTC (fixed above, PREREG 07:15 UTC; all before any result).
 - 09:54 UTC 2 Nov pfH seed 42 (public ep31, registered AUC vs mocap, NREP 10) [M]: lw **0.730 ± 0.017** (sim_vs_ref 0.734);
   s 0.589 ± 0.198 (sim_vs_ref 0.593). Paired Δ +0.141. Seed 43 running; the rule needs both seeds.
+- 11:29 UTC 2 Nov **pfH (public ep31, lift-window starts) PASS by the pre-registered rule** [M]: AUC vs mocap lw 0.730 / 0.704
+  vs s 0.589 / 0.707 → paired Δ +0.141 / −0.002, mean **+0.069** (≥ +0.02), no seed < −0.03. Reading [I]: the mean gain
+  comes from seed 42, where the control collapsed on some draws; the lift arm's spread is much smaller (sd 0.017 / 0.043 vs
+  0.198 / 0.104; min 0.694 / 0.618 vs 0.245 / 0.400): fewer failed draws rather than a higher ceiling. Step 2 (addendum A)
+  launches now.
