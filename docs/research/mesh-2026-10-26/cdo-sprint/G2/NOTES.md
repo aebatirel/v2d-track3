@@ -48,3 +48,8 @@ Spec: `../C4-audit/PREREG.md` section 7 (addendum 2, e573235), sections 2-3. Tim
 - 20:47:17Z (box clock) box 58874418 up after a ~10 min image pull: H200 NVL 143.8 GB, cgroup quota ~82 cores.
   Launched through exec `S/g2/launch_box.sh` (box_setup.sh; sam3d_setup.sh after UV-; the Hunyuan / TRELLIS.2
   pipeline.json fetch with the Python API after UV-OK (hyfix.log); then `NP=64 box_g2.sh`).
+- 20:51:59Z generation started (box clock): SAM 3D alongside Hunyuan3D-2.1 (GPU memory ~16.5 GB and ~9.5 GB).
+  21:13:50Z SAM 3D done, 88/88 ok (~15 s each). 21:13:58Z operator step: touched `.hy21_gen_done` so TRELLIS.2
+  (large) starts beside the small Hunyuan job instead of after it: one large model at a time still holds, and the
+  H200 has 143 GB (Hunyuan ~10 GB, TRELLIS.2 needed <= ~85 GB on 29 Oct). Logged in g2_queue.log. TRELLIS.2 1536
+  started 21:14:00Z, all 22 crops x 4 seeds in one process.
