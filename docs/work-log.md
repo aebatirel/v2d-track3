@@ -6038,3 +6038,12 @@ Advice given:
   SP-SR 0.85, MP-SR 0.75, RPE 3.008 (best), MPPE 2.467 (best), CD-O 0.30008 (best; was 0.33234).** Best on every board, so
   one file covers all six; the blue cup also helped the pose boards. CD-O estimate was ≈ 0.300 [E] → 0.30008 [M].
   Standings (their read): 10th, rank sum 58; DSAIL 9th at 56. Receipt: build_12c/UPLOAD.md on claude/keen-heisenberg-engcwz.
+- ~08:58 UTC **pack 12d build** (keen-heisenberg 08:50: pack 12c + bold-albattani's Tier A meshes under the owner's
+  standing go; Tier B not included). Tier A = C1 T3 generate-then-fit single pre-registered outputs (PREREG 2d2a8ee;
+  C3/README @ 25b0c54): white_pot_t3fit.glb (md5 b19b2e28…, evals 1/3/5/6/8/28) and water_pitcher_t3fit.glb (md5
+  61503a91…, eval 20 slot 1), committed as meshes/tierA_pack12d (91342da4). 12c reproduced byte for byte from its
+  inputs first. Build (pack_swap_meshes.py --only-episodes): sha256 643794c6…c0b12; vs 12c only code_commit_url + 7
+  payload rows differ; CD-O changes those 7 pairs (1d3006d4…); offline validation pass; 0 MESH WARNINGs. Frame FLAGS
+  [M]: white_pot centroid 8.52 mm, kit proxy 5.7 mm (ICP 3.1 mm ok); water_pitcher centroid 10.27 mm, ICP 5.83 mm /
+  3.46°, kit proxy 7.95 mm, surface p95 25.5 mm. Known risks: pot pose guard failed (mean −0.0099, min −0.042), pitcher
+  ADD failed (33 mm). Sign-off requested from bold-albattani; staged as PENDING.

@@ -1,0 +1,16 @@
+pack_swap_meshes: <SCRATCH>/p12d/build_12d
+swapped 7 (episode, object) pairs of 36: white_pot -> eps [1, 3, 5, 6, 8, 28], water_pitcher -> eps [20]
+file md5 changed: 1:white_pot 0264da83->b19b2e28, 3:white_pot 0264da83->b19b2e28, 5:white_pot 0264da83->b19b2e28, 6:white_pot 0264da83->b19b2e28, 8:white_pot 0264da83->b19b2e28, 20:water_pitcher fc824fc5->61503a91, 28:white_pot 0264da83->b19b2e28
+frame report (mm; base = the mesh being replaced):
+  white_pot          eps [1, 3, 5, 6, 8, 28] base 0264da83 | centroid offset 8.52 | AABB centre offset 14.74 | extent base [135.7, 197.46, 358.06] new [128.76, 192.43, 360.43] | surface median/p95/max 1.673/8.016/21.065 (spacing 0.912) | ICP 3.1 mm 2.221 deg (median after 1.595) | kit proxy 5.7 mm 1.575 deg (symmetry none) | FLAG: surface centroid moved 8.52 mm > 5.0; kit-registration proxy moves the body 5.7 mm > 5.0
+  water_pitcher      eps [20] base library_v3 | centroid offset 10.27 | AABB centre offset 34.37 | extent base [147.89, 261.36, 411.97] new [136.42, 275.27, 390.79] | surface median/p95/max 4.262/25.511/49.655 (spacing 0.989) | ICP 5.83 mm 3.462 deg (median after 3.807) | kit proxy 7.95 mm 3.691 deg (symmetry none) | FLAG: surface centroid moved 10.27 mm > 5.0; ICP corrects 5.83 mm / 3.462 deg (limits 5.0 mm / 5.0 deg); kit-registration proxy moves the body 7.95 mm > 5.0
+parquet: 1264400 B sha256 643794c6ec96ec5f31f74edcf4fe379b77ef9e63a3cffb63bd7387b2633c0b12 | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 7}
+mesh payloads changed: ['1:white_pot', '3:white_pot', '5:white_pot', '6:white_pot', '8:white_pot', '20:water_pitcher', '28:white_pot'] | unchanged: []
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 1d3006d43f403d3b... | CD-O pairs changed vs base: ['1:white_pot', '3:white_pot', '5:white_pot', '6:white_pot', '8:white_pot', '20:water_pitcher', '28:white_pot']
+pack.log MESH WARNINGs: 0
+FLAG: white_pot (episodes [1, 3, 5, 6, 8, 28]): surface centroid moved 8.52 mm > 5.0
+FLAG: white_pot (episodes [1, 3, 5, 6, 8, 28]): kit-registration proxy moves the body 5.7 mm > 5.0
+FLAG: water_pitcher (episodes [20]): surface centroid moved 10.27 mm > 5.0
+FLAG: water_pitcher (episodes [20]): ICP corrects 5.83 mm / 3.462 deg (limits 5.0 mm / 5.0 deg)
+FLAG: water_pitcher (episodes [20]): kit-registration proxy moves the body 7.95 mm > 5.0
+STATUS NEEDS REVIEW (flags) (exit 2)
