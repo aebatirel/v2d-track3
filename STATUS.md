@@ -1,5 +1,14 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~17:00 UTC: room-map session (claude/room-map-20261102): step 1 running ($0, CPU)
+- Goal (owner: "do all, go the distance"): replace perc2's chained keyframe-PnP camera with drift-free relocalisation
+  against a public-only room map; measure first.
+- Done: `pipeline/roommap.py` (note 18 rewritten GT-free, ego b/c only), PREREG
+  `docs/analysis/roommap-20261102/PREREG.md` (be2f920, before any result). Map run3 [M]: 370/370 public images,
+  18.6k points, 1.11 px, 22 min on 4 CPU. Relocalisation: 580–750 rig inliers per frame on eval ep10.
+- Running: all 20 eval clips relocalised at every frame (measurement (a), GT-free drift of evperc-4f596df).
+- Next: 5 leave-out fold maps and public recomposition / scoring (b); gates G0–G2 decide step 2.
+
 ## 2026-11-02 ~08:43 UTC: PACK 12c UPLOADED: AUC 0.84738, CD-O 0.300, RPE 3.008, MPPE 2.467 (best on every board)
 - Pack 12c = pack 12b + the C0 blue-cup mesh (owner-accepted GT-informed public selection). Record
   results/submissions/20261102-track3n-candidate/build_12c/UPLOAD.md.
