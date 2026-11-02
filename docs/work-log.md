@@ -6232,3 +6232,14 @@ diagnostic; nothing is picked for submission.
 ### 2026-11-01 09:05 UTC — wrap-up (owner request via keen-heisenberg): nothing running, final report sent
 - All background agents finished; no processes running; working tree committed and pushed. STATUS top section written.
 - Final report sent to keen-heisenberg (finished items, open items, top 3 improvements, CD-O-only variant view).
+
+## 2026-11-02 ~08:45 UTC — blue-cup payload handed to focused-pascal (pack 12c, minimal CD-O variant)
+- Owner approved the minimal CD-O variant (pack 12b + C0 blue cup, GT-informed public selector accepted) at 08:10 UTC, relayed by keen-heisenberg.
+- Sent focused-pascal (cc keen-heisenberg): file `meshes/library_c0/blue_cup.glb` @ 5cce3d2, md5 9e3a74fd98921c4c589cee7956da457c,
+  sha256 81a201cb…129f1, 557540 bytes; transform none (identity); episodes eval 10, 14, 20, 32, 33 slot 0 (C0 MANIFEST pairs);
+  object_mesh_b64 swap only, collision overlays untouched; frame sign-off YES.
+- Frame check [M] vs library_v3 blue_cup (md5 75426314…): axis tilt 1.24°, axis offset 2.0 mm, closed end +z for both (no flip),
+  extents 93x104x167 vs 95x96x167 mm; ICP 6.7 mm / 2.6° (mostly along the axis, C0 README F5).
+- Expected effect [E]: CD-O board ~0.332 → ~0.300 (from [D] 0.523 → 0.291 on 5 of 36 pairs). AUC boards keep the best submission,
+  so a CD-O-only variant cannot lower them.
+- An earlier send of the same content failed with a tool error; the re-send was delivered. Pending: their pack_swap_meshes.py frame report.
