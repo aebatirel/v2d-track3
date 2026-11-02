@@ -6483,3 +6483,22 @@ diagnostic; nothing is picked for submission.
   would add 3 meshes (README). One blue-cup pick regenerates the shipped source (same crop and seed, not byte-identical).
 - Selection is GT-informed: best-of-N by public-scan CD-O. Meshes are in the store `runs/mesh-20261102-g2b-ff63482/stage2/`.
   README `cdo-sprint/G2/README.md`. The 50-seed audit of the 32 is the coordinator's.
+
+## 2026-11-02 ~22:12 UTC — G2 generation done; 50-seed audit of 32 candidates started
+- Helper-agent report (details in `cdo-sprint/G2/README.md`, `G2/NOTES.md`):
+  - 264 meshes: SAM 3D / Hunyuan3D-2.1 / TRELLIS.2 x 22 crops x 4 seeds. 0 lost; 6 TRELLIS.2 ep22 blue-cup crops ran out
+    of memory at 1536 and were rerun at 1024.
+  - SHA256 freeze committed before any scan read (1a3a044). Stage-1 6-seed screen ran on the box's CPUs after the freeze.
+  - Stage 2: 4 lowest CD-O per object, placed with place.py, plus T3-fit copies = 32 candidates (`C4-audit/candidates_g2.json`,
+    8e8c405a).
+  - The section-10 ADD extension added nothing under the reading the agent committed before any score (05828af). That
+    reading is kept, since changing it now would be post hoc.
+- Cost, measured from the instance records: about $8.31.
+  - First box 58873650 (interruptible H100 NVL) was preempted after 4 min: about $2.80, nothing kept.
+  - Second box 58874418 (on-demand H200 NVL, $4.033/h, 20:35-21:54 UTC): $5.50.
+  - Both destroyed and confirmed. Ledger lines written. Credit $127.84 -> $108.53 (includes other sessions).
+- Stage-1 best [D, 6 seeds] vs shipped 50-seed medians: pot 0.2852 vs 0.3107; blue cup 0.2430 vs 0.2646; rack 0.4027 vs
+  0.4182; pitcher 0.3868 vs 0.3713.
+- Known setup bug: hf CLI 2.2.0 reads a second --include as a file name, so `box_setup.sh` fetches no Hunyuan / TRELLIS.2
+  configs; the agent worked around it by hand.
+- 50-seed audit of the 32 started 22:11:46Z (code 8e8c405a, detached, 4 workers, local CPU). Then rules (A)/(B)/(C) and D1.
