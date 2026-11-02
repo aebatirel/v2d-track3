@@ -7124,3 +7124,10 @@ arm and a no-policy replay floor to stage B.
   - perception-tracking: pre-registered, seed-averaged, leave-one-episode-out per-object choice of pose-board meshes
     (library_v3 / 9a+ vs 12c vs 13f) and of test A's placement (pitcher) → a pose pack on 13f2. The CD-O board keeps
     13f by best-per-board.
+- ~20:23 UTC 2 Nov perfect-following launched pf-mesh (59d62bf; PREREG pf-mesh-20261102 before any box), ≈ $24:
+  - pfN 58873213: eval 20, pm, Tier B pitcher collision;
+  - pfO 58873272: eval 28, sm, Tier B rack;
+  - pfP 58873281: eval 30, sm, Tier B sweeper + rack;
+  - pfQ 58873297: eval 1, s0 reseed 44 / 45. It launched before my "skip eval 1" arrived (messages crossed). Kept
+    running per the never-cut rule (≈ $6, low expected value).
+  - Zero-shot overflow check runs first on each mesh box. Results ≈ 00:30–01:30 UTC.
