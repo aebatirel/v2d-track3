@@ -10930,3 +10930,11 @@ score.
   eval 14 plw s43 0.908 ± 0.022 (both seeds above the 0.875 gate; seed rule keeps s42 0.923); eval 25 slw s43
   0.541 ± 0.031 (→ eval 25 NO-SWAP at the gate). [I] eval 25: both lift seeds in the low mode, while s42 reached the
   high mode twice without lift (0.792, 0.816); 2 seeds cannot separate this from the usual seed split.
+- 16:32–16:40 UTC 2 Nov pfI verdicts [M]: eval 3 plw NO-SWAP at the gate (s42 0.888 / s43 0.886 vs 0.933); eval 32 plw
+  s43 0.876 ± 0.112 (with s42 0.888 both under the 0.890 gate → NO-SWAP pending on the box); **eval 14 plw: gate CONFIRM
+  (s42 0.923 box) but NO-SWAP on the 10 fresh official draws**: conf mean 0.826 ± 0.118 (0.757, 0.886, 0.890, 0.945,
+  0.862, 0.910, 0.571, 0.727, 0.779, 0.938) vs pack-12b policy 0.875; clauses a / c / s fail, gain −0.049.
+  [M] box→fresh gap: lift policy 0.923 → 0.826 (−0.097; 9/10 box draws ≥ 0.889, 4/10 fresh < 0.80), while earlier
+  non-lift swaps matched (eval 14 s: box 0.880 / 0.892 → fresh 0.875; eval 16 pz: 0.975 → 0.974).
+  [H] lift-window policies overfit something of the training box (the patched training-tree evaluator or its start
+  state) so box draws overstate them; falsified if eval 15's fresh mean stays near its box mean 0.953.
