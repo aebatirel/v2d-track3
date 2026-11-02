@@ -6683,3 +6683,12 @@ arm and a no-policy replay floor to stage B.
   CPU here ($0): depth pulled per episode (2.2 GB, ≈ 1 min), ≈ 50 s per episode. Mechanics check on ep2 (GT-free
   only: residuals 6.8 → 6.2 mm etc., moves 0.04–1.0 cm), then all 20 started (VO-camera arm). Map-camera arm waits
   for room-map's fold cameras.
+- 17:55 UTC **Stage 1, VO-camera arm: FAIL; falsifier fired [D]** (sha256 pushed a474957 before scoring; 105 segments
+  fitted, 6 kept by guards, 5589 frames changed). vs C (ep23 from Cr): mean ΔAUC −0.0088, 7 better / 12 worse, min
+  ep18 −0.062; MPPE +0.054, RPE +0.206 cm; > 3 cm frames 971 → 896; rest-frame ADD lower on 9 / 20 (bar 14).
+  Per episode: pitcher ep21 +0.051 / ep22 +0.019, rack ep31 +0.013, dust pan ep39 +0.012, ep26 +0.006; pot episodes
+  −0.012 to −0.028, cups ep12 / 13 −0.031, ep18 −0.062, ep40 −0.025. **[I, post hoc]** the depth fit helps where the
+  tracker's bias is large (pitcher 6° tilt, rack) and hurts where the tracker is already within our mesh error (pot
+  base 7 mm low, cups): fitting depth to a wrong shape moves a good pose. Same lesson as the 1 Nov depth-ICP offset
+  fit. Not handed over. `results/gate_s1vo_vs_C20.json`, `results/rest_add_s1vo.json`. The map-camera arm can still run
+  if room-map delivers, but a camera change cannot fix the shape-driven losses [I].
