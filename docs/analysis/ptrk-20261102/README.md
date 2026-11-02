@@ -56,7 +56,7 @@ SAM-6D / PRISM references.
 | ptrkA | ≈ $3.4 |
 | ptrkB | ≈ $3.2 |
 | ptrkC | ≈ $5.1 |
-| ptrkD | ≈ $9–10 (still finishing report-only cells) |
+| ptrkD | ≈ $9.3 (destroyed 18:57 UTC) |
 | ptrkE (detector test, $6 cap) | ≈ $4.6 |
 | Stage 1 | $0 (CPU) |
 

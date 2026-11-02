@@ -6718,3 +6718,8 @@ arm and a no-policy replay floor to stage B.
   interventions → **FAIL**. Point-track session's own test also failed (its RESULT.md). Session report:
   `docs/analysis/ptrk-20261102/README.md`; STATUS updated. Credit $28.86 at 18:21 [M]. ptrkD finishes report-only
   crashed cells (ep0 / ep26) and self-destroys.
+- 18:57 UTC **all ptrk boxes gone** (ptrkD self-destroyed). Its report-only re-runs of the 32 GB crash cells [D], each
+  vs ptrkD's Cr: ep0 MG 0.602 / MD 0.902 / MR 0.614 vs 0.994 (the video mask is propagated from the frame-0 handle
+  mask the guard rejected, so every lid variant suffers); ep26 MG 0.977 / MR 0.979 vs 0.983; ep23 all 0.041–0.042
+  (identity swap untouched). With these filled in, the mask-guided family is worse than the batch-1 fallback numbers;
+  verdicts unchanged (FAIL). Credit $28.07 [M]. Session spend ≈ $26 [E]. 0 instances of this session.
