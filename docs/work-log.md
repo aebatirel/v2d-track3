@@ -11032,3 +11032,6 @@ score.
 - ~23:33 UTC **pack 14 ready**: results/submissions/20261102-track3s-candidate/build_14/track3_submission.parquet
   (sha256 1dbc33c4…; = 13f + eval 14 p0m s43 conf draw 1, checkpoint 7f7a7c6a…; code cc19172; all checks pass; GT flag:
   Tier B collision). NOT uploaded; sent to keen-heisenberg (record commit f2ffed76).
+- ~23:40 UTC 2 Nov keen-heisenberg: the best pose pack since 20:15 is **13p2** (19ac10e3…; AUC 0.88403), not 13f.
+  **Pack 14p ready** = 13p2 + eval 14 rows: results/submissions/20261102-track3s-candidate/build_14p/track3_submission.parquet
+  (sha256 b6c6100d…; 13p2 mesh payloads kept; checks pass). Pack 14 on 13f superseded.

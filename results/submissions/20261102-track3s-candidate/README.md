@@ -29,3 +29,18 @@
   board row 0.895; gain +0.058 → PASS + INCLUDE.
 - Board expectation [E]: eval 14's stored draw 0.895 → 0.942 vs our reference (≈ +0.002 on the 20-episode mean); vs
   ground truth unknown.
+
+## Pack 14p (2 Nov ~23:40 UTC) = pack 13p2 + eval 14 — `build_14p/` (THE ONE TO UPLOAD; pack 14 on 13f is superseded)
+- Base: **pack 13p2** (claude/focused-pascal-2nz9s1, results/submissions/20261102-track3u-candidate/build_13p2, sha256
+  19ac10e3…; = 13f1 + pose-CV meshes (TSDF pot, library_c0 rack) + eval-20 pitcher placement; AUC 0.88403). 13p2's poses
+  and checkpoints equal 13f's (checked: 0 rows differ; mesh payloads differ on 12 episodes); its eval-14 row = pfC conf
+  draw 1, the verdict's "old".
+- File: `build_14p/track3_submission.parquet`, 9,120 rows, sha256
+  `b6c6100d57d18dc2ae22ec7bda238d599e753e4344c417926b787595997d7d70`; CD-O `e3409f38…` (rows identical to 13p2's).
+- Code commit on every row: https://github.com/aebatirel/v2d-track3/commit/cc191721a6e15a8530b366f31592d9625aad1b51.
+- Checks [M]: vs 13p2 only e000014 (316 rows) poses + checkpoint (9da879d9… → 7f7a7c6a…); 13p2's mesh payloads kept
+  everywhere; eval-14 poses identical to pack 14's; evaluator stamps match; kit offline validation pass; CD-O rows changed 0;
+  no_oracle pass.
+- **Note:** eval 14's SIMULATOR collision was the Tier B rack + 13f cup (meshes/tierB_collision), while 13p2's submitted
+  eval-14 rack payload is library_c0 (pose CV). All share our template body frame, so the poses are consistent with
+  either payload.
