@@ -9,7 +9,7 @@
   pack 12c (blue-cup meshes kept). All checks pass. keen-heisenberg uploads on the owner's word.
 - **Eval 20** (lift-window training on the packed reference, seed 43): 10 fresh official draws 0.926 vs the board
   policy's 0.893; no failed draws; median error 1.38 vs 1.67 cm → passes the swap rule, gain +0.033.
-- **Eval 15 near-miss (owner's call):** 0.958 vs 0.906 on fresh draws, no failed draws, but the median error is 0.05 mm
+- **Eval 15 near-miss (owner's call):** 0.958 vs 0.906 on fresh draws, no failed draws, but the median error is 0.47 mm
   worse (1.346 vs 1.299 cm), so the pre-registered rule says no. Can be added as pack 13b in minutes if waived.
 - Not passing: eval 14 (good on the training box 0.923, worse on fresh draws 0.826 vs 0.875), evals 3 / 25 / 28 / 30 / 32
   (below the board policy already on the training box).

@@ -10956,3 +10956,5 @@ score.
 - 18:50 UTC 2 Nov keen-heisenberg: **pack 13 uploaded** on the owner's word. Scores [M, board]: AUC **0.84924** (+0.00186 vs
   12c), MPPE 2.45263 (−0.0147), RPE 3.00841; SP-SR 0.85, MP-SR 0.75, CD-O 0.30008 unchanged. Rank sum 54, tied with DSAIL.
   Eval-15 waiver stays with the owner (no action unless forwarded).
+- 19:01 UTC 2 Nov owner waiver (post hoc) of clause c for eval 15, via keen-heisenberg ("Okay I give you permission for
+  all"); recorded in pf-lift PREREG. Correction: the eval-15 clause-c miss is 0.47 mm (1.346 vs 1.299 cm), not 0.05 mm.

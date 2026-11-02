@@ -73,3 +73,14 @@ Standard-learner episodes, arm `slw` of ops/jobs/pf_arms.sh (job string: `EP=25 
   then 28 / 1, as budget allows (owner asked before exceeding the $50 window).
 - (13:00 UTC) Owner's go via keen-heisenberg for evals 30 and 28 (+≈ $16 beyond the window; ≥ $10 reserve a hard stop):
   boxes pfL (`EP=30 SPLIT=eval ARMS=slw`) and pfM (`EP=28 SPLIT=eval ARMS=slw`), same job and rule as above. Eval 1 waits.
+
+## Owner waiver, POST HOC (2 Nov 19:00 UTC, after the eval-15 result; relayed by keen-heisenberg)
+Owner: "Okay I give you permission for all", answering keen-heisenberg's explanation of the eval-15 result. Waived: clause c
+for **eval 15 only** (arm plw, run 20261102-pfJ-cf8cc34, seed 42, checkpoint 395d727f…). This is a decision made AFTER
+seeing the result, not part of the pre-registered rule; the rule itself is unchanged for every other episode.
+Measured [M] (verdict_ep15_plw.json, 10 fresh official draws vs the board policy's H5p7 draws, scored on P):
+- a mean sim_vs_ref 0.9583 vs 0.9057: holds; b fail share 0 / 10 vs 1 / 10: holds; s draw 1 0.965 vs old 0.9465: holds;
+- inclusion gain +0.0525 ≥ +0.02;
+- **c median RPE 1.346 vs 1.299 cm: FAILS by 0.047 cm = 0.47 mm** (the candidate's RPE: mean 1.356, sd 0.063, range
+  1.235–1.447 cm). Correction: earlier notes said "0.05 mm"; it is 0.47 mm.
+Result: eval 15 goes into pack 13b (pack 13 + eval 15, conf draw 1).
