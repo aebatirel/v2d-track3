@@ -10856,3 +10856,6 @@ score.
 - 02:18 UTC 2 Nov **pfG launched**: 20261102-pfG-86cfc19 (Australia Max-Q $1.13/h), `EP=16 SPLIT=eval ARMS="p0 pz" FREEZE_EP16=right:107`.
 - 03:07 UTC 2 Nov pfF seed 43 [M]: s 0.719, se (hold to end) 0.792. Both seeds: se − s = +0.082 / +0.073 on the training
   box, but both arms stay below the packed 0.850 → gate fails, NO-SWAP (verdict line follows from the box).
+- 04:12 UTC 2 Nov pfF done (self-destroyed 03:10, 151 min ≈ $3.5): eval 16 s and se both **NO-SWAP** (training-box gate:
+  best seeds 0.719 / 0.792 vs 0.8498). pfG (packed-reference arms) seed 42 near the end of training (slower box, ~95 min
+  per wave); results ≈ 07:00 UTC. Credit $94.05 → spend so far $28.80 of $102.
