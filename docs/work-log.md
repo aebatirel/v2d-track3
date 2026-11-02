@@ -10905,3 +10905,9 @@ score.
 - 12:57 UTC 2 Nov **pfK launched**: 20261102-pfK-0f695c9 (Spain WS $1.38/h, offer 29519534), `EP=25 SPLIT=eval ARMS=slw bash ops/jobs/pf_arms.sh`.
   Credit $70.53 at 12:56 UTC (floor $41.35 for the $50 window); after pfI / pfJ / pfK and the tracking boxes ≈ $0–3 left
   [E], so eval 30 needs the owner's go (asked via keen-heisenberg).
+- 13:00 UTC 2 Nov keen-heisenberg relays the owner's go for evals 30 and 28 (+≈ $16 beyond the $50 window; ≥ $10 reserve
+  a hard stop; eval 1 waits for a top-up). **pfL** 20261102-pfL-0fab401 (`EP=30 SPLIT=eval ARMS=slw`, offer 52946733) and
+  **pfM** 20261102-pfM-0fab401 (`EP=28 SPLIT=eval ARMS=slw`, offer 31125574) launched ~13:00 UTC.
+- 13:05 UTC 2 Nov pack 12c fetched from claude/focused-pascal-2nz9s1 (sha256 3542f8e5… verified; CD-O 116a9751…).
+  tools/pack_swap_rows.py self-test on it (no swap, 12c's commit URL): output byte-identical (same sha256), CD-O rows
+  changed 0, kit validation pass [M]. Pack 13 builds on it.
