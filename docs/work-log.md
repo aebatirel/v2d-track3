@@ -7197,3 +7197,9 @@ arm and a no-policy replay floor to stage B.
     - pose pack 13p on 13f1 = pot X + library_c0 rack (focused-pascal);
     - eval 20 pitcher placement (≈ $5, approved) → 13p2.
     - The CD-O board keeps 13f by best-per-board.
+- ~21:55 UTC 2 Nov **pack 13p UPLOADED** (57922330–57922340). Verified: 11 mesh rows (TSDF pot ×6, library_c0 rack
+  ×5); D1 passes.
+  - Scores: **AUC 0.88257, RPE 2.22667, MPPE 1.82356** (all best); SP-SR 0.90; MP-SR 0.80; CD-O 0.26869 (13f keeps
+    0.26249).
+  - **Rank sum 46** (RPE now 8th); 7th overall.
+  - The public-pose CV choice transferred: AUC +0.010 on the board.
