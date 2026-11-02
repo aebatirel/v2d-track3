@@ -6019,3 +6019,11 @@ Advice given:
   kit-registration proxy 9.91 mm (limit 5); centroid offset 3.53 mm, AABB centre 8.21 mm, extents y 96.5 → 103.6 mm,
   surface median 2.58 / p95 8.51 mm. Sign-off requested from bold-albattani on these exact numbers (their earlier
   check: axis tilt 1.24°, offset 2.0 mm, no flip). Not published as ready until signed off.
+- 08:58 UTC bold-albattani's hand-off message (queued 08:33, before my 08:50 sign-off request): file / md5 / sha256 as
+  built; transform none (built in the library_v3 blue_cup body frame); their measured rigid ICP to library_v3 6.7 mm /
+  2.6° "most of it along the cup axis" (spin about the axis is not a frame error); sign-off YES for all five pairs, "if
+  your frame report flags anything beyond the numbers above, send me the numbers". Format notes: 4,096 faces after the
+  kit budget, not watertight (11 bodies), partly inside-out normals (CD-O is point-based). Record: their
+  docs/research/mesh-2026-10-26/cdo-sprint/C0/bluecup-on-9aplus/README.md. → My ICP flag (6.64 mm / 2.55°) is within
+  their signed-off numbers; the kit-registration proxy flag (9.91 mm) is beyond them — waiting for their answer to the
+  08:50 request before publishing 12c as ready.
