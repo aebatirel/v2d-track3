@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~07:45 UTC: tracking-perception session (branch claude/perception-tracking-20261102): running
+- Goal: GT-free tracker changes that bring public tracks closer to mocap; passing changes go to perfect-following.
+- **S2 (half-frame advance) is in NO packed eval reference [M, code read]**; handed to perfect-following to add via
+  `refine.py --steps S2` on episodes it retrains anyway (+0.004 board AUC [E]).
+- [D] Public tracks have no drift-then-snap; their > 3 cm frames are catastrophic losses (ep0 lid, ep23 boards) and
+  bias (pitcher, ep24 board). Iteration settings were already swept (25 Oct: no gain).
+- Running (2 × RTX 5090, ≈ $1.47/h): mask-guided tracking (video-segmentation masks guide the tracker), 4 variants +
+  control replicate, 20 public episodes. Pre-registered next: complete-base pitcher as tracking template (ep21 / 22),
+  full-resolution stereo depth (20 episodes). PREREGs in `docs/analysis/ptrk-20261102/`.
+- Spend: ≈ $0 so far of $30 (boxes started ~07:20 UTC).
+
 ## 2026-11-02 ~06:42 UTC: PACK 12b UPLOADED: AUC 0.84405, MP-SR 0.75, RPE 3.023, MPPE 2.495 (best on every board)
 - Pack 12b = pack 11 + evals 14 / 32 (perception track-guard jump bridged) + eval 16 (hand held through release),
   reference repairs, stock limits.
