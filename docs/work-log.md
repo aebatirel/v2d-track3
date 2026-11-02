@@ -6161,3 +6161,8 @@ Advice given:
   13p payload × README Δ to 0.0005 mm. sha256 19ac10e3…d45c, code b0bd91fc; vs 13p only commit URL + 1 payload row; CD-O
   only that pair; offline validation pass; guard on; D1 PASS both modes (0/7; ≤ 4.4°). Staged as
   results/submissions/20261102-track3u-candidate; sent to keen-heisenberg. Not uploaded from this session.
+- 23:17 UTC coordinator: when bold-albattani hands over **13h** (G2 audit winners, pending D1: pot sam3d ep44 s7, blue cup
+  sam3d ep22 s7 t3fit, rack hy21 ep31), build it as a **CD-O variant on 13f** (fa1e31f5…, best CD-O 0.26249 [M]), not on
+  13p2. The pose boards get G2 meshes only through perception-tracking's round-2 CV. Note: 13f carries the eval-25 piece-2
+  plate that fails D1. That plate does not affect CD-O, so it is inherited as is in a CD-O-only variant; D1 runs on the new
+  meshes. 13f's packer inputs are kept in scratch.
