@@ -6676,3 +6676,10 @@ arm and a no-policy replay floor to stage B.
   job's redundant pull once the prefetched file is linked (the job then logs "no cached depth" but perc2 reads the
   linked cache: ep12 "depth ready" at 0.8 s). Results unchanged by this (same files). ISMr crashed on ep11
   (`track_one` with no registered pose: under 'replace' an object got no proposal), counted as a failure of ISMr.
+- 17:10 UTC **owner (via keen-heisenberg, 17:05): build and run Stage 1** (public only; ≤ $4 GPU; credit floor $10
+  for this test). PREREG_stage1.md pushed before any transform. `scripts/stage1.py`: per object and rest segment of
+  our track, one world pose by trimmed ICP (70 % kept) of SAM2-video-masked stereo-depth points from every 2nd frame
+  against the library_v3 template; guards (≥ 300 points, ≤ 3 cm / 10°, residual must drop); 5-frame ramps. Runs on
+  CPU here ($0): depth pulled per episode (2.2 GB, ≈ 1 min), ≈ 50 s per episode. Mechanics check on ep2 (GT-free
+  only: residuals 6.8 → 6.2 mm etc., moves 0.04–1.0 cm), then all 20 started (VO-camera arm). Map-camera arm waits
+  for room-map's fold cameras.
