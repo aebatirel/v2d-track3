@@ -29,3 +29,23 @@ scan) and `scripts/flipchk.py` (eval 25 and public eps 23–25).
   measured public ep24 piece-2 AUC 0.862 → 0.000 with the flipped mesh, and estimates about −0.02 board AUC [E].
 - **Hypothesis:** the board's pose scores will rise when the revert is uploaded. It is falsified if AUC does not rise vs
   13f, other things equal.
+
+## D1 no-flip gate on eval 25 (coordinator request, 20:24 UTC; `scripts/d1gate.py`, `results/d1gate_eval25.json`)
+Setup: the kit's _register_object_body vs the public scan at the eval seed (1_000_003·25 + 101·slot) and 9 more seeds:
+the kit seeds of eps 21, 22, 23, 24, 26 and 27 at the same slot, plus seeds 0, 1 and 2.
+- rot = rotation in degrees.
+- anchor = distance in mm between the registered candidate anchor and the scan surface centroid, which stands in for
+  the hidden anchor. This assumes the scan frame is our body frame.
+
+| Pack / slot | Mesh | Flips | Eval seed rot / anchor | Range over 10 seeds |
+|---|---|---|---|---|
+| 13f1 o1 | library_v3 wooden_piece_2 (= 12c) | **0/10** | 0.7° / 3.9 mm | rot ≤ 0.9°, anchor 2.3–4.9 mm |
+| 13f o1 | Tier B occupancy plate | **2/10, incl. the eval seed** | **179.2°** / 3.5 mm | ep24 also 180.0° |
+| 13f1 o0 = 13f o0 | Tier B wooden_piece_1 | **0/10** | 0.7° / 4.1 mm | rot ≤ 1.2°, anchor 3.7–6.7 mm |
+| 12c o0 | library_v3 wooden_piece_1 | 0/10 | 0.3° / 1.1 mm | rot ≤ 1.7°, anchor 1.1–3.2 mm |
+
+**Verdict:**
+- **13f1 passes D1 on both eval-25 slots.** Slot 0 does not flip at its eval seed, so it stays as the Tier B mesh. Its
+  anchor error is about 3 mm larger than library_v3's, a small pose cost [D].
+- 13f's slot 1 fails D1.
+- The C4 audit's 50-seed flip rates (34% for piece 2, 6% for piece 1) come from the coordinator's message; not re-measured here.

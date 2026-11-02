@@ -1,4 +1,4 @@
-# Track 3 pack-13f1 candidate, 2 Nov 2026 — pack 13f with eval 25's wooden_piece_2 reverted to library_v3 (flip fix)
+# Track 3 pack-13f1 (= the coordinator's "13f2") candidate, 2 Nov 2026 — pack 13f with eval 25's wooden_piece_2 reverted to library_v3 (flip fix)
 
 **STATUS: READY. NOT uploaded from this session**: keen-heisenberg's session verifies and uploads on the owner's word
 there. The reverted payload is byte-identical to the one in packs 9a+ to 12d, which was already on the boards.
@@ -32,3 +32,13 @@ scored upside down in 12e/13f. tracking-perception measured public ep24 piece-2 
   flips as the public one does.
 - Each board keeps its best submission, so 13f stays the CD-O submission if it scores better there.
 - All of 13f's disclosures carry over (Tier B / B+ GT-informed selection, eval-15 clause-c waiver, 12c blue-cup selector).
+
+## Safety gate D1 (no flip), not a selection score
+- This revert is a safety gate: the mesh-v5 spec D1, "no flip at every eval seed, ≥ 6 seeds". It is not a selection by
+  score. The coordinator's 20:24 UTC request ("pack 13f2") specifies exactly this pack: 13f with only eval 25 slot 1's
+  payload replaced by 12c's.
+- D1 results [D] (docs/research/work/flipcheck-20261102, `results/d1gate_eval25.json`; eval seed + 9 seeds):
+  - slot 1, library_v3 piece 2: 0/10 flips, eval seed 0.7° / anchor 3.9 mm. **Pass.**
+  - slot 0, Tier B piece 1, unchanged: 0/10 flips, eval seed 0.7° / 4.1 mm. **Pass**, so it is not swapped.
+  - 13f's slot-1 plate: 2/10 flips, including the eval seed (179.2°). **Fail.**
+- CD-O is worse by about +0.0014 [E]; the best-per-board rule absorbs it.
