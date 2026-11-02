@@ -6014,3 +6014,12 @@ score.
   - The guard exception was approved in focused-pascal's session.
   Recorded in its 09:11 work-log entry and build_11/UPLOAD.md, with the disclosure for the technical report and the
   container. Pack 11 agreed as the single Final Submission near the close.
+
+### 2026-11-02 06:37–06:42 UTC — PACK 12b UPLOADED (owner's direct word, keen-heisenberg's chat)
+- Pack 11 + evals 14 and 32 (guard-bridged) and 16 (hand held through release), stock limits. sha bde0ae84…; code
+  fa129a11; submissions 57898411–57898422. Record build_12b/UPLOAD.md on claude/keen-heisenberg-engcwz.
+- Scores: AUC 0.84405 (best); SP-SR 0.85; MP-SR 0.75 (best); RPE 3.02339 (best); MPPE 2.49546 (best); CD-O 0.33234.
+- Boards 06:42 UTC (Kaggle API): AUC 8, SP-SR 10, MP-SR 9 (three-way tie at 0.75), RPE 10, MPPE 10, CD-O 14.
+  Rank sum 61 → 10th overall (was 11th); 9th DSAIL 60, 8th sam&alex 50, 7th SoySauceChicken 46.
+- DSAIL moved too: AUC 0.84925, RPE 2.671, MPPE 2.312. Next-rank levers: AUC +0.0052, MPPE −0.18, MP-SR +1 episode,
+  CD-O −0.012.

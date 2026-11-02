@@ -1,5 +1,8 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~06:45 UTC: PACK 12b UPLOADED — AUC 0.84405, MP-SR 0.75, RPE 3.023, MPPE 2.495; rank sum 61, now 10th
+- Pack 11 + evals 14, 32, 16 fixes. 9th DSAIL 60 (one point). Levers: AUC +0.005, MPPE −0.18, MP-SR +1 episode, CD-O −0.012.
+
 ## 2026-11-01 ~11:47 UTC: PACK 11 UPLOADED — AUC 0.83921, MP-SR 0.70, RPE 3.179, MPPE 2.545 (bests); rank sum 60, 11th
 - Eval 10 fixed (njmax-1024-trained policy, evaluated at stock limits; disclosed). One point behind 10th (DSAIL 59).
 - Next-rank levers: AUC +0.005 (swap with DSAIL), MPPE −0.20, one more MP-SR episode, CD-O −0.012 (blue cup).
