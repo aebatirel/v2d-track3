@@ -1,5 +1,22 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~01:15 UTC: PERFECT-FOLLOWING (KURSAD): PACK 12 READY (not uploaded) — evals 14 and 32 fixed
+`results/submissions/20261102-track3m-candidate/build_12/` (sha 7b0cd7df…) = pack 11 + evals 14 and 32. Record sent to
+keen-heisenberg; the owner decides the upload.
+
+| eval | before (packed, 10 draws) | after (new policy, 10 fresh draws) | how |
+|---|---|---|---|
+| 14 | 0.727 (4 / 10 draws fail) | **0.861** vs our old reference, 0.875 vs the repaired one (1 / 10 fail) | perception jump repaired |
+| 32 | 0.852 | **0.867** vs old, 0.890 vs repaired (0 / 10 fail) | perception jump + flip repaired |
+| 33 | 0.923 | 0.935 / 0.940 — passes, but +0.0196 < the +0.02 bar: not packed | same repair |
+| 15 | 0.906 | 0.947 (two-hand) — fails the median-RPE clause: not packed | two-hand reference |
+| 16 | 0.850 | two-hand 0.71 / 0.70 (worse); hold-to-end test running | — |
+Symmetric (board-style) sim_vs_ref differs from plain by ≤ 0.01 everywhere. Mean over 20 evals, packed → pack 12
+[E, using the confirmation means for 14 / 32 and H5p7 for the rest, eval 10 = pack 11's 0.903]: 0.921 → 0.929.
+- Board caveat [E]: the board scores the stored rollouts; pack 11's eval-14 row was a lucky good draw, so the stored gain
+  is uncertain; the expected gain on re-runs is clear.
+- Spend ≈ $22 of the $102 cap (credit $100.77 at 00:33 UTC).
+
 ## 2026-11-02 ~00:35 UTC: PERFECT-FOLLOWING (KURSAD lane): eval 14 fixed — 0.727 → 0.861 (old yardstick), passes the swap rule
 - Cause found [M]: our perception's track guard re-found the cup at f46 after the tracker had drifted 3–14 cm out of the
   human's hand; the reference held a 19 cm one-frame jump no robot can follow.
