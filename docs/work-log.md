@@ -10835,3 +10835,5 @@ score.
   tools and rule) [M]: seed 43 (training box 0.895 vs s42 0.877); 10 fresh official draws: vs B 0.890 (packed 0.851),
   fails 0 / 10 vs 4 / 10 (B), median RPE 2.75 vs 4.60 cm; vs P 0.867 (packed 0.852, clause a holds; fails 0 vs 1 / 10);
   gain on B +0.040 ≥ +0.02. Eval 33 bridged: seed 43 0.898 (s42 0.406), confirmation running.
+- 01:05 UTC 2 Nov **eval 33 guard-bridge candidate: PASS, NOT INCLUDED** [M]: seed 43; 10 draws vs B 0.9395 (packed
+  0.9199), vs P 0.9347 (packed 0.9234); 0 fails both; gain on B **+0.0196 < +0.02** → stays out (rule as pre-registered).

@@ -1,0 +1,47 @@
+{
+ "ep": 33,
+ "arm": "s",
+ "rule": "pack-9b PREREG section 2 + pf-hands PREREG section 4",
+ "seeds": {
+  "42": {
+   "checkpoint": "/content/runs/pfss42_glock/ep33-s42/policy_60002304.safetensors",
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.4058,
+    "sd": 0.0445,
+    "min": 0.3203,
+    "max": 0.4646,
+    "median": 0.4115
+   }
+  },
+  "43": {
+   "checkpoint": "/content/runs/pfss43_glock/ep33-s43/policy_70004736.safetensors",
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8977,
+    "sd": 0.1129,
+    "min": 0.5805,
+    "max": 0.9556,
+    "median": 0.9311
+   }
+  }
+ },
+ "packed_h5": {
+  "n": 10,
+  "mean": 0.9234,
+  "sd": 0.0275,
+  "min": 0.8471,
+  "max": 0.9428,
+  "median": 0.9304
+ },
+ "chosen": "43",
+ "checkpoint": "/content/results/pfss43_glock_public/ep33/best/policy.safetensors",
+ "sha256": "d5cfcfe4fbd8d7b2501937b09f4ed6441a5c707e76acd85f42a4c59fac7a3550",
+ "chosen_mean": 0.8977,
+ "gate": {
+  "bar": 0.9234,
+  "met": true,
+  "skipped": true
+ },
+ "label": "CONFIRM"
+}
