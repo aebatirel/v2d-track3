@@ -6708,3 +6708,6 @@ arm and a no-policy replay floor to stage B.
   Eval: eval 25's packed reference already uses it (coordinator: ev25idfix, rank 1 of 32), so no eval action follows;
   the public controls / public tests of all lanes should apply it before scoring ep23 (one CPU step).
   `results/idfix/`.
+- 18:15 UTC room-map (6438495) [M, GT-free]: perc2's camera vs a public-only room map on the 20 eval clips: object
+  position gap p95 2–9 mm on 19 / 20 (eval 35: 18 mm). [I] Consistent with Stage 1's failure: the rest-pose errors
+  that matter are shape-driven, not camera-driven. Map-camera arm of Stage 1 dropped (coordinator: not needed).
