@@ -6735,3 +6735,6 @@ arm and a no-policy replay floor to stage B.
   PREREG_meshAB.md pushed before any variant output. M13 = exact pack-13f payload meshes decoded from the submission
   parquet (`meshes/m13f_payload/`, md5 list; GT-selected Tier B meshes noted). `perc_vos.sh` gains a parallel
   per-file depth prefetch (the store's `hf download --include` listing cost 12–15 min per episode on ptrkE).
+- 20:35 UTC launched 58871713 `20261102-ptrkF-58a0f37` (RTX PRO 6000 Max-Q, $1.389/h, code 58a0f37): test (B), Ct and
+  T13 on 20 public episodes (parallel depth prefetch). Test (A) running on CPU here (`scripts/place_fit.py`, 2
+  workers). Credit $28.04 at 20:27 [M]; watch flags < $12.
