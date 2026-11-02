@@ -7131,3 +7131,8 @@ arm and a no-policy replay floor to stage B.
   - pfQ 58873297: eval 1, s0 reseed 44 / 45. It launched before my "skip eval 1" arrived (messages crossed). Kept
     running per the never-cut rule (≈ $6, low expected value).
   - Zero-shot overflow check runs first on each mesh box. Results ≈ 00:30–01:30 UTC.
+- ~20:25 UTC 2 Nov perfect-following correction: pfQ (eval 1) was destroyed in setup (≈ $0.1, no result) once my
+  skip message arrived.
+  - Fourth arm: pfR 58873476 (f06a0c1, PREREG addendum 1 before any result): eval 14, p0m, Tier B rack + 13f cup
+    collision, board's bridged reference and grasp-lock recipe (no lift). Control: pfC conf draws 0.875.
+  - Running: pfN (20), pfO (28), pfP (30), pfR (14), ≈ $24.
