@@ -1,0 +1,994 @@
+[
+ {
+  "index": 0,
+  "object": "white_pot",
+  "label": "G2/white_pot/sam3d/ep44_white_pot_k0_s7/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/white_pot_g2_sam3d_ep44_k0_s7_lib.glb",
+  "md5": "5243c309b6758f682b62e29ade6ff34f",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.2852,
+  "note": null
+ },
+ {
+  "index": 1,
+  "object": "white_pot",
+  "label": "G2/white_pot/sam3d/ep44_white_pot_k0_s7/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/white_pot_g2_sam3d_ep44_k0_s7_lib_t3fit.glb",
+  "md5": "c522837dc6ca3d5d40625f6c964eb541",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.2852,
+  "note": null
+ },
+ {
+  "index": 2,
+  "object": "white_pot",
+  "label": "G2/white_pot/trellis2/ep41_white_pot_k279_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/white_pot_g2_trellis2_ep41_k279_s2025_lib.glb",
+  "md5": "3f3e391a2f244e7bc99b7d1a38207f68",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.2948,
+  "note": null
+ },
+ {
+  "index": 3,
+  "object": "white_pot",
+  "label": "G2/white_pot/trellis2/ep41_white_pot_k279_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/white_pot_g2_trellis2_ep41_k279_s2025_lib_t3fit.glb",
+  "md5": "13f430a3c6d5e550d3bec3628ec41303",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.2948,
+  "note": null
+ },
+ {
+  "index": 4,
+  "object": "white_pot",
+  "label": "G2/white_pot/hy21/ep44_white_pot_k3_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/white_pot_g2_hy21_ep44_k3_s42_lib.glb",
+  "md5": "d075edef42e9b86de553ed4aefcf3281",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.3027,
+  "note": null
+ },
+ {
+  "index": 5,
+  "object": "white_pot",
+  "label": "G2/white_pot/hy21/ep44_white_pot_k3_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/white_pot_g2_hy21_ep44_k3_s42_lib_t3fit.glb",
+  "md5": "cb47b6430ac84c6d04d937573055358c",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.3027,
+  "note": null
+ },
+ {
+  "index": 6,
+  "object": "white_pot",
+  "label": "G2/white_pot/trellis2/ep41_white_pot_k285_s7/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/white_pot_g2_trellis2_ep41_k285_s7_lib.glb",
+  "md5": "658695f6fe64bd05dd0f90c933601d94",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.3098,
+  "note": null
+ },
+ {
+  "index": 7,
+  "object": "white_pot",
+  "label": "G2/white_pot/trellis2/ep41_white_pot_k285_s7/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/white_pot_g2_trellis2_ep41_k285_s7_lib_t3fit.glb",
+  "md5": "68b8660f3d7b2925b4e51231032463a1",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.3098,
+  "note": null
+ },
+ {
+  "index": 8,
+  "object": "blue_cup",
+  "label": "G2/blue_cup/sam3d/ep22_blue_cup_k159_s7/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/blue_cup_g2_sam3d_ep22_k159_s7_lib.glb",
+  "md5": "30370a51b8fedcd5e1a530425560d618",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "stage1_cdo_D": 0.243,
+  "note": null
+ },
+ {
+  "index": 9,
+  "object": "blue_cup",
+  "label": "G2/blue_cup/sam3d/ep22_blue_cup_k159_s7/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/blue_cup_g2_sam3d_ep22_k159_s7_lib_t3fit.glb",
+  "md5": "ab012e4e0add44c3923fd172c4639734",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "stage1_cdo_D": 0.243,
+  "note": null
+ },
+ {
+  "index": 10,
+  "object": "blue_cup",
+  "label": "G2/blue_cup/hy21/ep22_blue_cup_k159_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/blue_cup_g2_hy21_ep22_k159_s123_lib.glb",
+  "md5": "6e8d49cbbb1e58fac69aebef4f94a032",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "stage1_cdo_D": 0.2448,
+  "note": null
+ },
+ {
+  "index": 11,
+  "object": "blue_cup",
+  "label": "G2/blue_cup/hy21/ep22_blue_cup_k159_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/blue_cup_g2_hy21_ep22_k159_s123_lib_t3fit.glb",
+  "md5": "9ff171dff6cd3792d19caf9670fea81d",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "stage1_cdo_D": 0.2448,
+  "note": null
+ },
+ {
+  "index": 12,
+  "object": "blue_cup",
+  "label": "G2/blue_cup/hy21/ep22_blue_cup_k156_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/blue_cup_g2_hy21_ep22_k156_s123_lib.glb",
+  "md5": "bff56a920d0020544257facea70539f4",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "stage1_cdo_D": 0.2565,
+  "note": null
+ },
+ {
+  "index": 13,
+  "object": "blue_cup",
+  "label": "G2/blue_cup/hy21/ep22_blue_cup_k156_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/blue_cup_g2_hy21_ep22_k156_s123_lib_t3fit.glb",
+  "md5": "198e87562f45b919a477936517e08199",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "stage1_cdo_D": 0.2565,
+  "note": null
+ },
+ {
+  "index": 14,
+  "object": "blue_cup",
+  "label": "G2/blue_cup/sam3d/ep22_blue_cup_k156_s7/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/blue_cup_g2_sam3d_ep22_k156_s7_lib.glb",
+  "md5": "1eaa182ae54e51f552ddb47e2ce9468e",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "stage1_cdo_D": 0.2615,
+  "note": "regenerates the shipped 13f blue cup source (same crop file and seed: sam3d ep22 k156 s7), not byte-identical"
+ },
+ {
+  "index": 15,
+  "object": "blue_cup",
+  "label": "G2/blue_cup/sam3d/ep22_blue_cup_k156_s7/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/blue_cup_g2_sam3d_ep22_k156_s7_lib_t3fit.glb",
+  "md5": "1d0b3f84c8ef8ca81bea36d85a8df918",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    10,
+    0
+   ],
+   [
+    14,
+    0
+   ],
+   [
+    20,
+    0
+   ],
+   [
+    32,
+    0
+   ],
+   [
+    33,
+    0
+   ]
+  ],
+  "stage1_cdo_D": 0.2615,
+  "note": "regenerates the shipped 13f blue cup source (same crop file and seed: sam3d ep22 k156 s7), not byte-identical"
+ },
+ {
+  "index": 16,
+  "object": "plastic_dish_rack",
+  "label": "G2/plastic_dish_rack/hy21/ep31_plastic_dish_rack_k282_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/plastic_dish_rack_g2_hy21_ep31_k282_s123_lib.glb",
+  "md5": "c024cadcbd63121bdc26efa4cc98d09a",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4027,
+  "note": null
+ },
+ {
+  "index": 17,
+  "object": "plastic_dish_rack",
+  "label": "G2/plastic_dish_rack/hy21/ep31_plastic_dish_rack_k282_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/plastic_dish_rack_g2_hy21_ep31_k282_s123_lib_t3fit.glb",
+  "md5": "a289d009c45c6ee09d7dd787b8e7dbcf",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4027,
+  "note": null
+ },
+ {
+  "index": 18,
+  "object": "plastic_dish_rack",
+  "label": "G2/plastic_dish_rack/hy21/ep31_plastic_dish_rack_k285_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/plastic_dish_rack_g2_hy21_ep31_k285_s123_lib.glb",
+  "md5": "472be0a8c1014190b4f7dbcef2e7633d",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4279,
+  "note": null
+ },
+ {
+  "index": 19,
+  "object": "plastic_dish_rack",
+  "label": "G2/plastic_dish_rack/hy21/ep31_plastic_dish_rack_k285_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/plastic_dish_rack_g2_hy21_ep31_k285_s123_lib_t3fit.glb",
+  "md5": "f3bfad933b62daaa9e9e25afcebc6605",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4279,
+  "note": null
+ },
+ {
+  "index": 20,
+  "object": "plastic_dish_rack",
+  "label": "G2/plastic_dish_rack/trellis2/ep31_plastic_dish_rack_k282_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/plastic_dish_rack_g2_trellis2_ep31_k282_s42_lib.glb",
+  "md5": "4d2b13d04d56217e2acd13be994709af",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4294,
+  "note": null
+ },
+ {
+  "index": 21,
+  "object": "plastic_dish_rack",
+  "label": "G2/plastic_dish_rack/trellis2/ep31_plastic_dish_rack_k282_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/plastic_dish_rack_g2_trellis2_ep31_k282_s42_lib_t3fit.glb",
+  "md5": "835d676135476c3852bebe0d03996455",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4294,
+  "note": null
+ },
+ {
+  "index": 22,
+  "object": "plastic_dish_rack",
+  "label": "G2/plastic_dish_rack/hy21/ep12_plastic_dish_rack_k24_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/plastic_dish_rack_g2_hy21_ep12_k24_s42_lib.glb",
+  "md5": "ce1368f067e23b99c4d3e5bbf2971bd5",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4418,
+  "note": null
+ },
+ {
+  "index": 23,
+  "object": "plastic_dish_rack",
+  "label": "G2/plastic_dish_rack/hy21/ep12_plastic_dish_rack_k24_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/plastic_dish_rack_g2_hy21_ep12_k24_s42_lib_t3fit.glb",
+  "md5": "662683efc91a1ac6f4c0f9c66e76ecbb",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4418,
+  "note": null
+ },
+ {
+  "index": 24,
+  "object": "water_pitcher",
+  "label": "G2/water_pitcher/hy21/ep22_water_pitcher_k174_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/water_pitcher_g2_hy21_ep22_k174_s123_lib.glb",
+  "md5": "45040490492936d86902b9e047b3fdd8",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.3868,
+  "note": null
+ },
+ {
+  "index": 25,
+  "object": "water_pitcher",
+  "label": "G2/water_pitcher/hy21/ep22_water_pitcher_k174_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/water_pitcher_g2_hy21_ep22_k174_s123_lib_t3fit.glb",
+  "md5": "7aac3b09f8f14c86c95100516dba3fc7",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.3868,
+  "note": null
+ },
+ {
+  "index": 26,
+  "object": "water_pitcher",
+  "label": "G2/water_pitcher/trellis2/ep22_water_pitcher_k33_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/water_pitcher_g2_trellis2_ep22_k33_s42_lib.glb",
+  "md5": "ae791f022e337c08a31fe38b7bec8833",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4653,
+  "note": null
+ },
+ {
+  "index": 27,
+  "object": "water_pitcher",
+  "label": "G2/water_pitcher/trellis2/ep22_water_pitcher_k33_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/water_pitcher_g2_trellis2_ep22_k33_s42_lib_t3fit.glb",
+  "md5": "b0e5ff498cdf74950d36d4c71cae6707",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4653,
+  "note": null
+ },
+ {
+  "index": 28,
+  "object": "water_pitcher",
+  "label": "G2/water_pitcher/trellis2/ep22_water_pitcher_k33_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/water_pitcher_g2_trellis2_ep22_k33_s2025_lib.glb",
+  "md5": "6ef8140e34d83b720135ec0715172c54",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4729,
+  "note": null
+ },
+ {
+  "index": 29,
+  "object": "water_pitcher",
+  "label": "G2/water_pitcher/trellis2/ep22_water_pitcher_k33_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/water_pitcher_g2_trellis2_ep22_k33_s2025_lib_t3fit.glb",
+  "md5": "2c06b3b35ef98a414c47fd3ad65068af",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4729,
+  "note": null
+ },
+ {
+  "index": 30,
+  "object": "water_pitcher",
+  "label": "G2/water_pitcher/trellis2/ep22_water_pitcher_k33_s7/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/water_pitcher_g2_trellis2_ep22_k33_s7_lib.glb",
+  "md5": "7914172e3cdae94e8fd919f6ff645ff1",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4777,
+  "note": null
+ },
+ {
+  "index": 31,
+  "object": "water_pitcher",
+  "label": "G2/water_pitcher/trellis2/ep22_water_pitcher_k33_s7/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261102-g2b-ff63482/stage2/water_pitcher_g2_trellis2_ep22_k33_s7_lib_t3fit.glb",
+  "md5": "7dc61ac02a347d6914d5bbfa93c6f0ec",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit to our observed points)",
+  "eval_pairs": [
+   [
+    20,
+    1
+   ]
+  ],
+  "stage1_cdo_D": 0.4777,
+  "note": null
+ }
+]
