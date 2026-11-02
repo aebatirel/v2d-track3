@@ -6442,3 +6442,10 @@ diagnostic; nothing is picked for submission.
   - No post-hoc OK for pot tsdf/ep43 or dust pan Pixal s7. Instead they go to the perception lane's pre-registered
     public-pose test. Files committed (30186bb; md5 3591440e…, 35de4733…) and sent to session "Perception accuracy on
     public episodes".
+
+### 2026-11-02 ~21:50 UTC: G2 generation done; hash freeze
+- Box 58874418 (run mesh-20261102-g2b-ff63482): SAM 3D 88/88, Hunyuan3D-2.1 88/88, TRELLIS.2 82/88 at 1536 + 6/6 at 1024
+  (ep22 blue-cup crops ran out of memory at 1536 even on the 140 GB H200), Sim(3) fits 264/264. Per object: pot 72,
+  blue cup 72, rack 72, pitcher 48. Generation 20:52-21:46 UTC (box clock).
+- Freeze: `cdo-sprint/G2/results/SHA256SUMS` (528 files: 264 raw + 264 Sim(3)) and the generation / fit logs, committed
+  before any public-scan read of these meshes. Next: upload to the store, 6-seed screen on the box's CPUs.

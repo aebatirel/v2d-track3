@@ -1,0 +1,27 @@
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+[2026-11-02T20:47:17Z] UV-OK
+[2026-11-02T20:47:21Z] CODE-Pixal3D-OK f7cf38429b0bd264f1995f0f8743a88b1c728b94
+[2026-11-02T20:47:26Z] CODE-TRELLIS.2-OK 75fbf0183001ed9876c8dbb35de6b68552ee08bd
+[2026-11-02T20:47:27Z] CODE-TripoSG-OK fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c
+[2026-11-02T20:47:33Z] CODE-Hunyuan3D-2.1-OK 82920d643c0dc2f7bfd7255f45f62d386edfe60c
+[2026-11-02T20:47:57Z] A-TORCH-OK
+[2026-11-02T20:48:00Z] A-BASIC-OK
+[2026-11-02T20:48:33Z] A-MOGE-OK
+[2026-11-02T20:48:44Z] W-PIXAL3D-OK
+[2026-11-02T20:48:47Z] A-WHEELS-OK
+2.6.0+cu124 NVIDIA H200 NVL
+[2026-11-02T20:48:54Z] A-IMPORT-OK
+[2026-11-02T20:49:12Z] B-TORCH-OK
+[2026-11-02T20:49:16Z] B-BASIC-OK
+[2026-11-02T20:49:24Z] W-DINO-BIREF-OK
+[2026-11-02T20:49:41Z] B-DISO-OK
+2.6.0+cu124
+[2026-11-02T20:49:46Z] B-IMPORT-OK
+[2026-11-02T20:50:21Z] W-TRELLIS2-OK
+[2026-11-02T20:50:59Z] W-TRIPOSG-OK
+[2026-11-02T20:51:00Z] W-HY21-FAIL
+[2026-11-02T20:51:00Z] WEIGHTS-DONE 49G
+[2026-11-02T20:51:00Z] SETUP-DONE

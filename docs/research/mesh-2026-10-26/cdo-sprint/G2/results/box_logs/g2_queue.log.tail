@@ -1,0 +1,21 @@
+[2026-11-02T20:48:19Z] INPUTS-OK de9fc1c954666d14
+[2026-11-02T20:48:19Z] crops: 22; NP=64
+[2026-11-02T20:51:59Z] setup markers: 1-OK 2-OK 3D-OK A-BASIC-OK A-IMPORT-OK A-MOGE-OK A-TORCH-OK A-WHEELS-OK B-BASIC-OK B-DISO-OK B-IMPORT-OK B-TORCH-OK C-BASIC-OK C-CODE-OK C-EXTRA-OK C-IMPORT-OK C-KAOLIN-STUB-OK C-MOGE-OK C-P3D-OK C-TORCH-OK SG-OK UV-OK W-DINO-BIREF-OK W-HY21-FAIL W-PIXAL3D-OK W-TRELLIS2-OK W-TRIPOSG-OK 
+[2026-11-02T20:51:59Z] hy21 seeds 42,7,123,2025: 22 crops
+[2026-11-02T20:51:59Z] sam3d seeds 42,7,123,2025: 22 crops
+[2026-11-02T21:13:50Z] sam3d done: 88 ok
+[2026-11-02T21:13:58Z] operator: .hy21_gen_done touched after SAM 3D finished, so TRELLIS.2 runs alongside the small Hunyuan job (H200 143 GB; Hunyuan ~10 GB)
+[2026-11-02T21:14:00Z] trellis2 1536 seeds 42,7,123,2025: 22 crops
+[2026-11-02T21:18:04Z] sim3 sam3d: 88 fit lines, 88 meshes
+[2026-11-02T21:30:49Z] hy21 done: 88 ok
+[2026-11-02T21:36:22Z] sim3 hy21: 88 fit lines, 88 meshes
+[2026-11-02T21:37:09Z] trellis2 1024 seeds 42,7: crops_flat/ep22_blue_cup_k156.png crops_flat/ep22_blue_cup_k159.png
+[2026-11-02T21:38:25Z] trellis2 1024 seeds 123: crops_flat/ep22_blue_cup_k159.png
+[2026-11-02T21:39:19Z] trellis2 1024 seeds 2025: crops_flat/ep22_blue_cup_k156.png
+[2026-11-02T21:40:12Z] trellis2 done: 82 ok at 1536, 6 at 1024
+[2026-11-02T21:44:17Z] sim3 trellis2: 82 fit lines, 82 meshes
+[2026-11-02T21:46:30Z] sim3 trellis2_1024: 6 fit lines, 6 meshes
+[2026-11-02T21:46:31Z] sim3 hy21: 88 fit lines, 88 meshes
+[2026-11-02T21:46:32Z] sim3 sam3d: 88 fit lines, 88 meshes
+[2026-11-02T21:46:34Z] SHA256SUMS: 528 files
+[2026-11-02T21:46:34Z] G2-GEN-DONE

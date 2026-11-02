@@ -58,3 +58,13 @@ Spec: `../C4-audit/PREREG.md` section 7 (addendum 2, e573235), sections 2-3. Tim
   CD-O median <= shipped 50-seed median + 0.005 (pot 0.3157, blue cup 0.2696, rack 0.4232, pitcher 0.3763), when not
   already among the 4 by CD-O; field why = "cdo_top4" | "add_ext". Read literally: the 2 lowest are taken first and any
   already in the top 4 is not replaced. `scripts/stage2.py` updated before any score exists.
+- 21:30:49Z Hunyuan done 88/88 (~25 s each). 21:40:12Z TRELLIS.2 done: 82/88 at 1536; the 6 failures are all ep22
+  blue cup (k156 s42/s7/s2025, k159 s42/s7/s123), CUDA OOM even on 140 GB (two failed with the TRELLIS process alone at
+  138.7 GB; four while Hunyuan held 8.6 GB), rerun at 1024 (`trellis2_1024`, labelled): 6/6 ok.
+  Sim(3) fits: 264/264 (sam3d 88, hy21 88, trellis2 82, trellis2_1024 6). The 2-line errors.log in sam3d_sim3/hy21_sim3 is
+  xargs running sim3_fit.py once with no arguments in the final gap-fill pass (GNU xargs without -r on empty input);
+  no fit is missing.
+- 21:46:34Z G2-GEN-DONE: SHA256SUMS over 528 .ply (264 raw + 264 Sim(3)). Per object: pot 72, blue cup 72 (incl. 6 at
+  1024), rack 72, pitcher 48; 0 lost.
+- FREEZE: `results/SHA256SUMS`, `results/gen_logs/`, `results/sim3_fits/`, `results/box_logs/` (log tails) committed
+  next, BEFORE any public-scan read of these meshes. No G2 mesh has been scored or compared with a scan.

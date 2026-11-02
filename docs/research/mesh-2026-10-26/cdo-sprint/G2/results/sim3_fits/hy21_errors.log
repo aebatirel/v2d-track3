@@ -1,0 +1,2 @@
+usage: sim3_fit.py [-h] --obs OBS --out OUT [--n N] mesh
+sim3_fit.py: error: argument --obs: expected one argument
