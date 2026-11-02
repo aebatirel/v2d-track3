@@ -1,0 +1,80 @@
+{
+ "occ": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/../C3/tierB/meshes/wooden_piece_2_ep24_occ.glb",
+ "lib": "meshes/library_v3/wooden_piece_2.glb",
+ "obs": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep24_wooden_piece_2.npz",
+ "t_mm": 8.93,
+ "n_prot_faces": 4950,
+ "clusters": [
+  {
+   "cluster": 1,
+   "faces": 69,
+   "centre_mm": [
+    7.9,
+    -55.3,
+    104.2
+   ],
+   "side": 1,
+   "obs_support_pts": 9,
+   "supported": false
+  },
+  {
+   "cluster": 2,
+   "faces": 117,
+   "centre_mm": [
+    -9.8,
+    -40.3,
+    -71.0
+   ],
+   "side": -1,
+   "obs_support_pts": 51281,
+   "supported": true
+  },
+  {
+   "cluster": 3,
+   "faces": 165,
+   "centre_mm": [
+    -10.1,
+    21.7,
+    -100.3
+   ],
+   "side": -1,
+   "obs_support_pts": 46748,
+   "supported": true
+  },
+  {
+   "cluster": 4,
+   "faces": 2264,
+   "centre_mm": [
+    -5.8,
+    7.7,
+    40.5
+   ],
+   "side": -1,
+   "drop": "within 12 mm of an occupancy-plate protrusion"
+  },
+  {
+   "cluster": 5,
+   "faces": 2335,
+   "centre_mm": [
+    6.2,
+    -0.5,
+    -27.2
+   ],
+   "side": 1,
+   "obs_support_pts": 1,
+   "supported": false
+  }
+ ],
+ "v1": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/c4/graft/wooden_piece_2_graft_v1.glb",
+  "faces": 1538,
+  "n_clusters": 2,
+  "md5": "e22455c05c85bbdbc0e8a0375ea016da"
+ },
+ "v2": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/c4/graft/wooden_piece_2_graft_v2.glb",
+  "faces": 3942,
+  "n_clusters": 4,
+  "md5": "76b776cd41e3b002c77ad9cacee5e431"
+ }
+}

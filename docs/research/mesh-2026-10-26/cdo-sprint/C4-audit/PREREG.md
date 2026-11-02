@@ -75,7 +75,7 @@ Further rules:
 - `results/adoption.json`: the rule applied.
 - `NOTES.md`: timestamped log.
 
-## 6. Addendum 1 (2026-11-02 ~20:20 UTC, before any build or score of these variants): less-symmetric board 2
+## 6. Addendum 1 (2026-11-02 20:03 UTC by commit time, before any build or score of these variants): less-symmetric board 2
 **Why.** Audit part 1: the shipped wooden_piece_2 (Tier B occupancy plate) flips on 34% of 50 seeds [D]. The coordinator
 (20:01 UTC) asked for a GT-free, less-symmetric board-2 variant, adoptable only under rule (B).
 
