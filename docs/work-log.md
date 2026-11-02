@@ -7251,3 +7251,10 @@ arm and a no-policy replay floor to stage B.
     - pitcher: none.
     - → 13h as a CD-O variant on 13f; the pose boards get G2 meshes only via round-2 CV.
   - Round-2 pose CV is running (CPU).
+- ~23:29 UTC 2 Nov perfect-following: **pack 14 ready on 13f**: eval 14 p0m s43 (Tier B rack + 13f cup collision,
+  board's bridged reference, grasp lock).
+  - Fresh 10 draws 0.933 vs 0.875; fails 0 vs 1; median RPE 1.97 vs 2.71 cm; draw 1 0.942 vs 0.895; gain +0.058 →
+    PASS + INCLUDE. Box 0.946 → fresh 0.933 held.
+  - Eval 20 no swap; eval 30 s43 ~01:00; eval 28 s42 0.841 vs 0.919, s43 training.
+  - Coordinator: pack 14 on 13f is not uploaded. Requested **14p = 13p2 + eval 14 rows** (keeping 13p2's pose-CV
+    meshes); 14p2 adds eval 30 if it passes.
