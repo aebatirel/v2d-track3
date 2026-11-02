@@ -6630,3 +6630,13 @@ arm and a no-policy replay floor to stage B.
     generation toward a goal, while our robot must reproduce a specific demonstrated object trajectory under contact,
     learned by RL and run by the official evaluator. Smoothing / re-generating targets (test A) already failed. Not
     adopted.
+- ~09:20 UTC 2 Nov Roman (via the owner): "which perception model is now used?" and RoPT (arXiv 2610.28962, Liang et al.,
+  NYU / GM, 20 Oct 2026), among "methods which claim to outperform FoundationPose".
+  - [L] RoPT = EdgeTAM masks + FoundationPose refiner / scorer + a GTSAM robust constant-velocity factor graph +
+    score- / jump-triggered re-localization (MASt3R + PnP).
+  - [L] YCBInEOAT native frame rate: same as FoundationPose (92.02 vs 91.96 ADD-AUC); at 16× frame skip 90.85 vs 38.87.
+    18.6 fps. No code yet.
+  - [H] It targets exactly our drift-then-snap failure (evals 14 / 32 / 33). Sent to the perception session as a design
+    reference with a suggested pre-registered public test.
+  - Other candidates found [L]: Opra et al. (Bonn, arXiv 2607.23468: built-in recovery, accuracy similar to
+    FoundationPose, 40 % faster); RGBTrack (2506.17119, depth-free); GoTrack (2506.07155); ProxyPose (2607.06555).
