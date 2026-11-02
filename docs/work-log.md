@@ -6785,3 +6785,6 @@ arm and a no-policy replay floor to stage B.
   posecv_manifest.json @ 175089d4, all library_v3 frame, placed GT-free), 45 candidates after removing md5-identical
   13p choices, 157 runs queued. Coordinator: pack 13p uploaded, AUC 0.88257 (+0.0103 vs 13f), RPE 2.22667, MPPE
   1.82356. Box G (eval-20 masks) still in setup.
+- 23:15 UTC **(c) eval-20 pitcher placement done** (box G 58880163 self-destroyed, ≈ $0.6): same frame-0 detection as
+  the packed run; fit on the reference body poses: Δ 2.89° / 0.47 cm, trimmed RMS 3.81 → 2.57 mm, guards pass; D1 3.4°
+  (unplaced 3.3°). `meshes/pose_pack_13p2/` (md5 fb2cb7ea…); sent to focused-pascal for 13p2.
