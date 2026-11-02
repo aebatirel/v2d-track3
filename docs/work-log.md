@@ -6988,3 +6988,14 @@ arm and a no-policy replay floor to stage B.
   - Scores: AUC **0.87225**, RPE **2.38260**, CD-O **0.26249** (best); MPPE 1.92530 (13e 1.92180 stays best);
     SP-SR 0.90; MP-SR 0.80.
   - Ranks unchanged (47, 7th). Next: the mesh audit, then 13g.
+- ~19:38 UTC 2 Nov bold-albattani: mesh audit started. PREREG d3db66c (C4-audit/PREREG.md) pushed before any run.
+  - Setup: kit registration plus CD-O against the public scans; 50 fresh seeds (3001–3050), with no eval seed.
+  - Metrics: CD-O, flip rate (> 90°), W30 (> 30°), anchor, rotation, GT-free self-ambiguity.
+  - Candidates: 52 meshes, frozen in candidates.json.
+  - Adoption rule for 13g (baseline = 13f):
+    - (A) CD-O −0.020 with W30 ≤ +0.05; or
+    - (B) W30 −0.20 with CD-O ≤ +0.005 and anchor ≤ +2 mm;
+    - no scan copies; no leaderboard input.
+  - **Spoon: no public scan exists**, so it cannot be judged by this rule. A GT-free approach will be proposed with the
+    table.
+  - Timing: shipped rows in ~20 min, all 52 in ~85 min.
