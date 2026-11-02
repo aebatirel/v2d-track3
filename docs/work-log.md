@@ -6640,3 +6640,17 @@ arm and a no-policy replay floor to stage B.
     reference with a suggested pre-registered public test.
   - Other candidates found [L]: Opra et al. (Bonn, arXiv 2607.23468: built-in recovery, accuracy similar to
     FoundationPose, 40 % faster); RGBTrack (2506.17119, depth-free); GoTrack (2506.07155); ProxyPose (2607.06555).
+- 09:40 UTC 2 Nov perception-tracking session (claude/perception-tracking-20261102):
+  - Running: variant MG (PREREG docs/analysis/ptrk-20261102/PREREG.md) = SAM2 video masks from our own f0 detection on
+    every frame; depth restricted to the mask; translation re-centred when the mask leaves the rendered silhouette;
+    re-registration on the tracked mask when coverage stays < 0.5. Ablations MD / MR plus a repeated control. 20 public
+    episodes on 2 RTX 5090s, ~60 % done.
+  - Interim (7 eps): neutral, within tracker noise (control repeat ±0.004 / ep).
+  - [D] Public tracks show NO drift-then-snap. Frames > 3 cm off are the ep0 lost lid, the ep23 board swap and bias
+    (pitcher, ep24 board), so a public gate can mainly show harm / no-harm for this family.
+  - Problem: some VOS runs crash with GPU OOM on 32 GB cards during the guard's re-registration; re-run on a 96 GB box
+    (~$1–2).
+  - Also running: complete-base pitcher as tracking template (looks bad: 3 guard re-acquisitions on ep21);
+    full-resolution stereo depth (20 eps).
+  - **S2 half-frame advance is not in any packed reference.** Sent to perfect-following with apply instructions.
+  - Spend ≈ $5 of $30.
