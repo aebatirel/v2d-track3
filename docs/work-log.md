@@ -6814,3 +6814,28 @@ arm and a no-policy replay floor to stage B.
   - [H, perfect-following] box draws overstate lift policies.
   - Room map: run3 rebuilt GT-free (370 public images, 1.11 px, 22 min CPU); eval relocalisation running
     (580–750 inliers per frame).
+
+## 2026-11-02 point-track session (branch claude/point-track-20261102, session_01D9UJC72kCbx1mWTB2pwupw)
+- ~17:10 UTC start (coordinator brief; owner 17:05 "first do the tests"). Read STATUS, CLAUDE.md, note 05 alt. D,
+  perception-tracking's log and PREREGs.
+- Tool choice (licences checked 2 Nov): BootsTAPIR (google-deepmind/tapnet, code + weights Apache-2.0) as the learned
+  tracker; OpenCV pyramidal KLT (Apache-2.0) as a $0 CPU arm. Rejected: CoTracker3 (CC-BY-NC 4.0); TAPIP3D (code
+  Apache-2.0, weight licence not stated, compiled extensions, its own depth front end); ReLift deferred (NC front ends).
+- Base: ptrkD "Cr" (code 95cecd7 tracker = 7fbc321; all 20 public episodes), pulled from the store
+  `runs/20261102-ptrkD-95cecd7/results/ptrk/Cr/ep*/` (poses.npz, det_f*.npz, track_guard.json; result.json not pulled)
+  and `cache/depth/public/ep<N>/depths_fs0.5.npy`. Scorer harness: pipeline/score_registered.py, public scans as meshes
+  (reproduces Cr ep23 AUC 0.0418).
+- New `pipeline/ptrack.py` (inference only, CPU): KLT tracks in perc2's f0 mask, lift with cached depth, RANSAC +
+  trimmed Kabsch per object, divergence detector (window W), lag-only repair. ep23 dev run: 8 s per episode on CPU.
+  - [M] KLT holds the boards until fast motion (piece_1 lost at f105-106 when slid; piece_2 at ~f80 when held
+    edge-on); no re-acquisition.
+  - BootsTAPIR CPU timing test was blocked by this session's permission classifier (running downloaded external code
+    locally). It can run on a rented box instead.
+- **ep23 diagnostic [D] (Cr control, mocap read after inference):** an identity swap of the two boards hidden by the
+  frame-0 scene alignment, not a joint freeze. Displacement-from-f0 profiles: ours piece_2 0 / 0.1 / 0.6 / 7.7 / 8.0 /
+  10.8 / 12.8 cm (every 10 f) vs mocap piece_1 0 / 0 / 0.8 / 7.7 / 8.1 / 11.6 / 11.9; ours piece_1 static to f120 then
+  3.8 / 11.0 / 13.1 / 22.1 vs mocap piece_2 static to f120 then 3.3 / 10.3 / 22.6. Point tracks (GT-free) agree with
+  FoundationPose's motion where they hold. All-frame rigid position fit to mocap: as named median 7.8 / 7.4 cm,
+  swapped 3.2 / 5.0 cm. A plain name swap scores 0.036 (orientation carries the mesh's slot side), so the fix is
+  re-registration, not relabelling. Sent to perception-tracking (detection is their lane). Eval 25 has the same boards.
+  [I] A point-track second opinion cannot fix an identity swap; ep23 drops out of this test's expected gains.
