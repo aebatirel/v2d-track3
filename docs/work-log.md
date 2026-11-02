@@ -6611,3 +6611,10 @@ arm and a no-policy replay floor to stage B.
 - 08:45 UTC **interim [D], 3 / 20 episodes (2, 12, 31), not a verdict:** ΔAUC vs C: MG −0.0003 (ep2 −0.008, ep12
   +0.012, ep31 −0.005), MD +0.0003, MR −0.0033; control repeat C2 − C per episode +0.004 / −0.002 / 0.000. MG RPE
   +0.16 cm. Boxes: A ep0, B ep26, C ep22 (pitcher). Spend ≈ $3 so far [E].
+- 09:05 UTC **GPU out-of-memory on the RTX 5090 (32 GB) [M]:** runs crash in the track guard's re-registration
+  (`est.register` scorer, +4.5 GiB, 28 GiB in use) when the video-segmentation model and the detection models are both
+  loaded: MD / MR ep0, MG / MR ep26, P ep21 / ep22 so far. Controls never crashed (no VOS model). The PRO 6000 (96 GB)
+  boxes used before never showed this. Plan: per PREREG a crashed cell counts as the control for the primary gate; as
+  a reported secondary, every crashed cell is re-run unchanged on one PRO 6000 box after A / B / C finish (≈ $1–2 [E]).
+  The pitcher template already looks bad before the crash: ep21 P had 3 guard re-acquisitions (f4, f17, f96), the
+  control 0; the lathe pitcher sits lower / wider (extents 0.218 × 0.274 × 0.412 m vs v3 0.148 × 0.261 × 0.412).
