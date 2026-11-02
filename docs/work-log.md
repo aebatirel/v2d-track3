@@ -10831,3 +10831,7 @@ score.
 - ~00:40 UTC 2 Nov pre-registered docs/research/work/pf-release-20261102/PREREG.md (eval 16 spoon held to the end;
   grasp_lock.py --hold_to_end, CPU-tested: zero-action 0.539 → 0.581). Spend so far $22.08 (credit $100.77 at 00:33).
 - 00:42 UTC 2 Nov **pfF launched**: 20261102-pfF-a0f39a4 (Spain WS $1.39/h), `EP=16 SPLIT=eval ARMS="s se" HOLD_TO_END=wooden_spoon`.
+- 00:58 UTC 2 Nov **eval 32 guard-bridge candidate: PASS + INCLUDE** (scored on CPU from pfD's stored rollouts, same
+  tools and rule) [M]: seed 43 (training box 0.895 vs s42 0.877); 10 fresh official draws: vs B 0.890 (packed 0.851),
+  fails 0 / 10 vs 4 / 10 (B), median RPE 2.75 vs 4.60 cm; vs P 0.867 (packed 0.852, clause a holds; fails 0 vs 1 / 10);
+  gain on B +0.040 ≥ +0.02. Eval 33 bridged: seed 43 0.898 (s42 0.406), confirmation running.

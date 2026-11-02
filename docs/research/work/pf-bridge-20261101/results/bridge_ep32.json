@@ -1,0 +1,77 @@
+{
+ "inp": "/content/pf_in/ep32/base_unbridged.parquet",
+ "out": "/content/refs/perc2mck/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/983a0ed996974b75a92e4fb9ba91deaf-0.parquet",
+ "events": "blue_cup:21,blue_cup:34",
+ "params": {
+  "DRIFT_CM": 3.0,
+  "PAIR": 20,
+  "MAX_BACK": 30,
+  "JUMP_CM": 4.0,
+  "JUMP_DEG": 30.0,
+  "RAMP": 6
+ },
+ "changed": {
+  "blue_cup": {
+   "frames": 13,
+   "max_cm": 15.9
+  }
+ },
+ "report": [
+  {
+   "object": "blue_cup",
+   "events": [
+    21,
+    34
+   ],
+   "spans": [
+    {
+     "events": [
+      21,
+      34
+     ],
+     "span": [
+      21,
+      33
+     ],
+     "why": "two re-acquisitions 13 frames apart",
+     "max_shift_cm": 15.9,
+     "jump_after_bridge": [
+      1.3,
+      6.4
+     ],
+     "d_cm_around": {
+      "9": 0.9,
+      "10": 0.6,
+      "11": 0.6,
+      "12": 0.6,
+      "13": 1.1,
+      "14": 0.6,
+      "15": 0.6,
+      "16": 0.6,
+      "17": 0.6,
+      "18": 0.6,
+      "19": 0.6,
+      "20": 0.6,
+      "21": 0.8,
+      "22": 1.7,
+      "23": 2.6,
+      "24": 3.2,
+      "25": 3.8,
+      "26": 4.2,
+      "27": 5.2,
+      "28": 6.1,
+      "29": 7.2,
+      "30": 8.3,
+      "31": 9.7,
+      "32": 9.2,
+      "33": 9.4,
+      "34": 0.1,
+      "35": 0.7,
+      "36": 0.5,
+      "37": 0.6
+     }
+    }
+   ]
+  }
+ ]
+}
