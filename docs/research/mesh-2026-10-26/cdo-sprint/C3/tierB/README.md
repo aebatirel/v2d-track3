@@ -1,4 +1,4 @@
-# C3 Tier B: CD-O-only mesh swaps chosen with public ground truth (2 Nov 2026) — DRAFT, pitcher scoring running
+# C3 Tier B: CD-O-only mesh swaps chosen with public ground truth (2 Nov 2026)
 
 ## How ground truth entered the selection (read this first)
 - **Every mesh in this set was chosen because it scored best against the public object scans.** The public scans are
@@ -22,10 +22,36 @@ Labels: [D] diagnostic, scored against the public scan after inference; [M] meas
 [E] estimate. Repo paths are relative to `docs/research/mesh-2026-10-26/` unless they start with `meshes/`.
 
 ## The set (pack 12e = pack 12d + these payload swaps; transform none for all)
-PITCHER_TABLE_PLACEHOLDER
+All paths are under `cdo-sprint/C3/tierB/meshes/`. "Shipped" means the mesh in pack 12d that this file replaces. CD-O is
+per eval pair, in cm [D]. Frame is a rigid ICP onto the shipped mesh [M]. "Anchor" is the kit-registration error at the
+scan anchor [D], per eval seed; it is a pose-risk indicator, not a frame error.
+
+| Object | File (md5) | Replaces (md5) | Eval (slot) | CD-O before -> after [D] | Faces in file | Frame vs shipped [M] | Anchor before -> after [D] | Selection (how GT entered) |
+|---|---|---|---|---|---|---|---|---|
+| water_pitcher | `water_pitcher_hy21_ep22_k174_s42_lib.glb` (e59c15a3e4a442ebc52e7cd72ab73124) | 12d T3 fit `water_pitcher_t3fit.glb` (61503a91...) | 20 (1) | 0.7226 -> **0.3722** | 400,000 (the kit's `budget_mesh` cuts it to 4090 at packing, as for 12b's dust pan) | ICP 6.89 mm / 1.88 deg; centroid 21.9 mm | 29.4 -> 14.5 mm | Hunyuan3D-2.1 mesh generated from public ep22 frames, seed 42. Chosen as the best of the generator outputs by public-scan CD-O (seed 7: 0.570; SAM 3D: 0.650; T2 pick: 0.771). Placed GT-free; scored once (31 seeds, 0 flips). |
+| mini_sweeper | `mini_sweeper_P1_partprog.glb` (55fe1682f09721ca5d4e98477bfef150) | library_v3 (c126a8ff...) | 19 (0), 30 (0) | 0.3171 / 0.3168 -> **0.2212 / 0.2239** | 8,514 (budget at packing; scored at 4096) | ICP 2.17 mm / 1.97 deg; centroid 4.9 mm | 5.2 / 4.8 -> 4.0 / 3.3 mm (ADD) | Part program built from our ep18 observed points. Two of its rules were changed after comparing earlier versions with the scan. Lowest sweeper CD-O of all candidates. |
+| plastic_dish_rack | `plastic_dish_rack_dev1_ep31_full.glb` (1176443c748ece893ffdb64a1cc82c9a) | C0 joint rack (bbca8ec0...) | 14 (1), 15 (0), 16 (0), 28 (0), 30 (1) | 0.4537 / 0.4525 / 0.4595 / 0.4619 / 0.4526 -> **0.4203 / 0.4174 / 0.4181 / 0.4194 / 0.4188** | 2,624 | ICP 3.38 mm / 0.60 deg; centroid 5.9 mm | 1.5-3.8 -> 8.1-9.7 mm | Primitive rack fit to public ep31 points (dev build). Lowest rack CD-O of the primitive fits. |
+| wooden_piece_1 | `wooden_piece_1_ep24_occ_d2.glb` (015aaae3183760cd8a48d82b5599d32c) | library_v3 (d152b2b5...) | 25 (0) | 0.2219 -> **0.1893** | 4,438 (budget at packing; scored at 4096) | ICP 1.73 mm / 0.85 deg; centroid 2.6 mm | 2.4 -> 3.3 mm (ADD) | Occupancy plate fit to public ep24 points. Lowest occupancy variant by CD-O. 1 flip in 6 seeds (an extra seed, not the eval seed). |
+| wooden_piece_2 | `wooden_piece_2_ep24_occ.glb` (bf82e385cac24a586168b4f14bf5b245) | library_v3 (825a7fe3...) | 25 (1) | 0.2158 -> **0.1642** | 1,256 | ICP 0.73 mm / 0.59 deg; centroid 4.7 mm | 3.4 -> 4.1 mm (ADD) | Same as wooden_piece_1. 1 flip in 6 seeds (an extra seed). |
+
+- **Not scan copies.** No file is a byte copy of a public scan; md5 was checked against all 10 scan files.
+  - Every file was built from our own video-derived points (sweeper, rack, boards) or generated from video frames
+    (pitcher).
+  - Their CD-O to the scan is 0.16-0.42 cm, far from the near-0 of a scan template.
+- **Pose boards.** On the anchor error, the pitcher (29 -> 15 mm) and the sweeper improve on 12d. The boards are slightly
+  worse (+0.7-0.9 mm). The rack is clearly worse (about 9 mm vs about 3 mm), so the rack pairs' pose scores will
+  probably drop. Each board keeps our best
+  submission.
 
 ## Expected board effect
-BOARD_PLACEHOLDER
+Board model: the pair-weighted mean over 36 eval pairs. The public scans stand in for the hidden ones, so the
+model is [D] -> [E]; it predicted 12c within about 0.001.
+- Measured 12c: 0.30008.
+- 12d (tier A) [E]: 0.2902 (-0.0099).
+- Tier B [E]: pitcher -0.0097, sweeper -0.0052, rack -0.0052, wooden_piece_2 -0.0014, wooden_piece_1 -0.0009; total
+  **-0.0225**.
+- **Pack 12e [E]: about 0.268.**
+- The spoon (10 pairs) has no public scan and stays as it is.
 
 ## Files and commands
 - Meshes: `cdo-sprint/C3/tierB/meshes/`. The pitcher is also in the HF store `aebatirel/v2d-store`, under
