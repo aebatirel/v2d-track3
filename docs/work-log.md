@@ -6536,3 +6536,7 @@ arm and a no-policy replay floor to stage B.
   - CD-O (cm): leaders 0.213 / 0.232 / 0.239; us 0.332 (14th).
   - [I] The top six track 2–4× more accurately (RPE / MPPE) and rarely fail an episode. The remaining gap is reference
     accuracy plus failures, not a single episode.
+- ~07:15 UTC 2 Nov owner: "lets not name the kursad for a while".
+  - The night report artifact was rewritten without the name: title "V2D Track 3 Night Report", v5, same URL.
+  - The name was removed from STATUS.md's current entries. Sessions were asked to stop using it in new reports,
+    commits and artifacts. Past commit messages and logs are left as history.
