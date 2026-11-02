@@ -6696,3 +6696,8 @@ arm and a no-policy replay floor to stage B.
   ≈ $25 > the $10 reserve. Eval 1 waits for a top-up.
   - Gave the session the 12c paths (claude/focused-pascal-2nz9s1, results/submissions/20261102-track3n-candidate/
     build_12c/). Pack 13 is built on 12c.
+- 13:05 UTC 2 Nov perfect-following launched pfL (eval 30) and pfM (eval 28): standard learner + lift windows, 2 seeds
+  + 10 confirmation draws each, ≈ 6 h, ≈ $8 each. Eval 1 waits.
+  - 12c fetched and verified; the no-swap repack self-test on 12c is byte-identical, so the blue-cup meshes carry into
+    pack 13.
+  - Results: pfI / pfJ ≈ 17:30–18:30 UTC; pfK / pfL / pfM ≈ 19:00 UTC.
