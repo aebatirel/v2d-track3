@@ -198,3 +198,7 @@ section 9. Baseline S = the then-current shipped mesh of the object.
 - Ties among candidates passing any of (A)/(B)/(C): the lowest W30, then the lowest CDO_med, then the lowest ADD_med.
 - Rule (C) is NOT applied to any mesh already measured in sections 2-8. Pot `potlid/tsdf/ep43` and dust pan Pixal3D-MV
   ep39 s7 go to the perception lane's own pre-registered public-pose test instead (coordinator, 21:16 UTC).
+- **Stage-2 extension for rule (C)**, also before any G2 scoring. Besides addendum 2's 4 lowest stage-1 CD-O medians per
+  object, stage 2 also takes the 2 lowest stage-1 ADD medians among G2 meshes whose stage-1 CD-O median is <= the
+  shipped mesh's 50-seed CD-O median + 0.005, when they are not already among the 4. They are placed and audited the
+  same way.
