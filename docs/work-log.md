@@ -6280,3 +6280,13 @@ diagnostic; nothing is picked for submission.
 - ~09:30 UTC: keen-heisenberg (08:50): tier A is a go, under the owner's standing permission. focused-pascal is building pack 12d
   (12c + the T3 pot + the T3 pitcher). Tier B goes to the owner as a decision. I sent focused-pascal the paths, md5s, transform
   none and my frame numbers. Waiting on their frame report for sign-off.
+- ~09:40 UTC: focused-pascal's 12d frame report flagged:
+  - pot: centroid 8.52 mm; kit proxy 5.7 mm / 1.58 deg; ICP 3.1 mm / 2.22 deg (ok);
+  - pitcher: centroid 10.27 mm; ICP 5.83 mm / 3.46 deg; kit proxy 7.95 mm / 3.69 deg.
+  Signed off YES for both, transform none.
+  - CD-O is registered to the scan, and the [D] values were scored at identity.
+  - The flags are shape differences.
+  - Pose [D]: kit-registration anchor error is pot T3 5.3-5.6 mm vs C0 2.5-3.1 mm, and pitcher T3 29.4 mm vs library_v3
+    6.3 mm (rot 8.0 deg). So 12d is expected worse than 12c on the pose boards for evals 1, 3, 5, 6, 8, 20, 28. That is
+    accepted for a CD-O-only variant (each board keeps its best submission). A body-frame shift would not fix the pitcher's
+    ~30 mm, which comes from the registration sliding.
