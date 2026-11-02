@@ -10859,3 +10859,6 @@ score.
 - 04:12 UTC 2 Nov pfF done (self-destroyed 03:10, 151 min ≈ $3.5): eval 16 s and se both **NO-SWAP** (training-box gate:
   best seeds 0.719 / 0.792 vs 0.8498). pfG (packed-reference arms) seed 42 near the end of training (slower box, ~95 min
   per wave); results ≈ 07:00 UTC. Credit $94.05 → spend so far $28.80 of $102.
+- 04:24 UTC 2 Nov **pfG seed 42 (eval 16, training box vs P)** [M]: p0 (packed reference, current recipe) 0.769 ± 0.057;
+  **pz (packed reference, right hand kept on the spoon from f107) 0.975 ± 0.009** (min 0.952). Packed H5p7 0.850. Seed 43
+  running (~2 h on this box), then the gate and 10 fresh draws.
