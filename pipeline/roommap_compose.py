@@ -14,7 +14,7 @@ import numpy as np, trimesh
 from scipy.spatial.transform import Rotation as Rot
 
 p = argparse.ArgumentParser(); p.add_argument('poses'); p.add_argument('reloc'); p.add_argument('out')
-p.add_argument('--meshes', default=None); p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
+p.add_argument('--meshes', default=None); p.add_argument('--t3', default='/content/t3'); p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
 a = p.parse_args()
 os.makedirs(a.out, exist_ok=True)
 P = np.load(a.poses); R = np.load(a.reloc)
@@ -55,7 +55,9 @@ A = importlib.import_module('AUC')
 
 
 def verts(n):
-    q = f'{a.meshes}/{n}.glb' if a.meshes else None
+    q = f'{a.meshes}/{n}.glb'
+    if not os.path.exists(q):                              # e.g. the spoon: our own model in the t3 mesh dir
+        q = f'{a.t3}/mesh/{n}/{n}.glb'
     m = trimesh.load(q, force='mesh')
     pts = trimesh.sample.sample_surface(m, 500, seed=0)[0]
     return np.asarray(pts)

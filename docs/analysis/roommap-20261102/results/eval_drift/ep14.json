@@ -1,0 +1,35 @@
+{
+ "frames": 158,
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "reloc_ok": 1.0,
+ "gate_rejected": 0.0,
+ "inliers_min": 585,
+ "inliers_median": 773.0,
+ "camera": {
+  "pos_mm_max": 6.619203762413774,
+  "pos_mm_final": 2.449612361733806,
+  "rot_deg_max": 0.12186413468839458,
+  "rot_deg_final": 0.0724825527823791
+ },
+ "objects_mm": {
+  "blue_cup": {
+   "median": 2.0869744078435755,
+   "p95": 5.576926210412672,
+   "max": 6.597877010519354,
+   "final": 2.087703082969751
+  },
+  "plastic_dish_rack": {
+   "median": 1.9894686698933275,
+   "p95": 5.509114290579494,
+   "max": 6.606915353603957,
+   "final": 1.9929766141197534
+  }
+ },
+ "max_obj_p95_mm": 5.576926210412672,
+ "camera_term_auc": 1.0,
+ "camera_term_bound": 0.0,
+ "camera_term_mppe_cm": 0.23949140473104377
+}

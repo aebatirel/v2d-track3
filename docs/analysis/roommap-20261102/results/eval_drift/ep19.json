@@ -1,0 +1,35 @@
+{
+ "frames": 235,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "reloc_ok": 1.0,
+ "gate_rejected": 0.0,
+ "inliers_min": 596,
+ "inliers_median": 788.0,
+ "camera": {
+  "pos_mm_max": 5.394701898830237,
+  "pos_mm_final": 2.9405703531695395,
+  "rot_deg_max": 0.17861404489676452,
+  "rot_deg_final": 0.05983826156858414
+ },
+ "objects_mm": {
+  "mini_sweeper": {
+   "median": 1.6127929858301953,
+   "p95": 3.9166767301796166,
+   "max": 5.075413297851154,
+   "final": 2.6963391255035387
+  },
+  "mini_dust_pan": {
+   "median": 1.6031003228372294,
+   "p95": 3.7230478223662824,
+   "max": 4.948093147185232,
+   "final": 2.5857523317881164
+  }
+ },
+ "max_obj_p95_mm": 3.9166767301796166,
+ "camera_term_auc": 1.0,
+ "camera_term_bound": 0.0,
+ "camera_term_mppe_cm": 0.18555888312189048
+}
