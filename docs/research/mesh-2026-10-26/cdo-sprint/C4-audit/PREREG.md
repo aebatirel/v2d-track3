@@ -188,3 +188,13 @@ is sampled, and the hidden scorer's preparation is unknown.
 - (b) its section-2 50-seed W30 is <= 0.10.
 
 Rules (A)/(B) still choose. D1 only removes candidates.
+
+## 10. Addendum 5 (2026-11-02 ~21:17 UTC, coordinator-approved, before any G2 scoring): rule (C) for G2 candidates
+Applies only to G2 candidates (`candidates_g2.json`), alongside rules (A) and (B) of section 3 and the D1 veto of
+section 9. Baseline S = the then-current shipped mesh of the object.
+- **(C) registration:** `ADD_med(C) <= ADD_med(S) - 2.0 mm` **and** `CDO_med(C) <= CDO_med(S) + 0.005` **and**
+  `W30(C) <= W30(S)` **and** D1 passes.
+- ADD_med and the other metrics come from the section-2 50-seed audit, with the budgeted reference.
+- Ties among candidates passing any of (A)/(B)/(C): the lowest W30, then the lowest CDO_med, then the lowest ADD_med.
+- Rule (C) is NOT applied to any mesh already measured in sections 2-8. Pot `potlid/tsdf/ep43` and dust pan Pixal3D-MV
+  ep39 s7 go to the perception lane's own pre-registered public-pose test instead (coordinator, 21:16 UTC).
