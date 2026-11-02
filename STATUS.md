@@ -1,5 +1,12 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 22:12 TRT (19:12 UTC): PACK 13b READY (not uploaded) — pack 13 + eval 15 (owner waiver)
+- **File:** results/submissions/20261102-track3m-candidate/build_13b/track3_submission.parquet (sha256 c8b85ba4…),
+  built on pack 13; all checks pass. keen-heisenberg uploads on the owner's word.
+- **Eval 15:** 10 fresh official draws 0.958 vs 0.906, no failed draws. It missed one rule clause (median error
+  0.47 mm worse: 1.346 vs 1.299 cm); the owner waived that clause for eval 15 after seeing the result (recorded as post
+  hoc in the pre-registration). Earlier notes said 0.05 mm; the correct figure is 0.47 mm.
+
 ## 2026-11-02 21:50 TRT (18:50 UTC): PACK 13 UPLOADED — AUC 0.84924 (+0.0019 over 12c), rank sum 54 (tied with DSAIL)
 - keen-heisenberg uploaded pack 13 (12c + eval 20) on the owner's word: AUC 0.84924, MPPE 2.45263 (−0.0147), RPE 3.00841;
   SP-SR / MP-SR / CD-O unchanged. Eval-15 waiver (pack 13b) waits for the owner. No boxes running; no rentals until a top-up.
