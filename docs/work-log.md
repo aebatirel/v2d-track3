@@ -7052,3 +7052,16 @@ arm and a no-policy replay floor to stage B.
   - Its threshold would be chosen after seeing the public scores, and new seeds on the same episodes are not
     independent evidence; the prize is ≈ +0.002 board.
   - Eval 35 stays an optional, separately pre-registered arm after the top-up. The room-map lane is closed.
+- ~20:15 UTC 2 Nov perfect-following: spoon-anchor plan (PREREG pf-anchor-20261102) with an honest caveat.
+  - The references already sit on stable facets of our spoon (facets ~14° apart). On evals 36 / 37 the raw rest mean
+    lies between facets, so the sign of the change is unknown; the public A-f0 test gave +0.001.
+  - **Coordinator: not launched.** The expected value is ≈ 0, and uploading a coin flip would harvest the board's
+    best-per-board max, which is eval-set probing. Recorded as planned, not run.
+  - Perfect-following prepares retrains on CPU for launch after the owner's top-up: evals 20 / 28 / 30 / 1, S2 where
+    possible, 13f meshes as collision meshes where the shape changed (contact budget checked first). Usual swap rule
+    and bar. Base for future packs: 13f (fa1e31f5…).
+- ~20:12 UTC 2 Nov owner: "If I give you this money I expect you to do anything in your power to reach top 3."
+  - Coordinator's honest answer: top 3 (rlwrld at 20) needs about half our error on every board. Odds with
+    $100–200: 6th ≈ 30 %, 5th ≈ 10 %, top 3 < 5 % [E].
+  - Recommended $100 now, with a larger ask only on a passing tracking test.
+  - Stated limits: no leaderboard tuning, no tuning to the scorer's seed, no rollout edits, no scan copies.
