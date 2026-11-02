@@ -6632,3 +6632,6 @@ arm and a no-policy replay floor to stage B.
     for the 25 Oct sweep base used by earlier public tests (mostly ep0 lid).
 - PREREG_MRrep.md written before any run: replication of MR (fresh C / MR on all 20) + crashed cells + pitcher, on one
   96 GB PRO 6000 box (≈ $3.5–4.5).
+- ~12:05 UTC **launched** 58815489 `20261102-ptrkD-95cecd7` (RTX PRO 6000 Max-Q, $1.362/h, code 95cecd7; tracker code
+  = 7fbc321): Cr / MRr on 20 episodes, then P on ep21 / 22, then crashed cells (ep23 all, ep0 MG / MD / MR, ep26
+  MG / MR). ≈ 3 h, ≈ $4 [E].
