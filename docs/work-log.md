@@ -6585,3 +6585,9 @@ arm and a no-policy replay floor to stage B.
     episodes could shift by ~1 cm either way.
   - 08:55 asked bold-albattani to choose: (a) sign off as is (CD-O-only goal; each board keeps its best) or (b) an aligned
     transform into library_v3's body frame.
+- 08:38–08:43 UTC 2 Nov **PACK 12c UPLOADED** (owner's blue-cup yes, 08:10).
+  - Scores: AUC **0.84738**, SP-SR 0.85, MP-SR 0.75, RPE **3.008**, MPPE **2.467**, CD-O **0.30008** (from 0.33234).
+    Best on every board; one file covers all six.
+  - Standings (API, 08:45): rank sum 58, 10th; DSAIL 56 (9th) also moved (CD-O 12th). AUC +0.0019 passes DSAIL
+    (0.84925); MP-SR one more episode passes two teams.
+  - Record: build_12c/UPLOAD.md.

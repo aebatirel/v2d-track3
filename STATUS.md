@@ -1,5 +1,10 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~08:43 UTC: PACK 12c UPLOADED: AUC 0.84738, CD-O 0.300, RPE 3.008, MPPE 2.467 (best on every board)
+- Pack 12c = pack 12b + the C0 blue-cup mesh (owner-accepted GT-informed public selection). Record
+  results/submissions/20261102-track3n-candidate/build_12c/UPLOAD.md.
+- Standings: rank sum 58, 10th; 9th DSAIL 56. Next gains: AUC +0.0019 (passes DSAIL), MP-SR one more episode.
+
 ## 2026-11-02 ~07:30 UTC: push to the top. Two GPU lanes running
 - Perfect-following (session_01D9UJC8Nz9EEFNmz2yzimzN): lift-window training (public test first, then evals 3 / 14 /
   25 / 30); up to $50 more.
