@@ -39,7 +39,8 @@ Run-to-run noise of the tracker: two identical control runs differ by mean |ΔAU
    ep11 +0.088, ep21 +0.083).
    - Stage 1 shows that depth fitting against our meshes cannot collect it. It helps where the tracker bias is large
      (pitcher +0.05, rack +0.013) and hurts where the tracker is already within our mesh error (pot, cups).
-   - [I] The limit is mesh shape; camera drift is ruled out by room-map's p95 of 2–9 mm.
+   - [I] The limit is mesh shape on most episodes. Exception, measured by room-map (9162a3b): ep24 is camera drift
+     (map cameras 0.834 → 0.982); on the other 18 a camera swap is noise.
 5. **Today's eval tracking defaults** (library_v3 templates + track guard) score 0.945 on 19 public episodes. The
    25 Oct sweep base that earlier public tests used scores 0.921.
 6. **Infrastructure [M].**

@@ -6723,3 +6723,10 @@ arm and a no-policy replay floor to stage B.
   mask the guard rejected, so every lid variant suffers); ep26 MG 0.977 / MR 0.979 vs 0.983; ep23 all 0.041–0.042
   (identity swap untouched). With these filled in, the mask-guided family is worse than the batch-1 fallback numbers;
   verdicts unchanged (FAIL). Credit $28.07 [M]. Session spend ≈ $26 [E]. 0 instances of this session.
+- 20:05 UTC **CORRECTION / refinement (room-map, 9162a3b) [M]:** my "cameras are not the limit" holds for 18 / 20
+  public episodes only. On my control C recomposed with leave-out room-map cameras: **ep24 0.834 → 0.982 (+0.148, MPPE
+  −1.38 cm)**; perc2's camera chain is 37 mm / 1.66° off by the end there. The other 18: mean −0.0008 (noise). So
+  ep24's board / rest errors (the rest oracle's largest, +0.118) are mostly camera drift, not mesh or tracker; the
+  mesh reading still applies to the pitcher, pot and cups. Room-map's GT-free camera guard (switch to map
+  relocalisation when the chain disagrees by > ~1 cm) would trigger only on eval 35 (18 mm). Its lane; I change
+  nothing in perc2.

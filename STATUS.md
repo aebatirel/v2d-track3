@@ -19,7 +19,8 @@ Report: `docs/analysis/ptrk-20261102/README.md` (branch claude/perception-tracki
 - **Wiring find [D]:** ep23 public 0.041 → 0.663 with the existing board identity rule. It is missing from public
   controls only; eval 25 already has it.
 - **[I] Limit:** perfect rest poses would add +0.032 public AUC, but depth fitting to our meshes cannot reach it. The
-  meshes (pitcher, pot, cups) are the bottleneck, not cameras (2–9 mm) or the tracker.
+  meshes (pitcher, pot, cups) are the bottleneck on most episodes; on ep24 it is camera drift (room-map: map cameras
+  0.834 → 0.982), elsewhere cameras are noise.
 - **Spend:** ≈ $25–26 [E] of $40 granted ($30 + $6 + $4). ptrkD is finishing report-only cells and self-destroys.
 
 ## 2026-11-02 ~06:42 UTC: PACK 12b UPLOADED: AUC 0.84405, MP-SR 0.75, RPE 3.023, MPPE 2.495 (best on every board)
