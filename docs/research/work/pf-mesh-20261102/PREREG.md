@@ -1,4 +1,4 @@
-# Tier B collision retrains + eval-1 reseed — PRE-REGISTRATION (2 Nov 2026 ~20:35 UTC, before any box)
+# Tier B collision retrains + eval-1 reseed — PRE-REGISTRATION (2 Nov 2026 ~20:21 UTC, before any box)
 
 Owner (via keen-heisenberg, 20:13 UTC, after the top-up to $127.97): "go crazy, let's win this"; this lane ≤ $45, stop if
 credit < $15. Coordinator's task: retrain evals 20 / 28 / 30 / 1 with the 13f meshes as collision meshes where the shape
