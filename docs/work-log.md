@@ -11026,3 +11026,9 @@ score.
   **eval 20 NO-SWAP at the gate** (0.926; [I] the board reference's grasp was built on the old pitcher, up to 2.5 cm off,
   and retraining does not recover it; pfN2 self-destroys); eval 30 sm s42 **0.938 ± 0.008** (min 0.921; gate 0.897;
   earlier eval-30 retrains had low draws 0.41–0.60) — [H] the Tier B shapes remove eval 30's low mode; s43 tests it.
+- 23:03–23:27 UTC 2 Nov [M]: eval 28 sm s42 0.841 ± 0.157 (min 0.383; gate 0.919); eval 14 p0m s43 0.946 ± 0.008 →
+  gate CONFIRM (s43) → **eval 14 PASS + INCLUDE** on 10 fresh official draws: 0.933 vs 0.875, fails 0 vs 1/10, median
+  RPE 1.97 vs 2.71 cm, draw 1 0.942 vs 0.895, gain +0.058 (fresh ≈ box 0.946).
+- ~23:33 UTC **pack 14 ready**: results/submissions/20261102-track3s-candidate/build_14/track3_submission.parquet
+  (sha256 1dbc33c4…; = 13f + eval 14 p0m s43 conf draw 1, checkpoint 7f7a7c6a…; code cc19172; all checks pass; GT flag:
+  Tier B collision). NOT uploaded; sent to keen-heisenberg (record commit f2ffed76).

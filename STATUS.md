@@ -1,5 +1,14 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 02:35 TRT (2 Nov 23:35 UTC): PACK 14 READY (not uploaded) — pack 13f + eval 14
+- **File:** results/submissions/20261102-track3s-candidate/build_14/track3_submission.parquet (sha256 1dbc33c4…), on
+  pack 13f (the board's best). keen-heisenberg uploads on the owner's word.
+- **Eval 14:** retrained on its own reference with the new (Tier B) rack and cup shapes as collision geometry: 10 fresh
+  official draws 0.933 vs the board policy's 0.875, no failed draws, lower median error (1.97 vs 2.71 cm). Note: those
+  shapes were picked using the organisers' object scans (owner-approved tier), so this rollout is GT-informed.
+- Same batch: eval 20 (new pitcher) fails; eval 30 (new sweeper + rack) promising on its first seed (0.938 vs 0.897),
+  second seed running; eval 28 behind on its first seed. Spoon anchor: planned, not run (expected value ≈ 0).
+
 ## 2026-11-02 22:12 TRT (19:12 UTC): PACK 13b READY (not uploaded) — pack 13 + eval 15 (owner waiver)
 - **File:** results/submissions/20261102-track3m-candidate/build_13b/track3_submission.parquet (sha256 c8b85ba4…),
   built on pack 13; all checks pass. keen-heisenberg uploads on the owner's word.
