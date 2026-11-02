@@ -1,4 +1,4 @@
-# Pack 13: verification record (not uploaded; waits for the owner's word)
+# Pack 13: UPLOADED 2 Nov ~18:50 UTC on the owner's word ("Upload 13")
 
 Built by perfect-following (branch claude/perfect-following-20261101, commit 6291a766):
 results/submissions/20261102-track3m-candidate/build_13/.
@@ -31,3 +31,20 @@ Small: one episode, about +0.002 on the 20-episode sim_vs_ref mean. The effect a
 Eval 15 is a near miss and is NO-SWAP under the rule. A waiver is the owner's call.
 - Fresh 0.958 vs 0.906; 0 fails vs 1 / 10.
 - It fails clause c only: median RPE 1.346 vs 1.299 cm, i.e. 0.47 mm worse.
+
+## Upload (2 Nov ~18:50 UTC, owner: "Upload 13")
+Submissions 57918229 (AUC), 57918230 (SP-SR), 57918232 (MP-SR), 57918234 (RPE), 57918236 (MPPE), 57918242 (CD-O).
+Receipt: track3_submission.parquet.kaggle-receipt.json (this folder).
+
+| Board | Pack 13 | Pack 12c | Change |
+|---|---|---|---|
+| AUC | **0.84924** | 0.84738 | +0.00186 |
+| SP-SR | 0.85 | 0.85 | = |
+| MP-SR | 0.75 | 0.75 | = |
+| RPE (cm) | **3.00841** | 3.00843 | −0.00002 |
+| MPPE (cm) | **2.45263** | 2.46736 | −0.01473 |
+| CD-O (cm) | 0.30008 | 0.30008 | = (pack 12d's 0.29029 stays best) |
+
+Best on AUC, RPE and MPPE. Final-selection plan: pack 13 for five boards, pack 12d for CD-O.
+Standings (API, ~18:55 UTC): rank sum 54, tied with DSAIL (9th / 10th). Board ranks: AUC 8, SP-SR 11, MP-SR 7,
+RPE 10, MPPE 10, CD-O 8.

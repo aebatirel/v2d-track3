@@ -6904,3 +6904,10 @@ arm and a no-policy replay floor to stage B.
   - Spend ≈ $25–26 [E] of $40 (ptrkE $4.6 of $6); ptrkD self-destroys after its report-only cells. No further GPU.
   - Caveat to the "meshes are the lever" reading [I]: the one direct mesh test (complete-base pitcher template) was
     strongly negative. Better meshes are not a sure gain; any mesh lane needs its own public test.
+- ~18:50 UTC 2 Nov **pack 13 UPLOADED** (owner: "Upload 13"); submissions 57918229–57918242.
+  - Scores: AUC **0.84924** (+0.00186 vs 12c), SP-SR 0.85, MP-SR 0.75, RPE **3.00841**, MPPE **2.45263** (−0.0147),
+    CD-O 0.30008. Best on AUC / RPE / MPPE.
+  - Standings (API): rank sum 54, tied with DSAIL (AUC 0.85672 now). Our ranks: AUC 8, SP-SR 11, MP-SR 7, RPE 10,
+    MPPE 10, CD-O 8.
+  - Gaps to the next rank: AUC +0.0075 (DSAIL); RPE −0.34 cm; MPPE −0.18 cm; CD-O −0.0042 (sam&alex 0.28608).
+    One more SP-SR success (0.90) moves 11 → 9.
