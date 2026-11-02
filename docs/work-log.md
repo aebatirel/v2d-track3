@@ -6591,3 +6591,7 @@ arm and a no-policy replay floor to stage B.
   - Standings (API, 08:45): rank sum 58, 10th; DSAIL 56 (9th) also moved (CD-O 12th). AUC +0.0019 passes DSAIL
     (0.84925); MP-SR one more episode passes two teams.
   - Record: build_12c/UPLOAD.md.
+- 08:37 UTC 2 Nov bold-albattani (received 08:44, after the upload): sign-off (a), C0 as is with transform none.
+  - The 6.6 / 9.9 mm flags measure C0 against library_v3. Kit registration against the public scan as a stand-in [D]
+    puts library_v3 9–10 mm off the anchor and C0 2–3.6 mm off, so most of the flag is library_v3's own error.
+  - That explains why pack 12c also improved AUC / RPE / MPPE [I].
