@@ -6973,3 +6973,14 @@ arm and a no-policy replay floor to stage B.
   20 poses.
   - Scores: AUC **0.87166**, MPPE **1.92180** (best), RPE 2.39478 (12e 2.39138 stays best), SP-SR 0.90, MP-SR 0.80,
     CD-O 0.26775. Ranks unchanged (47, 7th). Next: 13f (+ blue cup and dust pan) after sign-off.
+- ~19:40 UTC 2 Nov owner: "Push further".
+  - Read the kit scorer [M]: `_register_object_body` registers our mesh to the reference scan (centroid / RMS-radius
+    normalised, trimmed ICP from 25 starts; seed = 1,000,003·episode + 101·slot) and converts our poses through it.
+  - So mesh shape drives every pose board, and a mis-registration (wrong basin or flip) makes correct poses score as
+    wrong. SP-SR succeeds per episode if the mean position error is ≤ 10 cm and the mean orientation error ≤ 0.5 rad;
+    MP-SR needs < 3 cm and < 30° for every object.
+  - Board leverage: one more SP-SR success (0.90 → 0.95) moves SP-SR 10th → 6th (−4 rank points); MP-SR 0.85 → 6th
+    (−1); RPE −0.05 cm → 8th; CD-O −0.0144 → 5th.
+  - Asked bold-albattani for a full mesh audit of 13e (every eval slot): public-scan CD-O; registration flip rate over
+    ≥ 50 random seeds (never the scorer's exact seed as a criterion); candidates. Then a pre-registered adoption rule
+    before building → pack 13g on top of 13f. Spoon first (10 / 20 episodes).
