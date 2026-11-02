@@ -7088,3 +7088,12 @@ arm and a no-policy replay floor to stage B.
   - Coordinator reaffirmed **no-go** (all five episodes and option B; not even measure-only).
   - R' refs are committed as planned-not-run (27c43cf4). Eval 37's raw→reference mapping is weak (5.3° residual).
   - Base for pack 14 confirmed: 13f (fa1e31f5…), which contains 13b's eval 15 / 20 rows. Retrains are a go.
+- ~20:16 UTC 2 Nov bold-albattani: G2 candidate-generation plan, pre-registered as C4 PREREG §7 (e573235) before any
+  rental.
+  - One H100-class box; SAM 3D + Hunyuan3D-2.1 + TRELLIS.2; 4 seeds; GT-free crops from public episodes.
+  - Objects: pot, blue cup, rack, pitcher; up to 288 meshes. SHA freeze before any scan read.
+  - Stages: 6-seed CD-O screen → top 4 per object placed GT-free → 50-seed C4 audit → rule (A) / (B).
+  - Cost ≈ $6–12 [E], cap $25, stop below $15.
+  - Board-2 graft v1 cut flips 34 % → 18 %, short of rule (B)'s −20 points; further GT-free variants under a new
+    addendum.
+  - 13g after the 52-mesh audit (~60 min); 13h from G2.
