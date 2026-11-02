@@ -6323,3 +6323,4 @@ diagnostic; nothing is picked for submission.
     (about 1 in 6 per board [E]), which is acceptable for a CD-O-only variant.
 - keen-heisenberg holds the optional 12f (generated blue cup + dust pan): it would not change a rank (5th place is 0.2534);
   numbers are to be sent when scored.
+- ~19:25 UTC: focused-pascal published pack 12e as ready to keen-heisenberg (sha256 004f394f…, commit aeb12740). The README carries my sign-off and the plate-symmetry line.
