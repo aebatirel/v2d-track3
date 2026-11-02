@@ -10894,3 +10894,4 @@ score.
   now TRAIN_ENV_<prefix>_ep<N>. pfH was unaffected (one episode). Relaunching pfI with the same job string.
 - 11:51 UTC 2 Nov **pfI relaunched**: 20261102-pfI-b558032 (offer 56700685), same job string.
 - 12:45 UTC 2 Nov pfI-b558032 (Japan host 56700685) stalled in setup (HF downloads), destroyed by the watchdog at 12:37 (≈ 42 min ≈ $0.9). Relaunch on the California host (fast setup at 11:32).
+- 12:41 UTC 2 Nov **pfI relaunched (2)**: 20261102-pfI-6c80007 (Croatia Max-Q, offer 57455805), same job string.
