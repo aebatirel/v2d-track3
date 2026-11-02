@@ -6502,3 +6502,13 @@ diagnostic; nothing is picked for submission.
 - Known setup bug: hf CLI 2.2.0 reads a second --include as a file name, so `box_setup.sh` fetches no Hunyuan / TRELLIS.2
   configs; the agent worked around it by hand.
 - 50-seed audit of the 32 started 22:11:46Z (code 8e8c405a, detached, 4 workers, local CPU). Then rules (A)/(B)/(C) and D1.
+- 23:02 UTC: 50-seed audit of the 32 G2 candidates complete (22:11-23:02Z, 0 errors) [D, budgeted reference].
+  Rules vs 13f:
+  - white_pot: `sam3d/ep44_k0_s7/placed`, CD-O 0.2861 vs 0.3107, ADD 2.7 vs 6.3 mm, W30 0 -> rules A + C.
+  - blue_cup: `sam3d/ep22_k159_s7/t3fit`, 0.2335 vs 0.2646, ADD 6.0 vs 8.1 mm, W30 0 -> A + C.
+  - plastic_dish_rack: `hy21/ep31_k282_s123/t3fit`, 0.4016 vs 0.4182, ADD 4.3 vs 10.0 mm, W30 0 -> C.
+  - water_pitcher: none passes (best 0.3854 vs 0.3713).
+  D1 is running on the three picks. Table: `C4-audit/results/audit_table_g2.md`; verdicts: `adoption_g2.json`;
+  meshes copied to `C4-audit/meshes_13h/`.
+- [H8] (at least one rule-A win among pot / blue cup / pitcher): held, for pot and blue cup.
+  The rack prediction ("no win from generators") was falsified via rule C.
