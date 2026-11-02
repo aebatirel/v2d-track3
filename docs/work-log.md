@@ -6472,3 +6472,14 @@ diagnostic; nothing is picked for submission.
   its round-2 CV; flip-prone boards are flagged for exclusion.
 - G2 stage 1 (agent): best screen [D] pot 0.2852 (sam3d ep44 s7) vs shipped 0.3107; blue cup 0.2430 vs 0.2646.
   Stage 2 is in progress.
+
+### 2026-11-02 ~22:15 UTC: G2 stage 2 done; candidates_g2.json (GT-informed selection)
+- Stage-1 best [D] (6 seeds, best of 48-72; shipped = 50-seed medians, so loose): pot 0.2852 (sam3d ep44 k0 s7) vs
+  0.3107; blue cup 0.2430 (sam3d ep22 k159 s7) vs 0.2646; rack 0.4027 (hy21 ep31 k282 s123) vs 0.4182; pitcher 0.3868
+  (hy21 ep22 k174 s123) vs 0.3713 (worse). Typical outputs are far worse (per-model medians 0.37-2.0).
+- Stage 2: the 4 lowest CD-O per object, placed (C1/T2 place.py) + T3 fit (C1/T3 fit.py, cfg_frozen) -> 32 candidates in
+  `C4-audit/candidates_g2.json`. The section-10 ADD extension added none under its literal reading (the 2 lowest-ADD
+  eligible meshes are already in the top 4 for pot / blue cup / rack; no pitcher is eligible). The alternative reading
+  would add 3 meshes (README). One blue-cup pick regenerates the shipped source (same crop and seed, not byte-identical).
+- Selection is GT-informed: best-of-N by public-scan CD-O. Meshes are in the store `runs/mesh-20261102-g2b-ff63482/stage2/`.
+  README `cdo-sprint/G2/README.md`. The 50-seed audit of the 32 is the coordinator's.

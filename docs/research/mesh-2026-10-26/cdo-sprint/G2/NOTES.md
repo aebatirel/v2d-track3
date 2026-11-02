@@ -80,3 +80,8 @@ Spec: `../C4-audit/PREREG.md` section 7 (addendum 2, e573235), sections 2-3. Tim
   Credit $108.53 at 21:55Z (other sessions' boxes included).
 - Note: G2 `sam3d/ep22_blue_cup_k156_s7` regenerates the shipped blue cup's source (same crop file, cmp-identical, same
   seed) but is not byte-identical (SAM 3D is not deterministic across runs / GPUs); it is kept under the rule and flagged.
+- 21:56-22:08Z stage 2 local (`scripts/stage2.py`, nice, one process): 16 picks (4 per object by CD-O; add_ext added 0
+  under the literal reading), 16/16 placed (place.py), 16/16 T3 fits rc 0 -> 32 candidates in
+  `../C4-audit/candidates_g2.json`; none equals a scan file (md5). Uploaded S/g2/stage2 (146 files, 48 .glb) to the store
+  `runs/mesh-20261102-g2b-ff63482/stage2/`. A `note` field marks the 2 entries of the shipped-source regeneration.
+- README.md written; stage-1 table `results/stage1_table.md`. Stage 3 (50-seed audit) is the coordinator's.
