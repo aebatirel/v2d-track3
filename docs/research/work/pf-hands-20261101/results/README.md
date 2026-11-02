@@ -5,7 +5,7 @@
 |---|---|---|
 | s (single-hand, packed construction; right hand from f46) | 0.378 ± 0.110 | 0.554 ± 0.006 |
 | 2h (two-hand) | **0.587** ± 0.156 | 0.553 ± 0.006 |
-| f (first picker, pfE, other box) | 0.555 ± 0.131 | pending |
+| f (first picker, pfE, other box) | 0.555 ± 0.131 | 0.400 ± 0.071 |
 Static floor ≈ 0.542 (orcB). Paired Δ(2h − s): +0.209 / −0.001, mean **+0.104** → **PASS by the §3 rule**.
 Honest reading [I]: the pass comes from one seed where the single-hand policy fell below the floor; on seed 43 both arms
 sit at the floor (the cup is not carried). Not a robust "two-hand is followable" result.
@@ -17,3 +17,9 @@ sit at the floor (the cup is not carried). Not a robust "two-hand is followable"
 | 16 | 0.713 ± 0.039 | 0.696 ± 0.062 | 0.850 | NO-SWAP (gate) |
 Two-hand references are worse than the packed single-hand ones on both eval episodes. Cost: pfA $3.7 (≈ 2.6 h), pfB
 $3.9 (159 min at $1.49/h) [E from run times].
+
+## pfE addendum (§6) [M]
+f − s: +0.177 / −0.154 (mean +0.012); 2h − f: +0.032 / +0.153 (mean +0.092, no seed < −0.05 → passes the §3 thresholds).
+Reading as fixed in §6 [I]: on the twin two-hand also beats the first-picker construction, but seed-to-seed spread is
+large (± 0.15) and on eval 14 itself two-hand loses to the packed first-picker policy (0.603 / 0.581 vs 0.727). ep13 is a
+poor twin for eval 14 (its perceived pick is the limiter; GRASP §8). Not adopted on eval.

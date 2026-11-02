@@ -10812,3 +10812,6 @@ score.
     seed carries it (seed 43 both at the floor) [I: fragile].
   - pfB evals 14 / 16 two-hand: both seeds below the packed policy (14: 0.603 / 0.581 vs 0.727; 16: 0.713 / 0.696 vs 0.850):
     **NO-SWAP**. Two-hand is not adopted on eval.
+- 00:13 UTC 2 Nov pfE done (self-destroyed): first picker ep13 AUC 0.555 / 0.400; 2h − f mean +0.092 [M]. Two-hand not
+  adopted on eval (pfB NO-SWAP). Eval 14 bridged single-hand: s42 0.880, s43 0.892 (training box vs own ref); s43 chosen,
+  gate met (> 0.727), 10 confirmation draws running. Eval 14 bridged two-hand s43 0.647.
