@@ -10878,3 +10878,4 @@ score.
   per-pair TRAIN_ENV_pf*, pf_arms arms lw / plw, pf_verdict public generalised (arm vs s, bar +0.02 / floor −0.03).
   Pre-registered docs/research/work/pf-lift-20261102/PREREG.md; step 1 = public ep31 box pfH (≈ $4–4.5).
 - 07:53 UTC 2 Nov **pfH launched**: 20261102-pfH-a419bc9 (Japan Max-Q $1.30/h), `EP=31 SPLIT=public ARMS="s lw" SRC_RUN=20261030-orcB-38234d1`.
+- ~07:58 UTC 2 Nov keen-heisenberg relays the owner (verbatim): "Go do as much as you can lets go to top"; lift-window plan approved. Budget: **$50 more** from 07:32 UTC (credit then $91.35; ≥ $10 reserve); a new public-perception GPU session (≤ $30) starts — never touch its instances; check ops/vast.sh show before launching.
