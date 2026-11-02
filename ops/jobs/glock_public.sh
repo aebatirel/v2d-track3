@@ -221,7 +221,7 @@ one() {
       local glv=GL_ARGS_$perc                                      # one() runs in its own subshell: only this pair sees them
       [ -n "${!glv:-}" ] || { log "glock $tg: $glv unset (pf arms name their GL_ARGS)" >> $J; return 1; }
       GL_ARGS=${!glv}; log "glock $tg: GL_ARGS [$GL_ARGS]" >> $J
-      local tev=TRAIN_ENV_$perc                                    # (2026-11-02, pf-lift) this pair's training-process env
+      local tev=TRAIN_ENV_${perc}_ep$ep                            # (2026-11-02, pf-lift) this pair's training-process env
       [ -n "${!tev:-}" ] && { TRAIN_ENV="${TRAIN_ENV:-} ${!tev}"; log "glock $tg: TRAIN_ENV [$TRAIN_ENV]" >> $J; }
     fi
   fi

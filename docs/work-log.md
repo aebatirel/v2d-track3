@@ -10889,3 +10889,6 @@ score.
   0.198 / 0.104; min 0.694 / 0.618 vs 0.245 / 0.400): fewer failed draws rather than a higher ceiling. Step 2 (addendum A)
   launches now.
 - 11:32 UTC 2 Nov **pfI launched** (step 2, addendum A): 20261102-pfI-a89f5f3 (California WS $1.38/h), `EP="3 14 32" SPLIT=eval ARMS=plw TAB_OVERRIDE=/content/v2d-track3/docs/research/work/pf-lift-20261102/packed_refs_12b.json PACKED_DRAWS_EP14=runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s OLD_EP14=runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r1/ep14/episode_000014 PACKED_DRAWS_EP32=runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s OLD_EP32=runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r1/ep32/episode_000032 bash ops/jobs/pf_arms.sh`.
+- 11:52 UTC 2 Nov pfI-a89f5f3 destroyed after 20 min (≈ $0.5): the per-pair lift env was keyed by arm + seed only, so
+  evals 3 and 14 trained with eval 32's windows (1–16, 41–61, 111–131) instead of their own (box log [M]). Fixed: the key is
+  now TRAIN_ENV_<prefix>_ep<N>. pfH was unaffected (one episode). Relaunching pfI with the same job string.

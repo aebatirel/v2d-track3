@@ -105,7 +105,7 @@ for s in $SEEDS; do
   PP=""; for e in $OK; do for a in $(arms_of $e); do PP="$PP $e:local:mck:pf${a}s$s"; export GL_ARGS_pf${a}s$s="$(gl_of $a)"
     case $a in lw|plw)                                             # (pf-lift PREREG) lift-window starts, this pair's training only
       W_=$(python $T/lift_windows.py $(ls /content/refs/perc2mck/ep$e/processed/*/*/*.parquet | head -1)) || { log "pf_arms ep$e: lift_windows FAILED" >> $J; continue; }
-      export TRAIN_ENV_pf${a}s$s="FC_LIFT_WINDOWS=$W_ FC_LIFT_P=${LIFT_P:-0.3} FC_LIFT_SEED=$s"; export FC_LIFT_PATCH=1
+      export TRAIN_ENV_pf${a}s${s}_ep$e="FC_LIFT_WINDOWS=$W_ FC_LIFT_P=${LIFT_P:-0.3} FC_LIFT_SEED=$s"; export FC_LIFT_PATCH=1   # per episode
       log "pf_arms ep$e $a s$s: lift windows [$W_] share ${LIFT_P:-0.3}" >> $J ;;
     esac; done; done
   label "pf arms: seed $s [$PP ]"; log "pf_arms: seed $s, PAIRS [${PP# }]" >> $J; t0=$(date +%s)
