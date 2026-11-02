@@ -7231,3 +7231,6 @@ arm and a no-policy replay floor to stage B.
   - [E] about +0.004–0.006 board AUC if it transfers; the eval tilt (2.9°) is smaller than on the public twins
     (5–5.6°), so expect the low end.
   - Box G destroyed (≈ $0.6). Round 2 (157 + 21 runs, CPU) ≈ 1.5–2 h. Tonight's GPU in this lane ≈ $3.3.
+- ~22:20 UTC 2 Nov **pack 13p2 UPLOADED** (57922817–57922829). Verified: only e000020 o1 changed.
+  - Scores: AUC **0.88403**, RPE **2.22531**, MPPE **1.80932** (best); SP-SR 0.90; MP-SR 0.80; CD-O 0.26869.
+  - The pitcher placement gave +0.0015 AUC (predicted +0.004–0.006, low end expected).
