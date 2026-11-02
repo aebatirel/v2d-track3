@@ -6728,3 +6728,10 @@ arm and a no-policy replay floor to stage B.
   - Plus the offline whole-video multi-view design note.
   - Credit $52.63 at 14:52 UTC; 6 boxes (~$8.4/h): pfI / pfJ / pfK / pfL2 / pfM (perfect-following) and ptrkD.
     Projected ≈ $20 left after today's retrains [E]; the owner was advised to top up.
+- 14:58 UTC 2 Nov perception-tracking: design note pushed (docs/analysis/ptrk-20261102/DESIGN_offline_joint.md),
+  including a measured rest-frame oracle of +0.032 public AUC, with SAM-6D / PRISM placed. SAM-6D test acknowledged
+  (≤ $6, stop if credit < $15).
+  - Decision asked: ptrkD (58815489, $1.36/h, ≈ 2.5 h / $3.5 left) has only report-only work left (the rest of a
+    replication that already failed, OOM re-runs, the pitcher test).
+  - Options: (A) let it finish; (B) destroy it now and run the pitcher test on the SAM-6D box.
+  - CLAUDE.md says never cut a job that is still progressing, so the choice is put to the owner.
