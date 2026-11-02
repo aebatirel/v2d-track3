@@ -41,3 +41,16 @@ reused byte for byte + lift-window starts (windows from tools/lift_windows.py on
   control on the episode's own reference, inclusion bar ≥ +0.02. Not adopted on any episode if step 1 fails.
 Evals 25 / 30 (standard learner) are not in this box (the job supports grasp-lock episodes only).
 Cost [E]: 3 pairs per seed (waves 2 + 1) ≈ 5 h + confirmations ≈ $7–8.
+
+## Addendum B (2 Nov ~12:55 UTC; owner via keen-heisenberg: scale the lift windows to every episode losing at a
+## lift / grasp; written before any eval lift result — pfI has not started training yet)
+Same rule as addendum A (seed choice, training-box gate > the board policy's mean, 10 fresh official draws, pack-9b swap
+rule on the episode's own reference vs the board policy's draws, inclusion bar ≥ +0.02). Order by expected gain = gap ×
+share of H5p7 draws whose onset is at a lift (≤ 15 frames after a hold start) [M, step-2 timelines]:
+eval 25 (0.122 × 10/10), 30 (0.103 × 6/10), 28 (0.081 × ~5/10), 20 (0.107 × ~3/10), 1 (0.088, mid-carry; lowest
+confidence), 15 (0.094 × 2/10). Eval 33 is out (its loss is the f91 guard re-acquisition, not a lift).
+- Box pfJ (grasp lock, arm plw on the packed reference, packed_refs.json): evals 20 and 15, seeds 42 / 43.
+- Standard-learner episodes (25, 30, 28, 1): the same lift-window starts in the std recipe (hard_ab.sh path, packed base
+  reference byte copy), 2 seeds each, run after this job path is built and CPU/mock-checked; a further addendum names the
+  exact job before launch.
+- Packs go on top of pack 12c (sha 3542f8e5…, the board's best pose pack; not 12d).
