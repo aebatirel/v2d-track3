@@ -6608,3 +6608,6 @@ arm and a no-policy replay floor to stage B.
   shifts, 2 recovery tries, 0 accepted). ≈ 2.5–3 min per run → ≈ 2.5 h per box.
 - ~07:56 UTC **launched** 58789090 `20261102-ptrkC-7d40132` (RTX 5090, $0.722/h, code 7d40132): pitcher test (C, P on
   ep21 / 22) then FS1 (FS_SCALE 1.0) on all 20 episodes; ≈ 2.5–3.5 h, ≈ $2–2.5 [E]. Three boxes now ≈ $2.19/h.
+- 08:45 UTC **interim [D], 3 / 20 episodes (2, 12, 31), not a verdict:** ΔAUC vs C: MG −0.0003 (ep2 −0.008, ep12
+  +0.012, ep31 −0.005), MD +0.0003, MR −0.0033; control repeat C2 − C per episode +0.004 / −0.002 / 0.000. MG RPE
+  +0.16 cm. Boxes: A ep0, B ep26, C ep22 (pitcher). Spend ≈ $3 so far [E].
