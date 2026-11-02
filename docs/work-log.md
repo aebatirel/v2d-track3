@@ -6999,3 +6999,13 @@ arm and a no-policy replay floor to stage B.
   - **Spoon: no public scan exists**, so it cannot be judged by this rule. A GT-free approach will be proposed with the
     table.
   - Timing: shipped rows in ~20 min, all 52 in ~85 min.
+- ~20:01 UTC 2 Nov **C4 audit part 1** [D] (shipped 13f meshes; 50 fresh seeds; PREREG d3db66c).
+  - No shipped mesh flips except the eval 25 boards: **wooden_piece_2 flips on 34 % of seeds** (the occupancy plate is
+    nearly 180°-symmetric); wooden_piece_1 6 %. All others 0 / 50, rotation p90 ≤ 4.9°.
+  - The 13f blue cup and dust pan raise the anchor / rotation offsets (cup 2.9 → 7.0 mm, 2.4 → 4.2°), which affects
+    AUC-type metrics only.
+  - Spoon (10 pairs): no public scan, so no audit. Its GT-free self-ambiguity is 3.41 mm at 177.5° vs a 1.41 mm floor
+    (ratio 2.4), a moderate 180° alternative basin. [H]: some spoon registrations may flip on the hidden scan.
+  - Candidates are still running (~60 min); the frozen rule is applied after. Reverting the boards to library_v3 fails
+    rule (B) (CD-O +0.05); a less-symmetric occupancy variant is a priority build. Pose-only board reverts are outside
+    the rule and are not taken.
