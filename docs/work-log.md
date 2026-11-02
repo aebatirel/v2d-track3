@@ -6254,3 +6254,6 @@ diagnostic; nothing is picked for submission.
   translation is absorbed; flips 0/5 for both meshes. Rot after registration: C0 2.4-2.7°, library_v3 0.7-2.0°.
   All measured numbers (CD-O 0.523 -> 0.291 [D], AUC guard mean +0.022 / min -0.030 ep13) are at identity; a transform
   would be untested.
+- ~09:05 UTC: keen-heisenberg asked (a) sign off as is vs (b) transform into the library_v3 frame. Answered (a): CD-O and the
+  AUC guard were measured at identity, and (b) would reintroduce library_v3's ~10 mm kit-registration anchor error into the pose
+  conversion [D]. Pose risk under (a) acknowledged; boards keep the best submission.
