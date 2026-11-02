@@ -6929,3 +6929,7 @@ arm and a no-policy replay floor to stage B.
   meshes unchanged). The upload call was **blocked by the auto-mode classifier** ("External System Writes"); not
   retried. Asked the owner for a direct "upload 13b". Record:
   results/submissions/20261102-track3p-candidate/build_13b/UPLOAD.md.
+- ~19:06 UTC 2 Nov focused-pascal: pack 12e build accepted (CPU, no upload); 12d reproduced byte for byte (643794c6…).
+  - Swap pairs: pitcher eval 20; sweeper evals 19 / 30; rack evals 14 / 15 / 16 / 28 / 30; boards eval 25.
+  - The no_oracle guard stays on (no skip flag); if it refuses a Tier B file, it stops and reports.
+  - The README will carry the Tier B disclosure. Waiting for bold-albattani's meshes. Coordinator: full set, go.
