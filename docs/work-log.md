@@ -6449,3 +6449,10 @@ diagnostic; nothing is picked for submission.
   blue cup 72, rack 72, pitcher 48. Generation 20:52-21:46 UTC (box clock).
 - Freeze: `cdo-sprint/G2/results/SHA256SUMS` (528 files: 264 raw + 264 Sim(3)) and the generation / fit logs, committed
   before any public-scan read of these meshes. Next: upload to the store, 6-seed screen on the box's CPUs.
+- ~21:50 UTC: focused-pascal built pose pack 13f1p (sha256 3134dfc6…): 13f1 plus the perception lane's public-pose-CV
+  adoptions (TSDF pot ep43 on the 6 pot pairs; library_c0 rack on the 5 rack pairs). Its frame report flagged the pot:
+  ICP 5.89 mm / 2.88 deg and proxy 7.67 mm vs the T3 pot. Signed off YES, transform none.
+  - Reason: in the C4 audit [D] the T3 pot itself sits 5.6 mm off the scan and the TSDF pot 2.6 mm (ADD 6.3 -> 2.9 mm),
+    with 0/50 flips each.
+  - focused-pascal's D1 passes in both modes.
+  - Noted for its README: the pack's CD-O is about +0.005 worse (rack); boards keep the best submission.
