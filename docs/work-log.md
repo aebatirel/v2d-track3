@@ -6692,3 +6692,11 @@ arm and a no-policy replay floor to stage B.
   base 7 mm low, cups): fitting depth to a wrong shape moves a good pose. Same lesson as the 1 Nov depth-ICP offset
   fit. Not handed over. `results/gate_s1vo_vs_C20.json`, `results/rest_add_s1vo.json`. The map-camera arm can still run
   if room-map delivers, but a camera change cannot fix the shape-driven losses [I].
+- 17:58 UTC **CORRECTION (ep23):** my 14:55 / 16:05 reading "joint tracking loss, not an identity swap" was wrong. The
+  point-track session (session_01D9UJC72kCbx1mWTB2pwupw) compared displacement profiles across names [D]: ours
+  piece_2 moves like mocap piece_1 (7.7 / 8.0 / 10.8 / 12.8 cm) and ours piece_1 like mocap piece_2; an all-frame rigid
+  fit gives 7.8 / 7.4 cm residual as named vs 3.2 / 5.0 cm swapped. The kit's frame-0 scene alignment hides the swap at
+  frame 0 (the 1.9 cm frame-0 error I used). So ep23 IS a frame-0 identity swap of the two boards; a plain relabel
+  scores worse (0.036; meshes must be re-registered on the other masks). Detector test so far: ISMa leaves ep23
+  unchanged, ISMr makes it worse (0.009), so the SAM-6D-style scores do not fix this swap. Eval 25 (same boards) has the
+  same risk; flagged to point-track / perfect-following.
