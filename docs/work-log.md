@@ -6939,3 +6939,10 @@ arm and a no-policy replay floor to stage B.
   (−0.0167), RPE 3.01275 (+0.0043, worse than 13's 3.00841), SP-SR 0.85, MP-SR 0.75, CD-O 0.30008.
   - Best per board: AUC / MPPE 13b; RPE 13; CD-O 12d.
   - Rank sum 54, tied with DSAIL; ranks unchanged.
+- ~19:11 UTC 2 Nov bold-albattani: **Tier B set committed (332eb5b)** and sent to focused-pascal.
+  - Pitcher placed GT-free and scored once [D] at 0.3722 (kit anchor 14.5 mm vs 12d's 29.4).
+  - No file is a byte copy or template of a scan (md5 checked against all 10 scans).
+  - README C3/tierB/README.md opens with "How ground truth entered the selection".
+  - Expected CD-O [E] 0.290 → ≈ 0.268. The rack pose pairs may worsen; each board keeps our best.
+  - Optional 12f (generated blue cup + dust pan, ≈ −0.0046 [E]): held by the coordinator. It would not change a CD-O
+    rank (5th is 0.2534) and adds disclosure.
