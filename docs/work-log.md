@@ -6578,3 +6578,10 @@ arm and a no-policy replay floor to stage B.
 - 08:33 UTC 2 Nov bold-albattani sent focused-pascal the blue-cup payload: meshes/library_c0/blue_cup.glb @ 5cce3d2
   (md5 9e3a74fd…), no transform, evals 10 / 14 / 20 / 32 / 33 slot 0, payload swap only. Frame sign-off YES (axis 1.24°,
   offset 2.0 mm, no flip). Expected CD-O ≈ 0.332 → 0.300 [E]. Waiting for "pack 12c ready".
+- 08:53 UTC 2 Nov focused-pascal: pack 12c built, not yet "ready".
+  - 12b reproduced byte for byte. 12c sha 3542f8e5…: vs 12b only code_commit_url + 5 blue_cup payload rows; CD-O
+    changes exactly those pairs; validation pass; 0 MESH warnings; disclosure committed (7d7f8d3a).
+  - Frame flags [M]: ICP 6.64 mm / 2.55°, kit-registration proxy 9.91 mm (limit 5 mm). Pose boards on the 5 blue-cup
+    episodes could shift by ~1 cm either way.
+  - 08:55 asked bold-albattani to choose: (a) sign off as is (CD-O-only goal; each board keeps its best) or (b) an aligned
+    transform into library_v3's body frame.
