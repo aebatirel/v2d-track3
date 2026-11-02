@@ -2,21 +2,18 @@
  "control": "C",
  "control2": "C2",
  "variant": "c_FS1",
- "n": 16,
+ "n": 19,
  "missing": [
-  23,
-  43,
-  44,
-  45
+  23
  ],
- "mean_dAUC": -0.00968,
- "noise_mean_C2_minus_C": -0.00034,
- "noise_abs_per_episode_mean": 0.00104,
+ "mean_dAUC": -0.00787,
+ "noise_mean_C2_minus_C": -2e-05,
+ "noise_abs_per_episode_mean": 0.00115,
  "min_dAUC": -0.0982,
- "better": 5,
- "worse": 9,
- "mean_dMPPE": 0.1218,
- "mean_dRPE": -0.0159,
+ "better": 7,
+ "worse": 10,
+ "mean_dMPPE": 0.1047,
+ "mean_dRPE": -0.0134,
  "gt3C": 368,
  "gt3V": 418,
  "gate": {
@@ -321,6 +318,57 @@
    },
    "objV": {
     "white_pot": 0.9874
+   }
+  },
+  {
+   "ep": 43,
+   "C": 0.9764,
+   "V": 0.9781,
+   "dAUC": 0.0017,
+   "dC2": 0.0,
+   "dMPPE": -0.033,
+   "dRPE": 0.0,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "white_pot": 0.9764
+   },
+   "objV": {
+    "white_pot": 0.9781
+   }
+  },
+  {
+   "ep": 44,
+   "C": 0.9975,
+   "V": 0.991,
+   "dAUC": -0.0065,
+   "dC2": 0.0,
+   "dMPPE": 0.122,
+   "dRPE": 0.0,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "white_pot": 0.9975
+   },
+   "objV": {
+    "white_pot": 0.991
+   }
+  },
+  {
+   "ep": 45,
+   "C": 0.975,
+   "V": 0.9851,
+   "dAUC": 0.0101,
+   "dC2": 0.0052,
+   "dMPPE": -0.049,
+   "dRPE": 0.0,
+   "gt3C": 0,
+   "gt3V": 0,
+   "objC": {
+    "white_pot": 0.975
+   },
+   "objV": {
+    "white_pot": 0.9851
    }
   }
  ]

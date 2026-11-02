@@ -6662,3 +6662,7 @@ arm and a no-policy replay floor to stage B.
   cut a job that is progressing).
 - 14:58 UTC **launched** 58837653 `20261102-ptrkE-7e6435b` (RTX PRO 6000 WS, $1.483/h, code 7e6435b): variants Ci /
   ISMr / ISMa on 20 public episodes (ep18, ep23 first); ≈ 3–3.5 h, ≈ $4.5–5.2 [E] of the $6 cap. Credit $51.75 [M].
+- 15:05 UTC **FS1 final [D]** (box C done, self-destroyed): 19 episodes vs C (ep23 has no C): mean ΔAUC −0.0079,
+  7 better / 10 worse, min −0.098 (ep13), MPPE +0.105, RPE −0.013, > 3 cm 368 → 418. **FAIL** (falsified).
+  `results/gate_FS1_vs_C.json`. Coordinator: box D finishes on its own (option A); credit watch running (stop E if
+  credit < $15).
