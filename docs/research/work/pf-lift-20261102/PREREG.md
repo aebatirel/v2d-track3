@@ -27,3 +27,17 @@ if the job supports them, 2 seeds, swap rule + ≥ +0.02 bar, 10 fresh draws.
 
 ## Cost [E]
 Step 1: 2 pairs per seed wave ≈ 3 h ≈ $4–4.5. Step 2 ≈ $10–15. Budget left ≈ $70 of $102.
+
+## Addendum A (2 Nov ~10:15 UTC, written after pfH seed 42 only — lw 0.730 vs s 0.589 — and before seed 43; the step-1
+## rule above is unchanged and still decides whether step 2 runs)
+Step 2 box pfI (launched only if step 1 PASSES): evals **3, 14, 32**, arm `plw` = the policy's own current reference
+reused byte for byte + lift-window starts (windows from tools/lift_windows.py on the base: eval 3 30–50,52–72; eval 14
+13–50,73–93; eval 32 from its base), P 0.3, current recipe, stock limits, seeds 42 / 43.
+- References: eval 3 = packed_refs.json's; evals 14 / 32 = pack 12b's (docs/research/work/pf-lift-20261102/packed_refs_12b.json,
+  runs 20261101-pfC-f38b324 / pfD-f38b324, refs/pfss43_glockt).
+- Control = the policy on the board: eval 3 the H5p7 draws (packed); evals 14 / 32 the pack-12b policies' own 10
+  confirmation draws (PACKED_DRAWS_EP14/32), old draw = pack 12b's row (conf draw 1).
+- Per episode: seed choice, training-box gate (> the control mean), 10 fresh official draws, pack-9b swap rule vs the
+  control on the episode's own reference, inclusion bar ≥ +0.02. Not adopted on any episode if step 1 fails.
+Evals 25 / 30 (standard learner) are not in this box (the job supports grasp-lock episodes only).
+Cost [E]: 3 pairs per seed (waves 2 + 1) ≈ 5 h + confirmations ≈ $7–8.

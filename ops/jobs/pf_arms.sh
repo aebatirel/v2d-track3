@@ -27,7 +27,7 @@ T=$REPO_DIR/tools; P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; HS=/content/h
 mkdir -p $G $I
 case "${RUN_ID:-}" in *-pf*) ;; *) log "pf_arms: RUN_ID '${RUN_ID:-}' must contain -pf" >> $J; exit 1 ;; esac
 EPS=${EP:?EP}; SPLIT=${SPLIT:?SPLIT}; ARMS=${ARMS:?ARMS}; SEEDS=${SEEDS:-"42 43"}; NCONF=${NCONF:-10}
-TAB=$REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json; H5P7_RUN=20261031-h5p7-1a7cdff
+TAB=${TAB_OVERRIDE:-$REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json}; H5P7_RUN=20261031-h5p7-1a7cdff
 GC="--mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15"
 arms_of() { local v=ARMS_EP$1; echo ${!v:-$ARMS}; }              # ARMS_EP<N>: that episode's arms (default ARMS)
 gl_of() { case $1 in s) echo "--single_hand 1 $GC" ;; f) echo "--single_hand 2 $GC" ;; se) echo "--single_hand 1 $GC --hold_to_end ${HOLD_TO_END:?HOLD_TO_END}" ;; p0|pz) echo "(packed reference reused: $GC)" ;; lw) echo "--single_hand 1 $GC" ;; plw) echo "(packed reference reused, lift windows: $GC)" ;; 2h) echo "$GC" ;; *) return 1 ;; esac; }
@@ -85,8 +85,8 @@ for e in $EPS; do
   for s in $SEEDS; do for a in $(arms_of $e); do                  # (pf-release PREREG_B) arms on the PACKED reference P itself:
     case $a in p0|pz|plw) ;; *) continue ;; esac                       # p0 = byte copy, pz = tools/hold_freeze.py on it (FREEZE_EP<N>)
     [ $SPLIT = eval ] || { log "pf_arms ep$e: arm $a needs SPLIT=eval" >> $J; continue 2; }
-    pre=pf${a}s$s; hive=$(dirname $(tabl $e reference)); hive=${hive#refs/glockt/ep$e/}; D_=/content/refs/${pre}_glockt/ep$e
-    rm -rf $D_; mkdir -p $D_/$hive; cp -r /content/refs/glockt/ep$e/reconstructed_stage $D_/ 2> /dev/null || cp -r /content/refs/perc2mck/ep$e/reconstructed_stage $D_/
+    pre=pf${a}s$s; hive=$(dirname $(tabl $e reference)); hive=${hive#refs/*/ep$e/}; D_=/content/refs/${pre}_glockt/ep$e
+    rm -rf $D_; mkdir -p $D_/$hive; cp -r /content/$(dirname $(dirname $(dirname $(tabl $e reference))))/reconstructed_stage $D_/ 2> /dev/null || cp -r /content/refs/perc2mck/ep$e/reconstructed_stage $D_/
     if [ $a = pz ]; then fv=FREEZE_EP$e; IFS=: read -r fs ff <<< "${!fv:?FREEZE_EP$e}"
       python $T/hold_freeze.py $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet --side $fs --from $ff >> $J 2>&1 || { log "pf_arms ep$e: hold_freeze FAILED" >> $J; continue; }
     else cp $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet; fi   # p0 / plw: a byte copy of P
@@ -156,9 +156,11 @@ confirm() {  # $1 ep, $2 checkpoint, $3 out dir: draws on the pristine evaluator
 for e in $OK; do
   E6=$(printf %06d $e)
   for i in $(seq 1 10); do for x in parquet json; do              # the packed policy's fresh draws (H5p7)
-    f=runs/$H5P7_RUN/results/h5/r$i/ep$e/episode_$E6.$x; PULL_RETRY_S=5 pull1 $f && mkdir -p $I/ep$e/packed_h5/r$i && cp $HS/$f $I/ep$e/packed_h5/r$i/
+    pdv=PACKED_DRAWS_EP$e; f=runs/$H5P7_RUN/results/h5/r$i/ep$e/episode_$E6.$x; [ -n "${!pdv:-}" ] && f=${!pdv}/r$i/ep$e/episode_$E6.$x   # (pf-lift) the pack-12b policy's own 10 draws
+    PULL_RETRY_S=5 pull1 $f && mkdir -p $I/ep$e/packed_h5/r$i && cp $HS/$f $I/ep$e/packed_h5/r$i/
   done; done
   OLD=runs/20261026-pack6-5203d42/results/submission/results/episode_$E6   # the board pack's old packed draw (pack 6)
+  odv=OLD_EP$e; [ -n "${!odv:-}" ] && OLD=${!odv}                   # (pf-lift) the board pack's row of this episode
   for x in parquet json; do PULL_RETRY_S=5 pull1 $OLD.$x && mkdir -p $I/ep$e/old/r1 && cp $HS/$OLD.$x $I/ep$e/old/r1/; done
   for a in $(arms_of $e); do
     python $T/pf_verdict.py choose --results /content/results --ep $e --arm $a --seeds "$SEEDS" --h5 $I/ep$e/packed_h5 --out $G/choice_ep${e}_$a.json $([ -f $I/ep$e/BRIDGED ] && echo --nogate) > $G/choice_ep${e}_$a.txt 2>&1; rc=$?
