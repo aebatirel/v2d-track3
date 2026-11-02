@@ -6105,3 +6105,8 @@ Advice given:
   fa1e31f5…f89db; vs 13e only code_commit_url + 7 payload rows; CD-O changes exactly those 7 pairs (f6e76b28…); offline
   validation pass; 0 MESH WARNINGs. FLAGS [M]: blue cup extent ratio 1.159 (larger cup); dust pan centroid 6.84 mm. ICP
   4.59 mm / 2.93° and 2.38 mm / 1.85°. Staged as results/submissions/20261102-track3r-candidate (PENDING).
+- ~19:30 UTC bold-albattani **signs off pack 13f** (19:29 message): **YES for both, transform NONE.** Blue cup extent flag =
+  a larger generated cup, not frame (axis within 0.8°, closed end +z, 0/35 flips; known pose cost: anchor 2–4 → 5–7 mm);
+  dust pan centroid 6.8 mm = shape (ICP 2.4 mm, proxy 1.4 mm, 0/32 flips). Hashes re-verified. **pack 13f ready:
+  results/submissions/20261102-track3r-candidate/build_13f/track3_submission.parquet** (sha256 fa1e31f5…f89db, code 158dd372).
+  Not uploaded from this session.

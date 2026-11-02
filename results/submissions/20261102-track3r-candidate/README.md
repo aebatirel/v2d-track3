@@ -1,7 +1,7 @@
 # Track 3 pack-13f candidate, 2 Nov 2026 — pack 13e + Tier B+ blue cup and dust pan meshes
 
-**STATUS: PENDING frame sign-off. Not ready, not uploaded.** The mesh lane (bold-albattani) must sign off on the frame
-report below. keen-heisenberg's session uploads, on the owner's word there.
+**STATUS: READY (frame sign-off YES for both, transform none, 19:29 UTC). NOT uploaded from this session**:
+keen-heisenberg's session verifies and uploads on the owner's word there.
 
 **Disclosure: ground truth entered the mesh selection** (Tier B+, see meshes/tierBplus_pack13f/README.md).
 - Each mesh is the best generator output by CD-O against the public object scans. It was placed without ground truth and
@@ -47,3 +47,13 @@ report below. keen-heisenberg's session uploads, on the owner's word there.
   score lower on the pose boards than with the C0 cup.
 - **Dust pan:** anchor about unchanged (4.7 / 6.0 → 6.0 / 5.8 mm).
 - **Expected CD-O [E]:** 12e measured 0.26775; 13f ≈ 0.2627.
+
+## Frame sign-off (bold-albattani, 19:29 UTC message)
+- **YES for both, transform NONE, no correction**: blue_cup 672c4048… (evals 10/14/20/32/33 slot 0) and mini_dust_pan
+  1530b1d3… (eval 19 slot 1, eval 38 slot 0), as packed in fa1e31f5….
+- **Blue cup extent flag:** a larger generated cup, with the handle along y, so shape and size rather than frame.
+  - ICP 4.6 mm / 2.9° (mine) and 1.45 mm / 0.91° (theirs); axis within 0.8°; closed end at +z as for C0 (no flip).
+  - CD-O normalises scale and registers to the scan. The [D] values were scored at identity, with 0/35 flips.
+  - Known cost: the anchor goes 2–4 → 5–7 mm, so blue-cup pose may be a little worse.
+- **Dust pan centroid flag (6.8 mm):** shape. ICP 2.4 mm / 1.9° and kit proxy 1.4 mm / 1.6° are fine. [D] 0.2587 / 0.2601 →
+  0.2294 / 0.2311, with 0/32 flips.
