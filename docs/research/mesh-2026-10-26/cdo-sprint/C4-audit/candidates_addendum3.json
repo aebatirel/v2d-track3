@@ -1,0 +1,26 @@
+[
+ {
+  "object": "wooden_piece_2",
+  "label": "A3/graft_v3",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes/wooden_piece_2_graft_v3.glb",
+  "md5": "e3ea4022294dd8685a181ec0beac40db",
+  "role": "board2_variant",
+  "needs_place": false
+ },
+ {
+  "object": "wooden_piece_2",
+  "label": "A3/graft_v4",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes/wooden_piece_2_graft_v4.glb",
+  "md5": "d1be06fc6faea283eb504edaada87d64",
+  "role": "board2_variant",
+  "needs_place": false
+ },
+ {
+  "object": "wooden_piece_2",
+  "label": "A3/graft_v5",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes/wooden_piece_2_graft_v5.glb",
+  "md5": "634b294b57673edde776237d53baf432",
+  "role": "board2_variant",
+  "needs_place": false
+ }
+]

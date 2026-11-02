@@ -1,0 +1,41 @@
+{
+ "t_occ_mm": 8.93,
+ "t_lib_mm": 12.49,
+ "scale": 1.3988,
+ "feature_faces": 69,
+ "feature_centre_mm": [
+  7.9,
+  -55.3,
+  104.2
+ ],
+ "v3": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/c4/graft2/wooden_piece_2_graft_v3.glb",
+  "faces": 1607,
+  "md5": "e3ea4022294dd8685a181ec0beac40db",
+  "extents_mm": [
+   25.2,
+   138.9,
+   247.0
+  ]
+ },
+ "v4": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/c4/graft2/wooden_piece_2_graft_v4.glb",
+  "faces": 1538,
+  "md5": "d1be06fc6faea283eb504edaada87d64",
+  "extents_mm": [
+   24.0,
+   138.9,
+   247.1
+  ]
+ },
+ "v5": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/c4/graft2/wooden_piece_2_graft_v5.glb",
+  "faces": 1607,
+  "md5": "634b294b57673edde776237d53baf432",
+  "extents_mm": [
+   25.2,
+   138.9,
+   247.1
+  ]
+ }
+}
