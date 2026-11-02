@@ -6506,3 +6506,8 @@ arm and a no-policy replay floor to stage B.
   (session_01D9UJC9EUCs5sUCbTVZgvcC): harness recipe (store paths, b4ext4 hands/bundles, 9a+ meshes, scorer deps),
   findings (anchor-tilt oracle, pitcher 6 deg systematic + candidate meshes failing, offset decomposition, ep0/ep23
   failures + qa_physics), and the do-not-repeat list. GPU work is theirs; this session offers CPU help only.
+- 07:40 UTC 2 Nov (tracking-perception session message, logged by physperc): its harness reproduces our baseline
+  (0.8769, 20 / 20). It takes the complete-base pitcher as a TRACKER template (PREREG
+  docs/analysis/ptrk-20261102/PREREG_pitcher.md on claude/perception-tracking-20261102: lathe-completed v3p pitcher,
+  v3 body frame; gate ΔAUC >= +0.010 on ep21/22 and lower f0 tilt error on both), using our d1_tilt.py and
+  qa_physics.py. GPU boxes are theirs. Nothing in flight here.
