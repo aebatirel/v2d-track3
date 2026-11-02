@@ -7017,3 +7017,14 @@ arm and a no-policy replay floor to stage B.
   - Post-hoc suggestion, not pre-registered: use map cameras only where the GT-free bound is ≥ 0.02. On eval that is
     ep35 only (+0.047 on the episode, ≈ +0.002 board [E]), costing one retrain ($3–6). Public support is one episode.
     Kept as a low-priority option for the owner.
+- ~20:05 UTC 2 Nov bold-albattani:
+  - Board-2 variants pre-registered (1afc882), built (7339606): v1 = plate + 2 extra marker balls; v2 = plate + every
+    library_v3 cluster beyond the plate (it also took a 2335-face sheet; audited anyway). Both are in the 50-seed audit
+    under rule (B).
+  - **Spoon correction:** the earlier GT-free study (spoon-2026-10-25) found 0 flips in 300 registrations against 30
+    plausible spoons, so spoon flips are unlikely [M, GT-free].
+  - The spoon's real loss [M, kit functions] is as the **scene anchor** of evals 32 / 33 / 35 / 36 / 37: frame-0 roll
+    noise of 2–6° rotates the whole scene, ≈ 0.03–0.15 AUC per episode.
+  - No spoon mesh build; the GT-free criterion (a)–(d) is kept on file.
+  - Option for the owner: a rest-averaged spoon anchor pose with re-evaluation of the 5 policies (GPU, ~$5–10 [E]).
+    It cannot be validated on public data (no spoon GT; the public non-spoon anchor test A-f0 gave +0.001).
