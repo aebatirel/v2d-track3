@@ -7145,3 +7145,11 @@ arm and a no-policy replay floor to stage B.
     and 50-seed W30 ≤ 0.10.
   - Caveat: the audit flip rates used the budget reference, so near-symmetric meshes may flip more under a raw
     reference. All other shipped meshes were 0 / 50.
+- ~20:38 UTC 2 Nov **pack 13f1 (= 13f2) UPLOADED** (57920845–57920856). Verified: only e000025 o1 changed (= 12c's
+  payload).
+  - Scores: AUC 0.87191 (13f 0.87225 stays best), RPE **2.37520** (new best), MPPE 1.92513, CD-O 0.26393 (as
+    expected +0.0014), SP-SR 0.90, MP-SR 0.80.
+  - **The expected +0.02 did not appear.** [I] The hidden reference probably does not flip the plate (budget-mode
+    behaviour). Not used for selection; D1 stays as a veto.
+  - focused-pascal's D1 gate [D]: library_v3 piece_2 0 / 10 flips; Tier B piece_1 0 / 10 (kept); 13f's plate 2 / 10,
+    eval seed included.
