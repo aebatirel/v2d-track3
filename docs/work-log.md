@@ -6482,3 +6482,15 @@ arm and a no-policy replay floor to stage B.
   - Board caveat [E]: new draw 1 vs the old packed draws: eval 14 0.882 vs 0.909 (P); eval 32 0.876 vs 0.866.
   - **The upload was blocked by this session's permission classifier ("External System Writes").** Not retried; it
     waits for the owner's word in the morning.
+- 06:30 UTC 2 Nov owner asked for a full night report with videos to send to Roman.
+  - Published https://claude.ai/artifact/MaRrQ84gMR1HutKx5TDfMS ("KURSAD Night Report", private until the owner
+    shares it).
+  - Content: board table; fixes with causes (eval 10 solver overflow, eval 14 / 32 track-guard jump, eval 16 release,
+    eval 25 slot); what failed; Roman's questions (Kalman, compressed sensing, initial pose, mesh models); next steps;
+    spend.
+  - New CPU renders (scratchpad report/media, not in git): eval 10 before / after (pack 6 rollout vs ck512 conf512 r1)
+    and eval 14 before / after (H5p7 r7 vs pfC conf_ep14_s r1, sha b41d7798…), with collision geometry; plus the
+    eval-14 robot-hand video and the eval-25 slot video and still.
+  - Status at 06:22: credit $91.52 (night spend ≈ $31.3); one box running (pfG, eval-16 confirmation).
+  - Eval 16: pz (right hand kept on the spoon from f107) 0.975 ± 0.009 on seed 42; seed 43 + 10 draws pending.
+  - Pack 12 still waiting for the owner's upload word.
