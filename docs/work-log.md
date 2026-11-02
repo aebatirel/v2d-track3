@@ -6618,3 +6618,17 @@ arm and a no-policy replay floor to stage B.
   a reported secondary, every crashed cell is re-run unchanged on one PRO 6000 box after A / B / C finish (≈ $1–2 [E]).
   The pitcher template already looks bad before the crash: ep21 P had 3 guard re-acquisitions (f4, f17, f96), the
   control 0; the lathe pitcher sits lower / wider (extents 0.218 × 0.274 × 0.412 m vs v3 0.148 × 0.261 × 0.412).
+- 11:55 UTC **first batch done** (boxes A / B self-destroyed; C still on FS1). Scored [D] 19 episodes (ep23: the
+  control itself crashed out of memory, excluded until re-run). Crashed cells (counted as control, per PREREG): MG ep0
+  (process died at 2 s), MG / MR ep26, MD / MR ep0 (OOM). Gates (`docs/analysis/ptrk-20261102/results/`):
+  - **MG (primary): FAIL.** mean ΔAUC −0.0009, 7 better / 7 worse, min −0.069 (ep11 blue cup −0.128), MPPE −0.012,
+    RPE −0.109, > 3 cm frames 368 → 382. Falsifier fired (ΔAUC ≤ 0).
+  - MD (depth mask only, report-only): −0.0077, 5 / 9, ep11 −0.069, ep18 −0.040, ep26 −0.021: **restricting depth to
+    the video mask hurts** [D].
+  - MR (re-centre + re-register only, report-only): **+0.0029**, 5 / 4, min −0.008, MPPE −0.040, RPE −0.192,
+    > 3 cm 368 → 322; ep18 +0.062 (sweeper partial loss avoided).
+  - Tracker noise: C2 − C mean −0.00002, mean |per-episode| 0.0012.
+  - [M] Today's eval tracking defaults (library_v3 templates + guard, "C") score 0.945 on these 19 episodes vs 0.921
+    for the 25 Oct sweep base used by earlier public tests (mostly ep0 lid).
+- PREREG_MRrep.md written before any run: replication of MR (fresh C / MR on all 20) + crashed cells + pitcher, on one
+  96 GB PRO 6000 box (≈ $3.5–4.5).
