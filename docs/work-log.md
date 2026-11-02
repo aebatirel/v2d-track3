@@ -6759,3 +6759,14 @@ arm and a no-policy replay floor to stage B.
   `score_registered.py --reg_seeds N` added (default 1 = unchanged); seed 0 reproduces C13 ep24 0.4189; at 10 seeds
   13f's boards flip on 6 / 10 seeds on ep24 (seed mean 0.546). 119 runs started (CPU, $0). Tracks: C with ep23 after
   identity_fix. Coordinator: focused-pascal builds 13f2 (12c's board-2 payload on eval 25 slot 1, D1 no-flip gate).
+- 21:50 UTC **pose-board mesh CV (PREREG_posemesh + addendum 1) [D], 10-seed means, leave-one-episode-out:**
+  - PASS Part 1 (mesh): **white_pot → X** (ep43 TSDF pot; held-out mean +0.0206, min +0.0008; 12c / 9a+ +0.0183);
+    **plastic_dish_rack → 12c = 9a+ (library_c0 rack)** (+0.0234, min 0.0); **water_pitcher → 12c** (+0.0121, min
+    +0.0103); **wooden_piece_2 → 12c** (+0.1274; = the flip fix, already shipped by focused-pascal as 13f1).
+  - PASS Part 2 (placement from depth): **water_pitcher** (+0.1064, min +0.0803: ep21 +0.133, ep22 +0.080), rack
+    (+0.0096, min −0.0077), pot (+0.0070, min −0.0018); FAIL elsewhere.
+  - FAIL (keep 13f): blue cup, beige cup (1 episode), sweeper, dust pan (incl. X: −0.026), lid, board 1.
+  - D1 at eval seeds [M]: pot X ≤ 1.6°, rack 12c ≤ 2.9°, pitcher 12c 2.6°, board-2 12c 0.7°; all pass.
+  - Per object, the stronger passing option: pot → X mesh, rack → 12c mesh, pitcher → placement (needs eval depth +
+    the GT-free fit; pre-approved ≈ $5). Combinations (placement on a swapped mesh) were not tested.
+  `results/cv_posemesh.json`, `results/d1_check.json`.
