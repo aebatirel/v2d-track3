@@ -7234,3 +7234,20 @@ arm and a no-policy replay floor to stage B.
 - ~22:20 UTC 2 Nov **pack 13p2 UPLOADED** (57922817–57922829). Verified: only e000020 o1 changed.
   - Scores: AUC **0.88403**, RPE **2.22531**, MPPE **1.80932** (best); SP-SR 0.90; MP-SR 0.80; CD-O 0.26869.
   - The pitcher placement gave +0.0015 AUC (predicted +0.004–0.006, low end expected).
+- **23:16 UTC 2 Nov overnight check-in 1** (trig_015pbqAmCJadjEJsktZfbEdt).
+  - Credit **$101.05**. Boxes: pfO2 (eval 28), pfP2 (eval 30), pfR2 (eval 14), all training; nothing idle.
+  - Uploads since 20:15: 13f1 (RPE 2.3752 then), 13p (AUC 0.88257), 13p2 (AUC **0.88403**, RPE **2.22531**, MPPE
+    **1.80932**). Rank sum 46, 7th.
+  - Retrains so far [M] (perfect-following 3ee22cac):
+    - eval 14 p0m s42 box 0.938 ± 0.010 (gate 0.875); valid zero-shot 0.878;
+    - **eval 20 NO-SWAP** (s42 0.293, s43 0.604 vs 0.926; the grasp is built on the old pitcher);
+    - eval 30 sm s42 0.938 ± 0.008 (gate 0.897; earlier low draws 0.41–0.60);
+    - eval 28 pending.
+    - Fresh-draw confirmations follow.
+  - G2 audit (bold-albattani 5a1c092e), pending D1:
+    - pot sam3d ep44 s7: CD-O 0.2861 vs 0.3107, ADD 2.7 vs 6.3 mm, rules A + C;
+    - blue cup sam3d ep22 s7 t3fit: 0.2335 vs 0.2646, A + C;
+    - rack hy21 ep31 t3fit: 0.4016 vs 0.4182, ADD 4.3 vs 10.0, C;
+    - pitcher: none.
+    - → 13h as a CD-O variant on 13f; the pose boards get G2 meshes only via round-2 CV.
+  - Round-2 pose CV is running (CPU).

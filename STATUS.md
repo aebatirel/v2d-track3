@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 23:16 UTC: overnight check-in 1. Best: 13p2 (AUC 0.88403, RPE 2.22531, MPPE 1.80932); 13f (CD-O 0.26249); rank sum 46, 7th
+- Credit $101.05; 3 retrain boxes running (evals 28 / 30 / 14).
+- Promising on the box: eval 14 0.938 (gate 0.875), eval 30 0.938 (gate 0.897). Eval 20 retrain: no swap.
+- G2 meshes pass the scan rules for pot / blue cup / rack (D1 pending) → 13h CD-O variant on 13f.
+- Round-2 pose CV running → 13p3.
+
 ## 2026-11-02 ~21:55 UTC: PACK 13p UPLOADED: AUC 0.88257, RPE 2.22667, MPPE 1.82356 (best); rank sum 46, 7th
 - 13p = 13f1 + pose-board meshes chosen by pre-registered public-pose leave-one-episode-out CV (TSDF pot,
   library_c0 rack). The CD-O board keeps 13f (0.26249).
