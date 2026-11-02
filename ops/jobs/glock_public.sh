@@ -117,6 +117,10 @@ pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_
 python $P/make_assets.py $MESH_DIR $ASSETS ${PIECES:+--pieces $PIECES} ${MA_ARGS:-} >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 [ -n "${PIECES:-}" ] && log "glock_public: collision pieces from $PIECES ($(ls $PIECES | tr '\n' ' '))" >> $J
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
+if [ "${FC_LIFT_PATCH:-0}" = 1 ]; then                           # (2026-11-02, pf-lift) inert unless FC_LIFT_WINDOWS is set
+  python $REPO_DIR/ops/box/patch_flashchord_lift.py $FC >> $J 2>&1 || { log "FlashCHORD lift patch FAILED" >> $J; exit 1; }
+  log "patched FlashCHORD (lift-window training starts, ops/box/patch_flashchord_lift.py md5 $(md5sum < $REPO_DIR/ops/box/patch_flashchord_lift.py | cut -c1-12)); inert unless a pair's TRAIN_ENV sets FC_LIFT_WINDOWS" >> $J
+fi
 if [ "${FC_DR_PATCH:-0}" = 1 ]; then                             # (2026-10-31, pack 9b D arm) after fc_patches; inert unless
   python $REPO_DIR/ops/box/patch_flashchord_dr.py $FC >> $J 2>&1 || { log "FlashCHORD DR patch FAILED" >> $J; exit 1; }   # FC_DR_RESET is set
   log "patched FlashCHORD (start-state randomisation of sampled training resets, ops/box/patch_flashchord_dr.py md5 $(md5sum < $REPO_DIR/ops/box/patch_flashchord_dr.py | cut -c1-12)); training env [${TRAIN_ENV:-}]" >> $J
@@ -217,6 +221,8 @@ one() {
       local glv=GL_ARGS_$perc                                      # one() runs in its own subshell: only this pair sees them
       [ -n "${!glv:-}" ] || { log "glock $tg: $glv unset (pf arms name their GL_ARGS)" >> $J; return 1; }
       GL_ARGS=${!glv}; log "glock $tg: GL_ARGS [$GL_ARGS]" >> $J
+      local tev=TRAIN_ENV_$perc                                    # (2026-11-02, pf-lift) this pair's training-process env
+      [ -n "${!tev:-}" ] && { TRAIN_ENV="${TRAIN_ENV:-} ${!tev}"; log "glock $tg: TRAIN_ENV [$TRAIN_ENV]" >> $J; }
     fi
   fi
   LG=/content/${pre}glock_ep$ep.log

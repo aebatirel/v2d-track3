@@ -1,0 +1,29 @@
+# Lift-window training starts (contact-moment training), pre-registered 2 Nov 2026 ~07:50 UTC (10:50 TRT), before any result
+
+## Evidence [M] (GT-free, H5p7 onsets vs our reference's hold starts)
+The remaining deterministic losses start ~10 frames after a grasp begins: eval 25 pieces f41 / f173 (holds from f31 /
+f163), eval 30 sweeper f36–52 (hold from f42), eval 3 pot f66–68 (from f57), eval 14 after the bridge repair f27–31
+(from f18). Post-release growth exists only on 14 / 16 / 32, already replaced in pack 12b, so hold-freeze does not apply
+to 25 / 30 / 1 / 3 (checked 07:20 UTC, message to keen-heisenberg).
+
+## Hypothesis [H-lift] and change
+FlashCHORD draws training reset frames uniformly, so a ~20-frame grasp / lift window gets ~20 / T of the starts. Drawing a
+share P = 0.3 of the sampled training resets uniformly from the windows [hold start − 5, hold start + 15] of our reference
+(tools/lift_windows.py; ops/box/patch_flashchord_lift.py, training-only, inert unless FC_LIFT_WINDOWS is set; explicit
+resets / every evaluation untouched; CPU-checked: unset = upstream sampling exactly) lowers the lift loss.
+Falsified on the public twin if the rule below fails.
+
+## Step 1, public test (box pfH): public ep31 (eval 30's twin), base = run 20261030-orcB-38234d1's perceived reference
+Arms on one box, one commit, the grasp-lock recipe (pf-hands PREREG §2), seeds 42 / 43:
+- `s`  = single-hand lock (the packed construction), stock training;
+- `lw` = the same reference construction + lift-window starts (windows 20–40 on ep31, P 0.3).
+Metric: registered AUC vs mocap (public evaluation only), NREP 10 of the sim_vs_ref-chosen checkpoint.
+**Rule:** lw passes if the mean over seeds of the paired ΔAUC (lw − s) ≥ +0.02 and no seed's Δ < −0.03.
+Reported: sim_vs_ref plain / symmetric, error onsets around the lift.
+
+## Step 2 (only if step 1 passes; a new PREREG addendum before launch)
+Eval 3 and eval 14 (grasp-lock, the packed / pack-12b reference reused, arm `plw`), and evals 25 / 30 (standard learner)
+if the job supports them, 2 seeds, swap rule + ≥ +0.02 bar, 10 fresh draws.
+
+## Cost [E]
+Step 1: 2 pairs per seed wave ≈ 3 h ≈ $4–4.5. Step 2 ≈ $10–15. Budget left ≈ $70 of $102.

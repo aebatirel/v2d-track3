@@ -30,7 +30,7 @@ EPS=${EP:?EP}; SPLIT=${SPLIT:?SPLIT}; ARMS=${ARMS:?ARMS}; SEEDS=${SEEDS:-"42 43"
 TAB=$REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json; H5P7_RUN=20261031-h5p7-1a7cdff
 GC="--mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15"
 arms_of() { local v=ARMS_EP$1; echo ${!v:-$ARMS}; }              # ARMS_EP<N>: that episode's arms (default ARMS)
-gl_of() { case $1 in s) echo "--single_hand 1 $GC" ;; f) echo "--single_hand 2 $GC" ;; se) echo "--single_hand 1 $GC --hold_to_end ${HOLD_TO_END:?HOLD_TO_END}" ;; p0|pz) echo "(packed reference reused: $GC)" ;; 2h) echo "$GC" ;; *) return 1 ;; esac; }
+gl_of() { case $1 in s) echo "--single_hand 1 $GC" ;; f) echo "--single_hand 2 $GC" ;; se) echo "--single_hand 1 $GC --hold_to_end ${HOLD_TO_END:?HOLD_TO_END}" ;; p0|pz) echo "(packed reference reused: $GC)" ;; lw) echo "--single_hand 1 $GC" ;; plw) echo "(packed reference reused, lift windows: $GC)" ;; 2h) echo "$GC" ;; *) return 1 ;; esac; }
 for a in $ARMS $(for e in $EPS; do arms_of $e; done); do gl_of $a > /dev/null || { log "pf_arms: unknown arm $a" >> $J; exit 1; }; done
 export LIB=$REPO_DIR/meshes/library_v3 SF=1 SETTLE=0 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=10 PAR=2 TRAIN_SLOTS=2 \
   STEPS=70004736 EVAL_TIMEOUT=1200 NO_PUSH=1 ASSETS=/content/assets SPLIT
@@ -83,13 +83,13 @@ for e in $EPS; do
     cp -r /content/refs/perc2mck/ep$e /content/refs/${pre}mck/ep$e
   done; done
   for s in $SEEDS; do for a in $(arms_of $e); do                  # (pf-release PREREG_B) arms on the PACKED reference P itself:
-    case $a in p0|pz) ;; *) continue ;; esac                       # p0 = byte copy, pz = tools/hold_freeze.py on it (FREEZE_EP<N>)
+    case $a in p0|pz|plw) ;; *) continue ;; esac                       # p0 = byte copy, pz = tools/hold_freeze.py on it (FREEZE_EP<N>)
     [ $SPLIT = eval ] || { log "pf_arms ep$e: arm $a needs SPLIT=eval" >> $J; continue 2; }
     pre=pf${a}s$s; hive=$(dirname $(tabl $e reference)); hive=${hive#refs/glockt/ep$e/}; D_=/content/refs/${pre}_glockt/ep$e
     rm -rf $D_; mkdir -p $D_/$hive; cp -r /content/refs/glockt/ep$e/reconstructed_stage $D_/ 2> /dev/null || cp -r /content/refs/perc2mck/ep$e/reconstructed_stage $D_/
     if [ $a = pz ]; then fv=FREEZE_EP$e; IFS=: read -r fs ff <<< "${!fv:?FREEZE_EP$e}"
       python $T/hold_freeze.py $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet --side $fs --from $ff >> $J 2>&1 || { log "pf_arms ep$e: hold_freeze FAILED" >> $J; continue; }
-    else cp $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet; fi
+    else cp $I/ep$e/P.parquet $D_/$hive/ref_gl_ilc.parquet; fi   # p0 / plw: a byte copy of P
     mkdir -p /content/results/${pre}_glock_public/ep$e
     for f in $(tabl $e result_files); do pull1 $f && cp $HS/$f /content/results/${pre}_glock_public/ep$e/; done
     log "pf_arms ep$e: arm $a s$s on the packed reference: $D_/$hive/ref_gl_ilc.parquet md5 $(md5sum < $D_/$hive/ref_gl_ilc.parquet | cut -c1-12) (P $(md5sum < $I/ep$e/P.parquet | cut -c1-12))" >> $J
@@ -102,9 +102,14 @@ OK=${OK# }; [ -n "$OK" ] || { log "pf_arms: no episode has its inputs" >> $J; ba
 
 # ----- 2. training: one glock_public.sh invocation per seed, every (episode, arm) of it in waves of 2
 for s in $SEEDS; do
-  PP=""; for e in $OK; do for a in $(arms_of $e); do PP="$PP $e:local:mck:pf${a}s$s"; export GL_ARGS_pf${a}s$s="$(gl_of $a)"; done; done
+  PP=""; for e in $OK; do for a in $(arms_of $e); do PP="$PP $e:local:mck:pf${a}s$s"; export GL_ARGS_pf${a}s$s="$(gl_of $a)"
+    case $a in lw|plw)                                             # (pf-lift PREREG) lift-window starts, this pair's training only
+      W_=$(python $T/lift_windows.py $(ls /content/refs/perc2mck/ep$e/processed/*/*/*.parquet | head -1)) || { log "pf_arms ep$e: lift_windows FAILED" >> $J; continue; }
+      export TRAIN_ENV_pf${a}s$s="FC_LIFT_WINDOWS=$W_ FC_LIFT_P=${LIFT_P:-0.3} FC_LIFT_SEED=$s"; export FC_LIFT_PATCH=1
+      log "pf_arms ep$e $a s$s: lift windows [$W_] share ${LIFT_P:-0.3}" >> $J ;;
+    esac; done; done
   label "pf arms: seed $s [$PP ]"; log "pf_arms: seed $s, PAIRS [${PP# }]" >> $J; t0=$(date +%s)
-  RU=""; case " $ARMS $(for e in $OK; do arms_of $e; done) " in *" p0 "*|*" pz "*) RU="REUSE_REF=1 REQUIRE_REUSE=1" ;; esac   # all arms of the box then reuse
+  RU=""; case " $ARMS $(for e in $OK; do arms_of $e; done) " in *" p0 "*|*" pz "*|*" plw "*) RU="REUSE_REF=1 REQUIRE_REUSE=1" ;; esac   # all arms of the box then reuse
   ( [ -n "$RU" ] && export $RU; SEED=$s PAIRS="${PP# }" bash $REPO_DIR/ops/jobs/glock_public.sh ) || log "pf_arms: seed $s returned $?" >> $J
   log "pf_arms: seed $s took $(( ($(date +%s) - t0) / 60 )) min" >> $J
   bash $OPS/store.sh push-run > /dev/null 2>&1 || log "pf_arms: interim push FAILED" >> $J

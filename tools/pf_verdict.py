@@ -55,14 +55,16 @@ def public(a):
         thin = [f'{arm}/s{s}' for arm in E for s, c in E[arm].items() if c is None or c['auc'].get('n', 0) < 8]
         r = dict(cells={arm: {s: (None if c is None else {k: c[k] for k in ('checkpoint', 'sim_vs_ref', 'auc', 'plain', 'sym')})
                               for s, c in E[arm].items()} for arm in E})
-        if 's' in E and '2h' in E:
+        cand = [x for x in E if x != 's']
+        if 's' in E and cand:
+            c_ = cand[0]; bar, floor_ = (0.02, -0.03) if c_ != '2h' else (0.05, -0.05)   # pf-lift PREREG / pf-hands §3
             if thin:
                 r['label'] = 'INCOMPLETE'; r['why'] = f'cells with < 8 scored rollouts: {thin}'
             else:
-                d = {s: E['2h'][s]['auc']['mean'] - E['s'][s]['auc']['mean'] for s in E['s']}
+                d = {s_: E[c_][s_]['auc']['mean'] - E['s'][s_]['auc']['mean'] for s_ in E['s']}
                 m = float(np.mean(list(d.values())))
-                r.update(paired_diff={s: round(v, 4) for s, v in d.items()}, mean_diff=round(m, 4),
-                         label='PASS' if m >= 0.05 - TOL and min(d.values()) >= -0.05 - TOL else 'FAIL')
+                r.update(candidate=c_, bar=bar, paired_diff={s_: round(v, 4) for s_, v in d.items()}, mean_diff=round(m, 4),
+                         label='PASS' if m >= bar - TOL and min(d.values()) >= floor_ - TOL else 'FAIL')
         res['eps'][ep] = r
         lines.append(f"ep{ep} {r.get('label', 'NO-RULE')} " + ' '.join(
             f"{arm}/s{s}: AUC {c['auc'].get('mean')} svr {c['sim_vs_ref'].get('mean')} sym {c['sym'].get('mean')}"
