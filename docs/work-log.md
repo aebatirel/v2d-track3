@@ -6778,3 +6778,9 @@ arm and a no-policy replay floor to stage B.
     (ops/box/patch_flashchord_lift.py). Same word only.
   - Possible later use [H]: dense point tracks through hand occlusion as correspondences for the offline joint pose
     fit. Low priority: we have metric stereo depth and model-based poses.
+- 16:10 UTC 2 Nov perception-tracking: ptrkE (detector test, $1.48/h) takes about 1 min of compute but about 12 min
+  of store pull / push per episode, so all 20 episodes would cost ≈ $6.5 (cap $6).
+  - Plan: save and destroy at $6 (≈ 19:00 UTC, 17–18 / 20 episodes) and report the rest as incomplete. The owner's
+    cap takes precedence. Coordinator agreed and suggested batching the store transfers.
+  - Early result [D, 3 eps]: "add" leaves ep18 / ep23 / ep0 unchanged; "replace" is worse on ep23 (0.009 vs 0.041).
+  - Credit $41.74 at 15:59 [M].
