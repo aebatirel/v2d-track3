@@ -6788,3 +6788,7 @@ arm and a no-policy replay floor to stage B.
 - 23:15 UTC **(c) eval-20 pitcher placement done** (box G 58880163 self-destroyed, ≈ $0.6): same frame-0 detection as
   the packed run; fit on the reference body poses: Δ 2.89° / 0.47 cm, trimmed RMS 3.81 → 2.57 mm, guards pass; D1 3.4°
   (unplaced 3.3°). `meshes/pose_pack_13p2/` (md5 fb2cb7ea…); sent to focused-pascal for 13p2.
+- 23:25 UTC G2 generations (bold-albattani, 6b0d5c80, store runs/mesh-20261102-g2b-ff63482/stage2; 32 = 8 per object
+  for pot / blue cup / rack / pitcher, "placed" + "t3fit" copies, GT-informed best-of-N by public-scan CD-O,
+  disclosed): md5 verified, 168 runs queued into round 2 (a) (covered by PREREG_round2 "plus G2 as they land").
+  `scripts/cv_round2.py` written before any round-2 candidate score.
