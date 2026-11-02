@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 14:35 TRT (11:35 UTC): lift-window training passed its public test; eval retrains running
+- Public ep31 (eval 30's twin), AUC vs mocap: lift windows 0.730 / 0.704 vs control 0.589 / 0.707 (2 seeds) → mean
+  +0.069, PASS by the pre-registered rule. Honest reading: it mainly removes failed draws (worst draw 0.69 / 0.62 vs
+  0.25 / 0.40) rather than raising the ceiling.
+- Now on eval (box pfI, ≈ $8): evals 3, 14 and 32 retrained with lift windows on their current references, 2 seeds,
+  10 fresh draws, swap rule + ≥ +0.02 bar against the policies on the board. Results ≈ 17:30–18:30 TRT.
+- Spend since the new $50 cap (10:32 TRT): ≈ $6; total ≈ $37.
+
 ## 2026-11-02 10:20 TRT (07:20 UTC): next step running — lift-window training, public test first
 - Your "what else" (via keen-heisenberg): hold-freeze does not fit evals 25 / 30 / 1 / 3 [M]: their losses start ~10
   frames after the grasp (the lift), not after a release. So the matching lever is contact-moment training.
