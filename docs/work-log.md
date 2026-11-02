@@ -6604,3 +6604,7 @@ arm and a no-policy replay floor to stage B.
   **S2 verdict sent to perfect-following:** not in any packed reference (12b included); apply `refine.py --steps S2`
   before mkref only on episodes retrained anyway (+0.004 board [E]).
 - PREREG pitcher template (`PREREG_pitcher.md`) and PREREG full-resolution depth (`PREREG_fs1.md`) pushed before runs.
+- 07:53 UTC **smoke OK on box A [M]:** ep2 C rc 0 (135 s), MG rc 0 (172 s; SAM2 propagation 343 frames, pot 12 prior
+  shifts, 2 recovery tries, 0 accepted). ≈ 2.5–3 min per run → ≈ 2.5 h per box.
+- ~07:56 UTC **launched** 58789090 `20261102-ptrkC-7d40132` (RTX 5090, $0.722/h, code 7d40132): pitcher test (C, P on
+  ep21 / 22) then FS1 (FS_SCALE 1.0) on all 20 episodes; ≈ 2.5–3.5 h, ≈ $2–2.5 [E]. Three boxes now ≈ $2.19/h.
