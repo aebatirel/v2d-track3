@@ -6869,3 +6869,12 @@ arm and a no-policy replay floor to stage B.
     off.** Camera-term MPPE ≈ 0.13–1.3 cm per clip (mean ~0.3), if the map is right.
   - The public leave-out test (b) continues, report-only (~1.5 h).
   - Reading [I]: camera drift is not our perception bottleneck. The rest-segment result points at meshes.
+- 17:28 UTC 2 Nov (18:12 session clock) perception-tracking **reconciled: ep23 is a frame-0 board identity swap**
+  (its 14:55 "joint freeze" reading compared same-named tracks; corrected in its log).
+  - identity_fix.py is in no public control, only ops/jobs/eval_idfix.sh.
+  - Applied on CPU to the ep23 control (ptrkD Cr): the knob rule picks swapped + Rx (as tracked: rank 21 / 32).
+    **ep23 AUC 0.041 → 0.663** (piece_1 0.083 → 0.959, piece_2 0 → 0.368; MPPE 16.3 → 5.4 cm) [D].
+  - ep24 unharmed (as tracked rank 1 / 32; 0.8343 unchanged).
+  - ≈ +0.031 on the public 20-episode mean. No eval action: eval 25 already uses it, and no other eval episode has
+    look-alike objects.
+  - All public lanes now apply it to ep23 before scoring; room-map told.
