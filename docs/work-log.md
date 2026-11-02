@@ -10838,3 +10838,7 @@ score.
 - 01:05 UTC 2 Nov **eval 33 guard-bridge candidate: PASS, NOT INCLUDED** [M]: seed 43; 10 draws vs B 0.9395 (packed
   0.9199), vs P 0.9347 (packed 0.9234); 0 fails both; gain on B **+0.0196 < +0.02** → stays out (rule as pre-registered).
 - 01:03 UTC 2 Nov **eval 15 two-hand: NO-SWAP** [M] (on-box verdict): mean 0.947 vs packed 0.906 (gain +0.042) but clause (c) median RPE 1.447 vs 1.299 cm fails. pfD done.
+- 01:10 UTC 2 Nov **pack 12 ready: results/submissions/20261102-track3m-candidate/build_12/track3_submission.parquet**
+  (sha256 7b0cd7df…, 9,120 rows; pack 11 + evals 14 and 32 guard-bridged retrains, confirmation draw 1 each; code
+  ab444c0; built by tools/pack_swap_rows.py, all checks + kit offline validation pass, CD-O unchanged). NOT uploaded;
+  record sent to keen-heisenberg (uploader). The earlier eval-14-only build is kept as build_12a_ep14only.
