@@ -6463,3 +6463,12 @@ diagnostic; nothing is picked for submission.
 - Box 58874418 destroyed 21:54:16 UTC (confirmed). Measured from the instance record: $5.50 (1.315 h at $4.033/h +
   71.7 GB at $2.67/TB). G2 GPU total ~$8.31 including the preempted box (~$2.80). Ledger actual lines written.
   All 528 meshes and the screen are in the store under runs/mesh-20261102-g2b-ff63482/.
+- ~22:00 UTC: the coordinator reports pack 13p (TSDF pot + library_c0 rack, chosen by the perception lane's public-pose
+  CV) scored AUC 0.88257 (+0.010), RPE 2.227, MPPE 1.824. New split:
+  - pose boards: chosen by the public-mocap pose CV;
+  - CD-O board: chosen by the scan rules (A)/(B)/(C).
+  All 52 C4 meshes (as audited; generated ones placed) were uploaded to the HF store at runs/c4-audit-20261102/meshes/
+  (commit fb4b1a85), with `C4-audit/posecv_manifest.json` (175089d4). They were offered to the perception session for
+  its round-2 CV; flip-prone boards are flagged for exclusion.
+- G2 stage 1 (agent): best screen [D] pot 0.2852 (sam3d ep44 s7) vs shipped 0.3107; blue cup 0.2430 vs 0.2646.
+  Stage 2 is in progress.
