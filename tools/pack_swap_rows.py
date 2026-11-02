@@ -51,6 +51,11 @@ def main():
     for sw in a.swap:
         n, path = sw.split('=', 1); n = int(n); js = path[:-len('.parquet')] + '.json'
         meta = json.load(open(js)); ck = meta['checkpoint_sha256']
+        import pyarrow.parquet as pq                                   # the evaluator's own stamp on the rollout
+        md = {k.decode(): v.decode() for k, v in (pq.read_schema(path).metadata or {}).items() if k.startswith(b'flash_chord.')}
+        if md.get('flash_chord.checkpoint_sha256') != ck: say(f'ep{n}: parquet checkpoint stamp != json'); sys.exit(1)
+        for c in ('eval_code_sha256', 'eval_script_sha256', 'reference_parquet'):
+            if md.get(f'flash_chord.{c}'): meta[c] = md[f'flash_chord.{c}']
         r = subprocess.run([sys.executable, f'{REPO}/tools/no_oracle.py', path, js] +
                            ([meta['reference_parquet']] if meta.get('reference_parquet') else []), capture_output=True, text=True)
         if r.returncode: say('REFUSED by no_oracle:', r.stdout[-300:], r.stderr[-300:]); sys.exit(1)
@@ -58,7 +63,7 @@ def main():
         m = key.e == n; rows = base[m]
         if (rows.checkpoint_sha256 == ck).any(): say(f'ep{n}: the swap has the base checkpoint'); sys.exit(1)
         for c in ('eval_code_sha256', 'eval_script_sha256'):
-            if meta.get(c) and set(rows[c]) != {meta[c]}:
+            if not meta.get(c) or set(rows[c]) != {meta[c]}:
                 say(f'ep{n}: {c} differs from the base rows ({meta[c]} vs {set(rows[c])})'); sys.exit(1)
         ro = pd.read_parquet(path)
         k = key[m]; idx = pd.MultiIndex.from_arrays([k.w, k.f, k.o])
