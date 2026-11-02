@@ -7260,3 +7260,12 @@ arm and a no-policy replay floor to stage B.
     meshes); 14p2 adds eval 30 if it passes.
 - ~23:35 UTC 2 Nov **pack 14p UPLOADED** (57924186–57924198). Verified: only the e000014 rows changed.
   - Scores: AUC **0.88571**, RPE **2.21325**, MPPE **1.79779** (best); SP-SR 0.90; MP-SR 0.80; CD-O 0.26869.
+- ~23:44 UTC 2 Nov bold-albattani: **G2 audit done; 13h handed to focused-pascal** (8cd7fe77). D1 0 / 6 flips in both
+  modes.
+  - pot sam3d ep44 s7: CD-O 0.2861 vs 0.3107, ADD 2.7 vs 6.3 mm (A + C);
+  - blue cup sam3d ep22 s7 t3fit: 0.2335 vs 0.2646 (A + C);
+  - rack hy21 ep31 s123 t3fit: 0.4016 vs 0.4182, ADD 4.3 vs 10.0 (C);
+  - pitcher: none.
+  - Expected CD-O [E] ≈ 0.253 from 13f1 (≈ 0.251 from the 13f base). 5th place is 0.2534, so it is on the edge.
+  - The three also register tighter than the 13p meshes, so they are in the round-2 pose CV.
+  - G2 total $8.31; all boxes destroyed.
