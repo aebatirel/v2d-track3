@@ -7077,3 +7077,9 @@ arm and a no-policy replay floor to stage B.
     - focused-pascal builds the mesh packs on 13f.
   - Integrity line unchanged: uploads only of pre-registered, positively justified packs; no coin-flip variants to
     harvest the best-per-board max.
+- ~20:14 UTC 2 Nov owner going to sleep; asked whether the credit is enough and whether everything is recorded.
+  - Overnight check-ins scheduled: trig_015pbqAmCJadjEJsktZfbEdt at 23:15 UTC and trig_019pb1251p7QgefvWFt2P5SK at
+    03:15 UTC (the second writes the morning report).
+  - Lanes report as results land.
+  - Spend ceiling tonight ≈ $82 of $127.97 (floor $15). A full eval perception rerun (test B) would need more and is
+    held for the owner's morning word unless it fits under the floor.
