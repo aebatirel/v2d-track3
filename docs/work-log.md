@@ -6801,3 +6801,6 @@ arm and a no-policy replay floor to stage B.
 - 20:10 UTC 2 Nov room-map: perception-tracking offered the camera-guard follow-up (map camera only where the GT-free
   bound is large) to this session. Asked the coordinator to choose: (A) new PREREG tested on fresh public evidence
   (C2 replicate, re-seeded maps; $0, ~2 h CPU) or (B) stop until the owner's top-up. Idle until answered.
+- 20:08 UTC 2 Nov room-map: coordinator chose (B) stop; eval 35 stays an optional, separately pre-registered arm in
+  perfect-following after the top-up (caveat: threshold chosen post hoc). Point-track declined a map-camera arm (its
+  test already failed, camera-invariant detector). Session idle; container holds no running jobs, no rentals.

@@ -6,8 +6,11 @@
 - Eval [M, GT-free]: perc2's camera is within 2–9 mm (object p95) on 19/20 clips; ep35 18 mm. Bound 0.0029 → G1 FAIL.
 - Public leave-out vs mocap [M]: mean ΔAUC +0.0070, ΔMPPE −0.081 cm, but ep22 −0.0164 → G2 FAIL. ep24 (perc2 camera
   off by 37 mm) +0.148; the other 18 episodes −0.0008 (noise).
-- Step 2 / retrains are off under this PREREG. Suggested (needs a new PREREG + owner/coordinator): a selective rule
-  (map camera only where the GT-free bound ≥ 0.02) → eval ep35 only, ≈ +0.002 board AUC [E] via one retrain.
+- Step 2 / retrains are off under this PREREG. Coordinator decision (20:07 UTC): STOP here. The camera-guard rule
+  (map camera only where the GT-free bound ≥ 0.02 → eval ep35 only, ≈ +0.002 board [E]) would have its threshold
+  chosen after seeing public scores; eval 35 stays an optional, separately pre-registered perfect-following arm after
+  the owner's top-up, with that caveat. Map cameras for all public (leave-out) / eval clips: HF
+  runs/20261102-roommap-6438495/world_T_cam/. Session idle.
 
 ## 2026-11-02 ~08:43 UTC: PACK 12c UPLOADED: AUC 0.84738, CD-O 0.300, RPE 3.008, MPPE 2.467 (best on every board)
 - Pack 12c = pack 12b + the C0 blue-cup mesh (owner-accepted GT-informed public selection). Record
