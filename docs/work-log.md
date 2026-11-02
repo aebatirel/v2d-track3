@@ -6588,3 +6588,7 @@ arm and a no-policy replay floor to stage B.
   `ops/jobs/perc_vos.sh`. **Rental plan:** 2 × RTX 5090 (≈ $0.6–0.8/h), 20 public episodes split 10/10, variants
   C, C2, MG, MD, MR; ≈ 3–4 h each, ≈ $5–7 [E] of the $30 session budget. Run ids `20261102-ptrk{A,B}-<sha>`.
   Only other instance up: 58785113 (perfect-following's pfH), untouched.
+- ~08:50 UTC **launched** (code 7fbc321, ENV_SNAPSHOT pt2.11-cu130-py313-20261020, RTX 5090):
+  58786764 `20261102-ptrkA-7fbc3215` ($0.745/h; EPS 2 12 0 11 13 18 21 22 23 24) and 58786756 `20261102-ptrkB-7fbc3215`
+  ($0.722/h; EPS 31 26 27 39 40 41 42 43 44 45); variants C, MG, MD, MR, C2 (`ops/jobs/perc_vos.sh`). First RTX 5090
+  use for perception (same sm_120 as the PRO 6000; snapshot risk noted).
