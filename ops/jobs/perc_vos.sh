@@ -14,8 +14,27 @@ LIB=${LIB:-$REPO_DIR/meshes/library_v3}
 log "perc_vos code $(git -C $REPO_DIR rev-parse --short HEAD), episodes [$EPS], variants [$VARIANTS], LIB $LIB" >> $J
 ensure_gdino $J
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true
+# depth prefetch (2026-11-02): one hf_hub_download per file, all episodes in parallel. `store.sh pull-depth` uses
+# `hf download --include`, which lists the whole store repo (12-15 min per call on 2 Nov).
+python - $EPS << 'PYEOF' >> $J 2>&1 || true
+import os, sys
+from concurrent.futures import ThreadPoolExecutor
+from huggingface_hub import hf_hub_download
+def get(e):
+    try:
+        f = hf_hub_download(os.environ.get('HF_STORE', 'aebatirel/v2d-store'), f'cache/depth/public/ep{e}/depths_fs0.5.npy', repo_type='dataset',
+                            local_dir='/content/hfstore', token=os.environ.get('HF_TOKEN'))
+        os.makedirs(f'/content/cache/depth/ep{e}', exist_ok=True)
+        d = f'/content/cache/depth/ep{e}/depths_fs0.5.npy'
+        if not os.path.exists(d): os.symlink(f, d)
+        return f'ep{e} ok'
+    except Exception as x:
+        return f'ep{e} prefetch failed: {x!r}'[:200]
+with ThreadPoolExecutor(6) as ex:
+    print('prefetch:', list(ex.map(get, sys.argv[1:])))
+PYEOF
 for ep in $EPS; do
-  bash $OPS/store.sh pull-depth $ep public > /dev/null 2>&1 || log "ptrk ep$ep: no cached depth (computed here)" >> $J
+  [ -s /content/cache/depth/ep$ep/depths_fs0.5.npy ] || bash $OPS/store.sh pull-depth $ep public > /dev/null 2>&1 || log "ptrk ep$ep: no cached depth (computed here)" >> $J
   for v in $VARIANTS; do
     name=${v%%:*}; envs=${v#*:}; D=$O/$name/ep$ep; mkdir -p $D
     [ -s $D/poses_world_vo.npz ] && continue

@@ -6730,3 +6730,8 @@ arm and a no-policy replay floor to stage B.
   mesh reading still applies to the pitcher, pot and cups. Room-map's GT-free camera guard (switch to map
   relocalisation when the chain disagrees by > ~1 cm) would trigger only on eval 35 (18 mm). Its lane; I change
   nothing in perc2.
+- 20:25 UTC **night work (owner via keen-heisenberg 20:10: "do as much work as you can for tonight"):** tests (A) mesh
+  placement from depth (CPU) and (B) tracking with the submitted meshes (GPU), ≤ $8, stop if credit < $10.
+  PREREG_meshAB.md pushed before any variant output. M13 = exact pack-13f payload meshes decoded from the submission
+  parquet (`meshes/m13f_payload/`, md5 list; GT-selected Tier B meshes noted). `perc_vos.sh` gains a parallel
+  per-file depth prefetch (the store's `hf download --include` listing cost 12–15 min per episode on ptrkE).
