@@ -6641,3 +6641,11 @@ arm and a no-policy replay floor to stage B.
   Verdict: the re-centre / re-register rule can throw a correctly tracked object onto a wrong mask region; **closed,
   not handed over.** Box D keeps running (rule: never cut a job still making progress); its remaining output (rest of
   the replication, pitcher template, crashed cells) is report-only. ptrkC is on FS1 ep42 (last episodes).
+- 14:05 UTC **full-resolution depth (FS1): FAIL, falsified [D]** (16 / 20 episodes; cross-box vs batch-1 C; the
+  remaining 4 cannot reach the gate): mean ΔAUC −0.0097, 5 better / 9 worse, min ep13 −0.098 (blue cup in rack), ep39
+  −0.057, ep22 −0.023; MPPE +0.12 cm; > 3 cm frames 368 → 418. The along-ray offset episodes do not improve (ep24
+  −0.012, ep11 −0.011, ep31 +0.005). `results/gate_FS1_interim16_vs_C.json`.
+- **[I] ep18 is a chaotic track, not a method signal:** its sweeper is partly lost in both control runs (0.898, C2 − C
+  = 0) but recovered by every perturbation (MR +0.062, MG +0.060, FS1 +0.057, stored 25 Oct base 0.938; t4 / t8 lost
+  it). Any public gain carried by ep18 alone should be read as tracker sensitivity. The same chaos is the eval-side
+  risk: small perception changes can flip whole object tracks, so eval perception changes need per-episode checks.
