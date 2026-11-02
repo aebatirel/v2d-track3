@@ -6526,3 +6526,13 @@ arm and a no-policy replay floor to stage B.
   - DSAIL also moved: AUC 0.84925, RPE 2.671, MPPE 2.312.
   - To pass DSAIL: AUC +0.0052; MPPE −0.18 cm; MP-SR one more episode (0.80); CD-O −0.012 (+1 rank).
   - Night report updated (10th overall).
+- 06:50 UTC 2 Nov leaderboard snapshot (Kaggle API; our team is "Imitation.Tech").
+  - AUC top 8: richchentw 0.96804, DDD 0.93906, rlwrld 0.92754, Purple 0.91907, Zihao Guo 0.88288, SRL 0.87701,
+    DSAIL 0.84925, us 0.84405.
+  - SP-SR: five teams at 1.00; us 0.85 (10th).
+  - MP-SR: richchentw / DDD 1.00; us 0.75 (9th, tied).
+  - RPE (cm): leaders 0.72 / 1.14 / 1.23; us 3.02 (10th).
+  - MPPE (cm): leaders 0.82 / 1.16 / 1.35; us 2.50 (10th).
+  - CD-O (cm): leaders 0.213 / 0.232 / 0.239; us 0.332 (14th).
+  - [I] The top six track 2–4× more accurately (RPE / MPPE) and rarely fail an episode. The remaining gap is reference
+    accuracy plus failures, not a single episode.
