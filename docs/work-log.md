@@ -6110,3 +6110,8 @@ Advice given:
   dust pan centroid 6.8 mm = shape (ICP 2.4 mm, proxy 1.4 mm, 0/32 flips). Hashes re-verified. **pack 13f ready:
   results/submissions/20261102-track3r-candidate/build_13f/track3_submission.parquet** (sha256 fa1e31f5…f89db, code 158dd372).
   Not uploaded from this session.
+- 20:13 UTC keen-heisenberg: the owner topped up (credit $127.97, their read) and wants a full push tonight. This lane is
+  asked to stay available to build packs on 13f (fa1e31f5…): 13g (C4 audit adoptions) and 13h (new mesh candidates) from
+  bold-albattani; re-placed meshes from perception-tracking (test A) if it passes. Pack 14 (retrains) is built by
+  perfect-following. Same procedure, guard on; keen-heisenberg uploads. 13f's packer inputs are kept in scratch
+  (results 40 files, meshes 20 episodes) for byte-for-byte rebuilds. No GPU in this lane.
