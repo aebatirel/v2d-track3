@@ -167,6 +167,12 @@ def find(d):
 print(find(c) or '')" $ck)
   [ -n "$rp" ] || { log "pf_arms ep$e: zero-shot: no reference path in the checkpoint config" >> $J; return 1; }
   if [ ! -s "$rp" ]; then mkdir -p $(dirname $rp); cp $I/ep$e/P.parquet $rp; fi   # the board's own reference (md5 = the table's)
+  rr=${rp%%/processed/*}                                            # FlashCHORD reads <root>/reconstructed_stage/<seq>_support.usda
+  if [ ! -d $rr/reconstructed_stage ]; then
+    st=$(dirname $(dirname $(dirname $(dirname /content/$(tabl $e reference)))))/reconstructed_stage; [ -d $st ] || st=/content/refs/perc2mck/ep$e/reconstructed_stage
+    [ -d $st ] || { log "pf_arms ep$e: zero-shot: no support stage for $rr" >> $J; return 1; }
+    cp -r $st $rr/; log "pf_arms ep$e: zero-shot: support stage $st -> $rr/reconstructed_stage" >> $J
+  fi
   [ "$(md5sum < $rp | cut -c1-32)" = "$(tabl $e md5)" ] || { log "pf_arms ep$e: zero-shot: $rp is not the board reference (md5)" >> $J; return 1; }
   NCONF=1 confirm $e $ck $G/zeroshot_ep$e
   ov=$(grep -ac 'overflow - please' $G/zeroshot_ep$e/r1/eval.log 2> /dev/null); [ -f $G/zeroshot_ep$e/r1/eval.log ] || ov=NA
