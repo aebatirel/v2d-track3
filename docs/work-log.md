@@ -6735,3 +6735,8 @@ arm and a no-policy replay floor to stage B.
     replication that already failed, OOM re-runs, the pitcher test).
   - Options: (A) let it finish; (B) destroy it now and run the pitcher test on the SAM-6D box.
   - CLAUDE.md says never cut a job that is still progressing, so the choice is put to the owner.
+- 14:56 UTC 2 Nov coordinator → perception-tracking: interim answer **A**. ptrkD keeps running because of the never-cut
+  rule; the owner can switch it to B.
+  - Credit $52.14 [M]; burn $8.38/h over 6 boxes (5 eval-retrain boxes: $7.02/h).
+  - Estimate to about 19:00 UTC [E]: retrains ≈ $28, SAM-6D ≤ $6, ptrkD ≈ $3.5. That leaves about $14, so the
+    SAM-6D test may reach its < $15 stop.
