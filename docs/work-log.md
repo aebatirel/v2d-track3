@@ -6654,3 +6654,9 @@ arm and a no-policy replay floor to stage B.
     full-resolution stereo depth (20 eps).
   - **S2 half-frame advance is not in any packed reference.** Sent to perfect-following with apply instructions.
   - Spend ≈ $5 of $30.
+- ~10:45 UTC 2 Nov owner asked how richchentw reaches AUC 0.968 (RPE 0.72, MPPE 0.82, CD-O 0.213, SP / MP-SR 1.00).
+  - No public write-up found (web search).
+  - Our own evidence [M, public]: the oracle twin with mocap object motion reached 0.940 vs 0.595 with our perception
+    (ep11). So near-perfect perception plus failure-free tracking explains such scores without anything exotic.
+  - The board is provisional until the organisers' container reproduce check (PR #215).
+  - Answer given: their edge is sub-cm object poses on every episode, zero failed runs and near-scan meshes.
