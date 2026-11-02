@@ -6436,3 +6436,9 @@ diagnostic; nothing is picked for submission.
   - Outside the rule (not acted on): pot tsdf/ep43 has the same CD-O and ADD 2.9 vs 6.3 mm; dust pan Pixal s7 has
     CD-O +0.005 and ADD 4.0 vs 6.1 mm.
   - Results: `C4-audit/README.md`, `results/audit_table.md`, `results/adoption.json`, `results/raw/`.
+- 21:17-21:20 UTC: the coordinator approved rule (C) for G2 only. It was committed before any G2 scoring: PREREG section 10
+  at 4be25e9, plus a stage-2 extension at 63e2c39 (the 2 lowest stage-1 ADD among meshes within +0.005 CD-O); the G2 agent
+  was told.
+  - No post-hoc OK for pot tsdf/ep43 or dust pan Pixal s7. Instead they go to the perception lane's pre-registered
+    public-pose test. Files committed (30186bb; md5 3591440e…, 35de4733…) and sent to session "Perception accuracy on
+    public episodes".
