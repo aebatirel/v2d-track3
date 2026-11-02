@@ -6129,7 +6129,7 @@ Advice given:
   12c's). sha256 c25abef2…28cb12, code e182f362; vs 13f only code_commit_url + 1 payload row; CD-O only that pair changes;
   offline validation pass; guard on; scan check [D] eval 25 slot 1 0.7° (was 179.2°). Staged as
   results/submissions/20261102-track3s-candidate; sent to keen-heisenberg. Not uploaded from this session.
-- ~20:40 UTC coordinator (20:24, URGENT) asked for "pack 13f2" = 13f with only eval 25 slot 1 replaced by 12c's payload, plus the
+- ~20:37 UTC coordinator (20:24, URGENT) asked for "pack 13f2" = 13f with only eval 25 slot 1 replaced by 12c's payload, plus the
   D1 no-flip gate. That is exactly 13f1 (already built). D1 [D] (eval seed + 9 seeds, scripts/d1gate.py): 13f1 slot 1
   (library_v3) 0/10 flips, 0.7° / 3.9 mm at the eval seed; slot 0 (Tier B piece 1) 0/10, 0.7° / 4.1 mm, so it is not
   swapped; 13f slot 1 2/10 including the eval seed (179.2°). README and flipcheck README updated; record sent.
