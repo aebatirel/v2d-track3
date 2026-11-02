@@ -6512,3 +6512,9 @@ arm and a no-policy replay floor to stage B.
   minutes earlier: read the three sessions, verified pack 12b, published and updated the night report, wrote the owner's
   summary. The upload was not retried: the owner is awake and was just asked for the word ("upload pack 12b"), since
   the permission check blocked the 01:15 attempt.
+- 06:37–06:42 UTC 2 Nov **PACK 12b UPLOADED** (owner: "Is 12b ready what are we waiting for?").
+  - Scores: AUC **0.84405** (pack 11 0.83921), SP-SR 0.85, MP-SR **0.75**, RPE **3.02339**, MPPE **2.49546**, CD-O
+    0.33234. Best on every board.
+  - AUC is above DSAIL's 0.84391 and MP-SR above their 0.70 (standings refresh requested from score-status).
+  - Receipt + UPLOAD.md: build_12b on this branch (7c7dfb67).
+  - Night report artifact updated to v3 with the new scores.

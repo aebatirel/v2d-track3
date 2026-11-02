@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-02 ~06:42 UTC: PACK 12b UPLOADED: AUC 0.84405, MP-SR 0.75, RPE 3.023, MPPE 2.495 (best on every board)
+- Pack 12b = pack 11 + evals 14 / 32 (perception track-guard jump bridged) + eval 16 (hand held through release),
+  KURSAD reference repairs, stock limits.
+- Record: results/submissions/20261102-track3m-candidate/build_12b/UPLOAD.md (this branch).
+- Night report for Roman: https://claude.ai/artifact/MaRrQ84gMR1HutKx5TDfMS (private until the owner shares it).
+
 ## 2026-11-01 ~20:08 UTC: method name "KURSAD"; overnight push toward AUC 0.9
 - The owner names our method **KURSAD** (perception → physics-consistent reference → learned tracking). Use the name
   in reports and the technical write-up.
