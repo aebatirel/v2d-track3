@@ -6814,3 +6814,16 @@ arm and a no-policy replay floor to stage B.
   - [H, perfect-following] box draws overstate lift policies.
   - Room map: run3 rebuilt GT-free (370 public images, 1.11 px, 22 min CPU); eval relocalisation running
     (580–750 inliers per frame).
+- 17:05 UTC 2 Nov **owner: "first do the tests and let me add more money once we increase the perception."**
+  - Public perception tests now; retrains wait for the owner's top-up after a measured perception gain.
+  - Perception-tracking: build and run Stage 1 of DESIGN_offline_joint (rest-segment pose fit), ≤ $4 GPU, PREREG,
+    trimmed losses. It runs a map-camera arm when the room-map fold cameras are ready. Credit floor lowered to $10 for
+    this test.
+  - **Point-track session launched:** session_01D9UJC72kCbx1mWTB2pwupw, branch claude/point-track-20261102.
+    - Model-free point tracks (TAPIP3D / CoTracker3 + stereo depth, optional ReLift) to detect and repair lost
+      tracks (ep23, ep18, ep0, spoon);
+    - all 20 public episodes, ≤ $4 GPU, PREREG, stop below $10.
+  - Perfect-following: finish pfJ / pfL2 and the eval 15 fresh confirmation; no new retrain boxes (eval 1 included)
+    until the top-up.
+  - Room-map: step 1 is the main test; it shares fold-map cameras with both tests.
+  - Credit $33.41 at 17:00 [M].
