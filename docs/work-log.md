@@ -6055,3 +6055,11 @@ Advice given:
   submission. Source md5s verified against the manifest and meshes/tierA_pack12d. README updated with their disclosure
   text. **pack 12d ready: results/submissions/20261102-track3o-candidate/build_12d/track3_submission.parquet** (sha256
   643794c6…c0b12, code 91342da4). Not uploaded from this session.
+- ~19:05 UTC keen-heisenberg (19:00 message): the owner said yes to the Tier B meshes in that session ("Okay I give you
+  permission for all"), answering keen-heisenberg's explanation of the Tier B integrity call (C3 README @ 25b0c54: "It reads
+  public ground truth in the selection"; best of many candidates by public-scan score, the same qualifier as the 12c blue
+  cup). Request: **pack 12e = pack 12d + Tier B payload swaps**, CD-O-only variant, CPU only, same procedure; I build and
+  hand over the record, keen-heisenberg uploads. bold-albattani prepares and commits the Tier B files: pitcher hy21 s42
+  (placed in the body frame), sweeper P1, rack ep31_full, wooden-piece occupancy fits. Prep done: **12d reproduced byte for
+  byte** from its packer inputs (643794c6…). Expected pairs from 12d's meshes: water_pitcher eval 20; mini_sweeper evals
+  19, 30; plastic_dish_rack evals 14, 15, 16, 28, 30; wooden_piece_1 / _2 eval 25. Waiting for the committed files.
