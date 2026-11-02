@@ -6403,3 +6403,23 @@ diagnostic; nothing is picked for submission.
   library_v3 board 2: no flip in either mode. The coordinator's 13f2 restores library_v3 board 2 on eval 25.
   The D1 safety gate was pre-registered as C4 PREREG section 9: 0 flips at the eval seeds + extras (>= 6) in both
   reference modes, and 50-seed W30 <= 0.10. It is a veto on top of rules (A)/(B).
+
+### 2026-11-02 ~20:32 UTC: G2 box up and generating (run mesh-20261102-g2-ff63482)
+- Ledger planned $7 (mesh-bold). Launch: `SETUP=none DISK=120 IMAGE=vastai/pytorch:2.7.1-cu128-cuda-12.9-mini-py310-2026-10-23
+  V2D_COMMIT=ff63482f72a339cf8469780b760986a16409ebc4 ops/vast.sh create 31183486 mesh-20261102-g2-ff63482
+  'IDLE_MIN=300 bash docs/research/mesh-2026-10-26/gen/box_job.sh' 1.30` -> instance 58873650, H100 NVL 95.8 GB,
+  Czechia, interruptible bid $1.30/h GPU ($1.398/h all-in), 28 effective cores. Credit $127.37 before.
+- Setup through exec (box_setup.sh, sam3d_setup.sh, `NP=24 box_g2.sh`): envs A/B/C and imports OK in ~3 min.
+  One failure: W-HY21-FAIL, because hf CLI 2.2.0 reads a second `--include` value as a file name, so Hunyuan3D-2.1 got
+  no weights and TRELLIS.2-4B no pipeline.json. Fixed by hand with the Python API (snapshot_download / hf_hub_download);
+  logged in `cdo-sprint/G2/NOTES.md`.
+- 20:31 UTC generation started: SAM 3D alongside Hunyuan3D-2.1, 22 crops x seeds 42/7/123/2025; TRELLIS.2 follows alone.
+- 20:32 UTC: C4 addendum 3 result [D, 50 seeds, budget reference]. No board-2 variant passes rule (B).
+  - Shipped: W30 0.34, CD-O 0.1649. library_v3: W30 0.00, CD-O 0.2169.
+  - v3 (+ face +1 feature): W30 0.22, CD-O 0.1635.
+  - v4 (12.5 mm slab): W30 0.12, CD-O 0.2163.
+  - v5 (both): W30 0.18, CD-O 0.2151.
+  - [H9] holds (thickness matters more for flips). [H10] falsified (v4's W30 is 0.12, not <= 0.14 vs the -0.20 bar, and it
+    fails CD-O).
+  - Reading: the extra thickness that stops flips costs about 0.05 cm CD-O, so there is no CD-O-neutral flip fix
+    among these. Board 2 in pose-relevant packs = library_v3 (13f1). The occupancy plate is only for CD-O-only packs.

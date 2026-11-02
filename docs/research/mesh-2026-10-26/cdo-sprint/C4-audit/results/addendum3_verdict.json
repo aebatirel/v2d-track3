@@ -1,0 +1,75 @@
+{
+ "baseline_S13f_wooden_piece_2": {
+  "n": 50,
+  "cdo_med": 0.1649,
+  "cdo_mean": 0.165,
+  "flip": 0.34,
+  "w30": 0.34,
+  "anc_med": 3.46,
+  "anc_p90": 4.27,
+  "rot_med": 1.25,
+  "rot_p90": 179.71,
+  "add_med": 4.42,
+  "add_p90": 156.62,
+  "amb_mm": 2.5788506048095434,
+  "amb_floor_mm": 2.319855932599543,
+  "amb_rot": 179.9
+ },
+ "A3/graft_v3": {
+  "summary": {
+   "n": 50,
+   "cdo_med": 0.1635,
+   "cdo_mean": 0.1634,
+   "flip": 0.22,
+   "w30": 0.22,
+   "anc_med": 3.7,
+   "anc_p90": 4.51,
+   "rot_med": 1.13,
+   "rot_p90": 179.66,
+   "add_med": 4.15,
+   "add_p90": 156.6,
+   "amb_mm": 2.6599528849343597,
+   "amb_floor_mm": 2.3035731925092877,
+   "amb_rot": 179.8
+  },
+  "rule_B": false
+ },
+ "A3/graft_v4": {
+  "summary": {
+   "n": 50,
+   "cdo_med": 0.2163,
+   "cdo_mean": 0.2167,
+   "flip": 0.12,
+   "w30": 0.12,
+   "anc_med": 3.62,
+   "anc_p90": 4.32,
+   "rot_med": 1.14,
+   "rot_p90": 179.17,
+   "add_med": 3.9,
+   "add_p90": 156.47,
+   "amb_mm": 2.7876349933964066,
+   "amb_floor_mm": 2.3495267565529483,
+   "amb_rot": 179.8
+  },
+  "rule_B": false
+ },
+ "A3/graft_v5": {
+  "summary": {
+   "n": 50,
+   "cdo_med": 0.2151,
+   "cdo_mean": 0.2157,
+   "flip": 0.18,
+   "w30": 0.18,
+   "anc_med": 3.58,
+   "anc_p90": 4.49,
+   "rot_med": 1.13,
+   "rot_p90": 179.41,
+   "add_med": 3.91,
+   "add_p90": 156.54,
+   "amb_mm": 2.7879654893624664,
+   "amb_floor_mm": 2.3912330373818125,
+   "amb_rot": 179.2
+  },
+  "rule_B": false
+ }
+}
