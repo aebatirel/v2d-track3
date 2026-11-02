@@ -1,7 +1,7 @@
 # Track 3 pack-13f1p (= the coordinator's "13p") candidate ("pose pack"), 2 Nov 2026 — 13f1 + TSDF white pot + library_c0 rack (public pose CV)
 
-**STATUS: PENDING frame sign-off on the white pot (mesh lane). Not ready, not uploaded.** keen-heisenberg's session uploads,
-on the owner's word there. This is a pose-board variant. CD-O is expected to be slightly worse (the Tier B rack is
+**STATUS: READY (pot frame sign-off YES, transform none, 21:49 UTC). NOT uploaded from this session**: keen-heisenberg's
+session verifies and uploads on the owner's word there. This is a pose-board variant. CD-O is expected to be slightly worse (the Tier B rack is
 reverted); the best-per-board rule absorbs that.
 
 **Disclosure (coordinator's wording, 21:36 UTC):** "pose-board mesh choice by public mocap pose evidence (pre-registered
@@ -56,3 +56,18 @@ scan audit".
 - Pose boards: up by the CV's held-out gains on the pot and rack pairs, if the public CV transfers to eval.
 - CD-O: about +0.005 worse. The rack pairs go back from about 0.42 to about 0.45 cm [D], and the pot is about the same
   (0.3097 vs 0.3107).
+
+## Frame sign-off (bold-albattani, 21:49 UTC message)
+- **YES on the TSDF white pot** (md5 3591440e…, @ 30186bb), **transform NONE**, evals 1/3/5/6 slot 0 and 8/28 slot 1.
+- **Why the ICP / proxy flags are not a frame error.** They measure the distance to the T3 pot, and the T3 pot sits further
+  off the real shape. 50-seed kit registration against the public scan [D], seeds 3001–3050, C4 audit, TSDF vs T3:
+  - anchor median 2.6 vs 5.6 mm;
+  - ADD median 2.9 vs 6.3 mm;
+  - rotation p90 1.9° vs 3.8°;
+  - flips 0/50 for both;
+  - CD-O median 0.3097 vs 0.3107.
+- **Frame and shape.** The TSDF pot is a primitive fit to our own public-ep43 points along library_v3-anchored tracks, so
+  it is in the library_v3 / C0 body frame. The centroid and extent differences are shape: a wider, less tall body.
+- The rack is library_c0, i.e. the 12c payload, already signed off for 9a.
+- CD-O: the rack makes this pack slightly worse than 13f1 (0.418 → 0.456 on 5 pairs, about +0.005 board [E]). The pot is
+  CD-O-neutral (−0.001). 13f1 / 13f hold the CD-O board under best-per-board.
