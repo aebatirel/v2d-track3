@@ -10853,3 +10853,4 @@ score.
   packed one [I]; hold-to-end helps within the recipe. Seed 43 running; the gate (> 0.8498) will likely fail.
 - ~02:15 UTC 2 Nov pre-registered docs/research/work/pf-release-20261102/PREREG_B.md: eval 16 arms p0 (packed reference)
   and pz (packed reference, right hand frozen from f107; CPU zero-action 0.839 → 0.929) on the current recipe; box pfG.
+- 02:18 UTC 2 Nov **pfG launched**: 20261102-pfG-86cfc19 (Australia Max-Q $1.13/h), `EP=16 SPLIT=eval ARMS="p0 pz" FREEZE_EP16=right:107`.
