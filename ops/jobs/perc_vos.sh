@@ -23,7 +23,7 @@ for ep in $EPS; do
     label "ptrk ep$ep $name"
     t0=$(date +%s)
     ( [ -n "$envs" ] && export $(echo "$envs" | tr ',' ' ')
-      KF_MIN=120 EP=$ep OUT=$D SPLIT=public MESH_DIR=$LIB python $P/perc2.py > $D/log.txt 2>&1 )
+      KF_MIN=120 EP=$ep OUT=$D SPLIT=public MESH_DIR=${MESH_DIR:-$LIB} python $P/perc2.py > $D/log.txt 2>&1 )
     rc=$?
     log "ptrk ep$ep $name rc=$rc $(( $(date +%s) - t0 ))s: $(grep -a 'vos summary\|^\[.*\] vo  ' $D/log.txt | tail -2 | cut -c1-220 | tr '\n' ' ')" >> $J
     [ $rc = 0 ] || tail -5 $D/log.txt >> $J
