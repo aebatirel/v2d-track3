@@ -7181,3 +7181,19 @@ arm and a no-policy replay floor to stage B.
     c1a5471: the asset root is read from the reference URDF, and a failed swap drops the episode.
   - pfR destroyed (≈ $1.7) and relaunched as pfR2 58879342. ≈ $6.5 lost so far on failed or replaced boxes.
   - Results ≈ 01:00–02:00 UTC (pfR2 ≈ 02:30).
+- ~21:36 UTC 2 Nov **pose-board mesh CV verdicts** [D] (perception-tracking 029145e; PREREG_posemesh + addendum 1;
+  10-seed means; leave-one-episode-out held-out gains vs 13f):
+  - **PASS, mesh swaps:**
+    - white_pot → ep43 TSDF pot: +0.0206, 9 / 9 ≥ 0; evals 1 / 3 / 5 / 6 / 8 / 28;
+    - plastic_dish_rack → library_c0 (12c): +0.0234; evals 14 / 15 / 16 / 28 / 30;
+    - board 2 → 12c: +0.127 (already in 13f1);
+    - pitcher → 12c: +0.0121.
+  - **PASS, placement from depth:** pitcher **+0.1064** held-out (ep21 +0.133, ep22 +0.080), the 6° tilt fix. The rack
+    (+0.0096) and pot (+0.0070) placements pass too, but are weaker than their swaps; combinations untested.
+  - FAIL: blue cup, sweeper, dust pan, lid, board 1.
+  - Caveat: the public gains use GT-selected meshes, and these are payload-only changes, so the public delta is the
+    direct estimate.
+  - Actions:
+    - pose pack 13p on 13f1 = pot X + library_c0 rack (focused-pascal);
+    - eval 20 pitcher placement (≈ $5, approved) → 13p2.
+    - The CD-O board keeps 13f by best-per-board.
