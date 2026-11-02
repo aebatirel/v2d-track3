@@ -6371,3 +6371,7 @@ diagnostic; nothing is picked for submission.
   mesh. A GT-free spoon criterion was proposed to the coordinator (flip test, held-out fidelity >= 0.3 mm better,
   amb ratio >= 2.4, eval silhouette not worse); it is not pre-registered yet.
 - 20:08 UTC: the C4 main audit was stopped at the tool's 30-min background limit (indices 0-13 done; 14-17 were mid-run with no output). Relaunched detached with setsid/nohup; finished indices are skipped. No mesh has a second completed run.
+- 20:10 UTC: C4 addendum 1 result [D, 50 seeds]. Neither board-2 variant passes rule (B); the shipped board 2 stays.
+  - Shipped board 2: W30 0.34, CD-O 0.1649, anchor 3.46 mm.
+  - graft_v1 (+2 balls): W30 0.18 (-16 points, short of the -20 bar), CD-O 0.1628, anchor 3.75 mm. Not adopted.
+  - graft_v2 (+ all clusters, including the stray library_v3 face sheet): W30 0.70, CD-O 0.2035. Worse; not adopted.
