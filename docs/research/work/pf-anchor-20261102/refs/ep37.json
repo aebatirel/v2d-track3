@@ -1,0 +1,19 @@
+{
+ "obj": "wooden_spoon",
+ "frames": 151,
+ "onset": 33,
+ "rest_frames": 30,
+ "ramp": 10,
+ "ref_f0_to_new_deg": 5.22,
+ "ref_f0_to_new_rotvec_deg": [
+  0.72,
+  -0.13,
+  5.17
+ ],
+ "dz_f0_mm": -0.21,
+ "raw_to_ref_resid_deg": {
+  "median": 5.29,
+  "p90": 6.87
+ },
+ "rest_jitter_deg": 1.09
+}
