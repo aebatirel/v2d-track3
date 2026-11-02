@@ -1,0 +1,14 @@
+pack_swap_meshes: <SCRATCH>/p13f1/build_13f1
+swapped 1 (episode, object) pairs of 36: wooden_piece_2 -> eps [25]
+file md5 changed: 25:wooden_piece_2 bf82e385->825a7fe3
+frame report (mm; base = the mesh being replaced):
+  wooden_piece_2     eps [25] base bf82e385 | centroid offset 5.3 | AABB centre offset 8.73 | extent base [18.85, 138.92, 247.03] new [26.58, 137.58, 229.0] | surface median/p95/max 1.616/4.291/19.303 (spacing 0.569) | ICP 1.27 mm 0.626 deg (median after 1.61) | kit proxy 8.34 mm 179.725 deg (symmetry none) | FLAG: surface centroid moved 5.3 mm > 5.0; kit-registration proxy moves the body 8.34 mm > 5.0; kit-registration proxy rotates the body 179.725 deg > 5.0; extent ratio [1.4101, 0.9904, 0.927] outside +-15% (scale or axis order?)
+parquet: 1321475 B sha256 c25abef27d2e9dfd521f009f349321bd698391caec4a1ec6c727046d0028cb12 | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 1}
+mesh payloads changed: ['25:wooden_piece_2'] | unchanged: []
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 89c921acd5285657... | CD-O pairs changed vs base: ['25:wooden_piece_2']
+pack.log MESH WARNINGs: 0
+FLAG: wooden_piece_2 (episodes [25]): surface centroid moved 5.3 mm > 5.0
+FLAG: wooden_piece_2 (episodes [25]): kit-registration proxy moves the body 8.34 mm > 5.0
+FLAG: wooden_piece_2 (episodes [25]): kit-registration proxy rotates the body 179.725 deg > 5.0
+FLAG: wooden_piece_2 (episodes [25]): extent ratio [1.4101, 0.9904, 0.927] outside +-15% (scale or axis order?)
+STATUS NEEDS REVIEW (flags) (exit 2)

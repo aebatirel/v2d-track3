@@ -10,6 +10,13 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-02 ~20:35 UTC: PACK 13f1 READY (flip fix) — results/submissions/20261102-track3s-candidate/build_13f1/ (not uploaded here)
+- 12e/13f's Tier B wooden_piece_2 registers UPSIDE DOWN at eval 25's kit seed against the public scan (179.2° [D];
+  library_v3 0.7°). Found by tracking-perception, confirmed here (docs/research/work/flipcheck-20261102). The blue-cup
+  spins are axial (tilt ≤ 4°) and harmless; everything else ≤ 4.7°.
+- 13f1 = 13f with that one payload reverted to library_v3: sha256 c25abef2…28cb12; vs 13f only 1 payload row + commit URL.
+  [E] AUC about +0.02 if the hidden scan flips as the public one does; CD-O about +0.0014. Sent to keen-heisenberg.
+
 ## 2026-11-02 ~19:30 UTC: PACK 13f READY (frame sign-off YES) — results/submissions/20261102-track3r-candidate/build_13f/ (not uploaded here)
 - 13e (reproduced byte for byte) + Tier B+ blue cup (evals 10/14/20/32/33) and dust pan (19, 38); GT-informed selection.
   sha256 fa1e31f5…f89db; only code_commit_url + 7 payload rows differ from 13e; offline validation pass; guard on.

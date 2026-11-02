@@ -1,0 +1,236 @@
+[
+ {
+  "ep": 1,
+  "slot": 0,
+  "name": "white_pot",
+  "p13f1": [
+   4.0,
+   2.8
+  ]
+ },
+ {
+  "ep": 1,
+  "slot": 1,
+  "name": "white_pot_lid",
+  "p13f1": [
+   2.1,
+   1.0
+  ]
+ },
+ {
+  "ep": 3,
+  "slot": 0,
+  "name": "white_pot",
+  "p13f1": [
+   3.3,
+   2.0
+  ]
+ },
+ {
+  "ep": 5,
+  "slot": 0,
+  "name": "white_pot",
+  "p13f1": [
+   3.8,
+   2.3
+  ]
+ },
+ {
+  "ep": 6,
+  "slot": 0,
+  "name": "white_pot",
+  "p13f1": [
+   3.2,
+   2.1
+  ]
+ },
+ {
+  "ep": 8,
+  "slot": 0,
+  "name": "beige_cup",
+  "p13f1": [
+   4.7,
+   3.4
+  ]
+ },
+ {
+  "ep": 8,
+  "slot": 1,
+  "name": "white_pot",
+  "p13f1": [
+   3.2,
+   2.6
+  ]
+ },
+ {
+  "ep": 10,
+  "slot": 0,
+  "name": "blue_cup",
+  "p13f1": [
+   3.5,
+   2.0
+  ]
+ },
+ {
+  "ep": 10,
+  "slot": 1,
+  "name": "beige_cup",
+  "p13f1": [
+   3.6,
+   3.2
+  ]
+ },
+ {
+  "ep": 14,
+  "slot": 0,
+  "name": "blue_cup",
+  "p13f1": [
+   111.4,
+   1.9
+  ]
+ },
+ {
+  "ep": 14,
+  "slot": 1,
+  "name": "plastic_dish_rack",
+  "p13f1": [
+   2.4,
+   2.3
+  ]
+ },
+ {
+  "ep": 15,
+  "slot": 0,
+  "name": "plastic_dish_rack",
+  "p13f1": [
+   2.1,
+   2.1
+  ]
+ },
+ {
+  "ep": 16,
+  "slot": 0,
+  "name": "plastic_dish_rack",
+  "p13f1": [
+   2.3,
+   2.2
+  ]
+ },
+ {
+  "ep": 19,
+  "slot": 0,
+  "name": "mini_sweeper",
+  "p13f1": [
+   0.9,
+   0.9
+  ]
+ },
+ {
+  "ep": 19,
+  "slot": 1,
+  "name": "mini_dust_pan",
+  "p13f1": [
+   0.9,
+   0.5
+  ]
+ },
+ {
+  "ep": 20,
+  "slot": 0,
+  "name": "blue_cup",
+  "p13f1": [
+   95.4,
+   3.6
+  ]
+ },
+ {
+  "ep": 20,
+  "slot": 1,
+  "name": "water_pitcher",
+  "p13f1": [
+   3.3,
+   3.1
+  ]
+ },
+ {
+  "ep": 25,
+  "slot": 0,
+  "name": "wooden_piece_1",
+  "p13f1": [
+   0.7,
+   0.4
+  ]
+ },
+ {
+  "ep": 25,
+  "slot": 1,
+  "name": "wooden_piece_2",
+  "p13f1": [
+   0.7,
+   0.5
+  ]
+ },
+ {
+  "ep": 28,
+  "slot": 0,
+  "name": "plastic_dish_rack",
+  "p13f1": [
+   2.1,
+   2.1
+  ]
+ },
+ {
+  "ep": 28,
+  "slot": 1,
+  "name": "white_pot",
+  "p13f1": [
+   3.3,
+   1.7
+  ]
+ },
+ {
+  "ep": 30,
+  "slot": 0,
+  "name": "mini_sweeper",
+  "p13f1": [
+   0.5,
+   0.4
+  ]
+ },
+ {
+  "ep": 30,
+  "slot": 1,
+  "name": "plastic_dish_rack",
+  "p13f1": [
+   2.3,
+   2.2
+  ]
+ },
+ {
+  "ep": 32,
+  "slot": 0,
+  "name": "blue_cup",
+  "p13f1": [
+   26.5,
+   1.4
+  ]
+ },
+ {
+  "ep": 33,
+  "slot": 0,
+  "name": "blue_cup",
+  "p13f1": [
+   144.0,
+   4.0
+  ]
+ },
+ {
+  "ep": 38,
+  "slot": 0,
+  "name": "mini_dust_pan",
+  "p13f1": [
+   1.4,
+   0.6
+  ]
+ }
+]
