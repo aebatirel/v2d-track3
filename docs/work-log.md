@@ -6583,3 +6583,8 @@ arm and a no-policy replay floor to stage B.
   tracker sets x,y, depth sets z); ObjectForesight (arXiv 2601.05237: bidirectional tracking from an anchor frame,
   re-registration when silhouette IoU, depth residual and jumps agree); EgoGrasp (hand pixels removed before scoring);
   YOTO (arXiv 2606.28899: FoundationPose latches onto the hand under occlusion, 15× error growth).
+- ~08:40 UTC **PREREG ptrk MG (mask-guided tracking)** pushed before any run: `docs/analysis/ptrk-20261102/PREREG.md`.
+  Code: `pipeline/vos_guide.py` (new), `pipeline/perc2.py` (TRACK_VOS / VOS_* flags, default off: defaults unchanged),
+  `ops/jobs/perc_vos.sh`. **Rental plan:** 2 × RTX 5090 (≈ $0.6–0.8/h), 20 public episodes split 10/10, variants
+  C, C2, MG, MD, MR; ≈ 3–4 h each, ≈ $5–7 [E] of the $30 session budget. Run ids `20261102-ptrk{A,B}-<sha>`.
+  Only other instance up: 58785113 (perfect-following's pfH), untouched.

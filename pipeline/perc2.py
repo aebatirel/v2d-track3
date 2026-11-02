@@ -455,6 +455,21 @@ def candidates(i, a):
     pr, Si, rii, cii = _DETC[i]; mine = dict(zip(rii, cii)).get(a); taken = {int(c) for r, c in zip(rii, cii) if r != a}
     order = ([int(mine)] if mine is not None else []) + [int(j) for j in np.argsort(-Si[a]) if Si[a, j] > -10 and int(j) != mine and int(j) not in taken]
     return [pr[j] for j in order[:GUARD_K]]
+# Mask-guided tracking (2026-11-02, pipeline/vos_guide.py; [H], all off by default): TRACK_VOS=1 propagates the frame-0
+# masks with SAM2's video predictor; VOS_DEPTH / VOS_PRIOR / VOS_RECOVER switch its three uses (see vos_guide.py).
+TRACK_VOS = os.environ.get('TRACK_VOS', '0') == '1'
+VOS_DEPTH, VOS_PRIOR, VOS_RECOVER = (os.environ.get(k, '0') == '1' for k in ('VOS_DEPTH', 'VOS_PRIOR', 'VOS_RECOVER'))
+VOS_COV, VOS_REC, VOS_EVERY = float(os.environ.get('VOS_COV', 0.6)), float(os.environ.get('VOS_REC', 0.5)), int(os.environ.get('VOS_EVERY', 5))
+VOS_DIL, VOS_MINPX = int(os.environ.get('VOS_DIL', 12)), int(os.environ.get('VOS_MINPX', 150))
+VLOG = {}
+if TRACK_VOS:
+    import vos_guide
+    sys.path.insert(0, os.path.dirname(os.path.abspath(vos_guide.__file__)))
+    VOSM = vos_guide.propagate([rc[i] for i in range(N)], [MASK[n] for n in names], '/content/ckpt/sam2.1_hiera_large.pt',
+                               'configs/sam2.1/sam2.1_hiera_l.yaml', f'/content/tmp_vos/ep{EP}', log)
+    np.savez_compressed(f'{OUT}/vos_masks.npz', **{n: np.packbits(VOSM[a][:, ::2, ::2], axis=-1) for a, n in enumerate(names)})
+    log('vos settings: depth', VOS_DEPTH, 'prior', VOS_PRIOR, 'recover', VOS_RECOVER, 'cov', VOS_COV, 'rec', VOS_REC,
+        'every', VOS_EVERY, 'dil', VOS_DIL, 'minpx', VOS_MINPX)
 GLOG = {}
 for a, n in enumerate(names):
     t0 = time.time(); est = ests[n]; g = GLOG.setdefault(n, dict(f0_retries=0, implausible=0, redetect=0, reacquired=0, held=0))
@@ -469,8 +484,37 @@ for a, n in enumerate(names):
             set_last(est, P[0])                                         # none plausible: keep the original choice
         log('track guard', n, 'frame-0 registration implausible (low5 %.3f m)' % low0, '->', 'replaced' if plausible(n, P[0], 0) else 'kept', g['f0_retries'], 'retries')
     last_ok, last_try = (0 if plausible(n, P[0], 0) else None), -10 ** 6
+    if TRACK_VOS:
+        GD = vos_guide.Guide(KR, depths[0].shape[0], depths[0].shape[1], glctx, meshes[n])
+        vl = VLOG.setdefault(n, dict(shift=0, recover_try=0, recovered=0, masked=0, cov_pre=[], cov_post=[]))
+        last_rec = -10 ** 6
     for i in range(1, N):
-        X = est.track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=TRACK_ITERS)
+        Di, Mi = depths[i], None
+        if TRACK_VOS:
+            Mi = VOSM[a][i].astype(bool)
+            if Mi.sum() < VOS_MINPX:
+                Mi = None
+        if Mi is not None and VOS_PRIOR:
+            cov, _ = GD.coverage(P[-1], Mi); vl['cov_pre'].append(round(cov, 3))
+            if cov < VOS_COV:
+                d = GD.shift(P[-1], Mi, depths[i])
+                if d is not None and np.linalg.norm(d) < 0.25:
+                    Xs = P[-1].copy(); Xs[:3, 3] += d; set_last(est, Xs); vl['shift'] += 1
+        if Mi is not None and VOS_DEPTH:
+            full = cv2.resize(vos_guide.dilate(Mi, VOS_DIL // 2).astype(np.uint8), (Di.shape[1], Di.shape[0]), interpolation=cv2.INTER_NEAREST) > 0
+            Di = np.where(full, Di, 0).astype(Di.dtype); vl['masked'] += 1
+        X = est.track_one(rgb=rgb(rc[i]), depth=Di, K=KR, iteration=TRACK_ITERS)
+        if Mi is not None and VOS_RECOVER:
+            cov, _ = GD.coverage(X, Mi); vl['cov_post'].append(round(cov, 3))
+            if cov < VOS_REC and i - last_rec >= VOS_EVERY:
+                last_rec = i; vl['recover_try'] += 1
+                full = cv2.resize(Mi.astype(np.uint8), (Di.shape[1], Di.shape[0]), interpolation=cv2.INTER_NEAREST) > 0
+                q = est.register(K=KR, rgb=rgb(rc[i]), depth=depths[i], ob_mask=full, iteration=REG_ITERS)
+                cq, _ = GD.coverage(q, Mi)
+                if cq >= cov + 0.2 and (not TRACK_GUARD or plausible(n, q, i)):
+                    X = q; vl['recovered'] += 1; log('vos', n, f'f{i}: re-registered (coverage {cov:.2f} -> {cq:.2f})')
+                else:
+                    set_last(est, X)
         if TRACK_GUARD and not plausible(n, X, i):
             g['implausible'] += 1; got = None
             if i - last_try >= GUARD_EVERY:
@@ -490,6 +534,9 @@ for a, n in enumerate(names):
     poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1), 'guard', g if TRACK_GUARD else 'off')
 if TRACK_GUARD:
     json.dump(GLOG, open(f'{OUT}/track_guard.json', 'w'), indent=1)
+if TRACK_VOS:
+    json.dump(VLOG, open(f'{OUT}/track_vos.json', 'w'))
+    log('vos summary', {n: {k: v for k, v in d.items() if not k.startswith('cov')} for n, d in VLOG.items()})
 np.savez(f'{OUT}/poses.npz', world_T_cam=W_C, **{f'cam_T_{n}': poses[n] for n in names})
 if SPLIT == 'eval':                                                   # no ground truth exists: write outputs, stop
     np.savez(f'{OUT}/poses_world_vo.npz', **{n: np.stack([W_C[i] @ poses[n][i] for i in range(N)]) for n in names})
