@@ -6324,3 +6324,14 @@ diagnostic; nothing is picked for submission.
 - keen-heisenberg holds the optional 12f (generated blue cup + dust pan): it would not change a rank (5th place is 0.2534);
   numbers are to be sent when scored.
 - ~19:25 UTC: focused-pascal published pack 12e as ready to keen-heisenberg (sha256 004f394f…, commit aeb12740). The README carries my sign-off and the plate-symmetry line.
+
+## 2026-11-02 ~19:30 UTC — pack 12e scored; B+ extras added for pack 13f
+- keen-heisenberg (19:22 UTC): pack 12e uploaded; it is best on every board. AUC 0.86905, SP-SR 0.90, MP-SR 0.80, RPE 2.391,
+  MPPE 1.953, CD-O **0.26775** (estimate was about 0.268). Rank sum 47, 7th.
+- Coordinator reversed the hold on the extras (meshes also drive the pose boards). Both pass C3's pre-set rule (>= 0.02 cm
+  public-scan gain). No leaderboard result was used to choose between variants.
+- Frame checks [M]:
+  - blue cup sam3d s7 vs C0: ICP 1.45 mm / 0.91 deg, axis 0.78 deg, closed end +z (no flip);
+  - dust pan hy21 s42 vs T2: ICP 1.61 mm / 0.47 deg.
+- Committed meshes and README section (4a3b67f). Sent to focused-pascal for pack 13f (= 13e + 2 swaps).
+- Expected [E]: about 0.2627. Pose risk: blue-cup anchor 2-4 -> 5-7 mm.
