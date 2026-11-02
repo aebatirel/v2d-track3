@@ -6721,3 +6721,10 @@ arm and a no-policy replay floor to stage B.
     - FoundationPose is listed at AR_Core 0.726 on the BOP unseen leaderboard (not like-for-like).
     - Useful piece for us [H]: ISM as frame-0 / re-detection with our mesh templates.
   - Neither is a quick score win. Both were passed to the perception session's design note.
+- 14:55 UTC 2 Nov owner: "okay do that" (test SAM-6D's detector; perception design note).
+  - The perception session is asked for a pre-registered public test of SAM-6D's ISM with library_v3 templates, as the
+    frame-0 detector and as the track guard's re-detector (FoundationPose kept for pose). Metrics: identity errors,
+    lost-object events, ΔAUC / MPPE / RPE. Hard cap $6 GPU; stop if credit < $15 while the eval retrains run.
+  - Plus the offline whole-video multi-view design note.
+  - Credit $52.63 at 14:52 UTC; 6 boxes (~$8.4/h): pfI / pfJ / pfK / pfL2 / pfM (perfect-following) and ptrkD.
+    Projected ≈ $20 left after today's retrains [E]; the owner was advised to top up.
