@@ -7493,3 +7493,10 @@ arm and a no-policy replay floor to stage B.
     eval 20 is an MP candidate; the spoon evals are unknown.
   - **GO: eval-25 board-face check** (CPU, GT-free). The rule is calibrated on ep23's known flip spans first; a real
     flip → fix proposal → pre-registered re-evaluation / retrain with two-host confirmation.
+- ~08:54 UTC 3 Nov **eval-25 board-face check: the cue FAILS public validation, so no eval verdict**
+  (PREREG_boardface 785cbc93; e7066936; $0).
+  - Best τ: 5.2 % false flags, 24 % recall.
+  - Correction [M]: ep23 board 2's error is mostly not a face flip; f240–324 is ~175° about an axis between the
+    thickness and long axes (a perpendicular placement, likely the stacked / slotted end state).
+  - Coordinator: GO for (1) ep23 overlays vs mocap, (3) re-read eval 25's board-2 "LOST" audit flag, and (2) a v2
+    multi-alternative rule only if needed, validated on public first. All CPU.
