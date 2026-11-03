@@ -11050,3 +11050,6 @@ score.
   tree switches off; K30 = eval 30 sm s42, K14 = eval 14 plw s42; 10 interleaved rounds) at 85c1626, before any draw.
 - 00:38 UTC **pfgA launched**: 20261103-pfgA-85c1626 (offer 58891985, instance 58896929), `bash ops/jobs/pf_evalgap.sh`;
   ledger planned $1.5.
+- 00:58 UTC 3 Nov **eval 28 sm NO-SWAP at the gate** [M]: s42 0.841 ± 0.165 (min 0.383), s43 **0.914 ± 0.011** vs the board
+  policy's 0.919 (−0.005). pf-mesh batch closed: eval 14 PASS + INCLUDE (pack 14 / 14p); evals 20 / 28 NO-SWAP at the
+  gate; eval 30 NO-SWAP on fresh draws.
