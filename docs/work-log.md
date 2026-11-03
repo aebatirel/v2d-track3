@@ -6172,3 +6172,9 @@ Advice given:
   16 pairs; offline validation pass; guard on; **D1 PASS in both modes** (0/7 on all 16 pairs). Frame flags: pot centroid
   6.0 mm / ICP 5.1 mm; rack centroid 20.6 mm, ICP 8.8 mm, x extent ×1.285 (its scan anchor 3.2–4.6 mm vs the 13f rack's
   8–10 mm [D]). [E] CD-O ≈ 0.252. Staged as results/submissions/20261102-track3v-candidate.
+- ~00:03 UTC 3 Nov bold-albattani **signs off 13h: YES for all three, transform NONE.** Pot and cup are clean. The rack's
+  flags are shape: a known defect, a generator-hallucinated +x bulge (0.5% of the surface, x +37…+110 mm, far from our
+  ep31 observed points [M]), which is payload only; the rest fits better (50-seed [D] CD-O 0.4016 vs 0.4182, anchor 3–5 vs
+  8–10 mm). Defect noted in the README; a GT-free trim is proposed as a later 13h2. Hashes re-verified. **pack 13h ready:
+  results/submissions/20261102-track3v-candidate/build_13h/track3_submission.parquet** (sha256 d917b002…a4e, code 9610329e).
+  Not uploaded from this session.

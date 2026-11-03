@@ -1,7 +1,7 @@
 # Track 3 pack-13h candidate, 2 Nov 2026 — CD-O variant on 13f with the G2 pot, blue cup and rack
 
-**STATUS: PENDING frame sign-off (mesh lane). Not ready, not uploaded.** keen-heisenberg's session uploads, on the owner's
-word there.
+**STATUS: READY (frame sign-off YES for all three, transform none, 00:02 UTC). NOT uploaded from this session**:
+keen-heisenberg's session verifies and uploads on the owner's word there.
 
 **This is a CD-O-only variant** (coordinator 23:17 UTC). It is built on 13f (best CD-O, 0.26249 [M]), not on the pose packs.
 Each board keeps our best submission, so its pose boards do not matter. It inherits 13f's eval-25 wooden_piece_2 plate,
@@ -54,3 +54,20 @@ which fails D1 against the raw scan (docs/research/work/flipcheck-20261102). The
 ## Expected [E] (mesh lane)
 - From the 50-seed medians: pot −0.0041, cup −0.0043, rack −0.0023, about −0.011 in total.
 - On 13f (measured 0.26249) that gives CD-O ≈ 0.252 [E].
+
+## Frame sign-off (bold-albattani, 00:02 UTC message)
+- **YES for all three, transform NONE, no correction.**
+- **white_pot:** the flags are measured against the T3 pot, which itself sits 5.6 mm off the scan. The new pot registers
+  2.3 mm off (50-seed C4 audit [D]; ADD 2.7 vs 6.3 mm), matching my D1 anchors of 1.8–2.8 mm. Extents are nearly identical,
+  so this is a frame-consistent library_v3 placement.
+- **blue_cup:** clean. The smaller extents are shape. CD-O 0.2646 → 0.2335 [D].
+- **plastic_dish_rack:** the flags are shape, not frame.
+  - **Known defect (observed GT-free): a generator-hallucinated bulge on +x.** 151 of 30k surface samples (0.5%) lie more
+    than 25 mm from the dev1 rack, all at x = +37…+110 mm around the rack's middle (dev1 ends at +72).
+  - Our own ep31 observed points [M] never come near that region: median 36 mm away, 0% within 5 mm.
+  - The bulge accounts for the 77 mm surface max and the 161 mm x extent. The real rack's smallest extent in the public
+    scan is 117 mm [D].
+  - The rest of the mesh fits better. The 50-seed numbers [D], which include the bulge's cost: CD-O 0.4016 vs 0.4182; kit
+    anchor 3.2–4.6 vs 8–10 mm; ADD 4.3 vs 10.0 mm; W30 0. D1 is 0/7 in both modes.
+  - The bulge is payload only; the simulator does not read this mesh.
+  - Proposed follow-up (not in this pack): a GT-free trim of the unsupported surface, audited as a new candidate (13h2).

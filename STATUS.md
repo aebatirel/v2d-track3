@@ -10,9 +10,10 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
-## 2026-11-02 ~23:59 UTC: PACK 13h BUILT (CD-O variant on 13f), PENDING frame sign-off — results/submissions/20261102-track3v-candidate/build_13h/
+## 2026-11-03 ~00:03 UTC: PACK 13h READY (CD-O variant on 13f; sign-off YES) — results/submissions/20261102-track3v-candidate/build_13h/ (not uploaded here)
 - 13f + the G2 audit winners: pot, blue cup, rack (GT-informed best-of-N, frozen before scan reads). sha256 d917b002…a4e;
   only 16 payload rows + commit URL differ from 13f. D1 PASS in both modes. [E] CD-O ≈ 0.252 (13f measured 0.26249).
+  Known defect: the rack has a hallucinated +x bulge (payload only); a GT-free trim is proposed as 13h2. Sent to keen-heisenberg.
 
 ## 2026-11-02 ~22:16 UTC: PACK 13p2 READY — results/submissions/20261102-track3u-candidate/build_13p2/ (not uploaded here)
 - 13p + the eval-20 pitcher placed from eval depth (GT-free fit; the procedure was chosen by public pose CV, held-out
