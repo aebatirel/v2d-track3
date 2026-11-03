@@ -7384,3 +7384,6 @@ arm and a no-policy replay floor to stage B.
       Tier B board 2 stays in CD-O packs. Flagged as a pose-pack candidate; the pose packs use library_v3 for board 2.
     - beige / lid / sweeper.
   - G3 total $7.47; no GPU running.
+- ~05:55 UTC 3 Nov **pack 13i UPLOADED** (CD-O variant; 57935089–57935106). Verified: 9 mesh rows / 9 CD-O pairs.
+  - **CD-O 0.24177** (predicted 0.242) → **CD-O 4th**. Rank sum 45, 7th.
+  - Selection plan: 14p for five boards, 13i for CD-O.

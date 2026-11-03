@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~05:55 UTC: PACK 13i UPLOADED: CD-O 0.24177 (4th). Rank sum 45, 7th
+- Bests: AUC 0.88571 / RPE 2.21325 / MPPE 1.79779 (14p); SP-SR 0.90; MP-SR 0.80; CD-O 0.24177 (13i).
+- Final selection plan: 14p for AUC / SP-SR / MP-SR / RPE / MPPE; 13i for CD-O.
+- H1 bias calibration falsified except for the pitcher (episode-specific bias). Retrains of evals 32 / 33 failed;
+  eval 19 pending.
+
 ## 2026-11-03 03:20 UTC: MORNING REPORT. Rank sum 46 (7th); bests AUC 0.88571 / RPE 2.21325 / MPPE 1.79779 (14p), CD-O 0.25159 (13h), SP-SR 0.90, MP-SR 0.80
 - Report: docs/analysis/overnight-20261102/README.md.
 - Overnight uploads: 13f1, 13p, 13p2, 14p, 13h. Spend ≈ $45. Credit $82.96.
