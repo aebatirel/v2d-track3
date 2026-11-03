@@ -6582,3 +6582,12 @@ diagnostic; nothing is picked for submission.
   - board 2: #43 sam3d k6 s2025 placed has CD-O 0.1623 and W30 0.00 vs 0.34, but fails rule B on anchor (5.50 > 5.46 mm).
   Beige / lid / sweeper audits continue but cannot pass.
   Expected 13i CD-O about 0.242 [E].
+- ~05:55 UTC: focused-pascal built 13i (sha256 1bcbdcfa…, on 13h; meshes/g3_pack13i edd6d690). D1 on the packed bytes:
+  0/7 flips on all 9 pairs, both modes. Frame flags:
+  - dust pan: x extent 46.7 -> 82.0 mm, surface max 44.8 mm;
+  - board 1: extents ratio;
+  - pot: centroid.
+  Signed off YES for all three, transform none.
+  - Dust pan finding [M]: 46 isolated generator debris faces, 0.7 mm² total (3e-5 of the area), at x -50..-64 mm.
+    Everything else is within 15 mm of 13h's pan. The [D] audit on the budgeted mesh includes the debris; it is negligible.
+  - Pot: anchor about 6.8 mm, so CD-O packs only.
