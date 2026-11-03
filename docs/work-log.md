@@ -7513,3 +7513,12 @@ arm and a no-policy replay floor to stage B.
   - Stage-1 best: Hunyuan ep12 at 0.3876 vs 0.4016; no raw mesh reaches the 0.3816 bar. The pre-registered
     clean-up copies might [H].
   - 50-seed audit of 120 stage-2 candidates started 09:33Z (R-gen copies ≈ 45 min, prims ≈ 2 h more).
+- ~10:45 UTC 3 Nov **hand-aware lane started** (branch claude/hand-aware-20261103; $0 so far, CPU in the cloud session).
+  - Literature review: docs/analysis/hand-aware-20261103/LITERATURE.md. Verdict: HOnnotate-style object-only
+    objective (hand-masked depth + silhouette, penetration, visible-fingertip contact, motion prior, windowed) plus a
+    soft rigid-in-grasp prior; skip HOLD / MagicHOI / HaWoR (template-free, monocular, hours per sequence).
+  - Diagnostic [D] (scripts/held_diag.py; mocap read by diagnostics only): control Ct (ptrkF, eval defaults) scored
+    with the registered scorer on public scans, per frame. The per-object AUC matches the kit exactly (thresholds
+    1–9 cm). Held = mocap-moving frames dilated ±8. Excluding ep23 (identity_fix wiring gap), **≈ 61 % of the AUC
+    loss is in held frames** (1.05 vs 0.66 summed per-object loss). Largest held losses: ep24 boards 0.21, ep13 cup
+    0.13, ep11 cup 0.10, ep18 sweeper 0.10 (37 frames > 5 cm), ep27 pot 0.10, ep21 pitcher 0.07, ep26 pot 0.07.
