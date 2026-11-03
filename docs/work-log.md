@@ -6205,3 +6205,8 @@ Advice given:
 - 07:15 UTC bold-albattani (after the hold): frame YES for #43; the 2.2× area is a hollow plate (two nested shells, inner
   62,445 mm² 1–3 mm inside). They propose an outer-shell-only copy as a new candidate if the coordinator wants it. Recorded
   in the 14p1 README; status stays HELD.
+- ~10:25 UTC bold-albattani (10:20): **pack 13j on 13i** = one CD-O swap, round-R rack (hy21 ep12 s31337 t3fit, md5
+  1882b7a2…, @ ead6a10c; GT-informed best-of-N of 390; 50-seed CD-O 0.3775 vs 0.4016, anchor 3.07 vs 3.78 mm). 13i's
+  board CD-O is 0.24177 [M] (their message). md5 verified; no_oracle pass; 13i reproduced byte for byte; rack committed as
+  meshes/r_pack13j (3a933d1d). Build + D1 running. [E] CD-O ≈ 0.2384 (3rd place: 0.23900). Provisional: 90 primitive
+  refits are still auditing; a lower one would come as a 13j2.
