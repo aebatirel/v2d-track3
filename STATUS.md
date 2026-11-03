@@ -11,8 +11,8 @@
   - tracking with the submitted meshes (B, −0.043);
   - round 2's wider pool for pot / cup / rack / boards;
   - placement on top of 13p.
-- **Round 2 pitcher:** G2 mesh #29 also passes (+0.1125). It targets the same bias as 13p2, so only one should be used
-  (coordinator decides).
+- **Round 2 pitcher:** G2 mesh #29 also passes (+0.1125). The coordinator keeps 13p2's placement instead (same bias,
+  #29's ep22 held-out not independent). Lane stopped 01:30 UTC 3 Nov.
 - **Spend tonight:** GPU ≈ $3.3 (ptrkF $2.7, ptrkG $0.6); the rest ran on CPU here. 0 boxes running.
 
 ## 2026-11-02 ~18:30 UTC: tracking-perception session: done; nothing passed except a wiring find

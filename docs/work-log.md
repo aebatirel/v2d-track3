@@ -6802,3 +6802,7 @@ arm and a no-policy replay floor to stage B.
   - (b) FAIL, placement on top of the 13p meshes: pot 0.0, rack 0.0, blue cup −0.0022, sweeper 0.0.
   - The pitcher now has two passing, untested-together options of the same size: placement on eval 20 (13p2, round 1
     +0.106) and the G2 #29 mesh (+0.1125, payload only). Not combined (untested).
+- 01:30 UTC 3 Nov **coordinator's decision:** keep 13p2's eval-20 pitcher placement; G2 #29 not adopted (equal public
+  size, its ep22 held-out is not independent, and uploading both would probe the board). Round 2 otherwise FAIL.
+  **Lane stops here.** Night totals: GPU ≈ $3.3 (ptrkF $2.7, ptrkG $0.6), everything else CPU ($0); packs 13p
+  (uploaded, AUC 0.88257, +0.0103) and 13p2 (built) came from this lane's public CV. 0 instances.
