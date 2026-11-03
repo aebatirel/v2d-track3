@@ -6837,3 +6837,8 @@ arm and a no-policy replay floor to stage B.
   14p meshes decoded (pot / rack / board 2 = budgeted X / c0 / 12c; pitcher = eval-20 placement, so public baseline
   uses the 13p pitcher); base14p scoring started (CPU). Asked perfect-following for 14p's packed refs and bold-albattani
   for the G3 manifest.
+- 07:20 UTC round 3: 9 G3 meshes (bold-albattani 847ef82a, store runs/mesh-20261103-g3-2417282; indices 0, 5 pot; 9,
+  15, 17 dust pan; 23, 24 board 1; 43 board 2; 26 rack), 38 runs queued after base14p. Audit: references per
+  perfect-following's refs_14p.json (14 / 32 from the 12b bridged table; std refs 1 / 28 via the refs/perc2mck byte
+  copies, md5 checked 7f230466 / 6f57deb2); `run_audit.sh` waits for box H's masks per episode. Smoke on eval 20: no
+  flags (IoU 0.87, depth residual 0.8 cm).
