@@ -36,3 +36,15 @@ Same as PREREG_round2.md (a), with these changes:
 - **Report only;** no fix is applied. The coordinator chooses targets for re-tracking (option C). Thresholds are not
   tuned after seeing eval data. Any change to them is logged as an addendum with its reason, and both versions are
   reported.
+
+## Addendum 1 (08:35 UTC, before scoring this candidate)
+**Source-episode rule (coordinator, 08:20 UTC):** a candidate's generation-source episodes are excluded from its
+held-out scoring, in this and all future CV rounds.
+
+**Board 2 outer shell of G3 #43** (bold-albattani, `C4-audit/meshes_outer/wooden_piece_2_outer.glb` @ da10a423, md5
+34152d97…; source ep24):
+- the only non-source public episode is ep23, so no candidate selection takes place;
+- **pass** if the gain vs 14p on ep23 is ≥ +0.005 (10-seed mean);
+- ep24 is scored and reported as in-sample only.
+
+One-episode evidence is weak, and the verdict says so.
