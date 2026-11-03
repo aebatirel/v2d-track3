@@ -7522,3 +7522,7 @@ arm and a no-policy replay floor to stage B.
     per-object SR vs mocap. ≤ $20 GPU.
   - Phase 2 (eval references + re-evaluation / retrain) only after phase 1 passes.
   - Perception-tracking asked to support it with data and tools.
+- ~09:59 UTC 3 Nov perception-tracking handoff to hand-aware: 43cbbfb6, handoff/README.md (scorer wrappers, srpublic,
+  m14p public meshes, store paths, measured held-phase failure spans).
+  - Correction: on the control track ep27 passes SR (pot max 3.3 cm). The ep27 failure was the instance network's
+    own, not our tracker's; my hand-aware brief overstated it.
