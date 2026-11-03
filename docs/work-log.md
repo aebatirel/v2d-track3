@@ -7542,3 +7542,5 @@ arm and a no-policy replay floor to stage B.
   - Design: gated ray correction in hand-contact frames; dev 7 / holdout 13 episodes.
   - Coordinator: approved. Gate 1 to be amended before holdout scoring (a sparse fix → held mean ADD −10 % or held
     AUC +0.01; keep gate 2 and no-episode-below).
+- ~10:50 UTC 3 Nov hand-aware: gate amendment committed as PREREG addendum 1 (86a2b94) before any holdout scoring.
+  - Dev: ep18 +0.024 (a 47-frame sweeper excursion corrected; shifts up to 11.5 cm). Dev grid running.
