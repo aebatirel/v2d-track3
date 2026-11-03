@@ -1,7 +1,7 @@
 # Track 3 pack-13i candidate, 3 Nov 2026 — CD-O variant on 13h with the G3 pot, dust pan and board 1
 
-**STATUS: PENDING frame sign-off (mesh lane). Not ready, not uploaded.** keen-heisenberg's session uploads, on the owner's
-word there.
+**STATUS: READY (frame sign-off YES for all three, transform none, 05:50 UTC). NOT uploaded from this session**:
+keen-heisenberg's session verifies and uploads on the owner's word there.
 
 **This is a CD-O-only variant** on 13h (itself a CD-O variant on 13f). The G3 pot registers 6.5–7.1 mm off the public scan
 [D] (the 13h G2 pot: about 2.3 mm), so it is meant for the CD-O board only. Each board keeps our best submission.
@@ -47,3 +47,17 @@ word there.
 
 ## Expected [E] (mesh lane)
 - 13h about 0.2516 → 13i about 0.242: pot −0.0077, dust pan −0.0013, board 1 −0.0008.
+
+## Frame sign-off (bold-albattani, 05:50 UTC message)
+- **YES for all three, transform NONE, no correction.**
+- **Dust pan, x-extent flag: isolated generator debris, 0.7 mm², negligible.**
+  - Verified here [M]: in the source file, 46 faces totalling 0.650 mm² (0.0027% of the surface) sit at x = −64…−33 mm.
+    Without them the x extent is 41.3 mm.
+  - **They are not in the packed payload.** The kit's budget_mesh removes them: the decoded eval-19 payload spans
+    x −23.1…17.8 mm, 40.8 mm, with 0 such faces.
+  - The 82 mm extent and 44.8 mm surface max in summary.txt come from the full-resolution file.
+  - Payload only; the simulator does not read this mesh.
+- **Pot:** the larger extents are shape. ICP 4.5 mm / 0.55° shows a consistent frame, and CD-O improves 0.2861 → 0.2399
+  [D]. Its anchor of about 6.8 mm is worse than the G2 pot's 2.3 mm, so it is kept out of pose packs.
+- **Board 1:** frame clean (ICP 0.24 mm / 0.23°). Thicker and narrower is shape. CD-O 0.1872 → 0.1593 [D], W30 0/50, D1
+  clean in both modes.

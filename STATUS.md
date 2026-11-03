@@ -10,9 +10,10 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
-## 2026-11-03 ~05:49 UTC: PACK 13i BUILT (CD-O variant on 13h), PENDING frame sign-off — results/submissions/20261103-track3w-candidate/build_13i/
+## 2026-11-03 ~05:55 UTC: PACK 13i READY (CD-O variant on 13h; sign-off YES) — results/submissions/20261103-track3w-candidate/build_13i/ (not uploaded here)
 - 13h (reproduced byte for byte) + the G3 pot, dust pan and board 1 (GT-informed best-of-N). sha256 1bcbdcfa…62a3; only 9
-  payload rows + commit URL differ. D1 PASS in both modes. Flag: dust pan x extent ×1.76. [E] CD-O about 0.242.
+  payload rows + commit URL differ. D1 PASS in both modes. The dust-pan x-extent flag was 0.65 mm² of debris, absent from the
+  packed payload. [E] CD-O about 0.242. Sent to keen-heisenberg, who uploads.
 
 ## 2026-11-03 ~00:03 UTC: PACK 13h READY (CD-O variant on 13f; sign-off YES) — results/submissions/20261102-track3v-candidate/build_13h/ (not uploaded here)
 - 13f + the G2 audit winners: pot, blue cup, rack (GT-informed best-of-N, frozen before scan reads). sha256 d917b002…a4e;
