@@ -86,3 +86,18 @@ GPU cap for G3 $15; stop if Vast credit < $15. Ledger session mesh-bold.
   `results/box_logs/` (log tails) committed next, BEFORE any public-scan read of these meshes. No G3 mesh has been scored
   or compared with a scan.
   SHA256SUMS sha256 7bdb0a517e1b0517...
+- 03:36Z after the freeze (56d4710 pushed): screen_pkg.tar (kit + 8 public scans + 8 b4096 caches, sha256 830b4848...)
+  uploaded to runs/mesh-20261103-g3-2417282/screen/. The box's exec shell has no git credentials, so the fetch of the
+  freeze commit used the onstart.sh pattern (GH_TOKEN from /etc/v2d_env as an http.extraheader, not printed). Box at
+  56d4710; its SHA256SUMS == the committed one (cmp, SUMS-MATCH). 03:38:32Z `NP=64 box_screen.sh` started; PKG-OK 830b4848.
+- 03:38:32-03:45:24Z stage-1 screen [D] on the box's CPUs (`box_screen.sh`, 64 workers; py3.13 venv pinned to the local
+  versions numpy 2.5.4, scipy 1.18.1, trimesh 5.2.0, pandas 3.1.0; manifest 468 meshes = 432 Sim(3) + 36 Pixal3D-MV
+  object-frame, 0 hash mismatches). **468 records, 0 errors** (`results/screen/screen6.jsonl`, sha256 7906c429...).
+  18 meshes logged "budget_mesh failed ... using raw" (mesh_metric's own fallback when the kit simplifier cannot meet the
+  budget; same code as G2).
+- 03:45:42-03:47:20Z final store push from the box (`ops/box/store.sh push-run`, PUSH-RC 0): runs/mesh-20261103-g3-2417282/
+  holds 974 files incl. all 936 .ply (5.8 GB; results/gen, results/screen). Checked from here: 4 sample paths exist.
+- 03:47:30Z instance record (`results/box_logs/vast_instance_58904222.txt`): start 01:59:26Z, $4.033/h, 71.8 GB down,
+  3.6 GB up. **03:47:33Z box 58904222 destroyed**, confirmed absent in `ops/vast.sh show` (only pfU, not ours, remains).
+  **Measured cost $7.47** = 1.802 h x $4.033/h ($7.27) + 71.8 GB down at $2.60/TB ($0.19) + 3.6 GB up ($0.01). Ledger
+  actual $7.47 (mesh-bold).
