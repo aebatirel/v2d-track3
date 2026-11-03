@@ -1,5 +1,15 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~10:00 UTC: hand-aware tracking lane started (owner go); perception audits done
+- Today's perception tests all failed or found nothing to fix:
+  - bias calibration; pot instance-pose network;
+  - board-face rule (failed validation); spoon flips (none);
+  - eval gross-failure audit (references clean).
+- Stored rollouts pass SP / MP-SR against our references, so the board's SR losses are reference-vs-truth errors
+  (≈ 2–3 cm), concentrated in held phases.
+- New lane: hand-aware (session_01D9UJC9SwoRsF13MYzwtVyh), phase 1 public validation (≤ $20).
+- Running: rack round R (CD-O 3rd target). Bests unchanged: 14p pose boards, 13i CD-O; rank sum 45, 7th.
+
 ## 2026-11-03 ~06:40 UTC: owner "go in all": three perception lanes started
 - Eval gross-failure audit (A, ≤ $6) and round-3 pose-mesh CV ($0): perception-tracking.
 - Object-specific pot pose network proof of concept (≤ $15; rendered-only vs + public mocap fine-tune): new session

@@ -7513,3 +7513,12 @@ arm and a no-policy replay floor to stage B.
   - Stage-1 best: Hunyuan ep12 at 0.3876 vs 0.4016; no raw mesh reaches the 0.3816 bar. The pre-registered
     clean-up copies might [H].
   - 50-seed audit of 120 stage-2 candidates started 09:33Z (R-gen copies ≈ 45 min, prims ≈ 2 h more).
+- ~09:58 UTC 3 Nov **owner: go for HOLD / MagicHOI-style hand-aware tracking** (no time pressure).
+  - New session **hand-aware** (session_01D9UJC9SwoRsF13MYzwtVyh, branch claude/hand-aware-20261103).
+  - Phase 1: public research + validation. Literature (HOLD, MagicHOI, HaMeR / WiLoR / HaWoR; licences), then a
+    joint hand–object optimisation for held phases (depth / silhouette with the hand masked, contact,
+    non-penetration, a rigid-in-grasp prior, smoothness).
+  - PREREG, dev / holdout split. Gates: held-phase median ADD −20 %, whole-episode AUC +0.005, no episode below −0.01,
+    per-object SR vs mocap. ≤ $20 GPU.
+  - Phase 2 (eval references + re-evaluation / retrain) only after phase 1 passes.
+  - Perception-tracking asked to support it with data and tools.
