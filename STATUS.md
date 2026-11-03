@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~07:20 UTC: instance-pose lane (pot network vs tracker) RUNNING
+- PREREG docs/analysis/ipose-20261103/PREREG.md (1058d7ec): train 0, 26, 41, 42, 43; test 2, 27, 44, 45; gate mean pot
+  ΔAUC ≥ +0.02, no episode < −0.01, 10-seed registered, 13p meshes; arms R (GT-free) and R+M (GT-informed).
+- Code 1654726d (pipeline/ipose/, ops/jobs/ipose.sh). Box 58930545 (RTX 4090, $0.58/h), run 20261103-ipose-1654726,
+  ≈ $2.5–3 [E], cap $15.
+
 ## 2026-11-03 ~05:55 UTC: PACK 13i UPLOADED: CD-O 0.24177 (4th). Rank sum 45, 7th
 - Bests: AUC 0.88571 / RPE 2.21325 / MPPE 1.79779 (14p); SP-SR 0.90; MP-SR 0.80; CD-O 0.24177 (13i).
 - Final selection plan: 14p for AUC / SP-SR / MP-SR / RPE / MPPE; 13i for CD-O.

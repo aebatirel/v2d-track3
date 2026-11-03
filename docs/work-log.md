@@ -7393,3 +7393,16 @@ arm and a no-policy replay floor to stage B.
   - Suggestion adopted for future mesh retrains: a pre-registered entry condition "zero-shot within 0.02 of
     control".
   - Batch ≈ $11 of $35; 0 boxes; credit $75.62.
+- ~07:20 UTC 3 Nov **instance-pose lane** (branch claude/instance-pose-20261103; owner "go in all" via keen-heisenberg):
+  - Pot episodes verified: 0, 2, 26, 27, 41–45. Split (rule) train 0, 26, 41, 42, 43 / test 2, 27, 44, 45. PREREG
+    1058d7ec before any training.
+  - Method: own GDRN-style correspondence net + stereo-depth RANSAC-Kabsch, trained on the 13p TSDF pot.
+    - GDRNPP (Apache-2.0) not used: CUDA 10/11 + detectron2 stack.
+    - SurfEmb / ZebraPose: MIT, long training.
+    - Renderer: own point-splat (no nvdiffrast / OpenGL licence).
+  - Control [D, unregistered perc2 metric]: pot AUC 0.973–0.998 on pot-only episodes, 0.87 / 0.92 on ep27 / 26, no
+    lost frames. Little headroom; pass prior ≈ 25 % [E].
+  - R+M labels (train episodes only) sit 0.3–0.6 cm / 1.3–2.3° from the track (median).
+  - Geometry self-test (rendered control pose as the "prediction"): 0.22 cm / 1.2° vs track.
+  - Box 58930545 (RTX 4090 UK, $0.58/h, offer 36643058), run 20261103-ipose-1654726, code 1654726d,
+    `bash ops/jobs/ipose.sh`. Estimated $2.5–3.
