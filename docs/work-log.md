@@ -6515,3 +6515,13 @@ diagnostic; nothing is picked for submission.
 - 23:04 UTC: D1 passes for all three G2 picks: 0/6 flips in both the budget and raw reference modes (pot, blue cup, rack).
   So they are adopted for the CD-O board (pack 13h). The wait loop ran until the 30-min limit because pgrep matched
   its own command line; the D1 runs themselves had finished at 23:04.
+
+## 2026-11-03 ~00:05 UTC — pack 13h frame sign-off
+- focused-pascal built 13h (sha256 d917b002…) on base **13f** (the coordinator asked for 13f, not 13f1, at 23:17): 16 payload
+  rows; its D1 on the packed bytes is 0/7 in both modes for all 16 pairs.
+- Frame flags: pot ICP 5.06 mm / proxy 5.73 mm vs the T3 pot; rack centroid 20.6 mm, x extent 125 -> 161 mm, surface max
+  77 mm, ICP 8.83 mm. Signed off YES for all three, transform none.
+- Rack finding [M, GT-free]: the G2 rack has a hallucinated +x bulge (0.5% of the surface, x +37..+110 mm). Our ep31
+  observed points never come near it (median 36 mm away). The [D] audit numbers include its cost and still win (CD-O
+  0.4016, anchor 3.2-4.6 mm). The real rack's smallest scan extent is 117 mm [D]. Proposed follow-up: a GT-free trim of
+  the unsupported surface, audited as a new candidate (13h2).
