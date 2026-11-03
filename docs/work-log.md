@@ -6640,3 +6640,10 @@ diagnostic; nothing is picked for submission.
 - Audit started 09:33:38Z: 120 meshes, R-gen copies first, code 024ec70e, 4 workers, detached.
 - The G3 audit had stopped again at 55/79: a second container restart at about 07:14 UTC; the remaining 24 are beige / lid
   / sweeper, none can pass. Queued to resume after the rack audit.
+- 10:20 UTC: rack round R audit, R-gen copies done (30/120) [D, 50 seeds].
+  - **hy21 ep12 k18 s31337 t3fit: CD-O 0.3775 vs the 13i rack 0.4016 (-0.0241), so rule A passes.** W30 0; anchor 3.07 vs
+    3.78; ADD 3.74 vs 4.30. D1 passes (0/6 flips in both modes, rotation <= 2.3 deg).
+  - Next best: trim_outer / placed / trim of the same source at 0.3842-0.3848; TRELLIS.2 ep27 k129 t3fit 0.3850.
+  - Handed to focused-pascal as provisional pack 13j on 13i. The final pick follows the tie rule once the 90 R-prim
+    copies are audited; prim racks have never scored below 0.418.
+  - [H18] held (P about 0.4 predicted).

@@ -1,0 +1,21 @@
+{
+ "provisional_winner": {
+  "index": 3,
+  "label": "R/plastic_dish_rack/hy21/ep12_plastic_dish_rack_k18_s31337/t3fit",
+  "md5": "1882b7a2e09ba03d1ebee370ca95d657",
+  "cdo_med": 0.3775,
+  "w30": 0.0,
+  "anc_med": 3.07,
+  "add_med": 3.74,
+  "rule": "A",
+  "d1": "pass 0/6 both modes"
+ },
+ "baseline_13i": {
+  "cdo_med": 0.4016,
+  "anc_med": 3.78,
+  "add_med": 4.3
+ },
+ "audited": 32,
+ "of": 120,
+ "note": "R-gen copies (30) audited; 90 R-prim copies still auditing. Final pick per the tie rule after all 120; if an R-prim copy qualifies with lower CD-O it replaces this in a 13j2."
+}
