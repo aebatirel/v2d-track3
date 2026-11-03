@@ -11084,3 +11084,5 @@ score.
   Reading [I]: the Tier B collision shape helped where the board policy already worked on it zero-shot (eval 14 rack +
   cup, 0.878 ≈ control) and hurt where zero-shot dropped (pitcher 0.45, sweeper 0.23, eval 32 cup 0.85); not a
   pre-registered test.
+- 05:56 UTC 3 Nov pf-mesh2 closed: pfS / pfT / pfU destroyed themselves; ledger actuals (estimates) $2.4 / $2.4 / $6.4
+  (batch ≈ $11 of the $35 allowed). 0 instances. Credit $75.62.

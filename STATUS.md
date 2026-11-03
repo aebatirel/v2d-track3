@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 08:56 TRT (05:56 UTC): second night batch closed — no new swaps; 0 boxes
+- Retrains with the new collision shapes on evals 32 / 33 (cup) and 19 (sweeper): none beat the board policy on its
+  training box (32: 0.83 vs 0.89; 33: 0.917 vs 0.923; 19: 0.83 vs 0.93). No pack 15; pack 14p stays our best upload.
+- Pattern [I]: the new shapes only helped where today's policy already coped with them unchanged (eval 14).
+- Spend this batch ≈ $11 (of $35 allowed). Credit $75.62 at 08:56 TRT.
+
 ## 2026-11-03 04:46 TRT (01:46 UTC): night lane closed — PACK 14p UPLOADED (AUC 0.88571); evaluator check done; 0 boxes
 - Uploaded by keen-heisenberg: AUC 0.88571, RPE 2.21325, MPPE 1.79779. Future swaps need confirmation on two hosts.
 - **Pack 14p** (pack 13p2 + eval 14, retrained with the new rack / cup shapes as collision): results/submissions/
