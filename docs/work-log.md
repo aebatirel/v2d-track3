@@ -6532,3 +6532,6 @@ diagnostic; nothing is picked for submission.
   - [H11] direction held, magnitude underestimated (predicted -0.002..-0.01).
   - Reported to the coordinator as an observation only. It would be about -0.0022 on the board [E] if ever adopted
     under a new pre-registered rule.
+- 00:10 UTC: the coordinator reports 13h scored **CD-O 0.25159** (predicted about 0.252 [E]); CD-O board is now 5th;
+  rank sum 45. Trim: agreed, not adopted; kept on file. Mesh lane rests until tracking-perception's round-2 pose-CV picks
+  need D1.

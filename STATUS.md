@@ -5,7 +5,7 @@
   - G2: generation $8.31 measured; 264 meshes, 32 audited.
   - 13h handed to focused-pascal (8cd7fe77): pot sam3d ep44 s7 (0.2861 vs 0.3107, ADD 2.7 vs 6.3 mm), blue cup sam3d k159 s7 t3fit
     (0.2335 vs 0.2646), rack hy21 ep31 t3fit (0.4016 vs 0.4182, ADD 4.3 vs 10.0 mm); all pass D1 in both reference modes.
-    Expected CD-O about 0.253 [E].
+    Expected CD-O about 0.253 [E]. **Measured 0.25159 (CD-O 5th, rank sum 45).**
   - Pose-board choice: tracking-perception's public-pose CV (13p: AUC 0.88257).
   - Rules: C4-audit/PREREG.md sections 2-10.
 - 2026-11-02 ~19:30 UTC: pack 12e scored CD-O 0.26775 (est ~0.268), best on all boards, rank sum 47 (7th). B+ extras (generated blue cup, dust pan) added for pack 13f (4a3b67f), expected CD-O ~0.2627 [E]; awaiting frame report.
