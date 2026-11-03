@@ -11072,3 +11072,7 @@ score.
   OLD_EP32=…pfD conf r1`; pfT 20261103-pfT-88f06be (Texas WS $1.55/h, 51870693, 58903413) `EP=33 ARMS=p0m MESH_OBJS_EP33=blue_cup
   OLD_EP33=runs/20261030-c33B-0202139/results/submission/results/episode_000033`; pfU 20261103-pfU-88f06be (Virginia S $1.58/h,
   47104051, 58903416) `EP=19 ARMS=sm MESH_OBJS_EP19=mini_sweeper`. Second-host boxes follow each T box's choice.
+- 02:08–03:30 UTC 3 Nov pf-mesh2 [M]: zero-shot (board policy, new collision, one draw, no overflow): eval 33 cup 0.929
+  (control 0.923), eval 32 cup 0.846 (0.890), eval 19 sweeper **0.226** (0.929). Eval 33 p0m s42 0.917 ± 0.019, s43
+  0.917 ± 0.016 → **NO-SWAP at the gate** (0.923). Eval 32 p0m s42 0.790 ± 0.105, s43 0.826 ± 0.130 (min 0.464) →
+  **NO-SWAP at the gate** (0.890). No second-host box needed for either. Eval 19 sm still training.
