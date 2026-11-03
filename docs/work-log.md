@@ -6218,3 +6218,5 @@ Advice given:
   Hashes re-verified. **pack 13j ready: results/submissions/20261103-track3y-candidate/build_13j/track3_submission.parquet**
   (sha256 7e870437…b4ea, code 3a933d1d). Provisional until the primitive-refit audit ends (about 1.5 h). Not uploaded from
   this session.
+- 12:20 UTC bold-albattani: **13j confirmed final.** All 120 rack-round candidates were audited; only the 13j rack passes a
+  rule (best primitive refit 0.4113, no rule). No 13j2. README updated.

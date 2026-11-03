@@ -13,7 +13,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 ## 2026-11-03 ~10:30 UTC: PACK 13j READY (CD-O variant on 13i; sign-off YES) — results/submissions/20261103-track3y-candidate/build_13j/ (not uploaded here)
 - 13i (board CD-O 0.24177 [M]; reproduced byte for byte) + the round-R rack (GT-informed best-of-N of 390). sha256
   7e870437…b4ea; only 5 payload rows + commit URL differ. D1 PASS in both modes; frame clean; the G2 rack's bulge is gone.
-  [E] CD-O ≈ 0.2384 (3rd place: 0.23900). Provisional until the primitive-refit audit ends (a lower one would be 13j2).
+  [E] CD-O ≈ 0.2384 (3rd place: 0.23900). Confirmed final by the mesh lane at 12:20 UTC (no 13j2).
 
 ## 2026-11-03 ~07:13 UTC: PACK 14p1 HELD (CV leakage; coordinator 07:14) — results/submissions/20261103-track3x-candidate/build_14p1/ (not uploaded)
 - 14p (perfect-following; reproduced byte for byte here) + tracking-perception's round-3 pose-CV wooden_piece_2 on eval 25

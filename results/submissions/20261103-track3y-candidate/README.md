@@ -1,8 +1,10 @@
 # Track 3 pack-13j candidate, 3 Nov 2026 — CD-O variant on 13i with the round-R rack
 
 **STATUS: READY (frame sign-off YES, transform none, 10:29 UTC). NOT uploaded from this session**: keen-heisenberg's
-session verifies and uploads on the owner's word there. Provisional: 90 GT-free primitive refits are still in the rack audit
-(about 1.5 h). A lower qualifying one would come as a 13j2.
+session verifies and uploads on the owner's word there. **CONFIRMED FINAL (mesh lane, 12:20 UTC):** all 120 rack-round
+candidates were audited (50 seeds, 0 errors). Only this rack (CD-O 0.3775) passes any rule; the best GT-free primitive refit
+scores 0.4113 and passes none. There is no 13j2. Records: C4-audit/results/adoption_rack_r.json and raw_rack_r/ on
+claude/bold-albattani-6qmxsv.
 
 **This is a CD-O-only variant** on 13i (board CD-O 0.24177 [M], per the mesh lane).
 
