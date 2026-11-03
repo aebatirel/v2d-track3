@@ -7319,3 +7319,10 @@ arm and a no-policy replay floor to stage B.
   - One on-demand H100 / H200, ≈ $7–11, cap $15 → 13i on 13h.
 - ~01:50 UTC perfect-following: two-host confirmation written into pack9b PREREG as an amendment for future
   pre-registrations. Its batch-2 reply is pending.
+- ~01:52 UTC 3 Nov perfect-following pf-mesh2 launched (88f06be; PREREG pf-mesh2-20261103 before any box), ≈ $17:
+  - pfS 58903359: eval 32 p0m, 13f cup collision;
+  - pfT 58903413: eval 33 p0m, 13f cup;
+  - pfU 58903416: eval 19 sm, Tier B sweeper.
+  - Eval 10 skipped: its cups collide through the carved ev10 pieces.
+  - Two-host confirmation via a CONF_FROM second box (sha-checked checkpoint), tools/pf_twohost.py. Swap only if both
+    hosts pass and both clear +0.02. Results ≈ 04:30–06:30 UTC → pack 15 on 14p.
