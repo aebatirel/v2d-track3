@@ -1,0 +1,38 @@
+{
+ "episode": 36,
+ "frames": 407,
+ "scored": 407,
+ "spans": {
+  "ROLL": [
+   [
+    73,
+    87
+   ],
+   [
+    112,
+    122
+   ],
+   [
+    295,
+    299
+   ]
+  ],
+  "YAW": []
+ },
+ "stats": {
+  "ROLL": {
+   "win_frames": 26,
+   "median_dIoU": -0.032,
+   "median_dRes": 0.165
+  },
+  "YAW": {
+   "win_frames": 7,
+   "median_dIoU": -0.21,
+   "median_dRes": 0.319
+  },
+  "REF": {
+   "iou_median": 0.731,
+   "res_median": 0.8
+  }
+ }
+}

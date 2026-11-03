@@ -1,5 +1,14 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~08:30 UTC: tracking-perception: spoon flip check on eval references (report-only): no clear flip
+- Pre-registered rule (PREREG_spoonflip.md): REF vs 180° ROLL / YAW on our mask and depth, 10 spoon evals.
+- Flags cover 50 of 2,769 frames (1.8 %): eval 32 ROLL f104–110; eval 33 YAW f184–190 and f268–272; eval 36 ROLL
+  f73–87, f112–122 and f295–299.
+- Overlays [I]:
+  - evals 32 and 33 are translation offsets (both poses are off the spoon), not flips;
+  - eval 36 ROLL is a weak, depth-only candidate.
+- No change proposed. `docs/analysis/ptrk-20261102/spoon/README.md`. $0 (CPU). Lane idle.
+
 ## 2026-11-03 ~05:40 UTC: tracking-perception: H1 (learned body-frame bias as mesh placement): no eval action
 - Public LOO (PREREG_bias.md): only the pitcher passes (H1a +0.046), and the GT-free depth placement already on eval 20
   (13p2) is stronger (+0.106). All other objects fail; sweeper, dust pan and boards are harmful.

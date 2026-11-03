@@ -6865,3 +6865,12 @@ arm and a no-policy replay floor to stage B.
   audit false positives (SAM2 mask failed; the references sit on the objects); eval 10's SWAP is cup nesting. Real,
   moderate: evals 32 / 33 cup and spoon offsets ≈ 4–8 cm for 5–20 frames. Clean: 12 episodes. [I] Board SP-SR / MP-SR
   failures more likely come from rollouts than from references.
+- 08:30 UTC **spoon flip check done (report-only, PREREG_spoonflip.md; CPU, $0)**:
+  - 10 spoon evals; flags cover 50 of 2,769 frames: eval 32 ROLL f104–110; eval 33 YAW f184–190, f268–272; eval 36
+    ROLL f73–87, f112–122, f295–299.
+  - Overlays [I]: evals 32 and 33 are translation offsets (REF and the alternative both off the spoon, residuals
+    50–110 cm), not flips. In eval 33 the bowl end is right; it is the along-handle offset from the audit.
+  - Eval 36 ROLL: +0.08 IoU and 3 cm better depth, with near-identical silhouettes. Weak, depth-only evidence; two of
+    its spans overlap the audit's mask gaps.
+  - Over whole episodes the alternatives lose everywhere (YAW ΔIoU −0.13 to −0.28).
+  - Nothing changed. `docs/analysis/ptrk-20261102/spoon/`.
