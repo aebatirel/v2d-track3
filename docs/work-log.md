@@ -7269,3 +7269,7 @@ arm and a no-policy replay floor to stage B.
   - Expected CD-O [E] ≈ 0.253 from 13f1 (≈ 0.251 from the 13f base). 5th place is 0.2534, so it is on the edge.
   - The three also register tighter than the 13p meshes, so they are in the round-2 pose CV.
   - G2 total $8.31; all boxes destroyed.
+- ~00:07 UTC 3 Nov **pack 13h UPLOADED** (CD-O variant; 57925185–57925216). Verified: 16 mesh rows / 16 CD-O pairs.
+  - **CD-O 0.25159** (best; predicted ≈ 0.252) → CD-O rank 5. **Rank sum 45**, 7th.
+  - Purple moved to 32.
+  - The 13h pose-board numbers (AUC 0.880) are not used for any selection.
