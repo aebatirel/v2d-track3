@@ -7404,3 +7404,10 @@ arm and a no-policy replay floor to stage B.
       explicit yes);
     - fixed public train / test split; gate pot AUC +0.02 vs the tracker on held-out episodes.
   - bold-albattani: manifests for round 3; pot meshes on request.
+- ~07:00 UTC 3 Nov instance-pose plan (PREREG 1058d7ec; code 1654726d).
+  - Pot episodes 0, 2, 26, 27, 41–45; train 0 / 26 / 41 / 42 / 43; test 2 / 27 / 44 / 45.
+  - Method: own GDRN-style correspondence net + stereo-depth RANSAC-Kabsch on the 13p TSDF pot; 15k point-splat
+    renders. Licences: GDRNPP Apache-2.0 (not used); SurfEmb / ZebraPose MIT.
+  - One RTX 4090 ≈ $2.5–3 (cap $15). Prior pass ≈ 25 %, since the control is already 0.3–0.7 cm on the pot.
+  - Coordinator: go. Asked for a secondary pre-registered criterion (median ADD −20 %, no episode worse), because
+    pot AUC is near its ceiling; an optional second object with more headroom.
