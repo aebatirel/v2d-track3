@@ -6178,3 +6178,8 @@ Advice given:
   8–10 mm). Defect noted in the README; a GT-free trim is proposed as a later 13h2. Hashes re-verified. **pack 13h ready:
   results/submissions/20261102-track3v-candidate/build_13h/track3_submission.parquet** (sha256 d917b002…a4e, code 9610329e).
   Not uploaded from this session.
+- ~05:40 UTC 3 Nov bold-albattani (05:37): **pack 13i on 13h** = 3 CD-O swaps from the G3 audit @ 82c09955 (GT-informed
+  best-of-N, 468 meshes): TRELLIS.2 pot (c3fc0a7c…, evals 1/3/5/6/8/28; registration ADD 6.8 vs 2.7 mm, so CD-O pack only),
+  Pixal3D-MV dust pan (3fe34bcc…, 19/38), hy21 board 1 (36b292a5…, eval 25 slot 0). md5s verified; no_oracle pass; 13h
+  reproduced byte for byte (after a session restart; scratch intact); meshes committed as meshes/g3_pack13i (edd6d690). Build +
+  D1 (both modes) running. [E] CD-O 0.2516 → about 0.242 (their estimate).
