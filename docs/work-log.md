@@ -7557,3 +7557,14 @@ arm and a no-policy replay floor to stage B.
 - PREREG.md written: hand-masked ray correction (HRC), DEV 11 / 13 / 18 / 21 / 0 / 41 / 43, HOLDOUT 2 / 12 / 22 / 23 /
   24 / 26 / 27 / 31 / 39 / 40 / 42 / 44 / 45; gates as the task's; parameters frozen in an addendum before holdout.
   $0 (CPU here).
+- ~13:10 UTC 3 Nov hand-aware DEV (CPU here, $0): pipeline/hrc.py written (hand-masked ray correction; post-processor
+  on perc2 tracks; GT-free). Dev-time design changes, all before any holdout scoring:
+  - residual band 8 → 25 cm (ep18 corr 0.95 → 0.99; the 8 cm band loses pixels once the track is > 8 cm off);
+  - contact gaps bridged while a hand stays within 15 cm, plus hysteresis (a span that starts in contact continues
+    while the residual stays off): the drifted ep18 track leaves the hand and the right-hand fit drops out after f155;
+  - options --no_hand_mask and --gate contact|near: on ep13 the hand mask hides the error during handling, and it shows
+    only after release.
+  - Dev results so far (single seed, m14p): ep18 0.9246 → 0.9487 (+0.024; sweeper 47 frames corrected, f118–165);
+    ep11 / ep13 unchanged with the contact gate. Grid running (mask × gate × tau 1.0 / 1.5 / 2.0, band 0.25).
+  - Hands for dev episodes: MediaPipe tasks API (mediapipe 1.2.0, hand_landmarker.task float16 v1, sha256
+    fbc2a300…) on CPU here, + hand_refine; scripts/prep_ep.sh. Licence: MediaPipe Apache-2.0.
