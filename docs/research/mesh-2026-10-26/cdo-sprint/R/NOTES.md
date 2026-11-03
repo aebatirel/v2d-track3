@@ -116,3 +116,32 @@ coordinator's; not run here.
 - FREEZE: `results/SHA256SUMS` (sha256 c6ac6206f1eb4e87...), `results/gen_logs/`, `results/sim3_fits/`,
   `results/mv_check.jsonl`, `results/box_logs/` (log tails; scanned for tokens, none) committed next, BEFORE any
   public-scan read of these meshes. No R mesh has been scored or compared with a scan.
+- 08:59Z after the freeze (cf30b25c pushed): screen_pkg.tar = G3's package unchanged (kit + 8 public scans + 8 b4096
+  caches, sha256 830b4848...; the rack scan / cache inside are the ones G2 / G3 used) uploaded to
+  runs/mesh-20261103-r-63eb2c5/screen/. Box fetched cf30b25c with the onstart.sh header pattern (GH_TOKEN from
+  /etc/v2d_env, not printed) and checked it out; its SHA256SUMS == the committed one (cmp, SUMS-MATCH).
+  08:59:49Z `NP=64 R/scripts/box_screen_r.sh` started, PKG-OK 830b4848.
+- 08:59:47-09:04:07Z stage-1 screen [D] on the box's CPUs (`box_screen_r.sh`, 64 workers; py3.13 venv pinned to the local
+  versions numpy 2.5.4, scipy 1.18.1, trimesh 5.2.0, pandas 3.1.0; box at cf30b25c; manifest 390 meshes = 360 Sim(3) +
+  30 Pixal3D-MV object-frame, 0 hash mismatches). **390 records, 0 errors**, 0 "budget_mesh failed" fallbacks
+  (`results/screen/screen6.jsonl`, sha256 e3aee80ac8942ea2...). Table: `results/stage1_table.md`
+  (`scripts/stage1_table_r.py`).
+  - Best **0.3876** hy21 ep12 k18 s31337 (13i rack 0.4016, so -0.014 at stage 1; rule A needs <= 0.3816 at 50 seeds).
+    5 of 390 below 0.4016, none <= 0.3816. Per model (best / median of the CD-O medians): SAM 3D 0.507 / 0.606,
+    Hunyuan 0.388 / 0.565, TRELLIS.2 0.393 / 0.494, Pixal3D-MV 0.512 / 0.611. W30 > 0 on 2 meshes (ep13).
+  - Stage-2 picks (6 lowest): hy21 ep12 k18 s31337 (0.3876), trellis2 ep27 k129 s7 (0.3925), trellis2 ep27 k84 s42
+    (0.3967), trellis2 ep27 k87 s123 (0.3968), hy21 ep31 k3 s777 (0.4014; ep31 k3 is a crops.py score-0 crop),
+    trellis2 ep27 k132 s42 (0.4033).
+- 09:04-09:07Z final store push from the box (`ops/box/store.sh push-run`, PUSH-RC 0): runs/mesh-20261103-r-63eb2c5/
+  holds all 780 .ply + results/screen (5.0 GB). Checked from here: SHA256SUMS, screen6.jsonl and 3 sample .ply exist.
+  (The exec call itself returned HTTP 524 after 100 s; the push kept running and finished.)
+- 09:09Z instance record (`results/box_logs/vast_instance_58934345.txt`): start 07:41:06.67Z, $3.90/h, 71.8 GB down at
+  $2.60/TB, 3.1 GB up at $3.91/TB. **09:09:37Z box 58934345 destroyed**, confirmed absent in `ops/vast.sh show` (0
+  instances listed). **Measured cost $5.95** = 1.475 h x $3.90/h ($5.75) + $0.19 down + $0.01 up. Credit $67.34 at
+  09:10Z (was $73.73 at 07:39Z; includes other sessions' boxes).
+- 09:10Z ledger actual $5.95 (mesh-bold). The helper appended it 4 times again (its retry re-appends when the upload
+  raises after landing) and was cut by a 120 s timeout. Removed the 3 identical duplicates with one parent_commit-guarded
+  rewrite (210 -> 207 rows); that upload also returned HF 502 after landing. Re-read: one planned ($8) and one actual
+  ($5.95) line for this run.
+- 09:12Z the 6 stage-2 sources downloaded from the store (S/r/gendl); stage2_r.py checks each against the frozen
+  SHA256SUMS. Stage 2 for R-gen started locally (`stage2_r.py --only gen`).

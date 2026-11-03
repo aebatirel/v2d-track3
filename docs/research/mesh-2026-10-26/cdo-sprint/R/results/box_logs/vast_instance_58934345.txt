@@ -1,0 +1,14 @@
+actual_status running
+dph_total 3.9000000000000004
+dph_base 3.866666666666667
+start_date 1793691666.6659045
+duration 919228.6375682354
+inet_down_billed 71827456.0
+inet_up_billed 3061841.92
+storage_cost 0.19999999999999998
+inet_down_cost 0.0026041666666666665
+inet_up_cost 0.00390625
+disk_space 120.0
+search {'gpuCostPerHour': 3.866666666666667, 'diskHour': 0.033333333333333326, 'totalHour': 3.9000000000000004, 'discountTotalHour': 0, 'discountedTotalPerHour': 3.9000000000000004}
+now 1793696971.421841 running h 1.4735433156622781
+cost_est_usd 5.747 (time only; add bandwidth)
