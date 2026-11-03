@@ -6831,3 +6831,9 @@ arm and a no-policy replay floor to stage B.
   - [I] Per-object tracker bias is episode-specific for every object except the pitcher, whose incomplete template
     base gives a stable tilt. Public mocap calibration does not generalise beyond what depth placement already
     finds GT-free.
+- 06:55 UTC **owner "go in all" (via keen-heisenberg):** (1) round-3 pose CV on 14p, (2) eval gross-failure audit.
+  PREREG_round3_audit.md pushed before any score. Launched 58929221 `20261103-ptrkH-ad13d06` (RTX 5090, $0.629/h):
+  `eval_vos.sh` on all 20 eval clips (SAM2 masks; saved before tracking, so a guard OOM can't lose them), ≈ $1–1.5.
+  14p meshes decoded (pot / rack / board 2 = budgeted X / c0 / 12c; pitcher = eval-20 placement, so public baseline
+  uses the 13p pitcher); base14p scoring started (CPU). Asked perfect-following for 14p's packed refs and bold-albattani
+  for the G3 manifest.
