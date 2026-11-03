@@ -6552,3 +6552,23 @@ diagnostic; nothing is picked for submission.
   - Cap $15 GPU, on-demand only. Winners go to 13i on 13h.
 - A helper agent runs generation, freeze, screen and stage 2. The coordinator was offered a veto on G3b.
 - 01:49 UTC: the coordinator approved G3a + G3b as pre-registered (d060f21e), including the trim copies; cap $15, on-demand only, stop below $15 credit; winners go to 13i on 13h.
+
+## 2026-11-03 ~04:32 UTC — G3 generation done; 50-seed audit of 79 candidates started
+- Helper-agent report (`cdo-sprint/G3/README.md`, `G3/NOTES.md`):
+  - run mesh-20261103-g3-2417282, instance 58904222 (on-demand H200 NVL), 01:59-03:47 UTC;
+  - measured $7.47 ($7.27 GPU + $0.20 transfer), cap $15; destroyed and confirmed. Credit $94.50 -> $77.83 (all sessions).
+  - 432 single-image meshes + 36 Pixal3D-MV, 0 lost. SHA freeze committed before any scan read (56d4710). 468 screened,
+    0 errors.
+  - Stage 2: 94 candidates (placed / t3fit / trim) in `C4-audit/candidates_g3.json` (f5871fee). 2 T3 fits failed the kit
+    budget.
+- Stage-1 best [D, 6 seeds, best-of-N] vs 13h:
+  - pot 0.2404 vs 0.2861 (an outlier; next 0.3094);
+  - dust pan Pixal 0.2061 vs 0.2291;
+  - board 1 Pixal 0.1629 vs 0.1872;
+  - rack 0.3953 vs 0.4016;
+  - board 2 0.1600 vs 0.1649;
+  - beige / lid / sweeper all worse than 13h (+0.012 / +0.029 / +0.017).
+- Audit: 79 meshes in leverage order (pot, dust pan, board 1, rack, board 2, beige, lid, sweeper). 15 skipped:
+  - 11 no-op trims (geometry identical to the placed copy, which is audited);
+  - 4 copies that fail the kit `budget_mesh(4096, 4096)`, so they cannot be packed.
+  Code 48a30ef2, 4 workers, detached, started 04:31:58Z.
