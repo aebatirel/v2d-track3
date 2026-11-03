@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 04:46 TRT (01:46 UTC): night lane closed — pack 14p ready; evaluator check done; 0 boxes
+- **Pack 14p** (pack 13p2 + eval 14, retrained with the new rack / cup shapes as collision): results/submissions/
+  20261102-track3s-candidate/build_14p/track3_submission.parquet (sha256 b6c6100d…). keen-heisenberg uploads.
+- Other retrains tonight did not pass: eval 20 (new pitcher), eval 28 (new rack), eval 30 (new sweeper / rack; strong on
+  its training box but low on its fresh official draws).
+- **Evaluator check** (≈ $1): the training-box evaluator and the official one agree on the same machine, so training-box
+  numbers are trustworthy. But the official evaluator gave eval 30's policy 0.93 on this machine vs 0.77 on its own
+  training machine: fresh-draw results vary by machine for reasons we do not know yet. The rejections stand; future
+  confirmations could be run on two machines.
+- Spend tonight ≈ $36 (≈ $6 lost to my own job bugs and one faulty GPU host). Credit $94.58 at 04:45 TRT.
+
 ## 2026-11-03 02:35 TRT (2 Nov 23:35 UTC): PACK 14 READY (not uploaded) — pack 13f + eval 14
 - **File:** results/submissions/20261102-track3s-candidate/build_14/track3_submission.parquet (sha256 1dbc33c4…), on
   pack 13f (the board's best). keen-heisenberg uploads on the owner's word.
