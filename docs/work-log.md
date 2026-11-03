@@ -7445,3 +7445,12 @@ arm and a no-policy replay floor to stage B.
   - [H18] ≈ 40 % chance of a pass.
 - ~07:36 UTC 3 Nov board-2 outer-shell pose CV with source exclusion (pre-registered): ep23 +0.0041 vs 14p → FAIL
   (bar +0.005). Board 2 stays as in 14p. Eval audit running (ep1 in progress).
+- ~08:18 UTC 3 Nov **eval gross-failure audit DONE** (GT-free; perception-tracking 2b903e1, audit/README.md +
+  overlays; box H ≈ $1.5).
+  - False positives (checked on overlays): eval 8, 25, 10. Real but moderate: eval 32 cup ≈ 4 cm at f18–25; eval 33
+    cup 4–5 cm around f87 and spoon 5–8 cm along the handle at ~f186 / f263.
+  - Clean: 1, 3, 5, 6, 15, 16, 20, 28, 30, 35, 37, 38.
+  - [I] No gross reference failure. SR failures more likely come from rollouts, so option C has little to aim at.
+  - Coordinator follow-up [H-spoon], pre-registered CPU test: 180° roll or yaw flips of the spoon are invisible to
+    mask IoU but cost π rad. The eval-33 "offset along the handle" looks like a yaw flip. Test every spoon episode on
+    depth / mask for flipped alternatives.
