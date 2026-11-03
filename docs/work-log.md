@@ -6183,3 +6183,7 @@ Advice given:
   Pixal3D-MV dust pan (3fe34bcc…, 19/38), hy21 board 1 (36b292a5…, eval 25 slot 0). md5s verified; no_oracle pass; 13h
   reproduced byte for byte (after a session restart; scratch intact); meshes committed as meshes/g3_pack13i (edd6d690). Build +
   D1 (both modes) running. [E] CD-O 0.2516 → about 0.242 (their estimate).
+- ~05:49 UTC **pack 13i built, PENDING frame sign-off**: sha256 1bcbdcfa…62a3, code edd6d690; vs 13h only commit URL + 9
+  payload rows; CD-O those 9 pairs; offline validation pass; guard on; **D1 PASS both modes** (0/7; pot anchor 6.5–7.1 mm, as
+  its ADD 6.8 says). Flags: pot centroid 6.9 mm; **dust pan x extent 46.7 → 82.0 mm (×1.76), surface max 45 mm**; board 1
+  extents ×1.20 / ×0.87. Staged as results/submissions/20261103-track3w-candidate; frame report sent to bold-albattani.

@@ -1,0 +1,15 @@
+pack_swap_meshes: <SCRATCH>/p13i/build_13i
+swapped 9 (episode, object) pairs of 36: white_pot -> eps [1, 3, 5, 6, 8, 28], mini_dust_pan -> eps [19, 38], wooden_piece_1 -> eps [25]
+file md5 changed: 1:white_pot 5243c309->c3fc0a7c, 3:white_pot 5243c309->c3fc0a7c, 5:white_pot 5243c309->c3fc0a7c, 6:white_pot 5243c309->c3fc0a7c, 8:white_pot 5243c309->c3fc0a7c, 19:mini_dust_pan 1530b1d3->3fe34bcc, 25:wooden_piece_1 015aaae3->36b292a5, 28:white_pot 5243c309->c3fc0a7c, 38:mini_dust_pan 1530b1d3->3fe34bcc
+frame report (mm; base = the mesh being replaced):
+  white_pot          eps [1, 3, 5, 6, 8, 28] base 5243c309 | centroid offset 6.89 | AABB centre offset 2.02 | extent base [127.79, 193.1, 358.53] new [144.0, 196.79, 375.83] | surface median/p95/max 1.791/7.869/14.651 (spacing 0.932) | ICP 4.5 mm 0.547 deg (median after 1.406) | kit proxy 4.77 mm 1.79 deg (symmetry none) | FLAG: surface centroid moved 6.89 mm > 5.0
+  mini_dust_pan      eps [19, 38] base 1530b1d3 | centroid offset 3.97 | AABB centre offset 18.41 | extent base [46.71, 157.01, 166.64] new [81.98, 158.18, 164.38] | surface median/p95/max 1.809/10.629/44.822 (spacing 0.481) | ICP 2.7 mm 4.035 deg (median after 1.206) | kit proxy 3.54 mm 3.999 deg (symmetry none) | FLAG: extent ratio [1.7551, 1.0075, 0.9864] outside +-15% (scale or axis order?)
+  wooden_piece_1     eps [25] base 015aaae3 | centroid offset 3.49 | AABB centre offset 11.72 | extent base [19.89, 149.87, 246.98] new [23.96, 130.97, 231.7] | surface median/p95/max 0.6/5.439/25.389 (spacing 0.565) | ICP 0.24 mm 0.228 deg (median after 0.498) | kit proxy 2.53 mm 1.393 deg (symmetry none) | FLAG: extent ratio [1.2046, 0.8739, 0.9381] outside +-15% (scale or axis order?)
+parquet: 1286523 B sha256 1bcbdcfae42a810115ac713e61271d3a048f125338a4b2ef616e3f2b917362a3 | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 9}
+mesh payloads changed: ['1:white_pot', '3:white_pot', '5:white_pot', '6:white_pot', '8:white_pot', '19:mini_dust_pan', '25:wooden_piece_1', '28:white_pot', '38:mini_dust_pan'] | unchanged: []
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 485d3c1c1467de04... | CD-O pairs changed vs base: ['1:white_pot', '3:white_pot', '5:white_pot', '6:white_pot', '8:white_pot', '19:mini_dust_pan', '25:wooden_piece_1', '28:white_pot', '38:mini_dust_pan']
+pack.log MESH WARNINGs: 0
+FLAG: white_pot (episodes [1, 3, 5, 6, 8, 28]): surface centroid moved 6.89 mm > 5.0
+FLAG: mini_dust_pan (episodes [19, 38]): extent ratio [1.7551, 1.0075, 0.9864] outside +-15% (scale or axis order?)
+FLAG: wooden_piece_1 (episodes [25]): extent ratio [1.2046, 0.8739, 0.9381] outside +-15% (scale or axis order?)
+STATUS NEEDS REVIEW (flags) (exit 2)
