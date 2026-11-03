@@ -75,3 +75,13 @@ Reading: gate 1 is strict for a gated, sparse correction (most held frames are <
 ## Cost
 CPU in the cloud session: $0. No GPU is needed for phase 1 (MediaPipe on CPU ≈ 1 min per episode; depth caches from
 the HF store).
+
+## Addendum 1 (coordinator, 3 Nov ~10:36 UTC; committed before any holdout scoring)
+Gate 1 is replaced, because a held-phase **median** does not fit a sparse, gated correction. The new gate 1 is:
+- holdout held-phase **mean** symmetric ADD (pooled over all holdout held frames of all objects, seed 0) ≥ 10 % lower
+  than the control, **or**
+- holdout held-phase AUC ≥ +0.01 vs the control. This is the kit AUC (thresholds 1–9 cm) recomputed on held frames
+  only, per object and averaged over holdout objects, seed 0.
+
+Gates 2 (whole-episode AUC ≥ +0.005 and ≥ 2 × noise) and 3 (no episode below −0.01) are unchanged. Per-object SR
+against mocap is reported. For a later eval phase, the ray-correction sizes (cm) per corrected span are also reported.
