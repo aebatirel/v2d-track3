@@ -1,0 +1,38 @@
+[
+ {
+  "label": "base_ep26_nomk",
+  "why": "byte-identical to base_ep26_full"
+ },
+ {
+  "label": "base_ep27_nomk",
+  "why": "byte-identical to base_ep27_full"
+ },
+ {
+  "label": "base_joint_joint",
+  "why": "equals an already-measured file: library_index:clean/rack/t2.5_lean1/all_joint"
+ },
+ {
+  "label": "E_ep26_nomk",
+  "why": "byte-identical to E_ep26_full"
+ },
+ {
+  "label": "E_ep27_nomk",
+  "why": "byte-identical to E_ep27_full"
+ },
+ {
+  "label": "K_ep26_nomk",
+  "why": "byte-identical to K_ep26_full"
+ },
+ {
+  "label": "K_ep27_nomk",
+  "why": "byte-identical to K_ep27_full"
+ },
+ {
+  "label": "Q_ep26_nomk",
+  "why": "byte-identical to Q_ep26_full"
+ },
+ {
+  "label": "Q_ep27_nomk",
+  "why": "byte-identical to Q_ep27_full"
+ }
+]
