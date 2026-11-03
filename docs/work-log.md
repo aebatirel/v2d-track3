@@ -7406,3 +7406,12 @@ arm and a no-policy replay floor to stage B.
   - Geometry self-test (rendered control pose as the "prediction"): 0.22 cm / 1.2° vs track.
   - Box 58930545 (RTX 4090 UK, $0.58/h, offer 36643058), run 20261103-ipose-1654726, code 1654726d,
     `bash ops/jobs/ipose.sh`. Estimated $2.5–3.
+- ~07:35 UTC 3 Nov instance-pose:
+  - Addendum 1 to the PREREG (1931d067, before training): secondary criterion = median pot ADD −20 %, no test episode
+    worse.
+  - Control on the test episodes [D, 10-seed, m13p; reproduces base13p exactly]: pot AUC 0.9935 / 0.9677 / 0.9979 /
+    0.9742 (eps 2 / 27 / 44 / 45); median ADD 0.44 / 0.76 / 0.32 / 0.64 cm.
+    **The most the primary +0.02 gate allows is +0.017, so the primary cannot pass by construction.** The coordinator
+    is told.
+  - Box job 1 failed in 2 min: `.gitignore` drops `*.npz`, so the control tracks and R+M labels were missing.
+    Force-added (c5c3fa56). Restarted in place with ops/box/restart_job.sh (no new setup cost).
