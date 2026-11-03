@@ -43,6 +43,22 @@ REF13H = dict(
 OBJECTS = tuple(EPS)
 
 
+KIT = f'{S}/loc/kit/v2d_submission_kit'
+
+
+def kit_budget(p):
+    """GT-free info: does the kit's budget_mesh(4096, 4096) (the packer's simplifier) accept the mesh?"""
+    import sys
+    if KIT not in sys.path:
+        sys.path.insert(0, KIT)
+    from v2dlb.mesh_budget import budget_mesh
+    try:
+        budget_mesh(p, 4096, 4096)
+        return 'ok'
+    except Exception as e:
+        return 'FAIL: ' + str(e).split(': ')[-1][:120]
+
+
 def md5(p):
     return hashlib.md5(open(p, 'rb').read()).hexdigest()
 
@@ -54,8 +70,36 @@ def sha256(p):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('screen'); ap.add_argument('gen_dir'); ap.add_argument('out_dir'); ap.add_argument('cands')
-    ap.add_argument('--only', default=None, help='comma-separated objects (debug)')
+    ap.add_argument('--only', default=None, help='comma-separated objects (parallel runs; then a full run collects)')
+    ap.add_argument('--merge', default=None, help='+-joined --only groups, comma-separated: merge their side files, exit')
+    ap.add_argument('--parts', default=None, help='CANDS path the --only runs were given (default: CANDS)')
     a = ap.parse_args()
+    if a.merge:                                                # combine the parallel --only runs, in OBJECTS order
+        picks, cands = [], []
+        for g in a.merge.split(','):
+            sfx = '_' + g.replace('+', '_')
+            picks += json.load(open(os.path.join(a.out_dir, f'picks{sfx}.json')))
+            cands += json.load(open((a.parts or a.cands) + sfx))
+        order = {o: i for i, o in enumerate(OBJECTS)}
+        picks.sort(key=lambda p: (order[p['object']], p['rank']))
+        tz = {p['label'] for p in picks if p.get('trim_faces_removed') == 0}
+        for c in cands:                                        # flag geometry-identical trim copies for the auditor
+            if c['kind'] == 'trim' and c['stage1_label'] in tz:
+                c['note'] = (c.get('note', '') + '; ' if c.get('note') else '') + \
+                    'trim removed 0 faces: same geometry as the placed copy'
+        import glob                                            # adoptability check (s3): no byte copy of a public scan
+        scan_md5 = {md5(f) for f in glob.glob(f'{S}/loc/t3/mesh/*/*.glb')}
+        assert len(scan_md5) >= 10 and not any(c['md5'] in scan_md5 for c in cands), 'candidate equals a scan file'
+        print(f'md5 check: none of {len(cands)} candidates equals any of {len(scan_md5)} public scan files')
+        kinds = {'placed': 0, 't3fit': 1, 'trim': 2}
+        rk = {p['label']: p['rank'] for p in picks}
+        cands.sort(key=lambda c: (order[c['object']], rk[c['stage1_label']], kinds[c['kind']]))
+        keys = ('object', 'label', 'path', 'md5', 'role', 'needs_place', 'cdo_rec', 'stage1_label', 'kind', 'why', 'note')
+        cands = [{k: c[k] for k in keys if k in c} for c in cands]          # candidates_g2.json key order
+        json.dump(picks, open(os.path.join(a.out_dir, 'picks.json'), 'w'), indent=1)
+        json.dump(cands, open(a.cands, 'w'), indent=1)
+        print(f'merged {len(picks)} picks, {len(cands)} candidates -> {a.cands}')
+        return
     for p in REF13H.values():
         assert os.path.exists(p), p
     sums = {}
@@ -65,6 +109,14 @@ def main():
     recs = [json.loads(l) for l in open(a.screen) if l.strip()]
     os.makedirs(a.out_dir, exist_ok=True)
     picks, cands = [], []
+    budget = {}
+
+    def add(c):
+        b = kit_budget(c['path'])
+        budget[c['label']] = b
+        if b != 'ok':
+            c['note'] = f'kit budget_mesh(4096, 4096) fails on this file ({b[6:]}); mesh_metric scores it raw'
+        cands.append(c)
     for obj in OBJECTS:
         if a.only and obj not in a.only.split(','):
             continue
@@ -94,8 +146,8 @@ def main():
                         place_second_distinct_residual_mm=pl['second_distinct_residual_mm'])
             base = dict(object=obj, role='g3_candidate', needs_place=False, cdo_rec=s1['cdo_med'], stage1_label=r['label'],
                         why=why)
-            cands.append(dict(base, label=f'G3/{obj}/{model}/{tag}/placed', path=stem + '.glb', md5=md5(stem + '.glb'),
-                              kind='placed'))
+            add(dict(base, label=f'G3/{obj}/{model}/{tag}/placed', path=stem + '.glb', md5=md5(stem + '.glb'),
+                     kind='placed'))
             # T3 fit copy
             fd = stem + '_t3fit'
             obs = f'{S}/obs_all/{ep}_{obj}.npz'
@@ -103,17 +155,22 @@ def main():
                 rc = subprocess.run(['nice', '-n', '5', PY, '-I', FIT, '--mesh', stem + '.glb', '--obs', obs, '--out', fd,
                                      '--cfg', CFG], stdout=open(fd + '.out', 'w'), stderr=subprocess.STDOUT).returncode
                 pick['fit_rc'] = rc
-            if os.path.exists(os.path.join(fd, 'fit.glb')):
+            d = json.load(open(os.path.join(fd, 'diag.json'))) if os.path.exists(os.path.join(fd, 'diag.json')) else {}
+            if 'final' not in d:                       # fit.py did not finish (rc != 0): no t3fit candidate, logged
+                err = [l.strip() for l in open(fd + '.out')] if os.path.exists(fd + '.out') else ['no fit output']
+                pick['fit_failed'] = err[-1][-300:] if err else 'empty fit log'
+                if os.path.exists(fd + '.glb'):
+                    os.remove(fd + '.glb')
+            else:
                 fg = fd + '.glb'
                 if not os.path.exists(fg):
                     shutil.copyfile(os.path.join(fd, 'fit.glb'), fg)
-                d = json.load(open(os.path.join(fd, 'diag.json')))
                 st = {x['tag']: x for x in d['stages']}
                 pick.update(fit=fg, fit_md5=md5(fg), fit_obs=obs,
                             fit_held_tmean90_in=st['input']['held_o2m']['tmean90_mm'],
                             fit_held_tmean90_fit=st.get('stage_0', {}).get('held_o2m', {}).get('tmean90_mm'),
                             fit_faces=d['final']['faces'], fit_watertight=d['final']['watertight'])
-                cands.append(dict(base, label=f'G3/{obj}/{model}/{tag}/t3fit', path=fg, md5=md5(fg), kind='t3fit'))
+                add(dict(base, label=f'G3/{obj}/{model}/{tag}/t3fit', path=fg, md5=md5(fg), kind='t3fit'))
             # trim copy (of the placed mesh)
             tg = stem + '_trim15.glb'
             if not os.path.exists(tg):
@@ -124,11 +181,13 @@ def main():
                 ti = json.load(open(tg + '.json'))
                 pick.update(trim=tg, trim_md5=md5(tg), trim_faces_removed=ti['faces_removed'], trim_faces_in=ti['faces_in'],
                             trim_area_removed_frac=ti['area_removed_frac'], trim_ref=REF13H[obj], trim_obs=obs_union)
-                cands.append(dict(base, label=f'G3/{obj}/{model}/{tag}/trim', path=tg, md5=md5(tg), kind='trim'))
+                add(dict(base, label=f'G3/{obj}/{model}/{tag}/trim', path=tg, md5=md5(tg), kind='trim'))
+            pick['kit_budget'] = {k.rsplit('/', 1)[1]: v for k, v in budget.items() if k.startswith(f'G3/{obj}/{model}/{tag}/')}
             picks.append(pick)
             print(json.dumps({k: v for k, v in pick.items() if k not in ('stage1', 'trim_obs')}), flush=True)
-    json.dump(picks, open(os.path.join(a.out_dir, 'picks.json'), 'w'), indent=1)
-    json.dump(cands, open(a.cands, 'w'), indent=1)
+    sfx = f'_{a.only.replace(",", "_")}' if a.only else ''        # --only runs (parallel per object) write side files;
+    json.dump(picks, open(os.path.join(a.out_dir, f'picks{sfx}.json'), 'w'), indent=1)   # a final full run (outputs
+    json.dump(cands, open(a.cands + sfx if sfx else a.cands, 'w'), indent=1)              # exist, so it only collects)
     print(f'{len(picks)} picks, {len(cands)} candidates -> {a.cands}')
 
 

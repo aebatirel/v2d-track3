@@ -101,3 +101,28 @@ GPU cap for G3 $15; stop if Vast credit < $15. Ledger session mesh-bold.
   3.6 GB up. **03:47:33Z box 58904222 destroyed**, confirmed absent in `ops/vast.sh show` (only pfU, not ours, remains).
   **Measured cost $7.47** = 1.802 h x $4.033/h ($7.27) + 71.8 GB down at $2.60/TB ($0.19) + 3.6 GB up ($0.01). Ledger
   actual $7.47 (mesh-bold).
+- 03:48-03:50Z the 32 stage-2 sources (4 lowest stage-1 CD-O medians per object) downloaded from the store
+  (S/g3/gendl/runs/mesh-20261103-g3-2417282/results/gen/); stage2.py checks each against the frozen SHA256SUMS.
+- 03:47-03:55Z ledger: `ledger.py add actual` appended the same actual line 5 times (its retry loop re-appends when an
+  upload raises after it has landed). Removed the 4 duplicates with one parent_commit-guarded rewrite (202 rows, only
+  those 4 identical rows dropped); `ledger.py show` now lists one actual line, $7.47; its totals were never affected
+  (they key by run).
+- 03:51Z stage 2 local (`scripts/stage2.py`, 4 object groups in parallel with `--only`, nice, 1 thread each):
+  place.py -> T3 fit.py (frozen cfg) -> trim.py (15 mm, obs union of the object's G3 episodes + 13h mesh).
+  - fit.py ended with rc 1 on `wooden_piece_1 pixal_mv ep24 s7`: its final kit `budget_mesh(4096, 4096)` raised "mesh
+    simplification cannot satisfy the budget" after the fit itself ran (stage_0 held tmean90 1.70 -> 1.55 mm). Treated as
+    a failed T3 fit: no t3fit candidate (the copied fit.glb was removed). stage2.py first crashed on it (KeyError 'final')
+    in two groups; patched (failed fit -> `fit_failed` in picks.json) and rerun; finished outputs are reused.
+  - Added a GT-free info field: whether the kit's `budget_mesh(4096, 4096)` (the packer's simplifier) accepts each
+    candidate file. Failures get a `note` in candidates_g3.json (mesh_metric scores such files raw, as the stage-1 screen
+    did for 18 meshes). The two groups that had run with the earlier code are rerun to record it (outputs reused).
+- 04:13Z stage 2 done: 32 picks, **94 candidates** (32 placed, 30 t3fit, 32 trim) -> `../C4-audit/candidates_g3.json`
+  (merged with `stage2.py --merge`; candidates_g2.json key order; md5 check: none equals any of the 10 public scan files).
+  - 2 failed T3 fits (rc 1, kit budget): `wooden_piece_1 pixal_mv ep24 s7`, `mini_sweeper pixal_mv ep18 s123`; their placed
+    and trim copies also fail the kit `budget_mesh(4096, 4096)` (4 files with a `note`). All other candidates pass it.
+  - Held-out tmean90 [M] improves on 29 of the 30 fits; worse on the pot pick 1 (trellis2 ep45 k9 s2025, 4.73 -> 5.23 mm).
+  - Pixal3D-MV placements are near identity (0.6-9.8 deg, scale 0.93-1.04, <= 1 cm). Boards' placements are near-ties
+    (second-distinct start within 0.01-0.08 mm).
+  - Trim: 13 of 32 removed 0 faces (`note`: same geometry as the placed copy); others 35-10,242 faces, <= 2.4 % of area.
+  - Stage-2 folder (260 files, 422 MB) uploaded to the store `runs/mesh-20261103-g3-2417282/stage2/`.
+- README.md written. Stage 3 (50-seed audit, rules A/B/C, D1 vs the 13h meshes) is the coordinator's; not run here.
