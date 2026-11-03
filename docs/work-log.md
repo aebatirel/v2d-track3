@@ -11053,3 +11053,9 @@ score.
 - 00:58 UTC 3 Nov **eval 28 sm NO-SWAP at the gate** [M]: s42 0.841 ± 0.165 (min 0.383), s43 **0.914 ± 0.011** vs the board
   policy's 0.919 (−0.005). pf-mesh batch closed: eval 14 PASS + INCLUDE (pack 14 / 14p); evals 20 / 28 NO-SWAP at the
   gate; eval 30 NO-SWAP on fresh draws.
+- 01:21 UTC 3 Nov **evaluator-gap test: NOT REPRODUCED** (pfgA, rc 0, 43 min; destroyed itself 01:22; ≈ $1.1) [M]:
+  eval 30 sm s42 A 0.935 / B 0.926 / C 0.930; eval 14 plw s42 A 0.925 / B 0.937 / C 0.938; kit = repo evaluate script.
+  Box gates trustworthy by the rule. But the pristine evaluator here gives 0.926 / 0.937 where their own confirmations gave
+  0.768 / 0.826 → the earlier low fresh means are box / run specific [H, unexplained]. NO-SWAP verdicts stand (no
+  post-hoc re-test). Results docs/research/work/pf-evalgap-20261103/results/. (The session container restarted at ~01:12;
+  nothing was lost: the box kept running, the repo was in sync.)

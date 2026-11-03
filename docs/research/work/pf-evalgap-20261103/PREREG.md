@@ -30,3 +30,15 @@ Per checkpoint: gap = mean(A) − mean(B).
 Box gates are called trustworthy iff neither checkpoint reproduces a gap. Whatever the outcome, fresh-draw confirmation
 stays mandatory for any swap.
 Cost [E]: ≈ 60 draws + setup ≈ 45 min ≈ $1.2.
+
+## RESULT (3 Nov 01:21 UTC, box 20261103-pfgA-85c1626, rc 0, 43 min) [M]
+| checkpoint | A box path | B pristine | C patched, switches off | gap A − B | reading |
+|---|---|---|---|---|---|
+| K30 eval 30 sm s42 | 0.935 ± 0.011 | 0.926 ± 0.041 (min 0.811) | 0.930 ± 0.025 | +0.009 (t 0.7) | NOT REPRODUCED |
+| K14 eval 14 plw s42 | 0.925 ± 0.034 (min 0.844) | 0.937 ± 0.011 | 0.938 ± 0.011 | −0.012 (t −1.1) | NOT REPRODUCED |
+Kit and repo evaluate_policy.py are identical (0 diff lines). By the rule: box gates are trustworthy (no evaluator effect).
+**Beyond the rule:** the same pristine evaluator gives these checkpoints 0.926 / 0.937 here, while their confirmations on
+their own training boxes gave 0.768 (pfP2, India WS) / 0.826 (pfI, Croatia Max-Q). So the earlier low fresh means are
+specific to those boxes / runs, not to the evaluator code. [H] host- or run-dependent simulation outcomes (GPU / driver /
+state), unexplained. The pre-registered NO-SWAP verdicts for eval 30 sm and eval 14 plw STAND (a re-test chosen after a
+failure would be a forking path); a future protocol could pre-register confirmation on a second host.
