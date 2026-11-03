@@ -7522,3 +7522,20 @@ arm and a no-policy replay floor to stage B.
     1–9 cm). Held = mocap-moving frames dilated ±8. Excluding ep23 (identity_fix wiring gap), **≈ 61 % of the AUC
     loss is in held frames** (1.05 vs 0.66 summed per-object loss). Largest held losses: ep24 boards 0.21, ep13 cup
     0.13, ep11 cup 0.10, ep18 sweeper 0.10 (37 frames > 5 cm), ep27 pot 0.10, ep21 pitcher 0.07, ep26 pot 0.07.
+- ~11:35 UTC 3 Nov hand-aware diagnostics ($0, CPU; all mocap reads are diagnostic):
+  - **Rigid-in-grasp with MediaPipe hands FAILS [D]** (scripts/rigid_probe.py, eps 12 / 18 / 24 / 27 with stored
+    hands_refined from glockpub perc2m; hold runs taken from mocap = generous). Replacing the track in held runs by
+    palm frame × constant (P1, offset = robust mean of the track in the hand frame): ΔAUC −0.12 to −0.79. 50/50
+    blend: −0.05 to −0.16. Translation only from the palm centroid (P2) −0.04 to −0.16; its blend P2m −0.014 (ep27),
+    −0.032 (ep18), −0.083 (ep12). Track-in-hand-frame spread is 2–8.6 cm median. Reading: our hand estimate is noisier
+    than the FoundationPose track, so the hand cannot serve as a pose source.
+  - Timing (scripts/shift_probe.py, 19 eps): +0.5 frame +0.0051 (= perception-tracking's known S2 advance), +1 frame
+    0.0000, −0.5 −0.0076. Not the held-phase story.
+  - **Held-phase error is along the camera ray [D]** (scripts/score_dump.py + ray_diag.py): ep13 cup +3.5 to +4.4 cm
+    (lateral ≈ 1.7), ep11 cup −3.4 cm, persists at −2.2 after release, ep18 sweeper up to +14 cm, ep21 pitcher −2.5 cm
+    while pouring. ep26 / 27 pot: ≈ 2 cm lateral from frame 0 (bias, not hands).
+  - Oracle ceiling [E] (scripts/ray_ceiling.py, approx. ADD' = sqrt(ADD² − ray²)): removing the ray component in held
+    frames +0.018 mean (19 eps); only where |ray| > 1.5 cm +0.0125; all frames +0.027.
+  - Next [H]: a GT-free hand-masked depth residual along the ray (scripts/ray_residual.py) can measure that error.
+    Validation first: correlation of the residual with the mocap ray error on eps 11 / 13 / 18 / 21 (depth caches
+    downloading).
