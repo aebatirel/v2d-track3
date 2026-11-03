@@ -274,3 +274,39 @@ The objects G2 did not cover can give about -0.003 at most [E]. The rack and pot
   unlikely for the sweeper and lid.
 - [H13] at least one of G3b rack / pot passes (A) or (C).
 - [H14] no board candidate passes D1: generated plates flip.
+
+## 13. Addendum 8 (2026-11-03 ~07:20 UTC, coordinator GO, before any copy is built or measured): outer-shell copies
+**Why.** G3 #43 (board 2) turned out to be a hollow SAM 3D plate [M, GT-free]: an inner closed shell 1-3 mm inside the
+outer one, which doubles the surface area. Generated meshes adopted elsewhere may be hollow too. Pack 13i scored CD-O
+0.24177 (4th); 3rd is 0.23900.
+
+**Copy type "outer" (`scripts/outer_shell.py`, GT-free, mesh only).**
+1. Split the mesh into connected components.
+2. Drop every component whose area is < 1% of the total (fragments).
+3. Drop every remaining component that lies inside another: >= 90% of 500 of its vertices (seed 0) are inside that
+   component's volume, by trimesh `contains` on the containing component, which must be watertight. If the containing
+   component is not watertight, use its convex hull.
+4. If nothing is dropped, there is no copy.
+
+**Applied to.** Every generated mesh shipped in pack 13i, plus G3 #43 (board 2, pose CV only):
+- pot G3 #0;
+- dust pan G3 #9;
+- board 1 G3 #24;
+- blue cup G2 sam3d k159 s7 t3fit;
+- rack G2 hy21 ep31 k282 s123 t3fit;
+- water pitcher hy21 ep22 k174 s42 (Tier B).
+Non-generated shipped meshes (sweeper P1, beige T1 lathe, lid prim, board 2 Tier B occupancy) are out of scope.
+
+**Evaluation.**
+- Section-2 audit (50 seeds 3001-3050), then D1 (section 9).
+- Rules (A)/(B)/(C) against the shipped 13i mesh of the same object (the un-shelled original), using its existing
+  50-seed record.
+- Ties: lowest W30, then CD-O, then ADD. Winners go to pack 13j on 13i.
+- #43-outer is offered to tracking-perception's pose CV only, with ep24 excluded from its held-out scoring (the
+  coordinator's condition). It is not used for CD-O.
+
+**Predictions.**
+- [H15] At least the pot and blue cup (SAM 3D / TRELLIS.2 lineage) have nested shells.
+- [H16] Where a copy exists, its CD-O improves by 0.005-0.03 (the inner shell's sampled points sit 1-3 mm off) and
+  rule A passes for at least one object.
+- [H17] Hunyuan / Pixal meshes are single-shell, so no copy.
