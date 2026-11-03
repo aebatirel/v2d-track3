@@ -7526,3 +7526,8 @@ arm and a no-policy replay floor to stage B.
   m14p public meshes, store paths, measured held-phase failure spans).
   - Correction: on the control track ep27 passes SR (pot max 3.3 cm). The ep27 failure was the instance network's
     own, not our tracker's; my hand-aware brief overstated it.
+- ~10:20 UTC 3 Nov **rack round hit** [D, 50 seeds]: Hunyuan ep12 k18 s31337 t3fit, CD-O 0.3775 vs 0.4016 (−0.024,
+  rule A); W30 0; anchor 3.07 vs 3.78 mm; D1 0 / 6 in both modes.
+  - Handed to focused-pascal as **13j on 13i** (ead6a10c).
+  - Expected CD-O ≈ 0.2384 [E] vs 3rd's 0.23900, about 50 / 50 (eval-seed spread ±0.002).
+  - 90 prim refits are still auditing (≈ 2 h; unlikely winners).
