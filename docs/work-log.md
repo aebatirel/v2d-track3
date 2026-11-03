@@ -7312,3 +7312,10 @@ arm and a no-policy replay floor to stage B.
     meshes) for evals 32 / 10 / 33 / 19. Two-host confirmation pre-registered → pack 15 on 14p.
   - bold-albattani, ≤ $15: G3 generation for sweeper / dust pan / lid / beige cup (+ boards). Same rules + D1 → CD-O
     pack 13i on 13h. Target: CD-O 4th (Zihao Guo 0.24669, −0.0049).
+- ~01:49 UTC 3 Nov bold-albattani: G3 plan pre-registered (C4 PREREG §12, d060f21e) before any rental. Approved.
+  - The uncovered objects can give at most ≈ −0.003 [E], so G3 = G3a (dust pan / beige / lid / sweeper / boards) +
+    G3b (rack / pot from unused crops).
+  - Each stage-2 pick also gets a pre-registered GT-free trim copy.
+  - One on-demand H100 / H200, ≈ $7–11, cap $15 → 13i on 13h.
+- ~01:50 UTC perfect-following: two-host confirmation written into pack9b PREREG as an amendment for future
+  pre-registrations. Its batch-2 reply is pending.
