@@ -1,0 +1,31 @@
+{
+ "episode": 36,
+ "objects": [
+  "wooden_spoon"
+ ],
+ "frames": 407,
+ "flags": {
+  "wooden_spoon": {
+   "LOST": [
+    [
+     77,
+     85
+    ],
+    [
+     112,
+     122
+    ]
+   ]
+  }
+ },
+ "stats": {
+  "wooden_spoon": {
+   "iou_median": 0.731,
+   "resid_median_cm": 0.8,
+   "low_min_cm": -0.16,
+   "vis_median": 0.79,
+   "flagged_frames": 20
+  }
+ },
+ "severity": 20
+}

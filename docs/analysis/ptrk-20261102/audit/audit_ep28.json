@@ -1,0 +1,29 @@
+{
+ "episode": 28,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "frames": 220,
+ "flags": {
+  "plastic_dish_rack": {},
+  "white_pot": {}
+ },
+ "stats": {
+  "plastic_dish_rack": {
+   "iou_median": 0.748,
+   "resid_median_cm": 0.71,
+   "low_min_cm": -0.01,
+   "vis_median": 0.72,
+   "flagged_frames": 0
+  },
+  "white_pot": {
+   "iou_median": 0.828,
+   "resid_median_cm": 0.91,
+   "low_min_cm": 0.03,
+   "vis_median": 0.61,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 0
+}

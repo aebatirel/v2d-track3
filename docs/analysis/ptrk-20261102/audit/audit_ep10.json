@@ -1,0 +1,36 @@
+{
+ "episode": 10,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 161,
+ "flags": {
+  "blue_cup": {
+   "SWAP": [
+    [
+     92,
+     113
+    ]
+   ]
+  },
+  "beige_cup": {}
+ },
+ "stats": {
+  "blue_cup": {
+   "iou_median": 0.789,
+   "resid_median_cm": 0.75,
+   "low_min_cm": -0.35,
+   "vis_median": 0.56,
+   "flagged_frames": 22
+  },
+  "beige_cup": {
+   "iou_median": 0.807,
+   "resid_median_cm": 0.93,
+   "low_min_cm": 1.04,
+   "vis_median": 0.9,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 22
+}

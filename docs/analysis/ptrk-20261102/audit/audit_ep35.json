@@ -1,0 +1,20 @@
+{
+ "episode": 35,
+ "objects": [
+  "wooden_spoon"
+ ],
+ "frames": 421,
+ "flags": {
+  "wooden_spoon": {}
+ },
+ "stats": {
+  "wooden_spoon": {
+   "iou_median": 0.735,
+   "resid_median_cm": 0.75,
+   "low_min_cm": -0.11,
+   "vis_median": 0.93,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 0
+}

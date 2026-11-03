@@ -1,0 +1,29 @@
+{
+ "episode": 1,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 335,
+ "flags": {
+  "white_pot": {},
+  "white_pot_lid": {}
+ },
+ "stats": {
+  "white_pot": {
+   "iou_median": 0.846,
+   "resid_median_cm": 0.8,
+   "low_min_cm": -0.22,
+   "vis_median": 0.6,
+   "flagged_frames": 0
+  },
+  "white_pot_lid": {
+   "iou_median": 0.866,
+   "resid_median_cm": 0.79,
+   "low_min_cm": -0.42,
+   "vis_median": 0.95,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 0
+}

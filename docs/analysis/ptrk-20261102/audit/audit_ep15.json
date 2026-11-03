@@ -1,0 +1,29 @@
+{
+ "episode": 15,
+ "objects": [
+  "plastic_dish_rack",
+  "wooden_spoon"
+ ],
+ "frames": 166,
+ "flags": {
+  "plastic_dish_rack": {},
+  "wooden_spoon": {}
+ },
+ "stats": {
+  "plastic_dish_rack": {
+   "iou_median": 0.769,
+   "resid_median_cm": 0.7,
+   "low_min_cm": 0.04,
+   "vis_median": 0.82,
+   "flagged_frames": 0
+  },
+  "wooden_spoon": {
+   "iou_median": 0.707,
+   "resid_median_cm": 0.55,
+   "low_min_cm": -0.39,
+   "vis_median": 0.83,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 0
+}

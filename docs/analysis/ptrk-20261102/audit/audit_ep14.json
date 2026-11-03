@@ -1,0 +1,36 @@
+{
+ "episode": 14,
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "frames": 158,
+ "flags": {
+  "blue_cup": {
+   "LOST": [
+    [
+     36,
+     40
+    ]
+   ]
+  },
+  "plastic_dish_rack": {}
+ },
+ "stats": {
+  "blue_cup": {
+   "iou_median": 0.894,
+   "resid_median_cm": 0.69,
+   "low_min_cm": 0.02,
+   "vis_median": 0.51,
+   "flagged_frames": 5
+  },
+  "plastic_dish_rack": {
+   "iou_median": 0.677,
+   "resid_median_cm": 0.81,
+   "low_min_cm": -0.09,
+   "vis_median": 0.71,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 5
+}

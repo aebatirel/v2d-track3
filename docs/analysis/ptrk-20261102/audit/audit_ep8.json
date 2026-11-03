@@ -1,0 +1,36 @@
+{
+ "episode": 8,
+ "objects": [
+  "beige_cup",
+  "white_pot"
+ ],
+ "frames": 219,
+ "flags": {
+  "beige_cup": {
+   "LOST": [
+    [
+     0,
+     218
+    ]
+   ]
+  },
+  "white_pot": {}
+ },
+ "stats": {
+  "beige_cup": {
+   "iou_median": 0.0,
+   "resid_median_cm": 0.86,
+   "low_min_cm": 1.23,
+   "vis_median": 0.76,
+   "flagged_frames": 219
+  },
+  "white_pot": {
+   "iou_median": 0.828,
+   "resid_median_cm": 0.74,
+   "low_min_cm": -0.23,
+   "vis_median": 0.65,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 219
+}

@@ -1,0 +1,29 @@
+{
+ "episode": 5,
+ "objects": [
+  "white_pot",
+  "wooden_spoon"
+ ],
+ "frames": 288,
+ "flags": {
+  "white_pot": {},
+  "wooden_spoon": {}
+ },
+ "stats": {
+  "white_pot": {
+   "iou_median": 0.809,
+   "resid_median_cm": 0.84,
+   "low_min_cm": -0.06,
+   "vis_median": 0.63,
+   "flagged_frames": 0
+  },
+  "wooden_spoon": {
+   "iou_median": 0.727,
+   "resid_median_cm": 0.82,
+   "low_min_cm": -0.12,
+   "vis_median": 0.88,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 0
+}

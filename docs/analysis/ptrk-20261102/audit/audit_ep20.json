@@ -1,0 +1,29 @@
+{
+ "episode": 20,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 202,
+ "flags": {
+  "blue_cup": {},
+  "water_pitcher": {}
+ },
+ "stats": {
+  "blue_cup": {
+   "iou_median": 0.868,
+   "resid_median_cm": 0.76,
+   "low_min_cm": -0.11,
+   "vis_median": 0.49,
+   "flagged_frames": 0
+  },
+  "water_pitcher": {
+   "iou_median": 0.867,
+   "resid_median_cm": 0.84,
+   "low_min_cm": 1.58,
+   "vis_median": 0.58,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 0
+}

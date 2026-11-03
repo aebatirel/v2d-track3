@@ -1,0 +1,47 @@
+{
+ "episode": 32,
+ "objects": [
+  "blue_cup",
+  "wooden_spoon"
+ ],
+ "frames": 259,
+ "flags": {
+  "blue_cup": {
+   "LOST": [
+    [
+     18,
+     25
+    ]
+   ]
+  },
+  "wooden_spoon": {
+   "LOST": [
+    [
+     92,
+     111
+    ],
+    [
+     205,
+     211
+    ]
+   ]
+  }
+ },
+ "stats": {
+  "blue_cup": {
+   "iou_median": 0.835,
+   "resid_median_cm": 0.93,
+   "low_min_cm": -2.17,
+   "vis_median": 0.43,
+   "flagged_frames": 8
+  },
+  "wooden_spoon": {
+   "iou_median": 0.633,
+   "resid_median_cm": 0.89,
+   "low_min_cm": -0.26,
+   "vis_median": 0.67,
+   "flagged_frames": 27
+  }
+ },
+ "severity": 35
+}

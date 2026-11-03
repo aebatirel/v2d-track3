@@ -6860,3 +6860,8 @@ arm and a no-policy replay floor to stage B.
 - 08:45 UTC **board 2 outer shell (bold-albattani da10a423, md5 34152d97…) FAIL [D]** by the source-excluded rule:
   ep23 (the only non-source episode) +0.0041 < +0.005; ep24 (source, in-sample) +0.0055. Same size as #43 (+0.0046 /
   +0.0060).
+- 09:10 UTC **eval gross-failure audit done** (box H self-destroyed, ≈ $1.5; `docs/analysis/ptrk-20261102/audit/`):
+  no gross reference failure on any eval episode. The top two by severity (eval 8 beige cup, eval 25 board 2) are
+  audit false positives (SAM2 mask failed; the references sit on the objects); eval 10's SWAP is cup nesting. Real,
+  moderate: evals 32 / 33 cup and spoon offsets ≈ 4–8 cm for 5–20 frames. Clean: 12 episodes. [I] Board SP-SR / MP-SR
+  failures more likely come from rollouts than from references.

@@ -1,0 +1,36 @@
+{
+ "episode": 19,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 235,
+ "flags": {
+  "mini_sweeper": {
+   "LOST": [
+    [
+     222,
+     234
+    ]
+   ]
+  },
+  "mini_dust_pan": {}
+ },
+ "stats": {
+  "mini_sweeper": {
+   "iou_median": 0.846,
+   "resid_median_cm": 0.9,
+   "low_min_cm": -0.92,
+   "vis_median": 0.7,
+   "flagged_frames": 13
+  },
+  "mini_dust_pan": {
+   "iou_median": 0.847,
+   "resid_median_cm": 0.66,
+   "low_min_cm": -0.16,
+   "vis_median": 0.96,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 13
+}

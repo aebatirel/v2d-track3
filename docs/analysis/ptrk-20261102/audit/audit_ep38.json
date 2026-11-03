@@ -1,0 +1,20 @@
+{
+ "episode": 38,
+ "objects": [
+  "mini_dust_pan"
+ ],
+ "frames": 263,
+ "flags": {
+  "mini_dust_pan": {}
+ },
+ "stats": {
+  "mini_dust_pan": {
+   "iou_median": 0.892,
+   "resid_median_cm": 0.64,
+   "low_min_cm": -0.18,
+   "vis_median": 0.91,
+   "flagged_frames": 0
+  }
+ },
+ "severity": 0
+}
