@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 03:20 UTC: MORNING REPORT. Rank sum 46 (7th); bests AUC 0.88571 / RPE 2.21325 / MPPE 1.79779 (14p), CD-O 0.25159 (13h), SP-SR 0.90, MP-SR 0.80
+- Report: docs/analysis/overnight-20261102/README.md.
+- Overnight uploads: 13f1, 13p, 13p2, 14p, 13h. Spend ≈ $45. Credit $82.96.
+- Running: pf-mesh2 retrains (evals 32 / 33 / 19, two-host) → pack 15; G3 meshes → 13i.
+- Final selection: 14p for five boards, 13h for CD-O.
+
 ## 2026-11-02 23:16 UTC: overnight check-in 1. Best: 13p2 (AUC 0.88403, RPE 2.22531, MPPE 1.80932); 13f (CD-O 0.26249); rank sum 46, 7th
 - Credit $101.05; 3 retrain boxes running (evals 28 / 30 / 14).
 - Promising on the box: eval 14 0.938 (gate 0.875), eval 30 0.938 (gate 0.897). Eval 20 retrain: no swap.
