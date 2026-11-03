@@ -1,5 +1,20 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~00:25 UTC: tracking-perception night work: pose-board meshes (packs 13p / 13p2), all public-CV-driven
+- **Found [M]:** the 13f board-2 payload registered flipped 180° on eval 25 slot 1. Fixed by focused-pascal in 13f1.
+- **Pose-board mesh choice:** per-object public leave-one-episode-out CV, 10-seed means, D1 gate.
+  - Passes: pot → X (ep43 TSDF), rack → library_c0 → **pack 13p uploaded: AUC 0.88257 (+0.0103 vs 13f), RPE 2.227,
+    MPPE 1.824** (coordinator).
+  - Pitcher placement from depth (+0.106 public held-out), fitted on eval 20 → pack 13p2 (built, not yet scored).
+- **Failed tests** (public, pre-registered):
+  - mesh placement as a general rule (A, +0.0026);
+  - tracking with the submitted meshes (B, −0.043);
+  - round 2's wider pool for pot / cup / rack / boards;
+  - placement on top of 13p.
+- **Round 2 pitcher:** G2 mesh #29 also passes (+0.1125). It targets the same bias as 13p2, so only one should be used
+  (coordinator decides).
+- **Spend tonight:** GPU ≈ $3.3 (ptrkF $2.7, ptrkG $0.6); the rest ran on CPU here. 0 boxes running.
+
 ## 2026-11-02 ~18:30 UTC: tracking-perception session: done; nothing passed except a wiring find
 Report: `docs/analysis/ptrk-20261102/README.md` (branch claude/perception-tracking-20261102).
 - **All five pre-registered perception tests FAIL on public [D]:**
