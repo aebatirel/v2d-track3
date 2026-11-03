@@ -1,0 +1,53 @@
+{
+ "ep": 18,
+ "params": {
+  "t3": "t3",
+  "ep": 18,
+  "track": "ctrlC/C/ep18",
+  "depth": "depth/ep18/depths_fs0.5.npy",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "hands": "handsC/ep18/hands_refined.npz",
+  "out": "hrc/F1/ep18",
+  "tau": 0.02,
+  "contact_cm": 3.0,
+  "min_span": 3,
+  "near_cm": 15.0,
+  "band": 0.25,
+  "iters": 4,
+  "no_hand_mask": false,
+  "gate": "near",
+  "skip": "water_pitcher",
+  "ds": 4,
+  "hand_r": 0.015,
+  "npts": 30000
+ },
+ "objects": {
+  "mini_sweeper": {
+   "contact_frames": 351,
+   "skipped": false,
+   "baseline_cm": 0.35,
+   "candidates": 47,
+   "passed_check": 47,
+   "corrected": 47,
+   "spans": [
+    [
+     118,
+     165
+    ]
+   ],
+   "max_shift_cm": 11.51,
+   "mean_abs_shift_cm": 8.73
+  },
+  "mini_dust_pan": {
+   "contact_frames": 227,
+   "skipped": false,
+   "baseline_cm": 0.58,
+   "candidates": 0,
+   "passed_check": 0,
+   "corrected": 0,
+   "spans": [],
+   "max_shift_cm": 0.0,
+   "mean_abs_shift_cm": 0.0
+  }
+ }
+}

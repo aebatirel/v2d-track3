@@ -1,0 +1,15 @@
+{
+ "episode": 12,
+ "meshes": "m14p/meshes/m14p_public",
+ "seedmean": {
+  "AUC": 0.9847,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.707,
+  "RPE_cm": 0.8025,
+  "per_obj_AUC": {
+   "blue_cup": 0.9704,
+   "plastic_dish_rack": 0.9991
+  }
+ }
+}

@@ -1,0 +1,12 @@
+g_contact_t10 mean dAUC +0.0059 min +0.0000 n 4
+g_contact_t10_nm mean dAUC +0.0045 min -0.0014 n 4
+g_contact_t15 mean dAUC +0.0060 min +0.0000 n 4
+g_contact_t15_nm mean dAUC +0.0047 min -0.0014 n 4
+g_contact_t20 mean dAUC +0.0060 min +0.0000 n 4
+g_contact_t20_nm mean dAUC +0.0051 min -0.0012 n 4
+g_near_t10 mean dAUC +0.0044 min -0.0134 n 4
+g_near_t10_nm mean dAUC +0.0053 min -0.0134 n 4
+g_near_t15 mean dAUC +0.0079 min +0.0000 n 4
+g_near_t15_nm mean dAUC +0.0080 min -0.0014 n 4
+g_near_t20 mean dAUC +0.0079 min +0.0000 n 4
+g_near_t20_nm mean dAUC +0.0082 min -0.0012 n 4

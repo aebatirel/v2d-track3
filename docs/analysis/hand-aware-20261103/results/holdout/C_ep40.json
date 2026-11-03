@@ -1,0 +1,14 @@
+{
+ "episode": 40,
+ "meshes": "m14p/meshes/m14p_public",
+ "seedmean": {
+  "AUC": 0.9782,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.6881,
+  "RPE_cm": 0.0,
+  "per_obj_AUC": {
+   "mini_dust_pan": 0.9782
+  }
+ }
+}

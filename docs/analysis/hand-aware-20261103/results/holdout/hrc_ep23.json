@@ -1,0 +1,66 @@
+{
+ "ep": 23,
+ "params": {
+  "t3": "t3",
+  "ep": 23,
+  "track": "ctrlC/C/ep23",
+  "depth": "depth/ep23/depths_fs0.5.npy",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "hands": "handsC/ep23/hands_refined.npz",
+  "out": "ho/V/ep23",
+  "tau": 0.02,
+  "contact_cm": 3.0,
+  "min_span": 3,
+  "near_cm": 15.0,
+  "band": 0.25,
+  "iters": 4,
+  "no_hand_mask": false,
+  "gate": "near",
+  "skip": "water_pitcher",
+  "ds": 4,
+  "hand_r": 0.015,
+  "npts": 30000
+ },
+ "objects": {
+  "wooden_piece_1": {
+   "contact_frames": 306,
+   "skipped": false,
+   "baseline_cm": -0.07,
+   "candidates": 9,
+   "passed_check": 9,
+   "corrected": 9,
+   "spans": [
+    [
+     92,
+     101
+    ]
+   ],
+   "max_shift_cm": 4.55,
+   "mean_abs_shift_cm": 4.31
+  },
+  "wooden_piece_2": {
+   "contact_frames": 302,
+   "skipped": false,
+   "baseline_cm": 0.22,
+   "candidates": 93,
+   "passed_check": 91,
+   "corrected": 90,
+   "spans": [
+    [
+     146,
+     168
+    ],
+    [
+     172,
+     198
+    ],
+    [
+     203,
+     245
+    ]
+   ],
+   "max_shift_cm": 24.07,
+   "mean_abs_shift_cm": 9.85
+  }
+ }
+}

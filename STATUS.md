@@ -1,5 +1,12 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~15:00 UTC: hand-aware lane phase 1 (public): FAIL on the pre-registered holdout; $0
+- Branch claude/hand-aware-20261103; report docs/analysis/hand-aware-20261103/README.md.
+- 70 % of public AUC loss is in held frames, and held errors lie along the camera ray (oracle +0.0195).
+- Rigid-in-grasp with our MediaPipe hands fails: the hand is noisier than the track.
+- HRC (hand-masked ray correction, frozen F1): dev +0.0045. Holdout (13 eps, 10-seed): mean −0.0042, ep24 −0.047
+  (board 2 shifted 21 cm; MP 0.9 → 0), held mean ADD −4.3 %. All gates fail. Nothing for eval.
+
 ## 2026-11-03 ~06:40 UTC: owner "go in all": three perception lanes started
 - Eval gross-failure audit (A, ≤ $6) and round-3 pose-mesh CV ($0): perception-tracking.
 - Object-specific pot pose network proof of concept (≤ $15; rendered-only vs + public mocap fine-tune): new session

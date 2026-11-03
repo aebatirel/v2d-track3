@@ -7573,3 +7573,11 @@ arm and a no-policy replay floor to stage B.
   @ e60ff9e. Dev F1 single seed: 13 +0.0074, 18 +0.0241, others 0.0000 (mean +0.0045 over 7).
   Holdout run started on CPU here (scripts/holdout.sh: prep → HRC F1 → 10-seed + per-frame; score_ctrl.sh: C and Cr
   10-seed; Cr ep23 also with identity_fix, "swapped + Rx"). Gate script scripts/gate_hrc.py. $0.
+- ~15:00 UTC 3 Nov hand-aware **HOLDOUT RESULT: FAIL** (results/holdout/gate_F1.json; README.md) [D]:
+  - mean ΔAUC −0.0042 (10-seed, 13 eps; noise |C−Cr| 0.0015); worst ep24 −0.0466 (board 2 shifted ≈ 21 cm while its
+    mocap ray error was −2 cm; MP-SR 0.9 → 0.0); ep26 −0.0063 (never-held rack shifted 4 cm); ep23 −0.0025 (board 2
+    up to 24 cm); ep40 +0.0004; 9 episodes untouched;
+  - held mean ADD 1.893 → 1.812 cm (−4.3 %), held AUC 0.9078 → 0.9072; ΔMPPE +0.06, ΔRPE +0.10.
+  - Gates g1 / g2 / g3 all fail. Post-hoc reading [I]: on thin, flat boards the 25 cm band admits surfaces behind the
+    board (the dev set had no board episode); the near gate fires on unheld objects.
+  - Not repeated: hand-as-pose-source; depth-residual ray correction on thin / flat objects. Spend $0.
