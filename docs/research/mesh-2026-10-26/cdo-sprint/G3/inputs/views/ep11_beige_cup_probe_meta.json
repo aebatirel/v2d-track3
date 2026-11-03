@@ -1,0 +1,83 @@
+{
+ "obj": "beige_cup",
+ "video": "ep11_a.mp4",
+ "s": 4.968443037404917,
+ "c": [
+  0.0021308884024620056,
+  0.007558006793260574,
+  0.001637682318687439
+ ],
+ "A": [
+  [
+   -0.40074762533049796,
+   0.9129496822490983,
+   -0.0769693903419694
+  ],
+  [
+   0.5148316490194563,
+   0.2938872591842295,
+   0.8053439288912935
+  ],
+  [
+   0.7578587748242095,
+   0.28311336728993663,
+   -0.5877898529854018
+  ]
+ ],
+ "front_check": {
+  "rot_err": 1.9174497589702355e-07,
+  "pos": [
+   0.0,
+   -2.66986,
+   -0.0
+  ]
+ },
+ "chosen": [
+  {
+   "k": 6,
+   "vis": 55640,
+   "occl": 0.0,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 1.08,
+   "rest": true,
+   "skin": null,
+   "ok": true,
+   "u": [
+    -0.51483,
+    -0.29389,
+    -0.80534
+   ],
+   "file": "view00_k6.png",
+   "fov_deg": 25.261,
+   "dist_m": 0.5374,
+   "mask_px": 221398,
+   "sil_px": 202448,
+   "iou_sil_mask": 0.8731
+  }
+ ],
+ "n_candidates": 68,
+ "n_good": 6,
+ "args": {
+  "video": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep11_a.mp4",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz",
+  "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/hands.npz",
+  "calib": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "obj": "beige_cup",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/g3/inputs/views_rest/ep11_beige_cup",
+  "n": 6,
+  "size": 1024,
+  "step": 2,
+  "min_deg": 8.0,
+  "occl": 0.02,
+  "speed_mm": 1.5,
+  "span": 0.75,
+  "fill": 0.46,
+  "margin": 20,
+  "held_speed_mm": 0.0,
+  "skin": 0,
+  "skin_max": 0.01
+ },
+ "source": "views_rest"
+}

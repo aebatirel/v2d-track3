@@ -1,0 +1,54 @@
+# G3 generation batch: working notes (resume from here)
+
+Spec: `../C4-audit/PREREG.md` section 12 (addendum 7, d060f21e), resting on sections 2, 3, 9 and 10. Template: G2
+(`../G2/README.md`, `../G2/NOTES.md`). Times UTC. Scratch S =
+`/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad`, bulk under `S/g3/`.
+GPU cap for G3 $15; stop if Vast credit < $15. Ledger session mesh-bold.
+
+- 2026-11-03T01:52Z start. Read STATUS.md, CLAUDE.md, PREREG s2/s3/s9/s10/s12, G2 README/NOTES/scripts, gen/*, the
+  29 Oct Pixal3D-MV probe (gen-probe README, work log ~4720-4830, S/gen/assemble_views.py, run_views*.sh).
+  Vast credit $94.50; 3 other instances (20261103-pfS/pfT/pfU, not ours). Local: 4 cores idle, 3.4 GB free disk.
+- Episodes with our tracks (data/sweep) and observed points (obs_all), GT-free inventory:
+  dust pan 18/39/40; beige 11 only; lid 0/2; sweeper 18/31 only; boards 23/24 (ep24 only, per spec);
+  rack 12/13/26/27/31 (G2 used 31/12/26 -> G3b uses 13/27); pot 0/2/26/27/41-45 (G2 used 41/43/44 -> G3b uses
+  0/2/26/27/42/45, every non-G2 episode crops.py accepts). No hands.npz for ep18/24/27 (crops.py rest gate only there,
+  as G2 did for ep12).
+- 01:53-01:55Z crops (local CPU, GT-free): `bash scripts/make_crops.sh S/g3/inputs` = G2's make_crops.sh (crops.py as on
+  29 Oct: every 3rd frame, --n 2, --hands where hands.npz exists, our sweep tracks, calib, library_v3 silhouette seed),
+  G3 pairs, 4 in parallel. 18 pairs, all accepted, **36 crops**:
+  dust pan ep18 (k108, k99), ep39 (k297, k315), ep40 (k12, k9); beige ep11 (k0, k6); lid ep0 (k0, k9), ep2 (k315, k321);
+  sweeper ep18 (k162, k264), ep31 (k12, k270); board 1 ep24 (k3, k6); board 2 ep24 (k6, k9); rack ep13 (k66, k69),
+  ep27 (k144, k147); pot ep0 (k285, k291), ep2 (k240, k258), ep26 (k33, k36), ep27 (k15, k6), ep42 (k237, k240),
+  ep45 (k6, k9). Rankings `inputs/ep<E>_<obj>_crops.json`, hashes `inputs/inputs_crops_sha256.txt`.
+  Visual check (S/g3/crops_montage.jpg), kept under the rule (crops.py's own ranking) but flagged:
+  - **ep0 lid k0/k9 show the wooden table with a white strip, not the lid** (GrabCut failure; ep0's lid has only 2,104
+    observed points in obs_all, i.e. it is barely seen). Expected to give junk meshes that stage 1 screens out.
+  - hands in view: ep18 sweeper (both), ep18 dust pan (fingers in the ring), ep26 pot (hand on the handle), ep24
+    board 1 (a finger at the edge); ep27 pot has GrabCut holes in the bowl. ep18/24/27 have no hands.npz.
+  - ep39 dust pan k297 is the crop of the 13h dust pan's source (hy21 ep39 k297 s42); like G2's blue cup, a G3 hy21
+    ep39 k297 s42 output would regenerate the shipped source (not byte-identical expected); kept and to be flagged.
+- 01:55-01:57Z Pixal3D-MV view sets (local CPU, GT-free): `bash scripts/make_views.sh S/g3/inputs` = gen/mv_views.py with
+  the 29 Oct per-object flags (S/gen/run_views2.sh): dust pan / lid `--skin 1 --held_speed_mm 8 --min_deg 15`; beige /
+  sweeper / boards `--min_deg 8`; then `scripts/assemble_g3.py` = the 29 Oct assemble_views.py rule (skin-gated set unless
+  its view-0 IoU < 0.75, then an at-rest set `--skin 1 --min_deg 15`; extra views with mask/silhouette IoU < 0.75
+  dropped). ep18 / ep24 have no hands.npz; mv_views.py needs one (a_offset, hand gate), so a stub with a_offset 1 (the
+  value in all 16 real hands.npz) and no valid hand is used (= rest/skin gates only).
+  **9 view sets** (`inputs/views/selection.json`): dust pan ep18 (2 views), ep39 (3), ep40 (1); beige ep11 (1); lid ep2
+  (1); sweeper ep18 (5), ep31 (1); board 1 ep24 (2); board 2 ep24 (1). **ep0 lid: no usable frame** in either set (the lid
+  is barely visible in ep0), so no Pixal3D-MV for it. Hands are visible in the ep18 sweeper / dust pan and ep24 board 1
+  views (no hand gate there); masks mostly exclude them (S/g3/views_montage.jpg).
+- 01:57Z observed points for the box's Sim(3) fits: `scripts/obs_sub.py` (G2's, unchanged: 40k of S/obs_all/ep<E>_<obj>.npz,
+  default_rng(0)); ep0 lid has only 2,104 points. Hashes `inputs/inputs_obs_sha256.txt`; view-set file hashes
+  `inputs/inputs_views_sha256.txt`. Input tar S/g3/g3_inputs.tar (crops_flat, obs_sub, views_final) sha256 50b70285...
+- Box queue `scripts/box_g3.sh` (G2's box_g2.sh + Pixal3D-MV): SAM 3D alongside Hunyuan3D-2.1; then Pixal3D-MV 1536
+  (1024 fallback) after SAM 3D; then TRELLIS.2 1536 (1024 fallback); one large model at a time (Hunyuan small, alongside);
+  Sim(3) of single-image outputs on the CPUs (xargs -r now); SHA256SUMS over every .ply; marker G3-GEN-DONE.
+  Launcher `scripts/launch_box_g3.sh` (G2's S/g2/launch_box.sh): box_setup.sh unchanged + the hf-2.2 fix with the Python
+  API for Hunyuan3D-2.1, TRELLIS.2-4B (incl. pipeline.json) and the Pixal3D files, after WEIGHTS-DONE.
+  Screen: `scripts/screen_manifest.py` (G3 objects; Sim(3) copies + Pixal3D-MV object-frame outputs, not *_gen),
+  `scripts/box_screen.sh` (G2's, G3 paths), `../C4-audit/scripts/screen6.py` unchanged. Screen package (kit + 8 public scans
+  + 8 b4096 caches; scan/cache files cmp-identical to G2's for pot/rack) built locally, sha256 830b4848..., uploaded only
+  after the freeze commit.
+- Pixal3D-MV and placement: stage 1 screens the Pixal3D-MV output as generated in our object frame (29 Oct practice; no
+  Sim(3)). Stage 2 places every pick with place.py, Pixal3D-MV included, as PREREG s12 step 2 says and as the C4 audit
+  did for the 29 Oct Pixal3D-MV candidates (`candidates.json`: needs_place true); place.py includes the identity start.

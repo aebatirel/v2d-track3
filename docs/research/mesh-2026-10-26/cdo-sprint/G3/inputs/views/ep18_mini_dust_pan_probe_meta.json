@@ -1,0 +1,108 @@
+{
+ "obj": "mini_dust_pan",
+ "video": "ep18_a.mp4",
+ "s": 4.187014947296197,
+ "c": [
+  -0.004278991371393204,
+  -0.0003638751804828644,
+  0.014682754874229431
+ ],
+ "A": [
+  [
+   0.1743815070634913,
+   -0.4511764185453939,
+   -0.8752321899061224
+  ],
+  [
+   -0.7633637769972437,
+   0.49951237198710724,
+   -0.40958830465111884
+  ],
+  [
+   0.6219850062728383,
+   0.7395463353571944,
+   -0.2573059764016458
+  ]
+ ],
+ "front_check": {
+  "rot_err": 1.2391955076488912e-06,
+  "pos": [
+   -0.0,
+   -2.36759,
+   -0.0
+  ]
+ },
+ "chosen": [
+  {
+   "k": 108,
+   "vis": 50832,
+   "occl": 0.0,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 1.35,
+   "rest": true,
+   "skin": null,
+   "ok": true,
+   "u": [
+    0.76336,
+    -0.49951,
+    0.40959
+   ],
+   "skin_removed_px": 15333,
+   "file": "view00_k108.png",
+   "fov_deg": 29.714,
+   "dist_m": 0.5655,
+   "mask_px": 130613,
+   "sil_px": 130986,
+   "iou_sil_mask": 0.8039
+  },
+  {
+   "k": 12,
+   "vis": 44512,
+   "occl": 0.0,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 1.06,
+   "rest": true,
+   "skin": null,
+   "ok": true,
+   "u": [
+    0.76476,
+    -0.25618,
+    0.59119
+   ],
+   "sep_deg": 17.5,
+   "skin_removed_px": 15037,
+   "file": "view01_k12.png",
+   "fov_deg": 26.051,
+   "dist_m": 0.5882,
+   "mask_px": 150873,
+   "sil_px": 153018,
+   "iou_sil_mask": 0.8187
+  }
+ ],
+ "n_candidates": 176,
+ "n_good": 105,
+ "args": {
+  "video": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep18_a.mp4",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep18/poses.npz",
+  "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/g3/inputs/hands_stub/ep18/hands.npz",
+  "calib": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "obj": "mini_dust_pan",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/g3/inputs/views_sk/ep18_mini_dust_pan",
+  "n": 6,
+  "size": 1024,
+  "step": 2,
+  "min_deg": 15.0,
+  "occl": 0.02,
+  "speed_mm": 1.5,
+  "span": 0.75,
+  "fill": 0.46,
+  "margin": 20,
+  "held_speed_mm": 8.0,
+  "skin": 1,
+  "skin_max": 0.01
+ },
+ "source": "views_sk"
+}

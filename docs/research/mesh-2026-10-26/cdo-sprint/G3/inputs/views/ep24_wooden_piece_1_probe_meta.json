@@ -1,0 +1,106 @@
+{
+ "obj": "wooden_piece_1",
+ "video": "ep24_a.mp4",
+ "s": 4.37478782137673,
+ "c": [
+  0.0007394403219223022,
+  -0.0005661621689796448,
+  0.002966776490211487
+ ],
+ "A": [
+  [
+   -0.165807501775553,
+   0.9857582877727189,
+   0.028073489365062484
+  ],
+  [
+   -0.857826560176398,
+   -0.15821461324750272,
+   0.48898032430923094
+  ],
+  [
+   0.4864582675723529,
+   0.05699440542596021,
+   0.8718430029440078
+  ]
+ ],
+ "front_check": {
+  "rot_err": 3.4963721728953345e-07,
+  "pos": [
+   -0.0,
+   -2.69211,
+   0.0
+  ]
+ },
+ "chosen": [
+  {
+   "k": 8,
+   "vis": 79656,
+   "occl": 0.0,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 1.06,
+   "rest": true,
+   "skin": null,
+   "ok": true,
+   "u": [
+    0.85783,
+    0.15821,
+    -0.48898
+   ],
+   "file": "view00_k8.png",
+   "fov_deg": 26.638,
+   "dist_m": 0.6154,
+   "mask_px": 298080,
+   "sil_px": 267320,
+   "iou_sil_mask": 0.8807
+  },
+  {
+   "k": 128,
+   "vis": 64904,
+   "occl": 0.0,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 1.08,
+   "rest": true,
+   "skin": null,
+   "ok": true,
+   "u": [
+    -0.55666,
+    0.74117,
+    -0.37523
+   ],
+   "sep_deg": 100.2,
+   "file": "view01_k128.png",
+   "fov_deg": 31.559,
+   "dist_m": 0.5756,
+   "mask_px": 169658,
+   "sil_px": 150266,
+   "iou_sil_mask": 0.8739
+  }
+ ],
+ "n_candidates": 137,
+ "n_good": 21,
+ "args": {
+  "video": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+  "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/g3/inputs/hands_stub/ep24/hands.npz",
+  "calib": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "obj": "wooden_piece_1",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/g3/inputs/views_rest/ep24_wooden_piece_1",
+  "n": 6,
+  "size": 1024,
+  "step": 2,
+  "min_deg": 8.0,
+  "occl": 0.02,
+  "speed_mm": 1.5,
+  "span": 0.75,
+  "fill": 0.46,
+  "margin": 20,
+  "held_speed_mm": 0.0,
+  "skin": 0,
+  "skin_max": 0.01
+ },
+ "source": "views_rest"
+}

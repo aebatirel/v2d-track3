@@ -1,0 +1,136 @@
+{
+ "ep0_white_pot_lid": {
+  "src": "views_rest",
+  "error": "no view set"
+ },
+ "ep11_beige_cup": {
+  "src": "views_rest",
+  "views": [
+   [
+    6,
+    0.8731,
+    true
+   ]
+  ]
+ },
+ "ep18_mini_dust_pan": {
+  "src": "views_sk",
+  "views": [
+   [
+    108,
+    0.8039,
+    true
+   ],
+   [
+    12,
+    0.8187,
+    true
+   ]
+  ]
+ },
+ "ep18_mini_sweeper": {
+  "src": "views_rest",
+  "views": [
+   [
+    162,
+    0.8841,
+    true
+   ],
+   [
+    218,
+    0.8792,
+    true
+   ],
+   [
+    266,
+    0.8489,
+    true
+   ],
+   [
+    284,
+    0.9012,
+    true
+   ],
+   [
+    8,
+    0.8521,
+    true
+   ]
+  ]
+ },
+ "ep24_wooden_piece_1": {
+  "src": "views_rest",
+  "views": [
+   [
+    8,
+    0.8807,
+    true
+   ],
+   [
+    128,
+    0.8739,
+    true
+   ]
+  ]
+ },
+ "ep24_wooden_piece_2": {
+  "src": "views_rest",
+  "views": [
+   [
+    6,
+    0.9439,
+    true
+   ]
+  ]
+ },
+ "ep2_white_pot_lid": {
+  "src": "views_sk",
+  "views": [
+   [
+    324,
+    0.9314,
+    true
+   ]
+  ]
+ },
+ "ep31_mini_sweeper": {
+  "src": "views_rest",
+  "views": [
+   [
+    270,
+    0.8586,
+    true
+   ]
+  ]
+ },
+ "ep39_mini_dust_pan": {
+  "src": "views_sk",
+  "views": [
+   [
+    316,
+    0.8694,
+    true
+   ],
+   [
+    220,
+    0.8321,
+    false
+   ],
+   [
+    0,
+    0.8277,
+    true
+   ]
+  ]
+ },
+ "ep40_mini_dust_pan": {
+  "src": "views_sk",
+  "views": [
+   [
+    10,
+    0.8667,
+    true
+   ]
+  ]
+ }
+}
