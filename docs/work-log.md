@@ -7415,3 +7415,13 @@ arm and a no-policy replay floor to stage B.
     is told.
   - Box job 1 failed in 2 min: `.gitignore` drops `*.npz`, so the control tracks and R+M labels were missing.
     Force-added (c5c3fa56). Restarted in place with ops/box/restart_job.sh (no new setup cost).
+- ~09:00 UTC 3 Nov **instance-pose verdict: FAIL** [D] (docs/analysis/ipose-20261103/README.md; scores
+  results/score.json). Run 20261103-ipose-1654726, code c5c3fa56, box 58930545 self-destroyed ≈ 08:22, ≈ $0.8.
+  - Pot ΔAUC vs C (eps 2 / 27 / 44 / 45):
+    - R / N −0.0033 / −0.2573 / +0.0016 / +0.0001 (mean −0.065);
+    - R+M / N −0.0010 / −0.0350 / +0.0009 / +0.0011 (mean −0.0085);
+    - best exploratory: R+M / NT, mean −0.0023.
+  - Secondary fails for both arms (R+M median ADD: ep2 −39 %, ep45 −10 %, ep27 +16 %, ep44 +29 %).
+  - PnP without depth is much worse.
+  - [I] The failure is in ep27's hand-held lift (≈ 10° rotation disagreement; the predicted interior mask is missing,
+    a render-to-real gap). A rendered-only (spoon-style) network is not trustworthy here.

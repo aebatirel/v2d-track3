@@ -1,10 +1,12 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-03 ~07:20 UTC: instance-pose lane (pot network vs tracker) RUNNING
-- PREREG docs/analysis/ipose-20261103/PREREG.md (1058d7ec): train 0, 26, 41, 42, 43; test 2, 27, 44, 45; gate mean pot
-  ΔAUC ≥ +0.02, no episode < −0.01, 10-seed registered, 13p meshes; arms R (GT-free) and R+M (GT-informed).
-- Code 1654726d (pipeline/ipose/, ops/jobs/ipose.sh). Box 58930545 (RTX 4090, $0.58/h), run 20261103-ipose-1654726,
-  ≈ $2.5–3 [E], cap $15.
+## 2026-11-03 ~09:00 UTC: instance-pose PoC (pot network vs tracker): FAIL, both arms; ≈ $0.8
+- Pre-registered (PREREG 1058d7ec + Addendum 1931d067): test eps 2, 27, 44, 45; 10-seed registered pot AUC vs C.
+- Mean pot ΔAUC (variant N): R (rendered only) **−0.065** (ep27 −0.257); R+M (mocap fine-tune) **−0.0085** (ep27
+  −0.035). Secondary (median ADD −20 %) fails too.
+- The primary +0.02 gate was unreachable anyway (control mean 0.983).
+- Failure is in ep27's hand-held lift (rotation off ≈ 10°); elsewhere the network ≈ the tracker.
+- Rendered-only networks are not trustworthy here, so no spoon network. Report: docs/analysis/ipose-20261103/README.md.
 
 ## 2026-11-03 ~05:55 UTC: PACK 13i UPLOADED: CD-O 0.24177 (4th). Rank sum 45, 7th
 - Bests: AUC 0.88571 / RPE 2.21325 / MPPE 1.79779 (14p); SP-SR 0.90; MP-SR 0.80; CD-O 0.24177 (13i).
