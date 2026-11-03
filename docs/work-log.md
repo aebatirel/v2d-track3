@@ -11076,3 +11076,5 @@ score.
   (control 0.923), eval 32 cup 0.846 (0.890), eval 19 sweeper **0.226** (0.929). Eval 33 p0m s42 0.917 ± 0.019, s43
   0.917 ± 0.016 → **NO-SWAP at the gate** (0.923). Eval 32 p0m s42 0.790 ± 0.105, s43 0.826 ± 0.130 (min 0.464) →
   **NO-SWAP at the gate** (0.890). No second-host box needed for either. Eval 19 sm still training.
+- 03:59 UTC 3 Nov eval 19 sm s42 [M]: box 0.828 ± 0.164 (min 0.336) vs gate 0.929; s43 training (≈ 06:00 UTC). pfS / pfT
+  self-destroyed after their NO-SWAP verdicts.
