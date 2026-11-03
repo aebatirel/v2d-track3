@@ -52,3 +52,18 @@ GPU cap for G3 $15; stop if Vast credit < $15. Ledger session mesh-bold.
 - Pixal3D-MV and placement: stage 1 screens the Pixal3D-MV output as generated in our object frame (29 Oct practice; no
   Sim(3)). Stage 2 places every pick with place.py, Pixal3D-MV included, as PREREG s12 step 2 says and as the C4 audit
   did for the 29 Oct Pixal3D-MV candidates (`candidates.json`: needs_place true); place.py includes the identity start.
+- 01:58Z commit 2417282 pushed (inputs, scripts). Inputs uploaded to the store `runs/mesh-20261103-g3-2417282/inputs/g3_inputs.tar`
+  (sha256 50b70285...). Credit $94.01 at 01:58Z (other sessions: pfS/pfT/pfU running).
+- 01:59:12Z rental, run `mesh-20261103-g3-2417282`: ledger planned $11 (mesh-bold). On-demand offers (H200/H100 class,
+  sm_90): Spain H200 NVL $3.68/h (37 cores, $20/TB), New York $3.81/h (64 cores, 855 Mbps), New Mexico $4.04/h (85 cores,
+  6.7 Gbps, $2.67/TB: the G2 machine, which worked). Chose New Mexico 58415958 (proven, cores for Sim(3) + screen).
+  `SETUP=none DISK=120 IMAGE=vastai/pytorch:2.7.1-cu128-cuda-12.9-mini-py310-2026-10-23 V2D_COMMIT=241728211a2d7b7a7aa95530c68474648398d10a
+  ops/vast.sh create 58415958 mesh-20261103-g3-2417282 'IDLE_MIN=195 bash docs/research/mesh-2026-10-26/gen/box_job.sh'`
+  -> **instance 58904222**. IDLE_MIN 195 keeps the worst case (idle limit + ~12 min pull) at ~$14 < $15 cap.
+- 02:02:33Z (box clock) box 58904222 up within ~3 min (no long image pull this time): H200 NVL 143.8 GB, cgroup ~82 cores,
+  repo at 2417282, RUN_ID / HF_STORE set. Launched through exec: `NP=64 bash .../G3/scripts/launch_box_g3.sh`
+  (box_setup.sh; sam3d_setup.sh after UV-; hf-2.2 fix after WEIGHTS-DONE; then box_g3.sh).
+- 02:02-02:06Z setup: all env markers OK; W-HY21-FAIL again (hf CLI 2.2 --include), fixed by the launcher's Python-API
+  fetch (HYFIX-OK): Hunyuan3D-2.1 dit/vae, TRELLIS.2-4B pipeline.json + 4 ckpts, Pixal3D pipeline_mv.json + 5 ckpts all
+  present (hyfix.log FILE lines). SAM 3D env C import OK. INPUTS-OK 50b70285 (36 crops, 9 view sets).
+- 02:06:38Z generation started: SAM 3D alongside Hunyuan3D-2.1, 36 crops x 4 seeds each.
