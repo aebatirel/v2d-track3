@@ -1,0 +1,22 @@
+{
+ "faces_in": 3999,
+ "faces_removed": 137,
+ "faces_out": 3862,
+ "removed_centroid_mm": [
+  48.6,
+  7.0,
+  -14.8
+ ],
+ "extents_in_mm": [
+  161.3,
+  162.6,
+  475.9
+ ],
+ "extents_out_mm": [
+  133.4,
+  162.6,
+  475.9
+ ],
+ "md5": "e4295a020761b6b16028c8f602b8495e",
+ "thr_mm": 15.0
+}
