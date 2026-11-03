@@ -6604,3 +6604,10 @@ diagnostic; nothing is picked for submission.
     one (72,216 mm²), plus an 8 mm fragment. The cost is already in the [D] audit and the CV.
   - Proposed to the coordinator: an outer-shell-only GT-free copy type for generated meshes with nested shells, to be
     pre-registered and audited, if approved.
+- ~07:18 UTC: the coordinator reports **13i scored CD-O 0.24177** (predicted about 0.242). CD-O board 4th; 3rd is 0.23900.
+  14p1 is held (CV leakage: #43 was generated from ep24, one of its CV episodes).
+  - Outer-shell copies: coordinator GO. PREREG section 13 (addendum 8) was pushed at 7c7f91e3 before any copy was built.
+  - Built (2772f7cb): only G3 #43 board 2 has a nested inner shell (62,445 mm² dropped). The six 13i generated meshes only
+    shed fragments: pot 10,657 fragments (-2.9% area), cup -1.5%, rack -1.3%, dust pan -1.7%, board 1 / pitcher about 0.
+    [H15] is falsified (pot and cup are not nested). [H17] holds in part.
+  - The 50-seed audit of all 7 copies started 07:17:48Z.
