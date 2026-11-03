@@ -1,5 +1,12 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~11:40 UTC: hand-aware tracking fails its holdout; perception lanes exhausted
+- Hand-aware gated ray correction: holdout mean ΔAUC −0.0042, all gates fail; no phase 2.
+- 13j uploaded: CD-O 0.23856 (best; 4th after SRL improved to 0.20994). Final selection: 14p for five boards, 13j for
+  CD-O. Rank sum 45, 7th.
+- Perception conclusion [I]: our FoundationPose + stereo tracker is at the limit of cheap fixes. Remaining losses are
+  sub-visible held-phase errors, the pitcher template and the board merge in ep23 (eval 25 clean).
+
 ## 2026-11-03 ~10:00 UTC: hand-aware tracking lane started (owner go); perception audits done
 - Today's perception tests all failed or found nothing to fix:
   - bias calibration; pot instance-pose network;

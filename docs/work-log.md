@@ -7544,3 +7544,10 @@ arm and a no-policy replay floor to stage B.
     AUC +0.01; keep gate 2 and no-episode-below).
 - ~10:50 UTC 3 Nov hand-aware: gate amendment committed as PREREG addendum 1 (86a2b94) before any holdout scoring.
   - Dev: ep18 +0.024 (a 47-frame sweeper excursion corrected; shifts up to 11.5 cm). Dev grid running.
+- ~11:38 UTC 3 Nov **hand-aware phase 1: FAIL on the holdout** (31fd618; hand-aware-20261103/README.md; $0).
+  - Frozen F1 on 13 holdout eps: mean ΔAUC −0.0042 (noise 0.0015); worst ep24 −0.047 (board 2 shifted ~21 cm; MP
+    0.9 → 0). Held mean ADD −4.3 %, held AUC −0.0006. All three gates fail.
+  - Dev was +0.0045 (sweeper ep18, cup ep13), but dev had no board episode; on thin boards the depth residual sees
+    surfaces behind them.
+  - Recommendation (accepted): no phase 2. The remaining held losses (board merge / thin margin, pitcher template,
+    depth-invisible errors) are not hand problems that depth can see. An object-gated variant has EV ≈ 0.
