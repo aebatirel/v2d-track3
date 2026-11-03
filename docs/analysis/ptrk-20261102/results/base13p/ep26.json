@@ -1,0 +1,30 @@
+{
+ "episode": 26,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "meshes": "/tmp/claude-0/-home-user-v2d-track3/179e384c-3df3-5902-b468-f503474d35e9/scratchpad/m13p",
+ "perception": {
+  "AUC": 0.9885,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.7022,
+  "RPE_cm": 0.9966,
+  "per_obj_AUC": {
+   "plastic_dish_rack": 0.9937,
+   "white_pot": 0.9834
+  }
+ },
+ "perception_seedmean": {
+  "AUC": 0.9766,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.8308,
+  "RPE_cm": 1.2068,
+  "per_obj_AUC": {
+   "plastic_dish_rack": 0.9935,
+   "white_pot": 0.9597
+  }
+ }
+}
