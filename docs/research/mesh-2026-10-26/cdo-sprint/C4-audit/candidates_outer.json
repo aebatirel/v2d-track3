@@ -1,0 +1,65 @@
+[
+ {
+  "object": "white_pot",
+  "label": "OS/white_pot_outer",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_outer/white_pot_outer.glb",
+  "md5": "d97473db4f01387564cdaeab11945a08",
+  "role": "outer_shell",
+  "needs_place": false,
+  "source": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_13i/white_pot_g3_trellis2_ep45_k9_s2025_lib.glb"
+ },
+ {
+  "object": "blue_cup",
+  "label": "OS/blue_cup_outer",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_outer/blue_cup_outer.glb",
+  "md5": "4e5f1dbefb6598efcfe47bd724ddc932",
+  "role": "outer_shell",
+  "needs_place": false,
+  "source": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_13h/blue_cup_g2_sam3d_ep22_k159_s7_lib_t3fit.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "OS/plastic_dish_rack_outer",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_outer/plastic_dish_rack_outer.glb",
+  "md5": "99585f7785eff8a316ecaed4aaf56b5a",
+  "role": "outer_shell",
+  "needs_place": false,
+  "source": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_13h/plastic_dish_rack_g2_hy21_ep31_k282_s123_lib_t3fit.glb"
+ },
+ {
+  "object": "mini_dust_pan",
+  "label": "OS/mini_dust_pan_outer",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_outer/mini_dust_pan_outer.glb",
+  "md5": "48f4a152c3cedea217b3f6c0fd313ded",
+  "role": "outer_shell",
+  "needs_place": false,
+  "source": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_13i/mini_dust_pan_g3_pixal_mv_ep39_s2025_lib.glb"
+ },
+ {
+  "object": "wooden_piece_1",
+  "label": "OS/wooden_piece_1_outer",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_outer/wooden_piece_1_outer.glb",
+  "md5": "9893ff57eaec8377f58c6ad8d6adee54",
+  "role": "outer_shell",
+  "needs_place": false,
+  "source": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_13i/wooden_piece_1_g3_hy21_ep24_k3_s123_lib_t3fit.glb"
+ },
+ {
+  "object": "water_pitcher",
+  "label": "OS/water_pitcher_outer",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_outer/water_pitcher_outer.glb",
+  "md5": "0dd7db33d1ed397049f733372e49e145",
+  "role": "outer_shell",
+  "needs_place": false,
+  "source": "docs/research/mesh-2026-10-26/cdo-sprint/C3/tierB/meshes/water_pitcher_hy21_ep22_k174_s42_lib.glb"
+ },
+ {
+  "object": "wooden_piece_2",
+  "label": "OS/wooden_piece_2_outer",
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/C4-audit/meshes_outer/wooden_piece_2_outer.glb",
+  "md5": "34152d97b1d236240528be42472f4c07",
+  "role": "outer_shell",
+  "needs_place": false,
+  "source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/g3/stage2/wooden_piece_2_g3_sam3d_ep24_k6_s2025_lib.glb"
+ }
+]
