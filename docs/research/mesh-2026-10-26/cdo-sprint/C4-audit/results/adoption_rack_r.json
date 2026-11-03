@@ -15,7 +15,8 @@
   "anc_med": 3.78,
   "add_med": 4.3
  },
- "audited": 32,
+ "audited": 120,
  "of": 120,
- "note": "R-gen copies (30) audited; 90 R-prim copies still auditing. Final pick per the tie rule after all 120; if an R-prim copy qualifies with lower CD-O it replaces this in a 13j2."
+ "note": "All 120 audited. Only one candidate passes any rule (index 3, rule A): CONFIRMED for 13j. Best R-prim: Q_ep31_nomk t3fit 0.4113 (no rule). No 13j2.",
+ "final": "confirmed"
 }

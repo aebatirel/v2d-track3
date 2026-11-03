@@ -6648,3 +6648,4 @@ diagnostic; nothing is picked for submission.
     copies are audited; prim racks have never scored below 0.418.
   - [H18] held (P about 0.4 predicted).
 - 10:32 UTC: focused-pascal built 13j (sha256 7e870437…, on 13i; meshes/r_pack13j 3a933d1d); D1 on the packed bytes clean in both modes. Frame flag: x extent 161 -> 129 mm, surface max 55.9 mm. That is the G2 bulge going away; ICP 2.66 mm / 0.58 deg. Signed off YES, transform none. Provisional until the 90 R-prim audits finish.
+- 12:20 UTC: rack round R audit complete (120/120, 0 errors). Only index 3 (hy21 ep12 k18 s31337 t3fit, 0.3775) passes a rule, so **13j is confirmed**; no 13j2. Best R-prim: Q_ep31_nomk t3fit 0.4113. The G3 audit remainder resumes now (queued).
