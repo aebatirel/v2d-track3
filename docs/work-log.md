@@ -6892,3 +6892,10 @@ arm and a no-policy replay floor to stage B.
     The srpublic wording was corrected.
   - Proposed: overlay public ep23 track vs mocap at f250 / f300; a v2 silhouette + depth rule over 4 alternatives,
     public-validated first.
+- 09:35 UTC **board steps 1 and 3 (CPU, $0; `docs/analysis/ptrk-20261102/boardface/`)**:
+  - (1) [M] The ep23 end state is a cross: board 1 on its edge, board 2 flat across it. Our board-2 track collapses
+    onto board 1 from f240, so the centres coincide, the position stays under 3 cm and the orientation is ~180° off.
+    It is a merge at assembly, not a face flip.
+  - (3) [I] The eval-25 packed reference keeps board 2 on the real white board at every frame checked, including the
+    final cross (f300, f330, f355). The audit's LOST was a mask failure, as called before; no recurrence.
+  - (2) Not run (its condition was not met).

@@ -3,7 +3,10 @@
 ## 2026-11-03 ~09:20 UTC: tracking-perception: eval-25 board-face check: cue fails public validation, no verdict
 - The knob-face cue misses most of ep23 board 2's known error and false-flags ep24.
 - The ep23 error is mostly a turn about the thickness–long diagonal, not a face flip.
-- Proposals (not run): public overlay of the true configuration; a v2 silhouette + depth rule.
+- Follow-ups at 09:35:
+  - ep23's failure is our board-2 track merging onto board 1 in the final cross (overlay);
+  - the eval-25 reference handles the cross correctly, so the audit's LOST was a mask failure;
+  - v2 not run (condition unmet).
 - `docs/analysis/ptrk-20261102/boardface/`. $0.
 
 ## 2026-11-03 ~09:00 UTC: tracking-perception: public per-object SP/MP-SR (diagnostic, report-only)

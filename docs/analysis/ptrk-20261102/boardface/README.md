@@ -59,3 +59,45 @@ imprecise. The pooled axis was 33° off the long axis. The per-span breakdown ab
    - Only if it passes, apply it frozen to eval 25.
 3. **Revisit the eval-25 audit.** The audit put eval 25 board 2 at the top by severity and called it a mask failure.
    Re-read that call against (1).
+
+## Step 1: what ep23 board 2's error is (public, diagnostic) [M]
+
+Overlay: `overlays/public23_track_vs_mocap.jpg`. It shows the tracked board 1 (blue) and board 2 (red), and the mocap
+board 2 (green, the scan mesh), placed relative to tracked board 1 through the mocap 1→2 pose. It covers f100, 180,
+235, 250, 300 and 324.
+
+- f100: the board-2 track matches mocap.
+- f180 and f235: the board-2 track is lost in the hand area while the real board 2 is elsewhere. This is the
+  position-error span f146–244.
+- f250–324: the task's end state is a **cross**. Board 1 stands on its edge, and board 2 lies flat across it,
+  perpendicular.
+  - **Our board-2 track collapses onto board 1**, so both tracks sit on the standing board.
+  - The two centres coincide at the joint. That is why the position error stays under 3 cm while the orientation is
+    ~180° off about the thickness–long diagonal.
+- So ep23's SP/MP failure is a **track merge onto the partner board at assembly**, not a face flip.
+
+## Step 3: eval 25's audit flag, re-read [I] (from overlays; no GT exists)
+
+Overlays: `overlays/eval25_ref_f150-355.jpg` (f150, 200, 230, 260, 330, 355) and `../audit/overlays/eval25.jpg`
+(f20, 100, 170, 300). The outline is the packed 14p reference; the tint is our mask.
+
+- The reference board 2 (blue outline) sits on the real white board in every frame checked:
+  - on the table (f20 and f150);
+  - in the hand (f100, f170, f200, f230 and f260), with the knob dots inside the outline;
+  - **in the final cross (f300, f330 and f355), lying flat across the upright board 1**.
+- At f355 the mask finally covers board 2, and the reference matches it.
+- The audit's LOST spans (f0–115, f146–202, f325–329) are frames where our board-2 mask is empty or partial. The
+  original call (mask failure) stands.
+- The ep23 merge-at-assembly failure **does not recur in the eval-25 reference**.
+- Face orientation cannot be confirmed without GT. The knobs visible at f150 and f200 fall inside the reference
+  outline on the expected side; there is no sign of a flip.
+
+## Step 2: v2 rule, not run
+
+By the coordinator's condition, the v2 rule runs only if steps 1 and 3 suggest a recurring failure, and they do not:
+- ep23's failure is a merge onto board 1 at assembly;
+- eval 25's reference keeps the two boards apart through the assembly.
+
+The v2 rule is therefore not run. The 2 SP / 4 MP eval losses are not explained by a gross board-reference failure
+visible in the video. Board error below the visible level, about 2–3 cm (see the thin ep24 MP margin in
+`../srpublic/`), remains possible.
