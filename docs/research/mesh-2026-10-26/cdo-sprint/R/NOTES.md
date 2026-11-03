@@ -156,7 +156,7 @@ coordinator's; not run here.
   the kit budget_mesh(4096, 4096). -> `../C4-audit/candidates_rack_r.json` (md5 a0eed496...), `results/stage2_picks.json`,
   `results/stage2_skipped.json`. README.md written.
 - 09:22Z store upload of S/r/stage2/out started (two pattern-limited commits: candidate .glb; records), HF 502 retries.
-- 09:22-09:3xZ store upload of S/r/stage2/out done after HF 502 retries: commits 51fb265c (candidate .glb) and 158e6acb
+- 09:22-09:32Z (at the latest) store upload of S/r/stage2/out done after HF 502 retries: commits 51fb265c (candidate .glb) and 158e6acb
   (records). Checked from here: all 120 candidate files are under `runs/mesh-20261103-r-63eb2c5/stage2/`, plus
   cands_rack_r.json. Fit-stage .ply and the `_sub.glb` fit inputs were not uploaded (regenerable).
 - Final: `ops/vast.sh show` lists 0 instances (58934345 destroyed 09:09:37Z). STATUS.md / docs/work-log.md left to the
