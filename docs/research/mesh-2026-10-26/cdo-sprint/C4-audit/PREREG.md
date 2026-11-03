@@ -221,3 +221,56 @@ One candidate: `rack_g2_trim15`.
 
 **Prediction.** [H11] The trim lowers CD-O by 0.002-0.01, below rule (A)'s 0.02 bar. It then passes only if rule (C)
 or (B) applies, which is unlikely since ADD and W30 are already good. So the most likely outcome is no adoption.
+
+## 12. Addendum 7 (2026-11-03 ~01:55 UTC, before any G3 generation or rental): G3 batch, CD-O pack 13i on 13h
+**Why.** The coordinator relayed the owner at 01:47 UTC: "do as much as you can tonight". Credit is $94.58; the GPU cap is
+<= $15; stop if credit < $15. We are 5th on CD-O at 0.25159; 4th is 0.24669.
+
+**Leverage (13h meshes, 50-seed CD-O medians x pairs / 36) [D]:**
+- rack 5 x 0.402; pot 6 x 0.286; blue cup 5 x 0.234;
+- dust pan 2 x 0.229; beige 2 x 0.250; sweeper 2 x 0.222;
+- lid, pitcher, boards: 1 pair each.
+
+The objects G2 did not cover can give about -0.003 at most [E]. The rack and pot still carry the most weight.
+
+**Objects and inputs (GT-free crops from public episodes via `scripts/crops.py`, its own ranking, <= 2 crops per episode):**
+- G3a, the coordinator's list:
+  - mini_dust_pan (eps 18 / 39 / 40);
+  - beige_cup (episodes with the beige cup that crops.py accepts);
+  - white_pot_lid (eps 0 / 2);
+  - mini_sweeper (eps 18 / 31 / others crops.py accepts);
+  - wooden_piece_1/2 (ep24 only; ep23's board-2 track is known wrong).
+- G3b, added by the mesh lane because of the leverage above:
+  - plastic_dish_rack on episodes / crops **not used in G2** (G2 used ep31 / 12 / 26);
+  - white_pot on episodes **not used in G2** (G2 used ep41 / 43 / 44).
+
+**Generators.**
+- SAM 3D, Hunyuan3D-2.1, TRELLIS.2 (1536; 1024 if it runs out of memory) for all objects; seeds 42, 7, 123, 2025.
+- Pixal3D-MV (posed, our frame, `gen/mv_views.py` view sets) for dust pan, beige, lid, sweeper and boards; seeds 42, 7,
+  123, 2025.
+- GT-free Sim(3) fit for the single-image models; SHA256 freeze committed before any scan read.
+
+**Selection (same as G2, plus one more copy type).**
+1. Stage 1: 6-seed screen (3001-3006).
+2. Stage 2: the 4 lowest CD-O per object, placed (place.py).
+3. Stage 2 copies: a T3-fit copy, and a **trim copy**. The trim deletes faces whose centroid is > 15 mm from both our
+   observed points of that object (the episodes used for its crops) and the 13h mesh of the object (`scripts/rack_trim.py`
+   logic, generalised).
+4. Stage 3: section-2 audit (50 seeds 3001-3050), rules (A)/(B)/(C) and the D1 veto, against the **13h** mesh of each
+   object:
+   - pot G2 0.2861; blue cup G2 0.2335; rack G2 0.4016;
+   - dust pan hy21 0.2291; beige T1 0.2501; lid 0.2177; sweeper P1 0.2220; pitcher 0.3713;
+   - board 1 occ 0.1872 (W30 0.06); board 2 Tier B occ 0.1649 (W30 0.34).
+5. Ties: lowest W30, then lowest CD-O, then lowest ADD.
+
+**Exclusions and cost.**
+- The already-measured rack trim (section 11) stays excluded. The trim copy type applies only to G3 stage-2 meshes, none
+  of which is measured yet.
+- Cost: one H100/H200-class box, on demand (no preemption). Expected about 1.5-2.5 h at about $4/h plus downloads, so
+  about $7-11 [E]. Ledger planned line before creation.
+
+**Predictions.**
+- [H12] rule-A wins are most likely for the dust pan and the beige cup (generators reached 0.231 / 0.263 before);
+  unlikely for the sweeper and lid.
+- [H13] at least one of G3b rack / pot passes (A) or (C).
+- [H14] no board candidate passes D1: generated plates flip.
