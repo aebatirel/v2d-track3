@@ -11062,3 +11062,13 @@ score.
 - 01:47 UTC 3 Nov coordinator: **pack 14p uploaded** (AUC 0.88571, RPE 2.21325, MPPE 1.79779). Eval 30 stays NO-SWAP
   (a re-test omitting the failed host would be a forking path). **Two-host confirmation adopted for future swaps**:
   written into docs/research/work/pack9b-20261031/PREREG.md (amendment). Lane closed for the night; 0 boxes.
+- 01:47 UTC 3 Nov coordinator reopened (owner: maximum work): one more batch ≤ $35, two-host confirmation. Built (CPU):
+  pf_arms CONF_FROM mode (second host: same inputs + collision swap, the first host's chosen checkpoint sha256-checked,
+  10 pristine draws, verdict), place_ref() split out of the zero-shot, tools/pf_twohost.py; 14p rows of 19 / 32 / 33 = the
+  old draws [M]; eval 10 skipped (carved-pieces collision: a mesh swap would not change it). PREREG
+  docs/research/work/pf-mesh2-20261103/PREREG.md (before any box).
+- 01:50 UTC **pf-mesh2 launched** (commit 88f06be; credit $94.58): pfS 20261103-pfS-88f06be (UK S $1.35/h, 58257843,
+  instance 58903359) `EP=32 ARMS=p0m MESH_OBJS_EP32=blue_cup TAB_OVERRIDE=…/packed_refs_12b.json PACKED_DRAWS_EP32=…pfD conf_ep32_s
+  OLD_EP32=…pfD conf r1`; pfT 20261103-pfT-88f06be (Texas WS $1.55/h, 51870693, 58903413) `EP=33 ARMS=p0m MESH_OBJS_EP33=blue_cup
+  OLD_EP33=runs/20261030-c33B-0202139/results/submission/results/episode_000033`; pfU 20261103-pfU-88f06be (Virginia S $1.58/h,
+  47104051, 58903416) `EP=19 ARMS=sm MESH_OBJS_EP19=mini_sweeper`. Second-host boxes follow each T box's choice.
