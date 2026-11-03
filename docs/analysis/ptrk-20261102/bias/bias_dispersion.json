@@ -1,0 +1,92 @@
+{
+ "beige_cup": {
+  "n": 1,
+  "mean_rot_deg": 4.91,
+  "mean_trans_mm": 10.0,
+  "spread_rot_deg": 0.0,
+  "spread_trans_mm": 0.0,
+  "ratio_rot": 0.0,
+  "ratio_trans": 0.0
+ },
+ "blue_cup": {
+  "n": 5,
+  "mean_rot_deg": 1.29,
+  "mean_trans_mm": 11.38,
+  "spread_rot_deg": 3.88,
+  "spread_trans_mm": 15.26,
+  "ratio_rot": 3.01,
+  "ratio_trans": 1.34
+ },
+ "mini_dust_pan": {
+  "n": 3,
+  "mean_rot_deg": 7.69,
+  "mean_trans_mm": 4.42,
+  "spread_rot_deg": 7.28,
+  "spread_trans_mm": 5.54,
+  "ratio_rot": 0.95,
+  "ratio_trans": 1.25
+ },
+ "mini_sweeper": {
+  "n": 2,
+  "mean_rot_deg": 9.32,
+  "mean_trans_mm": 28.48,
+  "spread_rot_deg": 11.24,
+  "spread_trans_mm": 28.11,
+  "ratio_rot": 1.21,
+  "ratio_trans": 0.99
+ },
+ "plastic_dish_rack": {
+  "n": 5,
+  "mean_rot_deg": 1.67,
+  "mean_trans_mm": 2.58,
+  "spread_rot_deg": 2.88,
+  "spread_trans_mm": 4.22,
+  "ratio_rot": 1.72,
+  "ratio_trans": 1.64
+ },
+ "water_pitcher": {
+  "n": 2,
+  "mean_rot_deg": 6.87,
+  "mean_trans_mm": 7.54,
+  "spread_rot_deg": 0.95,
+  "spread_trans_mm": 5.62,
+  "ratio_rot": 0.14,
+  "ratio_trans": 0.75
+ },
+ "white_pot": {
+  "n": 9,
+  "mean_rot_deg": 2.05,
+  "mean_trans_mm": 1.71,
+  "spread_rot_deg": 2.56,
+  "spread_trans_mm": 3.33,
+  "ratio_rot": 1.25,
+  "ratio_trans": 1.95
+ },
+ "white_pot_lid": {
+  "n": 2,
+  "mean_rot_deg": 1.86,
+  "mean_trans_mm": 2.49,
+  "spread_rot_deg": 0.7,
+  "spread_trans_mm": 2.09,
+  "ratio_rot": 0.38,
+  "ratio_trans": 0.84
+ },
+ "wooden_piece_1": {
+  "n": 2,
+  "mean_rot_deg": 32.27,
+  "mean_trans_mm": 31.29,
+  "spread_rot_deg": 30.88,
+  "spread_trans_mm": 24.27,
+  "ratio_rot": 0.96,
+  "ratio_trans": 0.78
+ },
+ "wooden_piece_2": {
+  "n": 2,
+  "mean_rot_deg": 41.7,
+  "mean_trans_mm": 76.85,
+  "spread_rot_deg": 42.82,
+  "spread_trans_mm": 66.67,
+  "ratio_rot": 1.03,
+  "ratio_trans": 0.87
+ }
+}

@@ -6809,3 +6809,12 @@ arm and a no-policy replay floor to stage B.
 - 01:30 UTC bold-albattani: D1 PASS for G2 #29 (both modes, 0/6 flips; eval seed 2.32° / 2.35°), anchor 6.4 mm / ADD
   7.5 mm vs shipped pitcher 14.0 / 15.6 mm; CD-O worse (0.474 vs 0.371), so pose packs only. Recorded as a spare: the
   coordinator kept 13p2's placement; #29 is not adopted.
+- 04:55 UTC 3 Nov **lane reopened (coordinator / owner: a genuinely new perception method, H1)**. PREREG_bias.md pushed
+  before any score. `scripts/bias_fit.py` fits per episode and object Δ with T·Δ·G = A·S̃ (kit conversion derived from
+  `_convert_object_body`: Δ-placed mesh ⇒ G' = Δ·G); A by Kabsch on positions, Δ by chordal mean / median over rest
+  frames, twist removed for cups / lid. In-sample diagnostic (sign check only): ep21 pitcher 0.695 → 0.756.
+  **Dispersion (falsifier of "systematic") [D]:** spread / mean, rotation:
+  - pitcher 0.14, lid 0.38 (systematic);
+  - pot 1.25, rack 1.7, blue cup 3.0, sweeper 1.2, dust pan 0.95, boards ≈ 1 (dominated by the ep23 track) — not
+    systematic.
+  `bias/`. 107 LOO runs (H1a / H1b-rot / H1b-trans 96, H1c 11 gated of 31 depth fits) running on CPU, $0.
