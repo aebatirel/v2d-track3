@@ -6842,3 +6842,12 @@ arm and a no-policy replay floor to stage B.
   perfect-following's refs_14p.json (14 / 32 from the 12b bridged table; std refs 1 / 28 via the refs/perc2mck byte
   copies, md5 checked 7f230466 / 6f57deb2); `run_audit.sh` waits for box H's masks per episode. Smoke on eval 20: no
   flags (IoU 0.87, depth residual 0.8 cm).
+- 08:00 UTC **round 3 verdicts [D]** (14p baseline, 10 seeds, nested LOO; `results/cv_round3.json`):
+  - **PASS: wooden_piece_2 → G3 #43** (sam3d ep24 k6 s2025 placed, md5 e88567d2…), held-out +0.0053, min +0.0046;
+    D1 passed (bold-albattani, both modes, 0.53–0.65° at the eval-25 seed). Eval 25 slot 1.
+  - FAIL:
+    - board 1 (#24 mean +0.0275 over both episodes, but the LOO choice flips between #23 / #24: held-out −0.0064,
+      min −0.013);
+    - pot #0 −0.005, #5 −0.004;
+    - dust pan #9 −0.027, #15 −0.025, #17 −0.013;
+    - rack #26 −0.003.
