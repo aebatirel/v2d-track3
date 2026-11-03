@@ -6857,3 +6857,6 @@ arm and a no-policy replay floor to stage B.
 - 08:20 UTC coordinator: **14p1 held, not uploaded** (#43 was generated from ep24, one of its two CV episodes; held-out
   not independent). Rule for future CV rounds (to be pre-registered): a candidate's own source episode(s) are
   excluded from its held-out scoring. Eval audit continues.
+- 08:45 UTC **board 2 outer shell (bold-albattani da10a423, md5 34152d97…) FAIL [D]** by the source-excluded rule:
+  ep23 (the only non-source episode) +0.0041 < +0.005; ep24 (source, in-sample) +0.0055. Same size as #43 (+0.0046 /
+  +0.0060).
