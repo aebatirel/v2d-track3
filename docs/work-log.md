@@ -7415,3 +7415,9 @@ arm and a no-policy replay floor to stage B.
   - Control pot AUCs on the test episodes [D]: 0.9935 / 0.9677 / 0.9979 / 0.9742 (mean 0.983), so the +0.02 primary
     gate is unreachable by construction; the secondary criterion (median ADD −20 %) decides.
   - No second object in this batch. Box 58930545 loading.
+- ~07:08 UTC 3 Nov **round-3 pose CV** [D] (perception-tracking f391360; 14p baseline):
+  - only board 2 → G3 #43 passes (held-out +0.0053, min +0.0046, D1 pass). Sent to focused-pascal for a pose pack on
+    14p (eval 25 slot 1; ≈ +0.0003 board [E]).
+  - FAIL: board 1 (the LOO choice flips between candidates with 2 episodes; held-out −0.0064), pot −0.004 / −0.005,
+    dust pan, rack.
+  - Eval audit: box H making masks for the 20 eval clips.
