@@ -6199,3 +6199,6 @@ Advice given:
   1 payload row; offline validation pass; guard on; D1 PASS both modes (anchor 4.3–7.5 mm vs library_v3 2.3–4.9). Concern:
   surface area 2.2× the scan (doubled or inner surface?); full x extent 45.7 mm (1–99%: 26.1). Sign-off asked; staged as
   results/submissions/20261103-track3x-candidate.
+- 07:14 UTC coordinator: **hold 14p1, no upload.** Reasons: CV leakage (mesh #43 generated from ep24, one of its 2 CV
+  episodes, as with pitcher #29), the worse scan anchor, a possible doubled shell, and only about +0.0003 expected. README
+  marked "HELD — CV leakage (generation source = CV episode)"; the build is kept as a record. No sign-off sought.

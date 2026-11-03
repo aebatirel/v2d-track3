@@ -1,7 +1,14 @@
 # Track 3 pack-14p1 candidate, 3 Nov 2026 — pose pack 14p + round-3 wooden_piece_2 on eval 25 (public pose CV)
 
-**STATUS: PENDING frame sign-off (mesh lane). Not ready, not uploaded.** keen-heisenberg's session uploads, on the owner's
-word there.
+**STATUS: HELD — CV leakage (generation source = CV episode). Not uploaded, no sign-off sought.** Coordinator decision
+(keen-heisenberg, 07:14 UTC 3 Nov):
+- the mesh (#43) was generated from public ep24, one of its two CV episodes, so its held-out gain is not independent (the
+  same reason pitcher #29 was rejected);
+- its scan anchor is 2–3 mm worse than library_v3's;
+- it may have a doubled shell (2.2× the scan's surface area);
+- the expected gain is only about +0.0003.
+
+The build is kept as a record.
 
 **Disclosure.**
 - One pose-board mesh swap, adopted by tracking-perception's pre-registered public pose CV round 3: 10-seed nested
