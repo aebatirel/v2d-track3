@@ -7375,3 +7375,12 @@ arm and a no-policy replay floor to stage B.
   - board 1 hy21 ep24 s123: 0.1593 vs 0.1872, W30 0 / 50 (A + C);
   - rack: no pass.
   - D1 running. If all pass, 13i CD-O ≈ 0.242 [E]; 4th place is 0.2467.
+- ~05:37 UTC 3 Nov bold-albattani: **13i handed to focused-pascal** (82c09955; on 13h). D1 0 / 6 in both modes for all
+  three: pot trellis2 ep45 (A), dust pan Pixal ep39 (A + C), board 1 hy21 ep24 (A + C).
+  - Expected CD-O ≈ 0.242 [E] (4th = 0.2467).
+  - Not adopted:
+    - rack (−0.008);
+    - board 2: sam3d ep24 #43, W30 0.00 but anchor 5.50 mm vs the 5.46 limit (rule B miss by 0.04 mm). 13h's
+      Tier B board 2 stays in CD-O packs. Flagged as a pose-pack candidate; the pose packs use library_v3 for board 2.
+    - beige / lid / sweeper.
+  - G3 total $7.47; no GPU running.
