@@ -11044,3 +11044,9 @@ score.
   deployment-exact starts / lift hooks, its own CoACD cache) and the pristine evaluator that some policies exploit;
   untested. A cheap test: evaluate one gap checkpoint (eval 30 sm s42) 10× on the pristine evaluator vs 10× with
   hard_ab's evaluate_policy.py in the patched tree, same box (≈ $1). Not run tonight.
+- 00:35 UTC 3 Nov coordinator GO for the evaluator-gap test. CPU first [M]: checkpoint VOC scale (metadata) eval 30 sm
+  s42 0.0, eval 14 plw s42 / eval 14 p0m s43 / eval 20 plw s43 0.1 → VOC alone does not separate gap from no gap.
+  PREREG docs/research/work/pf-evalgap-20261103/PREREG.md + ops/jobs/pf_evalgap.sh (A box path / B pristine / C patched
+  tree switches off; K30 = eval 30 sm s42, K14 = eval 14 plw s42; 10 interleaved rounds) at 85c1626, before any draw.
+- 00:38 UTC **pfgA launched**: 20261103-pfgA-85c1626 (offer 58891985, instance 58896929), `bash ops/jobs/pf_evalgap.sh`;
+  ledger planned $1.5.
