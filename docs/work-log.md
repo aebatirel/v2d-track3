@@ -7421,3 +7421,8 @@ arm and a no-policy replay floor to stage B.
   - FAIL: board 1 (the LOO choice flips between candidates with 2 episodes; held-out −0.0064), pot −0.004 / −0.005,
     dust pan, rack.
   - Eval audit: box H making masks for the 20 eval clips.
+- ~07:15 UTC 3 Nov pack 14p1 (14p + G3 board-2 #43 on eval 25 slot 1) built by focused-pascal. **Held by the
+  coordinator, not uploaded.**
+  - #43 was generated from ep24, one of its two CV episodes, so the held-out gain is not independent (same reason as
+    pitcher #29). Also: scan anchor 2–3 mm worse, possible doubled shell (2.2× area), gain ≈ +0.0003 [E].
+  - Future CV rule: a candidate's source episodes are excluded from its held-out scoring (pre-registered).
