@@ -7284,3 +7284,11 @@ arm and a no-policy replay floor to stage B.
   - [H] The patched training-tree evaluator differs from the pristine one.
   - Coordinator: the ≈ $1 evaluator-gap test is approved (same checkpoint, both evaluators, same box, 10× each,
     pre-registered). Eval 28 s43 ≈ 01:15. Lane spend ≈ $23 actual; credit $98.28 at 00:00.
+- ~00:39 UTC 3 Nov evaluator-gap test launched: pfgA 58896929 (≈ $1.5; PREREG pf-evalgap-20261103 before any draw).
+  - Arms, 10 interleaved rounds per checkpoint (eval 30 sm s42, eval 14 plw s42):
+    - A = the box path;
+    - B = the pristine kit;
+    - C = the patched tree with all switches off.
+  - Rule: REPRODUCED iff A − B ≥ 0.05 and Welch t ≥ 2. Box gates are trusted only if neither checkpoint reproduces a
+    gap.
+  - CPU fact: VOC scale does not explain the gap. Verdict ≈ 01:30 UTC.
