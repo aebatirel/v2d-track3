@@ -6598,3 +6598,9 @@ diagnostic; nothing is picked for submission.
     verified 79/79.
 - ~07:00 UTC: D1 PASS for G3 #43 (board 2, sam3d ep24 k6 s2025 placed): 0/6 flips in both modes; 0.65 deg (budget) / 0.53 deg (raw) at the eval seed. Sent to tracking-perception as a pose-pack candidate (CD-O 0.1623 vs library_v3 0.2169; anchor 5.5 vs 3.3 mm).
 - 07:05 UTC: instance-pose session (session_01D9UJC5VUFMLYBMNxA8FsXe) asked for the 13p/14p rack. Sent meshes/library_c0/plastic_dish_rack.glb (md5 bbca8ec0…, unchanged since 5cce3d2f, library_v3 frame).
+- ~07:20 UTC: focused-pascal built pose pack 14p1 (14p + G3 #43 board 2 on eval 25 slot 1, adopted by tracking-perception's
+  round-3 CV, held-out +0.0053). Signed off YES on the frame (ICP 0.55 mm vs library_v3).
+  - Its 2x surface area [M]: the SAM 3D plate is hollow. An inner closed shell (62,445 mm²) sits 1-3 mm inside the outer
+    one (72,216 mm²), plus an 8 mm fragment. The cost is already in the [D] audit and the CV.
+  - Proposed to the coordinator: an outer-shell-only GT-free copy type for generated meshes with nested shells, to be
+    pre-registered and audited, if approved.
