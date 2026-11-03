@@ -7443,3 +7443,5 @@ arm and a no-policy replay floor to stage B.
   - R-gen: GPU ≈ $5–8 (cap $10). R-prim: CPU.
   - Copies: placed / t3fit / trim / outer / trim+outer → 50-seed audit + D1 + rules A / B / C → 13j.
   - [H18] ≈ 40 % chance of a pass.
+- ~07:36 UTC 3 Nov board-2 outer-shell pose CV with source exclusion (pre-registered): ep23 +0.0041 vs 14p → FAIL
+  (bar +0.005). Board 2 stays as in 14p. Eval audit running (ep1 in progress).
