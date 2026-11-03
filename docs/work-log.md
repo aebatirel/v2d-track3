@@ -6874,3 +6874,5 @@ arm and a no-policy replay floor to stage B.
     its spans overlap the audit's mask gaps.
   - Over whole episodes the alternatives lose everywhere (YAW ΔIoU −0.13 to −0.28).
   - Nothing changed. `docs/analysis/ptrk-20261102/spoon/`.
+- 08:26 UTC coordinator: no spoon flips accepted; the public diagnostic is skipped because no public episode has a
+  spoon. The eval references have no gross failures, so the SR question moves to the rollouts. Lane rests.

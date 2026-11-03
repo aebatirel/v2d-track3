@@ -7,7 +7,7 @@
 - Overlays [I]:
   - evals 32 and 33 are translation offsets (both poses are off the spoon), not flips;
   - eval 36 ROLL is a weak, depth-only candidate.
-- No change proposed. `docs/analysis/ptrk-20261102/spoon/README.md`. $0 (CPU). Lane idle.
+- No change proposed; coordinator closed it (no public spoon episodes for a check). `docs/analysis/ptrk-20261102/spoon/README.md`. $0 (CPU). Lane resting.
 
 ## 2026-11-03 ~05:40 UTC: tracking-perception: H1 (learned body-frame bias as mesh placement): no eval action
 - Public LOO (PREREG_bias.md): only the pitcher passes (H1a +0.046), and the GT-free depth placement already on eval 20

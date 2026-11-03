@@ -77,6 +77,6 @@ template's +long-axis end.
 - Eval 36 ROLL f73–87 / f112–122 / f295–299 (31 frames) is the only candidate. The evidence is weak and comes from
   depth only, so it is not actionable without an independent check, such as a texture-based bowl-side test.
 
-Hypothesis [H]: eval 36's spans are a real roll error, not depth noise. Experiment that would falsify it: run the same
-rule on public episodes with known spoon poses (diagnostic only). If ROLL wins at a similar rate on frames where the
-public reference is correct, the eval 36 flag is noise.
+Hypothesis [H]: eval 36's spans are a real roll error, not depth noise. The falsification run I first proposed (the
+same rule on public episodes with known spoon poses) is not possible: no public episode has a spoon (coordinator,
+08:26 UTC). The coordinator closed this: 31 weak frames (~10 % of the episode) cannot fail SP-SR on their own.
