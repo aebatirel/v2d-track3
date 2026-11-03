@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~06:40 UTC: owner "go in all": three perception lanes started
+- Eval gross-failure audit (A, ≤ $6) and round-3 pose-mesh CV ($0): perception-tracking.
+- Object-specific pot pose network proof of concept (≤ $15; rendered-only vs + public mocap fine-tune): new session
+  instance-pose (session_01D9UJC5VUFMLYBMNxA8FsXe).
+- Bests unchanged: 14p (AUC 0.88571, RPE 2.21325, MPPE 1.79779), 13i (CD-O 0.24177). Rank sum 45, 7th.
+
 ## 2026-11-03 ~05:55 UTC: PACK 13i UPLOADED: CD-O 0.24177 (4th). Rank sum 45, 7th
 - Bests: AUC 0.88571 / RPE 2.21325 / MPPE 1.79779 (14p); SP-SR 0.90; MP-SR 0.80; CD-O 0.24177 (13i).
 - Final selection plan: 14p for AUC / SP-SR / MP-SR / RPE / MPPE; 13i for CD-O.

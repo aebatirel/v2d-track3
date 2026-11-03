@@ -7393,3 +7393,14 @@ arm and a no-policy replay floor to stage B.
   - Suggestion adopted for future mesh retrains: a pre-registered entry condition "zero-shot within 0.02 of
     control".
   - Batch ≈ $11 of $35; 0 boxes; credit $75.62.
+- ~06:40 UTC 3 Nov **owner: "go in all"**. Credit $75.62, 0 boxes; usable ≈ $60 above the $15 floor.
+  - perception-tracking:
+    - (1) round-3 pose-mesh CV on the G3 picks / near-misses vs 14p ($0);
+    - (2) **eval gross-failure audit "A"** (≤ $6): eval depth + SAM2 masks for all 20 eval clips; render the packed
+      references; flag lost / mislabelled / flipped spans; report only, then decide targeted fixes.
+  - **New session instance-pose** (session_01D9UJC5VUFMLYBMNxA8FsXe, branch claude/instance-pose-20261103):
+    - object-specific pot network proof of concept, ≤ $15, 24 GB GPUs;
+    - arms (R) rendered-only and (R+M) + public mocap fine-tune (GT-informed; eval use would need the owner's
+      explicit yes);
+    - fixed public train / test split; gate pot AUC +0.02 vs the tracker on held-out episodes.
+  - bold-albattani: manifests for round 3; pot meshes on request.
