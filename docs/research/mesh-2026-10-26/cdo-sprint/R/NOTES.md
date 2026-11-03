@@ -101,3 +101,18 @@ coordinator's; not run here.
   `results/prim/prim_list.json` (the 39), `prim_list_dropped.json` (the 9), `measured_rack.json`; prim_rack.py at
   01c25d29 (sha1 in `results/prim/code_sha1.txt`). Not scored (PREREG s14).
 - 08:04Z box: SAM 3D 45/120, Hunyuan 25/120, 0 failures. Credit $71.93.
+- 08:21:25Z SAM 3D done, **120/120 ok** (~15 s each, alongside Hunyuan3D-2.1); Pixal3D-MV 1536 started (5 view sets x 6
+  seeds, one process). 08:25:43Z SAM 3D Sim(3) 120/120. 08:33:07Z Pixal3D-MV done, **30/30 ok at 1536** (no 1024
+  fallback); TRELLIS.2 1536 started (20 crops x 6 seeds, one process). Hunyuan 97/120 at 08:33.
+- 08:34Z GT-free frame check of the 30 Pixal3D-MV outputs on the box (`gen/mv_check.py`, our view masks only, as G3):
+  silhouette IoU per mesh (single view each) ep12 0.93-0.94, ep13 0.94-0.97, ep26 0.74-0.79, ep27 0.97-0.98, ep31
+  0.88-0.92. The outputs are in our object frame; ep26's lower IoU matches its view-0 mask / silhouette IoU of 0.51 (a
+  poor GrabCut mask), not an axis error.
+- 08:44:19Z Hunyuan3D-2.1 done **120/120** (~27 s each); Sim(3) 120/120 at 08:48. 08:54:39Z TRELLIS.2 1536 done
+  **120/120** (~11 s each; no out-of-memory, no 1024 fallback); Sim(3) 120/120 at 08:58:38.
+- 08:58:42Z **R-GEN-DONE**: SHA256SUMS over **780 .ply** = 360 raw single-image (SAM 3D 120, Hunyuan 120, TRELLIS.2 120)
+  + 360 Sim(3) copies + 60 Pixal3D-MV (30 raw generator-cube `_gen` + 30 in our object frame). **0 failed, 0 lost.**
+  Sim(3) errors.log files are empty.
+- FREEZE: `results/SHA256SUMS` (sha256 c6ac6206f1eb4e87...), `results/gen_logs/`, `results/sim3_fits/`,
+  `results/mv_check.jsonl`, `results/box_logs/` (log tails; scanned for tokens, none) committed next, BEFORE any
+  public-scan read of these meshes. No R mesh has been scored or compared with a scan.
