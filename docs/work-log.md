@@ -7273,3 +7273,8 @@ arm and a no-policy replay floor to stage B.
   - **CD-O 0.25159** (best; predicted ≈ 0.252) → CD-O rank 5. **Rank sum 45**, 7th.
   - Purple moved to 32.
   - The 13h pose-board numbers (AUC 0.880) are not used for any selection.
+- ~00:09 UTC 3 Nov bold-albattani: 13h sign-off confirmed.
+  - GT-free rack-bulge trim (PREREG §11 before the build): CD-O −0.016 vs the untrimmed G2 rack, short of rule A's
+    −0.020, so **not adopted**.
+  - A post-hoc rule was declined by the coordinator.
+  - The mesh lane is idle, with no rentals; it waits for D1 on round-2 pose-CV picks.
