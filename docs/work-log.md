@@ -6617,3 +6617,14 @@ diagnostic; nothing is picked for submission.
   - G3 #43 board 2 outer: CD-O 0.1609 vs 0.1623, anchor 4.92 vs 5.50 mm, W30 0; offered to the pose CV only, with ep24
     excluded.
   - [H16] falsified (only the rack improved, below the bar).
+
+## 2026-11-03 ~07:40 UTC — rack round R launched (pre-registered)
+- The coordinator gave GO (07:33 UTC) for a rack-focused round, GPU <= $10; credit about $66.
+- Target: the rack must reach <= about 0.3814 (gap to 3rd -0.0028 x 36 / 5), which is rule A's bar.
+- PREREG section 14 (addendum 9) pushed at f471f18a before any new rack.
+  - R-gen: unused crops (ranks 3-6), TRELLIS.2 / Hunyuan / SAM 3D / Pixal3D-MV, 6 seeds.
+  - R-prim: prim_rack.py on episodes with no measured prim fit.
+  - Copies: placed / t3fit / trim / outer / trim+outer. Rules A/B/C + D1 vs the 13i rack.
+  - The already-measured rack clean-ups stay excluded.
+- A helper agent runs generation, refits and stage 2; I run the 50-seed audit afterwards.
+- G3 audit (beige / lid / sweeper, cannot pass) is still finishing in the background.
