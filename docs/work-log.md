@@ -7426,3 +7426,9 @@ arm and a no-policy replay floor to stage B.
   - #43 was generated from ep24, one of its two CV episodes, so the held-out gain is not independent (same reason as
     pitcher #29). Also: scan anchor 2–3 mm worse, possible doubled shell (2.2× area), gain ≈ +0.0003 [E].
   - Future CV rule: a candidate's source episodes are excluded from its held-out scoring (pre-registered).
+- ~07:15 UTC 3 Nov bold-albattani: #43 is a hollow SAM 3D plate (inner shell 1–3 mm inside).
+  - Proposal: a GT-free "outer-shell extraction" copy type for every adopted or CV-picked generated mesh with
+    nested shells. Pre-registered before measuring; 50-seed audit + D1; rules A / B / C vs the 13i meshes.
+    Expected −0.001 to −0.005 CD-O [H].
+  - **Coordinator: GO** (CPU) → 13j on 13i. CD-O 3rd (SRL 0.23900) is −0.0028 away. Any #43 variant enters the pose
+    CV only with ep24 excluded.
