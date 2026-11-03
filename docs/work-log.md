@@ -7432,3 +7432,9 @@ arm and a no-policy replay floor to stage B.
     Expected −0.001 to −0.005 CD-O [H].
   - **Coordinator: GO** (CPU) → 13j on 13i. CD-O 3rd (SRL 0.23900) is −0.0028 away. Any #43 variant enters the pose
     CV only with ep24 excluded.
+- ~07:33 UTC 3 Nov **outer-shell extraction: no rule passes, 13j empty** (PREREG §13 before the build; da10a423).
+  - Only #43 had a real inner shell.
+  - rack outer copy −0.017 vs 13i (below the −0.020 bar; near-miss like the trim); other objects 0 to +0.0035.
+  - #43 outer offered to the pose CV with ep24 excluded.
+  - Coordinator: **GO for a rack-focused round** (≤ $10): new generations + structured refits; pre-registered
+    before measuring; same bars → 13j. Target CD-O 3rd (−0.0028).
