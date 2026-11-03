@@ -202,3 +202,22 @@ section 9. Baseline S = the then-current shipped mesh of the object.
   object, stage 2 also takes the 2 lowest stage-1 ADD medians among G2 meshes whose stage-1 CD-O median is <= the
   shipped mesh's 50-seed CD-O median + 0.005, when they are not already among the 4. They are placed and audited the
   same way.
+
+## 11. Addendum 6 (2026-11-03 ~00:08 UTC, before the build): GT-free trim of the G2 rack's hallucinated bulge
+**Finding [M, GT-free]:** the adopted G2 rack (`plastic_dish_rack_g2_hy21_ep31_k282_s123_lib_t3fit.glb`, md5 a289d009) has
+a +x bulge, 0.5% of its surface, at x +37..+110 mm. Our ep31 observed points never come near it (median 36 mm away),
+and the shipped dev1 primitive rack ends at x +72 mm.
+
+**Build (`scripts/rack_trim.py`).** Delete every G2-rack face whose centroid is > 15 mm from BOTH:
+- (a) our ep31 observed rack points (`obs_all/ep31_plastic_dish_rack.npz`, GT-free); and
+- (b) the dev1 primitive rack surface (ours).
+Faces that are unobserved but consistent with our primitive fit are kept. No hole filling.
+One candidate: `rack_g2_trim15`.
+
+**Evaluation.**
+- Section 2 audit (50 seeds 3001-3050), D1 (section 9), and rules (A)/(B)/(C) against the then-current CD-O pack mesh,
+  i.e. the untrimmed G2 rack (CD-O 0.4016, W30 0, ADD 4.3 mm).
+- If it passes, it replaces the untrimmed rack in a pack 13h2. If not, 13h stands.
+
+**Prediction.** [H11] The trim lowers CD-O by 0.002-0.01, below rule (A)'s 0.02 bar. It then passes only if rule (C)
+or (B) applies, which is unlikely since ADD and W30 are already good. So the most likely outcome is no adoption.
