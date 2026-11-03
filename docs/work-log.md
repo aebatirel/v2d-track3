@@ -11035,3 +11035,12 @@ score.
 - ~23:40 UTC 2 Nov keen-heisenberg: the best pose pack since 20:15 is **13p2** (19ac10e3…; AUC 0.88403), not 13f.
   **Pack 14p ready** = 13p2 + eval 14 rows: results/submissions/20261102-track3s-candidate/build_14p/track3_submission.parquet
   (sha256 b6c6100d…; 13p2 mesh payloads kept; checks pass). Pack 14 on 13f superseded.
+- 00:26–00:33 UTC 3 Nov **eval 30 sm NO-SWAP on fresh draws** [M]: s43 box 0.932 ± 0.014; gate CONFIRM s42 (box
+  0.938 ± 0.008); 10 fresh official draws **0.768** (0.670, 0.849, …, 0.841) vs the board policy's 0.897; fails 5/10 vs
+  1/10; median RPE 4.74 vs 2.93 cm; draw 1 0.670 vs 0.923; gain −0.130. The zero-shot board draw on the new collision was
+  0.829.
+  [M] box→fresh gaps today: eval 14 plw 0.923 → 0.826, eval 30 sm 0.938 → 0.768 (gap); eval 20 plw 0.921 → 0.926, eval 14
+  p0m 0.946 → 0.933 (no gap). [H] something differs between the training-tree evaluator (patched FlashCHORD: FDR / VOC /
+  deployment-exact starts / lift hooks, its own CoACD cache) and the pristine evaluator that some policies exploit;
+  untested. A cheap test: evaluate one gap checkpoint (eval 30 sm s42) 10× on the pristine evaluator vs 10× with
+  hard_ab's evaluate_policy.py in the patched tree, same box (≈ $1). Not run tonight.
