@@ -7351,3 +7351,9 @@ arm and a no-policy replay floor to stage B.
   - Eval B = full-public robust mean (same estimator), applied on 14p's payload, D1 checked.
   - focused-pascal builds a pose pack on 14p. Disclosure: "placement calibrated from public mocap
     (owner-approved GT-informed)".
+- ~04:32 UTC 3 Nov bold-albattani: **G3 generation done**, $7.47 measured (one H200, destroyed); 468 meshes, SHA
+  freeze before any scan read.
+  - Stage-1 screen [D] (optimistic) vs 13h: pot 0.2404 (outlier) vs 0.2861; dust pan 0.2061 vs 0.2291; board 1
+    0.1629 vs 0.1872; rack 0.3953 vs 0.4016; board 2 0.1600 vs 0.1649. Beige / lid / sweeper are worse.
+  - The frozen 50-seed audit of 79 stage-2 copies started 04:32Z → D1 → 13i.
+  - If the pot and dust pan hold, CD-O ≈ 0.243 [E], which would pass 4th (0.2467). Optimistic until audited.
