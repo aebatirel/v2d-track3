@@ -7462,3 +7462,6 @@ arm and a no-policy replay floor to stage B.
     episodes; 10 % of one episode can't fail SP-SR).
   - Conclusion: eval references have no gross failures. SP-SR / MP-SR losses most likely come from rollouts
     (drops / displacements). Perception lane rests.
+- ~08:27 UTC 3 Nov perfect-following asked (CPU, $0, GT-free): compute the SP-SR / MP-SR criteria of 14p's stored
+  rollout rows against our packed references, per episode and object, with 10-draw rates. Goal: find the episodes
+  where a targeted policy fix could buy an SR episode.
