@@ -7531,3 +7531,6 @@ arm and a no-policy replay floor to stage B.
   - Handed to focused-pascal as **13j on 13i** (ead6a10c).
   - Expected CD-O ≈ 0.2384 [E] vs 3rd's 0.23900, about 50 / 50 (eval-seed spread ±0.002).
   - 90 prim refits are still auditing (≈ 2 h; unlikely winners).
+- ~10:33 UTC 3 Nov **pack 13j UPLOADED** (CD-O variant; 57943952–57943958). Verified: 5 rack rows / 5 CD-O pairs.
+  - **CD-O 0.23856** (best; predicted 0.2384). SRL moved to 0.20994 (CD-O 1st), so we stay 4th. Rank sum 45, 7th.
+  - Final selection: 14p for five boards; **13j for CD-O**.
