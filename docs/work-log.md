@@ -7482,3 +7482,14 @@ arm and a no-policy replay floor to stage B.
   - [I] The hand-held lift (ep27) is ≈ 10° off (render-to-real gap); elsewhere the network ≈ the tracker.
   - A rendered-only spoon network is not trustworthy. Plan steps 1–2 are not recommended on this evidence. No eval
     action.
+- ~08:50 UTC 3 Nov **public per-object SP / MP-SR vs mocap** (perception-tracking PREREG_srpublic b4f5c1e6; results
+  79ee47c1, srpublic/; $0) [M]:
+  - 17 / 20 episodes pass SP + MP in every seed; 37 / 40 object-episodes pass MP.
+  - Failures:
+    - **ep23 board 2 FLIP**: a 180° roll about the long axis on 41 % of frames, fails SP + MP, in the track;
+    - pitcher steady offset: ep21 3.4 cm, ep22 2.9 cm, fails MP (the bias 13p2 targets on eval 20);
+    - ep24 boards: thinnest margin, plus one scorer-side seed flip.
+  - Eval prior [I]: **eval 25 (boards) is the strongest SP + MP candidate** (a roll flip invisible to masks / depth);
+    eval 20 is an MP candidate; the spoon evals are unknown.
+  - **GO: eval-25 board-face check** (CPU, GT-free). The rule is calibrated on ep23's known flip spans first; a real
+    flip → fix proposal → pre-registered re-evaluation / retrain with two-host confirmation.
