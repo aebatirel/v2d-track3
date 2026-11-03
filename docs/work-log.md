@@ -6628,3 +6628,15 @@ diagnostic; nothing is picked for submission.
   - The already-measured rack clean-ups stay excluded.
 - A helper agent runs generation, refits and stage 2; I run the 50-seed audit afterwards.
 - G3 audit (beige / lid / sweeper, cannot pass) is still finishing in the background.
+
+## 2026-11-03 ~09:35 UTC — rack round R generation done; 50-seed audit of 120 candidates started
+- Helper-agent report (`cdo-sprint/R/README.md`, `R/NOTES.md`):
+  - run mesh-20261103-r-63eb2c5, instance 58934345 (on-demand H200 NVL), 07:41-09:09 UTC; **$5.95 measured** (cap $10);
+    destroyed, 0 instances.
+  - R-gen: 390 meshes (SAM 3D / Hunyuan / TRELLIS.2 120 each, Pixal3D-MV 30), 0 lost. Freeze cf30b25c before any scan read.
+  - Stage-1 best 0.3876 (Hunyuan ep12 k18 s31337) vs the 13i rack 0.4016; none <= 0.3816.
+  - R-prim: 39 new prim_rack fits (defaults + --end_draft / --peg_kappa_free / --cup_quad), not scored.
+  - Stage 2: 120 candidates (`C4-audit/candidates_rack_r.json`, beeee61b).
+- Audit started 09:33:38Z: 120 meshes, R-gen copies first, code 024ec70e, 4 workers, detached.
+- The G3 audit had stopped again at 55/79: a second container restart at about 07:14 UTC; the remaining 24 are beige / lid
+  / sweeper, none can pass. Queued to resume after the rack audit.
