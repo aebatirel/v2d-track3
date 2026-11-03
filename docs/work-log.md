@@ -7299,3 +7299,11 @@ arm and a no-policy replay floor to stage B.
   - (b) FAIL: placement on top of the 13p meshes.
   - Coordinator: **keep 13p2's eval-20 placement; #29 not adopted.** Equal public size; its ep22 held-out is not
     independent; comparing both on the board would be probing. The perception lane stops for the night.
+- ~01:46 UTC 3 Nov perfect-following, lane closed.
+  - **Evaluator-gap test: NOT REPRODUCED** (pfgA ≈ $1.1): eval 30 sm A / B / C = 0.935 / 0.926 / 0.930; eval 14 plw
+    0.925 / 0.937 / 0.938. The kit and repo scripts are identical, so box gates are trustworthy.
+  - The low fresh means (0.768 on India pfP2, 0.826 on Croatia pfI) were host- or run-specific; cause unexplained [H].
+  - Eval 28 sm NO-SWAP at the gate (s43 0.914 vs 0.919).
+  - Coordinator: eval 30 stays NO-SWAP. A re-test without the failed host is a forking path; with it, passing is
+    impossible. **Two-host confirmation is adopted for future swaps**, pre-registered, both must pass.
+  - Lane total tonight ≈ $36 (≈ $6 lost to bugs and replacements). Credit $94.58 at 01:45 UTC; 0 boxes running.
