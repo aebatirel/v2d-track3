@@ -1,0 +1,865 @@
+{
+ "tool": "tools/pack_swap_meshes.py",
+ "argv": [
+  "tools/pack_swap_meshes.py",
+  "--kit",
+  "<SCRATCH>/map/scoring/kit/v2d_submission_kit",
+  "--results",
+  "<SCRATCH>/p13f/build_13f/results",
+  "--meshes",
+  "<SCRATCH>/p13f/build_13f/meshes",
+  "--replace",
+  "<SCRATCH>/p13h/replace",
+  "--objects",
+  "white_pot,blue_cup,plastic_dish_rack",
+  "--only-episodes",
+  "white_pot:1,3,5,6,8,28;blue_cup:10,14,20,32,33;plastic_dish_rack:14,15,16,28,30",
+  "--base",
+  "results/submissions/20261102-track3r-candidate/build_13f/track3_submission.parquet",
+  "--code-commit",
+  "https://github.com/aebatirel/v2d-track3/commit/9610329e1177921827a9b66e38103e746efd8a0c",
+  "--python",
+  "<SCRATCH>/pack_venv305/bin/python",
+  "-o",
+  "<SCRATCH>/p13h/build_13h"
+ ],
+ "python": "3.13.17",
+ "versions": {
+  "pandas": "3.0.5",
+  "pyarrow": "26.0.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "trimesh": "5.2.0",
+  "fast_simplification": "0.2.0"
+ },
+ "kit": "<SCRATCH>/map/scoring/kit/v2d_submission_kit",
+ "results": "<SCRATCH>/p13f/build_13f/results",
+ "meshes": "<SCRATCH>/p13f/build_13f/meshes",
+ "replace": "<SCRATCH>/p13h/replace",
+ "replacement_files": {
+  "white_pot": {
+   "path": "<SCRATCH>/p13h/replace/white_pot.glb",
+   "md5": "5243c309b6758f682b62e29ade6ff34f"
+  },
+  "blue_cup": {
+   "path": "<SCRATCH>/p13h/replace/blue_cup.glb",
+   "md5": "ab012e4e0add44c3923fd172c4639734"
+  },
+  "plastic_dish_rack": {
+   "path": "<SCRATCH>/p13h/replace/plastic_dish_rack.glb",
+   "md5": "a289d009c45c6ee09d7dd787b8e7dbcf"
+  }
+ },
+ "transforms": {},
+ "base": "/home/user/v2d-track3/results/submissions/20261102-track3r-candidate/build_13f/track3_submission.parquet",
+ "code_commit": "https://github.com/aebatirel/v2d-track3/commit/9610329e1177921827a9b66e38103e746efd8a0c",
+ "packer_command": [
+  "<SCRATCH>/pack_venv305/bin/python",
+  "-I",
+  "tools/pack_submission.py",
+  "--track",
+  "track_3",
+  "--results",
+  "<SCRATCH>/p13h/build_13h/results",
+  "--meshes",
+  "<SCRATCH>/p13h/build_13h/meshes",
+  "--code-commit",
+  "https://github.com/aebatirel/v2d-track3/commit/9610329e1177921827a9b66e38103e746efd8a0c",
+  "--eval-script",
+  "<SCRATCH>/map/scoring/kit/v2d_submission_kit/flash_chord/scripts/evaluate_policy.py",
+  "-o",
+  "<SCRATCH>/p13h/build_13h/track3_submission.parquet"
+ ],
+ "packer_cwd": "<SCRATCH>/map/scoring/kit/v2d_submission_kit",
+ "results_md5": {
+  "episode_000001.json": "642ee590aa259085614e99dba1563bce",
+  "episode_000001.parquet": "d185451bd29e9ff66fa0ffcc880f21fb",
+  "episode_000003.json": "ba396d69ab69818fe9feadbe90036f9b",
+  "episode_000003.parquet": "d3c7aa08242a75790940faf58763eb5d",
+  "episode_000005.json": "2c9af720e52f38e46f880b646ad7e34f",
+  "episode_000005.parquet": "5c76c4f83e65fb9539632e48aa36b117",
+  "episode_000006.json": "32af3e9f8750bd9776de6338f35da6b6",
+  "episode_000006.parquet": "2b442606c8e863c4d71d88255fb89fc5",
+  "episode_000008.json": "b2eceee9e5c0f17e1df512c807f50f60",
+  "episode_000008.parquet": "ff303e0fe98f074ab0d8d5006af53b0f",
+  "episode_000010.json": "ddb0642569119fdc381226f47d12c689",
+  "episode_000010.parquet": "2548c3f07fda1683724afd8bfb1fb9c7",
+  "episode_000014.json": "201a1c6d372c37c6843c3f757256988d",
+  "episode_000014.parquet": "3f087f84b2dd9fbe6fc6dadd0d25ac56",
+  "episode_000015.json": "fda0f0934f5b66e3daf103e1af5f90c9",
+  "episode_000015.parquet": "fdb197668c28a6afd45f64abad88a796",
+  "episode_000016.json": "fd82883b944e5d743292e360d867f0b7",
+  "episode_000016.parquet": "7395f9607e0455c7cb8c75aa3bee26b0",
+  "episode_000019.json": "b8eaf337951af6fc1c9491a0401a6061",
+  "episode_000019.parquet": "82f41360e7c26a39fd0a522823454188",
+  "episode_000020.json": "ba7c7d358df2c370c17333a12dc2902f",
+  "episode_000020.parquet": "1ed48af4060214e361d12ab060e585a7",
+  "episode_000025.json": "2609089f1d6b60e61d28eab739e604dc",
+  "episode_000025.parquet": "a0d7ad49f883a6d1e3c93fa70297dcb0",
+  "episode_000028.json": "710bc3522edfed17aff2e450f23d096c",
+  "episode_000028.parquet": "cf0fdf54cac7e0af6fc9fe8a09a4ff13",
+  "episode_000030.json": "d653c5b06bbc0e15ec32aac4095c6505",
+  "episode_000030.parquet": "63acae4402f3200a85b22f6def51f607",
+  "episode_000032.json": "469609eb4dd86e4f19eca730985a491f",
+  "episode_000032.parquet": "61f98cbc8ec0a68717bbf15a420cf054",
+  "episode_000033.json": "e1ce80ec4860906f094404b7be9c052e",
+  "episode_000033.parquet": "a43a7958fc2f3e74df73b39d914ddc96",
+  "episode_000035.json": "7e2b357c9e3e8e1eb7b44c38f6896134",
+  "episode_000035.parquet": "029d810c460ed594805eecf533bbbb10",
+  "episode_000036.json": "871a1d7df06537717d1d6ab3e8d3e668",
+  "episode_000036.parquet": "a92a9895bfe7356a55da5d9db312c1c8",
+  "episode_000037.json": "353f1c24327b93fe3f8e080aa8710b00",
+  "episode_000037.parquet": "1c2b8aaf0382e1b2b73e9dd47539acda",
+  "episode_000038.json": "36f64a2c230e94409218b4b2050c1347",
+  "episode_000038.parquet": "e85ebc6eec1d1c64617b6881372d1495"
+ },
+ "pairs": [
+  {
+   "episode": 1,
+   "slot": 0,
+   "object": "white_pot",
+   "file": "meshes/episode_000001/white_pot.glb",
+   "md5_before": "b19b2e2876945cba4d932ad531f049ce",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/white_pot.glb",
+   "source_md5": "5243c309b6758f682b62e29ade6ff34f",
+   "md5_after": "5243c309b6758f682b62e29ade6ff34f",
+   "payload_changed": true
+  },
+  {
+   "episode": 1,
+   "slot": 1,
+   "object": "white_pot_lid",
+   "file": "meshes/episode_000001/white_pot_lid.glb",
+   "md5_before": "35727a10bca407594f41d108b4dc03ab",
+   "swapped": false,
+   "md5_after": "35727a10bca407594f41d108b4dc03ab"
+  },
+  {
+   "episode": 3,
+   "slot": 0,
+   "object": "white_pot",
+   "file": "meshes/episode_000003/white_pot.glb",
+   "md5_before": "b19b2e2876945cba4d932ad531f049ce",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/white_pot.glb",
+   "source_md5": "5243c309b6758f682b62e29ade6ff34f",
+   "md5_after": "5243c309b6758f682b62e29ade6ff34f",
+   "payload_changed": true
+  },
+  {
+   "episode": 3,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000003/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 5,
+   "slot": 0,
+   "object": "white_pot",
+   "file": "meshes/episode_000005/white_pot.glb",
+   "md5_before": "b19b2e2876945cba4d932ad531f049ce",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/white_pot.glb",
+   "source_md5": "5243c309b6758f682b62e29ade6ff34f",
+   "md5_after": "5243c309b6758f682b62e29ade6ff34f",
+   "payload_changed": true
+  },
+  {
+   "episode": 5,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000005/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 6,
+   "slot": 0,
+   "object": "white_pot",
+   "file": "meshes/episode_000006/white_pot.glb",
+   "md5_before": "b19b2e2876945cba4d932ad531f049ce",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/white_pot.glb",
+   "source_md5": "5243c309b6758f682b62e29ade6ff34f",
+   "md5_after": "5243c309b6758f682b62e29ade6ff34f",
+   "payload_changed": true
+  },
+  {
+   "episode": 6,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000006/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 8,
+   "slot": 0,
+   "object": "beige_cup",
+   "file": "meshes/episode_000008/beige_cup.glb",
+   "md5_before": "8c8be2b0747d234706913a2360e90570",
+   "swapped": false,
+   "md5_after": "8c8be2b0747d234706913a2360e90570"
+  },
+  {
+   "episode": 8,
+   "slot": 1,
+   "object": "white_pot",
+   "file": "meshes/episode_000008/white_pot.glb",
+   "md5_before": "b19b2e2876945cba4d932ad531f049ce",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/white_pot.glb",
+   "source_md5": "5243c309b6758f682b62e29ade6ff34f",
+   "md5_after": "5243c309b6758f682b62e29ade6ff34f",
+   "payload_changed": true
+  },
+  {
+   "episode": 10,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000010/blue_cup.glb",
+   "md5_before": "672c4048e11afe9b2b9a7eafebbefe58",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/blue_cup.glb",
+   "source_md5": "ab012e4e0add44c3923fd172c4639734",
+   "md5_after": "ab012e4e0add44c3923fd172c4639734",
+   "payload_changed": true
+  },
+  {
+   "episode": 10,
+   "slot": 1,
+   "object": "beige_cup",
+   "file": "meshes/episode_000010/beige_cup.glb",
+   "md5_before": "8c8be2b0747d234706913a2360e90570",
+   "swapped": false,
+   "md5_after": "8c8be2b0747d234706913a2360e90570"
+  },
+  {
+   "episode": 14,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000014/blue_cup.glb",
+   "md5_before": "672c4048e11afe9b2b9a7eafebbefe58",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/blue_cup.glb",
+   "source_md5": "ab012e4e0add44c3923fd172c4639734",
+   "md5_after": "ab012e4e0add44c3923fd172c4639734",
+   "payload_changed": true
+  },
+  {
+   "episode": 14,
+   "slot": 1,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000014/plastic_dish_rack.glb",
+   "md5_before": "1176443c748ece893ffdb64a1cc82c9a",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/plastic_dish_rack.glb",
+   "source_md5": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "md5_after": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "payload_changed": true
+  },
+  {
+   "episode": 15,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000015/plastic_dish_rack.glb",
+   "md5_before": "1176443c748ece893ffdb64a1cc82c9a",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/plastic_dish_rack.glb",
+   "source_md5": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "md5_after": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "payload_changed": true
+  },
+  {
+   "episode": 15,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000015/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 16,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000016/plastic_dish_rack.glb",
+   "md5_before": "1176443c748ece893ffdb64a1cc82c9a",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/plastic_dish_rack.glb",
+   "source_md5": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "md5_after": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "payload_changed": true
+  },
+  {
+   "episode": 16,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000016/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 19,
+   "slot": 0,
+   "object": "mini_sweeper",
+   "file": "meshes/episode_000019/mini_sweeper.glb",
+   "md5_before": "55fe1682f09721ca5d4e98477bfef150",
+   "swapped": false,
+   "md5_after": "55fe1682f09721ca5d4e98477bfef150"
+  },
+  {
+   "episode": 19,
+   "slot": 1,
+   "object": "mini_dust_pan",
+   "file": "meshes/episode_000019/mini_dust_pan.glb",
+   "md5_before": "1530b1d3be77507730b00e1c5047cad1",
+   "swapped": false,
+   "md5_after": "1530b1d3be77507730b00e1c5047cad1"
+  },
+  {
+   "episode": 20,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000020/blue_cup.glb",
+   "md5_before": "672c4048e11afe9b2b9a7eafebbefe58",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/blue_cup.glb",
+   "source_md5": "ab012e4e0add44c3923fd172c4639734",
+   "md5_after": "ab012e4e0add44c3923fd172c4639734",
+   "payload_changed": true
+  },
+  {
+   "episode": 20,
+   "slot": 1,
+   "object": "water_pitcher",
+   "file": "meshes/episode_000020/water_pitcher.glb",
+   "md5_before": "e59c15a3e4a442ebc52e7cd72ab73124",
+   "swapped": false,
+   "md5_after": "e59c15a3e4a442ebc52e7cd72ab73124"
+  },
+  {
+   "episode": 25,
+   "slot": 0,
+   "object": "wooden_piece_1",
+   "file": "meshes/episode_000025/wooden_piece_1.glb",
+   "md5_before": "015aaae3183760cd8a48d82b5599d32c",
+   "swapped": false,
+   "md5_after": "015aaae3183760cd8a48d82b5599d32c"
+  },
+  {
+   "episode": 25,
+   "slot": 1,
+   "object": "wooden_piece_2",
+   "file": "meshes/episode_000025/wooden_piece_2.glb",
+   "md5_before": "bf82e385cac24a586168b4f14bf5b245",
+   "swapped": false,
+   "md5_after": "bf82e385cac24a586168b4f14bf5b245"
+  },
+  {
+   "episode": 28,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000028/plastic_dish_rack.glb",
+   "md5_before": "1176443c748ece893ffdb64a1cc82c9a",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/plastic_dish_rack.glb",
+   "source_md5": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "md5_after": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "payload_changed": true
+  },
+  {
+   "episode": 28,
+   "slot": 1,
+   "object": "white_pot",
+   "file": "meshes/episode_000028/white_pot.glb",
+   "md5_before": "b19b2e2876945cba4d932ad531f049ce",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/white_pot.glb",
+   "source_md5": "5243c309b6758f682b62e29ade6ff34f",
+   "md5_after": "5243c309b6758f682b62e29ade6ff34f",
+   "payload_changed": true
+  },
+  {
+   "episode": 30,
+   "slot": 0,
+   "object": "mini_sweeper",
+   "file": "meshes/episode_000030/mini_sweeper.glb",
+   "md5_before": "55fe1682f09721ca5d4e98477bfef150",
+   "swapped": false,
+   "md5_after": "55fe1682f09721ca5d4e98477bfef150"
+  },
+  {
+   "episode": 30,
+   "slot": 1,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000030/plastic_dish_rack.glb",
+   "md5_before": "1176443c748ece893ffdb64a1cc82c9a",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/plastic_dish_rack.glb",
+   "source_md5": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "md5_after": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "payload_changed": true
+  },
+  {
+   "episode": 32,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000032/blue_cup.glb",
+   "md5_before": "672c4048e11afe9b2b9a7eafebbefe58",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/blue_cup.glb",
+   "source_md5": "ab012e4e0add44c3923fd172c4639734",
+   "md5_after": "ab012e4e0add44c3923fd172c4639734",
+   "payload_changed": true
+  },
+  {
+   "episode": 32,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000032/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 33,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000033/blue_cup.glb",
+   "md5_before": "672c4048e11afe9b2b9a7eafebbefe58",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13h/replace/blue_cup.glb",
+   "source_md5": "ab012e4e0add44c3923fd172c4639734",
+   "md5_after": "ab012e4e0add44c3923fd172c4639734",
+   "payload_changed": true
+  },
+  {
+   "episode": 33,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000033/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 35,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000035/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 36,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000036/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 37,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000037/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 38,
+   "slot": 0,
+   "object": "mini_dust_pan",
+   "file": "meshes/episode_000038/mini_dust_pan.glb",
+   "md5_before": "1530b1d3be77507730b00e1c5047cad1",
+   "swapped": false,
+   "md5_after": "1530b1d3be77507730b00e1c5047cad1"
+  }
+ ],
+ "frame_report": [
+  {
+   "object": "white_pot",
+   "episodes": [
+    1,
+    3,
+    5,
+    6,
+    8,
+    28
+   ],
+   "base_md5": "b19b2e2876945cba4d932ad531f049ce",
+   "base_is_library_v3": false,
+   "new_md5": "5243c309b6758f682b62e29ade6ff34f",
+   "symmetry": "none",
+   "base_aabb_centre_mm": [
+    17.37,
+    1.92,
+    75.85
+   ],
+   "base_extent_mm": [
+    128.76,
+    192.43,
+    360.43
+   ],
+   "new_aabb_centre_mm": [
+    14.1,
+    0.96,
+    71.03
+   ],
+   "new_extent_mm": [
+    127.79,
+    193.1,
+    358.53
+   ],
+   "base_centroid_mm": [
+    7.22,
+    -1.42,
+    2.8
+   ],
+   "new_centroid_mm": [
+    2.72,
+    0.76,
+    -0.41
+   ],
+   "centroid_offset_mm": 5.95,
+   "aabb_centre_offset_mm": 5.9,
+   "rms_radius_ratio": 0.9882,
+   "extent_ratio": [
+    0.9925,
+    1.0035,
+    0.9947
+   ],
+   "surface_mm": {
+    "median": 1.483,
+    "p95": 5.661,
+    "max": 13.797,
+    "mean": 2.056
+   },
+   "sample_spacing_mm": 0.932,
+   "icp_centroid_shift_mm": 5.06,
+   "icp_rotation_deg": 2.455,
+   "icp_median_after_mm": 0.998,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99909752,
+     -0.04213297,
+     0.00538145,
+     0.00388096
+    ],
+    [
+     0.04216245,
+     0.9990957,
+     -0.00548705,
+     -0.00119997
+    ],
+    [
+     -0.0051454,
+     0.005709,
+     0.99997047,
+     0.00312046
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 5.73,
+   "kit_proxy_rotation_deg": 4.511,
+   "flags": [
+    "surface centroid moved 5.95 mm > 5.0",
+    "ICP corrects 5.06 mm / 2.455 deg (limits 5.0 mm / 5.0 deg)",
+    "kit-registration proxy moves the body 5.73 mm > 5.0"
+   ]
+  },
+  {
+   "object": "blue_cup",
+   "episodes": [
+    10,
+    14,
+    20,
+    32,
+    33
+   ],
+   "base_md5": "672c4048e11afe9b2b9a7eafebbefe58",
+   "base_is_library_v3": false,
+   "new_md5": "ab012e4e0add44c3923fd172c4639734",
+   "symmetry": "axial",
+   "base_aabb_centre_mm": [
+    0.6,
+    6.93,
+    2.17
+   ],
+   "base_extent_mm": [
+    100.22,
+    120.1,
+    180.98
+   ],
+   "new_aabb_centre_mm": [
+    2.06,
+    -6.97,
+    2.15
+   ],
+   "new_extent_mm": [
+    89.26,
+    110.33,
+    176.62
+   ],
+   "base_centroid_mm": [
+    1.56,
+    2.28,
+    2.69
+   ],
+   "new_centroid_mm": [
+    1.24,
+    2.27,
+    4.11
+   ],
+   "centroid_offset_mm": 1.46,
+   "aabb_centre_offset_mm": 13.98,
+   "rms_radius_ratio": 0.995,
+   "extent_ratio": [
+    0.8906,
+    0.9187,
+    0.9759
+   ],
+   "surface_mm": {
+    "median": 1.432,
+    "p95": 5.392,
+    "max": 25.777,
+    "mean": 2.092
+   },
+   "sample_spacing_mm": 0.702,
+   "icp_centroid_shift_mm": 1.01,
+   "icp_rotation_deg": 2.839,
+   "icp_median_after_mm": 0.895,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.9999946,
+     9.239e-05,
+     -0.00328526,
+     -0.00053362
+    ],
+    [
+     -0.00025463,
+     0.99877807,
+     -0.0494196,
+     0.00076256
+    ],
+    [
+     0.00327668,
+     0.04942017,
+     0.9987727,
+     -0.00074602
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 2.31,
+   "kit_proxy_rotation_deg": 21.205,
+   "flags": []
+  },
+  {
+   "object": "plastic_dish_rack",
+   "episodes": [
+    14,
+    15,
+    16,
+    28,
+    30
+   ],
+   "base_md5": "1176443c748ece893ffdb64a1cc82c9a",
+   "base_is_library_v3": false,
+   "new_md5": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "symmetry": "none",
+   "base_aabb_centre_mm": [
+    9.65,
+    1.44,
+    47.0
+   ],
+   "base_extent_mm": [
+    125.54,
+    158.95,
+    495.37
+   ],
+   "new_aabb_centre_mm": [
+    31.53,
+    2.35,
+    39.43
+   ],
+   "new_extent_mm": [
+    161.33,
+    162.6,
+    475.93
+   ],
+   "base_centroid_mm": [
+    -3.8,
+    -1.89,
+    1.84
+   ],
+   "new_centroid_mm": [
+    7.52,
+    -2.04,
+    -15.33
+   ],
+   "centroid_offset_mm": 20.57,
+   "aabb_centre_offset_mm": 23.17,
+   "rms_radius_ratio": 0.9717,
+   "extent_ratio": [
+    1.2851,
+    1.023,
+    0.9608
+   ],
+   "surface_mm": {
+    "median": 3.168,
+    "p95": 11.86,
+    "max": 76.731,
+    "mean": 4.385
+   },
+   "sample_spacing_mm": 1.441,
+   "icp_centroid_shift_mm": 8.83,
+   "icp_rotation_deg": 1.968,
+   "icp_median_after_mm": 2.166,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99945303,
+     -0.01924362,
+     0.02689453,
+     -0.00776127
+    ],
+    [
+     0.01899388,
+     0.99977436,
+     0.00951063,
+     -0.00162802
+    ],
+    [
+     -0.02707148,
+     -0.0089946,
+     0.99959303,
+     -0.00281928
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 7.04,
+   "kit_proxy_rotation_deg": 2.225,
+   "flags": [
+    "surface centroid moved 20.57 mm > 5.0",
+    "ICP corrects 8.83 mm / 1.968 deg (limits 5.0 mm / 5.0 deg)",
+    "kit-registration proxy moves the body 7.04 mm > 5.0",
+    "extent ratio [1.2851, 1.023, 0.9608] outside +-15% (scale or axis order?)"
+   ]
+  }
+ ],
+ "check": {
+  "rows": [
+   9120,
+   9120
+  ],
+  "columns_differing": {
+   "code_commit_url": 9120,
+   "object_mesh_b64": 16
+  },
+  "payload_changed": [
+   "1:white_pot",
+   "3:white_pot",
+   "5:white_pot",
+   "6:white_pot",
+   "8:white_pot",
+   "10:blue_cup",
+   "14:blue_cup",
+   "14:plastic_dish_rack",
+   "15:plastic_dish_rack",
+   "16:plastic_dish_rack",
+   "20:blue_cup",
+   "28:plastic_dish_rack",
+   "28:white_pot",
+   "30:plastic_dish_rack",
+   "32:blue_cup",
+   "33:blue_cup"
+  ],
+  "payload_unchanged": [],
+  "pandas_version": [
+   "3.0.5",
+   "3.0.5"
+  ],
+  "uploader_validation": "pass (offline validate_submission; CD-O file derived and validated)",
+  "cd_o_file": {
+   "path": "<SCRATCH>/p13h/build_13h/track3_submission.cd-o.parquet",
+   "rows": 294912,
+   "sha256": "062895386385d82340dfcf0e770296d77afe70df6642bafd1d46f7ce95ac779e",
+   "pairs_changed_vs_base": [
+    "1:white_pot",
+    "3:white_pot",
+    "5:white_pot",
+    "6:white_pot",
+    "8:white_pot",
+    "10:blue_cup",
+    "14:blue_cup",
+    "14:plastic_dish_rack",
+    "15:plastic_dish_rack",
+    "16:plastic_dish_rack",
+    "20:blue_cup",
+    "28:plastic_dish_rack",
+    "28:white_pot",
+    "30:plastic_dish_rack",
+    "32:blue_cup",
+    "33:blue_cup"
+   ]
+  },
+  "sha256": "d917b0022336d5c9b7037052df32949705a9fc0e3199aab36a6760c794ae5a4e",
+  "base_sha256": "fa1e31f570e14537538ec1ab760d540cd1a584dfd0e78364e33adea5411f89db",
+  "bytes": 1302068,
+  "byte_identical_to_base": false,
+  "mesh_warnings": []
+ },
+ "hard_failures": [],
+ "frame_flags": [
+  "white_pot (episodes [1, 3, 5, 6, 8, 28]): surface centroid moved 5.95 mm > 5.0",
+  "white_pot (episodes [1, 3, 5, 6, 8, 28]): ICP corrects 5.06 mm / 2.455 deg (limits 5.0 mm / 5.0 deg)",
+  "white_pot (episodes [1, 3, 5, 6, 8, 28]): kit-registration proxy moves the body 5.73 mm > 5.0",
+  "plastic_dish_rack (episodes [14, 15, 16, 28, 30]): surface centroid moved 20.57 mm > 5.0",
+  "plastic_dish_rack (episodes [14, 15, 16, 28, 30]): ICP corrects 8.83 mm / 1.968 deg (limits 5.0 mm / 5.0 deg)",
+  "plastic_dish_rack (episodes [14, 15, 16, 28, 30]): kit-registration proxy moves the body 7.04 mm > 5.0",
+  "plastic_dish_rack (episodes [14, 15, 16, 28, 30]): extent ratio [1.2851, 1.023, 0.9608] outside +-15% (scale or axis order?)"
+ ],
+ "info": [],
+ "status": 2
+}

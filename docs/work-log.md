@@ -6166,3 +6166,9 @@ Advice given:
   13p2. The pose boards get G2 meshes only through perception-tracking's round-2 CV. Note: 13f carries the eval-25 piece-2
   plate that fails D1. That plate does not affect CD-O, so it is inherited as is in a CD-O-only variant; D1 runs on the new
   meshes. 13f's packer inputs are kept in scratch.
+- ~23:59 UTC **pack 13h built, PENDING frame sign-off** (bold-albattani 23:44: G2 audit winners @ 8cd7fe77; GT-informed
+  best-of-N, frozen before scan reads). CD-O variant on 13f (coordinator 23:17). 13f reproduced byte for byte; meshes
+  committed as meshes/g2_pack13h (9610329e). Build: sha256 d917b002…a4e; vs 13f only commit URL + 16 payload rows; CD-O those
+  16 pairs; offline validation pass; guard on; **D1 PASS in both modes** (0/7 on all 16 pairs). Frame flags: pot centroid
+  6.0 mm / ICP 5.1 mm; rack centroid 20.6 mm, ICP 8.8 mm, x extent ×1.285 (its scan anchor 3.2–4.6 mm vs the 13f rack's
+  8–10 mm [D]). [E] CD-O ≈ 0.252. Staged as results/submissions/20261102-track3v-candidate.
