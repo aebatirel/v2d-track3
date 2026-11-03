@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+- 2026-11-03 ~12:25 UTC: mesh lane, CD-O board via pre-registered scan rules.
+  - Scored packs: 13h 0.25159 (5th); 13i 0.24177 (4th).
+  - 13j (rack round R winner: hy21 ep12 t3fit rack 0.3775 vs 0.4016, D1 clean) is signed off and confirmed. Expected about
+    0.2384 [E] vs 3rd's 0.2390.
+  - GPU spend tonight: G2 $8.31, G3 $7.47, R $5.95 (measured).
+  - Outer-shell copies: none adopted.
+  - Pose boards: tracking-perception's public-pose CV picks meshes; I run D1 on its picks.
+  - Rules: `cdo-sprint/C4-audit/PREREG.md` sections 2-14.
 - 2026-11-02 ~23:50 UTC: mesh lane, C4 + G2 summary.
   - C4: 50-seed audit of 52 existing meshes; 13g empty. The only flip-prone mesh is the Tier B board 2 (34%; 13f1 restores library_v3).
   - G2: generation $8.31 measured; 264 meshes, 32 audited.
