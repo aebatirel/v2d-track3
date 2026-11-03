@@ -85,3 +85,20 @@ Gate 1 is replaced, because a held-phase **median** does not fit a sparse, gated
 
 Gates 2 (whole-episode AUC ≥ +0.005 and ≥ 2 × noise) and 3 (no episode below −0.01) are unchanged. Per-object SR
 against mocap is reported. For a later eval phase, the ray-correction sizes (cm) per corrected span are also reported.
+
+## Addendum 2: frozen configuration F1 (3 Nov; committed before any holdout run)
+Code: pipeline/hrc.py at commit e60ff9e1 (sha256 ed9d22f81f5ebdf0…). Command per episode:
+`hrc.py --band 0.25 --tau 0.020 --gate near --skip water_pitcher` (defaults: contact_cm 3, near_cm 15, min_span 3,
+iters 4, hand mask on, ds 4), on control C, with hands from scripts/prep_ep.sh (MediaPipe tasks API + hand_refine).
+Dev evidence (single seed, m14p; scripts/grid.sh; 12 configs on 11 / 13 / 18 / 21, then F1 on all 7 dev episodes):
+| config | 11 | 13 | 18 | 21 | mean (4) |
+|---|---|---|---|---|---|
+| contact gate, τ 1.5 | 0 | 0 | +0.0241 | 0 | +0.0060 |
+| near gate, τ 1.5 / 2.0 | 0 | +0.0074 | +0.0241 | 0 | +0.0079 |
+| near, τ 2.0, no hand mask | −0.0012 | +0.0126 | +0.0214 | 0 | +0.0082 |
+| near, τ 1.0 | 0 | +0.0074 | +0.0235 | **−0.0134** (pitcher) | +0.0044 |
+F1 on all dev episodes: 0 / 41 / 43 untouched (0.0000), 11 0.0000, 13 +0.0074 (19 frames, max 3.1 cm), 18 +0.0241 (47
+frames, max 11.5 cm), 21 0.0000; mean +0.0045, min 0.0000.
+Choices: the near gate (it catches errors that appear just after release, ep13); the hand mask on (no-mask is
+slightly higher on 13 but negative on 11); τ = 2.0 cm (the same as 1.5 on dev, with more margin from the pitcher
+trigger at 1.0); **water_pitcher excluded** (wrong-sign residual on ep21, template error). Nothing else changes.
