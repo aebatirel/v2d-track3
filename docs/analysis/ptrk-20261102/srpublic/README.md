@@ -24,7 +24,9 @@ Per-episode JSONs are `ep*.json`; the table is `summary.txt`.
 
 Notes on the failures:
 
-- **ep23 wooden_piece_2: FLIP.**
+- **ep23 wooden_piece_2: FLIP.** Correction (09:20 UTC, `../boardface/README.md`): only f231–239 is a long-axis
+  roll. f240–324 is a ~180° turn about the thickness–long diagonal, and f172–194 has a mixed axis. The bullets below
+  are the original 09:00 description.
   - Orientation error is above 135° on f168–199 and f226–324, 41 % of frames.
   - The error rotation is about the board's long axis; the median error is 174°.
   - It is a 180° roll of a near-symmetric flat board: the tracker keeps the outline and loses which face is up.

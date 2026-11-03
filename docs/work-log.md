@@ -6884,3 +6884,11 @@ arm and a no-policy replay floor to stage B.
   - All other object types pass everywhere.
   - Eval prior [I]: eval 25 (board roll flip, invisible to masks) and eval 20 (pitcher bias); the 10 spoon evals are
     unmeasurable on public.
+- 09:20 UTC **eval-25 board-face check (PREREG_boardface.md): the cue FAILS public validation, so there is no eval
+  verdict [M]**:
+  - Best τ: 5.2 % false flags (bar 5 %) and 24 % recall (bar 50 %).
+  - It finds ep23 board 2 at f172–194 and f231–239, misses f240–324, and false-flags ep24 board 2 at f178–274.
+  - Cause [M]: the ep23 board-2 error over f240–324 is a ~180° turn about the thickness–long diagonal, not a face flip.
+    The srpublic wording was corrected.
+  - Proposed: overlay public ep23 track vs mocap at f250 / f300; a v2 silhouette + depth rule over 4 alternatives,
+    public-validated first.
