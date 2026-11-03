@@ -7387,3 +7387,9 @@ arm and a no-policy replay floor to stage B.
 - ~05:55 UTC 3 Nov **pack 13i UPLOADED** (CD-O variant; 57935089–57935106). Verified: 9 mesh rows / 9 CD-O pairs.
   - **CD-O 0.24177** (predicted 0.242) → **CD-O 4th**. Rank sum 45, 7th.
   - Selection plan: 14p for five boards, 13i for CD-O.
+- ~05:57 UTC 3 Nov perfect-following: **pf-mesh2 closed, 0 swaps**, so no pack 15; 14p stays.
+  - Best-seed box means vs control: eval 32 0.826 vs 0.890; eval 33 0.917 vs 0.923; eval 19 0.828 vs 0.929.
+  - [I] Tier B collision helped only where the board policy already coped zero-shot (eval 14).
+  - Suggestion adopted for future mesh retrains: a pre-registered entry condition "zero-shot within 0.02 of
+    control".
+  - Batch ≈ $11 of $35; 0 boxes; credit $75.62.
