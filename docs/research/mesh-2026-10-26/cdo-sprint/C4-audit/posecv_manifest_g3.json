@@ -1,0 +1,2299 @@
+[
+ {
+  "index": 0,
+  "object": "white_pot",
+  "label": "G3/white_pot/trellis2/ep45_white_pot_k9_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_g3_trellis2_ep45_k9_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "c3fc0a7cb235b4c270ac3b8599b88472",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2399,
+   "w30": 0.0,
+   "anc_med": 6.8,
+   "add_med": 6.79,
+   "rot_p90": 1.72
+  },
+  "note": null
+ },
+ {
+  "index": 1,
+  "object": "white_pot",
+  "label": "G3/white_pot/trellis2/ep45_white_pot_k9_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_g3_trellis2_ep45_k9_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "4b88cac677b81f842a56ec01e0670927",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2549,
+   "w30": 0.0,
+   "anc_med": 8.8,
+   "add_med": 8.68,
+   "rot_p90": 1.58
+  },
+  "note": null
+ },
+ {
+  "index": 2,
+  "object": "white_pot",
+  "label": "G3/white_pot/trellis2/ep42_white_pot_k240_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_g3_trellis2_ep42_k240_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "77a750b85528200567b2524c96e66934",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3076,
+   "w30": 0.0,
+   "anc_med": 5.41,
+   "add_med": 5.58,
+   "rot_p90": 2.21
+  },
+  "note": null
+ },
+ {
+  "index": 3,
+  "object": "white_pot",
+  "label": "G3/white_pot/trellis2/ep42_white_pot_k240_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_g3_trellis2_ep42_k240_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "06baf5a195c7faa3059f9c0170c3872e",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.314,
+   "w30": 0.0,
+   "anc_med": 5.47,
+   "add_med": 5.5,
+   "rot_p90": 1.69
+  },
+  "note": null
+ },
+ {
+  "index": 4,
+  "object": "white_pot",
+  "label": "G3/white_pot/sam3d/ep2_white_pot_k258_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_g3_sam3d_ep2_k258_s42_lib.glb",
+  "on_hf": true,
+  "md5": "75acd166fb5496ce0c7a3a2d7fd306f5",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3197,
+   "w30": 0.0,
+   "anc_med": 2.53,
+   "add_med": 2.79,
+   "rot_p90": 1.43
+  },
+  "note": null
+ },
+ {
+  "index": 5,
+  "object": "white_pot",
+  "label": "G3/white_pot/sam3d/ep2_white_pot_k258_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_g3_sam3d_ep2_k258_s42_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "b60937e4fe2414db8c0149e67e289f12",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.31,
+   "w30": 0.0,
+   "anc_med": 1.94,
+   "add_med": 2.26,
+   "rot_p90": 1.31
+  },
+  "note": null
+ },
+ {
+  "index": 6,
+  "object": "white_pot",
+  "label": "G3/white_pot/sam3d/ep2_white_pot_k258_s42/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_g3_sam3d_ep2_k258_s42_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "8e8788de5962eea650f1263590ffe48e",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3201,
+   "w30": 0.0,
+   "anc_med": 2.46,
+   "add_med": 2.74,
+   "rot_p90": 1.42
+  },
+  "note": null
+ },
+ {
+  "index": 7,
+  "object": "white_pot",
+  "label": "G3/white_pot/trellis2/ep42_white_pot_k237_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_g3_trellis2_ep42_k237_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "4a2f6a3441f345f9c45cb1062f129d2c",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3197,
+   "w30": 0.0,
+   "anc_med": 4.92,
+   "add_med": 4.94,
+   "rot_p90": 1.34
+  },
+  "note": null
+ },
+ {
+  "index": 8,
+  "object": "white_pot",
+  "label": "G3/white_pot/trellis2/ep42_white_pot_k237_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_g3_trellis2_ep42_k237_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "8283b8f1d74de2019089ae0b94b8b4d7",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    1,
+    0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    6,
+    0
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    28,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.319,
+   "w30": 0.0,
+   "anc_med": 5.46,
+   "add_med": 5.5,
+   "rot_p90": 1.61
+  },
+  "note": null
+ },
+ {
+  "index": 9,
+  "object": "mini_dust_pan",
+  "label": "G3/mini_dust_pan/pixal_mv/ep39_mini_dust_pan_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_dust_pan_g3_pixal_mv_ep39_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "3fe34bcc9206e222bb1ff8e803720a9e",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2064,
+   "w30": 0.0,
+   "anc_med": 2.61,
+   "add_med": 3.67,
+   "rot_p90": 3.94
+  },
+  "note": null
+ },
+ {
+  "index": 10,
+  "object": "mini_dust_pan",
+  "label": "G3/mini_dust_pan/pixal_mv/ep39_mini_dust_pan_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_dust_pan_g3_pixal_mv_ep39_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "636222bd2892d4a36e08d21c1456aedb",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2092,
+   "w30": 0.0,
+   "anc_med": 2.76,
+   "add_med": 3.7,
+   "rot_p90": 3.32
+  },
+  "note": null
+ },
+ {
+  "index": 11,
+  "object": "mini_dust_pan",
+  "label": "G3/mini_dust_pan/pixal_mv/ep39_mini_dust_pan_s2025/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_dust_pan_g3_pixal_mv_ep39_s2025_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "5e403a1614e16089d5490e5b79007845",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2064,
+   "w30": 0.0,
+   "anc_med": 2.61,
+   "add_med": 3.67,
+   "rot_p90": 3.94
+  },
+  "note": null
+ },
+ {
+  "index": 12,
+  "object": "mini_dust_pan",
+  "label": "G3/mini_dust_pan/sam3d/ep18_mini_dust_pan_k108_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_dust_pan_g3_sam3d_ep18_k108_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "3267be93625d8f1985635564aef38a0a",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2198,
+   "w30": 0.0,
+   "anc_med": 5.46,
+   "add_med": 5.54,
+   "rot_p90": 1.6
+  },
+  "note": null
+ },
+ {
+  "index": 13,
+  "object": "mini_dust_pan",
+  "label": "G3/mini_dust_pan/sam3d/ep18_mini_dust_pan_k108_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_dust_pan_g3_sam3d_ep18_k108_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "1e74cd903a349af0cbd9f705758e3f62",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2156,
+   "w30": 0.0,
+   "anc_med": 3.26,
+   "add_med": 3.29,
+   "rot_p90": 1.54
+  },
+  "note": null
+ },
+ {
+  "index": 14,
+  "object": "mini_dust_pan",
+  "label": "G3/mini_dust_pan/pixal_mv/ep39_mini_dust_pan_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_dust_pan_g3_pixal_mv_ep39_s123_lib.glb",
+  "on_hf": true,
+  "md5": "4c681c3ad7267415b5579840e5a771fd",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2232,
+   "w30": 0.0,
+   "anc_med": 2.06,
+   "add_med": 3.09,
+   "rot_p90": 3.91
+  },
+  "note": null
+ },
+ {
+  "index": 15,
+  "object": "mini_dust_pan",
+  "label": "G3/mini_dust_pan/pixal_mv/ep39_mini_dust_pan_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_dust_pan_g3_pixal_mv_ep39_s123_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "845439349c33804eb99b84bf4dade363",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2242,
+   "w30": 0.0,
+   "anc_med": 1.35,
+   "add_med": 2.91,
+   "rot_p90": 3.61
+  },
+  "note": null
+ },
+ {
+  "index": 16,
+  "object": "mini_dust_pan",
+  "label": "G3/mini_dust_pan/sam3d/ep18_mini_dust_pan_k99_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_dust_pan_g3_sam3d_ep18_k99_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "3a5e78909fa4cb2f4d290338ad177bf2",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2232,
+   "w30": 0.0,
+   "anc_med": 5.64,
+   "add_med": 5.73,
+   "rot_p90": 1.73
+  },
+  "note": null
+ },
+ {
+  "index": 17,
+  "object": "mini_dust_pan",
+  "label": "G3/mini_dust_pan/sam3d/ep18_mini_dust_pan_k99_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_dust_pan_g3_sam3d_ep18_k99_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "7d98ff0bd1b264eea8bc7c9f215f5e07",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    19,
+    1
+   ],
+   [
+    38,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2208,
+   "w30": 0.0,
+   "anc_med": 2.84,
+   "add_med": 2.85,
+   "rot_p90": 1.81
+  },
+  "note": null
+ },
+ {
+  "index": 18,
+  "object": "wooden_piece_1",
+  "label": "G3/wooden_piece_1/hy21/ep24_wooden_piece_1_k3_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_1_g3_hy21_ep24_k3_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "6a7dd9f6c199cd74d225f10fb7e1c431",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1626,
+   "w30": 0.0,
+   "anc_med": 2.04,
+   "add_med": 2.12,
+   "rot_p90": 0.94
+  },
+  "note": null
+ },
+ {
+  "index": 19,
+  "object": "wooden_piece_1",
+  "label": "G3/wooden_piece_1/hy21/ep24_wooden_piece_1_k3_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_1_g3_hy21_ep24_k3_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "0a5d08ebf4f2de54833fae86f7360632",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1613,
+   "w30": 0.0,
+   "anc_med": 2.6,
+   "add_med": 2.71,
+   "rot_p90": 1.16
+  },
+  "note": null
+ },
+ {
+  "index": 20,
+  "object": "wooden_piece_1",
+  "label": "G3/wooden_piece_1/hy21/ep24_wooden_piece_1_k3_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_1_g3_hy21_ep24_k3_s42_lib.glb",
+  "on_hf": true,
+  "md5": "4e8b39c2dd58cb12864ffd0b8cf15d48",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1638,
+   "w30": 1.0,
+   "anc_med": 2.92,
+   "add_med": 163.4,
+   "rot_p90": 179.91
+  },
+  "note": null
+ },
+ {
+  "index": 21,
+  "object": "wooden_piece_1",
+  "label": "G3/wooden_piece_1/hy21/ep24_wooden_piece_1_k3_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_1_g3_hy21_ep24_k3_s42_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "391b8905dfdd6d2375ab24cf67148bc9",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1583,
+   "w30": 0.98,
+   "anc_med": 3.44,
+   "add_med": 163.43,
+   "rot_p90": 179.95
+  },
+  "note": null
+ },
+ {
+  "index": 22,
+  "object": "wooden_piece_1",
+  "label": "G3/wooden_piece_1/hy21/ep24_wooden_piece_1_k3_s42/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_1_g3_hy21_ep24_k3_s42_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "064c73be430d4225239813abeacdfe70",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1543,
+   "w30": 1.0,
+   "anc_med": 2.9,
+   "add_med": 163.4,
+   "rot_p90": 179.91
+  },
+  "note": null
+ },
+ {
+  "index": 23,
+  "object": "wooden_piece_1",
+  "label": "G3/wooden_piece_1/hy21/ep24_wooden_piece_1_k3_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_1_g3_hy21_ep24_k3_s123_lib.glb",
+  "on_hf": true,
+  "md5": "fbef5f48a1f05725a5d2a31e69712e6f",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1658,
+   "w30": 0.0,
+   "anc_med": 1.6,
+   "add_med": 1.72,
+   "rot_p90": 1.03
+  },
+  "note": null
+ },
+ {
+  "index": 24,
+  "object": "wooden_piece_1",
+  "label": "G3/wooden_piece_1/hy21/ep24_wooden_piece_1_k3_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_1_g3_hy21_ep24_k3_s123_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "36b292a560b6e25e44a276dabdb4366a",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    25,
+    0
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1593,
+   "w30": 0.0,
+   "anc_med": 2.31,
+   "add_med": 2.47,
+   "rot_p90": 1.12
+  },
+  "note": null
+ },
+ {
+  "index": 25,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep27_plastic_dish_rack_k147_s7/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep27_k147_s7_lib.glb",
+  "on_hf": true,
+  "md5": "0ada9f2bb106c6e5b8f293f1512e5680",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3998,
+   "w30": 0.0,
+   "anc_med": 4.6,
+   "add_med": 4.93,
+   "rot_p90": 1.95
+  },
+  "note": null
+ },
+ {
+  "index": 26,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep27_plastic_dish_rack_k147_s7/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep27_k147_s7_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "299ef2d85855a5e640cbd42bd873cce2",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.3934,
+   "w30": 0.0,
+   "anc_med": 3.52,
+   "add_med": 4.08,
+   "rot_p90": 1.88
+  },
+  "note": null
+ },
+ {
+  "index": 27,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep27_plastic_dish_rack_k147_s7/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep27_k147_s7_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "69e62a1296a0eb04c382dcf36de3e48e",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4002,
+   "w30": 0.0,
+   "anc_med": 4.58,
+   "add_med": 4.92,
+   "rot_p90": 1.99
+  },
+  "note": null
+ },
+ {
+  "index": 28,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep27_plastic_dish_rack_k147_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep27_k147_s123_lib.glb",
+  "on_hf": true,
+  "md5": "96cbd19b41f680cff4e83fb5f658e5c0",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4245,
+   "w30": 0.0,
+   "anc_med": 4.55,
+   "add_med": 5.23,
+   "rot_p90": 2.0
+  },
+  "note": null
+ },
+ {
+  "index": 29,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep27_plastic_dish_rack_k147_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep27_k147_s123_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "2b7f89c4d133e3286ac9830c53b27e34",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4193,
+   "w30": 0.0,
+   "anc_med": 3.65,
+   "add_med": 4.62,
+   "rot_p90": 2.19
+  },
+  "note": null
+ },
+ {
+  "index": 30,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep27_plastic_dish_rack_k147_s123/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep27_k147_s123_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "852e73b97e6cef127833f98e81508458",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.408,
+   "w30": 0.0,
+   "anc_med": 4.23,
+   "add_med": 4.95,
+   "rot_p90": 1.91
+  },
+  "note": null
+ },
+ {
+  "index": 31,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep13_plastic_dish_rack_k66_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep13_k66_s42_lib.glb",
+  "on_hf": true,
+  "md5": "0e723b1496b4254978d06c110fdaa54c",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4359,
+   "w30": 0.0,
+   "anc_med": 5.91,
+   "add_med": 6.33,
+   "rot_p90": 2.75
+  },
+  "note": null
+ },
+ {
+  "index": 32,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep13_plastic_dish_rack_k66_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep13_k66_s42_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "3dae81eb32a907858d30fca9c7b80fb5",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4092,
+   "w30": 0.0,
+   "anc_med": 6.0,
+   "add_med": 6.5,
+   "rot_p90": 2.92
+  },
+  "note": null
+ },
+ {
+  "index": 33,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep13_plastic_dish_rack_k66_s42/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep13_k66_s42_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "19e95e1f63b63a671e3d96b2c5f9fbb6",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4348,
+   "w30": 0.0,
+   "anc_med": 5.74,
+   "add_med": 6.12,
+   "rot_p90": 2.64
+  },
+  "note": null
+ },
+ {
+  "index": 34,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep27_plastic_dish_rack_k144_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep27_k144_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "d3e73ddc38a4b29df42cf6a9479b0ab5",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4397,
+   "w30": 0.0,
+   "anc_med": 4.58,
+   "add_med": 4.94,
+   "rot_p90": 2.16
+  },
+  "note": null
+ },
+ {
+  "index": 35,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep27_plastic_dish_rack_k144_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep27_k144_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "a2d4839dcad1aeeb1c16bc2859cce6c6",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4264,
+   "w30": 0.0,
+   "anc_med": 4.46,
+   "add_med": 4.75,
+   "rot_p90": 2.13
+  },
+  "note": null
+ },
+ {
+  "index": 36,
+  "object": "plastic_dish_rack",
+  "label": "G3/plastic_dish_rack/trellis2/ep27_plastic_dish_rack_k144_s2025/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/plastic_dish_rack_g3_trellis2_ep27_k144_s2025_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "86c3c6ad415a99cff782b1b40e1038dd",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    14,
+    1
+   ],
+   [
+    15,
+    0
+   ],
+   [
+    16,
+    0
+   ],
+   [
+    28,
+    0
+   ],
+   [
+    30,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.4139,
+   "w30": 0.0,
+   "anc_med": 4.3,
+   "add_med": 4.69,
+   "rot_p90": 2.2
+  },
+  "note": null
+ },
+ {
+  "index": 37,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k9_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k9_s42_lib.glb",
+  "on_hf": true,
+  "md5": "2653d5259146646b8db16e066af30232",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1592,
+   "w30": 0.78,
+   "anc_med": 4.59,
+   "add_med": 125.98,
+   "rot_p90": 179.8
+  },
+  "note": null
+ },
+ {
+  "index": 38,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k9_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k9_s42_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "39a8764771b4c0e625d0f97036fb33d1",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1936,
+   "w30": 0.58,
+   "anc_med": 4.29,
+   "add_med": 78.3,
+   "rot_p90": 179.95
+  },
+  "note": null
+ },
+ {
+  "index": 39,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k9_s42/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k9_s42_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "0d503df4030f1dd1d2685e83cb742b41",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1586,
+   "w30": 0.76,
+   "anc_med": 4.42,
+   "add_med": 125.95,
+   "rot_p90": 179.79
+  },
+  "note": null
+ },
+ {
+  "index": 40,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k9_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k9_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "fa122e24366a614310e3f9dbad3ed1fe",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1656,
+   "w30": 0.62,
+   "anc_med": 3.71,
+   "add_med": 156.47,
+   "rot_p90": 179.89
+  },
+  "note": null
+ },
+ {
+  "index": 41,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k9_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k9_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "a879e085a988630ea4660cc948a26c9f",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1809,
+   "w30": 0.46,
+   "anc_med": 3.47,
+   "add_med": 4.62,
+   "rot_p90": 179.68
+  },
+  "note": null
+ },
+ {
+  "index": 42,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k9_s2025/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k9_s2025_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "2435a55b6cae1e3ad5b5b15355473641",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1651,
+   "w30": 0.58,
+   "anc_med": 3.56,
+   "add_med": 156.48,
+   "rot_p90": 179.77
+  },
+  "note": null
+ },
+ {
+  "index": 43,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k6_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k6_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "e88567d2d9f06dc79749a03be89cd080",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1623,
+   "w30": 0.0,
+   "anc_med": 5.5,
+   "add_med": 5.53,
+   "rot_p90": 1.54
+  },
+  "note": null
+ },
+ {
+  "index": 44,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k6_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k6_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "3199b8c460d3d613c7ae3352d598d5b9",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1864,
+   "w30": 0.0,
+   "anc_med": 5.17,
+   "add_med": 5.3,
+   "rot_p90": 1.92
+  },
+  "note": null
+ },
+ {
+  "index": 45,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k6_s2025/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k6_s2025_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "529bafcf0f226b4437035c80649977d2",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1607,
+   "w30": 0.04,
+   "anc_med": 5.5,
+   "add_med": 5.67,
+   "rot_p90": 1.64
+  },
+  "note": null
+ },
+ {
+  "index": 46,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k9_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k9_s123_lib.glb",
+  "on_hf": true,
+  "md5": "abcb03aed2cbd972892176b7f15ee497",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1663,
+   "w30": 0.5,
+   "anc_med": 2.84,
+   "add_med": 41.2,
+   "rot_p90": 179.8
+  },
+  "note": null
+ },
+ {
+  "index": 47,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k9_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k9_s123_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "729d751fe221fb034e2dd1b561e76e16",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1826,
+   "w30": 0.44,
+   "anc_med": 2.58,
+   "add_med": 3.19,
+   "rot_p90": 179.55
+  },
+  "note": null
+ },
+ {
+  "index": 48,
+  "object": "wooden_piece_2",
+  "label": "G3/wooden_piece_2/sam3d/ep24_wooden_piece_2_k9_s123/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/wooden_piece_2_g3_sam3d_ep24_k9_s123_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "b275badeb6612f350b6f8727794e0917",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    25,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.1657,
+   "w30": 0.5,
+   "anc_med": 3.23,
+   "add_med": 41.16,
+   "rot_p90": 179.81
+  },
+  "note": null
+ },
+ {
+  "index": 49,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/hy21/ep11_beige_cup_k0_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_hy21_ep11_k0_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "33f485557a25e62f96e93f58ee08ed79",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2622,
+   "w30": 0.0,
+   "anc_med": 4.46,
+   "add_med": 8.44,
+   "rot_p90": 7.77
+  },
+  "note": null
+ },
+ {
+  "index": 50,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/hy21/ep11_beige_cup_k0_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_hy21_ep11_k0_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "cc809fc690416fcbd6ac0733e13e8e8a",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.217,
+   "w30": 0.0,
+   "anc_med": 3.58,
+   "add_med": 4.99,
+   "rot_p90": 3.65
+  },
+  "note": null
+ },
+ {
+  "index": 51,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/hy21/ep11_beige_cup_k0_s2025/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_hy21_ep11_k0_s2025_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "3d6475c449f6c46827ce5aa7d9e97bf8",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": {
+   "cdo_med": 0.2593,
+   "w30": 0.0,
+   "anc_med": 4.28,
+   "add_med": 8.42,
+   "rot_p90": 7.74
+  },
+  "note": null
+ },
+ {
+  "index": 52,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/pixal_mv/ep11_beige_cup_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_pixal_mv_ep11_s42_lib.glb",
+  "on_hf": true,
+  "md5": "73e5addc16da64ff0f24b794ef463f8f",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 53,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/pixal_mv/ep11_beige_cup_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_pixal_mv_ep11_s42_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "22ef8ef6af0cd4d43d5792da66537516",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 54,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/pixal_mv/ep11_beige_cup_s42/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_pixal_mv_ep11_s42_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "2230644cdce1b0d5e38a93e11af43e8f",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 55,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/trellis2_1024/ep11_beige_cup_k0_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_trellis2_1024_ep11_k0_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "570f0941812048f5ff260854282627fc",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 56,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/trellis2_1024/ep11_beige_cup_k0_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_trellis2_1024_ep11_k0_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "c5885e1225f1e0d329d6e7ea1fe748e0",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 57,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/trellis2_1024/ep11_beige_cup_k0_s2025/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_trellis2_1024_ep11_k0_s2025_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "71c436fce5f4e06002ed4e14e4269eae",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 58,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/trellis2_1024/ep11_beige_cup_k6_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_trellis2_1024_ep11_k6_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "9e7daad98ebe5091b10e45a7203d9d0e",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 59,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/trellis2_1024/ep11_beige_cup_k6_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_trellis2_1024_ep11_k6_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "62c8e8506e8f3e879af91919d864ec28",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 60,
+  "object": "beige_cup",
+  "label": "G3/beige_cup/trellis2_1024/ep11_beige_cup_k6_s2025/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/beige_cup_g3_trellis2_1024_ep11_k6_s2025_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "959c21c1e21397c9854c483edc221766",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    8,
+    0
+   ],
+   [
+    10,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 61,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/pixal_mv/ep2_white_pot_lid_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_pixal_mv_ep2_s42_lib.glb",
+  "on_hf": true,
+  "md5": "9bdbfdb730ac04966bb873df76833270",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 62,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/pixal_mv/ep2_white_pot_lid_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_pixal_mv_ep2_s42_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "17419eef8f761c8739d7da9130942fc8",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 63,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/pixal_mv/ep2_white_pot_lid_s42/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_pixal_mv_ep2_s42_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "c3e9b0d6552bfffacdfceb6a245fd496",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 64,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/pixal_mv/ep2_white_pot_lid_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_pixal_mv_ep2_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "15b4087c61c8457168c7fa071cfc189b",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 65,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/pixal_mv/ep2_white_pot_lid_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_pixal_mv_ep2_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "d5d57e6d4f16b835563706d6bd23008f",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 66,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/trellis2/ep2_white_pot_lid_k315_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_trellis2_ep2_k315_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "c6c954964b79cc46acceb14df0a1a3ca",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 67,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/trellis2/ep2_white_pot_lid_k315_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_trellis2_ep2_k315_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "c90461485715c198c23f5b381a08546d",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 68,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/trellis2/ep2_white_pot_lid_k315_s2025/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_trellis2_ep2_k315_s2025_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "89d00c32f40141a4ca9bf0fe1bf8cc34",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 69,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/trellis2/ep2_white_pot_lid_k315_s42/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_trellis2_ep2_k315_s42_lib.glb",
+  "on_hf": true,
+  "md5": "1b29bd6466ed084b7f5458d5e9cfc17b",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 70,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/trellis2/ep2_white_pot_lid_k315_s42/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_trellis2_ep2_k315_s42_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "25cfb3feaeff8f3a5c2fe6d58ebb82e8",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 71,
+  "object": "white_pot_lid",
+  "label": "G3/white_pot_lid/trellis2/ep2_white_pot_lid_k315_s42/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/white_pot_lid_g3_trellis2_ep2_k315_s42_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "2ca1395c0146839f658d299e3bba69ec",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    1,
+    1
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 72,
+  "object": "mini_sweeper",
+  "label": "G3/mini_sweeper/sam3d/ep18_mini_sweeper_k162_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_sweeper_g3_sam3d_ep18_k162_s123_lib.glb",
+  "on_hf": true,
+  "md5": "e541a1a956398d75b23a6da053c55ddd",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 73,
+  "object": "mini_sweeper",
+  "label": "G3/mini_sweeper/sam3d/ep18_mini_sweeper_k162_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_sweeper_g3_sam3d_ep18_k162_s123_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "da7348d4d613aceec85d629aa08d211d",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 74,
+  "object": "mini_sweeper",
+  "label": "G3/mini_sweeper/sam3d/ep18_mini_sweeper_k264_s123/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_sweeper_g3_sam3d_ep18_k264_s123_lib.glb",
+  "on_hf": true,
+  "md5": "f6e51bffaa998027aaa79b4b660e71cc",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 75,
+  "object": "mini_sweeper",
+  "label": "G3/mini_sweeper/sam3d/ep18_mini_sweeper_k264_s123/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_sweeper_g3_sam3d_ep18_k264_s123_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "7147205e1796b29fedc8c35f1f8f8dfa",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 76,
+  "object": "mini_sweeper",
+  "label": "G3/mini_sweeper/sam3d/ep18_mini_sweeper_k264_s2025/placed",
+  "kind": "placed",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_sweeper_g3_sam3d_ep18_k264_s2025_lib.glb",
+  "on_hf": true,
+  "md5": "f5e014c12d7a8074d9e1e8e309490a0e",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py)",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 77,
+  "object": "mini_sweeper",
+  "label": "G3/mini_sweeper/sam3d/ep18_mini_sweeper_k264_s2025/t3fit",
+  "kind": "t3fit",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_sweeper_g3_sam3d_ep18_k264_s2025_lib_t3fit.glb",
+  "on_hf": true,
+  "md5": "1bb3bb01f0f24bbfe7e2e56ad36725c6",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free T3 fit)",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ },
+ {
+  "index": 78,
+  "object": "mini_sweeper",
+  "label": "G3/mini_sweeper/sam3d/ep18_mini_sweeper_k264_s2025/trim",
+  "kind": "trim",
+  "hf_path": "runs/mesh-20261103-g3-2417282/stage2/mini_sweeper_g3_sam3d_ep18_k264_s2025_lib_trim15.glb",
+  "on_hf": true,
+  "md5": "2121f1093ce2bd1e1414860e18f7fe59",
+  "placed": true,
+  "transform": "none (library_v3 body frame; placed GT-free with C1/T2 place.py; then GT-free trim)",
+  "eval_pairs": [
+   [
+    19,
+    0
+   ],
+   [
+    30,
+    0
+   ]
+  ],
+  "scan_audit_D": null,
+  "note": null
+ }
+]

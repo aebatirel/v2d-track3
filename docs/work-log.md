@@ -6591,3 +6591,8 @@ diagnostic; nothing is picked for submission.
   - Dust pan finding [M]: 46 isolated generator debris faces, 0.7 mm² total (3e-5 of the area), at x -50..-64 mm.
     Everything else is within 15 mm of 13h's pan. The [D] audit on the budgeted mesh includes the debris; it is negligible.
   - Pot: anchor about 6.8 mm, so CD-O packs only.
+- 06:43 UTC: the container had restarted (uptime 1 min). The G3 audit had stopped at 52/79 at 05:41Z; relaunched
+  detached; finished meshes are skipped.
+  - D1 started on board-2 near-miss #43 (sam3d ep24 k6 s2025 placed) for the perception lane's round-3 CV.
+  - `C4-audit/posecv_manifest_g3.json`: all 79 audited G3 meshes, on HF at runs/mesh-20261103-g3-2417282/stage2/,
+    verified 79/79.
