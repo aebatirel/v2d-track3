@@ -6,6 +6,7 @@
 - Rigid-in-grasp with our MediaPipe hands fails: the hand is noisier than the track.
 - HRC (hand-masked ray correction, frozen F1): dev +0.0045. Holdout (13 eps, 10-seed): mean −0.0042, ep24 −0.047
   (board 2 shifted 21 cm; MP 0.9 → 0), held mean ADD −4.3 %. All gates fail. Nothing for eval.
+- Coordinator (11:38 UTC): no phase 2, no object-gated variant; **lane closed**. No machines were rented.
 
 ## 2026-11-03 ~06:40 UTC: owner "go in all": three perception lanes started
 - Eval gross-failure audit (A, ≤ $6) and round-3 pose-mesh CV ($0): perception-tracking.

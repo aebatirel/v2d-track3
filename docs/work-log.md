@@ -7581,3 +7581,6 @@ arm and a no-policy replay floor to stage B.
   - Gates g1 / g2 / g3 all fail. Post-hoc reading [I]: on thin, flat boards the 25 cm band admits surfaces behind the
     board (the dev set had no board episode); the near gate fires on unheld objects.
   - Not repeated: hand-as-pose-source; depth-residual ray correction on thin / flat objects. Spend $0.
+- ~15:10 UTC 3 Nov hand-aware: coordinator agrees: no phase 2, no object-gated variant (EV ≈ 0). **Lane closed.**
+  Total spend $0; no rentals; nothing left running. Local scratch data (depth caches, hands) lives only in the
+  container; the hand fits for public episodes are regenerable with scripts/prep_ep.sh.
