@@ -80,3 +80,24 @@ object in the episode keeps its control pose.
 - One 24 GB box (RTX 4090 / 3090 class, ≈ $0.3–0.5/h) for ≈ 3–4 h: ≈ $1.5–3 [E]. Cap $15.
 - The box self-destroys when done, with a stall watchdog.
 - Scoring on CPU here ($0).
+
+## Addendum 1 (07:05 UTC, before any training or network output; coordinator's request)
+**Secondary criterion** (variant N, per arm), added because the pot AUC is near its ceiling:
+- per test episode, the median over frames of the plain pot ADD (base registration seed, after the scorer's alignment);
+- **passes** if the mean relative reduction over the 4 test episodes is ≥ 20 % and no test episode's median ADD is
+  higher than the control's.
+- Lost frames (> 3 cm) are reported per episode.
+
+The primary gate is unchanged. Passing only the secondary is reported as "accuracy gain without AUC gain"; it does not
+by itself justify eval use.
+
+Scoring meshes, confirmed by perception-tracking: the m13p set, i.e. the 13f payloads, except:
+- pot: TSDF X;
+- rack: library_c0 (md5 bbca8ec0…);
+- wooden_piece_2: library_v3.
+
+Reference base13p numbers are at docs/analysis/ptrk-20261102/results/base13p @ 42ac69e. Only the rack (ep27's alignment
+object) and the pot enter the pot score.
+
+No second object in this batch. The coordinator offered one as optional; it is declined to keep this test clean and
+within its time.
