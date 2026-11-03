@@ -7454,3 +7454,11 @@ arm and a no-policy replay floor to stage B.
   - Coordinator follow-up [H-spoon], pre-registered CPU test: 180° roll or yaw flips of the spoon are invisible to
     mask IoU but cost π rad. The eval-33 "offset along the handle" looks like a yaw flip. Test every spoon episode on
     depth / mask for flipped alternatives.
+- ~08:25 UTC 3 Nov **spoon flip check done** (PREREG_spoonflip; perception-tracking 4b73e52a; CPU, $0) [M]:
+  - flags cover 50 / 2,769 frames (1.8 %); over whole episodes the alternatives lose everywhere;
+  - from the overlays: eval 33 is a handle-direction offset, not a flip; eval 32 is a position offset; eval 36 has a
+    weak roll candidate (31 frames).
+  - **Verdict: no clear 180° spoon flip in any packed reference.** The public diagnostic was declined (no public spoon
+    episodes; 10 % of one episode can't fail SP-SR).
+  - Conclusion: eval references have no gross failures. SP-SR / MP-SR losses most likely come from rollouts
+    (drops / displacements). Perception lane rests.
