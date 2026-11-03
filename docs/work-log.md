@@ -6535,3 +6535,7 @@ diagnostic; nothing is picked for submission.
 - 00:10 UTC: the coordinator reports 13h scored **CD-O 0.25159** (predicted about 0.252 [E]); CD-O board is now 5th;
   rank sum 45. Trim: agreed, not adopted; kept on file. Mesh lane rests until tracking-perception's round-2 pose-CV picks
   need D1.
+- 01:27 UTC: tracking-perception's round-2 pose CV picked one G2 mesh: index 29, water_pitcher trellis2 ep22 k33 s2025 t3fit
+  (md5 2c06b3b3…), held-out +0.1125 on ep21/22. Nothing else passed: pot none beat the TSDF pot "X"; blue cup and rack no.
+  - D1 PASS: 0/6 flips in both modes; rotation at the eval seed 2.32 deg (budget) / 2.35 deg (raw).
+  - Scan CD-O 0.4736 vs the shipped 0.3713, so pose packs only. Reported to tracking-perception and the coordinator.
