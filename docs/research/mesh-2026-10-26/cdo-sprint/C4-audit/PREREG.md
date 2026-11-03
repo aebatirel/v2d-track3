@@ -310,3 +310,36 @@ Non-generated shipped meshes (sweeper P1, beige T1 lathe, lid prim, board 2 Tier
 - [H16] Where a copy exists, its CD-O improves by 0.005-0.03 (the inner shell's sampled points sit 1-3 mm off) and
   rule A passes for at least one object.
 - [H17] Hunyuan / Pixal meshes are single-shell, so no copy.
+
+## 14. Addendum 9 (2026-11-03 ~07:40 UTC, coordinator GO, before any new rack is generated or measured): rack round R
+**Why.** CD-O is 4th at 0.24177; 3rd is 0.23900 (-0.0028). The rack (5 pairs, 13i mesh 0.4016) is the largest term. Closing
+the gap needs about -0.020 on the rack, which is exactly rule A's bar. Two clean-ups of the 13i rack reached -0.016 and
+-0.017; they are already measured, so they stay excluded (no new rule for measured racks).
+
+**New candidates (GT-free inputs; none measured before this commit).**
+- **R-gen (GPU, <= $10, on demand, stop if credit < $15):**
+  - TRELLIS.2 (1536; 1024 if it runs out of memory), Hunyuan3D-2.1 and SAM 3D on rack crops **not used in G2 / G3**:
+    crops.py ranks 3-6 of public eps 12 / 13 / 26 / 27 / 31, plus any other public rack episode crops.py accepts.
+    Seeds 42, 7, 123, 2025, 31337, 777.
+  - Pixal3D-MV rack from our posed view sets (`gen/mv_views.py`) on the same episodes, the same seeds.
+  - GT-free Sim(3) fit; SHA256 freeze committed before any scan read.
+- **R-prim (CPU):** `prim_rack.py` (the C0 / dev1 primitive rack fitter) re-run on public rack episodes that have no
+  existing measured prim fit, with its existing settings; plus its existing variant flags if any. These are new files,
+  never measured.
+
+**Selection (as G2 / G3).**
+1. Stage 1: 6-seed screen (3001-3006) of R-gen. R-prim fits go to stage 2 directly.
+2. Stage 2: the 6 lowest stage-1 CD-O R-gen meshes, plus every R-prim fit. Each is placed (place.py; prim fits are
+   already in our frame).
+3. Copies per stage-2 mesh:
+   - **placed**;
+   - **t3fit**;
+   - **trim**: faces > 15 mm from both our observed rack points and the 13i rack;
+   - **outer**: section-13 fragment / nested-shell removal;
+   - **trim+outer**: outer applied to trim.
+   No-op copies (nothing removed) are skipped.
+4. Stage 3: section-2 audit (50 seeds), the D1 veto, and rules (A)/(B)/(C) against the **13i rack** (G2 #17: CD-O 0.4016,
+   W30 0, anchor 3.78, ADD 4.30). Ties: lowest W30, then CD-O, then ADD. The winner goes to pack 13j on 13i.
+
+**Prediction.** [H18] P(some candidate reaches <= 0.3816) is about 0.4 [E]. The 13i rack's two clean-ups reached 0.3856 /
+0.3844, so a fresh generation + clean-up needs to land about 0.003-0.005 better.
