@@ -7345,3 +7345,9 @@ arm and a no-policy replay floor to stage B.
     GT-free gated variant (H1c).
   - Public LOO test sent to perception-tracking (CPU, PREREG first). H1 uses public mocap to calibrate an inference
     constant (GT-informed), so eval use waits for the owner's explicit yes.
+- ~03:50 UTC 3 Nov **owner: "yes to bias calibration"**.
+  - The GT-informed H1 (body-frame bias learned from public mocap, applied as submitted-mesh placement) is approved
+    for eval use, for objects passing the pre-registered public LOO gate.
+  - Eval B = full-public robust mean (same estimator), applied on 14p's payload, D1 checked.
+  - focused-pascal builds a pose pack on 14p. Disclosure: "placement calibrated from public mocap
+    (owner-approved GT-informed)".
