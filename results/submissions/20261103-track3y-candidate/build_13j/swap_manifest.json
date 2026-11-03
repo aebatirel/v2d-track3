@@ -1,0 +1,595 @@
+{
+ "tool": "tools/pack_swap_meshes.py",
+ "argv": [
+  "tools/pack_swap_meshes.py",
+  "--kit",
+  "<SCRATCH>/map/scoring/kit/v2d_submission_kit",
+  "--results",
+  "<SCRATCH>/p13i/build_13i/results",
+  "--meshes",
+  "<SCRATCH>/p13i/build_13i/meshes",
+  "--replace",
+  "<SCRATCH>/p13j/replace",
+  "--objects",
+  "plastic_dish_rack",
+  "--only-episodes",
+  "plastic_dish_rack:14,15,16,28,30",
+  "--base",
+  "results/submissions/20261103-track3w-candidate/build_13i/track3_submission.parquet",
+  "--code-commit",
+  "https://github.com/aebatirel/v2d-track3/commit/3a933d1dc2b63696572b0e3f211ca81bd58c1ad6",
+  "--python",
+  "<SCRATCH>/pack_venv305/bin/python",
+  "-o",
+  "<SCRATCH>/p13j/build_13j"
+ ],
+ "python": "3.13.17",
+ "versions": {
+  "pandas": "3.0.5",
+  "pyarrow": "26.0.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "trimesh": "5.2.0",
+  "fast_simplification": "0.2.0"
+ },
+ "kit": "<SCRATCH>/map/scoring/kit/v2d_submission_kit",
+ "results": "<SCRATCH>/p13i/build_13i/results",
+ "meshes": "<SCRATCH>/p13i/build_13i/meshes",
+ "replace": "<SCRATCH>/p13j/replace",
+ "replacement_files": {
+  "plastic_dish_rack": {
+   "path": "<SCRATCH>/p13j/replace/plastic_dish_rack.glb",
+   "md5": "1882b7a2e09ba03d1ebee370ca95d657"
+  }
+ },
+ "transforms": {},
+ "base": "/home/user/v2d-track3/results/submissions/20261103-track3w-candidate/build_13i/track3_submission.parquet",
+ "code_commit": "https://github.com/aebatirel/v2d-track3/commit/3a933d1dc2b63696572b0e3f211ca81bd58c1ad6",
+ "packer_command": [
+  "<SCRATCH>/pack_venv305/bin/python",
+  "-I",
+  "tools/pack_submission.py",
+  "--track",
+  "track_3",
+  "--results",
+  "<SCRATCH>/p13j/build_13j/results",
+  "--meshes",
+  "<SCRATCH>/p13j/build_13j/meshes",
+  "--code-commit",
+  "https://github.com/aebatirel/v2d-track3/commit/3a933d1dc2b63696572b0e3f211ca81bd58c1ad6",
+  "--eval-script",
+  "<SCRATCH>/map/scoring/kit/v2d_submission_kit/flash_chord/scripts/evaluate_policy.py",
+  "-o",
+  "<SCRATCH>/p13j/build_13j/track3_submission.parquet"
+ ],
+ "packer_cwd": "<SCRATCH>/map/scoring/kit/v2d_submission_kit",
+ "results_md5": {
+  "episode_000001.json": "642ee590aa259085614e99dba1563bce",
+  "episode_000001.parquet": "d185451bd29e9ff66fa0ffcc880f21fb",
+  "episode_000003.json": "ba396d69ab69818fe9feadbe90036f9b",
+  "episode_000003.parquet": "d3c7aa08242a75790940faf58763eb5d",
+  "episode_000005.json": "2c9af720e52f38e46f880b646ad7e34f",
+  "episode_000005.parquet": "5c76c4f83e65fb9539632e48aa36b117",
+  "episode_000006.json": "32af3e9f8750bd9776de6338f35da6b6",
+  "episode_000006.parquet": "2b442606c8e863c4d71d88255fb89fc5",
+  "episode_000008.json": "b2eceee9e5c0f17e1df512c807f50f60",
+  "episode_000008.parquet": "ff303e0fe98f074ab0d8d5006af53b0f",
+  "episode_000010.json": "ddb0642569119fdc381226f47d12c689",
+  "episode_000010.parquet": "2548c3f07fda1683724afd8bfb1fb9c7",
+  "episode_000014.json": "201a1c6d372c37c6843c3f757256988d",
+  "episode_000014.parquet": "3f087f84b2dd9fbe6fc6dadd0d25ac56",
+  "episode_000015.json": "fda0f0934f5b66e3daf103e1af5f90c9",
+  "episode_000015.parquet": "fdb197668c28a6afd45f64abad88a796",
+  "episode_000016.json": "fd82883b944e5d743292e360d867f0b7",
+  "episode_000016.parquet": "7395f9607e0455c7cb8c75aa3bee26b0",
+  "episode_000019.json": "b8eaf337951af6fc1c9491a0401a6061",
+  "episode_000019.parquet": "82f41360e7c26a39fd0a522823454188",
+  "episode_000020.json": "ba7c7d358df2c370c17333a12dc2902f",
+  "episode_000020.parquet": "1ed48af4060214e361d12ab060e585a7",
+  "episode_000025.json": "2609089f1d6b60e61d28eab739e604dc",
+  "episode_000025.parquet": "a0d7ad49f883a6d1e3c93fa70297dcb0",
+  "episode_000028.json": "710bc3522edfed17aff2e450f23d096c",
+  "episode_000028.parquet": "cf0fdf54cac7e0af6fc9fe8a09a4ff13",
+  "episode_000030.json": "d653c5b06bbc0e15ec32aac4095c6505",
+  "episode_000030.parquet": "63acae4402f3200a85b22f6def51f607",
+  "episode_000032.json": "469609eb4dd86e4f19eca730985a491f",
+  "episode_000032.parquet": "61f98cbc8ec0a68717bbf15a420cf054",
+  "episode_000033.json": "e1ce80ec4860906f094404b7be9c052e",
+  "episode_000033.parquet": "a43a7958fc2f3e74df73b39d914ddc96",
+  "episode_000035.json": "7e2b357c9e3e8e1eb7b44c38f6896134",
+  "episode_000035.parquet": "029d810c460ed594805eecf533bbbb10",
+  "episode_000036.json": "871a1d7df06537717d1d6ab3e8d3e668",
+  "episode_000036.parquet": "a92a9895bfe7356a55da5d9db312c1c8",
+  "episode_000037.json": "353f1c24327b93fe3f8e080aa8710b00",
+  "episode_000037.parquet": "1c2b8aaf0382e1b2b73e9dd47539acda",
+  "episode_000038.json": "36f64a2c230e94409218b4b2050c1347",
+  "episode_000038.parquet": "e85ebc6eec1d1c64617b6881372d1495"
+ },
+ "pairs": [
+  {
+   "episode": 1,
+   "slot": 0,
+   "object": "white_pot",
+   "file": "meshes/episode_000001/white_pot.glb",
+   "md5_before": "c3fc0a7cb235b4c270ac3b8599b88472",
+   "swapped": false,
+   "md5_after": "c3fc0a7cb235b4c270ac3b8599b88472"
+  },
+  {
+   "episode": 1,
+   "slot": 1,
+   "object": "white_pot_lid",
+   "file": "meshes/episode_000001/white_pot_lid.glb",
+   "md5_before": "35727a10bca407594f41d108b4dc03ab",
+   "swapped": false,
+   "md5_after": "35727a10bca407594f41d108b4dc03ab"
+  },
+  {
+   "episode": 3,
+   "slot": 0,
+   "object": "white_pot",
+   "file": "meshes/episode_000003/white_pot.glb",
+   "md5_before": "c3fc0a7cb235b4c270ac3b8599b88472",
+   "swapped": false,
+   "md5_after": "c3fc0a7cb235b4c270ac3b8599b88472"
+  },
+  {
+   "episode": 3,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000003/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 5,
+   "slot": 0,
+   "object": "white_pot",
+   "file": "meshes/episode_000005/white_pot.glb",
+   "md5_before": "c3fc0a7cb235b4c270ac3b8599b88472",
+   "swapped": false,
+   "md5_after": "c3fc0a7cb235b4c270ac3b8599b88472"
+  },
+  {
+   "episode": 5,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000005/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 6,
+   "slot": 0,
+   "object": "white_pot",
+   "file": "meshes/episode_000006/white_pot.glb",
+   "md5_before": "c3fc0a7cb235b4c270ac3b8599b88472",
+   "swapped": false,
+   "md5_after": "c3fc0a7cb235b4c270ac3b8599b88472"
+  },
+  {
+   "episode": 6,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000006/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 8,
+   "slot": 0,
+   "object": "beige_cup",
+   "file": "meshes/episode_000008/beige_cup.glb",
+   "md5_before": "8c8be2b0747d234706913a2360e90570",
+   "swapped": false,
+   "md5_after": "8c8be2b0747d234706913a2360e90570"
+  },
+  {
+   "episode": 8,
+   "slot": 1,
+   "object": "white_pot",
+   "file": "meshes/episode_000008/white_pot.glb",
+   "md5_before": "c3fc0a7cb235b4c270ac3b8599b88472",
+   "swapped": false,
+   "md5_after": "c3fc0a7cb235b4c270ac3b8599b88472"
+  },
+  {
+   "episode": 10,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000010/blue_cup.glb",
+   "md5_before": "ab012e4e0add44c3923fd172c4639734",
+   "swapped": false,
+   "md5_after": "ab012e4e0add44c3923fd172c4639734"
+  },
+  {
+   "episode": 10,
+   "slot": 1,
+   "object": "beige_cup",
+   "file": "meshes/episode_000010/beige_cup.glb",
+   "md5_before": "8c8be2b0747d234706913a2360e90570",
+   "swapped": false,
+   "md5_after": "8c8be2b0747d234706913a2360e90570"
+  },
+  {
+   "episode": 14,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000014/blue_cup.glb",
+   "md5_before": "ab012e4e0add44c3923fd172c4639734",
+   "swapped": false,
+   "md5_after": "ab012e4e0add44c3923fd172c4639734"
+  },
+  {
+   "episode": 14,
+   "slot": 1,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000014/plastic_dish_rack.glb",
+   "md5_before": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13j/replace/plastic_dish_rack.glb",
+   "source_md5": "1882b7a2e09ba03d1ebee370ca95d657",
+   "md5_after": "1882b7a2e09ba03d1ebee370ca95d657",
+   "payload_changed": true
+  },
+  {
+   "episode": 15,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000015/plastic_dish_rack.glb",
+   "md5_before": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13j/replace/plastic_dish_rack.glb",
+   "source_md5": "1882b7a2e09ba03d1ebee370ca95d657",
+   "md5_after": "1882b7a2e09ba03d1ebee370ca95d657",
+   "payload_changed": true
+  },
+  {
+   "episode": 15,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000015/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 16,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000016/plastic_dish_rack.glb",
+   "md5_before": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13j/replace/plastic_dish_rack.glb",
+   "source_md5": "1882b7a2e09ba03d1ebee370ca95d657",
+   "md5_after": "1882b7a2e09ba03d1ebee370ca95d657",
+   "payload_changed": true
+  },
+  {
+   "episode": 16,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000016/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 19,
+   "slot": 0,
+   "object": "mini_sweeper",
+   "file": "meshes/episode_000019/mini_sweeper.glb",
+   "md5_before": "55fe1682f09721ca5d4e98477bfef150",
+   "swapped": false,
+   "md5_after": "55fe1682f09721ca5d4e98477bfef150"
+  },
+  {
+   "episode": 19,
+   "slot": 1,
+   "object": "mini_dust_pan",
+   "file": "meshes/episode_000019/mini_dust_pan.glb",
+   "md5_before": "3fe34bcc9206e222bb1ff8e803720a9e",
+   "swapped": false,
+   "md5_after": "3fe34bcc9206e222bb1ff8e803720a9e"
+  },
+  {
+   "episode": 20,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000020/blue_cup.glb",
+   "md5_before": "ab012e4e0add44c3923fd172c4639734",
+   "swapped": false,
+   "md5_after": "ab012e4e0add44c3923fd172c4639734"
+  },
+  {
+   "episode": 20,
+   "slot": 1,
+   "object": "water_pitcher",
+   "file": "meshes/episode_000020/water_pitcher.glb",
+   "md5_before": "e59c15a3e4a442ebc52e7cd72ab73124",
+   "swapped": false,
+   "md5_after": "e59c15a3e4a442ebc52e7cd72ab73124"
+  },
+  {
+   "episode": 25,
+   "slot": 0,
+   "object": "wooden_piece_1",
+   "file": "meshes/episode_000025/wooden_piece_1.glb",
+   "md5_before": "36b292a560b6e25e44a276dabdb4366a",
+   "swapped": false,
+   "md5_after": "36b292a560b6e25e44a276dabdb4366a"
+  },
+  {
+   "episode": 25,
+   "slot": 1,
+   "object": "wooden_piece_2",
+   "file": "meshes/episode_000025/wooden_piece_2.glb",
+   "md5_before": "bf82e385cac24a586168b4f14bf5b245",
+   "swapped": false,
+   "md5_after": "bf82e385cac24a586168b4f14bf5b245"
+  },
+  {
+   "episode": 28,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000028/plastic_dish_rack.glb",
+   "md5_before": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13j/replace/plastic_dish_rack.glb",
+   "source_md5": "1882b7a2e09ba03d1ebee370ca95d657",
+   "md5_after": "1882b7a2e09ba03d1ebee370ca95d657",
+   "payload_changed": true
+  },
+  {
+   "episode": 28,
+   "slot": 1,
+   "object": "white_pot",
+   "file": "meshes/episode_000028/white_pot.glb",
+   "md5_before": "c3fc0a7cb235b4c270ac3b8599b88472",
+   "swapped": false,
+   "md5_after": "c3fc0a7cb235b4c270ac3b8599b88472"
+  },
+  {
+   "episode": 30,
+   "slot": 0,
+   "object": "mini_sweeper",
+   "file": "meshes/episode_000030/mini_sweeper.glb",
+   "md5_before": "55fe1682f09721ca5d4e98477bfef150",
+   "swapped": false,
+   "md5_after": "55fe1682f09721ca5d4e98477bfef150"
+  },
+  {
+   "episode": 30,
+   "slot": 1,
+   "object": "plastic_dish_rack",
+   "file": "meshes/episode_000030/plastic_dish_rack.glb",
+   "md5_before": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "swapped": true,
+   "method": "byte copy",
+   "source": "<SCRATCH>/p13j/replace/plastic_dish_rack.glb",
+   "source_md5": "1882b7a2e09ba03d1ebee370ca95d657",
+   "md5_after": "1882b7a2e09ba03d1ebee370ca95d657",
+   "payload_changed": true
+  },
+  {
+   "episode": 32,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000032/blue_cup.glb",
+   "md5_before": "ab012e4e0add44c3923fd172c4639734",
+   "swapped": false,
+   "md5_after": "ab012e4e0add44c3923fd172c4639734"
+  },
+  {
+   "episode": 32,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000032/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 33,
+   "slot": 0,
+   "object": "blue_cup",
+   "file": "meshes/episode_000033/blue_cup.glb",
+   "md5_before": "ab012e4e0add44c3923fd172c4639734",
+   "swapped": false,
+   "md5_after": "ab012e4e0add44c3923fd172c4639734"
+  },
+  {
+   "episode": 33,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000033/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 35,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000035/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 36,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000036/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 37,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "file": "meshes/episode_000037/wooden_spoon.glb",
+   "md5_before": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "swapped": false,
+   "md5_after": "68dcf0495c23d2213b1ec4a35b8ad423"
+  },
+  {
+   "episode": 38,
+   "slot": 0,
+   "object": "mini_dust_pan",
+   "file": "meshes/episode_000038/mini_dust_pan.glb",
+   "md5_before": "3fe34bcc9206e222bb1ff8e803720a9e",
+   "swapped": false,
+   "md5_after": "3fe34bcc9206e222bb1ff8e803720a9e"
+  }
+ ],
+ "frame_report": [
+  {
+   "object": "plastic_dish_rack",
+   "episodes": [
+    14,
+    15,
+    16,
+    28,
+    30
+   ],
+   "base_md5": "a289d009c45c6ee09d7dd787b8e7dbcf",
+   "base_is_library_v3": false,
+   "new_md5": "1882b7a2e09ba03d1ebee370ca95d657",
+   "symmetry": "none",
+   "base_aabb_centre_mm": [
+    31.53,
+    2.35,
+    39.43
+   ],
+   "base_extent_mm": [
+    161.33,
+    162.6,
+    475.93
+   ],
+   "new_aabb_centre_mm": [
+    17.78,
+    3.15,
+    42.33
+   ],
+   "new_extent_mm": [
+    129.23,
+    155.64,
+    483.88
+   ],
+   "base_centroid_mm": [
+    7.52,
+    -2.04,
+    -15.33
+   ],
+   "new_centroid_mm": [
+    8.35,
+    -4.14,
+    -12.35
+   ],
+   "centroid_offset_mm": 3.74,
+   "aabb_centre_offset_mm": 14.08,
+   "rms_radius_ratio": 1.0268,
+   "extent_ratio": [
+    0.801,
+    0.9572,
+    1.0167
+   ],
+   "surface_mm": {
+    "median": 1.48,
+    "p95": 7.277,
+    "max": 55.924,
+    "mean": 2.453
+   },
+   "sample_spacing_mm": 1.441,
+   "icp_centroid_shift_mm": 2.66,
+   "icp_rotation_deg": 0.58,
+   "icp_median_after_mm": 1.363,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99995072,
+     -0.00933741,
+     -0.00337154,
+     -0.00022581
+    ],
+    [
+     0.00933076,
+     0.99995451,
+     -0.00198103,
+     -0.00099202
+    ],
+    [
+     0.00338988,
+     0.00194947,
+     0.99999235,
+     0.00248265
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 1.71,
+   "kit_proxy_rotation_deg": 0.476,
+   "flags": [
+    "extent ratio [0.801, 0.9572, 1.0167] outside +-15% (scale or axis order?)"
+   ]
+  }
+ ],
+ "check": {
+  "rows": [
+   9120,
+   9120
+  ],
+  "columns_differing": {
+   "code_commit_url": 9120,
+   "object_mesh_b64": 5
+  },
+  "payload_changed": [
+   "14:plastic_dish_rack",
+   "15:plastic_dish_rack",
+   "16:plastic_dish_rack",
+   "28:plastic_dish_rack",
+   "30:plastic_dish_rack"
+  ],
+  "payload_unchanged": [],
+  "pandas_version": [
+   "3.0.5",
+   "3.0.5"
+  ],
+  "uploader_validation": "pass (offline validate_submission; CD-O file derived and validated)",
+  "cd_o_file": {
+   "path": "<SCRATCH>/p13j/build_13j/track3_submission.cd-o.parquet",
+   "rows": 294912,
+   "sha256": "8b44cd09b758ceef25cb09a5956c97bad481e59a6fd04ad6b3cb00d9b1dc4a8e",
+   "pairs_changed_vs_base": [
+    "14:plastic_dish_rack",
+    "15:plastic_dish_rack",
+    "16:plastic_dish_rack",
+    "28:plastic_dish_rack",
+    "30:plastic_dish_rack"
+   ]
+  },
+  "sha256": "7e8704373085930f868f81f9f6aac57b21bf7f150fe2b0fb3a1b3ffdd078b4ea",
+  "base_sha256": "1bcbdcfae42a810115ac713e61271d3a048f125338a4b2ef616e3f2b917362a3",
+  "bytes": 1285551,
+  "byte_identical_to_base": false,
+  "mesh_warnings": []
+ },
+ "hard_failures": [],
+ "frame_flags": [
+  "plastic_dish_rack (episodes [14, 15, 16, 28, 30]): extent ratio [0.801, 0.9572, 1.0167] outside +-15% (scale or axis order?)"
+ ],
+ "info": [],
+ "status": 2
+}

@@ -6210,3 +6210,7 @@ Advice given:
   board CD-O is 0.24177 [M] (their message). md5 verified; no_oracle pass; 13i reproduced byte for byte; rack committed as
   meshes/r_pack13j (3a933d1d). Build + D1 running. [E] CD-O ≈ 0.2384 (3rd place: 0.23900). Provisional: 90 primitive
   refits are still auditing; a lower one would come as a 13j2.
+- ~10:28 UTC **pack 13j built, PENDING frame sign-off**: sha256 7e870437…b4ea, code 3a933d1d; vs 13i only commit URL + 5
+  rack payload rows; CD-O those 5 pairs; offline validation pass; guard on; **D1 PASS both modes** (0/7; ≤ 2.5°; anchor
+  2.6–3.6 mm vs the G2 rack's 3.2–4.6). Frame clean (ICP 2.7 mm / 0.6°). The only flag is the x extent 161 → 129 mm: the G2
+  rack's bulge is gone. Staged as results/submissions/20261103-track3y-candidate; sign-off asked.

@@ -1,0 +1,11 @@
+pack_swap_meshes: <SCRATCH>/p13j/build_13j
+swapped 5 (episode, object) pairs of 36: plastic_dish_rack -> eps [14, 15, 16, 28, 30]
+file md5 changed: 14:plastic_dish_rack a289d009->1882b7a2, 15:plastic_dish_rack a289d009->1882b7a2, 16:plastic_dish_rack a289d009->1882b7a2, 28:plastic_dish_rack a289d009->1882b7a2, 30:plastic_dish_rack a289d009->1882b7a2
+frame report (mm; base = the mesh being replaced):
+  plastic_dish_rack  eps [14, 15, 16, 28, 30] base a289d009 | centroid offset 3.74 | AABB centre offset 14.08 | extent base [161.33, 162.6, 475.93] new [129.23, 155.64, 483.88] | surface median/p95/max 1.48/7.277/55.924 (spacing 1.441) | ICP 2.66 mm 0.58 deg (median after 1.363) | kit proxy 1.71 mm 0.476 deg (symmetry none) | FLAG: extent ratio [0.801, 0.9572, 1.0167] outside +-15% (scale or axis order?)
+parquet: 1285551 B sha256 7e8704373085930f868f81f9f6aac57b21bf7f150fe2b0fb3a1b3ffdd078b4ea | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 5}
+mesh payloads changed: ['14:plastic_dish_rack', '15:plastic_dish_rack', '16:plastic_dish_rack', '28:plastic_dish_rack', '30:plastic_dish_rack'] | unchanged: []
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 8b44cd09b758ceef... | CD-O pairs changed vs base: ['14:plastic_dish_rack', '15:plastic_dish_rack', '16:plastic_dish_rack', '28:plastic_dish_rack', '30:plastic_dish_rack']
+pack.log MESH WARNINGs: 0
+FLAG: plastic_dish_rack (episodes [14, 15, 16, 28, 30]): extent ratio [0.801, 0.9572, 1.0167] outside +-15% (scale or axis order?)
+STATUS NEEDS REVIEW (flags) (exit 2)

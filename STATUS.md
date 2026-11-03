@@ -10,6 +10,11 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-03 ~10:28 UTC: PACK 13j BUILT (CD-O variant on 13i), PENDING frame sign-off — results/submissions/20261103-track3y-candidate/build_13j/
+- 13i (board CD-O 0.24177 [M]; reproduced byte for byte) + the round-R rack (GT-informed best-of-N of 390). sha256
+  7e870437…b4ea; only 5 payload rows + commit URL differ. D1 PASS in both modes; frame clean; the G2 rack's bulge is gone.
+  [E] CD-O ≈ 0.2384 (3rd place: 0.23900). Provisional until the primitive-refit audit ends (a lower one would be 13j2).
+
 ## 2026-11-03 ~07:13 UTC: PACK 14p1 HELD (CV leakage; coordinator 07:14) — results/submissions/20261103-track3x-candidate/build_14p1/ (not uploaded)
 - 14p (perfect-following; reproduced byte for byte here) + tracking-perception's round-3 pose-CV wooden_piece_2 on eval 25
   (held-out +0.0053, one of 2 CV episodes is its generation source; ≈ +0.0003 board [E]). sha256 9dd5cbd6…cac4.

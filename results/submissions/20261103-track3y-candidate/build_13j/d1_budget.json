@@ -1,0 +1,267 @@
+{
+ "pack": "build_13j",
+ "ref_mode": "budget",
+ "all_pass": true,
+ "pairs": [
+  {
+   "object": "plastic_dish_rack",
+   "ep": 14,
+   "slot": 1,
+   "ref_mode": "budget",
+   "seeds": {
+    "eval": {
+     "seed": 14000143,
+     "rot": 1.57,
+     "tilt": 0.77,
+     "anchor_mm": 2.92
+    },
+    "ep15": {
+     "seed": 15000146,
+     "rot": 1.77,
+     "tilt": 0.74,
+     "anchor_mm": 3.14
+    },
+    "ep16": {
+     "seed": 16000149,
+     "rot": 1.62,
+     "tilt": 0.74,
+     "anchor_mm": 3.1
+    },
+    "ep17": {
+     "seed": 17000152,
+     "rot": 1.46,
+     "tilt": 0.71,
+     "anchor_mm": 3.26
+    },
+    "s0": {
+     "seed": 0,
+     "rot": 1.65,
+     "tilt": 0.51,
+     "anchor_mm": 3.16
+    },
+    "s1": {
+     "seed": 1,
+     "rot": 2.07,
+     "tilt": 0.85,
+     "anchor_mm": 3.19
+    },
+    "s2": {
+     "seed": 2,
+     "rot": 1.86,
+     "tilt": 0.6,
+     "anchor_mm": 3.02
+    }
+   },
+   "flips": 0,
+   "pass": true
+  },
+  {
+   "object": "plastic_dish_rack",
+   "ep": 15,
+   "slot": 0,
+   "ref_mode": "budget",
+   "seeds": {
+    "eval": {
+     "seed": 15000045,
+     "rot": 2.09,
+     "tilt": 0.66,
+     "anchor_mm": 3.13
+    },
+    "ep16": {
+     "seed": 16000048,
+     "rot": 1.46,
+     "tilt": 0.63,
+     "anchor_mm": 3.02
+    },
+    "ep17": {
+     "seed": 17000051,
+     "rot": 1.53,
+     "tilt": 0.81,
+     "anchor_mm": 3.03
+    },
+    "ep18": {
+     "seed": 18000054,
+     "rot": 1.23,
+     "tilt": 0.71,
+     "anchor_mm": 3.13
+    },
+    "s0": {
+     "seed": 0,
+     "rot": 1.65,
+     "tilt": 0.51,
+     "anchor_mm": 3.16
+    },
+    "s1": {
+     "seed": 1,
+     "rot": 2.07,
+     "tilt": 0.85,
+     "anchor_mm": 3.19
+    },
+    "s2": {
+     "seed": 2,
+     "rot": 1.86,
+     "tilt": 0.6,
+     "anchor_mm": 3.02
+    }
+   },
+   "flips": 0,
+   "pass": true
+  },
+  {
+   "object": "plastic_dish_rack",
+   "ep": 16,
+   "slot": 0,
+   "ref_mode": "budget",
+   "seeds": {
+    "eval": {
+     "seed": 16000048,
+     "rot": 1.46,
+     "tilt": 0.63,
+     "anchor_mm": 3.02
+    },
+    "ep17": {
+     "seed": 17000051,
+     "rot": 1.53,
+     "tilt": 0.81,
+     "anchor_mm": 3.03
+    },
+    "ep18": {
+     "seed": 18000054,
+     "rot": 1.23,
+     "tilt": 0.71,
+     "anchor_mm": 3.13
+    },
+    "ep19": {
+     "seed": 19000057,
+     "rot": 1.39,
+     "tilt": 0.8,
+     "anchor_mm": 2.79
+    },
+    "s0": {
+     "seed": 0,
+     "rot": 1.65,
+     "tilt": 0.51,
+     "anchor_mm": 3.16
+    },
+    "s1": {
+     "seed": 1,
+     "rot": 2.07,
+     "tilt": 0.85,
+     "anchor_mm": 3.19
+    },
+    "s2": {
+     "seed": 2,
+     "rot": 1.86,
+     "tilt": 0.6,
+     "anchor_mm": 3.02
+    }
+   },
+   "flips": 0,
+   "pass": true
+  },
+  {
+   "object": "plastic_dish_rack",
+   "ep": 28,
+   "slot": 0,
+   "ref_mode": "budget",
+   "seeds": {
+    "eval": {
+     "seed": 28000084,
+     "rot": 1.57,
+     "tilt": 0.78,
+     "anchor_mm": 3.24
+    },
+    "ep29": {
+     "seed": 29000087,
+     "rot": 1.27,
+     "tilt": 0.69,
+     "anchor_mm": 3.24
+    },
+    "ep30": {
+     "seed": 30000090,
+     "rot": 1.65,
+     "tilt": 0.73,
+     "anchor_mm": 3.58
+    },
+    "ep31": {
+     "seed": 31000093,
+     "rot": 1.89,
+     "tilt": 0.68,
+     "anchor_mm": 3.04
+    },
+    "s0": {
+     "seed": 0,
+     "rot": 1.65,
+     "tilt": 0.51,
+     "anchor_mm": 3.16
+    },
+    "s1": {
+     "seed": 1,
+     "rot": 2.07,
+     "tilt": 0.85,
+     "anchor_mm": 3.19
+    },
+    "s2": {
+     "seed": 2,
+     "rot": 1.86,
+     "tilt": 0.6,
+     "anchor_mm": 3.02
+    }
+   },
+   "flips": 0,
+   "pass": true
+  },
+  {
+   "object": "plastic_dish_rack",
+   "ep": 30,
+   "slot": 1,
+   "ref_mode": "budget",
+   "seeds": {
+    "eval": {
+     "seed": 30000191,
+     "rot": 1.96,
+     "tilt": 0.8,
+     "anchor_mm": 2.95
+    },
+    "ep31": {
+     "seed": 31000194,
+     "rot": 1.32,
+     "tilt": 0.77,
+     "anchor_mm": 3.35
+    },
+    "ep32": {
+     "seed": 32000197,
+     "rot": 1.25,
+     "tilt": 0.82,
+     "anchor_mm": 3.01
+    },
+    "ep33": {
+     "seed": 33000200,
+     "rot": 2.2,
+     "tilt": 1.08,
+     "anchor_mm": 2.61
+    },
+    "s0": {
+     "seed": 0,
+     "rot": 1.65,
+     "tilt": 0.51,
+     "anchor_mm": 3.16
+    },
+    "s1": {
+     "seed": 1,
+     "rot": 2.07,
+     "tilt": 0.85,
+     "anchor_mm": 3.19
+    },
+    "s2": {
+     "seed": 2,
+     "rot": 1.86,
+     "tilt": 0.6,
+     "anchor_mm": 3.02
+    }
+   },
+   "flips": 0,
+   "pass": true
+  }
+ ]
+}
