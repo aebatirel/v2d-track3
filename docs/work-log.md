@@ -7534,3 +7534,11 @@ arm and a no-policy replay floor to stage B.
 - ~10:33 UTC 3 Nov **pack 13j UPLOADED** (CD-O variant; 57943952–57943958). Verified: 5 rack rows / 5 CD-O pairs.
   - **CD-O 0.23856** (best; predicted 0.2384). SRL moved to 0.20994 (CD-O 1st), so we stay 4th. Rank sum 45, 7th.
   - Final selection: 14p for five boards; **13j for CD-O**.
+- ~10:35 UTC 3 Nov hand-aware phase-1 status (PREREG fcef9be; $0, CPU).
+  - Literature: HOLD / MagicHOI / HaWoR don't transfer (template-free, monocular, slow, NC licences). The closest
+    precedent is HOnnotate (known meshes + RGB-D).
+  - [D] 70 % of public AUC loss is in held frames. Rigid-in-grasp with MediaPipe hands fails (−0.01 to −0.8). Held
+    errors lie along the camera ray; oracle ceiling +0.0195.
+  - Design: gated ray correction in hand-contact frames; dev 7 / holdout 13 episodes.
+  - Coordinator: approved. Gate 1 to be amended before holdout scoring (a sparse fix → held mean ADD −10 % or held
+    AUC +0.01; keep gate 2 and no-episode-below).
