@@ -26,7 +26,7 @@ def score(ep, src, tag):
     r = json.load(open(oj)); P = np.load(pf); names = list(P['names']); s = names.index(OBJ)
     add = P['perception_add_cm'][:, s]; pos = P['perception_pos_cm'][:, s]
     out = dict(AUC=r['perception_seedmean']['per_obj_AUC'][OBJ], MPPE_cm=r['perception_seedmean']['MPPE_cm'],
-               ADD_cm_mean=round(float(add.mean()), 3), pos_cm_mean=round(float(pos.mean()), 3),
+               ADD_cm_mean=round(float(add.mean()), 3), ADD_cm_median=round(float(np.median(add)), 3), pos_cm_mean=round(float(pos.mean()), 3),
                lost_frames=int((add > 3).sum()), frames=int(len(add)))
     if os.path.exists(os.path.dirname(src) + '/diag.json') and tag != 'control':
         d = json.load(open(os.path.dirname(src) + '/diag.json'))
@@ -46,9 +46,12 @@ for arm in a.arms.split(','):
         r = {e: score(e, src[e], f'{arm}/{V}') for e in eps}
         d = {e: round(r[e]['AUC'] - base[e]['AUC'], 4) for e in eps}
         summary[f'{arm}/{V}'] = dict(dAUC=d, mean=round(float(np.mean(list(d.values()))), 4), min=min(d.values()),
-                                    gate=(V == 'N') and np.mean(list(d.values())) >= 0.02 and min(d.values()) >= -0.01,
+                                    gate=bool(V == 'N') and np.mean(list(d.values())) >= 0.02 and min(d.values()) >= -0.01,
                                     dMPPE={e: round(r[e]['MPPE_cm'] - base[e]['MPPE_cm'], 3) for e in eps},
-                                    lost={e: r[e]['lost_frames'] for e in eps})
+                                    lost={e: r[e]['lost_frames'] for e in eps},
+                                    medADD_rel={e: round(r[e]['ADD_cm_median'] / base[e]['ADD_cm_median'] - 1, 3) for e in eps})
+        rel = summary[f'{arm}/{V}']['medADD_rel']
+        summary[f'{arm}/{V}']['secondary'] = (V == 'N') and float(np.mean(list(rel.values()))) <= -0.2 and max(rel.values()) <= 0
         print(arm, V, summary[f'{arm}/{V}'], flush=True)
 cache['summary'] = summary; cache['control'] = {str(e): base[e] for e in eps}
 json.dump(cache, open(a.out, 'w'), indent=1)
