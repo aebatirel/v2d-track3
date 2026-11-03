@@ -1,0 +1,11 @@
+pack_swap_meshes: <SCRATCH>/p14q/build_14p1
+swapped 1 (episode, object) pairs of 36: wooden_piece_2 -> eps [25]
+file md5 changed: 25:wooden_piece_2 825a7fe3->e88567d2
+frame report (mm; base = the mesh being replaced):
+  wooden_piece_2     eps [25] base library_v3 | centroid offset 1.99 | AABB centre offset 4.27 | extent base [26.58, 137.58, 229.0] new [45.74, 156.07, 242.37] | surface median/p95/max 1.357/4.942/16.606 (spacing 0.821) | ICP 0.55 mm 0.167 deg (median after 1.666) | kit proxy 2.21 mm 0.617 deg (symmetry none) | FLAG: extent ratio [1.7208, 1.1344, 1.0584] outside +-15% (scale or axis order?)
+parquet: 1342825 B sha256 9dd5cbd6bf02296d1bb8f367a6eeca1e6601ecefb732df1451862870b6bccac4 | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 1}
+mesh payloads changed: ['25:wooden_piece_2'] | unchanged: []
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 ebc9c481daa87d86... | CD-O pairs changed vs base: ['25:wooden_piece_2']
+pack.log MESH WARNINGs: 0
+FLAG: wooden_piece_2 (episodes [25]): extent ratio [1.7208, 1.1344, 1.0584] outside +-15% (scale or axis order?)
+STATUS NEEDS REVIEW (flags) (exit 2)

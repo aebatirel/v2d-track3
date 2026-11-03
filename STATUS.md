@@ -10,6 +10,12 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-03 ~07:13 UTC: PACK 14p1 BUILT, PENDING frame sign-off — results/submissions/20261103-track3x-candidate/build_14p1/
+- 14p (perfect-following; reproduced byte for byte here) + tracking-perception's round-3 pose-CV wooden_piece_2 on eval 25
+  (held-out +0.0053, one of 2 CV episodes is its generation source; ≈ +0.0003 board [E]). sha256 9dd5cbd6…cac4.
+- D1 PASS in both modes, but the scan-anchor proxy is about 2–3 mm worse than library_v3, and the mesh has 2.2× the scan's
+  surface area. Asked the mesh lane before sign-off; a marginal swap.
+
 ## 2026-11-03 ~05:51 UTC: PACK 13i READY (CD-O variant on 13h; sign-off YES) — results/submissions/20261103-track3w-candidate/build_13i/ (not uploaded here)
 - 13h (reproduced byte for byte) + the G3 pot, dust pan and board 1 (GT-informed best-of-N). sha256 1bcbdcfa…62a3; only 9
   payload rows + commit URL differ. D1 PASS in both modes. The dust-pan x-extent flag was 0.65 mm² of debris, absent from the

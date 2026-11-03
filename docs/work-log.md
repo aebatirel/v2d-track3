@@ -6192,3 +6192,10 @@ Advice given:
   them; the payload's x span is 40.8 mm). Pot extents and board-1 extents are shape (frames consistent). Hashes re-verified.
   **pack 13i ready: results/submissions/20261103-track3w-candidate/build_13i/track3_submission.parquet** (sha256
   1bcbdcfa…62a3, code edd6d690). Not uploaded from this session.
+- ~07:13 UTC **pack 14p1 built, PENDING frame sign-off** (tracking-perception 07:08: round-3 pose-CV wooden_piece_2 on 14p;
+  held-out +0.0053, ep24 = its generation source; ≈ +0.0003 board [E]). 14p (perfect-following, b6c6100d…) reproduced byte
+  for byte from 13p2's inputs + the store's eval-14 pfR2 rollout (hashes match its manifest). Mesh from the store (md5
+  e88567d2…, G3 index 43) committed as meshes/posepack_r3_14p (04b14127). Build: sha256 9dd5cbd6…cac4; vs 14p only commit URL +
+  1 payload row; offline validation pass; guard on; D1 PASS both modes (anchor 4.3–7.5 mm vs library_v3 2.3–4.9). Concern:
+  surface area 2.2× the scan (doubled or inner surface?); full x extent 45.7 mm (1–99%: 26.1). Sign-off asked; staged as
+  results/submissions/20261103-track3x-candidate.

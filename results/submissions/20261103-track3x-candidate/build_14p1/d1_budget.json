@@ -1,0 +1,59 @@
+{
+ "pack": "build_14p1",
+ "ref_mode": "budget",
+ "all_pass": true,
+ "pairs": [
+  {
+   "object": "wooden_piece_2",
+   "ep": 25,
+   "slot": 1,
+   "ref_mode": "budget",
+   "seeds": {
+    "eval": {
+     "seed": 25000176,
+     "rot": 0.65,
+     "tilt": 0.47,
+     "anchor_mm": 5.45
+    },
+    "ep26": {
+     "seed": 26000179,
+     "rot": 0.62,
+     "tilt": 0.47,
+     "anchor_mm": 6.66
+    },
+    "ep27": {
+     "seed": 27000182,
+     "rot": 0.91,
+     "tilt": 0.79,
+     "anchor_mm": 5.28
+    },
+    "ep28": {
+     "seed": 28000185,
+     "rot": 2.16,
+     "tilt": 2.12,
+     "anchor_mm": 6.75
+    },
+    "s0": {
+     "seed": 0,
+     "rot": 0.46,
+     "tilt": 0.16,
+     "anchor_mm": 5.85
+    },
+    "s1": {
+     "seed": 1,
+     "rot": 1.42,
+     "tilt": 1.36,
+     "anchor_mm": 4.34
+    },
+    "s2": {
+     "seed": 2,
+     "rot": 0.46,
+     "tilt": 0.23,
+     "anchor_mm": 6.19
+    }
+   },
+   "flips": 0,
+   "pass": true
+  }
+ ]
+}
