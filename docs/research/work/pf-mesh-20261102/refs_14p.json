@@ -2,14 +2,15 @@
  "1": {
   "table": "masses-eval-20261031/packed_refs.json",
   "mode": "std",
-  "reference": "runs/20261024-pack-31ef267/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+  "reference": "runs/20261024-pack-31ef267/refs/perc2mck/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
   "md5": "7f2304663b4e3c55a0a1ad12503174c1",
   "table_frame": [
    "runs/20261024-pack-31ef267/refs/perc2mck/ep1/table_frame.npz"
   ],
   "perc2_poses": [
    "runs/20261024-pack-31ef267/perc2/ep1/poses.npz"
-  ]
+  ],
+  "note": "perc2mcks path absent in the store; this perc2mck file is the same bytes (md5)"
  },
  "3": {
   "table": "masses-eval-20261031/packed_refs.json",
@@ -146,14 +147,15 @@
  "28": {
   "table": "masses-eval-20261031/packed_refs.json",
   "mode": "std",
-  "reference": "runs/20261024-pack-31ef267/refs/perc2mcks/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet",
+  "reference": "runs/20261024-pack-31ef267/refs/perc2mck/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet",
   "md5": "6f57deb27e47abcd7ec2afe739354af1",
   "table_frame": [
    "runs/20261024-pack-31ef267/refs/perc2mck/ep28/table_frame.npz"
   ],
   "perc2_poses": [
    "runs/20261024-pack-31ef267/perc2/ep28/poses.npz"
-  ]
+  ],
+  "note": "perc2mcks path absent in the store; this perc2mck file is the same bytes (md5)"
  },
  "30": {
   "table": "masses-eval-20261031/packed_refs.json",
