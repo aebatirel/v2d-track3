@@ -7357,3 +7357,15 @@ arm and a no-policy replay floor to stage B.
     0.1629 vs 0.1872; rack 0.3953 vs 0.4016; board 2 0.1600 vs 0.1649. Beige / lid / sweeper are worse.
   - The frozen 50-seed audit of 79 stage-2 copies started 04:32Z → D1 → 13i.
   - If the pot and dust pan hold, CD-O ≈ 0.243 [E], which would pass 4th (0.2467). Optimistic until audited.
+- ~05:24 UTC 3 Nov **H1 bias calibration verdict** [D] (perception-tracking e448f0d; 107 LOO runs; 10-seed means vs
+  13p). Held-out mean:
+  - **pitcher passes**: H1a +0.046, H1b-rot +0.038, H1b-trans +0.028; the GT-free H1c depth placement +0.106.
+  - **Fail**: pot −0.002, rack −0.003, blue cup −0.035, lid −0.002.
+  - **Harmful**: sweeper −0.20, dust pan −0.11, boards −0.38 / −0.19.
+  - Dispersion (spread / mean of rotation): pitcher 0.14 and lid 0.38 are systematic; pot 1.25, rack 1.7, cup 3.0,
+    sweeper 1.2, dust pan 0.95, boards ≈ 1. **The "systematic bias" hypothesis is falsified for all but the pitcher
+    and lid.**
+  - Eval action: none. For the pitcher, the learned B is weaker than the GT-free placement already in 13p2 / 14p, and
+    stacking them would double-correct (pre-registered). The owner's yes is recorded but not used; $0.
+  - [I] Our tracker's body-frame error is episode-specific, so option B (reference bias correction) loses its basis.
+    The remaining perception routes are A (GT-free eval gross-failure audit) and C / D (re-tracking + retrains).
