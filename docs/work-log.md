@@ -7568,3 +7568,8 @@ arm and a no-policy replay floor to stage B.
     ep11 / ep13 unchanged with the contact gate. Grid running (mask × gate × tau 1.0 / 1.5 / 2.0, band 0.25).
   - Hands for dev episodes: MediaPipe tasks API (mediapipe 1.2.0, hand_landmarker.task float16 v1, sha256
     fbc2a300…) on CPU here, + hand_refine; scripts/prep_ep.sh. Licence: MediaPipe Apache-2.0.
+- ~13:55 UTC 3 Nov hand-aware: coordinator gate amendment as PREREG addendum 1 (86a2b94). Dev grid done; **F1 frozen
+  in addendum 2 (556b87b)**: near gate, τ 2.0 cm, band 25 cm, hand mask on, pitcher excluded; code pipeline/hrc.py
+  @ e60ff9e. Dev F1 single seed: 13 +0.0074, 18 +0.0241, others 0.0000 (mean +0.0045 over 7).
+  Holdout run started on CPU here (scripts/holdout.sh: prep → HRC F1 → 10-seed + per-frame; score_ctrl.sh: C and Cr
+  10-seed; Cr ep23 also with identity_fix, "swapped + Rx"). Gate script scripts/gate_hrc.py. $0.
