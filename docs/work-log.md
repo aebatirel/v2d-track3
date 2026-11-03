@@ -7411,3 +7411,7 @@ arm and a no-policy replay floor to stage B.
   - One RTX 4090 ≈ $2.5–3 (cap $15). Prior pass ≈ 25 %, since the control is already 0.3–0.7 cm on the pot.
   - Coordinator: go. Asked for a secondary pre-registered criterion (median ADD −20 %, no episode worse), because
     pot AUC is near its ceiling; an optional second object with more headroom.
+- ~07:03 UTC 3 Nov instance-pose addendum 1 (1931d067, before training): secondary criterion added.
+  - Control pot AUCs on the test episodes [D]: 0.9935 / 0.9677 / 0.9979 / 0.9742 (mean 0.983), so the +0.02 primary
+    gate is unreachable by construction; the secondary criterion (median ADD −20 %) decides.
+  - No second object in this batch. Box 58930545 loading.
