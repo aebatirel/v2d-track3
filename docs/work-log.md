@@ -6792,3 +6792,13 @@ arm and a no-policy replay floor to stage B.
   for pot / blue cup / rack / pitcher, "placed" + "t3fit" copies, GT-informed best-of-N by public-scan CD-O,
   disclosed): md5 verified, 168 runs queued into round 2 (a) (covered by PREREG_round2 "plus G2 as they land").
   `scripts/cv_round2.py` written before any round-2 candidate score.
+- 00:20 UTC 3 Nov **round 2 verdicts [D]** (13p baseline, 10-seed means, nested leave-one-episode-out; a container
+  restart mid-run lost no finished scores; `results/cv_round2.json`):
+  - (a) PASS **water_pitcher → G2 #29** (trellis2 ep22 k33 s2025 t3fit, md5 2c06b3b35ef98a414c47fd3ad65068af):
+    held-out mean +0.1125 (ep21 +0.132, ep22 +0.093). Runners-up #27 +0.107, #25 +0.091. D1 at the eval-20 slot-1
+    seeds 2.1–2.5° (10 seeds). Caveat: generated from public ep22 frames, one of its two CV episodes.
+  - (a) FAIL: blue cup (+0.0005, min −0.016), rack (−0.0055), pot (no candidate beats X; best −0.003), lid, board 1
+    (−0.033), board 2, sweeper, dust pan (none beat 13p).
+  - (b) FAIL, placement on top of the 13p meshes: pot 0.0, rack 0.0, blue cup −0.0022, sweeper 0.0.
+  - The pitcher now has two passing, untested-together options of the same size: placement on eval 20 (13p2, round 1
+    +0.106) and the G2 #29 mesh (+0.1125, payload only). Not combined (untested).
