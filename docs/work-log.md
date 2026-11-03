@@ -7551,3 +7551,12 @@ arm and a no-policy replay floor to stage B.
     surfaces behind them.
   - Recommendation (accepted): no phase 2. The remaining held losses (board merge / thin margin, pitcher template,
     depth-invisible errors) are not hand problems that depth can see. An object-gated variant has EV ≈ 0.
+- ~12:15 UTC 3 Nov owner: a long report artifact of the whole journey (everything tested in perception, robot
+  movement, grip, meshes, etc.: what worked, what failed and by how much, point gains, lessons, standard deviations).
+  Then: "look at all the chats … I don't want you to miss anything".
+  - Two research workflows are running:
+    - wf_04f48716-610: repo sweep of 7 domains (leaderboard, perception, policy, grasp / references, meshes,
+      scorer / task, process) with an adversarial fact-check per domain, then synthesis and a completeness critic;
+    - wf_d173a9fc-f43: every V2D chat session read end to end (19 cloud sessions + the coordinator transcript in
+      3 windows).
+  - A final synthesis then merges both into the report artifact.
