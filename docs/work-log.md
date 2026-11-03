@@ -7292,3 +7292,10 @@ arm and a no-policy replay floor to stage B.
   - Rule: REPRODUCED iff A − B ≥ 0.05 and Welch t ≥ 2. Box gates are trusted only if neither checkpoint reproduces a
     gap.
   - CPU fact: VOC scale does not explain the gap. Verdict ≈ 01:30 UTC.
+- ~01:25 UTC 3 Nov **round-2 pose CV verdicts** [D] (perception-tracking e46e587, results/cv_round2.json):
+  - (a) Only the pitcher passes: G2 #29 trellis2 ep22, held-out +0.1125 (ep21 +0.132, ep22 +0.093). Caveat: generated
+    from ep22 frames.
+  - (a) FAIL: pot, blue cup, rack, lid, boards, sweeper, dust pan.
+  - (b) FAIL: placement on top of the 13p meshes.
+  - Coordinator: **keep 13p2's eval-20 placement; #29 not adopted.** Equal public size; its ep22 held-out is not
+    independent; comparing both on the board would be probing. The perception lane stops for the night.
