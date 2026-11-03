@@ -7438,3 +7438,8 @@ arm and a no-policy replay floor to stage B.
   - #43 outer offered to the pose CV with ep24 excluded.
   - Coordinator: **GO for a rack-focused round** (≤ $10): new generations + structured refits; pre-registered
     before measuring; same bars → 13j. Target CD-O 3rd (−0.0028).
+- ~07:35 UTC 3 Nov rack round R pre-registered (C4 PREREG §14, f471f18a, before any new rack) and launched.
+  - The rack must reach ≤ ≈ 0.3814 (rule A's bar) to give CD-O 3rd.
+  - R-gen: GPU ≈ $5–8 (cap $10). R-prim: CPU.
+  - Copies: placed / t3fit / trim / outer / trim+outer → 50-seed audit + D1 + rules A / B / C → 13j.
+  - [H18] ≈ 40 % chance of a pass.
