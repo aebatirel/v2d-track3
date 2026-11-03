@@ -6647,3 +6647,4 @@ diagnostic; nothing is picked for submission.
   - Handed to focused-pascal as provisional pack 13j on 13i. The final pick follows the tie rule once the 90 R-prim
     copies are audited; prim racks have never scored below 0.418.
   - [H18] held (P about 0.4 predicted).
+- 10:32 UTC: focused-pascal built 13j (sha256 7e870437…, on 13i; meshes/r_pack13j 3a933d1d); D1 on the packed bytes clean in both modes. Frame flag: x extent 161 -> 129 mm, surface max 55.9 mm. That is the G2 bulge going away; ICP 2.66 mm / 0.58 deg. Signed off YES, transform none. Provisional until the 90 R-prim audits finish.
