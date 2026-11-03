@@ -1,0 +1,527 @@
+[
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep12_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep12_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep26_full/t3fit",
+  "kind": "t3fit",
+  "why": "fit failed: 90d4009c-b597-536b-9d55-58f81afca135/scratchpad/r/stage2/out/plastic_dish_rack_rprim_base_ep26_full_t3fit/fit.glb: mesh simplification cannot satisfy the budget"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep26_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep26_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_joint_joint_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_joint_joint_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_joint_joint_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep13_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep13_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep13_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep31_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep31_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep31_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep12_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep12_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep12_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep27_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep27_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep27_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_joint_joint_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_joint_joint_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_joint_joint_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep13_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep13_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep13_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep31_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep31_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep31_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep12_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep12_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep12_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep27_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep27_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep27_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep12_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep12_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep26_full/t3fit",
+  "kind": "t3fit",
+  "why": "fit failed: k3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/r/stage2/out/plastic_dish_rack_rprim_E_ep26_full_t3fit/fit.glb: mesh simplification cannot satisfy the budget"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep26_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep26_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_joint_joint/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_joint_joint/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep13_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep13_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep13_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep31_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep31_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep12_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep12_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep26_full/t3fit",
+  "kind": "t3fit",
+  "why": "fit failed: k3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/r/stage2/out/plastic_dish_rack_rprim_Q_ep26_full_t3fit/fit.glb: mesh simplification cannot satisfy the budget"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep26_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep26_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_joint_joint/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_joint_joint/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep13_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep13_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep13_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep31_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep31_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep12_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep12_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep12_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep27_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep27_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep27_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_joint_joint_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_joint_joint_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_joint_joint_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep13_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep13_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep13_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep31_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep31_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep31_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep12_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep12_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep12_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep27_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep27_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep27_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_joint_joint_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_joint_joint_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_joint_joint_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep13_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep13_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep13_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep31_nomk/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep31_nomk/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/base_ep31_nomk/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep13_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep13_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep31_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/E_ep31_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep12_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep12_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep26_full/t3fit",
+  "kind": "t3fit",
+  "why": "fit failed: k3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/r/stage2/out/plastic_dish_rack_rprim_K_ep26_full_t3fit/fit.glb: mesh simplification cannot satisfy the budget"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep26_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_ep26_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_joint_joint/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/K_joint_joint/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep13_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep13_full/outer",
+  "kind": "outer",
+  "why": "no-op: outer_shell dropped nothing"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep13_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep31_full/trim",
+  "kind": "trim",
+  "why": "no-op: trim removed 0 faces"
+ },
+ {
+  "label": "R/plastic_dish_rack/prim/Q_ep31_full/trim_outer",
+  "kind": "trim_outer",
+  "why": "no trim copy (trim no-op or skipped): outer of the trim would equal the outer copy"
+ }
+]

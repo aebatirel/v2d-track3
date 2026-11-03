@@ -145,3 +145,14 @@ coordinator's; not run here.
   ($5.95) line for this run.
 - 09:12Z the 6 stage-2 sources downloaded from the store (S/r/gendl); stage2_r.py checks each against the frozen
   SHA256SUMS. Stage 2 for R-gen started locally (`stage2_r.py --only gen`).
+- 09:12-09:20Z R-gen stage 2 done (`stage2_r.py --only gen`, RC 0): 6 picks -> 30 candidates (all five copies each).
+  place.py residual 4.4-4.9 mm, second-distinct start 8.2-8.8 mm (no near-ties); T3 fit held tmean90 improves on 5 / 6
+  (hy21 ep31 k3 1.74 -> 1.75 mm); trim removes 22-2201 faces (<= 0.41 % area); outer drops 1478-1996 fragments of the
+  TRELLIS.2 picks (0.4-1.1 % area) and 1-3 of the Hunyuan picks; no nested shell anywhere.
+- 09:21Z merge (`stage2_r.py --merge`): **45 sources, 120 candidates** (placed 45, t3fit 41, trim 10, outer 18,
+  trim_outer 6; R-gen 30, R-prim 90), 105 skipped copies with reasons (trim no-op 35, trim_outer without a trim 35,
+  outer no-op 27, trim_outer no-op 4, t3fit failed 4 = the ep26 prims, fit.py's own final budget error). Checks: no
+  candidate equals a public scan file (md5) or an already-measured rack file (sha1 / md5); no byte duplicates; all pass
+  the kit budget_mesh(4096, 4096). -> `../C4-audit/candidates_rack_r.json` (md5 a0eed496...), `results/stage2_picks.json`,
+  `results/stage2_skipped.json`. README.md written.
+- 09:22Z store upload of S/r/stage2/out started (two pattern-limited commits: candidate .glb; records), HF 502 retries.

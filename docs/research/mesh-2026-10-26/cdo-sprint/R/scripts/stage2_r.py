@@ -181,7 +181,9 @@ def main():
             picks += json.load(open(f))
             cands += json.load(open(a.cands + sfx))
             skipped += json.load(open(os.path.join(a.out_dir, f'skipped{sfx}.json')))
-        picks.sort(key=lambda p: (p['source'] != 'R-gen', p.get('rank', 0), p['label']))
+        RUNS = ('base', 'E', 'K', 'Q')                                         # R-prim runs in build order
+        picks.sort(key=lambda p: (p['source'] != 'R-gen', p.get('rank', 0),
+                                  RUNS.index(p['label'].split('_')[0]) if p['source'] == 'R-prim' else 0, p['label']))
         order = {p['label']: i for i, p in enumerate(picks)}
         cands.sort(key=lambda c: (order[c['stage1_label'] if c['source'] == 'R-gen' else c['label'].split('/')[3]],
                                   KINDS.index(c['kind'])))
