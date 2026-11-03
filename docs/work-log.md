@@ -7539,3 +7539,21 @@ arm and a no-policy replay floor to stage B.
   - Next [H]: a GT-free hand-masked depth residual along the ray (scripts/ray_residual.py) can measure that error.
     Validation first: correlation of the residual with the mocap ray error on eps 11 / 13 / 18 / 21 (depth caches
     downloading).
+- ~12:20 UTC 3 Nov hand-aware: **control correction**: ptrkF "Ct" (used above) is perception-tracking's failed
+  Test-B variant, not the control. Redone on the real control C (ptrkA/B; ep23 = Cr + identity_fix, "swapped + Rx"),
+  scored with meshes/m14p_public [D]:
+  - held frames carry 70 % of the AUC loss (1.54 vs 0.67); largest held losses ep23 board 2 0.41, pitcher 21 / 22
+    0.20 / 0.16, ep24 boards 0.17, ep18 sweeper 0.13 (47 frames > 5 cm), ep11 cup 0.10, ep13 cup 0.07;
+  - ray ceiling in held frames +0.0195 (gated +0.0148) [E, oracle]; ray errors persist (ep13 +2.7, ep18 +14.6, ep21
+    pitcher −4.3, ep11 −3.6, ep24 board −2.2 cm); ep23 board 2 is a lateral gross loss.
+  - The rigid-in-grasp result stands qualitatively (the probe ran on Ct; the hands are noisier than any track).
+- GT-free residual validation (scripts/ray_residual.py + ray_validate.py; library_v3 templates; depth caches from the
+  store; hands: stored glockpub fit for ep18, new CPU MediaPipe tasks-API fit for ep11) [D]:
+  - ep18 sweeper corr 0.95 with hand mask (gated |ray| 5.2 → 3.1 cm; 0.945 / 7.8 → 4.1 without);
+  - ep13 cup corr 0.82 (gated 2.6 → 0.7 cm, no hand mask);
+  - ep11 cup corr 0.18 even with hand mask: after release depth agrees with the track to 0.2 cm while mocap says
+    2 cm; invisible to depth;
+  - ep21 pitcher corr −0.83 (wrong sign; template error).
+- PREREG.md written: hand-masked ray correction (HRC), DEV 11 / 13 / 18 / 21 / 0 / 41 / 43, HOLDOUT 2 / 12 / 22 / 23 /
+  24 / 26 / 27 / 31 / 39 / 40 / 42 / 44 / 45; gates as the task's; parameters frozen in an addendum before holdout.
+  $0 (CPU here).
