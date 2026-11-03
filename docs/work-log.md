@@ -6551,3 +6551,4 @@ diagnostic; nothing is picked for submission.
   - Stage-2 copies: placed + T3 fit + a new GT-free trim copy. Rules A/B/C + D1 against the 13h meshes.
   - Cap $15 GPU, on-demand only. Winners go to 13i on 13h.
 - A helper agent runs generation, freeze, screen and stage 2. The coordinator was offered a veto on G3b.
+- 01:49 UTC: the coordinator approved G3a + G3b as pre-registered (d060f21e), including the trim copies; cap $15, on-demand only, stop below $15 credit; winners go to 13i on 13h.
