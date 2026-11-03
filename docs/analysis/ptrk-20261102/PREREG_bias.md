@@ -49,3 +49,14 @@ Each candidate: 13p meshes with o ← Δ̂ · (o's 13p mesh) for the held-out ep
 - translation: median distance to the median, in mm.
 
 If the spread is as large as |Δ̂| itself (ratio ≥ 1), "systematic" is falsified for that object whatever the score.
+
+## Addendum 1 (05:00 UTC, before any H1 score is read)
+Owner's word via keen-heisenberg: **"yes to bias calibration"** (03:50 UTC). The GT-informed H1 may be applied to eval
+for objects that pass this gate.
+- **Eval Δ:** the same estimator on ALL public episodes of the object.
+- **Applied:** as mesh placement on top of pack 14p's payload for that object, then D1 in both modes, then handed to
+  focused-pascal.
+- **Disclosure text:** "placement calibrated from public mocap (owner-approved GT-informed)".
+- **Note:** if 14p's payload for an object already carries a placement (the eval-20 pitcher, 13p2), H1 must not be
+  stacked on it unless that combination is tested. It would double-correct the same tilt; flagged to the coordinator
+  in that case.
