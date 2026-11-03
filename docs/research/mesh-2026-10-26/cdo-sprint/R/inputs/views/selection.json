@@ -1,0 +1,52 @@
+{
+ "ep12_plastic_dish_rack": {
+  "src": "views_rest",
+  "views": [
+   [
+    24,
+    0.6825,
+    true
+   ]
+  ]
+ },
+ "ep13_plastic_dish_rack": {
+  "src": "views_rest",
+  "views": [
+   [
+    66,
+    0.6597,
+    true
+   ]
+  ]
+ },
+ "ep26_plastic_dish_rack": {
+  "src": "views_rest",
+  "views": [
+   [
+    98,
+    0.507,
+    true
+   ]
+  ]
+ },
+ "ep27_plastic_dish_rack": {
+  "src": "views_rest",
+  "views": [
+   [
+    146,
+    0.685,
+    true
+   ]
+  ]
+ },
+ "ep31_plastic_dish_rack": {
+  "src": "views_rest",
+  "views": [
+   [
+    286,
+    0.6477,
+    true
+   ]
+  ]
+ }
+}

@@ -1,0 +1,84 @@
+{
+ "obj": "plastic_dish_rack",
+ "video": "ep27_a.mp4",
+ "s": 1.8441642217123626,
+ "c": [
+  0.017081696540117264,
+  0.0006824061274528503,
+  0.04405990242958069
+ ],
+ "A": [
+  [
+   0.05964763251187334,
+   0.08535300541560797,
+   0.9945625739155404
+  ],
+  [
+   -0.8087742208901808,
+   -0.5798517426417454,
+   0.09826795027079356
+  ],
+  [
+   0.5850870474129958,
+   -0.8102392637875886,
+   0.03444446834998755
+  ]
+ ],
+ "front_check": {
+  "rot_err": 2.3109687470324047e-06,
+  "pos": [
+   -0.0,
+   -1.13915,
+   -0.0
+  ]
+ },
+ "chosen": [
+  {
+   "k": 146,
+   "vis": 135920,
+   "occl": 0.0,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 1.28,
+   "rest": true,
+   "skin": null,
+   "ok": true,
+   "u": [
+    0.80877,
+    0.57985,
+    -0.09827
+   ],
+   "skin_removed_px": 14273,
+   "file": "view00_k146.png",
+   "fov_deg": 61.277,
+   "dist_m": 0.6177,
+   "mask_px": 115210,
+   "sil_px": 103661,
+   "iou_sil_mask": 0.685
+  }
+ ],
+ "n_candidates": 123,
+ "n_good": 56,
+ "args": {
+  "video": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep27_a.mp4",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep27/poses.npz",
+  "hands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/r/inputs/hands_stub/ep27/hands.npz",
+  "calib": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "obj": "plastic_dish_rack",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/r/inputs/views_rest/ep27_plastic_dish_rack",
+  "n": 6,
+  "size": 1024,
+  "step": 2,
+  "min_deg": 15.0,
+  "occl": 0.15,
+  "speed_mm": 1.5,
+  "span": 0.75,
+  "fill": 0.46,
+  "margin": 20,
+  "held_speed_mm": 0.0,
+  "skin": 1,
+  "skin_max": 0.01
+ },
+ "source": "views_rest"
+}
