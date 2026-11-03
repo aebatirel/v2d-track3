@@ -1,0 +1,32 @@
+{
+ "episode": 27,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "frames": 246,
+ "SP_pass_rate": 1.0,
+ "MP_pass_rate": 1.0,
+ "SP_mean_p_cm": 0.62,
+ "SP_mean_o_rad": 0.039,
+ "per_object": {
+  "plastic_dish_rack": {
+   "p_cm": 0.35,
+   "o_deg": 1.1,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.0,
+   "o_deg_frame0": 0.0,
+   "p_cm_p90": 0.49,
+   "o_deg_p90": 1.6
+  },
+  "white_pot": {
+   "p_cm": 0.89,
+   "o_deg": 3.4,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.62,
+   "o_deg_frame0": 0.7,
+   "p_cm_p90": 1.03,
+   "o_deg_p90": 4.8
+  }
+ }
+}

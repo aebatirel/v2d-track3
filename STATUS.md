@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~09:00 UTC: tracking-perception: public per-object SP/MP-SR (diagnostic, report-only)
+- On public, 37 of 40 object-episodes pass MP. The failures:
+  - ep23 board 2: a 180° roll flip of a near-symmetric board (fails SP and MP);
+  - pitcher: a steady 3 cm bias;
+  - ep24 boards: a registration seed flip at 1 of 10 seeds; thin margin.
+- Eval prior [I]: 25 (board), 20 (pitcher); spoon evals unmeasurable. `docs/analysis/ptrk-20261102/srpublic/`.
+- $0 (CPU).
+
 ## 2026-11-03 ~08:30 UTC: tracking-perception: spoon flip check on eval references (report-only): no clear flip
 - Pre-registered rule (PREREG_spoonflip.md): REF vs 180° ROLL / YAW on our mask and depth, 10 spoon evals.
 - Flags cover 50 of 2,769 frames (1.8 %): eval 32 ROLL f104–110; eval 33 YAW f184–190 and f268–272; eval 36 ROLL

@@ -1,0 +1,136 @@
+{
+ "episode": 24,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 275,
+ "SP_pass_rate": 0.9,
+ "MP_pass_rate": 0.9,
+ "SP_mean_p_cm": 5.52,
+ "SP_mean_o_rad": 0.318,
+ "per_object": {
+  "wooden_piece_1": {
+   "p_cm": 4.45,
+   "o_deg": 15.8,
+   "MP_obj_pass_rate": 0.9,
+   "p_cm_frame0": 0.0,
+   "o_deg_frame0": 0.0,
+   "p_cm_p90": 2.88,
+   "o_deg_p90": 3.4,
+   "per_seed": [
+    {
+     "p_cm": 2.31,
+     "o_deg": 2.5,
+     "mp": true
+    },
+    {
+     "p_cm": 2.06,
+     "o_deg": 3.2,
+     "mp": true
+    },
+    {
+     "p_cm": 2.26,
+     "o_deg": 2.5,
+     "mp": true
+    },
+    {
+     "p_cm": 2.29,
+     "o_deg": 2.4,
+     "mp": true
+    },
+    {
+     "p_cm": 2.28,
+     "o_deg": 2.5,
+     "mp": true
+    },
+    {
+     "p_cm": 2.19,
+     "o_deg": 3.0,
+     "mp": true
+    },
+    {
+     "p_cm": 24.03,
+     "o_deg": 134.8,
+     "mp": false
+    },
+    {
+     "p_cm": 2.43,
+     "o_deg": 2.5,
+     "mp": true
+    },
+    {
+     "p_cm": 2.27,
+     "o_deg": 2.4,
+     "mp": true
+    },
+    {
+     "p_cm": 2.35,
+     "o_deg": 2.5,
+     "mp": true
+    }
+   ]
+  },
+  "wooden_piece_2": {
+   "p_cm": 6.6,
+   "o_deg": 20.6,
+   "MP_obj_pass_rate": 0.9,
+   "p_cm_frame0": 0.7,
+   "o_deg_frame0": 2.1,
+   "p_cm_p90": 2.72,
+   "o_deg_p90": 3.8,
+   "per_seed": [
+    {
+     "p_cm": 2.15,
+     "o_deg": 2.8,
+     "mp": true
+    },
+    {
+     "p_cm": 2.22,
+     "o_deg": 4.0,
+     "mp": true
+    },
+    {
+     "p_cm": 1.99,
+     "o_deg": 3.4,
+     "mp": true
+    },
+    {
+     "p_cm": 2.03,
+     "o_deg": 2.4,
+     "mp": true
+    },
+    {
+     "p_cm": 2.1,
+     "o_deg": 3.0,
+     "mp": true
+    },
+    {
+     "p_cm": 2.1,
+     "o_deg": 3.4,
+     "mp": true
+    },
+    {
+     "p_cm": 47.07,
+     "o_deg": 177.9,
+     "mp": false
+    },
+    {
+     "p_cm": 2.15,
+     "o_deg": 2.7,
+     "mp": true
+    },
+    {
+     "p_cm": 2.06,
+     "o_deg": 3.3,
+     "mp": true
+    },
+    {
+     "p_cm": 2.08,
+     "o_deg": 2.8,
+     "mp": true
+    }
+   ]
+  }
+ }
+}

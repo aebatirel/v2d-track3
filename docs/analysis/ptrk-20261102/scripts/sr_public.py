@@ -63,6 +63,7 @@ for s, n in enumerate(names):
             cos = np.abs(H[s]['U'].T @ a_); j = int(np.argmax(cos))
             d['err_axis'] = dict(principal=['thin(min)', 'mid', 'long(max)'][j], angle_deg=round(float(np.degrees(np.arccos(min(1, cos[j])))), 1),
                                  median_err_deg=round(float(np.degrees(np.median(np.linalg.norm(rv[big], axis=1)))), 1), frames=int(big.sum()))
+    d['per_seed'] = [dict(p_cm=round(100 * float(q['p'][s]), 2), o_deg=round(float(np.degrees(q['o'][s])), 1), mp=bool(q['mp_obj'][s])) for q in seeds]
     res['per_object'][n] = d
 json.dump(res, open(OUT, 'w'), indent=1); np.savez_compressed(OUT.replace('.json', '_pf.npz'), pos=s0['pos'], ori=s0['ori'], names=np.array(names))
 print(json.dumps({k: v for k, v in res.items() if k != 'per_object'}), json.dumps(res['per_object']))

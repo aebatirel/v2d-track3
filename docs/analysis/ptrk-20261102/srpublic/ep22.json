@@ -1,0 +1,136 @@
+{
+ "episode": 22,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 189,
+ "SP_pass_rate": 1.0,
+ "MP_pass_rate": 0.7,
+ "SP_mean_p_cm": 1.74,
+ "SP_mean_o_rad": 0.048,
+ "per_object": {
+  "blue_cup": {
+   "p_cm": 0.55,
+   "o_deg": 2.7,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.0,
+   "o_deg_frame0": 3.9,
+   "p_cm_p90": 0.92,
+   "o_deg_p90": 4.5,
+   "per_seed": [
+    {
+     "p_cm": 0.57,
+     "o_deg": 3.2,
+     "mp": true
+    },
+    {
+     "p_cm": 0.56,
+     "o_deg": 3.8,
+     "mp": true
+    },
+    {
+     "p_cm": 0.54,
+     "o_deg": 1.8,
+     "mp": true
+    },
+    {
+     "p_cm": 0.52,
+     "o_deg": 2.1,
+     "mp": true
+    },
+    {
+     "p_cm": 0.54,
+     "o_deg": 2.5,
+     "mp": true
+    },
+    {
+     "p_cm": 0.56,
+     "o_deg": 2.9,
+     "mp": true
+    },
+    {
+     "p_cm": 0.53,
+     "o_deg": 3.4,
+     "mp": true
+    },
+    {
+     "p_cm": 0.55,
+     "o_deg": 2.2,
+     "mp": true
+    },
+    {
+     "p_cm": 0.53,
+     "o_deg": 2.5,
+     "mp": true
+    },
+    {
+     "p_cm": 0.55,
+     "o_deg": 2.9,
+     "mp": true
+    }
+   ]
+  },
+  "water_pitcher": {
+   "p_cm": 2.93,
+   "o_deg": 2.8,
+   "MP_obj_pass_rate": 0.7,
+   "p_cm_frame0": 2.69,
+   "o_deg_frame0": 0.0,
+   "p_cm_p90": 4.06,
+   "o_deg_p90": 8.3,
+   "per_seed": [
+    {
+     "p_cm": 2.97,
+     "o_deg": 2.8,
+     "mp": true
+    },
+    {
+     "p_cm": 2.98,
+     "o_deg": 2.8,
+     "mp": true
+    },
+    {
+     "p_cm": 2.72,
+     "o_deg": 2.7,
+     "mp": true
+    },
+    {
+     "p_cm": 2.71,
+     "o_deg": 2.7,
+     "mp": true
+    },
+    {
+     "p_cm": 3.25,
+     "o_deg": 2.8,
+     "mp": false
+    },
+    {
+     "p_cm": 3.02,
+     "o_deg": 2.8,
+     "mp": false
+    },
+    {
+     "p_cm": 3.0,
+     "o_deg": 2.9,
+     "mp": false
+    },
+    {
+     "p_cm": 2.8,
+     "o_deg": 2.6,
+     "mp": true
+    },
+    {
+     "p_cm": 2.95,
+     "o_deg": 2.8,
+     "mp": true
+    },
+    {
+     "p_cm": 2.9,
+     "o_deg": 2.7,
+     "mp": true
+    }
+   ]
+  }
+ }
+}

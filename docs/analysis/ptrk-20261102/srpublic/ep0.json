@@ -1,0 +1,32 @@
+{
+ "episode": 0,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 373,
+ "SP_pass_rate": 1.0,
+ "MP_pass_rate": 1.0,
+ "SP_mean_p_cm": 0.6,
+ "SP_mean_o_rad": 0.048,
+ "per_object": {
+  "white_pot": {
+   "p_cm": 0.41,
+   "o_deg": 1.9,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.0,
+   "o_deg_frame0": 0.0,
+   "p_cm_p90": 0.83,
+   "o_deg_p90": 4.4
+  },
+  "white_pot_lid": {
+   "p_cm": 0.79,
+   "o_deg": 3.6,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.48,
+   "o_deg_frame0": 3.0,
+   "p_cm_p90": 0.78,
+   "o_deg_p90": 4.0
+  }
+ }
+}

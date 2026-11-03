@@ -1,0 +1,32 @@
+{
+ "episode": 31,
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "frames": 290,
+ "SP_pass_rate": 1.0,
+ "MP_pass_rate": 1.0,
+ "SP_mean_p_cm": 1.02,
+ "SP_mean_o_rad": 0.099,
+ "per_object": {
+  "mini_sweeper": {
+   "p_cm": 1.06,
+   "o_deg": 5.9,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.0,
+   "o_deg_frame0": 0.0,
+   "p_cm_p90": 1.56,
+   "o_deg_p90": 9.7
+  },
+  "plastic_dish_rack": {
+   "p_cm": 0.99,
+   "o_deg": 5.5,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.82,
+   "o_deg_frame0": 5.5,
+   "p_cm_p90": 1.26,
+   "o_deg_p90": 5.9
+  }
+ }
+}

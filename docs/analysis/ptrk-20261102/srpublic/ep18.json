@@ -1,0 +1,32 @@
+{
+ "episode": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "SP_pass_rate": 1.0,
+ "MP_pass_rate": 1.0,
+ "SP_mean_p_cm": 1.36,
+ "SP_mean_o_rad": 0.148,
+ "per_object": {
+  "mini_sweeper": {
+   "p_cm": 1.95,
+   "o_deg": 12.0,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.0,
+   "o_deg_frame0": 0.0,
+   "p_cm_p90": 7.16,
+   "o_deg_p90": 45.2
+  },
+  "mini_dust_pan": {
+   "p_cm": 0.77,
+   "o_deg": 5.0,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.71,
+   "o_deg_frame0": 6.5,
+   "p_cm_p90": 1.16,
+   "o_deg_p90": 7.2
+  }
+ }
+}

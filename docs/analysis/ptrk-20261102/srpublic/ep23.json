@@ -1,0 +1,146 @@
+{
+ "episode": 23,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 325,
+ "SP_pass_rate": 0.0,
+ "MP_pass_rate": 0.0,
+ "SP_mean_p_cm": 4.23,
+ "SP_mean_o_rad": 0.78,
+ "per_object": {
+  "wooden_piece_1": {
+   "p_cm": 0.85,
+   "o_deg": 3.3,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.0,
+   "o_deg_frame0": 0.0,
+   "p_cm_p90": 1.31,
+   "o_deg_p90": 4.7,
+   "per_seed": [
+    {
+     "p_cm": 0.91,
+     "o_deg": 3.3,
+     "mp": true
+    },
+    {
+     "p_cm": 0.76,
+     "o_deg": 3.2,
+     "mp": true
+    },
+    {
+     "p_cm": 0.74,
+     "o_deg": 3.7,
+     "mp": true
+    },
+    {
+     "p_cm": 0.86,
+     "o_deg": 3.2,
+     "mp": true
+    },
+    {
+     "p_cm": 0.93,
+     "o_deg": 3.2,
+     "mp": true
+    },
+    {
+     "p_cm": 0.84,
+     "o_deg": 3.3,
+     "mp": true
+    },
+    {
+     "p_cm": 0.83,
+     "o_deg": 3.3,
+     "mp": true
+    },
+    {
+     "p_cm": 0.74,
+     "o_deg": 3.2,
+     "mp": true
+    },
+    {
+     "p_cm": 1.14,
+     "o_deg": 3.9,
+     "mp": true
+    },
+    {
+     "p_cm": 0.71,
+     "o_deg": 3.2,
+     "mp": true
+    }
+   ]
+  },
+  "wooden_piece_2": {
+   "p_cm": 7.61,
+   "o_deg": 86.0,
+   "MP_obj_pass_rate": 0.0,
+   "p_cm_frame0": 2.31,
+   "o_deg_frame0": 1.8,
+   "p_cm_p90": 18.42,
+   "o_deg_p90": 175.6,
+   "dominant": "orientation",
+   "flip_frac": 0.4,
+   "ori_type": "FLIP",
+   "pos_type": "SPAN",
+   "err_axis": {
+    "principal": "long(max)",
+    "angle_deg": 32.9,
+    "median_err_deg": 173.8,
+    "frames": 177
+   },
+   "per_seed": [
+    {
+     "p_cm": 7.42,
+     "o_deg": 85.9,
+     "mp": false
+    },
+    {
+     "p_cm": 7.75,
+     "o_deg": 85.9,
+     "mp": false
+    },
+    {
+     "p_cm": 7.35,
+     "o_deg": 85.8,
+     "mp": false
+    },
+    {
+     "p_cm": 7.64,
+     "o_deg": 85.9,
+     "mp": false
+    },
+    {
+     "p_cm": 7.55,
+     "o_deg": 85.9,
+     "mp": false
+    },
+    {
+     "p_cm": 7.55,
+     "o_deg": 85.9,
+     "mp": false
+    },
+    {
+     "p_cm": 7.69,
+     "o_deg": 86.3,
+     "mp": false
+    },
+    {
+     "p_cm": 7.54,
+     "o_deg": 85.9,
+     "mp": false
+    },
+    {
+     "p_cm": 8.09,
+     "o_deg": 86.3,
+     "mp": false
+    },
+    {
+     "p_cm": 7.5,
+     "o_deg": 86.2,
+     "mp": false
+    }
+   ]
+  }
+ }
+}

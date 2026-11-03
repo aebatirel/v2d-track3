@@ -1,0 +1,22 @@
+{
+ "episode": 41,
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 299,
+ "SP_pass_rate": 1.0,
+ "MP_pass_rate": 1.0,
+ "SP_mean_p_cm": 0.56,
+ "SP_mean_o_rad": 0.052,
+ "per_object": {
+  "white_pot": {
+   "p_cm": 0.56,
+   "o_deg": 3.0,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.0,
+   "o_deg_frame0": 0.0,
+   "p_cm_p90": 1.16,
+   "o_deg_p90": 6.0
+  }
+ }
+}

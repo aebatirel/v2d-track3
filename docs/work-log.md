@@ -6876,3 +6876,11 @@ arm and a no-policy replay floor to stage B.
   - Nothing changed. `docs/analysis/ptrk-20261102/spoon/`.
 - 08:26 UTC coordinator: no spoon flips accepted; the public diagnostic is skipped because no public episode has a
   spoon. The eval references have no gross failures, so the SR question moves to the rollouts. Lane rests.
+- 09:00 UTC **public SP/MP-SR per object (PREREG_srpublic.md, CPU, $0; `docs/analysis/ptrk-20261102/srpublic/`)**:
+  - 37 of 40 object-episodes pass MP in all 10 seeds.
+  - ep23 wooden_piece_2: FLIP, a 180° roll about the long axis on f168–199 and f226–324; SP and MP fail.
+  - Pitcher ep21 / ep22: STEADY position bias of 3–3.4 cm over the MP limit.
+  - ep24 boards: pass at 2.0–2.4 cm, except seed 6, where a 180° registration flip on object 0 fails both.
+  - All other object types pass everywhere.
+  - Eval prior [I]: eval 25 (board roll flip, invisible to masks) and eval 20 (pitcher bias); the 10 spoon evals are
+    unmeasurable on public.

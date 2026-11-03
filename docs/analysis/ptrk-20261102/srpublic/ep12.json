@@ -1,0 +1,32 @@
+{
+ "episode": 12,
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "frames": 181,
+ "SP_pass_rate": 1.0,
+ "MP_pass_rate": 1.0,
+ "SP_mean_p_cm": 0.69,
+ "SP_mean_o_rad": 0.031,
+ "per_object": {
+  "blue_cup": {
+   "p_cm": 0.84,
+   "o_deg": 2.1,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.0,
+   "o_deg_frame0": 0.6,
+   "p_cm_p90": 1.31,
+   "o_deg_p90": 3.5
+  },
+  "plastic_dish_rack": {
+   "p_cm": 0.55,
+   "o_deg": 1.4,
+   "MP_obj_pass_rate": 1.0,
+   "p_cm_frame0": 0.58,
+   "o_deg_frame0": 0.0,
+   "p_cm_p90": 0.84,
+   "o_deg_p90": 2.3
+  }
+ }
+}
