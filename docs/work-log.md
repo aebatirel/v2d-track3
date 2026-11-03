@@ -7474,3 +7474,11 @@ arm and a no-policy replay floor to stage B.
     180°-ambiguous orientations that masks can't see. A policy fix cannot buy an SR episode on the stored rows.
   - Next ($0, CPU): perception-tracking runs the SR criteria on PUBLIC tracks vs mocap, to see which object types and
     situations fail SR and map them to eval episodes.
+- ~08:45 UTC 3 Nov **instance-pose pot PoC: FAIL, both arms** (5f55ec1f; docs/analysis/ipose-20261103/README.md;
+  ≈ $0.8).
+  - ΔAUC vs the control on test eps 2 / 27 / 44 / 45: R −0.003 / −0.257 / +0.002 / +0.000 (mean −0.065); R+M −0.001 /
+    −0.035 / +0.001 / +0.001 (mean −0.0085); best exploratory −0.0023.
+  - The secondary criterion fails for both (R+M: ep27 +16 %, ep44 +29 % ADD).
+  - [I] The hand-held lift (ep27) is ≈ 10° off (render-to-real gap); elsewhere the network ≈ the tracker.
+  - A rendered-only spoon network is not trustworthy. Plan steps 1–2 are not recommended on this evidence. No eval
+    action.
