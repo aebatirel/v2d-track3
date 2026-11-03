@@ -6806,3 +6806,6 @@ arm and a no-policy replay floor to stage B.
   size, its ep22 held-out is not independent, and uploading both would probe the board). Round 2 otherwise FAIL.
   **Lane stops here.** Night totals: GPU ≈ $3.3 (ptrkF $2.7, ptrkG $0.6), everything else CPU ($0); packs 13p
   (uploaded, AUC 0.88257, +0.0103) and 13p2 (built) came from this lane's public CV. 0 instances.
+- 01:30 UTC bold-albattani: D1 PASS for G2 #29 (both modes, 0/6 flips; eval seed 2.32° / 2.35°), anchor 6.4 mm / ADD
+  7.5 mm vs shipped pitcher 14.0 / 15.6 mm; CD-O worse (0.474 vs 0.371), so pose packs only. Recorded as a spare: the
+  coordinator kept 13p2's placement; #29 is not adopted.
