@@ -7465,3 +7465,12 @@ arm and a no-policy replay floor to stage B.
 - ~08:27 UTC 3 Nov perfect-following asked (CPU, $0, GT-free): compute the SP-SR / MP-SR criteria of 14p's stored
   rollout rows against our packed references, per episode and object, with 10-draw rates. Goal: find the episodes
   where a targeted policy fix could buy an SR episode.
+- ~08:31 UTC 3 Nov **SR audit vs our references** (perfect-following, docs/analysis/sr-vs-ref-20261103,
+  tools/sr_vs_ref.py; $0) [M]:
+  - **All 20 stored 14p rollouts pass SP-SR and MP-SR against our own references**, none within 20 % of a threshold.
+    Worst MP margins: eval 10 beige cup 1.85 cm, eval 30 sweeper 1.82 cm / 11°.
+  - Board policies' 10-draw rates: SP 1.0 everywhere; MP 0.9 on evals 1 / 20 / 28 / 30.
+  - [I] So the board's 2 SP / 4 MP failures come from reference vs truth (perception, below "gross") or from
+    180°-ambiguous orientations that masks can't see. A policy fix cannot buy an SR episode on the stored rows.
+  - Next ($0, CPU): perception-tracking runs the SR criteria on PUBLIC tracks vs mocap, to see which object types and
+    situations fail SR and map them to eval episodes.
