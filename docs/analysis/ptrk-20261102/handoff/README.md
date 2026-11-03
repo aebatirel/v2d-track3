@@ -48,8 +48,14 @@ Per-frame errors (seed 0) are in `../srpublic/ep*_pf.npz`: `pos` in m, `ori` in 
 - **ep21 / ep22 pitcher:** a steady ~3 cm body-frame position bias from f50 onward (held and pouring), orientation
   fine.
 - **ep24 boards:** 2.0–2.4 cm, the thinnest MP margin, and rising after f76 while handled.
-- **ep11–13 cups:** these pass MP. Position error peaks in the middle quarters (handled phases): ep11 blue cup
-  1.8 cm.
+- **ep11–13 blue cup:** passes MP on the episode mean, but position error grows in the later quarters (handled
+  phases). Quarter means / max:
+  - ep11: 0.2 / 1.2 / 3.8 / 2.1 cm, max 5.6 cm;
+  - ep13: 0.5 / 0.8 / 1.9 / 1.4 cm, max 4.2 cm;
+  - ep12: max 2.3 cm.
+  The beige cup and rack stay under 2.3 cm.
+- **ep27:** passes; rack 0.3 cm; white pot ≤ 0.9 cm by quarter, max 3.3 cm. The coordinator listed ep27 as a failure
+  case from other lanes; this lane's control track does not show one on SR.
 
 ## Rules this lane followed
 
