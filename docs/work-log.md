@@ -7500,3 +7500,11 @@ arm and a no-policy replay floor to stage B.
     thickness and long axes (a perpendicular placement, likely the stacked / slotted end state).
   - Coordinator: GO for (1) ep23 overlays vs mocap, (3) re-read eval 25's board-2 "LOST" audit flag, and (2) a v2
     multi-alternative rule only if needed, validated on public first. All CPU.
+- ~08:56 UTC 3 Nov board follow-ups (perception-tracking d0d091c0; $0):
+  - (1) ep23's end state is a cross; from f240 our board-2 track **merges onto board 1** (a track merge at assembly,
+    not a face flip).
+  - (3) In eval 25 (14p reference), board 2 sits on the real white board in every inspected frame, including the
+    final cross. The audit's LOST spans are mask failures; the ep23 merge does not recur.
+  - (2) The v2 rule was not run.
+  - [I] No visible gross board failure on eval 25; any SR loss there is sub-visible (≈ 2–3 cm vs the 3 cm limit).
+    Perception lane idle.
