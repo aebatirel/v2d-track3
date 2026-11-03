@@ -6611,3 +6611,9 @@ diagnostic; nothing is picked for submission.
     shed fragments: pot 10,657 fragments (-2.9% area), cup -1.5%, rack -1.3%, dust pan -1.7%, board 1 / pitcher about 0.
     [H15] is falsified (pot and cup are not nested). [H17] holds in part.
   - The 50-seed audit of all 7 copies started 07:17:48Z.
+- 07:32 UTC: outer-shell audit [D, 50 seeds] vs the 13i meshes. **No rule passes, so 13j is empty.**
+  - Rack fragments-removed copy: 0.3844 vs 0.4016 (-0.017, below the -0.020 bar).
+  - Pot +0.0035, cup +0.0026, dust pan +0.0018, board 1 +0.0005, pitcher +0.0007 (all worse or neutral).
+  - G3 #43 board 2 outer: CD-O 0.1609 vs 0.1623, anchor 4.92 vs 5.50 mm, W30 0; offered to the pose CV only, with ep24
+    excluded.
+  - [H16] falsified (only the rack improved, below the bar).

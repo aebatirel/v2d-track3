@@ -1,0 +1,107 @@
+{
+ "white_pot": {
+  "outer": {
+   "cdo": 0.2434,
+   "w30": 0.0,
+   "anc": 6.79,
+   "add": 6.75
+  },
+  "shipped": {
+   "cdo": 0.2399,
+   "w30": 0.0,
+   "anc": 6.8,
+   "add": 6.79
+  },
+  "decision": "no rule passes; keep 13i mesh"
+ },
+ "blue_cup": {
+  "outer": {
+   "cdo": 0.2361,
+   "w30": 0.0,
+   "anc": 6.51,
+   "add": 6.69
+  },
+  "shipped": {
+   "cdo": 0.2335,
+   "w30": 0.0,
+   "anc": 5.91,
+   "add": 6.01
+  },
+  "decision": "no rule passes; keep 13i mesh"
+ },
+ "plastic_dish_rack": {
+  "outer": {
+   "cdo": 0.3844,
+   "w30": 0.0,
+   "anc": 3.66,
+   "add": 4.2
+  },
+  "shipped": {
+   "cdo": 0.4016,
+   "w30": 0.0,
+   "anc": 3.78,
+   "add": 4.3
+  },
+  "decision": "no rule passes; keep 13i mesh"
+ },
+ "mini_dust_pan": {
+  "outer": {
+   "cdo": 0.2082,
+   "w30": 0.0,
+   "anc": 2.58,
+   "add": 3.62
+  },
+  "shipped": {
+   "cdo": 0.2064,
+   "w30": 0.0,
+   "anc": 2.61,
+   "add": 3.67
+  },
+  "decision": "no rule passes; keep 13i mesh"
+ },
+ "wooden_piece_1": {
+  "outer": {
+   "cdo": 0.1598,
+   "w30": 0.0,
+   "anc": 2.16,
+   "add": 2.32
+  },
+  "shipped": {
+   "cdo": 0.1593,
+   "w30": 0.0,
+   "anc": 2.31,
+   "add": 2.47
+  },
+  "decision": "no rule passes; keep 13i mesh"
+ },
+ "water_pitcher": {
+  "outer": {
+   "cdo": 0.372,
+   "w30": 0.0,
+   "anc": 13.98,
+   "add": 15.58
+  },
+  "shipped": {
+   "cdo": 0.3713,
+   "w30": 0.0,
+   "anc": 14.03,
+   "add": 15.63
+  },
+  "decision": "no rule passes; keep 13i mesh"
+ },
+ "wooden_piece_2": {
+  "outer": {
+   "cdo": 0.1609,
+   "w30": 0.0,
+   "anc": 4.92,
+   "add": 5.1
+  },
+  "shipped": {
+   "cdo": 0.1623,
+   "w30": 0.0,
+   "anc": 5.5,
+   "add": 5.53
+  },
+  "decision": "pose CV only (ep24 excluded); CD-O n/a"
+ }
+}
