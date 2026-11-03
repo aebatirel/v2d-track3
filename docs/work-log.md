@@ -6539,3 +6539,15 @@ diagnostic; nothing is picked for submission.
   (md5 2c06b3b3…), held-out +0.1125 on ep21/22. Nothing else passed: pot none beat the TSDF pot "X"; blue cup and rack no.
   - D1 PASS: 0/6 flips in both modes; rotation at the eval seed 2.32 deg (budget) / 2.35 deg (raw).
   - Scan CD-O 0.4736 vs the shipped 0.3713, so pose packs only. Reported to tracking-perception and the coordinator.
+
+## 2026-11-03 ~01:55 UTC — G3 batch launched (pre-registered)
+- The coordinator relayed the owner (01:47 UTC): "do as much as you can tonight". Credit $94.58. One more batch for the CD-O
+  board; 4th place is 0.24669 vs our 0.25159.
+- PREREG section 12 (addendum 7) was pushed at d060f21e before any rental.
+  - G3a: the coordinator's list (dust pan, beige, lid, sweeper, ep24 boards).
+  - G3b: rack and pot on episodes / crops not used in G2. Added because of the leverage table: the uncovered objects can
+    give about -0.003 at most.
+  - Generators: SAM 3D / Hunyuan3D-2.1 / TRELLIS.2, plus Pixal3D-MV for G3a.
+  - Stage-2 copies: placed + T3 fit + a new GT-free trim copy. Rules A/B/C + D1 against the 13h meshes.
+  - Cap $15 GPU, on-demand only. Winners go to 13i on 13h.
+- A helper agent runs generation, freeze, screen and stage 2. The coordinator was offered a veto on G3b.
