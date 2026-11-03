@@ -7508,3 +7508,8 @@ arm and a no-policy replay floor to stage B.
   - (2) The v2 rule was not run.
   - [I] No visible gross board failure on eval 25; any SR loss there is sub-visible (≈ 2–3 cm vs the 3 cm limit).
     Perception lane idle.
+- ~09:34 UTC 3 Nov rack round R: generation done, **$5.95** (cap $10), box destroyed.
+  - 390 new rack meshes + 39 GT-free prim refits; freeze before any scan read.
+  - Stage-1 best: Hunyuan ep12 at 0.3876 vs 0.4016; no raw mesh reaches the 0.3816 bar. The pre-registered
+    clean-up copies might [H].
+  - 50-seed audit of 120 stage-2 candidates started 09:33Z (R-gen copies ≈ 45 min, prims ≈ 2 h more).
