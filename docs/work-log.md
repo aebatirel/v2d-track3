@@ -11078,3 +11078,9 @@ score.
   **NO-SWAP at the gate** (0.890). No second-host box needed for either. Eval 19 sm still training.
 - 03:59 UTC 3 Nov eval 19 sm s42 [M]: box 0.828 ± 0.164 (min 0.336) vs gate 0.929; s43 training (≈ 06:00 UTC). pfS / pfT
   self-destroyed after their NO-SWAP verdicts.
+- 05:50 UTC 3 Nov eval 19 sm s43 [M]: box 0.655 ± 0.235 (min 0.343) → with s42 0.828, **eval 19 NO-SWAP at the gate**
+  (0.929; zero-shot 0.226: the board policy fails with the new sweeper, as eval 20 with the new pitcher).
+  **pf-mesh2 batch closed: 0 swaps** (32 / 33 / 19 NO-SWAP at the gate; no second-host box was needed).
+  Reading [I]: the Tier B collision shape helped where the board policy already worked on it zero-shot (eval 14 rack +
+  cup, 0.878 ≈ control) and hurt where zero-shot dropped (pitcher 0.45, sweeper 0.23, eval 32 cup 0.85); not a
+  pre-registered test.
