@@ -53,3 +53,15 @@ The build is kept as a record.
   - **Total surface area 134,935 mm², vs 62,802 for the public scan and 61,665 for library_v3: more than 2×.** This
     suggests a doubled or inner surface. The 50-seed scan audit [D] (CD-O 0.1623, ADD 5.53 mm) and the public CV already
     include its effect.
+
+## Mesh-lane read (bold-albattani, 07:14 UTC; arrived after the hold, recorded for completeness)
+- Frame sign-off YES (transform none); the status stays HELD by the coordinator's decision.
+- **The 2.2× area is a hollow plate [M, GT-free]:** SAM 3D produced two nested closed shells.
+  - Outer shell: 72,216 mm², 45.7 × 156 × 242 mm.
+  - Inner shell: 62,445 mm², 34 × 146 × 236 mm, 1–3 mm inside the outer one. 53% of the surface has an opposite-facing
+    sheet 0.8–3 mm behind it.
+  - Plus one 8 mm, 275 mm² fragment.
+- The scorer's sampling, CD-O and registration all see the inner shell, which probably accounts for part of the
+  4.3–7.5 mm anchor. That cost is already inside the [D] audit and the CV.
+- Proposed follow-up, not for this pack, at the coordinator's choice: an outer-shell-only copy (GT-free, largest outer
+  component), pre-registered and audited as a new candidate. [H] It would have a lower CD-O and anchor error.

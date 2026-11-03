@@ -6202,3 +6202,6 @@ Advice given:
 - 07:14 UTC coordinator: **hold 14p1, no upload.** Reasons: CV leakage (mesh #43 generated from ep24, one of its 2 CV
   episodes, as with pitcher #29), the worse scan anchor, a possible doubled shell, and only about +0.0003 expected. README
   marked "HELD — CV leakage (generation source = CV episode)"; the build is kept as a record. No sign-off sought.
+- 07:15 UTC bold-albattani (after the hold): frame YES for #43; the 2.2× area is a hollow plate (two nested shells, inner
+  62,445 mm² 1–3 mm inside). They propose an outer-shell-only copy as a new candidate if the coordinator wants it. Recorded
+  in the 14p1 README; status stays HELD.
