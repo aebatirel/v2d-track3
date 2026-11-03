@@ -1,0 +1,21 @@
+[2026-11-03T02:04:58Z] INPUTS-OK 50b70285c4807fcd
+[2026-11-03T02:04:58Z] crops: 36; view sets: 9; NP=64
+[2026-11-03T02:06:38Z] setup markers: 1-OK 2-OK 3D-OK A-BASIC-OK A-IMPORT-OK A-MOGE-OK A-TORCH-OK A-WHEELS-OK B-BASIC-OK B-DISO-OK B-IMPORT-OK B-TORCH-OK C-BASIC-OK C-CODE-OK C-EXTRA-OK C-IMPORT-OK C-KAOLIN-STUB-OK C-MOGE-OK C-P3D-OK C-TORCH-OK SG-OK UV-OK W-DINO-BIREF-OK W-HY21-FAIL W-PIXAL3D-OK W-TRELLIS2-OK W-TRIPOSG-OK 
+[2026-11-03T02:06:38Z] hy21 seeds 42,7,123,2025: 36 crops
+[2026-11-03T02:06:38Z] sam3d seeds 42,7,123,2025: 36 crops
+[2026-11-03T02:42:03Z] sam3d done: 144 ok
+[2026-11-03T02:42:03Z] pixal_mv 1536 seeds 42,7,123,2025: 9 view sets
+[2026-11-03T02:47:55Z] sim3 sam3d: 144 fit lines, 144 meshes
+[2026-11-03T02:59:06Z] pixal_mv done: 36 ok at 1536,  at 1024
+[2026-11-03T02:59:06Z] trellis2 1536 seeds 42,7,123,2025: 36 crops
+[2026-11-03T03:10:16Z] hy21 done: 144 ok
+[2026-11-03T03:17:14Z] sim3 hy21: 144 fit lines, 144 meshes
+[2026-11-03T03:24:46Z] trellis2 1024 seeds 123: crops_flat/ep11_beige_cup_k0.png
+[2026-11-03T03:25:41Z] trellis2 1024 seeds 2025: crops_flat/ep11_beige_cup_k0.png crops_flat/ep11_beige_cup_k6.png
+[2026-11-03T03:26:43Z] trellis2 done: 141 ok at 1536, 3 at 1024
+[2026-11-03T03:32:28Z] sim3 trellis2: 141 fit lines, 141 meshes
+[2026-11-03T03:34:39Z] sim3 trellis2_1024: 3 fit lines, 3 meshes
+[2026-11-03T03:34:39Z] sim3 hy21: 144 fit lines, 144 meshes
+[2026-11-03T03:34:40Z] sim3 sam3d: 144 fit lines, 144 meshes
+[2026-11-03T03:34:44Z] SHA256SUMS: 936 files
+[2026-11-03T03:34:44Z] G3-GEN-DONE

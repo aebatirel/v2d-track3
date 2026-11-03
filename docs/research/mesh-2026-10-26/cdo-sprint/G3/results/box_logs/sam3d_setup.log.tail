@@ -1,0 +1,34 @@
+[2026-11-03T02:02:53Z] C-CODE-OK
+[2026-11-03T02:03:22Z] C-TORCH-OK
+[2026-11-03T02:03:49Z] C-BASIC-OK
+[2026-11-03T02:03:52Z] C-MOGE-OK
+[2026-11-03T02:04:25Z] C-P3D-OK
+[2026-11-03T02:05:21Z] C-EXTRA-OK
+[2026-11-03T02:05:21Z] C-KAOLIN-STUB-OK
+total 12158024
+drwx------ 2 root root       4096 Nov  3 02:06 .
+drwx------ 3 root root         33 Nov  3 02:05 ..
+-rw------- 1 root root       3548 Nov  3 02:05 pipeline.yaml
+-rw------- 1 root root  171476155 Nov  3 02:05 slat_decoder_gs.ckpt
+-rw------- 1 root root        576 Nov  3 02:05 slat_decoder_gs.yaml
+-rw------- 1 root root  170269801 Nov  3 02:05 slat_decoder_gs_4.ckpt
+-rw------- 1 root root        575 Nov  3 02:05 slat_decoder_gs_4.yaml
+-rw------- 1 root root  363726862 Nov  3 02:05 slat_decoder_mesh.ckpt
+-rw------- 1 root root        300 Nov  3 02:05 slat_decoder_mesh.yaml
+-rw------- 1 root root        268 Nov  3 02:05 slat_encoder.yaml
+-rw------- 1 root root 4906537684 Nov  3 02:05 slat_generator.ckpt
+-rw------- 1 root root       1986 Nov  3 02:05 slat_generator.yaml
+-rw------- 1 root root  147609242 Nov  3 02:05 ss_decoder.ckpt
+-rw------- 1 root root        244 Nov  3 02:05 ss_decoder.yaml
+-rw------- 1 root root        231 Nov  3 02:05 ss_encoder.yaml
+-rw------- 1 root root 6690136964 Nov  3 02:06 ss_generator.ckpt
+-rw------- 1 root root       5076 Nov  3 02:05 ss_generator.yaml
+[2026-11-03T02:06:17Z] C-WEIGHTS-DONE
+2026-11-03 02:06:22.760 | INFO     | sam3d_objects.pipeline.inference_pipeline:set_attention_backend:17 - GPU name is NVIDIA H200 NVL
+2026-11-03 02:06:26.409 | INFO     | sam3d_objects.model.backbone.tdfy_dit.modules.sparse:__from_env:39 - [SPARSE] Backend: spconv, Attention: flash_attn
+2026-11-03 02:06:29.845 | INFO     | sam3d_objects.model.backbone.tdfy_dit.modules.attention:__from_env:30 - [ATTENTION] Using backend: flash_attn
+[SPARSE][CONV] spconv algo: auto
+2026-11-03 02:06:32.273 | WARNING  | sam3d_objects.data.dataset.tdfy.preprocessor:__post_init__:51 - No rgb pointmap normalizer provided, using scale + shift 
+2026-11-03 02:06:32.274 | WARNING  | sam3d_objects.data.dataset.tdfy.preprocessor:__post_init__:51 - No rgb pointmap normalizer provided, using scale + shift 
+import ok
+[2026-11-03T02:06:32Z] C-IMPORT-OK

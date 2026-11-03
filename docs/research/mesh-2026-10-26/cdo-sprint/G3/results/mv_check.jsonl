@@ -1,0 +1,36 @@
+{"mesh": "ep2_white_pot_lid_s123.ply", "views": ["view00_k324.png"], "iou": [0.989], "mean_iou": 0.989}
+{"mesh": "ep24_wooden_piece_1_s123.ply", "views": ["view00_k8.png", "view01_k128.png"], "iou": [0.963, 0.968], "mean_iou": 0.966}
+{"mesh": "ep11_beige_cup_s123.ply", "views": ["view00_k6.png"], "iou": [0.957], "mean_iou": 0.957}
+{"mesh": "ep2_white_pot_lid_s2025.ply", "views": ["view00_k324.png"], "iou": [0.983], "mean_iou": 0.983}
+{"mesh": "ep31_mini_sweeper_s123.ply", "views": ["view00_k270.png"], "iou": [0.981], "mean_iou": 0.981}
+{"mesh": "ep11_beige_cup_s2025.ply", "views": ["view00_k6.png"], "iou": [0.984], "mean_iou": 0.984}
+{"mesh": "ep39_mini_dust_pan_s123.ply", "views": ["view00_k316.png", "view01_k220.png", "view02_k0.png"], "iou": [0.931, 0.904, 0.893], "mean_iou": 0.909}
+{"mesh": "ep24_wooden_piece_1_s2025.ply", "views": ["view00_k8.png", "view01_k128.png"], "iou": [0.97, 0.972], "mean_iou": 0.971}
+{"mesh": "ep18_mini_sweeper_s123.ply", "views": ["view00_k162.png", "view01_k218.png", "view02_k266.png", "view03_k284.png", "view04_k8.png"], "iou": [0.942, 0.887, 0.862, 0.918, 0.919], "mean_iou": 0.906}
+{"mesh": "ep40_mini_dust_pan_s123.ply", "views": ["view00_k10.png"], "iou": [0.935], "mean_iou": 0.935}
+{"mesh": "ep2_white_pot_lid_s42.ply", "views": ["view00_k324.png"], "iou": [0.981], "mean_iou": 0.981}
+{"mesh": "ep24_wooden_piece_2_s123.ply", "views": ["view00_k6.png"], "iou": [0.983], "mean_iou": 0.983}
+{"mesh": "ep18_mini_dust_pan_s123.ply", "views": ["view00_k108.png", "view01_k12.png"], "iou": [0.916, 0.923], "mean_iou": 0.92}
+{"mesh": "ep31_mini_sweeper_s2025.ply", "views": ["view00_k270.png"], "iou": [0.977], "mean_iou": 0.977}
+{"mesh": "ep11_beige_cup_s42.ply", "views": ["view00_k6.png"], "iou": [0.989], "mean_iou": 0.989}
+{"mesh": "ep39_mini_dust_pan_s2025.ply", "views": ["view00_k316.png", "view01_k220.png", "view02_k0.png"], "iou": [0.918, 0.908, 0.882], "mean_iou": 0.903}
+{"mesh": "ep24_wooden_piece_1_s42.ply", "views": ["view00_k8.png", "view01_k128.png"], "iou": [0.97, 0.978], "mean_iou": 0.974}
+{"mesh": "ep18_mini_sweeper_s2025.ply", "views": ["view00_k162.png", "view01_k218.png", "view02_k266.png", "view03_k284.png", "view04_k8.png"], "iou": [0.921, 0.863, 0.84, 0.881, 0.884], "mean_iou": 0.878}
+{"mesh": "ep2_white_pot_lid_s7.ply", "views": ["view00_k324.png"], "iou": [0.986], "mean_iou": 0.986}
+{"mesh": "ep18_mini_dust_pan_s2025.ply", "views": ["view00_k108.png", "view01_k12.png"], "iou": [0.921, 0.921], "mean_iou": 0.921}
+{"mesh": "ep31_mini_sweeper_s42.ply", "views": ["view00_k270.png"], "iou": [0.981], "mean_iou": 0.981}
+{"mesh": "ep11_beige_cup_s7.ply", "views": ["view00_k6.png"], "iou": [0.942], "mean_iou": 0.942}
+{"mesh": "ep40_mini_dust_pan_s2025.ply", "views": ["view00_k10.png"], "iou": [0.938], "mean_iou": 0.938}
+{"mesh": "ep24_wooden_piece_2_s2025.ply", "views": ["view00_k6.png"], "iou": [0.988], "mean_iou": 0.988}
+{"mesh": "ep24_wooden_piece_1_s7.ply", "views": ["view00_k8.png", "view01_k128.png"], "iou": [0.975, 0.972], "mean_iou": 0.973}
+{"mesh": "ep39_mini_dust_pan_s42.ply", "views": ["view00_k316.png", "view01_k220.png", "view02_k0.png"], "iou": [0.933, 0.904, 0.885], "mean_iou": 0.908}
+{"mesh": "ep18_mini_sweeper_s42.ply", "views": ["view00_k162.png", "view01_k218.png", "view02_k266.png", "view03_k284.png", "view04_k8.png"], "iou": [0.955, 0.895, 0.863, 0.925, 0.917], "mean_iou": 0.911}
+{"mesh": "ep18_mini_dust_pan_s42.ply", "views": ["view00_k108.png", "view01_k12.png"], "iou": [0.924, 0.914], "mean_iou": 0.919}
+{"mesh": "ep31_mini_sweeper_s7.ply", "views": ["view00_k270.png"], "iou": [0.976], "mean_iou": 0.976}
+{"mesh": "ep39_mini_dust_pan_s7.ply", "views": ["view00_k316.png", "view01_k220.png", "view02_k0.png"], "iou": [0.921, 0.913, 0.896], "mean_iou": 0.91}
+{"mesh": "ep18_mini_dust_pan_s7.ply", "views": ["view00_k108.png", "view01_k12.png"], "iou": [0.917, 0.922], "mean_iou": 0.92}
+{"mesh": "ep40_mini_dust_pan_s42.ply", "views": ["view00_k10.png"], "iou": [0.975], "mean_iou": 0.975}
+{"mesh": "ep18_mini_sweeper_s7.ply", "views": ["view00_k162.png", "view01_k218.png", "view02_k266.png", "view03_k284.png", "view04_k8.png"], "iou": [0.895, 0.878, 0.847, 0.876, 0.897], "mean_iou": 0.879}
+{"mesh": "ep24_wooden_piece_2_s42.ply", "views": ["view00_k6.png"], "iou": [0.983], "mean_iou": 0.983}
+{"mesh": "ep40_mini_dust_pan_s7.ply", "views": ["view00_k10.png"], "iou": [0.967], "mean_iou": 0.967}
+{"mesh": "ep24_wooden_piece_2_s7.ply", "views": ["view00_k6.png"], "iou": [0.983], "mean_iou": 0.983}

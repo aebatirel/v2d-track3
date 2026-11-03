@@ -67,3 +67,22 @@ GPU cap for G3 $15; stop if Vast credit < $15. Ledger session mesh-bold.
   fetch (HYFIX-OK): Hunyuan3D-2.1 dit/vae, TRELLIS.2-4B pipeline.json + 4 ckpts, Pixal3D pipeline_mv.json + 5 ckpts all
   present (hyfix.log FILE lines). SAM 3D env C import OK. INPUTS-OK 50b70285 (36 crops, 9 view sets).
 - 02:06:38Z generation started: SAM 3D alongside Hunyuan3D-2.1, 36 crops x 4 seeds each.
+- 02:42:03Z SAM 3D done, 144/144 ok (~15 s each, alongside Hunyuan3D-2.1). Pixal3D-MV 1536 started 02:42:03 (9 view sets x
+  4 seeds, one process) beside the small Hunyuan job (85/144 at 02:42); SAM 3D Sim(3) fits running on the CPUs.
+- 02:47:55Z SAM 3D Sim(3): 144/144. 02:59:06Z Pixal3D-MV done: **36/36 ok at 1536** (median 18.8 s; the first 145 s
+  incl. warm-up). TRELLIS.2 1536 started 02:59:06 (36 crops x 4 seeds, one process); Hunyuan 122/144 at 02:59.
+- 03:00Z GT-free frame check of all 36 Pixal3D-MV outputs (`gen/mv_check.py` on the box, our view masks only, as on
+  29 Oct; `results/mv_check.jsonl` after the fetch): silhouette IoU per view 0.84-0.99; mean per mesh 0.88-0.99 (lowest:
+  ep18 sweeper 5-view sets 0.878-0.911 and dust pan multi-view sets 0.90-0.92; single-view sets 0.94-0.99). The outputs
+  are in our object frame (no axis-convention error).
+- 03:10:16Z Hunyuan3D-2.1 done 144/144 (~25-30 s each); Sim(3) 144/144 at 03:17. TRELLIS.2 1536: 141/144 ok; 3 CUDA OOM,
+  all ep11 beige cup (k0 s123, k0 s2025, k6 s2025; two with Hunyuan's 8.6 GB still on the GPU), rerun at 1024
+  (`trellis2_1024`, labelled, as G2): 3/3 ok; done 03:26:43. Sim(3) 141 + 3. No errors.log line (xargs -r).
+- 03:34:44Z **G3-GEN-DONE**: SHA256SUMS over **936 .ply** = 432 raw single-image (SAM 3D 144, Hunyuan 144, TRELLIS.2
+  141 + 3 at 1024) + 432 Sim(3) copies + 72 Pixal3D-MV (36 raw generator-cube `_gen` + 36 in our object frame). Per object
+  (each model): dust pan 24, beige 8, lid 16, sweeper 16, board 1 8, board 2 8, rack 16, pot 48 (single-image); Pixal3D-MV
+  dust pan 12, beige 4, lid 4, sweeper 8, board 1 4, board 2 4. **0 lost.**
+- FREEZE: `results/SHA256SUMS` (sha256 below), `results/gen_logs/`, `results/sim3_fits/`, `results/mv_check.jsonl`,
+  `results/box_logs/` (log tails) committed next, BEFORE any public-scan read of these meshes. No G3 mesh has been scored
+  or compared with a scan.
+  SHA256SUMS sha256 7bdb0a517e1b0517...

@@ -1,0 +1,364 @@
+"sam3d", "tag": "ep31_mini_sweeper_k270", "seed": 123, "crop": "crops_flat/ep31_mini_sweeper_k270.png", "faces_raw": 226666, "ok": true, "faces": 226666, "extent": [0.446, 0.2884, 0.9978], "scale": [[0.9241999983787537, 0.9241999983787537, 0.9241999983787537]], "path": "/content/results/gen/sam3d/ep31_mini_sweeper_k270_s123.ply", "sec": 16.6}
+2026-11-03 02:34:13.042 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:34:13.042 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:34:13.115 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:34:16.188 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 6349 to 6061
+2026-11-03 02:34:16.208 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:34:16.208 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:34:16.208 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:34:16.239 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:34:24.323 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:34:24.755 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep31_mini_sweeper_k270", "seed": 2025, "crop": "crops_flat/ep31_mini_sweeper_k270.png", "faces_raw": 258576, "ok": true, "faces": 258576, "extent": [0.3281, 0.4345, 0.9886], "scale": [[0.9325000047683716, 0.9325000047683716, 0.9325000047683716]], "path": "/content/results/gen/sam3d/ep31_mini_sweeper_k270_s2025.ply", "sec": 12.0}
+2026-11-03 02:34:25.016 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:34:25.016 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:34:25.089 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:34:29.924 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 8164 to 8100
+2026-11-03 02:34:29.960 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:34:29.960 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:34:29.960 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:34:29.994 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:34:39.753 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:34:39.967 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep39_mini_dust_pan_k297", "seed": 42, "crop": "crops_flat/ep39_mini_dust_pan_k297.png", "faces_raw": 310264, "ok": true, "faces": 310264, "extent": [0.998, 0.994, 0.2419], "scale": [[1.118299961090088, 1.118299961090088, 1.118299961090088]], "path": "/content/results/gen/sam3d/ep39_mini_dust_pan_k297_s42.ply", "sec": 15.2}
+2026-11-03 02:34:40.152 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:34:40.152 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:34:40.213 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:34:43.635 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 7716 to 7603
+2026-11-03 02:34:43.664 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:34:43.664 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:34:43.664 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:34:43.695 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:34:53.504 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:34:53.920 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep39_mini_dust_pan_k297", "seed": 7, "crop": "crops_flat/ep39_mini_dust_pan_k297.png", "faces_raw": 295612, "ok": true, "faces": 295612, "extent": [1.001, 0.9628, 0.1706], "scale": [[1.0892000198364258, 1.0892000198364258, 1.0892000198364258]], "path": "/content/results/gen/sam3d/ep39_mini_dust_pan_k297_s7.ply", "sec": 13.9}
+2026-11-03 02:34:54.183 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:34:54.184 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:34:54.256 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:34:59.095 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 6142 to 6126
+2026-11-03 02:34:59.130 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:34:59.130 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:34:59.130 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:34:59.162 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:35:07.248 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:35:07.449 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep39_mini_dust_pan_k297", "seed": 123, "crop": "crops_flat/ep39_mini_dust_pan_k297.png", "faces_raw": 241216, "ok": true, "faces": 241216, "extent": [0.8572, 0.9994, 0.1696], "scale": [[1.1474000215530396, 1.1474000215530396, 1.1474000215530396]], "path": "/content/results/gen/sam3d/ep39_mini_dust_pan_k297_s123.ply", "sec": 13.5}
+2026-11-03 02:35:07.632 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:35:07.632 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:35:07.678 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:35:11.086 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 7350 to 7303
+2026-11-03 02:35:11.121 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:35:11.121 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:35:11.121 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:35:11.155 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:35:22.635 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:35:23.050 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep39_mini_dust_pan_k297", "seed": 2025, "crop": "crops_flat/ep39_mini_dust_pan_k297.png", "faces_raw": 264000, "ok": true, "faces": 264000, "extent": [0.9411, 0.968, 0.1761], "scale": [[1.0654000043869019, 1.0654000043869019, 1.0654000043869019]], "path": "/content/results/gen/sam3d/ep39_mini_dust_pan_k297_s2025.ply", "sec": 15.6}
+2026-11-03 02:35:23.318 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:35:23.319 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:35:23.391 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:35:27.783 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 8740 to 8679
+2026-11-03 02:35:27.786 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:35:27.786 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:35:27.786 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:35:27.818 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:35:36.102 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:35:36.310 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep39_mini_dust_pan_k315", "seed": 42, "crop": "crops_flat/ep39_mini_dust_pan_k315.png", "faces_raw": 331524, "ok": true, "faces": 331524, "extent": [0.9986, 0.9897, 0.2375], "scale": [[1.0008000135421753, 1.0008000135421753, 1.0008000135421753]], "path": "/content/results/gen/sam3d/ep39_mini_dust_pan_k315_s42.ply", "sec": 13.3}
+2026-11-03 02:35:36.511 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:35:36.511 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:35:36.557 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:35:40.634 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 7398 to 7316
+2026-11-03 02:35:40.669 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:35:40.669 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:35:40.669 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:35:40.702 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:35:51.420 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:35:51.624 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep39_mini_dust_pan_k315", "seed": 7, "crop": "crops_flat/ep39_mini_dust_pan_k315.png", "faces_raw": 284324, "ok": true, "faces": 284324, "extent": [0.9988, 0.9405, 0.1828], "scale": [[0.9717000126838684, 0.9717000126838684, 0.9717000126838684]], "path": "/content/results/gen/sam3d/ep39_mini_dust_pan_k315_s7.ply", "sec": 15.3}
+2026-11-03 02:35:51.823 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:35:51.824 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:35:51.869 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:35:55.276 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 7407 to 7395
+2026-11-03 02:35:55.311 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:35:55.312 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:35:55.312 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:35:55.346 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:36:04.581 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:36:04.996 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep39_mini_dust_pan_k315", "seed": 123, "crop": "crops_flat/ep39_mini_dust_pan_k315.png", "faces_raw": 276928, "ok": true, "faces": 276928, "extent": [0.9929, 0.9457, 0.1759], "scale": [[0.9605000019073486, 0.9605000019073486, 0.9605000019073486]], "path": "/content/results/gen/sam3d/ep39_mini_dust_pan_k315_s123.ply", "sec": 13.4}
+2026-11-03 02:36:05.256 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:36:05.256 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:36:05.329 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:36:10.164 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 7687 to 7623
+2026-11-03 02:36:10.199 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:36:10.199 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:36:10.199 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:36:10.231 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:36:18.954 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:36:19.159 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep39_mini_dust_pan_k315", "seed": 2025, "crop": "crops_flat/ep39_mini_dust_pan_k315.png", "faces_raw": 281216, "ok": true, "faces": 281216, "extent": [0.941, 0.9576, 0.2353], "scale": [[0.9416000247001648, 0.9416000247001648, 0.9416000247001648]], "path": "/content/results/gen/sam3d/ep39_mini_dust_pan_k315_s2025.ply", "sec": 14.2}
+2026-11-03 02:36:19.366 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:36:19.366 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:36:19.411 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:36:22.816 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 7431 to 7175
+2026-11-03 02:36:22.851 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:36:22.851 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:36:22.851 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:36:22.885 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:36:33.908 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:36:34.323 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep40_mini_dust_pan_k12", "seed": 42, "crop": "crops_flat/ep40_mini_dust_pan_k12.png", "faces_raw": 283716, "ok": true, "faces": 283716, "extent": [0.9984, 0.9474, 0.176], "scale": [[0.9560999870300293, 0.9560999870300293, 0.9560999870300293]], "path": "/content/results/gen/sam3d/ep40_mini_dust_pan_k12_s42.ply", "sec": 15.2}
+2026-11-03 02:36:34.589 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:36:34.589 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:36:34.662 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:36:39.501 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 6855 to 6527
+2026-11-03 02:36:39.536 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:36:39.536 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:36:39.536 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:36:39.569 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:36:46.489 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:36:46.686 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep40_mini_dust_pan_k12", "seed": 7, "crop": "crops_flat/ep40_mini_dust_pan_k12.png", "faces_raw": 253004, "ok": true, "faces": 253004, "extent": [0.9983, 0.9804, 0.1419], "scale": [[0.9276999831199646, 0.9276999831199646, 0.9276999831199646]], "path": "/content/results/gen/sam3d/ep40_mini_dust_pan_k12_s7.ply", "sec": 12.4}
+2026-11-03 02:36:46.891 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:36:46.891 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:36:46.936 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:36:50.333 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 7442 to 7424
+2026-11-03 02:36:50.342 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:36:50.342 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:36:50.342 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:36:50.374 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:37:03.237 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:37:03.346 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep40_mini_dust_pan_k12", "seed": 123, "crop": "crops_flat/ep40_mini_dust_pan_k12.png", "faces_raw": 279404, "ok": true, "faces": 279404, "extent": [0.9928, 0.9444, 0.1759], "scale": [[0.9700999855995178, 0.9700999855995178, 0.9700999855995178]], "path": "/content/results/gen/sam3d/ep40_mini_dust_pan_k12_s123.ply", "sec": 16.7}
+2026-11-03 02:37:03.460 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:37:03.461 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:37:03.497 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:37:06.647 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 7524 to 7444
+2026-11-03 02:37:06.660 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:37:06.660 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:37:06.660 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:37:06.691 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:37:14.956 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:37:15.372 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep40_mini_dust_pan_k12", "seed": 2025, "crop": "crops_flat/ep40_mini_dust_pan_k12.png", "faces_raw": 295368, "ok": true, "faces": 295368, "extent": [0.9257, 0.9947, 0.2763], "scale": [[0.9447000026702881, 0.9447000026702881, 0.9447000026702881]], "path": "/content/results/gen/sam3d/ep40_mini_dust_pan_k12_s2025.ply", "sec": 12.0}
+2026-11-03 02:37:15.640 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:37:15.640 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:37:15.713 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:37:20.552 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 6861 to 6846
+2026-11-03 02:37:20.587 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:37:20.587 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:37:20.587 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:37:20.619 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:37:30.610 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:37:30.826 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep40_mini_dust_pan_k9", "seed": 42, "crop": "crops_flat/ep40_mini_dust_pan_k9.png", "faces_raw": 382848, "ok": true, "faces": 382848, "extent": [0.984, 0.9422, 0.2042], "scale": [[0.9430000185966492, 0.9430000185966492, 0.9430000185966492]], "path": "/content/results/gen/sam3d/ep40_mini_dust_pan_k9_s42.ply", "sec": 15.4}
+2026-11-03 02:37:31.041 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:37:31.041 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:37:31.086 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:37:34.490 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 8060 to 8030
+2026-11-03 02:37:34.498 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:37:34.498 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:37:34.498 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:37:34.529 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:37:44.796 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:37:45.214 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep40_mini_dust_pan_k9", "seed": 7, "crop": "crops_flat/ep40_mini_dust_pan_k9.png", "faces_raw": 372964, "ok": true, "faces": 372964, "extent": [0.9981, 0.9577, 0.1994], "scale": [[0.9032999873161316, 0.9032999873161316, 0.9032999873161316]], "path": "/content/results/gen/sam3d/ep40_mini_dust_pan_k9_s7.ply", "sec": 14.4}
+2026-11-03 02:37:45.479 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:37:45.479 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:37:45.552 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:37:50.388 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 5280 to 5222
+2026-11-03 02:37:50.423 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:37:50.423 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:37:50.423 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:37:50.454 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:37:57.810 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:37:58.007 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep40_mini_dust_pan_k9", "seed": 123, "crop": "crops_flat/ep40_mini_dust_pan_k9.png", "faces_raw": 191928, "ok": true, "faces": 191928, "extent": [0.8897, 0.889, 0.1647], "scale": [[0.991599977016449, 0.991599977016449, 0.991599977016449]], "path": "/content/results/gen/sam3d/ep40_mini_dust_pan_k9_s123.ply", "sec": 12.8}
+2026-11-03 02:37:58.209 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:37:58.209 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:37:58.252 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:38:01.652 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 6648 to 6526
+2026-11-03 02:38:01.664 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:38:01.664 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:38:01.665 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:38:01.695 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:38:13.534 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:38:13.944 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep40_mini_dust_pan_k9", "seed": 2025, "crop": "crops_flat/ep40_mini_dust_pan_k9.png", "faces_raw": 252456, "ok": true, "faces": 252456, "extent": [0.9191, 0.9008, 0.2398], "scale": [[0.9377999901771545, 0.9377999901771545, 0.9377999901771545]], "path": "/content/results/gen/sam3d/ep40_mini_dust_pan_k9_s2025.ply", "sec": 15.9}
+2026-11-03 02:38:14.267 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:38:14.267 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:38:14.338 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:38:18.220 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 5586 to 5578
+2026-11-03 02:38:18.232 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:38:18.232 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:38:18.233 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:38:18.263 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:38:26.885 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:38:26.925 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep42_white_pot_k237", "seed": 42, "crop": "crops_flat/ep42_white_pot_k237.png", "faces_raw": 217144, "ok": true, "faces": 217144, "extent": [0.5577, 0.9999, 0.3036], "scale": [[1.0815999507904053, 1.0815999507904053, 1.0815999507904053]], "path": "/content/results/gen/sam3d/ep42_white_pot_k237_s42.ply", "sec": 12.9}
+2026-11-03 02:38:27.349 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:38:27.349 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:38:27.426 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:38:32.286 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4664 to 4661
+2026-11-03 02:38:32.321 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:38:32.321 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:38:32.321 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:38:32.353 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:38:42.268 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:38:42.464 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep42_white_pot_k237", "seed": 7, "crop": "crops_flat/ep42_white_pot_k237.png", "faces_raw": 213724, "ok": true, "faces": 213724, "extent": [0.538, 0.9969, 0.2709], "scale": [[1.1123000383377075, 1.1123000383377075, 1.1123000383377075]], "path": "/content/results/gen/sam3d/ep42_white_pot_k237_s7.ply", "sec": 15.5}
+2026-11-03 02:38:42.696 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:38:42.696 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:38:42.768 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:38:46.194 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4461 to 4455
+2026-11-03 02:38:46.206 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:38:46.206 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:38:46.206 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:38:46.238 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:38:56.051 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:38:56.452 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep42_white_pot_k237", "seed": 123, "crop": "crops_flat/ep42_white_pot_k237.png", "faces_raw": 177924, "ok": true, "faces": 177924, "extent": [0.5253, 0.9993, 0.2447], "scale": [[1.1497999429702759, 1.1497999429702759, 1.1497999429702759]], "path": "/content/results/gen/sam3d/ep42_white_pot_k237_s123.ply", "sec": 14.0}
+2026-11-03 02:38:56.748 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:38:56.748 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:38:56.821 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:39:01.659 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4421 to 4417
+2026-11-03 02:39:01.694 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:39:01.694 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:39:01.694 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:39:01.726 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:39:09.567 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:39:09.762 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep42_white_pot_k237", "seed": 2025, "crop": "crops_flat/ep42_white_pot_k237.png", "faces_raw": 187308, "ok": true, "faces": 187308, "extent": [0.5409, 0.9996, 0.2623], "scale": [[1.1654000282287598, 1.1654000282287598, 1.1654000282287598]], "path": "/content/results/gen/sam3d/ep42_white_pot_k237_s2025.ply", "sec": 13.3}
+2026-11-03 02:39:10.187 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:39:10.187 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:39:10.236 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:39:13.632 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 5862 to 5849
+2026-11-03 02:39:13.645 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:39:13.645 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:39:13.645 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:39:13.676 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:39:25.485 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:39:25.893 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep42_white_pot_k240", "seed": 42, "crop": "crops_flat/ep42_white_pot_k240.png", "faces_raw": 219452, "ok": true, "faces": 219452, "extent": [0.5695, 1.0002, 0.3054], "scale": [[1.077299952507019, 1.077299952507019, 1.077299952507019]], "path": "/content/results/gen/sam3d/ep42_white_pot_k240_s42.ply", "sec": 16.1}
+2026-11-03 02:39:26.196 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:39:26.197 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:39:26.269 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:39:30.090 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 5492 to 5460
+2026-11-03 02:39:30.094 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:39:30.094 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:39:30.094 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:39:30.131 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:39:38.841 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:39:38.880 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep42_white_pot_k240", "seed": 7, "crop": "crops_flat/ep42_white_pot_k240.png", "faces_raw": 238028, "ok": true, "faces": 238028, "extent": [0.5456, 0.999, 0.307], "scale": [[1.0898000001907349, 1.0898000001907349, 1.0898000001907349]], "path": "/content/results/gen/sam3d/ep42_white_pot_k240_s7.ply", "sec": 13.0}
+2026-11-03 02:39:39.419 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:39:39.420 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:39:39.493 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:39:44.393 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4489 to 4482
+2026-11-03 02:39:44.431 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:39:44.431 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:39:44.431 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:39:44.463 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:39:54.303 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:39:54.497 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep42_white_pot_k240", "seed": 123, "crop": "crops_flat/ep42_white_pot_k240.png", "faces_raw": 178944, "ok": true, "faces": 178944, "extent": [0.523, 1.0008, 0.2434], "scale": [[1.1532000303268433, 1.1532000303268433, 1.1532000303268433]], "path": "/content/results/gen/sam3d/ep42_white_pot_k240_s123.ply", "sec": 15.6}
+2026-11-03 02:39:54.732 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:39:54.732 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:39:54.805 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:39:58.641 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 3883 to 3877
+2026-11-03 02:39:58.676 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:39:58.676 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:39:58.676 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:39:58.708 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:40:09.009 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:40:09.407 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep42_white_pot_k240", "seed": 2025, "crop": "crops_flat/ep42_white_pot_k240.png", "faces_raw": 189632, "ok": true, "faces": 189632, "extent": [0.5467, 1.0001, 0.2591], "scale": [[1.1509000062942505, 1.1509000062942505, 1.1509000062942505]], "path": "/content/results/gen/sam3d/ep42_white_pot_k240_s2025.ply", "sec": 14.9}
+2026-11-03 02:40:09.866 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:40:09.866 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:40:09.938 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:40:14.774 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 5709 to 5703
+2026-11-03 02:40:14.809 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:40:14.809 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:40:14.809 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:40:14.841 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:40:22.268 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:40:22.495 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep45_white_pot_k6", "seed": 42, "crop": "crops_flat/ep45_white_pot_k6.png", "faces_raw": 218300, "ok": true, "faces": 218300, "extent": [0.5601, 0.9999, 0.3057], "scale": [[1.0318000316619873, 1.0318000316619873, 1.0318000316619873]], "path": "/content/results/gen/sam3d/ep45_white_pot_k6_s42.ply", "sec": 13.1}
+2026-11-03 02:40:22.729 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:40:22.730 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:40:22.772 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:40:26.171 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4722 to 4721
+2026-11-03 02:40:26.183 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:40:26.183 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:40:26.183 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:40:26.214 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:40:38.353 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:40:38.755 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep45_white_pot_k6", "seed": 7, "crop": "crops_flat/ep45_white_pot_k6.png", "faces_raw": 203680, "ok": true, "faces": 203680, "extent": [0.5454, 0.9987, 0.2413], "scale": [[1.070099949836731, 1.070099949836731, 1.070099949836731]], "path": "/content/results/gen/sam3d/ep45_white_pot_k6_s7.ply", "sec": 16.3}
+2026-11-03 02:40:39.051 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:40:39.052 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:40:39.123 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:40:42.553 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4656 to 4654
+2026-11-03 02:40:42.569 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:40:42.569 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:40:42.569 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:40:42.599 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:40:50.763 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:40:50.804 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep45_white_pot_k6", "seed": 123, "crop": "crops_flat/ep45_white_pot_k6.png", "faces_raw": 176932, "ok": true, "faces": 176932, "extent": [0.5215, 0.9992, 0.2418], "scale": [[1.0978000164031982, 1.0978000164031982, 1.0978000164031982]], "path": "/content/results/gen/sam3d/ep45_white_pot_k6_s123.ply", "sec": 12.0}
+2026-11-03 02:40:51.091 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:40:51.092 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:40:51.165 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:40:56.000 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4629 to 4623
+2026-11-03 02:40:56.036 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:40:56.036 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:40:56.036 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:40:56.070 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:41:05.883 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:41:06.075 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep45_white_pot_k6", "seed": 2025, "crop": "crops_flat/ep45_white_pot_k6.png", "faces_raw": 180476, "ok": true, "faces": 180476, "extent": [0.5263, 1.0002, 0.2399], "scale": [[1.1162999868392944, 1.1162999868392944, 1.1162999868392944]], "path": "/content/results/gen/sam3d/ep45_white_pot_k6_s2025.ply", "sec": 15.3}
+2026-11-03 02:41:06.309 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:41:06.309 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:41:06.350 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:41:09.762 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 5402 to 5393
+2026-11-03 02:41:09.798 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:41:09.798 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:41:09.798 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:41:09.832 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:41:19.537 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:41:19.944 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep45_white_pot_k9", "seed": 42, "crop": "crops_flat/ep45_white_pot_k9.png", "faces_raw": 222192, "ok": true, "faces": 222192, "extent": [0.5568, 1.0002, 0.3051], "scale": [[1.0902999639511108, 1.0902999639511108, 1.0902999639511108]], "path": "/content/results/gen/sam3d/ep45_white_pot_k9_s42.ply", "sec": 13.9}
+2026-11-03 02:41:20.242 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:41:20.242 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:41:20.315 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:41:25.150 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4675 to 4673
+2026-11-03 02:41:25.185 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:41:25.185 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:41:25.185 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:41:25.217 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:41:33.631 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:41:33.826 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep45_white_pot_k9", "seed": 7, "crop": "crops_flat/ep45_white_pot_k9.png", "faces_raw": 211624, "ok": true, "faces": 211624, "extent": [0.5452, 0.9989, 0.2663], "scale": [[1.1126999855041504, 1.1126999855041504, 1.1126999855041504]], "path": "/content/results/gen/sam3d/ep45_white_pot_k9_s7.ply", "sec": 13.9}
+2026-11-03 02:41:34.071 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:41:34.072 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:41:34.119 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:41:37.556 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4617 to 4611
+2026-11-03 02:41:37.590 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:41:37.591 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:41:37.591 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:41:37.621 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:41:49.390 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:41:49.792 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep45_white_pot_k9", "seed": 123, "crop": "crops_flat/ep45_white_pot_k9.png", "faces_raw": 177376, "ok": true, "faces": 177376, "extent": [0.5164, 1.0, 0.2426], "scale": [[1.1470999717712402, 1.1470999717712402, 1.1470999717712402]], "path": "/content/results/gen/sam3d/ep45_white_pot_k9_s123.ply", "sec": 16.0}
+2026-11-03 02:41:50.239 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:664 - Sampling sparse structure: inference_steps=25, strength=7, interval=[0, 500], rescale_t=3, cfg_strength_pm=0.0
+2026-11-03 02:41:50.239 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:41:50.311 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:41:54.025 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_sparse_structure:714 - Downsampled coords from 4410 to 4403
+2026-11-03 02:41:54.038 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:437 - Rescaling scale by 1 after downsampling
+2026-11-03 02:41:54.038 | INFO     | sam3d_objects.pipeline.inference_pipeline:sample_slat:744 - Sampling sparse latent: inference_steps=25, strength=1, interval=[0, 500], rescale_t=1
+2026-11-03 02:41:54.038 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:633 - Running condition embedder ...
+2026-11-03 02:41:54.069 | INFO     | sam3d_objects.pipeline.inference_pipeline:get_condition_input:637 - Condition embedder finishes!
+2026-11-03 02:42:02.479 | INFO     | sam3d_objects.pipeline.inference_pipeline:decode_slat:606 - Decoding sparse latent...
+2026-11-03 02:42:02.516 | INFO     | sam3d_objects.pipeline.inference_pipeline_pointmap:run:502 - Finished!
+{"model": "sam3d", "tag": "ep45_white_pot_k9", "seed": 2025, "crop": "crops_flat/ep45_white_pot_k9.png", "faces_raw": 184116, "ok": true, "faces": 184116, "extent": [0.5199, 0.9995, 0.2543], "scale": [[1.176300048828125, 1.176300048828125, 1.176300048828125]], "path": "/content/results/gen/sam3d/ep45_white_pot_k9_s2025.ply", "sec": 12.7}

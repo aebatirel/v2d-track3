@@ -1,0 +1,33 @@
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 4 files:  25%|██▌       | 1/4 [00:00<00:00,  9.34it/s]Fetching 4 files:  75%|███████▌  | 3/4 [00:06<00:02,  2.34s/it]Fetching 4 files: 100%|██████████| 4/4 [00:14<00:00,  4.49s/it]Fetching 4 files: 100%|██████████| 4/4 [00:14<00:00,  3.73s/it]
+/workspace/w/hy3dgen/tencent/Hunyuan3D-2.1
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 59.43it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 58.77it/s]
+/workspace/w/TRELLIS.2-4B
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 64.81it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 64.02it/s]
+/workspace/w/Pixal3D
+FILE /content/w/Pixal3D/LICENSE 1064
+FILE /content/w/Pixal3D/pipeline_mv.json 6036
+FILE /content/w/Pixal3D/ckpts/slat_flow_img2shape_dit_1_3B_1024_bf16_mv.json 535
+FILE /content/w/Pixal3D/ckpts/slat_flow_img2shape_dit_1_3B_512_bf16_mv.json 535
+FILE /content/w/Pixal3D/ckpts/ss_flow_img_dit_1_3B_64_bf16_mv.json 503
+FILE /content/w/Pixal3D/ckpts/ss_dec_conv3d_16l8_fp16.json 245
+FILE /content/w/Pixal3D/ckpts/shape_dec_next_dc_f16c32_fp16.json 678
+FILE /content/w/Pixal3D/ckpts/ss_dec_conv3d_16l8_fp16.safetensors 147591972
+FILE /content/w/Pixal3D/ckpts/shape_dec_next_dc_f16c32_fp16.safetensors 948490494
+FILE /content/w/Pixal3D/ckpts/slat_flow_img2shape_dit_1_3B_1024_bf16_mv.safetensors 5546764048
+FILE /content/w/Pixal3D/ckpts/slat_flow_img2shape_dit_1_3B_512_bf16_mv.safetensors 5546764048
+FILE /content/w/Pixal3D/ckpts/ss_flow_img_dit_1_3B_64_bf16_mv.safetensors 5359822584
+FILE /content/w/TRELLIS.2-4B/pipeline.json 4186
+FILE /content/w/TRELLIS.2-4B/ckpts/shape_dec_next_dc_f16c32_fp16.json 678
+FILE /content/w/TRELLIS.2-4B/ckpts/slat_flow_img2shape_dit_1_3B_1024_bf16.json 458
+FILE /content/w/TRELLIS.2-4B/ckpts/slat_flow_img2shape_dit_1_3B_512_bf16.json 458
+FILE /content/w/TRELLIS.2-4B/ckpts/ss_flow_img_dit_1_3B_64_bf16.json 467
+FILE /content/w/TRELLIS.2-4B/ckpts/shape_dec_next_dc_f16c32_fp16.safetensors 948490494
+FILE /content/w/TRELLIS.2-4B/ckpts/ss_flow_img_dit_1_3B_64_bf16.safetensors 2584426920
+FILE /content/w/TRELLIS.2-4B/ckpts/slat_flow_img2shape_dit_1_3B_512_bf16.safetensors 2584574424
+FILE /content/w/TRELLIS.2-4B/ckpts/slat_flow_img2shape_dit_1_3B_1024_bf16.safetensors 2584574424
+FILE /content/w/hy3dgen/tencent/Hunyuan3D-2.1/hunyuan3d-vae-v2-1/config.yaml 409
+FILE /content/w/hy3dgen/tencent/Hunyuan3D-2.1/hunyuan3d-vae-v2-1/model.fp16.ckpt 655648152
+FILE /content/w/hy3dgen/tencent/Hunyuan3D-2.1/hunyuan3d-dit-v2-1/config.yaml 2078
+FILE /content/w/hy3dgen/tencent/Hunyuan3D-2.1/hunyuan3d-dit-v2-1/model.fp16.ckpt 7366389768
+HYFIX-OK
