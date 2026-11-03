@@ -7337,3 +7337,11 @@ arm and a no-policy replay floor to stage B.
   - eval 19 sm: zero-shot 0.226 vs 0.929 (the policy fails with the new sweeper); s42 ≈ 04:00, s43 ≈ 06:00, low
     expectations.
   - Batch spend ≈ $5 so far.
+- ~03:45 UTC 3 Nov owner: "ideate on a genuinely new perception method, do your research and go to distance".
+  - Research done: BundleSDF / FoundationPose model-free, Any6D (CVPR 2025), HOLD (CVPR 2024), MagicHOI (ICCV 2025).
+    All of them change the trajectory, so they would need retrains; test B showed that path is fragile.
+  - Proposal (docs/plans/new-perception-20261103.md, 21e5fdc2): **learn our tracker's systematic body-frame bias B
+    per object on the public episodes and apply it as submitted-mesh placement** (payload-only, no retrains), plus a
+    GT-free gated variant (H1c).
+  - Public LOO test sent to perception-tracking (CPU, PREREG first). H1 uses public mocap to calibrate an inference
+    constant (GT-informed), so eval use waits for the owner's explicit yes.
