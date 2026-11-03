@@ -6854,3 +6854,6 @@ arm and a no-policy replay floor to stage B.
 - 08:15 UTC focused-pascal built pack 14p1 (14p + board 2 G3 #43; sha256 9dd5cbd6…), D1 pass both modes; noted the
   mesh's scan-anchor proxy 4.3–7.5 mm (library_v3 2.3–4.9) and 2.2× scan surface area (possible doubled shell);
   ep24 in-sample caveat in its README. Pending bold-albattani's sign-off.
+- 08:20 UTC coordinator: **14p1 held, not uploaded** (#43 was generated from ep24, one of its two CV episodes; held-out
+  not independent). Rule for future CV rounds (to be pre-registered): a candidate's own source episode(s) are
+  excluded from its held-out scoring. Eval audit continues.
