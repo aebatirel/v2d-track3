@@ -11059,3 +11059,6 @@ score.
   0.768 / 0.826 → the earlier low fresh means are box / run specific [H, unexplained]. NO-SWAP verdicts stand (no
   post-hoc re-test). Results docs/research/work/pf-evalgap-20261103/results/. (The session container restarted at ~01:12;
   nothing was lost: the box kept running, the repo was in sync.)
+- 01:47 UTC 3 Nov coordinator: **pack 14p uploaded** (AUC 0.88571, RPE 2.21325, MPPE 1.79779). Eval 30 stays NO-SWAP
+  (a re-test omitting the failed host would be a forking path). **Two-host confirmation adopted for future swaps**:
+  written into docs/research/work/pack9b-20261031/PREREG.md (amendment). Lane closed for the night; 0 boxes.

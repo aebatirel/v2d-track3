@@ -199,3 +199,15 @@ or the r<i> that is draw 1) replaces its packed rollout in pack 9b. Pack 9b is a
 swapped episodes, and every other episode stays byte-identical. The upload is decided outside this job: the owner's
 word, in the session that uploads. NO-SWAP, INCOMPLETE and INVALID leave the packed rollout in place. Accuracy, failures
 and cost are reported together. The expected leaderboard effect is not estimated here; the swap rule is the decision.
+
+## Amendment (3 Nov 2026 ~01:50 UTC): two-host confirmation for every FUTURE swap
+Adopted by the coordinator (keen-heisenberg) on the evaluator-gap result (docs/research/work/pf-evalgap-20261103/):
+the pristine evaluator gave the same checkpoints 0.926 / 0.937 on one host and 0.768 / 0.826 on their training hosts,
+so a single host's fresh draws can mislead.
+- Section 3 becomes: 10 fresh official draws on the training box AND 10 on a second, different host (a separate box,
+  different offer / machine), each on the pristine evaluator; both hosts named in the pre-registration.
+- Section 4 (swap rule a / b / c / s) and the +0.02 inclusion bar must hold on EACH host's 10 draws separately; draw 1 of
+  the training-box set stays the packed rollout. A failure on either host = NO-SWAP; no host may be dropped or re-run
+  after the fact.
+- Applies only to swaps pre-registered after this amendment; verdicts already made (incl. eval 30 sm NO-SWAP, eval 14 p0m
+  PASS in pack 14p) stand.

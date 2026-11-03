@@ -1,6 +1,7 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-03 04:46 TRT (01:46 UTC): night lane closed — pack 14p ready; evaluator check done; 0 boxes
+## 2026-11-03 04:46 TRT (01:46 UTC): night lane closed — PACK 14p UPLOADED (AUC 0.88571); evaluator check done; 0 boxes
+- Uploaded by keen-heisenberg: AUC 0.88571, RPE 2.21325, MPPE 1.79779. Future swaps need confirmation on two hosts.
 - **Pack 14p** (pack 13p2 + eval 14, retrained with the new rack / cup shapes as collision): results/submissions/
   20261102-track3s-candidate/build_14p/track3_submission.parquet (sha256 b6c6100d…). keen-heisenberg uploads.
 - Other retrains tonight did not pass: eval 20 (new pitcher), eval 28 (new rack), eval 30 (new sweeper / rack; strong on
