@@ -7369,3 +7369,9 @@ arm and a no-policy replay floor to stage B.
     stacking them would double-correct (pre-registered). The owner's yes is recorded but not used; $0.
   - [I] Our tracker's body-frame error is episode-specific, so option B (reference bias correction) loses its basis.
     The remaining perception routes are A (GT-free eval gross-failure audit) and C / D (re-tracking + retrains).
+- ~05:24 UTC 3 Nov G3 audit part 1 [D, 50 seeds] vs 13h:
+  - pot trellis2 ep45: CD-O 0.2399 vs 0.2861, rule A (ADD 6.8 vs 2.7 mm, so CD-O pack only);
+  - dust pan Pixal3D-MV ep39 s2025: 0.2064 vs 0.2291 (A + C);
+  - board 1 hy21 ep24 s123: 0.1593 vs 0.1872, W30 0 / 50 (A + C);
+  - rack: no pass.
+  - D1 running. If all pass, 13i CD-O ≈ 0.242 [E]; 4th place is 0.2467.
