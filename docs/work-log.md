@@ -6851,3 +6851,6 @@ arm and a no-policy replay floor to stage B.
     - pot #0 −0.005, #5 −0.004;
     - dust pan #9 −0.027, #15 −0.025, #17 −0.013;
     - rack #26 −0.003.
+- 08:15 UTC focused-pascal built pack 14p1 (14p + board 2 G3 #43; sha256 9dd5cbd6…), D1 pass both modes; noted the
+  mesh's scan-anchor proxy 4.3–7.5 mm (library_v3 2.3–4.9) and 2.2× scan surface area (possible doubled shell);
+  ep24 in-sample caveat in its README. Pending bold-albattani's sign-off.
