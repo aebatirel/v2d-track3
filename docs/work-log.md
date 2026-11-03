@@ -7307,3 +7307,8 @@ arm and a no-policy replay floor to stage B.
   - Coordinator: eval 30 stays NO-SWAP. A re-test without the failed host is a forking path; with it, passing is
     impossible. **Two-host confirmation is adopted for future swaps**, pre-registered, both must pass.
   - Lane total tonight ≈ $36 (≈ $6 lost to bugs and replacements). Credit $94.58 at 01:45 UTC; 0 boxes running.
+- ~01:50 UTC 3 Nov, more work tonight (owner: "do as much as you can"; credit $94.58):
+  - perfect-following, ≤ $35: eval-14 "p0m" recipe (the board's reference + packed recipe + 13f / 13h collision
+    meshes) for evals 32 / 10 / 33 / 19. Two-host confirmation pre-registered → pack 15 on 14p.
+  - bold-albattani, ≤ $15: G3 generation for sweeper / dust pan / lid / beige cup (+ boards). Same rules + D1 → CD-O
+    pack 13i on 13h. Target: CD-O 4th (Zihao Guo 0.24669, −0.0049).
