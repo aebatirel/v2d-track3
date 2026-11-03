@@ -6187,7 +6187,7 @@ Advice given:
   payload rows; CD-O those 9 pairs; offline validation pass; guard on; **D1 PASS both modes** (0/7; pot anchor 6.5–7.1 mm, as
   its ADD 6.8 says). Flags: pot centroid 6.9 mm; **dust pan x extent 46.7 → 82.0 mm (×1.76), surface max 45 mm**; board 1
   extents ×1.20 / ×0.87. Staged as results/submissions/20261103-track3w-candidate; frame report sent to bold-albattani.
-- ~05:55 UTC bold-albattani **signs off 13i: YES for all three, transform NONE.** Dust-pan flag = isolated generator debris.
+- ~05:51 UTC bold-albattani **signs off 13i: YES for all three, transform NONE.** Dust-pan flag = isolated generator debris.
   Verified here: 46 faces, 0.650 mm² (0.0027%) in the source file, and **absent from the packed payload** (budget_mesh drops
   them; the payload's x span is 40.8 mm). Pot extents and board-1 extents are shape (frames consistent). Hashes re-verified.
   **pack 13i ready: results/submissions/20261103-track3w-candidate/build_13i/track3_submission.parquet** (sha256
