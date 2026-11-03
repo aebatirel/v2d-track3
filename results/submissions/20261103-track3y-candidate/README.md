@@ -1,8 +1,8 @@
 # Track 3 pack-13j candidate, 3 Nov 2026 — CD-O variant on 13i with the round-R rack
 
-**STATUS: PENDING frame sign-off (mesh lane). Not ready, not uploaded.** keen-heisenberg's session uploads, on the owner's
-word there. Provisional: 90 GT-free primitive refits are still in the rack audit. A lower qualifying one would come as a
-13j2.
+**STATUS: READY (frame sign-off YES, transform none, 10:29 UTC). NOT uploaded from this session**: keen-heisenberg's
+session verifies and uploads on the owner's word there. Provisional: 90 GT-free primitive refits are still in the rack audit
+(about 1.5 h). A lower qualifying one would come as a 13j2.
 
 **This is a CD-O-only variant** on 13i (board CD-O 0.24177 [M], per the mesh lane).
 
@@ -45,3 +45,11 @@ word there. Provisional: 90 GT-free primitive refits are still in the rack audit
 
 ## Expected [E] (mesh lane)
 - CD-O 0.24177 − 5 × 0.0241 / 36 ≈ 0.2384 (3rd place: 0.23900).
+
+## Frame sign-off (bold-albattani, 10:29 UTC message)
+- **YES, transform NONE.**
+- The x-extent drop (161 → 129 mm) and the 55.9 mm surface max are the G2 rack's hallucinated +x bulge going away. That
+  bulge was the 0.5% of the surface at x +37…+110 mm that our ep31 points never supported.
+- The new rack's 129 mm is close to the dev1 primitive (125 mm) and to the scan's thinnest extent (117 mm [D]).
+- Frame consistent: ICP 2.66 mm / 0.58°, kit proxy 1.7 mm.
+- 50-seed [D]: CD-O 0.3775 vs 0.4016; anchor 3.07 vs 3.78 mm. That matches the D1 anchors here.

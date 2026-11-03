@@ -10,7 +10,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
-## 2026-11-03 ~10:28 UTC: PACK 13j BUILT (CD-O variant on 13i), PENDING frame sign-off — results/submissions/20261103-track3y-candidate/build_13j/
+## 2026-11-03 ~10:30 UTC: PACK 13j READY (CD-O variant on 13i; sign-off YES) — results/submissions/20261103-track3y-candidate/build_13j/ (not uploaded here)
 - 13i (board CD-O 0.24177 [M]; reproduced byte for byte) + the round-R rack (GT-informed best-of-N of 390). sha256
   7e870437…b4ea; only 5 payload rows + commit URL differ. D1 PASS in both modes; frame clean; the G2 rack's bulge is gone.
   [E] CD-O ≈ 0.2384 (3rd place: 0.23900). Provisional until the primitive-refit audit ends (a lower one would be 13j2).

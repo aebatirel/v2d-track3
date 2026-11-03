@@ -6214,3 +6214,7 @@ Advice given:
   rack payload rows; CD-O those 5 pairs; offline validation pass; guard on; **D1 PASS both modes** (0/7; ≤ 2.5°; anchor
   2.6–3.6 mm vs the G2 rack's 3.2–4.6). Frame clean (ICP 2.7 mm / 0.6°). The only flag is the x extent 161 → 129 mm: the G2
   rack's bulge is gone. Staged as results/submissions/20261103-track3y-candidate; sign-off asked.
+- ~10:30 UTC bold-albattani **signs off 13j: YES, transform NONE** (x-extent drop = the G2 bulge gone; frame consistent).
+  Hashes re-verified. **pack 13j ready: results/submissions/20261103-track3y-candidate/build_13j/track3_submission.parquet**
+  (sha256 7e870437…b4ea, code 3a933d1d). Provisional until the primitive-refit audit ends (about 1.5 h). Not uploaded from
+  this session.
