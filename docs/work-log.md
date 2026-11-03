@@ -6572,3 +6572,13 @@ diagnostic; nothing is picked for submission.
   - 11 no-op trims (geometry identical to the placed copy, which is audited);
   - 4 copies that fail the kit `budget_mesh(4096, 4096)`, so they cannot be packed.
   Code 48a30ef2, 4 workers, detached, started 04:31:58Z.
+- ~05:45 UTC: G3 audit part 1 (49/79) and D1 done [D, 50 seeds, vs 13h]. Adopted for CD-O pack 13i; D1 is 0/6 flips in
+  both modes for all three:
+  - pot trellis2 ep45 k9 s2025 placed: 0.2399 vs 0.2861 (rule A). ADD 6.8 vs 2.7 mm, so worse for pose.
+  - dust pan Pixal3D-MV ep39 s2025 placed: 0.2064 vs 0.2291 (A + C).
+  - board 1 hy21 ep24 k3 s123 t3fit: 0.1593 vs 0.1872, W30 0 (A + C).
+  Not adopted:
+  - rack: best 0.3934 (-0.008).
+  - board 2: #43 sam3d k6 s2025 placed has CD-O 0.1623 and W30 0.00 vs 0.34, but fails rule B on anchor (5.50 > 5.46 mm).
+  Beige / lid / sweeper audits continue but cannot pass.
+  Expected 13i CD-O about 0.242 [E].

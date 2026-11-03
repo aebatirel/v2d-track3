@@ -1,0 +1,29 @@
+{
+ "white_pot": {
+  "decision": "ADOPT (rule A; D1 pass) -> 13i",
+  "index": 0,
+  "cdo": 0.2399,
+  "base": 0.2861
+ },
+ "mini_dust_pan": {
+  "decision": "ADOPT (rules A+C; D1 pass) -> 13i",
+  "index": 9,
+  "cdo": 0.2064,
+  "base": 0.2291
+ },
+ "wooden_piece_1": {
+  "decision": "ADOPT (rules A+C; D1 pass) -> 13i",
+  "index": 24,
+  "cdo": 0.1593,
+  "base": 0.1872
+ },
+ "plastic_dish_rack": {
+  "decision": "keep 13h (best 0.3934 vs 0.4016; no rule)"
+ },
+ "wooden_piece_2": {
+  "decision": "keep 13h: best W30-0 candidate #43 (CD-O 0.1623, W30 0.00) fails rule B on anchor 5.50 > 3.46+2.0 mm by 0.04 mm; others flip"
+ },
+ "beige_cup / white_pot_lid / mini_sweeper": {
+  "decision": "audit continuing; cannot pass (stage-1 bests worse than 13h by > the +0.005 allowance)"
+ }
+}
