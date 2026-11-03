@@ -6596,3 +6596,4 @@ diagnostic; nothing is picked for submission.
   - D1 started on board-2 near-miss #43 (sam3d ep24 k6 s2025 placed) for the perception lane's round-3 CV.
   - `C4-audit/posecv_manifest_g3.json`: all 79 audited G3 meshes, on HF at runs/mesh-20261103-g3-2417282/stage2/,
     verified 79/79.
+- ~07:00 UTC: D1 PASS for G3 #43 (board 2, sam3d ep24 k6 s2025 placed): 0/6 flips in both modes; 0.65 deg (budget) / 0.53 deg (raw) at the eval seed. Sent to tracking-perception as a pose-pack candidate (CD-O 0.1623 vs library_v3 0.2169; anchor 5.5 vs 3.3 mm).
