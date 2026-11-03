@@ -7331,3 +7331,9 @@ arm and a no-policy replay floor to stage B.
   - Boxes: pfS / pfT / pfU (retrains) and the G3 mesh box, all working; nothing idle.
   - Standings: rank sum 46, 7th (SP-SR rank 11 after another team improved).
   - Morning report written: docs/analysis/overnight-20261102/README.md.
+- ~03:31 UTC 3 Nov pf-mesh2 interim [M]:
+  - eval 33 p0m: s42 / s43 0.917 / 0.917 vs gate 0.923 → NO-SWAP;
+  - eval 32 p0m: s42 / s43 0.790 / 0.826 (min 0.464) vs 0.890 → NO-SWAP; the new cup destabilises the hold;
+  - eval 19 sm: zero-shot 0.226 vs 0.929 (the policy fails with the new sweeper); s42 ≈ 04:00, s43 ≈ 06:00, low
+    expectations.
+  - Batch spend ≈ $5 so far.
