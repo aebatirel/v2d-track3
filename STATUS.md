@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-03 ~05:40 UTC: tracking-perception: H1 (learned body-frame bias as mesh placement): no eval action
+- Public LOO (PREREG_bias.md): only the pitcher passes (H1a +0.046), and the GT-free depth placement already on eval 20
+  (13p2) is stronger (+0.106). All other objects fail; sweeper, dust pan and boards are harmful.
+- Dispersion: the bias is systematic only for the pitcher and the lid.
+- Owner's yes to GT-informed calibration recorded, not used. $0 (CPU). Lane idle.
+
 ## 2026-11-03 ~00:25 UTC: tracking-perception night work: pose-board meshes (packs 13p / 13p2), all public-CV-driven
 - **Found [M]:** the 13f board-2 payload registered flipped 180° on eval 25 slot 1. Fixed by focused-pascal in 13f1.
 - **Pose-board mesh choice:** per-object public leave-one-episode-out CV, 10-seed means, D1 gate.

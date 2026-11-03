@@ -6818,3 +6818,16 @@ arm and a no-policy replay floor to stage B.
   - pot 1.25, rack 1.7, blue cup 3.0, sweeper 1.2, dust pan 0.95, boards ≈ 1 (dominated by the ep23 track) — not
     systematic.
   `bias/`. 107 LOO runs (H1a / H1b-rot / H1b-trans 96, H1c 11 gated of 31 depth fits) running on CPU, $0.
+- 05:40 UTC **H1 verdicts [D]** (PREREG_bias; 107 LOO runs, 10-seed means vs 13p; `results/h1_verdicts.json`):
+  - **Only the pitcher passes:** H1a +0.046 (ep21 +0.081, ep22 +0.012), H1b-rot +0.038, H1b-trans +0.028, H1c
+    (GT-free gated depth placement) +0.106.
+  - **Everything else fails:**
+    - pot −0.002; rack −0.003; blue cup −0.035 (translation part hurts ep12 / 13); lid −0.002;
+    - harmful: sweeper −0.20, dust pan −0.11, boards −0.19 / −0.38 (learned from one bad / one good board episode).
+  - Matches the dispersion falsifier: only the pitcher (and lid) had a systematic B.
+  - **No eval action:** on the pitcher, the learned B (+0.046) is weaker than the depth placement already shipped on
+    eval 20 in 13p2 (+0.106 by the same CV). Stacking them would double-correct (PREREG addendum).
+  - The owner's yes is therefore not used.
+  - [I] Per-object tracker bias is episode-specific for every object except the pitcher, whose incomplete template
+    base gives a stable tilt. Public mocap calibration does not generalise beyond what depth placement already
+    finds GT-free.
