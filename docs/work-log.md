@@ -6525,3 +6525,10 @@ diagnostic; nothing is picked for submission.
   observed points never come near it (median 36 mm away). The [D] audit numbers include its cost and still win (CD-O
   0.4016, anchor 3.2-4.6 mm). The real rack's smallest scan extent is 117 mm [D]. Proposed follow-up: a GT-free trim of
   the unsupported surface, audited as a new candidate (13h2).
+- 00:10 UTC: C4 addendum 6 result [D].
+  - The trimmed G2 rack (137 faces removed) gives CD-O 0.3856 vs the untrimmed 0.4016 (-0.016). ADD 4.33 vs 4.3 mm, W30 0,
+    D1 0/6 flips in both modes.
+  - Against the pre-registered baseline (the untrimmed G2 rack) no rule passes: A needs -0.020. Not adopted; 13h stands.
+  - [H11] direction held, magnitude underestimated (predicted -0.002..-0.01).
+  - Reported to the coordinator as an observation only. It would be about -0.0022 on the board [E] if ever adopted
+    under a new pre-registered rule.

@@ -1,0 +1,50 @@
+{
+ "candidate": {
+  "n": 50,
+  "cdo_med": 0.3856,
+  "cdo_mean": 0.3854,
+  "flip": 0.0,
+  "w30": 0.0,
+  "anc_med": 3.67,
+  "anc_p90": 3.98,
+  "rot_med": 1.62,
+  "rot_p90": 2.07,
+  "add_med": 4.33,
+  "add_p90": 4.55,
+  "amb_mm": 11.430989711318114,
+  "amb_floor_mm": 4.504947135330093,
+  "amb_rot": 179.9
+ },
+ "baseline_untrimmed_g2": {
+  "n": 50,
+  "cdo_med": 0.4016,
+  "cdo_mean": 0.401,
+  "flip": 0.0,
+  "w30": 0.0,
+  "anc_med": 3.78,
+  "anc_p90": 4.04,
+  "rot_med": 1.56,
+  "rot_p90": 1.97,
+  "add_med": 4.3,
+  "add_p90": 4.7,
+  "amb_mm": 11.427115302016087,
+  "amb_floor_mm": 4.539378079525763,
+  "amb_rot": 179.3
+ },
+ "rules": {
+  "A": false,
+  "B": false,
+  "C": false
+ },
+ "d1": {
+  "budget_ref": [
+   6,
+   0
+  ],
+  "raw_ref": [
+   6,
+   0
+  ]
+ },
+ "decision": "not adopted (no rule passes vs the pre-registered baseline); 13h stands"
+}
