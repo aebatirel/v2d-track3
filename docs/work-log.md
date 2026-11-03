@@ -7278,3 +7278,9 @@ arm and a no-policy replay floor to stage B.
     −0.020, so **not adopted**.
   - A post-hoc rule was declined by the coordinator.
   - The mesh lane is idle, with no rentals; it waits for D1 on round-2 pose-CV picks.
+- ~00:35 UTC 3 Nov perfect-following: **eval 30 NO-SWAP on fresh draws.**
+  - Box draws: s42 0.938, s43 0.932. Fresh 10: 0.768 vs 0.897; fails 5 / 10 vs 1 / 10; draw 1 0.670 vs 0.923.
+  - This is the second box → fresh gap today (eval 14 plw 0.923 → 0.826); eval 20 plw and eval 14 p0m held.
+  - [H] The patched training-tree evaluator differs from the pristine one.
+  - Coordinator: the ≈ $1 evaluator-gap test is approved (same checkpoint, both evaluators, same box, 10× each,
+    pre-registered). Eval 28 s43 ≈ 01:15. Lane spend ≈ $23 actual; credit $98.28 at 00:00.
