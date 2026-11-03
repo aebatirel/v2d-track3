@@ -1,4 +1,4 @@
-# Tier B collision retrains, batch 2 — PRE-REGISTRATION (3 Nov 2026 ~02:05 UTC, before any box)
+# Tier B collision retrains, batch 2 — PRE-REGISTRATION (3 Nov 2026 ~01:49 UTC, before any box)
 
 Coordinator (keen-heisenberg, 01:47 UTC; owner: maximum work tonight): one more batch ≤ $35, stop if credit < $15;
 the eval-14 p0m recipe (+0.058, held on fresh draws) on other low episodes whose collision meshes changed; zero-shot
