@@ -126,3 +126,9 @@ GPU cap for G3 $15; stop if Vast credit < $15. Ledger session mesh-bold.
   - Trim: 13 of 32 removed 0 faces (`note`: same geometry as the placed copy); others 35-10,242 faces, <= 2.4 % of area.
   - Stage-2 folder (260 files, 422 MB) uploaded to the store `runs/mesh-20261103-g3-2417282/stage2/`.
 - README.md written. Stage 3 (50-seed audit, rules A/B/C, D1 vs the 13h meshes) is the coordinator's; not run here.
+- 04:15-04:28Z store upload of S/g3/stage2: the one-commit upload_folder failed with HF 502s (138-file commit); retried as
+  two pattern-limited commits (candidate .glb; then .json / .out / diag.json / fit.log), both OK (commit 4bc9d752). Checked
+  from here: candidates_g3.json (md5 e84ee6ca = the committed one), picks.json, sample placed / t3fit / trim .glb and
+  records exist. Intermediate fit stage_*.ply were not uploaded (regenerable).
+- 04:30Z final check: `ops/vast.sh show` lists only pfU (not ours); credit $77.83 (other sessions' boxes running).
+  STATUS.md / docs/work-log.md left to the coordinator (shared paths); this folder + candidates_g3.json hold the record.
