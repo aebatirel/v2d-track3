@@ -152,11 +152,8 @@ if [ "$STD_ARM" = sm ]; then                                      # library_v3 (
   pc=$(tabl $(echo $STD_EPS | cut -d' ' -f1) pieces); [ "$pc" = None ] && pc=""
   python $P/make_assets.py $LIB_TB /content/assets ${pc:+--pieces $REPO_DIR/$pc} >> $J 2>&1 || { log "pf_arms: sm: make_assets FAILED" >> $J; exit 1; }
 fi
-zeroshot() {  # $1 ep: one official draw of the board checkpoint with the new collision; refuse the episode on any overflow
-  local e=$1 ckf ck rp ov svr
-  ckf=$(tabl $e packed_checkpoint); pull1 $ckf || { log "pf_arms ep$e: zero-shot: checkpoint pull FAILED" >> $J; return 1; }
-  ck=$I/ep$e/board.safetensors; cp $HS/$ckf $ck
-  [ "$(sha256sum < $ck | cut -c1-64)" = "$(tabl $e packed_sha256)" ] || { log "pf_arms ep$e: zero-shot: board checkpoint sha256 mismatch" >> $J; return 1; }
+place_ref() {  # $1 ep, $2 checkpoint: the episode's reference P (+ support stage) at the path the checkpoint's config names
+  local e=$1 ck=$2 rp rr st
   rp=$(python -c "
 import json, struct, sys
 b = open(sys.argv[1], 'rb'); n = struct.unpack('<Q', b.read(8))[0]; c = json.loads(json.loads(b.read(n))['__metadata__']['user.resolved_config_json'])
@@ -176,19 +173,27 @@ print(find(c) or '')" $ck)
     cp -r $st $rr/; log "pf_arms ep$e: zero-shot: support stage $st -> $rr/reconstructed_stage" >> $J
   fi
   [ "$(md5sum < $rp | cut -c1-32)" = "$(tabl $e md5)" ] || { log "pf_arms ep$e: zero-shot: $rp is not the board reference (md5)" >> $J; return 1; }
+}
+zeroshot() {  # $1 ep: one official draw of the board checkpoint with the new collision; refuse the episode on any overflow
+  local e=$1 ckf ck ov svr
+  ckf=$(tabl $e packed_checkpoint); pull1 $ckf || { log "pf_arms ep$e: zero-shot: checkpoint pull FAILED" >> $J; return 1; }
+  ck=$I/ep$e/board.safetensors; cp $HS/$ckf $ck
+  [ "$(sha256sum < $ck | cut -c1-64)" = "$(tabl $e packed_sha256)" ] || { log "pf_arms ep$e: zero-shot: board checkpoint sha256 mismatch" >> $J; return 1; }
+  place_ref $e $ck || return 1
   NCONF=1 confirm $e $ck $G/zeroshot_ep$e
   ov=$(grep -ac 'overflow - please' $G/zeroshot_ep$e/r1/eval.log 2> /dev/null); [ -f $G/zeroshot_ep$e/r1/eval.log ] || ov=NA
   svr=$(python -c "import json, sys; print(json.load(open(sys.argv[1]))['sim_vs_ref'])" $G/zeroshot_ep$e/r1/ep$e/qa_policy.json 2> /dev/null || echo none)
   log "pf_arms ep$e: zero-shot (board policy, new collision): sim_vs_ref $svr, overflow lines $ov" >> $J
   [ "$ov" = 0 ] && [ "$svr" != none ]
 }
-for e in $OK; do                                                    # zero-shot contact budget before any training
+[ -n "${CONF_FROM:-}" ] && log "pf_arms: CONF_FROM=$CONF_FROM: second-host confirmation only (no zero-shot, no training)" >> $J
+for e in $( [ -z "${CONF_FROM:-}" ] && echo $OK ); do              # zero-shot contact budget before any training
   case " $(arms_of $e) " in *" pm "*|*" p0m "*|*" sm "*) zeroshot $e || { log "pf_arms ep$e: REFUSED by the zero-shot contact check (no training)" >> $J; OK=$(echo " $OK " | sed "s/ $e / /; s/^ //; s/ $//"); STD_EPS=$(echo " $STD_EPS " | sed "s/ $e / /; s/^ //; s/ $//"); } ;; esac
 done
 [ -n "$OK" ] || { log "pf_arms: no episode left after the zero-shot check" >> $J; bash $OPS/store.sh push-run > /dev/null 2>&1; exit 1; }
 
 # ----- 2. training: one glock_public.sh invocation per seed, every (episode, arm) of it in waves of 2
-for s in $SEEDS; do
+for s in $( [ -z "${CONF_FROM:-}" ] && echo $SEEDS ); do            # (two-host amendment) none under CONF_FROM
   PP=""; for e in $OK; do case " $STD_EPS " in *" $e "*) continue ;; esac; for a in $(arms_of $e); do PP="$PP $e:local:mck:pf${a}s$s"; export GL_ARGS_pf${a}s$s="$(gl_of $a)"
     case $a in lw|plw|pm)                                          # (pf-lift PREREG) lift-window starts, this pair's training only
       W_=$(python $T/lift_windows.py $(ls /content/refs/perc2mck/ep$e/processed/*/*/*.parquet | head -1)) || { log "pf_arms ep$e: lift_windows FAILED" >> $J; continue; }
@@ -263,7 +268,21 @@ for e in $OK; do
   odv=OLD_EP$e; [ -n "${!odv:-}" ] && OLD=${!odv}                   # (pf-lift) the board pack's row of this episode
   for x in parquet json; do PULL_RETRY_S=5 pull1 $OLD.$x && mkdir -p $I/ep$e/old/r1 && cp $HS/$OLD.$x $I/ep$e/old/r1/; done
   for a in $(arms_of $e); do
+    if [ -n "${CONF_FROM:-}" ]; then                                # (two-host amendment) the first host's choice and checkpoint
+      cf=runs/$CONF_FROM/results/pf_arms/choice_ep${e}_$a.json; rc=3
+      if pull1 $cf && cp $HS/$cf $G/choice_ep${e}_$a.json; then
+        lab=$(python -c "import json, sys; print(json.load(open(sys.argv[1]))['label'])" $G/choice_ep${e}_$a.json)
+        ckl=$(python -c "import json, sys; print(json.load(open(sys.argv[1]))['checkpoint'])" $G/choice_ep${e}_$a.json)
+        shx=$(python -c "import json, sys; print(json.load(open(sys.argv[1]))['sha256'])" $G/choice_ep${e}_$a.json)
+        echo "first host $CONF_FROM: $lab $(cut -c1-300 $G/choice_ep${e}_$a.json | tr -d '\n ')" > $G/choice_ep${e}_$a.txt
+        if [ "$lab" = CONFIRM ] && pull1 runs/$CONF_FROM/${ckl#/content/}; then
+          mkdir -p $(dirname $ckl); cp $HS/runs/$CONF_FROM/${ckl#/content/} $ckl
+          [ "$(sha256sum < $ckl | cut -c1-64)" = "$shx" ] && place_ref $e $ckl && rc=0 || log "pf_arms ep$e $a: CONF_FROM checkpoint sha256 / reference placement FAILED" >> $J
+        fi
+      else echo "first host $CONF_FROM: no choice file" > $G/choice_ep${e}_$a.txt; fi
+    else
     python $T/pf_verdict.py choose --results /content/results --ep $e --arm $a --seeds "$SEEDS" --h5 $I/ep$e/packed_h5 --out $G/choice_ep${e}_$a.json $([ -f $I/ep$e/BRIDGED ] && echo --nogate) > $G/choice_ep${e}_$a.txt 2>&1; rc=$?
+    fi
     log "pf_arms ep$e $a choice + gate: $(cut -c1-700 $G/choice_ep${e}_$a.txt)" >> $J
     if [ $rc = 0 ]; then
       ck=$(python -c "import json, sys; print(json.load(open(sys.argv[1]))['checkpoint'])" $G/choice_ep${e}_$a.json)
