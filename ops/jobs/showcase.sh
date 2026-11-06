@@ -11,8 +11,8 @@
 #      evaluator and keep the best by sim_vs_ref (our reference only; pipeline/qa.py);
 #   3. NREP official evaluations of the kept checkpoint, each scored against mocap (pipeline/score_sim.py; public
 #      episode, evaluation only) -> results/showcase/ep<EP>_<robot>/summary.json;
-#   4. one evaluator-style replay with a body trace (tools/trace_rollout.py) and FlashCHORD's mp4 render, for the
-#      videos (re-rendered later on CPU from the trace).
+#   4. one evaluator-style replay with a body trace (tools/trace_rollout.py, viewer off), for the videos (rendered on
+#      CPU from the trace by showcase/tools/assemble.py).
 # Steps 2-4 of a robot run in the background while the next robot trains. Results are pushed after every robot.
 #   ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> 'ROBOTS="allegro leap shadow" bash ops/jobs/showcase.sh'
 . /content/v2d-track3/ops/box/lib.sh
@@ -77,11 +77,11 @@ post() {  # $1 robot, $2 run dir, $3 reference parquet: checkpoint choice, NREP 
   N=$(python -c "import numpy as np, pyarrow.parquet as pq; print(len(np.array(pq.ParquetFile('$PQ').read().column('robot_left_wrist_position')[0].as_py()).reshape(-1, 3)))")
   OV="evaluation.checkpoint=$bestck task.parquet='$PQ' reset.voc_decay_steps=0 reset.always_reset_to_first_frame=true"
   for t in wrist_position object_position object_orientation; do OV="$OV termination.$t.enabled=false"; done
-  OV="$OV viewer.backend=mp4 viewer.headless=true viewer.realtime=false viewer.output_path=$O/view.mp4 viewer.num_frames=$N"
-  OV="$OV viewer.width=1280 viewer.height=720 markers.keypoints=false markers.contacts=false"
-  ( cd $FC && DEV=cuda PYGLET_HEADLESS=1 MUJOCO_GL=egl timeout 1500 .venv/bin/python $T/trace_rollout.py policy $O/policy_trace.npz $OV \
-      "viewer.camera_position=[0.35,-0.95,1.15]" "viewer.camera_target=[-0.08,-0.15,0.72]" ) > $O/trace.log 2>&1 \
-    || log "showcase $r: trace/view FAILED ($(tail -2 $O/trace.log | tr '\n' ' ' | cut -c1-200))" >> $J
+  # viewer off (2026-11-06: pyglet found no GL config on the phase-1 boxes); the videos are rendered from the trace on
+  # CPU (showcase/tools/render_style.py, showcase/tools/assemble.py)
+  OV="$OV viewer.backend=none viewer.num_frames=$N markers.keypoints=false markers.contacts=false"
+  ( cd $FC && DEV=cuda timeout 1500 .venv/bin/python $T/trace_rollout.py policy $O/policy_trace.npz $OV ) > $O/trace.log 2>&1 \
+    || log "showcase $r: trace FAILED ($(tail -2 $O/trace.log | tr '\n' ' ' | cut -c1-200))" >> $J
   python - $O $NREP $r > $O/summary.json << 'EOF'
 import glob, json, os, sys
 import numpy as np
