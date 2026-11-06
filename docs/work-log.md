@@ -12399,3 +12399,7 @@ score.
 - 14:06 UTC, Franka fix 1 `panda_pads` seed 42 (box D): trained in 83 min (54.0k env steps/s).
   - Candidates by sim_vs_ref [M]: 150M 0.9675, 200M 0.9627, 250M 0.9459, against 0.740 / 0.625 / 0.707 before the fix.
   - The vs-mocap draws are running. Seed 43 is training on D; panda_pads_wide s44 on E.
+- 14:10 UTC, Franka fix 1 `panda_pads` seed 42 [M]: AUC vs mocap 0.9469 ± 0.0108; pot 0.85–0.92; MPPE 0.86–1.08 cm;
+  MP-SR 5/5 (was 0.648, 0/5). The falsifier was not met, so the fix holds.
+  - All 9 robots now pass on ep27.
+  - D's seed 43 and E's wide pads run to completion as robustness / dose-response checks.
