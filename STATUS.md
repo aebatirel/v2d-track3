@@ -1,6 +1,6 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-06 ~14:55 UTC: SHOWCASE PHASE 1 DONE: 9 robots succeed on ep27 (videos delivered); 2 robustness boxes running
+## 2026-11-06 ~15:30 UTC: SHOWCASE PHASE 1 DONE: 9 robots succeed on ep27 (videos delivered); no boxes running
 - Owner asked for phases 0 and 1; then "fix the failed ones" / "fix franka"; then holeless meshes.
 - Results, ep27 (pot flipped into the dish rack), 5 official runs each vs mocap [M]:
 
