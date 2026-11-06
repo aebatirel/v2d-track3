@@ -30,28 +30,43 @@ for d in glob.glob(f'{dl}/runs/*/results/showcase/ep{a.ep}_*'):
     if os.path.exists(f'{d}/summary.json'):
         found[r] = d
 print('robots with results:', sorted(found))
+import re
 EMB = {'sharpa': 'sharpa_hands_mid'}
 SPEC = {'sharpa': ('Sharpa Wave', 5, 22)}
+NOTE = {'panda_pads': 'rubber-pad contacts', 'panda_pads_wide': 'wide soft pads'}
+
+
+def base_of(tag):
+    """robot model behind a result tag: ep27_<robot>[_<variant>][_s<seed>] (variants: showcase/prep_robots.py VARIANTS)"""
+    t = re.sub(r'_s\d+$', '', tag)
+    while t and not os.path.exists(f'/content/showcase/robots/{t}/robot.json') and t != 'sharpa':
+        t = t.rsplit('_', 1)[0] if '_' in t else ''
+    return t or tag
+
+
 for r in found:
     if r in SPEC:
         continue
-    j = json.load(open(f'/content/showcase/robots/{r}/robot.json'))
-    SPEC[r] = (j['label'], j['fingers'], len(j['sides']['right']['joints']))
+    b = base_of(r); EMB.setdefault(r, re.sub(r'_s\d+$', '', r))
+    j = json.load(open(f'/content/showcase/robots/{b}/robot.json'))
+    lab = j['label'] + (f" + {NOTE[EMB[r]]}" if EMB[r] in NOTE else '')
+    SPEC[r] = (lab, j['fingers'], len(j['sides']['right']['joints']))
 tiles, table = [], []
-for r in [x for x in a.order.split(',') if x in found] + sorted(set(found) - set(a.order.split(','))):
+order = [x for x in a.order.split(',') if x in found]
+for r in order + sorted(set(found) - set(order)):
     d = found[r]; s = json.load(open(f'{d}/summary.json'))
-    pq = glob.glob(f'/content/refs/sc/ep{a.ep}_{r}/processed/*/*/*.parquet')[0]
+    pq = glob.glob(f'/content/refs/sc/ep{a.ep}_{base_of(r)}/processed/*/*/*.parquet')[0]
     tile = os.path.join(a.out, f'tile_{r}.mp4')
-    if not a.skip_render and os.path.exists(f'{d}/policy_trace.npz') and not os.path.exists(tile):
+    if r in order and not a.skip_render and os.path.exists(f'{d}/policy_trace.npz') and not os.path.exists(tile):
         subprocess.run(['xvfb-run', '-a', '-s', '-screen 0 1280x1024x24', f'{a.fc}/.venv/bin/python', f'{HERE}/render_style.py', pq, tile,
                         '--emb', EMB.get(r, r), '--trace', f'{d}/policy_trace.npz', '--size', '772x680', f'--eye={a.eye}', f'--target={a.target}'] + (['--objects_dir', a.objects_dir] if a.objects_dir else []),
                        cwd=a.fc, check=False)
     n, auc, sd, mp = s['n'], s['auc_mocap_mean'], s['auc_mocap_sd'], s['mp_sr_pass']
     pot = [x['per_obj'] for x in s['draws']]
     score = f'AUC {auc:.2f} vs mocap | {mp}/{n} runs within 3 cm' if n else 'no scored runs'
-    table.append(dict(robot=r, label=SPEC[r][0], fingers=SPEC[r][1], joints=SPEC[r][2], n=n, auc_mocap_mean=auc, auc_mocap_sd=sd,
+    table.append(dict(robot=r, in_video=r in order, label=SPEC[r][0], fingers=SPEC[r][1], joints=SPEC[r][2], n=n, auc_mocap_mean=auc, auc_mocap_sd=sd,
                       mp_sr_pass=mp, draws=s['draws'], checkpoint=s['checkpoint']))
-    if os.path.exists(tile):
+    if r in order and os.path.exists(tile):
         tiles.append(dict(video=tile, name=SPEC[r][0], spec=f'{SPEC[r][1]} fingers, {SPEC[r][2]} joints', score=score))
 json.dump(table, open(os.path.join(a.out, 'results_table.json'), 'w'), indent=1)
 json.dump(tiles, open(os.path.join(a.out, 'tiles.json'), 'w'), indent=1)
