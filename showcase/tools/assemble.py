@@ -13,7 +13,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 p = argparse.ArgumentParser(); p.add_argument('--ep', type=int, default=27); p.add_argument('--runs', nargs='+', required=True)
 p.add_argument('--out', required=True); p.add_argument('--fc', required=True); p.add_argument('--real', default='')
 p.add_argument('--store', default='aebatirel/v2d-store'); p.add_argument('--order', default='sharpa,shadow,inspire,allegro,leap,dex3,barrett,dclaw,panda')
-p.add_argument('--eye', default='0.35,-0.95,1.15'); p.add_argument('--target', default='-0.08,-0.15,0.72')
+p.add_argument('--eye', default='0.50,-1.20,1.30'); p.add_argument('--target', default='-0.08,-0.12,0.80')
 p.add_argument('--title', default=''); p.add_argument('--skip_render', action='store_true')
 p.add_argument('--objects_dir', default='/content/showcase/objects_clean', help='clean closed meshes for rendering (showcase/tools/clean_meshes.py); empty = official scans')
 a = p.parse_args()
@@ -48,7 +48,7 @@ for r in [x for x in a.order.split(',') if x in found] + sorted(set(found) - set
                        cwd=a.fc, check=False)
     n, auc, sd, mp = s['n'], s['auc_mocap_mean'], s['auc_mocap_sd'], s['mp_sr_pass']
     pot = [x['per_obj'] for x in s['draws']]
-    score = f'vs mocap: AUC {auc:.2f} ± {sd:.2f}; within 3 cm in {mp}/{n} runs' if n else 'no scored runs'
+    score = f'AUC {auc:.2f} vs mocap | {mp}/{n} runs within 3 cm' if n else 'no scored runs'
     table.append(dict(robot=r, label=SPEC[r][0], fingers=SPEC[r][1], joints=SPEC[r][2], n=n, auc_mocap_mean=auc, auc_mocap_sd=sd,
                       mp_sr_pass=mp, draws=s['draws'], checkpoint=s['checkpoint']))
     if os.path.exists(tile):
