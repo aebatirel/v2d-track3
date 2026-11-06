@@ -12344,3 +12344,17 @@ score.
   - candidates by sim_vs_ref: 150M 0.9851, 200M 0.9873, 250M 0.9870;
   - 5 draws vs mocap: AUC 0.9655 ± 0.0062 (0.956–0.974); pot 0.91–0.95; MPPE 0.78–0.91 cm; MP-SR 5/5;
   - matches the 20 Oct reproduction (0.965), so the showcase pipeline is sound for the native hand.
+- 11:44 UTC, Barrett BH8, 3 fingers (box C) [M]: 5 draws vs mocap, AUC 0.9686 ± 0.0063; MP-SR 5/5.
+- ~11:30–11:50 UTC: owner asked for holeless meshes instead of the holed scan.
+  - Found [M]: white_pot scan has 11 open loops; the two largest (16.4 and 15.5 cm) are inside the pot, where the
+    inner wall and floor were only partly scanned. plastic_dish_rack has 23 loops (largest 8.7 cm). The lid has
+    pinholes only (< 1 cm).
+  - MeshFix makes the meshes watertight but caps the pot's opening (patches up to 6 cm from the scan) and drops a
+    rack piece (51 → 49.5 cm), so it is rejected.
+  - Used instead: `meshes/library_c0` kit-of-parts pot, lid and rack (watertight, hollow), rigidly ICP-aligned onto
+    each official scan (`showcase/tools/clean_meshes.py`). Scan↔clean median distance: pot 1.7/2.3 mm, rack
+    2.1/1.8 mm, lid 1.1/1.0 mm; p90 up to 10 mm on the rack's simplified pegs.
+  - Rendering only (`render_style.py --objects_dir`): the trained policies' physics used FlashCHORD's convex pieces of
+    the scans (solid, so the holes did not matter to the grasps). Phase 2 can use the clean meshes in physics too.
+    The deck will footnote the render swap.
+  - Ambient light lowered to 0.25 so the white objects show shading.
