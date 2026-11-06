@@ -57,6 +57,10 @@ VARIANTS = {
     # continuous / 140 N max grip; rubber pads -> torsional friction (condim 4, 1.5 cm patch)
     'panda_pads': dict(robot='panda', finger_overrides={r'finger_joint\d$': dict(kp=5000.0, kd=80.0, effort_limit=140.0)},
                        extra={'pad_condim': 4, 'pad_torsional': 0.015}),
+    # second Panda fix in parallel (owner: "we gotta fix franka as well"): wider soft pads (Robotiq-style silicone), twice
+    # the torsional friction; same grip force. Dose-response check against panda_pads.
+    'panda_pads_wide': dict(robot='panda', finger_overrides={r'finger_joint\d$': dict(kp=5000.0, kd=80.0, effort_limit=140.0)},
+                            extra={'pad_condim': 4, 'pad_torsional': 0.03}),
 }
 
 
