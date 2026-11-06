@@ -1,6 +1,6 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-06 ~09:10 UTC: showcase phase 0 built (CPU, $0); phase 1 (owner: "lets do phase 0 and 1") about to rent
+## 2026-11-06 ~08:50 UTC: showcase phase 0 built (CPU, $0); phase 1 (owner: "lets do phase 0 and 1") about to rent
 - Robots: Sharpa (native), Shadow, Allegro, LEAP, Inspire, Dex3 (G1 hand), Barrett, D'Claw, Panda gripper, all as
   floating hand pairs.
   - Class: `showcase/floating_hands.py`.

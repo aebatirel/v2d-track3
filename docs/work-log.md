@@ -12271,7 +12271,7 @@ score.
 - 05:56 UTC 3 Nov pf-mesh2 closed: pfS / pfT / pfU destroyed themselves; ledger actuals (estimates) $2.4 / $2.4 / $6.4
   (batch ≈ $11 of the $35 allowed). 0 instances. Credit $75.62.
 
-### 2026-11-06 ~08:00–09:10 UTC — showcase phase 0 (CPU, this session; owner: "lets do phase 0 and 1")
+### 2026-11-06 ~07:40–08:50 UTC — showcase phase 0 (CPU, this session; owner: "lets do phase 0 and 1")
 - Branch: merged `claude/perfect-following-20261101` (latest pipeline code) into `claude/charming-goldberg-glc1xi`;
   logs keep both sides.
 - Local FlashCHORD at the evaluator pin 8c778f90 (`scratchpad/fc`):
@@ -12300,7 +12300,7 @@ score.
 - CPU smoke: FlashSAC training with Allegro builds the full env (FDR: 8 fingertip frames) and steps at 5 env steps/s
   (4 worlds). Panda and LEAP smoke tests and the evaluator check are running.
 
-### 2026-11-06 ~09:20 UTC — showcase phase 1 launched (owner go: "lets do phase 0 and 1"); credit $67.25 before
+### 2026-11-06 ~08:50 UTC — showcase phase 1 launched (owner go: "lets do phase 0 and 1"); credit $67.25 before
 - CPU checks passed:
   - Allegro, Panda and LEAP train (env + learner + checkpoint save);
   - the official evaluator rebuilds the FloatingHands Allegro from its checkpoint and runs all 246 steps;
