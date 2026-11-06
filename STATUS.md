@@ -1,5 +1,22 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-06 ~09:10 UTC: showcase phase 0 built (CPU, $0); phase 1 (owner: "lets do phase 0 and 1") about to rent
+- Robots: Sharpa (native), Shadow, Allegro, LEAP, Inspire, Dex3 (G1 hand), Barrett, D'Claw, Panda gripper, all as
+  floating hand pairs.
+  - Class: `showcase/floating_hands.py`.
+  - Models: `showcase/prep_robots.py`, from dex-urdf f5e7132 and FlashCHORD's G1.
+  - All 9 build in FlashCHORD on CPU.
+- Retargeting (`showcase/retarget.py`, pinocchio):
+  - each robot is fitted to the Sharpa reference's link keypoints (perc2vc ep27, the 0.965-vs-mocap reference);
+  - median fingertip error 0.2–2.5 cm;
+  - kinematic previews: `docs/research/work/embodiment-showcase-20261106/retarget/`.
+- Inputs are in the HF store at `showcase/inputs/20261106/` (md5 in the same folder).
+- Phase-1 job: `ops/jobs/showcase.sh`.
+  - Per robot: standard learner, 250M steps, FDR + VOC fix, njmax 1024.
+  - Then the best of 3 checkpoints by sim_vs_ref, 5 official draws scored vs mocap, and a traced replay with an mp4.
+- CPU smoke tests (training + evaluator) are running before rental. Plan: 3 boxes × 3 robots, about $18 [E].
+- Episode preview strips: `docs/research/work/embodiment-showcase-20261106/preview/episodes.jpg`.
+
 ## 2026-11-06 ~08:30 UTC: post-challenge multi-embodiment showcase PROPOSED (plan only; nothing rented)
 - Owner: the challenge is over; build a presentation showing the real video next to simulated robots of many
   embodiments (human-like, 3-finger, others), all doing the same task. Rules are relaxed; shortcuts are allowed.

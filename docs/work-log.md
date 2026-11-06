@@ -12270,3 +12270,32 @@ score.
   pre-registered test.
 - 05:56 UTC 3 Nov pf-mesh2 closed: pfS / pfT / pfU destroyed themselves; ledger actuals (estimates) $2.4 / $2.4 / $6.4
   (batch ≈ $11 of the $35 allowed). 0 instances. Credit $75.62.
+
+### 2026-11-06 ~08:00–09:10 UTC — showcase phase 0 (CPU, this session; owner: "lets do phase 0 and 1")
+- Branch: merged `claude/perfect-following-20261101` (latest pipeline code) into `claude/charming-goldberg-glc1xi`;
+  logs keep both sides.
+- Local FlashCHORD at the evaluator pin 8c778f90 (`scratchpad/fc`):
+  - LFS assets via media.githubusercontent.com, 559 files, sha256-checked (`showcase/tools/lfs_fetch.py`);
+  - `uv sync --frozen`, plus the train extras with CPU jax 0.10.2;
+  - FDR and VOC patches applied.
+- CPU rendering works with FlashCHORD's own mp4 viewer: xvfb + Mesa llvmpipe (apt libegl1 libegl-mesa0 xvfb), with
+  pinned host buffers dropped (`showcase/tools/kin_render.py`).
+- Robots (`showcase/prep_robots.py`; dex-urdf f5e7132; the Dex3 hand subtree of FlashCHORD's G1 URDF). Joints per
+  hand:
+  - Shadow 22 (palm-rooted, no forearm or wrist);
+  - Allegro 16; LEAP 16; Inspire 12 (mimic dropped: coupled joints driven independently);
+  - Dex3 7; Barrett 8; D'Claw 9; Panda gripper 2 (prismatic, kp 2000);
+  - AUTO fingertip links where the source has none.
+- All 9 embodiments (with `sharpa_hands_mid`) build on CPU (`showcase/test_build.py`).
+- Retargeting decision: fit each robot to the Sharpa reference's link keypoints (21-point MANO layout from
+  `robot_<side>_frames`), not to the raw perceived MANO joints.
+  - Why: the raw joints are noisy on ep27 (median finger bones 1.5–2.5 cm); the Sharpa reference is the one that
+    reached 0.965 vs mocap.
+  - Fit: pinocchio + scipy least squares, warm-started per frame.
+  - Median fingertip error (cm, right/left): Shadow 0.22/0.19, Allegro 0.56/0.82, LEAP 0.61/0.59,
+    Inspire 0.81/0.87, Dex3 1.16/1.50, Barrett 1.57/2.47, D'Claw 1.46/1.24, Panda 1.37/0.82.
+  - JSONs and contact sheets: `docs/research/work/embodiment-showcase-20261106/retarget/`.
+- Inputs uploaded to the HF store: `showcase/inputs/20261106/ep27_<robot>/` (commit 1c2791b4); Sharpa = the perc2vc
+  reference of `20261020-day1b-cfbff6b`.
+- CPU smoke: FlashSAC training with Allegro builds the full env (FDR: 8 fingertip frames) and steps at 5 env steps/s
+  (4 worlds). Panda and LEAP smoke tests and the evaluator check are running.
