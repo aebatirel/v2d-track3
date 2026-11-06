@@ -7597,3 +7597,10 @@ arm and a no-policy replay floor to stage B.
   - New measured fact: Vast billing $376.41 for 20–30 Oct (135 machines, 246 GPU-hours). Campaign GPU total
     ≈ $556 [E]; the report's earlier $330–500 range was too low.
   - Coverage is now complete. Limit: some sessions were read from turn summaries rather than every message.
+- ~12:30 UTC 6 Nov owner asked how novel our research process is (an AI agent team running the work).
+  - 9 web searches; write-up in `docs/research/process-novelty-2026-11-06.md`.
+  - Verdict [I]: no single element is new. Close precedents: ENPIRE (agent fleet improving robot policies via git),
+    a quadruped agent-run RL case study, agent pre-registration in git (K-Dense), agent-won Kaggle entries.
+  - Gap: no report found of an agent team entering an embodied-AI competition with hidden test data, from human
+    video through RL to submission, under real-money governance and with a full audit trail.
+  - Best route: a case study or experience report with process metrics extracted from the logs.
