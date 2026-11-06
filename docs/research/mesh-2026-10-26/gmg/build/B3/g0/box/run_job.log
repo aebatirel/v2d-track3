@@ -1,0 +1,9 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[2026-10-31T13:01:40Z] run mesh-20261031-g0-937f9d7: job [bash docs/research/mesh-2026-10-26/gmg/jobs/gmg_g0.sh] commit 937f9d70a8bfdc5caf6d15bf7461d28adf610ebe instance 58535088
+[2026-10-31T13:01:40Z] gpu: NVIDIA A40, 46068 MiB, 615.71.10  cpus: 128  ram: 251 GB  disk free: 80G
+[2026-10-31T13:01:40Z] SETUP=none: skipping environment and data setup
+grep: /content/setup.log: No such file or directory
+[2026-10-31T13:01:40Z] setup took 0 min: 
+[2026-10-31T13:13:48Z] job exit 0 after 12 min total
+[2026-10-31T13:13:48Z] self-destroy: job finished rc=0
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m

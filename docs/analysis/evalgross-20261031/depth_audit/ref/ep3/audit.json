@@ -1,0 +1,175 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/perc2/ep3/poses.npz",
+  "--ref",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/glockt/ep3/processed/sequence_id=t3_ep003/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "--table",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep3/table_frame.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep3/cache/depth/eval/ep3/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep3/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/depth/ref/ep3",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/pylib",
+  "--no_rest",
+  "--force"
+ ],
+ "time_utc": "2026-10-31T16:50:20Z",
+ "mode": "reference",
+ "code": {
+  "refine_sha256": "1f6a2adfc4dbbdd058d294c78a9a9a59a74c97d2975decdce48a3c8f2c652e54",
+  "branch": "refs/heads/claude/standings-20261031",
+  "commit": "ca853eaaf896511045b6fa0243f8eb28b02164e1",
+  "depth_audit_sha256": "53fc8abf05e689d8242adb3695f999293b5de71687f1ef8ec0377a12467516f0"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/perc2/ep3/poses.npz",
+   "sha256": "f3bae3e3a2d1546e0e99ba0953deb7d996b87c1544e2c179312f8f89733af0ba"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep3/cache/depth/eval/ep3/depths_fs0.5.npy",
+   "sha256": "ab7abf5d727503f1580d43789841d896c015bb492fcbf61d7e5f4f7188e81e83"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep3/hands_refined.npz",
+   "sha256": "bf7b04c847879369bcd28de063a8c114700ad4d6785a97aa772417bbff3e7ddc"
+  },
+  "ref": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/glockt/ep3/processed/sequence_id=t3_ep003/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "sha256": "57edf03fc1a2cbd7c43af14479940176d17ddd98e4177d54a5a5439814f932cf"
+  },
+  "table": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep3/table_frame.npz",
+   "sha256": "c51be908994f2fe6fdf015322d6a28ddf5f334ef096f51ad73031fdfe732a661"
+  },
+  "meshes": {
+   "white_pot": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+    "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+   },
+   "wooden_spoon": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/wooden_spoon.glb",
+    "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159"
+   }
+  }
+ },
+ "objects": [
+  "white_pot",
+  "wooden_spoon"
+ ],
+ "T": 313,
+ "frames_audited": 313,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  313,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.015,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": null,
+ "selftest": null,
+ "summary": {
+  "white_pot": {
+   "frames": 313,
+   "valid": 311,
+   "hidden": 2,
+   "behind_p10_p50_p90": [
+    0.0168,
+    0.0325,
+    0.0869
+   ],
+   "behind_mean": 0.0431,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0096,
+    0.02,
+    0.5034
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -1.5696,
+    0.0989,
+    0.3302
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.374,
+    0.9356,
+    0.9886
+   ],
+   "hand_frac_mean": 0.1207,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 43
+  },
+  "wooden_spoon": {
+   "frames": 313,
+   "valid": 313,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0048,
+    0.0411,
+    0.1113
+   ],
+   "behind_mean": 0.0565,
+   "share_behind_gt_0p2": 0.0319,
+   "front_p10_p50_p90": [
+    0.0,
+    0.0,
+    0.0183
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.2666,
+    0.0244,
+    0.4166
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.9288,
+    0.9948,
+    1.0
+   ],
+   "hand_frac_mean": 0.2597,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 184
+  }
+ },
+ "seconds": 33.9
+}

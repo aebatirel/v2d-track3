@@ -1,0 +1,1 @@
+FAIL: delta +0.0201 < +0.05 | C 0.5952 T 0.6153 delta 0.0201 per seed {'42': 0.0192, '43': 0.0209} SE 0.0057 spread 0.0008 | sim_vs_ref delta 0.3028 | blue delta 0.0201 beige delta 0.0201 | B0 {'e11c': 'IDENTICAL', 'e11t': 'IDENTICAL'}

@@ -1,0 +1,42 @@
+[2026-10-31T22:04:15Z] mass_eval code mocksha0000000, mode std, episodes [30], seeds [42], props MS/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json (d55089307ff2ced3e3244c95be22c9d6), LIB MS/box/content/v2d-track3/meshes/library_v3, PIECES none, table MS/box/content/v2d-track3/docs/research/work/masses-eval-20261031/packed_refs.json (62cb3392d703)
+[2026-10-31T22:04:15Z] mass_eval ARM=dr: NO masses (props NOT used: 0.3 kg placeholder everywhere); start-state randomisation FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed> FC_DR_SKIP_IMMEDIATE=1 in the training process; patch ops/box/patch_flashchord_dr.py md5 570a7f47793d02ba5b0bf3d5e6fd6eac; folders MS/box/content/results/dr_eval, refs/perc2mckdr, results/hard_ab/ep<N>/mckdr-s<seed>
+[2026-10-31T22:04:17Z] mass_eval ep30: pulled 25 files of 20261025-std30-ee7ba8e (pull_files, no store listing)
+pulled runs/20261025-std30-ee7ba8e/results/final_eval/ep30/policy.safetensors
+[2026-10-31T22:04:18Z] mass_eval: packed references checked for [30] (ep30 std 20261025-std30-ee7ba8e cb21238d01dc078e457ef9a66520a94f c3510178ff08a2743da889514bd21240 MS/box/content/refs/perc2mck/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet;)
+[2026-10-31T22:04:18Z] mass_eval: std seed 42, PAIRS [30:local:mck]
+[2026-10-31T22:04:18Z] hard_ab code mocksha0000000, pairs [30:local:mck], suffix dr seed 42 CR 0, NREP 10, TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2]
+[2026-10-31T22:04:18Z] hard_ab: EVAL_TIMEOUT 1200, NO_PUSH 1
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T22:04:20Z] patched FlashCHORD (ops/box/patch_flashchord.py): object keypoints 1 m, deployment-exact starts p 0.25 (job-wide; per-episode values in ENV_EP<N>)
+[2026-10-31T22:04:20Z] patched FlashCHORD (FDR rewards): object points 1 (radius true, top-k 3), fingertip bound 1 (sigma 0.01 m)
+[2026-10-31T22:04:20Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: MS/box/content/v2d/robotic_grounding/flash_chord/src/flash_chord/lifecycle/v2d_dr.py
+patched: MS/box/content/v2d/robotic_grounding/flash_chord/src/flash_chord/lifecycle/reset.py
+[2026-10-31T22:04:20Z] patched FlashCHORD (start-state randomisation of sampled training resets, ops/box/patch_flashchord_dr.py md5 570a7f47793d); per-episode env: ENV_EP30=FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42 FC_DR_SKIP_IMMEDIATE=1 
+[2026-10-31T22:04:20Z] ab ep30: ENV_EP30 = FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42 FC_DR_SKIP_IMMEDIATE=1
+[2026-10-31T22:04:27Z] ab ep30 mckdr s42: pipeline rc=0 [22:04:27] qa_policy: {"sim_vs_ref":0.8768,"floor_vs_ref":0.3} 
+chosen checkpoint missing; using 
+[2026-10-31T22:04:33Z] ab ep30 mckdr-s42 (policy_142856192.safetensors): n 10 sim_vs_ref {'mean': 0.8828, 'std': 0.0118, 'min': 0.8657, 'max': 0.8996} registered AUC None
+[2026-10-31T22:05:40Z] hard_ab summary: {"ep30":{"mckdr-s42":{"checkpoint":"MS/box/content/runs/perc2mckdr/ep30-s42/policy_142856192.safetensors","n":10,"sim_vs_ref":{"mean":0.8828,"std":0.0118,"min":0.8657,"max":0.8996}}}}
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T22:05:43Z] mass_eval ARM=dr RESULT: ep30 VERIFIED :: s42 n 10 mean 0.8828 sd 0.0124 min 0.8657 cut 0/0 D-line ok :: candidate 42 hook: {"expected_md5": "d92ed77113adfd1aadeedda70a9d7bde", "installed_md5": "d92ed77113adfd1aadeedda70a9d7bde", "reset_tagged": true}; other training logs: 0 confirmation: {"RUNS_EXTRA": "20261101-drS30s42-mocksha@refs/perc2mckdr/ep30", "PICK_EXTRA": "30:20261101-drS30s42-mocksha:ck=runs/perc2mckdr/ep30-s42/policy_142856192.safetensors", "DR_EPS": "30", "EVAL_ONLY": "30", "EPS_ONLY": "30", "ASSET_PIECES_EXTRA": ""} 

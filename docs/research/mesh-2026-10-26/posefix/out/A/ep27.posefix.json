@@ -1,0 +1,236 @@
+{
+ "ep": 27,
+ "variant": "A",
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "frames": 246,
+ "changed_frames": {
+  "plastic_dish_rack": 246,
+  "white_pot": 66
+ },
+ "rest_frames": {
+  "plastic_dish_rack": 246,
+  "white_pot": 60
+ },
+ "segments": [
+  {
+   "obj": "plastic_dish_rack",
+   "start": 0,
+   "end": 245,
+   "status": "shift_t",
+   "t_mm": [
+    -0.562,
+    -4.945,
+    -5.43
+   ],
+   "t_norm_mm": 7.366,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    -0.032356,
+    0.057311,
+    0.626335
+   ],
+   "constraint_frames": 246,
+   "pair_frames": {
+    "white_pot": 0
+   },
+   "before": {
+    "ok": 0.008,
+    "max_mm": 14.18,
+    "median_mm": 7.15
+   },
+   "hand_min_mm": 41.7,
+   "lowest_above_table_mm_median": -7.15,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.008,
+    "max_mm": 14.18,
+    "median_mm": 7.15
+   },
+   "sweep1_start": {
+    "ok": 0.008,
+    "max_mm": 14.18,
+    "median_mm": 7.15
+   },
+   "stage1": {
+    "it": 4,
+    "ok": 0.789,
+    "max_mm": 6.81,
+    "viol": 30583,
+    "t_mm": [
+     -0.56,
+     -4.94,
+     -5.43
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.789,
+    "max_mm": 6.81,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 0.764,
+    "max_mm": 6.81,
+    "median_mm": 0.0
+   }
+  },
+  {
+   "obj": "white_pot",
+   "start": 0,
+   "end": 34,
+   "status": "shift_t",
+   "t_mm": [
+    -0.919,
+    -8.084,
+    -8.878
+   ],
+   "t_norm_mm": 12.042,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.117872,
+    0.158157,
+    0.489391
+   ],
+   "constraint_frames": 35,
+   "pair_frames": {
+    "plastic_dish_rack": 35
+   },
+   "before": {
+    "ok": 0.0,
+    "max_mm": 15.69,
+    "median_mm": 12.55
+   },
+   "hand_min_mm": 72.8,
+   "lowest_above_table_mm_median": -12.55,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 15.69,
+    "median_mm": 12.55
+   },
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 15.69,
+    "median_mm": 12.55
+   },
+   "stage1": {
+    "it": 4,
+    "ok": 0.629,
+    "max_mm": 3.65,
+    "viol": 8076,
+    "t_mm": [
+     -0.92,
+     -8.08,
+     -8.88
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.629,
+    "max_mm": 3.65,
+    "median_mm": 0.51
+   },
+   "after_all_rest_partners": {
+    "ok": 0.629,
+    "max_mm": 3.65,
+    "median_mm": 0.51
+   }
+  },
+  {
+   "obj": "white_pot",
+   "start": 221,
+   "end": 245,
+   "status": "shift_t",
+   "t_mm": [
+    -1.746,
+    -15.264,
+    -18.799
+   ],
+   "t_norm_mm": 24.278,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.141981,
+    0.002342,
+    0.585482
+   ],
+   "constraint_frames": 25,
+   "pair_frames": {
+    "plastic_dish_rack": 25
+   },
+   "before": {
+    "ok": 0.0,
+    "max_mm": 3.47,
+    "median_mm": 2.11
+   },
+   "hand_min_mm": 30.1,
+   "lowest_above_table_mm_median": 6.11,
+   "inherited_from": "plastic_dish_rack",
+   "inherited_t_mm": [
+    -0.56,
+    -4.94,
+    -5.43
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 3.47,
+    "median_mm": 2.11
+   },
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 3.47,
+    "median_mm": 2.11
+   },
+   "stage1": {
+    "it": 14,
+    "ok": 0.76,
+    "max_mm": 1.63,
+    "viol": 92,
+    "t_mm": [
+     -1.75,
+     -15.26,
+     -18.8
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.76,
+    "max_mm": 1.63,
+    "median_mm": 0.45
+   },
+   "after_all_rest_partners": {
+    "ok": 0.76,
+    "max_mm": 1.63,
+    "median_mm": 0.45
+   }
+  }
+ ],
+ "seconds": 25.6
+}

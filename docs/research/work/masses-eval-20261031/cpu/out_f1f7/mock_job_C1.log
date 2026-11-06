@@ -1,0 +1,67 @@
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+ved
+[2026-10-31T11:22:44Z] pack_eval: merged collision pieces: beige_cup blue_cup white_pot white_pot_lid wooden_piece_1 wooden_piece_2 
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.137 kg, com [ 0.15  0.55 -0.42] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.128 kg, com [0.07 0.16 0.3 ] cm, 53 collision pieces
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.044 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.045 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.387 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.503 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.277 kg, com [ 0.46 -0.65 -0.46] cm, 53 collision pieces
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.088 kg, com [-0.38 -0.33  0.79] cm, 107 collision pieces
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.139 kg, com [ 0.06 -0.09 -0.26] cm, 21 collision pieces
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.141 kg, com [0.19 0.11 0.18] cm, 11 collision pieces
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.050 kg, com [-0.   -0.    0.07] cm
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261026-fr32s46b-5e0e100
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261026-gl10A2-5e0e100
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261026-c25s42-feb0407
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261026-fr3233s43-6a8a0e2
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261025-evb0810-ee7ba8e
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261025-evb1420-ee7ba8e
+pulled runs/20261025-fr3233-043275f
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261025-std0116-ee7ba8e
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261025-std1928-ee7ba8e
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261025-std30-ee7ba8e
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261024-pack-31ef267
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261101-mevS1s42-mocksha
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261101-mevG1-mocksha
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261101-mevG4-mocksha
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261101-mevG2-mocksha
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261101-mevG1-mocksha
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261101-mevG2-mocksha
+pack_eval: 20 of 20 episodes have a chosen checkpoint; missing []
+[2026-10-31T11:22:53Z] pack_eval: checkpoints {"1":"MS/box/content/pick/20261101-mevS1s42-mocksha/runs/20261101-mevS1s42-mocksha/runs/perc2mcks/ep1-s42/policy_250003456.safetensors","10":"/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee
+pack_eval: earlier official rollout kept for {3: '20261026-pack6-5203d42', 5: '20261026-pack6-5203d42', 6: '20261026-pack6-5203d42', 14: '20261026-pack6-5203d42', 16: '20261026-pack6-5203d42', 19: '20261026-pack6-5203d42', 25: '20261026-pack6-5203d42', 28: '20261026-pack6-5203d42', 30: '20261026-pack6-5203d42', 32: '20261026-pack6-5203d42', 35: '20261026-pack6-5203d42', 36: '20261026-pack6-5203d42', 37: '20261026-pack6-5203d42', 38: '20261026-pack6-5203d42'} (checkpoint unchanged); evaluating [1, 8, 10, 15, 20, 33]
+pack_eval: EVAL_ONLY ['1', '8', '10', '15', '20', '33'], other episodes to evaluate: []
+[2026-10-31T11:22:55Z] pack_eval: mass_pack_check: OK :: evaluated ['1', '8', '10', '15', '20', '33'], masses ['1', '8', '10', '15', '20', '33'], kept [] :: ep1 white_pot 0.2771,white_pot_lid 0.0882; ep8 beige_cup 0.1367,white_pot 0.2771; ep10 blue_cup 0.128,beige_cup 0.1367; ep15 plastic_dish_rack 0.3865,wooden_spoon 0.05; ep20 blue_cup 0.128,water_pitcher 0.5031; ep33 blue_cup 0.128,wooden_spoon 0.05
+no_oracle: 3 inputs checked, none oracle-derived
+[2026-10-31T11:22:55Z] submit_pack: clean evaluator mocksha0000000, modified files: 1
+[2026-10-31T11:22:58Z] submit_pack: kept earlier rollouts: 14 episodes
+submit_pack: meshes for 20 episodes from MS/box/content/v2d-track3/meshes/library_v3; per-episode libraries {'8': 'MS/box/content/v2d-track3/meshes/library_v3x'}
+[2026-10-31T11:22:58Z] submit_pack: 2462 bytes; warnings: 0
+pack_eval: checkpoint check of 20 packed rollouts: OK
+[2026-10-31T11:23:02Z] pack_eval: packed rollouts sim_vs_ref {"1": 0.8896, "3": 0.9418, "5": 0.9595, "6": 0.9713, "8": 0.899, "10": 0.9014, "14": 0.9094, "15": 0.9179, "16": 0.9079, "19": 0.9278, "20": 0.8795, "25": 0.8937, "28": 0.929, "30": 0.9229, "32": 0.8656, "33": 0.8909, "35": 0.9829, "36": 0.9912, "37": 0.9979, "38": 0.9998} n 20 mean 0.929 
+[2026-10-31T11:23:07Z] h5: draw 1 fresh episodes: ep1 ep10 ep15 ep20 ep33 ep8 
+[2026-10-31T11:23:07Z] h5: draws 2..3 only for episodes 1 8 10 15 20 33 ({"1":"MS/box/content/pick/20261101-mevS1s42-mocksha/runs/20261101-mevS1s42-mocksha/runs/perc2mcks/ep1-s42/policy_250003456.safetensors","8":"/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7)
+[2026-10-31T11:23:09Z] h5: draws 2..3 mass_pack_check: OK :: evaluated ['1', '8', '10', '15', '20', '33'], masses ['1', '8', '10', '15', '20', '33'], kept [] :: ep1 white_pot 0.2771,white_pot_lid 0.0882; ep8 beige_cup 0.1367,white_pot 0.2771; ep10 blue_cup 0.128,beige_cup 0.1367; ep15 plastic_dish_rack 0.3865,wooden_spoon 0.05; ep20 blue_cup 0.128,water_pitcher 0.5031; ep33 blue_cup 0.128,wooden_spoon 0.05
+[2026-10-31T11:23:13Z] h5: draw 2 done
+[2026-10-31T11:23:21Z] h5: draw 3 done
+[2026-10-31T11:23:26Z] h5: episodes 6  mean of means 0.8940  packed mean 0.9168

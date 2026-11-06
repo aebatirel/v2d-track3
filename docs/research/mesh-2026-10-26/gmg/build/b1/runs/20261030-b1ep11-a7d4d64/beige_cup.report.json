@@ -1,0 +1,328 @@
+{
+ "schema": "gmg-report/1-skeleton",
+ "split": "public",
+ "ep": 11,
+ "obj": "beige_cup",
+ "tier": "DEV",
+ "gt_free": true,
+ "scored_against_scans": false,
+ "pick": {
+  "cid": "shell_t5p36",
+  "variant": {
+   "K": 3,
+   "b_tie": 1,
+   "prior": true
+  },
+  "tie_set": [
+   [
+    "shell_t5p36",
+    0.0,
+    0.0
+   ]
+  ],
+  "trace": [
+   {
+    "step": "vetoes",
+    "removed": {},
+    "not_applied": [
+     "V3 (tau fitted at B13)",
+     "V5 (B5/B7)"
+    ]
+   },
+   {
+    "step": "tie band",
+    "best": "shell_t5p36",
+    "b_tie": 1,
+    "tie_set": [
+     [
+      "shell_t5p36",
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   {
+    "step": "priors",
+    "order": [
+     "shell_t5p36"
+    ],
+    "keys": "class (STRUCT > FUSE > GEN > SHELL > HULL), then lower E; flip safety, markers and the parameter prior are not in B1"
+   }
+  ],
+  "fallback": null,
+  "flags": [
+   "dev_tier",
+   "skeleton_select_B1"
+  ]
+ },
+ "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep11-a7d4d64/out/public/ep11/beige_cup.glb",
+ "out_sha256": "8b77a31c29cc1d33d9cabc975b42d3caf0fd822b935e6d4019fd69401f46b82e",
+ "out_v1": {
+  "veto": false,
+  "watertight": true,
+  "faces": 3808,
+  "vertices": 1940,
+  "bodies": 27,
+  "volume_cm3": 156.126
+ },
+ "candidates": [
+  {
+   "cid": "shell_t5p36",
+   "cls": "SHELL",
+   "producer": "P-SHELL",
+   "n_params": 0,
+   "E": 3.938362497826658,
+   "E_blocks": [
+    2.92991,
+    3.33428,
+    5.55089
+   ],
+   "ray": {
+    "n": 32274,
+    "miss_frac": 0.15719,
+    "extra_frac": 0.27279,
+    "mean_cost_sigma": 3.93836,
+    "median_abs_delta_mm": 2.0984
+   },
+   "fsv_far": 0.0,
+   "fsv_outside_grid": 0.0,
+   "v1": {
+    "veto": false,
+    "watertight": true,
+    "faces": 3808,
+    "vertices": 1940,
+    "bodies": 27,
+    "volume_cm3": 156.126
+   },
+   "v2": {
+    "veto": false,
+    "partners": {
+     "blue_cup": {
+      "contact_frames": 51,
+      "n_p": 2947,
+      "band_mm": 8.0,
+      "threshold": 29.47,
+      "n_median": 7.0,
+      "a_median": 0.0,
+      "b_median": 7.0,
+      "n_max": 18,
+      "frames_violating": 0,
+      "veto": false,
+      "inside_method": "signed ray crossings (checked against gwn)",
+      "inside_check": {
+       "checked": 2000,
+       "disagree": 0
+      }
+     }
+    }
+   },
+   "v4": {
+    "applies": true,
+    "veto": false,
+    "share": 0.0,
+    "depth_mm": 2.624,
+    "rest_share": 0.3676,
+    "min_height_mm": 26.095,
+    "samples": {
+     "axis": 2,
+     "cells": 256,
+     "columns_odd": 0,
+     "intervals": 48727,
+     "pitch_mm": 0.445
+    }
+   },
+   "pack": {
+    "faces": 3808,
+    "vertices": 1940,
+    "watertight_packed": true,
+    "sha256": "8b77a31c29cc1d33d9cabc975b42d3caf0fd822b935e6d4019fd69401f46b82e",
+    "solid_faces_in": 3808,
+    "solid_area_change": null
+   },
+   "flags": [
+    "no_support_closing_B8"
+   ],
+   "v3": {
+    "diff": 0.0,
+    "tau": null,
+    "veto": false,
+    "applied": false,
+    "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+   },
+   "vetoes": [],
+   "E_se": 0.2810227704668461,
+   "se_diff": 0.0
+  },
+  {
+   "cid": "hull",
+   "cls": "HULL",
+   "producer": "P-HULL",
+   "n_params": 0,
+   "E": 9.260713960058379,
+   "E_blocks": [
+    8.75081,
+    8.24701,
+    9.53182
+   ],
+   "ray": {
+    "n": 32274,
+    "miss_frac": 0.75674,
+    "extra_frac": 0.15697,
+    "mean_cost_sigma": 8.84321,
+    "median_abs_delta_mm": 30.9328
+   },
+   "fsv_far": 0.04175,
+   "fsv_outside_grid": 0.016249999999999987,
+   "v1": {
+    "veto": false,
+    "watertight": true,
+    "faces": 1566,
+    "vertices": 767,
+    "bodies": 1,
+    "volume_cm3": 203.029
+   },
+   "v2": {
+    "veto": false,
+    "partners": {
+     "blue_cup": {
+      "contact_frames": 51,
+      "n_p": 2947,
+      "band_mm": 8.0,
+      "threshold": 29.47,
+      "n_median": 0.0,
+      "a_median": 0.0,
+      "b_median": 0.0,
+      "n_max": 2,
+      "frames_violating": 0,
+      "veto": false,
+      "inside_method": "signed ray crossings (checked against gwn)",
+      "inside_check": {
+       "checked": 2000,
+       "disagree": 0
+      }
+     }
+    }
+   },
+   "v4": {
+    "applies": true,
+    "veto": false,
+    "share": 0.0,
+    "depth_mm": 2.624,
+    "rest_share": 0.3676,
+    "min_height_mm": 1.404,
+    "samples": {
+     "axis": 2,
+     "cells": 256,
+     "columns_odd": 29,
+     "intervals": 57402,
+     "pitch_mm": 0.281
+    }
+   },
+   "pack": {
+    "faces": 1566,
+    "vertices": 767,
+    "watertight_packed": true,
+    "sha256": "190a59ba7d5754798b8a353cead8c4af65a7df93a9fbeac2bdc6ac96b02bf191",
+    "solid_faces_in": 1566,
+    "solid_area_change": null
+   },
+   "flags": [
+    "surface_coarsened_x2",
+    "partner_deep_samples"
+   ],
+   "v3": {
+    "diff": 0.04175,
+    "tau": null,
+    "veto": false,
+    "applied": false,
+    "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+   },
+   "vetoes": [],
+   "E_se": 0.1151198843321068,
+   "se_diff": 0.22733437065391887
+  }
+ ],
+ "bundle": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep11-a7d4d64/bundle/public/ep11",
+  "sigma_mm": 0.8747,
+  "good_frames": 68,
+  "owned_points": 534088,
+  "contact": {
+   "blue_cup": {
+    "j_mm": 3.9306,
+    "band_mm": 8.0,
+    "contact": 51,
+    "separated": 18,
+    "sep3d": 18
+   }
+  },
+  "rest": {
+   "frames": [
+    0,
+    4,
+    6,
+    8,
+    10,
+    18,
+    20,
+    22,
+    104,
+    106,
+    108,
+    110,
+    112,
+    114,
+    116,
+    118,
+    120,
+    122,
+    124,
+    126,
+    128,
+    130,
+    132,
+    134,
+    136
+   ],
+   "share": 0.3676,
+   "applies": true,
+   "n_obj": [
+    -0.0556903693733289,
+    -0.0034333967296882976,
+    -0.9984421838774435
+   ],
+   "d_obj": 0.11264622796006263,
+   "low1_mm_median": 112.73
+  },
+  "table": {
+   "n": [
+    -0.09369339015252352,
+    -0.7675812736692732,
+    -0.6340666660170547
+   ],
+   "d": 0.533067886979664,
+   "inlier_frac": 0.2112,
+   "source": "det_f0 depth (frame 0, half resolution x0.5), recon_mesh.table_plane RANSAC; no per-frame refit (dev)",
+   "obj_pos": "blue_cup"
+  },
+  "flags": [
+   "dev_bundle",
+   "no_hands_rerun",
+   "contact_from_tracks"
+  ]
+ },
+ "t0_mm": 5.3588,
+ "flags": [
+  "dev_tier",
+  "skeleton_select_B1"
+ ],
+ "not_in_b1": [
+  "simulator copy (B9)",
+  "STRUCT producers (B8, B11)",
+  "markers (B7)",
+  "V3 tau (B13)",
+  "V5 and select.py (B5)",
+  "fold rebuilds (B5)",
+  "track sanity and identity (B4)"
+ ]
+}

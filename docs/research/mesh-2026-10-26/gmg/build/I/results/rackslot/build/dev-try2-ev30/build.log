@@ -1,0 +1,142 @@
+03:34:05 scope 30: R [22], RV 29.40 cm3, F 10.76 cm3 (8 s)
+03:34:31 piece 24: F 419 cells, K 24806, Q 10902
+03:34:35   split p24 depth 0: F 419 (clip alone leaves 417), trapped after split 128
+03:34:36   split p24a depth 1: F 210 (clip alone leaves 97), trapped after split 25
+03:34:38   split p24aa depth 2: F 63 (clip alone leaves 28), trapped after split 0
+03:34:38   split p24ab depth 2: F 147 (clip alone leaves 26), trapped after split 6
+03:34:42   split p24b depth 1: F 210 (clip alone leaves 113), trapped after split 34
+03:34:43   split p24bb depth 2: F 147 (clip alone leaves 53), trapped after split 12
+03:34:43   leaf p24aaa: planes 4, F left 20, vol 0.45 cm3, verts 12
+03:34:43   leaf p24aab: planes 3, F left 7, vol 1.58 cm3, verts 51
+03:34:43   leaf p24aba: planes 4, F left 7, vol 0.36 cm3, verts 8
+03:34:44   leaf p24abb: planes 4, F left 17, vol 0.08 cm3, verts 4
+03:34:44   leaf p24ba: planes 5, F left 20, vol 3.99 cm3, verts 69
+03:34:44   leaf p24bba: planes 4, F left 14, vol 1.46 cm3, verts 25
+03:34:44   leaf p24bbb: planes 4, F left 13, vol 2.10 cm3, verts 42
+03:34:44 piece 29: F 846 cells, K 41033, Q 13903
+03:35:01   split p29 depth 0: F 846 (clip alone leaves 842), trapped after split 305
+03:35:15   split p29a depth 1: F 592 (clip alone leaves 375), trapped after split 131
+03:35:25   split p29aa depth 2: F 414 (clip alone leaves 224), trapped after split 58
+03:35:29   split p29aaa depth 3: F 124 (clip alone leaves 76), trapped after split 14
+03:35:32   split p29aaaa depth 4: F 87 (clip alone leaves 46), trapped after split 4
+03:35:33   split p29aab depth 3: F 290 (clip alone leaves 90), trapped after split 12
+03:35:34   split p29aabb depth 4: F 145 (clip alone leaves 37), trapped after split 0
+03:35:35   split p29ab depth 2: F 178 (clip alone leaves 32), trapped after split 1
+03:35:37   split p29b depth 1: F 254 (clip alone leaves 77), trapped after split 5
+03:35:38   split p29bb depth 2: F 127 (clip alone leaves 27), trapped after split 1
+03:35:39   leaf p29aaaaa: planes 11, F left 25, vol 2.86 cm3, verts 65
+03:35:39   leaf p29aaaab: planes 7, F left 18, vol 2.51 cm3, verts 49
+03:35:39   leaf p29aaab: planes 9, F left 19, vol 2.55 cm3, verts 103
+03:35:39   leaf p29aaba: planes 10, F left 20, vol 0.13 cm3, verts 12
+03:35:39   leaf p29aabba: planes 8, F left 14, vol 0.19 cm3, verts 18
+03:35:39   leaf p29aabbb: planes 10, F left 19, vol 0.29 cm3, verts 14
+03:35:39   leaf p29aba: planes 4, F left 17, vol 0.18 cm3, verts 42
+03:35:39   leaf p29abb: planes 5, F left 18, vol 0.34 cm3, verts 43
+03:35:39   leaf p29ba: planes 7, F left 19, vol 2.42 cm3, verts 64
+03:35:39   leaf p29bba: planes 4, F left 19, vol 1.45 cm3, verts 72
+03:35:39   leaf p29bbb: planes 5, F left 20, vol 0.32 cm3, verts 26
+03:35:40 piece 36: F 2257 cells, K 49917, Q 20529
+03:36:03   split p36 depth 0: F 2257 (clip alone leaves 2253), trapped after split 913
+03:36:07   split p36a depth 1: F 677 (clip alone leaves 388), trapped after split 209
+03:36:09   split p36aa depth 2: F 203 (clip alone leaves 79), trapped after split 37
+03:36:10   split p36aab depth 3: F 182 (clip alone leaves 44), trapped after split 14
+03:36:11   split p36ab depth 2: F 474 (clip alone leaves 256), trapped after split 124
+03:36:12   split p36aba depth 3: F 332 (clip alone leaves 141), trapped after split 42
+03:36:13   split p36abaa depth 4: F 166 (clip alone leaves 41), trapped after split 3
+03:36:13   split p36abab depth 4: F 166 (clip alone leaves 28), trapped after split 4
+03:36:14   split p36abb depth 3: F 142 (clip alone leaves 60), trapped after split 11
+03:36:14   split p36abba depth 4: F 43 (clip alone leaves 24), trapped after split 0
+03:36:14   split p36abbb depth 4: F 99 (clip alone leaves 23), trapped after split 3
+03:36:29   split p36b depth 1: F 1580 (clip alone leaves 718), trapped after split 170
+03:36:30   split p36ba depth 2: F 474 (clip alone leaves 110), trapped after split 28
+03:36:31   split p36baa depth 3: F 332 (clip alone leaves 37), trapped after split 1
+03:36:32   split p36bab depth 3: F 142 (clip alone leaves 29), trapped after split 5
+03:36:45   split p36bb depth 2: F 1106 (clip alone leaves 254), trapped after split 48
+03:36:46   split p36bba depth 3: F 111 (clip alone leaves 26), trapped after split 3
+03:36:59   split p36bbb depth 3: F 995 (clip alone leaves 155), trapped after split 20
+03:37:02   split p36bbba depth 4: F 498 (clip alone leaves 80), trapped after split 4
+03:37:03   split p36bbbb depth 4: F 498 (clip alone leaves 32), trapped after split 0
+03:37:04   leaf p36aaa: planes 4, F left 12, vol 5.49 cm3, verts 71
+03:37:04   leaf p36aaba: planes 4, F left 19, vol 1.06 cm3, verts 17
+03:37:04   leaf p36aabb: planes 8, F left 20, vol 0.93 cm3, verts 36
+03:37:04   leaf p36abaaa: planes 7, F left 10, vol 0.05 cm3, verts 6
+03:37:04   leaf p36abaab: planes 6, F left 15, vol 0.03 cm3, verts 8
+03:37:04   leaf p36ababa: planes 6, F left 11, vol 0.66 cm3, verts 16
+03:37:04   leaf p36ababb: planes 7, F left 11, vol 0.24 cm3, verts 8
+03:37:04   leaf p36abbaa: planes 5, F left 5, vol 0.11 cm3, verts 6
+03:37:04   leaf p36abbab: planes 6, F left 12, vol 0.10 cm3, verts 14
+03:37:04   leaf p36abbba: planes 7, F left 15, vol 0.03 cm3, verts 8
+03:37:04   leaf p36abbbb: planes 6, F left 1, vol 0.05 cm3, verts 8
+03:37:04   leaf p36baaa: planes 10, F left 18, vol 0.49 cm3, verts 40
+03:37:04   leaf p36baab: planes 7, F left 16, vol 0.19 cm3, verts 40
+03:37:04   leaf p36baba: planes 4, F left 15, vol 0.17 cm3, verts 14
+03:37:04   leaf p36babb: planes 8, F left 20, vol 0.50 cm3, verts 45
+03:37:04   leaf p36bbaa: planes 5, F left 16, vol 3.27 cm3, verts 44
+03:37:04   leaf p36bbab: planes 5, F left 19, vol 0.10 cm3, verts 8
+03:37:04   leaf p36bbbaa: planes 9, F left 15, vol 1.00 cm3, verts 36
+03:37:04   leaf p36bbbab: planes 11, F left 33, vol 2.66 cm3, verts 62
+03:37:04   leaf p36bbbba: planes 8, F left 17, vol 0.70 cm3, verts 55
+03:37:04   leaf p36bbbbb: planes 8, F left 12, vol 1.08 cm3, verts 54
+03:37:05 piece 41: F 6879 cells, K 59981, Q 28309
+03:37:42   split p41 depth 0: F 6879 (clip alone leaves 6879), trapped after split 3206
+03:38:07   split p41a depth 1: F 2064 (clip alone leaves 1764), trapped after split 620
+03:38:17   split p41aa depth 2: F 1032 (clip alone leaves 677), trapped after split 359
+03:38:20   split p41aaa depth 3: F 722 (clip alone leaves 371), trapped after split 113
+03:38:21   split p41aaaa depth 4: F 505 (clip alone leaves 154), trapped after split 48
+03:38:23   split p41aaab depth 4: F 217 (clip alone leaves 54), trapped after split 3
+03:38:25   split p41aab depth 3: F 310 (clip alone leaves 147), trapped after split 14
+03:38:25   split p41aabb depth 4: F 279 (clip alone leaves 49), trapped after split 3
+03:38:32   split p41ab depth 2: F 1032 (clip alone leaves 107), trapped after split 0
+03:38:54   split p41b depth 1: F 4815 (clip alone leaves 2192), trapped after split 798
+03:39:02   split p41ba depth 2: F 2408 (clip alone leaves 849), trapped after split 311
+03:39:04   split p41baa depth 3: F 1204 (clip alone leaves 396), trapped after split 129
+03:39:06   split p41baaa depth 4: F 843 (clip alone leaves 228), trapped after split 38
+03:39:06   split p41baab depth 4: F 361 (clip alone leaves 50), trapped after split 6
+03:39:08   split p41bab depth 3: F 1204 (clip alone leaves 183), trapped after split 37
+03:39:08   split p41baba depth 4: F 361 (clip alone leaves 31), trapped after split 2
+03:39:09   split p41babb depth 4: F 843 (clip alone leaves 74), trapped after split 9
+03:39:22   split p41bb depth 2: F 2408 (clip alone leaves 459), trapped after split 108
+03:39:22   split p41bba depth 3: F 723 (clip alone leaves 65), trapped after split 3
+03:39:31   split p41bbb depth 3: F 1685 (clip alone leaves 189), trapped after split 28
+03:39:40   split p41bbba depth 4: F 1516 (clip alone leaves 112), trapped after split 6
+03:39:40   split p41bbbb depth 4: F 169 (clip alone leaves 43), trapped after split 1
+03:39:40   leaf p41aaaaa: planes 11, F left 68, vol 1.67 cm3, verts 36
+03:39:40   leaf p41aaaab: planes 11, F left 25, vol 0.17 cm3, verts 16
+03:39:40   leaf p41aaaba: planes 8, F left 15, vol 0.31 cm3, verts 12
+03:39:40   leaf p41aaabb: planes 6, F left 7, vol 3.43 cm3, verts 52
+03:39:40   leaf p41aaba: planes 5, F left 20, vol 3.21 cm3, verts 62
+03:39:40   leaf p41aabba: planes 8, F left 16, vol 0.08 cm3, verts 10
+03:39:40   leaf p41aabbb: planes 9, F left 16, vol 0.28 cm3, verts 39
+03:39:40   leaf p41aba: planes 4, F left 2, vol 3.07 cm3, verts 45
+03:39:40   leaf p41abb: planes 4, F left 3, vol 3.03 cm3, verts 22
+03:39:40   leaf p41baaaa: planes 11, F left 35, vol 0.71 cm3, verts 25
+03:39:40   leaf p41baaab: planes 11, F left 87, vol 0.81 cm3, verts 16
+03:39:40   leaf p41baaba: planes 7, F left 12, vol 0.10 cm3, verts 19
+03:39:40   leaf p41baabb: planes 8, F left 14, vol 0.10 cm3, verts 22
+03:39:40   leaf p41babaa: planes 8, F left 16, vol 0.13 cm3, verts 12
+03:39:40   leaf p41babab: planes 6, F left 19, vol 0.08 cm3, verts 10
+03:39:40   leaf p41babba: planes 11, F left 17, vol 0.26 cm3, verts 14
+03:39:40   leaf p41babbb: planes 11, F left 38, vol 0.58 cm3, verts 20
+03:39:40   leaf p41bbaa: planes 8, F left 18, vol 0.21 cm3, verts 14
+03:39:40   leaf p41bbab: planes 8, F left 19, vol 0.30 cm3, verts 19
+03:39:40   leaf p41bbbaa: planes 11, F left 81, vol 1.50 cm3, verts 38
+03:39:40   leaf p41bbbab: planes 8, F left 20, vol 0.43 cm3, verts 33
+03:39:40   leaf p41bbbba: planes 6, F left 12, vol 0.01 cm3, verts 6
+03:39:40   leaf p41bbbbb: planes 9, F left 23, vol 0.31 cm3, verts 24
+03:39:41 piece 42: F 355 cells, K 15162, Q 4723
+03:39:43   split p42 depth 0: F 355 (clip alone leaves 343), trapped after split 142
+03:39:45   split p42a depth 1: F 178 (clip alone leaves 126), trapped after split 26
+03:39:45   split p42aa depth 2: F 54 (clip alone leaves 27), trapped after split 2
+03:39:47   split p42ab depth 2: F 124 (clip alone leaves 37), trapped after split 4
+03:39:47   split p42b depth 1: F 178 (clip alone leaves 85), trapped after split 16
+03:39:48   split p42ba depth 2: F 89 (clip alone leaves 21), trapped after split 1
+03:39:48   leaf p42aaa: planes 3, F left 16, vol 0.51 cm3, verts 31
+03:39:48   leaf p42aab: planes 5, F left 12, vol 0.36 cm3, verts 16
+03:39:48   leaf p42aba: planes 9, F left 20, vol 1.99 cm3, verts 34
+03:39:48   leaf p42abb: planes 4, F left 17, vol 1.05 cm3, verts 38
+03:39:48   leaf p42baa: planes 5, F left 19, vol 0.11 cm3, verts 10
+03:39:48   leaf p42bab: planes 4, F left 15, vol 0.13 cm3, verts 12
+03:39:48   leaf p42bb: planes 4, F left 19, vol 0.04 cm3, verts 17
+03:39:48 after cut: 107 pieces (351 s)
+03:43:33 after merges: 107 pieces (576 s)
+03:43:33 done: 107 pieces, 576 s

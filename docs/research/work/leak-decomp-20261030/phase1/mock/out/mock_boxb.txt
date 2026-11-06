@@ -1,0 +1,73 @@
+MOCK (stub perc2, stub hf): every AUC below is fake; paths, names, md5, guard and push list are real
+== box b: EPS="11 21 31 39 22 42 23" REPEAT="11 21 31 39" ARMS=o,s,o2 (run id 20261030-orcP1b-mocksha)
+job rc 0; last job.log lines:
+[2026-10-30T18:17:54Z] perc_leak RESULT ep42: OK o ok rc 0 0 s library | s ok rc 0 0 s scan | P_s vo AUC (scan frame, unregistered) 0.95
+[2026-10-30T18:17:54Z] perc_leak RESULT ep23: OK o ok rc 0 1 s library | s ok rc 0 0 s scan | P_s vo AUC (scan frame, unregistered) 0.95
+[2026-10-30T18:17:54Z] perc_leak RESULT all bundles ok: True (7/7); every arm ran (rc 0, tracks written): True
+[2026-10-30T18:17:55Z] perc_leak: guard refuses runs/20261030-orcP1b-mocksha/results/leak_p1/... (run id)
+[2026-10-30T18:17:55Z] perc_leak: guard refuses the bare perc2scan folder name
+[2026-10-30T18:17:55Z] perc_leak done (rc 0); run_job.sh pushes runs/20261030-orcP1b-mocksha once and self-destroys
+
+ep11: bundle ok True; arms perc2 [library: blue_cup.glb beige_cup.glb; depth reused True], perc2scan [scan: blue_cup.glb beige_cup.glb; depth reused True], perc2rep [library: blue_cup.glb beige_cup.glb; depth reused True]; hands md5 0c7652fd/d9c391de = inputs.tsv; depth frame-0 sha 07054713 = inputs.tsv
+ep21: bundle ok True; arms perc2 [library: blue_cup.glb water_pitcher.glb; depth reused True], perc2scan [scan: blue_cup.glb water_pitcher.glb; depth reused True], perc2rep [library: blue_cup.glb water_pitcher.glb; depth reused True]; hands md5 0363984b/3cd6e94e = inputs.tsv; depth frame-0 sha 5f4f92b3 = inputs.tsv
+ep31: bundle ok True; arms perc2 [library: mini_sweeper.glb plastic_dish_rack.glb; depth reused True], perc2scan [scan: mini_sweeper_visual.glb plastic_dish_rack.glb; depth reused True], perc2rep [library: mini_sweeper.glb plastic_dish_rack.glb; depth reused True]; hands md5 4850e829/0c78cc71 = inputs.tsv; depth frame-0 sha 19fe05f1 = inputs.tsv
+ep39: bundle ok True; arms perc2 [library: mini_dust_pan.glb; depth reused True], perc2scan [scan: mini_dust_pan.glb; depth reused True], perc2rep [library: mini_dust_pan.glb; depth reused True]; hands md5 25b621b8/d4744c91 = inputs.tsv; depth frame-0 sha 8c04b126 = inputs.tsv
+ep22: bundle ok True; arms perc2 [library: blue_cup.glb water_pitcher.glb; depth reused True], perc2scan [scan: blue_cup.glb water_pitcher.glb; depth reused True]; hands md5 d6e77afb/a4105136 = inputs.tsv; depth frame-0 sha 121ac748 = inputs.tsv
+ep42: bundle ok True; arms perc2 [library: white_pot.glb; depth reused True], perc2scan [scan: white_pot.glb; depth reused True]; hands md5 d2c3ad34/3ef6e483 = inputs.tsv; depth frame-0 sha 74a8b4a2 = inputs.tsv
+ep23: bundle ok True; arms perc2 [library: wooden_piece_1.glb wooden_piece_2.glb; depth reused True], perc2scan [scan: wooden_piece_1_visual.glb wooden_piece_2_visual.glb; depth reused True]; hands md5 cbc1287f/189239bb = inputs.tsv; depth frame-0 sha 65a482b1 = inputs.tsv
+store traffic: 21 single-file downloads (0 answered 429 and retried), 0 listings, 1 upload(s): <MR>/content/push/20261030-orcP1b-mocksha -> runs/20261030-orcP1b-mocksha
+Grounding DINO: 2 from_pretrained calls before perc2 (1 IDEA-Research/grounding-dino-tiny offline=None ok; 2 IDEA-Research/grounding-dino-tiny offline=None ok); perc2 runs with HF_HUB_OFFLINE=1: 18/18
+push list: 227 files, 125.9 MB; results/leak_p1: 218 files; other: COMMIT, job.log, run_state/p1_11.ok, run_state/p1_21.ok, run_state/p1_22.ok, run_state/p1_23.ok, run_state/p1_31.ok, run_state/p1_39.ok, run_state/p1_42.ok
+  per episode (first): bundle.json, depth0.npy, hands/hands.npz, hands/hands_refined.npz, inputs.json, perc2/det_f0.npz, perc2/log.txt, perc2/masks_f0.jpg, perc2/perc_log_inference.txt, perc2/poses.npz, perc2/poses_world_vo.npz, perc2/result.json, perc2/run.json, perc2/track_guard.json, perc2/vo.json, perc2rep/det_f0.npz, perc2rep/log.txt, perc2rep/masks_f0.jpg, perc2rep/perc_log_inference.txt, perc2rep/poses.npz, perc2rep/poses_world_vo.npz, perc2rep/result.json, perc2rep/run.json, perc2rep/track_guard.json, perc2rep/vo.json, perc2scan/det_f0.npz, perc2scan/log.txt, perc2scan/masks_f0.jpg, perc2scan/perc_log_inference.txt, perc2scan/poses.npz, perc2scan/poses_world_vo.npz, perc2scan/result.json, perc2scan/run.json, perc2scan/track_guard.json, perc2scan/vo.json
+guard (<MR>/content/v2d-track3/tools/no_oracle.py): refuses 227/227 pushed files by store path runs/20261030-orcP1b-mocksha/...; bare paths (ep<N>/<arm>/..., tar names) refused: perc2scan 67/67, perc2 0/67, perc2rep 0/39, bundle tar 7/7
+RESULT: ALL CHECKS PASS
+check rc=0
+-- job.log
+[2026-10-30T18:17:31Z] perc_leak code mocksha, episodes [11 21 31 39 22 42 23], repeat [11 21 31 39], arms o,s,o2, LIB <MR>/content/v2d-track3/meshes/library_v3, inputs <MR>/content/v2d-track3/docs/research/work/leak-decomp-20261030/phase1/inputs.tsv, gpu MOCK
+[2026-10-30T18:17:32Z] perc_leak: Grounding DINO cached (try 1); perc2 runs offline (HF_HUB_OFFLINE=1)
+[leak_p1] ep11 inputs: depth usable frame-0 = refine; hands md5 [True, True]
+[2026-10-30T18:17:42Z] perc_leak ep11 o rc=0 0 s: [    1.0s] depth ready 137 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked beige_cup sec 7.0 guard {} 
+[2026-10-30T18:17:43Z] perc_leak ep11 s rc=0 1 s: [    1.0s] depth ready 137 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked beige_cup sec 7.0 guard {} 
+[2026-10-30T18:17:43Z] perc_leak ep11 o2 rc=0 0 s: [    1.0s] depth ready 137 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked beige_cup sec 7.0 guard {} 
+[leak_p1] ep11 bundle OK: o rc 0 0 s library depth reused True poses True; s rc 0 1 s scan depth reused True poses True cam 0.0e+00; o2 rc 0 0 s library depth reused True poses True cam 0.0e+00
+[leak_p1] ep21 inputs: depth usable frame-0 = refine; hands md5 [True, True]
+[2026-10-30T18:17:44Z] perc_leak ep21 o rc=0 0 s: [    1.0s] depth ready 186 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked water_pitcher sec 7.0 guard {} 
+[2026-10-30T18:17:45Z] perc_leak ep21 s rc=0 1 s: [    1.0s] depth ready 186 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked water_pitcher sec 7.0 guard {} 
+[2026-10-30T18:17:45Z] perc_leak ep21 o2 rc=0 0 s: [    1.0s] depth ready 186 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked water_pitcher sec 7.0 guard {} 
+[leak_p1] ep21 bundle OK: o rc 0 0 s library depth reused True poses True; s rc 0 1 s scan depth reused True poses True cam 0.0e+00; o2 rc 0 0 s library depth reused True poses True cam 0.0e+00
+[leak_p1] ep31 inputs: depth usable frame-0 = refine; hands md5 [True, True]
+[2026-10-30T18:17:46Z] perc_leak ep31 o rc=0 0 s: [    1.0s] depth ready 290 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked mini_sweeper sec 7.0 guard {} [   60.0s] tracked plastic_dish_rack sec 7.0 guard {} 
+[2026-10-30T18:17:46Z] perc_leak ep31 s rc=0 0 s: [    1.0s] depth ready 290 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked mini_sweeper sec 7.0 guard {} [   60.0s] tracked plastic_dish_rack sec 7.0 guard {} 
+[2026-10-30T18:17:47Z] perc_leak ep31 o2 rc=0 1 s: [    1.0s] depth ready 290 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked mini_sweeper sec 7.0 guard {} [   60.0s] tracked plastic_dish_rack sec 7.0 guard {} 
+[leak_p1] ep31 bundle OK: o rc 0 0 s library depth reused True poses True; s rc 0 0 s scan depth reused True poses True cam 0.0e+00; o2 rc 0 1 s library depth reused True poses True cam 0.0e+00
+[leak_p1] ep39 inputs: depth usable frame-0 = refine; hands md5 [True, True]
+[2026-10-30T18:17:48Z] perc_leak ep39 o rc=0 0 s: [    1.0s] depth ready 319 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked mini_dust_pan sec 7.0 guard {} 
+[2026-10-30T18:17:49Z] perc_leak ep39 s rc=0 1 s: [    1.0s] depth ready 319 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked mini_dust_pan sec 7.0 guard {} 
+[2026-10-30T18:17:49Z] perc_leak ep39 o2 rc=0 0 s: [    1.0s] depth ready 319 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked mini_dust_pan sec 7.0 guard {} 
+[leak_p1] ep39 bundle OK: o rc 0 0 s library depth reused True poses True; s rc 0 1 s scan depth reused True poses True cam 0.0e+00; o2 rc 0 0 s library depth reused True poses True cam 0.0e+00
+[leak_p1] ep22 inputs: depth usable frame-0 = refine; hands md5 [True, True]
+[2026-10-30T18:17:50Z] perc_leak ep22 o rc=0 0 s: [    1.0s] depth ready 189 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked water_pitcher sec 7.0 guard {} 
+[2026-10-30T18:17:51Z] perc_leak ep22 s rc=0 1 s: [    1.0s] depth ready 189 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked water_pitcher sec 7.0 guard {} 
+[leak_p1] ep22 bundle OK: o rc 0 0 s library depth reused True poses True; s rc 0 1 s scan depth reused True poses True cam 0.0e+00
+[leak_p1] ep42 inputs: depth usable frame-0 = refine; hands md5 [True, True]
+[2026-10-30T18:17:52Z] perc_leak ep42 o rc=0 0 s: [    1.0s] depth ready 257 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked white_pot sec 7.0 guard {} 
+[2026-10-30T18:17:52Z] perc_leak ep42 s rc=0 0 s: [    1.0s] depth ready 257 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked white_pot sec 7.0 guard {} 
+[leak_p1] ep42 bundle OK: o rc 0 0 s library depth reused True poses True; s rc 0 0 s scan depth reused True poses True cam 0.0e+00
+[leak_p1] ep23 inputs: depth usable frame-0 = refine; hands md5 [True, True]
+[2026-10-30T18:17:54Z] perc_leak ep23 o rc=0 1 s: [    1.0s] depth ready 325 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked wooden_piece_1 sec 7.0 guard {} [   60.0s] tracked wooden_piece_2 sec 7.0 guard {} 
+[2026-10-30T18:17:54Z] perc_leak ep23 s rc=0 0 s: [    1.0s] depth ready 325 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked wooden_piece_1 sec 7.0 guard {} [   60.0s] tracked wooden_piece_2 sec 7.0 guard {} 
+[leak_p1] ep23 bundle OK: o rc 0 1 s library depth reused True poses True; s rc 0 0 s scan depth reused True poses True cam 0.0e+00
+[2026-10-30T18:17:54Z] perc_leak RESULT ep11: OK o ok rc 0 0 s library | s ok rc 0 1 s scan | o2 ok rc 0 0 s library | P_s vo AUC (scan frame, unregistered) 0.979
+[2026-10-30T18:17:54Z] perc_leak RESULT ep21: OK o ok rc 0 0 s library | s ok rc 0 1 s scan | o2 ok rc 0 0 s library | P_s vo AUC (scan frame, unregistered) 0.938
+[2026-10-30T18:17:54Z] perc_leak RESULT ep31: OK o ok rc 0 0 s library | s ok rc 0 0 s scan | o2 ok rc 0 1 s library | P_s vo AUC (scan frame, unregistered) 0.859
+[2026-10-30T18:17:54Z] perc_leak RESULT ep39: OK o ok rc 0 0 s library | s ok rc 0 1 s scan | o2 ok rc 0 0 s library | P_s vo AUC (scan frame, unregistered) 0.858
+[2026-10-30T18:17:54Z] perc_leak RESULT ep22: OK o ok rc 0 0 s library | s ok rc 0 1 s scan | P_s vo AUC (scan frame, unregistered) 0.991
+[2026-10-30T18:17:54Z] perc_leak RESULT ep42: OK o ok rc 0 0 s library | s ok rc 0 0 s scan | P_s vo AUC (scan frame, unregistered) 0.95
+[2026-10-30T18:17:54Z] perc_leak RESULT ep23: OK o ok rc 0 1 s library | s ok rc 0 0 s scan | P_s vo AUC (scan frame, unregistered) 0.95
+[2026-10-30T18:17:54Z] perc_leak RESULT all bundles ok: True (7/7); every arm ran (rc 0, tracks written): True
+[2026-10-30T18:17:55Z] perc_leak: guard refuses runs/20261030-orcP1b-mocksha/results/leak_p1/... (run id)
+[2026-10-30T18:17:55Z] perc_leak: guard refuses the bare perc2scan folder name
+[2026-10-30T18:17:55Z] perc_leak done (rc 0); run_job.sh pushes runs/20261030-orcP1b-mocksha once and self-destroys
+-- push
+pushed runs/20261030-orcP1b-mocksha (121M)
+push rc=0

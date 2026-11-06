@@ -1,0 +1,10 @@
+before box a: job rc 0, perc2 runs 16, downloads 21, push rc=0
+before box b: job rc 0, perc2 runs 18, downloads 21, push rc=0
+before box c: job rc 0, perc2 runs 16, downloads 18, push rc=0
+after box a: job rc 0, perc2 runs 16, downloads 21, push rc=0
+after box b: job rc 0, perc2 runs 18, downloads 21, push rc=0
+after box c: job rc 0, perc2 runs 16, downloads 18, push rc=0
+before_boxa.json vs after_boxa.json: 397 / 397 files, 0 differ
+before_boxb.json vs after_boxb.json: 451 / 451 files, 0 differ
+before_boxc.json vs after_boxc.json: 398 / 398 files, 0 differ
+replay: IDENTICAL on all 3 Phase-1 job strings

@@ -1,0 +1,23 @@
+# E0 box main venv (Python 3.13), pinned to the local CPU venv (pip freeze 2026-10-31). Only what the E0 scripts use:
+# obs_points / prim_potlid / prim_rack / lathe_obs / obs_fidelity / C0 frame_check (kit budget_mesh) / store download.
+numpy==2.5.4
+scipy==1.18.1
+trimesh==5.2.0
+opencv-python-headless==5.0.0.93
+manifold3d==3.5.4
+scikit-image==0.26.0
+imageio==2.38.1
+lazy-loader==0.6
+tifffile==2026.10.15
+networkx==3.7
+pillow==13.0.0
+packaging==26.3
+fast_simplification==0.2.0
+rtree==1.4.1
+huggingface_hub==2.3.0
+hf-xet==1.7.0
+filelock==3.32.3
+fsspec==2026.7.0
+PyYAML==6.0.3
+tqdm==4.70.1
+typing_extensions==4.16.0

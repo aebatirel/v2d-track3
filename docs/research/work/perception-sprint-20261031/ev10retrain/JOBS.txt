@@ -1,0 +1,115 @@
+EVAL-10 RETRAIN ON THE S12 V4p REFERENCE: launch job string (prepared 31 Oct 2026 ~18:00 UTC; NOTHING LAUNCHED)
+Launch ONLY if the ep11 rollout gate (run 20261031-e11g-663b7df, box 58552489) reads PASS, and only with the owner's go
+in this chat for the spend below. Pre-registration: PREREG.md (sections 1-9 written ~17:31 UTC, sha256 15e33e68...;
+commit it unchanged with the code). Build notes and CPU evidence: BUILD.md, cpu/ (same folder).
+
+Before the launch (orchestrator):
+  1. commit + push: ops/jobs/ev10_v4p.sh, ops/jobs/glock_public.sh (opt-in EVAL_LOCAL_REF; BUILD.md section 4 proves the
+     default unchanged), tools/e10v_track.sh, tools/e10v_verify.py, tools/e10v_score.py, tools/e10v_verdict.py,
+     .gitignore (expect/*.npz exception), docs/research/work/perception-sprint-20261031/ev10retrain/ (PREREG.md unchanged,
+     expect/, cpu/, BUILD.md, JOBS.txt); SHA=<that commit>, S7=${SHA:0:7}. Check on the commit:
+     `git ls-files docs/research/work/perception-sprint-20261031/ev10retrain/expect` lists V_poses.npz and expect.json
+     (the job stops at B0 without them).
+  2. the ep11 gate's verdict line reads PASS (results/ep11_gate/summary.json of 20261031-e11g-663b7df); otherwise STOP here.
+  3. the owner's go-ahead, then a ledger line:
+       LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned <date>-e10v-$S7 6.00 "eval-10 retrain on the S12 V4p reference (ep11 gate PASS): 2 seeds + 10 official confirmation draws, swap rule scored vs both references" owner
+  4. offer: ONE RTX PRO 6000 (96 GB) on demand, <= $1.50/h (`ops/vast.sh offers`); snapshot pt2.11-cu130-py313-20261020.
+     Stagger: not in the same minute as another box create. The box self-destroys when the job ends (run_job.sh); the
+     stall watchdog (30 min without new log lines or checkpoints) protects the spend; there is no fixed time limit.
+  5. the pack-10 comparison set run 20261031-h5p7-1a7cdff should be finished (its eval-10 rollouts are pulled at the end
+     of this job; if they are not in the store yet, the packed side is scored on CPU after, same tool, see below).
+
+Run id: <date>-e10v-$S7   e.g. 20261031-e10v-$S7   (ev10_v4p.sh refuses a run id without "-e10v-")
+Job string (everything is fixed inside the script: episode 10, prefix perc2e10v, seeds 42/43, the gl10A2 recipe, NREP 10,
+PAR 2, TRAIN_SLOTS 2, EVAL_TIMEOUT 1200, 10 confirmation draws, mkref depth = the eval-10 cache (PREREG 3.2 rule):
+
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-e10v-$S7 'bash ops/jobs/ev10_v4p.sh'
+
+What it runs on the box (in order; PREREG section 3):
+  - make_assets.py library_v3 -> /content/assets with the meshes/carve/ev10 collision pieces (0.3 kg; as gl10A2);
+  - 10 single-file store downloads (store.sh pull-files; no listing), md5 each: runs/20261026-pack6-5203d42/perc2/ep10/
+    {poses.npz, vo.json, det_f0.npz}, runs/20261026-pack6-5203d42/refs/perc2mck/ep10/hands_refined.npz,
+    runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/{hands.npz, hands_refined.npz}, the packed reference P
+    (refs/glockt/ep10/.../ref_gl_ilc.parquet, md5 1a5003d9), the packed checkpoint (sha256 76a12265), the old packed
+    draw (pack 6 results/submission/results/episode_000010.{parquet,json}); then cache/depth/eval/ep10/depths_fs0.5.npy
+    (1.03 GB; bytes, shape 161 x 1000 x 1600, frame-0 sha256 ab38c4d7 checked); depth0.npy from det_f0 (md5 d1543641);
+    tools/no_oracle.py on every input -> stop on any mismatch or refusal;
+  - two pinned venvs (python -m venv + pip, else uv), as the gate: refine numpy 2.5.4 / scipy 1.18.1 / trimesh 5.2.0 /
+    rtree 1.4.1; physics numpy 2.4.6 / scipy 1.18.0 / trimesh 4.12.2 / mujoco 3.8.1;
+  - tools/e10v_track.sh: refine S12 support -> nest_physics inner (ev10) -> refine S2 (V4p); tools/e10v_verify.py b0 vs
+    ev10retrain/expect -> IDENTICAL / NUMERIC / DIFFERS go on, MISMATCH stops (no reference);
+  - pipeline_ep.sh 10 SPLIT=eval STOP_AFTER=reference, PERC=perc2 VARIANT=e10vmck, PDIR = the V4p track + the cache
+    link, the stored hands copied in, mkref --wrist_cost 3.0, contact retargeting --rest_settle 1 -> refs/perc2e10vmck/ep10;
+    build.json;
+  - glock_public.sh REF_ONLY=1 SEED=42 EVAL_LOCAL_REF=1 PAIRS="10:local:mck:perc2e10v" (grasp lock with gl10A2's GL_ARGS,
+    ILC, REPLAN 1) -> refs/perc2e10v_glockt/ep10 = V; tools/e10v_verify.py identity (stop on failure) and arms (byte
+    copies refs/perc2e10vs{42,43}_glockt/ep10 + rest_check); no_oracle on the references; results/ev10_v4p/rerun_files.txt;
+  - seed 42, then seed 43: glock_public.sh REUSE_REF=1 REQUIRE_REUSE=1 PAIRS="10:local:mck:perc2e10vs<seed>" (70M steps,
+    curve 3 evaluations per checkpoint, checkpoint by sim_vs_ref vs V, NREP 10 training-box evaluations scored qa.py);
+  - tools/e10v_verify.py choose (rule 2) -> choice.json; no_oracle on the chosen checkpoint; 10 official draws of it
+    (kit run_policy_evaluation.py on the pristine worktree /content/v2d_clean, one call per draw, timeout 1200 s, up to
+    13 calls until 10 have a qa_policy.json) -> results/ev10_v4p/conf/r<i>/ep10;
+  - the packed policy's H5p7 eval-10 draws: runs/20261031-h5p7-1a7cdff/results/h5/r1..r10/ep10/episode_000010.{parquet,json}
+    (20 single-file pulls; a missing one is logged, the packed side is then completed on CPU);
+  - tools/e10v_score.py (sets conf, old, packed, train42, train43; vs V and P) -> score.json; tools/e10v_verify.py verify ->
+    verify.json; tools/e10v_verdict.py -> summary.json; RESULT line in job.log (label first, an EQUAL FLOOR note if both
+    policies fail >= 90 % of draws, eval rc right after); rerun_results.txt; ckpt_meta.txt; ONE store push at the end (plus the platform's 30-min interim pushes and its final self-destroy push).
+
+EXPECTED COST [estimates]. Basis [M], from the runs' job logs:
+  - gl10A2 (eval 10, same recipe, one training alone, 26 Oct): setup 8 min, reference stages 4.5 min, 70M training
+    64 min, curve 2.5 min, 5 evaluations 1 min; whole job 80 min;
+  - orcB (30 Oct): reference from raw incl. perception 6-10 min; ep11 gate (31 Oct, 58552489): inputs + venvs + tracks +
+    B0 + 2 references + identity done 16:07-16:18 UTC (~11 min after the job start);
+  - H5 draws on the pristine evaluator: e1conf2 20 draws of one episode in ~0.8 h (~2.4 min per draw incl. overhead);
+  - scoring: ~10 s per rollout and reference on 1 CPU core here (41 rollouts x 2 references, 8 workers -> ~2 min);
+  - setup 0.2-0.75 h (43 min under HF 429 on 30 Oct); RTX PRO 6000 on demand $1.07-1.50/h (the gate box: $1.069/h).
+
+| stage                                                                     | low (h) | central (h) | high (h) |
+|---------------------------------------------------------------------------|---------|-------------|----------|
+| setup: boot, snapshot, make_assets, 11 downloads (1.03 GB cache), venvs, B0 | 0.25    | 0.35        | 0.90     |
+| base reference (mkref + CR) + grasp-lock stages + identity + copies       | 0.12    | 0.20        | 0.30     |
+| seed 42 alone: 70M training + curve (3 x 7) + 10 evaluations              | 1.10    | 1.20        | 1.40     |
+| seed 43 alone: the same                                                    | 1.10    | 1.20        | 1.40     |
+| 10 official confirmation draws (pristine evaluator, one call each)        | 0.15    | 0.30        | 0.50     |
+| scoring (41 rollouts x 2 refs), verify, verdict, push                     | 0.05    | 0.10        | 0.20     |
+| total wall                                                                 | 2.8     | 3.35        | 4.7      |
+| $ at 1.07 / 1.42 / 1.50 per h                                              | $3.0    | $4.8        | $7.1     |
+
+  => ~$3.0-7.1, central ~$4.8. Tail risks: a failed final push waits 60 min (+~$1.5); an input / B0 / identity STOP ends
+     after setup (~$1.0-2.0 incl. run_job.sh's 30-min FAIL_HOLD, no reading). The seeds train one after the other (one
+     glock_public.sh call each, as the gate's waves; two concurrent calls would rebuild /content/assets and re-patch
+     FlashCHORD under a running training): ~1.2 h and ~$1.5 more than two in parallel, accepted for the proven path.
+  INCOMPLETE re-run of one seed (+ the confirmation): setup ~0.4 h + one training ~1.2 h + draws 0.3 h -> ~1.9 h, ~$2.0-2.9.
+  A confirmation top-up only (SEEDS_TODO empty): ~0.7 h, ~$0.8-1.1.
+
+INCOMPLETE re-run (PREREG section 6; on THIS run's stored reference; SAME commit $SHA):
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-e10v-${S7}r 'RERUN_FROM=<first run id> SEEDS_TODO="43" bash ops/jobs/ev10_v4p.sh'
+  (SEEDS_TODO = the seeds choice.json lists under incomplete_seeds; empty = only top up the confirmation draws. The box
+   pulls rerun_files.txt and the files it lists (the V4p base reference and V, the track, b0/build/arms/identity json,
+   P, the packed checkpoint, the old draw) and the files rerun_results.txt lists (each finished seed's best/ and the
+   earlier confirmation draws: only files the first run pushed, so no pull waits on store.sh's retries), one download
+   each; re-makes the seed copies (they must equal the first manifest), trains SEEDS_TODO, re-applies rule 2, adds
+   confirmation draws of the chosen checkpoint until 10 are scored (draws of another checkpoint go to conf_prev/), then
+   score / verify / verdict.)
+  Packed side short of 10 scored H5p7 eval-10 draws: top-up draws of the packed checkpoint on its own box,
+    'N=<missing+1> PICK_EXTRA= EPS_ONLY=10 PACKED_TXT=/content/v2d-track3/results/submissions/20261030-track3g-candidate/summary.txt bash ops/jobs/h5_reeval.sh'
+    (draw 1 of h5_reeval is a full-pack evaluation; only its eval-10 rollout and draws 2..N are used), then CPU scoring.
+
+After the box (CPU, $0):
+  - read results/ev10_v4p/{summary.json, verify.json, choice.json, score.json, b0.json, build.json, identity.json} and
+    job.log from the store, ONE hf_hub_download per file (HF 429);
+  - if summary.json reads INCOMPLETE only because the packed H5p7 draws were not in the store yet: pull them (20 files,
+    single-file) and V (runs/<run>/refs/perc2e10v_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/
+    ref_gl_ilc.parquet), then on this VM (kit = scratchpad map/scoring/kit/v2d_submission_kit):
+      python -I tools/e10v_score.py --kit $KIT --lib meshes/library_v3 --ref V=<V> --ref P=<P> --out score_packed.json \
+        --set packed:P:"<dl>/runs/20261031-h5p7-1a7cdff/results/h5/r*/ep10/episode_000010.parquet"
+      python -I tools/e10v_verdict.py --score score.json --score score_packed.json --verify verify.json --choice choice.json --out summary_cpu.json
+    (the same code as the box; later --score files win a set name);
+  - write the reading (the PREREG section 5 label first, then the clause table vs V and vs P, the reported numbers) in the
+    work log and STATUS.md; ledger actual line (LEDGER_SESSION=focused-pascal python3 ops/ledger.py add actual <run id>
+    <usd> "<note>");
+  - SWAP-ELIGIBLE -> build the pack-10 candidate with this run's confirmation draw 1 for eval 10 (offline validation;
+    NOT uploaded) and ask the owner; NO-SWAP -> eval 10 stays as packed; INCOMPLETE / INVALID -> no reading (above).
+
+REVIEW NOTE (F3): a packed top-up must not replace H5p7's packed set: copy the top-up box's eval-10 rollouts into the same
+tree (r11, r12, ...) and score them with ONE --score glob over the whole set.

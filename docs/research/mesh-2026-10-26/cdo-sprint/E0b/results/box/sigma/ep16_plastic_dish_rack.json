@@ -1,0 +1,15 @@
+{
+ "obj": "plastic_dish_rack",
+ "file": "/content/results/e0b/pts/B/ep16_plastic_dish_rack.npz",
+ "sigma_m": 0.0016668314605562404,
+ "T": 173,
+ "stride": 2,
+ "info": {
+  "even_points": 931445,
+  "odd_points": 893373,
+  "sheet_faces": 286593,
+  "raw_median_mm": 1.667,
+  "n": 50000
+ },
+ "sec": 44.3
+}

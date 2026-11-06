@@ -1,0 +1,1659 @@
+{
+ "B5-a cylinder missing base": {
+  "fixed_meshes": {
+   "full": {
+    "base_rays": 1803,
+    "miss_frac": 0.0033277870216306157,
+    "mean_cost_sigma": 0.3465019470360164
+   },
+   "nobase": {
+    "base_rays": 1803,
+    "miss_frac": 1.0,
+    "mean_cost_sigma": 9.957534601635624
+   }
+  },
+  "folds": {
+   "shell_toy": {
+    "cid": "shell_toy",
+    "cls": "SHELL",
+    "E": 1.6081744945560275,
+    "E_blocks": [
+     0.43319,
+     0.43421,
+     3.95712
+    ],
+    "E_se": 0.005875447040182994,
+    "fold": "rebuilt",
+    "fsv_far": 0.0,
+    "fsv_far_shell": 0.0,
+    "trusted_markers": 0,
+    "v3": {
+     "diff": 0.0,
+     "tau": null,
+     "veto": false,
+     "applied": false,
+     "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+    },
+    "ray_blocks": [
+     {
+      "n": 6471,
+      "miss_frac": 0.00201,
+      "extra_frac": 0.0017,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.43319
+     },
+     {
+      "n": 6550,
+      "miss_frac": 0.00137,
+      "extra_frac": 0.00153,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.43421
+     },
+     {
+      "n": 6378,
+      "miss_frac": 0.38257,
+      "extra_frac": 0.00094,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 3.95712
+     }
+    ]
+   },
+   "lathe_toy": {
+    "cid": "lathe_toy",
+    "cls": "STRUCT",
+    "E": 0.43091923577300917,
+    "E_blocks": [
+     0.43319,
+     0.43421,
+     0.42536
+    ],
+    "E_se": 0.004856918019122776,
+    "fold": "rebuilt",
+    "fsv_far": 0.0,
+    "fsv_far_shell": 0.0,
+    "trusted_markers": 0,
+    "v3": {
+     "diff": 0.0,
+     "tau": null,
+     "veto": false,
+     "applied": false,
+     "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+    },
+    "ray_blocks": [
+     {
+      "n": 6471,
+      "miss_frac": 0.00201,
+      "extra_frac": 0.0017,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.43319
+     },
+     {
+      "n": 6550,
+      "miss_frac": 0.00137,
+      "extra_frac": 0.00153,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.43421
+     },
+     {
+      "n": 6378,
+      "miss_frac": 0.00235,
+      "extra_frac": 0.00141,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.42536
+     }
+    ]
+   }
+  },
+  "all_frames": {
+   "shell_toy": {
+    "cid": "shell_toy",
+    "cls": "SHELL",
+    "E": 0.43091923577300917,
+    "E_blocks": [
+     0.43319,
+     0.43421,
+     0.42536
+    ],
+    "E_se": 0.004856918019122776,
+    "fold": "fixed",
+    "fsv_far": 0.0,
+    "fsv_far_shell": 0.0,
+    "trusted_markers": 0,
+    "v3": {
+     "diff": 0.0,
+     "tau": null,
+     "veto": false,
+     "applied": false,
+     "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+    },
+    "ray_blocks": [
+     {
+      "n": 6471,
+      "miss_frac": 0.00201,
+      "extra_frac": 0.0017,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.43319
+     },
+     {
+      "n": 6550,
+      "miss_frac": 0.00137,
+      "extra_frac": 0.00153,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.43421
+     },
+     {
+      "n": 6378,
+      "miss_frac": 0.00235,
+      "extra_frac": 0.00141,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.42536
+     }
+    ]
+   },
+   "lathe_toy": {
+    "cid": "lathe_toy",
+    "cls": "STRUCT",
+    "E": 0.43091923577300917,
+    "E_blocks": [
+     0.43319,
+     0.43421,
+     0.42536
+    ],
+    "E_se": 0.004856918019122776,
+    "fold": "fixed",
+    "fsv_far": 0.0,
+    "fsv_far_shell": 0.0,
+    "trusted_markers": 0,
+    "v3": {
+     "diff": 0.0,
+     "tau": null,
+     "veto": false,
+     "applied": false,
+     "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+    },
+    "ray_blocks": [
+     {
+      "n": 6471,
+      "miss_frac": 0.00201,
+      "extra_frac": 0.0017,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.43319
+     },
+     {
+      "n": 6550,
+      "miss_frac": 0.00137,
+      "extra_frac": 0.00153,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.43421
+     },
+     {
+      "n": 6378,
+      "miss_frac": 0.00235,
+      "extra_frac": 0.00141,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.42536
+     }
+    ]
+   }
+  },
+  "dE": 1.1772552587830183,
+  "se_diff": 0.004275420065214948,
+  "pick": {
+   "cid": "lathe_toy",
+   "best": "lathe_toy",
+   "tie_set": [
+    [
+     "lathe_toy",
+     0.0,
+     0.0
+    ]
+   ],
+   "order": [
+    "lathe_toy"
+   ],
+   "flags": [
+    "flip_risk_unknown"
+   ]
+  }
+ },
+ "B5-b phantom under disc": {
+  "fsv_disc": 0.0,
+  "fsv_phantom": 0.46495,
+  "tau": 0.0,
+  "holdout": {
+   "gen_views": 1,
+   "source": "frames",
+   "deg": 8.0,
+   "near_frames": 1,
+   "frames": 24,
+   "near_frac": 0.0417,
+   "applied": true,
+   "gen_view_overlap": false
+  },
+  "rows": {
+   "disc_shell": {
+    "cid": "disc_shell",
+    "cls": "SHELL",
+    "E": 0.43862658650718567,
+    "E_blocks": [
+     0.42177,
+     0.45299,
+     0.44112
+    ],
+    "E_se": 0.004470862301511432,
+    "fold": "fixed",
+    "fsv_far": 0.0,
+    "fsv_far_shell": 0.0,
+    "trusted_markers": 0,
+    "v3": {
+     "diff": 0.0,
+     "tau": 0.0,
+     "veto": false,
+     "applied": true
+    },
+    "ray_blocks": [
+     {
+      "n": 7080,
+      "miss_frac": 0.00198,
+      "extra_frac": 0.00127,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.42177
+     },
+     {
+      "n": 2874,
+      "miss_frac": 0.00209,
+      "extra_frac": 0.00244,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.45299
+     },
+     {
+      "n": 4464,
+      "miss_frac": 0.00157,
+      "extra_frac": 0.00112,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.44112
+     }
+    ]
+   },
+   "disc_phantom": {
+    "cid": "disc_phantom",
+    "cls": "GEN",
+    "E": 7.262959041242372,
+    "E_blocks": [
+     0.42177,
+     0.45299,
+     6.96562
+    ],
+    "E_se": 0.004635380826974973,
+    "fold": "fixed",
+    "fsv_far": 0.46495,
+    "fsv_far_shell": 0.0,
+    "trusted_markers": 0,
+    "v3": {
+     "diff": 0.46495,
+     "tau": 0.0,
+     "veto": true,
+     "applied": true
+    },
+    "ray_blocks": [
+     {
+      "n": 7080,
+      "miss_frac": 0.00198,
+      "extra_frac": 0.00127,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.42177
+     },
+     {
+      "n": 2874,
+      "miss_frac": 0.00209,
+      "extra_frac": 0.00244,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 0.45299
+     },
+     {
+      "n": 4464,
+      "miss_frac": 0.00022,
+      "extra_frac": 0.70206,
+      "no_hit_frac": 0.0,
+      "mean_cost_sigma": 6.96562
+     }
+    ]
+   }
+  },
+  "pick": {
+   "cid": "disc_shell",
+   "trace": [
+    {
+     "step": "vetoes V1-V4",
+     "removed": {
+      "disc_phantom": [
+       "V3"
+      ]
+     },
+     "not_applied": []
+    },
+    {
+     "step": "V5",
+     "applied": false,
+     "flip_risk": [],
+     "unknown": [
+      "disc_shell"
+     ],
+     "reason": "no flip-risk candidate"
+    },
+    {
+     "step": "tie band",
+     "best": "disc_shell",
+     "E_best": 0.43862658650718567,
+     "b_tie": 1,
+     "tie_set": [
+      [
+       "disc_shell",
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    {
+     "step": "priors",
+     "order": [
+      "disc_shell"
+     ],
+     "keys": "class (STRUCT > FUSE > GEN > SHELL > HULL); flip safety larger floor((amb - floor) / floor) first; trusted markers first; fewer free parameters; lower E; cid"
+    }
+   ],
+   "flags": [
+    "flip_risk_unknown"
+   ]
+  }
+ },
+ "B5-c2 Candidate objects, untrusted balls": {
+  "untrusted, no base": {
+   "rows": {
+    "slab_balls": {
+     "cid": "slab_balls",
+     "cls": "STRUCT",
+     "E": 0.44833684967914783,
+     "E_blocks": [
+      0.44072,
+      0.45484,
+      0.44944
+     ],
+     "E_se": 0.0035223284355474418,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.00159,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44072
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.00172,
+       "extra_frac": 0.00191,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.45484
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.00179,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44944
+      }
+     ],
+     "amb": {
+      "amb_mm": null,
+      "amb_floor_mm": null,
+      "flip_risk": null,
+      "flip_units": null
+     },
+     "flags": [
+      "v1_in_memory",
+      "amb_unknown_untrusted_balls_no_base"
+     ],
+     "amb_source": "unknown",
+     "balls": 4
+    },
+    "slab_plain": {
+     "cid": "slab_plain",
+     "cls": "STRUCT",
+     "E": 2.399417157981978,
+     "E_blocks": [
+      2.49755,
+      2.98443,
+      1.71627
+     ],
+     "E_se": 0.027077096330034207,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.21973,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.10264,
+       "mean_cost_sigma": 2.49755
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.26744,
+       "extra_frac": 0.00134,
+       "no_hit_frac": 0.23227,
+       "mean_cost_sigma": 2.98443
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.1346,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.13281,
+       "mean_cost_sigma": 1.71627
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "flags": [
+      "v1_in_memory"
+     ],
+     "amb_source": "shipped mesh (no balls)",
+     "balls": 0
+    }
+   },
+   "pick": {
+    "cid": "slab_balls",
+    "tie_set": [
+     [
+      "slab_balls",
+      0.0,
+      0.0
+     ]
+    ],
+    "order": [
+     "slab_balls"
+    ],
+    "flags": [
+     "v3_no_shell_reference",
+     "flip_risk_unknown"
+    ]
+   },
+   "v5": {
+    "step": "V5",
+    "applied": false,
+    "flip_risk": [
+     "slab_plain"
+    ],
+    "unknown": [
+     "slab_balls"
+    ],
+    "reason": "no feasible candidate is free of flip risk"
+   }
+  },
+  "untrusted, metadata count": {
+   "rows": {
+    "slab_balls": {
+     "cid": "slab_balls",
+     "cls": "STRUCT",
+     "E": 0.44833684967914783,
+     "E_blocks": [
+      0.44072,
+      0.45484,
+      0.44944
+     ],
+     "E_se": 0.0035223284355474418,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.00159,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44072
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.00172,
+       "extra_frac": 0.00191,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.45484
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.00179,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44944
+      }
+     ],
+     "amb": {
+      "amb_mm": null,
+      "amb_floor_mm": null,
+      "flip_risk": null,
+      "flip_units": null
+     },
+     "flags": [
+      "v1_in_memory",
+      "balls_count_from_mesh_metadata",
+      "amb_unknown_untrusted_balls_no_base"
+     ],
+     "amb_source": "unknown",
+     "balls": 4
+    },
+    "slab_plain": {
+     "cid": "slab_plain",
+     "cls": "STRUCT",
+     "E": 2.399417157981978,
+     "E_blocks": [
+      2.49755,
+      2.98443,
+      1.71627
+     ],
+     "E_se": 0.027077096330034207,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.21973,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.10264,
+       "mean_cost_sigma": 2.49755
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.26744,
+       "extra_frac": 0.00134,
+       "no_hit_frac": 0.23227,
+       "mean_cost_sigma": 2.98443
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.1346,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.13281,
+       "mean_cost_sigma": 1.71627
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "flags": [
+      "v1_in_memory"
+     ],
+     "amb_source": "shipped mesh (no balls)",
+     "balls": 0
+    }
+   },
+   "pick": {
+    "cid": "slab_balls",
+    "tie_set": [
+     [
+      "slab_balls",
+      0.0,
+      0.0
+     ]
+    ],
+    "order": [
+     "slab_balls"
+    ],
+    "flags": [
+     "v3_no_shell_reference",
+     "flip_risk_unknown"
+    ]
+   },
+   "v5": {
+    "step": "V5",
+    "applied": false,
+    "flip_risk": [
+     "slab_plain"
+    ],
+    "unknown": [
+     "slab_balls"
+    ],
+    "reason": "no feasible candidate is free of flip risk"
+   }
+  },
+  "untrusted, base_mesh": {
+   "rows": {
+    "slab_balls": {
+     "cid": "slab_balls",
+     "cls": "STRUCT",
+     "E": 0.44833684967914783,
+     "E_blocks": [
+      0.44072,
+      0.45484,
+      0.44944
+     ],
+     "E_se": 0.0035223284355474418,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.00159,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44072
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.00172,
+       "extra_frac": 0.00191,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.45484
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.00179,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44944
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "flags": [
+      "v1_in_memory"
+     ],
+     "amb_source": "base_mesh (balls not trusted: ball-free)",
+     "balls": 4
+    },
+    "slab_plain": {
+     "cid": "slab_plain",
+     "cls": "STRUCT",
+     "E": 2.399417157981978,
+     "E_blocks": [
+      2.49755,
+      2.98443,
+      1.71627
+     ],
+     "E_se": 0.027077096330034207,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.21973,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.10264,
+       "mean_cost_sigma": 2.49755
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.26744,
+       "extra_frac": 0.00134,
+       "no_hit_frac": 0.23227,
+       "mean_cost_sigma": 2.98443
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.1346,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.13281,
+       "mean_cost_sigma": 1.71627
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "flags": [
+      "v1_in_memory"
+     ],
+     "amb_source": "shipped mesh (no balls)",
+     "balls": 0
+    }
+   },
+   "pick": {
+    "cid": "slab_balls",
+    "tie_set": [
+     [
+      "slab_balls",
+      0.0,
+      0.0
+     ]
+    ],
+    "order": [
+     "slab_balls"
+    ],
+    "flags": [
+     "v3_no_shell_reference",
+     "flip_risk"
+    ]
+   },
+   "v5": {
+    "step": "V5",
+    "applied": false,
+    "flip_risk": [
+     "slab_balls",
+     "slab_plain"
+    ],
+    "unknown": [],
+    "reason": "no feasible candidate is free of flip risk"
+   }
+  },
+  "trusted, no base": {
+   "rows": {
+    "slab_balls": {
+     "cid": "slab_balls",
+     "cls": "STRUCT",
+     "E": 0.44833684967914783,
+     "E_blocks": [
+      0.44072,
+      0.45484,
+      0.44944
+     ],
+     "E_se": 0.0035223284355474418,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 4,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.00159,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44072
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.00172,
+       "extra_frac": 0.00191,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.45484
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.00179,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44944
+      }
+     ],
+     "amb": {
+      "amb_mm": 3.5782188004792848,
+      "amb_floor_mm": 1.5324696863406058,
+      "flip_risk": false,
+      "flip_units": 1
+     },
+     "flags": [
+      "v1_in_memory"
+     ],
+     "amb_source": "shipped mesh with its trusted balls",
+     "balls": 4
+    },
+    "slab_plain": {
+     "cid": "slab_plain",
+     "cls": "STRUCT",
+     "E": 2.399417157981978,
+     "E_blocks": [
+      2.49755,
+      2.98443,
+      1.71627
+     ],
+     "E_se": 0.027077096330034207,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.21973,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.10264,
+       "mean_cost_sigma": 2.49755
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.26744,
+       "extra_frac": 0.00134,
+       "no_hit_frac": 0.23227,
+       "mean_cost_sigma": 2.98443
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.1346,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.13281,
+       "mean_cost_sigma": 1.71627
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "flags": [
+      "v1_in_memory"
+     ],
+     "amb_source": "shipped mesh (no balls)",
+     "balls": 0
+    }
+   },
+   "pick": {
+    "cid": "slab_balls",
+    "tie_set": [
+     [
+      "slab_balls",
+      0.0,
+      0.0
+     ]
+    ],
+    "order": [
+     "slab_balls"
+    ],
+    "flags": [
+     "v3_no_shell_reference"
+    ]
+   },
+   "v5": {
+    "step": "V5",
+    "applied": true,
+    "removed": [
+     "slab_plain"
+    ],
+    "unknown": []
+   }
+  }
+ },
+ "B5-c3 packed ball mesh, false balls": {
+  "trusted=False": {
+   "rows": {
+    "slab_falseballs": {
+     "cid": "slab_falseballs",
+     "cls": "STRUCT",
+     "E": 2.558864510334497,
+     "E_blocks": [
+      1.27469,
+      0.57377,
+      0.44463
+     ],
+     "E_se": 0.03034510448921495,
+     "fold": "fixed",
+     "fsv_far": 0.17945,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 5449,
+       "miss_frac": 0.00202,
+       "extra_frac": 0.08956,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 1.27469
+      },
+      {
+       "n": 4014,
+       "miss_frac": 0.00199,
+       "extra_frac": 0.01345,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.57377
+      },
+      {
+       "n": 4832,
+       "miss_frac": 0.00248,
+       "extra_frac": 0.00145,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44463
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "flags": [
+      "v1_in_memory",
+      "balls_count_from_mesh_metadata"
+     ],
+     "amb_source": "base_mesh (balls not trusted: ball-free)",
+     "balls": 4
+    },
+    "slab_plain": {
+     "cid": "slab_plain",
+     "cls": "STRUCT",
+     "E": 0.44970103302029146,
+     "E_blocks": [
+      0.4425,
+      0.46198,
+      0.44463
+     ],
+     "E_se": 0.0046935684143953205,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 5449,
+       "miss_frac": 0.00202,
+       "extra_frac": 0.00275,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.4425
+      },
+      {
+       "n": 4014,
+       "miss_frac": 0.00199,
+       "extra_frac": 0.00174,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.46198
+      },
+      {
+       "n": 4832,
+       "miss_frac": 0.00248,
+       "extra_frac": 0.00145,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44463
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "flags": [
+      "v1_in_memory"
+     ],
+     "amb_source": "shipped mesh (no balls)",
+     "balls": 0
+    }
+   },
+   "pick": {
+    "cid": "slab_plain",
+    "best": "slab_plain",
+    "tie_set": [
+     [
+      "slab_plain",
+      0.0,
+      0.0
+     ]
+    ],
+    "order": [
+     "slab_plain"
+    ],
+    "flags": [
+     "v3_no_shell_reference",
+     "flip_risk"
+    ]
+   },
+   "v5": {
+    "step": "V5",
+    "applied": false,
+    "flip_risk": [
+     "slab_falseballs",
+     "slab_plain"
+    ],
+    "unknown": [],
+    "reason": "no feasible candidate is free of flip risk"
+   },
+   "pack_info": {
+    "faces": 1164,
+    "balls": 4
+   }
+  },
+  "trusted=True": {
+   "rows": {
+    "slab_falseballs": {
+     "cid": "slab_falseballs",
+     "cls": "STRUCT",
+     "E": 2.558864510334497,
+     "E_blocks": [
+      1.27469,
+      0.57377,
+      0.44463
+     ],
+     "E_se": 0.03034510448921495,
+     "fold": "fixed",
+     "fsv_far": 0.17945,
+     "fsv_far_shell": null,
+     "trusted_markers": 4,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 5449,
+       "miss_frac": 0.00202,
+       "extra_frac": 0.08956,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 1.27469
+      },
+      {
+       "n": 4014,
+       "miss_frac": 0.00199,
+       "extra_frac": 0.01345,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.57377
+      },
+      {
+       "n": 4832,
+       "miss_frac": 0.00248,
+       "extra_frac": 0.00145,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44463
+      }
+     ],
+     "amb": {
+      "amb_mm": 3.179673026467586,
+      "amb_floor_mm": 1.4940956634373173,
+      "flip_risk": false,
+      "flip_units": 1
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "flags": [
+      "v1_in_memory",
+      "balls_count_from_mesh_metadata"
+     ],
+     "amb_source": "shipped mesh with its trusted balls",
+     "balls": 4
+    },
+    "slab_plain": {
+     "cid": "slab_plain",
+     "cls": "STRUCT",
+     "E": 0.44970103302029146,
+     "E_blocks": [
+      0.4425,
+      0.46198,
+      0.44463
+     ],
+     "E_se": 0.0046935684143953205,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 5449,
+       "miss_frac": 0.00202,
+       "extra_frac": 0.00275,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.4425
+      },
+      {
+       "n": 4014,
+       "miss_frac": 0.00199,
+       "extra_frac": 0.00174,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.46198
+      },
+      {
+       "n": 4832,
+       "miss_frac": 0.00248,
+       "extra_frac": 0.00145,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44463
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "flags": [
+      "v1_in_memory"
+     ],
+     "amb_source": "shipped mesh (no balls)",
+     "balls": 0
+    }
+   },
+   "pick": {
+    "cid": "slab_falseballs",
+    "best": "slab_falseballs",
+    "tie_set": [
+     [
+      "slab_falseballs",
+      0.0,
+      0.0
+     ]
+    ],
+    "order": [
+     "slab_falseballs"
+    ],
+    "flags": [
+     "v3_no_shell_reference"
+    ]
+   },
+   "v5": {
+    "step": "V5",
+    "applied": true,
+    "removed": [
+     "slab_plain"
+    ],
+    "unknown": []
+   },
+   "pack_info": {
+    "faces": 1164,
+    "balls": 4
+   }
+  }
+ },
+ "B5-c slab flip risk": {
+  "trusted=True": {
+   "rows": {
+    "slab_balls": {
+     "cid": "slab_balls",
+     "cls": "STRUCT",
+     "E": 0.44833684967914783,
+     "E_blocks": [
+      0.44072,
+      0.45484,
+      0.44944
+     ],
+     "E_se": 0.0035223284355474418,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 4,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.00159,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44072
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.00172,
+       "extra_frac": 0.00191,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.45484
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.00179,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44944
+      }
+     ],
+     "amb": {
+      "amb_mm": 3.5782188004792848,
+      "amb_floor_mm": 1.5324696863406058,
+      "flip_risk": false,
+      "flip_units": 1
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "obs_flip_margin": {
+      "identity_mm": 1.6837978541625191,
+      "flipped_mm": 3.432364233420468,
+      "margin_mm": 1.748566379257949,
+      "flipped_rot_deg": 179.9,
+      "n_starts": 25,
+      "points": 3000
+     }
+    },
+    "slab_plain": {
+     "cid": "slab_plain",
+     "cls": "STRUCT",
+     "E": 2.399417157981978,
+     "E_blocks": [
+      2.49755,
+      2.98443,
+      1.71627
+     ],
+     "E_se": 0.027077096330034207,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.21973,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.10264,
+       "mean_cost_sigma": 2.49755
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.26744,
+       "extra_frac": 0.00134,
+       "no_hit_frac": 0.23227,
+       "mean_cost_sigma": 2.98443
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.1346,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.13281,
+       "mean_cost_sigma": 1.71627
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "obs_flip_margin": {
+      "identity_mm": 9.402242238019253,
+      "flipped_mm": 8.711065208372148,
+      "margin_mm": -0.6911770296471054,
+      "flipped_rot_deg": 179.7,
+      "n_starts": 25,
+      "points": 3000
+     }
+    }
+   },
+   "pick": {
+    "cid": "slab_balls",
+    "tie_set": [
+     [
+      "slab_balls",
+      0.0,
+      0.0
+     ]
+    ],
+    "order": [
+     "slab_balls"
+    ],
+    "flags": [
+     "v3_no_shell_reference"
+    ]
+   },
+   "v5": {
+    "step": "V5",
+    "applied": true,
+    "removed": [
+     "slab_plain"
+    ],
+    "unknown": []
+   }
+  },
+  "trusted=False": {
+   "rows": {
+    "slab_balls": {
+     "cid": "slab_balls",
+     "cls": "STRUCT",
+     "E": 0.44833684967914783,
+     "E_blocks": [
+      0.44072,
+      0.45484,
+      0.44944
+     ],
+     "E_se": 0.0035223284355474418,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.00159,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44072
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.00172,
+       "extra_frac": 0.00191,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.45484
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.00179,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.0,
+       "mean_cost_sigma": 0.44944
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "obs_flip_margin": {
+      "identity_mm": 1.6837978541625191,
+      "flipped_mm": 3.432364233420468,
+      "margin_mm": 1.748566379257949,
+      "flipped_rot_deg": 179.9,
+      "n_starts": 25,
+      "points": 3000
+     }
+    },
+    "slab_plain": {
+     "cid": "slab_plain",
+     "cls": "STRUCT",
+     "E": 2.399417157981978,
+     "E_blocks": [
+      2.49755,
+      2.98443,
+      1.71627
+     ],
+     "E_se": 0.027077096330034207,
+     "fold": "fixed",
+     "fsv_far": 0.0,
+     "fsv_far_shell": null,
+     "trusted_markers": 0,
+     "v3": {
+      "diff": null,
+      "tau": null,
+      "veto": false,
+      "applied": false,
+      "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+     },
+     "ray_blocks": [
+      {
+       "n": 6294,
+       "miss_frac": 0.21973,
+       "extra_frac": 0.00222,
+       "no_hit_frac": 0.10264,
+       "mean_cost_sigma": 2.49755
+      },
+      {
+       "n": 5231,
+       "miss_frac": 0.26744,
+       "extra_frac": 0.00134,
+       "no_hit_frac": 0.23227,
+       "mean_cost_sigma": 2.98443
+      },
+      {
+       "n": 5572,
+       "miss_frac": 0.1346,
+       "extra_frac": 0.00144,
+       "no_hit_frac": 0.13281,
+       "mean_cost_sigma": 1.71627
+      }
+     ],
+     "amb": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "amb_noball": {
+      "amb_mm": 1.3612115359777168,
+      "amb_floor_mm": 1.360949819502337,
+      "flip_risk": true,
+      "flip_units": 0
+     },
+     "obs_flip_margin": {
+      "identity_mm": 9.402242238019253,
+      "flipped_mm": 8.711065208372148,
+      "margin_mm": -0.6911770296471054,
+      "flipped_rot_deg": 179.7,
+      "n_starts": 25,
+      "points": 3000
+     }
+    }
+   },
+   "pick": {
+    "cid": "slab_balls",
+    "tie_set": [
+     [
+      "slab_balls",
+      0.0,
+      0.0
+     ]
+    ],
+    "order": [
+     "slab_balls"
+    ],
+    "flags": [
+     "v3_no_shell_reference",
+     "flip_risk"
+    ]
+   },
+   "v5": {
+    "step": "V5",
+    "applied": false,
+    "flip_risk": [
+     "slab_balls",
+     "slab_plain"
+    ],
+    "unknown": [],
+    "reason": "no feasible candidate is free of flip risk"
+   }
+  }
+ },
+ "B5-d tie order": {
+  "order": [
+   "s0",
+   "s1",
+   "s2",
+   "sh",
+   "hu"
+  ],
+  "tie_set": [
+   [
+    "hu",
+    0.0,
+    0.0
+   ],
+   [
+    "s0",
+    0.0,
+    0.0
+   ],
+   [
+    "s1",
+    0.0,
+    0.0
+   ],
+   [
+    "s2",
+    0.0,
+    0.0
+   ],
+   [
+    "sh",
+    0.0,
+    0.0
+   ]
+  ],
+  "permutations": 120
+ },
+ "B5-v3 reference shell": {
+  "fsv_shell_t2": 0.0,
+  "fsv_struct": 0.46495
+ }
+}

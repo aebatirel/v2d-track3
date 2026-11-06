@@ -1,0 +1,5 @@
+16:53:21 eval_solve: pulling [10 37]
+16:53:21 eval_solve: assets
+16:53:25 eval_solve: checks
+16:53:28 eval_solve: solving [10 37 ] (2 at a time)
+16:54:10 eval_solve: done, solved 2

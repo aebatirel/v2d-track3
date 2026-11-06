@@ -1,0 +1,31 @@
+{
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/cmds/SOL_smooth_ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/ref.parquet",
+ "device": "cpu",
+ "k": 16,
+ "sig_pos": 0.0005,
+ "sig_fin": 0.005,
+ "seed": 0,
+ "nominal": 0.195,
+ "jittered": [
+  0.1936,
+  0.1981,
+  0.1947,
+  0.1952,
+  0.1939,
+  0.192,
+  0.1865,
+  0.1972,
+  0.2043,
+  0.2014,
+  0.1952,
+  0.1998,
+  0.1923,
+  0.1952,
+  0.1952
+ ],
+ "mean": 0.1956,
+ "sd": 0.0041,
+ "min": 0.1865,
+ "max": 0.2043,
+ "wall_s": 93.2
+}

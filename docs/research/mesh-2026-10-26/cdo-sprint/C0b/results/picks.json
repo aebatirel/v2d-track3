@@ -1,0 +1,72 @@
+{
+ "run": "mesh-20261031-c0b-00e8584",
+ "rule": "PREREG C0b section 5 (re-applied locally from the box raw rows)",
+ "picks": {
+  "white_pot": {
+   "pick": "pot/ep43/fit",
+   "sha256": "098ade9d079094afbad2cba01d8f3a1fd08e6d91cc7c3d7256da903071fc7a31",
+   "repo_path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/white_pot_c0b_pot_ep43_fit.glb",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/white_pot/white_pot_ep43_fit.glb",
+   "fid_all_sum_mm": 3.407,
+   "faces_raw": 25922,
+   "n_candidates": 32,
+   "n_eligible": 32,
+   "ties_at_3_decimals": [
+    "pot/ep43/nostem"
+   ],
+   "runner_up": "pot/ep43/nostem",
+   "runner_up_fid": 3.407,
+   "excluded": {},
+   "box_pick": "pot/ep43/fit",
+   "agrees_with_box": true
+  },
+  "plastic_dish_rack": {
+   "pick": "rack/ep13/full",
+   "sha256": "985ded99b877bfa2927fde2bdc3448df3cf3418a8767fb21149bc58a13621d9a",
+   "repo_path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/plastic_dish_rack_c0b_rack_ep13_full.glb",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/rack/plastic_dish_rack/ep13_full.glb",
+   "fid_all_sum_mm": 33.32,
+   "faces_raw": 16910,
+   "n_candidates": 12,
+   "n_eligible": 12,
+   "ties_at_3_decimals": [],
+   "runner_up": "rack/ep13/nomk",
+   "runner_up_fid": 37.811,
+   "excluded": {},
+   "box_pick": "rack/ep13/full",
+   "agrees_with_box": true
+  },
+  "blue_cup": {
+   "pick": "cup/ep21/g1",
+   "sha256": "27957f760653bb05237d275b712deb49b9b7d18ed0f88365bc0e12cb7aad1c0f",
+   "repo_path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/blue_cup_c0b_cup_ep21_g1.glb",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/blue_cup/ep21_blue_cup_g1.glb",
+   "fid_all_sum_mm": 3.377,
+   "faces_raw": 53996,
+   "n_candidates": 5,
+   "n_eligible": 5,
+   "ties_at_3_decimals": [],
+   "runner_up": "cup/ep22/g1",
+   "runner_up_fid": 3.518,
+   "excluded": {},
+   "box_pick": "cup/ep21/g1",
+   "agrees_with_box": true
+  },
+  "beige_cup": {
+   "pick": "beige/ep11/g1",
+   "sha256": "5c39b6561c9b17f1caf729397bfa708936b29d5e2601c0b2a5284d690b4f59a3",
+   "repo_path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/beige_cup_c0b_beige_ep11_g1.glb",
+   "store_path": "runs/mesh-20261031-c0b-00e8584/results/c0b/cand/beige_cup/ep11_beige_cup_sep_g1.glb",
+   "fid_all_sum_mm": 3.91,
+   "faces_raw": 43778,
+   "n_candidates": 2,
+   "n_eligible": 2,
+   "ties_at_3_decimals": [],
+   "runner_up": "beige/ep11/g0",
+   "runner_up_fid": 5.167,
+   "excluded": {},
+   "box_pick": "beige/ep11/g1",
+   "agrees_with_box": true
+  }
+ }
+}

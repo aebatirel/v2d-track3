@@ -1,0 +1,2850 @@
+{
+ "refs": {
+  "V": {
+   "path": "/content/refs/perc2e10v_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "md5": "5d22fc5782a919f2466988768d0708fa",
+   "frames": 161
+  },
+  "P": {
+   "path": "/content/e10v_in/packed_ref/ref_gl_ilc.parquet",
+   "md5": "1a5003d94852c275519066645a1b9869",
+   "frames": 161
+  }
+ },
+ "rule": "docs/research/work/perception-sprint-20261031/ev10retrain/PREREG.md 3.5",
+ "rpe_fail_cm": 5.0,
+ "sets": {
+  "conf1024": {
+   "own": "V",
+   "glob": "/content/results/ev10_nj/conf1024/r*/ep10/episode_000010.parquet",
+   "n_files": 10,
+   "n_scored": 10,
+   "rollouts": [
+    {
+     "path": "/content/results/ev10_nj/conf1024/r1/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9146,
+       "RPE": 1.8706,
+       "MPPE": 1.2378,
+       "AUC": 0.9284,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9895,
+         "MPPE": 0.693,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.86,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.58
+        },
+        "beige_cup": {
+         "AUC": 0.8672,
+         "MPPE": 1.783,
+         "frac_kp_over_5cm": 0.13,
+         "end_kp_cm": 0.73,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.05
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8793,
+       "RPE": 2.3529,
+       "MPPE": 1.6528,
+       "AUC": 0.8863,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9231,
+         "MPPE": 1.34,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.89,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.58
+        },
+        "beige_cup": {
+         "AUC": 0.8494,
+         "MPPE": 1.966,
+         "frac_kp_over_5cm": 0.149,
+         "end_kp_cm": 1.25,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.05
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9146,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 1
+    },
+    {
+     "path": "/content/results/ev10_nj/conf1024/r2/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9152,
+       "RPE": 1.7896,
+       "MPPE": 1.2382,
+       "AUC": 0.9262,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9837,
+         "MPPE": 0.704,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.69,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 4.99
+        },
+        "beige_cup": {
+         "AUC": 0.8688,
+         "MPPE": 1.773,
+         "frac_kp_over_5cm": 0.118,
+         "end_kp_cm": 0.75,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.57
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8853,
+       "RPE": 2.2249,
+       "MPPE": 1.5688,
+       "AUC": 0.8942,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9255,
+         "MPPE": 1.324,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.72,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 4.99
+        },
+        "beige_cup": {
+         "AUC": 0.863,
+         "MPPE": 1.814,
+         "frac_kp_over_5cm": 0.124,
+         "end_kp_cm": 1.42,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.57
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9152,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 2
+    },
+    {
+     "path": "/content/results/ev10_nj/conf1024/r3/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9301,
+       "RPE": 1.7363,
+       "MPPE": 1.1475,
+       "AUC": 0.9334,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9887,
+         "MPPE": 0.624,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.5,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.13
+        },
+        "beige_cup": {
+         "AUC": 0.8781,
+         "MPPE": 1.671,
+         "frac_kp_over_5cm": 0.081,
+         "end_kp_cm": 0.58,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.85
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8934,
+       "RPE": 2.2395,
+       "MPPE": 1.5704,
+       "AUC": 0.8973,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9286,
+         "MPPE": 1.306,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.52,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.13
+        },
+        "beige_cup": {
+         "AUC": 0.8661,
+         "MPPE": 1.835,
+         "frac_kp_over_5cm": 0.106,
+         "end_kp_cm": 1.58,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.85
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9301,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 3
+    },
+    {
+     "path": "/content/results/ev10_nj/conf1024/r4/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.8983,
+       "RPE": 2.204,
+       "MPPE": 1.3844,
+       "AUC": 0.9072,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9829,
+         "MPPE": 0.696,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.39,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.57
+        },
+        "beige_cup": {
+         "AUC": 0.8315,
+         "MPPE": 2.072,
+         "frac_kp_over_5cm": 0.13,
+         "end_kp_cm": 0.6,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.12
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.87,
+       "RPE": 2.6938,
+       "MPPE": 1.7353,
+       "AUC": 0.8748,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9196,
+         "MPPE": 1.378,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.42,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.57
+        },
+        "beige_cup": {
+         "AUC": 0.83,
+         "MPPE": 2.093,
+         "frac_kp_over_5cm": 0.149,
+         "end_kp_cm": 1.33,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.12
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8983,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 4
+    },
+    {
+     "path": "/content/results/ev10_nj/conf1024/r5/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9293,
+       "RPE": 1.6522,
+       "MPPE": 1.1045,
+       "AUC": 0.933,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9825,
+         "MPPE": 0.676,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.38,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.43
+        },
+        "beige_cup": {
+         "AUC": 0.8835,
+         "MPPE": 1.533,
+         "frac_kp_over_5cm": 0.112,
+         "end_kp_cm": 0.34,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.33
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8876,
+       "RPE": 2.1507,
+       "MPPE": 1.59,
+       "AUC": 0.8913,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.922,
+         "MPPE": 1.337,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.41,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.43
+        },
+        "beige_cup": {
+         "AUC": 0.8606,
+         "MPPE": 1.843,
+         "frac_kp_over_5cm": 0.13,
+         "end_kp_cm": 1.37,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.33
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9293,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 5
+    },
+    {
+     "path": "/content/results/ev10_nj/conf1024/r6/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9156,
+       "RPE": 1.7238,
+       "MPPE": 1.2465,
+       "AUC": 0.9249,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9829,
+         "MPPE": 0.748,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.69,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.64
+        },
+        "beige_cup": {
+         "AUC": 0.8668,
+         "MPPE": 1.745,
+         "frac_kp_over_5cm": 0.099,
+         "end_kp_cm": 1.1,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.32
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8907,
+       "RPE": 2.1917,
+       "MPPE": 1.5582,
+       "AUC": 0.8975,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9231,
+         "MPPE": 1.354,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.69,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.64
+        },
+        "beige_cup": {
+         "AUC": 0.8719,
+         "MPPE": 1.762,
+         "frac_kp_over_5cm": 0.112,
+         "end_kp_cm": 0.76,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.32
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9156,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 6
+    },
+    {
+     "path": "/content/results/ev10_nj/conf1024/r7/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9332,
+       "RPE": 1.5633,
+       "MPPE": 1.1048,
+       "AUC": 0.9354,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9876,
+         "MPPE": 0.624,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.35,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.25
+        },
+        "beige_cup": {
+         "AUC": 0.8832,
+         "MPPE": 1.585,
+         "frac_kp_over_5cm": 0.093,
+         "end_kp_cm": 0.66,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 23.28
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8905,
+       "RPE": 1.9705,
+       "MPPE": 1.6083,
+       "AUC": 0.8938,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.929,
+         "MPPE": 1.299,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.37,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.25
+        },
+        "beige_cup": {
+         "AUC": 0.8587,
+         "MPPE": 1.918,
+         "frac_kp_over_5cm": 0.099,
+         "end_kp_cm": 1.66,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 23.28
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9332,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 7
+    },
+    {
+     "path": "/content/results/ev10_nj/conf1024/r8/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.8694,
+       "RPE": 2.4644,
+       "MPPE": 1.6065,
+       "AUC": 0.8764,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9818,
+         "MPPE": 0.638,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.15,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.46
+        },
+        "beige_cup": {
+         "AUC": 0.771,
+         "MPPE": 2.575,
+         "frac_kp_over_5cm": 0.106,
+         "end_kp_cm": 0.95,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.67
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8507,
+       "RPE": 2.9266,
+       "MPPE": 1.8871,
+       "AUC": 0.8562,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9251,
+         "MPPE": 1.324,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.18,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.46
+        },
+        "beige_cup": {
+         "AUC": 0.7873,
+         "MPPE": 2.451,
+         "frac_kp_over_5cm": 0.118,
+         "end_kp_cm": 0.56,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.67
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8694,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 8
+    },
+    {
+     "path": "/content/results/ev10_nj/conf1024/r9/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.901,
+       "RPE": 2.1691,
+       "MPPE": 1.4246,
+       "AUC": 0.9076,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9829,
+         "MPPE": 0.777,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.89,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.41
+        },
+        "beige_cup": {
+         "AUC": 0.8323,
+         "MPPE": 2.072,
+         "frac_kp_over_5cm": 0.13,
+         "end_kp_cm": 0.89,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 23.37
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8734,
+       "RPE": 2.6307,
+       "MPPE": 1.7272,
+       "AUC": 0.8793,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9189,
+         "MPPE": 1.416,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.93,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.41
+        },
+        "beige_cup": {
+         "AUC": 0.8397,
+         "MPPE": 2.038,
+         "frac_kp_over_5cm": 0.13,
+         "end_kp_cm": 1.02,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 23.37
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.901,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 9
+    },
+    {
+     "path": "/content/results/ev10_nj/conf1024/r10/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9226,
+       "RPE": 1.6019,
+       "MPPE": 1.1256,
+       "AUC": 0.9328,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9911,
+         "MPPE": 0.598,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.44,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 4.95
+        },
+        "beige_cup": {
+         "AUC": 0.8746,
+         "MPPE": 1.653,
+         "frac_kp_over_5cm": 0.118,
+         "end_kp_cm": 0.69,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.04
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8841,
+       "RPE": 2.1055,
+       "MPPE": 1.5858,
+       "AUC": 0.8936,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9332,
+         "MPPE": 1.259,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.47,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 4.95
+        },
+        "beige_cup": {
+         "AUC": 0.854,
+         "MPPE": 1.913,
+         "frac_kp_over_5cm": 0.118,
+         "end_kp_cm": 1.51,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.04
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9226,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 10
+    }
+   ]
+  },
+  "conf512": {
+   "own": "V",
+   "glob": "/content/results/ev10_nj/conf512/r*/ep10/episode_000010.parquet",
+   "n_files": 10,
+   "n_scored": 10,
+   "rollouts": [
+    {
+     "path": "/content/results/ev10_nj/conf512/r1/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9175,
+       "RPE": 1.8942,
+       "MPPE": 1.2919,
+       "AUC": 0.9227,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9806,
+         "MPPE": 0.763,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.57,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.5
+        },
+        "beige_cup": {
+         "AUC": 0.8649,
+         "MPPE": 1.821,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 0.87,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.58
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8816,
+       "RPE": 2.3691,
+       "MPPE": 1.6531,
+       "AUC": 0.8878,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9189,
+         "MPPE": 1.408,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.59,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.5
+        },
+        "beige_cup": {
+         "AUC": 0.8568,
+         "MPPE": 1.898,
+         "frac_kp_over_5cm": 0.149,
+         "end_kp_cm": 1.12,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.58
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9175,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 1
+    },
+    {
+     "path": "/content/results/ev10_nj/conf512/r2/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.862,
+       "RPE": 2.7367,
+       "MPPE": 1.7673,
+       "AUC": 0.8593,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9845,
+         "MPPE": 0.7,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.61,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 6.01
+        },
+        "beige_cup": {
+         "AUC": 0.7341,
+         "MPPE": 2.834,
+         "frac_kp_over_5cm": 0.23,
+         "end_kp_cm": 0.61,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.99
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8307,
+       "RPE": 3.2398,
+       "MPPE": 2.1056,
+       "AUC": 0.8288,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9239,
+         "MPPE": 1.332,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.65,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 6.01
+        },
+        "beige_cup": {
+         "AUC": 0.7337,
+         "MPPE": 2.88,
+         "frac_kp_over_5cm": 0.224,
+         "end_kp_cm": 1.32,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.99
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.862,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 2
+    },
+    {
+     "path": "/content/results/ev10_nj/conf512/r3/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9132,
+       "RPE": 2.1519,
+       "MPPE": 1.2856,
+       "AUC": 0.9222,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9852,
+         "MPPE": 0.659,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.38,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.1
+        },
+        "beige_cup": {
+         "AUC": 0.8591,
+         "MPPE": 1.912,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 0.75,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.71
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8899,
+       "RPE": 2.5645,
+       "MPPE": 1.61,
+       "AUC": 0.8962,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9255,
+         "MPPE": 1.304,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.42,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.1
+        },
+        "beige_cup": {
+         "AUC": 0.8668,
+         "MPPE": 1.916,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 0.81,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.71
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9132,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 3
+    },
+    {
+     "path": "/content/results/ev10_nj/conf512/r4/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.8859,
+       "RPE": 2.3944,
+       "MPPE": 1.5509,
+       "AUC": 0.8907,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9802,
+         "MPPE": 0.713,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.53,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.25
+        },
+        "beige_cup": {
+         "AUC": 0.8012,
+         "MPPE": 2.389,
+         "frac_kp_over_5cm": 0.143,
+         "end_kp_cm": 0.66,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 23.2
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8538,
+       "RPE": 2.9279,
+       "MPPE": 1.8901,
+       "AUC": 0.8597,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9204,
+         "MPPE": 1.357,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.54,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.25
+        },
+        "beige_cup": {
+         "AUC": 0.7989,
+         "MPPE": 2.423,
+         "frac_kp_over_5cm": 0.149,
+         "end_kp_cm": 1.18,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 23.2
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8859,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 4
+    },
+    {
+     "path": "/content/results/ev10_nj/conf512/r5/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9392,
+       "RPE": 1.7227,
+       "MPPE": 1.1138,
+       "AUC": 0.94,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9887,
+         "MPPE": 0.617,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.54,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.69
+        },
+        "beige_cup": {
+         "AUC": 0.8913,
+         "MPPE": 1.61,
+         "frac_kp_over_5cm": 0.093,
+         "end_kp_cm": 1.29,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.63
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.9092,
+       "RPE": 2.1367,
+       "MPPE": 1.4271,
+       "AUC": 0.9064,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.922,
+         "MPPE": 1.3,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.58,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.69
+        },
+        "beige_cup": {
+         "AUC": 0.8909,
+         "MPPE": 1.554,
+         "frac_kp_over_5cm": 0.099,
+         "end_kp_cm": 0.74,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.63
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9392,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 5
+    },
+    {
+     "path": "/content/results/ev10_nj/conf512/r6/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.8647,
+       "RPE": 2.5971,
+       "MPPE": 1.6722,
+       "AUC": 0.8711,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9829,
+         "MPPE": 0.676,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.64,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.29
+        },
+        "beige_cup": {
+         "AUC": 0.7593,
+         "MPPE": 2.669,
+         "frac_kp_over_5cm": 0.161,
+         "end_kp_cm": 0.71,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.66
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8457,
+       "RPE": 3.0847,
+       "MPPE": 1.9594,
+       "AUC": 0.8486,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9212,
+         "MPPE": 1.332,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.67,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.29
+        },
+        "beige_cup": {
+         "AUC": 0.776,
+         "MPPE": 2.587,
+         "frac_kp_over_5cm": 0.161,
+         "end_kp_cm": 0.97,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.66
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8647,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 6
+    },
+    {
+     "path": "/content/results/ev10_nj/conf512/r7/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.8626,
+       "RPE": 2.6314,
+       "MPPE": 1.7481,
+       "AUC": 0.8665,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9798,
+         "MPPE": 0.764,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.58,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.66
+        },
+        "beige_cup": {
+         "AUC": 0.7531,
+         "MPPE": 2.733,
+         "frac_kp_over_5cm": 0.13,
+         "end_kp_cm": 0.92,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 23.13
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8383,
+       "RPE": 3.0753,
+       "MPPE": 2.0513,
+       "AUC": 0.8418,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9196,
+         "MPPE": 1.426,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.55,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.66
+        },
+        "beige_cup": {
+         "AUC": 0.764,
+         "MPPE": 2.677,
+         "frac_kp_over_5cm": 0.13,
+         "end_kp_cm": 1.19,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 23.13
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8626,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 7
+    },
+    {
+     "path": "/content/results/ev10_nj/conf512/r8/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9334,
+       "RPE": 1.7008,
+       "MPPE": 1.0544,
+       "AUC": 0.9414,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9895,
+         "MPPE": 0.604,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.35,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.15
+        },
+        "beige_cup": {
+         "AUC": 0.8932,
+         "MPPE": 1.505,
+         "frac_kp_over_5cm": 0.025,
+         "end_kp_cm": 0.61,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.07
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.9022,
+       "RPE": 2.1445,
+       "MPPE": 1.4424,
+       "AUC": 0.9097,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.929,
+         "MPPE": 1.297,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.39,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.15
+        },
+        "beige_cup": {
+         "AUC": 0.8905,
+         "MPPE": 1.588,
+         "frac_kp_over_5cm": 0.043,
+         "end_kp_cm": 0.72,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.07
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9334,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 8
+    },
+    {
+     "path": "/content/results/ev10_nj/conf512/r9/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9295,
+       "RPE": 1.9044,
+       "MPPE": 1.1826,
+       "AUC": 0.9321,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9915,
+         "MPPE": 0.584,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.54,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.04
+        },
+        "beige_cup": {
+         "AUC": 0.8727,
+         "MPPE": 1.781,
+         "frac_kp_over_5cm": 0.106,
+         "end_kp_cm": 0.68,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.58
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.895,
+       "RPE": 2.3601,
+       "MPPE": 1.5629,
+       "AUC": 0.8989,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9309,
+         "MPPE": 1.272,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.58,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.04
+        },
+        "beige_cup": {
+         "AUC": 0.8668,
+         "MPPE": 1.854,
+         "frac_kp_over_5cm": 0.112,
+         "end_kp_cm": 1.27,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.58
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9295,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 9
+    },
+    {
+     "path": "/content/results/ev10_nj/conf512/r10/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9264,
+       "RPE": 1.6542,
+       "MPPE": 1.1501,
+       "AUC": 0.9299,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9845,
+         "MPPE": 0.683,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.25,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.45
+        },
+        "beige_cup": {
+         "AUC": 0.8754,
+         "MPPE": 1.618,
+         "frac_kp_over_5cm": 0.124,
+         "end_kp_cm": 0.43,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.52
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8841,
+       "RPE": 2.0805,
+       "MPPE": 1.6655,
+       "AUC": 0.8872,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9259,
+         "MPPE": 1.355,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.28,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.45
+        },
+        "beige_cup": {
+         "AUC": 0.8486,
+         "MPPE": 1.976,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 1.37,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.52
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9264,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 10
+    }
+   ]
+  },
+  "train1024": {
+   "own": "V",
+   "glob": "/content/results/perc2e10njs43_glock_public/ep10/best/r*/episode_000010.parquet",
+   "n_files": 10,
+   "n_scored": 10,
+   "rollouts": [
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r1/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.7877,
+       "RPE": 3.8851,
+       "MPPE": 2.416,
+       "AUC": 0.7892,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.974,
+         "MPPE": 0.864,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.62,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.74
+        },
+        "beige_cup": {
+         "AUC": 0.6044,
+         "MPPE": 3.968,
+         "frac_kp_over_5cm": 0.466,
+         "end_kp_cm": 4.01,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 23.12
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.7702,
+       "RPE": 4.3087,
+       "MPPE": 2.6128,
+       "AUC": 0.7731,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9173,
+         "MPPE": 1.417,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.6,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.74
+        },
+        "beige_cup": {
+         "AUC": 0.6289,
+         "MPPE": 3.808,
+         "frac_kp_over_5cm": 0.478,
+         "end_kp_cm": 2.86,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 23.12
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.7877,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 1
+    },
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r2/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.8405,
+       "RPE": 2.9243,
+       "MPPE": 1.9334,
+       "AUC": 0.8406,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9713,
+         "MPPE": 0.817,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.17,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 6.0
+        },
+        "beige_cup": {
+         "AUC": 0.71,
+         "MPPE": 3.05,
+         "frac_kp_over_5cm": 0.236,
+         "end_kp_cm": 1.45,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 23.04
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8224,
+       "RPE": 3.3675,
+       "MPPE": 2.172,
+       "AUC": 0.8267,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9185,
+         "MPPE": 1.427,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.19,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 6.0
+        },
+        "beige_cup": {
+         "AUC": 0.7349,
+         "MPPE": 2.917,
+         "frac_kp_over_5cm": 0.217,
+         "end_kp_cm": 0.55,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 23.04
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8405,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 2
+    },
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r3/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9435,
+       "RPE": 1.5946,
+       "MPPE": 1.0153,
+       "AUC": 0.9439,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9864,
+         "MPPE": 0.616,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.45,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.22
+        },
+        "beige_cup": {
+         "AUC": 0.9014,
+         "MPPE": 1.415,
+         "frac_kp_over_5cm": 0.068,
+         "end_kp_cm": 0.61,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.87
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.9024,
+       "RPE": 2.0855,
+       "MPPE": 1.4839,
+       "AUC": 0.9041,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9251,
+         "MPPE": 1.307,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.48,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.22
+        },
+        "beige_cup": {
+         "AUC": 0.8832,
+         "MPPE": 1.661,
+         "frac_kp_over_5cm": 0.087,
+         "end_kp_cm": 1.57,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.87
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9435,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 3
+    },
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r4/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9268,
+       "RPE": 1.5298,
+       "MPPE": 1.0506,
+       "AUC": 0.9394,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9903,
+         "MPPE": 0.569,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.21,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.0
+        },
+        "beige_cup": {
+         "AUC": 0.8886,
+         "MPPE": 1.533,
+         "frac_kp_over_5cm": 0.068,
+         "end_kp_cm": 0.7,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.18
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8899,
+       "RPE": 1.9504,
+       "MPPE": 1.5307,
+       "AUC": 0.8977,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9313,
+         "MPPE": 1.261,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.2,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.0
+        },
+        "beige_cup": {
+         "AUC": 0.8641,
+         "MPPE": 1.8,
+         "frac_kp_over_5cm": 0.081,
+         "end_kp_cm": 1.35,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.18
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9268,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 4
+    },
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r5/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9288,
+       "RPE": 1.5657,
+       "MPPE": 1.1908,
+       "AUC": 0.929,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9856,
+         "MPPE": 0.701,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.72,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.59
+        },
+        "beige_cup": {
+         "AUC": 0.8723,
+         "MPPE": 1.681,
+         "frac_kp_over_5cm": 0.118,
+         "end_kp_cm": 0.77,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.99
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8853,
+       "RPE": 2.0924,
+       "MPPE": 1.6516,
+       "AUC": 0.8853,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9243,
+         "MPPE": 1.323,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.74,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.59
+        },
+        "beige_cup": {
+         "AUC": 0.8463,
+         "MPPE": 1.981,
+         "frac_kp_over_5cm": 0.124,
+         "end_kp_cm": 1.63,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.99
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9288,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 5
+    },
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r6/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.8841,
+       "RPE": 2.6715,
+       "MPPE": 1.5843,
+       "AUC": 0.8845,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9771,
+         "MPPE": 0.737,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.79,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.34
+        },
+        "beige_cup": {
+         "AUC": 0.7919,
+         "MPPE": 2.432,
+         "frac_kp_over_5cm": 0.118,
+         "end_kp_cm": 0.91,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.89
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8595,
+       "RPE": 3.0889,
+       "MPPE": 1.8749,
+       "AUC": 0.8597,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9169,
+         "MPPE": 1.383,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.83,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.34
+        },
+        "beige_cup": {
+         "AUC": 0.8024,
+         "MPPE": 2.367,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 0.84,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.89
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8841,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 6
+    },
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r7/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.8509,
+       "RPE": 2.5776,
+       "MPPE": 1.808,
+       "AUC": 0.8637,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9763,
+         "MPPE": 0.861,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.99,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.76
+        },
+        "beige_cup": {
+         "AUC": 0.7512,
+         "MPPE": 2.755,
+         "frac_kp_over_5cm": 0.211,
+         "end_kp_cm": 0.75,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 23.35
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8269,
+       "RPE": 3.0292,
+       "MPPE": 2.1381,
+       "AUC": 0.8302,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9138,
+         "MPPE": 1.441,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 1.02,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.76
+        },
+        "beige_cup": {
+         "AUC": 0.7465,
+         "MPPE": 2.836,
+         "frac_kp_over_5cm": 0.23,
+         "end_kp_cm": 1.45,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 23.35
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8509,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 7
+    },
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r8/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9241,
+       "RPE": 1.9627,
+       "MPPE": 1.2103,
+       "AUC": 0.927,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9841,
+         "MPPE": 0.644,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.43,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.73
+        },
+        "beige_cup": {
+         "AUC": 0.87,
+         "MPPE": 1.777,
+         "frac_kp_over_5cm": 0.075,
+         "end_kp_cm": 0.76,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.9
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8948,
+       "RPE": 2.4525,
+       "MPPE": 1.5729,
+       "AUC": 0.8975,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9262,
+         "MPPE": 1.345,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.41,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.73
+        },
+        "beige_cup": {
+         "AUC": 0.8688,
+         "MPPE": 1.801,
+         "frac_kp_over_5cm": 0.081,
+         "end_kp_cm": 0.99,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.9
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9241,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 8
+    },
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r9/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.9105,
+       "RPE": 2.0032,
+       "MPPE": 1.2521,
+       "AUC": 0.9183,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9849,
+         "MPPE": 0.61,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.13,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.04
+        },
+        "beige_cup": {
+         "AUC": 0.8517,
+         "MPPE": 1.894,
+         "frac_kp_over_5cm": 0.087,
+         "end_kp_cm": 0.79,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.83
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8789,
+       "RPE": 2.5047,
+       "MPPE": 1.6115,
+       "AUC": 0.8876,
+       "audit_fail": false,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9266,
+         "MPPE": 1.3,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.16,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.04
+        },
+        "beige_cup": {
+         "AUC": 0.8486,
+         "MPPE": 1.924,
+         "frac_kp_over_5cm": 0.124,
+         "end_kp_cm": 1.06,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.83
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9105,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 9
+    },
+    {
+     "path": "/content/results/perc2e10njs43_glock_public/ep10/best/r10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+     "reference_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.8356,
+       "RPE": 2.9602,
+       "MPPE": 1.9857,
+       "AUC": 0.8418,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9682,
+         "MPPE": 0.945,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.62,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 5.56
+        },
+        "beige_cup": {
+         "AUC": 0.7155,
+         "MPPE": 3.026,
+         "frac_kp_over_5cm": 0.267,
+         "end_kp_cm": 1.02,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 22.94
+        }
+       },
+       "fail": false
+      },
+      "P": {
+       "sim_vs_ref": 0.8082,
+       "RPE": 3.3912,
+       "MPPE": 2.2381,
+       "AUC": 0.8181,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.9095,
+         "MPPE": 1.504,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.66,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 5.56
+        },
+        "beige_cup": {
+         "AUC": 0.7267,
+         "MPPE": 2.972,
+         "frac_kp_over_5cm": 0.267,
+         "end_kp_cm": 1.05,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 22.94
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8356,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 10
+    }
+   ]
+  },
+  "e10vconf": {
+   "own": "V",
+   "glob": "/content/e10v_in/conf/r*/ep10/episode_000010.parquet",
+   "n_files": 10,
+   "n_scored": 10,
+   "rollouts": [
+    {
+     "path": "/content/e10v_in/conf/r1/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4565,
+       "RPE": 15.906,
+       "MPPE": 8.4104,
+       "AUC": 0.4569,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6774,
+         "MPPE": 3.289,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.2,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 0.56
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.532,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.61,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4486,
+       "RPE": 15.7183,
+       "MPPE": 8.4852,
+       "AUC": 0.4501,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6611,
+         "MPPE": 3.515,
+         "frac_kp_over_5cm": 0.149,
+         "end_kp_cm": 4.22,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.56
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.455,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.4,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4565,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 1
+    },
+    {
+     "path": "/content/e10v_in/conf/r2/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4715,
+       "RPE": 15.7766,
+       "MPPE": 8.3554,
+       "AUC": 0.4796,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.724,
+         "MPPE": 3.156,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 3.79,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 0.58
+        },
+        "beige_cup": {
+         "AUC": 0.2352,
+         "MPPE": 13.554,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.66,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4567,
+       "RPE": 15.5818,
+       "MPPE": 8.446,
+       "AUC": 0.4577,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6762,
+         "MPPE": 3.388,
+         "frac_kp_over_5cm": 0.118,
+         "end_kp_cm": 3.82,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.58
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.505,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.48,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4715,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 2
+    },
+    {
+     "path": "/content/e10v_in/conf/r3/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4682,
+       "RPE": 15.8123,
+       "MPPE": 8.3583,
+       "AUC": 0.4755,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.7147,
+         "MPPE": 3.185,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 3.94,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 0.24
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.531,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.63,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4524,
+       "RPE": 15.6249,
+       "MPPE": 8.4383,
+       "AUC": 0.453,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6669,
+         "MPPE": 3.423,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 3.97,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.24
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.454,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.43,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4682,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 3
+    },
+    {
+     "path": "/content/e10v_in/conf/r4/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4713,
+       "RPE": 15.6958,
+       "MPPE": 8.3164,
+       "AUC": 0.4794,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.7232,
+         "MPPE": 3.074,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 3.26,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 1.48
+        },
+        "beige_cup": {
+         "AUC": 0.2356,
+         "MPPE": 13.559,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.64,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4629,
+       "RPE": 15.5065,
+       "MPPE": 8.3973,
+       "AUC": 0.4635,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6879,
+         "MPPE": 3.312,
+         "frac_kp_over_5cm": 0.13,
+         "end_kp_cm": 3.28,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 1.48
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.482,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.43,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4713,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 4
+    },
+    {
+     "path": "/content/e10v_in/conf/r5/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4569,
+       "RPE": 15.9277,
+       "MPPE": 8.4546,
+       "AUC": 0.4589,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6813,
+         "MPPE": 3.373,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.69,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 1.46
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.537,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.65,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 1.36
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4427,
+       "RPE": 15.7433,
+       "MPPE": 8.5411,
+       "AUC": 0.4429,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6467,
+         "MPPE": 3.618,
+         "frac_kp_over_5cm": 0.267,
+         "end_kp_cm": 4.72,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 1.46
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.465,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.47,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 1.36
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4569,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 5
+    },
+    {
+     "path": "/content/e10v_in/conf/r6/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4402,
+       "RPE": 16.1136,
+       "MPPE": 8.5838,
+       "AUC": 0.4482,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6599,
+         "MPPE": 3.637,
+         "frac_kp_over_5cm": 0.155,
+         "end_kp_cm": 4.62,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 1.32
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.53,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.61,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4245,
+       "RPE": 15.926,
+       "MPPE": 8.6508,
+       "AUC": 0.4344,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6297,
+         "MPPE": 3.848,
+         "frac_kp_over_5cm": 0.379,
+         "end_kp_cm": 4.64,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 1.32
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.454,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.4,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4402,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 6
+    },
+    {
+     "path": "/content/e10v_in/conf/r7/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4567,
+       "RPE": 15.8758,
+       "MPPE": 8.4092,
+       "AUC": 0.4614,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6875,
+         "MPPE": 3.266,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.02,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 0.58
+        },
+        "beige_cup": {
+         "AUC": 0.2352,
+         "MPPE": 13.553,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.61,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4509,
+       "RPE": 15.6816,
+       "MPPE": 8.4968,
+       "AUC": 0.4509,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6627,
+         "MPPE": 3.494,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 4.05,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.58
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.5,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.4,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4567,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 7
+    },
+    {
+     "path": "/content/e10v_in/conf/r8/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4569,
+       "RPE": 15.8526,
+       "MPPE": 8.3835,
+       "AUC": 0.4616,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6867,
+         "MPPE": 3.24,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.4,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 1.37
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.527,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.61,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 0.41
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4509,
+       "RPE": 15.661,
+       "MPPE": 8.4602,
+       "AUC": 0.4511,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.663,
+         "MPPE": 3.472,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 4.42,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 1.37
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.448,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.41,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.41
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4569,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 8
+    },
+    {
+     "path": "/content/e10v_in/conf/r9/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4589,
+       "RPE": 15.8493,
+       "MPPE": 8.3738,
+       "AUC": 0.4604,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6844,
+         "MPPE": 3.222,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.01,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 0.19
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.525,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.61,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4501,
+       "RPE": 15.6619,
+       "MPPE": 8.4541,
+       "AUC": 0.4511,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.663,
+         "MPPE": 3.461,
+         "frac_kp_over_5cm": 0.137,
+         "end_kp_cm": 4.04,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.19
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.447,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.4,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4589,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 9
+    },
+    {
+     "path": "/content/e10v_in/conf/r10/ep10/episode_000010.parquet",
+     "frames": 161,
+     "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+     "reference_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+     "own": "V",
+     "vs": {
+      "V": {
+       "sim_vs_ref": 0.4554,
+       "RPE": 15.9506,
+       "MPPE": 8.4643,
+       "AUC": 0.4577,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.679,
+         "MPPE": 3.384,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 4.3,
+         "ref_travel_cm": 4.97,
+         "sim_travel_cm": 0.96
+        },
+        "beige_cup": {
+         "AUC": 0.2364,
+         "MPPE": 13.545,
+         "frac_kp_over_5cm": 0.764,
+         "end_kp_cm": 15.62,
+         "ref_travel_cm": 25.35,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      },
+      "P": {
+       "sim_vs_ref": 0.4458,
+       "RPE": 15.7637,
+       "MPPE": 8.5371,
+       "AUC": 0.4491,
+       "audit_fail": true,
+       "objects": {
+        "blue_cup": {
+         "AUC": 0.6592,
+         "MPPE": 3.606,
+         "frac_kp_over_5cm": 0.168,
+         "end_kp_cm": 4.33,
+         "ref_travel_cm": 5.65,
+         "sim_travel_cm": 0.96
+        },
+        "beige_cup": {
+         "AUC": 0.2391,
+         "MPPE": 13.468,
+         "frac_kp_over_5cm": 0.758,
+         "end_kp_cm": 15.41,
+         "ref_travel_cm": 25.13,
+         "sim_travel_cm": 0.43
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.4554,
+     "own_ref_check": {
+      "ref": "V",
+      "max_dpos_m": 0.0,
+      "max_dq": 5.960464477539063e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 10
+    }
+   ]
+  }
+ }
+}

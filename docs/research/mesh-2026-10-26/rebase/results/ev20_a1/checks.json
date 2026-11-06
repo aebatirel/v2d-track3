@@ -1,0 +1,74 @@
+{
+ "set_dir": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/rebase/sets/ev20",
+ "src_assets": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets",
+ "objects": [
+  "water_pitcher"
+ ],
+ "route_A": {
+  "stdout": "{\"out\": \"/tmp/tmpjuhfoipq/A\", \"carved\": [[\"water_pitcher\", 41]]}",
+  "rc": 0,
+  "files_identical": 11,
+  "files_differ": [],
+  "water_pitcher": {
+   "collisions": 41,
+   "pieces": 41,
+   "non_collision_equal": true,
+   "inertial_equal": true,
+   "visual_equal": true,
+   "col_files_equal_pieces": true,
+   "urdf_md5": "77b395a5aa46b2eeab1f02e20bf04348",
+   "packed_urdf_md5": "6772f95462e0554cfac39de97bdf2253",
+   "visual_glb_md5": "adb315f3250d90072c385b8dfd8bf49c",
+   "packed_visual_glb_md5": "adb315f3250d90072c385b8dfd8bf49c"
+  }
+ },
+ "route_B": {
+  "stdout": "water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm, 41 collision pieces",
+  "rc": 0,
+  "water_pitcher": {
+   "visual_glb_md5": "adb315f3250d90072c385b8dfd8bf49c",
+   "packed_visual_glb_md5": "adb315f3250d90072c385b8dfd8bf49c",
+   "inertial_equal": true,
+   "visual_equal": true,
+   "collisions": 41
+  }
+ },
+ "pieces": {
+  "water_pitcher": {
+   "n": 41,
+   "convex_all": true,
+   "coacd": "1.0.11",
+   "coacd_one_part_all": true,
+   "coacd_vol_ratio_min": 0.9994,
+   "coacd_vol_ratio_max": 1.0,
+   "not_one_part": []
+  }
+ },
+ "library_md5": {
+  "/home/user/v2d-track3/meshes/library_c0/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_c0/white_pot.glb": "0264da83fc0e396c652a43d282dbc0ea",
+  "/home/user/v2d-track3/meshes/library_c0x/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_c0x/white_pot.glb": "0264da83fc0e396c652a43d282dbc0ea",
+  "/home/user/v2d-track3/meshes/library_e0/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_e0/white_pot.glb": "858fc4c64b147eb2245bdcced9a29f73",
+  "/home/user/v2d-track3/meshes/library_e0b/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_e0b/white_pot.glb": "073872f4d0bdd0935a27fa985ae0063d",
+  "/home/user/v2d-track3/meshes/library_e0bx/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_e0bx/white_pot.glb": "073872f4d0bdd0935a27fa985ae0063d",
+  "/home/user/v2d-track3/meshes/library_e0x/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_e0x/white_pot.glb": "858fc4c64b147eb2245bdcced9a29f73",
+  "/home/user/v2d-track3/meshes/library_v1/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_v1/white_pot.glb": "ec9b04067372e4c9fd61fa9dbd8af704",
+  "/home/user/v2d-track3/meshes/library_v2/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_v2/white_pot.glb": "b97d460ae26d6ced15ebe53f7addc10c",
+  "/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_v3/white_pot.glb": "b97d460ae26d6ced15ebe53f7addc10c",
+  "/home/user/v2d-track3/meshes/library_v3x/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_v3x/white_pot.glb": "b97d460ae26d6ced15ebe53f7addc10c",
+  "/home/user/v2d-track3/meshes/library_v4/water_pitcher.glb": "fc824fc5b0a9325c91b630c19ba32677",
+  "/home/user/v2d-track3/meshes/library_v4/white_pot.glb": "b97d460ae26d6ced15ebe53f7addc10c"
+ },
+ "G5_pass": true,
+ "route_B_inertial_equal_all": true,
+ "convex_coacd_pass": true
+}

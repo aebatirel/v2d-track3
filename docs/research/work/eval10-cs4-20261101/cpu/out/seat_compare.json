@@ -1,0 +1,77 @@
+{
+ "base": "<S>/e10cs/seat/ev10/V/ep10/poses.npz",
+ "windows": {
+  "s12": [
+   53,
+   161
+  ],
+  "hands_off": [
+   122,
+   161
+  ]
+ },
+ "cands": {
+  "ev10cs4": {
+   "poses": "<S>/e10cs/seat/ev10cs4/V/ep10/poses.npz",
+   "objects": {
+    "beige_cup": {
+     "s12": {
+      "median_cm": 0.0,
+      "max_cm": 1.821,
+      "dz_median_cm": 0.0
+     },
+     "hands_off": {
+      "median_cm": 1.072,
+      "max_cm": 1.778,
+      "dz_median_cm": 0.566
+     },
+     "frames_differing": 45
+    },
+    "blue_cup": {
+     "s12": {
+      "median_cm": 0.0,
+      "max_cm": 0.0,
+      "dz_median_cm": 0.0
+     },
+     "hands_off": {
+      "median_cm": 0.0,
+      "max_cm": 0.0,
+      "dz_median_cm": 0.0
+     },
+     "frames_differing": 0
+    }
+   }
+  },
+  "ev10cs5": {
+   "poses": "<S>/e10cs/seat/ev10cs5/V/ep10/poses.npz",
+   "objects": {
+    "beige_cup": {
+     "s12": {
+      "median_cm": 0.0,
+      "max_cm": 1.634,
+      "dz_median_cm": 0.0
+     },
+     "hands_off": {
+      "median_cm": 0.877,
+      "max_cm": 1.577,
+      "dz_median_cm": 0.453
+     },
+     "frames_differing": 45
+    },
+    "blue_cup": {
+     "s12": {
+      "median_cm": 0.0,
+      "max_cm": 0.0,
+      "dz_median_cm": 0.0
+     },
+     "hands_off": {
+      "median_cm": 0.0,
+      "max_cm": 0.0,
+      "dz_median_cm": 0.0
+     },
+     "frames_differing": 0
+    }
+   }
+  }
+ }
+}

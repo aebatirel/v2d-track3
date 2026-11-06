@@ -1,0 +1,12 @@
+tracks_a: GO: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t IDENTICAL md5 25801979433d7265bfd5aef2ca868dcc rc=0
+tracks_boxmain_rtree: GO: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t IDENTICAL md5 25801979433d7265bfd5aef2ca868dcc rc=0
+tracks_minvenv: GO: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t IDENTICAL md5 25801979433d7265bfd5aef2ca868dcc rc=0
+tracks_pinned2: GO: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t IDENTICAL md5 25801979433d7265bfd5aef2ca868dcc rc=0
+tracks_nov4: GO: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t IDENTICAL md5 25801979433d7265bfd5aef2ca868dcc rc=0
+tracks_onevenv: GO: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t DIFFERS (max 0.3683 mm, 0.3392 deg) md5 ffb4e8dfff86fcfdebdb6d3b782a79c0 rc=0
+fixture numeric_C: GO: e11c NUMERIC (max 0.0050 mm, 0.0000 deg) md5 27524df304090925cf0c74107d0b4026; e11t IDENTICAL md5 25801979433d7265bfd5aef2ca868dcc rc=0
+fixture differs_C: STOP: e11c MISMATCH (max 1.0000 mm, 0.0000 deg) md5 0ab474ac91cedae0b3f7bb65f63eaf92; e11t IDENTICAL md5 25801979433d7265bfd5aef2ca868dcc rc=2
+fixture differs_T: GO: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t DIFFERS (max 3.0000 mm, 0.0000 deg) md5 007a91361c9f7d74c9ff870efb07e561 rc=0
+fixture mismatch_T_is_C: STOP: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t MISMATCH (max 53.3761 mm, 11.7786 deg) md5 b32ab808e560f8a3ebbec3658701066c rc=2
+fixture mismatch_T_6mm: STOP: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t MISMATCH (max 6.0000 mm, 0.0000 deg) md5 af47ceae4564667efdda371f2c5eb075 rc=2
+fixture camera_changed: STOP: e11c MISMATCH (max 0.0000 mm, 0.0000 deg) md5 66bf9b157b1b22294cf03f9da24abd26; e11t IDENTICAL md5 25801979433d7265bfd5aef2ca868dcc rc=2

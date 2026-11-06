@@ -1,0 +1,6 @@
+[    0.1s] rectified focal 600.2 baseline 0.07547
+[    5.8s] frames c/b/poses 275 275 275 objects ['wooden_piece_1', 'wooden_piece_2']
+[   13.9s] masks: mean masked fraction 0.121 max 0.15
+[   14.5s] frame-0 plane [-0.1108, -0.7199, -0.6852] 0.5313 inliers 6549 rms mm 2.76
+[   21.0s] plane: corrections [(27, 0.498, 0.065, True), (32, 0.085, -0.195, True), (36, 0.271, -0.291, False), (38, 0.662, -0.651, False), (40, 1.15, -1.434, False), (44, 1.075, -1.338, False), (49, 0.827, -1.566, False), (61, 0.949, -1.834, False), (76, 1.142, -1.806, False), (89, 1.642, -1.834, True), (98, 0.875, -0.095, True), (104, 0.419, -0.328, True), (126, 0.445, 0.127, True), (144, 1.729, 0.171, False), (156, 0.136, -0.015, False), (243, 0.236, -0.134, True)]
+[   21.0s] DONE

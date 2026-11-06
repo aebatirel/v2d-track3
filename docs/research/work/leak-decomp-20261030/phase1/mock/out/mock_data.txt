@@ -1,0 +1,8 @@
+D1 ep44_a.mp4 missing, fetch_data.sh fails (expected rc 1, 0, 0): rc 1, perc2 runs 0, store downloads 0, dataset listings 1
+ perc_leak: public data incomplete (<MR>/content/t3/v/ep44_a.mp4): fetch_data.sh again
+ perc_leak: public data still incomplete, nothing run: <MR>/content/t3/v/ep44_a.mp4
+D2 ep44_a.mp4 missing, fetch_data.sh restores it (expected rc 0, 2 runs): rc 0, perc2 runs 2, store downloads 3, dataset listings 0
+ perc_leak: public data incomplete (<MR>/content/t3/v/ep44_a.mp4): fetch_data.sh again
+D3 scan white_pot missing (expected rc 1, 0, 0): rc 1, perc2 runs 0, store downloads 0, dataset listings 1
+ perc_leak: public data incomplete (scan:white_pot): fetch_data.sh again
+ perc_leak: public data still incomplete, nothing run: scan:white_pot

@@ -1,0 +1,163 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-evb1420-ee7ba8e/perc2/ep14/poses.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep14/cache/depth/eval/ep14/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/depth/perc/ep14",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/pylib",
+  "--no_rest",
+  "--force"
+ ],
+ "time_utc": "2026-10-31T16:45:41Z",
+ "mode": "perception",
+ "code": {
+  "refine_sha256": "1f6a2adfc4dbbdd058d294c78a9a9a59a74c97d2975decdce48a3c8f2c652e54",
+  "branch": "refs/heads/claude/standings-20261031",
+  "commit": "ca853eaaf896511045b6fa0243f8eb28b02164e1",
+  "depth_audit_sha256": "53fc8abf05e689d8242adb3695f999293b5de71687f1ef8ec0377a12467516f0"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-evb1420-ee7ba8e/perc2/ep14/poses.npz",
+   "sha256": "90cc085949723c57a191f0678d0ea3d934152bef3e0baf230ae28abfc3f78698"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep14/cache/depth/eval/ep14/depths_fs0.5.npy",
+   "sha256": "95bec3ab6a72f5b90f578ba61af25d35ebca860560ba90b3b41fb022ddf79aff"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep14/hands_refined.npz",
+   "sha256": "636eedc3caa78972979ef9e9c53b581bea7809ab8bc8a1d69e3569efdda40080"
+  },
+  "meshes": {
+   "blue_cup": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+    "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+   },
+   "plastic_dish_rack": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+    "sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+   }
+  }
+ },
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "T": 158,
+ "frames_audited": 158,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  158,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.015,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": null,
+ "selftest": null,
+ "summary": {
+  "blue_cup": {
+   "frames": 158,
+   "valid": 147,
+   "hidden": 11,
+   "behind_p10_p50_p90": [
+    0.0019,
+    0.0053,
+    0.0704
+   ],
+   "behind_mean": 0.0193,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.005,
+    0.0297,
+    0.091
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.2408,
+    0.0368,
+    0.2554
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.5877,
+    0.8908,
+    0.9741
+   ],
+   "hand_frac_mean": 0.149,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 95
+  },
+  "plastic_dish_rack": {
+   "frames": 158,
+   "valid": 158,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0023,
+    0.0076,
+    0.02
+   ],
+   "behind_mean": 0.0103,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0139,
+    0.0318,
+    0.1014
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.0791,
+    0.2159,
+    0.3839
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.6631,
+    0.78,
+    0.9003
+   ],
+   "hand_frac_mean": 0.0375,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 0
+  }
+ },
+ "seconds": 13.5
+}

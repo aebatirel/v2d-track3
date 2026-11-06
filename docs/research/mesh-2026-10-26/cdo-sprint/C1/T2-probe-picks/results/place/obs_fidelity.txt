@@ -1,0 +1,24 @@
+== water_pitcher ep21
+{"mesh": "water_pitcher.glb", "obs_to_mesh_mm": 2.676, "mesh_to_obs_mm": 3.701, "sum_mm": 6.377}
+{"mesh": "water_pitcher_k174_s42.ply", "obs_to_mesh_mm": 2.378, "mesh_to_obs_mm": 3.573, "sum_mm": 5.951}
+{"mesh": "water_pitcher_k174_s42_lib.glb", "obs_to_mesh_mm": 3.506, "mesh_to_obs_mm": 4.306, "sum_mm": 7.811}
+== water_pitcher ep22
+{"mesh": "water_pitcher.glb", "obs_to_mesh_mm": 2.489, "mesh_to_obs_mm": 4.502, "sum_mm": 6.991}
+{"mesh": "water_pitcher_k174_s42.ply", "obs_to_mesh_mm": 2.352, "mesh_to_obs_mm": 4.086, "sum_mm": 6.437}
+{"mesh": "water_pitcher_k174_s42_lib.glb", "obs_to_mesh_mm": 3.547, "mesh_to_obs_mm": 4.89, "sum_mm": 8.437}
+== mini_dust_pan ep18
+{"mesh": "mini_dust_pan.glb", "obs_to_mesh_mm": 1.921, "mesh_to_obs_mm": 1.595, "sum_mm": 3.515}
+{"mesh": "mini_dust_pan_k297_s42.ply", "obs_to_mesh_mm": 2.321, "mesh_to_obs_mm": 1.082, "sum_mm": 3.402}
+{"mesh": "mini_dust_pan_k297_s42_lib.glb", "obs_to_mesh_mm": 2.603, "mesh_to_obs_mm": 1.462, "sum_mm": 4.065}
+== mini_dust_pan ep39
+{"mesh": "mini_dust_pan.glb", "obs_to_mesh_mm": 1.948, "mesh_to_obs_mm": 1.693, "sum_mm": 3.642}
+{"mesh": "mini_dust_pan_k297_s42.ply", "obs_to_mesh_mm": 1.44, "mesh_to_obs_mm": 0.814, "sum_mm": 2.254}
+{"mesh": "mini_dust_pan_k297_s42_lib.glb", "obs_to_mesh_mm": 2.652, "mesh_to_obs_mm": 1.445, "sum_mm": 4.097}
+== mini_dust_pan ep40
+{"mesh": "mini_dust_pan.glb", "obs_to_mesh_mm": 1.738, "mesh_to_obs_mm": 1.618, "sum_mm": 3.356}
+{"mesh": "mini_dust_pan_k297_s42.ply", "obs_to_mesh_mm": 1.488, "mesh_to_obs_mm": 1.026, "sum_mm": 2.514}
+{"mesh": "mini_dust_pan_k297_s42_lib.glb", "obs_to_mesh_mm": 2.66, "mesh_to_obs_mm": 1.777, "sum_mm": 4.437}
+== beige_cup ep11
+{"mesh": "beige_cup.glb", "obs_to_mesh_mm": 1.611, "mesh_to_obs_mm": 1.836, "sum_mm": 3.446}
+{"mesh": "beige_cup_k6_s42.ply", "obs_to_mesh_mm": 1.169, "mesh_to_obs_mm": 3.026, "sum_mm": 4.195}
+{"mesh": "beige_cup_k6_s42_lib.glb", "obs_to_mesh_mm": 2.077, "mesh_to_obs_mm": 3.52, "sum_mm": 5.597}

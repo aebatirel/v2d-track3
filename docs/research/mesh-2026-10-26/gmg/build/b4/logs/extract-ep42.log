@@ -1,0 +1,6 @@
+[10:06:05] b4_extract ep42 objects ['white_pot'] det True start {'commit': 'e44c1e1d1154e59bb6ba393828e67ed6c1891436', 'dirty': 'M docs/research/mesh-2026-10-26/gmg/build/I.md\n?? docs/research/mesh-2026-10-26/gmg/interlock.py'}
+[10:12:16] hands 370.8 s: frames with hand 255 / 257
+[10:14:50] ep42 pass 0: 129 frames, 7142472 samples, voxels [83562], 153.3 s
+[10:17:57] extract timing {"table_s": 0.6, "pass0_samples_s": 144.7, "pass0_votes_s": 8.6, "pass0_s": 153.3, "pass0_voxels": [83562], "pass1_s": 15.1, "pass2_s": 1.0, "pass3_s": 0.9, "pass4_grids_s": 27.4, "sigma_s": 139.2, "total_s": 337.5}
+[10:18:17] sanity white_pot: 129/129 good, flags [], below 0.0, resid {'median': 1.01, 'p90': 1.173, 'max': 1.38}
+[10:20:26] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep42 total 860.8 s

@@ -1,0 +1,129 @@
+{
+ "ep": 14,
+ "rule": "pack-9b PREREG section 4 + pf-hands / pf-bridge PREREG section 4",
+ "refs": [
+  "P"
+ ],
+ "choice": "CONFIRM",
+ "sides": {
+  "conf": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9327,
+     "sd": 0.0153,
+     "min": 0.8995,
+     "max": 0.9494,
+     "median": 0.9362
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 1.9994,
+     "sd": 0.2246,
+     "min": 1.7688,
+     "max": 2.5168,
+     "median": 1.9722
+    },
+    "fails": 0
+   }
+  },
+  "packed": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.875,
+     "sd": 0.0562,
+     "min": 0.752,
+     "max": 0.926,
+     "median": 0.8972
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 3.9433,
+     "sd": 3.4431,
+     "min": 2.357,
+     "max": 13.6292,
+     "median": 2.7047
+    },
+    "fails": 1
+   }
+  },
+  "old": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 1,
+     "mean": 0.8954,
+     "sd": 0.0,
+     "min": 0.8954,
+     "max": 0.8954,
+     "median": 0.8954
+    },
+    "RPE": {
+     "n": 1,
+     "mean": 2.357,
+     "sd": 0.0,
+     "min": 2.357,
+     "max": 2.357,
+     "median": 2.357
+    },
+    "fails": 0
+   }
+  },
+  "train42": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9384,
+     "sd": 0.0109,
+     "min": 0.9187,
+     "max": 0.9492,
+     "median": 0.9415
+    }
+   }
+  },
+  "train43": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9462,
+     "sd": 0.0082,
+     "min": 0.931,
+     "max": 0.9543,
+     "median": 0.9502
+    }
+   }
+  }
+ },
+ "clauses": {
+  "P": {
+   "a": {
+    "conf": 0.9327,
+    "packed": 0.875,
+    "holds": true
+   },
+   "b": {
+    "conf": 0.0,
+    "packed": 0.1,
+    "holds": true
+   },
+   "c": {
+    "conf": 1.972,
+    "packed": 2.705,
+    "holds": true
+   },
+   "s": {
+    "conf_draw1": 0.9424,
+    "old": 0.8954,
+    "holds": true
+   },
+   "gain": 0.0578
+  }
+ },
+ "label": "PASS",
+ "inclusion": {
+  "bar": 0.02,
+  "on": "P",
+  "gain": 0.0578,
+  "include": true
+ }
+}

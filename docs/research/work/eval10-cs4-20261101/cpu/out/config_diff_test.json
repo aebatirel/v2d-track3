@@ -1,0 +1,119 @@
+{
+ "checks": [
+  {
+   "ok": true,
+   "what": "packed checkpoint is the packed eval-10 one (sha256 76a12265ebf7)"
+  },
+  {
+   "ok": true,
+   "what": "REAL e10v s43 vs REAL packed: 480-key config, diff ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed'] (all allowed), sim {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256}"
+  },
+  {
+   "ok": true,
+   "what": "stand-in of this job's s43 checkpoint vs REAL packed: diff ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed'] (all allowed), sim {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256}"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle accepts the stand-in (stock limits, perc2e10css names): rc 0 no_oracle: 1 inputs checked, none oracle-derived"
+  },
+  {
+   "ok": true,
+   "what": "negative control njmax1024: caught (outside allowed ['env.sim.nconmax', 'env.sim.njmax', 'sim.nconmax', 'sim.njmax'], sim {'sim.njmax': 1024, 'sim.nconmax': 512, 'env.sim.njmax': 1024, 'env.sim.nconmax': 512})"
+  },
+  {
+   "ok": true,
+   "what": "negative control extra_key: caught (outside allowed ['training.mock_extra_setting'], sim {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256})"
+  },
+  {
+   "ok": true,
+   "what": "no_oracle still refuses a non-stock-limit checkpoint under this job's names"
+  }
+ ],
+ "packed_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+ "e10v_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+ "e10v_vs_packed": {
+  "diff": [
+   "env.reset.seed",
+   "output_dir",
+   "reference.parquet",
+   "reset.seed",
+   "task.parquet",
+   "training.seed"
+  ],
+  "outside_allowed": [],
+  "sim": {
+   "sim.njmax": 512,
+   "sim.nconmax": 256,
+   "env.sim.njmax": 512,
+   "env.sim.nconmax": 256
+  },
+  "keys": 480
+ },
+ "standin_vs_packed": {
+  "diff": [
+   "env.reset.seed",
+   "output_dir",
+   "reference.parquet",
+   "reset.seed",
+   "task.parquet",
+   "training.seed"
+  ],
+  "outside_allowed": [],
+  "sim": {
+   "sim.njmax": 512,
+   "sim.nconmax": 256,
+   "env.sim.njmax": 512,
+   "env.sim.nconmax": 256
+  },
+  "task": "'/content/refs/perc2e10css43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave'",
+  "output_dir": "/content/runs/perc2e10css43_glock/ep10-s43"
+ },
+ "negative_njmax1024": {
+  "diff": [
+   "env.reset.seed",
+   "env.sim.nconmax",
+   "env.sim.njmax",
+   "output_dir",
+   "reference.parquet",
+   "reset.seed",
+   "sim.nconmax",
+   "sim.njmax",
+   "task.parquet",
+   "training.seed"
+  ],
+  "outside_allowed": [
+   "env.sim.nconmax",
+   "env.sim.njmax",
+   "sim.nconmax",
+   "sim.njmax"
+  ],
+  "sim": {
+   "sim.njmax": 1024,
+   "sim.nconmax": 512,
+   "env.sim.njmax": 1024,
+   "env.sim.nconmax": 512
+  }
+ },
+ "negative_extra_key": {
+  "diff": [
+   "env.reset.seed",
+   "output_dir",
+   "reference.parquet",
+   "reset.seed",
+   "task.parquet",
+   "training.mock_extra_setting",
+   "training.seed"
+  ],
+  "outside_allowed": [
+   "training.mock_extra_setting"
+  ],
+  "sim": {
+   "sim.njmax": 512,
+   "sim.nconmax": 256,
+   "env.sim.njmax": 512,
+   "env.sim.nconmax": 256
+  }
+ },
+ "ok": true,
+ "failures": []
+}

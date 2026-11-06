@@ -1,0 +1,8 @@
+pass (expect PASS): {"mr": "pass", "expect": "PASS", "rc": "rc=0", "n_checks": 49, "failed": []}
+fail (expect FAIL): {"mr": "fail", "expect": "FAIL", "rc": "rc=0", "n_checks": 49, "failed": []}
+seeddrop (expect FAIL): {"mr": "seeddrop", "expect": "FAIL", "rc": "rc=0", "n_checks": 49, "failed": []}
+invalid (expect INVALID): {"mr": "invalid", "expect": "INVALID", "rc": "rc=0", "n_checks": 49, "failed": []}
+incomplete (expect INCOMPLETE): {"mr": "incomplete", "expect": "INCOMPLETE", "rc": "rc=0", "n_checks": 41, "failed": []}
+rerun (expect PASS): {"mr": "rerun", "expect": "PASS", "rc": "rc=0", "n_checks": 16, "failed": []}
+b0stop (expect STOP:B0 MISMATCH): {"mr": "b0stop", "expect": "STOP:B0 MISMATCH", "rc": "rc=1", "n_checks": 9, "failed": []}
+badinput (expect STOP:md5): {"mr": "badinput", "expect": "STOP:md5", "rc": "rc=1", "n_checks": 9, "failed": []}

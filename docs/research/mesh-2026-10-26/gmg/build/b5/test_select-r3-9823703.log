@@ -1,0 +1,39 @@
+test_stdlib_select_not_shadowed (__main__.ImportTests.test_stdlib_select_not_shadowed) ... ok
+test_bad_class_and_duplicates (__main__.InputTests.test_bad_class_and_duplicates) ... ok
+test_cands_and_feats (__main__.InputTests.test_cands_and_feats) ... ok
+test_partly_tagged_rows_raise (__main__.InputTests.test_partly_tagged_rows_raise)
+B5 round 3 (verifier's break input 2): one untagged row must not switch off the pool check. Two rows of a ... ok
+test_pool_flags_required_or_carried (__main__.InputTests.test_pool_flags_required_or_carried)
+B5 round 2: kit_symmetric / gen_view_overlap are taken from the score_pool dict or its rows' pool tags, ... ok
+test_pool_flags_travel_in_row_tags (__main__.InputTests.test_pool_flags_travel_in_row_tags)
+B5 round 3 (builder's open problem 7): score_pool writes the pool flags into every row's tag, so the pick ... ok
+test_se_diff_skips_undefined_replicates (__main__.InputTests.test_se_diff_skips_undefined_replicates) ... ok
+test_unknown_flip_risk_is_neither_safe_nor_risky (__main__.InputTests.test_unknown_flip_risk_is_neither_safe_nor_risky)
+B5 round 2: amb unknown (untrusted balls, no ball-free mesh; score.amb_unknown) does not make V5 apply, ... ok
+test_variant_K_must_match_pool (__main__.InputTests.test_variant_K_must_match_pool)
+B5 round 3 (verifier's probe 3): a K = 3 pool picked with a K = 5 variant was accepted and recorded K = 5 ... ok
+test_abstain_hull (__main__.LadderTests.test_abstain_hull) ... ok
+test_hull_must_be_watertight (__main__.LadderTests.test_hull_must_be_watertight) ... ok
+test_low_coverage_prior_gen_or_public (__main__.LadderTests.test_low_coverage_prior_gen_or_public) ... ok
+test_low_coverage_with_feasible_is_normal (__main__.LadderTests.test_low_coverage_with_feasible_is_normal) ... ok
+test_track_fail_skips_normal_pick (__main__.LadderTests.test_track_fail_skips_normal_pick) ... ok
+test_class_order (__main__.OrderTests.test_class_order) ... ok
+test_deterministic_under_every_input_order (__main__.OrderTests.test_deterministic_under_every_input_order)
+Pass condition (SPEC 24 B5): the tie order is deterministic. Full ties on all five A.5 keys are ordered ... ok
+test_flip_units_then_markers_then_params_then_E_then_cid (__main__.OrderTests.test_flip_units_then_markers_then_params_then_E_then_cid) ... ok
+test_infinite_flip_units_rank_first (__main__.OrderTests.test_infinite_flip_units_rank_first) ... ok
+test_undefined_E_ranked_last (__main__.OrderTests.test_undefined_E_ranked_last) ... ok
+test_unknown_amb_ranks_last_within_class (__main__.OrderTests.test_unknown_amb_ranks_last_within_class) ... ok
+test_band_uses_paired_se_diff (__main__.TieBandTests.test_band_uses_paired_se_diff) ... ok
+test_missing_reps_raise (__main__.TieBandTests.test_missing_reps_raise) ... ok
+test_variant_must_be_in_menu (__main__.TieBandTests.test_variant_must_be_in_menu) ... ok
+test_v1_v4_removed (__main__.VetoTests.test_v1_v4_removed) ... ok
+test_v3_counts_only_when_applied (__main__.VetoTests.test_v3_counts_only_when_applied) ... ok
+test_v5_and_flip_key_skipped_for_kit_symmetric (__main__.VetoTests.test_v5_and_flip_key_skipped_for_kit_symmetric) ... ok
+test_v5_removes_flip_risk_only_if_a_safe_one_exists (__main__.VetoTests.test_v5_removes_flip_risk_only_if_a_safe_one_exists) ... ok
+test_v5_safe_candidate_vetoed_elsewhere_does_not_count (__main__.VetoTests.test_v5_safe_candidate_vetoed_elsewhere_does_not_count) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.372s
+
+OK

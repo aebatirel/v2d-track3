@@ -1,0 +1,934 @@
+{
+ "mode": "a7prep",
+ "note": "ORACLE DIAGNOSTIC (public mocap + scans), leak-decomp Tier A; never a default, never for eval inference",
+ "code": {
+  "commit": "d51372e7087f6c0df22c1503b6e86489add40de4",
+  "tools_pipeline_dirty": true,
+  "leak_tierA_md5": "5b25b81d48884a3a88f3e485e6efb11c"
+ },
+ "inputs": {
+  "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+  "xgeom": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "xgeom_md5": "919ea341f045d566404cf3951b0056cc",
+  "xtrk": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json",
+  "xtrk_md5": "bd8432f14b90dba6fa4169f1586dee99",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "t3": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit"
+ },
+ "argv": [
+  "tools/leak_tierA.py",
+  "a7prep",
+  "--perc",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+  "--xgeom",
+  "docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "--xtrk",
+  "docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json",
+  "--lib",
+  "meshes/library_v3",
+  "--t3",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3",
+  "--kit",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit",
+  "--work",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7prep.json",
+  "--episodes",
+  "0,2,11,12,13,18,21,22,23,24,26,27,31,39,40,41,42,43,44,45",
+  "--jobs",
+  "1"
+ ],
+ "episodes": {
+  "0": {
+   "episode": 0,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames": [
+    0,
+    93,
+    221,
+    315
+   ],
+   "dropped_held": [],
+   "table_mocap_z": 0.6003,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep0/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.32,
+      8.45
+     ],
+     "snap_cm": [
+      0.32,
+      0.0
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep0/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0,
+      8.74
+     ],
+     "snap_cm": [
+      -0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "2": {
+   "episode": 2,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames": [
+    0,
+    97,
+    224,
+    309
+   ],
+   "dropped_held": [],
+   "table_mocap_z": 0.6003,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep2/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.29,
+      8.52
+     ],
+     "snap_cm": [
+      0.29,
+      0.0
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep2/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0,
+      8.84
+     ],
+     "snap_cm": [
+      -0.0,
+      0.0
+     ]
+    },
+    "lib_carve": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep2/lib_carve.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib_ev01",
+     "f0_bottom_cm": [
+      -0.29,
+      8.52
+     ],
+     "snap_cm": [
+      0.29,
+      0.0
+     ]
+    }
+   }
+  },
+  "11": {
+   "episode": 11,
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "frames": [
+    0,
+    101
+   ],
+   "dropped_held": [],
+   "table_mocap_z": 0.6006,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep11/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.05,
+      -1.84
+     ],
+     "snap_cm": [
+      0.05,
+      1.84
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep11/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0,
+      0.16
+     ],
+     "snap_cm": [
+      -0.0,
+      -0.16
+     ]
+    },
+    "lib_carve": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep11/lib_carve.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib_ev10",
+     "f0_bottom_cm": [
+      -0.05,
+      -1.84
+     ],
+     "snap_cm": [
+      0.05,
+      1.84
+     ]
+    }
+   }
+  },
+  "12": {
+   "episode": 12,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames": [
+    0,
+    153
+   ],
+   "dropped_held": [
+    73
+   ],
+   "table_mocap_z": 0.5987,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep12/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      0.17,
+      -0.28
+     ],
+     "snap_cm": [
+      -0.17,
+      0.28
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep12/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.22,
+      -0.02
+     ],
+     "snap_cm": [
+      -0.22,
+      0.02
+     ]
+    },
+    "lib_carve": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep12/lib_carve.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib_ev14",
+     "f0_bottom_cm": [
+      0.17,
+      -0.28
+     ],
+     "snap_cm": [
+      -0.17,
+      0.28
+     ]
+    }
+   }
+  },
+  "13": {
+   "episode": 13,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames": [
+    0,
+    114,
+    167
+   ],
+   "dropped_held": [
+    50
+   ],
+   "table_mocap_z": 0.5991,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep13/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.01,
+      -0.3
+     ],
+     "snap_cm": [
+      0.01,
+      0.3
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep13/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.05,
+      -0.02
+     ],
+     "snap_cm": [
+      -0.05,
+      0.02
+     ]
+    },
+    "lib_carve": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep13/lib_carve.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib_ev14",
+     "f0_bottom_cm": [
+      -0.01,
+      -0.3
+     ],
+     "snap_cm": [
+      0.01,
+      0.3
+     ]
+    }
+   }
+  },
+  "18": {
+   "episode": 18,
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "frames": [
+    0,
+    31,
+    209,
+    244,
+    262,
+    281,
+    324
+   ],
+   "dropped_held": [
+    165
+   ],
+   "table_mocap_z": 0.6,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep18/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.14,
+      -0.04
+     ],
+     "snap_cm": [
+      0.14,
+      0.04
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep18/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      -0.01,
+      0.0
+     ],
+     "snap_cm": [
+      0.01,
+      -0.0
+     ]
+    }
+   }
+  },
+  "21": {
+   "episode": 21,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames": [
+    0,
+    17,
+    161
+   ],
+   "dropped_held": [
+    74,
+    120
+   ],
+   "table_mocap_z": 0.6,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep21/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.03,
+      -2.47
+     ],
+     "snap_cm": [
+      0.03,
+      0.0
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep21/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0,
+      0.21
+     ],
+     "snap_cm": [
+      -0.0,
+      -0.21
+     ]
+    }
+   }
+  },
+  "22": {
+   "episode": 22,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames": [
+    0,
+    151
+   ],
+   "dropped_held": [],
+   "table_mocap_z": 0.6004,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep22/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.03,
+      -2.51
+     ],
+     "snap_cm": [
+      0.03,
+      0.0
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep22/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0,
+      0.17
+     ],
+     "snap_cm": [
+      -0.0,
+      -0.17
+     ]
+    }
+   }
+  },
+  "23": {
+   "episode": 23,
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "frames": [
+    0,
+    39,
+    73,
+    106,
+    288
+   ],
+   "dropped_held": [
+    178,
+    205,
+    228
+   ],
+   "table_mocap_z": 0.598,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep23/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.91,
+      -0.23
+     ],
+     "snap_cm": [
+      0.91,
+      0.23
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep23/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0,
+      0.3
+     ],
+     "snap_cm": [
+      -0.0,
+      -0.3
+     ]
+    }
+   }
+  },
+  "24": {
+   "episode": 24,
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "frames": [
+    0,
+    99,
+    243
+   ],
+   "dropped_held": [
+    43,
+    163,
+    192
+   ],
+   "table_mocap_z": 0.5979,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep24/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.92,
+      -0.21
+     ],
+     "snap_cm": [
+      0.92,
+      0.21
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep24/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0,
+      0.33
+     ],
+     "snap_cm": [
+      -0.0,
+      -0.33
+     ]
+    },
+    "lib_carve": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep24/lib_carve.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib_ev25",
+     "f0_bottom_cm": [
+      -0.92,
+      -0.21
+     ],
+     "snap_cm": [
+      0.92,
+      0.21
+     ]
+    }
+   }
+  },
+  "26": {
+   "episode": 26,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    122
+   ],
+   "dropped_held": [],
+   "table_mocap_z": 0.598,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep26/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.37,
+      2.33
+     ],
+     "snap_cm": [
+      0.37,
+      0.0
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep26/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0,
+      2.04
+     ],
+     "snap_cm": [
+      -0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "27": {
+   "episode": 27,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    41
+   ],
+   "dropped_held": [
+    204
+   ],
+   "table_mocap_z": 0.5977,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep27/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.3,
+      -0.09
+     ],
+     "snap_cm": [
+      0.3,
+      0.09
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep27/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      -0.02,
+      0.3
+     ],
+     "snap_cm": [
+      0.02,
+      -0.3
+     ]
+    },
+    "lib_carve": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep27/lib_carve.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib_ev28",
+     "f0_bottom_cm": [
+      -0.3,
+      -0.09
+     ],
+     "snap_cm": [
+      0.3,
+      0.09
+     ]
+    }
+   }
+  },
+  "31": {
+   "episode": 31,
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "frames": [
+    0,
+    39,
+    84,
+    253
+   ],
+   "dropped_held": [],
+   "table_mocap_z": 0.5985,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep31/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      0.56,
+      -0.29
+     ],
+     "snap_cm": [
+      -0.56,
+      0.29
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep31/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.44,
+      -0.02
+     ],
+     "snap_cm": [
+      -0.44,
+      0.02
+     ]
+    },
+    "lib_carve": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep31/lib_carve.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib_ev30",
+     "f0_bottom_cm": [
+      0.56,
+      -0.29
+     ],
+     "snap_cm": [
+      -0.56,
+      0.29
+     ]
+    }
+   }
+  },
+  "39": {
+   "episode": 39,
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "frames": [
+    0,
+    292
+   ],
+   "dropped_held": [],
+   "table_mocap_z": 0.6021,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep39/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.08
+     ],
+     "snap_cm": [
+      0.08
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep39/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0
+     ],
+     "snap_cm": [
+      -0.0
+     ]
+    }
+   }
+  },
+  "40": {
+   "episode": 40,
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "frames": [
+    0,
+    229
+   ],
+   "dropped_held": [
+    59
+   ],
+   "table_mocap_z": 0.6018,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep40/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.02
+     ],
+     "snap_cm": [
+      0.02
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep40/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0
+     ],
+     "snap_cm": [
+      -0.0
+     ]
+    }
+   }
+  },
+  "41": {
+   "episode": 41,
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    216,
+    263
+   ],
+   "dropped_held": [
+    79,
+    147,
+    171,
+    191
+   ],
+   "table_mocap_z": 0.6014,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep41/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.34
+     ],
+     "snap_cm": [
+      0.34
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep41/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0
+     ],
+     "snap_cm": [
+      -0.0
+     ]
+    }
+   }
+  },
+  "42": {
+   "episode": 42,
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    54,
+    219
+   ],
+   "dropped_held": [
+    89
+   ],
+   "table_mocap_z": 0.6014,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep42/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.42
+     ],
+     "snap_cm": [
+      0.42
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep42/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0
+     ],
+     "snap_cm": [
+      -0.0
+     ]
+    }
+   }
+  },
+  "43": {
+   "episode": 43,
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    42,
+    284
+   ],
+   "dropped_held": [
+    144,
+    223
+   ],
+   "table_mocap_z": 0.601,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep43/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      0.26
+     ],
+     "snap_cm": [
+      -0.26
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep43/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0
+     ],
+     "snap_cm": [
+      -0.0
+     ]
+    }
+   }
+  },
+  "44": {
+   "episode": 44,
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    208
+   ],
+   "dropped_held": [
+    98,
+    115,
+    136
+   ],
+   "table_mocap_z": 0.6011,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep44/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.37
+     ],
+     "snap_cm": [
+      0.37
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep44/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0
+     ],
+     "snap_cm": [
+      -0.0
+     ]
+    }
+   }
+  },
+  "45": {
+   "episode": 45,
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    259
+   ],
+   "dropped_held": [
+    103,
+    136,
+    196
+   ],
+   "table_mocap_z": 0.6012,
+   "geoms": {
+    "lib": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep45/lib.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+     "f0_bottom_cm": [
+      -0.27
+     ],
+     "snap_cm": [
+      0.27
+     ]
+    },
+    "scan": {
+     "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep45/scan.npz",
+     "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/scan",
+     "f0_bottom_cm": [
+      0.0
+     ],
+     "snap_cm": [
+      -0.0
+     ]
+    }
+   }
+  }
+ },
+ "seconds": 172.3
+}

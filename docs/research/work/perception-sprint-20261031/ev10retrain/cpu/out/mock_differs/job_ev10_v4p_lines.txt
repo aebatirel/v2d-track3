@@ -1,0 +1,23 @@
+[2026-10-31T19:11:46Z] ev10_v4p code mocksha0000000, ep 10, prefix perc2e10v, seeds [42 43], LIB <MR>/content/v2d-track3/meshes/library_v3, PIECES <MR>/content/v2d-track3/meshes/carve/ev10, NREP 10, NCONF 10, STEPS 70004736, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15], H5P7_RUN 20261031-h5p7-1a7cdff
+[2026-10-31T19:11:50Z] ev10_v4p: inputs ok ({"path": "<MR>/content/hfstore/cache/depth/eval/ep10/depths_fs0.5.npy", "bytes": 1030400128, "shape": [161, 1000, 1600], "frame0_sha256": "ab38c4d79f6864be4b82afc9be1ed0ad97ee95ce6953230c2f8a6698a); no_oracle: no_oracle: 17 inputs checked, none oracle-derived
+[2026-10-31T19:12:02Z] ev10_v4p B0: GO: V DIFFERS (max 0.8991 mm, 1.3057 deg) md5 c283504c47921c83535d10b2c15d3f9f
+[2026-10-31T19:12:06Z] ev10_v4p: reference built ([19:12:05] qa_ref: {"kind": "ref", "reasons": [], "wrist_p95_mm": {}, "max_step_cm": {}, "pass": true, "score": 0.0} [19:12:06] contact_retarget: {"rest_settle":{"mock":true,"max_shift_cm":0.0},"args":["--rest_settle","1"]} ; table: )
+[2026-10-31T19:12:40Z] ev10_v4p identity: IDENTITY OK: e2s blue vs tracks {'V4p_track': 0.007, 'stored_track': 1.751} cm; trained V vs packed P {'blue_cup': {'window': 0.717, 'hands_off': 1.201}, 'beige_cup': {'window': 0.328, 'hands_off': 1.225}}; blue height V - P {'window': -0.679}
+[2026-10-31T19:12:40Z] ev10_v4p arms: ARMS OK :: V 5a162130a9b3e45f9ef8a68abb7077cc (fingerprint 619380b83881), base 5a162130a9b3e45f9ef8a68abb7077cc, seeds ['42', '43'], blue_cup 0.3 kg, beige_cup 0.3 kg
+[2026-10-31T19:12:40Z] ev10_v4p: seed 42, PAIRS [10:local:mck:perc2e10vs42]
+[2026-10-31T19:13:25Z] ev10_v4p: seed 43, PAIRS [10:local:mck:perc2e10vs43]
+[2026-10-31T19:14:09Z] ev10_v4p choice: CHOSEN seed 42 :: s42 n 10 mean 0.9998 sd 0.0005 min 0.9983; s43 n 10 mean 0.9997 sd 0.0009 min 0.9973
+[2026-10-31T19:14:09Z] ev10_v4p: confirmation of <MR>/content/results/perc2e10vs42_glock_public/ep10/best/policy.safetensors (sha256 5e29ab91a21e) on the clean evaluator mocksha0000000, modified files 0
+[2026-10-31T19:14:11Z] ev10_v4p: confirmation draw 1 rc 0 sim_vs_ref 1.0
+[2026-10-31T19:14:13Z] ev10_v4p: confirmation draw 2 rc 0 sim_vs_ref 1.0
+[2026-10-31T19:14:14Z] ev10_v4p: confirmation draw 3 rc 0 sim_vs_ref 0.9992
+[2026-10-31T19:14:16Z] ev10_v4p: confirmation draw 4 rc 0 sim_vs_ref 0.9998
+[2026-10-31T19:14:17Z] ev10_v4p: confirmation draw 5 rc 0 sim_vs_ref 1.0
+[2026-10-31T19:14:19Z] ev10_v4p: confirmation draw 6 rc 0 sim_vs_ref 1.0
+[2026-10-31T19:14:21Z] ev10_v4p: confirmation draw 7 rc 0 sim_vs_ref 1.0
+[2026-10-31T19:14:23Z] ev10_v4p: confirmation draw 8 rc 0 sim_vs_ref 1.0
+[2026-10-31T19:14:24Z] ev10_v4p: confirmation draw 9 rc 0 sim_vs_ref 0.9994
+[2026-10-31T19:14:26Z] ev10_v4p: confirmation draw 10 rc 0 sim_vs_ref 1.0
+[2026-10-31T19:29:48Z] ev10_v4p scores: conf (own V): 10 rollouts, 10 scored; r1 V s_v_r 1.0000 RPE 0.35 P s_v_r 0.9623 RPE 1.06; r2 V s_v_r 1.0000 RPE 0.34 P s_v_r 0.9604 RPE 1.03; r3 V s_v_r 0.9992 RPE 0.34 P s_v_r 0.9530 RPE 1.06; r4 V s_v_r 0.9998 RPE 0.35 P s_v_r 0.9579 RPE 1.08; r5 V s_v_r 1.0000 RPE 0.37 P s_v_r 0.9645 RPE 1.09; r6 V s_v_r 1.0000 RPE 0.37 P s_v_r 0.9608 RPE 1.10; r7 V s_v_r 1.0000 RPE 0.37 P s_v_r 0.9579 RPE 1.09; r8 V s_v_r 1.0000 RPE 0.36 P s_v_r 0.9596 RPE 1.07; r9 V s_v_r 0.9994 RPE 0.38 P s_v_r 0.9554 RPE 1.10; r10 V s_v_r 1.0000 RPE 0.34 P s_v_r 0.9635 RPE 1.02 old (own P): 1 rollouts, 1 scored; r1 V s_v_r 0.4715 RPE 15.77 P s_v_r 0.4563 RPE 15.76 packed (own P)
+[2026-10-31T19:29:49Z] ev10_v4p verify: VERIFIED :: B0 DIFFERS :: identity e2s {'V4p_track': 0.007, 'stored_track': 1.751} :: chosen 42 :: confirmation draws 10 (rc {'0': 10}) :: own-reference checks 41/41
+[2026-10-31T19:29:49Z] ev10_v4p RESULT: SWAP-ELIGIBLE (eval rc of the confirmation draws: {'0': 10}) :: every clause holds on both references :: a_V ok new_mean 0.9998 packed_mean 0.4555 margin 0.5444 | b_V ok new_fail_rate 0.0 packed_fail_rate 1.0 margin 1.0 | c_V ok new_median_rpe 0.3529 packed_median_rpe 15.8354 margin 15.4825 | s_V ok new_draw1 1.0 old_packed_draw 0.4715 bar 0.4215 margin 0.5785 | a_P ok new_mean 0.9595 packed_mean 0.4474 margin 0.5121 | b_P ok new_fail_rate 0.0 packed_fail_rate 1.0 margin 1.0 | c_P ok new_median_rpe 1.0718 packed_median_rpe 15.799 margin 14.7272 | s_P ok new_draw1 0.9623 old_packed_draw 0.4563 bar 0.4063 margin 0.556 :: V: new 0.9998 (n 10, RPE med 0.35

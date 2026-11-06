@@ -1,0 +1,62 @@
+{
+ "12/refineP/V1": {
+  "rerun": -0.0637,
+  "stored": -0.0637,
+  "match": true
+ },
+ "12/refineP/V2": {
+  "rerun": -0.0668,
+  "stored": -0.0668,
+  "match": true
+ },
+ "12/refineP/V3": {
+  "rerun": -0.0641,
+  "stored": -0.0641,
+  "match": true
+ },
+ "12/Po/V1": {
+  "rerun": -0.064,
+  "stored": -0.064,
+  "match": true
+ },
+ "12/Po/V2": {
+  "rerun": -0.0671,
+  "stored": -0.0671,
+  "match": true
+ },
+ "12/Po/V3": {
+  "rerun": -0.0645,
+  "stored": -0.0645,
+  "match": true
+ },
+ "39/refineP/V1": {
+  "rerun": 0.0,
+  "stored": 0.0,
+  "match": true
+ },
+ "39/refineP/V2": {
+  "rerun": -0.1046,
+  "stored": -0.1046,
+  "match": true
+ },
+ "39/refineP/V3": {
+  "rerun": -0.1281,
+  "stored": -0.1281,
+  "match": true
+ },
+ "39/Po/V1": {
+  "rerun": 0.0,
+  "stored": 0.0,
+  "match": true
+ },
+ "39/Po/V2": {
+  "rerun": -0.1046,
+  "stored": -0.1046,
+  "match": true
+ },
+ "39/Po/V3": {
+  "rerun": -0.1281,
+  "stored": -0.1281,
+  "match": true
+ }
+}

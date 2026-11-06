@@ -1,0 +1,28 @@
+# E0 box MediaPipe venv (Python 3.12) for pipeline/hands_mp.py, pinned to the local mpvenv (uv pip freeze 2026-10-31);
+# pipeline/setup.sh builds the same venv (mediapipe==0.10.14 opencv-python-headless numpy scipy).
+absl-py==2.5.1
+attrs==26.1.0
+cffi==2.1.1
+contourpy==1.4.0
+cycler==0.12.1
+flatbuffers==25.12.19
+fonttools==4.68.0
+jax==0.12.0.1
+jaxlib==0.12.0.1
+kiwisolver==1.5.1
+matplotlib==3.11.2
+mediapipe==0.10.14
+ml-dtypes==0.6.0
+numpy==2.5.4
+opencv-contrib-python==5.0.0.93
+opencv-python-headless==5.0.0.93
+opt-einsum==3.4.0
+packaging==26.3
+pillow==13.0.0
+protobuf==4.25.9
+pycparser==3.12
+pyparsing==3.3.3
+python-dateutil==3.0.0
+scipy==1.18.1
+six==1.17.0
+tzdata==2026.6

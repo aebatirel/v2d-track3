@@ -1,0 +1,14 @@
+{
+ "obj": "water_pitcher",
+ "ep": 21,
+ "file": "/content/results/c0b/pts/B/ep21_water_pitcher.npz",
+ "n": 877,
+ "median_m": 0.005992183600238428,
+ "info": {
+  "points": 4253726,
+  "samples": 103950,
+  "measured": 877,
+  "median_mm": 5.9922
+ },
+ "sec": 75.3
+}

@@ -1,0 +1,141 @@
+{
+ "ep": 33,
+ "mode": "glock",
+ "source_run": "20261026-fr3233s43-6a8a0e2",
+ "lib": "library_v3",
+ "pieces": null,
+ "md5_listed": "2a7173ab1d4248433bd049bc43f6878a",
+ "ref": "20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "ref_md5": "2a7173ab1d4248433bd049bc43f6878a",
+ "md5_match": true,
+ "names": [
+  "blue_cup",
+  "wooden_spoon"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "2cf9765ce63793028bbe83da3db15a24",
+  "radius": 0.238064
+ },
+ "f0_hand_mm": {
+  "blue_cup": 174.6,
+  "wooden_spoon": 167.1
+ },
+ "first_H30_rest_frame": 0,
+ "objects": {
+  "blue_cup": {
+   "urdf_md5": "31cd001d2618ee2972dc922b77109b9f",
+   "pieces": 75,
+   "collision": [
+    "blue_cup.glb 0435d5d2 -> CoACD 75"
+   ],
+   "mass": 0.3
+  },
+  "wooden_spoon": {
+   "urdf_md5": "59f7268c34f1fd07dbb24fb80d9fd907",
+   "pieces": 9,
+   "collision": [
+    "wooden_spoon.glb 2ba0ecb4 -> CoACD 9"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "blue_cup": {
+     "pen_mm": 0.27,
+     "com_height_mm": 86.6,
+     "hand_mm": 174.6,
+     "support": {
+      "band1mm": {
+       "points": 101,
+       "com_margin_mm": 13.4
+      },
+      "band3mm": {
+       "points": 317,
+       "com_margin_mm": 29.5
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 115.9,
+     "settle_mm": 2.61,
+     "settle_deg": 1.69,
+     "max_mm": 3.39,
+     "max_deg": 2.2,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 2.71,
+       "max": 3.91,
+       "min": 2.06,
+       "q90": 3.58
+      },
+      "deg": {
+       "n": 16,
+       "median": 1.73,
+       "max": 2.52,
+       "min": 1.33,
+       "q90": 2.31
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    },
+    "wooden_spoon": {
+     "pen_mm": -0.4,
+     "com_height_mm": 10.9,
+     "hand_mm": 167.1,
+     "support": {
+      "band1mm": {
+       "points": 62,
+       "com_margin_mm": 3.7
+      },
+      "band3mm": {
+       "points": 205,
+       "com_margin_mm": 8.9
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 115.7,
+     "settle_mm": 0.6,
+     "settle_deg": 1.7,
+     "max_mm": 0.98,
+     "max_deg": 1.7,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.655,
+       "max": 1.25,
+       "min": 0.32,
+       "q90": 1.17
+      },
+      "deg": {
+       "n": 16,
+       "median": 1.665,
+       "max": 2.06,
+       "min": 1.2,
+       "q90": 1.905
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    }
+   },
+   "pairs": {
+    "blue_cup|wooden_spoon": 0.0
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 9.7
+}

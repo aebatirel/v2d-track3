@@ -1,0 +1,17 @@
+test_a_fused_double_cup (__main__.B14.test_a_fused_double_cup) ... ok
+test_b_filled_cup (__main__.B14.test_b_filled_cup) ... ok
+test_c_lid_with_phantom_pot (__main__.B14.test_c_lid_with_phantom_pot) ... ok
+test_d_kit_lid_passes (__main__.B14.test_d_kit_lid_passes) ... ok
+test_closest (__main__.GeomTests.test_closest) ... ok
+test_inside_matches_gwn (__main__.GeomTests.test_inside_matches_gwn) ... ok
+test_rays_match_bruteforce (__main__.GeomTests.test_rays_match_bruteforce) ... ok
+test_volume_samples (__main__.GeomTests.test_volume_samples) ... ok
+test_rules (__main__.HullCoarsenTests.test_rules) ... ok
+test_copy_matches_kit (__main__.KitDecodeTests.test_copy_matches_kit) ... ok
+test_clauses (__main__.V2LogicTests.test_clauses) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 527.281s
+
+OK
+527 s

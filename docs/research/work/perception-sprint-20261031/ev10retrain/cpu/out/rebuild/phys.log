@@ -1,0 +1,2 @@
+nest_physics inner: window blue_cup <- beige_cup [53, 161), settled 39 frames; dz {'beige_cup': {'median': -1.144, 'min': -1.385, 'max': -0.569}}
+wrote <scratchpad>/ev10retrain/cpu_rebuild/out/phys 5.6 s

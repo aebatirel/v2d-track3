@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_potlid.py", line 952, in <module>
+    main()
+    ~~~~^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_potlid.py", line 940, in main
+    mesh, info = build_lid(P, C, a.variant, a.lib)
+                 ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_potlid.py", line 728, in build_lid
+    rc_, top2, ns = lid_top_profile(r, h, th, surf, **dome)
+                    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_potlid.py", line 647, in lid_top_profile
+    nb = int(math.ceil((r[sel].max() + 1e-6) / dr))
+                        ~~~~~~~~~~^^
+  File "/content/c0bw/venv/lib/python3.13/site-packages/numpy/_core/_methods.py", line 41, in _amax
+    return umr_maximum(a, axis, None, out, keepdims, initial, where)
+ValueError: zero-size array to reduction operation maximum which has no identity

@@ -1,0 +1,128 @@
+[
+ {
+  "ep": 3,
+  "obj": "white_pot",
+  "T": 313,
+  "refperc_max": 4.9,
+  "argmax": 97,
+  "n_gt2": 52,
+  "n_gt3": 41,
+  "window": [
+   81,
+   231
+  ],
+  "vertical_shift_cm_at_max": -4.9,
+  "depth_bad_ref_in_window": 0.65,
+  "depth_bad_perc_in_window": 0.0,
+  "med_r_ref": -1.81,
+  "med_r_perc": 0.02
+ },
+ {
+  "ep": 6,
+  "obj": "white_pot",
+  "T": 243,
+  "refperc_max": 3.9,
+  "argmax": 131,
+  "n_gt2": 22,
+  "n_gt3": 6,
+  "window": [
+   51,
+   135
+  ],
+  "vertical_shift_cm_at_max": -3.9,
+  "depth_bad_ref_in_window": 0.64,
+  "depth_bad_perc_in_window": 0.0,
+  "med_r_ref": -1.73,
+  "med_r_perc": 0.08
+ },
+ {
+  "ep": 8,
+  "obj": "beige_cup",
+  "T": 219,
+  "refperc_max": 4.2,
+  "argmax": 99,
+  "n_gt2": 10,
+  "n_gt3": 8,
+  "window": [
+   94,
+   103
+  ],
+  "vertical_shift_cm_at_max": -4.2,
+  "depth_bad_ref_in_window": 0.0,
+  "depth_bad_perc_in_window": 0.0,
+  "med_r_ref": -0.33,
+  "med_r_perc": -0.0
+ },
+ {
+  "ep": 20,
+  "obj": "blue_cup",
+  "T": 202,
+  "refperc_max": 4.2,
+  "argmax": 111,
+  "n_gt2": 13,
+  "n_gt3": 7,
+  "window": [
+   83,
+   123
+  ],
+  "vertical_shift_cm_at_max": -4.2,
+  "depth_bad_ref_in_window": 0.38,
+  "depth_bad_perc_in_window": 0.0,
+  "med_r_ref": -0.51,
+  "med_r_perc": 0.13
+ },
+ {
+  "ep": 28,
+  "obj": "white_pot",
+  "T": 220,
+  "refperc_max": 4.0,
+  "argmax": 175,
+  "n_gt2": 26,
+  "n_gt3": 8,
+  "window": [
+   171,
+   219
+  ],
+  "vertical_shift_cm_at_max": -4.0,
+  "depth_bad_ref_in_window": 1.0,
+  "depth_bad_perc_in_window": 0.0,
+  "med_r_ref": -2.03,
+  "med_r_perc": -0.29
+ },
+ {
+  "ep": 32,
+  "obj": "blue_cup",
+  "T": 259,
+  "refperc_max": 3.3,
+  "argmax": 143,
+  "n_gt2": 21,
+  "n_gt3": 2,
+  "window": [
+   26,
+   177
+  ],
+  "vertical_shift_cm_at_max": -3.3,
+  "depth_bad_ref_in_window": 0.57,
+  "depth_bad_perc_in_window": 0.19,
+  "med_r_ref": -0.47,
+  "med_r_perc": -0.05
+ },
+ {
+  "ep": 32,
+  "obj": "wooden_spoon",
+  "T": 259,
+  "refperc_max": 3.3,
+  "argmax": 204,
+  "n_gt2": 11,
+  "n_gt3": 4,
+  "window": [
+   200,
+   214
+  ],
+  "vertical_shift_cm_at_max": -3.3,
+  "depth_bad_ref_in_window": 1.0,
+  "depth_bad_perc_in_window": 0.0,
+  "med_r_ref": 2.02,
+  "med_r_perc": -0.14
+ }
+]

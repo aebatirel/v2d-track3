@@ -1,0 +1,25 @@
+code sha256 at scoring start {'refine.py': '3da2a33ca8a6d721e967032b575d8a7119fe0f3ba6f47f6a19500b534c8fd3f2', 'rts.py': '529219b4ed6a55f4306bb07edb919f2d3fceca0c517ae2e17e4e52d1866615ae'} 2026-10-31T21:26:42Z
+ep2: Po S2 lib 0.9911 dlib -0.0009 dRPE -0.001 | refineP S2 lib 0.9871 dlib +0.0001 dRPE -0.001 (13.6 s)
+ep0: Po S2 lib 0.9669 dlib +0.0003 dRPE -0.001 | refineP S2 lib 0.9672 dlib +0.0000 dRPE -0.001 (13.9 s)
+ep18: Po S2 lib 0.9162 dlib +0.0000 dRPE -0.004 | refineP S2 lib 0.9680 dlib -0.0006 dRPE +0.000 (12.0 s)
+ep12: Po S2 lib 0.9763 dlib +0.0002 dRPE -0.004 | refineP S2 lib 0.9760 dlib +0.0005 dRPE -0.004 (148.4 s)
+ep13: Po S2 lib 0.9623 dlib +0.0015 dRPE -0.007 | refineP S2 lib 0.9648 dlib +0.0010 dRPE -0.007 (154.9 s)
+ep23: Po S2 lib 0.0425 dlib +0.0006 dRPE -0.059 | refineP S2 lib 0.0425 dlib +0.0006 dRPE -0.069 (8.2 s)
+ep21: Po S2 lib 0.8389 dlib -0.0005 dRPE +0.000 | refineP S2 lib 0.8389 dlib -0.0005 dRPE +0.000 (151.0 s)
+ep24: Po S2 lib 0.8091 dlib -0.0011 dRPE -0.001 | refineP S2 lib 0.8091 dlib -0.0011 dRPE -0.001 (7.1 s)
+ep26: Po S2 lib 0.9717 dlib +0.0012 dRPE -0.008 | refineP S2 lib 0.9678 dlib -0.0006 dRPE -0.008 (8.8 s)
+ep27: Po S2 lib 0.9634 dlib +0.0000 dRPE -0.003 | refineP S2 lib 0.9627 dlib -0.0007 dRPE -0.003 (9.5 s)
+ep31: Po S2 lib 0.8239 dlib -0.0015 dRPE -0.002 | refineP S2 lib 0.8550 dlib -0.0044 dRPE -0.002 (8.4 s)
+ep39: Po S2 lib 0.9759 dlib -0.0008 dRPE +0.000 | refineP S2 lib 0.9759 dlib -0.0008 dRPE +0.000 (5.3 s)
+ep40: Po S2 lib 0.9584 dlib +0.0000 dRPE +0.000 | refineP S2 lib 0.9584 dlib +0.0000 dRPE +0.000 (5.3 s)
+ep41: Po S2 lib 0.9927 dlib +0.0004 dRPE +0.000 | refineP S2 lib 0.9927 dlib +0.0004 dRPE +0.000 (4.9 s)
+ep42: Po S2 lib 0.9990 dlib +0.0000 dRPE +0.000 | refineP S2 lib 0.9993 dlib -0.0003 dRPE +0.000 (4.4 s)
+ep43: Po S2 lib 0.9486 dlib -0.0011 dRPE +0.000 | refineP S2 lib 0.9479 dlib -0.0014 dRPE +0.000 (5.5 s)
+ep44: Po S2 lib 0.9970 dlib +0.0007 dRPE +0.000 | refineP S2 lib 0.9970 dlib +0.0007 dRPE +0.000 (5.1 s)
+ep45: Po S2 lib 0.9823 dlib +0.0005 dRPE +0.000 | refineP S2 lib 0.9823 dlib +0.0005 dRPE +0.000 (5.5 s)
+ep11: Po S2 lib 0.9012 dlib +0.0005 dRPE -0.001 | refineP S2 lib 0.9012 dlib +0.0005 dRPE -0.001 (217.4 s)
+ep22: Po S2 lib 0.8704 dlib -0.0022 dRPE -0.002 | refineP S2 lib 0.8704 dlib -0.0030 dRPE -0.002 (153.5 s)
+Po {"status": "FAIL", "mean_dR_lib": -0.00011, "min_dR_lib": -0.0022, "worst_ep": 22, "better_worse_lib": [9, 7], "mean_dR_star": -6e-05, "min_dR_star": -0.0052, "mean_dRPE_lib_multi": -0.0072, "multi_eps": [0, 2, 11, 12, 13, 18, 21, 22, 23, 24, 26, 27, 31], "rpe_flags": [], "mean_R_lib_S2": 0.89439, "mean_R_lib_S13": 0.89428, "mean_RPE_lib_S2_multi": 2.4909, "mean_RPE_lib_S13_multi": 2.4837}
+refineP {"status": "FAIL", "mean_dR_lib": -0.00046, "min_dR_lib": -0.0044, "worst_ep": 31, "better_worse_lib": [8, 10], "mean_dR_star": -2e-05, "min_dR_star": -0.0045, "mean_dRPE_lib_multi": -0.0076, "multi_eps": [0, 2, 11, 12, 13, 18, 21, 22, 23, 24, 26, 27, 31], "rpe_flags": [], "mean_R_lib_S2": 0.89821, "mean_R_lib_S13": 0.89776, "mean_RPE_lib_S2_multi": 2.4401, "mean_RPE_lib_S13_multi": 2.4325}
+VERDICT (bytecheck INVALID (a)/(c) is separate: rts_bytecheck.py): FAIL
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/rts/rts_scores.json

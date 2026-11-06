@@ -1,0 +1,62 @@
+{
+ "11/Po/V1": {
+  "rerun": 0.0676,
+  "stored": 0.0676,
+  "match": true
+ },
+ "11/Po/V2": {
+  "rerun": 0.0676,
+  "stored": 0.0676,
+  "match": true
+ },
+ "11/Po/V3": {
+  "rerun": 0.0764,
+  "stored": 0.0764,
+  "match": true
+ },
+ "11/refineP/V1": {
+  "rerun": 0.0676,
+  "stored": 0.0676,
+  "match": true
+ },
+ "11/refineP/V2": {
+  "rerun": 0.0676,
+  "stored": 0.0676,
+  "match": true
+ },
+ "11/refineP/V3": {
+  "rerun": 0.0764,
+  "stored": 0.0764,
+  "match": true
+ },
+ "12/Po/V1": {
+  "rerun": 0.0,
+  "stored": 0.0,
+  "match": true
+ },
+ "12/Po/V2": {
+  "rerun": 0.0,
+  "stored": 0.0,
+  "match": true
+ },
+ "12/Po/V3": {
+  "rerun": 0.0,
+  "stored": 0.0,
+  "match": true
+ },
+ "12/refineP/V1": {
+  "rerun": 0.0,
+  "stored": 0.0,
+  "match": true
+ },
+ "12/refineP/V2": {
+  "rerun": 0.0,
+  "stored": 0.0,
+  "match": true
+ },
+ "12/refineP/V3": {
+  "rerun": 0.0,
+  "stored": 0.0,
+  "match": true
+ }
+}

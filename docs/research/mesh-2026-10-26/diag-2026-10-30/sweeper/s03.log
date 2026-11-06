@@ -1,0 +1,13 @@
+M2b_libsym_balls_base cdo_eval 0.2909 add_med 4.12 add_all 4.21 flips 0/6 amb 2.00 mm (rot 180.0)
+    19 19000057 cdo 0.2897 add 3.82 rot 2.25 axis [0.356, -0.659, -0.663] anchor_off [-1.7, -1.0, -3.2]
+    30 30000090 cdo 0.2921 add 4.18 rot 2.45 axis [0.576, -0.699, -0.425] anchor_off [-2.1, -2.6, -2.4]
+    None 11 cdo 0.2919 add 4.05 rot 2.31 axis [0.575, -0.763, -0.296] anchor_off [-1.8, -1.7, -3.0]
+    None 22 cdo 0.2888 add 4.76 rot 2.71 axis [0.759, -0.633, -0.152] anchor_off [-2.3, -3.1, -2.6]
+    None 33 cdo 0.2914 add 3.96 rot 2.63 axis [0.507, -0.591, -0.627] anchor_off [-1.5, -1.8, -3.0]
+    None 44 cdo 0.2954 add 4.5 rot 2.41 axis [0.646, -0.695, -0.317] anchor_off [-2.1, -2.8, -2.7]
+M2b_libsym_balls_base {'seed': 19000057, 'ok_mm': 3.252, 'flip_mm': 3.436, 'margin_mm': 0.184, 'other_mm': 8.352}
+M2b_libsym_balls_base {'seed': 30000090, 'ok_mm': 3.273, 'flip_mm': 3.403, 'margin_mm': 0.13, 'other_mm': 7.234}
+M2b_libsym_balls_base {'seed': 11, 'ok_mm': 3.25, 'flip_mm': 3.442, 'margin_mm': 0.191, 'other_mm': 7.995}
+M2b_libsym_balls_base {'seed': 22, 'ok_mm': 3.257, 'flip_mm': 3.398, 'margin_mm': 0.142, 'other_mm': 8.918}
+M2b_libsym_balls_base {'seed': 33, 'ok_mm': 3.253, 'flip_mm': 3.414, 'margin_mm': 0.162, 'other_mm': 8.999}
+M2b_libsym_balls_base {'seed': 44, 'ok_mm': 3.272, 'flip_mm': 3.439, 'margin_mm': 0.167, 'other_mm': 7.443}

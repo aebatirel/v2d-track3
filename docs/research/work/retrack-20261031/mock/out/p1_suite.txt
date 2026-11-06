@@ -1,0 +1,14 @@
+before: 9 output files
+after: 9 output files
+out/mock_b8.txt: identical
+out/mock_boxa.txt: identical
+out/mock_boxb.txt: identical
+out/mock_boxc.txt: identical
+out/mock_data.txt: identical
+out/mock_faults.txt: identical
+out/mock_gdino.txt: identical
+out/mock_refusals.txt: identical
+out/run_all.txt: identical
+      3 RESULT: ALL CHECKS PASS
+      3 check rc=0
+p1_suite: IDENTICAL (all Phase-1 mock outputs, LIB_EP_DIR unset)

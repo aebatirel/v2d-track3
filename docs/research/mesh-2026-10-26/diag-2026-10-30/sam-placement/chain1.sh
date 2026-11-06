@@ -1,0 +1,6 @@
+set -x
+export OMP_NUM_THREADS=1
+../../venv/bin/python decomp.py --models sam3d --out decomp_before.jsonl --placed  lib=white_pot=/home/user/v2d-track3/meshes/library_v3/white_pot.glb lib=white_pot_lid=/home/user/v2d-track3/meshes/library_v3/white_pot_lid.glb lib=blue_cup=/home/user/v2d-track3/meshes/library_v3/blue_cup.glb lib=water_pitcher=/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb lib=wooden_piece_1=/home/user/v2d-track3/meshes/library_v3/wooden_piece_1.glb lib=wooden_piece_2=/home/user/v2d-track3/meshes/library_v3/wooden_piece_2.glb lib=plastic_dish_rack=/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb lib=mini_sweeper=/home/user/v2d-track3/meshes/library_v3/mini_sweeper.glb lib=mini_dust_pan=/home/user/v2d-track3/meshes/library_v3/mini_dust_pan.glb lib=beige_cup=/home/user/v2d-track3/meshes/library_v3/beige_cup.glb > decomp_before.log 2>&1
+../../venv/bin/python fits.py --variants vis,vis_slib,lib,lib_vis --out fits.jsonl > fits.log 2>&1
+../../venv/bin/python decomp.py --models pixal_mv,hy21 --out decomp_other.jsonl > decomp_other.log 2>&1
+echo CHAIN1-DONE

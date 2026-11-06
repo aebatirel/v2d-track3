@@ -1,0 +1,6966 @@
+{
+ "_note": "eval precheck summary (diagnostic only); see README.md",
+ "episodes": {
+  "10": {
+   "ref": "runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_md5": "1a5003d94852c275519066645a1b9869",
+   "ref_md5_match": true,
+   "packed_run": "20261026-gl10A2-5e0e100",
+   "pieces": "meshes/carve/ev10",
+   "objects": [
+    {
+     "name": "blue_cup",
+     "mesh": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+     "pieces_src": "meshes/carve/ev10/blue_cup (53 pieces, one hull each)",
+     "n_pieces": 53,
+     "vis_cm3": 400.32,
+     "vis1_cm3": 398.86,
+     "faithful_cm3": 399.88,
+     "faithful_cells": 49985,
+     "packed_union_cm3": 152.51,
+     "packed_outside_visual_cm3": 34.14,
+     "watertight": true
+    },
+    {
+     "name": "beige_cup",
+     "mesh": "/home/user/v2d-track3/meshes/library_v3/beige_cup.glb",
+     "pieces_src": "meshes/carve/ev10/beige_cup (49 pieces, one hull each)",
+     "n_pieces": 49,
+     "vis_cm3": 157.79,
+     "vis1_cm3": 157.76,
+     "faithful_cm3": 158.43,
+     "faithful_cells": 19804,
+     "packed_union_cm3": 303.08,
+     "packed_outside_visual_cm3": 275.29,
+     "watertight": true
+    }
+   ],
+   "receiver": "blue_cup",
+   "guest": "beige_cup",
+   "frames": 161,
+   "fps": 20.0,
+   "support": {
+    "top_z": 0.6,
+    "centre_xy": [
+     -0.02,
+     0.075
+    ],
+    "radius": 0.317944,
+    "height": 0.02,
+    "file": "dl/runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/reconstructed_stage/t3_ep010_support.usda"
+   },
+   "n_H0": 52,
+   "n_H30": 33,
+   "n_contact_label_frames": 109,
+   "precheck": {
+    "H0": {
+     "frames": 52,
+     "frames_failing": 37,
+     "failing_frames": [
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160
+     ],
+     "n_ov_faithful_gt0": 37,
+     "n_ov_faithful_ge1cm3": 37,
+     "n_ov_packed_ge1cm3": 37,
+     "n_ov_visual_ge1cm3": 37,
+     "max_V_faithful_cm3": {
+      "max": 88.5,
+      "frame": 143
+     },
+     "max_V_packed_cm3": {
+      "max": 32.67,
+      "frame": 124
+     },
+     "max_V_visual_cm3": {
+      "max": 88.61,
+      "frame": 143
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.29,
+        "frame": 10
+       },
+       "max_pen_visual_mm": {
+        "max": 1.35,
+        "frame": 10
+       },
+       "max_pen_packed_mm": {
+        "max": 1.35,
+        "frame": 10
+       },
+       "max_float_faithful_mm": {
+        "max": 1.47,
+        "frame": 3
+       },
+       "max_float_visual_mm": {
+        "max": 1.37,
+        "frame": 3
+       },
+       "n_off_support": 0
+      },
+      "beige_cup": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.45,
+        "frame": 8
+       },
+       "max_pen_visual_mm": {
+        "max": 1.2,
+        "frame": 8
+       },
+       "max_pen_packed_mm": {
+        "max": 0.64,
+        "frame": 12
+       },
+       "max_float_faithful_mm": {
+        "max": 0.99,
+        "frame": 10
+       },
+       "max_float_visual_mm": {
+        "max": 1.34,
+        "frame": 10
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "H30": {
+     "frames": 33,
+     "frames_failing": 25,
+     "failing_frames": [
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160
+     ],
+     "n_ov_faithful_gt0": 25,
+     "n_ov_faithful_ge1cm3": 25,
+     "n_ov_packed_ge1cm3": 25,
+     "n_ov_visual_ge1cm3": 25,
+     "max_V_faithful_cm3": {
+      "max": 88.5,
+      "frame": 143
+     },
+     "max_V_packed_cm3": {
+      "max": 22.37,
+      "frame": 151
+     },
+     "max_V_visual_cm3": {
+      "max": 88.61,
+      "frame": 143
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.29,
+        "frame": 1
+       },
+       "max_pen_visual_mm": {
+        "max": 1.32,
+        "frame": 1
+       },
+       "max_pen_packed_mm": {
+        "max": 1.32,
+        "frame": 1
+       },
+       "max_float_faithful_mm": {
+        "max": 1.47,
+        "frame": 3
+       },
+       "max_float_visual_mm": {
+        "max": 1.37,
+        "frame": 3
+       },
+       "n_off_support": 0
+      },
+      "beige_cup": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.2,
+        "frame": 6
+       },
+       "max_pen_visual_mm": {
+        "max": 0.94,
+        "frame": 6
+       },
+       "max_pen_packed_mm": {
+        "max": 0.16,
+        "frame": 6
+       },
+       "max_float_faithful_mm": {
+        "max": 0.65,
+        "frame": 3
+       },
+       "max_float_visual_mm": {
+        "max": 0.89,
+        "frame": 3
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "all": {
+     "frames": 161,
+     "frames_failing": 118,
+     "failing_frames": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160
+     ],
+     "n_ov_faithful_gt0": 88,
+     "n_ov_faithful_ge1cm3": 87,
+     "n_ov_packed_ge1cm3": 79,
+     "n_ov_visual_ge1cm3": 87,
+     "max_V_faithful_cm3": {
+      "max": 93.12,
+      "frame": 108
+     },
+     "max_V_packed_cm3": {
+      "max": 36.2,
+      "frame": 105
+     },
+     "max_V_visual_cm3": {
+      "max": 93.53,
+      "frame": 116
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 6,
+       "n_fail_b_float": 10,
+       "max_pen_faithful_mm": {
+        "max": 11.38,
+        "frame": 94
+       },
+       "max_pen_visual_mm": {
+        "max": 10.57,
+        "frame": 94
+       },
+       "max_pen_packed_mm": {
+        "max": 10.56,
+        "frame": 94
+       },
+       "max_float_faithful_mm": {
+        "max": 16.09,
+        "frame": 46
+       },
+       "max_float_visual_mm": {
+        "max": 16.25,
+        "frame": 46
+       },
+       "n_off_support": 0
+      },
+      "beige_cup": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 31,
+       "max_pen_faithful_mm": {
+        "max": 2.08,
+        "frame": 17
+       },
+       "max_pen_visual_mm": {
+        "max": 1.77,
+        "frame": 17
+       },
+       "max_pen_packed_mm": {
+        "max": 2.26,
+        "frame": 17
+       },
+       "max_float_faithful_mm": {
+        "max": 87.11,
+        "frame": 40
+       },
+       "max_float_visual_mm": {
+        "max": 87.26,
+        "frame": 40
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "object_hand_free": {
+     "blue_cup": {
+      "frames": 52,
+      "n_fail_a_table": 0,
+      "n_fail_b_float": 0,
+      "max_pen_faithful_mm": {
+       "max": 1.29,
+       "frame": 10
+      },
+      "max_pen_visual_mm": {
+       "max": 1.35,
+       "frame": 10
+      },
+      "max_pen_packed_mm": {
+       "max": 1.35,
+       "frame": 10
+      },
+      "max_float_faithful_mm": {
+       "max": 1.47,
+       "frame": 3
+      },
+      "max_float_visual_mm": {
+       "max": 1.37,
+       "frame": 3
+      },
+      "n_off_support": 0
+     },
+     "beige_cup": {
+      "frames": 55,
+      "n_fail_a_table": 0,
+      "n_fail_b_float": 0,
+      "max_pen_faithful_mm": {
+       "max": 1.45,
+       "frame": 8
+      },
+      "max_pen_visual_mm": {
+       "max": 1.2,
+       "frame": 8
+      },
+      "max_pen_packed_mm": {
+       "max": 0.64,
+       "frame": 12
+      },
+      "max_float_faithful_mm": {
+       "max": 0.99,
+       "frame": 10
+      },
+      "max_float_visual_mm": {
+       "max": 1.34,
+       "frame": 10
+      },
+      "n_off_support": 0
+     }
+    }
+   },
+   "cavity": {
+    "all": {
+     "frames": 161,
+     "frames_guest_in_receiver_cavity": 92,
+     "cavity_frames": [
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 47.0,
+      "frame": 100
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 60.88,
+      "frame": 104
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 93.53,
+      "frame": 116
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 11.31,
+      "frame": 104
+     },
+     "n_frames_rpk_only_ge1cm3": 78,
+     "n_cavity_frames_rpk_only_ge1cm3": 78,
+     "n_cavity_frames_rpk_ge1cm3": 87,
+     "n_cavity_frames_rvis_ge1cm3": 87,
+     "n_cavity_frames_rpk_le0p1cm3": 5,
+     "max_depth_pk_mm": {
+      "max": 3.2,
+      "frame": 146
+     },
+     "max_depth_vis_mm": {
+      "max": 14.61,
+      "frame": 91
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 60.88,
+      "frame": 104
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 11.31,
+      "frame": 104
+     },
+     "packed_blocks_beyond_visual": true,
+     "packed_blocks": true
+    },
+    "H0": {
+     "frames": 52,
+     "frames_guest_in_receiver_cavity": 37,
+     "cavity_frames": [
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 41.38,
+      "frame": 126
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 53.58,
+      "frame": 143
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 88.61,
+      "frame": 143
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 6.92,
+      "frame": 126
+     },
+     "n_frames_rpk_only_ge1cm3": 37,
+     "n_cavity_frames_rpk_only_ge1cm3": 37,
+     "n_cavity_frames_rpk_ge1cm3": 37,
+     "n_cavity_frames_rvis_ge1cm3": 37,
+     "n_cavity_frames_rpk_le0p1cm3": 0,
+     "max_depth_pk_mm": {
+      "max": 3.2,
+      "frame": 146
+     },
+     "max_depth_vis_mm": {
+      "max": 8.3,
+      "frame": 129
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 53.58,
+      "frame": 143
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 6.92,
+      "frame": 126
+     },
+     "packed_blocks_beyond_visual": true,
+     "packed_blocks": true
+    }
+   },
+   "contacts": {
+    "max_nefc": 1296,
+    "max_ncon": 324,
+    "overflow_any": true,
+    "pieces": [
+     53,
+     49
+    ],
+    "frame_pick": {
+     "static_near_runs": 1,
+     "frames_near": 89,
+     "frames": 161
+    },
+    "frames": [
+     {
+      "frame": 111,
+      "run": [
+       105,
+       117
+      ],
+      "length": 13,
+      "kind": "static",
+      "hands": "in_hand",
+      "max_nefc": 1252,
+      "median_max_nefc": 836.0,
+      "max_ncon": 313,
+      "median_max_ncon": 209.0,
+      "overflow_copies": 16,
+      "nan_copies": 0,
+      "step_max_nefc": 3,
+      "classes_at_max_nefc": {
+       "guest_receiver": 313,
+       "guest_table": 0,
+       "receiver_table": 0
+      },
+      "pair_at_frame": {
+       "V_packed": 26.254125,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 89.48
+      },
+      "secs": 5.8
+     },
+     {
+      "frame": 142,
+      "run": [
+       124,
+       160
+      ],
+      "length": 37,
+      "kind": "not_static",
+      "hands": "H0",
+      "max_nefc": 656,
+      "median_max_nefc": 536.0,
+      "max_ncon": 164,
+      "median_max_ncon": 134.0,
+      "overflow_copies": 16,
+      "nan_copies": 0,
+      "step_max_nefc": 3,
+      "classes_at_max_nefc": {
+       "guest_receiver": 164,
+       "guest_table": 0,
+       "receiver_table": 0
+      },
+      "pair_at_frame": {
+       "V_packed": 19.2915,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 83.464
+      },
+      "secs": 3.9
+     },
+     {
+      "frame": 116,
+      "run": [
+       72,
+       160
+      ],
+      "length": 89,
+      "kind": "not_static",
+      "hands": "in_hand",
+      "max_nefc": 1296,
+      "median_max_nefc": 958.0,
+      "max_ncon": 324,
+      "median_max_ncon": 239.5,
+      "overflow_copies": 16,
+      "nan_copies": 0,
+      "step_max_nefc": 1,
+      "classes_at_max_nefc": {
+       "guest_receiver": 324,
+       "guest_table": 0,
+       "receiver_table": 0
+      },
+      "pair_at_frame": {
+       "V_packed": 27.934874999999998,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 92.352
+      },
+      "secs": 5.1
+     }
+    ]
+   }
+  },
+  "1": {
+   "ref": "runs/20261024-pack-31ef267/refs/perc2mck/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+   "ref_md5": "7f2304663b4e3c55a0a1ad12503174c1",
+   "ref_md5_match": true,
+   "packed_run": "20261025-std0116-ee7ba8e",
+   "pieces": "meshes/carve/ev01",
+   "objects": [
+    {
+     "name": "white_pot",
+     "mesh": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+     "pieces_src": "meshes/carve/ev01/white_pot (53 pieces, one hull each)",
+     "n_pieces": 53,
+     "vis_cm3": 624.62,
+     "vis1_cm3": 625.55,
+     "faithful_cm3": 625.66,
+     "faithful_cells": 78207,
+     "packed_union_cm3": 770.45,
+     "packed_outside_visual_cm3": 230.2,
+     "watertight": true
+    },
+    {
+     "name": "white_pot_lid",
+     "mesh": "/home/user/v2d-track3/meshes/library_v3/white_pot_lid.glb",
+     "pieces_src": "meshes/carve/ev01/white_pot_lid (107 pieces, one hull each)",
+     "n_pieces": 107,
+     "vis_cm3": 287.97,
+     "vis1_cm3": 288.07,
+     "faithful_cm3": 289.19,
+     "faithful_cells": 36149,
+     "packed_union_cm3": 262.85,
+     "packed_outside_visual_cm3": 30.33,
+     "watertight": true
+    }
+   ],
+   "receiver": "white_pot",
+   "guest": "white_pot_lid",
+   "frames": 335,
+   "fps": 20.0,
+   "support": {
+    "top_z": 0.6,
+    "centre_xy": [
+     -0.00121,
+     -0.027937
+    ],
+    "radius": 0.2392,
+    "height": 0.02,
+    "file": "dl/runs/20261024-pack-31ef267/refs/perc2mck/ep1/reconstructed_stage/t3_ep001_support.usda"
+   },
+   "n_H0": 56,
+   "n_H30": 50,
+   "n_contact_label_frames": 279,
+   "precheck": {
+    "H0": {
+     "frames": 56,
+     "frames_failing": 56,
+     "failing_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334
+     ],
+     "n_ov_faithful_gt0": 56,
+     "n_ov_faithful_ge1cm3": 56,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 56,
+     "max_V_faithful_cm3": {
+      "max": 34.86,
+      "frame": 326
+     },
+     "max_V_packed_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_visual_cm3": {
+      "max": 35.28,
+      "frame": 326
+     },
+     "objects": {
+      "white_pot": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 2.41,
+        "frame": 28
+       },
+       "max_pen_visual_mm": {
+        "max": 1.36,
+        "frame": 28
+       },
+       "max_pen_packed_mm": {
+        "max": 1.36,
+        "frame": 28
+       },
+       "max_float_faithful_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_float_visual_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "n_off_support": 0
+      },
+      "white_pot_lid": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_pen_visual_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_pen_packed_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_float_faithful_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_float_visual_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "H30": {
+     "frames": 50,
+     "frames_failing": 50,
+     "failing_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334
+     ],
+     "n_ov_faithful_gt0": 50,
+     "n_ov_faithful_ge1cm3": 50,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 50,
+     "max_V_faithful_cm3": {
+      "max": 34.86,
+      "frame": 326
+     },
+     "max_V_packed_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_visual_cm3": {
+      "max": 35.28,
+      "frame": 326
+     },
+     "objects": {
+      "white_pot": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 2.28,
+        "frame": 22
+       },
+       "max_pen_visual_mm": {
+        "max": 1.27,
+        "frame": 22
+       },
+       "max_pen_packed_mm": {
+        "max": 1.27,
+        "frame": 22
+       },
+       "max_float_faithful_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_float_visual_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "n_off_support": 0
+      },
+      "white_pot_lid": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_pen_visual_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_pen_packed_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_float_faithful_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_float_visual_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "all": {
+     "frames": 335,
+     "frames_failing": 234,
+     "failing_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      79,
+      80,
+      81,
+      82,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      247,
+      248,
+      249,
+      251,
+      252,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299,
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334
+     ],
+     "n_ov_faithful_gt0": 118,
+     "n_ov_faithful_ge1cm3": 113,
+     "n_ov_packed_ge1cm3": 1,
+     "n_ov_visual_ge1cm3": 113,
+     "max_V_faithful_cm3": {
+      "max": 36.91,
+      "frame": 298
+     },
+     "max_V_packed_cm3": {
+      "max": 1.15,
+      "frame": 267
+     },
+     "max_V_visual_cm3": {
+      "max": 37.24,
+      "frame": 298
+     },
+     "objects": {
+      "white_pot": {
+       "n_fail_a_table": 1,
+       "n_fail_b_float": 85,
+       "max_pen_faithful_mm": {
+        "max": 5.08,
+        "frame": 55
+       },
+       "max_pen_visual_mm": {
+        "max": 4.08,
+        "frame": 55
+       },
+       "max_pen_packed_mm": {
+        "max": 4.08,
+        "frame": 55
+       },
+       "max_float_faithful_mm": {
+        "max": 100.0,
+        "frame": 149
+       },
+       "max_float_visual_mm": {
+        "max": 100.0,
+        "frame": 149
+       },
+       "n_off_support": 0
+      },
+      "white_pot_lid": {
+       "n_fail_a_table": 7,
+       "n_fail_b_float": 29,
+       "max_pen_faithful_mm": {
+        "max": 6.99,
+        "frame": 248
+       },
+       "max_pen_visual_mm": {
+        "max": 6.72,
+        "frame": 248
+       },
+       "max_pen_packed_mm": {
+        "max": 6.72,
+        "frame": 248
+       },
+       "max_float_faithful_mm": {
+        "max": 34.07,
+        "frame": 256
+       },
+       "max_float_visual_mm": {
+        "max": 35.58,
+        "frame": 256
+       },
+       "n_off_support": 6
+      }
+     }
+    },
+    "object_hand_free": {
+     "white_pot": {
+      "frames": 101,
+      "n_fail_a_table": 1,
+      "n_fail_b_float": 0,
+      "max_pen_faithful_mm": {
+       "max": 5.08,
+       "frame": 55
+      },
+      "max_pen_visual_mm": {
+       "max": 4.08,
+       "frame": 55
+      },
+      "max_pen_packed_mm": {
+       "max": 4.08,
+       "frame": 55
+      },
+      "max_float_faithful_mm": {
+       "max": 0.2,
+       "frame": 47
+      },
+      "max_float_visual_mm": {
+       "max": 1.08,
+       "frame": 54
+      },
+      "n_off_support": 0
+     },
+     "white_pot_lid": {
+      "frames": 211,
+      "n_fail_a_table": 0,
+      "n_fail_b_float": 0,
+      "max_pen_faithful_mm": {
+       "max": 1.89,
+       "frame": 144
+      },
+      "max_pen_visual_mm": {
+       "max": 1.73,
+       "frame": 144
+      },
+      "max_pen_packed_mm": {
+       "max": 1.73,
+       "frame": 144
+      },
+      "max_float_faithful_mm": {
+       "max": 1.15,
+       "frame": 201
+      },
+      "max_float_visual_mm": {
+       "max": 1.22,
+       "frame": 201
+      },
+      "n_off_support": 0
+     }
+    }
+   },
+   "cavity": {
+    "all": {
+     "frames": 335,
+     "frames_guest_in_receiver_cavity": 119,
+     "cavity_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299,
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 245.13,
+      "frame": 0
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 1.07,
+      "frame": 267
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 37.24,
+      "frame": 298
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 0.36,
+      "frame": 267
+     },
+     "n_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_ge1cm3": 1,
+     "n_cavity_frames_rvis_ge1cm3": 113,
+     "n_cavity_frames_rpk_le0p1cm3": 115,
+     "max_depth_pk_mm": {
+      "max": 5.0,
+      "frame": 267
+     },
+     "max_depth_vis_mm": {
+      "max": 7.73,
+      "frame": 4
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 1.07,
+      "frame": 267
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 0.36,
+      "frame": 267
+     },
+     "packed_blocks_beyond_visual": false,
+     "packed_blocks": true
+    },
+    "H0": {
+     "frames": 56,
+     "frames_guest_in_receiver_cavity": 56,
+     "cavity_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 245.13,
+      "frame": 0
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 35.28,
+      "frame": 326
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "n_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_ge1cm3": 0,
+     "n_cavity_frames_rvis_ge1cm3": 56,
+     "n_cavity_frames_rpk_le0p1cm3": 56,
+     "max_depth_pk_mm": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_depth_vis_mm": {
+      "max": 7.73,
+      "frame": 4
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "packed_blocks_beyond_visual": false,
+     "packed_blocks": false
+    }
+   },
+   "contacts": {
+    "max_nefc": 420,
+    "max_ncon": 105,
+    "overflow_any": false,
+    "pieces": [
+     53,
+     107
+    ],
+    "frame_pick": {
+     "static_near_runs": 4,
+     "frames_near": 78,
+     "frames": 335
+    },
+    "frames": [
+     {
+      "frame": 10,
+      "run": [
+       0,
+       21
+      ],
+      "length": 22,
+      "kind": "static",
+      "hands": "H30",
+      "max_nefc": 240,
+      "median_max_nefc": 200.0,
+      "max_ncon": 60,
+      "median_max_ncon": 50.0,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 11,
+      "classes_at_max_nefc": {
+       "guest_receiver": 55,
+       "guest_table": 0,
+       "receiver_table": 5
+      },
+      "pair_at_frame": {
+       "V_packed": 0.0,
+       "dist_packed_mm": 3.181410561569011,
+       "V_faithful": 26.664
+      },
+      "secs": 3.3
+     },
+     {
+      "frame": 288,
+      "run": [
+       285,
+       291
+      ],
+      "length": 7,
+      "kind": "static",
+      "hands": "in_hand",
+      "max_nefc": 420,
+      "median_max_nefc": 190.0,
+      "max_ncon": 105,
+      "median_max_ncon": 47.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 5,
+      "classes_at_max_nefc": {
+       "guest_receiver": 75,
+       "guest_table": 0,
+       "receiver_table": 30
+      },
+      "pair_at_frame": {
+       "V_packed": 0.0,
+       "dist_packed_mm": 3.6925223583596707,
+       "V_faithful": 31.632000000000005
+      },
+      "secs": 3.2
+     },
+     {
+      "frame": 40,
+      "run": [
+       38,
+       43
+      ],
+      "length": 6,
+      "kind": "static",
+      "hands": "in_hand",
+      "max_nefc": 256,
+      "median_max_nefc": 198.0,
+      "max_ncon": 64,
+      "median_max_ncon": 49.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 4,
+      "classes_at_max_nefc": {
+       "guest_receiver": 47,
+       "guest_table": 0,
+       "receiver_table": 17
+      },
+      "pair_at_frame": {
+       "V_packed": 0.0,
+       "dist_packed_mm": 3.9080636720396713,
+       "V_faithful": 27.456000000000003
+      },
+      "secs": 4.1
+     }
+    ]
+   }
+  },
+  "14": {
+   "ref": "runs/20261025-evb1420-ee7ba8e/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_md5": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+   "ref_md5_match": true,
+   "packed_run": "20261025-evb1420-ee7ba8e",
+   "pieces": null,
+   "objects": [
+    {
+     "name": "blue_cup",
+     "mesh": "dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/assets/mesh/blue_cup/blue_cup.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (cup_lib, 76 hulls)",
+     "n_pieces": 76,
+     "vis_cm3": 400.32,
+     "vis1_cm3": 398.86,
+     "faithful_cm3": 399.88,
+     "faithful_cells": 49985,
+     "packed_union_cm3": 449.05,
+     "packed_outside_visual_cm3": 50.2,
+     "watertight": true
+    },
+    {
+     "name": "plastic_dish_rack",
+     "mesh": "dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (rack_lib, 43 hulls)",
+     "n_pieces": 43,
+     "vis_cm3": 866.37,
+     "vis1_cm3": 866.8,
+     "faithful_cm3": 868.3,
+     "faithful_cells": 108537,
+     "packed_union_cm3": 1210.28,
+     "packed_outside_visual_cm3": 343.5,
+     "watertight": true
+    }
+   ],
+   "receiver": "plastic_dish_rack",
+   "guest": "blue_cup",
+   "frames": 158,
+   "fps": 20.0,
+   "support": {
+    "top_z": 0.6,
+    "centre_xy": [
+     0.035,
+     -0.06
+    ],
+    "radius": 0.254904,
+    "height": 0.02,
+    "file": "dl/runs/20261025-evb1420-ee7ba8e/refs/glockt/ep14/reconstructed_stage/t3_ep014_support.usda"
+   },
+   "n_H0": 63,
+   "n_H30": 29,
+   "n_contact_label_frames": 95,
+   "precheck": {
+    "H0": {
+     "frames": 63,
+     "frames_failing": 47,
+     "failing_frames": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157
+     ],
+     "n_ov_faithful_gt0": 46,
+     "n_ov_faithful_ge1cm3": 46,
+     "n_ov_packed_ge1cm3": 46,
+     "n_ov_visual_ge1cm3": 46,
+     "max_V_faithful_cm3": {
+      "max": 24.94,
+      "frame": 42
+     },
+     "max_V_packed_cm3": {
+      "max": 38.18,
+      "frame": 42
+     },
+     "max_V_visual_cm3": {
+      "max": 25.02,
+      "frame": 42
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 5,
+       "n_fail_b_float": 1,
+       "max_pen_faithful_mm": {
+        "max": 16.59,
+        "frame": 42
+       },
+       "max_pen_visual_mm": {
+        "max": 15.65,
+        "frame": 42
+       },
+       "max_pen_packed_mm": {
+        "max": 15.65,
+        "frame": 42
+       },
+       "max_float_faithful_mm": {
+        "max": 13.77,
+        "frame": 39
+       },
+       "max_float_visual_mm": {
+        "max": 15.12,
+        "frame": 39
+       },
+       "n_off_support": 0
+      },
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 3.94,
+        "frame": 157
+       },
+       "max_pen_visual_mm": {
+        "max": 3.15,
+        "frame": 157
+       },
+       "max_pen_packed_mm": {
+        "max": 3.15,
+        "frame": 157
+       },
+       "max_float_faithful_mm": {
+        "max": 0.51,
+        "frame": 14
+       },
+       "max_float_visual_mm": {
+        "max": 0.94,
+        "frame": 14
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "H30": {
+     "frames": 29,
+     "frames_failing": 18,
+     "failing_frames": [
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157
+     ],
+     "n_ov_faithful_gt0": 18,
+     "n_ov_faithful_ge1cm3": 18,
+     "n_ov_packed_ge1cm3": 18,
+     "n_ov_visual_ge1cm3": 18,
+     "max_V_faithful_cm3": {
+      "max": 10.73,
+      "frame": 154
+     },
+     "max_V_packed_cm3": {
+      "max": 17.65,
+      "frame": 154
+     },
+     "max_V_visual_cm3": {
+      "max": 10.83,
+      "frame": 154
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.42,
+        "frame": 8
+       },
+       "max_pen_visual_mm": {
+        "max": 1.45,
+        "frame": 8
+       },
+       "max_pen_packed_mm": {
+        "max": 1.45,
+        "frame": 8
+       },
+       "max_float_faithful_mm": {
+        "max": 1.3,
+        "frame": 9
+       },
+       "max_float_visual_mm": {
+        "max": 1.22,
+        "frame": 9
+       },
+       "n_off_support": 0
+      },
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 3.94,
+        "frame": 157
+       },
+       "max_pen_visual_mm": {
+        "max": 3.15,
+        "frame": 157
+       },
+       "max_pen_packed_mm": {
+        "max": 3.15,
+        "frame": 157
+       },
+       "max_float_faithful_mm": {
+        "max": 0.47,
+        "frame": 5
+       },
+       "max_float_visual_mm": {
+        "max": 0.82,
+        "frame": 5
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "all": {
+     "frames": 158,
+     "frames_failing": 128,
+     "failing_frames": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157
+     ],
+     "n_ov_faithful_gt0": 66,
+     "n_ov_faithful_ge1cm3": 62,
+     "n_ov_packed_ge1cm3": 66,
+     "n_ov_visual_ge1cm3": 62,
+     "max_V_faithful_cm3": {
+      "max": 24.94,
+      "frame": 42
+     },
+     "max_V_packed_cm3": {
+      "max": 38.18,
+      "frame": 42
+     },
+     "max_V_visual_cm3": {
+      "max": 25.02,
+      "frame": 42
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 5,
+       "n_fail_b_float": 66,
+       "max_pen_faithful_mm": {
+        "max": 16.59,
+        "frame": 42
+       },
+       "max_pen_visual_mm": {
+        "max": 15.65,
+        "frame": 42
+       },
+       "max_pen_packed_mm": {
+        "max": 15.65,
+        "frame": 42
+       },
+       "max_float_faithful_mm": {
+        "max": 100.0,
+        "frame": 33
+       },
+       "max_float_visual_mm": {
+        "max": 100.0,
+        "frame": 32
+       },
+       "n_off_support": 0
+      },
+      "plastic_dish_rack": {
+       "n_fail_a_table": 1,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 4.49,
+        "frame": 51
+       },
+       "max_pen_visual_mm": {
+        "max": 4.17,
+        "frame": 51
+       },
+       "max_pen_packed_mm": {
+        "max": 4.17,
+        "frame": 51
+       },
+       "max_float_faithful_mm": {
+        "max": 1.68,
+        "frame": 71
+       },
+       "max_float_visual_mm": {
+        "max": 2.11,
+        "frame": 71
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "object_hand_free": {
+     "blue_cup": {
+      "frames": 63,
+      "n_fail_a_table": 5,
+      "n_fail_b_float": 1,
+      "max_pen_faithful_mm": {
+       "max": 16.59,
+       "frame": 42
+      },
+      "max_pen_visual_mm": {
+       "max": 15.65,
+       "frame": 42
+      },
+      "max_pen_packed_mm": {
+       "max": 15.65,
+       "frame": 42
+      },
+      "max_float_faithful_mm": {
+       "max": 13.77,
+       "frame": 39
+      },
+      "max_float_visual_mm": {
+       "max": 15.12,
+       "frame": 39
+      },
+      "n_off_support": 0
+     },
+     "plastic_dish_rack": {
+      "frames": 158,
+      "n_fail_a_table": 1,
+      "n_fail_b_float": 0,
+      "max_pen_faithful_mm": {
+       "max": 4.49,
+       "frame": 51
+      },
+      "max_pen_visual_mm": {
+       "max": 4.17,
+       "frame": 51
+      },
+      "max_pen_packed_mm": {
+       "max": 4.17,
+       "frame": 51
+      },
+      "max_float_faithful_mm": {
+       "max": 1.68,
+       "frame": 71
+      },
+      "max_float_visual_mm": {
+       "max": 2.11,
+       "frame": 71
+      },
+      "n_off_support": 0
+     }
+    }
+   },
+   "cavity": {
+    "all": {
+     "frames": 158,
+     "frames_guest_in_receiver_cavity": 71,
+     "cavity_frames": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 178.45,
+      "frame": 42
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 35.55,
+      "frame": 42
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 25.02,
+      "frame": 42
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 10.52,
+      "frame": 42
+     },
+     "n_frames_rpk_only_ge1cm3": 60,
+     "n_cavity_frames_rpk_only_ge1cm3": 60,
+     "n_cavity_frames_rpk_ge1cm3": 63,
+     "n_cavity_frames_rvis_ge1cm3": 62,
+     "n_cavity_frames_rpk_le0p1cm3": 5,
+     "max_depth_pk_mm": {
+      "max": 10.73,
+      "frame": 43
+     },
+     "max_depth_vis_mm": {
+      "max": 9.7,
+      "frame": 45
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 35.55,
+      "frame": 42
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 10.52,
+      "frame": 42
+     },
+     "packed_blocks_beyond_visual": true,
+     "packed_blocks": true
+    },
+    "H0": {
+     "frames": 63,
+     "frames_guest_in_receiver_cavity": 47,
+     "cavity_frames": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 178.45,
+      "frame": 42
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 35.55,
+      "frame": 42
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 25.02,
+      "frame": 42
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 10.52,
+      "frame": 42
+     },
+     "n_frames_rpk_only_ge1cm3": 46,
+     "n_cavity_frames_rpk_only_ge1cm3": 46,
+     "n_cavity_frames_rpk_ge1cm3": 46,
+     "n_cavity_frames_rvis_ge1cm3": 46,
+     "n_cavity_frames_rpk_le0p1cm3": 1,
+     "max_depth_pk_mm": {
+      "max": 10.73,
+      "frame": 43
+     },
+     "max_depth_vis_mm": {
+      "max": 9.7,
+      "frame": 45
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 35.55,
+      "frame": 42
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 10.52,
+      "frame": 42
+     },
+     "packed_blocks_beyond_visual": true,
+     "packed_blocks": true
+    }
+   },
+   "contacts": {
+    "max_nefc": 312,
+    "max_ncon": 78,
+    "overflow_any": false,
+    "pieces": [
+     43,
+     76
+    ],
+    "frame_pick": {
+     "static_near_runs": 2,
+     "frames_near": 68,
+     "frames": 158
+    },
+    "frames": [
+     {
+      "frame": 149,
+      "run": [
+       142,
+       157
+      ],
+      "length": 16,
+      "kind": "static",
+      "hands": "H30",
+      "max_nefc": 300,
+      "median_max_nefc": 194.0,
+      "max_ncon": 75,
+      "median_max_ncon": 48.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 14,
+      "classes_at_max_nefc": {
+       "guest_receiver": 15,
+       "guest_table": 0,
+       "receiver_table": 60
+      },
+      "pair_at_frame": {
+       "V_packed": 15.4035,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 8.816
+      },
+      "secs": 3.4
+     },
+     {
+      "frame": 135,
+      "run": [
+       131,
+       140
+      ],
+      "length": 10,
+      "kind": "static",
+      "hands": "H0",
+      "max_nefc": 260,
+      "median_max_nefc": 234.0,
+      "max_ncon": 65,
+      "median_max_ncon": 58.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 4,
+      "classes_at_max_nefc": {
+       "guest_receiver": 28,
+       "guest_table": 0,
+       "receiver_table": 37
+      },
+      "pair_at_frame": {
+       "V_packed": 16.3755,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 9.392000000000001
+      },
+      "secs": 3.7
+     },
+     {
+      "frame": 137,
+      "run": [
+       118,
+       157
+      ],
+      "length": 40,
+      "kind": "not_static",
+      "hands": "H0",
+      "max_nefc": 312,
+      "median_max_nefc": 280.0,
+      "max_ncon": 78,
+      "median_max_ncon": 70.0,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 14,
+      "classes_at_max_nefc": {
+       "guest_receiver": 15,
+       "guest_table": 0,
+       "receiver_table": 63
+      },
+      "pair_at_frame": {
+       "V_packed": 16.142625,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 9.32
+      },
+      "secs": 3.2
+     }
+    ]
+   }
+  },
+  "15": {
+   "ref": "runs/20261024-pack-31ef267/refs/glockt/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_md5": "1d7f2d1c086f825c575d8845131222c9",
+   "ref_md5_match": true,
+   "packed_run": "20261024-seed43-61101f5",
+   "pieces": null,
+   "objects": [
+    {
+     "name": "plastic_dish_rack",
+     "mesh": "dl/runs/20261024-pack-31ef267/refs/sf/ep15/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (rack_lib, 43 hulls)",
+     "n_pieces": 43,
+     "vis_cm3": 866.37,
+     "vis1_cm3": 866.8,
+     "faithful_cm3": 868.3,
+     "faithful_cells": 108537,
+     "packed_union_cm3": 1210.28,
+     "packed_outside_visual_cm3": 343.5,
+     "watertight": true
+    },
+    {
+     "name": "wooden_spoon",
+     "mesh": "dl/runs/20261024-pack-31ef267/refs/sf/ep15/assets/mesh/wooden_spoon/wooden_spoon.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (spoon_lib, 10 hulls)",
+     "n_pieces": 10,
+     "vis_cm3": 84.83,
+     "vis1_cm3": 85.01,
+     "faithful_cm3": 84.38,
+     "faithful_cells": 10547,
+     "packed_union_cm3": 97.67,
+     "packed_outside_visual_cm3": 12.68,
+     "watertight": true
+    }
+   ],
+   "receiver": "plastic_dish_rack",
+   "guest": "wooden_spoon",
+   "frames": 166,
+   "fps": 20.0,
+   "support": {
+    "top_z": 0.6,
+    "centre_xy": [
+     -0.01,
+     0.065
+    ],
+    "radius": 0.343502,
+    "height": 0.02,
+    "file": "dl/runs/20261024-pack-31ef267/refs/glockt/ep15/reconstructed_stage/t3_ep015_support.usda"
+   },
+   "n_H0": 92,
+   "n_H30": 54,
+   "n_contact_label_frames": 74,
+   "precheck": {
+    "H0": {
+     "frames": 92,
+     "frames_failing": 24,
+     "failing_frames": [
+      30,
+      32,
+      62,
+      109,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      119,
+      124,
+      125,
+      126,
+      134,
+      140,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148
+     ],
+     "n_ov_faithful_gt0": 3,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.34,
+      "frame": 153
+     },
+     "max_V_packed_cm3": {
+      "max": 0.73,
+      "frame": 153
+     },
+     "max_V_visual_cm3": {
+      "max": 0.34,
+      "frame": 153
+     },
+     "objects": {
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 2.5,
+        "frame": 131
+       },
+       "max_pen_visual_mm": {
+        "max": 2.13,
+        "frame": 131
+       },
+       "max_pen_packed_mm": {
+        "max": 2.12,
+        "frame": 131
+       },
+       "max_float_faithful_mm": {
+        "max": 1.51,
+        "frame": 139
+       },
+       "max_float_visual_mm": {
+        "max": 1.86,
+        "frame": 139
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 1,
+       "n_fail_b_float": 23,
+       "max_pen_faithful_mm": {
+        "max": 5.05,
+        "frame": 30
+       },
+       "max_pen_visual_mm": {
+        "max": 4.93,
+        "frame": 30
+       },
+       "max_pen_packed_mm": {
+        "max": 4.93,
+        "frame": 30
+       },
+       "max_float_faithful_mm": {
+        "max": 61.02,
+        "frame": 62
+       },
+       "max_float_visual_mm": {
+        "max": 62.35,
+        "frame": 62
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "H30": {
+     "frames": 54,
+     "frames_failing": 12,
+     "failing_frames": [
+      124,
+      125,
+      126,
+      134,
+      140,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148
+     ],
+     "n_ov_faithful_gt0": 2,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.34,
+      "frame": 153
+     },
+     "max_V_packed_cm3": {
+      "max": 0.73,
+      "frame": 153
+     },
+     "max_V_visual_cm3": {
+      "max": 0.34,
+      "frame": 153
+     },
+     "objects": {
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 2.5,
+        "frame": 131
+       },
+       "max_pen_visual_mm": {
+        "max": 2.13,
+        "frame": 131
+       },
+       "max_pen_packed_mm": {
+        "max": 2.12,
+        "frame": 131
+       },
+       "max_float_faithful_mm": {
+        "max": 1.51,
+        "frame": 139
+       },
+       "max_float_visual_mm": {
+        "max": 1.86,
+        "frame": 139
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 12,
+       "max_pen_faithful_mm": {
+        "max": 1.72,
+        "frame": 2
+       },
+       "max_pen_visual_mm": {
+        "max": 0.95,
+        "frame": 2
+       },
+       "max_pen_packed_mm": {
+        "max": 0.95,
+        "frame": 2
+       },
+       "max_float_faithful_mm": {
+        "max": 6.45,
+        "frame": 147
+       },
+       "max_float_visual_mm": {
+        "max": 6.73,
+        "frame": 147
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "all": {
+     "frames": 166,
+     "frames_failing": 80,
+     "failing_frames": [
+      30,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      101,
+      104,
+      109,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      119,
+      124,
+      125,
+      126,
+      134,
+      140,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148
+     ],
+     "n_ov_faithful_gt0": 4,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.34,
+      "frame": 153
+     },
+     "max_V_packed_cm3": {
+      "max": 0.73,
+      "frame": 153
+     },
+     "max_V_visual_cm3": {
+      "max": 0.34,
+      "frame": 153
+     },
+     "objects": {
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 2.5,
+        "frame": 131
+       },
+       "max_pen_visual_mm": {
+        "max": 2.13,
+        "frame": 131
+       },
+       "max_pen_packed_mm": {
+        "max": 2.12,
+        "frame": 131
+       },
+       "max_float_faithful_mm": {
+        "max": 1.51,
+        "frame": 139
+       },
+       "max_float_visual_mm": {
+        "max": 1.86,
+        "frame": 139
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 1,
+       "n_fail_b_float": 79,
+       "max_pen_faithful_mm": {
+        "max": 5.05,
+        "frame": 30
+       },
+       "max_pen_visual_mm": {
+        "max": 4.93,
+        "frame": 30
+       },
+       "max_pen_packed_mm": {
+        "max": 4.93,
+        "frame": 30
+       },
+       "max_float_faithful_mm": {
+        "max": 100.0,
+        "frame": 57
+       },
+       "max_float_visual_mm": {
+        "max": 100.0,
+        "frame": 57
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "object_hand_free": {
+     "plastic_dish_rack": {
+      "frames": 166,
+      "n_fail_a_table": 0,
+      "n_fail_b_float": 0,
+      "max_pen_faithful_mm": {
+       "max": 2.5,
+       "frame": 131
+      },
+      "max_pen_visual_mm": {
+       "max": 2.13,
+       "frame": 131
+      },
+      "max_pen_packed_mm": {
+       "max": 2.12,
+       "frame": 131
+      },
+      "max_float_faithful_mm": {
+       "max": 1.51,
+       "frame": 139
+      },
+      "max_float_visual_mm": {
+       "max": 1.86,
+       "frame": 139
+      },
+      "n_off_support": 0
+     },
+     "wooden_spoon": {
+      "frames": 92,
+      "n_fail_a_table": 1,
+      "n_fail_b_float": 23,
+      "max_pen_faithful_mm": {
+       "max": 5.05,
+       "frame": 30
+      },
+      "max_pen_visual_mm": {
+       "max": 4.93,
+       "frame": 30
+      },
+      "max_pen_packed_mm": {
+       "max": 4.93,
+       "frame": 30
+      },
+      "max_float_faithful_mm": {
+       "max": 61.02,
+       "frame": 62
+      },
+      "max_float_visual_mm": {
+       "max": 62.35,
+       "frame": 62
+      },
+      "n_off_support": 0
+     }
+    }
+   },
+   "cavity": {
+    "all": {
+     "frames": 166,
+     "frames_guest_in_receiver_cavity": 92,
+     "cavity_frames": [
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 39.68,
+      "frame": 127
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 0.73,
+      "frame": 153
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 0.34,
+      "frame": 153
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 0.54,
+      "frame": 110
+     },
+     "n_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_ge1cm3": 0,
+     "n_cavity_frames_rvis_ge1cm3": 0,
+     "n_cavity_frames_rpk_le0p1cm3": 84,
+     "max_depth_pk_mm": {
+      "max": 4.39,
+      "frame": 153
+     },
+     "max_depth_vis_mm": {
+      "max": 4.13,
+      "frame": 153
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 0.73,
+      "frame": 153
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 0.54,
+      "frame": 110
+     },
+     "packed_blocks_beyond_visual": false,
+     "packed_blocks": false
+    },
+    "H0": {
+     "frames": 92,
+     "frames_guest_in_receiver_cavity": 58,
+     "cavity_frames": [
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 39.68,
+      "frame": 127
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 0.73,
+      "frame": 153
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 0.34,
+      "frame": 153
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 0.54,
+      "frame": 110
+     },
+     "n_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_ge1cm3": 0,
+     "n_cavity_frames_rvis_ge1cm3": 0,
+     "n_cavity_frames_rpk_le0p1cm3": 53,
+     "max_depth_pk_mm": {
+      "max": 4.39,
+      "frame": 153
+     },
+     "max_depth_vis_mm": {
+      "max": 4.13,
+      "frame": 153
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 0.73,
+      "frame": 153
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 0.54,
+      "frame": 110
+     },
+     "packed_blocks_beyond_visual": false,
+     "packed_blocks": false
+    }
+   },
+   "contacts": {
+    "max_nefc": 184,
+    "max_ncon": 46,
+    "overflow_any": false,
+    "pieces": [
+     43,
+     10
+    ],
+    "frame_pick": {
+     "static_near_runs": 0,
+     "frames_near": 76,
+     "frames": 166
+    },
+    "frames": [
+     {
+      "frame": 120,
+      "run": [
+       108,
+       133
+      ],
+      "length": 26,
+      "kind": "not_static",
+      "hands": "H0",
+      "max_nefc": 184,
+      "median_max_nefc": 108.0,
+      "max_ncon": 46,
+      "median_max_ncon": 27.0,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 10,
+      "classes_at_max_nefc": {
+       "guest_receiver": 4,
+       "guest_table": 4,
+       "receiver_table": 38
+      },
+      "pair_at_frame": {
+       "V_packed": 0.0,
+       "dist_packed_mm": 2.0939206930101846,
+       "V_faithful": 0.0
+      },
+      "secs": 2.6
+     },
+     {
+      "frame": 157,
+      "run": [
+       149,
+       165
+      ],
+      "length": 17,
+      "kind": "not_static",
+      "hands": "H0",
+      "max_nefc": 180,
+      "median_max_nefc": 138.0,
+      "max_ncon": 45,
+      "median_max_ncon": 34.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 2,
+      "classes_at_max_nefc": {
+       "guest_receiver": 2,
+       "guest_table": 0,
+       "receiver_table": 43
+      },
+      "pair_at_frame": {
+       "V_packed": 0.023625,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 0.0
+      },
+      "secs": 2.5
+     },
+     {
+      "frame": 138,
+      "run": [
+       135,
+       142
+      ],
+      "length": 8,
+      "kind": "not_static",
+      "hands": "H0",
+      "max_nefc": 168,
+      "median_max_nefc": 98.0,
+      "max_ncon": 42,
+      "median_max_ncon": 24.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 10,
+      "classes_at_max_nefc": {
+       "guest_receiver": 4,
+       "guest_table": 0,
+       "receiver_table": 38
+      },
+      "pair_at_frame": {
+       "V_packed": 0.0,
+       "dist_packed_mm": 3.328884328552354,
+       "V_faithful": 0.0
+      },
+      "secs": 2.5
+     }
+    ]
+   }
+  },
+  "16": {
+   "ref": "runs/20261024-pack-31ef267/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_md5": "f7e2ea9260106425be6163553aac5af9",
+   "ref_md5_match": true,
+   "packed_run": "20261024-seed43-61101f5",
+   "pieces": null,
+   "objects": [
+    {
+     "name": "plastic_dish_rack",
+     "mesh": "dl/runs/20261024-pack-31ef267/refs/sf/ep16/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (rack_lib, 43 hulls)",
+     "n_pieces": 43,
+     "vis_cm3": 866.37,
+     "vis1_cm3": 866.8,
+     "faithful_cm3": 868.3,
+     "faithful_cells": 108537,
+     "packed_union_cm3": 1210.28,
+     "packed_outside_visual_cm3": 343.5,
+     "watertight": true
+    },
+    {
+     "name": "wooden_spoon",
+     "mesh": "dl/runs/20261024-pack-31ef267/refs/sf/ep16/assets/mesh/wooden_spoon/wooden_spoon.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (spoon_lib, 10 hulls)",
+     "n_pieces": 10,
+     "vis_cm3": 84.83,
+     "vis1_cm3": 85.01,
+     "faithful_cm3": 84.38,
+     "faithful_cells": 10547,
+     "packed_union_cm3": 97.67,
+     "packed_outside_visual_cm3": 12.68,
+     "watertight": true
+    }
+   ],
+   "receiver": "plastic_dish_rack",
+   "guest": "wooden_spoon",
+   "frames": 173,
+   "fps": 20.0,
+   "support": {
+    "top_z": 0.6,
+    "centre_xy": [
+     0.022576,
+     -0.023536
+    ],
+    "radius": 0.253149,
+    "height": 0.02,
+    "file": "dl/runs/20261024-pack-31ef267/refs/glockt/ep16/reconstructed_stage/t3_ep016_support.usda"
+   },
+   "n_H0": 86,
+   "n_H30": 60,
+   "n_contact_label_frames": 87,
+   "precheck": {
+    "H0": {
+     "frames": 86,
+     "frames_failing": 19,
+     "failing_frames": [
+      33,
+      34,
+      122,
+      128,
+      130,
+      133,
+      136,
+      137,
+      138,
+      141,
+      144,
+      147,
+      150,
+      151,
+      152,
+      155,
+      158,
+      164,
+      168
+     ],
+     "n_ov_faithful_gt0": 2,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.11,
+      "frame": 116
+     },
+     "max_V_packed_cm3": {
+      "max": 0.71,
+      "frame": 166
+     },
+     "max_V_visual_cm3": {
+      "max": 0.11,
+      "frame": 116
+     },
+     "objects": {
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 2.46,
+        "frame": 137
+       },
+       "max_pen_visual_mm": {
+        "max": 2.0,
+        "frame": 137
+       },
+       "max_pen_packed_mm": {
+        "max": 2.0,
+        "frame": 137
+       },
+       "max_float_faithful_mm": {
+        "max": 1.35,
+        "frame": 135
+       },
+       "max_float_visual_mm": {
+        "max": 1.73,
+        "frame": 135
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 19,
+       "max_pen_faithful_mm": {
+        "max": 2.18,
+        "frame": 9
+       },
+       "max_pen_visual_mm": {
+        "max": 1.42,
+        "frame": 23
+       },
+       "max_pen_packed_mm": {
+        "max": 1.42,
+        "frame": 23
+       },
+       "max_float_faithful_mm": {
+        "max": 44.27,
+        "frame": 34
+       },
+       "max_float_visual_mm": {
+        "max": 45.23,
+        "frame": 34
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "H30": {
+     "frames": 60,
+     "frames_failing": 14,
+     "failing_frames": [
+      133,
+      136,
+      137,
+      138,
+      141,
+      144,
+      147,
+      150,
+      151,
+      152,
+      155,
+      158,
+      164,
+      168
+     ],
+     "n_ov_faithful_gt0": 0,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_packed_cm3": {
+      "max": 0.71,
+      "frame": 166
+     },
+     "max_V_visual_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "objects": {
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 2.46,
+        "frame": 137
+       },
+       "max_pen_visual_mm": {
+        "max": 2.0,
+        "frame": 137
+       },
+       "max_pen_packed_mm": {
+        "max": 2.0,
+        "frame": 137
+       },
+       "max_float_faithful_mm": {
+        "max": 1.35,
+        "frame": 135
+       },
+       "max_float_visual_mm": {
+        "max": 1.73,
+        "frame": 135
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 14,
+       "max_pen_faithful_mm": {
+        "max": 2.18,
+        "frame": 9
+       },
+       "max_pen_visual_mm": {
+        "max": 1.42,
+        "frame": 9
+       },
+       "max_pen_packed_mm": {
+        "max": 1.42,
+        "frame": 9
+       },
+       "max_float_faithful_mm": {
+        "max": 7.95,
+        "frame": 138
+       },
+       "max_float_visual_mm": {
+        "max": 7.84,
+        "frame": 138
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "all": {
+     "frames": 173,
+     "frames_failing": 69,
+     "failing_frames": [
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      122,
+      127,
+      128,
+      130,
+      133,
+      136,
+      137,
+      138,
+      141,
+      144,
+      147,
+      150,
+      151,
+      152,
+      155,
+      158,
+      164,
+      168
+     ],
+     "n_ov_faithful_gt0": 13,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.74,
+      "frame": 87
+     },
+     "max_V_packed_cm3": {
+      "max": 0.97,
+      "frame": 87
+     },
+     "max_V_visual_cm3": {
+      "max": 0.64,
+      "frame": 87
+     },
+     "objects": {
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 3.36,
+        "frame": 78
+       },
+       "max_pen_visual_mm": {
+        "max": 2.91,
+        "frame": 78
+       },
+       "max_pen_packed_mm": {
+        "max": 2.91,
+        "frame": 78
+       },
+       "max_float_faithful_mm": {
+        "max": 2.13,
+        "frame": 42
+       },
+       "max_float_visual_mm": {
+        "max": 2.6,
+        "frame": 42
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 69,
+       "max_pen_faithful_mm": {
+        "max": 3.66,
+        "frame": 100
+       },
+       "max_pen_visual_mm": {
+        "max": 2.44,
+        "frame": 100
+       },
+       "max_pen_packed_mm": {
+        "max": 2.44,
+        "frame": 100
+       },
+       "max_float_faithful_mm": {
+        "max": 100.0,
+        "frame": 66
+       },
+       "max_float_visual_mm": {
+        "max": 100.0,
+        "frame": 41
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "object_hand_free": {
+     "plastic_dish_rack": {
+      "frames": 171,
+      "n_fail_a_table": 0,
+      "n_fail_b_float": 0,
+      "max_pen_faithful_mm": {
+       "max": 3.36,
+       "frame": 78
+      },
+      "max_pen_visual_mm": {
+       "max": 2.91,
+       "frame": 78
+      },
+      "max_pen_packed_mm": {
+       "max": 2.91,
+       "frame": 78
+      },
+      "max_float_faithful_mm": {
+       "max": 2.13,
+       "frame": 42
+      },
+      "max_float_visual_mm": {
+       "max": 2.6,
+       "frame": 42
+      },
+      "n_off_support": 0
+     },
+     "wooden_spoon": {
+      "frames": 87,
+      "n_fail_a_table": 0,
+      "n_fail_b_float": 19,
+      "max_pen_faithful_mm": {
+       "max": 2.18,
+       "frame": 9
+      },
+      "max_pen_visual_mm": {
+       "max": 1.42,
+       "frame": 23
+      },
+      "max_pen_packed_mm": {
+       "max": 1.42,
+       "frame": 23
+      },
+      "max_float_faithful_mm": {
+       "max": 44.27,
+       "frame": 34
+      },
+      "max_float_visual_mm": {
+       "max": 45.23,
+       "frame": 34
+      },
+      "n_off_support": 0
+     }
+    }
+   },
+   "cavity": {
+    "all": {
+     "frames": 173,
+     "frames_guest_in_receiver_cavity": 92,
+     "cavity_frames": [
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 40.95,
+      "frame": 166
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 0.97,
+      "frame": 87
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 0.64,
+      "frame": 87
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 0.7,
+      "frame": 166
+     },
+     "n_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_ge1cm3": 0,
+     "n_cavity_frames_rvis_ge1cm3": 0,
+     "n_cavity_frames_rpk_le0p1cm3": 71,
+     "max_depth_pk_mm": {
+      "max": 6.26,
+      "frame": 123
+     },
+     "max_depth_vis_mm": {
+      "max": 3.63,
+      "frame": 87
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 0.97,
+      "frame": 87
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 0.7,
+      "frame": 166
+     },
+     "packed_blocks_beyond_visual": false,
+     "packed_blocks": false
+    },
+    "H0": {
+     "frames": 86,
+     "frames_guest_in_receiver_cavity": 55,
+     "cavity_frames": [
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 40.95,
+      "frame": 166
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 0.7,
+      "frame": 166
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 0.11,
+      "frame": 116
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 0.7,
+      "frame": 166
+     },
+     "n_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_ge1cm3": 0,
+     "n_cavity_frames_rvis_ge1cm3": 0,
+     "n_cavity_frames_rpk_le0p1cm3": 46,
+     "max_depth_pk_mm": {
+      "max": 6.26,
+      "frame": 123
+     },
+     "max_depth_vis_mm": {
+      "max": 2.13,
+      "frame": 116
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 0.7,
+      "frame": 166
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 0.7,
+      "frame": 166
+     },
+     "packed_blocks_beyond_visual": false,
+     "packed_blocks": false
+    }
+   },
+   "contacts": {
+    "max_nefc": 252,
+    "max_ncon": 63,
+    "overflow_any": false,
+    "pieces": [
+     43,
+     10
+    ],
+    "frame_pick": {
+     "static_near_runs": 0,
+     "frames_near": 83,
+     "frames": 173
+    },
+    "frames": [
+     {
+      "frame": 155,
+      "run": [
+       138,
+       172
+      ],
+      "length": 35,
+      "kind": "not_static",
+      "hands": "H0",
+      "max_nefc": 252,
+      "median_max_nefc": 116.0,
+      "max_ncon": 63,
+      "median_max_ncon": 29.0,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 11,
+      "classes_at_max_nefc": {
+       "guest_receiver": 4,
+       "guest_table": 4,
+       "receiver_table": 55
+      },
+      "pair_at_frame": {
+       "V_packed": 0.0,
+       "dist_packed_mm": 2.5971450755691086,
+       "V_faithful": 0.0
+      },
+      "secs": 2.4
+     },
+     {
+      "frame": 120,
+      "run": [
+       116,
+       125
+      ],
+      "length": 10,
+      "kind": "not_static",
+      "hands": "H0",
+      "max_nefc": 104,
+      "median_max_nefc": 82.0,
+      "max_ncon": 26,
+      "median_max_ncon": 20.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 27,
+      "classes_at_max_nefc": {
+       "guest_receiver": 2,
+       "guest_table": 1,
+       "receiver_table": 23
+      },
+      "pair_at_frame": {
+       "V_packed": 0.0,
+       "dist_packed_mm": 2.931763735836871,
+       "V_faithful": 0.0
+      },
+      "secs": 2.9
+     },
+     {
+      "frame": 132,
+      "run": [
+       129,
+       135
+      ],
+      "length": 7,
+      "kind": "not_static",
+      "hands": "H0",
+      "max_nefc": 164,
+      "median_max_nefc": 150.0,
+      "max_ncon": 41,
+      "median_max_ncon": 37.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 10,
+      "classes_at_max_nefc": {
+       "guest_receiver": 4,
+       "guest_table": 4,
+       "receiver_table": 33
+      },
+      "pair_at_frame": {
+       "V_packed": 0.003375,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 0.0
+      },
+      "secs": 2.5
+     }
+    ]
+   }
+  },
+  "30": {
+   "ref": "runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+   "ref_md5": "dd464c96184e84400e62ffcfa17a6ac4",
+   "ref_md5_match": true,
+   "packed_run": "20261025-std30-ee7ba8e",
+   "pieces": null,
+   "objects": [
+    {
+     "name": "mini_sweeper",
+     "mesh": "/home/user/v2d-track3/meshes/library_v3/mini_sweeper.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (sweeper_lib, 19 hulls)",
+     "n_pieces": 19,
+     "vis_cm3": 115.78,
+     "vis1_cm3": 115.43,
+     "faithful_cm3": 116.43,
+     "faithful_cells": 14554,
+     "packed_union_cm3": 150.47,
+     "packed_outside_visual_cm3": 35.04,
+     "watertight": true
+    },
+    {
+     "name": "plastic_dish_rack",
+     "mesh": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (rack_lib, 43 hulls)",
+     "n_pieces": 43,
+     "vis_cm3": 866.37,
+     "vis1_cm3": 866.8,
+     "faithful_cm3": 868.3,
+     "faithful_cells": 108537,
+     "packed_union_cm3": 1210.28,
+     "packed_outside_visual_cm3": 343.5,
+     "watertight": true
+    }
+   ],
+   "receiver": "plastic_dish_rack",
+   "guest": "mini_sweeper",
+   "frames": 263,
+   "fps": 20.0,
+   "support": {
+    "top_z": 0.6,
+    "centre_xy": [
+     0.000842,
+     -0.037721
+    ],
+    "radius": 0.251593,
+    "height": 0.02,
+    "file": "dl/runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/reconstructed_stage/t3_ep030_support.usda"
+   },
+   "n_H0": 63,
+   "n_H30": 22,
+   "n_contact_label_frames": 200,
+   "precheck": {
+    "H0": {
+     "frames": 63,
+     "frames_failing": 59,
+     "failing_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      191,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262
+     ],
+     "n_ov_faithful_gt0": 60,
+     "n_ov_faithful_ge1cm3": 58,
+     "n_ov_packed_ge1cm3": 58,
+     "n_ov_visual_ge1cm3": 58,
+     "max_V_faithful_cm3": {
+      "max": 11.1,
+      "frame": 23
+     },
+     "max_V_packed_cm3": {
+      "max": 22.09,
+      "frame": 127
+     },
+     "max_V_visual_cm3": {
+      "max": 10.88,
+      "frame": 23
+     },
+     "objects": {
+      "mini_sweeper": {
+       "n_fail_a_table": 1,
+       "n_fail_b_float": 1,
+       "max_pen_faithful_mm": {
+        "max": 4.74,
+        "frame": 123
+       },
+       "max_pen_visual_mm": {
+        "max": 4.75,
+        "frame": 123
+       },
+       "max_pen_packed_mm": {
+        "max": 5.27,
+        "frame": 123
+       },
+       "max_float_faithful_mm": {
+        "max": 5.07,
+        "frame": 191
+       },
+       "max_float_visual_mm": {
+        "max": 6.75,
+        "frame": 191
+       },
+       "n_off_support": 0
+      },
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 2.92,
+        "frame": 25
+       },
+       "max_pen_visual_mm": {
+        "max": 2.67,
+        "frame": 25
+       },
+       "max_pen_packed_mm": {
+        "max": 2.67,
+        "frame": 25
+       },
+       "max_float_faithful_mm": {
+        "max": 0.79,
+        "frame": 192
+       },
+       "max_float_visual_mm": {
+        "max": 1.23,
+        "frame": 192
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "H30": {
+     "frames": 22,
+     "frames_failing": 22,
+     "failing_frames": [
+      0,
+      1,
+      2,
+      4,
+      244,
+      245,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262
+     ],
+     "n_ov_faithful_gt0": 22,
+     "n_ov_faithful_ge1cm3": 22,
+     "n_ov_packed_ge1cm3": 22,
+     "n_ov_visual_ge1cm3": 22,
+     "max_V_faithful_cm3": {
+      "max": 8.36,
+      "frame": 261
+     },
+     "max_V_packed_cm3": {
+      "max": 18.68,
+      "frame": 261
+     },
+     "max_V_visual_cm3": {
+      "max": 8.37,
+      "frame": 261
+     },
+     "objects": {
+      "mini_sweeper": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 2.98,
+        "frame": 4
+       },
+       "max_pen_visual_mm": {
+        "max": 2.72,
+        "frame": 4
+       },
+       "max_pen_packed_mm": {
+        "max": 3.35,
+        "frame": 4
+       },
+       "max_float_faithful_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_float_visual_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "n_off_support": 0
+      },
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.91,
+        "frame": 247
+       },
+       "max_pen_visual_mm": {
+        "max": 1.45,
+        "frame": 247
+       },
+       "max_pen_packed_mm": {
+        "max": 1.45,
+        "frame": 247
+       },
+       "max_float_faithful_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "max_float_visual_mm": {
+        "max": 0.0,
+        "frame": 0
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "all": {
+     "frames": 263,
+     "frames_failing": 232,
+     "failing_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      101,
+      102,
+      103,
+      104,
+      105,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      197,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262
+     ],
+     "n_ov_faithful_gt0": 203,
+     "n_ov_faithful_ge1cm3": 186,
+     "n_ov_packed_ge1cm3": 195,
+     "n_ov_visual_ge1cm3": 186,
+     "max_V_faithful_cm3": {
+      "max": 19.02,
+      "frame": 226
+     },
+     "max_V_packed_cm3": {
+      "max": 34.53,
+      "frame": 226
+     },
+     "max_V_visual_cm3": {
+      "max": 19.21,
+      "frame": 225
+     },
+     "objects": {
+      "mini_sweeper": {
+       "n_fail_a_table": 15,
+       "n_fail_b_float": 46,
+       "max_pen_faithful_mm": {
+        "max": 5.65,
+        "frame": 115
+       },
+       "max_pen_visual_mm": {
+        "max": 5.69,
+        "frame": 115
+       },
+       "max_pen_packed_mm": {
+        "max": 6.22,
+        "frame": 115
+       },
+       "max_float_faithful_mm": {
+        "max": 60.93,
+        "frame": 177
+       },
+       "max_float_visual_mm": {
+        "max": 62.05,
+        "frame": 177
+       },
+       "n_off_support": 0
+      },
+      "plastic_dish_rack": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 3.1,
+        "frame": 177
+       },
+       "max_pen_visual_mm": {
+        "max": 2.67,
+        "frame": 25
+       },
+       "max_pen_packed_mm": {
+        "max": 2.67,
+        "frame": 25
+       },
+       "max_float_faithful_mm": {
+        "max": 3.73,
+        "frame": 135
+       },
+       "max_float_visual_mm": {
+        "max": 4.83,
+        "frame": 135
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "object_hand_free": {
+     "mini_sweeper": {
+      "frames": 63,
+      "n_fail_a_table": 1,
+      "n_fail_b_float": 1,
+      "max_pen_faithful_mm": {
+       "max": 4.74,
+       "frame": 123
+      },
+      "max_pen_visual_mm": {
+       "max": 4.75,
+       "frame": 123
+      },
+      "max_pen_packed_mm": {
+       "max": 5.27,
+       "frame": 123
+      },
+      "max_float_faithful_mm": {
+       "max": 5.07,
+       "frame": 191
+      },
+      "max_float_visual_mm": {
+       "max": 6.75,
+       "frame": 191
+      },
+      "n_off_support": 0
+     },
+     "plastic_dish_rack": {
+      "frames": 263,
+      "n_fail_a_table": 0,
+      "n_fail_b_float": 0,
+      "max_pen_faithful_mm": {
+       "max": 3.1,
+       "frame": 177
+      },
+      "max_pen_visual_mm": {
+       "max": 2.67,
+       "frame": 25
+      },
+      "max_pen_packed_mm": {
+       "max": 2.67,
+       "frame": 25
+      },
+      "max_float_faithful_mm": {
+       "max": 3.73,
+       "frame": 135
+      },
+      "max_float_visual_mm": {
+       "max": 4.83,
+       "frame": 135
+      },
+      "n_off_support": 0
+     }
+    }
+   },
+   "cavity": {
+    "all": {
+     "frames": 263,
+     "frames_guest_in_receiver_cavity": 238,
+     "cavity_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 76.39,
+      "frame": 238
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 29.29,
+      "frame": 226
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 19.21,
+      "frame": 225
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 10.43,
+      "frame": 221
+     },
+     "n_frames_rpk_only_ge1cm3": 190,
+     "n_cavity_frames_rpk_only_ge1cm3": 190,
+     "n_cavity_frames_rpk_ge1cm3": 194,
+     "n_cavity_frames_rvis_ge1cm3": 186,
+     "n_cavity_frames_rpk_le0p1cm3": 37,
+     "max_depth_pk_mm": {
+      "max": 11.55,
+      "frame": 31
+     },
+     "max_depth_vis_mm": {
+      "max": 9.22,
+      "frame": 5
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 29.29,
+      "frame": 226
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 10.43,
+      "frame": 221
+     },
+     "packed_blocks_beyond_visual": true,
+     "packed_blocks": true
+    },
+    "H0": {
+     "frames": 63,
+     "frames_guest_in_receiver_cavity": 63,
+     "cavity_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      191,
+      192,
+      193,
+      194,
+      195,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 75.61,
+      "frame": 2
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 18.05,
+      "frame": 23
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 10.88,
+      "frame": 23
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 7.16,
+      "frame": 23
+     },
+     "n_frames_rpk_only_ge1cm3": 58,
+     "n_cavity_frames_rpk_only_ge1cm3": 58,
+     "n_cavity_frames_rpk_ge1cm3": 58,
+     "n_cavity_frames_rvis_ge1cm3": 58,
+     "n_cavity_frames_rpk_le0p1cm3": 3,
+     "max_depth_pk_mm": {
+      "max": 10.05,
+      "frame": 128
+     },
+     "max_depth_vis_mm": {
+      "max": 9.22,
+      "frame": 5
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 18.05,
+      "frame": 23
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 7.16,
+      "frame": 23
+     },
+     "packed_blocks_beyond_visual": true,
+     "packed_blocks": true
+    }
+   },
+   "contacts": {
+    "max_nefc": 324,
+    "max_ncon": 81,
+    "overflow_any": false,
+    "pieces": [
+     43,
+     19
+    ],
+    "frame_pick": {
+     "static_near_runs": 5,
+     "frames_near": 218,
+     "frames": 263
+    },
+    "frames": [
+     {
+      "frame": 257,
+      "run": [
+       253,
+       262
+      ],
+      "length": 10,
+      "kind": "static",
+      "hands": "H30",
+      "max_nefc": 304,
+      "median_max_nefc": 170.0,
+      "max_ncon": 76,
+      "median_max_ncon": 42.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 69,
+      "classes_at_max_nefc": {
+       "guest_receiver": 4,
+       "guest_table": 0,
+       "receiver_table": 72
+      },
+      "pair_at_frame": {
+       "V_packed": 17.168625,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 7.416
+      },
+      "secs": 2.2
+     },
+     {
+      "frame": 249,
+      "run": [
+       247,
+       251
+      ],
+      "length": 5,
+      "kind": "static",
+      "hands": "H30",
+      "max_nefc": 264,
+      "median_max_nefc": 190.0,
+      "max_ncon": 66,
+      "median_max_ncon": 47.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 10,
+      "classes_at_max_nefc": {
+       "guest_receiver": 17,
+       "guest_table": 0,
+       "receiver_table": 49
+      },
+      "pair_at_frame": {
+       "V_packed": 14.715,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 6.32
+      },
+      "secs": 2.2
+     },
+     {
+      "frame": 17,
+      "run": [
+       14,
+       20
+      ],
+      "length": 7,
+      "kind": "static",
+      "hands": "H0",
+      "max_nefc": 324,
+      "median_max_nefc": 232.0,
+      "max_ncon": 81,
+      "median_max_ncon": 58.0,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 38,
+      "classes_at_max_nefc": {
+       "guest_receiver": 11,
+       "guest_table": 0,
+       "receiver_table": 70
+      },
+      "pair_at_frame": {
+       "V_packed": 15.710625,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 7.424
+      },
+      "secs": 2.3
+     }
+    ]
+   }
+  },
+  "32": {
+   "ref": "runs/20261026-fr32s46b-5e0e100/refs/glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_md5": "36e600c8346f9d2bd89dc47447ea55fc",
+   "ref_md5_match": true,
+   "packed_run": "20261026-fr32s46b-5e0e100",
+   "pieces": null,
+   "objects": [
+    {
+     "name": "blue_cup",
+     "mesh": "dl/runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/blue_cup/blue_cup.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (cup_ep32sf, 72 hulls)",
+     "n_pieces": 72,
+     "vis_cm3": 404.96,
+     "vis1_cm3": 403.97,
+     "faithful_cm3": 403.14,
+     "faithful_cells": 50393,
+     "packed_union_cm3": 451.8,
+     "packed_outside_visual_cm3": 49.54,
+     "watertight": true
+    },
+    {
+     "name": "wooden_spoon",
+     "mesh": "dl/runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/wooden_spoon/wooden_spoon.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (spoon_ep32sf, 11 hulls)",
+     "n_pieces": 11,
+     "vis_cm3": 99.75,
+     "vis1_cm3": 99.97,
+     "faithful_cm3": 99.42,
+     "faithful_cells": 12428,
+     "packed_union_cm3": 119.87,
+     "packed_outside_visual_cm3": 19.93,
+     "watertight": true
+    }
+   ],
+   "receiver": "blue_cup",
+   "guest": "wooden_spoon",
+   "frames": 259,
+   "fps": 20.0,
+   "support": {
+    "top_z": 0.6,
+    "centre_xy": [
+     -0.04,
+     0.015
+    ],
+    "radius": 0.268661,
+    "height": 0.02,
+    "file": "dl/runs/20261026-fr32s46b-5e0e100/refs/glockt/ep32/reconstructed_stage/t3_ep032_support.usda"
+   },
+   "n_H0": 21,
+   "n_H30": 3,
+   "n_contact_label_frames": 238,
+   "precheck": {
+    "H0": {
+     "frames": 21,
+     "frames_failing": 6,
+     "failing_frames": [
+      26,
+      27,
+      28,
+      32,
+      33,
+      245
+     ],
+     "n_ov_faithful_gt0": 0,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.0,
+      "frame": 26
+     },
+     "max_V_packed_cm3": {
+      "max": 0.0,
+      "frame": 26
+     },
+     "max_V_visual_cm3": {
+      "max": 0.0,
+      "frame": 26
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 5,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 19.52,
+        "frame": 33
+       },
+       "max_pen_visual_mm": {
+        "max": 18.73,
+        "frame": 33
+       },
+       "max_pen_packed_mm": {
+        "max": 18.73,
+        "frame": 33
+       },
+       "max_float_faithful_mm": {
+        "max": 0.0,
+        "frame": 26
+       },
+       "max_float_visual_mm": {
+        "max": 0.15,
+        "frame": 255
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 1,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 4.73,
+        "frame": 245
+       },
+       "max_pen_visual_mm": {
+        "max": 4.98,
+        "frame": 245
+       },
+       "max_pen_packed_mm": {
+        "max": 4.98,
+        "frame": 245
+       },
+       "max_float_faithful_mm": {
+        "max": 1.17,
+        "frame": 26
+       },
+       "max_float_visual_mm": {
+        "max": 2.16,
+        "frame": 26
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "H30": {
+     "frames": 3,
+     "frames_failing": 0,
+     "failing_frames": [],
+     "n_ov_faithful_gt0": 0,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.0,
+      "frame": 256
+     },
+     "max_V_packed_cm3": {
+      "max": 0.0,
+      "frame": 256
+     },
+     "max_V_visual_cm3": {
+      "max": 0.0,
+      "frame": 256
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.19,
+        "frame": 257
+       },
+       "max_pen_visual_mm": {
+        "max": 1.03,
+        "frame": 257
+       },
+       "max_pen_packed_mm": {
+        "max": 1.03,
+        "frame": 257
+       },
+       "max_float_faithful_mm": {
+        "max": 0.0,
+        "frame": 256
+       },
+       "max_float_visual_mm": {
+        "max": 0.0,
+        "frame": 256
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.71,
+        "frame": 257
+       },
+       "max_pen_visual_mm": {
+        "max": 0.89,
+        "frame": 257
+       },
+       "max_pen_packed_mm": {
+        "max": 0.89,
+        "frame": 257
+       },
+       "max_float_faithful_mm": {
+        "max": 0.0,
+        "frame": 256
+       },
+       "max_float_visual_mm": {
+        "max": 0.06,
+        "frame": 258
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "all": {
+     "frames": 259,
+     "frames_failing": 170,
+     "failing_frames": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      87,
+      88,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      153,
+      154,
+      156,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      207,
+      210,
+      245
+     ],
+     "n_ov_faithful_gt0": 21,
+     "n_ov_faithful_ge1cm3": 3,
+     "n_ov_packed_ge1cm3": 9,
+     "n_ov_visual_ge1cm3": 3,
+     "max_V_faithful_cm3": {
+      "max": 2.61,
+      "frame": 154
+     },
+     "max_V_packed_cm3": {
+      "max": 4.53,
+      "frame": 154
+     },
+     "max_V_visual_cm3": {
+      "max": 2.58,
+      "frame": 154
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 14,
+       "n_fail_b_float": 146,
+       "max_pen_faithful_mm": {
+        "max": 35.64,
+        "frame": 20
+       },
+       "max_pen_visual_mm": {
+        "max": 34.53,
+        "frame": 20
+       },
+       "max_pen_packed_mm": {
+        "max": 34.52,
+        "frame": 20
+       },
+       "max_float_faithful_mm": {
+        "max": 86.11,
+        "frame": 34
+       },
+       "max_float_visual_mm": {
+        "max": 85.7,
+        "frame": 34
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 5,
+       "n_fail_b_float": 108,
+       "max_pen_faithful_mm": {
+        "max": 6.01,
+        "frame": 100
+       },
+       "max_pen_visual_mm": {
+        "max": 5.34,
+        "frame": 100
+       },
+       "max_pen_packed_mm": {
+        "max": 5.34,
+        "frame": 100
+       },
+       "max_float_faithful_mm": {
+        "max": 100.0,
+        "frame": 68
+       },
+       "max_float_visual_mm": {
+        "max": 100.0,
+        "frame": 68
+       },
+       "n_off_support": 29
+      }
+     }
+    },
+    "object_hand_free": {
+     "blue_cup": {
+      "frames": 39,
+      "n_fail_a_table": 6,
+      "n_fail_b_float": 0,
+      "max_pen_faithful_mm": {
+       "max": 19.52,
+       "frame": 33
+      },
+      "max_pen_visual_mm": {
+       "max": 18.73,
+       "frame": 33
+      },
+      "max_pen_packed_mm": {
+       "max": 18.73,
+       "frame": 33
+      },
+      "max_float_faithful_mm": {
+       "max": 0.0,
+       "frame": 26
+      },
+      "max_float_visual_mm": {
+       "max": 0.19,
+       "frame": 232
+      },
+      "n_off_support": 0
+     },
+     "wooden_spoon": {
+      "frames": 92,
+      "n_fail_a_table": 5,
+      "n_fail_b_float": 12,
+      "max_pen_faithful_mm": {
+       "max": 6.01,
+       "frame": 100
+      },
+      "max_pen_visual_mm": {
+       "max": 5.34,
+       "frame": 100
+      },
+      "max_pen_packed_mm": {
+       "max": 5.34,
+       "frame": 100
+      },
+      "max_float_faithful_mm": {
+       "max": 100.0,
+       "frame": 175
+      },
+      "max_float_visual_mm": {
+       "max": 100.0,
+       "frame": 175
+      },
+      "n_off_support": 14
+     }
+    }
+   },
+   "cavity": {
+    "all": {
+     "frames": 259,
+     "frames_guest_in_receiver_cavity": 28,
+     "cavity_frames": [
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 22.91,
+      "frame": 155
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 3.25,
+      "frame": 154
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 2.58,
+      "frame": 154
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 0.68,
+      "frame": 154
+     },
+     "n_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_ge1cm3": 5,
+     "n_cavity_frames_rvis_ge1cm3": 3,
+     "n_cavity_frames_rpk_le0p1cm3": 10,
+     "max_depth_pk_mm": {
+      "max": 6.36,
+      "frame": 153
+     },
+     "max_depth_vis_mm": {
+      "max": 5.99,
+      "frame": 153
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 3.25,
+      "frame": 154
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 0.68,
+      "frame": 154
+     },
+     "packed_blocks_beyond_visual": false,
+     "packed_blocks": true
+    },
+    "H0": {
+     "frames": 21,
+     "frames_guest_in_receiver_cavity": 0,
+     "cavity_frames": [],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 0.0,
+      "frame": 26
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 0.0,
+      "frame": 26
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 0.0,
+      "frame": 26
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 0.0,
+      "frame": 26
+     },
+     "n_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_ge1cm3": 0,
+     "n_cavity_frames_rvis_ge1cm3": 0,
+     "n_cavity_frames_rpk_le0p1cm3": 0,
+     "max_depth_pk_mm": {
+      "max": 0.0,
+      "frame": 26
+     },
+     "max_depth_vis_mm": {
+      "max": 0.0,
+      "frame": 26
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": null,
+      "frame": null
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": null,
+      "frame": null
+     },
+     "packed_blocks_beyond_visual": false,
+     "packed_blocks": false
+    }
+   },
+   "contacts": {
+    "max_nefc": 356,
+    "max_ncon": 89,
+    "overflow_any": false,
+    "pieces": [
+     72,
+     11
+    ],
+    "frame_pick": {
+     "static_near_runs": 0,
+     "frames_near": 27,
+     "frames": 259
+    },
+    "frames": [
+     {
+      "frame": 151,
+      "run": [
+       145,
+       158
+      ],
+      "length": 14,
+      "kind": "not_static",
+      "hands": "in_hand",
+      "max_nefc": 232,
+      "median_max_nefc": 154.0,
+      "max_ncon": 58,
+      "median_max_ncon": 38.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 23,
+      "classes_at_max_nefc": {
+       "guest_receiver": 18,
+       "guest_table": 2,
+       "receiver_table": 38
+      },
+      "pair_at_frame": {
+       "V_packed": 0.158625,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 0.04800000000000001
+      },
+      "secs": 2.6
+     },
+     {
+      "frame": 82,
+      "run": [
+       78,
+       86
+      ],
+      "length": 9,
+      "kind": "not_static",
+      "hands": "in_hand",
+      "max_nefc": 208,
+      "median_max_nefc": 158.0,
+      "max_ncon": 52,
+      "median_max_ncon": 39.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 37,
+      "classes_at_max_nefc": {
+       "guest_receiver": 0,
+       "guest_table": 0,
+       "receiver_table": 52
+      },
+      "pair_at_frame": {
+       "V_packed": 1.812375,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 0.632
+      },
+      "secs": 1.9
+     },
+     {
+      "frame": 90,
+      "run": [
+       89,
+       92
+      ],
+      "length": 4,
+      "kind": "not_static",
+      "hands": "in_hand",
+      "max_nefc": 356,
+      "median_max_nefc": 186.0,
+      "max_ncon": 89,
+      "median_max_ncon": 46.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 20,
+      "classes_at_max_nefc": {
+       "guest_receiver": 35,
+       "guest_table": 27,
+       "receiver_table": 27
+      },
+      "pair_at_frame": {
+       "V_packed": 0.84375,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 0.28800000000000003
+      },
+      "secs": 2.4
+     }
+    ]
+   }
+  },
+  "33": {
+   "ref": "runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "ref_md5": "2a7173ab1d4248433bd049bc43f6878a",
+   "ref_md5_match": true,
+   "packed_run": "20261029-rcB-34bf6ae",
+   "pieces": null,
+   "objects": [
+    {
+     "name": "blue_cup",
+     "mesh": "dl/runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/assets/mesh/blue_cup/blue_cup.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (cup_lib, 76 hulls)",
+     "n_pieces": 76,
+     "vis_cm3": 400.32,
+     "vis1_cm3": 398.86,
+     "faithful_cm3": 399.88,
+     "faithful_cells": 49985,
+     "packed_union_cm3": 449.05,
+     "packed_outside_visual_cm3": 50.2,
+     "watertight": true
+    },
+    {
+     "name": "wooden_spoon",
+     "mesh": "dl/runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/assets/mesh/wooden_spoon/wooden_spoon.glb",
+     "pieces_src": "coacd 1.0.11 threshold 0.05 on the visual mesh (spoon_lib, 10 hulls)",
+     "n_pieces": 10,
+     "vis_cm3": 84.83,
+     "vis1_cm3": 85.01,
+     "faithful_cm3": 84.38,
+     "faithful_cells": 10547,
+     "packed_union_cm3": 97.67,
+     "packed_outside_visual_cm3": 12.68,
+     "watertight": true
+    }
+   ],
+   "receiver": "blue_cup",
+   "guest": "wooden_spoon",
+   "frames": 348,
+   "fps": 20.0,
+   "support": {
+    "top_z": 0.6,
+    "centre_xy": [
+     -0.009263,
+     -0.005421
+    ],
+    "radius": 0.238064,
+    "height": 0.02,
+    "file": "dl/runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/reconstructed_stage/t3_ep033_support.usda"
+   },
+   "n_H0": 30,
+   "n_H30": 14,
+   "n_contact_label_frames": 318,
+   "precheck": {
+    "H0": {
+     "frames": 30,
+     "frames_failing": 4,
+     "failing_frames": [
+      70,
+      71,
+      76,
+      77
+     ],
+     "n_ov_faithful_gt0": 0,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_packed_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_visual_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 3,
+       "max_pen_faithful_mm": {
+        "max": 1.46,
+        "frame": 333
+       },
+       "max_pen_visual_mm": {
+        "max": 1.51,
+        "frame": 333
+       },
+       "max_pen_packed_mm": {
+        "max": 1.51,
+        "frame": 333
+       },
+       "max_float_faithful_mm": {
+        "max": 7.74,
+        "frame": 77
+       },
+       "max_float_visual_mm": {
+        "max": 8.45,
+        "frame": 77
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 4,
+       "max_pen_faithful_mm": {
+        "max": 1.68,
+        "frame": 342
+       },
+       "max_pen_visual_mm": {
+        "max": 0.94,
+        "frame": 342
+       },
+       "max_pen_packed_mm": {
+        "max": 0.94,
+        "frame": 342
+       },
+       "max_float_faithful_mm": {
+        "max": 100.0,
+        "frame": 70
+       },
+       "max_float_visual_mm": {
+        "max": 100.0,
+        "frame": 70
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "H30": {
+     "frames": 14,
+     "frames_failing": 0,
+     "failing_frames": [],
+     "n_ov_faithful_gt0": 0,
+     "n_ov_faithful_ge1cm3": 0,
+     "n_ov_packed_ge1cm3": 0,
+     "n_ov_visual_ge1cm3": 0,
+     "max_V_faithful_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_packed_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_visual_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.29,
+        "frame": 345
+       },
+       "max_pen_visual_mm": {
+        "max": 1.38,
+        "frame": 345
+       },
+       "max_pen_packed_mm": {
+        "max": 1.38,
+        "frame": 345
+       },
+       "max_float_faithful_mm": {
+        "max": 0.83,
+        "frame": 4
+       },
+       "max_float_visual_mm": {
+        "max": 0.77,
+        "frame": 347
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 0,
+       "n_fail_b_float": 0,
+       "max_pen_faithful_mm": {
+        "max": 1.52,
+        "frame": 6
+       },
+       "max_pen_visual_mm": {
+        "max": 0.84,
+        "frame": 345
+       },
+       "max_pen_packed_mm": {
+        "max": 0.84,
+        "frame": 345
+       },
+       "max_float_faithful_mm": {
+        "max": 0.08,
+        "frame": 4
+       },
+       "max_float_visual_mm": {
+        "max": 0.75,
+        "frame": 4
+       },
+       "n_off_support": 0
+      }
+     }
+    },
+    "all": {
+     "frames": 348,
+     "frames_failing": 253,
+     "failing_frames": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      49,
+      50,
+      51,
+      52,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      97,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      150,
+      151,
+      152,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      164,
+      165,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299,
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316
+     ],
+     "n_ov_faithful_gt0": 34,
+     "n_ov_faithful_ge1cm3": 21,
+     "n_ov_packed_ge1cm3": 24,
+     "n_ov_visual_ge1cm3": 20,
+     "max_V_faithful_cm3": {
+      "max": 9.94,
+      "frame": 159
+     },
+     "max_V_packed_cm3": {
+      "max": 15.92,
+      "frame": 159
+     },
+     "max_V_visual_cm3": {
+      "max": 9.77,
+      "frame": 159
+     },
+     "objects": {
+      "blue_cup": {
+       "n_fail_a_table": 17,
+       "n_fail_b_float": 203,
+       "max_pen_faithful_mm": {
+        "max": 23.65,
+        "frame": 90
+       },
+       "max_pen_visual_mm": {
+        "max": 22.49,
+        "frame": 90
+       },
+       "max_pen_packed_mm": {
+        "max": 22.48,
+        "frame": 90
+       },
+       "max_float_faithful_mm": {
+        "max": 92.19,
+        "frame": 32
+       },
+       "max_float_visual_mm": {
+        "max": 92.9,
+        "frame": 32
+       },
+       "n_off_support": 0
+      },
+      "wooden_spoon": {
+       "n_fail_a_table": 4,
+       "n_fail_b_float": 167,
+       "max_pen_faithful_mm": {
+        "max": 14.19,
+        "frame": 265
+       },
+       "max_pen_visual_mm": {
+        "max": 13.01,
+        "frame": 265
+       },
+       "max_pen_packed_mm": {
+        "max": 13.0,
+        "frame": 265
+       },
+       "max_float_faithful_mm": {
+        "max": 100.0,
+        "frame": 63
+       },
+       "max_float_visual_mm": {
+        "max": 100.0,
+        "frame": 63
+       },
+       "n_off_support": 108
+      }
+     }
+    },
+    "object_hand_free": {
+     "blue_cup": {
+      "frames": 69,
+      "n_fail_a_table": 17,
+      "n_fail_b_float": 11,
+      "max_pen_faithful_mm": {
+       "max": 23.65,
+       "frame": 90
+      },
+      "max_pen_visual_mm": {
+       "max": 22.49,
+       "frame": 90
+      },
+      "max_pen_packed_mm": {
+       "max": 22.48,
+       "frame": 90
+      },
+      "max_float_faithful_mm": {
+       "max": 13.53,
+       "frame": 78
+      },
+      "max_float_visual_mm": {
+       "max": 14.34,
+       "frame": 78
+      },
+      "n_off_support": 0
+     },
+     "wooden_spoon": {
+      "frames": 118,
+      "n_fail_a_table": 4,
+      "n_fail_b_float": 32,
+      "max_pen_faithful_mm": {
+       "max": 14.19,
+       "frame": 265
+      },
+      "max_pen_visual_mm": {
+       "max": 13.01,
+       "frame": 265
+      },
+      "max_pen_packed_mm": {
+       "max": 13.0,
+       "frame": 265
+      },
+      "max_float_faithful_mm": {
+       "max": 100.0,
+       "frame": 70
+      },
+      "max_float_visual_mm": {
+       "max": 100.0,
+       "frame": 70
+      },
+      "n_off_support": 37
+     }
+    }
+   },
+   "cavity": {
+    "all": {
+     "frames": 348,
+     "frames_guest_in_receiver_cavity": 64,
+     "cavity_frames": [
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236
+     ],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 23.14,
+      "frame": 160
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 10.73,
+      "frame": 159
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 9.77,
+      "frame": 159
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 1.01,
+      "frame": 157
+     },
+     "n_frames_rpk_only_ge1cm3": 1,
+     "n_cavity_frames_rpk_only_ge1cm3": 1,
+     "n_cavity_frames_rpk_ge1cm3": 22,
+     "n_cavity_frames_rvis_ge1cm3": 20,
+     "n_cavity_frames_rpk_le0p1cm3": 31,
+     "max_depth_pk_mm": {
+      "max": 8.07,
+      "frame": 160
+     },
+     "max_depth_vis_mm": {
+      "max": 18.97,
+      "frame": 158
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": 10.73,
+      "frame": 159
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": 1.01,
+      "frame": 157
+     },
+     "packed_blocks_beyond_visual": true,
+     "packed_blocks": true
+    },
+    "H0": {
+     "frames": 30,
+     "frames_guest_in_receiver_cavity": 0,
+     "cavity_frames": [],
+     "max_V_guest_in_cavity_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_gvis_in_rpk_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_gvis_in_rvis_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_gvis_in_rpk_only_cm3": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "n_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_only_ge1cm3": 0,
+     "n_cavity_frames_rpk_ge1cm3": 0,
+     "n_cavity_frames_rvis_ge1cm3": 0,
+     "n_cavity_frames_rpk_le0p1cm3": 0,
+     "max_depth_pk_mm": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_depth_vis_mm": {
+      "max": 0.0,
+      "frame": 0
+     },
+     "max_V_gvis_in_rpk_cavity_frames_cm3": {
+      "max": null,
+      "frame": null
+     },
+     "max_V_rpk_only_cavity_frames_cm3": {
+      "max": null,
+      "frame": null
+     },
+     "packed_blocks_beyond_visual": false,
+     "packed_blocks": false
+    }
+   },
+   "contacts": {
+    "max_nefc": 436,
+    "max_ncon": 109,
+    "overflow_any": false,
+    "pieces": [
+     76,
+     10
+    ],
+    "frame_pick": {
+     "static_near_runs": 0,
+     "frames_near": 55,
+     "frames": 348
+    },
+    "frames": [
+     {
+      "frame": 219,
+      "run": [
+       209,
+       230
+      ],
+      "length": 22,
+      "kind": "not_static",
+      "hands": "in_hand",
+      "max_nefc": 256,
+      "median_max_nefc": 110.0,
+      "max_ncon": 64,
+      "median_max_ncon": 27.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 20,
+      "classes_at_max_nefc": {
+       "guest_receiver": 24,
+       "guest_table": 8,
+       "receiver_table": 32
+      },
+      "pair_at_frame": {
+       "V_packed": 0.0,
+       "dist_packed_mm": 0.9906610100700335,
+       "V_faithful": 0.0
+      },
+      "secs": 2.0
+     },
+     {
+      "frame": 158,
+      "run": [
+       148,
+       168
+      ],
+      "length": 21,
+      "kind": "not_static",
+      "hands": "in_hand",
+      "max_nefc": 252,
+      "median_max_nefc": 228.0,
+      "max_ncon": 63,
+      "median_max_ncon": 57.0,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 3,
+      "classes_at_max_nefc": {
+       "guest_receiver": 63,
+       "guest_table": 0,
+       "receiver_table": 0
+      },
+      "pair_at_frame": {
+       "V_packed": 15.849,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 9.832
+      },
+      "secs": 2.3
+     },
+     {
+      "frame": 93,
+      "run": [
+       91,
+       96
+      ],
+      "length": 6,
+      "kind": "not_static",
+      "hands": "in_hand",
+      "max_nefc": 436,
+      "median_max_nefc": 246.0,
+      "max_ncon": 109,
+      "median_max_ncon": 61.5,
+      "overflow_copies": 0,
+      "nan_copies": 0,
+      "step_max_nefc": 25,
+      "classes_at_max_nefc": {
+       "guest_receiver": 42,
+       "guest_table": 23,
+       "receiver_table": 44
+      },
+      "pair_at_frame": {
+       "V_packed": 0.6615,
+       "dist_packed_mm": 0.0,
+       "V_faithful": 0.48000000000000004
+      },
+      "secs": 2.1
+     }
+    ]
+   }
+  }
+ }
+}

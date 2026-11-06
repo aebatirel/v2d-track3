@@ -1,0 +1,40 @@
+{
+ "window": [
+  294,
+  355
+ ],
+ "board_1": "wooden_piece_1",
+ "board_2": "wooden_piece_2",
+ "ref_track_vs_parquet_rel_b2_in_b1": {
+  "dt_mm_median": 5.71632853538624,
+  "dt_mm_max": 6.828904188934941,
+  "dxyz_mm_median_in_b1_frame": [
+   -0.12,
+   -5.71,
+   0.0
+  ],
+  "dR_deg_median": 0.03352880325143306,
+  "dR_deg_max": 0.04863391293518297
+ },
+ "mapped_track_vs_parquet_rel_b2_in_b1": {
+  "dt_mm_median": 9.847994078587263,
+  "dt_mm_max": 13.729116936740532,
+  "dxyz_mm_median_in_b1_frame": [
+   1.97,
+   -6.07,
+   -7.32
+  ],
+  "dR_deg_median": 2.475555329909235,
+  "dR_deg_max": 3.9404829736735314
+ },
+ "parquet_minus_ref_table_z_mm_wooden_piece_1": {
+  "min": -1.6373867671952702,
+  "median": -0.26885156415040745,
+  "max": 6.616549700479535
+ },
+ "parquet_minus_ref_table_z_mm_wooden_piece_2": {
+  "min": 4.695097249751368,
+  "median": 5.518934168833312,
+  "max": 7.1916644503399185
+ }
+}

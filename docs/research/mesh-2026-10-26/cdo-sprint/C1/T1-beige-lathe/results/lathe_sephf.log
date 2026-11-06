@@ -1,0 +1,5 @@
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/scripts/lathe_obs.py:229: RuntimeWarning: All-NaN slice encountered
+  r_out = np.where(nsec_out >= a.minsec, np.nanmedian(np.where(np.isfinite(Sout), Sout, np.nan), 1), np.nan)
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/scripts/lathe_obs.py:230: RuntimeWarning: All-NaN slice encountered
+  r_in = np.where(nsec_in >= a.minsec, np.nanmedian(np.where(np.isfinite(Sin), Sin, np.nan), 1), np.nan)
+{"axis_rotcons_mm": 3.1047151384328733, "axis_cands": 14, "t_mm": 3.0595952489604374, "height_mm": 160.4252268760546, "rmax_mm": 41.777895354521924, "open_top": false, "n_outer": 9676, "n_inner": 11395, "hfloor_mm": 3.059595248960434, "app_pts": 2461, "appendages": 1, "faces": 26584, "out": "build/ep11_beige_cup_sephf_g1.glb"}

@@ -1,0 +1,15 @@
+{
+ "obj": "beige_cup",
+ "file": "/content/results/c0b/pts/B/ep11_beige_cup_sep.npz",
+ "sigma_m": 0.0008789009729270934,
+ "T": 137,
+ "stride": 2,
+ "info": {
+  "even_points": 253610,
+  "odd_points": 248656,
+  "sheet_faces": 118279,
+  "raw_median_mm": 0.879,
+  "n": 50000
+ },
+ "sec": 35.1
+}

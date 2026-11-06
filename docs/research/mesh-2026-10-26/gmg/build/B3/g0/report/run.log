@@ -1,0 +1,13 @@
+[    1.4s] 8 ok SAM 3D records; bundle P1 ['white_pot', 'white_pot_lid']; t0 5.36 mm ({'source': 'dev_constants.json', 'run': '20261030-t0dev-e207a14'})
+[  297.4s] shell white_pot: fsv_far 0.0008 (296 s)
+[  377.7s] shell white_pot_lid: fsv_far 0.0192 (80 s)
+[  893.4s] ep2_white_pot_primary_k246 s0: fsv 0.6444 (shell 0.0008, diff +0.6436) V2 ok -> fail; scale 0.391 m; pca ratio [1.125, 1.045, 1.17] (516 s)
+[ 1218.4s] ep2_white_pot_primary_k246 s1: fsv 0.7468 (shell 0.0008, diff +0.7460) V2 ok -> fail; scale 0.381 m; pca ratio [1.075, 0.942, 1.056] (325 s)
+[ 1508.4s] ep2_white_pot_control_k24 s0: fsv 0.7412 (shell 0.0008, diff +0.7405) V2 ok -> fail; scale 0.403 m; pca ratio [1.126, 0.989, 1.098] (290 s)
+[ 1871.9s] ep2_white_pot_control_k24 s1: fsv 0.6110 (shell 0.0008, diff +0.6103) V2 ok -> fail; scale 0.534 m; pca ratio [1.52, 1.179, 1.268] (363 s)
+[ 1929.4s] ep2_white_pot_lid_primary_k132 s0: fsv 0.8094 (shell 0.0192, diff +0.7902) V2 ok -> fail; scale 0.157 m; pca ratio [0.875, 0.845, 1.182] (58 s)
+[ 1980.1s] ep2_white_pot_lid_primary_k132 s1: fsv 0.5298 (shell 0.0192, diff +0.5106) V2 ok -> fail; scale 0.157 m; pca ratio [0.859, 0.842, 1.278] (51 s)
+[ 2148.3s] ep2_white_pot_lid_control_k318 s0: fsv 0.3626 (shell 0.0192, diff +0.3434) V2 ok -> fail; scale 0.230 m; pca ratio [1.265, 0.889, 2.316] (168 s)
+[ 2392.8s] ep2_white_pot_lid_control_k318 s1: fsv 0.4782 (shell 0.0192, diff +0.4590) V2 ok -> fail; scale 0.227 m; pca ratio [1.241, 0.859, 2.322] (244 s)
+[ 2394.5s] B.12: K-a 0/2 K-b 0/2 -> NOT SUPPORTED; controls {'white_pot': {'n': 2, 'pass_': 0}, 'white_pot_lid': {'n': 2, 'pass_': 0}}
+{"log": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/audit/g0rep-6122232.strace", "policy": "gmg", "mode": "dev", "manifest": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-g0rep-6122232/manifest.json", "events": 3135, "opens_ok": 2790, "forbidden": 0, "unlisted": 0, "unrecorded": 0, "writes_outside_run": 0, "network": 0, "local_sockets": 0, "system": 2209, "system_files": 20, "code_outside_interp": 51, "git": 43, "git_tree_reads": 1, "data_reads": 42, "det_reads": 0, "written": 15, "moves": 0, "links": 0, "symlinks": 0, "interp_dirs": 5, "cwd0": "/home/user/v2d-track3/docs/research/mesh-2026-10-26", "allow_net": false, "forbidden_opens": 0, "forbidden_attempted_failed": 0, "command": 9, "returncode": 0}

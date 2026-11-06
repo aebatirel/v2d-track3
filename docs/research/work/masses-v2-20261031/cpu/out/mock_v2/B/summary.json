@@ -1,0 +1,597 @@
+{
+ "rule": "docs/research/work/masses-v2-20261031/PREREG.md",
+ "rule_version": "v2",
+ "control": "mass0",
+ "treatment": "mass1",
+ "bars": {
+  "mean_delta_min": 0.03,
+  "positive_episodes_min": 3,
+  "episode_delta_fail_at_or_below": -0.05,
+  "min_scored_rollouts": 8,
+  "compared_at": "4 decimals"
+ },
+ "verdict": "PARTIAL",
+ "reasons": [
+  "box reading over 2 of 4 episodes; the v2 verdict needs both boxes merged"
+ ],
+ "clauses": {
+  "mean_delta": 0.05497,
+  "mean_delta_4dp": 0.055,
+  "delta_4dp": {
+   "ep11": 0.054,
+   "ep31": 0.056
+  },
+  "n_positive": 2,
+  "drops": [],
+  "episodes_scored": 2
+ },
+ "verification_ok": true,
+ "verification_failures": [],
+ "verification_missing": [],
+ "roots": [
+  "MR/content"
+ ],
+ "verify_files": [
+  "MR/content/results/mass_check/verify.json"
+ ],
+ "cell_source": {
+  "ep11/mass0/s42": "MR/content",
+  "ep11/mass1/s42": "MR/content",
+  "ep11/mass0/s43": "MR/content",
+  "ep11/mass1/s43": "MR/content",
+  "ep31/mass0/s42": "MR/content",
+  "ep31/mass1/s42": "MR/content",
+  "ep31/mass0/s43": "MR/content",
+  "ep31/mass1/s43": "MR/content"
+ },
+ "eval_timeouts": {
+  "cells_cut": {},
+  "per_arm": {
+   "mass0": {
+    "best": 0,
+    "curve": 0
+   },
+   "mass1": {
+    "best": 0,
+    "curve": 0
+   }
+  },
+  "not_recorded": [],
+  "per_cell": {
+   "ep11/mass0/s42": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep11/mass1/s42": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep11/mass0/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep11/mass1/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep31/mass0/s42": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep31/mass1/s42": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep31/mass0/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep31/mass1/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   }
+  }
+ },
+ "episodes": {
+  "ep11": {
+   "control_seed_mean": 0.695,
+   "treatment_seed_mean": 0.749,
+   "delta": 0.054,
+   "per_seed_delta": {
+    "42": 0.0555,
+    "43": 0.0524
+   },
+   "se_delta": 0.0041,
+   "sim_vs_ref_delta": 0.0501,
+   "ref_auc_spread_across_cells": 0.0,
+   "harm_reading": false
+  },
+  "ep31": {
+   "control_seed_mean": 0.6945,
+   "treatment_seed_mean": 0.7504,
+   "delta": 0.056,
+   "per_seed_delta": {
+    "42": 0.056,
+    "43": 0.0559
+   },
+   "se_delta": 0.0039,
+   "sim_vs_ref_delta": 0.0504,
+   "ref_auc_spread_across_cells": 0.0,
+   "harm_reading": false
+  }
+ },
+ "references": {
+  "ep11": {
+   "source_parquet": "MR/content/refs/glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "source_md5": "cb269fa8fe1212c2c27e9a5c4a32ceda",
+   "traj_fingerprint": "495226c211fc5e381e2f6f45eb2301a0",
+   "masses": {
+    "mass0": {
+     "blue_cup": 0.3,
+     "beige_cup": 0.3
+    },
+    "mass1": {
+     "blue_cup": 0.128,
+     "beige_cup": 0.1367
+    }
+   }
+  },
+  "ep31": {
+   "source_parquet": "MR/content/refs/glockt/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "source_md5": "cd8c4822913e02a33d01c250d51a35cd",
+   "traj_fingerprint": "3cf0e9c1fad6b3b9fa97a6ba3040ea65",
+   "masses": {
+    "mass0": {
+     "mini_sweeper": 0.3,
+     "plastic_dish_rack": 0.3
+    },
+    "mass1": {
+     "mini_sweeper": 0.045,
+     "plastic_dish_rack": 0.3865
+    }
+   }
+  }
+ },
+ "cells": {
+  "ep11/mass0/s42": {
+   "checkpoint": "MR/content/runs/mass0s42_glock/ep11-s42/policy_40001536.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.6983,
+    "sd": 0.0145,
+    "min": 0.6807,
+    "max": 0.717
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8535,
+    "sd": 0.012,
+    "min": 0.8332,
+    "max": 0.8671
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8759,
+    "sd": 0.0,
+    "min": 0.8759,
+    "max": 0.8759
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.717,
+    0.6953,
+    0.7015,
+    0.6841,
+    0.6864,
+    0.7128,
+    0.6807,
+    0.7114,
+    0.7126,
+    0.6816
+   ]
+  },
+  "ep11/mass1/s42": {
+   "checkpoint": "MR/content/runs/mass1s42_glock/ep11-s42/policy_20000768.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.7539,
+    "sd": 0.0126,
+    "min": 0.7341,
+    "max": 0.7689
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.907,
+    "sd": 0.0122,
+    "min": 0.8817,
+    "max": 0.9188
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8759,
+    "sd": 0.0,
+    "min": 0.8759,
+    "max": 0.8759
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.7551,
+    0.7461,
+    0.7341,
+    0.7448,
+    0.7372,
+    0.7634,
+    0.7689,
+    0.7576,
+    0.7641,
+    0.7673
+   ]
+  },
+  "ep11/mass0/s43": {
+   "checkpoint": "MR/content/runs/mass0s43_glock/ep11-s43/policy_49999872.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.6917,
+    "sd": 0.0124,
+    "min": 0.671,
+    "max": 0.7087
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8418,
+    "sd": 0.0137,
+    "min": 0.821,
+    "max": 0.8569
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8759,
+    "sd": 0.0,
+    "min": 0.8759,
+    "max": 0.8759
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.7009,
+    0.7052,
+    0.7013,
+    0.6851,
+    0.6763,
+    0.6906,
+    0.6864,
+    0.671,
+    0.7087,
+    0.6913
+   ]
+  },
+  "ep11/mass1/s43": {
+   "checkpoint": "MR/content/runs/mass1s43_glock/ep11-s43/policy_29999104.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.7441,
+    "sd": 0.0116,
+    "min": 0.7227,
+    "max": 0.759
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8885,
+    "sd": 0.0111,
+    "min": 0.8742,
+    "max": 0.9038
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8759,
+    "sd": 0.0,
+    "min": 0.8759,
+    "max": 0.8759
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.7464,
+    0.7557,
+    0.759,
+    0.742,
+    0.7302,
+    0.7489,
+    0.7363,
+    0.7227,
+    0.7541,
+    0.7459
+   ]
+  },
+  "ep31/mass0/s42": {
+   "checkpoint": "MR/content/runs/mass0s42_glock/ep31-s42/policy_40001536.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.6986,
+    "sd": 0.0143,
+    "min": 0.6808,
+    "max": 0.7199
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8475,
+    "sd": 0.0116,
+    "min": 0.8317,
+    "max": 0.8639
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8886,
+    "sd": 0.0,
+    "min": 0.8886,
+    "max": 0.8886
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.6913,
+    0.6879,
+    0.6919,
+    0.6989,
+    0.7199,
+    0.7072,
+    0.6815,
+    0.6808,
+    0.7183,
+    0.7086
+   ]
+  },
+  "ep31/mass1/s42": {
+   "checkpoint": "MR/content/runs/mass1s42_glock/ep31-s42/policy_29999104.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.7547,
+    "sd": 0.0146,
+    "min": 0.7314,
+    "max": 0.7689
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.9005,
+    "sd": 0.0121,
+    "min": 0.8837,
+    "max": 0.9197
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8886,
+    "sd": 0.0,
+    "min": 0.8886,
+    "max": 0.8886
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.7611,
+    0.7683,
+    0.7405,
+    0.7411,
+    0.7666,
+    0.7655,
+    0.7689,
+    0.7399,
+    0.7632,
+    0.7314
+   ]
+  },
+  "ep31/mass0/s43": {
+   "checkpoint": "MR/content/runs/mass0s43_glock/ep31-s43/policy_40001536.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.6903,
+    "sd": 0.0084,
+    "min": 0.6793,
+    "max": 0.7061
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8371,
+    "sd": 0.0083,
+    "min": 0.8266,
+    "max": 0.848
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8886,
+    "sd": 0.0,
+    "min": 0.8886,
+    "max": 0.8886
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.6878,
+    0.693,
+    0.6911,
+    0.6913,
+    0.6919,
+    0.6793,
+    0.6997,
+    0.7061,
+    0.6831,
+    0.6798
+   ]
+  },
+  "ep31/mass1/s43": {
+   "checkpoint": "MR/content/runs/mass1s43_glock/ep31-s43/policy_20000768.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.7462,
+    "sd": 0.0117,
+    "min": 0.7228,
+    "max": 0.7569
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8849,
+    "sd": 0.0065,
+    "min": 0.876,
+    "max": 0.8944
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8886,
+    "sd": 0.0,
+    "min": 0.8886,
+    "max": 0.8886
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.7552,
+    0.7532,
+    0.755,
+    0.7403,
+    0.7228,
+    0.7308,
+    0.7557,
+    0.747,
+    0.7452,
+    0.7569
+   ]
+  }
+ }
+}

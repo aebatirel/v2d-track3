@@ -1,0 +1,102 @@
+{
+ "packed": {
+  "n": [
+   -0.106402,
+   -0.78802,
+   -0.606385
+  ],
+  "d": 0.532768,
+  "source": "<scratchpad>/ev10retrain/dl/runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/table_frame.npz"
+ },
+ "KR_calib_vs_hands_max_abs": 0.0,
+ "raw": {
+  "D1": {
+   "n": [
+    -0.106379,
+    -0.788445,
+    -0.605837
+   ],
+   "d": 0.532981,
+   "inlier_frac": 0.6416,
+   "ring_points": 30000,
+   "rms_mm": 0.647,
+   "angle_to_packed_deg": 0.0398,
+   "abs_dd_mm": 0.212,
+   "bottoms_cm": {
+    "blue_cup": 0.13,
+    "beige_cup": -0.18
+   },
+   "T_table_from_world_diff_vs_packed": {
+    "rot_deg": 0.0398,
+    "trans_mm": 0.37
+   }
+  },
+  "D2": {
+   "n": [
+    -0.106402,
+    -0.78802,
+    -0.606385
+   ],
+   "d": 0.532768,
+   "inlier_frac": 0.6448,
+   "ring_points": 30000,
+   "rms_mm": 0.539,
+   "angle_to_packed_deg": 0.0,
+   "abs_dd_mm": 0.0,
+   "bottoms_cm": {
+    "blue_cup": 0.09,
+    "beige_cup": -0.22
+   },
+   "T_table_from_world_diff_vs_packed": {
+    "rot_deg": 0.0,
+    "trans_mm": 0.0
+   }
+  }
+ },
+ "v4p": {
+  "D1": {
+   "n": [
+    -0.106369,
+    -0.788423,
+    -0.605867
+   ],
+   "d": 0.53298,
+   "inlier_frac": 0.6441,
+   "ring_points": 30000,
+   "rms_mm": 0.66,
+   "angle_to_packed_deg": 0.0377,
+   "abs_dd_mm": 0.212,
+   "bottoms_cm": {
+    "blue_cup": 0.05,
+    "beige_cup": -0.18
+   },
+   "T_table_from_world_diff_vs_packed": {
+    "rot_deg": 0.0377,
+    "trans_mm": 0.491
+   }
+  },
+  "D2": {
+   "n": [
+    -0.106343,
+    -0.788004,
+    -0.606417
+   ],
+   "d": 0.532765,
+   "inlier_frac": 0.6476,
+   "ring_points": 30000,
+   "rms_mm": 0.555,
+   "angle_to_packed_deg": 0.0039,
+   "abs_dd_mm": 0.003,
+   "bottoms_cm": {
+    "blue_cup": 0.01,
+    "beige_cup": -0.22
+   },
+   "T_table_from_world_diff_vs_packed": {
+    "rot_deg": 0.0039,
+    "trans_mm": 0.362
+   }
+  }
+ },
+ "rule": "PREREG 3.2: smaller angle between normals vs the packed table_frame.npz on the raw track; within 0.05 deg the smaller |dd|",
+ "chosen": "D2"
+}

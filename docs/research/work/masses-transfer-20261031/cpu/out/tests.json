@@ -1,0 +1,326 @@
+{
+ "ok": true,
+ "failures": [],
+ "tests": {
+  "T0_baseline_verified": {
+   "ok": true,
+   "detail": []
+  },
+  "T1_wrong_mass_detected": {
+   "ok": true,
+   "detail": [
+    "ep12/mass1/s42: blue_cup loads 0.3 kg from MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf, expected 0.128",
+    "ep12/mass1/s43: blue_cup loads 0.3 kg from MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf, expected 0.128"
+   ]
+  },
+  "T2_second_parquet_detected": {
+   "ok": true,
+   "detail": [
+    "ep2/mass1/s43: ValueError: 2 .parquet files (FlashCHORD needs exactly one) in the reference folder MR/content/refs/mass1s43_glockt/ep2"
+   ]
+  },
+  "T3_other_reference_detected": {
+   "ok": true,
+   "detail": [
+    "ep12/mass0/s42: reference fingerprint 01838d4b7f1acac2d307bae3df59a09b != source f7d8bb94a6087baa06e2f262e47118e9 (not the same reference)"
+   ]
+  },
+  "T7_other_training_setting_detected": {
+   "ok": true,
+   "detail": [
+    "ep2/mass1/s42: best/policy.safetensors is not the checkpoint the summary names",
+    "ep2/mass1/s42: MR/content/results/mass1s42_glock_public/ep2/best/r1/episode_000002.json evaluated checkpoint sha256 e1d53e990988 != chosen ab583876a8be"
+   ]
+  },
+  "T13a_no_timeout_nothing_flagged": {
+   "ok": true,
+   "detail": {
+    "verdict": "ADOPT: every episode delta >= +0.03 and no seed drop > 0.05 | ep2 mass0 0.7968 mass1 0.8428 delta 0.0461 per seed {'42': 0.0479, '43': 0.0443}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}",
+    "cell": {
+     "best": 0,
+     "best_runs": 10,
+     "best_rc": {
+      "0": 10
+     },
+     "best_without_rc": 0,
+     "curve": 0,
+     "curve_runs": 21,
+     "curve_rc": {
+      "0": 21
+     },
+     "curve_without_rc": 0
+    }
+   }
+  },
+  "T8_missing_cell_incomplete": {
+   "ok": true,
+   "detail": {
+    "verify_rc": 0,
+    "missing": [
+     "ep12/mass1/s43"
+    ],
+    "verdict": "INCOMPLETE: missing or < 8 scored rollouts: ['ep12/mass1/s43'] | ep2 mass0 0.7968 mass1 0.8428 delta 0.0461 per seed {'42': 0.0479, '43': 0.0443}; ep12 mass0 0.8762 mass1 0.9226 delta 0.0465 per seed {'42': 0.0399}",
+    "before_fix": {
+     "verify_rc": 1,
+     "failures": [
+      "ep12/mass1/s43: FileNotFoundError: [Errno 2] No such file or directory: 'MR/content/results/mass1s43_glock_public/ep12/best/summary.json'",
+      "ep12/s43: not every arm has a chosen checkpoint"
+     ],
+     "verdict": "INVALID"
+    }
+   }
+  },
+  "T9_dropped_episode_incomplete": {
+   "ok": true,
+   "detail": {
+    "verify_rc": 0,
+    "missing": [
+     "ep2/mass0/s42",
+     "ep2/mass0/s43",
+     "ep2/mass1/s42",
+     "ep2/mass1/s43"
+    ],
+    "verdict": "INCOMPLETE: missing or < 8 scored rollouts: ['ep2/mass0/s42', 'ep2/mass0/s43', 'ep2/mass1/s42', 'ep2/mass1/s43'] | ep2 mass0 None mass1 None delta None per seed {}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}",
+    "before_fix": {
+     "verify_rc": 1,
+     "verdict": "INVALID"
+    }
+   }
+  },
+  "T10_missing_plus_wrong_mass_invalid": {
+   "ok": true,
+   "detail": {
+    "verify_rc": 1,
+    "missing": [
+     "ep2/mass0/s42"
+    ],
+    "failures": [
+     "ep12/mass1/s42: blue_cup loads 0.3 kg from MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf, expected 0.128",
+     "ep12/mass1/s43: blue_cup loads 0.3 kg from MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf, expected 0.128"
+    ],
+    "verdict": "INVALID: mass_verify.py failed: the arms did not load what the design says (see verify.json); also missing or < 8 scored rollouts: ['ep2/mass0/s42'] | ep2 mass0 0.7896 mass1 0.8428 delta 0.0532 per seed {'43': 0.0443}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}"
+   }
+  },
+  "T12_arm_named_config_keys_verified": {
+   "ok": true,
+   "detail": {
+    "verify_rc": 0,
+    "equal_after_arm_name": [
+     "env.task.parquet",
+     "logging.run_dir",
+     "output_dir",
+     "reference.parquet",
+     "scene.asset_dirs",
+     "task.parquet"
+    ],
+    "before_fix": {
+     "verify_rc": 1,
+     "failures": [
+      "ep2/mass0/s42 vs ep2/mass1/s42: saved configs differ in ['env.task.parquet', 'logging.run_dir', 'scene.asset_dirs']"
+     ]
+    },
+    "differs_by_more_than_arm": {
+     "verify_rc": 1,
+     "failures": [
+      "ep2/mass0/s42 vs ep2/mass1/s42: saved configs differ in ['logging.run_dir']"
+     ]
+    }
+   }
+  },
+  "T13_injected_eval_timeout_reported": {
+   "ok": true,
+   "detail": {
+    "verify_eval_timeouts": {
+     "ep2/mass1/s42": {
+      "best": 1,
+      "best_runs": 10,
+      "best_rc": {
+       "0": 9,
+       "124": 1
+      },
+      "best_without_rc": 0,
+      "curve": 1,
+      "curve_runs": 21,
+      "curve_rc": {
+       "0": 20,
+       "137": 1
+      },
+      "curve_without_rc": 0
+     }
+    },
+    "verdict": "ADOPT [EVAL TIMEOUTS in 1 cell(s): ep2/mass1/s42 best 1/10 curve 1/21; per arm best/curve mass0 0/0, mass1 1/1]: every episode delta >= +0.03 and no seed drop > 0.05 | ep2 mass0 0.7968 mass1 0.8435 delta 0.0468 per seed {'42': 0.0492, '43': 0.0443}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}",
+    "per_arm": {
+     "mass0": {
+      "best": 0,
+      "curve": 0
+     },
+     "mass1": {
+      "best": 1,
+      "curve": 1
+     }
+    }
+   }
+  },
+  "T14_require_reuse_exits": {
+   "ok": true,
+   "detail": {
+    "rc": [
+     1,
+     1
+    ],
+    "log": [
+     "glock_public: REQUIRE_REUSE: pair 2:local:mck:mass1s42 has no finished reference on this box (refs/mass1s42_glockt/ep2/processed/*/*/ref_gl_ilc.parquet and results/mass1s42_glock_public/ep2/rest_check.json); nothing rebuilt or trained\n",
+     "glock_public: REQUIRE_REUSE=1 needs REUSE_REF=1; nothing run\n"
+    ],
+    "audits": {
+     "train_audit": 16,
+     "ref_audit": 4,
+     "eval_audit": 248
+    }
+   }
+  },
+  "T0_restored_verified": {
+   "ok": true,
+   "detail": []
+  },
+  "T4_verdict_rule": {
+   "ok": true,
+   "detail": {
+    "got": {
+     "adopt": "ADOPT",
+     "short": "NOT ADOPTED",
+     "drop": "NOT ADOPTED",
+     "edge": "ADOPT",
+     "incomplete": "INCOMPLETE",
+     "invalid": "INVALID"
+    },
+    "want": {
+     "adopt": "ADOPT",
+     "short": "NOT ADOPTED",
+     "drop": "NOT ADOPTED",
+     "edge": "ADOPT",
+     "incomplete": "INCOMPLETE",
+     "invalid": "INVALID"
+    }
+   }
+  },
+  "T5_equals_make_assets_physics": {
+   "ok": true,
+   "detail": {
+    "beige_cup": {
+     "mass": [
+      0.1367,
+      0.1367
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.90329727765198e-09
+    },
+    "blue_cup": {
+     "mass": [
+      0.128,
+      0.128
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 2.147045392709252e-09
+    },
+    "mini_dust_pan": {
+     "mass": [
+      0.0442,
+      0.0442
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 4.1967205525571574e-09
+    },
+    "mini_sweeper": {
+     "mass": [
+      0.045,
+      0.045
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 4.511007978171873e-09
+    },
+    "plastic_dish_rack": {
+     "mass": [
+      0.3865,
+      0.3865
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 5.001991204957043e-09
+    },
+    "water_pitcher": {
+     "mass": [
+      0.5031,
+      0.5031
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.8885700386906e-09
+    },
+    "white_pot_lid": {
+     "mass": [
+      0.0882,
+      0.0882
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.3061685705806386e-09
+    },
+    "white_pot": {
+     "mass": [
+      0.2771,
+      0.2771
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 7.653292237430943e-09
+    },
+    "wooden_piece_1": {
+     "mass": [
+      0.1389,
+      0.1389
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.4248008055819e-09
+    },
+    "wooden_piece_2": {
+     "mass": [
+      0.1409,
+      0.1409
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.0379772063856302e-09
+    },
+    "wooden_spoon": {
+     "mass": [
+      0.05,
+      0.05
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 4.1617593818726766e-09
+    }
+   }
+  },
+  "T6_non_placeholder_source_refused": {
+   "ok": true,
+   "detail": "mass_arm ep12: MR/content/refs/sf/ep12/assets/urdf/blue_cup_rigid.urdf has mass 0.5, not the 0.3 kg placeholder this check assumes"
+  },
+  "T11_nan_reference_not_dropped": {
+   "ok": true,
+   "detail": {
+    "rc": 0,
+    "arm_masses": {
+     "mass0": {
+      "blue_cup": 0.3,
+      "plastic_dish_rack": 0.3
+     },
+     "mass1": {
+      "blue_cup": 0.128,
+      "plastic_dish_rack": 0.3865
+     }
+    },
+    "table_equals_itself": false,
+    "before_fix": {
+     "rc": 1,
+     "stderr": "mass_arm ep12 mass0: the copy differs from the source in a column other than ('object_urdf_paths',)"
+    }
+   }
+  }
+ }
+}

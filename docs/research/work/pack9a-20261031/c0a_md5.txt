@@ -1,0 +1,4 @@
+120541653cfabdb902e8dc251fb67ad2  meshes/c0a_20261031/blue_cup.glb
+61f15f5174bb585d103447d3fb1dad50  meshes/c0a_20261031/plastic_dish_rack.glb
+115ebdeccbda16ab0814de7c21dfe6c9  meshes/c0a_20261031/white_pot.glb
+0ffeb190bedaa8638c1bac947809b24f  meshes/c0a_20261031/white_pot_lid.glb

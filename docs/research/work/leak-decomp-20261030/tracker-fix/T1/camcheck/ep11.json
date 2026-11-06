@@ -1,0 +1,265 @@
+{
+ "label": "ep11",
+ "obj": "blue_cup",
+ "n_world": [
+  -0.09701,
+  -0.76429,
+  -0.63754
+ ],
+ "rect_check_corr_vs_det_image": 1.0,
+ "n_source_px": 54577,
+ "frames": {
+  "30": {
+   "obj_step_cm": {
+    "horizontal": 0.19,
+    "vertical": 0.03
+   },
+   "fits": {
+    "translation": {
+     "omega_deg": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tau_cm": [
+      0.01,
+      -0.03,
+      -0.05
+     ],
+     "obj_world_shift_cm": 0.06,
+     "corrected_obj_step_cm": {
+      "horizontal": 0.19,
+      "vertical": 0.08
+     },
+     "world_correction_translation_cm": [
+      0.01,
+      -0.03,
+      -0.05
+     ],
+     "robust_cost": {
+      "zero": 0.6685,
+      "fit": 0.6644
+     },
+     "mad": {
+      "zero": 4.514,
+      "fit": 4.506
+     },
+     "ncc": {
+      "zero": 0.9513,
+      "fit": 0.9514
+     },
+     "px": {
+      "zero": 40603,
+      "fit": 40612
+     }
+    },
+    "six_dof": {
+     "omega_deg": [
+      0.014,
+      0.031,
+      -0.037
+     ],
+     "tau_cm": [
+      -0.07,
+      -0.01,
+      -0.13
+     ],
+     "obj_world_shift_cm": 0.13,
+     "corrected_obj_step_cm": {
+      "horizontal": 0.14,
+      "vertical": 0.13
+     },
+     "world_correction_translation_cm": [
+      -0.06,
+      -0.01,
+      -0.13
+     ],
+     "robust_cost": {
+      "zero": 0.6685,
+      "fit": 0.6397
+     },
+     "mad": {
+      "zero": 4.514,
+      "fit": 4.259
+     },
+     "ncc": {
+      "zero": 0.9513,
+      "fit": 0.9534
+     },
+     "px": {
+      "zero": 40603,
+      "fit": 40608
+     }
+    }
+   }
+  },
+  "67": {
+   "obj_step_cm": {
+    "horizontal": 0.5,
+    "vertical": 5.39
+   },
+   "fits": {
+    "translation": {
+     "omega_deg": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tau_cm": [
+      -0.04,
+      0.03,
+      -0.02
+     ],
+     "obj_world_shift_cm": 0.05,
+     "corrected_obj_step_cm": {
+      "horizontal": 0.5,
+      "vertical": 5.38
+     },
+     "world_correction_translation_cm": [
+      -0.03,
+      0.03,
+      -0.02
+     ],
+     "robust_cost": {
+      "zero": 0.8444,
+      "fit": 0.8378
+     },
+     "mad": {
+      "zero": 5.679,
+      "fit": 5.65
+     },
+     "ncc": {
+      "zero": 0.9272,
+      "fit": 0.9283
+     },
+     "px": {
+      "zero": 42450,
+      "fit": 42474
+     }
+    },
+    "six_dof": {
+     "omega_deg": [
+      -0.019,
+      0.112,
+      0.01
+     ],
+     "tau_cm": [
+      -0.3,
+      -0.02,
+      -0.14
+     ],
+     "obj_world_shift_cm": 0.26,
+     "corrected_obj_step_cm": {
+      "horizontal": 0.51,
+      "vertical": 5.5
+     },
+     "world_correction_translation_cm": [
+      -0.3,
+      -0.0,
+      -0.15
+     ],
+     "robust_cost": {
+      "zero": 0.8444,
+      "fit": 0.8132
+     },
+     "mad": {
+      "zero": 5.679,
+      "fit": 5.183
+     },
+     "ncc": {
+      "zero": 0.9272,
+      "fit": 0.9265
+     },
+     "px": {
+      "zero": 42450,
+      "fit": 42543
+     }
+    }
+   }
+  },
+  "130": {
+   "obj_step_cm": {
+    "horizontal": 0.23,
+    "vertical": 2.35
+   },
+   "fits": {
+    "translation": {
+     "omega_deg": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tau_cm": [
+      0.01,
+      -0.1,
+      -0.07
+     ],
+     "obj_world_shift_cm": 0.12,
+     "corrected_obj_step_cm": {
+      "horizontal": 0.23,
+      "vertical": 2.46
+     },
+     "world_correction_translation_cm": [
+      0.01,
+      -0.1,
+      -0.07
+     ],
+     "robust_cost": {
+      "zero": 0.5851,
+      "fit": 0.5495
+     },
+     "mad": {
+      "zero": 4.214,
+      "fit": 3.984
+     },
+     "ncc": {
+      "zero": 0.9617,
+      "fit": 0.964
+     },
+     "px": {
+      "zero": 47247,
+      "fit": 47287
+     }
+    },
+    "six_dof": {
+     "omega_deg": [
+      0.04,
+      -0.056,
+      -0.024
+     ],
+     "tau_cm": [
+      0.12,
+      0.0,
+      -0.03
+     ],
+     "obj_world_shift_cm": 0.08,
+     "corrected_obj_step_cm": {
+      "horizontal": 0.27,
+      "vertical": 2.37
+     },
+     "world_correction_translation_cm": [
+      0.11,
+      0.01,
+      -0.03
+     ],
+     "robust_cost": {
+      "zero": 0.5851,
+      "fit": 0.5253
+     },
+     "mad": {
+      "zero": 4.214,
+      "fit": 3.688
+     },
+     "ncc": {
+      "zero": 0.9617,
+      "fit": 0.9644
+     },
+     "px": {
+      "zero": 47247,
+      "fit": 47274
+     }
+    }
+   }
+  }
+ }
+}

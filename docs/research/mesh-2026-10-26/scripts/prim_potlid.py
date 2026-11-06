@@ -75,6 +75,11 @@ T_MIN, T_MAX = 0.002, 0.006
 T_LID = float(os.environ.get('PRIM_T_LID', 0.0025))
 BAR_T0 = 0.005        # handle / strap thickness prior when no side evidence
 NSEG = 64             # revolve segments
+# C0b options (PREREG cdo-sprint/C0b sections 3.2-3.7, REPLACEMENTS.json). OPT holds the values every C0b option
+# replaces; with no option given they equal the constants above, so the old command lines build the same bytes.
+OPT = dict(app_d=APP_D, t_clip=(T_MIN, T_MAX), t_fallback=0.004, t_lid=T_LID, bar_t0=BAR_T0,
+           strap_t_clip=(0.003, 0.008), h_o=0.6, reach=None, lid_win=None, arch_ext=None, sigma=None,
+           markers=None)
 
 
 # ------------------------------------------------------------------------------------------------ utilities
@@ -376,7 +381,7 @@ def pot_body(P, C, info, thick=1.0, axis=None):
     radial = np.stack([np.cos(th), np.sin(th)], 1)
     vr = (v @ e1) * radial[:, 0] + (v @ e2) * radial[:, 1]; vh = v @ d
     # polar parameterization about O = (0, hO)
-    hO = hlo + 0.6 * (hhi - hlo)
+    hO = hlo + OPT['h_o'] * (hhi - hlo)
     Y = h - hO; rho = np.hypot(r, Y); phi = np.arctan2(Y, r)
     ux, uy = r / np.maximum(rho, 1e-9), Y / np.maximum(rho, 1e-9)
     s = vr * ux + vh * uy
@@ -402,9 +407,11 @@ def pot_body(P, C, info, thick=1.0, axis=None):
         Xin = np.stack([ri[both] * U[both, 0], hO + ri[both] * U[both, 1]], 1)
         t = float(np.median(poly_dist(Qo[np.isfinite(ro)], Xin)))
     else:
-        t = 0.004
+        if OPT['t_fallback'] < 0:
+            raise SystemExit('C0b: pot wall fallback needed (< 3 two-wall bins) but t0_C0b is not fittable')
+        t = OPT['t_fallback']
     t_meas = t
-    t = float(np.clip(t, T_MIN, T_MAX)) * thick
+    t = float(np.clip(t, *OPT['t_clip'])) * thick
     # mid-surface polar radius per bin
     co = np.maximum(np.einsum('ij,ij->i', No, U), 0.3); ci = np.maximum(np.einsum('ij,ij->i', Ni, U), 0.3)
     mo = ro - 0.5 * t_meas / co; mi = ri + 0.5 * t_meas / ci
@@ -446,12 +453,15 @@ def pot_body(P, C, info, thick=1.0, axis=None):
                 t_meas_mm=round(t_meas * 1e3, 2), t_mm=round(t * 1e3, 2), h_top_mm=round((h_top - hlo) * 1e3, 1),
                 rmax_mm=round(float(Out[:, 0].max()) * 1e3, 1), bins_outer=int(np.isfinite(ro).sum()),
                 bins_inner=int(np.isfinite(ri).sum()), bins_both=int(both.sum()))
+    if OPT_USED:
+        info.update(t_src='measured' if both.sum() >= 3 else 'fallback', h_o_rel=OPT['h_o'])
     geo = dict(c=c, d=d, e1=e1, e2=e2, h=h, r=r, th=th, Out=Out, hull=hull, t=t, h_top=h_top, M=M)
     return body, geo
 
 
-def residual_mask(geo, h, r, app_d=APP_D):
+def residual_mask(geo, h, r, app_d=None):
     from skimage.measure import points_in_poly
+    app_d = OPT['app_d'] if app_d is None else app_d
     X = np.stack([r, h], 1)
     inside = points_in_poly(X, geo['hull'])
     dist = poly_dist(geo['Out'], X)
@@ -498,10 +508,12 @@ def bar_handle(Hp, Hv, geo, info):
     side = np.abs(Hv @ w2) > 0.5
     btop = float(np.median(b[top])) if top.sum() > 30 else 0.0
     if side.sum() > 50:
-        T = float(np.clip(2 * np.median(btop - b[side]), 0.003, 0.008))
+        T = float(np.clip(2 * np.median(btop - b[side]), *OPT['strap_t_clip']))
         t_src = 'side'
     else:
-        T, t_src = BAR_T0, 'prior'
+        if OPT['bar_t0'] < 0:
+            raise SystemExit('C0b: bar thickness without side evidence needs t0_C0b, which is not fittable')
+        T, t_src = OPT['bar_t0'], 'prior'
     s_tip = float(np.percentile(s, 99.5))
     # inner end: inside the wall (start where the bar's axis point is at radius rmax - 2 t)
     rmax = float(geo['Out'][:, 0].max())
@@ -574,7 +586,8 @@ def build_pot(P, C, variant, lib=None, axis_cache=None):
     hid = None
     for idx in cl:
         X = Rp[idx] - geo['c']; rr = np.linalg.norm(X - (X @ geo['d'])[:, None] * geo['d'], axis=1)
-        if np.percentile(rr, 99) > rmax + 0.06:
+        reach = rmax + 0.06 if OPT['reach'] is None else rmax * (1.0 + OPT['reach'])
+        if np.percentile(rr, 99) > reach:
             hid = idx; break
     if hid is None:
         info['handle'] = None
@@ -582,6 +595,8 @@ def build_pot(P, C, variant, lib=None, axis_cache=None):
     else:
         bar, frame = bar_handle(Rp[hid], Rv[hid], geo, info)
         parts.append(bar)
+    if OPT['markers'] is not None or variant == 'nomk':
+        return gmg_markers(parts, P, variant, info)
     # markers: residual points not explained by the bar (its noise band = APP_D)
     keep = np.ones(len(Rp), bool)
     if frame is not None:
@@ -604,6 +619,22 @@ def tsdf_parts(body, geo, lib, info):
     info['tsdf_faces'] = int(keep.sum())
     full = trimesh.util.concatenate([body, app])
     return full, info
+
+
+def gmg_markers(parts, P, variant, info):
+    """C0b marker path (PREREG C0b 3.2): the finished body (+ bar / arch) unioned, then the gmg markers.py balls of
+    this object-episode (--markers_json, detect_episode output, frozen A.6 settings) attached by markers.attach:
+    fit / thick with posts where attach's stem rule finds observed points, nostem bare balls, nomk none."""
+    mesh = union(parts)
+    balls = [] if variant == 'nomk' else OPT['markers']['balls']
+    if not balls:
+        info['markers'] = dict(source='gmg' if variant != 'nomk' else 'none (nomk)', n=0)
+        return mesh, info
+    from gmg import markers as MK
+    out = MK.attach(mesh, balls, obs=None if variant == 'nostem' else dict(pts=P))
+    info['markers'] = dict(source='gmg markers.py', settings_sha256=OPT['markers']['settings_sha256'], n=len(balls),
+                           attach=out.metadata.get('balls'))
+    return out, info
 
 
 def union(parts):
@@ -649,9 +680,14 @@ def build_lid(P, C, variant, lib=None):
         c = c + sol[0] * e1 + sol[1] * e2
     # re-fit the disc normal on the flange (r > 40 mm, near the median surface) and re-centre the height origin
     h, r, th, (e1, e2, d) = L.cyl(P, c, d)
-    fl = (r > 0.04) & (r < 0.08)
-    hb = np.median(h[fl])
-    fl &= np.abs(h - hb) < 0.006
+    if OPT['lid_win'] is None:
+        fl = (r > 0.04) & (r < 0.08)
+        hb = np.median(h[fl])
+        fl &= np.abs(h - hb) < 0.006
+    else:                                         # C0b: gmg A.6b flange window, A.6 noise band 3 sigma
+        fl = (r > OPT['lid_win']['flange'][0]) & (r < OPT['lid_win']['flange'][1])
+        hb = np.median(h[fl])
+        fl &= np.abs(h - hb) < 3.0 * OPT['sigma']
     # plane normal of the flange annulus (rotationally symmetric -> its best-fit plane normal is the axis)
     Fp = P[fl]; mf_ = Fp.mean(0); w2, V2 = np.linalg.eigh(np.cov((Fp - mf_).T)); d2 = V2[:, 0]
     if d2 @ d < 0:
@@ -685,10 +721,11 @@ def build_lid(P, C, variant, lib=None):
     h, r, th, (e1, e2, d) = L.cyl(P, c, d)
     vh = v @ d
     # top surface, pass 1 on all points, pass 2 on points within SURF_D of pass 1
-    rc_, top1, _ = lid_top_profile(r, h, th, np.ones(len(P), bool))
+    dome = {} if OPT['lid_win'] is None else dict(rc=tuple(OPT['lid_win']['dome']))
+    rc_, top1, _ = lid_top_profile(r, h, th, np.ones(len(P), bool), **dome)
     t1 = np.interp(r, rc_, fill_smooth(top1, 3, 3))
     surf = np.abs(h - t1) < 0.004
-    rc_, top2, ns = lid_top_profile(r, h, th, surf)
+    rc_, top2, ns = lid_top_profile(r, h, th, surf, **dome)
     ok = np.isfinite(top2)
     # edge: the outermost bin seen by >= MINSEC sectors
     last = np.nonzero(ok)[0].max()
@@ -696,7 +733,9 @@ def build_lid(P, C, variant, lib=None):
     r_edge = float(np.median([np.percentile(r[surf & (((th + np.pi) / (2 * np.pi) * NSEC).astype(int) % NSEC == q)], 99.5)
                               for q in range(NSEC) if (surf & (((th + np.pi) / (2 * np.pi) * NSEC).astype(int) % NSEC == q)).sum() > 30]))
     r_edge = max(r_edge, float(rc_[-1]))
-    tl = T_LID * (2.0 if variant == 'thick' else 1.0)
+    if OPT['t_lid'] < 0:
+        raise SystemExit('C0b: lid sheet thickness needs thickness.py (< 200 measurements) or t0_C0b (not fittable)')
+    tl = OPT['t_lid'] * (2.0 if variant == 'thick' else 1.0)
     Tp = np.stack([rc_, top], 1)
     Tp = np.r_[[[0.0, top[0]]], Tp, [[r_edge, top[-1]]]]
     Tp = resample(Tp, 0.003); Tp[0, 0] = 0.0
@@ -715,7 +754,7 @@ def build_lid(P, C, variant, lib=None):
     parts = [to_mf(body)]
     # residual: above the top surface by > APP_D (arch, markers); within the edge radius + 15 mm
     htop = np.interp(r, Tp[:, 0], Tp[:, 1])
-    res = (h > htop + APP_D) & (r < r_edge + 0.015)
+    res = (h > htop + OPT['app_d']) & (r < r_edge + 0.015)
     if variant == 'tsdf':
         src = trimesh.load(lib, force='mesh')
         X = src.triangles_center - c; hh = X @ d; rr = np.linalg.norm(X - hh[:, None] * d, axis=1)
@@ -730,11 +769,13 @@ def build_lid(P, C, variant, lib=None):
     for idx in cl:
         X = Rp[idx]
         ext = np.ptp((X - c) @ e1), np.ptp((X - c) @ e2)
-        if max(ext) > 0.05:
+        if max(ext) > (0.05 if OPT['arch_ext'] is None else OPT['arch_ext'] * r_edge):
             arch, frame = arch_strap(Rp[idx], Rv[idx], geo, info)
             break
     if arch is not None:
         parts.append(arch)
+    if OPT['markers'] is not None or variant == 'nomk':
+        return gmg_markers(parts, P, variant, info)
     keep = np.ones(len(Rp), bool)
     if frame is not None:
         keep &= frame['dist'](Rp) > APP_D
@@ -770,9 +811,11 @@ def arch_strap(Ap, Av, geo, info):
     hi_part = hh > np.percentile(H, 50)
     sp = side & hi_part
     if sp.sum() > 30:
-        T = float(np.clip(2 * np.median(Hs[sp] - hh[sp]), 0.003, 0.008)); t_src = 'side'
+        T = float(np.clip(2 * np.median(Hs[sp] - hh[sp]), *OPT['strap_t_clip'])); t_src = 'side'
     else:
-        T, t_src = BAR_T0, 'prior'
+        if OPT['bar_t0'] < 0:
+            raise SystemExit('C0b: strap thickness without side evidence needs t0_C0b, which is not fittable')
+        T, t_src = OPT['bar_t0'], 'prior'
     Hsm = ndimage.median_filter(H, size=3, mode='nearest'); Hsm = ndimage.uniform_filter1d(Hsm, 3, mode='nearest')
     # ends: run the top curve down to the sheet's mid-surface at the end radius (radius from both strap coordinates,
     # s along the strap and its lateral offset acen), so the strap end lies inside the sheet and the union attaches it
@@ -810,16 +853,87 @@ def arch_strap(Ap, Av, geo, info):
     return strap, dict(dist=lambda Y: tree.query(Y)[0])
 
 
+# ------------------------------------------------------------------------------------------------ C0b options
+OPT_USED = {}
+
+
+def set_options(a, P):
+    """Fill OPT from the C0b options (only those given); record them for the build json."""
+    def pair(x):
+        lo, hi = (float(v) for v in x.split(','))
+        return (lo, hi)
+    if a.sigma is not None:
+        OPT['sigma'] = OPT_USED['sigma'] = float(a.sigma)
+    if a.app_d_sigma is not None:
+        if a.sigma is None:
+            raise SystemExit('--app_d_sigma needs --sigma')
+        OPT['app_d'] = OPT_USED['app_d'] = float(a.app_d_sigma) * float(a.sigma)
+    for k in ('t_clip', 'strap_t_clip'):
+        if getattr(a, k) is not None:
+            OPT[k] = OPT_USED[k] = pair(getattr(a, k))
+    for k in ('t_fallback', 't_lid', 'bar_t0', 'h_o'):
+        if getattr(a, k) is not None:
+            OPT[k] = OPT_USED[k] = float(getattr(a, k))
+    if a.reach_rel is not None:
+        OPT['reach'] = OPT_USED['reach_rel'] = float(a.reach_rel)
+    if a.arch_ext_rel is not None:
+        OPT['arch_ext'] = OPT_USED['arch_ext_rel'] = float(a.arch_ext_rel)
+    if a.tie is not None:
+        L.TIE = OPT_USED['tie'] = float(a.tie)
+    if a.lid_win is not None:
+        if a.sigma is None:
+            raise SystemExit('--lid_win needs --sigma (flange band 3 sigma)')
+        sys.path.insert(0, os.path.dirname(HERE))
+        from autokit.parts import robust_scale
+        s = robust_scale(P)[0]
+        k = 1.0 if a.lid_win == 'a6b1' else 2.0
+        OPT['lid_win'] = OPT_USED['lid_win'] = dict(table=a.lid_win, s_m=s, dome=(0.05 * k * s, 0.2 * k * s),
+                                                    flange=(0.6 * k * s, 1.2 * k * s))
+    if a.markers_json is not None:
+        sys.path.insert(0, os.path.dirname(HERE))
+        from gmg import markers as MK
+        J = json.load(open(a.markers_json))
+        if J.get('settings_sha256') != MK.SETTINGS_SHA256:
+            raise SystemExit(f'markers settings sha {J.get("settings_sha256")} != frozen {MK.SETTINGS_SHA256}')
+        obj = a.markers_obj or ('white_pot' if a.obj == 'pot' else 'white_pot_lid')
+        OPT['markers'] = dict(balls=J['balls'].get(obj, []), settings_sha256=J['settings_sha256'])
+        OPT_USED['markers_json'] = dict(path=a.markers_json, object=obj, n_balls=len(OPT['markers']['balls']))
+
+
 # ------------------------------------------------------------------------------------------------ main
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('obj', choices=['pot', 'lid']); p.add_argument('obs'); p.add_argument('out')
-    p.add_argument('--variant', default='fit', choices=['fit', 'nostem', 'tsdf', 'thick'])
+    p.add_argument('--variant', default='fit', choices=['fit', 'nostem', 'tsdf', 'thick', 'nomk'])
     p.add_argument('--lib', default=None, help='library TSDF mesh (variant tsdf only)')
     p.add_argument('--axis_cache', default=None, help='pot: json with the fitted axis (written if missing, reused '
                    'by the other variants of the same episode; the axis does not depend on the variant)')
+    p.add_argument('--c0b', action='store_true', help='C0b generic replacements together (PREREG C0b 3.10): '
+                   '--h_o 0.5 --reach_rel 0.5 --arch_ext_rel 0.5 --t_clip 0.0015,0.008 --strap_t_clip 0.0015,0.008 '
+                   '--tie 1.0 --app_d_sigma 3; it changes no other value')
+    p.add_argument('--sigma', type=float, default=None, help='C0b: gmg A.2 sigma of these observations (m)')
+    p.add_argument('--app_d_sigma', type=float, default=None, help='C0b: APP_D = this x sigma')
+    p.add_argument('--t_clip', default=None, help='C0b: pot wall clip lo,hi (m)')
+    p.add_argument('--t_fallback', type=float, default=None, help='C0b: pot wall when < 3 two-wall bins (m)')
+    p.add_argument('--t_lid', type=float, default=None, help='C0b: lid sheet thickness (m)')
+    p.add_argument('--bar_t0', type=float, default=None, help='C0b: bar / strap thickness without side evidence (m)')
+    p.add_argument('--strap_t_clip', default=None, help='C0b: bar / arch thickness clip lo,hi (m)')
+    p.add_argument('--h_o', type=float, default=None, help='C0b: pot polar origin height (fraction of the height)')
+    p.add_argument('--reach_rel', type=float, default=None, help='C0b: handle P99 radius > (1 + this) x rmax')
+    p.add_argument('--lid_win', choices=['a6b1', 'a6b2'], default=None,
+                   help='C0b: lid dome / flange windows from gmg A.6b (x1 / x2) of s = autokit robust_scale')
+    p.add_argument('--arch_ext_rel', type=float, default=None, help='C0b: arch in-plane extent > this x r_edge')
+    p.add_argument('--tie', type=float, default=None, help='C0b: lathe_obs.TIE for the axis candidates')
+    p.add_argument('--markers_json', default=None, help='C0b: gmg detect_episode output; balls of this object')
+    p.add_argument('--markers_obj', default=None, help='object name in --markers_json (default from obj)')
     a = p.parse_args()
+    if a.c0b:
+        for k, v in dict(h_o=0.5, reach_rel=0.5, arch_ext_rel=0.5, t_clip='0.0015,0.008', strap_t_clip='0.0015,0.008',
+                         tie=1.0, app_d_sigma=3.0).items():
+            if getattr(a, k) is None:
+                setattr(a, k, v)
     P, C = load_obs(a.obs)
+    set_options(a, P)
     if a.obj == 'pot':
         mesh, info = build_pot(P, C, a.variant, a.lib, a.axis_cache)
     else:
@@ -828,6 +942,8 @@ def main():
     mesh.export(a.out)
     info.update(out=a.out, obs=a.obs, faces=int(len(mesh.faces)), watertight=bool(mesh.is_watertight),
                 bodies=int(mesh.body_count))
+    if OPT_USED:
+        info['c0b_options'] = OPT_USED
     json.dump(info, open(a.out.rsplit('.', 1)[0] + '.json', 'w'), indent=1, default=float)
     print(json.dumps(info, default=float))
 

@@ -1,0 +1,141 @@
+{
+ "ep": 14,
+ "mode": "glock",
+ "source_run": "20261025-evb1420-ee7ba8e",
+ "lib": "library_v3",
+ "pieces": null,
+ "md5_listed": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+ "ref": "20261025-evb1420-ee7ba8e/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "ref_md5": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+ "md5_match": true,
+ "names": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "85d27bbd5fb872770be430cf513852fd",
+  "radius": 0.254904
+ },
+ "f0_hand_mm": {
+  "blue_cup": 316.4,
+  "plastic_dish_rack": 144.6
+ },
+ "first_H30_rest_frame": null,
+ "objects": {
+  "blue_cup": {
+   "urdf_md5": "31cd001d2618ee2972dc922b77109b9f",
+   "pieces": 75,
+   "collision": [
+    "blue_cup.glb 0435d5d2 -> CoACD 75"
+   ],
+   "mass": 0.3
+  },
+  "plastic_dish_rack": {
+   "urdf_md5": "ae549ee0201ce085c71a7164806047f6",
+   "pieces": 43,
+   "collision": [
+    "plastic_dish_rack.glb 99bc3983 -> CoACD 43"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "blue_cup": {
+     "pen_mm": 0.08,
+     "com_height_mm": 86.9,
+     "hand_mm": 316.4,
+     "support": {
+      "band1mm": {
+       "points": 95,
+       "com_margin_mm": 5.4
+      },
+      "band3mm": {
+       "points": 305,
+       "com_margin_mm": 29.2
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 51.4,
+     "settle_mm": 2.93,
+     "settle_deg": 1.88,
+     "max_mm": 3.68,
+     "max_deg": 2.38,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 3.035,
+       "max": 4.23,
+       "min": 2.35,
+       "q90": 3.865
+      },
+      "deg": {
+       "n": 16,
+       "median": 1.915,
+       "max": 2.71,
+       "min": 1.52,
+       "q90": 2.5
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    },
+    "plastic_dish_rack": {
+     "pen_mm": -0.7,
+     "com_height_mm": 31.2,
+     "hand_mm": 144.6,
+     "support": {
+      "band1mm": {
+       "points": 31,
+       "com_margin_mm": 46.7
+      },
+      "band3mm": {
+       "points": 302,
+       "com_margin_mm": 58.8
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 52.4,
+     "settle_mm": 1.05,
+     "settle_deg": 0.27,
+     "max_mm": 1.92,
+     "max_deg": 0.85,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.94,
+       "max": 1.8,
+       "min": 0.41,
+       "q90": 1.53
+      },
+      "deg": {
+       "n": 16,
+       "median": 0.39,
+       "max": 0.76,
+       "min": 0.07,
+       "q90": 0.595
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    }
+   },
+   "pairs": {
+    "blue_cup|plastic_dish_rack": 0.0
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 86.5
+}

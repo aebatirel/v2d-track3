@@ -1,0 +1,77 @@
+test_w1_plates (__main__.WaiverR2.test_w1_plates)
+w1 at t = 6, 10, 18 (pre-registered) and 13, 25 (build task): CARVE (T1, not submitted), centre within ... ok
+test_w1_t6_width_known_miss (__main__.WaiverR2.test_w1_t6_width_known_miss)
+F-I4.13 known miss (t = 6 mm width), a recorded case under F-I4.15 (t now from all points): reported either ... ok
+test_w2_waiver_off (__main__.WaiverR2.test_w2_waiver_off)
+w2: waiver off = every decision as before, also on the two-sided bundles (the camera centres are not read ... ok
+test_w3_controls_unchanged (__main__.WaiverR2.test_w3_controls_unchanged)
+w3: waiver on, decisions unchanged: n2 resting pose error, n4 short contact, n9 cup nesting (the control ... ok
+test_w4_overshoot (__main__.WaiverR2.test_w4_overshoot)
+w4: waiver on, o2a (silhouette sees wood) and o2b (silhouette sees the true slots): 11 mm offset along d at ... ok
+test_w5_p3 (__main__.WaiverR2.test_w5_p3)
+w5 under F-I4.15: P3 on w1 at t = 10 mm, 16 jittered copies: carved lag <= 0.5 cm and <= 5 deg; the F-I4.7 ... ok
+test_w6_inflated_sigma (__main__.WaiverR2.test_w6_inflated_sigma)
+F-I4.14 w6 under F-I4.15 (t from all points): t = 10 mm, sigma 3 mm: CARVE both, the w1 checks, widths within ... ok
+test_w6b_camera_side_estimator (__main__.WaiverR2.test_w6b_camera_side_estimator) ... skipped 'replaced by WaiverR2.test_w6c_all_points (F-I4.15.7)'
+test_w6c_all_points (__main__.WaiverR2.test_w6c_all_points)
+F-I4.15.7 w6c: the F-I4.15.1 estimator (camera-side split on ALL near points) of plate A in the w1 cross at ... ok
+test_w7_one_face (__main__.WaiverR2.test_w7_one_face)
+F-I4.14 w7 (post hoc): t = 10 mm, two-sided for A, B's -z face removed from its owned points (one face seen, ... FAIL
+test_w8_i_cross (__main__.WaiverR2.test_w8_i_cross)
+F-I4.15.7 w8 (I-shaped cross, sigma 1 mm). ... ERROR
+test_w8b_i_cross_sigma3 (__main__.WaiverR2.test_w8b_i_cross_sigma3)
+F-I4.15.7 w8b (w8 at sigma 3 mm). ... ERROR
+test_w9_tilt (__main__.WaiverR2.test_w9_tilt)
+F-I4.15.7 w9 (w8 with the partner turned 2.5 deg about a_T at the assembled frames): reported; P56 = P3 ... ok
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/fi415/tests/test_fi415.json
+
+======================================================================
+ERROR: test_w8_i_cross (__main__.WaiverR2.test_w8_i_cross)
+F-I4.15.7 w8 (I-shaped cross, sigma 1 mm).
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py", line 283, in test_w8_i_cross
+    out, m = self._w8(1.0, 'w8')
+             ~~~~~~~~^^^^^^^^^^^
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py", line 268, in _w8
+    ph, acc = p3_of(b, recs, 16, f'T-I1 {key} (F-I4.15)')
+              ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py", line 150, in p3_of
+    run = W['A']['_comp'].run
+          ~^^^^^
+KeyError: 'A'
+
+======================================================================
+ERROR: test_w8b_i_cross_sigma3 (__main__.WaiverR2.test_w8b_i_cross_sigma3)
+F-I4.15.7 w8b (w8 at sigma 3 mm).
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py", line 288, in test_w8b_i_cross_sigma3
+    out, m = self._w8(3.0, 'w8b')
+             ~~~~~~~~^^^^^^^^^^^^
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py", line 268, in _w8
+    ph, acc = p3_of(b, recs, 16, f'T-I1 {key} (F-I4.15)')
+              ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py", line 150, in p3_of
+    run = W['A']['_comp'].run
+          ~^^^^^
+KeyError: 'A'
+
+======================================================================
+FAIL: test_w7_one_face (__main__.WaiverR2.test_w7_one_face)
+F-I4.14 w7 (post hoc): t = 10 mm, two-sided for A, B's -z face removed from its owned points (one face seen,
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py", line 822, in test_w7_one_face
+    self.assertEqual(miss, {}, miss)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: {10: ['A CARVE not from the waiver route: [120 chars]{}']} != {}
++ {}
+- {10: ['A CARVE not from the waiver route: gate plate_body_over_cap body None',
+-       'B CARVE not from the waiver route: gate plate_body_over_cap body None',
+-       'crosslap {}']} : {10: ['A CARVE not from the waiver route: gate plate_body_over_cap body None', 'B CARVE not from the waiver route: gate plate_body_over_cap body None', 'crosslap {}']}
+
+----------------------------------------------------------------------
+Ran 13 tests in 4963.868s
+
+FAILED (failures=1, errors=2, skipped=1)

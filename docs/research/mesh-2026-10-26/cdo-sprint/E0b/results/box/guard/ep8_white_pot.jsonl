@@ -1,0 +1,4 @@
+{"file": "/content/results/e0b/pts/A/ep8_white_pot.npz", "half_m": 0.3, "kept": 2675117, "near_face": 6424, "share": 0.002401, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/e0b/pts/A/ep8_white_pot.npz", "half_m": 0.45, "kept": 3106419, "near_face": 0, "share": 0.0, "max_abs_mm": 414.0, "rebuild": false}
+{"file": "/content/results/e0b/pts/B/ep8_white_pot.npz", "half_m": 0.3, "kept": 2506674, "near_face": 6424, "share": 0.002563, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/e0b/pts/B/ep8_white_pot.npz", "half_m": 0.45, "kept": 2938210, "near_face": 0, "share": 0.0, "max_abs_mm": 414.0, "rebuild": false}

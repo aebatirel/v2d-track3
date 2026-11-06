@@ -1,0 +1,9 @@
+> split=eval perc=perc2e10v run=local REQUIRE_REUSE=unset ep=10 EVAL_LOCAL_REF=1 :: ALLOWED pre=perc2e10v_ rc=0
+> split=eval perc=perc2e10v run=local REQUIRE_REUSE=0 ep=10 EVAL_LOCAL_REF=1 :: ALLOWED pre=perc2e10v_ rc=0
+> split=eval perc=perc2e10v run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=1 :: ALLOWED pre=perc2e10v_ rc=0
+> split=eval perc=perc2e10vs42 run=local REQUIRE_REUSE=unset ep=10 EVAL_LOCAL_REF=1 :: ALLOWED pre=perc2e10vs42_ rc=0
+> split=eval perc=perc2e10vs42 run=local REQUIRE_REUSE=0 ep=10 EVAL_LOCAL_REF=1 :: ALLOWED pre=perc2e10vs42_ rc=0
+> split=eval perc=perc2e10vs42 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=1 :: ALLOWED pre=perc2e10vs42_ rc=0
+> split=eval perc=perc2e10vs43 run=local REQUIRE_REUSE=unset ep=10 EVAL_LOCAL_REF=1 :: ALLOWED pre=perc2e10vs43_ rc=0
+> split=eval perc=perc2e10vs43 run=local REQUIRE_REUSE=0 ep=10 EVAL_LOCAL_REF=1 :: ALLOWED pre=perc2e10vs43_ rc=0
+> split=eval perc=perc2e10vs43 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=1 :: ALLOWED pre=perc2e10vs43_ rc=0

@@ -1,0 +1,10 @@
+meshes/library_v3/blue_cup.glb 65d24762ae6b96d4034d670ba9af105606745f65
+meshes/library_v3/beige_cup.glb 139e2ab6842e98d6195dbfe841ea56c6b7bbfee3
+meshes/carve/ev10/blue_cup/piece_00.obj 48b73e6b1c0efcdb03f5332ece2a6b3969b7437a
+meshes/carve/ev10/blue_cup/piece_26.obj 7affa7d495d62e12ea522c768ea473715588214a
+meshes/carve/ev10/blue_cup/piece_52.obj ba85f2ab8a78a2386a99dcc1609e843b6d376976
+meshes/carve/ev10/blue_cup/inertia.json 16d77a4fdaa70c6cba1a715cebbd00e84e8b1b79
+meshes/carve/ev10/beige_cup/piece_00.obj 21b1c6cde7ad88ff026e5732f81a9e24f9fd2a61
+meshes/carve/ev10/beige_cup/piece_24.obj 06c7c06e0a5fbeb1a330275da82170be06e38bbe
+meshes/carve/ev10/beige_cup/piece_48.obj 906b834c3b7a4a3d6fec35813b3e7870ccf493c1
+meshes/carve/ev10/beige_cup/inertia.json bb753d7d327d6f3d0d1488d7b19edf92a71b7895

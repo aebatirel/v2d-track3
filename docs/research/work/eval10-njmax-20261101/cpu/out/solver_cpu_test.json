@@ -1,0 +1,104 @@
+{
+ "reference_md5_source": "5d22fc5782a919f2466988768d0708fa",
+ "checkpoints": {
+  "e10v_s43": {
+   "stored_sim": {
+    "sim": [
+     512,
+     256
+    ],
+    "env_sim": [
+     512,
+     256
+    ]
+   },
+   "env_config_sim": [
+    512,
+    256
+   ],
+   "solver": {
+    "njmax": 512,
+    "naconmax": 256,
+    "njmax_nnz": 11320,
+    "nworld": 1,
+    "nv": 74,
+    "ngeom": 156,
+    "nbody": 56,
+    "data_bytes_one_world": 204564,
+    "device": "cpu",
+    "seconds": 17.9
+   },
+   "solver_error": null,
+   "error": null
+  },
+  "standin_1024": {
+   "stored_sim": {
+    "sim": [
+     1024,
+     512
+    ],
+    "env_sim": [
+     1024,
+     512
+    ]
+   },
+   "env_config_sim": [
+    1024,
+    512
+   ],
+   "solver": {
+    "njmax": 1024,
+    "naconmax": 512,
+    "njmax_nnz": 22584,
+    "nworld": 1,
+    "nv": 74,
+    "ngeom": 156,
+    "nbody": 56,
+    "data_bytes_one_world": 364308,
+    "device": "cpu",
+    "seconds": 3.4
+   },
+   "solver_error": null,
+   "error": null
+  },
+  "copy_512": {
+   "stored_sim": {
+    "sim": [
+     512,
+     256
+    ],
+    "env_sim": [
+     512,
+     256
+    ]
+   },
+   "env_config_sim": [
+    512,
+    256
+   ],
+   "solver": {
+    "njmax": 512,
+    "naconmax": 256,
+    "njmax_nnz": 11320,
+    "nworld": 1,
+    "nv": 74,
+    "ngeom": 156,
+    "nbody": 56,
+    "data_bytes_one_world": 204564,
+    "device": "cpu",
+    "seconds": 3.1
+   },
+   "solver_error": null,
+   "error": null
+  }
+ },
+ "ok": true,
+ "data_bytes": {
+  "one_world_512": 204564,
+  "one_world_1024": 364308,
+  "delta_one_world": 159744,
+  "delta_4096_worlds_GB": 0.654,
+  "total_4096_worlds_GB_512": 0.838,
+  "total_4096_worlds_GB_1024": 1.492
+ }
+}

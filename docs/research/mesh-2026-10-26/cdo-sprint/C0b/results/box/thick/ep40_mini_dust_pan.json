@@ -1,0 +1,14 @@
+{
+ "obj": "mini_dust_pan",
+ "ep": 40,
+ "file": "/content/results/c0b/pts/B/ep40_mini_dust_pan.npz",
+ "n": 4009,
+ "median_m": 0.0031291801980738625,
+ "info": {
+  "points": 1451222,
+  "samples": 24967,
+  "measured": 4009,
+  "median_mm": 3.1292
+ },
+ "sec": 40.1
+}

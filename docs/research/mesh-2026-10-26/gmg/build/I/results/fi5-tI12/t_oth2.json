@@ -1,0 +1,2323 @@
+{
+ "rack": {
+  "routes": {
+   "A": "3_coacd",
+   "B": "2_lathe"
+  },
+  "pieces": {
+   "A": 3,
+   "B": 65
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 3,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "B": {
+    "pass_": true,
+    "n": 65,
+    "max_cm3": 0.168,
+    "sum_cm3": 4.816,
+    "over_tol": 0,
+    "keepout_points": 601,
+    "keepout_cm3": 4.808
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 8.984,
+    "median_cm3": 0.664
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {
+    "A<-B#0": {
+     "voxels": 50,
+     "run_kind": "INSERTION",
+     "run": [
+      29,
+      89
+     ],
+     "n_build": 31,
+     "sweep_share": 1.0,
+     "observed_voxels": 2,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "B<-A#1": {
+     "voxels": 51,
+     "run_kind": "INSERTION",
+     "run": [
+      29,
+      89
+     ],
+     "n_build": 31,
+     "sweep_share": 0.062,
+     "observed_voxels": 32,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "in_scope": true,
+   "receiver": "A",
+   "guest": "B",
+   "receiver_info": {
+    "containment": {
+     "A": 0.9627,
+     "B": 0.0025
+    },
+    "frames": 29
+   },
+   "components": [
+    {
+     "gates": {
+      "voxels": 50,
+      "run_kind": "INSERTION",
+      "run": [
+       29,
+       89
+      ],
+      "n_build": 31,
+      "sweep_share": 1.0,
+      "observed_voxels": 2,
+      "persistent_nmin": 8,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 41,
+      "hands_off_static": 30,
+      "assembled_hands_off": 18,
+      "s_frames": [
+       81,
+       62
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       0.999998,
+       3.7e-05,
+       0.001846,
+       0.00555
+      ],
+      [
+       -3.7e-05,
+       1.0,
+       -0.000338,
+       -0.00017
+      ],
+      [
+       -0.001846,
+       0.000338,
+       0.999998,
+       0.009963
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 29,
+     "build_frames_entered": 29,
+     "clearance": {
+      "surface_samples": 279984,
+      "in_Rplus": 16165,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0
+     },
+     "R_voxels": 50,
+     "Rplus_voxels": 282
+    }
+   ],
+   "carve": {
+    "route": "3_coacd",
+    "K_pieces": 1885,
+    "cut_cm3": 12.603,
+    "carved_body_cm3": 412.215,
+    "ladder": [
+     {
+      "route": "3_coacd",
+      "error": "RuntimeError: coacd child died (exit code -6)"
+     },
+     {
+      "route": "4_voxels",
+      "report": {
+       "pitch_mm": 2.0,
+       "boxes": 47,
+       "cells": 51534,
+       "cap": 82
+      },
+      "gate": {
+       "pass_": true,
+       "n": 47,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ],
+    "carved_route": "4_voxels",
+    "sec": 80.4
+   },
+   "caps": {
+    "removed_cm3": 3.96,
+    "carve_in_body_cm3": 3.5,
+    "cumulative_share": 0.0094,
+    "vol0_cm3": 421.36,
+    "reach": 0.505,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": true,
+    "pass_": true,
+    "fail": null
+   },
+   "report": {
+    "rigid_shift": {
+     "frames": 12,
+     "cleared_share": 1.0,
+     "per_frame": [
+      {
+       "f": 29,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 32,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 35,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 49,
+       "cm3": 0.58,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 51,
+       "cm3": 0.83,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 54,
+       "cm3": 1.09,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 56,
+       "cm3": 0.83,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 69,
+       "cm3": 1.09,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 71,
+       "cm3": 1.09,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 74,
+       "cm3": 1.09,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 76,
+       "cm3": 1.09,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 89,
+       "cm3": 1.09,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      }
+     ],
+     "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+    },
+    "carve_of_pose_error": true,
+    "one_sided": null,
+    "decision_f_i3_same_sides": {
+     "A<-B": "PUSH",
+     "B<-A": "PUSH"
+    }
+   },
+   "acceptance": {
+    "S": {
+     "frames": [
+      {
+       "frame": 81,
+       "carved": {
+        "disp_mm": 0.675,
+        "dz_mm": 0.072,
+        "lateral_mm": 0.67,
+        "tilt_deg": 0.331,
+        "per_copy": [
+         {
+          "disp_mm": 0.42,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.42,
+          "tilt_deg": 0.37,
+          "below": false
+         },
+         {
+          "disp_mm": 1.43,
+          "dz_mm": 0.07,
+          "lateral_mm": 1.42,
+          "tilt_deg": 0.38,
+          "below": false
+         },
+         {
+          "disp_mm": 0.46,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.46,
+          "tilt_deg": 0.75,
+          "below": false
+         },
+         {
+          "disp_mm": 0.65,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.64,
+          "tilt_deg": 0.28,
+          "below": false
+         },
+         {
+          "disp_mm": 0.67,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.67,
+          "tilt_deg": 0.16,
+          "below": false
+         },
+         {
+          "disp_mm": 0.5,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.49,
+          "tilt_deg": 0.41,
+          "below": false
+         },
+         {
+          "disp_mm": 0.57,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.57,
+          "tilt_deg": 0.26,
+          "below": false
+         },
+         {
+          "disp_mm": 0.51,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.5,
+          "tilt_deg": 0.24,
+          "below": false
+         },
+         {
+          "disp_mm": 0.62,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.62,
+          "tilt_deg": 0.16,
+          "below": false
+         },
+         {
+          "disp_mm": 1.24,
+          "dz_mm": 0.07,
+          "lateral_mm": 1.23,
+          "tilt_deg": 0.53,
+          "below": false
+         },
+         {
+          "disp_mm": 0.42,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.41,
+          "tilt_deg": 0.16,
+          "below": false
+         },
+         {
+          "disp_mm": 0.66,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.65,
+          "tilt_deg": 0.54,
+          "below": false
+         },
+         {
+          "disp_mm": 0.69,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.69,
+          "tilt_deg": 0.35,
+          "below": false
+         },
+         {
+          "disp_mm": 0.66,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.66,
+          "tilt_deg": 0.29,
+          "below": false
+         },
+         {
+          "disp_mm": 0.79,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.79,
+          "tilt_deg": 0.16,
+          "below": false
+         },
+         {
+          "disp_mm": 0.51,
+          "dz_mm": 0.07,
+          "lateral_mm": 0.5,
+          "tilt_deg": 0.26,
+          "below": false
+         }
+        ],
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": true
+       },
+       "default": {
+        "disp_mm": 3.162,
+        "dz_mm": 0.107,
+        "lateral_mm": 3.16,
+        "tilt_deg": 0.513,
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": true
+       }
+      },
+      {
+       "frame": 62,
+       "carved": {
+        "disp_mm": 0.801,
+        "dz_mm": 0.36,
+        "lateral_mm": 0.701,
+        "tilt_deg": 0.421,
+        "per_copy": [
+         {
+          "disp_mm": 0.51,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.35,
+          "tilt_deg": 0.48,
+          "below": false
+         },
+         {
+          "disp_mm": 1.77,
+          "dz_mm": 0.36,
+          "lateral_mm": 1.73,
+          "tilt_deg": 0.47,
+          "below": false
+         },
+         {
+          "disp_mm": 0.82,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.74,
+          "tilt_deg": 0.76,
+          "below": false
+         },
+         {
+          "disp_mm": 0.81,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.72,
+          "tilt_deg": 0.37,
+          "below": false
+         },
+         {
+          "disp_mm": 0.74,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.65,
+          "tilt_deg": 0.31,
+          "below": false
+         },
+         {
+          "disp_mm": 0.67,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.56,
+          "tilt_deg": 0.45,
+          "below": false
+         },
+         {
+          "disp_mm": 0.61,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.49,
+          "tilt_deg": 0.58,
+          "below": false
+         },
+         {
+          "disp_mm": 0.57,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.45,
+          "tilt_deg": 0.31,
+          "below": false
+         },
+         {
+          "disp_mm": 0.92,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.85,
+          "tilt_deg": 0.31,
+          "below": false
+         },
+         {
+          "disp_mm": 1.32,
+          "dz_mm": 0.36,
+          "lateral_mm": 1.27,
+          "tilt_deg": 0.59,
+          "below": false
+         },
+         {
+          "disp_mm": 0.52,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.38,
+          "tilt_deg": 0.34,
+          "below": false
+         },
+         {
+          "disp_mm": 0.52,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.38,
+          "tilt_deg": 0.31,
+          "below": false
+         },
+         {
+          "disp_mm": 0.75,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.66,
+          "tilt_deg": 0.43,
+          "below": false
+         },
+         {
+          "disp_mm": 0.98,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.91,
+          "tilt_deg": 0.38,
+          "below": false
+         },
+         {
+          "disp_mm": 0.81,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.72,
+          "tilt_deg": 0.31,
+          "below": false
+         },
+         {
+          "disp_mm": 0.5,
+          "dz_mm": 0.36,
+          "lateral_mm": 0.35,
+          "tilt_deg": 0.31,
+          "below": false
+         }
+        ],
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": true
+       },
+       "default": {
+        "disp_mm": 3.123,
+        "dz_mm": 0.383,
+        "lateral_mm": 3.099,
+        "tilt_deg": 0.591,
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": true
+       }
+      }
+     ],
+     "pass_": true
+    },
+    "P2": {
+     "carved_mm": {
+      "+d": 0.5,
+      "+n": 9.5,
+      "-n": 0.0,
+      "gravity": 0.5
+     },
+     "default_mm": {
+      "+d": 0.0,
+      "+n": 11.0,
+      "-n": 0.0,
+      "gravity": 0.0
+     },
+     "overlap_at_pose_cm3": [
+      0.759,
+      0.0
+     ],
+     "pass_": true,
+     "pose": "T_rest"
+    },
+    "P3": {
+     "default": {
+      "lag_cm_asm": 0.079,
+      "lag_cm_asm_sd": 0.029,
+      "lag_deg_asm": 1.86,
+      "lag_cm_after_max": 0.246,
+      "copies": 16,
+      "nan": 0
+     },
+     "carved": {
+      "lag_cm_asm": 0.034,
+      "lag_cm_asm_sd": 0.018,
+      "lag_deg_asm": 0.61,
+      "lag_cm_after_max": 0.171,
+      "copies": 16,
+      "nan": 0
+     },
+     "nocollide": {
+      "lag_cm_asm": 0.022,
+      "lag_cm_asm_sd": 0.0,
+      "lag_deg_asm": 0.15,
+      "lag_cm_after_max": 0.066,
+      "copies": 16,
+      "nan": 0
+     },
+     "judge": {
+      "pass_": true,
+      "slot_not_limiting": true,
+      "overlap_asm_cm3": 0.0,
+      "overlap_ok": true
+     }
+    },
+    "P4": {
+     "removed_cm3": 3.96,
+     "carve_cm3": 3.5,
+     "default_cm3": 421.36,
+     "carved_cm3": 417.4,
+     "kept_share": 0.991,
+     "pass_": true
+    },
+    "P5": {
+     "shapes": 112,
+     "cap": 165,
+     "pass_": true
+    },
+    "P6": {
+     "frames": 25,
+     "n_worse": 0,
+     "worse": [],
+     "pass_": true,
+     "default_max": 8.127,
+     "carved_max": 5.612
+    },
+    "P7": {
+     "check_frames": 30,
+     "default_sum_cm3": 32.555,
+     "carved_sum_cm3": 6.814,
+     "pass_": true
+    },
+    "gate_carved": {
+     "pass_": true,
+     "n": 47,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "gate_default": {
+     "pass_": true,
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "tests": {
+     "S": true,
+     "P2": true,
+     "P3": true,
+     "P4": true,
+     "P5": true,
+     "P6": true,
+     "P7": true,
+     "gate": true
+    },
+    "failing": [],
+    "pass_all_but_P1": true,
+    "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I5.5)"
+   },
+   "deliver": "carved (p1_pending)"
+  },
+  "decisions": [
+   {
+    "target": "A",
+    "decision": "CARVE",
+    "flags": [
+     "interlock_pair_fail",
+     "interlock_push",
+     "owner_waiver_fi5"
+    ],
+    "gates": {
+     "voxels": 50,
+     "run_kind": "INSERTION",
+     "run": [
+      29,
+      89
+     ],
+     "n_build": 31,
+     "sweep_share": 1.0,
+     "observed_voxels": 2,
+     "persistent_nmin": 8,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 51,
+     "run_kind": "INSERTION",
+     "run": [
+      29,
+      89
+     ],
+     "n_build": 31,
+     "sweep_share": 0.062,
+     "observed_voxels": 32,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   }
+  ],
+  "sec": 410.4,
+  "summary": {
+   "in_scope": true,
+   "receiver": "A",
+   "deliver": "carved (p1_pending)",
+   "containment": {
+    "A": 0.9627,
+    "B": 0.0025
+   },
+   "c_mm": 1.0,
+   "sigma_sup": 1.0,
+   "overshoot": 0,
+   "caps": {
+    "removed_cm3": 3.96,
+    "carve_in_body_cm3": 3.5,
+    "cumulative_share": 0.0094,
+    "vol0_cm3": 421.36,
+    "reach": 0.505,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": true,
+    "pass_": true,
+    "fail": null
+   },
+   "tests": {
+    "S": true,
+    "P2": true,
+    "P3": true,
+    "P4": true,
+    "P5": true,
+    "P6": true,
+    "P7": true,
+    "gate": true
+   },
+   "failing": [],
+   "S": [
+    {
+     "f": 81,
+     "carved": {
+      "disp_mm": 0.675,
+      "dz_mm": 0.072,
+      "lateral_mm": 0.67,
+      "tilt_deg": 0.331,
+      "pass_": true
+     },
+     "default": {
+      "disp_mm": 3.162,
+      "dz_mm": 0.107,
+      "tilt_deg": 0.513,
+      "pass_": true
+     }
+    },
+    {
+     "f": 62,
+     "carved": {
+      "disp_mm": 0.801,
+      "dz_mm": 0.36,
+      "lateral_mm": 0.701,
+      "tilt_deg": 0.421,
+      "pass_": true
+     },
+     "default": {
+      "disp_mm": 3.123,
+      "dz_mm": 0.383,
+      "tilt_deg": 0.591,
+      "pass_": true
+     }
+    }
+   ],
+   "P2": {
+    "+d": 0.5,
+    "+n": 9.5,
+    "-n": 0.0,
+    "gravity": 0.5
+   },
+   "P2_default": {
+    "+d": 0.0,
+    "+n": 11.0,
+    "-n": 0.0,
+    "gravity": 0.0
+   },
+   "shift": 1.0,
+   "one_sided": null,
+   "gates": {
+    "A<-B#0": {
+     "voxels": 50,
+     "run_kind": "INSERTION",
+     "run": [
+      29,
+      89
+     ],
+     "n_build": 31,
+     "sweep_share": 1.0,
+     "observed_voxels": 2,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "B<-A#1": {
+     "voxels": 51,
+     "run_kind": "INSERTION",
+     "run": [
+      29,
+      89
+     ],
+     "n_build": 31,
+     "sweep_share": 0.062,
+     "observed_voxels": 32,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "carve": {
+    "route": "3_coacd",
+    "K_pieces": 1885,
+    "cut_cm3": 12.603,
+    "carved_body_cm3": 412.215,
+    "ladder": [
+     {
+      "route": "3_coacd",
+      "error": "RuntimeError: coacd child died (exit code -6)"
+     },
+     {
+      "route": "4_voxels",
+      "report": {
+       "pitch_mm": 2.0,
+       "boxes": 47,
+       "cells": 51534,
+       "cap": 82
+      },
+      "gate": {
+       "pass_": true,
+       "n": 47,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ],
+    "carved_route": "4_voxels",
+    "sec": 80.4
+   }
+  }
+ },
+ "lidpot": {
+  "routes": {
+   "A": "3_coacd",
+   "B": "3_coacd"
+  },
+  "pieces": {
+   "A": 57,
+   "B": 1
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 57,
+    "max_cm3": 0.2,
+    "sum_cm3": 0.888,
+    "over_tol": 0,
+    "keepout_points": 111,
+    "keepout_cm3": 0.888
+   },
+   "B": {
+    "pass_": true,
+    "n": 1,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 4.728,
+    "median_cm3": 0.0
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {
+    "A<-B#0": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#1": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#2": {
+     "voxels": 3,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 3,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "A<-B#3": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#4": {
+     "voxels": 49,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 35,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "A<-B#5": {
+     "voxels": 48,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 31,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "A<-B#6": {
+     "voxels": 4,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "A<-B#7": {
+     "voxels": 2,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#8": {
+     "voxels": 42,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 31,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "A<-B#9": {
+     "voxels": 13,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 9,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "A<-B#10": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#11": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#12": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#13": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#14": {
+     "voxels": 4,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "B<-A#15": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#16": {
+     "voxels": 33,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 0.242,
+     "observed_voxels": 33,
+     "persistent_nmin": 6,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#17": {
+     "voxels": 4,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "B<-A#18": {
+     "voxels": 40,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 0.0,
+     "observed_voxels": 40,
+     "persistent_nmin": 6,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#19": {
+     "voxels": 73,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 73,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "in_scope": true,
+   "receiver": "A",
+   "guest": "B",
+   "receiver_info": {
+    "containment": {
+     "A": 0.2538,
+     "B": 0.005
+    },
+    "frames": 13
+   },
+   "components": [
+    {
+     "gates": {
+      "voxels": 49,
+      "run_kind": "INSERTION",
+      "run": [
+       18,
+       61
+      ],
+      "n_build": 24,
+      "sweep_share": 1.0,
+      "observed_voxels": 35,
+      "persistent_nmin": 6,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 34,
+      "hands_off_static": 19,
+      "assembled_hands_off": 11,
+      "s_frames": [
+       56,
+       46
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       1.0,
+       -0.000547,
+       -0.000493,
+       -0.000115
+      ],
+      [
+       0.000546,
+       0.999999,
+       -0.001622,
+       -0.000132
+      ],
+      [
+       0.000494,
+       0.001622,
+       0.999999,
+       0.121254
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 9,
+     "build_frames_entered": 9,
+     "clearance": {
+      "surface_samples": 269761,
+      "in_Rplus": 15092,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0
+     },
+     "R_voxels": 49,
+     "Rplus_voxels": 423
+    },
+    {
+     "gates": {
+      "voxels": 48,
+      "run_kind": "INSERTION",
+      "run": [
+       18,
+       61
+      ],
+      "n_build": 24,
+      "sweep_share": 1.0,
+      "observed_voxels": 31,
+      "persistent_nmin": 6,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 34,
+      "hands_off_static": 19,
+      "assembled_hands_off": 11,
+      "s_frames": [
+       56,
+       46
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       1.0,
+       -0.000547,
+       -0.000493,
+       -0.000115
+      ],
+      [
+       0.000546,
+       0.999999,
+       -0.001622,
+       -0.000132
+      ],
+      [
+       0.000494,
+       0.001622,
+       0.999999,
+       0.121254
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 12,
+     "build_frames_entered": 12,
+     "clearance": {
+      "surface_samples": 269761,
+      "in_Rplus": 13141,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0
+     },
+     "R_voxels": 48,
+     "Rplus_voxels": 396
+    },
+    {
+     "gates": {
+      "voxels": 4,
+      "run_kind": "INSERTION",
+      "run": [
+       18,
+       61
+      ],
+      "n_build": 24,
+      "sweep_share": 1.0,
+      "observed_voxels": 4,
+      "persistent_nmin": 6,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 34,
+      "hands_off_static": 19,
+      "assembled_hands_off": 11,
+      "s_frames": [
+       56,
+       46
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       1.0,
+       -0.000547,
+       -0.000493,
+       -0.000115
+      ],
+      [
+       0.000546,
+       0.999999,
+       -0.001622,
+       -0.000132
+      ],
+      [
+       0.000494,
+       0.001622,
+       0.999999,
+       0.121254
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 8,
+     "build_frames_entered": 8,
+     "clearance": {
+      "surface_samples": 269761,
+      "in_Rplus": 2130,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0
+     },
+     "R_voxels": 4,
+     "Rplus_voxels": 54
+    },
+    {
+     "gates": {
+      "voxels": 3,
+      "run_kind": "INSERTION",
+      "run": [
+       18,
+       61
+      ],
+      "n_build": 24,
+      "sweep_share": 1.0,
+      "observed_voxels": 3,
+      "persistent_nmin": 6,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 34,
+      "hands_off_static": 19,
+      "assembled_hands_off": 11,
+      "s_frames": [
+       56,
+       46
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       1.0,
+       -0.000547,
+       -0.000493,
+       -0.000115
+      ],
+      [
+       0.000546,
+       0.999999,
+       -0.001622,
+       -0.000132
+      ],
+      [
+       0.000494,
+       0.001622,
+       0.999999,
+       0.121254
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 9,
+     "build_frames_entered": 9,
+     "clearance": {
+      "surface_samples": 269761,
+      "in_Rplus": 1772,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0
+     },
+     "R_voxels": 3,
+     "Rplus_voxels": 45
+    }
+   ],
+   "carve": {
+    "route": "3_coacd",
+    "K_pieces": 38,
+    "cut_cm3": 31.492,
+    "carved_body_cm3": 465.722,
+    "ladder": [
+     {
+      "route": "3_coacd",
+      "report": {
+       "steps": 8,
+       "stuck": 0,
+       "pieces": 46,
+       "max_excess_cm3": 0.0,
+       "cap": 82,
+       "coacd_pieces": 38,
+       "sec": 125.8
+      },
+      "gate": {
+       "pass_": true,
+       "n": 46,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ],
+    "carved_route": "3_coacd",
+    "sec": 141.4
+   },
+   "caps": {
+    "removed_cm3": 11.952,
+    "carve_in_body_cm3": 0.096,
+    "cumulative_share": 0.0259,
+    "vol0_cm3": 461.3,
+    "reach": 0.044,
+    "topology": {
+     "default": [
+      1,
+      -6
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": false,
+    "pass_": false,
+    "fail": "topology_fail"
+   },
+   "report": {
+    "rigid_shift": {
+     "frames": 9,
+     "cleared_share": 1.0,
+     "per_frame": [
+      {
+       "f": 20,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 25,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 27,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 41,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 43,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 44,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 45,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 58,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 60,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      }
+     ],
+     "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+    },
+    "carve_of_pose_error": true,
+    "one_sided": null,
+    "decision_f_i3_same_sides": {
+     "A<-B": "PUSH",
+     "B<-A": "PUSH"
+    }
+   },
+   "deliver": "default"
+  },
+  "decisions": [
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "owner_waiver_fi5",
+     "topology_fail"
+    ],
+    "gates": {
+     "voxels": 3,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 3,
+     "persistent_nmin": 6,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "owner_waiver_fi5",
+     "topology_fail"
+    ],
+    "gates": {
+     "voxels": 49,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 35,
+     "persistent_nmin": 6,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "owner_waiver_fi5",
+     "topology_fail"
+    ],
+    "gates": {
+     "voxels": 48,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 31,
+     "persistent_nmin": 6,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "owner_waiver_fi5",
+     "topology_fail"
+    ],
+    "gates": {
+     "voxels": 4,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 6,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 2,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "CARVE",
+    "flags": [
+     "waiver_gate_fail:sweep"
+    ],
+    "gates": {
+     "voxels": 42,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 31,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep"
+    ],
+    "gates": {
+     "voxels": 13,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 9,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep"
+    ],
+    "gates": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 4,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 6,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 33,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 0.242,
+     "observed_voxels": 33,
+     "persistent_nmin": 6,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 4,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 6,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 40,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 0.0,
+     "observed_voxels": 40,
+     "persistent_nmin": 6,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 73,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 73,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   }
+  ],
+  "sec": 433.4,
+  "summary": {
+   "in_scope": true,
+   "receiver": "A",
+   "deliver": "default",
+   "containment": {
+    "A": 0.2538,
+    "B": 0.005
+   },
+   "c_mm": 1.0,
+   "sigma_sup": 1.0,
+   "overshoot": 0,
+   "caps": {
+    "removed_cm3": 11.952,
+    "carve_in_body_cm3": 0.096,
+    "cumulative_share": 0.0259,
+    "vol0_cm3": 461.3,
+    "reach": 0.044,
+    "topology": {
+     "default": [
+      1,
+      -6
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": false,
+    "pass_": false,
+    "fail": "topology_fail"
+   },
+   "tests": null,
+   "failing": null,
+   "S": [],
+   "P2": null,
+   "P2_default": null,
+   "shift": 1.0,
+   "one_sided": null,
+   "gates": {
+    "A<-B#0": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#1": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#2": {
+     "voxels": 3,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 3,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "A<-B#3": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#4": {
+     "voxels": 49,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 35,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "A<-B#5": {
+     "voxels": 48,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 31,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "A<-B#6": {
+     "voxels": 4,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "A<-B#7": {
+     "voxels": 2,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#8": {
+     "voxels": 42,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 31,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "A<-B#9": {
+     "voxels": 13,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 9,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "A<-B#10": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#11": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#12": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#13": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#14": {
+     "voxels": 4,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "B<-A#15": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#16": {
+     "voxels": 33,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 0.242,
+     "observed_voxels": 33,
+     "persistent_nmin": 6,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#17": {
+     "voxels": 4,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 1.0,
+     "observed_voxels": 4,
+     "persistent_nmin": 6,
+     "pass_": true
+    },
+    "B<-A#18": {
+     "voxels": 40,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      61
+     ],
+     "n_build": 24,
+     "sweep_share": 0.0,
+     "observed_voxels": 40,
+     "persistent_nmin": 6,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#19": {
+     "voxels": 73,
+     "run_kind": "SEAT",
+     "run": [
+      68,
+      77
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 73,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "carve": {
+    "route": "3_coacd",
+    "K_pieces": 38,
+    "cut_cm3": 31.492,
+    "carved_body_cm3": 465.722,
+    "ladder": [
+     {
+      "route": "3_coacd",
+      "report": {
+       "steps": 8,
+       "stuck": 0,
+       "pieces": 46,
+       "max_excess_cm3": 0.0,
+       "cap": 82,
+       "coacd_pieces": 38,
+       "sec": 125.8
+      },
+      "gate": {
+       "pass_": true,
+       "n": 46,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ],
+    "carved_route": "3_coacd",
+    "sec": 141.4
+   }
+  }
+ }
+}

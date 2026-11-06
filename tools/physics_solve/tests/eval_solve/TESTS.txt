@@ -1,0 +1,46 @@
+CPU tests of ops/jobs/eval_solve.sh (eval-episode physics solve for pack 10), 31 Oct 2026 ~16:30-17:10 UTC.
+Machine: this Claude cloud container (4 CPUs, no GPU). FlashCHORD at the evaluator pin (scratchpad fcvenv), box-python
+stand-in = scratchpad venv (pyarrow, numpy, scipy, trimesh, huggingface_hub). Store reads: single-file HF downloads.
+No ground truth is read by any of these (eval episodes have none). Nothing rented, nothing pushed.
+Code under test (md5): eval_solve.sh cdcf5979, eval_inputs.py bc488038, eval_solve_summary.py d900789d (c8210896 in the dry runs; later change: a warning field only, re-run on the dry-run outputs: same results),
+solve.py fa511432, jitter_check.py 3522b860, ops/box/store.sh 1e5edbfd (= focused-pascal's, adds pull-files).
+S = the session scratchpad; MIRROR = $S/evs/store, a local mirror of the real store files below.
+
+1. Inputs exist and match the pack builder's table (fetch_inputs.py, check_refs.py; logs/fetch_inputs.log,
+   logs/check_refs.json):
+   HF_TOKEN=hf_dummy $S/venv/bin/python -I fetch_inputs.py docs/research/physics-2026-10-30/eval_solve/packed_refs.json $S/evs/store
+   $S/venv/bin/python -I check_refs.py <same table> $S/evs/store logs/check_refs.json
+   -> all 15 grasp-lock references md5 OK; no missing URDF / mesh; masses 0.3 kg; solver gate active on 3,627 of 3,772 frames.
+
+2. Syntax: bash -n ops/jobs/eval_solve.sh ops/box/store.sh tests/*.sh; py_compile eval_inputs.py eval_solve_summary.py
+   fcstub.py -> pass.
+
+3. Real solver, tiny scale, on eval 37's real packed reference (cpu_solve_ep37.sh; logs/cpu_solve_ep37*.{log,json}):
+   S=$S MIRROR=$S/evs/store bash cpu_solve_ep37.sh $S/evs/cpu37b
+   (--workers 0 = the CUDA code path on CPU; 8 worlds = 4 candidates x 2 robust copies, horizon 8, 2 iterations; jitter k 4)
+   -> check OK; jitter in 0.890 +- 0.006 (nominal 0.948); solve 116 s, fresh load bit-identical; official zero replay of
+   the output = solver truth (0.9470 / 0.9470); jitter out 0.938 +- 0.017; changed columns = robot_right_{finger_joints,
+   wrist_position, wrist_wxyz} only, 11 frames; summary + hand-off written. Smoke test only (tiny scale, 3 noisy copies).
+   Test-side change: object_urdf_paths of a copy point at the local asset copy (no /content here); checked to be the
+   only differing column.
+
+4. Job dry runs (dryrun.sh: /content -> scratch root by sed; store = local mirror of REAL store files; GPU tools stubbed
+   by fcstub.py; eval_inputs, make_assets, trace_score, rest_check, summary real; logs/dry*/):
+   dry1  EPS="37 10 8 35" PAR=2 STUB_SOLVE_S=30 -> exit 0; 4 solved; eval 10 /content/assets = library_v3 + ev10
+         (124 files); order 35 8 10 37; max 2 concurrent solves; hand-off md5_in = table md5s; push listing has
+         refs/evsolve/** and results/eval_solve/**.
+   dry2  EPS="37 1 14 3 38 36" PAR=2 STUB_SOLVE_S=40 STUB_FAIL_EP=37 STUB_CORRUPT=<ep14 ref> STUB_MISSING=<ep3 pot URDF>
+         -> exit 0; eval 1 dropped (standard learner), 14 refused (md5), 3 dropped (pull), 37 solve failed, 36 + 38
+         solved; max 2 concurrent; failures listed with reasons in summary.json.
+   dry3  EPS="10 37" REF_EP10=runs/20261031-fakeV4p-0000000/... (LOCAL FIXTURE: a copy of gl10A2's ep10 reference
+         standing in for a V4p path) MD5_EP10=1a5003d9... -> exit 0; both solved; ep10 mode override, input = override.
+   dry3b same with MD5_EP10=000... -> refused, exit 1.
+
+5. Eval 10 assets (logs/make_assets_ev10_equivalence.log, cpu_zero_ep10.sh, logs/cpu_zero_ep10_ep37.log):
+   make_assets d7576a4 / a0baeef / HEAD on library_v3 + meshes/carve/ev10: mesh + piece files byte-identical across
+   versions; HEAD vs a0baeef URDFs differ only in a comment; the cups' COM / piece counts printed by HEAD equal those in
+   gl10A2's own job.log (the packed eval-10 training), d7576a4's do not. CPU zero-action replays vs the training boxes'
+   stored GPU scores: ep37 0.948 vs 0.921 (identical stored assets), ep10 0.517 vs 0.579 (rebuilt assets) - within
+   CPU/GPU replay chaos; not evidence either way.
+
+Not covered on CPU: G2-scale solves on a GPU (time, memory, quality on eval episodes); store pull-files from a box.

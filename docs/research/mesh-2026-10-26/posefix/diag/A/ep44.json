@@ -1,0 +1,55 @@
+{
+ "ep": 44,
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 249,
+ "auc_before": 0.9975,
+ "add_cm_before": {
+  "white_pot": 0.4666
+ },
+ "auc_after": 0.9684,
+ "add_cm_after": {
+  "white_pot": 0.9208
+ },
+ "auc_before_scorer": 0.9975,
+ "auc_after_scorer": 0.9684,
+ "direction": [
+  {
+   "obj": "white_pot",
+   "start": 0,
+   "end": 9,
+   "status": "shift_t",
+   "push_mm": 7.96,
+   "corr_mm": 0.16,
+   "corr_along_push_mm": -0.01,
+   "cos": -0.086,
+   "pos_err_mm_before": 0.69,
+   "pos_err_mm_after_same_alignment": 7.99,
+   "pos_err_mm_after_scored": 0.69
+  },
+  {
+   "obj": "white_pot",
+   "start": 208,
+   "end": 248,
+   "status": "shift_t",
+   "push_mm": 9.98,
+   "corr_mm": 3.11,
+   "corr_along_push_mm": 2.24,
+   "cos": 0.721,
+   "pos_err_mm_before": 3.18,
+   "pos_err_mm_after_same_alignment": 8.11,
+   "pos_err_mm_after_scored": 2.35
+  }
+ ],
+ "mesh_check": [],
+ "bottom_check": [
+  {
+   "obj": "white_pot",
+   "rest_frames_sampled": 26,
+   "ours_minus_scan_lowest_mm_median": -7.71,
+   "scan_lowest_z_mm_median": 601.15,
+   "scan_lowest_z_mm_iqr": 0.03
+  }
+ ]
+}

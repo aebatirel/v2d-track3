@@ -1,0 +1,10 @@
+{
+ "pieces": 163,
+ "same_piece_keys": true,
+ "pieces_byte_identical": true,
+ "records_identical_except_timing": true,
+ "record_diffs": [],
+ "n_record_diffs": 0,
+ "a": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3b/ident/rev16_3b7e6d0.npz",
+ "b": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3b/ident/rev16_dc4a2a4.npz"
+}

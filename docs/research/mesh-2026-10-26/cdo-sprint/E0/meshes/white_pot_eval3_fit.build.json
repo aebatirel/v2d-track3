@@ -1,0 +1,145 @@
+{
+ "object": "white_pot",
+ "variant": "fit",
+ "n_pts": 200895,
+ "axis_J_mm": 3.144,
+ "axis_fitaxis_deg": 7.5,
+ "axial_pts_lo_hi": [
+  20415,
+  0
+ ],
+ "axis_rotcons_mm": 2.588,
+ "axis": [
+  0.981,
+  0.0461,
+  0.1883
+ ],
+ "centre": [
+  -0.001,
+  -0.0004,
+  -0.0182
+ ],
+ "t_meas_mm": 3.51,
+ "t_mm": 3.51,
+ "h_top_mm": 112.2,
+ "rmax_mm": 91.8,
+ "bins_outer": 15,
+ "bins_inner": 55,
+ "bins_both": 12,
+ "residual_pts": 17021,
+ "handle": {
+  "n": 14610,
+  "width_mm": 26.2,
+  "T_mm": 5.0,
+  "T_src": "prior",
+  "length_mm": 171.5,
+  "tilt_deg": 84.0,
+  "hole": null
+ },
+ "markers": [
+  {
+   "n": 1822,
+   "rejected": "size",
+   "diag_mm": 131.0,
+   "level": 0
+  },
+  {
+   "n": 785,
+   "free_r_mm": 7.34,
+   "free_res_mm": 1.7,
+   "spread": 0.655,
+   "mode": "prior",
+   "centre": [
+    0.0394,
+    0.0067,
+    0.1042
+   ],
+   "r_mm": 7.0,
+   "gap_mm": 3.1,
+   "diag_mm": 26.4,
+   "res_mm": 1.72,
+   "stem_pts": 0,
+   "stem_ctl": 0
+  },
+  {
+   "n": 475,
+   "free_r_mm": 37.33,
+   "free_res_mm": 1.09,
+   "spread": 0.021,
+   "mode": "prior",
+   "centre": [
+    0.0239,
+    0.0105,
+    0.237
+   ],
+   "r_mm": 7.0,
+   "gap_mm": 0.8,
+   "diag_mm": 26.4,
+   "res_mm": 2.19,
+   "rejected": "fit"
+  },
+  {
+   "n": 352,
+   "free_r_mm": 54.07,
+   "free_res_mm": 1.18,
+   "spread": 0.011,
+   "mode": "prior",
+   "centre": [
+    -0.0247,
+    0.0358,
+    0.2539
+   ],
+   "r_mm": 7.0,
+   "gap_mm": 35.3,
+   "diag_mm": 28.6,
+   "res_mm": 2.09,
+   "rejected": "fit"
+  },
+  {
+   "n": 127,
+   "rejected": "size",
+   "diag_mm": 86.8,
+   "level": 0
+  },
+  {
+   "n": 311,
+   "free_r_mm": 208.25,
+   "free_res_mm": 1.07,
+   "spread": 0.001,
+   "mode": "prior",
+   "centre": [
+    -0.0336,
+    -0.0159,
+    -0.1015
+   ],
+   "r_mm": 7.0,
+   "gap_mm": 10.0,
+   "diag_mm": 32.2,
+   "res_mm": 2.25,
+   "rejected": "fit"
+  },
+  {
+   "n": 61,
+   "free_r_mm": 32.52,
+   "free_res_mm": 0.75,
+   "spread": 0.026,
+   "mode": "prior",
+   "centre": [
+    -0.0469,
+    -0.0609,
+    -0.0192
+   ],
+   "r_mm": 7.0,
+   "gap_mm": 4.3,
+   "diag_mm": 23.7,
+   "res_mm": 1.54,
+   "stem_pts": 42,
+   "stem_ctl": 24
+  }
+ ],
+ "out": "/content/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+ "obs": "/content/results/e0/obs/ep3_white_pot.npz",
+ "faces": 15574,
+ "watertight": true,
+ "bodies": 3
+}

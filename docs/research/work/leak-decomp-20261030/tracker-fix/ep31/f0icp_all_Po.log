@@ -1,0 +1,24 @@
+ep0 base lib 0.9620 * 0.9476 | A +0.0000/+0.0000 B +0.0000/+0.0000 | white_pot:105.61deg/13.01cm/rej white_pot_lid:139.48deg/18113.41cm/rej (42s)
+ep2 base lib 0.9866 * 0.9805 | A +0.0000/+0.0000 B +0.0030/+0.0000 | white_pot:7.92deg/2.52cm/rej white_pot_lid:2.12deg/0.15cm/acc (57s)
+ep11 base lib 0.8978 * 0.8739 | A +0.0039/+0.0187 B +0.0037/+0.0187 | blue_cup:6.42deg/0.22cm/acc beige_cup:6.19deg/0.07cm/acc (156s)
+ep12 base lib 0.9662 * 0.9734 | A -0.0163/+0.0040 B -0.0848/-0.0179 | blue_cup:8.98deg/0.28cm/acc plastic_dish_rack:3.35deg/0.26cm/acc (92s)
+ep13 base lib 0.9595 * 0.9039 | A +0.0000/+0.0000 B -0.0245/+0.0216 | blue_cup:18.06deg/0.73cm/rej plastic_dish_rack:2.59deg/0.11cm/acc (75s)
+ep18 base lib 0.9144 * 0.9168 | A +0.0025/-0.0037 B +0.0025/-0.0037 | mini_sweeper:4.58deg/0.35cm/acc mini_dust_pan:3.59deg/0.31cm/acc (27s)
+ep21 base lib 0.8325 * 0.8313 | A -0.0064/-0.0109 B +0.0623/+0.0560 | blue_cup:6.05deg/0.21cm/acc water_pitcher:2.29deg/0.77cm/acc (188s)
+ep22 base lib 0.8707 * 0.8684 | A +0.0093/+0.0198 B +0.0389/+0.0114 | blue_cup:5.36deg/0.36cm/acc water_pitcher:2.05deg/0.26cm/acc (123s)
+ep23 base lib 0.0414 * 0.0418 | A -0.0007/-0.0009 B -0.0007/-0.0009 | wooden_piece_1:2.77deg/0.6cm/acc wooden_piece_2:2.48deg/0.33cm/acc (26s)
+ep24 base lib 0.8117 * 0.8105 | A +0.0152/+0.0128 B +0.0151/+0.0126 | wooden_piece_1:1.06deg/0.17cm/acc wooden_piece_2:1.78deg/0.49cm/acc (30s)
+ep26 base lib 0.9717 * 0.9602 | A +0.0000/+0.0000 B +0.0056/+0.0000 | plastic_dish_rack:76.74deg/14418.44cm/rej white_pot:4.12deg/0.49cm/acc (173s)
+ep27 base lib 0.9605 * 0.9378 | A +0.0277/+0.0252 B +0.0276/+0.0242 | plastic_dish_rack:2.54deg/0.29cm/acc white_pot:3.52deg/0.27cm/acc (42s)
+ep31 base lib 0.7998 * 0.8351 | A +0.1516/+0.0848 B +0.1510/+0.0872 | mini_sweeper:7.2deg/0.47cm/acc plastic_dish_rack:3.08deg/0.19cm/acc (36s)
+ep39 base lib 0.9602 * 0.9804 | A +0.0151/+0.0094 B +0.0151/+0.0094 | mini_dust_pan:1.56deg/0.26cm/acc (24s)
+ep40 base lib 0.9570 * 0.9740 | A -0.0108/-0.0214 B -0.0108/-0.0214 | mini_dust_pan:2.16deg/0.29cm/acc (17s)
+ep41 base lib 0.9910 * 0.9881 | A +0.0029/+0.0010 B +0.0029/+0.0010 | white_pot:0.84deg/0.25cm/acc (16s)
+ep42 base lib 0.9903 * 0.9638 | A -0.0037/-0.0166 B -0.0037/-0.0166 | white_pot:1.8deg/0.39cm/acc (15s)
+ep43 base lib 0.9477 * 0.9425 | A +0.0341/-0.0211 B +0.0341/-0.0211 | white_pot:4.33deg/0.69cm/acc (11s)
+ep44 base lib 0.9967 * 0.9982 | A -0.0017/-0.0010 B -0.0017/-0.0010 | white_pot:1.78deg/0.16cm/acc (21s)
+ep45 base lib 0.9795 * 0.9789 | A -0.0015/+0.0045 B -0.0015/+0.0045 | white_pot:0.29deg/0.11cm/acc (18s)
+A_slot0 d_lib: mean +0.0111 (w/o ep31 +0.0037) nonneg 13/20 min -0.0163 max +0.1516 ep31 +0.1516
+A_slot0 d_star: mean +0.0052 (w/o ep31 +0.0010) nonneg 13/20 min -0.0214 max +0.0848 ep31 +0.0848
+B_all d_lib: mean +0.0117 (w/o ep31 +0.0044) nonneg 13/20 min -0.0848 max +0.1510 ep31 +0.1510
+B_all d_star: mean +0.0082 (w/o ep31 +0.0040) nonneg 13/20 min -0.0214 max +0.0872 ep31 +0.0872

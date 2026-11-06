@@ -1,0 +1,336 @@
+{
+ "rows": [
+  {
+   "object": "white_pot",
+   "pick": "gen/sam3d/ep41_white_pot_k279_s7",
+   "raw_cdo": 0.32760000000000006,
+   "raw_add_med": 8.184999999999999,
+   "raw_flips": 0,
+   "raw_n": 8,
+   "cdo": 0.3111833333333333,
+   "add_med": 6.275,
+   "flips_all": 0,
+   "n_seeds": 8,
+   "flips_extra": 0,
+   "n_extra": 2,
+   "flips_eval": 0,
+   "sha": "803515e7bcbc45c8",
+   "pairs": [
+    {
+     "pair": "pack",
+     "base_cdo": 0.4371,
+     "base_add_med": 6.69,
+     "cdo_ok": true,
+     "add_ok": true,
+     "flip_ok": true,
+     "win": true
+    }
+   ],
+   "flip_rule": "0 flips (symmetry-aware for declared-symmetric objects)",
+   "win": true,
+   "d_vs_raw": -0.016416666666666746,
+   "worse_than_raw": false,
+   "c0_cdo": 0.3417,
+   "beats_c0_by_0.02": true
+  },
+  {
+   "object": "white_pot_lid",
+   "pick": "gen/hy21/ep2_white_pot_lid_k321_s7",
+   "raw_cdo": 0.3533,
+   "raw_add_med": 27.28,
+   "raw_flips": 0,
+   "raw_n": 6,
+   "cdo": 0.3598,
+   "add_med": 39.65,
+   "flips_all": 0,
+   "n_seeds": 6,
+   "flips_extra": 0,
+   "n_extra": 5,
+   "flips_eval": 0,
+   "sha": "73b27c13e41ba594",
+   "pairs": [
+    {
+     "pair": "pack",
+     "base_cdo": 0.4211,
+     "base_add_med": 8.13,
+     "cdo_ok": true,
+     "add_ok": false,
+     "flip_ok": true,
+     "win": false
+    }
+   ],
+   "flip_rule": "0 flips (symmetry-aware for declared-symmetric objects)",
+   "win": false,
+   "d_vs_raw": 0.006500000000000006,
+   "worse_than_raw": true,
+   "c0_cdo": 0.2199,
+   "beats_c0_by_0.02": false
+  },
+  {
+   "object": "blue_cup",
+   "pick": "gen/pixal_mv/ep22_blue_cup_s42",
+   "raw_cdo": 0.40682,
+   "raw_add_med": 6.58,
+   "raw_flips": 0,
+   "raw_n": 7,
+   "cdo": 0.40996000000000005,
+   "add_med": 4.53,
+   "flips_all": 0,
+   "n_seeds": 7,
+   "flips_extra": 0,
+   "n_extra": 2,
+   "flips_eval": 0,
+   "sha": "d662221e1d8a4000",
+   "pairs": [
+    {
+     "pair": "pack",
+     "base_cdo": 0.5233,
+     "base_add_med": 10.14,
+     "cdo_ok": true,
+     "add_ok": true,
+     "flip_ok": true,
+     "win": true
+    }
+   ],
+   "flip_rule": "0 flips (symmetry-aware for declared-symmetric objects)",
+   "win": true,
+   "d_vs_raw": 0.0031400000000000317,
+   "worse_than_raw": true,
+   "c0_cdo": 0.2906,
+   "beats_c0_by_0.02": false
+  },
+  {
+   "object": "water_pitcher",
+   "pick": "gen/sam3d/ep22_water_pitcher_k174_s42",
+   "raw_cdo": 0.771,
+   "raw_add_med": 33.38,
+   "raw_flips": 0,
+   "raw_n": 6,
+   "cdo": 0.7226,
+   "add_med": 33.03,
+   "flips_all": 0,
+   "n_seeds": 6,
+   "flips_extra": 0,
+   "n_extra": 5,
+   "flips_eval": 0,
+   "sha": "a26db57b75587e78",
+   "pairs": [
+    {
+     "pair": "pack",
+     "base_cdo": 0.8942,
+     "base_add_med": 7.97,
+     "cdo_ok": true,
+     "add_ok": false,
+     "flip_ok": true,
+     "win": false
+    }
+   ],
+   "flip_rule": "0 flips (symmetry-aware for declared-symmetric objects)",
+   "win": false,
+   "d_vs_raw": -0.0484,
+   "worse_than_raw": false
+  },
+  {
+   "object": "wooden_piece_1",
+   "pick": "gen/triposg/ep23_wooden_piece_1_k27_s7",
+   "raw_cdo": 0.3355,
+   "raw_add_med": 21.975,
+   "raw_flips": 1,
+   "raw_n": 6,
+   "cdo": 0.3322,
+   "add_med": 20.92,
+   "flips_all": 7,
+   "n_seeds": 31,
+   "flips_extra": 7,
+   "n_extra": 30,
+   "flips_eval": 0,
+   "sha": "22b44e8cd63510c8",
+   "pairs": [
+    {
+     "pair": "pack",
+     "base_cdo": 0.2219,
+     "base_add_med": 2.49,
+     "cdo_ok": false,
+     "add_ok": false,
+     "flip_ok": false,
+     "win": false
+    }
+   ],
+   "flip_rule": "flips <= 1 of 30 extra seeds and 0 on eval seeds",
+   "win": false,
+   "d_vs_raw": -0.003300000000000025,
+   "worse_than_raw": false
+  },
+  {
+   "object": "wooden_piece_2",
+   "pick": "gen/sam3d/ep23_wooden_piece_2_k6_s42",
+   "raw_cdo": 0.3211,
+   "raw_add_med": 84.96000000000001,
+   "raw_flips": 6,
+   "raw_n": 6,
+   "cdo": 0.242,
+   "add_med": 84.75,
+   "flips_all": 26,
+   "n_seeds": 31,
+   "flips_extra": 25,
+   "n_extra": 30,
+   "flips_eval": 1,
+   "sha": "83076c318e0ac44e",
+   "pairs": [
+    {
+     "pair": "pack",
+     "base_cdo": 0.2158,
+     "base_add_med": 3.315,
+     "cdo_ok": false,
+     "add_ok": false,
+     "flip_ok": false,
+     "win": false
+    }
+   ],
+   "flip_rule": "flips <= 1 of 30 extra seeds and 0 on eval seeds",
+   "win": false,
+   "d_vs_raw": -0.0791,
+   "worse_than_raw": false
+  },
+  {
+   "object": "plastic_dish_rack",
+   "pick": "gen/sam3d/ep26_plastic_dish_rack_k144_s7",
+   "raw_cdo": 0.60414,
+   "raw_add_med": 21.07,
+   "raw_flips": 0,
+   "raw_n": 7,
+   "cdo": 0.5723800000000001,
+   "add_med": 21.6,
+   "flips_all": 0,
+   "n_seeds": 7,
+   "flips_extra": 0,
+   "n_extra": 2,
+   "flips_eval": 0,
+   "sha": "ec7765063d285247",
+   "pairs": [
+    {
+     "pair": "pack",
+     "base_cdo": 0.5551,
+     "base_add_med": 5.79,
+     "cdo_ok": false,
+     "add_ok": false,
+     "flip_ok": true,
+     "win": false
+    }
+   ],
+   "flip_rule": "0 flips (symmetry-aware for declared-symmetric objects)",
+   "win": false,
+   "d_vs_raw": -0.0317599999999999,
+   "worse_than_raw": false,
+   "c0_cdo": 0.456,
+   "beats_c0_by_0.02": false
+  },
+  {
+   "object": "mini_sweeper",
+   "pick": "gen/sam3d/ep31_mini_sweeper_k270_s7",
+   "raw_cdo": 0.43695,
+   "raw_add_med": 9.065000000000001,
+   "raw_flips": 2,
+   "raw_n": 6,
+   "cdo": 0.41855,
+   "add_med": 10.39,
+   "flips_all": 5,
+   "n_seeds": 32,
+   "flips_extra": 5,
+   "n_extra": 30,
+   "flips_eval": 0,
+   "sha": "56d62dc53ca3ffbc",
+   "pairs": [
+    {
+     "pair": "pack",
+     "base_cdo": 0.317,
+     "base_add_med": 5.245,
+     "cdo_ok": false,
+     "add_ok": false,
+     "flip_ok": false,
+     "win": false
+    }
+   ],
+   "flip_rule": "flips <= 1 of 30 extra seeds and 0 on eval seeds",
+   "win": false,
+   "d_vs_raw": -0.018400000000000027,
+   "worse_than_raw": false
+  },
+  {
+   "object": "mini_dust_pan",
+   "pick": "gen/sam3d/ep39_mini_dust_pan_k297_s42",
+   "raw_cdo": 0.26055,
+   "raw_add_med": 7.465,
+   "raw_flips": 0,
+   "raw_n": 6,
+   "cdo": 0.25415,
+   "add_med": 6.755,
+   "flips_all": 0,
+   "n_seeds": 6,
+   "flips_extra": 0,
+   "n_extra": 4,
+   "flips_eval": 0,
+   "sha": "bc42512cbc77c73c",
+   "pairs": [
+    {
+     "pair": "pack",
+     "base_cdo": 0.3307,
+     "base_add_med": 5.65,
+     "cdo_ok": true,
+     "add_ok": true,
+     "flip_ok": true,
+     "win": true
+    }
+   ],
+   "flip_rule": "0 flips (symmetry-aware for declared-symmetric objects)",
+   "win": true,
+   "d_vs_raw": -0.006400000000000017,
+   "worse_than_raw": false
+  },
+  {
+   "object": "beige_cup",
+   "pick": "gen/sam3d/ep11_beige_cup_k6_s42",
+   "raw_cdo": 0.5258499999999999,
+   "raw_add_med": 21.755000000000003,
+   "raw_flips": 0,
+   "raw_n": 6,
+   "cdo": 0.5424,
+   "add_med": 21.735,
+   "flips_all": 0,
+   "n_seeds": 6,
+   "flips_extra": 0,
+   "n_extra": 4,
+   "flips_eval": 0,
+   "sha": "204ddcb9a74d60a8",
+   "pairs": [
+    {
+     "pair": "eval10 library_v3",
+     "base_cdo": 0.8562,
+     "base_add_med": 6.965,
+     "cdo_ok": true,
+     "add_ok": false,
+     "flip_ok": true,
+     "win": false
+    },
+    {
+     "pair": "eval8 library_v3x",
+     "base_cdo": 0.7299,
+     "base_add_med": 5.51,
+     "cdo_ok": true,
+     "add_ok": false,
+     "flip_ok": true,
+     "win": false
+    }
+   ],
+   "flip_rule": "0 flips (symmetry-aware for declared-symmetric objects)",
+   "win": false,
+   "d_vs_raw": 0.016550000000000065,
+   "worse_than_raw": true
+  }
+ ],
+ "wins": 3,
+ "worse_than_raw": 3,
+ "n_scored": 10,
+ "rule": "H-GF falsified if fitted is a WIN on < 3 of 10 objects OR fitted CD-O > raw CD-O on a majority",
+ "verdict": "SUPPORTED"
+}

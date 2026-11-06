@@ -1,0 +1,33 @@
+{
+ "set": "ev20",
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "usda": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/glockt/ep20/reconstructed_stage/t3_ep020_support.usda",
+ "target": "water_pitcher",
+ "packed_count": 41,
+ "objects": {
+  "water_pitcher": {
+   "visual": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/mesh/water_pitcher/water_pitcher.glb",
+   "urdf": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/water_pitcher_rigid.urdf",
+   "packed": {
+    "npz": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/packed_coacd/water_pitcher.npz",
+    "files": [
+     "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_0.stl",
+     "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_1.stl",
+     "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_2.stl",
+     "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_3.stl",
+     "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_4.stl",
+     "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_5.stl",
+     "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_6.stl",
+     "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_7.stl"
+    ]
+   }
+  },
+  "blue_cup": {
+   "visual": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/mesh/blue_cup/blue_cup.glb",
+   "urdf": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/blue_cup_rigid.urdf",
+   "packed": {
+    "npz": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/packed_coacd2/bluecup_ep20.npz"
+   }
+  }
+ }
+}

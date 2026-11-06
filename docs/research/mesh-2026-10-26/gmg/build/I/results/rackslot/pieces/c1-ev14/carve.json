@@ -1,0 +1,326 @@
+{
+ "tool": "rackslot build.py (docs/research/mesh-2026-10-26/gmg/build/I/results/rackslot/scripts)",
+ "candidate": "c1-ev14",
+ "status": "CANDIDATE: simulator collision copy of the rack only; the submitted mesh is unchanged",
+ "note": "Packed rack hulls (FlashCHORD CoACD 1.0.11 of library_v3, 43) with the hulls that reach into the guest's swept rest volume beyond the rack mesh split / clipped into convex cells that keep every rack-mesh point, then merged back where a merge adds no rest-volume cell. Use: make_assets.py LIBRARY OUT --pieces <this folder>; only plastic_dish_rack gets pieces, the guest keeps its default collision. No inertia.json: the rack mass, COM and inertia stay as make_assets.py computes them today.",
+ "episodes": {
+  "14": {
+   "reference": "runs/20261025-evb1420-ee7ba8e/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "md5": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+   "packed_run": "20261025-evb1420-ee7ba8e",
+   "asset_root": "/content/refs/sf/ep14/assets (sf rack = library_v3 rack vertex for vertex)",
+   "rest_frames_R": [
+    [
+     140,
+     157
+    ]
+   ],
+   "gate_frames": [
+    149,
+    144,
+    153
+   ]
+  }
+ },
+ "scope": "14",
+ "n_pieces": 62,
+ "packed_pieces": 43,
+ "build": {
+  "constants": {
+   "MAX_CLIP": 6,
+   "MAX_DEPTH": 5,
+   "TOL_F": 20,
+   "KDEC": 0.001,
+   "W_COLL": 0.25,
+   "MERGE_MAX_CM3": 2.0,
+   "SAMPLE_M": 0.0003,
+   "CLEAR": 0.001,
+   "PITCH": 0.001
+  },
+  "merges": 0,
+  "secs": 732.0
+ },
+ "inputs": {
+  "rack_mesh_library_v3": {
+   "path": "meshes/library_v3/plastic_dish_rack.glb",
+   "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+   "geom_sha1_12": "c9ee8c559c02"
+  },
+  "rack_packed_hulls": {
+   "path": "<scratch>/evck/out/packed/rack_lib.npz",
+   "md5": "c0742888ad273421ac1a427b554cf573",
+   "what": "FlashCHORD CoACD of the rack at load: coacd 1.0.11, threshold 0.05, 43 hulls"
+  },
+  "packed_refs_json": {
+   "path": "docs/research/work/masses-eval-20261031/packed_refs.json (focused-pascal)",
+   "md5": "a7ed39d65e522c22aa9d04bb22d15a6e"
+  },
+  "ep14_guest_mesh": {
+   "path": "<scratch>/evck/dl/runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/assets/mesh/blue_cup/blue_cup.glb",
+   "md5": "0435d5d24cd88789d4a913ba63b4cca4"
+  },
+  "ep14_guest_packed_hulls": {
+   "path": "<scratch>/evck/out/packed/cup_lib.npz",
+   "md5": "fb2a675fca6d2755a933be6accc414e1"
+  },
+  "ep14_precheck_frames": {
+   "path": "docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/per_frame/ep14_frames.json",
+   "md5": "30f3022aac07d9901705e0af80080e55"
+  },
+  "ep14_poses": {
+   "path": "<scratch>/evck/out/geo2/ep14_poses.npz",
+   "md5": "fe12f95b98dbdbca1ef401dcc3870185",
+   "what": "object poses read from the packed reference by the precheck"
+  }
+ },
+ "pieces": [
+  {
+   "file": "piece_00.obj",
+   "md5": "d52129175275dcef6613832148d03313"
+  },
+  {
+   "file": "piece_01.obj",
+   "md5": "302dd325f54c2e2d11d5a562f01b3d24"
+  },
+  {
+   "file": "piece_02.obj",
+   "md5": "4233363394381645b187cea10f13adcf"
+  },
+  {
+   "file": "piece_03.obj",
+   "md5": "af46e4dfc8788d99084fb4d4793fd810"
+  },
+  {
+   "file": "piece_04.obj",
+   "md5": "3e5a63866ed980b00b2690ff775f7e5b"
+  },
+  {
+   "file": "piece_05.obj",
+   "md5": "a43d351dccb292a5640a5823e384e59d"
+  },
+  {
+   "file": "piece_06.obj",
+   "md5": "c01775f9318cdbfb68c2adc27a031bcf"
+  },
+  {
+   "file": "piece_07.obj",
+   "md5": "d215661691d3c7f435dd3ead4ece131b"
+  },
+  {
+   "file": "piece_08.obj",
+   "md5": "a2a9b76968e1237a3a84510876517de1"
+  },
+  {
+   "file": "piece_09.obj",
+   "md5": "b05781059a6839443931eaaeb18eba0b"
+  },
+  {
+   "file": "piece_10.obj",
+   "md5": "899c771e3b0b4b2e818dae926e4409e6"
+  },
+  {
+   "file": "piece_11.obj",
+   "md5": "c145f20aea91c6c09a5085324d8f9c5f"
+  },
+  {
+   "file": "piece_12.obj",
+   "md5": "99b8c385b8da8013bfc8b1b364eb37f4"
+  },
+  {
+   "file": "piece_13.obj",
+   "md5": "3e06f2a4018a02989647e26021231acd"
+  },
+  {
+   "file": "piece_14.obj",
+   "md5": "753fe0d394d7edb6f78fa0089d127af0"
+  },
+  {
+   "file": "piece_15.obj",
+   "md5": "b2a9c654df900e5652f5f8be31df250e"
+  },
+  {
+   "file": "piece_16.obj",
+   "md5": "7b8c8cc89a50e49c27508ab0f19263bd"
+  },
+  {
+   "file": "piece_17.obj",
+   "md5": "ba49b73a189edbd41e3e834997de1b04"
+  },
+  {
+   "file": "piece_18.obj",
+   "md5": "5922b6d6d4590358ec9d67894eb36f98"
+  },
+  {
+   "file": "piece_19.obj",
+   "md5": "4f6ae09dac6b70ad84e868f69ac50c50"
+  },
+  {
+   "file": "piece_20.obj",
+   "md5": "580af94ae2f94786211ebfddc90ddbbc"
+  },
+  {
+   "file": "piece_21.obj",
+   "md5": "500eb95d399e64edebafa2978ed8b1b5"
+  },
+  {
+   "file": "piece_22.obj",
+   "md5": "cd1c8c6db6ee4bc77d06cd868a099edc"
+  },
+  {
+   "file": "piece_23.obj",
+   "md5": "c66a4641d30c4490758402af92032eb5"
+  },
+  {
+   "file": "piece_24.obj",
+   "md5": "56c60577a9b3eab747fdfcb4654d4bbd"
+  },
+  {
+   "file": "piece_25.obj",
+   "md5": "4af431834f6cab35559f690cac8222ae"
+  },
+  {
+   "file": "piece_26.obj",
+   "md5": "40768ee2426745cf0248baeb8e4b8525"
+  },
+  {
+   "file": "piece_27.obj",
+   "md5": "ab9d6105cd4d4d57bfb4a6ad89961f6a"
+  },
+  {
+   "file": "piece_28.obj",
+   "md5": "bb4b64ff2f41c82c85bd35c66639eaa5"
+  },
+  {
+   "file": "piece_29.obj",
+   "md5": "f5d8a3166b80f5799550391d8be05384"
+  },
+  {
+   "file": "piece_30.obj",
+   "md5": "7d67c373350f6779128e8fc0b33a2418"
+  },
+  {
+   "file": "piece_31.obj",
+   "md5": "28bfc62def9ce93d141d2f019e6ee0d9"
+  },
+  {
+   "file": "piece_32.obj",
+   "md5": "6b2822c55a853e677318918b35dc7904"
+  },
+  {
+   "file": "piece_33.obj",
+   "md5": "44e435606bb81a956c63c0d36d3fcc8f"
+  },
+  {
+   "file": "piece_34.obj",
+   "md5": "85460f1705518a68eb727a2765593b39"
+  },
+  {
+   "file": "piece_35.obj",
+   "md5": "7e48eedd87dfd395ad2a8bfed93c99de"
+  },
+  {
+   "file": "piece_36.obj",
+   "md5": "c97e05fc2f967bcc6c5fbd417ac23de4"
+  },
+  {
+   "file": "piece_37.obj",
+   "md5": "db00e96586b9023ed089e2f63463306a"
+  },
+  {
+   "file": "piece_38.obj",
+   "md5": "9f85bc3799cb0b7c814ebc2b71ef7dd5"
+  },
+  {
+   "file": "piece_39.obj",
+   "md5": "2c930dcbb54899ebbdad916a7e90a902"
+  },
+  {
+   "file": "piece_40.obj",
+   "md5": "8b3d6608c3496749d3a25535cd999f2d"
+  },
+  {
+   "file": "piece_41.obj",
+   "md5": "1c62c14981d9aad8aec91c16a944ffc2"
+  },
+  {
+   "file": "piece_42.obj",
+   "md5": "e2554bd0851087312c19d8e0dacc283a"
+  },
+  {
+   "file": "piece_43.obj",
+   "md5": "66e0b51f65b255a4073a7a1a4ceb2bc1"
+  },
+  {
+   "file": "piece_44.obj",
+   "md5": "bec58f37488fdf9b4eb925ae9ba8fca3"
+  },
+  {
+   "file": "piece_45.obj",
+   "md5": "a266ac2e7717c8e8946f17b46ca58aca"
+  },
+  {
+   "file": "piece_46.obj",
+   "md5": "ca61a2dd58c8c66c81573a0393d5122f"
+  },
+  {
+   "file": "piece_47.obj",
+   "md5": "6cdd879bc7dbf71ab48bc6ce39359eac"
+  },
+  {
+   "file": "piece_48.obj",
+   "md5": "ee7fa0176ee2a9f38c55841c2739ff81"
+  },
+  {
+   "file": "piece_49.obj",
+   "md5": "4c0c6a90b160a16a9566306a646bb9da"
+  },
+  {
+   "file": "piece_50.obj",
+   "md5": "396575d87130911b1354eb3f8fe3109f"
+  },
+  {
+   "file": "piece_51.obj",
+   "md5": "07f0804fa6beb29187d7543e26e525ce"
+  },
+  {
+   "file": "piece_52.obj",
+   "md5": "53a20652d6ed35a8421b067057131228"
+  },
+  {
+   "file": "piece_53.obj",
+   "md5": "602a2f75ef01160ba6a8881d87e66580"
+  },
+  {
+   "file": "piece_54.obj",
+   "md5": "cf4ba8a4fca2028c0eef36fc2b5a5847"
+  },
+  {
+   "file": "piece_55.obj",
+   "md5": "60d67d6ec6c6582d103aefe7a898955f"
+  },
+  {
+   "file": "piece_56.obj",
+   "md5": "700d49a739ac43fa4e54cee753a32b8c"
+  },
+  {
+   "file": "piece_57.obj",
+   "md5": "6ebc27c2eb6b5a001bd935158d59a643"
+  },
+  {
+   "file": "piece_58.obj",
+   "md5": "73f815a60e4b762e0c279b73597384a7"
+  },
+  {
+   "file": "piece_59.obj",
+   "md5": "34e0950270a2188890101e07e3c79d86"
+  },
+  {
+   "file": "piece_60.obj",
+   "md5": "6a4f10938af116939aab5b11bd3a261a"
+  },
+  {
+   "file": "piece_61.obj",
+   "md5": "5d22d7934a7900e7ef52dac6d993a54f"
+  }
+ ]
+}

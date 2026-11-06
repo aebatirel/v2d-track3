@@ -1,0 +1,4 @@
+[  159.1s] 1/6 gen/pixal_mv/ep41_white_pot_s42: raw wt False -> decode wt True faces 1756 cov 0.9499 comp 1 flags ['refine_capped', 'budget_retry'] (159.1 s)
+[  196.0s] 2/6 gen/pixal_mv/ep41_white_pot_s7: raw wt False -> decode wt True faces 3382 cov 0.997 comp 1 flags [] (37.0 s)
+[  239.2s] 3/6 gen/trellis2/ep41_white_pot_k279_s42: raw wt False -> decode wt True faces 3784 cov 0.9754 comp 1 flags ['refine_capped'] (43.1 s)
+[  291.9s] 4/6 gen/trellis2/ep41_white_pot_k279_s7: raw wt False -> decode wt True faces 3468 cov 0.9888 comp 1 flags ['refine_capped'] (52.7 s)

@@ -1,0 +1,234 @@
+{
+ "schema": "gmg-b7-dev/1",
+ "run": "20261031-b7struct2-c56d473",
+ "tier": "DEV",
+ "anchors": [
+  [
+   27,
+   "white_pot"
+  ],
+  [
+   2,
+   "white_pot_lid"
+  ],
+  [
+   31,
+   "plastic_dish_rack"
+  ],
+  [
+   12,
+   "blue_cup"
+  ],
+  [
+   11,
+   "beige_cup"
+  ],
+  [
+   21,
+   "water_pitcher"
+  ],
+  [
+   40,
+   "mini_dust_pan"
+  ],
+  [
+   18,
+   "mini_sweeper"
+  ],
+  [
+   24,
+   "wooden_piece_1"
+  ],
+  [
+   23,
+   "wooden_piece_2"
+  ]
+ ],
+ "marker_settings_sha256": "488ac3b638aa7e68c12843a5b761ed8882106bc78d8307d9e3059932502aa128",
+ "code_at_start": {
+  "commit": "c56d4738669489bfdb3827c79820782bf100832d",
+  "dirty_files": []
+ },
+ "episodes": {
+  "27": {
+   "sigma_mm": {
+    "plastic_dish_rack": 1.2317,
+    "white_pot": 1.5229
+   },
+   "sec": 3101.5,
+   "structure": {
+    "white_pot": {
+     "n_points": 5586505,
+     "sigma_mm": 1.5229,
+     "lathe": false,
+     "rotc_sigma": 3.0113,
+     "lathe_mad_sigma": 2.285,
+     "rot_free_viol": 0.23231,
+     "axis_source": "fit_axis+refine_axis_rot",
+     "mirrors": [
+      {
+       "accepted": false,
+       "resid_sigma": 0.9782,
+       "observed": 0.7515,
+       "free_viol": 0.1144,
+       "moved": 0.9833
+      },
+      {
+       "accepted": false,
+       "resid_sigma": 0.9739,
+       "observed": 0.7506,
+       "free_viol": 0.11017,
+       "moved": 0.983
+      },
+      {
+       "accepted": false,
+       "resid_sigma": 2.3257,
+       "observed": 0.6483,
+       "free_viol": 0.31858,
+       "moved": 0.9784
+      }
+     ],
+     "planes": 4,
+     "plate_pairs": [],
+     "repeats_accepted": [],
+     "repeats": [
+      {
+       "order": 2,
+       "resid_sigma": 1.0831,
+       "observed": 0.7512,
+       "free_viol": 0.13706,
+       "accepted": false
+      },
+      {
+       "order": 3,
+       "resid_sigma": 1.022,
+       "observed": 0.7618,
+       "free_viol": 0.10877,
+       "accepted": false
+      },
+      {
+       "order": 4,
+       "resid_sigma": 0.9688,
+       "observed": 0.7534,
+       "free_viol": 0.08383,
+       "accepted": false
+      },
+      {
+       "order": 5,
+       "resid_sigma": 0.9502,
+       "observed": 0.762,
+       "free_viol": 0.07808,
+       "accepted": false
+      },
+      {
+       "order": 6,
+       "resid_sigma": 0.9583,
+       "observed": 0.7754,
+       "free_viol": 0.0807,
+       "accepted": false
+      }
+     ],
+     "timing_s": {
+      "axis": 426.16,
+      "mirrors": 329.01,
+      "planes": 6.1,
+      "repeats": 505.12,
+      "total": 1279.54
+     },
+     "flags": []
+    }
+   },
+   "markers": null
+  },
+  "31": {
+   "sigma_mm": {
+    "mini_sweeper": 0.9454,
+    "plastic_dish_rack": 1.6946
+   },
+   "sec": 2453.0,
+   "structure": {
+    "plastic_dish_rack": {
+     "n_points": 3887863,
+     "sigma_mm": 1.6946,
+     "lathe": false,
+     "rotc_sigma": 8.769,
+     "lathe_mad_sigma": 4.4029,
+     "rot_free_viol": 0.38862,
+     "axis_source": "fit_axis+refine_axis_rot",
+     "mirrors": [
+      {
+       "accepted": false,
+       "resid_sigma": 2.2951,
+       "observed": 0.4703,
+       "free_viol": 0.24824,
+       "moved": 0.9571
+      },
+      {
+       "accepted": false,
+       "resid_sigma": 2.076,
+       "observed": 0.6053,
+       "free_viol": 0.26341,
+       "moved": 0.9353
+      },
+      {
+       "accepted": false,
+       "resid_sigma": 4.3865,
+       "observed": 0.3142,
+       "free_viol": 0.23449,
+       "moved": 0.981
+      }
+     ],
+     "planes": 4,
+     "plate_pairs": [],
+     "repeats_accepted": [],
+     "repeats": [
+      {
+       "order": 2,
+       "resid_sigma": 1.1534,
+       "observed": 0.1631,
+       "free_viol": 0.04656,
+       "accepted": false
+      },
+      {
+       "order": 3,
+       "resid_sigma": 0.8807,
+       "observed": 0.0533,
+       "free_viol": 0.00707,
+       "accepted": false
+      },
+      {
+       "order": 4,
+       "resid_sigma": 0.7464,
+       "observed": 0.0793,
+       "free_viol": 0.0009,
+       "accepted": false
+      },
+      {
+       "order": 5,
+       "resid_sigma": 1.0413,
+       "observed": 0.0867,
+       "free_viol": 0.01638,
+       "accepted": false
+      },
+      {
+       "order": 6,
+       "resid_sigma": 0.8172,
+       "observed": 0.0878,
+       "free_viol": 0.00578,
+       "accepted": false
+      }
+     ],
+     "timing_s": {
+      "axis": 596.26,
+      "mirrors": 335.95,
+      "planes": 2.95,
+      "repeats": 649.29,
+      "total": 1612.45
+     },
+     "flags": []
+    }
+   },
+   "markers": null
+  }
+ }
+}

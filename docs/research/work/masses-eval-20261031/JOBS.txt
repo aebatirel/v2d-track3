@@ -1,0 +1,147 @@
+MASSES EVAL RETRAIN: job strings per box (prepared 31 Oct 2026 ~09:30 UTC; review fixes F1-F7 applied ~11:15 UTC;
+NOTHING LAUNCHED; needs the transfer check's ADOPT and the owner's go-ahead per batch)
+Plan and pre-registered rule: docs/research/work/masses-eval-20261031/PLAN.md (gates section 0, rule section 5)
+Build notes and CPU evidence: BUILD.md, cpu/ (same folder); per-episode facts: packed_refs.json (packed_refs_make.py)
+
+GATES (PLAN section 0), in order:
+  0. transfer check 20261031-mass-2ed46ea: ADOPT with mass_verify VERIFIED; its sim_vs_ref delta (ep2, ep12 mean) >= -0.01;
+     scope by its AUC delta: < +0.06 -> O2 (wave 1 only), >= +0.06 -> O3 (wave 1, then wave 2 after C1 and the spoon pilots).
+  1. NEW pre-launch CPU check (BUILD.md finding 3; one targeted download, no listing): the saved config of ONE checkpoint the
+     transfer box trained on 31 Oct (same snapshot, same glock_public path), e.g.
+       runs/20261031-mass-2ed46ea/results/mass1s42_glock_public/ep12/best/policy.safetensors,
+     diffed against the packed eval-20 checkpoint's (header only; local copy of runs/20261025-evb1420-ee7ba8e/results/
+     final_eval/ep20/policy.safetensors exists in the scratchpad):
+       python3 -I -c "import sys; sys.path.insert(0, 'tools'); from mass_verify import ck_config, flat; a, b = (flat(ck_config(f)[1]) for f in sys.argv[1:3]); print(sorted(k for k in set(a) | set(b) if a.get(k) != b.get(k)))" <new> <packed>
+     Expected: only output_dir, task.parquet, reference.parquet, reference.num_frames (another episode) and the seed keys.
+     Anything else (a new FlashCHORD key, an embodiment value) would make EVERY retrained episode INVALID by B3's recipe
+     check: stop and report instead of launching.
+  2. owner GO for the option and its cost; Vast balance checked; a ledger `planned` line per box (below).
+
+Before the launch (orchestrator):
+  commit + push: ops/jobs/mass_eval.sh, ops/jobs/glock_public.sh (eval mass-arm prefix + per-episode CURR_SCALE),
+  ops/jobs/hard_ab.sh + pipeline/pipeline_ep.sh (EVAL_TIMEOUT / NO_PUSH hooks, off by default), ops/jobs/pack_eval.sh
+  (MASS_EPS check + -mev / --physics guard), ops/jobs/h5_reeval.sh (RUNS_EXTRA, PACKED_TXT, MASS_EPS, --physics guard),
+  tools/mass_eval_verify.py, tools/mass_pack_check.py, tools/mass_eval_merge.py, tools/mass_eval_rule.py (rules 4-9:
+  committed BEFORE C1 launches, review F4), docs/research/work/masses-eval-20261031/ (packed_refs.json, with its
+  pull_files lists, is read by the box). SHA=<that commit>, S7=${SHA:0:7}, D=<launch date YYYYMMDD>, SNAP=pt2.11-cu130-py313-20261020.
+  Offer: ONE RTX PRO 6000 (96 GB) on demand per box, <= $1.47/h. Each box self-destroys when its job ends (run_job.sh);
+  the 30-min stall watchdog protects the spend; there is no fixed time limit.
+  Start the boxes of a wave 10-15 min apart (HF 429). Run ids must contain -mev (mass_eval.sh refuses otherwise).
+
+---------------- WAVE 1 (O1: G1 G2 C1; O2: + S1a S1b) ----------------
+G1  (glock 20 + 8; library_v3x, cosmetic for grasp lock: BUILD.md finding 6). The OWNER CHOOSES G1 or G1v (review F3):
+  python3 ops/ledger.py add planned $D-mevG1-$S7 8.50 "masses eval retrain G1: glock eval 20 + 8, seeds 42/43" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-mevG1-$S7 'MODE=glock EPS="20 8" SEEDS="42 43" bash ops/jobs/mass_eval.sh'
+G1v (the cheaper alternative: glock eval 20 only, library_v3; eval 8 stays packed; mocked as box G1v)
+  python3 ops/ledger.py add planned $D-mevG1v-$S7 3.40 "masses eval retrain G1v: glock eval 20, seeds 42/43" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-mevG1v-$S7 'MODE=glock EPS="20" SEEDS="42 43" bash ops/jobs/mass_eval.sh'
+G2  (glock spoon pilots 33 + 15; eval 33 CURR_SCALE 0.4 from the table, per episode)
+  python3 ops/ledger.py add planned $D-mevG2-$S7 5.00 "masses eval retrain G2: glock eval 33 + 15 (spoon pilots), seeds 42/43" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-mevG2-$S7 'MODE=glock EPS="33 15" SEEDS="42 43" bash ops/jobs/mass_eval.sh'
+S1a / S1b  (std eval 1, carve recipe: ev01 pieces + MA_ARGS in /content/assets; one seed per box)
+  for SEED in 42 43; do
+    python3 ops/ledger.py add planned $D-mevS1s$SEED-$S7 3.20 "masses eval retrain S1: std eval 1 (ev01), seed $SEED" owner
+    ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-mevS1s$SEED-$S7 "MODE=std EPS=1 SEEDS=$SEED bash ops/jobs/mass_eval.sh"
+  done
+
+What a training box runs (mass_eval.sh; everything else is fixed inside: recipe, NREP 10, CURVE_REP 3, EVAL_TIMEOUT 1200):
+  - pulls per episode (packed_refs.json), ALL single-file downloads (store.sh pull-files), NO store listing (review F7):
+    the episode's pull_files, i.e. the files of refs/perc2mck, refs/sf, refs/glockt (std: refs/perc2mck, perc2) as the
+    29 Oct store listing has them (glock 20-43 files, std 25), + 3 result files (results/glock_public/ep<N>/
+    {rest_check.json, zero_score.txt, support_fill.json}) + 1 packed checkpoint (header read for the recipe check).
+    Store requests: G1 86, G1v 39, G2 62, S1 26, G3 124; store listings 0 (before: 6 per G box, 2 per S box, each a
+    listing of the ~135k-file store). A log or image that fails is skipped; any other file failing drops the episode.
+    Each pulled reference's md5 + fingerprint must be the packed one, and (glock, review F2) the base's support stage
+    refs/perc2mck/ep<N>/reconstructed_stage/*.usda must have the md5 of the packed refs/glockt/ep<N> one; else the episode
+    is dropped (INCOMPLETE) and nothing is trained on it.
+  - glock: /content/assets at 0.3 kg; tools/mass_arm.py --arms "mass1:<props>" per episode; per seed one
+    glock_public.sh SPLIT=eval REUSE_REF=1 REQUIRE_REUSE=1 NO_PUSH=1 (PAIRS <N>:local:mck:mass1s<seed>); std: per seed
+    hard_ab.sh SPLIT=eval CR=0 SUF=s with MA_ARGS="--physics <props>", the packed PIECES, NO_PUSH=1;
+  - tools/mass_eval_verify.py -> results/mass_eval/{verify.json, summary.json, verify.txt}; "mass_eval RESULT" line in
+    job.log (per episode VERIFIED / INVALID / INCOMPLETE, per seed n / mean / sd / min / timeouts, the rule-2 candidate,
+    the confirmation strings, retrain_seeds); ckpt_meta.txt; files.txt (the store paths of the reference / asset copies
+    and chosen checkpoints a pack would pull); ONE store push (plus the platform's interim and self-destroy pushes).
+    INCOMPLETE (rule 2 as amended 31 Oct, review F1 / F6): a seed with no checkpoint, fewer than 8 scored rollouts, or a
+    std main evaluation cut by EVAL_TIMEOUT (eval_rc 124 / 137) -> retrain ONLY that seed on a new box, same commit:
+      'MODE=<mode> EPS="<N>" SEEDS="<seed>" bash ops/jobs/mass_eval.sh'  (run id <date>-mev<box>r<seed>-<S7>)
+    then merge all summaries again (the other seed's verified cell counts from its first box).
+
+EXPECTED COST wave 1 [E; basis in PLAN section 4; G1 corrected for eval 8 (BUILD.md finding 2, review F3)]. These
+figures, not PLAN section 4's table (O2 $17.2), are the ones to quote for the owner's GO (review F8):
+  G1  4.5-7.6 h  $6.3-11.2 (central ~$8.5 at the midpoint, 6.0 h x $1.40) [the upper end is the measured evb0810 rate:
+      eval 8 trained at 6.5k steps/s sharing the GPU, ~3.0 h per 70M training, M basis; two waves -> ~7-7.6 h]
+  G1v 1.9-3.0 h  $2.7-4.4 (central ~$3.4) [one training alone 36-44 min, M orcB; + curve 6-7 min + 10 evaluations 4-8 min,
+      per seed, two seeds; + 0.3-1.0 h box overhead]
+  G2  2.7-4.0 h  $3.2-5.9 (central ~$4.7)
+  S1a, S1b 2.0-2.3 h each  $2.4-3.4 each (central ~$3.0 each; measured c01s42 / c01s43 $3.08 / $2.91)
+  C1  0.8-1.7 h  $1.2-2.5 (central ~$1.8)
+  => with G1:  O1 (G1 G2 C1) ~$15.0 ($10.7-19.6);  O2 (+ S1a S1b) ~$21.0 ($15.5-26.4)
+  => with G1v: O1 ~$9.9 ($7.1-12.8);               O2 ~$15.9 ($11.9-19.6)
+  Credit (31 Oct ~11:50 UTC, after the owner's $100 top-up): $128.43, shared by all sessions; this session's lean-plan
+  allocation is ~$24-39 [E] and also covers the transfer-check remainder (~$4-6) and the eval-10 fix + retrain (~$10):
+  O2 with G1 can exceed it at the upper end; O2 with G1v fits. (Superseded line, review R2: "Credit after the transfer
+  check ~$24 ($22-27)".) If G1v is chosen, the C1 merge command below takes $D-mevG1v-$S7 in place of $D-mevG1-$S7 (R3).
+  Eval 8's value: g(.05) = 0.0117 on one episode = ~+0.0004 LB [E]; G1 - G1v = ~$5.1 ($3.6-6.8), i.e.
+  ~$12 ($8-15) per +0.001 LB for eval 8, against ~$3 per +0.001 LB for the rest of O2 [E].
+
+---------------- C1: official confirmation of wave 1 (PLAN section 5 rule 4) ----------------
+Built AFTER the training boxes, on CPU, from each box's results/mass_eval/summary.json (ONE single-file download per box)
+with tools/mass_eval_merge.py: per episode any INVALID box -> out (packed policy stays); rule 2 across the VERIFIED boxes'
+seeds (eval 1: S1a seed 42 vs S1b seed 43); prints the h5_reeval.sh job string below, filled in:
+  python3 tools/mass_eval_merge.py --table docs/research/work/masses-eval-20261031/packed_refs.json --out <dir>/c1_merge.json \
+    <dir>/runs/$D-mevG1-$S7/results/mass_eval/summary.json <G2> <S1a> <S1b>
+  (pack 8 on the board: --keep "20261026-pack6-5203d42 20261030-c33B-0202139 20261030-e1conf2-d41382e"
+   --base-pick "33:20261029-rcB-34bf6ae 1:20261030-c01s43-328139c:ck=runs/perc2mcks/ep1-s43/policy_250003456.safetensors"
+   --packed-txt /content/v2d-track3/results/submissions/20261030-track3h-candidate/summary.txt, and ASSET_PIECES_EXTRA ev01
+   whenever eval 1 is evaluated)
+  python3 ops/ledger.py add planned $D-mevC1-$S7 2.00 "masses eval confirmation C1: N=10 official draws of the wave-1 candidates" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-mevC1-$S7 \
+    'N=10 KEEP_RESULTS="20261026-pack6-5203d42 20261030-c33B-0202139" RUNS_EXTRA="<joined RUNS_EXTRA>" \
+     PICK_EXTRA="33:20261029-rcB-34bf6ae <joined PICK_EXTRA>" MASS_EPS="<eps>" EVAL_ONLY="<eps>" EPS_ONLY="<eps>" \
+     PACKED_TXT=/content/v2d-track3/results/submissions/20261030-track3g-candidate/summary.txt \
+     [MA_ARGS="--physics /content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json" ASSET_PIECES_EXTRA=/content/v2d-track3/meshes/carve/ev01] \
+     bash ops/jobs/h5_reeval.sh'
+  - The bracket only when eval 1 is a candidate (the merge tool writes it: the std candidate's masses and ev01 pieces
+    in the ONE /content/assets; h5_reeval.sh then requires KEEP_RESULTS, EVAL_ONLY and MASS_EPS).
+  - "33:20261029-rcB-34bf6ae" first: the pack-7 basis (later PICK entries win, so a mass eval-33 candidate replaces it).
+  - On the box: pack_eval.sh keeps every unchanged episode's rollout byte for byte (KEEP_RESULTS), evaluates only the
+    candidates (EVAL_ONLY), and before the kit evaluator tools/mass_pack_check.py refuses unless each candidate loads the
+    props masses through its checkpoint's saved config (grasp lock from refs/mass1_sf/ep<N>/, eval 1 from /content/assets)
+    and every other evaluated episode 0.3 kg; draws 2..10 only for the candidates, checked again before they start.
+  - Result: results/h5/h5_summary.json (n, mean, sd ddof 1, min, packed = pack 7's draw); draw 1 = results/submission
+    (a pack candidate). Rules 4-9 are applied on CPU by tools/mass_eval_rule.py (review F4; one single-file download of
+    h5_summary.json; --board pack8 only if pack 8 is on the board when the rule is applied):
+      python3 -I tools/mass_eval_rule.py --h5 <dir>/runs/$D-mevC1-$S7/results/h5/h5_summary.json --merge <dir>/c1_merge.json \
+        --board pack7 --c1-run $D-mevC1-$S7 --out <dir>/c1_rule.json
+    -> per candidate BOARD SWAP / INSURANCE (offered) / KEEP / INCOMPLETE (n < 8: only C1 is repeated), the spoon-stratum
+    reading (rule 9), the pack-9 inputs (rule 8: C1's draw 1 by position) and the rule-10 report; exit 2 (nothing
+    applied) if C1's packed column is not the board pack's or C1 evaluated a non-candidate. A merge INCOMPLETE episode
+    (a seed missing or n < 8) is not confirmed: retrain the named seed first (above).
+  - Store listings left on C1 (review F7; measured in the mock's C1 hf log, see BUILD.md): pack_eval.sh's --include
+    pulls, unchanged here because every pack job shares them: pack 6's base 36 (RUNS 19 sub-folders incl. the whole
+    pack-31ef267 run, PICK 15, KEEP_RESULTS 2; as c33B and e1conf2 ran them) + the masses additions (RUNS_EXTRA 2 per
+    grasp-lock candidate and 1 per std candidate, PICK_EXTRA 1 per candidate + rcB): 18 for the six mocked candidates,
+    ~54 in all. The training boxes' results/mass_eval/files.txt lists the store paths of the additions, so an opt-in
+    single-file hook could replace those 18 later (not built). If HF 429 stalls C1, the stall watchdog applies.
+
+---------------- WAVE 2 (O3; separate owner GO after C1 and the spoon-pilot reading, PLAN rule 9) ----------------
+G3  python3 ops/ledger.py add planned $D-mevG3-$S7 8.50 "masses eval retrain G3: glock eval 5 32 6 3, seeds 42/43" owner
+    ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-mevG3-$S7 'MODE=glock EPS="5 32 6 3" SEEDS="42 43" bash ops/jobs/mass_eval.sh'
+    (2 waves per seed of TRAIN_SLOTS 2; 124 single-file store requests, no listing; 5.1-7.0 h, $6.0-10.3, central ~$8.5)
+C2  as C1 with G3's strings; KEEP_RESULTS then also lists C1's run if a wave-1 swap was adopted into the board pack.
+
+---------------- O4 additions (insurance only, PLAN section 4; not recommended) ----------------
+G4  'MODE=glock EPS="14 16 10" SEEDS="42 43" bash ops/jobs/mass_eval.sh'   (library_v3 + PIECES ev10: eval 10's asset source;
+    eval 8 is refused on this box. Eval 10's 24-26 Oct trainings ran at 2.4-8.9k steps/s: its cost is unknown, BUILD.md)
+G5  'MODE=glock EPS="35 36 37 38" SEEDS="42 43" bash ops/jobs/mass_eval.sh'
+S2a/b 'MODE=std EPS="19 30" SEEDS=<42|43> bash ops/jobs/mass_eval.sh'     (no pieces; both episodes share /content/assets)
+S3a/b 'MODE=std EPS=25 SEEDS=<42|43> bash ops/jobs/mass_eval.sh'          (ev25 pieces)
+S4a/b 'MODE=std EPS=28 SEEDS=<42|43> bash ops/jobs/mass_eval.sh'          (default pot: never with eval 1; refused if combined)
+C3  as C1. Two std candidates with different pieces (e.g. 1 and 28) cannot share one confirmation box (one /content/assets):
+    confirm them on separate boxes.
+
+After each training box (CPU, $0): read results/mass_eval/summary.json and verify.txt (one single-file download each);
+work-log entry per box: exact job string, box id, run id, commit, per episode status, n / mean / sd / min per seed, the
+candidate, eval timeouts, the recipe-diff result; ledger `actual` line.
+INVALID: the packed policy stays (rule 3); never re-tune and retrain on an eval result. INCOMPLETE because the packed
+checkpoint header was not pulled: download it once and re-run tools/mass_eval_verify.py on CPU over the box's files.

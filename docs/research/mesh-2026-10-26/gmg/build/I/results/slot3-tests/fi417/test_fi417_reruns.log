@@ -1,0 +1,38 @@
+test_w1_plates (__main__.ReRuns.test_w1_plates) ... skipped 'F-I4.17: not a re-run'
+test_w1_t6_width_known_miss (__main__.ReRuns.test_w1_t6_width_known_miss) ... skipped 'F-I4.17: not a re-run'
+test_w2_waiver_off (__main__.ReRuns.test_w2_waiver_off) ... skipped 'F-I4.17: not a re-run'
+test_w3_controls_unchanged (__main__.ReRuns.test_w3_controls_unchanged) ... skipped 'F-I4.17: not a re-run'
+test_w4_overshoot (__main__.ReRuns.test_w4_overshoot) ... skipped 'F-I4.17: not a re-run'
+test_w5_p3 (__main__.ReRuns.test_w5_p3) ... skipped 'F-I4.17: not a re-run'
+test_w6_inflated_sigma (__main__.ReRuns.test_w6_inflated_sigma) ... skipped 'F-I4.17: not a re-run'
+test_w6b_camera_side_estimator (__main__.ReRuns.test_w6b_camera_side_estimator) ... skipped 'F-I4.17: not a re-run'
+test_w6c_all_points (__main__.ReRuns.test_w6c_all_points) ... skipped 'F-I4.17: not a re-run'
+test_w7_one_face (__main__.ReRuns.test_w7_one_face) ... ok
+test_w8_i_cross (__main__.ReRuns.test_w8_i_cross)
+F-I4.15.7 w8 (I-shaped cross, sigma 1 mm). ... FAIL
+test_w8b_i_cross_sigma3 (__main__.ReRuns.test_w8b_i_cross_sigma3)
+F-I4.15.7 w8b (w8 at sigma 3 mm). ... ok
+test_w9_tilt (__main__.ReRuns.test_w9_tilt) ... skipped 'F-I4.17: not a re-run'
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3b/tests/test_fi417_reruns.json
+
+======================================================================
+FAIL: test_w8_i_cross (__main__.ReRuns.test_w8_i_cross)
+F-I4.15.7 w8 (I-shaped cross, sigma 1 mm).
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py", line 287, in test_w8_i_cross
+    self.assertEqual(m, [], m)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+AssertionError: Lists differ: ['A centre -2.17'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'A centre -2.17'
+
+- ['A centre -2.17']
++ [] : ['A centre -2.17']
+
+----------------------------------------------------------------------
+Ran 13 tests in 529.608s
+
+FAILED (failures=1, skipped=10)

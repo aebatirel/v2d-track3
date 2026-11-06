@@ -1,0 +1,7 @@
+cand f111 (gate): max nefc 804 ncon 201 step0 nefc 700 overflow 10/16 classes {'guest_receiver': 198, 'guest_table': 0, 'receiver_table': 3} disp [33.4, 33.150000000000006] 4.3 s
+cand f142 (gate): max nefc 936 ncon 234 step0 nefc 296 overflow 15/16 classes {'guest_receiver': 229, 'guest_table': 0, 'receiver_table': 5} disp [17.8, 28.45] 5.7 s
+cand f116 (gate): max nefc 808 ncon 202 step0 nefc 808 overflow 15/16 classes {'guest_receiver': 202, 'guest_table': 0, 'receiver_table': 0} disp [34.2, 34.6] 5.7 s
+cand f124 (report): max nefc 1056 ncon 264 step0 nefc 372 overflow 16/16 classes {'guest_receiver': 238, 'guest_table': 0, 'receiver_table': 26} disp [26.2, 30.1] 6.8 s
+cand f160 (report): max nefc 788 ncon 197 step0 nefc 284 overflow 16/16 classes {'guest_receiver': 189, 'guest_table': 0, 'receiver_table': 8} disp [3.0, 28.2] 7.5 s
+cand f117 (report_rule_not_static_in_hand): max nefc 1008 ncon 252 step0 nefc 1008 overflow 16/16 classes {'guest_receiver': 252, 'guest_table': 0, 'receiver_table': 0} disp [37.6, 36.6] 4.2 s
+gate2 {"frames": [111, 142, 116], "max_nefc": 936, "max_ncon": 234, "overflow_copies": 40, "pass": false}

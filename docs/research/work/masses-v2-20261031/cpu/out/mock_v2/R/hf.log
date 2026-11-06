@@ -1,0 +1,12 @@
+hf download mock/store runs/20261031-mv2f-mocksha/refs/perc2mck/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/0d7b4754b12b4f4aad38b344b3f82c5f-0.parquet --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/refs/perc2mck/ep13/reconstructed_stage/t3_ep013_support.usda --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/refs/glockt/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/ref_gl_ilc.parquet --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/refs/glockt/ep13/reconstructed_stage/t3_ep013_support.usda --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/refs/sf/ep13/assets/mesh/blue_cup/blue_cup.glb --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/refs/sf/ep13/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/refs/sf/ep13/assets/urdf/blue_cup_rigid.urdf --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/refs/sf/ep13/assets/urdf/plastic_dish_rack_rigid.urdf --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/results/glock_public/ep13/rest_check.json --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/results/glock_public/ep13/zero_score.txt --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261031-mv2f-mocksha/results/glock_public/ep13/support_fill.json --repo-type dataset --local-dir MR/content/hfstore
+hf upload mock/store MR/content/push/20261031-mv2r-mocksha runs/20261031-mv2r-mocksha --repo-type dataset --commit-message run 20261031-mv2r-mocksha: 2026-10-31T16:01:20Z

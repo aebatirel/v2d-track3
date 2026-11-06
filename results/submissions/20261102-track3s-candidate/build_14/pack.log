@@ -1,0 +1,4 @@
+base /tmp/claude-0/-home-user-v2d-track3/65a4fd12-426c-5e45-8cf4-6cacb17fbbb8/scratchpad/pack13f/track3_submission.parquet sha256 fa1e31f570e14537538ec1ab760d540cd1a584dfd0e78364e33adea5411f89db rows 9120
+ep14: 316 rows, checkpoint 9da879d9c0e8 -> 7f7a7c6a8fb9, pose rows changed 316
+wrote results/submissions/20261103-track3s-candidate/build_14/track3_submission.parquet sha256 1dbc33c4968ce5f662f16ca66ad0309b34cef4efd621098d0271180110013638 rows 9120
+uploader offline validation pass; CD-O results/submissions/20261103-track3s-candidate/build_14/track3_submission.cd-o.parquet sha256 f2f4a7e9382d53d92b4ae98ba6f2ed4fdd1285f75e796ed121cfb711dca2a087 rows changed vs base CD-O 0

@@ -1,0 +1,37 @@
+test_w1_plates (__main__.Waiver.test_w1_plates)
+w1 at t = 6, 10, 18 (pre-registered) and 13, 25 (build task): CARVE (T1, not submitted), centre within ... ok
+test_w1_t6_width_known_miss (__main__.Waiver.test_w1_t6_width_known_miss)
+KNOWN MISS of F-I4.10 w1 (PREREG F-I4.13, no rule change): at t = 6 mm the structure plane-pair thickness is ... expected failure
+test_w2_waiver_off (__main__.Waiver.test_w2_waiver_off)
+w2: waiver off = every decision as before, also on the two-sided bundles (the camera centres are not read ... ok
+test_w3_controls_unchanged (__main__.Waiver.test_w3_controls_unchanged)
+w3: waiver on, decisions unchanged: n2 resting pose error, n4 short contact, n9 cup nesting (the control ... ok
+test_w4_overshoot (__main__.Waiver.test_w4_overshoot)
+w4: waiver on, o2a (silhouette sees wood) and o2b (silhouette sees the true slots): 11 mm offset along d at ... ok
+test_w5_p3 (__main__.Waiver.test_w5_p3)
+w5: P3 on w1 at t = 10 mm, 16 jittered copies: carved lag <= 0.5 cm and <= 5 deg (and the F-I4.7 table). ... ok
+test_w6_inflated_sigma (__main__.Waiver.test_w6_inflated_sigma)
+F-I4.14 w6 (post hoc): t = 10 mm, two-sided, object-episode sigma 3.0 mm (the F-I4.1 inlier band 9 mm merges ... expected failure
+test_w6b_camera_side_estimator (__main__.Waiver.test_w6b_camera_side_estimator)
+F-I4.14 step 2 estimator alone (added after the w6 miss; diagnostic of the measurement, not a rule): the ... expected failure
+test_w7_one_face (__main__.Waiver.test_w7_one_face)
+F-I4.14 w7 (post hoc): t = 10 mm, two-sided for A, B's -z face removed from its owned points (one face seen, ... ok
+test_n2_resting_pose_error (__main__.Controls.test_n2_resting_pose_error)
+A box resting 6 mm inside an observed face for 40 frames (no motion): PUSH or IGNORE, never CARVE. ... ok
+test_n3_below_observed_floor (__main__.Controls.test_n3_below_observed_floor)
+n3: an inner cylinder lowered 12 mm below an outer cup's observed floor (floor testable in the silhouette, ... ok
+test_n4_short_contact (__main__.Controls.test_n4_short_contact)
+n4: a 3-frame contact 8 mm deep: the stage sees the intrusion (>= 3 voxels entered in those frames), its run ... ok
+test_n5_random_intrusions (__main__.Controls.test_n5_random_intrusions) ... ok
+test_n9_cup_nesting (__main__.Controls.test_n9_cup_nesting)
+Inner cup lowered into an outer cup whose candidate fills the cavity rim to floor (cavity UNKNOWN): no ... ok
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/fi4/f414/test_waiver.json
+
+----------------------------------------------------------------------
+Ran 14 tests in 1081.374s
+
+OK (expected failures=3)
+
+real	18m4.003s
+user	10m2.535s
+sys	5m10.516s

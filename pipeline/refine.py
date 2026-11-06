@@ -45,10 +45,23 @@ Shared labels, from our own track (after S0) and our hands only, never ground tr
                 rack or pot, pot in a rack). table_supported = plane ok and |h| <= snap_max (2 cm) and
                 h - min_k h_k <= 0.5 cm and not on_other and not over_other.
 
-Steps (each switchable with --steps; always applied in the order S0, S1, S3, S4, S5, S2):
+Steps (each switchable with --steps; always applied in the order S0, S6, S11, S12, S1, S3, S4, S5, S2, S10, S13):
   S0 identity fix hook: pipeline/identity_fix.py (board knob darkness) on a copy, when the roster is the board pair
      and the video, calibration and both board meshes exist; otherwise skipped and logged. Its output is the input of
      every later step and of the labels.
+  S6 static hold (31 Oct; tracker-fix PLAN §2 M1, ep11 DIAG Fix 1) [H until its rollout gate T1]: an object whose own
+     perceived horizontal travel stays under --s6_hmax_cm (2 cm) over the whole episode, and, unless it is axisymmetric
+     (--s6_axisym: the cups, whose spin is free and unscored), whose rotation from frame 0 stays under --s6_rmax_deg
+     (10 deg), is declared static and takes its frame-0 pose on every frame. Travel is that of our mesh's vertex
+     centroid c(t) in the world frame, max_t |c(t) - c(0)| projected on the table plane; rotation is max_t of the
+     angle of R(t) R(0)^T. The plane is det_rules.table_plane on the frame-0 depth at half resolution (as perc2's
+     TRACK_GUARD, perc2.py:438), moved from camera 0 to the world frame; without depth or K, S6 uses the plane refine
+     already has (--table, or the mkref fit when S1/S3/S4 need one), and without any plane it skips. It is whole-episode
+     and offline, so it cannot run inside perc2's online loop. pose_opt.json lists the frozen objects and, per object,
+     the horizontal travel, vertical excursion (peak, frame, end), rotation and, for a frozen object, where the other
+     roster objects are at its peak (for the overlay QA: a static container lifted by a nested object vs an object
+     lifted straight up). The thresholds were set on the 20 public episodes (no fresh holdout). Planned order with the
+     other tracker fixes: S0, S7, S6, S9, S8, S2 (S7, S8, S9 not implemented).
   S1 support-gated snap (R1): a table_supported object's whole trajectory moves by -h along the plane normal (as
      mkref's per-object snap, but gated). Objects over or on another object, or more than 0.5 cm above the lowest
      bottom, are left alone. Later rest segments (>= 10 frames, after first_move, hand-free on >= 50 % of the frames,
@@ -88,6 +101,36 @@ Steps (each switchable with --steps; always applied in the order S0, S1, S3, S4,
      (bi-invariant, so independent of the mesh-frame origin; --s2_interp decoupled = linear position + slerp as in
      refcheck systematics/fixed_shift.py); T frames kept; the last frame is held. --s2_hold_f0 1 keeps frame 0.
      Hands are not shifted [H: the lag is tracker latency, not a sync offset; untested].
+  S10 held-object wrist lock (31 Oct; perception sprint "heldpose", pipeline/heldpose.py) [H until its public gate]:
+     opt-in, after S2 (the hands are not time-shifted). For each GT-free hold (a measured hand within --s10_contact_cm
+     of our mesh at the tracked pose, gaps <= --s10_bridge bridged, >= --s10_min_len frames, palm and object each
+     travelling >= --s10_carry_cm), the pose is moved toward P(t) = W(t) G: W = our smoothed palm frame
+     (hands_refined joints 0, 5, 9, 13, 17), G = the grasp transform estimated from the tracker on the hold's first
+     visible frames. --s10_mode gate (default) blends by the GT-free visibility of the object against our hand at the
+     predicted pose; replace / trans are ungated readings (trans keeps the tracker's rotation). Frame 0 is never
+     changed. Pre-registration: docs/research/work/perception-sprint-20261031/heldpose/README.md.
+  S11 constant-offset re-fit (31 Oct; perception sprint "offset", pipeline/offsetfix.py) [H until its public gate]:
+     opt-in, after S6 and before S2 (a whole-track body correction commutes with S2's screw interpolation). Per object,
+     point-to-plane ICP (trimmed) of our mesh onto our stereo depth with the occluders removed (other objects rendered at
+     their tracked poses, our hands, the table plane), from the tracked pose; one constant body-frame correction C.
+     --s11_mode f0: frame 0 only, pixels from the det_f0.npz mask (--s11_det, default IN/det_f0.npz); mf: consensus over
+     the object's non-moving frames of a 48-frame grid of the depth cache (--s11_depth: the full depths_fs0.5.npy or a
+     grid npz), pixels from our predicted silhouette. --s11_apply whole (O C on every frame) or prefix (before the
+     perceived onset, as F1). Pre-registration: docs/research/work/perception-sprint-20261031/offset/README.md.
+  S12 cup-nest constraint (31 Oct; perception sprint "mask10", pipeline/nest.py) [H until its public gate]: opt-in,
+     after S11 and before S2. When one --s12_cups cup is lowered into another (coaxial within --s12_coax_cm, inner above,
+     overlapping in height), the OUTER cup is held at its pre-nest pose (--s12_mode hold), at its pre-nest height
+     (height) or at its frame-0 height (support, post hoc) until the window ends or the outer moves sideways by --s12_release_cm (the stack is carried); guard: the
+     outer's bottom must be at its frame-0 height before the nest; optional depth veto (--s12_depth). --s12_inner floor
+     also puts the inner cup's bottom on the outer's cavity floor (from --s12_pieces or our mesh). Frame 0 is never
+     changed. Pre-registration: docs/research/work/perception-sprint-20261031/mask10/README.md.
+  S13 zero-lag position smoother (31 Oct; perception sprint "rts", pipeline/rts.py) [H until its public gate]: opt-in,
+     after S2 (and S10), on their output. Per object and world axis, a constant-velocity Rauch-Tung-Striebel smoother
+     (forward Kalman pass + backward pass, no lag) of the pose translation: dt = 1 / --s13_fps, observation sigma
+     --s13_sigma m, process noise --s13_q_near m^2/s^3 on frames where a valid joint of our hands is within --s13_near_m
+     of our mesh's vertices (every len(V) // --s13_verts-th, posed by the input track), --s13_q_far otherwise.
+     Rotations are not changed. Frame 0 is not held (as S2). Pre-registration:
+     docs/research/work/perception-sprint-20261031/rts/PREREG.md.
 
 Usage:
   python pipeline/refine.py --in PERC_DIR --out OUT_DIR [--steps S1,S2,S3,S4] [--hands H.npz] [--depth D.npy]
@@ -108,7 +151,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
-STEP_ORDER = ['S0', 'S1', 'S3', 'S4', 'S5', 'S2']
+STEP_ORDER = ['S0', 'S6', 'S11', 'S12', 'S1', 'S3', 'S4', 'S5', 'S2', 'S10', 'S13']   # tracker fixes S7 (before S6), S9, S8 (after it): not built
 DEFAULT_STEPS = 'S0,S1,S2,S3,S4'
 FORBIDDEN_SUBSTR = ('observation', '.parquet', 'score_registered', 'per_frame', 'quarantine_gt',
                     '_pf.npz', '/gt/', 'calib_gt')   # 30 Oct: depth-audit label files and calibration outputs
@@ -531,6 +574,75 @@ def step_S0(a, names, W_C, camT, out_dir):
     return new, rec
 
 
+def s6_plane(depth0, KR, W0, n_, d_, prec):
+    """S6's table plane (n, d, source) in the world frame, n up: det_rules.table_plane on the frame-0 depth at half
+    resolution with K/2, as perc2's TRACK_GUARD (perc2.py:438), moved from camera 0 to the world; else refine's plane."""
+    why = 'no frame-0 depth' if depth0 is None else 'no K' if KR is None else None
+    if why is None:
+        sys.path.insert(0, HERE)
+        import det_rules
+        pl = det_rules.table_plane(np.asarray(depth0)[::2, ::2].astype(np.float32), np.diag([0.5, 0.5, 1.0]) @ KR)
+        if pl is not None:
+            W0 = np.asarray(W0, np.float64)
+            n = W0[:3, :3] @ np.asarray(pl[0], float)             # camera 0: n.x + c = 0 -> world: n_w.x + c - n_w.t0 = 0
+            return n, float(pl[1]) - float(n @ W0[:3, 3]), ('det_rules.table_plane on the frame-0 depth '
+                                                            '(half resolution, as perc2 TRACK_GUARD)')
+        why = 'det_rules.table_plane found no plane'
+    if n_ is not None:
+        return n_, d_, f'refine plane ({prec.get("source")}; {why})'
+    return None, None, f'no plane: {why}, and refine has none'
+
+
+def step_S6(a, objs, O, plane):
+    """Static hold: freeze objects whose perceived horizontal travel (and, non-axisymmetric, rotation) stays small."""
+    from scipy.spatial.transform import Rotation
+    n, d, src = plane
+    axisym = sorted({s.strip() for s in a.s6_axisym.split(',') if s.strip()})
+    rec = dict(plane=dict(source=src), hmax_cm=a.s6_hmax_cm, rmax_deg=a.s6_rmax_deg, axisymmetric=axisym, frozen=[],
+               objects={})
+    if n is None:
+        rec['skipped'] = src
+        log('S6 skipped:', src)
+        return rec
+    n = np.asarray(n, float) / np.linalg.norm(n)
+    rec['plane'].update(n=np.round(n, 6).tolist(), d=round(float(d), 6))
+    T = len(O[0])
+    C = [O[j][:, :3, :3] @ o.V.mean(0) + O[j][:, :3, 3] for j, o in enumerate(objs)]   # perceived, before any freeze
+    for j, o in enumerate(objs):
+        dc = C[j] - C[j][0]
+        v = dc @ n                                                 # vertical, + up
+        h = np.linalg.norm(dc - v[:, None] * n[None], axis=1)      # horizontal travel
+        r = np.degrees(Rotation.from_matrix(np.einsum('tij,kj->tik', O[j][:, :3, :3], O[j][0, :3, :3])).magnitude())
+        tp = int(np.argmax(np.abs(v)))
+        sym = o.name in axisym
+        hcm, rdeg = float(h.max() * 100), float(r.max())
+        why = []
+        if not hcm < a.s6_hmax_cm:
+            why.append(f'horizontal travel {hcm:.2f} cm >= {a.s6_hmax_cm:g}')
+        if not sym and not rdeg < a.s6_rmax_deg:
+            why.append(f'rotation {rdeg:.1f} deg >= {a.s6_rmax_deg:g} (not axisymmetric)')
+        frz = not why
+        ro = dict(frozen=frz, axisymmetric=sym, hmax_cm=round(hcm, 3), hmax_frame=int(np.argmax(h)),
+                  vmax_cm=round(float(abs(v[tp]) * 100), 3), v_peak_cm=round(float(v[tp] * 100), 3), v_peak_frame=tp,
+                  v_end_cm=round(float(v[-1] * 100), 3), rmax_deg=round(rdeg, 3),
+                  reason='; '.join(why) or (f'static: horizontal travel {hcm:.2f} cm < {a.s6_hmax_cm:g}'
+                                            + ('' if sym else f', rotation {rdeg:.1f} deg < {a.s6_rmax_deg:g}')))
+        if frz:
+            oth = {}
+            for k, ok in enumerate(objs):
+                if k != j:
+                    e = C[k][tp] - C[j][tp]
+                    oth[ok.name] = dict(horizontal_cm=round(float(np.linalg.norm(e - (e @ n) * n) * 100), 3),
+                                        height_above_cm=round(float(e @ n * 100), 3))
+            ro['others_at_peak'] = oth
+            O[j] = np.repeat(O[j][:1], T, axis=0)
+            rec['frozen'].append(o.name)
+        rec['objects'][o.name] = ro
+        log(f'S6 {o.name}: {"FROZEN" if frz else "kept"}; horizontal {hcm:.2f} cm, vertical peak {v[tp] * 100:+.2f} cm '
+            f'at f{tp} (end {v[-1] * 100:+.2f}), rotation {rdeg:.1f} deg{" (axisymmetric)" if sym else ""}')
+    return rec
+
+
 def step_S1(a, objs, O, lab, n, d, plane_ok):
     rec = {}
     B = len(objs)
@@ -792,7 +904,7 @@ def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('--in', dest='inp', required=True, help='perception dir (poses.npz, poses_world_vo.npz, vo.json, ...)')
     p.add_argument('--out', required=True, help='refined perception dir (new; never the input dir)')
-    p.add_argument('--steps', default=DEFAULT_STEPS, help=f'comma list of S0..S5 (default {DEFAULT_STEPS}; applied in '
+    p.add_argument('--steps', default=DEFAULT_STEPS, help=f'comma list of S0..S6, S10..S13 (default {DEFAULT_STEPS}; applied in '
                                                            f'the order {",".join(STEP_ORDER)}); "none" = copy only')
     p.add_argument('--hands', default=None, help='default IN/hands_refined.npz, else IN/hands.npz')
     p.add_argument('--depth', default=None, help='frame-0 depth: default IN/depth0.npy, else frame 0 of IN/depths_fs0.5.npy')
@@ -836,6 +948,10 @@ def parse_args(argv=None):
                    '(vertical creep alone does not release; default 0 = object_events rule)')
     p.add_argument('--s4_deadband', default=None, help='[H] variant "CM,DEG": own motion releases only once the track '
                    'has left the held pose by more than CM or DEG (default off)')
+    # S6
+    p.add_argument('--s6_hmax_cm', type=float, default=2.0, help='S6: freeze when the horizontal travel stays under this')
+    p.add_argument('--s6_rmax_deg', type=float, default=10.0, help='S6: and (not axisymmetric) the rotation under this')
+    p.add_argument('--s6_axisym', default='blue_cup,beige_cup', help='S6: axisymmetric roster objects (no rotation test)')
     # S5
     p.add_argument('--s5_min', type=int, default=10)
     p.add_argument('--s5_blend', type=int, default=5)
@@ -843,6 +959,63 @@ def parse_args(argv=None):
     p.add_argument('--s2_advance', type=float, default=0.545)
     p.add_argument('--s2_interp', choices=['se3', 'decoupled'], default='se3')
     p.add_argument('--s2_hold_f0', type=int, default=0)
+    # S10 (pipeline/heldpose.py; values pre-registered in perception-sprint-20261031/heldpose/README.md)
+    p.add_argument('--s10_mode', choices=['gate', 'replace', 'trans'], default='gate')
+    p.add_argument('--s10_contact_cm', type=float, default=2.0)
+    p.add_argument('--s10_bridge', type=int, default=6)
+    p.add_argument('--s10_min_len', type=int, default=10)
+    p.add_argument('--s10_carry_cm', type=float, default=2.0)
+    p.add_argument('--s10_onset', type=int, default=15)
+    p.add_argument('--s10_vis_g', type=float, default=0.6)
+    p.add_argument('--s10_vis_hi', type=float, default=0.8)
+    p.add_argument('--s10_vis_lo', type=float, default=0.4)
+    p.add_argument('--s10_ramp', type=int, default=5)
+    p.add_argument('--s10_smooth', type=int, default=5)
+    p.add_argument('--s10_trim_deg', type=float, default=20.0)
+    p.add_argument('--s10_radius_cm', type=float, default=1.0)
+    # S11 (pipeline/offsetfix.py; values pre-registered in perception-sprint-20261031/offset/README.md)
+    p.add_argument('--s11_mode', choices=['mf', 'f0'], default='mf')
+    p.add_argument('--s11_apply', choices=['whole', 'prefix'], default='whole')
+    p.add_argument('--s11_depth', default=None, help='S11 mf: depth cache (T,H,W) .npy or grid .npz {frames, depth}')
+    p.add_argument('--s11_det', default=None, help='S11 f0: frame-0 detections (default IN/det_f0.npz)')
+    p.add_argument('--s11_frames', type=int, default=48)
+    p.add_argument('--s11_min_frames', type=int, default=5)
+    p.add_argument('--s11_min_pts', type=int, default=150)
+    p.add_argument('--s11_band_cm', type=float, default=2.0)
+    p.add_argument('--s11_hand_cm', type=float, default=2.0)
+    p.add_argument('--s11_table_cm', type=float, default=0.8)
+    p.add_argument('--s11_dil', type=int, default=2)
+    p.add_argument('--s11_trim', type=float, default=0.8)
+    p.add_argument('--s11_iters', type=int, default=30)
+    p.add_argument('--s11_max_cm', type=float, default=3.0)
+    p.add_argument('--s11_max_deg', type=float, default=10.0)
+    p.add_argument('--s11_spread_cm', type=float, default=1.0)
+    p.add_argument('--s11_spread_deg', type=float, default=3.0)
+    # S12 cup nest (pipeline/nest.py)
+    p.add_argument('--s12_cups', default='blue_cup,beige_cup', help='S12: the cups that can nest')
+    p.add_argument('--s12_mode', choices=['hold', 'height', 'support'], default='hold')
+    p.add_argument('--s12_inner', choices=['none', 'floor'], default='none')
+    p.add_argument('--s12_coax_cm', type=float, default=2.5)
+    p.add_argument('--s12_enter_cm', type=float, default=2.0)
+    p.add_argument('--s12_bridge', type=int, default=5)
+    p.add_argument('--s12_min_len', type=int, default=10)
+    p.add_argument('--s12_pre', type=int, default=10)
+    p.add_argument('--s12_g1_cm', type=float, default=2.0)
+    p.add_argument('--s12_release_cm', type=float, default=2.0)
+    p.add_argument('--s12_ramp', type=int, default=5)
+    p.add_argument('--s12_depth', default=None, help='S12 depth veto: depth cache (T,H,W) .npy or grid .npz {frames, depth}')
+    p.add_argument('--s12_band_cm', type=float, default=3.0)
+    p.add_argument('--s12_veto_cm', type=float, default=1.0)
+    p.add_argument('--s12_hand_cm', type=float, default=2.0)
+    p.add_argument('--s12_table_cm', type=float, default=0.8)
+    p.add_argument('--s12_pieces', default=None, help='S12 inner floor: collision pieces DIR/<obj>/piece_*.obj')
+    # S13 zero-lag position smoother (pipeline/rts.py; values pre-registered in perception-sprint-20261031/rts/PREREG.md)
+    p.add_argument('--s13_sigma', type=float, default=0.008, help='S13: observation noise sigma (m)')
+    p.add_argument('--s13_q_near', type=float, default=4.0, help='S13: process noise q (m^2/s^3) when a hand is near')
+    p.add_argument('--s13_q_far', type=float, default=0.04, help='S13: process noise q (m^2/s^3) otherwise')
+    p.add_argument('--s13_near_m', type=float, default=0.035, help='S13: hand gate, joint-to-vertex distance (m)')
+    p.add_argument('--s13_fps', type=float, default=20.0, help='S13: frame rate (dt = 1 / fps)')
+    p.add_argument('--s13_verts', type=int, default=300, help='S13: gate vertices = every len(V) // VERTS-th mesh vertex')
     a = p.parse_args(argv)
     st = [s.strip().upper() for s in a.steps.split(',') if s.strip() and s.strip().lower() != 'none']
     bad = [s for s in st if s not in STEP_ORDER]
@@ -953,6 +1126,7 @@ def main(argv=None):
                             f'{a.support_max * 100:.0f}] cm: no support plane, S1/S3 skip (mkref would use its fallback)')
     rec['plane'] = prec
     log('plane:', json.dumps({k: v for k, v in prec.items() if k != 'candidates'}))
+    plane6 = s6_plane(depth0, KR, W_C[0], n_, d_, prec) if 'S6' in a.step_set else None
 
     # ---------------- shared labels (our track after S0, our hands)
     Jh = Mh = None
@@ -1012,6 +1186,7 @@ def main(argv=None):
     steps = rec.setdefault('steps', {})
     snap = [O[j].copy() for j in range(len(O))]
     deltas = {}
+    aux_extra = {}
 
     def note_delta(step):
         dc = {}
@@ -1031,7 +1206,9 @@ def main(argv=None):
     for step in STEP_ORDER:
         if step not in a.step_set or step == 'S0':
             continue
-        if step == 'S1':
+        if step == 'S6':
+            steps['S6'] = step_S6(a, objs, O, plane6)
+        elif step == 'S1':
             if n_ is None:
                 steps['S1'] = dict(skipped='no table plane')
             else:
@@ -1044,6 +1221,46 @@ def main(argv=None):
             steps['S5'] = step_S5(a, objs, O, lab)
         elif step == 'S2':
             O, steps['S2'] = step_S2(a, O)
+        elif step == 'S11':
+            sys.path.insert(0, HERE)
+            import offsetfix
+            if KR is None:
+                steps['S11'] = dict(skipped='no K')
+            else:
+                detp = a.s11_det or os.path.join(inp, 'det_f0.npz')
+                det = np.load(checked(detp), allow_pickle=True) if os.path.exists(detp) else None
+                if det is not None:
+                    inputs['det_f0'] = detp
+                if a.s11_depth:
+                    inputs['s11_depth'] = checked(a.s11_depth)
+                dsrc = offsetfix.DepthSource(a.s11_depth, T, depth0)
+                pl = s6_plane(depth0, KR, W_C[0], n_, d_, prec)
+                steps['S11'] = offsetfix.step_S11(a, objs, O, W_C, KR, H, lab, dsrc, det,
+                                                  None if pl[0] is None else (np.asarray(pl[0], float), float(pl[1])), log)
+                steps['S11']['table_plane_source'] = pl[2]
+                steps['S11']['det_path'] = detp if det is not None else None
+        elif step == 'S12':
+            sys.path.insert(0, HERE)
+            import nest
+            import offsetfix
+            pl = s6_plane(depth0, KR, W_C[0], n_, d_, prec)
+            dsrc = None
+            if a.s12_depth:
+                inputs['s12_depth'] = checked(a.s12_depth)
+                dsrc = offsetfix.DepthSource(a.s12_depth, T, None)
+            if a.s12_pieces:
+                assert_inference_input(a.s12_pieces)
+            steps['S12'] = nest.step_S12(a, objs, O, pl, lab, W_C, KR, H, dsrc, checked, log)
+        elif step == 'S10':
+            sys.path.insert(0, HERE)
+            import heldpose
+            steps['S10'] = heldpose.step_S10(a, objs, O, W_C, Jh, Mh, KR, interp_pose, log)
+            aux_extra.update(steps['S10'].pop('_aux', {}))        # per-frame S10 diagnostics -> pose_opt_aux.npz
+        elif step == 'S13':
+            sys.path.insert(0, HERE)
+            import rts
+            steps['S13'] = rts.step_S13(a, objs, O, H, checked, log)
+            aux_extra.update(steps['S13'].pop('_aux', {}))        # per-frame S13 diagnostics -> pose_opt_aux.npz
         note_delta(step)
         log(f'{step}:', json.dumps({k: v for k, v in steps[step].items() if k != 'delta'}, default=str)[:600])
     if 'S1' in a.step_set:
@@ -1100,6 +1317,7 @@ def main(argv=None):
         aux[f'{o.name}_hand_cm'] = L['hand_cm']
         aux[f'{o.name}_changed'] = changed[o.name]
     aux.update(deltas)
+    aux.update(aux_extra)
     np.savez(os.path.join(out, 'pose_opt_aux.npz'), **aux)
     log(f'wrote {out}: checks {json.dumps({k: v for k, v in chk.items() if k != "keys"})}')
     if not (chk['world_T_cam_byte_identical'] and chk['keys_ok'] and chk['frames_ok'] and chk['finite']):

@@ -1,0 +1,139 @@
+{
+ "wooden_piece_1": {
+  "pick": "shell_t5p36",
+  "pick_extent_mm": [
+   239.7,
+   156.0,
+   40.7
+  ],
+  "sources": {
+   "c_motion": {
+    "voxels": 127,
+    "centroid_L_mm": 4.5,
+    "centroid_W_mm": 5.1,
+    "extent_L_mm": 25.1,
+    "extent_W_mm": 130.8,
+    "W_range_mm": [
+     -58.0,
+     72.8
+    ]
+   },
+   "c_carve_side": {
+    "voxels": 67,
+    "centroid_L_mm": 7.4,
+    "centroid_W_mm": -28.8,
+    "extent_L_mm": 16.6,
+    "extent_W_mm": 67.5,
+    "W_range_mm": [
+     -58.0,
+     9.6
+    ]
+   },
+   "a_sam_notch": {
+    "voxels": 536,
+    "centroid_L_mm": 5.8,
+    "centroid_W_mm": -3.7,
+    "extent_L_mm": 63.3,
+    "extent_W_mm": 117.4,
+    "W_range_mm": [
+     -56.0,
+     61.4
+    ]
+   }
+  },
+  "agreement": {
+   "c_motion|c_carve_side": {
+    "dist_3d_mm": 34.0,
+    "along_L_mm": -2.9
+   },
+   "c_motion|a_sam_notch": {
+    "dist_3d_mm": 8.9,
+    "along_L_mm": -1.3
+   },
+   "c_carve_side|a_sam_notch": {
+    "dist_3d_mm": 25.1,
+    "along_L_mm": 1.6
+   }
+  }
+ },
+ "wooden_piece_2": {
+  "pick": "shell_t5p36",
+  "pick_extent_mm": [
+   233.3,
+   146.4,
+   36.5
+  ],
+  "sources": {
+   "c_motion": {
+    "voxels": 222,
+    "centroid_L_mm": 3.3,
+    "centroid_W_mm": -4.8,
+    "extent_L_mm": 19.1,
+    "extent_W_mm": 128.2,
+    "W_range_mm": [
+     -69.7,
+     58.4
+    ]
+   },
+   "c_carve_side": {
+    "voxels": 118,
+    "centroid_L_mm": 3.3,
+    "centroid_W_mm": -34.5,
+    "extent_L_mm": 17.4,
+    "extent_W_mm": 64.2,
+    "W_range_mm": [
+     -69.7,
+     -5.6
+    ]
+   },
+   "a_sam_notch": {
+    "voxels": 105,
+    "centroid_L_mm": -3.8,
+    "centroid_W_mm": -16.5,
+    "extent_L_mm": 56.1,
+    "extent_W_mm": 116.0,
+    "W_range_mm": [
+     -58.1,
+     57.9
+    ]
+   },
+   "b_silhouette": {
+    "voxels": 1,
+    "centroid_L_mm": 2.6,
+    "centroid_W_mm": -67.7,
+    "extent_L_mm": 4.0,
+    "extent_W_mm": 4.0,
+    "W_range_mm": [
+     -69.7,
+     -65.7
+    ]
+   }
+  },
+  "agreement": {
+   "c_motion|c_carve_side": {
+    "dist_3d_mm": 29.7,
+    "along_L_mm": 0.0
+   },
+   "c_motion|a_sam_notch": {
+    "dist_3d_mm": 13.7,
+    "along_L_mm": 7.1
+   },
+   "c_motion|b_silhouette": {
+    "dist_3d_mm": 63.0,
+    "along_L_mm": 0.7
+   },
+   "c_carve_side|a_sam_notch": {
+    "dist_3d_mm": 19.3,
+    "along_L_mm": 7.1
+   },
+   "c_carve_side|b_silhouette": {
+    "dist_3d_mm": 33.4,
+    "along_L_mm": 0.7
+   },
+   "a_sam_notch|b_silhouette": {
+    "dist_3d_mm": 51.7,
+    "along_L_mm": -6.4
+   }
+  }
+ }
+}

@@ -1,0 +1,210 @@
+{
+ "pot_lib": {
+  "src": "meshes/library_v3/white_pot.glb",
+  "faces_src": 23734,
+  "faces": 23734,
+  "ext_mm": [
+   131.0,
+   190.0,
+   362.0
+  ],
+  "bytes": 427988
+ },
+ "pot_c0": {
+  "src": "meshes/library_c0/white_pot.glb",
+  "faces_src": 16454,
+  "faces": 16454,
+  "ext_mm": [
+   136.0,
+   197.0,
+   358.0
+  ],
+  "bytes": 297156
+ },
+ "pot_e0b": {
+  "src": "meshes/library_e0b/white_pot.glb",
+  "faces_src": 28650,
+  "faces": 24000,
+  "ext_mm": [
+   144.0,
+   188.0,
+   363.0
+  ],
+  "bytes": 432808
+ },
+ "lid_lib": {
+  "src": "meshes/library_v3/white_pot_lid.glb",
+  "faces_src": 9732,
+  "faces": 9732,
+  "ext_mm": [
+   52.0,
+   189.0,
+   185.0
+  ],
+  "bytes": 175996
+ },
+ "lid_c0": {
+  "src": "meshes/library_c0/white_pot_lid.glb",
+  "faces_src": 9550,
+  "faces": 9550,
+  "ext_mm": [
+   45.0,
+   183.0,
+   183.0
+  ],
+  "bytes": 172792
+ },
+ "rack_lib": {
+  "src": "meshes/library_v3/plastic_dish_rack.glb",
+  "faces_src": 32912,
+  "faces": 24000,
+  "ext_mm": [
+   109.0,
+   159.0,
+   496.0
+  ],
+  "bytes": 432568
+ },
+ "rack_c0": {
+  "src": "meshes/library_c0/plastic_dish_rack.glb",
+  "faces_src": 2356,
+  "faces": 2356,
+  "ext_mm": [
+   124.0,
+   154.0,
+   487.0
+  ],
+  "bytes": 43340
+ },
+ "rack_c2r": {
+  "src": "docs/research/mesh-2026-10-26/cdo-sprint/C2/R-rack/meshes/plastic_dish_rack_c2r_K_ep12_nomk.glb",
+  "faces_src": 1836,
+  "faces": 1836,
+  "ext_mm": [
+   126.0,
+   146.0,
+   475.0
+  ],
+  "bytes": 33932
+ },
+ "cup_lib": {
+  "src": "meshes/library_v3/blue_cup.glb",
+  "faces_src": 11986,
+  "faces": 11986,
+  "ext_mm": [
+   95.0,
+   96.0,
+   167.0
+  ],
+  "bytes": 216592
+ },
+ "cup_c0": {
+  "src": "meshes/library_c0/blue_cup.glb",
+  "faces_src": 30924,
+  "faces": 24000,
+  "ext_mm": [
+   93.0,
+   104.0,
+   167.0
+  ],
+  "bytes": 432908
+ },
+ "beige_lib": {
+  "src": "meshes/library_v3/beige_cup.glb",
+  "faces_src": 7526,
+  "faces": 7526,
+  "ext_mm": [
+   99.0,
+   110.0,
+   174.0
+  ],
+  "bytes": 136364
+ },
+ "beige_t1": {
+  "src": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T1-beige-lathe/meshes/ep11_beige_cup_sep_g1.glb",
+  "faces_src": 36260,
+  "faces": 24000,
+  "ext_mm": [
+   101.0,
+   104.0,
+   171.0
+  ],
+  "bytes": 432836
+ },
+ "beige_e0b": {
+  "src": "meshes/library_e0b/beige_cup.glb",
+  "faces_src": 46426,
+  "faces": 24000,
+  "ext_mm": [
+   100.0,
+   104.0,
+   177.0
+  ],
+  "bytes": 432644
+ },
+ "pan_lib": {
+  "src": "meshes/library_v3/mini_dust_pan.glb",
+  "faces_src": 6664,
+  "faces": 6664,
+  "ext_mm": [
+   39.0,
+   159.0,
+   169.0
+  ],
+  "bytes": 120820
+ },
+ "pan_t2": {
+  "src": "docs/research/mesh-2026-10-26/cdo-sprint/C1/T2-probe-picks/meshes/mini_dust_pan_k297_s42_lib.glb",
+  "faces_src": 310244,
+  "faces": 24000,
+  "ext_mm": [
+   41.0,
+   164.0,
+   168.0
+  ],
+  "bytes": 433316
+ },
+ "pitcher_lib": {
+  "src": "meshes/library_v3/water_pitcher.glb",
+  "faces_src": 31832,
+  "faces": 24000,
+  "ext_mm": [
+   148.0,
+   261.0,
+   412.0
+  ],
+  "bytes": 432760
+ },
+ "pitcher_c2p": {
+  "src": "docs/research/mesh-2026-10-26/cdo-sprint/C2/P-pitcher/meshes/ep22_water_pitcher_g1_a2.glb",
+  "faces_src": 145164,
+  "faces": 24000,
+  "ext_mm": [
+   145.0,
+   268.0,
+   412.0
+  ],
+  "bytes": 432784
+ },
+ "board1_lib": {
+  "src": "meshes/library_v3/wooden_piece_1.glb",
+  "faces_src": 8208,
+  "faces": 8208,
+  "ext_mm": [
+   31.0,
+   133.0,
+   229.0
+  ],
+  "bytes": 148536
+ },
+ "slot3_wooden_piece_1": {
+  "src": "docs/research/mesh-2026-10-26/gmg/build/I/results/slot3-ep24/fi4q/r0/wooden_piece_1",
+  "pieces": 5,
+  "bytes": 4096
+ },
+ "slot3_wooden_piece_2": {
+  "src": "docs/research/mesh-2026-10-26/gmg/build/I/results/slot3-ep24/fi4q/r0/wooden_piece_2",
+  "pieces": 5,
+  "bytes": 3812
+ }
+}

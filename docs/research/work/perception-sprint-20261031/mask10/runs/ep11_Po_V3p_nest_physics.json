@@ -1,0 +1,150 @@
+{
+ "tool": "tools/nest_physics.py",
+ "argv": [
+  "/home/user/v2d-track3/tools/nest_physics.py",
+  "--in",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/in_Po/ep11",
+  "--popt",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/runs/Po/pre/ep11/pose_opt.json",
+  "--pieces",
+  "/home/user/v2d-track3/meshes/carve/ev10",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/store/runs/20261025-g1-022fece/refs/perc2m/ep11/hands_refined.npz",
+  "--mode",
+  "both",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/runs/Po/preraw/ep11_phys"
+ ],
+ "mode": "both",
+ "pieces": "/home/user/v2d-track3/meshes/carve/ev10",
+ "dt": 0.002,
+ "settle_s": 1.0,
+ "hand_cm": 5.0,
+ "inputs": {
+  "poses.npz": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/in_Po/ep11/poses.npz",
+   "sha256": "900abb7e6d7b633b7e9e4b92a70f169326171672cd49b85ec1ad8422f8dd70b2"
+  },
+  "pose_opt.json": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/runs/Po/pre/ep11/pose_opt.json",
+   "sha256": "b652fa66c5badde77358bf960e723ba5a0f8eb89206baf6f4387e6623000aa2d"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/store/runs/20261025-g1-022fece/refs/perc2m/ep11/hands_refined.npz",
+   "sha256": "b371aa20bc7ad2355a4e9350c41a9820157e20877d508e392f7396d805117d25"
+  }
+ },
+ "code": {
+  "nest_physics_sha256": "5f834e78b1603215587c38c900a9211ed53b9028833553d8b90e2f3f24f67e60",
+  "refine": {
+   "refine_sha256": "8661c47695821a269c1fbc57e24b0318d594502656749fbbc72c4818b6806bee",
+   "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+   "commit": "3e1bdd0d8acfe795485dcfcd0390c6af2b6e8a5b"
+  }
+ },
+ "mujoco": "3.8.1",
+ "windows": [
+  {
+   "outer": "blue_cup",
+   "inner": "beige_cup",
+   "window": [
+    42,
+    137
+   ],
+   "frames_settled": 36,
+   "runs": [
+    [
+     101,
+     137
+    ]
+   ],
+   "dz_cm": {
+    "beige_cup": {
+     "median": -2.234,
+     "min": -2.537,
+     "max": -1.654
+    },
+    "blue_cup": {
+     "median": -2.421,
+     "min": -2.766,
+     "max": -1.675
+    }
+   },
+   "frames": {
+    "101": {
+     "start_min_contact_dist_mm": -7.47,
+     "end_speed_cm_s": 0.034,
+     "ncon_end": 193,
+     "beige_cup_dz_cm": -2.537,
+     "beige_cup_dxy_cm": 0.894,
+     "blue_cup_dz_cm": -2.766,
+     "blue_cup_dxy_cm": 0.543
+    },
+    "106": {
+     "start_min_contact_dist_mm": -7.39,
+     "end_speed_cm_s": 0.359,
+     "ncon_end": 31,
+     "beige_cup_dz_cm": -1.733,
+     "beige_cup_dxy_cm": 1.133,
+     "blue_cup_dz_cm": -1.676,
+     "blue_cup_dxy_cm": 0.9
+    },
+    "111": {
+     "start_min_contact_dist_mm": -10.14,
+     "end_speed_cm_s": 0.17,
+     "ncon_end": 30,
+     "beige_cup_dz_cm": -1.865,
+     "beige_cup_dxy_cm": 0.883,
+     "blue_cup_dz_cm": -1.948,
+     "blue_cup_dxy_cm": 0.605
+    },
+    "116": {
+     "start_min_contact_dist_mm": -8.94,
+     "end_speed_cm_s": 3.0,
+     "ncon_end": 72,
+     "beige_cup_dz_cm": -2.023,
+     "beige_cup_dxy_cm": 0.773,
+     "blue_cup_dz_cm": -2.146,
+     "blue_cup_dxy_cm": 0.634
+    },
+    "121": {
+     "start_min_contact_dist_mm": -8.48,
+     "end_speed_cm_s": 0.016,
+     "ncon_end": 192,
+     "beige_cup_dz_cm": -2.422,
+     "beige_cup_dxy_cm": 0.885,
+     "blue_cup_dz_cm": -2.488,
+     "blue_cup_dxy_cm": 0.597
+    },
+    "126": {
+     "start_min_contact_dist_mm": -8.02,
+     "end_speed_cm_s": 0.02,
+     "ncon_end": 193,
+     "beige_cup_dz_cm": -2.28,
+     "beige_cup_dxy_cm": 0.658,
+     "blue_cup_dz_cm": -2.445,
+     "blue_cup_dxy_cm": 0.574
+    },
+    "131": {
+     "start_min_contact_dist_mm": -7.51,
+     "end_speed_cm_s": 0.097,
+     "ncon_end": 188,
+     "beige_cup_dz_cm": -2.335,
+     "beige_cup_dxy_cm": 0.761,
+     "blue_cup_dz_cm": -2.483,
+     "blue_cup_dxy_cm": 0.533
+    },
+    "136": {
+     "start_min_contact_dist_mm": -8.59,
+     "end_speed_cm_s": 7.93,
+     "ncon_end": 96,
+     "beige_cup_dz_cm": -2.231,
+     "beige_cup_dxy_cm": 0.705,
+     "blue_cup_dz_cm": -2.49,
+     "blue_cup_dxy_cm": 0.377
+    }
+   }
+  }
+ ],
+ "seconds": 11.6
+}

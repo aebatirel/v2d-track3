@@ -1,0 +1,6 @@
+eval 10 background points kept: f0 42921; blue cup world step since f0 (cm): {0: 0.0, 30: 0.12, 60: 4.49, 150: 4.64}
+f30: 45796 pts | median NN to f0 as composed by our VO 0.70 cm | translation-only ICP correction 0.53 cm (horizontal 0.42, vertical (+ up) -0.32; blue cup v(t) +0.05; along the blue step -0.19) -> median 0.68 cm | rigid ICP 0.24 cm 0.35 deg -> median 0.60 cm
+f60: 46468 pts | median NN to f0 as composed by our VO 0.79 cm | translation-only ICP correction 0.16 cm (horizontal 0.13, vertical (+ up) -0.10; blue cup v(t) +0.76; along the blue step +0.08) -> median 0.76 cm | rigid ICP 0.72 cm 0.30 deg -> median 0.61 cm
+f150: 44997 pts | median NN to f0 as composed by our VO 1.06 cm | translation-only ICP correction 0.60 cm (horizontal 0.41, vertical (+ up) -0.44; blue cup v(t) +2.08; along the blue step +0.00) -> median 0.82 cm | rigid ICP 0.87 cm 0.43 deg -> median 0.59 cm
+power f60: background shifted by the blue step (4.49 cm): median NN before ICP 1.34 cm; ICP recovers +4.41 cm along the step (|t| 4.41) -> median 0.76 cm
+power f150: background shifted by the blue step (4.64 cm): median NN before ICP 2.84 cm; ICP recovers +4.64 cm along the step (|t| 4.68) -> median 0.82 cm

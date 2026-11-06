@@ -1,0 +1,35 @@
+[    0.1s] rectified focal 600.2 baseline 0.07547
+[    5.2s] frames c/b/poses 275 275 275 objects ['wooden_piece_1', 'wooden_piece_2']
+[   13.1s] masks: mean masked fraction 0.121 max 0.15
+[   13.7s] frame-0 plane [-0.1108, -0.7199, -0.6852] 0.5313 inliers 6549 rms mm 2.76
+[   20.6s] plane: corrections [(27, 0.498, 0.065, True), (32, 0.085, -0.195, True), (36, 0.271, -0.291, True), (38, 0.981, -0.4, True), (40, 0.922, -0.79, True), (44, 0.219, 0.064, True), (49, 0.259, -0.268, True), (61, 0.545, -0.576, True), (76, 0.384, 0.45, True), (89, 0.965, -0.086, True), (98, 0.994, -0.101, True), (104, 0.499, -0.327, True), (126, 0.436, 0.121, True), (144, 1.723, 0.17, True), (156, 0.491, -0.187, True), (243, 1.039, -0.124, True)]
+[   21.2s] features 0 c kp 2216 stereo 3-D 0
+[   34.2s] features 50 c kp 2474 stereo 3-D 0
+[   45.4s] features 100 c kp 1615 stereo 3-D 0
+[   57.6s] features 150 c kp 1889 stereo 3-D 0
+[   69.3s] features 200 c kp 2162 stereo 3-D 0
+[   80.1s] features 250 c kp 2325 stereo 3-D 0
+[   86.5s] rvo 25 kf used 0 inliers 372 keyframes 1
+[   87.2s] rvo 50 kf used 0 inliers 210 keyframes 1
+[   87.9s] rvo 75 kf used 0 inliers 176 keyframes 1
+[   88.9s] rvo 100 kf used 97 inliers 333 keyframes 2
+[   90.1s] rvo 125 kf used 0 inliers 126 keyframes 2
+[   90.7s] rvo 150 kf used 0 inliers 201 keyframes 2
+[   91.3s] rvo 175 kf used 0 inliers 227 keyframes 2
+[   91.9s] rvo 200 kf used 0 inliers 241 keyframes 2
+[   92.5s] rvo 225 kf used 0 inliers 227 keyframes 2
+[   92.9s] rvo 250 kf used 0 inliers 210 keyframes 2
+[   93.6s] rvo keyframes [0, 97] fails 0 frames on kf0 245 median inliers 228
+[   94.1s] rvo_plane 25 kf used 0 inliers 372 keyframes 1
+[   94.8s] rvo_plane 50 kf used 0 inliers 210 keyframes 1
+[   95.6s] rvo_plane 75 kf used 0 inliers 176 keyframes 1
+[   96.2s] rvo_plane 100 kf used 97 inliers 333 keyframes 2
+[   97.3s] rvo_plane 125 kf used 0 inliers 126 keyframes 2
+[   97.9s] rvo_plane 150 kf used 0 inliers 201 keyframes 2
+[   98.5s] rvo_plane 175 kf used 0 inliers 227 keyframes 2
+[   99.1s] rvo_plane 200 kf used 0 inliers 241 keyframes 2
+[   99.7s] rvo_plane 225 kf used 0 inliers 227 keyframes 2
+[  100.4s] rvo_plane 250 kf used 0 inliers 210 keyframes 2
+[  101.1s] rvo_plane keyframes [0, 97] fails 0 frames on kf0 245 median inliers 228
+[  101.1s] rvo_plane plane corrections [(97, 0.817, 0.468, True)]
+[  101.1s] DONE

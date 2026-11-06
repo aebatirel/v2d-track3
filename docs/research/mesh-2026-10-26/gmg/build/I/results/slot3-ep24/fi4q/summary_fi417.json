@@ -1,0 +1,1429 @@
+{
+ "interlock_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/interlock/public/ep24-fi4q",
+ "sec": 827.9,
+ "fi4_rev": 17,
+ "launch_code": {
+  "commit": "a13044966c2b66475ddcaeb9d085edee371f4039",
+  "dirty": true,
+  "dirty_files": [
+   "M docs/research/mesh-2026-10-26/gmg/cavpieces.py"
+  ],
+  "sha256": {
+   "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+   "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+   "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+   "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+   "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+   "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+   "tools/interlock_dev.py": "11b746537993c5f8854c578c2cab8182514888c03acb03363cb592f2737dbd7b",
+   "platebody.py": "da173d6b979a5b4f819b73419c5d9fe7a38fe12b504ee2520d653743e99df468",
+   "collcarve.py": "a27f7b950fbee73e83b0727fd1a7f2854d9c9118212c0902fadc3d1aa6b728ad",
+   "cavpieces.py": "d9af2ec03be5ef50dbe45c3c2a2eb2a27f160556ca200cc76ff4c370857725ff"
+  }
+ },
+ "physics": {
+  "P2": {
+   "frame": 246,
+   "carved_mm": {
+    "gravity": 0.5,
+    "+d": 0.5,
+    "+n": 0.0,
+    "-n": 1.5
+   },
+   "default_mm": {
+    "gravity": 60.0,
+    "+d": 60.0,
+    "+n": 60.0,
+    "-n": 60.0
+   },
+   "overlap_at_pose_cm3": [
+    6.622,
+    0.0
+   ],
+   "pass_": true
+  },
+  "P3": {
+   "default": {
+    "lag_cm_asm": 0.849,
+    "lag_cm_asm_sd": 0.105,
+    "lag_deg_asm": 104.18,
+    "lag_cm_after_max": 4.263,
+    "copies": 16,
+    "nan": 0
+   },
+   "carved": {
+    "lag_cm_asm": 0.074,
+    "lag_cm_asm_sd": 0.024,
+    "lag_deg_asm": 0.68,
+    "lag_cm_after_max": 0.315,
+    "copies": 16,
+    "nan": 0
+   },
+   "nocollide": {
+    "lag_cm_asm": 0.032,
+    "lag_cm_asm_sd": 0.0,
+    "lag_deg_asm": 0.09,
+    "lag_cm_after_max": 0.13,
+    "copies": 16,
+    "nan": 0
+   },
+   "sec": 16.0,
+   "frames": [
+    124,
+    274
+   ],
+   "judge": {
+    "pass_": true,
+    "slot_not_limiting": false,
+    "overlap_asm_cm3": 0.039,
+    "overlap_ok": true
+   }
+  },
+  "P4": {
+   "wooden_piece_1": {
+    "removed_cm3": 5.03,
+    "carve_cm3": 4.7,
+    "default_cm3": 228.99,
+    "carved_cm3": 223.96,
+    "kept_share": 0.978,
+    "pass_": true
+   },
+   "wooden_piece_2": {
+    "removed_cm3": 3.85,
+    "carve_cm3": 3.8,
+    "default_cm3": 214.13,
+    "carved_cm3": 210.27,
+    "kept_share": 0.982,
+    "pass_": true
+   }
+  },
+  "P6": {
+   "frames": 84,
+   "worse_frames": [],
+   "n_worse": 0,
+   "pass_": true,
+   "default_asm_median": 6.622,
+   "carved_asm_median": 0.039
+  },
+  "P7": {
+   "check_frames": 26,
+   "default_sum_cm3": 142.31,
+   "carved_sum_cm3": 3.49,
+   "default_median": 6.551,
+   "carved_median": 0.0,
+   "pass_": true
+  },
+  "P1_precheck": {
+   "host_drift": 2.578,
+   "guest_drift": 2.407,
+   "host_tilt": 1.342,
+   "guest_tilt": 2.391,
+   "rel_sink": -0.174,
+   "units": "drift/sink cm, tilt deg",
+   "copies": 16,
+   "nan": 0,
+   "fall_through": 0,
+   "pass_": false,
+   "decides": false,
+   "note": "plain-MuJoCo pre-check; INTERLOCK 6.2: P1 is decided in the FlashCHORD scene"
+  },
+  "P1_precheck_default": {
+   "host_drift": 3.069,
+   "guest_drift": 3.452,
+   "host_tilt": 6.094,
+   "guest_tilt": 6.018,
+   "rel_sink": -0.177,
+   "units": "drift/sink cm, tilt deg",
+   "copies": 16,
+   "nan": 0,
+   "fall_through": 0,
+   "pass_": false,
+   "decides": false,
+   "note": "plain-MuJoCo pre-check; INTERLOCK 6.2: P1 is decided in the FlashCHORD scene"
+  },
+  "P2_P7_pass": true
+ },
+ "contact_gate": {
+  "pass_": false,
+  "ratio": 3.875,
+  "no_overflow": true,
+  "scenes": {
+   "S1": {
+    "frame": 246,
+    "table_kind": "bundle",
+    "table_n": [
+     -0.132957,
+     -0.724146,
+     -0.676709
+    ],
+    "table_d": 0.52963
+   },
+   "S2": {
+    "frame": 218,
+    "table_kind": "bundle",
+    "table_n": [
+     -0.132957,
+     -0.724146,
+     -0.676709
+    ],
+    "table_d": 0.52963
+   }
+  },
+  "sec": 11.3,
+  "delivered": {
+   "max_nefc": 124,
+   "max_ncon": 31,
+   "overflow_copies": 0,
+   "by_scene": {
+    "S1": {
+     "max_nefc": 124,
+     "max_ncon": 31,
+     "median_max_nefc": 116.0,
+     "overflow_copies": 0
+    },
+    "S2": {
+     "max_nefc": 120,
+     "max_ncon": 30,
+     "median_max_nefc": 116.0,
+     "overflow_copies": 0
+    }
+   }
+  },
+  "default": {
+   "max_nefc": 112,
+   "max_ncon": 28,
+   "overflow_copies": 0,
+   "by_scene": {
+    "S1": {
+     "max_nefc": 96,
+     "max_ncon": 24,
+     "median_max_nefc": 96.0,
+     "overflow_copies": 0
+    },
+    "S2": {
+     "max_nefc": 112,
+     "max_ncon": 28,
+     "median_max_nefc": 112.0,
+     "overflow_copies": 0
+    }
+   }
+  },
+  "control": {
+   "max_nefc": 32,
+   "max_ncon": 8,
+   "overflow_copies": 0,
+   "by_scene": {
+    "S1": {
+     "max_nefc": 32,
+     "max_ncon": 8,
+     "median_max_nefc": 32.0,
+     "overflow_copies": 0
+    },
+    "S2": {
+     "max_nefc": 32,
+     "max_ncon": 8,
+     "median_max_nefc": 32.0,
+     "overflow_copies": 0
+    }
+   }
+  },
+  "lowered": {
+   "delivered": {
+    "S1": {
+     "max_nefc": 112,
+     "max_ncon": 28,
+     "overflow_copies": 0,
+     "lowered_by_mm": 16.702
+    },
+    "S2": {
+     "max_nefc": 132,
+     "max_ncon": 33,
+     "overflow_copies": 0,
+     "lowered_by_mm": 16.993
+    }
+   },
+   "default": {
+    "S1": {
+     "max_nefc": 108,
+     "max_ncon": 27,
+     "overflow_copies": 0,
+     "lowered_by_mm": 16.702
+    },
+    "S2": {
+     "max_nefc": 104,
+     "max_ncon": 26,
+     "overflow_copies": 0,
+     "lowered_by_mm": 16.993
+    }
+   },
+   "control": {
+    "S1": {
+     "max_nefc": 40,
+     "max_ncon": 10,
+     "overflow_copies": 0,
+     "lowered_by_mm": 16.702
+    },
+    "S2": {
+     "max_nefc": 40,
+     "max_ncon": 10,
+     "overflow_copies": 0,
+     "lowered_by_mm": 16.993
+    }
+   }
+  },
+  "p3_replay": {
+   "delivered": {
+    "max_nefc": 50,
+    "max_ncon": 11,
+    "median_max_nefc": 34.0,
+    "nan_copies": 0
+   },
+   "default": {
+    "max_nefc": 94,
+    "max_ncon": 22,
+    "median_max_nefc": 80.0,
+    "nan_copies": 0
+   },
+   "control": {
+    "max_nefc": 22,
+    "max_ncon": 4,
+    "median_max_nefc": 22.0,
+    "nan_copies": 0
+   }
+  }
+ },
+ "decisions": [
+  [
+   "wooden_piece_1",
+   "CARVE",
+   "T1",
+   null
+  ],
+  [
+   "wooden_piece_1",
+   "IGNORE",
+   "T0",
+   null
+  ],
+  [
+   "wooden_piece_2",
+   "CARVE",
+   "T1",
+   null
+  ]
+ ],
+ "boards": {
+  "wooden_piece_1": {
+   "body_kind": "low_piece",
+   "iou": 0.958257,
+   "n_rect": 3,
+   "theta_cells": [
+    5,
+    69,
+    16,
+    0,
+    69,
+    14,
+    2,
+    69
+   ],
+   "raster_cells": [
+    117,
+    71
+   ],
+   "rectangles_mm": [
+    {
+     "name": "waist",
+     "cells": [
+      0,
+      117,
+      5,
+      69
+     ],
+     "u_mm": [
+      -117.233,
+      116.767
+     ],
+     "v_mm": [
+      -61.167,
+      66.833
+     ]
+    },
+    {
+     "name": "end_left",
+     "cells": [
+      0,
+      16,
+      0,
+      69
+     ],
+     "u_mm": [
+      -117.233,
+      -85.233
+     ],
+     "v_mm": [
+      -71.167,
+      66.833
+     ]
+    },
+    {
+     "name": "end_right",
+     "cells": [
+      103,
+      117,
+      2,
+      69
+     ],
+     "u_mm": [
+      88.767,
+      116.767
+     ],
+     "v_mm": [
+      -67.167,
+      66.833
+     ]
+    }
+   ],
+   "fn_cm2": 3.2,
+   "fp_cm2": 9.64,
+   "end_minus_waist_mm": {
+    "end_left": 10.0,
+    "end_right": 6.0
+   },
+   "passes": 2,
+   "t_mm": 7.401,
+   "L_mm": 234.5,
+   "W_mm": 142.3,
+   "volume_cm3": 225.29,
+   "widths_mm": {
+    "waist_30_70": 128.0,
+    "ends_outer_10": 136.0,
+    "end_lo": 138.0,
+    "end_hi": 134.0,
+    "end_minus_waist": 8.0,
+    "max": 138.0
+   },
+   "coverage": {
+    "frame": 0.9121,
+    "polygon_cm2": 304.4,
+    "frame_cm2": 333.72,
+    "body": "U (low-piece)",
+    "rule": "F-I4.16.5 (report only, no gate)"
+   },
+   "coverage_report": {
+    "coverage_frame": 0.9121,
+    "same_stock": true,
+    "same_stock_by": "partner_prior",
+    "polygon_cm2": 304.4,
+    "partner_polygon_cm2": 288.88,
+    "coverage_partner": 1.0537,
+    "rule": "F-I4.16.5 (report only, no gate)"
+   },
+   "free_share": {
+    "low_piece": {
+     "points": 30440,
+     "free": 0.0592,
+     "unknown": 0.0611,
+     "observed": 0.8797,
+     "outside_grid": 0.0
+    },
+    "f_i416_polygon": {
+     "points": 29796,
+     "free": 0.0408,
+     "unknown": 0.0581,
+     "observed": 0.9011,
+     "outside_grid": 0.0
+    },
+    "rectangle": {
+     "points": 33228,
+     "free": 0.1292,
+     "unknown": 0.0606,
+     "observed": 0.8102,
+     "outside_grid": 0.0
+    }
+   },
+   "slotted_pieces": {
+    "n": 5,
+    "cap": 82,
+    "over_cap": false,
+    "max_vertices_per_prism": 8,
+    "all_convex": true,
+    "ring_area_mm2": 29804.952,
+    "parts_area_mm2": 29804.952,
+    "tiling_diff_mm2": 0.0,
+    "tiling_ok": true,
+    "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+    "direction": "A (cuts along a_W)",
+    "n_A": 5,
+    "n_B": 5,
+    "ring_vertices": 12,
+    "ring_reflex": 4,
+    "smallest_side_mm": 9.401,
+    "boxes_mm": [
+     [
+      -117.233,
+      -85.233,
+      -71.167,
+      66.833
+     ],
+     [
+      -85.233,
+      -0.728,
+      -61.167,
+      66.833
+     ],
+     [
+      -0.728,
+      8.673,
+      6.383,
+      66.833
+     ],
+     [
+      8.673,
+      88.767,
+      -61.167,
+      66.833
+     ],
+     [
+      88.767,
+      116.767,
+      -67.167,
+      66.833
+     ]
+    ]
+   },
+   "default_pieces": {
+    "n": 3,
+    "cap": 82,
+    "over_cap": false,
+    "max_vertices_per_prism": 8,
+    "all_convex": true,
+    "ring_area_mm2": 30440.0,
+    "parts_area_mm2": 30440.0,
+    "tiling_diff_mm2": 0.0,
+    "tiling_ok": true,
+    "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+    "direction": "A (cuts along a_W)",
+    "n_A": 3,
+    "n_B": 3,
+    "ring_vertices": 8,
+    "ring_reflex": 2,
+    "smallest_side_mm": 28.0,
+    "boxes_mm": [
+     [
+      -117.233,
+      -85.233,
+      -71.167,
+      66.833
+     ],
+     [
+      -85.233,
+      88.767,
+      -61.167,
+      66.833
+     ],
+     [
+      88.767,
+      116.767,
+      -67.167,
+      66.833
+     ]
+    ]
+   },
+   "f_i416_polygon": {
+    "ok": true,
+    "why": null,
+    "chosen_eps_mm": 1.0,
+    "polygon": {
+     "used": "simplified",
+     "tolerance_mm": 1.0,
+     "vertices_raw": 92,
+     "vertices": 86,
+     "reflex_vertices": 41,
+     "area_cm2": 297.96,
+     "area_vs_cells": 1.0,
+     "extent_mm": [
+      234.0,
+      142.0
+     ]
+    },
+    "free_share_polygon": {
+     "points": 29796,
+     "free": 0.0408,
+     "unknown": 0.0581,
+     "observed": 0.9011,
+     "outside_grid": 0.0
+    },
+    "coverage": {
+     "frame": 0.8928,
+     "polygon_cm2": 297.96,
+     "frame_cm2": 333.72,
+     "rule": "F-I4.16.5 (report only, no gate)"
+    },
+    "widths_mm": {
+     "waist_30_70": 130.0,
+     "ends_outer_10": 137.0,
+     "end_lo": 142.0,
+     "end_hi": 136.0,
+     "end_minus_waist": 7.0,
+     "max": 142.0
+    }
+   },
+   "ladder_chosen": 1.0,
+   "ladder_rows": [
+    {
+     "eps_mm": 1.0,
+     "simple": true,
+     "fits": true,
+     "vertices": 86,
+     "reflex_vertices": 41,
+     "default_prisms": 50,
+     "slotted_prisms": 57,
+     "d_max_mm": 0.894
+    },
+    {
+     "eps_mm": 1.5,
+     "simple": true,
+     "fits": true,
+     "vertices": 64,
+     "reflex_vertices": 31,
+     "default_prisms": 38,
+     "slotted_prisms": 41,
+     "d_max_mm": 1.455
+    },
+    {
+     "eps_mm": 2.0,
+     "simple": true,
+     "fits": true,
+     "vertices": 31,
+     "reflex_vertices": 14,
+     "default_prisms": 17,
+     "slotted_prisms": 17,
+     "d_max_mm": 2.0
+    },
+    {
+     "eps_mm": 3.0,
+     "simple": true,
+     "fits": true,
+     "vertices": 21,
+     "reflex_vertices": 8,
+     "default_prisms": 10,
+     "slotted_prisms": 11,
+     "d_max_mm": 2.896
+    },
+    {
+     "eps_mm": 4.0,
+     "simple": true,
+     "fits": true,
+     "vertices": 12,
+     "reflex_vertices": 4,
+     "default_prisms": 5,
+     "slotted_prisms": 6,
+     "d_max_mm": 3.986
+    }
+   ],
+   "slot": {
+    "w_mm": 9.4,
+    "c_L_mm": 3.97,
+    "D_mm": 67.55,
+    "P_mm": 65.55,
+    "D_rect_mm": 77.55,
+    "u_e_poly_mm": -61.17,
+    "u_rect_mm": -71.17,
+    "entry_edge_shift_mm": 10.0,
+    "bottom_mm": 6.38,
+    "angle_partner_normal_aL_deg": 2.06
+   },
+   "slot_centre": {
+    "applicable": false,
+    "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+   },
+   "budget": {
+    "slot_cm3": 4.7,
+    "body_cm3": 225.29,
+    "vol_share": 0.0209,
+    "reach": 0.465,
+    "footprint_mm": [
+     -0.73,
+     8.67,
+     -74.17,
+     6.38
+    ],
+    "one_simple_polygon": true,
+    "area_consistent": true,
+    "bottom_inside": true,
+    "D_lt_W": true,
+    "prong_area_mm2": [
+     7869.8,
+     7301.8
+    ],
+    "topology": true,
+    "rings": 1,
+    "hole": false,
+    "nudge_mm": 0.0,
+    "ok": true
+   },
+   "crosslap": {
+    "W_x_mm": 120.52,
+    "grid_points": 883,
+    "D_sum_mm": 122.11,
+    "diff_mm": 1.59,
+    "window_mm": 10.0,
+    "ok": true
+   },
+   "plate": {
+    "t_source": "camera_side_pair",
+    "t_m": 0.007401156747395555,
+    "t_down_mm": 6.212,
+    "flags": [
+     "plate_pair_camera_side"
+    ]
+   }
+  },
+  "wooden_piece_2": {
+   "body_kind": "low_piece",
+   "iou": 0.952413,
+   "n_rect": 3,
+   "theta_cells": [
+    6,
+    66,
+    22,
+    2,
+    68,
+    38,
+    2,
+    67
+   ],
+   "raster_cells": [
+    115,
+    71
+   ],
+   "rectangles_mm": [
+    {
+     "name": "waist",
+     "cells": [
+      0,
+      115,
+      6,
+      66
+     ],
+     "u_mm": [
+      -115.555,
+      114.445
+     ],
+     "v_mm": [
+      -58.997,
+      61.003
+     ]
+    },
+    {
+     "name": "end_left",
+     "cells": [
+      0,
+      22,
+      2,
+      68
+     ],
+     "u_mm": [
+      -115.555,
+      -71.555
+     ],
+     "v_mm": [
+      -66.997,
+      65.003
+     ]
+    },
+    {
+     "name": "end_right",
+     "cells": [
+      77,
+      115,
+      2,
+      67
+     ],
+     "u_mm": [
+      38.445,
+      114.445
+     ],
+     "v_mm": [
+      -66.997,
+      63.003
+     ]
+    }
+   ],
+   "fn_cm2": 6.16,
+   "fp_cm2": 7.88,
+   "end_minus_waist_mm": {
+    "end_left": 12.0,
+    "end_right": 10.0
+   },
+   "passes": 5,
+   "t_mm": 7.401,
+   "L_mm": 231.1,
+   "W_mm": 142.0,
+   "volume_cm3": 213.8,
+   "widths_mm": {
+    "waist_30_70": 120.0,
+    "ends_outer_10": 131.0,
+    "end_lo": 132.0,
+    "end_hi": 130.0,
+    "end_minus_waist": 11.0,
+    "max": 132.0
+   },
+   "coverage": {
+    "frame": 0.8803,
+    "polygon_cm2": 288.88,
+    "frame_cm2": 328.16,
+    "body": "U (low-piece)",
+    "rule": "F-I4.16.5 (report only, no gate)"
+   },
+   "coverage_report": {
+    "coverage_frame": 0.8803,
+    "same_stock": true,
+    "same_stock_by": "partner_prior",
+    "polygon_cm2": 288.88,
+    "partner_polygon_cm2": 304.4,
+    "coverage_partner": 0.949,
+    "rule": "F-I4.16.5 (report only, no gate)"
+   },
+   "free_share": {
+    "low_piece": {
+     "points": 28888,
+     "free": 0.0218,
+     "unknown": 0.4996,
+     "observed": 0.4786,
+     "outside_grid": 0.0
+    },
+    "f_i416_polygon": {
+     "points": 28716,
+     "free": 0.0189,
+     "unknown": 0.4941,
+     "observed": 0.487,
+     "outside_grid": 0.0
+    },
+    "rectangle": {
+     "points": 32944,
+     "free": 0.1033,
+     "unknown": 0.4671,
+     "observed": 0.4296,
+     "outside_grid": 0.0
+    }
+   },
+   "slotted_pieces": {
+    "n": 5,
+    "cap": 82,
+    "over_cap": false,
+    "max_vertices_per_prism": 8,
+    "all_convex": true,
+    "ring_area_mm2": 28375.059,
+    "parts_area_mm2": 28375.059,
+    "tiling_diff_mm2": 0.0,
+    "tiling_ok": true,
+    "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+    "direction": "A (cuts along a_W)",
+    "n_A": 5,
+    "n_B": 7,
+    "ring_vertices": 16,
+    "ring_reflex": 6,
+    "smallest_side_mm": 9.401,
+    "boxes_mm": [
+     [
+      -115.555,
+      -71.555,
+      -66.997,
+      65.003
+     ],
+     [
+      -71.555,
+      -3.342,
+      -58.997,
+      61.003
+     ],
+     [
+      -3.342,
+      6.059,
+      -4.436,
+      61.003
+     ],
+     [
+      6.059,
+      38.445,
+      -58.997,
+      61.003
+     ],
+     [
+      38.445,
+      114.445,
+      -66.997,
+      63.003
+     ]
+    ]
+   },
+   "default_pieces": {
+    "n": 3,
+    "cap": 82,
+    "over_cap": false,
+    "max_vertices_per_prism": 8,
+    "all_convex": true,
+    "ring_area_mm2": 28888.0,
+    "parts_area_mm2": 28888.0,
+    "tiling_diff_mm2": 0.0,
+    "tiling_ok": true,
+    "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+    "direction": "A (cuts along a_W)",
+    "n_A": 3,
+    "n_B": 5,
+    "ring_vertices": 12,
+    "ring_reflex": 4,
+    "smallest_side_mm": 44.0,
+    "boxes_mm": [
+     [
+      -115.555,
+      -71.555,
+      -66.997,
+      65.003
+     ],
+     [
+      -71.555,
+      38.445,
+      -58.997,
+      61.003
+     ],
+     [
+      38.445,
+      114.445,
+      -66.997,
+      63.003
+     ]
+    ]
+   },
+   "f_i416_polygon": {
+    "ok": true,
+    "why": null,
+    "chosen_eps_mm": 1.0,
+    "polygon": {
+     "used": "simplified",
+     "tolerance_mm": 1.0,
+     "vertices_raw": 138,
+     "vertices": 126,
+     "reflex_vertices": 61,
+     "area_cm2": 287.16,
+     "area_vs_cells": 1.0,
+     "extent_mm": [
+      230.0,
+      142.0
+     ]
+    },
+    "free_share_polygon": {
+     "points": 28716,
+     "free": 0.0189,
+     "unknown": 0.4941,
+     "observed": 0.487,
+     "outside_grid": 0.0
+    },
+    "coverage": {
+     "frame": 0.8751,
+     "polygon_cm2": 287.16,
+     "frame_cm2": 328.16,
+     "rule": "F-I4.16.5 (report only, no gate)"
+    },
+    "widths_mm": {
+     "waist_30_70": 126.0,
+     "ends_outer_10": 135.9,
+     "end_lo": 134.0,
+     "end_hi": 138.0,
+     "end_minus_waist": 9.9,
+     "max": 140.0
+    }
+   },
+   "ladder_chosen": 1.0,
+   "ladder_rows": [
+    {
+     "eps_mm": 1.0,
+     "simple": true,
+     "fits": true,
+     "vertices": 126,
+     "reflex_vertices": 61,
+     "default_prisms": 71,
+     "slotted_prisms": 77,
+     "d_max_mm": 0.97
+    },
+    {
+     "eps_mm": 1.5,
+     "simple": true,
+     "fits": true,
+     "vertices": 91,
+     "reflex_vertices": 45,
+     "default_prisms": 49,
+     "slotted_prisms": 53,
+     "d_max_mm": 1.455
+    },
+    {
+     "eps_mm": 2.0,
+     "simple": true,
+     "fits": true,
+     "vertices": 39,
+     "reflex_vertices": 20,
+     "default_prisms": 21,
+     "slotted_prisms": 22,
+     "d_max_mm": 2.0
+    },
+    {
+     "eps_mm": 3.0,
+     "simple": true,
+     "fits": true,
+     "vertices": 31,
+     "reflex_vertices": 14,
+     "default_prisms": 15,
+     "slotted_prisms": 16,
+     "d_max_mm": 2.915
+    },
+    {
+     "eps_mm": 4.0,
+     "simple": true,
+     "fits": true,
+     "vertices": 20,
+     "reflex_vertices": 9,
+     "default_prisms": 9,
+     "slotted_prisms": 10,
+     "d_max_mm": 3.767
+    }
+   ],
+   "slot": {
+    "w_mm": 9.4,
+    "c_L_mm": 1.36,
+    "D_mm": 54.56,
+    "P_mm": 52.56,
+    "D_rect_mm": 66.56,
+    "u_e_poly_mm": -59.0,
+    "u_rect_mm": -71.0,
+    "entry_edge_shift_mm": 12.0,
+    "bottom_mm": -4.44,
+    "angle_partner_normal_aL_deg": 1.51
+   },
+   "slot_centre": {
+    "applicable": true,
+    "method": "F-I4.16.4 below-face half-peak run (verify_slot2_1 vobs2 (b))",
+    "frames_before": 164,
+    "v_band_mm": [
+     -51.0,
+     -12.44
+    ],
+    "window_mm": 30.0,
+    "points_in_band_window": 51282,
+    "c_L_mm": 1.358,
+    "w_mm": 9.401,
+    "seen_sign": 1.0,
+    "n_points": 361,
+    "face_points": 50615,
+    "peak_u_mm": -4.14,
+    "run_mm": [
+     -5.64,
+     -1.64
+    ],
+    "run_width_mm": 4.0,
+    "run_touches_window_end": false,
+    "u_obs_mm": -3.642,
+    "delta_mm": -5.0,
+    "observable": true,
+    "below_w_mm_p5_50_95": [
+     -3.43,
+     -1.87,
+     -0.16
+    ],
+    "bins_from_mm": -28.642,
+    "slot_centre_disagrees": {
+     "delta_mm": -5.0,
+     "n_points": 361,
+     "u_obs_mm": -3.642,
+     "c_L_mm": 1.358
+    }
+   },
+   "budget": {
+    "slot_cm3": 3.796,
+    "body_cm3": 213.8,
+    "vol_share": 0.0178,
+    "reach": 0.398,
+    "footprint_mm": [
+     -3.34,
+     6.06,
+     -74.0,
+     -4.44
+    ],
+    "one_simple_polygon": true,
+    "area_consistent": true,
+    "bottom_inside": true,
+    "D_lt_W": true,
+    "prong_area_mm2": [
+     6122.5,
+     5913.7
+    ],
+    "topology": true,
+    "rings": 1,
+    "hole": false,
+    "nudge_mm": 0.0,
+    "ok": true
+   },
+   "crosslap": {
+    "W_x_mm": 120.52,
+    "grid_points": 883,
+    "D_sum_mm": 122.11,
+    "diff_mm": 1.59,
+    "window_mm": 10.0,
+    "ok": true
+   },
+   "plate": {
+    "t_source": "partner_prior",
+    "t_m": 0.007401156747395555,
+    "t_down_mm": null,
+    "flags": [
+     "plate_t_partner_prior"
+    ]
+   }
+  }
+ },
+ "r0": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-fi4q/r0",
+  "p1_pending": false,
+  "contact_budget_pending": true,
+  "do_not_use": {
+   "wooden_piece_1": "contact_budget (F-I4.17.1 part 1): delivered max nefc 124 / max ncon 31 (overflow copies 0), control max nefc 32, ratio 3.875 (<= 2.0), default max nefc 112; F-I4.7 failing: ['contact_gate_part1'] (F-I4.8: written for the record)",
+   "wooden_piece_2": "contact_budget (F-I4.17.1 part 1): delivered max nefc 124 / max ncon 31 (overflow copies 0), control max nefc 32, ratio 3.875 (<= 2.0), default max nefc 112; F-I4.7 failing: ['contact_gate_part1'] (F-I4.8: written for the record)"
+  },
+  "dnu_file": true,
+  "delivered": "do_not_use (F-I4.7 failed)",
+  "commit": "ced42fd2771b1a228885fc880d50e1fa7e417570",
+  "code": {
+   "commit": "ced42fd2771b1a228885fc880d50e1fa7e417570",
+   "dirty": false,
+   "dirty_files": [],
+   "sha256": {
+    "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+    "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+    "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+    "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+    "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+    "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+    "tools/interlock_dev.py": "11b746537993c5f8854c578c2cab8182514888c03acb03363cb592f2737dbd7b",
+    "platebody.py": "da173d6b979a5b4f819b73419c5d9fe7a38fe12b504ee2520d653743e99df468",
+    "collcarve.py": "1beccf149fba568ecbcd66a94309156e2dbe430cb5ba2a46ed202c4f6c3b475c",
+    "cavpieces.py": "d9af2ec03be5ef50dbe45c3c2a2eb2a27f160556ca200cc76ff4c370857725ff"
+   }
+  },
+  "acceptance": {
+   "tests": {
+    "P2": true,
+    "P3": true,
+    "P4_wooden_piece_1": true,
+    "P4_wooden_piece_2": true,
+    "P5": true,
+    "P6": true,
+    "P7": true,
+    "keepout_wooden_piece_1": true,
+    "keepout_wooden_piece_2": true,
+    "contact_gate_part1": false
+   },
+   "P5": {
+    "shapes": 10,
+    "cap": 165,
+    "pass_": true
+   },
+   "failing": [
+    "contact_gate_part1"
+   ],
+   "pass_all_but_P1": false,
+   "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I2.12, F-I4.8)",
+   "contact_gate": {
+    "rule": "PREREG F-I4.17.1 part 1 (plain MuJoCo, sim=rl options and limits)",
+    "sim_rl": {
+     "path": "docs/research/work/15-verify/cfg_sim_rl.yaml",
+     "sha256": "695536b798ff5f7b1d391e3a6932288e23329c026f27cd364f77230d703f4b66",
+     "sha_matches_prereg": true,
+     "values": {
+      "fps": 20.0,
+      "substeps": 5,
+      "solver": "newton",
+      "integrator": "implicitfast",
+      "cone": "pyramidal",
+      "njmax": 512,
+      "nconmax": 256,
+      "impratio": 20.0,
+      "iterations": 100,
+      "ls_iterations": 50,
+      "use_mujoco_contacts": true
+     },
+     "mismatch": null,
+     "source_note": "committed copy of FlashCHORD configs/sim/rl.yaml (the FlashCHORD source is not on this machine)"
+    },
+    "options": {
+     "timestep": 0.01,
+     "solver": "Newton",
+     "cone": "pyramidal",
+     "integrator": "implicitfast",
+     "iterations": 100,
+     "ls_iterations": 50,
+     "impratio": 20.0,
+     "njmax": 512,
+     "nconmax": 256
+    },
+    "delivered_set": "delivered",
+    "control_set": "control",
+    "mujoco_version": "3.17.0",
+    "ratio_max": 2.0,
+    "scenes": {
+     "S1": {
+      "frame": 246,
+      "table_kind": "bundle",
+      "table_n": [
+       -0.132957,
+       -0.724146,
+       -0.676709
+      ],
+      "table_d": 0.52963
+     },
+     "S2": {
+      "frame": 218,
+      "table_kind": "bundle",
+      "table_n": [
+       -0.132957,
+       -0.724146,
+       -0.676709
+      ],
+      "table_d": 0.52963
+     }
+    },
+    "pieces": {
+     "delivered": [
+      5,
+      5
+     ],
+     "default": [
+      3,
+      3
+     ],
+     "control": [
+      1,
+      1
+     ]
+    },
+    "summary": {
+     "delivered": {
+      "max_nefc": 124,
+      "max_ncon": 31,
+      "overflow_copies": 0,
+      "by_scene": {
+       "S1": {
+        "max_nefc": 124,
+        "max_ncon": 31,
+        "median_max_nefc": 116.0,
+        "overflow_copies": 0
+       },
+       "S2": {
+        "max_nefc": 120,
+        "max_ncon": 30,
+        "median_max_nefc": 116.0,
+        "overflow_copies": 0
+       }
+      }
+     },
+     "default": {
+      "max_nefc": 112,
+      "max_ncon": 28,
+      "overflow_copies": 0,
+      "by_scene": {
+       "S1": {
+        "max_nefc": 96,
+        "max_ncon": 24,
+        "median_max_nefc": 96.0,
+        "overflow_copies": 0
+       },
+       "S2": {
+        "max_nefc": 112,
+        "max_ncon": 28,
+        "median_max_nefc": 112.0,
+        "overflow_copies": 0
+       }
+      }
+     },
+     "control": {
+      "max_nefc": 32,
+      "max_ncon": 8,
+      "overflow_copies": 0,
+      "by_scene": {
+       "S1": {
+        "max_nefc": 32,
+        "max_ncon": 8,
+        "median_max_nefc": 32.0,
+        "overflow_copies": 0
+       },
+       "S2": {
+        "max_nefc": 32,
+        "max_ncon": 8,
+        "median_max_nefc": 32.0,
+        "overflow_copies": 0
+       }
+      }
+     }
+    },
+    "ratio_delivered_to_control": 3.875,
+    "no_overflow_delivered": true,
+    "pass_": false,
+    "lowered": {
+     "delivered": {
+      "S1": {
+       "copies": 16,
+       "max_nefc": 112,
+       "median_max_nefc": 106.0,
+       "max_ncon": 28,
+       "median_max_ncon": 26.5,
+       "overflow_copies": 0,
+       "nan_copies": 0,
+       "lowered_by_mm": 16.702
+      },
+      "S2": {
+       "copies": 16,
+       "max_nefc": 132,
+       "median_max_nefc": 108.0,
+       "max_ncon": 33,
+       "median_max_ncon": 27.0,
+       "overflow_copies": 0,
+       "nan_copies": 0,
+       "lowered_by_mm": 16.993
+      }
+     },
+     "default": {
+      "S1": {
+       "copies": 16,
+       "max_nefc": 108,
+       "median_max_nefc": 98.0,
+       "max_ncon": 27,
+       "median_max_ncon": 24.5,
+       "overflow_copies": 0,
+       "nan_copies": 0,
+       "lowered_by_mm": 16.702
+      },
+      "S2": {
+       "copies": 16,
+       "max_nefc": 104,
+       "median_max_nefc": 88.0,
+       "max_ncon": 26,
+       "median_max_ncon": 22.0,
+       "overflow_copies": 0,
+       "nan_copies": 0,
+       "lowered_by_mm": 16.993
+      }
+     },
+     "control": {
+      "S1": {
+       "copies": 16,
+       "max_nefc": 40,
+       "median_max_nefc": 32.0,
+       "max_ncon": 10,
+       "median_max_ncon": 8.0,
+       "overflow_copies": 0,
+       "nan_copies": 0,
+       "lowered_by_mm": 16.702
+      },
+      "S2": {
+       "copies": 16,
+       "max_nefc": 40,
+       "median_max_nefc": 36.0,
+       "max_ncon": 10,
+       "median_max_ncon": 9.0,
+       "overflow_copies": 0,
+       "nan_copies": 0,
+       "lowered_by_mm": 16.993
+      }
+     }
+    },
+    "sec": 11.3,
+    "note": "overflow per copy := max ncon > nconmax or max nefc > njmax or a CONTACTFULL / CNSTRFULL warning; plain MuJoCo does not stop at the limits. Part 2 (budget.py, <= 380 rows per world in the full eval scene) is separate.",
+    "assembled_frames": [
+     218,
+     220,
+     222,
+     224,
+     226,
+     228,
+     230,
+     232,
+     234,
+     236,
+     238,
+     240,
+     242,
+     244,
+     246,
+     248,
+     250,
+     252,
+     254,
+     256,
+     258,
+     260,
+     262,
+     264,
+     266,
+     268,
+     270,
+     272,
+     274
+    ],
+    "p3_replay": {
+     "delivered": {
+      "copies": 16,
+      "max_nefc": 50,
+      "median_max_nefc": 34.0,
+      "max_ncon": 11,
+      "nan_copies": 0,
+      "frames": [
+       124,
+       274
+      ],
+      "note": "simphys.replay_xml options (2 ms, weld to the replayed target, no table); report only",
+      "sec": 5.3
+     },
+     "default": {
+      "copies": 16,
+      "max_nefc": 94,
+      "median_max_nefc": 80.0,
+      "max_ncon": 22,
+      "nan_copies": 0,
+      "frames": [
+       124,
+       274
+      ],
+      "note": "simphys.replay_xml options (2 ms, weld to the replayed target, no table); report only",
+      "sec": 5.3
+     },
+     "control": {
+      "copies": 16,
+      "max_nefc": 22,
+      "median_max_nefc": 22.0,
+      "max_ncon": 4,
+      "nan_copies": 0,
+      "frames": [
+       124,
+       274
+      ],
+      "note": "simphys.replay_xml options (2 ms, weld to the replayed target, no table); report only",
+      "sec": 3.8
+     }
+    }
+   },
+   "contact_budget_pending": true,
+   "contact_budget_fail": "delivered max nefc 124 / max ncon 31 (overflow copies 0), control max nefc 32, ratio 3.875 (<= 2.0), default max nefc 112",
+   "shapes": {
+    "wooden_piece_1": 5,
+    "wooden_piece_2": 5
+   },
+   "sec": 234.3
+  },
+  "contact_budget_part2": {
+   "status": "pending",
+   "bound": "max nefc per world <= 380 in the full eval scene (budget.py, W 8, 60 steps; PREREG F-I4.17.1 part 2)",
+   "why_not_here": "no FlashCHORD source, warp, newton or mujoco_warp in this container (venv: mujoco only); hand-off to determined-wright",
+   "caveat": "zero-action rollouts; a grasping policy may add hand-object contacts"
+  }
+ }
+}

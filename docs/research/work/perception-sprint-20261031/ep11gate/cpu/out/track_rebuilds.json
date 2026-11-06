@@ -1,0 +1,229 @@
+{
+ "mask10": {
+  "C": "b32ab808e560f8a3ebbec3658701066c",
+  "T": "25801979433d7265bfd5aef2ca868dcc"
+ },
+ "variants": {
+  "tracks_a": {
+   "env": "mask10 envs: refine in the scoring venv (py3.13, numpy 2.5.4, scipy 1.18.1, trimesh 5.2.0, rtree 1.4.1); physics in fcvenv (py3.12, FlashCHORD lock: numpy 2.4.6, scipy 1.18.0, trimesh 4.12.2, mujoco 3.8.1)",
+   "ok": true,
+   "C": "b32ab808e560f8a3ebbec3658701066c",
+   "T": "25801979433d7265bfd5aef2ca868dcc",
+   "T_pre": "1b5f84c6ce058d2d369a0c26f40a8385",
+   "T_phys": "74c04533790184e20515abcc93bdb49a",
+   "versions": {
+    "refine_python": {
+     "numpy": "2.5.4",
+     "scipy": "1.18.1",
+     "trimesh": "5.2.0"
+    },
+    "physics_python": {
+     "numpy": "2.4.6",
+     "scipy": "1.18.0",
+     "trimesh": "4.12.2",
+     "mujoco": "3.8.1"
+    }
+   },
+   "b0": {
+    "e11c": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ],
+    "e11t": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "tracks_boxmain": {
+   "env": "refine in a copy of the box main env (pip freeze of snapshot pt2.11-cu130-py313-20261020: numpy 2.5.4, scipy 1.18.1, trimesh 5.1.1, NO rtree); physics fcvenv",
+   "ok": false,
+   "C": "b32ab808e560f8a3ebbec3658701066c",
+   "T": null,
+   "T_pre": null,
+   "T_phys": null,
+   "versions": {
+    "refine_python": {
+     "numpy": "2.5.4",
+     "scipy": "1.18.1",
+     "trimesh": "5.1.1"
+    },
+    "physics_python": {
+     "numpy": "2.4.6",
+     "scipy": "1.18.0",
+     "trimesh": "4.12.2",
+     "mujoco": "3.8.1"
+    }
+   },
+   "b0": null,
+   "note": "S12 crashed: ModuleNotFoundError: No module named rtree (trimesh proximity in pipeline/nest.py)"
+  },
+  "tracks_boxmain_rtree": {
+   "env": "as tracks_boxmain + rtree 1.4.1",
+   "ok": true,
+   "C": "b32ab808e560f8a3ebbec3658701066c",
+   "T": "25801979433d7265bfd5aef2ca868dcc",
+   "T_pre": "1b5f84c6ce058d2d369a0c26f40a8385",
+   "T_phys": "74c04533790184e20515abcc93bdb49a",
+   "versions": {
+    "refine_python": {
+     "numpy": "2.5.4",
+     "scipy": "1.18.1",
+     "trimesh": "5.1.1"
+    },
+    "physics_python": {
+     "numpy": "2.4.6",
+     "scipy": "1.18.0",
+     "trimesh": "4.12.2",
+     "mujoco": "3.8.1"
+    }
+   },
+   "b0": {
+    "e11c": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ],
+    "e11t": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "tracks_minvenv": {
+   "env": "refine in a minimal py3.13 venv (numpy 2.5.4, scipy 1.18.1, trimesh 5.2.0, rtree 1.4.1) = the job's refine venv; physics fcvenv",
+   "ok": true,
+   "C": "b32ab808e560f8a3ebbec3658701066c",
+   "T": "25801979433d7265bfd5aef2ca868dcc",
+   "T_pre": "1b5f84c6ce058d2d369a0c26f40a8385",
+   "T_phys": "74c04533790184e20515abcc93bdb49a",
+   "versions": {
+    "refine_python": {
+     "numpy": "2.5.4",
+     "scipy": "1.18.1",
+     "trimesh": "5.2.0"
+    },
+    "physics_python": {
+     "numpy": "2.4.6",
+     "scipy": "1.18.0",
+     "trimesh": "4.12.2",
+     "mujoco": "3.8.1"
+    }
+   },
+   "b0": {
+    "e11c": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ],
+    "e11t": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "tracks_pinned2": {
+   "env": "refine box-main + rtree; physics in a py3.13 venv pinned to the FlashCHORD lock (numpy 2.4.6, scipy 1.18.0, trimesh 4.12.2, mujoco 3.8.1) = the job's physics venv",
+   "ok": true,
+   "C": "b32ab808e560f8a3ebbec3658701066c",
+   "T": "25801979433d7265bfd5aef2ca868dcc",
+   "T_pre": "1b5f84c6ce058d2d369a0c26f40a8385",
+   "T_phys": "74c04533790184e20515abcc93bdb49a",
+   "versions": {
+    "refine_python": {
+     "numpy": "2.5.4",
+     "scipy": "1.18.1",
+     "trimesh": "5.1.1"
+    },
+    "physics_python": {
+     "numpy": "2.4.6",
+     "scipy": "1.18.0",
+     "trimesh": "4.12.2",
+     "mujoco": "3.8.1"
+    }
+   },
+   "b0": {
+    "e11c": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ],
+    "e11t": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "tracks_nov4": {
+   "env": "the job's two pinned venvs with numpy AVX-512 dispatch disabled (NPY_DISABLE_CPU_FEATURES=X86_V4)",
+   "ok": true,
+   "C": "b32ab808e560f8a3ebbec3658701066c",
+   "T": "25801979433d7265bfd5aef2ca868dcc",
+   "T_pre": "1b5f84c6ce058d2d369a0c26f40a8385",
+   "T_phys": "74c04533790184e20515abcc93bdb49a",
+   "versions": {
+    "refine_python": {
+     "numpy": "2.5.4",
+     "scipy": "1.18.1",
+     "trimesh": "5.2.0"
+    },
+    "physics_python": {
+     "numpy": "2.4.6",
+     "scipy": "1.18.0",
+     "trimesh": "4.12.2",
+     "mujoco": "3.8.1"
+    }
+   },
+   "b0": {
+    "e11c": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ],
+    "e11t": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "tracks_onevenv": {
+   "env": "refine AND physics in the refine venv + mujoco 3.8.1 (numpy 2.5.4, trimesh 5.2.0 for the physics)",
+   "ok": true,
+   "C": "b32ab808e560f8a3ebbec3658701066c",
+   "T": "ffb4e8dfff86fcfdebdb6d3b782a79c0",
+   "T_pre": "1b5f84c6ce058d2d369a0c26f40a8385",
+   "T_phys": "493661edcce792e82ea634d4c23e0336",
+   "versions": {
+    "refine_python": {
+     "numpy": "2.5.4",
+     "scipy": "1.18.1",
+     "trimesh": "5.2.0"
+    },
+    "physics_python": {
+     "numpy": "2.5.4",
+     "scipy": "1.18.1",
+     "trimesh": "5.2.0",
+     "mujoco": "3.8.1"
+    }
+   },
+   "b0": {
+    "e11c": [
+     "IDENTICAL",
+     0.0,
+     0.0
+    ],
+    "e11t": [
+     "DIFFERS",
+     0.368338,
+     0.339221
+    ]
+   }
+  }
+ }
+}

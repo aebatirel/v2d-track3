@@ -1,0 +1,215 @@
+{
+ "ep": 41,
+ "variant": "A",
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 299,
+ "changed_frames": {
+  "white_pot": 60
+ },
+ "rest_frames": {
+  "white_pot": 72
+ },
+ "segments": [
+  {
+   "obj": "white_pot",
+   "start": 0,
+   "end": 15,
+   "status": "shift_t",
+   "t_mm": [
+    -0.424,
+    -5.59,
+    -5.836
+   ],
+   "t_norm_mm": 8.093,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.055139,
+    0.069209,
+    0.58437
+   ],
+   "constraint_frames": 16,
+   "pair_frames": {},
+   "before": {
+    "ok": 0.0,
+    "max_mm": 9.46,
+    "median_mm": 8.45
+   },
+   "hand_min_mm": 32.2,
+   "lowest_above_table_mm_median": -8.45,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 9.46,
+    "median_mm": 8.45
+   },
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 9.46,
+    "median_mm": 8.45
+   },
+   "stage1": {
+    "it": 4,
+    "ok": 0.875,
+    "max_mm": 1.37,
+    "viol": 1933,
+    "t_mm": [
+     -0.42,
+     -5.59,
+     -5.84
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.875,
+    "max_mm": 1.37,
+    "median_mm": 0.36
+   },
+   "after_all_rest_partners": {
+    "ok": 0.875,
+    "max_mm": 1.37,
+    "median_mm": 0.36
+   }
+  },
+  {
+   "obj": "white_pot",
+   "start": 92,
+   "end": 109,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    -0.005621,
+    0.009506,
+    0.420879
+   ],
+   "constraint_frames": 18,
+   "pair_frames": {},
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": Infinity,
+   "lowest_above_table_mm_median": 121.77,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   }
+  },
+  {
+   "obj": "white_pot",
+   "start": 261,
+   "end": 298,
+   "status": "shift_t",
+   "t_mm": [
+    -0.266,
+    -3.508,
+    -3.663
+   ],
+   "t_norm_mm": 5.079,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.065842,
+    0.084603,
+    0.565627
+   ],
+   "constraint_frames": 38,
+   "pair_frames": {},
+   "before": {
+    "ok": 0.0,
+    "max_mm": 6.92,
+    "median_mm": 5.42
+   },
+   "hand_min_mm": 33.0,
+   "lowest_above_table_mm_median": -5.42,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 6.92,
+    "median_mm": 5.42
+   },
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 6.92,
+    "median_mm": 5.42
+   },
+   "stage1": {
+    "it": 3,
+    "ok": 0.816,
+    "max_mm": 1.84,
+    "viol": 4228,
+    "t_mm": [
+     -0.27,
+     -3.51,
+     -3.66
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.816,
+    "max_mm": 1.84,
+    "median_mm": 0.34
+   },
+   "after_all_rest_partners": {
+    "ok": 0.816,
+    "max_mm": 1.84,
+    "median_mm": 0.34
+   }
+  }
+ ],
+ "seconds": 2.3
+}

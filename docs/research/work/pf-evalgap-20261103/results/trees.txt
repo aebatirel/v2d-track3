@@ -1,0 +1,11 @@
+== training tree status
+ M robotic_grounding/flash_chord/src/flash_chord/lifecycle/reset.py
+ M robotic_grounding/flash_chord/src/flash_chord/objectives/keypoints.py
+ M robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+ M robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+?? robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+?? robotic_grounding/flash_chord/src/flash_chord/lifecycle/v2d_lift.py
+?? robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+?? robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+== clean tree status
+== diff kit vs repo evaluate_policy.py

@@ -1,0 +1,492 @@
+{
+ "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98",
+ "allowed": [
+  {
+   "label": "calib",
+   "result": "exo"
+  },
+  {
+   "label": "tracks public ep2",
+   "result": "['cam_T_white_pot', 'cam_T_white_pot_lid', 'world_T_cam']"
+  },
+  {
+   "label": "tracks eval ep1",
+   "result": "['cam_T_white_pot', 'cam_T_white_pot_lid', 'world_T_cam']"
+  },
+  {
+   "label": "det ep2 mask keys",
+   "result": "['K', 'depth', 'frame', 'image', 'mask_shape', 'masks', 'names']"
+  },
+  {
+   "label": "det ep2 masks only",
+   "result": "(66, 500, 100)"
+  },
+  {
+   "label": "video public ep2_a",
+   "result": "65536"
+  },
+  {
+   "label": "video eval ep1_a",
+   "result": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep1_a.mp4"
+  },
+  {
+   "label": "roster kit",
+   "result": "20"
+  },
+  {
+   "label": "roster public",
+   "result": "20"
+  },
+  {
+   "label": "kit config",
+   "result": "['_comment', 'accepted_eval_code_sha256', 'accepted_eval_script_sha256']"
+  },
+  {
+   "label": "own write+read",
+   "result": "{'x': 1}"
+  },
+  {
+   "label": "io_gt poses+calib",
+   "result": "(['cam_T_white_pot', 'cam_T_white_pot_lid', 'world_T_cam'], (1600, 1000))"
+  },
+  {
+   "label": "constant generic",
+   "result": "0.004"
+  }
+ ],
+ "refused": [
+  {
+   "label": "scan (data/scan)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/scan/white_pot.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused own input /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/scan/white_pot.glb: path contains '/scan'"
+  },
+  {
+   "label": "library_v3 mesh",
+   "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused kit input /home/user/v2d-track3/meshes/library_v3/white_pot.glb: deny-list glob 'meshes/library_v3/*'"
+  },
+  {
+   "label": "library_v2 mesh",
+   "path": "/home/user/v2d-track3/meshes/library_v2/white_pot.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused kit input /home/user/v2d-track3/meshes/library_v2/white_pot.glb: deny-list glob 'meshes/library_v2/*'"
+  },
+  {
+   "label": "library_v1 mesh",
+   "path": "/home/user/v2d-track3/meshes/library_v1/white_pot.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused kit input /home/user/v2d-track3/meshes/library_v1/white_pot.glb: deny-list glob 'meshes/library_v1/*'"
+  },
+  {
+   "label": "library_v4 mesh",
+   "path": "/home/user/v2d-track3/meshes/library_v4/white_pot.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused kit input /home/user/v2d-track3/meshes/library_v4/white_pot.glb: deny-list glob 'meshes/library_v4/*'"
+  },
+  {
+   "label": "library_v3x mesh",
+   "path": "/home/user/v2d-track3/meshes/library_v3x/beige_cup.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "nput /home/user/v2d-track3/meshes/library_v3x/beige_cup.glb: refused folder: meshes/library_v1..v4, library_v3x (pattern '**/meshes/library_v3x/**', mode clean)"
+  },
+  {
+   "label": "results/prim mesh",
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_lid_ep2_fit_v1.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "d-track3/docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_lid_ep2_fit_v1.glb: refused folder: results/prim (pattern '**/results/prim/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/prim",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_lid_ep2_fit.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_lid_ep2_fit.glb: refused folder: scratchpad/prim (pattern '{DATA}/prim/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/lathe",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep41_white_pot_hyb.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep41_white_pot_hyb.glb: refused folder: scratchpad/lathe (pattern '{DATA}/lathe/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/auto",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/roster/ep0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/roster/ep0.npz: refused folder: scratchpad/auto (stage-1b outputs) (pattern '{DATA}/auto/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/gen/mesh-*",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/scores.log",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "h-20261029-gen-f3fbeb0/scores.log: refused folder: scratchpad/gen/mesh-* (generator outputs seeded with library_v3) (pattern '{DATA}/gen/mesh-*/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/crops",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/crops/ep11/beige_cup_crops.json",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "7-536b-9d55-58f81afca135/scratchpad/crops/ep11/beige_cup_crops.json: refused folder: scratchpad/crops (library_v3 seeds) (pattern '{DATA}/crops/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/evalcrops",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/evalcrops/log_ep16_wooden_spoon.txt",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "58f81afca135/scratchpad/evalcrops/log_ep16_wooden_spoon.txt: refused folder: scratchpad/evalcrops (library_v3 seeds) (pattern '{DATA}/evalcrops/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/diag",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/common.py",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "b-9d55-58f81afca135/scratchpad/diag/sam-placement/common.py: refused folder: scratchpad/diag (scan placements, load_scan) (pattern '{DATA}/diag/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/gmg/design",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/design/evidence.md",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "b-9d55-58f81afca135/scratchpad/gmg/design/evidence.md: refused folder: scratchpad/gmg/design (design-probe outputs) (pattern '{DATA}/gmg/design/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/obs_all as own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep26_white_pot.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "5-58f81afca135/scratchpad/obs_all/ep26_white_pot.npz: refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode clean)"
+  },
+  {
+   "label": "scratchpad/obs_all as obs_all (dev-only role)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep26_white_pot.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "ard: role 'obs_all' is dev-only (GMG_MODE=clean): /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep26_white_pot.npz"
+  },
+  {
+   "label": "scratchpad/obs",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs/ep41_white_pot.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "rack3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs/ep41_white_pot.npz: refused folder: scratchpad/obs (library ROI) (pattern '{DATA}/obs/**', mode clean)"
+  },
+  {
+   "label": "x0_pool (dev-only role)",
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/results/gen-probe/scores.jsonl",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "gmg guard: role 'x0_pool' is dev-only (GMG_MODE=clean): /home/user/v2d-track3/docs/research/mesh-2026-10-26/results/gen-probe/scores.jsonl"
+  },
+  {
+   "label": "fixture (dev-only role)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_lid_ep2_fit.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "re' is dev-only (GMG_MODE=clean): /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_lid_ep2_fit.glb"
+  },
+  {
+   "label": "scan-templated track (loc/perc)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/loc/perc/ep2/poses.npz",
+   "exists": false,
+   "by": "gmg.guard",
+   "reason": "mg guard: refused tracks input /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/loc/perc/ep2/poses.npz: path contains '/loc/'"
+  },
+  {
+   "label": "align file",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/page/align/ep11_beige_cup_align.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "efused own input /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/page/align/ep11_beige_cup_align.npz: path contains '_align'"
+  },
+  {
+   "label": "parquet",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/t3/ep2.parquet",
+   "exists": false,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused roster input /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/t3/ep2.parquet: path contains '.parquet'"
+  },
+  {
+   "label": "mocap path",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/mocap/ep2.npz",
+   "exists": false,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused tracks input /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/mocap/ep2.npz: path contains 'mocap'"
+  },
+  {
+   "label": "kit scorer",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/metric_code/track_3/CD-O.py",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "mp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/metric_code/track_3/CD-O.py: the kit scorer is excluded"
+  },
+  {
+   "label": "kit scorer v2dlb",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/v2dlb/object_mesh.py",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "nput /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/v2dlb/object_mesh.py: the kit scorer is excluded"
+  },
+  {
+   "label": "det store poses as tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/poses.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "d/data/eval/ep*/poses.npz', '/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/tracks/**']"
+  },
+  {
+   "label": "hands not a clean role",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/hands.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "d/data/eval/ep*/poses.npz', '/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/tracks/**']"
+  },
+  {
+   "label": "unknown role",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "g guard: unknown role 'scan' (roles: ('calib', 'tracks', 'depth', 'video', 'det', 'roster', 'kit', 'weights', 'own', 'frozen', 'obs_all', 'x0_pool', 'fixture'))"
+  },
+  {
+   "label": "det key sim",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: allowed ('masks', 'mask_shape', 'frame', 'K', 'image', 'depth', 'names') (role det)"
+  },
+  {
+   "label": "det key gdino",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: allowed ('masks', 'mask_shape', 'frame', 'K', 'image', 'depth', 'names') (role det)"
+  },
+  {
+   "label": "det key chosen",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: allowed ('masks', 'mask_shape', 'frame', 'K', 'image', 'depth', 'names') (role det)"
+  },
+  {
+   "label": "det key template_extent",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: allowed ('masks', 'mask_shape', 'frame', 'K', 'image', 'depth', 'names') (role det)"
+  },
+  {
+   "label": "det key score",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: allowed ('masks', 'mask_shape', 'frame', 'K', 'image', 'depth', 'names') (role det)"
+  },
+  {
+   "label": "det key verify",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: allowed ('masks', 'mask_shape', 'frame', 'K', 'image', 'depth', 'names') (role det)"
+  },
+  {
+   "label": "hard-link copy",
+   "path": null,
+   "exists": null,
+   "by": "gmg.guard",
+   "reason": "e-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/bundle/hl_dst.json: regular file with 2 hard links"
+  },
+  {
+   "label": "symlink to a scan",
+   "path": null,
+   "exists": null,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused own input /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/scan/white_pot.glb: path contains '/scan'"
+  },
+  {
+   "label": "open() of a scan (hook)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/scan/white_pot.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused open of /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/scan/white_pot.glb: path contains '/scan'"
+  },
+  {
+   "label": "np.load of obs_all (hook)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep26_white_pot.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "5-58f81afca135/scratchpad/obs_all/ep26_white_pot.npz: refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode clean)"
+  },
+  {
+   "label": "os.open of library_v3 (hook)",
+   "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "gmg guard: refused open of /home/user/v2d-track3/meshes/library_v3/white_pot.glb: deny-list glob 'meshes/library_v3/*'"
+  },
+  {
+   "label": "open() of diag code (hook)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/common.py",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "b-9d55-58f81afca135/scratchpad/diag/sam-placement/common.py: refused folder: scratchpad/diag (scan placements, load_scan) (pattern '{DATA}/diag/**', mode clean)"
+  },
+  {
+   "label": "(a) open_input of det_f0.npz outside load_npz",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "de-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: a det file is read through guard.load_npz only (mask keys)"
+  },
+  {
+   "label": "(a) np.load of det_f0.npz (hook)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: det file name 'det_f0.npz': a det file is opened only inside guard.load_npz"
+  },
+  {
+   "label": "(a) open() of det_f0.npz (hook)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: det file name 'det_f0.npz': a det file is opened only inside guard.load_npz"
+  },
+  {
+   "label": "(b) shutil.copyfile det_f0.npz -> RUN (hook)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: det file name 'det_f0.npz': a det file is opened only inside guard.load_npz"
+  },
+  {
+   "label": "(c) load_npz det_f0.npz as weights with sim, chosen",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "6b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz: allowed ('masks', 'mask_shape', 'frame', 'K', 'image', 'depth', 'names') (det file name 'det_f0.npz')"
+  },
+  {
+   "label": "(c) load_npz det_f0.npz as own, all keys",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "f0.npz: not on the own allow-list ['/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/**']"
+  },
+  {
+   "label": "os.open with dir_fd into auto/ (hook)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/roster/ep0.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/roster/ep0.npz: refused folder: scratchpad/auto (stage-1b outputs) (pattern '{DATA}/auto/**', mode clean)"
+  },
+  {
+   "label": "write into another run folder (hook)",
+   "path": null,
+   "exists": null,
+   "by": "gmg.guard",
+   "reason": "un root outside the current run folder (/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98)"
+  },
+  {
+   "label": "write into the dev run root (hook)",
+   "path": null,
+   "exists": null,
+   "by": "gmg.guard",
+   "reason": "un root outside the current run folder (/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98)"
+  },
+  {
+   "label": "io_gt.load_obs of obs_all",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep26_white_pot.npz",
+   "exists": true,
+   "by": "gmg.guard",
+   "reason": "5-58f81afca135/scratchpad/obs_all/ep26_white_pot.npz: refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode clean)"
+  },
+  {
+   "label": "io_gt.load_mesh of library_v3",
+   "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+   "exists": true,
+   "by": "autokit.io_gt",
+   "reason": "integrity: refused path '/home/user/v2d-track3/meshes/library_v3/white_pot.glb' (deny-list glob 'meshes/library_v3/*')"
+  },
+  {
+   "label": "io_gt.mesh_input of a dropped root (lathe)",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep41_white_pot_hyb.glb",
+   "exists": true,
+   "by": "autokit.io_gt",
+   "reason": "3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs', '/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev')"
+  },
+  {
+   "label": "constant 7 mm ball radius",
+   "path": null,
+   "exists": null,
+   "by": "gmg.guard",
+   "reason": "gmg constant ball_r_mm=7.0 (generic): a scan-informed value (SPEC section 2); allowed only with origin ('fitted',)"
+  },
+  {
+   "label": "constant tau_v3 0.20",
+   "path": null,
+   "exists": null,
+   "by": "gmg.guard",
+   "reason": "EREG A.6 row (one of ('V5', 'ball detector', 'class order', 'grammar', 'slab two-face thickness', 'track sanity', 'identity tests', 'K-a / K-b FSV difference'))"
+  },
+  {
+   "label": "constant fitted to scans",
+   "path": null,
+   "exists": null,
+   "by": "gmg.guard",
+   "reason": "gmg constant t0_mm: fitted to 'scan wall median': constants are never fitted to scans or GT"
+  }
+ ],
+ "unexpected": [],
+ "absent": [
+  {
+   "label": "depth public ep2",
+   "error": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/depth/ep2/depths_fs0.5.npy"
+  }
+ ],
+ "io_gt_roots": {
+  "obs": {
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all": "refused: refused folder: scratchpad/obs_all (library_v3 ROI and --others) (pattern '{DATA}/obs_all/**', mode clean)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs": "refused: refused folder: scratchpad/obs (library ROI) (pattern '{DATA}/obs/**', mode clean)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/refined": "refused: refused folder: scratchpad/auto (stage-1b outputs) (pattern '{DATA}/auto/**', mode clean)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs": "allowed as own",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev": "refused: not on the own allow-list ['/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/**']"
+  },
+  "corr": {
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/refined": "refused: refused folder: scratchpad/auto (stage-1b outputs) (pattern '{DATA}/auto/**', mode clean)"
+  },
+  "poses": {
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep": "allowed as tracks"
+  },
+  "calib": {
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json": "allowed as calib"
+  },
+  "mesh": {
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs": "allowed as own",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev": "refused: not on the own allow-list ['/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/**']"
+  }
+ },
+ "manifest": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0r2final-af30e98/manifest.json",
+  "tier": "P1",
+  "inputs": 10,
+  "refusals": 51,
+  "hook": {
+   "installed": true,
+   "blocked": 10
+  },
+  "commit": "af30e98ebd675b0f5eee235eb2f2cff2ccfc3c94"
+ },
+ "pass": true
+}

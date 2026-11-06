@@ -1,0 +1,133 @@
+== 2026-10-31T16:25:01Z mini_dust_pan
+{
+ "label": "T2/sam3d_ep39_mini_dust_pan_k297_s42_lib",
+ "sha": "3a0c62f390b4646e",
+ "cdo_eval": 0.25939999999999996,
+ "cdo_all": 0.26007500000000006,
+ "cdo_sd": 0.0018152134860671347,
+ "add_eval": 5.3149999999999995,
+ "add_med": 4.915,
+ "add_med6": 4.83,
+ "add_max": 5.96,
+ "rot_max": 1.62,
+ "flips_eval": 0,
+ "flips_all": 0,
+ "n_seeds": 32,
+ "amb_mm": 6.122096883971343,
+ "secs": 386.0
+}
+{
+ "add_med6": 4.83,
+ "add_med_all": 4.915,
+ "add_thr": 7.65,
+ "flips_all": 0,
+ "n_seeds": 32,
+ "pairs": {
+  "19": {
+   "probe_cdo": 0.2619,
+   "cdo_thr": 0.311,
+   "placed_cdo_recheck": 0.2587,
+   "add_seed": 4.67,
+   "flip_seed": false,
+   "win": true,
+   "secondary_vs_seed_base": true
+  },
+  "38": {
+   "probe_cdo": 0.2592,
+   "cdo_thr": 0.311,
+   "placed_cdo_recheck": 0.2601,
+   "add_seed": 5.96,
+   "flip_seed": false,
+   "win": true,
+   "secondary_vs_seed_base": true
+  }
+ },
+ "win_any": true,
+ "win_all": true
+}
+== 2026-10-31T16:31:28Z water_pitcher
+{
+ "label": "T2/sam3d_ep22_water_pitcher_k174_s42_lib",
+ "sha": "c3a24a14838e92bd",
+ "cdo_eval": 0.7496,
+ "cdo_all": 0.7327516129032259,
+ "cdo_sd": 0.008528732121018434,
+ "add_eval": 23.26,
+ "add_med": 28.33,
+ "add_med6": 28.405,
+ "add_max": 31.96,
+ "rot_max": 10.93,
+ "flips_eval": 0,
+ "flips_all": 0,
+ "n_seeds": 31,
+ "amb_mm": 9.668286716420948,
+ "secs": 420.5
+}
+{
+ "add_med6": 28.405,
+ "add_med_all": 28.33,
+ "add_thr": 9.97,
+ "flips_all": 0,
+ "n_seeds": 31,
+ "pairs": {
+  "20": {
+   "probe_cdo": 0.771,
+   "cdo_thr": 0.874,
+   "placed_cdo_recheck": 0.7496,
+   "add_seed": 23.26,
+   "flip_seed": false,
+   "win": false,
+   "secondary_vs_seed_base": true
+  }
+ },
+ "win_any": false,
+ "win_all": false
+}
+== 2026-10-31T16:38:30Z beige_cup
+{
+ "label": "T2/sam3d_ep11_beige_cup_k6_s42_lib",
+ "sha": "ff6a0c1efed4c9b3",
+ "cdo_eval": 0.5335000000000001,
+ "cdo_all": 0.52834375,
+ "cdo_sd": 0.004707436769357618,
+ "add_eval": 14.68,
+ "add_med": 15.190000000000001,
+ "add_med6": 15.025,
+ "add_max": 18.31,
+ "rot_max": 7.72,
+ "flips_eval": 0,
+ "flips_all": 0,
+ "n_seeds": 32,
+ "amb_mm": 7.882373984776444,
+ "secs": 395.5
+}
+{
+ "add_med6": 15.025,
+ "add_med_all": 15.190000000000001,
+ "add_thr": 8.97,
+ "flips_all": 0,
+ "n_seeds": 32,
+ "pairs": {
+  "10": {
+   "probe_cdo": 0.5191,
+   "cdo_thr": 0.836,
+   "placed_cdo_recheck": 0.527,
+   "add_seed": 14.55,
+   "flip_seed": false,
+   "win": false,
+   "secondary_vs_seed_base": true
+  },
+  "8": {
+   "probe_cdo": 0.5326,
+   "cdo_thr": 0.71,
+   "placed_cdo_recheck": 0.54,
+   "add_seed": 14.81,
+   "flip_seed": false,
+   "win": false,
+   "secondary_vs_seed_base": true
+  }
+ },
+ "win_any": false,
+ "win_all": false
+}
+== 2026-10-31T16:45:07Z ALL DONE

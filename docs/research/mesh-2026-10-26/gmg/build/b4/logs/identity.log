@@ -1,0 +1,35 @@
+1024 registrations, 2657.9 s
+(0, 'white_pot') {'testable': True, 'pass_': True, 'nearest': 'ep2:white_pot', 'd_own_mm': 4.141, 'd_other_mm': 19.048, 'reason': None}
+(0, 'white_pot_lid') {'testable': True, 'pass_': False, 'nearest': 'ep23:wooden_piece_1', 'd_own_mm': 24.843, 'd_other_mm': 7.922, 'reason': None}
+(2, 'white_pot') {'testable': True, 'pass_': True, 'nearest': 'ep0:white_pot', 'd_own_mm': 4.077, 'd_other_mm': 19.309, 'reason': None}
+(2, 'white_pot_lid') {'testable': False, 'pass_': None, 'nearest': None, 'd_own_mm': None, 'd_other_mm': None, 'reason': 'no other good public episode of this object'}
+(11, 'beige_cup') {'testable': False, 'pass_': None, 'nearest': None, 'd_own_mm': None, 'd_other_mm': None, 'reason': 'no other good public episode of this object'}
+(11, 'blue_cup') {'testable': True, 'pass_': False, 'nearest': 'ep11:beige_cup', 'd_own_mm': 3.807, 'd_other_mm': 3.607, 'reason': None}
+(12, 'blue_cup') {'testable': True, 'pass_': True, 'nearest': 'ep21:blue_cup', 'd_own_mm': 6.681, 'd_other_mm': 7.701, 'reason': None}
+(12, 'plastic_dish_rack') {'testable': True, 'pass_': True, 'nearest': 'ep26:plastic_dish_rack', 'd_own_mm': 5.623, 'd_other_mm': 28.49, 'reason': None}
+(13, 'blue_cup') {'testable': True, 'pass_': True, 'nearest': 'ep12:blue_cup', 'd_own_mm': 6.591, 'd_other_mm': 7.623, 'reason': None}
+(13, 'plastic_dish_rack') {'testable': True, 'pass_': True, 'nearest': 'ep12:plastic_dish_rack', 'd_own_mm': 10.157, 'd_other_mm': 36.643, 'reason': None}
+(18, 'mini_dust_pan') {'testable': True, 'pass_': True, 'nearest': 'ep40:mini_dust_pan', 'd_own_mm': 3.352, 'd_other_mm': 7.948, 'reason': None}
+(18, 'mini_sweeper') {'testable': True, 'pass_': False, 'nearest': 'ep39:mini_dust_pan', 'd_own_mm': 8.78, 'd_other_mm': 7.291, 'reason': None}
+(21, 'blue_cup') {'testable': True, 'pass_': True, 'nearest': 'ep22:blue_cup', 'd_own_mm': 3.139, 'd_other_mm': 3.787, 'reason': None}
+(21, 'water_pitcher') {'testable': True, 'pass_': True, 'nearest': 'ep22:water_pitcher', 'd_own_mm': 5.452, 'd_other_mm': 18.556, 'reason': None}
+(22, 'blue_cup') {'testable': True, 'pass_': False, 'nearest': 'ep11:beige_cup', 'd_own_mm': 3.794, 'd_other_mm': 3.682, 'reason': None}
+(22, 'water_pitcher') {'testable': True, 'pass_': True, 'nearest': 'ep21:water_pitcher', 'd_own_mm': 5.377, 'd_other_mm': 18.908, 'reason': None}
+(23, 'wooden_piece_1') {'testable': True, 'pass_': False, 'nearest': 'ep31:mini_sweeper', 'd_own_mm': 18.023, 'd_other_mm': 4.945, 'reason': None}
+(23, 'wooden_piece_2') {'testable': True, 'pass_': False, 'nearest': 'ep24:wooden_piece_1', 'd_own_mm': 4.502, 'd_other_mm': 4.2, 'reason': None}
+(24, 'wooden_piece_1') {'testable': True, 'pass_': False, 'nearest': 'ep24:wooden_piece_2', 'd_own_mm': 18.043, 'd_other_mm': 2.815, 'reason': None}
+(24, 'wooden_piece_2') {'testable': True, 'pass_': False, 'nearest': 'ep24:wooden_piece_1', 'd_own_mm': 4.122, 'd_other_mm': 2.811, 'reason': None}
+(26, 'plastic_dish_rack') {'testable': True, 'pass_': True, 'nearest': 'ep12:plastic_dish_rack', 'd_own_mm': 6.025, 'd_other_mm': 27.14, 'reason': None}
+(26, 'white_pot') {'testable': True, 'pass_': True, 'nearest': 'ep43:white_pot', 'd_own_mm': 7.793, 'd_other_mm': 19.939, 'reason': None}
+(27, 'plastic_dish_rack') {'testable': True, 'pass_': True, 'nearest': 'ep26:plastic_dish_rack', 'd_own_mm': 6.821, 'd_other_mm': 23.725, 'reason': None}
+(27, 'white_pot') {'testable': True, 'pass_': True, 'nearest': 'ep43:white_pot', 'd_own_mm': 5.713, 'd_other_mm': 19.335, 'reason': None}
+(31, 'mini_sweeper') {'testable': True, 'pass_': False, 'nearest': 'ep23:wooden_piece_1', 'd_own_mm': 8.29, 'd_other_mm': 5.289, 'reason': None}
+(31, 'plastic_dish_rack') {'testable': True, 'pass_': True, 'nearest': 'ep12:plastic_dish_rack', 'd_own_mm': 6.242, 'd_other_mm': 25.489, 'reason': None}
+(39, 'mini_dust_pan') {'testable': True, 'pass_': True, 'nearest': 'ep40:mini_dust_pan', 'd_own_mm': 3.151, 'd_other_mm': 7.545, 'reason': None}
+(40, 'mini_dust_pan') {'testable': True, 'pass_': True, 'nearest': 'ep39:mini_dust_pan', 'd_own_mm': 3.228, 'd_other_mm': 8.423, 'reason': None}
+(41, 'white_pot') {'testable': True, 'pass_': True, 'nearest': 'ep42:white_pot', 'd_own_mm': 5.561, 'd_other_mm': 17.861, 'reason': None}
+(42, 'white_pot') {'testable': True, 'pass_': True, 'nearest': 'ep41:white_pot', 'd_own_mm': 5.628, 'd_other_mm': 18.808, 'reason': None}
+(43, 'white_pot') {'testable': True, 'pass_': True, 'nearest': 'ep27:white_pot', 'd_own_mm': 5.827, 'd_other_mm': 18.314, 'reason': None}
+(44, 'white_pot') {'testable': True, 'pass_': True, 'nearest': 'ep0:white_pot', 'd_own_mm': 5.934, 'd_other_mm': 19.568, 'reason': None}
+(45, 'white_pot') {'testable': True, 'pass_': True, 'nearest': 'ep41:white_pot', 'd_own_mm': 7.008, 'd_other_mm': 17.909, 'reason': None}
+{"log": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/audit/b4-20261031-b4ext4-b61e8aa-identity.strace", "policy": "gmg", "mode": "clean", "manifest": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/manifests/identity.json", "events": 1167, "opens_ok": 1083, "forbidden": 0, "unlisted": 0, "unrecorded": 0, "writes_outside_run": 0, "network": 0, "local_sockets": 0, "system": 534, "system_files": 15, "code_outside_interp": 15, "git": 37, "git_tree_reads": 1, "data_reads": 58, "det_reads": 0, "written": 23, "moves": 0, "links": 0, "symlinks": 0, "interp_dirs": 5, "cwd0": "/home/user/v2d-track3/docs/research/mesh-2026-10-26", "allow_net": false, "forbidden_opens": 0, "forbidden_attempted_failed": 0, "command": 6, "returncode": 0}

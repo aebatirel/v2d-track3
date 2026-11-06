@@ -1,0 +1,67 @@
+{
+ "inputs": {
+  "poses.npz": "2f4800ff07fd37da531acf2ee60f120e",
+  "poses_world_vo.npz": "6e2c2ff5fd0ea38c0b0f21b4783048a4",
+  "depth0.npy": "5b9fb362bda1264854c5fdc0c9e4c502",
+  "hands_refined.npz": "d9c391deaf73509b6c52e3b743580272"
+ },
+ "tracks": {
+  "C": {
+   "poses.npz": "b32ab808e560f8a3ebbec3658701066c",
+   "poses_world_vo.npz": "694dfb0ecaac62fb5ecfd14ee4c55b3b"
+  },
+  "T": {
+   "poses.npz": "25801979433d7265bfd5aef2ca868dcc",
+   "poses_world_vo.npz": "303cc827aa1745c4df22ed9260059b94"
+  }
+ },
+ "T_stages": {
+  "pre": "1b5f84c6ce058d2d369a0c26f40a8385",
+  "phys": "74c04533790184e20515abcc93bdb49a"
+ },
+ "finite": {
+  "C": true,
+  "T_pre": true,
+  "T": true
+ },
+ "code": {
+  "pipeline/refine.py": "aae1fb410a659f6f8b494e5e93dbbbe0affbaa4db4a094ed012dd3977f1954b1",
+  "pipeline/nest.py": "7e063b944324666cdec987ec3e036192b907cadcadca303112dd7f571559dfee",
+  "pipeline/offsetfix.py": "1610649f718dcff07e616176dd4ba3d5159d4e01c9eae03908d88f3ff348d2c5",
+  "tools/nest_physics.py": "e95000361ca4beccdb7fffcc0ad7769963a03c3a03161d55fa6d5a90956fde26"
+ },
+ "versions": {
+  "refine_python": {
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "trimesh": "5.2.0"
+  },
+  "physics_python": {
+   "numpy": "2.4.6",
+   "scipy": "1.18.0",
+   "trimesh": "4.12.2",
+   "mujoco": "3.8.1"
+  }
+ },
+ "nest_physics": {
+  "window": [
+   42,
+   137
+  ],
+  "frames_settled": 36,
+  "runs": [
+   [
+    101,
+    137
+   ]
+  ],
+  "dz_cm": {
+   "beige_cup": {
+    "median": -1.07,
+    "min": -1.454,
+    "max": -0.901
+   }
+  }
+ },
+ "ok": true
+}

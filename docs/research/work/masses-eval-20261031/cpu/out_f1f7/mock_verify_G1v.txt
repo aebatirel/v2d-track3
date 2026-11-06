@@ -1,0 +1,2 @@
+ep20 VERIFIED :: s42 n 10 mean 0.8993 sd 0.0135 min 0.8804 cut 0/0; s43 n 10 mean 0.8966 sd 0.0105 min 0.882 cut 0/0 :: candidate 43 :: loads s42 blue_cup 0.128,water_pitcher 0.5031; s43 blue_cup 0.128,water_pitcher 0.5031
+confirmation: {"RUNS_EXTRA": "20261101-mevG1v20-mocksha@refs/mass1_sf/ep20,refs/mass1s43_glockt/ep20", "PICK_EXTRA": "20:20261101-mevG1v20-mocksha:ck=results/mass1s43_glock_public/ep20/best/policy.safetensors", "MASS_EPS": "20", "EVAL_ONLY": "20", "EPS_ONLY": "20", "MA_ARGS": "", "ASSET_PIECES_EXTRA": ""}

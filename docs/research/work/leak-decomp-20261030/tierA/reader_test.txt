@@ -1,0 +1,113 @@
+PASS Shapley closed form = brute force over all 6 orders, and efficiency (max err 2.2e-16)
+PASS SE rule (hard floor binds): 0.070852 = 0.070852, df 1
+PASS SE rule (observed seed var binds): 0.050000
+PASS SE rule, one seed: class floor, df inf
+PASS Welch df of two equal 3-seed arms = 2(s-1) = 4
+PASS Holm (0.01, 0.04, 0.03) -> (0.03, 0.06, 0.06)
+PASS exact sign-flip p of 10 positive twins = 1/1024 (0.000977)
+PASS paired t = scipy ttest_1samp
+PASS LB by hand: c 0.74 0.0198, c 1.0 0.02675 (evals [1, 8, 10, 14, 19, 20, 25, 28, 30, 38])
+PASS LB: eval 14 needs both ep12 and ep13 (never imputed)
+PASS refrule: ['leaks', 'no leak', 'inconclusive', 'inconclusive', 'truth worse']
+PASS refconv: S >= 0.8 only, spoon apart: {'rows': {3: {'dT': 0.01845, 'counted': True, 'label': '[M]'}, 5: {'dT': 0.01435, 'counted': False, 'label': 'S < 0.8: not converted'}, 7: {'dT': 0.04869, 'counted': False, 'label': '[E-analogy] spoon'}}, 'L_c0.74': 0.00068, 'L_c1.0': 0.00092}
+PASS exact: read rc 0 
+leak_read: 200 records, metric auc_star, crashes drop, config passed
+contrast fam   E       dT       dS       dg            90% CI     p_t  p_perm verdict        LB c.74    LB c1  action
+phi_T    P    10   0.0600   0.0000   0.0600 [0.05649, 0.06351  0.0000  0.0039 leaks          0.02209  0.02985  top priority (>= 0.010 at c 0.74)
+phi_K    P    10   0.0600   0.0000   0.0600 [0.05473, 0.06527  0.0000  0.0039 leaks          0.02203  0.02978  top priority (>= 0.010 at c 0.74)
+phi_G    P    10  -0.0350  -0.0350   0.0000 [-0.03763, -0.032  1.0000  1.0000 truth worse   -0.01303 -0.01761  drop the stage (< 0.002, upper < 0.004 at c 1.0)
+L6_AOI   P    10  -0.0000  -0.0000  -0.0000 [-0.00088, 0.0008  1.0000  1.0000 no leak       -0.00003 -0.00004  below action, not dropped
+L2_AOI   s    10   0.1200   0.0000   0.1200 [0.11298, 0.12702  0.0000  0.0010 leaks          0.04418  0.05970  top priority (>= 0.010 at c 0.74)
+L2_scan  s    10   0.1200   0.0000   0.1200 [0.11298, 0.12702  0.0000  0.0010 leaks          0.04418  0.05970  top priority (>= 0.010 at c 0.74)
+L3_AOI   s    10   0.0000   0.0000  -0.0000 [-0.00176, 0.0017  0.5000  0.5234 no leak       -0.00006 -0.00007  below action, not dropped
+L3_LOO   s    10  -0.0000   0.0000   0.0000 [-0.00176, 0.0017  0.5000  0.5234 no leak       -0.00006 -0.00008  below action, not dropped
+K_AOI    s    10   0.1200   0.0000   0.1200 [0.11122, 0.12878  0.0000  0.0010 leaks          0.04412  0.05963  top priority (>= 0.010 at c 0.74)
+L5_AOI   s    10  -0.0350  -0.0350  -0.0000 [-0.03763, -0.032  1.0000  1.0000 truth worse   -0.01303 -0.01761  drop the stage (< 0.002, upper < 0.004 at c 1.0)
+L5_LOO   s    10  -0.0350  -0.0350   0.0000 [-0.03763, -0.032  1.0000  1.0000 truth worse   -0.01303 -0.01761  drop the stage (< 0.002, upper < 0.004 at c 1.0)
+L6_LOO   s    10   0.0000  -0.0000  -0.0000 [-0.00088, 0.0008  0.5000  0.5234 no leak       -0.00003 -0.00004  below action, not dropped
+total    s    10   0.0850  -0.0350   0.1200 [0.07359, 0.09641  0.0000  0.0010 leaks          0.03109  0.04201  top priority (>= 0.010 at c 0.74)
+player T: AOI 0.12  LOO 0.0  Shapley 0.06  interaction (LOO - AOI) -0.12
+player K: AOI 0.12  LOO -0.0  Shapley 0.06  interaction (LOO - AOI) -0.12
+player G: AOI -0.035  LOO -0.035  Shapley -0.035  interaction (LOO - AOI) 0.0
+copy ceiling ep11: T*(c6) 0.91 seeds [0.92, 0.9] -> copyable (>= 0.90)
+copy ceiling ep12: T*(c6) 0.9 seeds [0.91, 0.89] -> between
+copy ceiling ep13: T*(c6) 0.85 seeds [0.86, 0.85, 0.84] -> between
+copy ceiling ep18: T*(c6) 0.85 seeds [0.86, 0.85, 0.84] -> between
+copy ceiling ep2: T*(c6) 0.85 seeds [0.86, 0.85, 0.84] -> between
+copy ceiling ep21: T*(c6) 0.9 seeds [0.91, 0.89] -> between
+copy ceiling ep24: T*(c6) 0.7 seeds [0.71, 0.7, 0.69] -> robot/learner limit (<= 0.75 on >= 2 seeds)
+copy ceiling ep27: T*(c6) 0.9 seeds [0.91, 0.89] -> between
+copy ceiling ep31: T*(c6) 0.85 seeds [0.86, 0.85, 0.84] -> between
+copy ceiling ep39: T*(c6) 0.91 seeds [0.92, 0.9] -> copyable (>= 0.90)
+explained total: {'c0.74': {'sum_phi': 0.03109, 'ceiling': 0.04995, 'total': 0.08104, 'gap_vs_0_185': 0.10396}, 'c1.0': {'sum_phi': 0.04202, 'ceiling': 0.0675, 'total': 0.10952, 'gap_vs_0_185': 0.07548}}
+
+PASS exact: every per-twin and pooled contrast = truth to rounding (max 1.7e-16, 5.6e-17)
+PASS exact: dg = truth (2.8e-17); dT - dS - dg = 0.0e+00
+PASS exact: all 10 twins in every contrast; L6 AOI joins the Holm family when c7 ran
+PASS exact: players {'T': {'AOI': 0.12, 'LOO': 0.0, 'shapley': 0.06, 'interaction': -0.12}, 'K': {'AOI': 0.12, 'LOO': -0.0, 'shapley': 0.06, 'interaction': -0.12}, 'G': {'AOI': -0.035, 'LOO': -0.035, 'shapley': -0.035, 'interaction': 0.0}}
+PASS exact: phi_T + phi_K + phi_G = c6 - c1
+PASS exact: verdicts {'phi_T': 'leaks', 'phi_K': 'leaks', 'phi_G': 'truth worse', 'L6_AOI': 'no leak', 'L2_AOI': 'leaks', 'L2_scan': 'leaks', 'L3_AOI': 'no leak', 'L3_LOO': 'no leak', 'K_AOI': 'leaks', 'L5_AOI': 'truth worse', 'L5_LOO': 'truth worse', 'L6_LOO': 'no leak', 'total': 'leaks'}
+PASS exact: LB phi_T {'evals': [1, 8, 10, 14, 19, 20, 25, 28, 30, 38], 'missing_evals': [], 'c0.74': {'L': 0.02209, 'lo90': 0.01801, 'hi90': 0.02617}, 'c1.0': {'L': 0.02985, 'lo90': 0.02434, 'hi90': 0.03536}, 'action': 'top priority (>= 0.010 at c 0.74)'}
+PASS exact: copy ceiling calls
+PASS exact: L1 column (lib - star) per cell = -0.01
+leak_read: 200 records, metric auc_star, crashes drop, config passed
+contrast fam   E       dT       dS       dg            90% CI     p_t  p_perm verdict        LB c.74    LB c1  action
+phi_T    P    10   0.0505  -0.0077   0.0583 [0.03893, 0.06214  0.0001  0.0039 leaks          0.01912  0.02584  top priority (>= 0.010 at c 0.74)
+phi_K    P    10   0.0688   0.0060   0.0628 [0.0474, 0.09023]  0.0003  0.0039 leaks          0.02473  0.03341  top priority (>= 0.010 at c 0.74)
+phi_G    P    10  -0.0140  -0.0121  -0.0019 [-0.0299, 0.0019]  1.0000  1.0000 no leak       -0.00458 -0.00619  below action, not dropped
+L6_AOI   P    10  -0.0019   0.0006  -0.0026 [-0.03337, 0.0294  1.0000  1.0000 no leak       -0.00066 -0.00089  below action, not dropped
+L2_AOI   s    10   0.0827  -0.0339   0.1165 [0.04173, 0.12357  0.0024  0.0059 leaks          0.03215  0.04345  top priority (>= 0.010 at c 0.74)
+L2_scan  s    10   0.1379   0.0213   0.1166 [0.10838, 0.16744  0.0000  0.0010 leaks          0.05044  0.06816  top priority (>= 0.010 at c 0.74)
+L3_AOI   s    10   0.0403   0.0339   0.0064 [-0.00393, 0.0845  0.0646  0.0820 inconclusive   0.01309  0.01768  top priority (>= 0.010 at c 0.74)  [seeds 45-46 on the hard twins for these cells (pre-set, |d| >= 0.03)]
+L3_LOO   s    10  -0.0038  -0.0065   0.0027 [-0.03199, 0.0244  0.5938  0.5967 no leak       -0.00188 -0.00254  below action, not dropped
+K_AOI    s    10   0.1230   0.0000   0.1230 [0.08841, 0.15753  0.0001  0.0010 leaks          0.04524  0.06113  top priority (>= 0.010 at c 0.74)
+L5_AOI   s    10  -0.0288  -0.0287  -0.0001 [-0.06055, 0.0029  0.9346  0.9346 inconclusive  -0.00929 -0.01256  below action, not dropped
+L5_LOO   s    10  -0.0176  -0.0139  -0.0037 [-0.03912, 0.0038  0.9163  0.9160 no leak       -0.00597 -0.00807  below action, not dropped
+L6_LOO   s    10  -0.0041  -0.0047   0.0007 [-0.04829, 0.0401  0.5652  0.5312 inconclusive   0.00203  0.00275  below action, not dropped
+total    s    10   0.1053  -0.0139   0.1192    [0.07, 0.1407]  0.0002  0.0010 leaks          0.03927  0.05306  top priority (>= 0.010 at c 0.74)
+player T: AOI 0.08265  LOO 0.0  Shapley 0.05054  interaction (LOO - AOI) -0.08265
+player K: AOI 0.12297  LOO -0.00376  Shapley 0.06881  interaction (LOO - AOI) -0.12673
+player G: AOI -0.0288  LOO -0.01762  Shapley -0.014  interaction (LOO - AOI) 0.01118
+copy ceiling ep11: T*(c6) 0.9084 seeds [0.9179, 0.8988] -> copyable (>= 0.90)
+copy ceiling ep12: T*(c6) 0.8634 seeds [0.8644, 0.8624] -> between
+copy ceiling ep13: T*(c6) 0.8388 seeds [0.8647, 0.7974, 0.8545] -> between
+copy ceiling ep18: T*(c6) 0.7361 seeds [0.7751, 0.7892, 0.644] -> between
+copy ceiling ep2: T*(c6) 0.7719 seeds [0.8153, 0.894, 0.6064] -> between
+copy ceiling ep21: T*(c6) 0.9227 seeds [0.9526, 0.8929] -> copyable (>= 0.90)
+copy ceiling ep24: T*(c6) 0.6735 seeds [0.6851, 0.6759, 0.6596] -> robot/learner limit (<= 0.75 on >= 2 seeds)
+copy ceiling ep27: T*(c6) 0.9174 seeds [0.8924, 0.9425] -> copyable (>= 0.90)
+copy ceiling ep31: T*(c6) 0.7907 seeds [0.8316, 0.8495, 0.6909] -> between
+copy ceiling ep39: T*(c6) 0.9129 seeds [0.9152, 0.9107] -> copyable (>= 0.90)
+explained total: {'c0.74': {'sum_phi': 0.03927, 'ceiling': 0.05921, 'total': 0.09848, 'gap_vs_0_185': 0.08652}, 'c1.0': {'sum_phi': 0.05306, 'ceiling': 0.08001, 'total': 0.13307, 'gap_vs_0_185': 0.05193}}
+
+PASS noisy: estimates within 3 SE of the truth: {'phi_T': -1.49, 'phi_K': 0.75, 'phi_G': 2.42, 'L2_AOI': -1.67, 'L5_AOI': 0.36}
+PASS refuse: GL_ARGS on one arm: rc 2, names ['ep12 c3 s43'] (a fixed field); --drop-refused rc 0
+PASS refuse: hands md5 of one c1-c6 arm: rc 2, names ['ep2 c4 s44'] (hands.* at bundle); --drop-refused rc 0
+PASS refuse: P_s pose = P_o pose (no-op swap): rc 2, names ['ep21 c2 s42', 'ep21 c5 s43'] (did not change); --drop-refused rc 0
+PASS refuse: STEPS on one twin: rc 2, names ['ep31 c1 s42', 'ep31 c8 s44'] (study key); --drop-refused rc 0
+PASS refuse: config seed != record seed: rc 2, names ['ep11 c1 s42'] (config seed); --drop-refused rc 0
+PASS refuse: no config: rc 2, names ['ep39 c5 s43'] (no config); --drop-refused rc 0
+PASS refuse: no hands.* fields: rc 2, names ['ep27 c2 s42'] (cannot be checked); --drop-refused rc 0
+PASS refuse: mocap pose md5 of one c6 seed: rc 2, names ['ep18 c6 s43'] (pose.* at O); --drop-refused rc 0
+PASS refuse: --no-config-check reads, and says so
+PASS format: oracle_twins summary (orcB mock): c3 - c1 = delta_O_minus_P per twin {'ep11': (0.2302, 0.2302), 'ep13': (0.2642, 0.2642), 'ep31': (0.2605, 0.2605)}
+PASS format: glock_public per-episode summary: T 0.6665 = summary auc mean 0.6665, k [6]
+PASS format: an evaluation error is counted; drop -> 0.8500000000000001, zero -> 0.5667
+leak_read mc: 4000 replicates x 10 twins x 6 cells x 2-3 seeds x 10 draws; drops: /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/noise/h5_draws.json (16)
+null: family-wise 'leaks' rejection over ['phi_T', 'phi_K', 'phi_G']: 0.033; phi_T P(no leak) 0.99 P(leaks) 0.0; phi_K P(no leak) 0.777 P(leaks) 0.0; phi_G P(no leak) 0.786 P(leaks) 0.002
+test      d=0.03: reject / P(leaks)  d=0.05: reject / P(leaks)   d=0.1: reject / P(leaks)
+phi_T           0.903 / 0.505              0.999 / 0.996              1.000 / 1.000      
+phi_K           0.536 / 0.420              0.884 / 0.878              1.000 / 1.000      
+phi_G           0.526 / 0.407              0.891 / 0.882              1.000 / 1.000      
+L2_AOI          0.425 / 0.378              0.753 / 0.738              0.992 / 0.992      
+L3_AOI          0.433 / 0.381              0.759 / 0.745              0.996 / 0.996      
+L5_AOI          0.427 / 0.380              0.762 / 0.747              0.995 / 0.995      
+ 
+PASS MC: family-wise false 'leaks' rejection under the null 0.033 (<= 0.05 + 2 MC SE)
+PASS MC: max |bias| of the pooled estimates over all scenarios 0.0013 (< 0.006; clipping at 1 aside)
+PASS MC: paired-t 90 % CI coverage 0.893-0.917 (>= 0.85)
+RESULT: ALL CHECKS PASS
+
+real	1m24.860s
+user	0m59.281s
+sys	0m5.866s

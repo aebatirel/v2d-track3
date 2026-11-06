@@ -1,0 +1,6 @@
+[09:18:05] b4_extract ep43 objects ['white_pot'] det True start {'commit': '3367ee4f714debae18a08c893ff55a81d8e646cc', 'dirty': ''}
+[09:22:53] hands 287.9 s: frames with hand 324 / 326
+[09:25:22] ep43 pass 0: 163 frames, 8031283 samples, voxels [77936], 148.8 s
+[09:28:25] extract timing {"table_s": 0.4, "pass0_samples_s": 141.8, "pass0_votes_s": 7.0, "pass0_s": 148.8, "pass0_voxels": [77936], "pass1_s": 14.1, "pass2_s": 0.9, "pass3_s": 0.9, "pass4_grids_s": 23.2, "sigma_s": 140.5, "total_s": 328.8}
+[09:28:52] sanity white_pot: 152/163 good, flags [], below 0.0675, resid {'median': 1.005, 'p90': 1.181, 'max': 1.652}
+[09:30:49] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep43 total 763.5 s

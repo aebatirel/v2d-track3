@@ -1,0 +1,264 @@
+[
+ {
+  "label": "library_v3",
+  "faces": 4396,
+  "watertight": true,
+  "bodies": 1,
+  "euler": -2,
+  "ext_xyz_cm": [
+   3.38,
+   11.04,
+   14.66
+  ],
+  "area_cm2": 247.9,
+  "obs_to_mesh_p50": 1.49,
+  "obs_to_mesh_p90": 3.65,
+  "mesh_to_obs_p50": 2.89,
+  "mesh_frac_gt10mm": 0.107,
+  "c2z_selfsym_mm": 2.75,
+  "centroid_cm": [
+   -0.16,
+   -0.03,
+   -0.0
+  ]
+ },
+ {
+  "label": "sam3d_k270_s42",
+  "faces": 192866,
+  "watertight": false,
+  "bodies": 5,
+  "euler": 0,
+  "ext_xyz_cm": [
+   5.03,
+   7.14,
+   16.72
+  ],
+  "area_cm2": 315.2,
+  "obs_to_mesh_p50": 3.01,
+  "obs_to_mesh_p90": 14.81,
+  "mesh_to_obs_p50": 3.75,
+  "mesh_frac_gt10mm": 0.175,
+  "c2z_selfsym_mm": 1.18,
+  "centroid_cm": [
+   0.33,
+   1.03,
+   0.74
+  ]
+ },
+ {
+  "label": "sam3d_k270_s7",
+  "faces": 294596,
+  "watertight": true,
+  "bodies": 25,
+  "euler": 8,
+  "ext_xyz_cm": [
+   6.18,
+   7.93,
+   14.61
+  ],
+  "area_cm2": 361.5,
+  "obs_to_mesh_p50": 1.5,
+  "obs_to_mesh_p90": 7.69,
+  "mesh_to_obs_p50": 2.23,
+  "mesh_frac_gt10mm": 0.075,
+  "c2z_selfsym_mm": 1.56,
+  "centroid_cm": [
+   0.45,
+   -0.01,
+   1.65
+  ]
+ },
+ {
+  "label": "trellis2_k270_s42",
+  "faces": 381550,
+  "watertight": false,
+  "bodies": 18,
+  "euler": -9451,
+  "ext_xyz_cm": [
+   4.89,
+   6.39,
+   21.39
+  ],
+  "area_cm2": 306.5,
+  "obs_to_mesh_p50": 3.62,
+  "obs_to_mesh_p90": 14.35,
+  "mesh_to_obs_p50": 4.31,
+  "mesh_frac_gt10mm": 0.236,
+  "c2z_selfsym_mm": 2.78,
+  "centroid_cm": [
+   0.53,
+   0.35,
+   1.64
+  ]
+ },
+ {
+  "label": "trellis2_k270_s7",
+  "faces": 371072,
+  "watertight": false,
+  "bodies": 1,
+  "euler": 599,
+  "ext_xyz_cm": [
+   4.42,
+   7.52,
+   16.48
+  ],
+  "area_cm2": 173.0,
+  "obs_to_mesh_p50": 2.89,
+  "obs_to_mesh_p90": 13.22,
+  "mesh_to_obs_p50": 2.67,
+  "mesh_frac_gt10mm": 0.127,
+  "c2z_selfsym_mm": 4.19,
+  "centroid_cm": [
+   0.79,
+   0.7,
+   1.07
+  ]
+ },
+ {
+  "label": "triposg_k270_s42",
+  "faces": 165800,
+  "watertight": true,
+  "bodies": 53,
+  "euler": 76,
+  "ext_xyz_cm": [
+   4.24,
+   10.31,
+   26.74
+  ],
+  "area_cm2": 151.3,
+  "obs_to_mesh_p50": 5.73,
+  "obs_to_mesh_p90": 16.39,
+  "mesh_to_obs_p50": 4.78,
+  "mesh_frac_gt10mm": 0.296,
+  "c2z_selfsym_mm": 1.6,
+  "centroid_cm": [
+   0.47,
+   -0.22,
+   4.32
+  ]
+ },
+ {
+  "label": "triposg_k270_s7",
+  "faces": 253812,
+  "watertight": true,
+  "bodies": 18,
+  "euler": -44,
+  "ext_xyz_cm": [
+   3.29,
+   7.99,
+   18.21
+  ],
+  "area_cm2": 127.9,
+  "obs_to_mesh_p50": 4.56,
+  "obs_to_mesh_p90": 15.54,
+  "mesh_to_obs_p50": 2.4,
+  "mesh_frac_gt10mm": 0.136,
+  "c2z_selfsym_mm": 5.35,
+  "centroid_cm": [
+   0.47,
+   0.98,
+   0.34
+  ]
+ },
+ {
+  "label": "hy21_k270_s42",
+  "faces": 122960,
+  "watertight": false,
+  "bodies": 2,
+  "euler": -21,
+  "ext_xyz_cm": [
+   4.05,
+   6.54,
+   23.46
+  ],
+  "area_cm2": 222.1,
+  "obs_to_mesh_p50": 3.8,
+  "obs_to_mesh_p90": 14.2,
+  "mesh_to_obs_p50": 4.75,
+  "mesh_frac_gt10mm": 0.274,
+  "c2z_selfsym_mm": 2.75,
+  "centroid_cm": [
+   0.54,
+   0.1,
+   2.93
+  ]
+ },
+ {
+  "label": "hy21_k270_s7",
+  "faces": 128120,
+  "watertight": true,
+  "bodies": 5,
+  "euler": -12,
+  "ext_xyz_cm": [
+   4.16,
+   7.27,
+   28.14
+  ],
+  "area_cm2": 233.5,
+  "obs_to_mesh_p50": 3.77,
+  "obs_to_mesh_p90": 21.35,
+  "mesh_to_obs_p50": 5.5,
+  "mesh_frac_gt10mm": 0.359,
+  "c2z_selfsym_mm": 4.64,
+  "centroid_cm": [
+   0.28,
+   1.46,
+   -2.71
+  ]
+ },
+ {
+  "label": "pixal_mv_s42",
+  "faces": 374537,
+  "watertight": false,
+  "bodies": 4,
+  "euler": 693,
+  "ext_xyz_cm": [
+   3.48,
+   16.92,
+   16.1
+  ],
+  "area_cm2": 379.1,
+  "obs_to_mesh_p50": 3.04,
+  "obs_to_mesh_p90": 9.85,
+  "mesh_to_obs_p50": 8.08,
+  "mesh_frac_gt10mm": 0.422,
+  "c2z_selfsym_mm": 4.12,
+  "centroid_cm": [
+   -0.23,
+   -0.44,
+   0.29
+  ]
+ },
+ {
+  "label": "pixal_mv_s7",
+  "faces": 377171,
+  "watertight": false,
+  "bodies": 10,
+  "euler": 952,
+  "ext_xyz_cm": [
+   4.34,
+   18.16,
+   16.06
+  ],
+  "area_cm2": 372.5,
+  "obs_to_mesh_p50": 5.07,
+  "obs_to_mesh_p90": 12.3,
+  "mesh_to_obs_p50": 9.27,
+  "mesh_frac_gt10mm": 0.471,
+  "c2z_selfsym_mm": 4.92,
+  "centroid_cm": [
+   -0.26,
+   -0.43,
+   0.43
+  ]
+ },
+ {
+  "label": "SCAN [D] (in scan frame)",
+  "ext_xyz_cm": [
+   4.76,
+   11.39,
+   14.15
+  ],
+  "c2z_selfsym_mm": 1.23
+ }
+]

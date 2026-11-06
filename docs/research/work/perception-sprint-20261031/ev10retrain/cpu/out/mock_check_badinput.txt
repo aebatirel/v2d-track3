@@ -1,0 +1,11 @@
+ok   no store listing (single-file downloads only)  [1]
+ok   every download succeeded (files hidden by MOCK_HIDE excepted)
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e10v-mocksha', 'dst': 'runs/20261031-e10v-mocksha', 'msg': 'run 20261031-e10v-mocksha: 2026-10-31T19:32:59Z'}]]
+ok   hands_mp / hand_refine / perc2 / score_registered never ran
+ok   nothing written under the packed names refs/glockt/ep10, refs/perc2mck/ep10, results/glock_public/ep10
+ok   rc 1 (stopped)  [rc=1]
+ok   stopped for: md5  [input runs/20261026-pack6-5203d42/perc2/ep10/poses.npz missing or md5 mismatch]
+ok   no reference built
+ok   no training
+ok   push holds the stop reason
+10/10 checks pass

@@ -1,0 +1,73 @@
+ep2: Po S2 lib 0.9911 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9871 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (14.1 s)
+ep0: Po S2 lib 0.9669 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9672 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (14.4 s)
+ep18: Po S2 lib 0.9162 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9680 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (16.4 s)
+ep12: Po S2 lib 0.9763 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9760 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (141.9 s)
+ep13: Po S2 lib 0.9623 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9648 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (148.1 s)
+ep23: Po S2 lib 0.0425 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.0425 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (10.0 s)
+ep21: Po S2 lib 0.8389 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.8389 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (141.8 s)
+ep24: Po S2 lib 0.8091 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.8091 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (6.5 s)
+ep26: Po S2 lib 0.9717 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9678 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (9.4 s)
+ep27: Po S2 lib 0.9634 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9627 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (8.9 s)
+ep31: Po S2 lib 0.8239 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.8550 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (9.2 s)
+ep39: Po S2 lib 0.9759 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9759 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (6.4 s)
+ep40: Po S2 lib 0.9584 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9584 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (6.5 s)
+ep41: Po S2 lib 0.9927 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9927 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (6.4 s)
+ep42: Po S2 lib 0.9990 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9993 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (6.6 s)
+ep43: Po S2 lib 0.9486 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9479 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (6.7 s)
+ep44: Po S2 lib 0.9970 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9970 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (5.8 s)
+ep45: Po S2 lib 0.9823 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.9823 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (5.5 s)
+ep22: Po S2 lib 0.8704 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 | refineP S2 lib 0.8704 V1 +0.0000 V1h +0.0000 V2 +0.0000 V3 +0.0000 V3p +0.0000 (117.0 s)
+/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/venv/lib/python3.13/site-packages/numpy/linalg/_linalg.py:2423: RuntimeWarning: invalid value encountered in det
+  r = _umath_linalg.det(a, signature=signature)
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/concurrent/futures/process.py", line 255, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/usr/lib/python3.13/concurrent/futures/process.py", line 204, in _process_chunk
+    return [fn(*args) for args in chunk]
+            ~~^^^^^^^
+  File "/home/user/v2d-track3/docs/research/work/perception-sprint-20261031/mask10/scripts/m10_score.py", line 99, in episode
+    r[v]['mech'] = mech11(names, T, g, H)
+                   ~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/user/v2d-track3/docs/research/work/perception-sprint-20261031/mask10/scripts/m10_score.py", line 48, in mech11
+    ach = np.stack([XF.to7(tr[n]) for n in names], 1)[:, None].copy()
+                    ~~~~~~^^^^^^^
+  File "/home/user/v2d-track3/tools/xstar_fit.py", line 235, in to7
+    return np.concatenate([M[..., :3, 3], Rot.from_matrix(M[..., :3, :3].reshape(-1, 3, 3)).as_quat().reshape(M.shape[:-2] + (4,))], -1)
+                                          ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/scipy/spatial/transform/_rotation.py", line 655, in from_matrix
+    quat = backend.from_matrix(matrix, assume_valid=assume_valid)
+  File "scipy/spatial/transform/_rotation_cy.pyx", line 506, in scipy.spatial.transform._rotation_cy.from_matrix
+  File "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/venv/lib/python3.13/site-packages/numpy/linalg/_linalg.py", line 1840, in svd
+    u, s, vh = gufunc(a, signature=signature)
+               ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/venv/lib/python3.13/site-packages/numpy/linalg/_linalg.py", line 153, in _raise_linalgerror_svd_nonconvergence
+    raise LinAlgError("SVD did not converge")
+numpy.linalg.LinAlgError: SVD did not converge
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/work/perception-sprint-20261031/mask10/scripts/m10_score.py", line 138, in <module>
+    main()
+    ~~~~^^
+  File "/home/user/v2d-track3/docs/research/work/perception-sprint-20261031/mask10/scripts/m10_score.py", line 116, in main
+    for ep, r in ex.map(episode, XF.PUBLIC):
+                 ~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/process.py", line 621, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 625, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 318, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+numpy.linalg.LinAlgError: SVD did not converge

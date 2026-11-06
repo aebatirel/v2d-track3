@@ -1,0 +1,590 @@
+{
+ "rule": "report only (T-I16 diagnostic); S is not required at pose_impossible frames (F-I5.15 (3))",
+ "episodes": {
+  "11": {
+   "blue_cup|beige_cup": {
+    "receiver": "beige_cup",
+    "guest": "blue_cup",
+    "rows": {
+     "127": {
+      "frame": 127,
+      "pieces": {
+       "delivered": [
+        20,
+        17
+       ],
+       "faithful": [
+        2160,
+        2041
+       ]
+      },
+      "delivered": {
+       "disp_mm": 96.199,
+       "dz_mm": 91.164,
+       "lateral_mm": 23.424,
+       "tilt_deg": 50.185,
+       "copies": 16,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 0.6
+      },
+      "faithful": {
+       "disp_mm": 10.098,
+       "dz_mm": 1.945,
+       "lateral_mm": 9.886,
+       "tilt_deg": 6.439,
+       "copies": 4,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 221.6
+      },
+      "faithful_per_copy": [
+       {
+        "disp_mm": 8.11,
+        "dz_mm": 1.89,
+        "lateral_mm": 7.89,
+        "tilt_deg": 6.7,
+        "below": false,
+        "max_ncon": 33699,
+        "max_nefc": 134796,
+        "sec": 54.9
+       },
+       {
+        "disp_mm": 9.3,
+        "dz_mm": 2.58,
+        "lateral_mm": 8.93,
+        "tilt_deg": 6.52,
+        "below": false,
+        "max_ncon": 29423,
+        "max_nefc": 117692,
+        "sec": 49.2
+       },
+       {
+        "disp_mm": 10.68,
+        "dz_mm": 2.03,
+        "lateral_mm": 10.49,
+        "tilt_deg": 6.36,
+        "below": false,
+        "max_ncon": 31833,
+        "max_nefc": 127332,
+        "sec": 58.4
+       },
+       {
+        "disp_mm": 12.3,
+        "dz_mm": 1.28,
+        "lateral_mm": 12.23,
+        "tilt_deg": 6.18,
+        "below": false,
+        "max_ncon": 31727,
+        "max_nefc": 126908,
+        "sec": 52.6
+       }
+      ]
+     },
+     "108": {
+      "frame": 108,
+      "pieces": {
+       "delivered": [
+        20,
+        17
+       ],
+       "faithful": [
+        2160,
+        2041
+       ]
+      },
+      "delivered": {
+       "disp_mm": 121.981,
+       "dz_mm": 110.326,
+       "lateral_mm": 49.771,
+       "tilt_deg": 148.821,
+       "copies": 16,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 0.5
+      },
+      "faithful": {
+       "disp_mm": 9.77,
+       "dz_mm": 2.733,
+       "lateral_mm": 9.346,
+       "tilt_deg": 13.926,
+       "copies": 4,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 163.7
+      },
+      "faithful_per_copy": [
+       {
+        "disp_mm": 7.82,
+        "dz_mm": 1.46,
+        "lateral_mm": 7.69,
+        "tilt_deg": 18.68,
+        "below": false,
+        "max_ncon": 22732,
+        "max_nefc": 90928,
+        "sec": 38.7
+       },
+       {
+        "disp_mm": 11.72,
+        "dz_mm": 2.81,
+        "lateral_mm": 11.37,
+        "tilt_deg": 12.32,
+        "below": false,
+        "max_ncon": 21176,
+        "max_nefc": 84704,
+        "sec": 39.4
+       },
+       {
+        "disp_mm": 8.53,
+        "dz_mm": 3.53,
+        "lateral_mm": 7.76,
+        "tilt_deg": 13.65,
+        "below": false,
+        "max_ncon": 22617,
+        "max_nefc": 90468,
+        "sec": 39.1
+       },
+       {
+        "disp_mm": 11.01,
+        "dz_mm": 3.13,
+        "lateral_mm": 10.56,
+        "tilt_deg": 11.06,
+        "below": false,
+        "max_ncon": 22590,
+        "max_nefc": 90360,
+        "sec": 39.8
+       }
+      ]
+     }
+    }
+   }
+  },
+  "12": {
+   "blue_cup|plastic_dish_rack": {
+    "receiver": "plastic_dish_rack",
+    "guest": "blue_cup",
+    "rows": {
+     "176": {
+      "frame": 176,
+      "pieces": {
+       "delivered": [
+        45,
+        29
+       ],
+       "faithful": [
+        4045,
+        2683
+       ]
+      },
+      "delivered": {
+       "disp_mm": 130.869,
+       "dz_mm": 58.53,
+       "lateral_mm": 117.045,
+       "tilt_deg": 85.139,
+       "copies": 16,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 0.7
+      },
+      "faithful": {
+       "disp_mm": 13.2,
+       "dz_mm": -4.606,
+       "lateral_mm": 12.364,
+       "tilt_deg": 9.832,
+       "copies": 4,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 42.7
+      },
+      "faithful_per_copy": [
+       {
+        "disp_mm": 9.69,
+        "dz_mm": -3.53,
+        "lateral_mm": 9.03,
+        "tilt_deg": 7.8,
+        "below": false,
+        "max_ncon": 2736,
+        "max_nefc": 10944,
+        "sec": 7.7
+       },
+       {
+        "disp_mm": 17.21,
+        "dz_mm": -6.55,
+        "lateral_mm": 15.91,
+        "tilt_deg": 13.87,
+        "below": false,
+        "max_ncon": 2926,
+        "max_nefc": 11704,
+        "sec": 9.1
+       },
+       {
+        "disp_mm": 12.95,
+        "dz_mm": -4.17,
+        "lateral_mm": 12.26,
+        "tilt_deg": 8.83,
+        "below": false,
+        "max_ncon": 2808,
+        "max_nefc": 11232,
+        "sec": 8.3
+       },
+       {
+        "disp_mm": 12.95,
+        "dz_mm": -4.17,
+        "lateral_mm": 12.26,
+        "tilt_deg": 8.83,
+        "below": false,
+        "max_ncon": 2913,
+        "max_nefc": 11652,
+        "sec": 8.8
+       }
+      ]
+     }
+    }
+   }
+  },
+  "13": {
+   "blue_cup|plastic_dish_rack": {
+    "receiver": "plastic_dish_rack",
+    "guest": "blue_cup",
+    "rows": {
+     "181": {
+      "frame": 181,
+      "pieces": {
+       "delivered": [
+        24,
+        25
+       ],
+       "faithful": [
+        3307,
+        2563
+       ]
+      },
+      "delivered": {
+       "disp_mm": 121.849,
+       "dz_mm": 53.835,
+       "lateral_mm": 109.137,
+       "tilt_deg": 121.259,
+       "copies": 16,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 0.8
+      },
+      "faithful": {
+       "disp_mm": 12.15,
+       "dz_mm": -6.966,
+       "lateral_mm": 9.944,
+       "tilt_deg": 8.566,
+       "copies": 4,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 29.1
+      },
+      "faithful_per_copy": [
+       {
+        "disp_mm": 9.89,
+        "dz_mm": -6.24,
+        "lateral_mm": 7.67,
+        "tilt_deg": 7.22,
+        "below": false,
+        "max_ncon": 1628,
+        "max_nefc": 6512,
+        "sec": 5.2
+       },
+       {
+        "disp_mm": 11.89,
+        "dz_mm": -6.77,
+        "lateral_mm": 9.78,
+        "tilt_deg": 8.25,
+        "below": false,
+        "max_ncon": 1555,
+        "max_nefc": 6220,
+        "sec": 5.2
+       },
+       {
+        "disp_mm": 13.41,
+        "dz_mm": -7.43,
+        "lateral_mm": 11.16,
+        "tilt_deg": 9.4,
+        "below": false,
+        "max_ncon": 1535,
+        "max_nefc": 6140,
+        "sec": 5.1
+       },
+       {
+        "disp_mm": 13.41,
+        "dz_mm": -7.43,
+        "lateral_mm": 11.16,
+        "tilt_deg": 9.4,
+        "below": false,
+        "max_ncon": 1534,
+        "max_nefc": 6136,
+        "sec": 5.3
+       }
+      ]
+     }
+    }
+   }
+  },
+  "2": {
+   "white_pot|white_pot_lid": {
+    "receiver": "white_pot",
+    "guest": "white_pot_lid",
+    "rows": {
+     "13": {
+      "frame": 13,
+      "pieces": {
+       "delivered": [
+        42,
+        25
+       ],
+       "faithful": [
+        3957,
+        2207
+       ]
+      },
+      "delivered": {
+       "disp_mm": 84.847,
+       "dz_mm": 80.673,
+       "lateral_mm": 26.207,
+       "tilt_deg": 13.47,
+       "copies": 16,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 0.8
+      },
+      "faithful": {
+       "disp_mm": 4.992,
+       "dz_mm": -1.234,
+       "lateral_mm": 4.814,
+       "tilt_deg": 7.791,
+       "copies": 4,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 115.1
+      },
+      "faithful_per_copy": [
+       {
+        "disp_mm": 4.22,
+        "dz_mm": -0.85,
+        "lateral_mm": 4.13,
+        "tilt_deg": 8.05,
+        "below": false,
+        "max_ncon": 5802,
+        "max_nefc": 23208,
+        "sec": 26.8
+       },
+       {
+        "disp_mm": 6.29,
+        "dz_mm": -2.37,
+        "lateral_mm": 5.82,
+        "tilt_deg": 7.55,
+        "below": false,
+        "max_ncon": 5831,
+        "max_nefc": 23324,
+        "sec": 25.8
+       },
+       {
+        "disp_mm": 4.84,
+        "dz_mm": -1.07,
+        "lateral_mm": 4.72,
+        "tilt_deg": 7.88,
+        "below": false,
+        "max_ncon": 5865,
+        "max_nefc": 23460,
+        "sec": 26.4
+       },
+       {
+        "disp_mm": 4.62,
+        "dz_mm": -0.65,
+        "lateral_mm": 4.58,
+        "tilt_deg": 7.68,
+        "below": false,
+        "max_ncon": 6019,
+        "max_nefc": 24076,
+        "sec": 28.6
+       }
+      ]
+     },
+     "32": {
+      "frame": 32,
+      "pieces": {
+       "delivered": [
+        42,
+        25
+       ],
+       "faithful": [
+        3957,
+        2207
+       ]
+      },
+      "delivered": {
+       "disp_mm": 86.351,
+       "dz_mm": 82.724,
+       "lateral_mm": 24.736,
+       "tilt_deg": 9.748,
+       "copies": 16,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 0.9
+      },
+      "faithful": {
+       "disp_mm": 7.869,
+       "dz_mm": -6.065,
+       "lateral_mm": 4.948,
+       "tilt_deg": 9.577,
+       "copies": 4,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 127.4
+      },
+      "faithful_per_copy": [
+       {
+        "disp_mm": 8.1,
+        "dz_mm": -6.19,
+        "lateral_mm": 5.22,
+        "tilt_deg": 9.44,
+        "below": false,
+        "max_ncon": 7565,
+        "max_nefc": 30260,
+        "sec": 29.9
+       },
+       {
+        "disp_mm": 7.8,
+        "dz_mm": -5.16,
+        "lateral_mm": 5.85,
+        "tilt_deg": 9.25,
+        "below": false,
+        "max_ncon": 7835,
+        "max_nefc": 31340,
+        "sec": 28.2
+       },
+       {
+        "disp_mm": 8.37,
+        "dz_mm": -6.96,
+        "lateral_mm": 4.64,
+        "tilt_deg": 10.41,
+        "below": false,
+        "max_ncon": 7788,
+        "max_nefc": 31152,
+        "sec": 30.4
+       },
+       {
+        "disp_mm": 7.21,
+        "dz_mm": -5.94,
+        "lateral_mm": 4.09,
+        "tilt_deg": 9.2,
+        "below": false,
+        "max_ncon": 7848,
+        "max_nefc": 31392,
+        "sec": 30.7
+       }
+      ]
+     },
+     "316": {
+      "frame": 316,
+      "pieces": {
+       "delivered": [
+        42,
+        25
+       ],
+       "faithful": [
+        3957,
+        2207
+       ]
+      },
+      "delivered": {
+       "disp_mm": 87.633,
+       "dz_mm": 85.135,
+       "lateral_mm": 17.508,
+       "tilt_deg": 13.405,
+       "copies": 16,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 0.9
+      },
+      "faithful": {
+       "disp_mm": 4.835,
+       "dz_mm": -2.32,
+       "lateral_mm": 4.207,
+       "tilt_deg": 6.13,
+       "copies": 4,
+       "nan": 0,
+       "below": 0,
+       "pass_": false,
+       "memory": "2G",
+       "sec": 107.1
+      },
+      "faithful_per_copy": [
+       {
+        "disp_mm": 5.49,
+        "dz_mm": -2.61,
+        "lateral_mm": 4.83,
+        "tilt_deg": 6.67,
+        "below": false,
+        "max_ncon": 5082,
+        "max_nefc": 20328,
+        "sec": 23.7
+       },
+       {
+        "disp_mm": 4.36,
+        "dz_mm": -1.54,
+        "lateral_mm": 4.08,
+        "tilt_deg": 5.28,
+        "below": false,
+        "max_ncon": 5370,
+        "max_nefc": 21480,
+        "sec": 26.2
+       },
+       {
+        "disp_mm": 5.23,
+        "dz_mm": -3.26,
+        "lateral_mm": 4.1,
+        "tilt_deg": 6.93,
+        "below": false,
+        "max_ncon": 5355,
+        "max_nefc": 21420,
+        "sec": 24.4
+       },
+       {
+        "disp_mm": 4.25,
+        "dz_mm": -1.86,
+        "lateral_mm": 3.82,
+        "tilt_deg": 5.64,
+        "below": false,
+        "max_ncon": 5313,
+        "max_nefc": 21252,
+        "sec": 24.9
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}

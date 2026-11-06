@@ -1,0 +1,1 @@
+ASSETS OK :: ASSETS OK :: blue_cup URDF ac8d296b 24 collisions, 0.3 kg, COM mm [0.464, 1.038, 19.052], ixx/iyy/izz 1.0036e-03/1.0031e-03/4.4479e-04; beige_cup URDF 1a8cb9d8 21 collisions, 0.3 kg, COM mm [1.535, 5.508, -5.568], ixx/iyy/izz 9.0441e-04/9.0433e-04/2.6830e-04

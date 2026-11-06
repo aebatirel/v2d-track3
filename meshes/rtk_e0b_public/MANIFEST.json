@@ -1,0 +1,133 @@
+{
+ "description": "Re-track test delivery (Set B = alt_e0_gated) from the mesh session PUBOWN MANIFEST (bold-albattani branch claude/bold-albattani-6qmxsv, run mesh-20261031-pubown-ed7171c); chosen before any score",
+ "provenance_tier": "inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or scan-derived constants",
+ "source_manifest_run": {
+  "run_id": "mesh-20261031-pubown-ed7171c",
+  "store": "aebatirel/v2d-store runs/mesh-20261031-pubown-ed7171c/",
+  "results": "runs/mesh-20261031-pubown-ed7171c/results/pubown/",
+  "c0b_run": "mesh-20261031-c0b-00e8584",
+  "c0b_code_commit": "00e858434419b3e6bb11508ec8b35e092d76199f"
+ },
+ "files": {
+  "ep0/white_pot.glb": {
+   "path": "ep0/white_pot.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep0/white_pot.glb",
+   "sha256": "a1b0f9ea142a7ff46f6fca46fb74b118b99f7a2ab3b40f4210fcd5ba29c0af91",
+   "md5": "b662b1d18200ca3781d756a428ccd1e4",
+   "bytes": 270876,
+   "set": "B",
+   "source": "pubown"
+  },
+  "ep2/white_pot.glb": {
+   "path": "ep2/white_pot.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep2/white_pot.glb",
+   "sha256": "da20383e7c89cc124ecf4b1ff7fe23eb46ebb4344d858b7565e5150d3694230a",
+   "md5": "e6e9b79d3e34a2b9a3afd544b10adeb5",
+   "bytes": 441748,
+   "set": "B",
+   "source": "pubown"
+  },
+  "ep11/blue_cup.glb": {
+   "path": "ep11/blue_cup.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep11/blue_cup.glb",
+   "sha256": "78969bb9ed3da61c82f2046058a355cf64d0b86e5ab8c46db08dda286e21e6de",
+   "md5": "1df2dc778c3db8db54236ea54fa99d4c",
+   "bytes": 483788,
+   "set": "B",
+   "source": "pubown"
+  },
+  "ep11/beige_cup.glb": {
+   "path": "ep11/beige_cup.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep11/beige_cup.glb",
+   "sha256": "5c39b6561c9b17f1caf729397bfa708936b29d5e2601c0b2a5284d690b4f59a3",
+   "md5": "752a51d66171fb6144b8b0ac83d9a3e6",
+   "bytes": 788720,
+   "set": "B",
+   "source": "pubown"
+  },
+  "ep13/blue_cup.glb": {
+   "path": "ep13/blue_cup.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/cand/blue_cup/ep13_blue_cup_g0.glb",
+   "sha256": "1c819b7e4612325af12a20fc00a9c92c685b6d494dc9c56d5921dcd95a2662de",
+   "md5": "45feea10abdb93795ddb5c2e37874c7b",
+   "bytes": 415528,
+   "set": "B",
+   "source": "pubown_candidate"
+  },
+  "ep21/blue_cup.glb": {
+   "path": "ep21/blue_cup.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/cand/blue_cup/ep21_blue_cup_g0.glb",
+   "sha256": "df11a449e25b705389339e2d341512a7b524c5c26663985f3ce023f09c7f58d2",
+   "md5": "9b7602afa3f292bb4cf2d8d1ac24afd7",
+   "bytes": 394792,
+   "set": "B",
+   "source": "pubown_candidate"
+  },
+  "ep22/blue_cup.glb": {
+   "path": "ep22/blue_cup.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/cand/blue_cup/ep22_blue_cup_g0.glb",
+   "sha256": "6d76fac07150fc2e8cc164469a83822b6b68ea6500e2b49a593a19e5e098e7e7",
+   "md5": "775e202614acde6ef5b7a1ba2d3259de",
+   "bytes": 394792,
+   "set": "B",
+   "source": "pubown_candidate"
+  },
+  "ep26/white_pot.glb": {
+   "path": "ep26/white_pot.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep26/white_pot.glb",
+   "sha256": "10c147c6a0217cc36ad965084bb994765e6650c677bcd6375ab5004547bf8688",
+   "md5": "fb2449b6e6ef117efec161b4c3cb57bc",
+   "bytes": 518776,
+   "set": "B",
+   "source": "pubown"
+  },
+  "ep41/white_pot.glb": {
+   "path": "ep41/white_pot.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep41/white_pot.glb",
+   "sha256": "1368cb42a3bbddc3379c6f7d47c5064c2ea2e3e57063cfd29c9219c885bff7f3",
+   "md5": "148e42d1f1bdb655cce83fb3c0f45cb7",
+   "bytes": 271060,
+   "set": "B",
+   "source": "pubown"
+  },
+  "ep42/white_pot.glb": {
+   "path": "ep42/white_pot.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep42/white_pot.glb",
+   "sha256": "dff67c4cb9e99c325f09f1b6af7fc033bf6cbc546444f0eb4a84741274ff1a20",
+   "md5": "10f2dae37ebeca6fe1e4659263cb1e94",
+   "bytes": 275520,
+   "set": "B",
+   "source": "pubown"
+  },
+  "ep43/white_pot.glb": {
+   "path": "ep43/white_pot.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep43/white_pot.glb",
+   "sha256": "3dea9a786a8691b40135a6d6586b56fd0b745823ed6b7985406c7b8201513b0c",
+   "md5": "d6573fbd7a75840b542efe53164e4c85",
+   "bytes": 271024,
+   "set": "B",
+   "source": "pubown"
+  },
+  "ep44/white_pot.glb": {
+   "path": "ep44/white_pot.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep44/white_pot.glb",
+   "sha256": "e82688ff294d07ea4fffa6fa0ed88d8547cd955e425f704a6f5892c006c82903",
+   "md5": "05a3ae308f8e5da338c4b1e65e3f999f",
+   "bytes": 638656,
+   "set": "B",
+   "source": "pubown"
+  },
+  "ep45/white_pot.glb": {
+   "path": "ep45/white_pot.glb",
+   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/meshes/ep45/white_pot.glb",
+   "sha256": "9647bf5b7230eaef3c0fe1f70f59aa62390dfd0a6f3d4e8816446a8f111e1aca",
+   "md5": "0c981332bfb0b15563589465ed65cbf4",
+   "bytes": 637648,
+   "set": "B",
+   "source": "pubown"
+  }
+ },
+ "removed": {
+  "ep12/blue_cup.glb": "mesh session (bold-albattani, ~21:40 UTC, before any re-track score; commit 577f838 cdo-sprint/PUBOWN/checks/cup_axis.json): closed end at -z, the wide end (the lathe closed the cup's opening) -> a wrong mesh; ep12 blue cup back to library_v3"
+ }
+}

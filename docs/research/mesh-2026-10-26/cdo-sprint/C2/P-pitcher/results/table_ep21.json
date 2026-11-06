@@ -1,0 +1,14 @@
+{
+ "poses": "data/sweep/ep21/poses.npz",
+ "depth": "cdo_c2/P/depth/cache/depth/public/ep21/depths_fs0.5.npy",
+ "obj": "water_pitcher",
+ "n_world": [
+  -0.06876891145169622,
+  -0.7049461745041691,
+  -0.7059190660902187
+ ],
+ "c_world": 0.5326419767583404,
+ "inlier_frac": 0.18789970930232558,
+ "world_T_cam0_is_identity": true,
+ "obj_origin_height_f0_mm": 129.5
+}

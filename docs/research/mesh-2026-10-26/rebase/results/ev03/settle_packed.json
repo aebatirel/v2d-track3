@@ -1,0 +1,218 @@
+{
+ "set": "ev03",
+ "variant": "packed",
+ "target": "white_pot",
+ "names": [
+  "white_pot",
+  "wooden_spoon"
+ ],
+ "test_frames": [
+  14,
+  24,
+  33
+ ],
+ "diagnostic_only": false,
+ "options": {
+  "timestep": 0.01,
+  "cone": "pyramidal",
+  "integrator": "implicitfast",
+  "iterations": 100,
+  "ls_iterations": 50,
+  "impratio": 20.0,
+  "njmax": 512,
+  "nconmax": 256
+ },
+ "mujoco": "3.17.0",
+ "secs": 2.0,
+ "pieces": [
+  31,
+  10
+ ],
+ "frames": [
+  {
+   "frame": 14,
+   "G3": {
+    "final_mm": [
+     0.61,
+     0.49
+    ],
+    "final_deg": [
+     0.45,
+     0.26
+    ],
+    "max_mm": [
+     0.61,
+     0.98
+    ],
+    "max_deg": [
+     0.45,
+     0.26
+    ],
+    "ncon0": 18,
+    "nefc0": 72,
+    "max_ncon": 51,
+    "max_nefc": 204,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 272,
+    "max_ncon": 68,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.73,
+     "max": 1.68,
+     "min": 0.23,
+     "q90": 1.365
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.415,
+     "max": 1.24,
+     "min": 0.1,
+     "q90": 1.025
+    },
+    "partner_final_mm": {
+     "wooden_spoon": {
+      "n": 16,
+      "median": 0.49,
+      "max": 0.49,
+      "min": 0.49,
+      "q90": 0.49
+     }
+    }
+   }
+  },
+  {
+   "frame": 24,
+   "G3": {
+    "final_mm": [
+     0.23,
+     0.35
+    ],
+    "final_deg": [
+     0.25,
+     0.39
+    ],
+    "max_mm": [
+     0.41,
+     0.98
+    ],
+    "max_deg": [
+     0.34,
+     0.39
+    ],
+    "ncon0": 3,
+    "nefc0": 12,
+    "max_ncon": 42,
+    "max_nefc": 168,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 260,
+    "max_ncon": 65,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.46,
+     "max": 1.06,
+     "min": 0.11,
+     "q90": 0.935
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.285,
+     "max": 1.05,
+     "min": 0.1,
+     "q90": 0.84
+    },
+    "partner_final_mm": {
+     "wooden_spoon": {
+      "n": 16,
+      "median": 0.35,
+      "max": 0.35,
+      "min": 0.35,
+      "q90": 0.35
+     }
+    }
+   }
+  },
+  {
+   "frame": 33,
+   "G3": {
+    "final_mm": [
+     0.26,
+     1.15
+    ],
+    "final_deg": [
+     0.17,
+     0.43
+    ],
+    "max_mm": [
+     0.98,
+     1.89
+    ],
+    "max_deg": [
+     0.17,
+     0.64
+    ],
+    "ncon0": 0,
+    "nefc0": 0,
+    "max_ncon": 61,
+    "max_nefc": 244,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 236,
+    "max_ncon": 59,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.445,
+     "max": 0.95,
+     "min": 0.09,
+     "q90": 0.88
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.265,
+     "max": 0.98,
+     "min": 0.05,
+     "q90": 0.745
+    },
+    "partner_final_mm": {
+     "wooden_spoon": {
+      "n": 16,
+      "median": 1.15,
+      "max": 1.15,
+      "min": 1.15,
+      "q90": 1.15
+     }
+    }
+   }
+  }
+ ],
+ "G3_pass": true,
+ "secs_run": 3.3
+}

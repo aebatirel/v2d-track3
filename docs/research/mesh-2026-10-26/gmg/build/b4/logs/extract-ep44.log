@@ -1,0 +1,6 @@
+[10:19:41] b4_extract ep44 objects ['white_pot'] det True start {'commit': '3a24ee40c63d29fd625af14dc2a884cc6d555912', 'dirty': '?? docs/research/mesh-2026-10-26/gmg/gen_slot.py\n?? docs/research/mesh-2026-10-26/gmg/simphys.py\n?? docs/research/mesh-2026-10-26/gmg/simpieces.py'}
+[10:23:38] hands 236.8 s: frames with hand 248 / 249
+[10:25:59] ep44 pass 0: 125 frames, 13503786 samples, voxels [99356], 140.8 s
+[10:28:20] extract timing {"table_s": 0.4, "pass0_samples_s": 133.3, "pass0_votes_s": 7.5, "pass0_s": 140.8, "pass0_voxels": [99356], "pass1_s": 15.4, "pass2_s": 1.1, "pass3_s": 1.4, "pass4_grids_s": 21.4, "sigma_s": 95.1, "total_s": 275.6}
+[10:28:42] sanity white_pot: 125/125 good, flags [], below 0.0, resid {'median': 0.983, 'p90': 1.052, 'max': 1.161}
+[10:29:49] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep44 total 608.2 s

@@ -1,0 +1,35 @@
+{
+ "log": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/audit/b0final-dd94477.strace",
+ "policy": "gmg",
+ "mode": "clean",
+ "manifest": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0final-dd94477/manifest.json",
+ "events": 1725,
+ "opens_ok": 1484,
+ "forbidden": [],
+ "unlisted": [],
+ "unrecorded": [],
+ "writes_outside_run": [],
+ "system": 1542,
+ "git": 141,
+ "data_reads": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/roster_public.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep1/poses.npz",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep1_a.mp4",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2_a.mp4",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261030-b0final-dd94477/bundle/note.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/config/tracks.json",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/data/track_3_evaluation_objects.json"
+ ],
+ "forbidden_opens": 0,
+ "forbidden_attempted_failed": 0,
+ "command": [
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python",
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/dummy_clean_run.py",
+  "--tag",
+  "b0final"
+ ],
+ "returncode": 0
+}

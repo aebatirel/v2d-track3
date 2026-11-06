@@ -1,0 +1,797 @@
+{
+ "scope": "30",
+ "episodes": {
+  "30": {
+   "R": [
+    0,
+    1,
+    2,
+    4,
+    244,
+    245,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262
+   ],
+   "n_base": 22,
+   "runs": [
+    [
+     0,
+     2
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     244,
+     245
+    ],
+    [
+     247,
+     262
+    ]
+   ],
+   "excluded": {
+    "flagged": []
+   },
+   "n_H30": 22
+  }
+ },
+ "constants": {
+  "MAX_CLIP": 6,
+  "MAX_DEPTH": 5,
+  "TOL_F": 20,
+  "KDEC": 0.001,
+  "W_COLL": 0.25,
+  "MERGE_MAX_CM3": 2.0,
+  "SAMPLE_M": 0.0003,
+  "CLEAR": 0.001,
+  "PITCH": 0.001
+ },
+ "RV_cm3": 29.402,
+ "F_all_cm3": 10.756,
+ "F_target_cm3": 7.625,
+ "touched": [
+  {
+   "piece": 24,
+   "F_cells": 214,
+   "K": 24806,
+   "leaves": 2,
+   "vol_cm3": 10.45
+  },
+  {
+   "piece": 29,
+   "F_cells": 273,
+   "K": 41033,
+   "leaves": 3,
+   "vol_cm3": 13.91
+  },
+  {
+   "piece": 36,
+   "F_cells": 1504,
+   "K": 49917,
+   "leaves": 7,
+   "vol_cm3": 20.94
+  },
+  {
+   "piece": 41,
+   "F_cells": 5518,
+   "K": 59981,
+   "leaves": 15,
+   "vol_cm3": 27.84
+  },
+  {
+   "piece": 42,
+   "F_cells": 116,
+   "K": 15162,
+   "leaves": 2,
+   "vol_cm3": 4.41
+  }
+ ],
+ "merges": [],
+ "pieces": [
+  {
+   "file": "piece_00.obj",
+   "kind": "packed",
+   "src": 0,
+   "tag": "piece_00.obj",
+   "verts": 212,
+   "vol_cm3": 99.782,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_01.obj",
+   "kind": "packed",
+   "src": 1,
+   "tag": "piece_01.obj",
+   "verts": 97,
+   "vol_cm3": 24.389,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_02.obj",
+   "kind": "packed",
+   "src": 2,
+   "tag": "piece_02.obj",
+   "verts": 99,
+   "vol_cm3": 26.072,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_03.obj",
+   "kind": "packed",
+   "src": 3,
+   "tag": "piece_03.obj",
+   "verts": 166,
+   "vol_cm3": 58.725,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_04.obj",
+   "kind": "packed",
+   "src": 4,
+   "tag": "piece_04.obj",
+   "verts": 128,
+   "vol_cm3": 117.49,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_05.obj",
+   "kind": "packed",
+   "src": 5,
+   "tag": "piece_05.obj",
+   "verts": 118,
+   "vol_cm3": 70.061,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_06.obj",
+   "kind": "packed",
+   "src": 6,
+   "tag": "piece_06.obj",
+   "verts": 96,
+   "vol_cm3": 26.513,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_07.obj",
+   "kind": "packed",
+   "src": 7,
+   "tag": "piece_07.obj",
+   "verts": 109,
+   "vol_cm3": 8.581,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_08.obj",
+   "kind": "packed",
+   "src": 8,
+   "tag": "piece_08.obj",
+   "verts": 90,
+   "vol_cm3": 33.391,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_09.obj",
+   "kind": "packed",
+   "src": 9,
+   "tag": "piece_09.obj",
+   "verts": 49,
+   "vol_cm3": 20.56,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_10.obj",
+   "kind": "packed",
+   "src": 10,
+   "tag": "piece_10.obj",
+   "verts": 175,
+   "vol_cm3": 59.639,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_11.obj",
+   "kind": "packed",
+   "src": 11,
+   "tag": "piece_11.obj",
+   "verts": 175,
+   "vol_cm3": 40.311,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_12.obj",
+   "kind": "packed",
+   "src": 12,
+   "tag": "piece_12.obj",
+   "verts": 109,
+   "vol_cm3": 25.046,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_13.obj",
+   "kind": "packed",
+   "src": 13,
+   "tag": "piece_13.obj",
+   "verts": 136,
+   "vol_cm3": 82.701,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_14.obj",
+   "kind": "packed",
+   "src": 14,
+   "tag": "piece_14.obj",
+   "verts": 104,
+   "vol_cm3": 16.917,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_15.obj",
+   "kind": "packed",
+   "src": 15,
+   "tag": "piece_15.obj",
+   "verts": 115,
+   "vol_cm3": 18.6,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_16.obj",
+   "kind": "packed",
+   "src": 16,
+   "tag": "piece_16.obj",
+   "verts": 118,
+   "vol_cm3": 13.053,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_17.obj",
+   "kind": "packed",
+   "src": 17,
+   "tag": "piece_17.obj",
+   "verts": 125,
+   "vol_cm3": 26.219,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_18.obj",
+   "kind": "packed",
+   "src": 18,
+   "tag": "piece_18.obj",
+   "verts": 63,
+   "vol_cm3": 5.72,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_19.obj",
+   "kind": "packed",
+   "src": 19,
+   "tag": "piece_19.obj",
+   "verts": 158,
+   "vol_cm3": 63.978,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_20.obj",
+   "kind": "packed",
+   "src": 20,
+   "tag": "piece_20.obj",
+   "verts": 127,
+   "vol_cm3": 32.857,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_21.obj",
+   "kind": "packed",
+   "src": 21,
+   "tag": "piece_21.obj",
+   "verts": 79,
+   "vol_cm3": 11.673,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_22.obj",
+   "kind": "packed",
+   "src": 22,
+   "tag": "piece_22.obj",
+   "verts": 99,
+   "vol_cm3": 20.315,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_23.obj",
+   "kind": "packed",
+   "src": 23,
+   "tag": "piece_23.obj",
+   "verts": 107,
+   "vol_cm3": 25.961,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_24.obj",
+   "kind": "cut",
+   "src": 24,
+   "tag": "piece_24.obj",
+   "verts": 59,
+   "vol_cm3": 4.908,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_25.obj",
+   "kind": "cut",
+   "src": 24,
+   "tag": "piece_25.obj",
+   "verts": 65,
+   "vol_cm3": 5.327,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_26.obj",
+   "kind": "packed",
+   "src": 25,
+   "tag": "piece_26.obj",
+   "verts": 132,
+   "vol_cm3": 33.167,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_27.obj",
+   "kind": "packed",
+   "src": 26,
+   "tag": "piece_27.obj",
+   "verts": 79,
+   "vol_cm3": 10.647,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_28.obj",
+   "kind": "packed",
+   "src": 27,
+   "tag": "piece_28.obj",
+   "verts": 114,
+   "vol_cm3": 8.769,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_29.obj",
+   "kind": "packed",
+   "src": 28,
+   "tag": "piece_29.obj",
+   "verts": 142,
+   "vol_cm3": 16.109,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_30.obj",
+   "kind": "cut",
+   "src": 29,
+   "tag": "piece_30.obj",
+   "verts": 111,
+   "vol_cm3": 9.551,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_31.obj",
+   "kind": "cut",
+   "src": 29,
+   "tag": "piece_31.obj",
+   "verts": 70,
+   "vol_cm3": 2.182,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_32.obj",
+   "kind": "cut",
+   "src": 29,
+   "tag": "piece_32.obj",
+   "verts": 58,
+   "vol_cm3": 1.867,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_33.obj",
+   "kind": "packed",
+   "src": 30,
+   "tag": "piece_33.obj",
+   "verts": 102,
+   "vol_cm3": 14.258,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_34.obj",
+   "kind": "packed",
+   "src": 31,
+   "tag": "piece_34.obj",
+   "verts": 118,
+   "vol_cm3": 15.669,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_35.obj",
+   "kind": "packed",
+   "src": 32,
+   "tag": "piece_35.obj",
+   "verts": 49,
+   "vol_cm3": 1.435,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_36.obj",
+   "kind": "packed",
+   "src": 33,
+   "tag": "piece_36.obj",
+   "verts": 108,
+   "vol_cm3": 8.664,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_37.obj",
+   "kind": "packed",
+   "src": 34,
+   "tag": "piece_37.obj",
+   "verts": 45,
+   "vol_cm3": 3.292,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_38.obj",
+   "kind": "packed",
+   "src": 35,
+   "tag": "piece_38.obj",
+   "verts": 101,
+   "vol_cm3": 13.555,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_39.obj",
+   "kind": "cut",
+   "src": 36,
+   "tag": "piece_42.obj",
+   "verts": 44,
+   "vol_cm3": 1.356,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_40.obj",
+   "kind": "packed",
+   "src": 37,
+   "tag": "piece_46.obj",
+   "verts": 58,
+   "vol_cm3": 8.367,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_41.obj",
+   "kind": "packed",
+   "src": 38,
+   "tag": "piece_47.obj",
+   "verts": 142,
+   "vol_cm3": 16.804,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_42.obj",
+   "kind": "packed",
+   "src": 39,
+   "tag": "piece_48.obj",
+   "verts": 168,
+   "vol_cm3": 32.556,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_43.obj",
+   "kind": "packed",
+   "src": 40,
+   "tag": "piece_49.obj",
+   "verts": 92,
+   "vol_cm3": 21.216,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_44.obj",
+   "kind": "cut",
+   "src": 41,
+   "tag": "piece_51.obj",
+   "verts": 50,
+   "vol_cm3": 3.297,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_45.obj",
+   "kind": "cut",
+   "src": 41,
+   "tag": "piece_56.obj",
+   "verts": 13,
+   "vol_cm3": 1.529,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_46.obj",
+   "kind": "cut",
+   "src": 41,
+   "tag": "piece_63.obj",
+   "verts": 39,
+   "vol_cm3": 1.321,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_47.obj",
+   "kind": "cut",
+   "src": 42,
+   "tag": "piece_65.obj",
+   "verts": 42,
+   "vol_cm3": 3.531,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_48.obj",
+   "kind": "cut",
+   "src": 42,
+   "tag": "piece_66.obj",
+   "verts": 28,
+   "vol_cm3": 0.796,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_49.obj",
+   "kind": "merged",
+   "src": [
+    41,
+    41
+   ],
+   "tag": "(piece_58.obj+piece_59.obj)",
+   "verts": 25,
+   "vol_cm3": 1.205,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_50.obj",
+   "kind": "merged",
+   "src": [
+    41,
+    41
+   ],
+   "tag": "(piece_52.obj+piece_53.obj)",
+   "verts": 59,
+   "vol_cm3": 1.062,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_51.obj",
+   "kind": "merged",
+   "src": [
+    36,
+    36
+   ],
+   "tag": "(piece_39.obj+piece_41.obj)",
+   "verts": 73,
+   "vol_cm3": 5.697,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_52.obj",
+   "kind": "merged",
+   "src": [
+    36,
+    41
+   ],
+   "tag": "(piece_40.obj+piece_64.obj)",
+   "verts": 31,
+   "vol_cm3": 2.158,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_53.obj",
+   "kind": "merged",
+   "src": [
+    41,
+    41
+   ],
+   "tag": "(piece_57.obj+piece_60.obj)",
+   "verts": 43,
+   "vol_cm3": 0.844,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_54.obj",
+   "kind": "merged",
+   "src": [
+    41,
+    41
+   ],
+   "tag": "(piece_61.obj+piece_62.obj)",
+   "verts": 33,
+   "vol_cm3": 1.893,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_55.obj",
+   "kind": "merged",
+   "src": [
+    36,
+    36,
+    36
+   ],
+   "tag": "(piece_45.obj+(piece_43.obj+piece_44.obj))",
+   "verts": 101,
+   "vol_cm3": 12.18,
+   "convex": true,
+   "watertight": true
+  },
+  {
+   "file": "piece_56.obj",
+   "kind": "merged",
+   "src": [
+    41,
+    41,
+    41
+   ],
+   "tag": "(piece_50.obj+(piece_54.obj+piece_55.obj))",
+   "verts": 76,
+   "vol_cm3": 9.596,
+   "convex": true,
+   "watertight": true
+  }
+ ],
+ "n_pieces": 57,
+ "secs": 659.9,
+ "from_c1": "c1-ev30",
+ "merges2": [
+  {
+   "a": "piece_58.obj",
+   "b": "piece_59.obj",
+   "Fprime_cells_added": 26,
+   "new_fill_cells": 0,
+   "added_cells": 50,
+   "Fprime_spent_cm3": 0.026
+  },
+  {
+   "a": "piece_43.obj",
+   "b": "piece_44.obj",
+   "Fprime_cells_added": 34,
+   "new_fill_cells": 0,
+   "added_cells": 50,
+   "Fprime_spent_cm3": 0.06
+  },
+  {
+   "a": "piece_52.obj",
+   "b": "piece_53.obj",
+   "Fprime_cells_added": 36,
+   "new_fill_cells": 0,
+   "added_cells": 44,
+   "Fprime_spent_cm3": 0.096
+  },
+  {
+   "a": "piece_39.obj",
+   "b": "piece_41.obj",
+   "Fprime_cells_added": 36,
+   "new_fill_cells": 0,
+   "added_cells": 256,
+   "Fprime_spent_cm3": 0.132
+  },
+  {
+   "a": "piece_40.obj",
+   "b": "piece_64.obj",
+   "Fprime_cells_added": 42,
+   "new_fill_cells": 0,
+   "added_cells": 387,
+   "Fprime_spent_cm3": 0.174
+  },
+  {
+   "a": "piece_54.obj",
+   "b": "piece_55.obj",
+   "Fprime_cells_added": 46,
+   "new_fill_cells": 0,
+   "added_cells": 75,
+   "Fprime_spent_cm3": 0.22
+  },
+  {
+   "a": "piece_57.obj",
+   "b": "piece_60.obj",
+   "Fprime_cells_added": 46,
+   "new_fill_cells": 0,
+   "added_cells": 401,
+   "Fprime_spent_cm3": 0.266
+  },
+  {
+   "a": "piece_61.obj",
+   "b": "piece_62.obj",
+   "Fprime_cells_added": 49,
+   "new_fill_cells": 0,
+   "added_cells": 102,
+   "Fprime_spent_cm3": 0.315
+  },
+  {
+   "a": "piece_45.obj",
+   "b": "(piece_43.obj+piece_44.obj)",
+   "Fprime_cells_added": 58,
+   "new_fill_cells": 0,
+   "added_cells": 88,
+   "Fprime_spent_cm3": 0.373
+  },
+  {
+   "a": "piece_50.obj",
+   "b": "(piece_54.obj+piece_55.obj)",
+   "Fprime_cells_added": 67,
+   "new_fill_cells": 0,
+   "added_cells": 99,
+   "Fprime_spent_cm3": 0.44
+  }
+ ],
+ "constants2": {
+  "BUDGET_CM3": 0.5,
+  "MERGE_MAX_CM3": 2.0,
+  "BAND": 0.00087,
+  "SNAP": 1e-05
+ },
+ "Fprime_spent_cm3": 0.44,
+ "secs2": 332.0
+}

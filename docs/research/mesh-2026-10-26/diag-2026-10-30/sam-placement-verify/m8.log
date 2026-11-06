@@ -1,0 +1,4 @@
+{"points": "ep24", "seed": 42, "J_mm": 3.01, "size_pct": 4.5, "rot": 179.6, "trans_mm": 24.2, "kitlike_add": [24.5, 25.9, 71.6], "kit_rot": [0.6, 1.7, 179.7]}
+{"points": "ep24", "seed": 7, "J_mm": 3.1, "size_pct": 0.6, "rot": 0.6, "trans_mm": 27.7, "kitlike_add": [28.5, 28.3, 27.7], "kit_rot": [0.7, 0.8, 1.1]}
+{"points": "ep23", "seed": 42, "J_mm": 9.19, "size_pct": -13.0, "rot": 177.9, "trans_mm": 21.4, "kitlike_add": [28.6, 27.0, 67.0], "kit_rot": [17.7, 15.7, 177.8]}
+{"points": "ep23", "seed": 7, "J_mm": 9.92, "size_pct": -15.3, "rot": 164.1, "trans_mm": 24.3, "kitlike_add": [140.7, 140.5, 140.4], "kit_rot": [164.5, 163.5, 163.2]}

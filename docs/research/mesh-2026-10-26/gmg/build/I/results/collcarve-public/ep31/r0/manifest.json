@@ -1,0 +1,436 @@
+{
+ "schema": "gmg-sim/2",
+ "episode": 31,
+ "split": "public",
+ "round": 0,
+ "p_sim": {
+  "source": "P_sel",
+  "flag": "sim_pose_fallback",
+  "tracks": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz",
+   "sha256": "997c6807837fd2adc602a0ee32de79926d9a304e4d2d9c4c603a56c517314a22"
+  }
+ },
+ "objects": {
+  "mini_sweeper": {
+   "files": {
+    "carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+    "piece_00.obj": "9db5a8fb01501e585ab371a6a1e7270029e8898f83f031de10cda7545aafdbd4",
+    "piece_01.obj": "df64a3e1c03d170d0c9eedd21988154cf8c661f8f4e31759d10a9fc050a4ec74",
+    "piece_02.obj": "cc6f4da0bd4b2986a9f88a66a7bc9fc27f0e50f1e971b18fcec3d5912ee6f1b7",
+    "inertia.json": "0ef99879650e7cb334fc235e678b2916845f195546df7456db30a7417e77bd1f",
+    "mini_sweeper.glb": "812b6d88a17dd5767f9390a331343cd359d972dbb1670a94787d6b4a297263cf"
+   },
+   "fiducials": [
+    [
+     -0.002976764293637592,
+     -0.014945694549466398,
+     0.022786798663176136
+    ],
+    [
+     -0.007562550731264497,
+     -0.014945694549466405,
+     0.02737258510080305
+    ],
+    [
+     -0.011184939848376253,
+     -0.008936893005952856,
+     0.014578623108437501
+    ],
+    [
+     -0.015770726286003157,
+     -0.00893689300595286,
+     0.019164409546064416
+    ],
+    [
+     0.010569272961725308,
+     0.02206276747340592,
+     0.03633283591853904
+    ],
+    [
+     0.005983486524098403,
+     0.022062767473405912,
+     0.04091862235616595
+    ],
+    [
+     0.0023610974069866466,
+     0.028071569016919463,
+     0.028124660363800402
+    ],
+    [
+     -0.0022246890306402587,
+     0.028071569016919456,
+     0.03271044680142732
+    ]
+   ],
+   "gate": {
+    "choice": "4_voxels",
+    "report": {
+     "pass_": true,
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "do_not_use": null
+   }
+  },
+  "plastic_dish_rack": {
+   "files": {
+    "piece_06.obj": "83be9d60738499f96e9f4ebcef68e52f051209cf81fe44bb5dd1c804bc7e8901",
+    "piece_13.obj": "0eeb6e0eda1f794459dbaf2c9bdea5bcf534b0004dddbeffe8958a8a5f778861",
+    "piece_34.obj": "03d249053f82f13fb72c866b94001f03cc7ae9a4eb0b768136a4f40d8ac3db71",
+    "piece_41.obj": "9c5f1d6e19f6026ee12164d0c96131cbdbdafdd85370a0e430cad0cdc42fad53",
+    "piece_15.obj": "b5cf8c3f7cf794f7f820efe08445530b11f58061d258417c3ea7d3e21012af23",
+    "piece_18.obj": "99c300321d9303ad75aee9709c603a54f20356f04870f8db3f3bec01474dc2bb",
+    "piece_05.obj": "e6957bfb61037bf7d472a2e0813f72c9c94db97785894b9a6e03429ed146df4b",
+    "piece_43.obj": "c7d7c52819c281347cafdf1856cd5724a9fd23dcb0950614b658e260ef0187b6",
+    "piece_07.obj": "acaf795a85729cb5d9051ccc7f11830079c8bc9d0542fe3e3e306dc5bb3482dc",
+    "piece_20.obj": "f6efbbad60ef5c8f0cc3070e624e5b3a97c09d36546ac73c0f5d51d5cdb4d40f",
+    "piece_44.obj": "7d8e101c04682e075affa8d31ad9e36cd971e838967968defd7dc8275af8350c",
+    "piece_37.obj": "bf984de8034e772f5ef9e04b7d60cb06ef4c3926921779ccb5756bbcb3a087cc",
+    "carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+    "piece_29.obj": "7eddc447d06a269ce151953c9dce84609ca360d6945dcf45a1bdcd49d48b9932",
+    "piece_33.obj": "d19b49fd238dbf295e29c0f148e3c814e415af81b6a0e9ec712b3c92edc66eed",
+    "piece_08.obj": "00d63df0569b8da15d613073565f076ddae1889303670e589a54e1180a31e561",
+    "plastic_dish_rack.glb": "398777aa8bde56fec2d169cb10665079050d8caa9d42f11844380582d6857e6c",
+    "piece_39.obj": "d40726ddcba5883f5028998e50cf2ac41ef7b8b57ef8610d08c39d1a6793cd06",
+    "piece_00.obj": "40c092b2fa1fb9e9b68167726553982a8ac4faf810411554fd58e5602119f559",
+    "piece_46.obj": "ed4daee85dc160e3e85908215b6cac29c1df561c05e95072fdc5818cc75162a5",
+    "piece_11.obj": "5ce241aa214c04de64c83cf225940e00d9eefd38461f28ad3a4cb5efca0674f4",
+    "piece_19.obj": "945b3f998d9e7bf3efc9512db2cec45eb497d8afeb7e745df88db106d63f3ea8",
+    "piece_45.obj": "44dd3ef081a3332042d1915ec82de91d8ba7b1cb69be9b4d5c0f3fca901ecb72",
+    "piece_23.obj": "54d3530064a69df33d7965d046003f0401e868d4b06a3d15b688d46a1ab53481",
+    "piece_40.obj": "b7686d03733eb847d4aee4c179f9c468a3f78c672699d600813c04acbf3f140c",
+    "piece_01.obj": "77dc03a8dd808a56e8912a98c6ba602cb0c42c7f2b54d55ff49b77f3f0561631",
+    "piece_21.obj": "25480fbabd5261996cfc5f6a15c835295818bbfadb7d88d41cd3504e6ede6b26",
+    "piece_31.obj": "d5beddeb132d02960d52e82e1f4615865b58837296a0b67247e400cd5eb43275",
+    "piece_32.obj": "b21498daf06885ed5ef29f4a0f5103c5e6b4e27e95639108facfd68594a9a4f0",
+    "piece_02.obj": "1df92038d95ed6a5b3200700f647b9ade896b3de93a15ddffc402c9400870c9f",
+    "piece_28.obj": "226e3ac9c337bcd13f50520e98b66dcc4dc9d131a51ed315bc19ec570b743a64",
+    "piece_04.obj": "3e369904b15f48cd96883dc320a74f0b02302f6198ee80eb56b4562a8fd285ac",
+    "inertia.json": "566f38eaa13dc67c0ea915dafe198dcbeecec2a031939f1720591f0798bd1d24",
+    "piece_38.obj": "f15811c3fa0596dfcd786f5ae3e9be71f777809188da8716ea27773f883b90ed",
+    "piece_10.obj": "e9bb6bccf047675feebb2b93760924f7a7928a298d2d3b09f9e8bf9475d0eafd",
+    "piece_24.obj": "7b7d420ad7b7707bfbe1e92bb0a45d74d69d6496fe9f98faf94d5a8969b8738c",
+    "piece_36.obj": "80a399eb96575c0ebd66e9da837e79592258e91b4d5d1e08c17b011f88b57833",
+    "piece_30.obj": "d20998cb2a6ae4ef4cf951a5020daa8b55a533ccc8e42297a7e2638acf67cbc0",
+    "piece_03.obj": "c052bdcf45914f17555b3954297e8e6b224bb8fdb8d544a1323095caf4269d99",
+    "piece_12.obj": "b09e3d1e23d4bd45d8b5c3d00208c64234ac82e7d9c513fe9d7993e18cecdf10",
+    "piece_14.obj": "8888eb679755bf3147c5243ba514affb59771c44dd1f733a92f79b71721238f9",
+    "piece_22.obj": "4abc7fabacfbea7fa3b6bfc5cee91104f55f3381f4b69018b38f2f89c6baaae2",
+    "piece_17.obj": "6e9f3cf6faf15d3a1881fe7899d06ad487a0693c71b09f886a518aa2d8b422cb",
+    "piece_25.obj": "948190e99a5b8627550321739e088f20c60f1d64462581367c48550efdea43d6",
+    "piece_35.obj": "f0376839c3df465089bad7a7e661db350ddc77d76b871833c8bd93b3383e14ea",
+    "piece_09.obj": "94e039f398e9c24b4a54e196b355d5d169ce08a2d075f346a9ce7fd3d9c9444d",
+    "piece_26.obj": "5714aa3752b280bec586d8025842314d00b02b174de818fff02693f19510277b",
+    "piece_42.obj": "29eeb20e9a50ac7188b89a441ce7a6d65a8ab6ed9619d90cd629e92a5b66ec65",
+    "piece_27.obj": "71d8e22ad8a64f76f649c7c3a9ab63f67ea1d9eea29bb54b79ebe57b1454f3dd",
+    "piece_16.obj": "c039e31b319fcb33a51925433cbcd2c0dc1b72e627c7832e4883e12c5d3df2b1"
+   },
+   "fiducials": [
+    [
+     -0.056625346924109504,
+     -0.08470370392887504,
+     -0.19213442147479265
+    ],
+    [
+     0.025921438585208203,
+     -0.10210370306200908,
+     -0.18973853364629079
+    ],
+    [
+     -0.022880127437695484,
+     0.07354793698682652,
+     -0.20548270088051787
+    ],
+    [
+     0.05966665807162222,
+     0.05614793785369247,
+     -0.203086813052016
+    ],
+    [
+     -0.06132579516785072,
+     -0.04685813194223371,
+     0.24466391285651917
+    ],
+    [
+     0.02122099034146698,
+     -0.06425813107536774,
+     0.24705980068502104
+    ],
+    [
+     -0.02758057568143671,
+     0.11139350897346786,
+     0.23131563345079398
+    ],
+    [
+     0.05496620982788099,
+     0.09399350984033382,
+     0.23371152127929584
+    ]
+   ],
+   "gate": {
+    "choice": "4_voxels",
+    "report": {
+     "pass_": true,
+     "n": 47,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "do_not_use": null
+   }
+  }
+ },
+ "object_order": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "files": {
+  "props_gmg.json": "46efa807ee8e2752d51460efc82fc77b3bb8a2a06eb4b5bdca5dd5d18ce3d923",
+  "mini_sweeper/carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+  "mini_sweeper/piece_00.obj": "9db5a8fb01501e585ab371a6a1e7270029e8898f83f031de10cda7545aafdbd4",
+  "mini_sweeper/piece_01.obj": "df64a3e1c03d170d0c9eedd21988154cf8c661f8f4e31759d10a9fc050a4ec74",
+  "mini_sweeper/piece_02.obj": "cc6f4da0bd4b2986a9f88a66a7bc9fc27f0e50f1e971b18fcec3d5912ee6f1b7",
+  "mini_sweeper/inertia.json": "0ef99879650e7cb334fc235e678b2916845f195546df7456db30a7417e77bd1f",
+  "mini_sweeper/mini_sweeper.glb": "812b6d88a17dd5767f9390a331343cd359d972dbb1670a94787d6b4a297263cf",
+  "plastic_dish_rack/piece_06.obj": "83be9d60738499f96e9f4ebcef68e52f051209cf81fe44bb5dd1c804bc7e8901",
+  "plastic_dish_rack/piece_13.obj": "0eeb6e0eda1f794459dbaf2c9bdea5bcf534b0004dddbeffe8958a8a5f778861",
+  "plastic_dish_rack/piece_34.obj": "03d249053f82f13fb72c866b94001f03cc7ae9a4eb0b768136a4f40d8ac3db71",
+  "plastic_dish_rack/piece_41.obj": "9c5f1d6e19f6026ee12164d0c96131cbdbdafdd85370a0e430cad0cdc42fad53",
+  "plastic_dish_rack/piece_15.obj": "b5cf8c3f7cf794f7f820efe08445530b11f58061d258417c3ea7d3e21012af23",
+  "plastic_dish_rack/piece_18.obj": "99c300321d9303ad75aee9709c603a54f20356f04870f8db3f3bec01474dc2bb",
+  "plastic_dish_rack/piece_05.obj": "e6957bfb61037bf7d472a2e0813f72c9c94db97785894b9a6e03429ed146df4b",
+  "plastic_dish_rack/piece_43.obj": "c7d7c52819c281347cafdf1856cd5724a9fd23dcb0950614b658e260ef0187b6",
+  "plastic_dish_rack/piece_07.obj": "acaf795a85729cb5d9051ccc7f11830079c8bc9d0542fe3e3e306dc5bb3482dc",
+  "plastic_dish_rack/piece_20.obj": "f6efbbad60ef5c8f0cc3070e624e5b3a97c09d36546ac73c0f5d51d5cdb4d40f",
+  "plastic_dish_rack/piece_44.obj": "7d8e101c04682e075affa8d31ad9e36cd971e838967968defd7dc8275af8350c",
+  "plastic_dish_rack/piece_37.obj": "bf984de8034e772f5ef9e04b7d60cb06ef4c3926921779ccb5756bbcb3a087cc",
+  "plastic_dish_rack/carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+  "plastic_dish_rack/piece_29.obj": "7eddc447d06a269ce151953c9dce84609ca360d6945dcf45a1bdcd49d48b9932",
+  "plastic_dish_rack/piece_33.obj": "d19b49fd238dbf295e29c0f148e3c814e415af81b6a0e9ec712b3c92edc66eed",
+  "plastic_dish_rack/piece_08.obj": "00d63df0569b8da15d613073565f076ddae1889303670e589a54e1180a31e561",
+  "plastic_dish_rack/plastic_dish_rack.glb": "398777aa8bde56fec2d169cb10665079050d8caa9d42f11844380582d6857e6c",
+  "plastic_dish_rack/piece_39.obj": "d40726ddcba5883f5028998e50cf2ac41ef7b8b57ef8610d08c39d1a6793cd06",
+  "plastic_dish_rack/piece_00.obj": "40c092b2fa1fb9e9b68167726553982a8ac4faf810411554fd58e5602119f559",
+  "plastic_dish_rack/piece_46.obj": "ed4daee85dc160e3e85908215b6cac29c1df561c05e95072fdc5818cc75162a5",
+  "plastic_dish_rack/piece_11.obj": "5ce241aa214c04de64c83cf225940e00d9eefd38461f28ad3a4cb5efca0674f4",
+  "plastic_dish_rack/piece_19.obj": "945b3f998d9e7bf3efc9512db2cec45eb497d8afeb7e745df88db106d63f3ea8",
+  "plastic_dish_rack/piece_45.obj": "44dd3ef081a3332042d1915ec82de91d8ba7b1cb69be9b4d5c0f3fca901ecb72",
+  "plastic_dish_rack/piece_23.obj": "54d3530064a69df33d7965d046003f0401e868d4b06a3d15b688d46a1ab53481",
+  "plastic_dish_rack/piece_40.obj": "b7686d03733eb847d4aee4c179f9c468a3f78c672699d600813c04acbf3f140c",
+  "plastic_dish_rack/piece_01.obj": "77dc03a8dd808a56e8912a98c6ba602cb0c42c7f2b54d55ff49b77f3f0561631",
+  "plastic_dish_rack/piece_21.obj": "25480fbabd5261996cfc5f6a15c835295818bbfadb7d88d41cd3504e6ede6b26",
+  "plastic_dish_rack/piece_31.obj": "d5beddeb132d02960d52e82e1f4615865b58837296a0b67247e400cd5eb43275",
+  "plastic_dish_rack/piece_32.obj": "b21498daf06885ed5ef29f4a0f5103c5e6b4e27e95639108facfd68594a9a4f0",
+  "plastic_dish_rack/piece_02.obj": "1df92038d95ed6a5b3200700f647b9ade896b3de93a15ddffc402c9400870c9f",
+  "plastic_dish_rack/piece_28.obj": "226e3ac9c337bcd13f50520e98b66dcc4dc9d131a51ed315bc19ec570b743a64",
+  "plastic_dish_rack/piece_04.obj": "3e369904b15f48cd96883dc320a74f0b02302f6198ee80eb56b4562a8fd285ac",
+  "plastic_dish_rack/inertia.json": "566f38eaa13dc67c0ea915dafe198dcbeecec2a031939f1720591f0798bd1d24",
+  "plastic_dish_rack/piece_38.obj": "f15811c3fa0596dfcd786f5ae3e9be71f777809188da8716ea27773f883b90ed",
+  "plastic_dish_rack/piece_10.obj": "e9bb6bccf047675feebb2b93760924f7a7928a298d2d3b09f9e8bf9475d0eafd",
+  "plastic_dish_rack/piece_24.obj": "7b7d420ad7b7707bfbe1e92bb0a45d74d69d6496fe9f98faf94d5a8969b8738c",
+  "plastic_dish_rack/piece_36.obj": "80a399eb96575c0ebd66e9da837e79592258e91b4d5d1e08c17b011f88b57833",
+  "plastic_dish_rack/piece_30.obj": "d20998cb2a6ae4ef4cf951a5020daa8b55a533ccc8e42297a7e2638acf67cbc0",
+  "plastic_dish_rack/piece_03.obj": "c052bdcf45914f17555b3954297e8e6b224bb8fdb8d544a1323095caf4269d99",
+  "plastic_dish_rack/piece_12.obj": "b09e3d1e23d4bd45d8b5c3d00208c64234ac82e7d9c513fe9d7993e18cecdf10",
+  "plastic_dish_rack/piece_14.obj": "8888eb679755bf3147c5243ba514affb59771c44dd1f733a92f79b71721238f9",
+  "plastic_dish_rack/piece_22.obj": "4abc7fabacfbea7fa3b6bfc5cee91104f55f3381f4b69018b38f2f89c6baaae2",
+  "plastic_dish_rack/piece_17.obj": "6e9f3cf6faf15d3a1881fe7899d06ad487a0693c71b09f886a518aa2d8b422cb",
+  "plastic_dish_rack/piece_25.obj": "948190e99a5b8627550321739e088f20c60f1d64462581367c48550efdea43d6",
+  "plastic_dish_rack/piece_35.obj": "f0376839c3df465089bad7a7e661db350ddc77d76b871833c8bd93b3383e14ea",
+  "plastic_dish_rack/piece_09.obj": "94e039f398e9c24b4a54e196b355d5d169ce08a2d075f346a9ce7fd3d9c9444d",
+  "plastic_dish_rack/piece_26.obj": "5714aa3752b280bec586d8025842314d00b02b174de818fff02693f19510277b",
+  "plastic_dish_rack/piece_42.obj": "29eeb20e9a50ac7188b89a441ce7a6d65a8ab6ed9619d90cd629e92a5b66ec65",
+  "plastic_dish_rack/piece_27.obj": "71d8e22ad8a64f76f649c7c3a9ab63f67ea1d9eea29bb54b79ebe57b1454f3dd",
+  "plastic_dish_rack/piece_16.obj": "c039e31b319fcb33a51925433cbcd2c0dc1b72e627c7832e4883e12c5d3df2b1",
+  "_default/mini_sweeper/piece_00.obj": "9db5a8fb01501e585ab371a6a1e7270029e8898f83f031de10cda7545aafdbd4",
+  "_default/mini_sweeper/piece_01.obj": "df64a3e1c03d170d0c9eedd21988154cf8c661f8f4e31759d10a9fc050a4ec74",
+  "_default/mini_sweeper/piece_02.obj": "cc6f4da0bd4b2986a9f88a66a7bc9fc27f0e50f1e971b18fcec3d5912ee6f1b7",
+  "_default/plastic_dish_rack/piece_06.obj": "83be9d60738499f96e9f4ebcef68e52f051209cf81fe44bb5dd1c804bc7e8901",
+  "_default/plastic_dish_rack/piece_13.obj": "0eeb6e0eda1f794459dbaf2c9bdea5bcf534b0004dddbeffe8958a8a5f778861",
+  "_default/plastic_dish_rack/piece_34.obj": "03d249053f82f13fb72c866b94001f03cc7ae9a4eb0b768136a4f40d8ac3db71",
+  "_default/plastic_dish_rack/piece_41.obj": "9c5f1d6e19f6026ee12164d0c96131cbdbdafdd85370a0e430cad0cdc42fad53",
+  "_default/plastic_dish_rack/piece_15.obj": "b5cf8c3f7cf794f7f820efe08445530b11f58061d258417c3ea7d3e21012af23",
+  "_default/plastic_dish_rack/piece_18.obj": "99c300321d9303ad75aee9709c603a54f20356f04870f8db3f3bec01474dc2bb",
+  "_default/plastic_dish_rack/piece_05.obj": "e6957bfb61037bf7d472a2e0813f72c9c94db97785894b9a6e03429ed146df4b",
+  "_default/plastic_dish_rack/piece_43.obj": "c7d7c52819c281347cafdf1856cd5724a9fd23dcb0950614b658e260ef0187b6",
+  "_default/plastic_dish_rack/piece_07.obj": "acaf795a85729cb5d9051ccc7f11830079c8bc9d0542fe3e3e306dc5bb3482dc",
+  "_default/plastic_dish_rack/piece_20.obj": "f6efbbad60ef5c8f0cc3070e624e5b3a97c09d36546ac73c0f5d51d5cdb4d40f",
+  "_default/plastic_dish_rack/piece_44.obj": "7d8e101c04682e075affa8d31ad9e36cd971e838967968defd7dc8275af8350c",
+  "_default/plastic_dish_rack/piece_37.obj": "bf984de8034e772f5ef9e04b7d60cb06ef4c3926921779ccb5756bbcb3a087cc",
+  "_default/plastic_dish_rack/piece_29.obj": "7eddc447d06a269ce151953c9dce84609ca360d6945dcf45a1bdcd49d48b9932",
+  "_default/plastic_dish_rack/piece_33.obj": "d19b49fd238dbf295e29c0f148e3c814e415af81b6a0e9ec712b3c92edc66eed",
+  "_default/plastic_dish_rack/piece_08.obj": "00d63df0569b8da15d613073565f076ddae1889303670e589a54e1180a31e561",
+  "_default/plastic_dish_rack/piece_39.obj": "d40726ddcba5883f5028998e50cf2ac41ef7b8b57ef8610d08c39d1a6793cd06",
+  "_default/plastic_dish_rack/piece_00.obj": "40c092b2fa1fb9e9b68167726553982a8ac4faf810411554fd58e5602119f559",
+  "_default/plastic_dish_rack/piece_46.obj": "ed4daee85dc160e3e85908215b6cac29c1df561c05e95072fdc5818cc75162a5",
+  "_default/plastic_dish_rack/piece_11.obj": "5ce241aa214c04de64c83cf225940e00d9eefd38461f28ad3a4cb5efca0674f4",
+  "_default/plastic_dish_rack/piece_19.obj": "945b3f998d9e7bf3efc9512db2cec45eb497d8afeb7e745df88db106d63f3ea8",
+  "_default/plastic_dish_rack/piece_45.obj": "44dd3ef081a3332042d1915ec82de91d8ba7b1cb69be9b4d5c0f3fca901ecb72",
+  "_default/plastic_dish_rack/piece_23.obj": "54d3530064a69df33d7965d046003f0401e868d4b06a3d15b688d46a1ab53481",
+  "_default/plastic_dish_rack/piece_40.obj": "b7686d03733eb847d4aee4c179f9c468a3f78c672699d600813c04acbf3f140c",
+  "_default/plastic_dish_rack/piece_01.obj": "77dc03a8dd808a56e8912a98c6ba602cb0c42c7f2b54d55ff49b77f3f0561631",
+  "_default/plastic_dish_rack/piece_21.obj": "25480fbabd5261996cfc5f6a15c835295818bbfadb7d88d41cd3504e6ede6b26",
+  "_default/plastic_dish_rack/piece_31.obj": "d5beddeb132d02960d52e82e1f4615865b58837296a0b67247e400cd5eb43275",
+  "_default/plastic_dish_rack/piece_32.obj": "b21498daf06885ed5ef29f4a0f5103c5e6b4e27e95639108facfd68594a9a4f0",
+  "_default/plastic_dish_rack/piece_02.obj": "1df92038d95ed6a5b3200700f647b9ade896b3de93a15ddffc402c9400870c9f",
+  "_default/plastic_dish_rack/piece_28.obj": "226e3ac9c337bcd13f50520e98b66dcc4dc9d131a51ed315bc19ec570b743a64",
+  "_default/plastic_dish_rack/piece_04.obj": "3e369904b15f48cd96883dc320a74f0b02302f6198ee80eb56b4562a8fd285ac",
+  "_default/plastic_dish_rack/piece_38.obj": "f15811c3fa0596dfcd786f5ae3e9be71f777809188da8716ea27773f883b90ed",
+  "_default/plastic_dish_rack/piece_10.obj": "e9bb6bccf047675feebb2b93760924f7a7928a298d2d3b09f9e8bf9475d0eafd",
+  "_default/plastic_dish_rack/piece_24.obj": "7b7d420ad7b7707bfbe1e92bb0a45d74d69d6496fe9f98faf94d5a8969b8738c",
+  "_default/plastic_dish_rack/piece_36.obj": "80a399eb96575c0ebd66e9da837e79592258e91b4d5d1e08c17b011f88b57833",
+  "_default/plastic_dish_rack/piece_30.obj": "d20998cb2a6ae4ef4cf951a5020daa8b55a533ccc8e42297a7e2638acf67cbc0",
+  "_default/plastic_dish_rack/piece_03.obj": "c052bdcf45914f17555b3954297e8e6b224bb8fdb8d544a1323095caf4269d99",
+  "_default/plastic_dish_rack/piece_12.obj": "b09e3d1e23d4bd45d8b5c3d00208c64234ac82e7d9c513fe9d7993e18cecdf10",
+  "_default/plastic_dish_rack/piece_14.obj": "8888eb679755bf3147c5243ba514affb59771c44dd1f733a92f79b71721238f9",
+  "_default/plastic_dish_rack/piece_22.obj": "4abc7fabacfbea7fa3b6bfc5cee91104f55f3381f4b69018b38f2f89c6baaae2",
+  "_default/plastic_dish_rack/piece_17.obj": "6e9f3cf6faf15d3a1881fe7899d06ad487a0693c71b09f886a518aa2d8b422cb",
+  "_default/plastic_dish_rack/piece_25.obj": "948190e99a5b8627550321739e088f20c60f1d64462581367c48550efdea43d6",
+  "_default/plastic_dish_rack/piece_35.obj": "f0376839c3df465089bad7a7e661db350ddc77d76b871833c8bd93b3383e14ea",
+  "_default/plastic_dish_rack/piece_09.obj": "94e039f398e9c24b4a54e196b355d5d169ce08a2d075f346a9ce7fd3d9c9444d",
+  "_default/plastic_dish_rack/piece_26.obj": "5714aa3752b280bec586d8025842314d00b02b174de818fff02693f19510277b",
+  "_default/plastic_dish_rack/piece_42.obj": "29eeb20e9a50ac7188b89a441ce7a6d65a8ab6ed9619d90cd629e92a5b66ec65",
+  "_default/plastic_dish_rack/piece_27.obj": "71d8e22ad8a64f76f649c7c3a9ab63f67ea1d9eea29bb54b79ebe57b1454f3dd",
+  "_default/plastic_dish_rack/piece_16.obj": "c039e31b319fcb33a51925433cbcd2c0dc1b72e627c7832e4883e12c5d3df2b1",
+  "_fit/plastic_dish_rack.glb": "7c77b959db0429eaa9d000821b1ab85382dc018b0bedfb49243c6cd20e42967f",
+  "_fit/mini_sweeper.glb": "fd301107aef126c201ce2a5490fc84c48c56026e41efd4e3534d09b158304066"
+ },
+ "fiducials": {
+  "mini_sweeper": [
+   [
+    -0.002976764293637592,
+    -0.014945694549466398,
+    0.022786798663176136
+   ],
+   [
+    -0.007562550731264497,
+    -0.014945694549466405,
+    0.02737258510080305
+   ],
+   [
+    -0.011184939848376253,
+    -0.008936893005952856,
+    0.014578623108437501
+   ],
+   [
+    -0.015770726286003157,
+    -0.00893689300595286,
+    0.019164409546064416
+   ],
+   [
+    0.010569272961725308,
+    0.02206276747340592,
+    0.03633283591853904
+   ],
+   [
+    0.005983486524098403,
+    0.022062767473405912,
+    0.04091862235616595
+   ],
+   [
+    0.0023610974069866466,
+    0.028071569016919463,
+    0.028124660363800402
+   ],
+   [
+    -0.0022246890306402587,
+    0.028071569016919456,
+    0.03271044680142732
+   ]
+  ],
+  "plastic_dish_rack": [
+   [
+    -0.056625346924109504,
+    -0.08470370392887504,
+    -0.19213442147479265
+   ],
+   [
+    0.025921438585208203,
+    -0.10210370306200908,
+    -0.18973853364629079
+   ],
+   [
+    -0.022880127437695484,
+    0.07354793698682652,
+    -0.20548270088051787
+   ],
+   [
+    0.05966665807162222,
+    0.05614793785369247,
+    -0.203086813052016
+   ],
+   [
+    -0.06132579516785072,
+    -0.04685813194223371,
+    0.24466391285651917
+   ],
+   [
+    0.02122099034146698,
+    -0.06425813107536774,
+    0.24705980068502104
+   ],
+   [
+    -0.02758057568143671,
+    0.11139350897346786,
+    0.23131563345079398
+   ],
+   [
+    0.05496620982788099,
+    0.09399350984033382,
+    0.23371152127929584
+   ]
+  ]
+ },
+ "code": {
+  "commit": "0c33080fc8ffc6332af9abc2044b84e4e9fec22b",
+  "dirty": false,
+  "dirty_files": [],
+  "sha256": {
+   "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+   "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+   "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+   "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+   "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+   "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+   "tools/interlock_dev.py": "f3ea47dc22d4a9c98bdef6414531ef558ab826dd7ba851eb82e0fe4cf0d249fe",
+   "platebody.py": "a1ca8960b0d7980509e76ebcba18f873e2df4877064146ed57c39bff91a866b9",
+   "collcarve.py": "a27f7b950fbee73e83b0727fd1a7f2854d9c9118212c0902fadc3d1aa6b728ad",
+   "cavpieces.py": "2f5a3776425ef836063c42d09da889f72908f2b3169a80b673a69d5079ef8235"
+  }
+ },
+ "commit": "0c33080fc8ffc6332af9abc2044b84e4e9fec22b",
+ "interlock": null,
+ "do_not_use": null,
+ "fiducial_definition": "8 corners of the PCA-oriented bounding box of all piece vertices, each coordinate 1 mm inward along each box axis (simpieces.fiducials)",
+ "note": "visual <obj>.glb = submitted mesh (geometry only); collisions = piece_XX.obj (make_assets.py --pieces); _fit/<obj>.glb = union of the pieces for phys_fit --meshes; props_gmg.json for phys_fit --props",
+ "owner_waiver_fi5": {
+  "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+  "quote": "but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it",
+  "scope": "every non-plate pair whose simulator colliders interpenetrate persistently, simulator copy only (F-I5.0)",
+  "routes": {
+   "mini_sweeper": "4_voxels",
+   "plastic_dish_rack": "4_voxels"
+  },
+  "pairs": {
+   "mini_sweeper|plastic_dish_rack": {
+    "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+    "pair": [
+     "mini_sweeper",
+     "plastic_dish_rack"
+    ],
+    "gates": {},
+    "in_scope": false,
+    "why": "no persistent component passes the kept gates"
+   }
+  },
+  "default_pieces": "_default/<obj>/piece_XX.obj"
+ },
+ "p1_pending": true
+}

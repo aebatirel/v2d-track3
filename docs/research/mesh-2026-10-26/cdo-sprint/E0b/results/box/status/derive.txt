@@ -1,0 +1,3 @@
+OK beige/ep10/msep 4s
+OK beige/ep8/msep 4s
+OK cup/merged 4s

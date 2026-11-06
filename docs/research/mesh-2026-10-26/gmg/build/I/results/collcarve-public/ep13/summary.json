@@ -1,0 +1,230 @@
+{
+ "out_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/interlock/public/ep13-fi5",
+ "sec": 4940.1,
+ "fi5_sec": 4791.1,
+ "launch_code": {
+  "commit": "407a18e6af2224955960ee50cbf178254a5a0873",
+  "dirty": false,
+  "dirty_files": []
+ },
+ "picks": {
+  "blue_cup": "shell_t5p36",
+  "plastic_dish_rack": "shell_t5p36"
+ },
+ "fi5_body": {
+  "blue_cup": "shell_t5p36",
+  "plastic_dish_rack": "shell_t5p36"
+ },
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep13",
+ "identity": "eval",
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep13-fi5/r0",
+ "do_not_use": null,
+ "diag_sink": true,
+ "routes": {
+  "blue_cup": {
+   "route": "4_voxels",
+   "n": 25,
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 1.7651
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 25,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0
+   },
+   "tried": [
+    {
+     "route": "2_lathe",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 81,
+      "max_cm3": 2.008,
+      "over_tol": 22
+     },
+     "report": {
+      "n_sectors": 8,
+      "ring_pieces": 65,
+      "continuity": {
+       "ok": true,
+       "gaps": 0,
+       "checked": 131760
+      }
+     }
+    },
+    {
+     "route": "3_coacd",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 5.184,
+      "over_tol": 31
+     },
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 5.184,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 1073.5
+     }
+    },
+    {
+     "route": "4_voxels",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": true,
+      "n": 25,
+      "max_cm3": 0.0,
+      "over_tol": 0
+     },
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 25,
+      "cells": 50,
+      "cap": 82
+     }
+    }
+   ]
+  },
+  "plastic_dish_rack": {
+   "route": "4_voxels",
+   "n": 24,
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 12.8035
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 24,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0
+   },
+   "tried": [
+    {
+     "route": "3_coacd",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 3.528,
+      "over_tol": 66
+     },
+     "report": {
+      "steps": 2,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 3.528,
+      "cap": 82,
+      "coacd_pieces": 80,
+      "sec": 286.1
+     }
+    },
+    {
+     "route": "4_voxels",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": true,
+      "n": 24,
+      "max_cm3": 0.0,
+      "over_tol": 0
+     },
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 24,
+      "cells": 51,
+      "cap": 82
+     }
+    }
+   ]
+  }
+ },
+ "overlap_track": {
+  "blue_cup|plastic_dish_rack": {
+   "max_cm3": 0.0,
+   "median_cm3": 0.0
+  }
+ },
+ "decisions_fi5": [],
+ "decisions_flag_off_no_silhouette": [
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [
+    "c_absent_track:good share [0.38] flags [] identity eval"
+   ],
+   "voxels": 168
+  },
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [
+    "c_absent_track:good share [0.38] flags [] identity eval"
+   ],
+   "voxels": 5
+  },
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [
+    "c_absent_track:good share [0.38] flags [] identity eval"
+   ],
+   "voxels": 1
+  },
+  {
+   "target": "plastic_dish_rack",
+   "partner": "blue_cup",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [
+    "c_absent_track:good share [0.4] flags [] identity eval"
+   ],
+   "voxels": 162
+  }
+ ],
+ "pairs": {
+  "blue_cup|plastic_dish_rack": {
+   "in_scope": false,
+   "scope": null,
+   "why": "no persistent component passes the kept gates",
+   "gates": {},
+   "receiver": null,
+   "guest": null,
+   "containment": null,
+   "rest": null,
+   "overshoot_frames": 0,
+   "carve_frames": null,
+   "build_frames_entered": null,
+   "R_voxels": null,
+   "Rplus_voxels": null,
+   "c_mm": null,
+   "sigma_sup": null,
+   "carve": null,
+   "caps": null,
+   "rigid_shift": null,
+   "carve_of_pose_error": null,
+   "one_sided": null,
+   "decision_flag_off": null,
+   "deliver": null
+  }
+ }
+}

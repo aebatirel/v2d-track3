@@ -1,0 +1,387 @@
+{
+ "note": "[D] configuration pack 9a + C1 (beige T1 lathe, dust pan T2 placed pick; blue cup library_v3), rebuilt from stored run JSONs; reported only, not a selection",
+ "all_18": {
+  "n": 18,
+  "eps": [
+   0,
+   2,
+   11,
+   12,
+   13,
+   21,
+   22,
+   26,
+   27,
+   31,
+   41,
+   42,
+   43,
+   44,
+   45,
+   18,
+   39,
+   40
+  ],
+  "mean_dAUC": 0.00909,
+  "min_dAUC": -0.0092,
+  "max_dAUC": 0.0612,
+  "mean_dSP_SR": 0.0,
+  "min_dSP_SR": 0.0,
+  "max_dSP_SR": 0.0,
+  "mean_dMP_SR": 0.0,
+  "min_dMP_SR": 0.0,
+  "max_dMP_SR": 0.0,
+  "mean_dMPPE_cm": -0.07379,
+  "min_dMPPE_cm": -0.2971,
+  "max_dMPPE_cm": 0.1804,
+  "mean_dRPE_cm": -0.10254,
+  "min_dRPE_cm": -0.5711,
+  "max_dRPE_cm": 0.0964,
+  "argmin_dAUC_ep": 12
+ },
+ "touched": {
+  "n": 16,
+  "eps": [
+   0,
+   2,
+   11,
+   12,
+   13,
+   26,
+   27,
+   31,
+   41,
+   42,
+   43,
+   44,
+   45,
+   18,
+   39,
+   40
+  ],
+  "mean_dAUC": 0.01022,
+  "min_dAUC": -0.0092,
+  "max_dAUC": 0.0612,
+  "mean_dSP_SR": 0.0,
+  "min_dSP_SR": 0.0,
+  "max_dSP_SR": 0.0,
+  "mean_dMP_SR": 0.0,
+  "min_dMP_SR": 0.0,
+  "max_dMP_SR": 0.0,
+  "mean_dMPPE_cm": -0.08302,
+  "min_dMPPE_cm": -0.2971,
+  "max_dMPPE_cm": 0.1804,
+  "mean_dRPE_cm": -0.11536,
+  "min_dRPE_cm": -0.5711,
+  "max_dRPE_cm": 0.0964,
+  "argmin_dAUC_ep": 12
+ },
+ "c1_only": {
+  "n": 4,
+  "eps": [
+   11,
+   18,
+   39,
+   40
+  ],
+  "mean_dAUC": 0.0113,
+  "min_dAUC": -0.0014,
+  "max_dAUC": 0.0233,
+  "mean_dSP_SR": 0.0,
+  "min_dSP_SR": 0.0,
+  "max_dSP_SR": 0.0,
+  "mean_dMP_SR": 0.0,
+  "min_dMP_SR": 0.0,
+  "max_dMP_SR": 0.0,
+  "mean_dMPPE_cm": -0.11172,
+  "min_dMPPE_cm": -0.2524,
+  "max_dMPPE_cm": 0.0413,
+  "mean_dRPE_cm": -0.00975,
+  "min_dRPE_cm": -0.0436,
+  "max_dRPE_cm": 0.0046,
+  "argmin_dAUC_ep": 18
+ },
+ "per_twin": [
+  {
+   "ep": 0,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "run": "C0 c0/ep0",
+   "swapped": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "dAUC": 0.0001000000000000445,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.18660000000000032,
+   "dRPE_cm": -0.3943000000000012
+  },
+  {
+   "ep": 2,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "run": "C0 c0/ep2",
+   "swapped": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "dAUC": -0.0040000000000000036,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.006100000000000105,
+   "dRPE_cm": -0.5711
+  },
+  {
+   "ep": 11,
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "run": "C1/T1 single_ep11",
+   "swapped": [
+    "beige_cup"
+   ],
+   "dAUC": 0.008000000000000007,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.06379999999999986,
+   "dRPE_cm": -0.04360000000000008
+  },
+  {
+   "ep": 12,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "run": "C0 single_plastic_dish_rack/ep12",
+   "swapped": [
+    "plastic_dish_rack"
+   ],
+   "dAUC": -0.009199999999999986,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.18040000000000012,
+   "dRPE_cm": 0.09640000000000004
+  },
+  {
+   "ep": 13,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "run": "C0 single_plastic_dish_rack/ep13",
+   "swapped": [
+    "plastic_dish_rack"
+   ],
+   "dAUC": 0.005599999999999938,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.04499999999999993,
+   "dRPE_cm": -0.16379999999999995
+  },
+  {
+   "ep": 21,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "run": "C0 base/ep21",
+   "swapped": [],
+   "dAUC": 0.0,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.0,
+   "dRPE_cm": 0.0
+  },
+  {
+   "ep": 22,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "run": "C0 base/ep22",
+   "swapped": [],
+   "dAUC": 0.0,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.0,
+   "dRPE_cm": 0.0
+  },
+  {
+   "ep": 26,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "run": "C0 c0/ep26",
+   "swapped": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "dAUC": 0.012300000000000089,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.10660000000000003,
+   "dRPE_cm": -0.2522
+  },
+  {
+   "ep": 27,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "run": "C0 c0/ep27",
+   "swapped": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "dAUC": 0.026800000000000046,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.25070000000000003,
+   "dRPE_cm": -0.3446999999999999
+  },
+  {
+   "ep": 31,
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "run": "C0 c0/ep31",
+   "swapped": [
+    "plastic_dish_rack"
+   ],
+   "dAUC": 0.06119999999999992,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.17710000000000004,
+   "dRPE_cm": -0.17710000000000004
+  },
+  {
+   "ep": 41,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "C0 c0/ep41",
+   "swapped": [
+    "white_pot"
+   ],
+   "dAUC": -0.0017000000000000348,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.0027000000000000357,
+   "dRPE_cm": 0.0
+  },
+  {
+   "ep": 42,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "C0 c0/ep42",
+   "swapped": [
+    "white_pot"
+   ],
+   "dAUC": 0.0004999999999999449,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.03520000000000001,
+   "dRPE_cm": 0.0
+  },
+  {
+   "ep": 43,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "C0 c0/ep43",
+   "swapped": [
+    "white_pot"
+   ],
+   "dAUC": 0.02959999999999996,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.29710000000000003,
+   "dRPE_cm": 0.0
+  },
+  {
+   "ep": 44,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "C0 c0/ep44",
+   "swapped": [
+    "white_pot"
+   ],
+   "dAUC": 0.0008000000000000229,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.027900000000000036,
+   "dRPE_cm": 0.0
+  },
+  {
+   "ep": 45,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "C0 c0/ep45",
+   "swapped": [
+    "white_pot"
+   ],
+   "dAUC": -0.0036000000000000476,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.0028000000000000247,
+   "dRPE_cm": 0.0
+  },
+  {
+   "ep": 18,
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "run": "C1/T2 single_mini_dust_pan_ep18",
+   "swapped": [
+    "mini_dust_pan"
+   ],
+   "dAUC": -0.0013999999999999568,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.041300000000000114,
+   "dRPE_cm": 0.0045999999999999375
+  },
+  {
+   "ep": 39,
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "run": "C1/T2 single_mini_dust_pan_ep39",
+   "swapped": [
+    "mini_dust_pan"
+   ],
+   "dAUC": 0.01529999999999998,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.17200000000000004,
+   "dRPE_cm": 0.0
+  },
+  {
+   "ep": 40,
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "run": "C1/T2 single_mini_dust_pan_ep40",
+   "swapped": [
+    "mini_dust_pan"
+   ],
+   "dAUC": 0.023299999999999987,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.25240000000000007,
+   "dRPE_cm": 0.0
+  }
+ ]
+}

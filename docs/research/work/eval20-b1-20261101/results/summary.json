@@ -1,0 +1,490 @@
+{
+ "label": "NO-SWAP",
+ "why": [
+  "training-box gate not met: no seed's training-box mean sim_vs_ref vs P above 0.8933 ({'42': 0.7861, '43': 0.8929}); no confirmation draws"
+ ],
+ "rule": "docs/research/work/eval20-b1-20261101/PREREG.md section 5",
+ "labels_attached": [
+  "pieces not clean in training"
+ ],
+ "pack10_inclusion": {
+  "rule": "binding: a SWAP-ELIGIBLE eval 20 enters pack 10 only if (new confirmation mean - packed fresh-draw mean) sim_vs_ref vs P >= 0.02",
+  "bar": 0.02,
+  "gain": null,
+  "include_in_pack10": false,
+  "reading": "not swap-eligible: not included"
+ },
+ "clauses": {},
+ "sides": {
+  "packed": {
+   "n": 10,
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8934,
+    "sd": 0.028,
+    "min": 0.8193,
+    "max": 0.9146,
+    "median": 0.9013
+   },
+   "RPE": {
+    "n": 10,
+    "mean": 1.9024,
+    "sd": 0.8066,
+    "min": 1.3144,
+    "max": 4.1011,
+    "median": 1.6712
+   },
+   "MPPE": {
+    "n": 10,
+    "mean": 1.8219,
+    "sd": 0.2555,
+    "min": 1.6134,
+    "max": 2.4892,
+    "median": 1.7313
+   },
+   "AUC": {
+    "n": 10,
+    "mean": 0.887,
+    "sd": 0.0316,
+    "min": 0.8071,
+    "max": 0.9134,
+    "median": 0.8949
+   },
+   "fails": 0,
+   "fail_rate": 0.0,
+   "audit_fails": 0,
+   "objects": {
+    "blue_cup": 0.9242,
+    "water_pitcher": 0.8498
+   },
+   "draws": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  }
+ },
+ "training_box_gate": {
+  "rule": "PREREG section 4: >= 1 VERIFIED seed (n >= 8) with training-box mean sim_vs_ref vs P > 0.8933",
+  "bar": 0.8933,
+  "bar_source": "the packed eval-20 policy's 10 fresh (H5p7) draws, mean sim_vs_ref vs P: runs/20261031-h5p7-1a7cdff/results/h5/h5_summary.json[\"20\"][\"mean\"] [M] (dr_score.py on the same 10 draws: 0.8933)",
+  "met": false,
+  "seeds": {
+   "42": {
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.7861,
+    "mean_raw": 0.78607,
+    "above": false,
+    "margin": -0.1072
+   },
+   "43": {
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.8929,
+    "mean_raw": 0.8928900000000001,
+    "above": false,
+    "margin": -0.0004
+   }
+  }
+ },
+ "overflow": {
+  "bar": 1000,
+  "unclean_seeds": [
+   "42",
+   "43"
+  ],
+  "per_seed": {
+   "42": {
+    "dropped": 1236,
+    "files": 1,
+    "counts": {
+     "nefc": 1236,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0
+    },
+    "njmax_requested": {
+     "n": 1236,
+     "median": 532.0,
+     "p95": 565.75,
+     "p99": 587.3000000000002,
+     "max": 604,
+     "min": 513
+    }
+   },
+   "43": {
+    "dropped": 1334,
+    "files": 1,
+    "counts": {
+     "nefc": 1334,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0
+    },
+    "njmax_requested": {
+     "n": 1334,
+     "median": 528.0,
+     "p95": 556.0,
+     "p99": 572.0,
+     "max": 600,
+     "min": 513
+    }
+   }
+  },
+  "other": {
+   "train_oom_s42": {
+    "files": 0,
+    "dropped": 0
+   },
+   "curve_s42": {
+    "files": 21,
+    "dropped": 0
+   },
+   "best_s42": {
+    "files": 10,
+    "dropped": 0
+   },
+   "train_oom_s43": {
+    "files": 0,
+    "dropped": 0
+   },
+   "curve_s43": {
+    "files": 21,
+    "dropped": 0
+   },
+   "best_s43": {
+    "files": 10,
+    "dropped": 0
+   },
+   "conf": {
+    "files": 0,
+    "dropped": 0
+   }
+  },
+  "baseline": "determined-wright contact_budget f59c897 (FlashCHORD 32 x 60): b1 0 / 0 lines, sampled max 342, explicit 321 [R]"
+ },
+ "training_box": {
+  "42": {
+   "n": 10,
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.7861,
+    "sd": 0.1553,
+    "min": 0.4109,
+    "max": 0.9109,
+    "median": 0.8261
+   },
+   "RPE": {
+    "n": 10,
+    "mean": 8.4693,
+    "sd": 8.2401,
+    "min": 2.1084,
+    "max": 27.2326,
+    "median": 4.4074
+   },
+   "MPPE": {
+    "n": 10,
+    "mean": 4.2433,
+    "sd": 3.8632,
+    "min": 1.5047,
+    "max": 11.4273,
+    "median": 2.1892
+   },
+   "AUC": {
+    "n": 10,
+    "mean": 0.7827,
+    "sd": 0.1617,
+    "min": 0.3864,
+    "max": 0.9151,
+    "median": 0.8364
+   },
+   "fails": 4,
+   "fail_rate": 0.4,
+   "audit_fails": 3,
+   "objects": {
+    "blue_cup": 0.813,
+    "water_pitcher": 0.7524
+   },
+   "draws": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  "43": {
+   "n": 10,
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8929,
+    "sd": 0.0378,
+    "min": 0.8175,
+    "max": 0.9302,
+    "median": 0.9053
+   },
+   "RPE": {
+    "n": 10,
+    "mean": 2.9421,
+    "sd": 2.0692,
+    "min": 1.5708,
+    "max": 8.7174,
+    "median": 2.4763
+   },
+   "MPPE": {
+    "n": 10,
+    "mean": 1.9039,
+    "sd": 1.0137,
+    "min": 1.3335,
+    "max": 4.6918,
+    "median": 1.5552
+   },
+   "AUC": {
+    "n": 10,
+    "mean": 0.8963,
+    "sd": 0.0384,
+    "min": 0.8297,
+    "max": 0.933,
+    "median": 0.9077
+   },
+   "fails": 1,
+   "fail_rate": 0.1,
+   "audit_fails": 0,
+   "objects": {
+    "blue_cup": 0.9319,
+    "water_pitcher": 0.8608
+   },
+   "draws": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  }
+ },
+ "choice": {
+  "status": "CHOSEN",
+  "chosen": "43",
+  "checkpoint": "/content/results/e20b1s43_glock_public/ep20/best/policy.safetensors",
+  "sha256": "cad374dfcb80b78250eda956491d136cc11437f6204a37c2f0bf2bbd5a167f5e",
+  "seeds": {
+   "42": {
+    "results": "/content/results/e20b1s42_glock_public/ep20",
+    "checkpoint": "/content/results/e20b1s42_glock_public/ep20/best/policy.safetensors",
+    "sha256": "453ffb04d61eb77756a661f5481c25325e72dd4400c87ecb2ca6e633b7131671",
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.7861,
+    "sd": 0.1553,
+    "min": 0.4109,
+    "max": 0.9109,
+    "values": [
+     0.8987,
+     0.8239,
+     0.8283,
+     0.8125,
+     0.8866,
+     0.6798,
+     0.6996,
+     0.9109,
+     0.4109,
+     0.9095
+    ],
+    "chosen_by_curve": "/content/runs/e20b1s42_glock/ep20-s42/policy_70004736.safetensors"
+   },
+   "43": {
+    "results": "/content/results/e20b1s43_glock_public/ep20",
+    "checkpoint": "/content/results/e20b1s43_glock_public/ep20/best/policy.safetensors",
+    "sha256": "cad374dfcb80b78250eda956491d136cc11437f6204a37c2f0bf2bbd5a167f5e",
+    "status": "VERIFIED",
+    "n": 10,
+    "mean": 0.8929,
+    "sd": 0.0378,
+    "min": 0.8175,
+    "max": 0.9302,
+    "values": [
+     0.8377,
+     0.9196,
+     0.8175,
+     0.88,
+     0.896,
+     0.9189,
+     0.8948,
+     0.9302,
+     0.9196,
+     0.9146
+    ],
+    "chosen_by_curve": "/content/runs/e20b1s43_glock/ep20-s43/policy_70004736.safetensors"
+   }
+  },
+  "incomplete_seeds": [],
+  "invalid_seeds": []
+ },
+ "rest_check": {
+  "note": "reported, not gating: zero-action replay of P on the b1 asset copy (tools/trace_rollout.py zero + tools/rest_check.py, 5 mm / 2 deg until a hand comes) next to the packed run's record",
+  "b1": {
+   "all_ok": false,
+   "mm": 5.0,
+   "deg": 2.0,
+   "objects": {
+    "blue_cup": {
+     "until_frame": 1,
+     "max_mm": 0.0,
+     "max_deg": 0.0,
+     "worst_frame": 0,
+     "ok": true
+    },
+    "water_pitcher": {
+     "until_frame": 14,
+     "max_mm": 9.5,
+     "max_deg": 3.1,
+     "worst_frame": 11,
+     "ok": false
+    }
+   }
+  },
+  "packed": {
+   "water_pitcher": {
+    "max_mm": 10.4,
+    "max_deg": 3.9,
+    "until_frame": 14,
+    "ok": false
+   },
+   "blue_cup": {
+    "max_mm": 0.0,
+    "max_deg": 0.0,
+    "ok": true
+   }
+  }
+ },
+ "pieces": {
+  "set": "ev20b1",
+  "dir": "/content/v2d-track3/meshes/carve/ev20b1",
+  "md5sums_md5": "fe9aeca079fdcc7524a06f46fcd0a7ae",
+  "frozen_md5": "4259a6cf8a4c28dcbc212ff0a77bad5b",
+  "manifest": [
+   "f65a6a2d50ba0cd0625f23667d24975a  ./water_pitcher/piece_00.obj",
+   "5955729c92fb228926a88b3aa3e2bbe0  ./water_pitcher/piece_01.obj",
+   "308787448f0cf0e32296aed032a7a436  ./water_pitcher/piece_02.obj",
+   "ac5cd1b8fe8dad5c172d040591d330c3  ./water_pitcher/piece_03.obj",
+   "01b08416887b8e92a087b3b7474c5282  ./water_pitcher/piece_04.obj",
+   "3604542f22423a04f8aa6ec889c6a041  ./water_pitcher/piece_05.obj",
+   "0ade6940c74a49c5ae1660d5d9522339  ./water_pitcher/piece_06.obj",
+   "c727fa6ab03ede399020aaad787674d6  ./water_pitcher/piece_07.obj",
+   "493713e80bbbb81809c9fdbddbad7d5b  ./water_pitcher/piece_08.obj",
+   "0116e13697da21a94bfc60d808a79e4f  ./water_pitcher/piece_09.obj",
+   "40dffd4fb4173495f6469a44781e50aa  ./water_pitcher/piece_10.obj",
+   "eb0382ecf7d6909cc0c2fb1088686ea7  ./water_pitcher/piece_11.obj",
+   "e96313571acab423e3f094dee5c0ed95  ./water_pitcher/piece_12.obj",
+   "227c76c870333a9c1265c3021a504c28  ./water_pitcher/piece_13.obj",
+   "c24377707007cb292b7f4532137cac22  ./water_pitcher/piece_14.obj",
+   "4ce4fd3aeffac8b30ee6d8ff5f9f03dd  ./water_pitcher/piece_15.obj",
+   "485c0cf4885b8c7d38cc8861ca687d46  ./water_pitcher/piece_16.obj",
+   "5e93c4e59ae9fb8972b73543b01f0624  ./water_pitcher/piece_17.obj",
+   "d6028b593f17497c571431d1b6cc9da9  ./water_pitcher/piece_18.obj",
+   "34492ac8eb1c08c96732096375cc142d  ./water_pitcher/piece_19.obj",
+   "18f97b49a8ba853fd3be9867ea9047c6  ./water_pitcher/piece_20.obj",
+   "5751a0646ce106fa561c0e6aded55c0b  ./water_pitcher/piece_21.obj",
+   "e3aa9549419f26975aa39d3b77403586  ./water_pitcher/piece_22.obj",
+   "22da7b47edee72e1e8ededfa702fcf72  ./water_pitcher/piece_23.obj",
+   "d48e37e41f499b55525c78fda9081c23  ./water_pitcher/piece_24.obj",
+   "f3434377fc36784fedae9d602eeb113a  ./water_pitcher/piece_25.obj",
+   "a4315e4471dbcb4c8a8b7b3920c6d9cb  ./water_pitcher/piece_26.obj",
+   "56ffca02c063798bb2a3130a5c003a38  ./water_pitcher/piece_27.obj",
+   "712bfe6143b85757f9b504847630576c  ./water_pitcher/piece_28.obj",
+   "f491519d3ed136e33ea052669169094c  ./water_pitcher/piece_29.obj",
+   "0f10df35aed8030eb63f77d7f24b139f  ./water_pitcher/piece_30.obj",
+   "5876d2be2e170e5e0273203b276d3182  ./water_pitcher/piece_31.obj",
+   "c6c120e7a3becdf3626a47859214e2c9  ./water_pitcher/piece_32.obj",
+   "f2f8a58781c2f286fdd31db166944876  ./water_pitcher/piece_33.obj",
+   "939147c3dd343fb104ee02cdf5842c2c  ./water_pitcher/piece_34.obj",
+   "75af7a416595a308802b24afe1342ca9  ./water_pitcher/piece_35.obj",
+   "3823f312239edd76eee9bbbe06edc480  ./water_pitcher/piece_36.obj",
+   "db6fbaacd19da23e900bfb8c5c86559a  ./water_pitcher/piece_37.obj",
+   "3714675a3b156b3a699ff84f8117e17f  ./water_pitcher/piece_38.obj",
+   "88de4727a230de8b3abdc527693795ad  ./water_pitcher/piece_39.obj",
+   "b8c28c112d2c8a8435fe12bec008ba41  ./water_pitcher/piece_40.obj"
+  ],
+  "source": "origin/claude/bold-albattani-6qmxsv 83d18d0 (FROZEN.md; the pieces as delivered in 9c0bc0c)"
+ },
+ "urdfs": {
+  "water_pitcher": {
+   "packed_md5": "6772f95462e0554cfac39de97bdf2253",
+   "md5": "77b395a5aa46b2eeab1f02e20bf04348",
+   "collisions_packed": 9,
+   "collisions": 41,
+   "inertial_equal": true,
+   "visual_equal": true
+  },
+  "blue_cup": {
+   "packed_md5": "31cd001d2618ee2972dc922b77109b9f",
+   "md5": "31cd001d2618ee2972dc922b77109b9f",
+   "collisions_packed": 1,
+   "collisions": 1,
+   "inertial_equal": true,
+   "visual_equal": true
+  }
+ },
+ "verify": {
+  "ok": true,
+  "failures": [],
+  "confirmation": {
+   "draws": 0,
+   "checked": 0,
+   "chosen": "43",
+   "sha256": "cad374dfcb80b78250eda956491d136cc11437f6204a37c2f0bf2bbd5a167f5e",
+   "eval_rc": {}
+  }
+ },
+ "equal_floor_note": null,
+ "counts": {
+  "conf": {
+   "own": "P",
+   "n_files": 0,
+   "n_scored": 0
+  },
+  "old": {
+   "own": "P",
+   "n_files": 1,
+   "n_scored": 1
+  },
+  "packed": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train42": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train43": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  }
+ }
+}

@@ -1,0 +1,106 @@
+{
+ "wooden_piece_1 | shell (slot-less pick)": {
+  "apart": {
+   "frames": 62,
+   "median": 0.0,
+   "p90": 0.0,
+   "max": 0.0
+  },
+  "contact": {
+   "frames": 20,
+   "median": 0.0,
+   "p90": 0.0,
+   "max": 0.04
+  },
+  "engaged": {
+   "frames": 56,
+   "median": 6.848,
+   "p90": 7.068,
+   "max": 7.296
+  },
+  "assembled": {
+   "frames": 29,
+   "median": 6.968,
+   "p90": 7.133,
+   "max": 7.296
+  }
+ },
+ "wooden_piece_1 | DIAG slotted shell": {
+  "apart": {
+   "frames": 62,
+   "median": 0.0,
+   "p90": 0.0,
+   "max": 0.0
+  },
+  "contact": {
+   "frames": 20,
+   "median": 0.0,
+   "p90": 0.0,
+   "max": 0.0
+  },
+  "engaged": {
+   "frames": 56,
+   "median": 3.244,
+   "p90": 3.532,
+   "max": 4.072
+  },
+  "assembled": {
+   "frames": 29,
+   "median": 3.384,
+   "p90": 3.677,
+   "max": 4.072
+  }
+ },
+ "wooden_piece_2 | shell (slot-less pick)": {
+  "apart": {
+   "frames": 62,
+   "median": 0.0,
+   "p90": 0.0,
+   "max": 0.0
+  },
+  "contact": {
+   "frames": 19,
+   "median": 0.0,
+   "p90": 0.0,
+   "max": 0.024
+  },
+  "engaged": {
+   "frames": 57,
+   "median": 8.432,
+   "p90": 9.186,
+   "max": 9.48
+  },
+  "assembled": {
+   "frames": 29,
+   "median": 8.968,
+   "p90": 9.262,
+   "max": 9.48
+  }
+ },
+ "wooden_piece_2 | DIAG slotted shell": {
+  "apart": {
+   "frames": 62,
+   "median": 0.0,
+   "p90": 0.0,
+   "max": 0.0
+  },
+  "contact": {
+   "frames": 19,
+   "median": 0.0,
+   "p90": 0.0,
+   "max": 0.0
+  },
+  "engaged": {
+   "frames": 57,
+   "median": 4.768,
+   "p90": 5.301,
+   "max": 5.592
+  },
+  "assembled": {
+   "frames": 29,
+   "median": 5.152,
+   "p90": 5.402,
+   "max": 5.592
+  }
+ }
+}

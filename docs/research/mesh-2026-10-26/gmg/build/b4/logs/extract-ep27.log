@@ -1,0 +1,9 @@
+[09:11:30] b4_extract ep27 objects ['plastic_dish_rack', 'white_pot'] det False start {'commit': 'e6565b7ce42070802d210439e32b8cc3f354d823', 'dirty': 'M docs/research/mesh-2026-10-26/gmg/PREREG.md\n M docs/research/mesh-2026-10-26/gmg/build/I.md\n?? docs/research/mesh-2026-10-26/gmg/INTERLOCK.md'}
+[09:15:26] hands 235.9 s: frames with hand 245 / 246
+[09:18:46] ep27 pass 0: 123 frames, 12082672 samples, voxels [151130, 249762], 199.3 s
+[09:29:43] extract timing {"table_s": 0.4, "pass0_samples_s": 181.9, "pass0_votes_s": 17.4, "pass0_s": 199.3, "pass0_voxels": [151130, 249762], "pass1_s": 150.2, "pass2_s": 1.4, "pass3_s": 2.1, "pass4_grids_s": 212.2, "sigma_s": 278.4, "total_s": 852.6}
+[09:30:04] sanity plastic_dish_rack: 123/123 good, flags [], below 0.0, resid {'median': 0.973, 'p90': 1.024, 'max': 1.106}
+[09:30:25] sanity white_pot: 102/123 good, flags [], below 0.1707, resid {'median': 1.015, 'p90': 1.287, 'max': 1.475}
+[09:36:33] split test plastic_dish_rack: {"white_pot": [true, 4.366, 24.261, 24.215]}
+[09:38:22] split test white_pot: {"plastic_dish_rack": [true, 13.027, 24.196, 23.855]}
+[09:38:29] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep27 total 1619.0 s

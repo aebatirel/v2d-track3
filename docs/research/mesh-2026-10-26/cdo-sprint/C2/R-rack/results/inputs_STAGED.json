@@ -1,0 +1,24 @@
+{
+ "c0b_run": "mesh-20261031-c0b-00e8584",
+ "files": {
+  "markers/ep12.json": "810e02ee0e58d4c351d8cf822977de6afc6720760dcbdaf55c5ed4951c8567ba",
+  "markers/ep13.json": "a48b51246a981d534414d0cbe2b6a9b39828bdb9c9a54f993aa1fe92217f2084",
+  "markers/ep26.json": "b9bd0adcd8346fa902f9b4dad00d85c136a3a37cb660233773b3f30e33fe9b83",
+  "markers/ep27.json": "9455310c50718695db995666a197d5de5325238ba10d7a4ebea49243e885ecf7",
+  "markers/ep31.json": "1260d3a782db0037ba56f0049471668519fc64bc4f414bd2f7e28e362ac87aa8",
+  "params.json": "737c29b27af1d154faf3e56771d054d22a0e8af5300b4a4ed268d9b27de1d508",
+  "pts/B/ep12_plastic_dish_rack.npz": "542df22302bc915abfa133914b2c8ba671e4c3080adf1ec865ea208b4ede15ba",
+  "pts/B/ep13_plastic_dish_rack.npz": "35e978298e07c1283d16191dd543ea80e477346821fa573ebdaaa3a08496abd7",
+  "pts/B/ep26_plastic_dish_rack.npz": "b2d9f405bd22815475888e82c71c6ee4bbc97f48d3ee32bd1fb26d048fc83e78",
+  "pts/B/ep27_plastic_dish_rack.npz": "5b86a20c636af31ff08a0d9056aba4e700d4cd93c0b8d6733a849ddda6048428",
+  "pts/B/ep31_plastic_dish_rack.npz": "59a1e6b158b00052ae85226b2a0e1814d63ce5471f6f15e8dee458ea247ad40f"
+ },
+ "c0b_raw_passB_sha256": {
+  "raw/ep12": "9b17f51c6dcec5859f68f451a0c631ec767fef9af7965f2ba832729315e5041f",
+  "raw/ep13": "6b3912490489daec3b0889946fdbcc155f8d0a77e0a00e4543f8626182d409c3",
+  "raw/ep26": "3aa82c42cc88809bbef58a64a932e92432063a637ee206495b3b7cccf38cc3ff",
+  "raw/ep27": "3e7bff54d8e05017212f6ad2f3f3e71cb6b89915d332a92a8579e5db176c675e",
+  "raw/ep31": "c6a5f738726e41cbecb38132e2525c2c03a87d34d70820b33717b285d8021e8d"
+ },
+ "cleaned_by": "scripts/clean_pts.py (PREREG A1)"
+}

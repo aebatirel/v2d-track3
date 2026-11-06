@@ -1,0 +1,15 @@
+segment lengths between body origins (mm):
+  thumb [35.9, 31.1] (first = MC body origin to MCP: not the full metacarpal)
+  index [28.7, 42.6, 25.1] (first = MC body origin to MCP: not the full metacarpal)
+  middle [26.4, 44.7, 29.1] (first = MC body origin to MCP: not the full metacarpal)
+  ring [23.8, 40.4, 24.9] (first = MC body origin to MCP: not the full metacarpal)
+  little [21.5, 36.1, 21.0] (first = MC body origin to MCP: not the full metacarpal)
+MCP spacing index->little (2proxph to 5proxph) mm 45.2
+MCP spacing index->middle, middle->ring, ring->little [np.float64(17.5), np.float64(15.8), np.float64(15.5)]
+  distal origin->approx tip thumb 31.5 mm
+  distal origin->approx tip index 27.1 mm
+  distal origin->approx tip middle 27.3 mm
+  distal origin->approx tip ring 27.6 mm
+  distal origin->approx tip little 24.7 mm
+mass of carpals+MC+phalanges (kg) 0.4445
+finger joint damping/armature [('mcp2_flexion_r', 0.05, 0.0001), ('pm2_flexion_r', 0.05, 0.0001), ('md2_flexion_r', 0.05, 0.0001), ('cmc_flexion', 0.05, 0.0001)]

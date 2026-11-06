@@ -1,0 +1,81 @@
+lib.npz f0: {"white_pot": [0.32, 0.9], "white_pot_lid": [1.23, 5.9]} nan None
+lib.npz f93: {"white_pot": [0.36, 0.7], "white_pot_lid": [0.22, 2.4]} nan None
+lib.npz f221: {"white_pot": [0.62, 5.0], "white_pot_lid": [0.11, 1.9]} nan None
+lib.npz f315: {"white_pot": [0.18, 1.8], "white_pot_lid": [1.08, 6.1]} nan None
+lib.npz f0: {"white_pot": [0.17, 0.6], "white_pot_lid": [1.39, 3.7]} nan None
+lib.npz f97: {"white_pot": [0.78, 3.2], "white_pot_lid": [0.17, 1.2]} nan None
+lib.npz f224: {"white_pot": [0.54, 1.8], "white_pot_lid": [0.08, 1.0]} nan None
+lib.npz f309: {"white_pot": [0.33, 1.3], "white_pot_lid": [1.39, 5.2]} nan None
+lib_carve.npz f0: {"white_pot": [0.16, 0.6], "white_pot_lid": [0.72, 8.9]} nan None
+lib_carve.npz f97: {"white_pot": [0.11, 0.6], "white_pot_lid": [0.26, 1.2]} nan None
+lib_carve.npz f224: {"white_pot": [0.32, 0.8], "white_pot_lid": [0.13, 1.0]} nan None
+lib_carve.npz f309: {"white_pot": [0.19, 1.1], "white_pot_lid": [1.01, 7.5]} nan None
+lib.npz f0: {"blue_cup": [0.41, 2.6], "beige_cup": [10.17, 88.4]} nan None
+lib.npz f101: {"blue_cup": [0.27, 1.8], "beige_cup": [2.61, 22.4]} nan None
+lib_carve.npz f0: {"blue_cup": [0.62, 3.2], "beige_cup": [14.77, 90.8]} nan None
+lib_carve.npz f101: {"blue_cup": [0.21, 2.1], "beige_cup": [1.63, 11.1]} nan None
+lib.npz f0: {"blue_cup": [0.56, 2.5], "plastic_dish_rack": [0.29, 1.2]} nan None
+lib.npz f153: {"blue_cup": [1.09, 17.0], "plastic_dish_rack": [0.47, 1.1]} nan None
+lib_carve.npz f0: {"blue_cup": [0.76, 5.5], "plastic_dish_rack": [0.21, 0.9]} nan None
+lib_carve.npz f153: {"blue_cup": [2.18, 4.3], "plastic_dish_rack": [0.42, 1.2]} nan None
+lib.npz f0: {"blue_cup": [0.53, 3.8], "plastic_dish_rack": [0.53, 1.4]} nan None
+lib.npz f114: {"blue_cup": [6.39, 47.4], "plastic_dish_rack": [0.32, 1.0]} nan None
+lib.npz f167: {"blue_cup": [5.96, 54.7], "plastic_dish_rack": [0.33, 0.7]} nan None
+lib_carve.npz f0: {"blue_cup": [0.68, 2.8], "plastic_dish_rack": [0.24, 0.7]} nan None
+lib_carve.npz f114: {"blue_cup": [21.97, 177.4], "plastic_dish_rack": [0.4, 1.1]} nan None
+lib_carve.npz f167: {"blue_cup": [3.99, 34.2], "plastic_dish_rack": [0.28, 0.7]} nan None
+lib.npz f0: {"mini_sweeper": [14.57, 112.6], "mini_dust_pan": [0.16, 1.9]} nan None
+lib.npz f31: {"mini_sweeper": [10.26, 85.6], "mini_dust_pan": [2.99, 24.1]} nan None
+lib.npz f209: {"mini_sweeper": [8.03, 78.4], "mini_dust_pan": [0.29, 6.2]} nan None
+lib.npz f244: {"mini_sweeper": [9.47, 89.9], "mini_dust_pan": [0.3, 0.5]} nan None
+lib.npz f262: {"mini_sweeper": [12.48, 140.7], "mini_dust_pan": [0.25, 1.6]} nan None
+lib.npz f281: {"mini_sweeper": [7.33, 65.9], "mini_dust_pan": [0.27, 1.4]} nan None
+lib.npz f324: {"mini_sweeper": [8.9, 87.0], "mini_dust_pan": [0.28, 2.5]} nan None
+lib.npz f0: {"blue_cup": [0.33, 3.1], "water_pitcher": [18.64, 94.5]} nan None
+lib.npz f17: {"blue_cup": [0.43, 3.0], "water_pitcher": [19.47, 93.2]} nan None
+lib.npz f161: {"blue_cup": [0.29, 1.7], "water_pitcher": [83.91, 95.0]} nan None
+lib.npz f0: {"blue_cup": [0.2, 2.5], "water_pitcher": [18.17, 97.6]} nan None
+lib.npz f151: {"blue_cup": [0.98, 2.3], "water_pitcher": [16.51, 91.5]} nan None
+lib.npz f0: {"wooden_piece_1": [0.88, 4.9], "wooden_piece_2": [0.48, 1.1]} nan None
+lib.npz f39: {"wooden_piece_1": [2.91, 9.4], "wooden_piece_2": [0.35, 0.4]} nan None
+lib.npz f73: {"wooden_piece_1": [10.45, 83.9], "wooden_piece_2": [0.2, 1.2]} nan None
+lib.npz f106: {"wooden_piece_1": [8.69, 102.9], "wooden_piece_2": [0.69, 1.6]} nan None
+lib.npz f288: {"wooden_piece_1": [1.89, 17.0], "wooden_piece_2": [2.15, 17.4]} nan None
+lib.npz f0: {"wooden_piece_1": [0.48, 2.6], "wooden_piece_2": [0.28, 3.3]} nan None
+lib.npz f99: {"wooden_piece_1": [10.68, 91.1], "wooden_piece_2": [0.45, 1.6]} nan None
+lib.npz f243: {"wooden_piece_1": [2.1, 8.6], "wooden_piece_2": [2.31, 10.1]} nan None
+lib_carve.npz f0: {"wooden_piece_1": [0.48, 3.2], "wooden_piece_2": [0.42, 1.4]} nan None
+lib_carve.npz f99: {"wooden_piece_1": [10.56, 84.9], "wooden_piece_2": [0.16, 1.9]} nan None
+lib_carve.npz f243: {"wooden_piece_1": [1.58, 2.9], "wooden_piece_2": [0.94, 2.2]} nan None
+lib.npz f0: {"plastic_dish_rack": [0.35, 1.6], "white_pot": [16.01, 73.4]} nan None
+lib.npz f122: {"plastic_dish_rack": [0.36, 0.9], "white_pot": [0.78, 1.5]} nan None
+lib.npz f0: {"plastic_dish_rack": [0.28, 1.3], "white_pot": [0.62, 2.0]} nan None
+lib.npz f41: {"plastic_dish_rack": [0.41, 1.2], "white_pot": [0.26, 0.7]} nan None
+lib_carve.npz f0: {"plastic_dish_rack": [0.35, 0.8], "white_pot": [0.38, 1.7]} nan None
+lib_carve.npz f41: {"plastic_dish_rack": [0.34, 0.8], "white_pot": [0.87, 3.5]} nan None
+lib.npz f0: {"mini_sweeper": [6.62, 60.7], "plastic_dish_rack": [1.98, 4.8]} nan None
+lib.npz f39: {"mini_sweeper": [2.83, 18.5], "plastic_dish_rack": [0.41, 2.3]} nan None
+lib.npz f84: {"mini_sweeper": [4.98, 60.2], "plastic_dish_rack": [0.47, 1.6]} nan None
+lib.npz f253: {"mini_sweeper": [2.28, 12.1], "plastic_dish_rack": [0.23, 1.2]} nan None
+lib_carve.npz f0: {"mini_sweeper": [1.68, 21.9], "plastic_dish_rack": [0.31, 1.0]} nan None
+lib_carve.npz f39: {"mini_sweeper": [1.86, 24.9], "plastic_dish_rack": [0.04, 1.3]} nan None
+lib_carve.npz f84: {"mini_sweeper": [5.73, 46.4], "plastic_dish_rack": [0.37, 1.6]} nan None
+lib_carve.npz f253: {"mini_sweeper": [5.74, 56.9], "plastic_dish_rack": [0.34, 0.9]} nan None
+lib.npz f0: {"mini_dust_pan": [0.19, 2.1]} nan None
+lib.npz f292: {"mini_dust_pan": [0.13, 3.0]} nan None
+lib.npz f0: {"mini_dust_pan": [0.1, 2.6]} nan None
+lib.npz f229: {"mini_dust_pan": [0.14, 2.8]} nan None
+lib.npz f0: {"white_pot": [0.16, 0.7]} nan None
+lib.npz f216: {"white_pot": [3.99, 21.1]} nan None
+lib.npz f263: {"white_pot": [0.17, 0.9]} nan None
+lib.npz f0: {"white_pot": [0.27, 1.8]} nan None
+lib.npz f54: {"white_pot": [2.15, 11.5]} nan None
+lib.npz f219: {"white_pot": [0.17, 0.7]} nan None
+lib.npz f0: {"white_pot": [0.84, 2.5]} nan None
+lib.npz f42: {"white_pot": [4.88, 21.4]} nan None
+lib.npz f284: {"white_pot": [0.53, 0.8]} nan None
+lib.npz f0: {"white_pot": [0.12, 0.7]} nan None
+lib.npz f208: {"white_pot": [0.37, 3.9]} nan None
+lib.npz f0: {"white_pot": [0.1, 0.6]} nan None
+lib.npz f259: {"white_pot": [0.24, 2.8]} nan None
+DONE settle 18:30:20

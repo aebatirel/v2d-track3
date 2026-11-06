@@ -1,0 +1,24 @@
+[
+ {
+  "target": "blue_cup",
+  "partner": "beige_cup",
+  "kind": "PUSH",
+  "frames": [
+   42,
+   136
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "beige_cup",
+  "partner": "blue_cup",
+  "kind": "PUSH",
+  "frames": [
+   42,
+   136
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ }
+]

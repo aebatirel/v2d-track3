@@ -1,0 +1,218 @@
+gmg-intrusion/2: 20080 samples in 6/8 frame-pairs, T=5, B=2, f_star=4, max vol 36.00 cm3; flags []; {'setup': 0.04, 'loop': 0.67, 'fit': 0.0, 'total': 0.74} s -> /tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/intrusion_test/work/out1/intrusions.npz
+gmg-intrusion/2: 0 samples in 0/4 frame-pairs, T=4, B=2, f_star=0, max vol 0.00 cm3; flags ['reference_provenance_incomplete', 'no_intrusion (f_star = 0)']; {'setup': 0.03, 'loop': 0.0, 'fit': 0.0, 'total': 0.05} s -> /tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/intrusion_test/work/out2/intrusions.npz
+gmg-intrusion/2: 20080 samples in 6/8 frame-pairs, T=5, B=2, f_star=4, max vol 36.00 cm3; flags ['reference_provenance_incomplete']; {'setup': 0.04, 'loop': 0.71, 'fit': 3.01, 'total': 3.79} s -> /tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/intrusion_test/work/out5/intrusions.npz
+gmg-intrusion/2: 20080 samples in 6/8 frame-pairs, T=5, B=2, f_star=4, max vol 36.00 cm3; flags ['reference_provenance_incomplete', 'fit_commit_unknown', 'fit_meshes_not_round_fit']; {'setup': 0.04, 'loop': 0.69, 'fit': 0.0, 'total': 0.76} s -> /tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/intrusion_test/work/out5c/intrusions.npz
+{
+ "1_two_boxes": {
+  "frames": {
+   "0": {
+    "analytic_cm3": 29.343600000000013,
+    "export_cm3": 28.799999237060547,
+    "n": 3600,
+    "n_expected_lattice": 3600,
+    "pts_outside_overlap_mm": 0.0,
+    "partner_lattice_err_mm": 1.8298625437118687e-06,
+    "rel_T_err": 5.551115123125783e-16,
+    "depth_err_mm": [
+     1.9744038581848145e-06,
+     0.13884830474853516
+    ],
+    "depth_lb_below_true_mm": 1.5000007059425116,
+    "depth_lb_over_true_mm": 1.3113021850585938e-06,
+    "lattice_bound_cm3": 6.318120000000003,
+    "rel_err": -0.018525360315007844
+   },
+   "1": {
+    "rows": 0
+   },
+   "2": {
+    "analytic_cm3": 0.0,
+    "export_cm3": 0.0,
+    "n": 0,
+    "n_expected_lattice": 0,
+    "pts_outside_overlap_mm": 0.0,
+    "partner_lattice_err_mm": 0.0,
+    "rel_T_err": 2.220446049250313e-16,
+    "depth_err_mm": [
+     0,
+     0
+    ],
+    "depth_lb_below_true_mm": 0,
+    "depth_lb_over_true_mm": 0
+   },
+   "3": {
+    "analytic_cm3": 17.780400000000004,
+    "export_cm3": 15.84000015258789,
+    "n": 1980,
+    "n_expected_lattice": 1980,
+    "pts_outside_overlap_mm": 0.0,
+    "partner_lattice_err_mm": 1.835823104201495e-06,
+    "rel_T_err": 6.661338147750939e-16,
+    "depth_err_mm": [
+     1.4901161193847656e-06,
+     0.030723482370376587
+    ],
+    "depth_lb_below_true_mm": 1.996755599975586e-06,
+    "depth_lb_over_true_mm": 1.0728836059570312e-06,
+    "lattice_bound_cm3": 4.366040000000001,
+    "rel_err": -0.10913139453623721
+   },
+   "4": {
+    "analytic_cm3": 36.00000000000002,
+    "export_cm3": 33.60000228881836,
+    "n": 4200,
+    "n_expected_lattice": 4200,
+    "pts_outside_overlap_mm": 0.0,
+    "partner_lattice_err_mm": 8.821487043064735e-07,
+    "rel_T_err": 2.220446049250313e-16,
+    "depth_err_mm": [
+     6.05359673500061e-06,
+     0.0773901641368866
+    ],
+    "depth_lb_below_true_mm": 18.500000054948032,
+    "depth_lb_over_true_mm": 5.960464477539062e-07,
+    "lattice_bound_cm3": 7.200000000000003,
+    "rel_err": -0.06666660308837946
+   }
+  },
+  "reverse_pair_cm3": [
+   28.799999237060547,
+   17.599998474121094,
+   36.0
+  ],
+  "f_star": 4,
+  "checks": {
+   "fiducial_round_trip_mm": 1.2499642664429031e-13,
+   "fiducial_vs_parquet_mm": 2.7755575615628914e-14,
+   "fiducial_box": {
+    "box_a": {
+     "ok": true,
+     "box_err": 7.080503983578804e-17,
+     "margins_mm": [
+      [
+       1.0,
+       1.0
+      ],
+      [
+       1.0,
+       1.0
+      ],
+      [
+       1.0,
+       1.0
+      ]
+     ],
+     "asym_mm": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "box_b": {
+     "ok": true,
+     "box_err": 1.334402673828313e-16,
+     "margins_mm": [
+      [
+       1.0,
+       1.0
+      ],
+      [
+       1.0,
+       1.0
+      ],
+      [
+       1.0,
+       1.0
+      ]
+     ],
+     "asym_mm": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "containment_target": 1.0,
+   "containment_partner": 1.0,
+   "containment_n": 10000,
+   "rel_T_orthonormality_err": 1.3322676295501878e-15
+  },
+  "seconds": {
+   "setup": 0.04,
+   "loop": 0.67,
+   "fit": 0.0,
+   "total": 0.74
+  },
+  "counts": {
+   "samples": 20080,
+   "rows": 8,
+   "rows_with_intrusion": 6,
+   "partner_samples": {
+    "box_a": 30000,
+    "box_b": 5600
+   },
+   "pieces": {
+    "box_a": 2,
+    "box_b": 1
+   }
+  },
+  "flags": []
+ },
+ "2_no_overlap": {
+  "samples": 0,
+  "rows": 4,
+  "flags": [
+   "reference_provenance_incomplete",
+   "no_intrusion (f_star = 0)"
+  ],
+  "provenance_missing": [
+   "/tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/intrusion_test/work/ref2/processed/sequence_id=t3_ep099/robot_name=sharpa_wave/ref.parquet: commit",
+   "/tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/intrusion_test/work/ref2/processed/sequence_id=t3_ep099/robot_name=sharpa_wave/ref.parquet: run_id"
+  ],
+  "perception_absent": [
+   "poses.npz",
+   "poses_world_vo.npz",
+   "hands_refined.npz",
+   "table_frame.npz"
+  ]
+ },
+ "3_fiducial_failure": {
+  "recentred": "intrusion.py REFUSED: fiducials do not match the pieces of ['box_a', 'box_b'] (re-centred pieces or a stale manifest): [{'ok': False, 'box_err': 1.065725341858253e-16, 'margins_mm': [[-6.0, 8.0], [-2.0, 4.0], [3.0, -1.0]",
+  "shifted_2mm": "intrusion.py REFUSED: fiducials do not match the pieces of ['box_a', 'box_b'] (re-centred pieces or a stale manifest): [{'ok': False, 'box_err': 7.080503983578804e-17, 'margins_mm': [[1.0, 1.0], [3.0, -1.0], [1.0, 1.0]],",
+  "wrong_inverse": "intrusion.py REFUSED: fiducial round trip 1.000 mm / vs the parquet pose 0.000 mm (> 0.5 mm)"
+ },
+ "4_refusals": {
+  "hash": "intrusion.py REFUSED: box_a: ['piece_00.obj'] differ from (or are missing in) the round manifest",
+  "episode": "intrusion.py REFUSED: manifest episode 24 != reference episode 99",
+  "mocap_ref": "intrusion.py REFUSED: reference /tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/intrusion_test/work/mocap_arm/processed/sequ",
+  "library_in_chain": "intrusion.py REFUSED: reference provenance touches a denied input: /x/meshes/library_v3/wooden_piece_1.glb (path contains 'library_v3')",
+  "overwrite": "intrusion.py REFUSED: /tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/intrusion_test"
+ },
+ "5_fit": {
+  "residual_mm": 17.698999404907227,
+  "expected_lattice_mm": 17.70000000000001,
+  "expected_geometric_mm": 19.70000000000001,
+  "residual_other_rows_mm": [
+   17.700000762939453,
+   18.700000762939453,
+   0.0,
+   0.0,
+   17.799999237060547,
+   18.799999237060547,
+   28.600000381469727,
+   28.600000381469727
+  ],
+  "fit_seconds": 3.01,
+  "input_vs_reference": {
+   "max_mm": 0.0,
+   "max_deg": 0.0
+  },
+  "scan_fit": "intrusion.py REFUSED: --fit input /tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/intrusion_test/work/scanlib2/box_a.glb is ",
+  "other_meshes_flags": [
+   "reference_provenance_incomplete",
+   "fit_commit_unknown",
+   "fit_meshes_not_round_fit"
+  ]
+ }
+}
+ALL PASS

@@ -1,0 +1,82 @@
+{
+ "ep18 mini_sweeper": {
+  "frames": 353,
+  "err_med_cm": 0.38,
+  "frames_err_gt3cm": 38,
+  "of_which_in_hold": 0,
+  "of_which_no_hand_measured": 2,
+  "err_med_in_hold": 0.34,
+  "err_med_out_hold": 0.5,
+  "worst_10f_blocks": [
+   [
+    110,
+    6.4
+   ],
+   [
+    120,
+    8.0
+   ],
+   [
+    130,
+    15.8
+   ],
+   [
+    140,
+    15.7
+   ],
+   [
+    150,
+    15.9
+   ]
+  ]
+ },
+ "ep18 mini_dust_pan": {
+  "frames": 353,
+  "err_med_cm": 1.51,
+  "frames_err_gt3cm": 0,
+  "of_which_in_hold": 0,
+  "of_which_no_hand_measured": 0,
+  "err_med_in_hold": 1.25,
+  "err_med_out_hold": 1.53,
+  "worst_10f_blocks": []
+ },
+ "ep31 mini_sweeper": {
+  "frames": 290,
+  "err_med_cm": 1.4,
+  "frames_err_gt3cm": 0,
+  "of_which_in_hold": 0,
+  "of_which_no_hand_measured": 0,
+  "err_med_in_hold": 1.41,
+  "err_med_out_hold": 1.35,
+  "worst_10f_blocks": []
+ },
+ "ep39 mini_dust_pan": {
+  "frames": 319,
+  "err_med_cm": 0.72,
+  "frames_err_gt3cm": 0,
+  "of_which_in_hold": 0,
+  "of_which_no_hand_measured": 0,
+  "err_med_in_hold": 0.72,
+  "err_med_out_hold": 0.79,
+  "worst_10f_blocks": []
+ },
+ "ep40 mini_dust_pan": {
+  "frames": 260,
+  "err_med_cm": 0.65,
+  "frames_err_gt3cm": 12,
+  "of_which_in_hold": 12,
+  "of_which_no_hand_measured": 0,
+  "err_med_in_hold": 0.76,
+  "err_med_out_hold": 0.14,
+  "worst_10f_blocks": [
+   [
+    100,
+    3.9
+   ],
+   [
+    110,
+    4.3
+   ]
+  ]
+ }
+}

@@ -1,0 +1,6 @@
+[refine    0.0s] /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/raw_phys: T=161, objects ['blue_cup', 'beige_cup'], steps ['S2'], hands yes
+[refine    0.6s] plane: {"source": null, "note": "no plane: not needed"}
+[refine    0.8s] labels blue_cup: first_move 7, liftoff None, first hand<5cm 14, rest segs [(0, 7), (18, 30), (129, 149), (152, 161)], h0 None cm, support: no plane
+[refine    0.9s] labels beige_cup: first_move 1, liftoff None, first hand<5cm 16, rest segs [(22, 32), (55, 72), (78, 85), (104, 112), (126, 161)], h0 None cm, support: no plane
+[refine    1.0s] S2: {"advance_frames": 0.545, "interp": "se3", "hold_f0": false, "last_frame": "held"}
+[refine    1.0s] wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/V3p: checks {"world_T_cam_byte_identical": true, "keys_ok": true, "frames_ok": true, "finite": true, "frame0_byte_identical": {"blue_cup": false, "beige_cup": false}, "frames_changed": {"blue_cup": 160, "beige_cup": 160}}

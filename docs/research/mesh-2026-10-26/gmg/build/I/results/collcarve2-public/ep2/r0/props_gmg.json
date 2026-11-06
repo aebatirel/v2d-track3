@@ -1,0 +1,69 @@
+{
+ "_note": "gmg simulator copy (INTERLOCK 6.1, PREREG F-I1.8, F-I3.9): mass = the 0.3 kg placeholder (owner decision D-I1 open; props_masses_only.json is scan-derived), com_m and inertia_kgm2 (about the COM, file axes) of the uniform solid of the pieces. Layout as props_masses_only.json, read by pipeline/phys_fit.py (props[name][\"physics\"]).",
+ "white_pot": {
+  "physics": {
+   "model": "gmg pieces (uniform solid)",
+   "mass_kg": 0.3,
+   "com_m": [
+    -0.007612460188960863,
+    -0.003398664079063809,
+    -0.016597489012277134
+   ],
+   "inertia_kgm2": [
+    [
+     0.001644073999065599,
+     5.815738762768389e-05,
+     -6.27097920958185e-06
+    ],
+    [
+     5.815738762768389e-05,
+     0.0015547294331585018,
+     3.3564396143474153e-06
+    ],
+    [
+     -6.27097920958185e-06,
+     3.3564396143474153e-06,
+     0.0010079478030962474
+    ]
+   ],
+   "volume_cm3": 36.62,
+   "provenance": {
+    "pieces": "white_pot/piece_*.obj",
+    "mass": "placeholder 0.3 kg (D-I1 open)"
+   }
+  }
+ },
+ "white_pot_lid": {
+  "physics": {
+   "model": "gmg pieces (uniform solid)",
+   "mass_kg": 0.3,
+   "com_m": [
+    -0.0020453421315245694,
+    -0.013679284559531166,
+    -0.005445396038783302
+   ],
+   "inertia_kgm2": [
+    [
+     0.0008562503292039598,
+     -4.606333838816559e-06,
+     -1.5918272259440266e-06
+    ],
+    [
+     -4.606333838816559e-06,
+     0.0003197291937513115,
+     -0.0002010491827051442
+    ],
+    [
+     -1.5918272259440266e-06,
+     -0.0002010491827051442,
+     0.0005644604430860199
+    ]
+   ],
+   "volume_cm3": 25.55,
+   "provenance": {
+    "pieces": "white_pot_lid/piece_*.obj",
+    "mass": "placeholder 0.3 kg (D-I1 open)"
+   }
+  }
+ }
+}

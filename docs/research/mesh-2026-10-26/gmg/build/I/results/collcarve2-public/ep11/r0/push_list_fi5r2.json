@@ -1,0 +1,68 @@
+{
+ "rule": "PREREG F-I5.15 (3), (7): frames and pairs for the pose lanes",
+ "entries": [
+  {
+   "pair": [
+    "beige_cup",
+    "blue_cup"
+   ],
+   "frame": 126,
+   "check": "c_overlap",
+   "kind": "pose_impossible",
+   "numbers": {
+    "a_table": {
+     "lowest_mm": 3.25,
+     "lowest_mesh_mm": 3.22,
+     "pass_": true
+    },
+    "b_support": {
+     "table_mm": 3.25,
+     "receiver_mm": 0.0,
+     "receiver_mesh_mm": 0.0,
+     "pass_": true
+    },
+    "c_overlap": {
+     "V_ov_cm3": 85.248,
+     "removed_share": 0.5288,
+     "topology": {
+      "default": [
+       2,
+       79
+      ],
+      "cut": [
+       119,
+       127
+      ]
+     },
+     "samples_inside": 126204,
+     "samples_used": 20000,
+     "wall_samples_needing": 19881,
+     "wall_samples_bad": 8532,
+     "min_wall_left_mm": 0.049,
+     "ok_topology": false,
+     "ok_wall": false,
+     "ok_removed": false,
+     "pass_": false
+    }
+   }
+  },
+  {
+   "pair": [
+    "beige_cup",
+    "blue_cup"
+   ],
+   "frame": 127,
+   "check": "c_overlap",
+   "kind": "pose_impossible (floor)"
+  },
+  {
+   "pair": [
+    "beige_cup",
+    "blue_cup"
+   ],
+   "frame": 108,
+   "check": "c_overlap",
+   "kind": "pose_impossible (floor)"
+  }
+ ]
+}

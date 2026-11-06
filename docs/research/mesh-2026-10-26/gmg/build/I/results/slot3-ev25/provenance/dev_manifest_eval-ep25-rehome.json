@@ -1,0 +1,273 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T21:50:24Z",
+ "commit": "765dc6f6fbf866d58315ba09baa93e0fdd1a295c",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/build/I.md"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "gmg/tools/ev_extract.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-ev25prep-765dc6f",
+  "--ep",
+  "25",
+  "--map",
+  "wooden_piece_1=wooden_piece_2:Rx180,wooden_piece_2=wooden_piece_1:I",
+  "--rehome",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 27301,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-ev25prep-765dc6f"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-ev25prep-765dc6f",
+  "root": "runs-dev",
+  "pid": 27301,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T21:50:22Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep25/poses.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep25/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep25/poses.npz",
+   "sha256": "e95ccaefa66ccdfb091a4048cf5b7e6f71119c4c7eb22c66b48c1465c81de0c3",
+   "bytes": 91956,
+   "tier": "P1",
+   "frozen_sha": "checked against gmg/frozen_eval_tracks.json",
+   "keys": [
+    "cam_T_wooden_piece_1",
+    "cam_T_wooden_piece_2",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/episode.json",
+   "sha256": "c4c8741c242e4039fe20f6133c814fc7f49ebdb49f4532b62daeb43ec865863b",
+   "bytes": 59187,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/shell_wooden_piece_1.npy",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/shell_wooden_piece_1.npy",
+   "sha256": "ad15282a6a826cbbe12d8012523dadd7443fb9cca5c4dd6845fca3fd70b85572",
+   "bytes": 48128,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/shell_wooden_piece_2.npy",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/shell_wooden_piece_2.npy",
+   "sha256": "1ca723d205e063ada3394d53d6cdaa83dc49a38777ada11d2702f585a809cab8",
+   "bytes": 48128,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/wooden_piece_1.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/wooden_piece_1.npz",
+   "sha256": "136918bde151257b8d2b2740a17bc5ec27cf9f5d1b9498489fa8aeb950a8d2b1",
+   "bytes": 21077429,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/wooden_piece_2.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25/wooden_piece_2.npz",
+   "sha256": "560df4f030ba8ba5bca0162286a7c4bd26d58f976b0667c0e1c7ec8b88f5e091",
+   "bytes": 17584153,
+   "tier": "DEV"
+  },
+  {
+   "role": "roster",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/data/track_3_evaluation_objects.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/data/track_3_evaluation_objects.json",
+   "sha256": "be92ef6db25aa60cefcdfb44f0acfdc6fbdfa26bb249f6890e1963c659b79272",
+   "bytes": 1330,
+   "tier": "P0"
+  }
+ ],
+ "constants": [],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "bundle/eval/ep25/episode.json",
+   "sha256": "702552e53c05c1d1f4fd9a2f75d719da3d03e102599bf38aabaf78f99327e63a",
+   "bytes": 60392,
+   "how": "python"
+  },
+  {
+   "path": "bundle/eval/ep25/shell_wooden_piece_1.npy",
+   "sha256": "ad15282a6a826cbbe12d8012523dadd7443fb9cca5c4dd6845fca3fd70b85572",
+   "bytes": 48128,
+   "how": "python"
+  },
+  {
+   "path": "bundle/eval/ep25/shell_wooden_piece_2.npy",
+   "sha256": "1ca723d205e063ada3394d53d6cdaa83dc49a38777ada11d2702f585a809cab8",
+   "bytes": 48128,
+   "how": "python"
+  },
+  {
+   "path": "bundle/eval/ep25/wooden_piece_1.npz",
+   "sha256": "136918bde151257b8d2b2740a17bc5ec27cf9f5d1b9498489fa8aeb950a8d2b1",
+   "bytes": 21077429,
+   "how": "python"
+  },
+  {
+   "path": "bundle/eval/ep25/wooden_piece_2.npz",
+   "sha256": "560df4f030ba8ba5bca0162286a7c4bd26d58f976b0667c0e1c7ec8b88f5e091",
+   "bytes": 17584153,
+   "how": "python"
+  },
+  {
+   "path": "logs/eval-ep25.log",
+   "sha256": "f1a3c94acc30e925bcccaf042957a449b6727b39d77bf2227da51d99237a6bf7",
+   "bytes": 1660,
+   "how": "python"
+  },
+  {
+   "path": "tracks/eval/ep25/mapping.json",
+   "sha256": "21b853dba2e3f96064011bbe51670931c447f8d3634d122db78639372160d9d4",
+   "bytes": 708,
+   "how": "python"
+  },
+  {
+   "path": "tracks/eval/ep25/poses.npz",
+   "sha256": "49adcb7365f93d0d00ea195b461b9d990b18a43b662086e900bbd3af1dda3d7b",
+   "bytes": 91956,
+   "how": "python"
+  }
+ ],
+ "extra": {
+  "step": "Prep25 (ev_extract --rehome)",
+  "ep": 25,
+  "split": "eval",
+  "start": {
+   "commit": "765dc6f6fbf866d58315ba09baa93e0fdd1a295c",
+   "dirty": "M docs/research/mesh-2026-10-26/gmg/build/I.md"
+  },
+  "track_map": {
+   "source": {
+    "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep25/poses.npz",
+    "sha256": "e95ccaefa66ccdfb091a4048cf5b7e6f71119c4c7eb22c66b48c1465c81de0c3",
+    "frozen": "checked against gmg/frozen_eval_tracks.json"
+   },
+   "map": {
+    "wooden_piece_1": {
+     "source": "wooden_piece_2",
+     "rot": "Rx180",
+     "rot_diag": [
+      1,
+      -1,
+      -1
+     ]
+    },
+    "wooden_piece_2": {
+     "source": "wooden_piece_1",
+     "rot": "I",
+     "rot_diag": [
+      1,
+      1,
+      1
+     ]
+    }
+   },
+   "rule": "cam_T_TARGET = cam_T_SOURCE @ diag(ROT, 1); world_T_cam unchanged",
+   "evidence": "build/I/results/slot3-ev25/PREP.md (rigid comparison with the packed reference track)"
+  },
+  "rehomed_from": {
+   "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25",
+   "episode_json_sha256": "c4c8741c242e4039fe20f6133c814fc7f49ebdb49f4532b62daeb43ec865863b",
+   "clean_tracks": {
+    "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/tracks/eval/ep25/poses.npz",
+    "sha256": "49adcb7365f93d0d00ea195b461b9d990b18a43b662086e900bbd3af1dda3d7b"
+   },
+   "files": {
+    "wooden_piece_1.npz": {
+     "sha256": "136918bde151257b8d2b2740a17bc5ec27cf9f5d1b9498489fa8aeb950a8d2b1",
+     "bytes": 21077429
+    },
+    "wooden_piece_2.npz": {
+     "sha256": "560df4f030ba8ba5bca0162286a7c4bd26d58f976b0667c0e1c7ec8b88f5e091",
+     "bytes": 17584153
+    },
+    "shell_wooden_piece_1.npy": {
+     "sha256": "ad15282a6a826cbbe12d8012523dadd7443fb9cca5c4dd6845fca3fd70b85572",
+     "bytes": 48128
+    },
+    "shell_wooden_piece_2.npy": {
+     "sha256": "1ca723d205e063ada3394d53d6cdaa83dc49a38777ada11d2702f585a809cab8",
+     "bytes": 48128
+    }
+   },
+   "rule": "object npz and shell files copied byte for byte; tracks = the same map of the same frozen source, regenerated in this run (the tracks role admits only the current run's tracks/)"
+  }
+ }
+}

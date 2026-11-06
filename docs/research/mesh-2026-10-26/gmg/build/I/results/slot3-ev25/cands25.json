@@ -1,0 +1,94 @@
+{
+ "wooden_piece_1/shell_t5p36": {
+  "faces": 3912,
+  "watertight": true,
+  "volume_cm3": 288.0,
+  "extent_mm": [
+   38.1,
+   144.6,
+   233.5
+  ],
+  "md5": "0ffd907b4867da5849b1ead43a628660",
+  "pack": {
+   "faces": 3912,
+   "watertight_packed": true,
+   "v1": {
+    "veto": false,
+    "watertight": true,
+    "faces": 3912,
+    "vertices": 1986,
+    "bodies": 24,
+    "volume_cm3": 287.978
+   }
+  }
+ },
+ "wooden_piece_1/hull": {
+  "faces": 3880,
+  "watertight": true,
+  "volume_cm3": 491.2,
+  "extent_mm": [
+   92.0,
+   140.0,
+   244.0
+  ],
+  "md5": "a57bdf6db9af1f89dc1abad3a350a535",
+  "pack": {
+   "faces": 3880,
+   "watertight_packed": true,
+   "v1": {
+    "veto": true,
+    "watertight": false,
+    "faces": 3879,
+    "vertices": 1930,
+    "bodies": 1,
+    "volume_cm3": null
+   }
+  }
+ },
+ "wooden_piece_2/shell_t5p36": {
+  "faces": 3944,
+  "watertight": true,
+  "volume_cm3": 166.1,
+  "extent_mm": [
+   36.7,
+   142.5,
+   235.7
+  ],
+  "md5": "1a8690d16a4a59880b97174f917b386f",
+  "pack": {
+   "faces": 3944,
+   "watertight_packed": true,
+   "v1": {
+    "veto": false,
+    "watertight": true,
+    "faces": 3944,
+    "vertices": 1980,
+    "bodies": 18,
+    "volume_cm3": 166.122
+   }
+  }
+ },
+ "wooden_piece_2/hull": {
+  "faces": 3856,
+  "watertight": true,
+  "volume_cm3": 320.6,
+  "extent_mm": [
+   48.0,
+   96.0,
+   248.0
+  ],
+  "md5": "7140f389e6ff7fd369703afe1fbec278",
+  "pack": {
+   "faces": 3856,
+   "watertight_packed": true,
+   "v1": {
+    "veto": false,
+    "watertight": true,
+    "faces": 3856,
+    "vertices": 1930,
+    "bodies": 1,
+    "volume_cm3": 320.627
+   }
+  }
+ }
+}

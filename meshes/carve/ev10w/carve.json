@@ -1,0 +1,103 @@
+{
+ "note": "ev10w: eval-10 collision copy with the blue cup's lower cavity widened (31 Oct 2026, CPU). DIAGNOSTIC BUILD: it FAILED its pre-registered gates and is NOT used (docs/research/work/perception-sprint-20261031/ev10w/README.md; PREREG.md committed in 3f058d2 before any ev10w number). The packed eval-10 policy keeps meshes/carve/ev10, which is unchanged. blue_cup: as ev10 (lathe wall wedges from the approach-2 profile, FlashCHORD CoACD hulls of library_v3 clipped below the inner floor), except below the coaxial seat line (h_diag = -z < -47.4 mm, profile s > 38.39 mm). There the cavity radius is r_in = min(max(r - 3 mm, R_g + 1 mm), r - 1.5 mm), where R_g is the max over f100-160 of the gl10A2 reference of the beige pieces' radial distance from the blue lathe axis. R_g (39.7-41.4 mm) lies outside the blue's own outer wall (34.4-36.6 mm), so the 1.5 mm wall cap binds in all 19 bins: the wall is 1.4-1.7 mm there (measured) and the cavity is 1.3-2.2 mm wider than ev10's. That band also uses 10 mm convex bands (band edges = profile bins) instead of one 60 mm band, which would bridge the widened cavity. Floor, outer profile and base hulls are unchanged. 89 pieces (ev10: 53). beige_cup: byte-identical copy of meshes/carve/ev10/beige_cup.",
+ "commands": [
+  "python docs/research/approaches-2026-10-25/approach2-scripts/lathe_fit2.py blue_cup meshes/library_v3/blue_cup.glb PROF/blue_cup   (regenerated 31 Oct; with the original commands it rebuilds meshes/carve/ev10 with identical geometry: every piece matched at vertex Hausdorff 0.0, COM/inertia equal to 1e-14; bytes differ only in vertex/face order and base-hull order)",
+  "python docs/research/approaches-2026-10-25/approach2-scripts/lathe_fit2.py beige_cup_v3 meshes/library_v3/beige_cup.glb PROF/beige_cup_v3",
+  "python docs/research/work/perception-sprint-20261031/ev10w/scripts/make_ev10w_inner.py REF_gl10A2 meshes/carve/ev10 PROF/blue_cup_profile.npz -47.4 0.003 0.0015 100 160 docs/research/work/perception-sprint-20261031/ev10w/build/ev10w_blue_inner.npz",
+  "FLASH_CHORD_CACHE_DIR=<scratch> python pipeline/lathe_collision.py PROF/blue_cup_profile.npz PROF/blue_cup.json OUT/blue_cup --seg 12 --band 0.06 --wall 0.003 --base_from_hulls meshes/library_v3/blue_cup.glb --inner docs/research/work/perception-sprint-20261031/ev10w/build/ev10w_blue_inner.npz",
+  "cp meshes/carve/ev10/beige_cup/* OUT/beige_cup/"
+ ],
+ "inputs_sha256": {
+  "PROF/blue_cup_profile.npz": "733f599c3032f8fd0148c975eda047c27ea784208cb1c110d068ef95f816ee60",
+  "PROF/blue_cup.json": "e611d56a150ec99796b9765087d3eadf85b1ccdfd3e74e13644cbe123ae22c11",
+  "build/ev10w_blue_inner.npz": "3daf148a9dabe67f6d4732881aa894572737b936b4292acd8f24848c1c5b3f4e",
+  "REF_gl10A2 (runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet) md5": "1a5003d94852c275519066645a1b9869"
+ },
+ "tool": "pipeline/lathe_collision.py with the opt-in --inner option (31 Oct). Without --inner its output is byte-identical to the earlier tool: ev10 rebuilt with both versions in the same environment, 106/106 files sha256-equal.",
+ "build_version": "v1. The first build (v0) put the band edges between profile bins, which left 2 mm rings with no wall. It was found by the wall probe, superseded, and its readings were kept in the scratchpad (v0slots/) and labelled invalid.",
+ "inertia": "uniform solid of the pieces, 0.3 kg: COM moves 7.5 mm UP vs ev10 (file z +2.99 -> -4.46 mm; up = -z); Ixx, Iyy -6.3 %, Izz +3.1 %",
+ "pre_existing_note": "Both ev10 and ev10w have a ~1 mm ring slot with no solid between the last wall bin (s = 74.39 mm) and the clipped base hulls (from s ~ 75.4 mm), h_diag ~ -83.4 to -84.4 mm. It is inherited from lathe_collision.py's wall/base split and is not changed here.",
+ "verdict": "NOT-GEOMETRY (M2): the f100-160 intrusion is one-sided in 60/61 frames, and a rigid beige motion within 1 cm / 3 deg brings it to <= 2 cm3 in 30/31 frames (stride 2; median 4.0 mm, 0 deg). ev10w FAILS G1 (gl10A2 max 30.2 cm3; V4p max 11.4 cm3) and G2 (settle 29/61 frames vs 55 needed and vs ev10's 41; hands-off beige sinks 11.6 mm median).",
+ "rest_robustness": {
+  "def": "FlashCHORD harness tools/carve_fc_test.py on the gl10A2 eval-10 tree, CPU, hands parked, no drive (--free_until 1000); max tilt deg vs the reference over the run; 31 Oct",
+  "ev10w": [
+   {
+    "start": 0,
+    "max_blue_deg": 11.9,
+    "max_beige_deg": 96.2
+   },
+   {
+    "start": 2,
+    "max_blue_deg": 14.7,
+    "max_beige_deg": 12.7
+   },
+   {
+    "start": 4,
+    "max_blue_deg": 9.9,
+    "max_beige_deg": 11.6
+   },
+   {
+    "start": 6,
+    "max_blue_deg": 9.9,
+    "max_beige_deg": 12.2
+   },
+   {
+    "start": 8,
+    "max_blue_deg": 12.1,
+    "max_beige_deg": 176.0
+   },
+   {
+    "start": 10,
+    "max_blue_deg": 11.9,
+    "max_beige_deg": 12.8
+   },
+   {
+    "start": 120,
+    "end": 160,
+    "nested_pair": true,
+    "max_blue_deg": 19.8,
+    "max_beige_deg": 10.4
+   }
+  ],
+  "ev10_same_harness_31oct": [
+   {
+    "start": 0,
+    "max_blue_deg": 14.2,
+    "max_beige_deg": 12.4
+   },
+   {
+    "start": 2,
+    "max_blue_deg": 8.7,
+    "max_beige_deg": 12.9
+   },
+   {
+    "start": 4,
+    "max_blue_deg": 9.9,
+    "max_beige_deg": 93.7
+   },
+   {
+    "start": 6,
+    "max_blue_deg": 88.4,
+    "max_beige_deg": 17.0
+   },
+   {
+    "start": 8,
+    "max_blue_deg": 16.3,
+    "max_beige_deg": 14.5
+   },
+   {
+    "start": 10,
+    "max_blue_deg": 14.1,
+    "max_beige_deg": 14.5
+   },
+   {
+    "start": 120,
+    "end": 160,
+    "nested_pair": true,
+    "max_blue_deg": 19.7,
+    "max_beige_deg": 11.2
+   }
+  ],
+  "reading": "both sets fall in 2/6 rest starts in this harness (ev10: beige s4, blue s6; ev10w: beige s0 and s8, beige pieces identical), so the harness is chaotic at this level; the blue alone never falls with ev10w (max 14.7 deg); the nested pair from f120 stands in both"
+ }
+}

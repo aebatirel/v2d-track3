@@ -1,0 +1,349 @@
+{
+ "inputs": {
+  "ours": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/eval/ep25/poses.npz",
+   "sha256": "e95ccaefa66ccdfb091a4048cf5b7e6f71119c4c7eb22c66b48c1465c81de0c3"
+  },
+  "ref": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3ev25/dl_ref/perc2/ep25/poses.npz",
+   "sha256": "3e0813b8eacb86578cfb98f8c28fa6aa0176ce108f02b4e57133066e796cccaf"
+  }
+ },
+ "T": 356,
+ "world_T_cam_maxabs_diff": 0.0,
+ "pairs": {
+  "ours.wooden_piece_1->ref.wooden_piece_1": {
+   "centre_dist_mm": {
+    "median": 181.4994744148154,
+    "p90": 263.42035746000414,
+    "max": 362.0556481426752,
+    "f0": 247.977706237004,
+    "flast": 3.445245757677572
+   },
+   "rel_rot_raw_deg_median": 177.56578277951297,
+   "offset_rot": {
+    "nearest": "Rz180",
+    "off_nearest_deg": 55.91262361397157,
+    "spread_deg_median": 46.938834442966694,
+    "spread_deg_p90": 64.79851407325441,
+    "matrix": [
+     [
+      -0.5657,
+      -0.4283,
+      0.7047
+     ],
+     [
+      0.3439,
+      -0.8992,
+      -0.2704
+     ],
+     [
+      0.7495,
+      0.0894,
+      0.656
+     ]
+    ]
+   },
+   "offset_trans_mm": [
+    -2.56,
+    166.8,
+    -2.94
+   ],
+   "resid_after_const_offset": {
+    "t_mm_median": 116.6113507598903,
+    "t_mm_p90": 171.6110062086613,
+    "t_mm_max": 203.0782448329035,
+    "R_deg_median": 46.938834442966694,
+    "R_deg_p90": 64.7985140732544,
+    "R_deg_max": 69.39434859830827
+   }
+  },
+  "ours.wooden_piece_1->ref.wooden_piece_2": {
+   "centre_dist_mm": {
+    "median": 4.857080510815596,
+    "p90": 6.808239057780087,
+    "max": 15.971294656979655,
+    "f0": 15.971294656979655,
+    "flast": 1.3842242381589127
+   },
+   "rel_rot_raw_deg_median": 2.155003956377,
+   "offset_rot": {
+    "nearest": "I",
+    "off_nearest_deg": 1.2503281217018571,
+    "spread_deg_median": 1.746228091531741,
+    "spread_deg_p90": 2.7513704721946013,
+    "matrix": [
+     [
+      0.9999,
+      0.0121,
+      0.0089
+     ],
+     [
+      -0.0122,
+      0.9998,
+      0.0158
+     ],
+     [
+      -0.0087,
+      -0.0159,
+      0.9998
+     ]
+    ]
+   },
+   "offset_trans_mm": [
+    -0.69,
+    -1.61,
+    3.64
+   ],
+   "resid_after_const_offset": {
+    "t_mm_median": 3.6982964207503333,
+    "t_mm_p90": 6.898671165712999,
+    "t_mm_max": 13.0255199047045,
+    "R_deg_median": 1.7462280915311146,
+    "R_deg_p90": 2.7513704721947345,
+    "R_deg_max": 4.938213458213108
+   }
+  },
+  "ours.wooden_piece_2->ref.wooden_piece_1": {
+   "centre_dist_mm": {
+    "median": 7.307824617258119,
+    "p90": 9.871878526127276,
+    "max": 14.664044917486752,
+    "f0": 7.7136042361212,
+    "flast": 7.367354592988604
+   },
+   "rel_rot_raw_deg_median": 179.39547233625626,
+   "offset_rot": {
+    "nearest": "Rx180",
+    "off_nearest_deg": 0.9641941596237722,
+    "spread_deg_median": 1.2384983987794236,
+    "spread_deg_p90": 2.686385142087052,
+    "matrix": [
+     [
+      0.9999,
+      0.0136,
+      -0.0038
+     ],
+     [
+      0.0136,
+      -0.9999,
+      -0.0092
+     ],
+     [
+      -0.0039,
+      0.0092,
+      -1.0
+     ]
+    ]
+   },
+   "offset_trans_mm": [
+    0.66,
+    -1.28,
+    6.28
+   ],
+   "resid_after_const_offset": {
+    "t_mm_median": 2.8384701296755477,
+    "t_mm_p90": 7.101801998435773,
+    "t_mm_max": 9.454663002498204,
+    "R_deg_median": 1.2384983987791298,
+    "R_deg_p90": 2.686385142086916,
+    "R_deg_max": 4.424851645382263
+   }
+  },
+  "ours.wooden_piece_2->ref.wooden_piece_2": {
+   "centre_dist_mm": {
+    "median": 180.20360142827337,
+    "p90": 260.575370053029,
+    "max": 359.65296764456434,
+    "f0": 258.7725841576668,
+    "flast": 5.00586508472186
+   },
+   "rel_rot_raw_deg_median": 154.98730275477553,
+   "offset_rot": {
+    "nearest": "Ry180",
+    "off_nearest_deg": 54.38328357041323,
+    "spread_deg_median": 48.06324429082379,
+    "spread_deg_p90": 66.75608206569817,
+    "matrix": [
+     [
+      -0.5878,
+      0.313,
+      0.746
+     ],
+     [
+      0.3977,
+      0.9148,
+      -0.0705
+     ],
+     [
+      -0.7045,
+      0.2553,
+      -0.6622
+     ]
+    ]
+   },
+   "offset_trans_mm": [
+    -1.08,
+    -48.22,
+    3.54
+   ],
+   "resid_after_const_offset": {
+    "t_mm_median": 200.80639046931765,
+    "t_mm_p90": 249.82081132450685,
+    "t_mm_max": 311.7582653647105,
+    "R_deg_median": 48.0632442908238,
+    "R_deg_p90": 66.75608206569817,
+    "R_deg_max": 70.99582751574688
+   }
+  }
+ },
+ "assignment_cost_mm": {
+  "identity": 361.70307584308875,
+  "swapped": 12.164905128073716
+ },
+ "mapping": {
+  "wooden_piece_1": "wooden_piece_2",
+  "wooden_piece_2": "wooden_piece_1"
+ },
+ "parquet": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3ev25/dl_ref/refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+  "sha256": "201867f73a82de571c6bdecdd77647ba0acec263ae4a7e68224e76d59e3752fd",
+  "md5": "71ac95f3764170f29f02fa657e7c057c",
+  "object_name": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "pos_shape": [
+   356,
+   2,
+   3
+  ],
+  "wxyz_shape": [
+   356,
+   2,
+   4
+  ],
+  "object_mesh_paths": [
+   "/content/assets/mesh/wooden_piece_1/wooden_piece_1.glb",
+   "/content/assets/mesh/wooden_piece_2/wooden_piece_2.glb"
+  ],
+  "object_urdf_paths": [
+   "/content/assets/urdf/wooden_piece_1_rigid.urdf",
+   "/content/assets/urdf/wooden_piece_2_rigid.urdf"
+  ]
+ },
+ "parquet_vs_tracks": {
+  "parquet.wooden_piece_1<-ref.wooden_piece_1": {
+   "table_frame_dxy_absmax_mm": [
+    0.0,
+    0.0
+   ],
+   "table_frame_dz_mm": {
+    "min": -7.869819903843944,
+    "median": 1.0966788048634157,
+    "max": 12.190296435483749,
+    "f0": 7.718562528278294
+   },
+   "const_offset_mm": [
+    -0.0,
+    -0.0,
+    -1.1
+   ],
+   "resid_mm_median": 4.899579108951015,
+   "resid_mm_max": 11.093617630620438,
+   "rot_deg_median": 0.02764096181003934,
+   "rot_deg_max": 2.8715908053862145
+  },
+  "parquet.wooden_piece_1<-ref.wooden_piece_2": {
+   "const_offset_mm": [
+    2.79,
+    -168.23,
+    -8.15
+   ],
+   "resid_mm_median": 166.99064755682096,
+   "resid_mm_max": 210.17413408645226,
+   "rot_deg_median": 176.66780020183444,
+   "rot_deg_max": 179.98196514991446
+  },
+  "parquet.wooden_piece_1<-ours.wooden_piece_1": {
+   "const_offset_mm": [
+    2.79,
+    -165.26,
+    -9.69
+   ],
+   "resid_mm_median": 165.03175084851574,
+   "resid_mm_max": 210.95835238900085,
+   "rot_deg_median": 177.5651828564225,
+   "rot_deg_max": 179.95504621233223
+  },
+  "parquet.wooden_piece_1<-ours.wooden_piece_2": {
+   "const_offset_mm": [
+    5.35,
+    -3.57,
+    -2.91
+   ],
+   "resid_mm_median": 5.28167143825916,
+   "resid_mm_max": 14.177824365198802,
+   "rot_deg_median": 179.39659720101037,
+   "rot_deg_max": 180.0
+  },
+  "parquet.wooden_piece_2<-ref.wooden_piece_1": {
+   "const_offset_mm": [
+    -2.79,
+    168.23,
+    -5.08
+   ],
+   "resid_mm_median": 166.640949758258,
+   "resid_mm_max": 201.53100513093284,
+   "rot_deg_median": 176.62079709075653,
+   "rot_deg_max": 180.0
+  },
+  "parquet.wooden_piece_2<-ref.wooden_piece_2": {
+   "table_frame_dxy_absmax_mm": [
+    0.0,
+    0.0
+   ],
+   "table_frame_dz_mm": {
+    "min": 4.695097249751368,
+    "median": 9.330722874008934,
+    "max": 13.475506569724182,
+    "f0": 9.416780845386885
+   },
+   "const_offset_mm": [
+    -0.0,
+    -0.0,
+    -9.33
+   ],
+   "resid_mm_median": 0.5886341637916364,
+   "resid_mm_max": 4.635625624257585,
+   "rot_deg_median": 0.04661394156748702,
+   "rot_deg_max": 3.366294180775278
+  },
+  "parquet.wooden_piece_2<-ours.wooden_piece_1": {
+   "const_offset_mm": [
+    -3.31,
+    1.12,
+    -10.98
+   ],
+   "resid_mm_median": 4.290179378812011,
+   "resid_mm_max": 13.798567162245615,
+   "rot_deg_median": 2.830781913934701,
+   "rot_deg_max": 6.37877548369418
+  },
+  "parquet.wooden_piece_2<-ours.wooden_piece_2": {
+   "const_offset_mm": [
+    1.78,
+    160.73,
+    -6.12
+   ],
+   "resid_mm_median": 162.73728479391195,
+   "resid_mm_max": 202.44828477424443,
+   "rot_deg_median": 154.99770402479663,
+   "rot_deg_max": 179.95519361079852
+  }
+ },
+ "world_vo": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3ev25/dl_ref/perc2/ep25/poses_world_vo.npz",
+  "sha256": "e49ba7c08f4552e6fda2caf3517998a30d81b1a707a3de4239a35033c2d670a7"
+ }
+}

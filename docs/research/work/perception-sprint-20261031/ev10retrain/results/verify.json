@@ -1,0 +1,218 @@
+{
+ "ok": true,
+ "failures": [],
+ "missing": [],
+ "b0_band": "DIFFERS",
+ "build": {
+  "rc": 0,
+  "pdir": "/content/results/ev10_v4p/track/V/ep10",
+  "poses_md5_before": "c283504c47921c83535d10b2c15d3f9f",
+  "poses_md5_after": "c283504c47921c83535d10b2c15d3f9f",
+  "depth": "/workspace/hfstore/cache/depth/eval/ep10/depths_fs0.5.npy",
+  "depth_expected": "/content/hfstore/cache/depth/eval/ep10/depths_fs0.5.npy",
+  "hands_md5": "15196aaf02dd9fa7c0b076ccd0e4c463",
+  "hands_refined_md5": "419c230800b727240663597916cba59e",
+  "mkref_args": "--wrist_cost 3.0",
+  "cr_args": "--rest_settle 1",
+  "reference": [
+   "/content/refs/perc2e10vmck/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/bc086246e792487e8b2e7b22c53c1070-0.parquet"
+  ],
+  "reference_md5": [
+   "ca4ae8dcbc290d66ce09d6ad69a09410"
+  ],
+  "table_frame": true,
+  "contact_retarget": true
+ },
+ "depth_check": {
+  "path": "/content/hfstore/cache/depth/eval/ep10/depths_fs0.5.npy",
+  "bytes": 1030400128,
+  "shape": [
+   161,
+   1000,
+   1600
+  ],
+  "frame0_sha256": "ab38c4d79f6864be4b82afc9be1ed0ad97ee95ce6953230c2f8a6698ae1293cc",
+  "ok": true
+ },
+ "identity": {
+  "e2s_blue_vs_tracks_cm": {
+   "V4p_track": 0.007,
+   "stored_track": 1.751
+  },
+  "e2s_ok": true,
+  "trained_V_vs_packed_P_cm": {
+   "blue_cup": {
+    "window": 0.733,
+    "hands_off": 1.247
+   },
+   "beige_cup": {
+    "window": 0.328,
+    "hands_off": 1.225
+   }
+  },
+  "blue_height_V_minus_P_cm": {
+   "window": -0.709
+  },
+  "ok": true
+ },
+ "choice": {
+  "chosen": "43",
+  "checkpoint": "/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+  "sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+  "incomplete_seeds": []
+ },
+ "confirmation": {
+  "draws": 10,
+  "checked": 10,
+  "chosen": "43",
+  "sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+  "eval_rc": {
+   "0": 10
+  }
+ },
+ "own_ref_checks": {
+  "conf/r1": true,
+  "conf/r2": true,
+  "conf/r3": true,
+  "conf/r4": true,
+  "conf/r5": true,
+  "conf/r6": true,
+  "conf/r7": true,
+  "conf/r8": true,
+  "conf/r9": true,
+  "conf/r10": true,
+  "old/r1": true,
+  "packed/r1": true,
+  "packed/r2": true,
+  "packed/r3": true,
+  "packed/r4": true,
+  "packed/r5": true,
+  "packed/r6": true,
+  "packed/r7": true,
+  "packed/r8": true,
+  "packed/r9": true,
+  "packed/r10": true,
+  "train42/r1": true,
+  "train42/r2": true,
+  "train42/r3": true,
+  "train42/r4": true,
+  "train42/r5": true,
+  "train42/r6": true,
+  "train42/r7": true,
+  "train42/r8": true,
+  "train42/r9": true,
+  "train42/r10": true,
+  "train43/r1": true,
+  "train43/r2": true,
+  "train43/r3": true,
+  "train43/r4": true,
+  "train43/r5": true,
+  "train43/r6": true,
+  "train43/r7": true,
+  "train43/r8": true,
+  "train43/r9": true,
+  "train43/r10": true
+ },
+ "cells": {
+  "s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/perc2e10vs42_glock/ep10-s42/policy_50003968.safetensors",
+   "checkpoint_steps": "50003968",
+   "task_parquet": "/workspace/refs/perc2e10vs42_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/perc2e10vs42_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "5d22fc5782a919f2466988768d0708fa",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+     "md5": "82ff6cb8049b527a7ec770965128e37c",
+     "mass": 0.3,
+     "com": "0.000728 0.001551 0.002992"
+    },
+    "beige_cup": {
+     "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+     "md5": "b994e584931ff45b8f162ff7891d49a6",
+     "mass": 0.3,
+     "com": "0.001523 0.005527 -0.004172"
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "config_diff_vs_packed": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ],
+   "checkpoint_sha256": "cabdf1ad7abb67cb5f471464d0c8254d33890644356049948f3c5c7e54d06120",
+   "evaluations_checked": 10
+  },
+  "s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/perc2e10vs43_glock/ep10-s43/policy_60002304.safetensors",
+   "checkpoint_steps": "60002304",
+   "task_parquet": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "5d22fc5782a919f2466988768d0708fa",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+     "md5": "82ff6cb8049b527a7ec770965128e37c",
+     "mass": 0.3,
+     "com": "0.000728 0.001551 0.002992"
+    },
+    "beige_cup": {
+     "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+     "md5": "b994e584931ff45b8f162ff7891d49a6",
+     "mass": 0.3,
+     "com": "0.001523 0.005527 -0.004172"
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "config_diff_vs_packed": [
+    "env.reset.seed",
+    "output_dir",
+    "reference.parquet",
+    "reset.seed",
+    "task.parquet",
+    "training.seed"
+   ],
+   "checkpoint_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+   "evaluations_checked": 10
+  }
+ },
+ "allowed_config_diff": [
+  "env.reset.seed",
+  "output_dir",
+  "reference.parquet",
+  "reset.seed",
+  "task.parquet",
+  "training.seed"
+ ],
+ "rule": "docs/research/work/perception-sprint-20261031/ev10retrain/PREREG.md section 6"
+}

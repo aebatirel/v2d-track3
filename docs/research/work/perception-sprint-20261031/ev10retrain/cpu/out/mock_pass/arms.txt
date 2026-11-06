@@ -1,0 +1,1 @@
+ARMS OK :: V 35652c9af7b46a11271bfdd5f8f1f6de (fingerprint a9bcfef01803), base 35652c9af7b46a11271bfdd5f8f1f6de, seeds ['42', '43'], blue_cup 0.3 kg, beige_cup 0.3 kg

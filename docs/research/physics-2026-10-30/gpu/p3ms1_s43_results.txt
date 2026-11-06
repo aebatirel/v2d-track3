@@ -1,0 +1,2 @@
+[2026-10-31T00:53:20Z] glock ep18 RESULT (policy_30003200.safetensors): n 5 sim_vs_ref {'mean': 0.5725, 'std': 0.0137, 'min': 0.5522, 'max': 0.5944} registered AUC vs mocap {'mean': 0.6013, 'std': 0.0149, 'min': 0.5823, 'max': 0.6248}
+[2026-10-31T01:16:43Z] glock ep24 RESULT (policy_20000768.safetensors): n 5 sim_vs_ref {'mean': 0.2404, 'std': 0.0014, 'min': 0.2382, 'max': 0.2422} registered AUC vs mocap {'mean': 0.2101, 'std': 0.0017, 'min': 0.2078, 'max': 0.213}

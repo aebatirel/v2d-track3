@@ -1,0 +1,24 @@
+[2026-10-31T18:50:43Z] ev10_v4p code mocksha0000000, ep 10, prefix perc2e10v, seeds [42 43], LIB <MR>/content/v2d-track3/meshes/library_v3, PIECES <MR>/content/v2d-track3/meshes/carve/ev10, NREP 10, NCONF 10, STEPS 70004736, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15], H5P7_RUN 20261031-h5p7-1a7cdff
+[2026-10-31T18:50:47Z] ev10_v4p: inputs ok ({"path": "<MR>/content/hfstore/cache/depth/eval/ep10/depths_fs0.5.npy", "bytes": 1030400128, "shape": [161, 1000, 1600], "frame0_sha256": "ab38c4d79f6864be4b82afc9be1ed0ad97ee95ce6953230c2f8a6698); no_oracle: no_oracle: 17 inputs checked, none oracle-derived
+[2026-10-31T18:50:58Z] ev10_v4p B0: GO: V IDENTICAL md5 fa449903630d6bb42dd79131331f4b6b
+[2026-10-31T18:51:01Z] ev10_v4p: reference built ([18:51:00] qa_ref: {"kind": "ref", "reasons": [], "wrist_p95_mm": {}, "max_step_cm": {}, "pass": true, "score": 0.0} [18:51:01] contact_retarget: {"rest_settle":{"mock":true,"max_shift_cm":0.0},"args":["--rest_settle","1"]} ; table: )
+[2026-10-31T18:51:34Z] ev10_v4p identity: IDENTITY OK: e2s blue vs tracks {'V4p_track': 0.007, 'stored_track': 1.751} cm; trained V vs packed P {'blue_cup': {'window': 0.717, 'hands_off': 1.201}, 'beige_cup': {'window': 0.328, 'hands_off': 1.234}}; blue height V - P {'window': -0.679}
+[2026-10-31T18:51:35Z] ev10_v4p arms: ARMS OK :: V 77869888a99fc814a892a13921003985 (fingerprint a9bcfef01803), base 77869888a99fc814a892a13921003985, seeds ['42', '43'], blue_cup 0.3 kg, beige_cup 0.3 kg
+[2026-10-31T18:51:35Z] ev10_v4p: seed 42, PAIRS [10:local:mck:perc2e10vs42]
+[2026-10-31T18:52:12Z] ev10_v4p: seed 43, PAIRS [10:local:mck:perc2e10vs43]
+[2026-10-31T18:52:45Z] ev10_v4p choice: CHOSEN seed 43 :: s42 n 10 mean 0.9995 sd 0.001 min 0.9973; s43 n 10 mean 1.0 sd 0.0001 min 0.9998
+[2026-10-31T18:52:45Z] ev10_v4p: confirmation of <MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors (sha256 06058d2ddeeb) on the clean evaluator mocksha0000000, modified files 0
+[2026-10-31T18:52:47Z] ev10_v4p: confirmation draw 1 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:52:48Z] ev10_v4p: confirmation draw 2 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:52:49Z] ev10_v4p: confirmation draw 3 rc 0 sim_vs_ref 0.9934
+[2026-10-31T18:52:51Z] ev10_v4p: confirmation draw 4 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:52:52Z] ev10_v4p: confirmation draw 5 rc 0 sim_vs_ref 0.9998
+[2026-10-31T18:52:54Z] ev10_v4p: confirmation draw 6 rc 0 sim_vs_ref 0.9986
+[2026-10-31T18:52:55Z] ev10_v4p: confirmation draw 7 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:52:57Z] ev10_v4p: confirmation draw 8 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:52:58Z] ev10_v4p: confirmation draw 9 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:53:00Z] ev10_v4p: confirmation draw 10 rc 0 sim_vs_ref 1.0
+[2026-10-31T18:53:50Z] ev10_v4p: 20261031-h5p7-1a7cdff has no h5_summary.json in the store (not finished?): the packed side is scored on CPU after
+[2026-10-31T18:58:36Z] ev10_v4p scores: conf (own V): 10 rollouts, 10 scored; r1 V s_v_r 1.0000 RPE 0.35 P s_v_r 0.9614 RPE 1.06; r2 V s_v_r 1.0000 RPE 0.37 P s_v_r 0.9602 RPE 1.07; r3 V s_v_r 0.9934 RPE 0.36 P s_v_r 0.9429 RPE 1.08; r4 V s_v_r 1.0000 RPE 0.33 P s_v_r 0.9672 RPE 1.09; r5 V s_v_r 0.9998 RPE 0.37 P s_v_r 0.9596 RPE 1.06; r6 V s_v_r 0.9986 RPE 0.35 P s_v_r 0.9655 RPE 1.08; r7 V s_v_r 1.0000 RPE 0.34 P s_v_r 0.9653 RPE 1.08; r8 V s_v_r 1.0000 RPE 0.35 P s_v_r 0.9641 RPE 1.07; r9 V s_v_r 1.0000 RPE 0.35 P s_v_r 0.9561 RPE 1.06; r10 V s_v_r 1.0000 RPE 0.36 P s_v_r 0.9686 RPE 1.07 old (own P): 1 rollouts, 1 scored; r1 V s_v_r 0.4715 RPE 15.77 P s_v_r 0.4563 RPE 15.76 packed (own P)
+[2026-10-31T18:58:37Z] ev10_v4p verify: VERIFIED :: B0 IDENTICAL :: identity e2s {'V4p_track': 0.007, 'stored_track': 1.751} :: chosen 43 :: confirmation draws 10 (rc {'0': 10}) :: own-reference checks 31/31
+[2026-10-31T18:58:37Z] ev10_v4p RESULT: INCOMPLETE (eval rc of the confirmation draws: {'0': 10}) :: 0 scored packed-policy draws (< 10) ::  :: V: new 0.9992 (n 10, RPE med 0.3525, fails 0) vs packed None (n 0, RPE med None, fails 0) | P: new 0.9611 (n 10, RPE med 1.0738, fails 0) vs packed None (n 0, RPE med None, fails 0) :: chosen seed 43

@@ -1,0 +1,71 @@
+{
+ "mode": "std",
+ "run": "20261031-drS30s43-a1a7e25",
+ "arm": "dr",
+ "episodes": {
+  "30": {
+   "status": "VERIFIED",
+   "seeds": {
+    "43": {
+     "n": 10,
+     "mean": 0.8173,
+     "sd": 0.141,
+     "min": 0.4804,
+     "values": [
+      0.4804,
+      0.8328,
+      0.8268,
+      0.8995,
+      0.9212,
+      0.9046,
+      0.86,
+      0.9187,
+      0.6592,
+      0.8694
+     ],
+     "eval_timeouts": {
+      "best": {
+       "cut": 0,
+       "runs": 10,
+       "rc": {
+        "0": 10
+       },
+       "without_rc": 0
+      },
+      "curve": {
+       "cut": 0,
+       "runs": 4,
+       "rc": {
+        "0": 4
+       },
+       "without_rc": 0
+      }
+     },
+     "checkpoint": "/content/runs/perc2mckdr/ep30-s43/policy_250003456.safetensors",
+     "checkpoint_sha256": "2b05d38283784de907a77489611535267942550849615b608b7766b305945a30",
+     "dr_log_ok": true
+    }
+   },
+   "rule2_candidate": "43",
+   "missing": [],
+   "thin": [],
+   "unchecked": [],
+   "retrain_seeds": [],
+   "min_n": 8,
+   "note": "",
+   "candidate_sha256": "2b05d38283784de907a77489611535267942550849615b608b7766b305945a30",
+   "runs_extra": "20261031-drS30s43-a1a7e25@refs/perc2mckdr/ep30",
+   "pick_extra": "30:20261031-drS30s43-a1a7e25:ck=runs/perc2mckdr/ep30-s43/policy_250003456.safetensors"
+  }
+ },
+ "patch_md5": "570a7f47793d02ba5b0bf3d5e6fd6eac",
+ "confirmation": {
+  "RUNS_EXTRA": "20261031-drS30s43-a1a7e25@refs/perc2mckdr/ep30",
+  "PICK_EXTRA": "30:20261031-drS30s43-a1a7e25:ck=runs/perc2mckdr/ep30-s43/policy_250003456.safetensors",
+  "DR_EPS": "30",
+  "EVAL_ONLY": "30",
+  "EPS_ONLY": "30",
+  "ASSET_PIECES_EXTRA": "",
+  "note": "strings for ops/jobs/h5_reeval.sh (PREREG section 3); join the boxes with tools/dr_eval_merge.py"
+ }
+}

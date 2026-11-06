@@ -1,0 +1,70 @@
+{
+ "set": "ev10cs5",
+ "assets": "/content/assets",
+ "pieces": "/content/v2d-track3/meshes/carve/ev10cs5",
+ "urdfs": {
+  "blue_cup": {
+   "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+   "urdf_md5": "ac8d296b440ceeb24e895366f45365d8",
+   "collisions": 24,
+   "pieces": 24,
+   "mass": 0.3,
+   "com_m": [
+    0.000464,
+    0.001038,
+    0.019052
+   ],
+   "com_mm": [
+    0.464,
+    1.038,
+    19.052
+   ],
+   "inertia": {
+    "ixx": 0.00100361007,
+    "ixy": -6.00089199e-07,
+    "ixz": 1.52892635e-05,
+    "iyy": 0.00100308427,
+    "iyz": 2.06626679e-05,
+    "izz": 0.000444789275
+   },
+   "col_byte_copies": true
+  },
+  "beige_cup": {
+   "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+   "urdf_md5": "1a8cb9d813c7a8085b4759347a16a8ba",
+   "collisions": 21,
+   "pieces": 21,
+   "mass": 0.3,
+   "com_m": [
+    0.001535,
+    0.005508,
+    -0.005568
+   ],
+   "com_mm": [
+    1.535,
+    5.508,
+    -5.568
+   ],
+   "inertia": {
+    "ixx": 0.000904406358,
+    "ixy": 7.82045625e-08,
+    "ixz": 5.5230646e-06,
+    "iyy": 0.000904326764,
+    "iyz": -9.0076599e-06,
+    "izz": 0.000268303606
+   },
+   "col_byte_copies": true
+  }
+ },
+ "pinned_urdf_md5": {
+  "blue_cup": "ac8d296b440ceeb24e895366f45365d8",
+  "beige_cup": "1a8cb9d813c7a8085b4759347a16a8ba"
+ },
+ "packed_urdf_md5": {
+  "blue_cup": "82ff6cb8049b527a7ec770965128e37c",
+  "beige_cup": "b994e584931ff45b8f162ff7891d49a6"
+ },
+ "ok": true,
+ "failures": [],
+ "line": "ASSETS OK :: blue_cup URDF ac8d296b 24 collisions, 0.3 kg, COM mm [0.464, 1.038, 19.052], ixx/iyy/izz 1.0036e-03/1.0031e-03/4.4479e-04; beige_cup URDF 1a8cb9d8 21 collisions, 0.3 kg, COM mm [1.535, 5.508, -5.568], ixx/iyy/izz 9.0441e-04/9.0433e-04/2.6830e-04"
+}

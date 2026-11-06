@@ -1,0 +1,7 @@
+# image/video outputs and bulky intermediates stay out of git
+*.png
+*.jpg
+*.mp4
+*.npz
+*.npy
+__pycache__/

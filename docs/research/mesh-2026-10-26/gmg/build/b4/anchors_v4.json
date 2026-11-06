@@ -1,0 +1,95 @@
+{
+ "run": "20261031-b4ext4-b61e8aa",
+ "note": "PREREG C.2 anchors under the v4 (pre-registered B4 run) flags: the first listed episode without TRACK_FAIL or IDENTITY_SWAP; computed by tools/b4_report.anchors (round 2) from the v4 episode.json flags",
+ "anchors": {
+  "white_pot": {
+   "anchor": 27,
+   "first_listed": 27,
+   "skipped": []
+  },
+  "white_pot_lid": {
+   "anchor": 2,
+   "first_listed": 2,
+   "skipped": []
+  },
+  "plastic_dish_rack": {
+   "anchor": 31,
+   "first_listed": 31,
+   "skipped": []
+  },
+  "blue_cup": {
+   "anchor": 12,
+   "first_listed": 12,
+   "skipped": []
+  },
+  "beige_cup": {
+   "anchor": 11,
+   "first_listed": 11,
+   "skipped": []
+  },
+  "water_pitcher": {
+   "anchor": 21,
+   "first_listed": 21,
+   "skipped": []
+  },
+  "mini_dust_pan": {
+   "anchor": 40,
+   "first_listed": 40,
+   "skipped": []
+  },
+  "mini_sweeper": {
+   "anchor": null,
+   "first_listed": 18,
+   "skipped": [
+    {
+     "ep": 18,
+     "flags": [
+      "IDENTITY_SWAP"
+     ]
+    },
+    {
+     "ep": 31,
+     "flags": [
+      "IDENTITY_SWAP"
+     ]
+    }
+   ]
+  },
+  "wooden_piece_1": {
+   "anchor": null,
+   "first_listed": 24,
+   "skipped": [
+    {
+     "ep": 24,
+     "flags": [
+      "IDENTITY_SWAP"
+     ]
+    },
+    {
+     "ep": 23,
+     "flags": [
+      "IDENTITY_SWAP"
+     ]
+    }
+   ]
+  },
+  "wooden_piece_2": {
+   "anchor": null,
+   "first_listed": 23,
+   "skipped": [
+    {
+     "ep": 23,
+     "flags": [
+      "IDENTITY_SWAP"
+     ]
+    },
+    {
+     "ep": 24,
+     "flags": [
+      "IDENTITY_SWAP"
+     ]
+    }
+   ]
+  }
+ }
+}

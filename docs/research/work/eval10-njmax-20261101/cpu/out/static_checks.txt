@@ -1,0 +1,29 @@
+PASS unchanged since 68f1421: ops/jobs/ev10_v4p.sh
+PASS unchanged since 68f1421: tools/e10v_score.py
+PASS unchanged since 68f1421: tools/e10v_verify.py
+PASS unchanged since 68f1421: tools/e10v_verdict.py
+PASS unchanged since 68f1421: tools/e10v_track.sh
+PASS unchanged since 68f1421: ops/box/lib.sh
+PASS unchanged since 68f1421: ops/box/store.sh
+PASS unchanged since 68f1421: ops/box/run_job.sh
+PASS unchanged since 68f1421: ops/box/watchdog.sh
+PASS unchanged since 68f1421: tools/ckpt_curve.sh
+PASS unchanged since 68f1421: tools/ckpt_curve_summary.py
+PASS unchanged since 68f1421: pipeline/qa.py
+PASS unchanged since 68f1421: ops/jobs/h5_reeval.sh
+PASS unchanged since 68f1421: ops/jobs/pack_eval.sh
+PASS unchanged since 68f1421: ops/jobs/submit_pack.sh
+PASS unchanged since 68f1421: ops/jobs/mass_eval.sh
+PASS unchanged since 68f1421: ops/jobs/ep11_gate.sh
+PASS glock_public.sh: 1 code line added (the EVAL_NJ_DIAG alternative of the eval PERC guard), 0 removed, the rest comments (7	0	ops/jobs/glock_public.sh)
+PASS ev10_nj.sh's recipe lines (export / unset, 8 lines) are ev10_v4p.sh's, verbatim
+PASS bash -n ops/jobs/ev10_nj.sh
+PASS bash -n ops/jobs/glock_public.sh
+PASS bash -n ops/jobs/ev10_v4p.sh
+PASS py_compile tools/e10nj.py
+PASS py_compile tools/e10nj_solver_check.py
+PASS py_compile tools/no_oracle.py
+PASS py_compile tools/pack_swap_rollouts.py
+PASS ev10_nj.sh refuses a run id without -e10nj-
+PASS the sim overrides go to the one glock_public.sh training call only (NJ_ARGS used 3 times)
+RESULT: ALL PASS

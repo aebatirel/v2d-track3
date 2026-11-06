@@ -1,0 +1,17 @@
+[transformers] You are using a model of type `sam2_video` to instantiate a model of type `sam2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[   14.7s] SAM2 sam2.1-hiera-tiny loaded on the CPU in 14 s
+[  206.6s] ep2: dev bundle 192 s, objects ['white_pot', 'white_pot_lid']
+[  329.8s] ep2: frame table 117 s ({'white_pot': 171, 'white_pot_lid': 171} rows)
+[  353.0s] ep2 white_pot: separated, 1 view(s), flags one_view,mv_skipped, pass True, montage 67609 B
+[  383.3s] ep2 white_pot_lid: separated, 1 view(s), flags one_view,mv_skipped, pass True, montage 73202 B
+[  417.9s] ep11: dev bundle 35 s, objects ['blue_cup', 'beige_cup']
+[  485.1s] ep11: frame table 24 s ({'blue_cup': 67, 'beige_cup': 67} rows)
+[  498.9s] ep11 blue_cup: separated, 1 view(s), flags one_view,mv_skipped, pass True, montage 61974 B
+[  507.6s] ep11 beige_cup: separated, 1 view(s), flags one_view,mv_skipped, pass True, montage 64185 B
+[  771.2s] ep26: dev bundle 264 s, objects ['plastic_dish_rack', 'white_pot']
+[  914.6s] ep26: frame table 86 s ({'plastic_dish_rack': 79, 'white_pot': 79} rows)
+[  954.1s] ep26 plastic_dish_rack: contact, 1 view(s), flags contact_mode,one_view,mv_skipped, pass True, montage 108657 B
+[ 1104.0s] ep26 white_pot: contact, 6 view(s), flags contact_mode, pass True, montage 493676 B
+[ 1104.6s] B.11 PASS: {"2": {"pass_": true, "targets": {"white_pot": {"mode": "separated", "n_views": 1, "flags": ["one_view", "mv_skipped"], "pass_": true}, "white_pot_lid": {"mode": "separated", "n_views": 1, "flags": ["one_view", "mv_skipped"], "pass_": true}}}, "11": {"pass_": true, "targets": {"blue_cup": {"mode": "separated", "n_views": 1, "flags": ["one_view", "mv_skipped"], "pass_": true}, "beige_cup": {"mode": "separated", "n_views": 1, "flags": ["one_view", "mv_skipped"], "pass_": true}}}, "26": {"pass_": true, "targets": {"plastic_dish_rack": {"mode": "contact", "n_views": 1, "flags": ["contact_mode", "one_view", "mv_skipped"], "pass_": true}, "white_pot": {"mode": "contact", "n_views": 6, "flags": ["contact_mode"], "pass_": true}}}}
+{"log": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/audit/b2-final-c94f1ac.strace", "policy": "gmg", "mode": "dev", "manifest": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-b2final-c94f1ac/manifest.json", "events": 13961, "opens_ok": 13461, "forbidden": 0, "unlisted": 0, "unrecorded": 0, "writes_outside_run": 0, "network": 0, "local_sockets": 2, "system": 7384, "system_files": 29, "code_outside_interp": 33, "git": 72, "git_tree_reads": 5, "data_reads": 47, "det_reads": 3, "written": 18, "moves": 0, "links": 1, "symlinks": 0, "interp_dirs": 5, "cwd0": "/home/user/v2d-track3/docs/research/mesh-2026-10-26", "allow_net": false, "forbidden_opens": 0, "forbidden_attempted_failed": 0, "command": 10, "returncode": 0}
+EXIT 0

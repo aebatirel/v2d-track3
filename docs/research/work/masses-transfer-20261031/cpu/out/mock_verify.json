@@ -1,0 +1,426 @@
+{
+ "ok": true,
+ "failures": [],
+ "missing": [],
+ "allowed_config_differences": [
+  "output_dir",
+  "reference.parquet",
+  "task.parquet"
+ ],
+ "pair_config_differences": {
+  "ep2/s42": {
+   "ep2/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep2/s43": {
+   "ep2/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s42": {
+   "ep12/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s43": {
+   "ep12/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "pair_config_equal_after_arm_name": {
+  "ep2/s42": {
+   "ep2/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep2/s43": {
+   "ep2/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s42": {
+   "ep12/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s43": {
+   "ep12/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "eval_timeouts": {},
+ "cells": {
+  "ep2/mass0/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass0s42_glock/ep2-s42/policy_70004736.safetensors",
+   "checkpoint_steps": "70004736",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "a1da461235483778f4cf0f9122f73b9d",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00279907252
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.00124525615
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "35f07553be6f3eb1ee9a27e15663088f17dbe438edaaa3b79499bd3401470b2e"
+  },
+  "ep2/mass0/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass0s43_glock/ep2-s43/policy_9998336.safetensors",
+   "checkpoint_steps": "9998336",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "a1da461235483778f4cf0f9122f73b9d",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00279907252
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.00124525615
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "19101152b4cceedaa5d7f85a2973f83797e72a6bccdb96695a6984e4a7a5d89a"
+  },
+  "ep2/mass1/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass1s42_glock/ep2-s42/policy_20000768.safetensors",
+   "checkpoint_steps": "20000768",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "032543ef87954e3b9122f1c9a6b62031",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.2771,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00258540998
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.0882,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.000366105308
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "e1d53e990988a031565c7145d3a582a8a39f7d0374053c9844a1bdd87819a16c"
+  },
+  "ep2/mass1/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass1s43_glock/ep2-s43/policy_9998336.safetensors",
+   "checkpoint_steps": "9998336",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "032543ef87954e3b9122f1c9a6b62031",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.2771,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00258540998
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.0882,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.000366105308
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "9edea3a3d3c85516e87e8877fabc356ad46a0ae2de5b106222ba204856811876"
+  },
+  "ep12/mass0/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass0s42_glock/ep12-s42/policy_40001536.safetensors",
+   "checkpoint_steps": "40001536",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "111de1ca10521a328df3025c0c1a040c",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000915149943
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00770560679
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "d13eb3187bf5c5bc0eee72190b7eee7f4a9fd42c0a7d6a97bf2bff60ab411446"
+  },
+  "ep12/mass0/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass0s43_glock/ep12-s43/policy_40001536.safetensors",
+   "checkpoint_steps": "40001536",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "111de1ca10521a328df3025c0c1a040c",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000915149943
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00770560679
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "b982ffadbda822c17b35e7e68f9eb6e812d48ac4d97450a89916ad8e52603816"
+  },
+  "ep12/mass1/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass1s42_glock/ep12-s42/policy_49999872.safetensors",
+   "checkpoint_steps": "49999872",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "e4ce01572e621ed69332e0943a6dceec",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.128,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000390463976
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3865,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00992739008
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "83c2dc51f7832777ea9729016f5256d96eda8d5e07e3ae4605b458563a369819"
+  },
+  "ep12/mass1/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "MR/content/runs/mass1s43_glock/ep12-s43/policy_49999872.safetensors",
+   "checkpoint_steps": "49999872",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "e4ce01572e621ed69332e0943a6dceec",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.128,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000390463976
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3865,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00992739008
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "d2fb220ad7b4f0c22a1ce09b8c70a72149fc84b8c6e2cfbb0ac3d91a61dc02d7"
+  }
+ },
+ "rule": "docs/research/work/masses-transfer-20261031/PREREG.md"
+}

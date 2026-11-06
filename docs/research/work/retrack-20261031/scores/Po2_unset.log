@@ -1,0 +1,12 @@
+ep2: R 0.9866  RPE 1.439 cm  MPPE 0.709 cm  white_pot library 0.9925, white_pot_lid library 0.9807
+ep12: R 0.9672  RPE 1.142 cm  MPPE 0.944 cm  blue_cup library 0.9347, plastic_dish_rack library 0.9997
+ep11: R 0.8978  RPE 1.739 cm  MPPE 1.637 cm  blue_cup library 0.8622, beige_cup library 0.9334
+ep18: R 0.9144  RPE 4.068 cm  MPPE 1.632 cm  mini_sweeper library 0.8978, mini_dust_pan library 0.9309
+ep13: R 0.9612  RPE 1.384 cm  MPPE 1.056 cm  blue_cup library 0.9299, plastic_dish_rack library 0.9924
+ep24: R 0.8117  RPE 0.983 cm  MPPE 2.360 cm  wooden_piece_1 library 0.7764, wooden_piece_2 library 0.8470
+ep21: R 0.8332  RPE 1.255 cm  MPPE 2.141 cm  blue_cup library 0.9815, water_pitcher library 0.6848
+ep27: R 0.9741  RPE 1.147 cm  MPPE 0.672 cm  plastic_dish_rack library 1.0000, white_pot library 0.9482
+ep31: R 0.7998  RPE 1.914 cm  MPPE 2.030 cm  mini_sweeper library 0.9121, plastic_dish_rack library 0.6875
+ep39: R 0.9602  RPE 0.000 cm  MPPE 1.028 cm  mini_dust_pan library 0.9602
+mean over 10: R 0.91062  RPE 1.5070 cm  MPPE 1.4209 cm
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/scores/Po2_unset.json

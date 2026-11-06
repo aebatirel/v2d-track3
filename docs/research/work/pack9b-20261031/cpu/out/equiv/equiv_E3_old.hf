@@ -1,0 +1,41 @@
+hf download mock/store --repo-type dataset --include runs/20261026-fr32s46b-5e0e100/refs/glockt/ep32/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261026-gl10A2-5e0e100/refs/glock/ep10/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261026-c25s42-feb0407/refs/perc2mcks/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-evb0810-ee7ba8e/refs/glockt/ep8/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-evb0810-ee7ba8e/refs/sf/ep8/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-evb1420-ee7ba8e/refs/glockt/ep14/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-evb1420-ee7ba8e/refs/sf/ep14/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-evb1420-ee7ba8e/refs/glockt/ep20/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-fr3233-043275f/refs/glockt/ep32/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-fr3233-043275f/refs/sf/ep32/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-std0116-ee7ba8e/refs/perc2mcks/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-std1928-ee7ba8e/refs/perc2mcks/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261025-std30-ee7ba8e/refs/perc2mcks/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261024-pack-31ef267/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261024-seed43-61101f5/results/glock_public/ep3/best/* --local-dir MS/box/content/pick/20261024-seed43-61101f5
+hf download mock/store --repo-type dataset --include runs/20261024-seed43-61101f5/results/glock_public/ep5/best/* --local-dir MS/box/content/pick/20261024-seed43-61101f5
+hf download mock/store --repo-type dataset --include runs/20261024-seed43-61101f5/results/glock_public/ep15/best/* --local-dir MS/box/content/pick/20261024-seed43-61101f5
+hf download mock/store --repo-type dataset --include runs/20261024-seed43-61101f5/results/glock_public/ep16/best/* --local-dir MS/box/content/pick/20261024-seed43-61101f5
+hf download mock/store --repo-type dataset --include runs/20261025-std0116-ee7ba8e/results/final_eval/ep1/* --local-dir MS/box/content/pick/20261025-std0116-ee7ba8e
+hf download mock/store --repo-type dataset --include runs/20261025-evb0810-ee7ba8e/results/final_eval/ep8/* --local-dir MS/box/content/pick/20261025-evb0810-ee7ba8e
+hf download mock/store --repo-type dataset --include runs/20261025-evb1420-ee7ba8e/results/final_eval/ep14/* --local-dir MS/box/content/pick/20261025-evb1420-ee7ba8e
+hf download mock/store --repo-type dataset --include runs/20261025-evb1420-ee7ba8e/results/final_eval/ep20/* --local-dir MS/box/content/pick/20261025-evb1420-ee7ba8e
+hf download mock/store --repo-type dataset --include runs/20261025-std1928-ee7ba8e/results/final_eval/ep19/* --local-dir MS/box/content/pick/20261025-std1928-ee7ba8e
+hf download mock/store --repo-type dataset --include runs/20261025-std1928-ee7ba8e/results/final_eval/ep28/* --local-dir MS/box/content/pick/20261025-std1928-ee7ba8e
+hf download mock/store --repo-type dataset --include runs/20261026-c25s42-feb0407/runs/perc2mcks/ep25-s42/policy_250003456.safetensors --local-dir MS/box/content/pick/20261026-c25s42-feb0407
+hf download mock/store --repo-type dataset --include runs/20261025-std30-ee7ba8e/results/final_eval/ep30/* --local-dir MS/box/content/pick/20261025-std30-ee7ba8e
+hf download mock/store --repo-type dataset --include runs/20261026-fr32s46b-5e0e100/results/glock_public/ep32/best/* --local-dir MS/box/content/pick/20261026-fr32s46b-5e0e100
+hf download mock/store --repo-type dataset --include runs/20261026-fr3233s43-6a8a0e2/results/glock_public/ep33/best/* --local-dir MS/box/content/pick/20261026-fr3233s43-6a8a0e2
+hf download mock/store --repo-type dataset --include runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/best/* --local-dir MS/box/content/pick/20261026-gl10A2-5e0e100
+hf download mock/store --repo-type dataset --include runs/20261029-rcB-34bf6ae/results/glock_public/ep33/best/* --local-dir MS/box/content/pick/20261029-rcB-34bf6ae
+hf download mock/store --repo-type dataset --include runs/20261026-pack6-5203d42/results/submission/results/episode_* --local-dir MS/box/content/keep/20261026-pack6-5203d42
+hf download mock/store --repo-type dataset --include runs/20261030-c33B-0202139/results/submission/results/episode_* --local-dir MS/box/content/keep/20261030-c33B-0202139
+hf upload mock/store MS/box/content/push/20261101-eqE3-mocksha runs/20261101-eqE3-mocksha --repo-type dataset --commit-message run 20261101-eqE3-mocksha: T
+hf upload mock/store MS/box/content/push/20261101-eqE3-mocksha runs/20261101-eqE3-mocksha --repo-type dataset --commit-message run 20261101-eqE3-mocksha: T
+hf upload mock/store MS/box/content/push/20261101-eqE3-mocksha runs/20261101-eqE3-mocksha --repo-type dataset --commit-message run 20261101-eqE3-mocksha: T
+hf upload mock/store MS/box/content/push/20261101-eqE3-mocksha runs/20261101-eqE3-mocksha --repo-type dataset --commit-message run 20261101-eqE3-mocksha: T

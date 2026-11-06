@@ -1,0 +1,5 @@
+note: 20 distinct checkpoints across the episodes, which is expected for per-sequence policies
+note: Track 3 reference poses are held out; local metric cross-check is unavailable
+
+wrote <SCRATCH>/pack10/build_10/track3_submission.parquet (9,120 rows, 1,314,925 B)
+upload with: python submit/v2d_submit.py <SCRATCH>/pack10/build_10/track3_submission.parquet --track track_3 -m '<message>'

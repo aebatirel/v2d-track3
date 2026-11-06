@@ -1,0 +1,1 @@
+INPUTS OK :: P 9b6e4d6052dd1eedbb8701a1eef207d0 (fingerprint c1e09fcc24b9), stage 1388703a, blue_cup URDF 31cd001d 1 collisions glb d2be7e3d, water_pitcher URDF 6772f954 9 collisions glb adb315f3, packed checkpoint 61dcd7a63396

@@ -1,0 +1,1 @@
+CHOSEN seed 43 :: s42 n 10 mean 0.4546 sd 0.0014 min 0.4519; s43 n 10 mean 0.4561 sd 0.0012 min 0.454

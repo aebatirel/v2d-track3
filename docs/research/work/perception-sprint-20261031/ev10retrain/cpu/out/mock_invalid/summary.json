@@ -1,0 +1,290 @@
+{
+ "label": "INVALID",
+ "why": [
+  "verify failed: [\"s43: saved config differs from the packed gl10A2 checkpoint in ['training.mock_extra_setting']\"]"
+ ],
+ "clauses": {},
+ "sides": {
+  "V": {
+   "new": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9998,
+     "sd": 0.0004,
+     "min": 0.9988,
+     "max": 1.0,
+     "median": 1.0
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 0.3484,
+     "sd": 0.0147,
+     "min": 0.3196,
+     "max": 0.3707,
+     "median": 0.3524
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 0.4364,
+     "sd": 0.051,
+     "min": 0.3679,
+     "max": 0.5175,
+     "median": 0.4378
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.9999,
+     "sd": 0.0003,
+     "min": 0.9994,
+     "max": 1.0,
+     "median": 1.0
+    },
+    "fail_rate": 0.0,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {
+     "blue_cup": 0.9999,
+     "beige_cup": 0.9998
+    }
+   },
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4555,
+     "sd": 0.0017,
+     "min": 0.4523,
+     "max": 0.4583,
+     "median": 0.4556
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.835,
+     "sd": 0.0055,
+     "min": 15.8278,
+     "max": 15.8466,
+     "median": 15.8355
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4258,
+     "sd": 0.0163,
+     "min": 8.4044,
+     "max": 8.4563,
+     "median": 8.4218
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4572,
+     "sd": 0.0012,
+     "min": 0.4554,
+     "max": 0.4598,
+     "median": 0.4569
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6779,
+     "beige_cup": 0.2365
+    }
+   }
+  },
+  "P": {
+   "new": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9621,
+     "sd": 0.0032,
+     "min": 0.9575,
+     "max": 0.9678,
+     "median": 0.962
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 1.0852,
+     "sd": 0.0155,
+     "min": 1.0563,
+     "max": 1.0995,
+     "median": 1.0911
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 0.9262,
+     "sd": 0.0578,
+     "min": 0.8525,
+     "max": 1.0058,
+     "median": 0.9179
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.9627,
+     "sd": 0.0041,
+     "min": 0.9573,
+     "max": 0.9701,
+     "median": 0.9623
+    },
+    "fail_rate": 0.0,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {
+     "blue_cup": 0.9448,
+     "beige_cup": 0.9806
+    }
+   },
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4474,
+     "sd": 0.0025,
+     "min": 0.4431,
+     "max": 0.4523,
+     "median": 0.4471
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7978,
+     "sd": 0.0055,
+     "min": 15.7886,
+     "max": 15.8078,
+     "median": 15.799
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4511,
+     "sd": 0.0167,
+     "min": 8.4305,
+     "max": 8.4824,
+     "median": 8.4469
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.45,
+     "sd": 0.0016,
+     "min": 0.447,
+     "max": 0.4524,
+     "median": 0.4499
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6599,
+     "beige_cup": 0.24
+    }
+   }
+  }
+ },
+ "secondary_literal_own_reference": {
+  "new_draw1_vs_V": 0.9988,
+  "old_packed_draw_vs_P": 0.4563,
+  "holds": true
+ },
+ "equal_floor_note": null,
+ "gate_prereg_s5_crosscheck": {
+  "new_mean_vs_V": 0.9998,
+  "bar": 0.456,
+  "holds": true
+ },
+ "choice": {
+  "chosen": "43",
+  "checkpoint": "<MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+  "sha256": "8896e700ea54febd92ee80f030b4933c50215d4f0af921faae6f5e714ae0bc1e",
+  "seeds": {
+   "42": {
+    "n": 10,
+    "results": "<MR>/content/results/perc2e10vs42_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10vs42_glock_public/ep10/best/policy.safetensors",
+    "sha256": "109ab24d89b5eb86c523eab57d894ab5b9da94106ef68302c00d55e693d4c5dc",
+    "chosen_by_curve": "<MR>/content/runs/perc2e10vs42_glock/ep10-s42/policy_49999872.safetensors",
+    "mean": 0.9999,
+    "sd": 0.0003,
+    "min": 0.9992,
+    "max": 1.0,
+    "values": [
+     1.0,
+     1.0,
+     1.0,
+     0.9998,
+     1.0,
+     1.0,
+     0.9998,
+     1.0,
+     0.9992,
+     1.0
+    ]
+   },
+   "43": {
+    "n": 10,
+    "results": "<MR>/content/results/perc2e10vs43_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+    "sha256": "8896e700ea54febd92ee80f030b4933c50215d4f0af921faae6f5e714ae0bc1e",
+    "chosen_by_curve": "<MR>/content/runs/perc2e10vs43_glock/ep10-s43/policy_9998336.safetensors",
+    "mean": 0.9999,
+    "sd": 0.0002,
+    "min": 0.9996,
+    "max": 1.0,
+    "values": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     0.9996,
+     0.9996,
+     0.9998
+    ]
+   }
+  },
+  "incomplete_seeds": []
+ },
+ "verify": {
+  "ok": false,
+  "failures": [
+   "s43: saved config differs from the packed gl10A2 checkpoint in ['training.mock_extra_setting']"
+  ],
+  "confirmation": {
+   "draws": 10,
+   "checked": 10,
+   "chosen": "43",
+   "sha256": "8896e700ea54febd92ee80f030b4933c50215d4f0af921faae6f5e714ae0bc1e",
+   "eval_rc": {
+    "0": 10
+   }
+  },
+  "b0_band": "IDENTICAL"
+ },
+ "counts": {
+  "conf": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "old": {
+   "own": "P",
+   "n_files": 1,
+   "n_scored": 1
+  },
+  "packed": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train42": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train43": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  }
+ },
+ "rule": "docs/research/work/perception-sprint-20261031/ev10retrain/PREREG.md section 5"
+}

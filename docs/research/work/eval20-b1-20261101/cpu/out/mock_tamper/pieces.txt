@@ -1,0 +1,1 @@
+PIECES FAILED: md5 differs from MD5SUMS: ['water_pitcher/piece_07.obj'] :: ev20b1 41 pieces, MD5SUMS fe9aeca079fdcc7524a06f46fcd0a7ae, FROZEN.md 4259a6cf8a4c28dcbc212ff0a77bad5b, md5 list b6ffc309

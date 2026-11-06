@@ -1,0 +1,133 @@
+{
+ "ep": 45,
+ "variant": "D",
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 290,
+ "changed_frames": {
+  "white_pot": 0
+ },
+ "rest_frames": {
+  "white_pot": 41
+ },
+ "segments": [
+  {
+   "obj": "white_pot",
+   "start": 0,
+   "end": 15,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.063703,
+    0.103102,
+    0.568728
+   ],
+   "constraint_frames": 16,
+   "pair_frames": {},
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": 37.2,
+   "lowest_above_table_mm_median": -7.6,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 0.0,
+    "max_mm": 8.57,
+    "median_mm": 7.6
+   }
+  },
+  {
+   "obj": "white_pot",
+   "start": 265,
+   "end": 289,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.062086,
+    0.088857,
+    0.581264
+   ],
+   "constraint_frames": 25,
+   "pair_frames": {},
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": 39.3,
+   "lowest_above_table_mm_median": -3.7,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 0.0,
+    "max_mm": 5.4,
+    "median_mm": 3.7
+   }
+  }
+ ],
+ "seconds": 1.3
+}

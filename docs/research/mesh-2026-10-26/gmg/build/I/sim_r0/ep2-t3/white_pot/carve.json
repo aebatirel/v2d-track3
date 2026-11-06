@@ -1,0 +1,799 @@
+{
+ "delivered": "default",
+ "decisions": [
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "run": {
+    "frames": [
+     0,
+     60
+    ],
+    "n": 31,
+    "kind": "SEAT",
+    "travel_mm": 22.8,
+    "straightness": 0.58,
+    "d": [
+     0.9592,
+     0.0215,
+     0.2818
+    ],
+    "assembled": [
+     0,
+     58
+    ],
+    "n_assembled": 30,
+    "n_build": 20,
+    "n_check": 11,
+    "flags": []
+   },
+   "voxels": 916,
+   "region_voxels": 916,
+   "cm3": 58.62,
+   "nmin": 5,
+   "split": {
+    "through_column": false,
+    "exit_share_entry_end": 0.304,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 40.0
+   },
+   "linked": true,
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "class_mix": {
+    "U": 290,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 626,
+    "O_testable_solid": 626
+   },
+   "class_o_share": 0.683,
+   "step": 2,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 179.99,
+    "entering_samples_mm": 177.34,
+    "partner_collider_mm": 177.99,
+    "w_sub_mm": 177.7,
+    "centre_n_mm": 7.05,
+    "axes_dnm": [
+     [
+      0.9592,
+      0.0215,
+      0.2818
+     ],
+     [
+      0.0182,
+      0.9903,
+      -0.1375
+     ],
+     [
+      -0.2821,
+      0.137,
+      0.9496
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": false,
+     "reason": "gen notch lost in remesh"
+    },
+    "b": {
+     "present": true,
+     "agree": false,
+     "sil_share": 0.022,
+     "testable": 915
+    },
+    "ab": null
+   },
+   "offset": {
+    "t_mm": [
+     6.0,
+     -6.0,
+     -18.0
+    ],
+    "t_norm_mm": 19.9,
+    "t_along_d_mm": 0.6,
+    "share_R_in_N_t": 0.015,
+    "holds": false,
+    "topology": {
+     "before": [
+      2,
+      -9
+     ],
+     "after": [
+      2,
+      -12
+     ]
+    },
+    "o_displaced": 2,
+    "pair": "the linked partner neither carves nor has an OFFSET: both PUSH"
+   },
+   "pair_status": {
+    "white_pot": "PUSH",
+    "white_pot_lid": "PUSH"
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     0,
+     60
+    ],
+    "push_mm": null,
+    "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  },
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "run": {
+    "frames": [
+     272,
+     342
+    ],
+    "n": 36,
+    "kind": "SEAT",
+    "travel_mm": 36.2,
+    "straightness": 0.576,
+    "d": [
+     -0.4765,
+     0.8758,
+     -0.0764
+    ],
+    "assembled": [
+     312,
+     342
+    ],
+    "n_assembled": 16,
+    "n_build": 20,
+    "n_check": 16,
+    "flags": []
+   },
+   "voxels": 630,
+   "region_voxels": 273,
+   "cm3": 17.47,
+   "nmin": 5,
+   "split": {
+    "through_column": true,
+    "exit_share_entry_end": 0.667,
+    "exit_share_far_end": 0.867,
+    "extent_along_d_mm": 165.5,
+    "plane_point": [
+     0.05844,
+     0.01784,
+     -0.0184
+    ],
+    "plane_normal": [
+     -0.4765,
+     0.8758,
+     -0.0764
+    ],
+    "carve_side": "entry (s < 0)",
+    "shared": true,
+    "kept_voxels": 357,
+    "carved_side_voxels": 273
+   },
+   "linked": true,
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "class_mix": {
+    "U": 76,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 197,
+    "O_testable_solid": 197
+   },
+   "class_o_share": 0.722,
+   "step": 2,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 85.11,
+    "entering_samples_mm": 45.92,
+    "partner_collider_mm": 83.11,
+    "w_sub_mm": 84.59,
+    "centre_n_mm": 33.38,
+    "axes_dnm": [
+     [
+      -0.4765,
+      0.8758,
+      -0.0764
+     ],
+     [
+      0.852,
+      0.4815,
+      0.2054
+     ],
+     [
+      0.2167,
+      0.0328,
+      -0.9757
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": false,
+     "reason": "gen notch lost in remesh"
+    },
+    "b": {
+     "present": true,
+     "agree": false,
+     "sil_share": 0.004,
+     "testable": 273
+    },
+    "ab": null
+   },
+   "offset": {
+    "t_mm": [
+     -0.0,
+     -4.0,
+     -18.0
+    ],
+    "t_norm_mm": 18.4,
+    "t_along_d_mm": -2.1,
+    "share_R_in_N_t": 0.044,
+    "holds": false,
+    "topology": {
+     "before": [
+      2,
+      -9
+     ],
+     "after": [
+      2,
+      -12
+     ]
+    },
+    "o_displaced": 7,
+    "pair": "the linked partner neither carves nor has an OFFSET: both PUSH"
+   },
+   "pair_status": {
+    "white_pot": "PUSH",
+    "white_pot_lid": "PUSH"
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     272,
+     342
+    ],
+    "push_mm": null,
+    "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  },
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "run": {
+    "frames": [
+     272,
+     342
+    ],
+    "n": 36,
+    "kind": "SEAT",
+    "travel_mm": 36.2,
+    "straightness": 0.576,
+    "d": [
+     -0.4765,
+     0.8758,
+     -0.0764
+    ],
+    "assembled": [
+     312,
+     342
+    ],
+    "n_assembled": 16,
+    "n_build": 20,
+    "n_check": 16,
+    "flags": []
+   },
+   "voxels": 2,
+   "region_voxels": 2,
+   "cm3": 0.13,
+   "nmin": 5,
+   "split": {
+    "through_column": false,
+    "exit_share_entry_end": 0.0,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 7.8
+   },
+   "linked": false,
+   "flags": [],
+   "step": 1,
+   "decision": "IGNORE",
+   "widths": {
+    "w_sim_mm": 85.11,
+    "entering_samples_mm": 4.81,
+    "partner_collider_mm": 83.11,
+    "w_sub_mm": 84.59,
+    "centre_n_mm": 60.97,
+    "axes_dnm": [
+     [
+      -0.4765,
+      0.8758,
+      -0.0764
+     ],
+     [
+      0.852,
+      0.4815,
+      0.2054
+     ],
+     [
+      0.2167,
+      0.0328,
+      -0.9757
+     ]
+    ]
+   },
+   "own_decision": "IGNORE",
+   "sources": {
+    "a": {
+     "present": false,
+     "reason": "gen notch lost in remesh"
+    },
+    "b": {
+     "present": false,
+     "reason": "fewer than 3 testable voxels"
+    },
+    "ab": null
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  },
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "run": {
+    "frames": [
+     272,
+     342
+    ],
+    "n": 36,
+    "kind": "SEAT",
+    "travel_mm": 36.2,
+    "straightness": 0.576,
+    "d": [
+     -0.4765,
+     0.8758,
+     -0.0764
+    ],
+    "assembled": [
+     312,
+     342
+    ],
+    "n_assembled": 16,
+    "n_build": 20,
+    "n_check": 16,
+    "flags": []
+   },
+   "voxels": 10,
+   "region_voxels": 10,
+   "cm3": 0.64,
+   "nmin": 5,
+   "split": {
+    "through_column": false,
+    "exit_share_entry_end": 0.4,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 17.4
+   },
+   "linked": true,
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "class_mix": {
+    "U": 2,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 8,
+    "O_testable_solid": 8
+   },
+   "class_o_share": 0.8,
+   "step": 2,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 85.11,
+    "entering_samples_mm": 11.71,
+    "partner_collider_mm": 83.11,
+    "w_sub_mm": 84.59,
+    "centre_n_mm": 16.28,
+    "axes_dnm": [
+     [
+      -0.4765,
+      0.8758,
+      -0.0764
+     ],
+     [
+      0.852,
+      0.4815,
+      0.2054
+     ],
+     [
+      0.2167,
+      0.0328,
+      -0.9757
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": false,
+     "reason": "gen notch lost in remesh"
+    },
+    "b": {
+     "present": true,
+     "agree": false,
+     "sil_share": 0.0,
+     "testable": 10
+    },
+    "ab": null
+   },
+   "pair_status": {
+    "white_pot": "PUSH",
+    "white_pot_lid": "PUSH"
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     272,
+     342
+    ],
+    "push_mm": null,
+    "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  },
+  {
+   "target": "white_pot",
+   "partner": "white_pot_lid",
+   "run": {
+    "frames": [
+     272,
+     342
+    ],
+    "n": 36,
+    "kind": "SEAT",
+    "travel_mm": 36.2,
+    "straightness": 0.576,
+    "d": [
+     -0.4765,
+     0.8758,
+     -0.0764
+    ],
+    "assembled": [
+     312,
+     342
+    ],
+    "n_assembled": 16,
+    "n_build": 20,
+    "n_check": 16,
+    "flags": []
+   },
+   "voxels": 3,
+   "region_voxels": 3,
+   "cm3": 0.19,
+   "nmin": 5,
+   "split": {
+    "through_column": false,
+    "exit_share_entry_end": 0.0,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 6.2
+   },
+   "linked": true,
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "class_mix": {
+    "U": 0,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 3,
+    "O_testable_solid": 3
+   },
+   "class_o_share": 1.0,
+   "step": 2,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 85.11,
+    "entering_samples_mm": 7.07,
+    "partner_collider_mm": 83.11,
+    "w_sub_mm": 84.59,
+    "centre_n_mm": 12.34,
+    "axes_dnm": [
+     [
+      -0.4765,
+      0.8758,
+      -0.0764
+     ],
+     [
+      0.852,
+      0.4815,
+      0.2054
+     ],
+     [
+      0.2167,
+      0.0328,
+      -0.9757
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": false,
+     "reason": "gen notch lost in remesh"
+    },
+    "b": {
+     "present": true,
+     "agree": false,
+     "sil_share": 0.0,
+     "testable": 3
+    },
+    "ab": null
+   },
+   "pair_status": {
+    "white_pot": "PUSH",
+    "white_pot_lid": "PUSH"
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     272,
+     342
+    ],
+    "push_mm": null,
+    "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  }
+ ],
+ "pieces_report": {
+  "default": {
+   "n_pieces": 52,
+   "pitch_mm": 2.0,
+   "tol_cm3": 0.3,
+   "max": 64,
+   "max_piece_excess_cm3": 1249.808,
+   "steps": 52,
+   "pieces": [
+    {
+     "verts": 64,
+     "excess_cm3": 1249.808
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.216
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.152
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.064
+    },
+    {
+     "verts": 43,
+     "excess_cm3": 0.12
+    },
+    {
+     "verts": 33,
+     "excess_cm3": 0.088
+    },
+    {
+     "verts": 60,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 36,
+     "excess_cm3": 0.008
+    },
+    {
+     "verts": 50,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 38,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 35,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 38,
+     "excess_cm3": 0.24
+    },
+    {
+     "verts": 30,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 40,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 43,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 40,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 39,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 25,
+     "excess_cm3": 0.096
+    },
+    {
+     "verts": 34,
+     "excess_cm3": 0.24
+    },
+    {
+     "verts": 24,
+     "excess_cm3": 0.24
+    },
+    {
+     "verts": 37,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 24,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 31,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 32,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 31,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 30,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 30,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 31,
+     "excess_cm3": 0.24
+    },
+    {
+     "verts": 30,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 26,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 24,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 19,
+     "excess_cm3": 0.24
+    },
+    {
+     "verts": 21,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 25,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 20,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 22,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 19,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 19,
+     "excess_cm3": 0.24
+    },
+    {
+     "verts": 18,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 22,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 14,
+     "excess_cm3": 0.24
+    },
+    {
+     "verts": 20,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 17,
+     "excess_cm3": 0.24
+    },
+    {
+     "verts": 15,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 18,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 18,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 14,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 15,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 15,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 11,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 13,
+     "excess_cm3": 0.0
+    }
+   ]
+  },
+  "solid_cm3": 362.42,
+  "keepout_points": 61359
+ },
+ "flags": [
+  "sim_pose_fallback"
+ ],
+ "physics": null
+}

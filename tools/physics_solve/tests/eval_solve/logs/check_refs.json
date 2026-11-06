@@ -1,0 +1,392 @@
+[
+ {
+  "ep": 3,
+  "T": 313,
+  "objects": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep3/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "near_right": 313,
+  "near_left": 313,
+  "near_any": 313,
+  "planned_replans": 32,
+  "replans": 32,
+  "urdf_roots": [
+   "/content/refs/sf/ep3/assets"
+  ]
+ },
+ {
+  "ep": 5,
+  "T": 288,
+  "objects": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep5/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "near_right": 287,
+  "near_left": 288,
+  "near_any": 288,
+  "planned_replans": 29,
+  "replans": 29,
+  "urdf_roots": [
+   "/content/refs/sf/ep5/assets"
+  ]
+ },
+ {
+  "ep": 6,
+  "T": 243,
+  "objects": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep6/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "near_right": 243,
+  "near_left": 243,
+  "near_any": 243,
+  "planned_replans": 25,
+  "replans": 25,
+  "urdf_roots": [
+   "/content/refs/sf/ep6/assets"
+  ]
+ },
+ {
+  "ep": 8,
+  "T": 219,
+  "objects": [
+   "beige_cup",
+   "white_pot"
+  ],
+  "asset_root": "/content/refs/sf/ep8/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "beige_cup",
+   "white_pot"
+  ],
+  "near_right": 195,
+  "near_left": 219,
+  "near_any": 219,
+  "planned_replans": 22,
+  "replans": 22,
+  "urdf_roots": [
+   "/content/refs/sf/ep8/assets"
+  ]
+ },
+ {
+  "ep": 10,
+  "T": 161,
+  "objects": [
+   "blue_cup",
+   "beige_cup"
+  ],
+  "asset_root": "/content/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [],
+  "moving": [
+   "blue_cup",
+   "beige_cup"
+  ],
+  "near_right": 122,
+  "near_left": 145,
+  "near_any": 145,
+  "planned_replans": 15,
+  "replans": 16,
+  "urdf_roots": [
+   "/content/assets"
+  ]
+ },
+ {
+  "ep": 14,
+  "T": 158,
+  "objects": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "asset_root": "/content/refs/sf/ep14/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "near_right": 0,
+  "near_left": 130,
+  "near_any": 130,
+  "planned_replans": 14,
+  "replans": 16,
+  "urdf_roots": [
+   "/content/refs/sf/ep14/assets"
+  ]
+ },
+ {
+  "ep": 15,
+  "T": 166,
+  "objects": [
+   "plastic_dish_rack",
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep15/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "plastic_dish_rack",
+   "wooden_spoon"
+  ],
+  "near_right": 0,
+  "near_left": 166,
+  "near_any": 166,
+  "planned_replans": 17,
+  "replans": 17,
+  "urdf_roots": [
+   "/content/refs/sf/ep15/assets"
+  ]
+ },
+ {
+  "ep": 16,
+  "T": 173,
+  "objects": [
+   "plastic_dish_rack",
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep16/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "plastic_dish_rack",
+   "wooden_spoon"
+  ],
+  "near_right": 129,
+  "near_left": 87,
+  "near_any": 163,
+  "planned_replans": 18,
+  "replans": 18,
+  "urdf_roots": [
+   "/content/refs/sf/ep16/assets"
+  ]
+ },
+ {
+  "ep": 20,
+  "T": 202,
+  "objects": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "asset_root": "/content/refs/sf/ep20/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "near_right": 202,
+  "near_left": 202,
+  "near_any": 202,
+  "planned_replans": 21,
+  "replans": 21,
+  "urdf_roots": [
+   "/content/refs/sf/ep20/assets"
+  ]
+ },
+ {
+  "ep": 32,
+  "T": 259,
+  "objects": [
+   "blue_cup",
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep32/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "blue_cup",
+   "wooden_spoon"
+  ],
+  "near_right": 259,
+  "near_left": 253,
+  "near_any": 259,
+  "planned_replans": 26,
+  "replans": 26,
+  "urdf_roots": [
+   "/content/refs/sf/ep32/assets"
+  ]
+ },
+ {
+  "ep": 33,
+  "T": 348,
+  "objects": [
+   "blue_cup",
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep33/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3",
+   "0.3"
+  ],
+  "moving": [
+   "blue_cup",
+   "wooden_spoon"
+  ],
+  "near_right": 325,
+  "near_left": 341,
+  "near_any": 341,
+  "planned_replans": 35,
+  "replans": 35,
+  "urdf_roots": [
+   "/content/refs/sf/ep33/assets"
+  ]
+ },
+ {
+  "ep": 35,
+  "T": 421,
+  "objects": [
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep35/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3"
+  ],
+  "moving": [
+   "wooden_spoon"
+  ],
+  "near_right": 412,
+  "near_left": 250,
+  "near_any": 421,
+  "planned_replans": 42,
+  "replans": 42,
+  "urdf_roots": [
+   "/content/refs/sf/ep35/assets"
+  ]
+ },
+ {
+  "ep": 36,
+  "T": 407,
+  "objects": [
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep36/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3"
+  ],
+  "moving": [
+   "wooden_spoon"
+  ],
+  "near_right": 385,
+  "near_left": 137,
+  "near_any": 395,
+  "planned_replans": 40,
+  "replans": 41,
+  "urdf_roots": [
+   "/content/refs/sf/ep36/assets"
+  ]
+ },
+ {
+  "ep": 37,
+  "T": 151,
+  "objects": [
+   "wooden_spoon"
+  ],
+  "asset_root": "/content/refs/sf/ep37/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3"
+  ],
+  "moving": [
+   "wooden_spoon"
+  ],
+  "near_right": 110,
+  "near_left": 0,
+  "near_any": 110,
+  "planned_replans": 12,
+  "replans": 15,
+  "urdf_roots": [
+   "/content/refs/sf/ep37/assets"
+  ]
+ },
+ {
+  "ep": 38,
+  "T": 263,
+  "objects": [
+   "mini_dust_pan"
+  ],
+  "asset_root": "/content/refs/sf/ep38/assets",
+  "urdf_missing": [],
+  "meshes_missing": [],
+  "masses": [
+   "0.3"
+  ],
+  "moving": [
+   "mini_dust_pan"
+  ],
+  "near_right": 232,
+  "near_left": 0,
+  "near_any": 232,
+  "planned_replans": 26,
+  "replans": 27,
+  "urdf_roots": [
+   "/content/refs/sf/ep38/assets"
+  ]
+ }
+]

@@ -1,0 +1,74 @@
+{
+ "base": {
+  "beige_cup": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+  "blue_cup": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+  "mini_dust_pan": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+  "mini_sweeper": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+  "plastic_dish_rack": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+  "water_pitcher": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+  "white_pot": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+  "white_pot_lid": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+  "wooden_piece_1": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+  "wooden_piece_2": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b"
+ },
+ "c0": {
+  "beige_cup": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+  "blue_cup": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+  "mini_dust_pan": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+  "mini_sweeper": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+  "plastic_dish_rack": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+  "water_pitcher": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+  "white_pot": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+  "white_pot_lid": "0bac47f4b86e9ae36b082ffde7e04ce29bf1170481e02151d4cfbdb393c5a53b",
+  "wooden_piece_1": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+  "wooden_piece_2": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b"
+ },
+ "single/white_pot": {
+  "beige_cup": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+  "blue_cup": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+  "mini_dust_pan": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+  "mini_sweeper": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+  "plastic_dish_rack": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+  "water_pitcher": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+  "white_pot": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+  "white_pot_lid": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+  "wooden_piece_1": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+  "wooden_piece_2": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b"
+ },
+ "single/white_pot_lid": {
+  "beige_cup": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+  "blue_cup": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+  "mini_dust_pan": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+  "mini_sweeper": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+  "plastic_dish_rack": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+  "water_pitcher": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+  "white_pot": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+  "white_pot_lid": "0bac47f4b86e9ae36b082ffde7e04ce29bf1170481e02151d4cfbdb393c5a53b",
+  "wooden_piece_1": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+  "wooden_piece_2": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b"
+ },
+ "single/plastic_dish_rack": {
+  "beige_cup": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+  "blue_cup": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+  "mini_dust_pan": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+  "mini_sweeper": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+  "plastic_dish_rack": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+  "water_pitcher": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+  "white_pot": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+  "white_pot_lid": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+  "wooden_piece_1": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+  "wooden_piece_2": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b"
+ },
+ "single/blue_cup": {
+  "beige_cup": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+  "blue_cup": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+  "mini_dust_pan": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+  "mini_sweeper": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+  "plastic_dish_rack": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+  "water_pitcher": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+  "white_pot": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+  "white_pot_lid": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+  "wooden_piece_1": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+  "wooden_piece_2": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b"
+ }
+}

@@ -1,0 +1,3790 @@
+{
+ "1": [
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r1/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.45,
+     "ori_deg": 3.8,
+     "mp_pos_margin": 0.48,
+     "mp_ori_margin": 0.13
+    },
+    "white_pot_lid": {
+     "pos_cm": 0.98,
+     "ori_deg": 4.4,
+     "mp_pos_margin": 0.33,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r2/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.24,
+     "ori_deg": 3.8,
+     "mp_pos_margin": 0.41,
+     "mp_ori_margin": 0.13
+    },
+    "white_pot_lid": {
+     "pos_cm": 0.82,
+     "ori_deg": 3.7,
+     "mp_pos_margin": 0.27,
+     "mp_ori_margin": 0.12
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r3/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.18,
+   "sp_ori_margin": 0.21,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.93,
+     "ori_deg": 5.3,
+     "mp_pos_margin": 0.64,
+     "mp_ori_margin": 0.18
+    },
+    "white_pot_lid": {
+     "pos_cm": 1.74,
+     "ori_deg": 6.8,
+     "mp_pos_margin": 0.58,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r4/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.44,
+     "ori_deg": 3.6,
+     "mp_pos_margin": 0.48,
+     "mp_ori_margin": 0.12
+    },
+    "white_pot_lid": {
+     "pos_cm": 1.0,
+     "ori_deg": 4.3,
+     "mp_pos_margin": 0.33,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r5/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.44,
+     "ori_deg": 3.9,
+     "mp_pos_margin": 0.48,
+     "mp_ori_margin": 0.13
+    },
+    "white_pot_lid": {
+     "pos_cm": 1.18,
+     "ori_deg": 3.9,
+     "mp_pos_margin": 0.39,
+     "mp_ori_margin": 0.13
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r6/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 0.0,
+   "sp_pos_margin": 0.4,
+   "sp_ori_margin": 0.27,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.48,
+     "ori_deg": 6.5,
+     "mp_pos_margin": 0.49,
+     "mp_ori_margin": 0.22
+    },
+    "white_pot_lid": {
+     "pos_cm": 6.51,
+     "ori_deg": 9.0,
+     "mp_pos_margin": 2.17,
+     "mp_ori_margin": 0.3
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r7/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.3,
+     "ori_deg": 4.4,
+     "mp_pos_margin": 0.43,
+     "mp_ori_margin": 0.15
+    },
+    "white_pot_lid": {
+     "pos_cm": 0.91,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.3,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r8/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.25,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.97,
+     "ori_deg": 5.7,
+     "mp_pos_margin": 0.66,
+     "mp_ori_margin": 0.19
+    },
+    "white_pot_lid": {
+     "pos_cm": 1.08,
+     "ori_deg": 8.6,
+     "mp_pos_margin": 0.36,
+     "mp_ori_margin": 0.29
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r9/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.3,
+     "ori_deg": 3.9,
+     "mp_pos_margin": 0.43,
+     "mp_ori_margin": 0.13
+    },
+    "white_pot_lid": {
+     "pos_cm": 0.92,
+     "ori_deg": 4.2,
+     "mp_pos_margin": 0.31,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5e1-1a7cdff/results/h5/r10/ep1/episode_000001.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.28,
+     "ori_deg": 3.6,
+     "mp_pos_margin": 0.43,
+     "mp_ori_margin": 0.12
+    },
+    "white_pot_lid": {
+     "pos_cm": 0.72,
+     "ori_deg": 3.2,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.11
+    }
+   }
+  }
+ ],
+ "3": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.17,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.41,
+     "ori_deg": 4.2,
+     "mp_pos_margin": 0.47,
+     "mp_ori_margin": 0.14
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.65,
+     "ori_deg": 5.4,
+     "mp_pos_margin": 0.22,
+     "mp_ori_margin": 0.18
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.17,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.53,
+     "ori_deg": 5.2,
+     "mp_pos_margin": 0.51,
+     "mp_ori_margin": 0.17
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.65,
+     "ori_deg": 4.4,
+     "mp_pos_margin": 0.22,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.2,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.57,
+     "ori_deg": 5.8,
+     "mp_pos_margin": 0.52,
+     "mp_ori_margin": 0.19
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.62,
+     "ori_deg": 5.6,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.19
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.21,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.9,
+     "ori_deg": 6.8,
+     "mp_pos_margin": 0.63,
+     "mp_ori_margin": 0.23
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.62,
+     "ori_deg": 5.1,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.17
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.17,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.49,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.5,
+     "mp_ori_margin": 0.15
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.64,
+     "ori_deg": 5.4,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.18
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.18,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.37,
+     "ori_deg": 6.1,
+     "mp_pos_margin": 0.46,
+     "mp_ori_margin": 0.2
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.59,
+     "ori_deg": 4.3,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.18,
+   "sp_ori_margin": 0.29,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 2.75,
+     "ori_deg": 11.5,
+     "mp_pos_margin": 0.92,
+     "mp_ori_margin": 0.38
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.81,
+     "ori_deg": 5.0,
+     "mp_pos_margin": 0.27,
+     "mp_ori_margin": 0.17
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.16,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.4,
+     "ori_deg": 4.9,
+     "mp_pos_margin": 0.47,
+     "mp_ori_margin": 0.16
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.57,
+     "ori_deg": 4.4,
+     "mp_pos_margin": 0.19,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.18,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.57,
+     "ori_deg": 4.8,
+     "mp_pos_margin": 0.52,
+     "mp_ori_margin": 0.16
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.6,
+     "ori_deg": 5.4,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.18
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep3/episode_000003.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.16,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.22,
+     "ori_deg": 4.6,
+     "mp_pos_margin": 0.41,
+     "mp_ori_margin": 0.15
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.66,
+     "ori_deg": 4.6,
+     "mp_pos_margin": 0.22,
+     "mp_ori_margin": 0.15
+    }
+   }
+  }
+ ],
+ "5": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.87,
+     "ori_deg": 3.4,
+     "mp_pos_margin": 0.29,
+     "mp_ori_margin": 0.11
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.77,
+     "ori_deg": 4.9,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.16
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.01,
+     "ori_deg": 3.1,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.1
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.76,
+     "ori_deg": 4.6,
+     "mp_pos_margin": 0.25,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.02,
+     "ori_deg": 3.4,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.11
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.71,
+     "ori_deg": 4.6,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.17,
+     "ori_deg": 3.7,
+     "mp_pos_margin": 0.39,
+     "mp_ori_margin": 0.12
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.87,
+     "ori_deg": 4.4,
+     "mp_pos_margin": 0.29,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.89,
+     "ori_deg": 3.2,
+     "mp_pos_margin": 0.3,
+     "mp_ori_margin": 0.11
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.77,
+     "ori_deg": 5.5,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.18
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.16,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.99,
+     "ori_deg": 3.0,
+     "mp_pos_margin": 0.33,
+     "mp_ori_margin": 0.1
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.82,
+     "ori_deg": 5.9,
+     "mp_pos_margin": 0.27,
+     "mp_ori_margin": 0.2
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.16,
+     "ori_deg": 4.0,
+     "mp_pos_margin": 0.39,
+     "mp_ori_margin": 0.13
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.86,
+     "ori_deg": 4.7,
+     "mp_pos_margin": 0.29,
+     "mp_ori_margin": 0.16
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.16,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.12,
+     "ori_deg": 4.9,
+     "mp_pos_margin": 0.37,
+     "mp_ori_margin": 0.16
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.9,
+     "ori_deg": 4.0,
+     "mp_pos_margin": 0.3,
+     "mp_ori_margin": 0.13
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.17,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.11,
+     "ori_deg": 3.7,
+     "mp_pos_margin": 0.37,
+     "mp_ori_margin": 0.12
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.78,
+     "ori_deg": 5.8,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.19
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep5/episode_000005.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.18,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 1.04,
+     "ori_deg": 3.3,
+     "mp_pos_margin": 0.35,
+     "mp_ori_margin": 0.11
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.82,
+     "ori_deg": 6.8,
+     "mp_pos_margin": 0.27,
+     "mp_ori_margin": 0.23
+    }
+   }
+  }
+ ],
+ "6": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.57,
+     "ori_deg": 2.8,
+     "mp_pos_margin": 0.19,
+     "mp_ori_margin": 0.09
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.61,
+     "ori_deg": 5.6,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.19
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.18,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.71,
+     "ori_deg": 4.7,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.16
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.66,
+     "ori_deg": 5.6,
+     "mp_pos_margin": 0.22,
+     "mp_ori_margin": 0.19
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.2,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.86,
+     "ori_deg": 4.6,
+     "mp_pos_margin": 0.29,
+     "mp_ori_margin": 0.15
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.76,
+     "ori_deg": 6.7,
+     "mp_pos_margin": 0.25,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.18,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.64,
+     "ori_deg": 2.8,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.09
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.64,
+     "ori_deg": 7.5,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.25
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.18,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.6,
+     "ori_deg": 3.3,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.11
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.58,
+     "ori_deg": 7.3,
+     "mp_pos_margin": 0.19,
+     "mp_ori_margin": 0.24
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.61,
+     "ori_deg": 2.8,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.09
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.59,
+     "ori_deg": 5.3,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.18
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.61,
+     "ori_deg": 3.3,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.11
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.62,
+     "ori_deg": 4.4,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.17,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.71,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.15
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.64,
+     "ori_deg": 5.1,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.17
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.61,
+     "ori_deg": 3.7,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.12
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.61,
+     "ori_deg": 4.7,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.16
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep6/episode_000006.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "white_pot": {
+     "pos_cm": 0.55,
+     "ori_deg": 3.5,
+     "mp_pos_margin": 0.18,
+     "mp_ori_margin": 0.12
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.59,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.15
+    }
+   }
+  }
+ ],
+ "8": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.8,
+     "ori_deg": 4.2,
+     "mp_pos_margin": 0.27,
+     "mp_ori_margin": 0.14
+    },
+    "white_pot": {
+     "pos_cm": 0.69,
+     "ori_deg": 2.8,
+     "mp_pos_margin": 0.23,
+     "mp_ori_margin": 0.09
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.84,
+     "ori_deg": 4.9,
+     "mp_pos_margin": 0.28,
+     "mp_ori_margin": 0.16
+    },
+    "white_pot": {
+     "pos_cm": 0.78,
+     "ori_deg": 3.8,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.13
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.11,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.72,
+     "ori_deg": 3.6,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.12
+    },
+    "white_pot": {
+     "pos_cm": 0.65,
+     "ori_deg": 2.5,
+     "mp_pos_margin": 0.22,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.72,
+     "ori_deg": 3.9,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.13
+    },
+    "white_pot": {
+     "pos_cm": 1.11,
+     "ori_deg": 4.1,
+     "mp_pos_margin": 0.37,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.11,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.84,
+     "ori_deg": 4.2,
+     "mp_pos_margin": 0.28,
+     "mp_ori_margin": 0.14
+    },
+    "white_pot": {
+     "pos_cm": 0.64,
+     "ori_deg": 2.1,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.92,
+     "ori_deg": 4.3,
+     "mp_pos_margin": 0.31,
+     "mp_ori_margin": 0.14
+    },
+    "white_pot": {
+     "pos_cm": 0.69,
+     "ori_deg": 3.9,
+     "mp_pos_margin": 0.23,
+     "mp_ori_margin": 0.13
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.74,
+     "ori_deg": 4.0,
+     "mp_pos_margin": 0.25,
+     "mp_ori_margin": 0.13
+    },
+    "white_pot": {
+     "pos_cm": 0.62,
+     "ori_deg": 3.3,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.11
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.85,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.28,
+     "mp_ori_margin": 0.15
+    },
+    "white_pot": {
+     "pos_cm": 0.79,
+     "ori_deg": 2.3,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.72,
+     "ori_deg": 3.7,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.12
+    },
+    "white_pot": {
+     "pos_cm": 0.61,
+     "ori_deg": 2.0,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep8/episode_000008.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "beige_cup": {
+     "pos_cm": 0.79,
+     "ori_deg": 3.5,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.12
+    },
+    "white_pot": {
+     "pos_cm": 1.03,
+     "ori_deg": 3.6,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.12
+    }
+   }
+  }
+ ],
+ "14": [
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r1/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.11,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.76,
+     "ori_deg": 3.4,
+     "mp_pos_margin": 0.59,
+     "mp_ori_margin": 0.11
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.5,
+     "ori_deg": 3.0,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r2/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.91,
+     "ori_deg": 5.5,
+     "mp_pos_margin": 0.64,
+     "mp_ori_margin": 0.18
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.45,
+     "ori_deg": 3.1,
+     "mp_pos_margin": 0.15,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r3/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.82,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.61,
+     "mp_ori_margin": 0.15
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.58,
+     "ori_deg": 3.0,
+     "mp_pos_margin": 0.19,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r4/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.11,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.62,
+     "ori_deg": 3.4,
+     "mp_pos_margin": 0.54,
+     "mp_ori_margin": 0.11
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.53,
+     "ori_deg": 3.0,
+     "mp_pos_margin": 0.18,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r5/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.6,
+     "ori_deg": 4.2,
+     "mp_pos_margin": 0.53,
+     "mp_ori_margin": 0.14
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.58,
+     "ori_deg": 3.0,
+     "mp_pos_margin": 0.19,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r6/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.16,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 2.53,
+     "ori_deg": 6.1,
+     "mp_pos_margin": 0.84,
+     "mp_ori_margin": 0.2
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.51,
+     "ori_deg": 3.0,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r7/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.14,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 2.24,
+     "ori_deg": 5.6,
+     "mp_pos_margin": 0.75,
+     "mp_ori_margin": 0.19
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.63,
+     "ori_deg": 3.0,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r8/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 2.16,
+     "ori_deg": 5.3,
+     "mp_pos_margin": 0.72,
+     "mp_ori_margin": 0.18
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.51,
+     "ori_deg": 3.0,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r9/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.82,
+     "ori_deg": 5.0,
+     "mp_pos_margin": 0.61,
+     "mp_ori_margin": 0.17
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.54,
+     "ori_deg": 3.1,
+     "mp_pos_margin": 0.18,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfR2-c1a5471/results/pf_arms/conf_ep14_p0m/r10/ep14/episode_000014.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.18,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 2.06,
+     "ori_deg": 7.0,
+     "mp_pos_margin": 0.69,
+     "mp_ori_margin": 0.23
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.46,
+     "ori_deg": 3.0,
+     "mp_pos_margin": 0.15,
+     "mp_ori_margin": 0.1
+    }
+   }
+  }
+ ],
+ "15": [
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r1/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.3,
+     "ori_deg": 1.1,
+     "mp_pos_margin": 0.1,
+     "mp_ori_margin": 0.04
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.39,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.46,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r2/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.11,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.26,
+     "ori_deg": 0.6,
+     "mp_pos_margin": 0.09,
+     "mp_ori_margin": 0.02
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.26,
+     "ori_deg": 5.6,
+     "mp_pos_margin": 0.42,
+     "mp_ori_margin": 0.19
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r3/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.3,
+     "ori_deg": 0.7,
+     "mp_pos_margin": 0.1,
+     "mp_ori_margin": 0.02
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.35,
+     "ori_deg": 6.9,
+     "mp_pos_margin": 0.45,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r4/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.25,
+     "ori_deg": 0.7,
+     "mp_pos_margin": 0.08,
+     "mp_ori_margin": 0.02
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.33,
+     "ori_deg": 6.3,
+     "mp_pos_margin": 0.44,
+     "mp_ori_margin": 0.21
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r5/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.38,
+     "ori_deg": 1.2,
+     "mp_pos_margin": 0.13,
+     "mp_ori_margin": 0.04
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.43,
+     "ori_deg": 3.6,
+     "mp_pos_margin": 0.48,
+     "mp_ori_margin": 0.12
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r6/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.11,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.37,
+     "ori_deg": 0.6,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.02
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.47,
+     "ori_deg": 5.7,
+     "mp_pos_margin": 0.49,
+     "mp_ori_margin": 0.19
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r7/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.21,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.41,
+     "ori_deg": 0.8,
+     "mp_pos_margin": 0.14,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.3,
+     "ori_deg": 11.4,
+     "mp_pos_margin": 0.43,
+     "mp_ori_margin": 0.38
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r8/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.26,
+     "ori_deg": 1.2,
+     "mp_pos_margin": 0.09,
+     "mp_ori_margin": 0.04
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.26,
+     "ori_deg": 3.4,
+     "mp_pos_margin": 0.42,
+     "mp_ori_margin": 0.11
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r9/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.27,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.26,
+     "ori_deg": 0.7,
+     "mp_pos_margin": 0.09,
+     "mp_ori_margin": 0.02
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.5,
+     "ori_deg": 14.7,
+     "mp_pos_margin": 0.5,
+     "mp_ori_margin": 0.49
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r10/ep15/episode_000015.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.31,
+     "ori_deg": 0.9,
+     "mp_pos_margin": 0.1,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.41,
+     "ori_deg": 6.8,
+     "mp_pos_margin": 0.47,
+     "mp_ori_margin": 0.23
+    }
+   }
+  }
+ ],
+ "16": [
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r1/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.44,
+     "ori_deg": 1.0,
+     "mp_pos_margin": 0.15,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.99,
+     "ori_deg": 7.8,
+     "mp_pos_margin": 0.33,
+     "mp_ori_margin": 0.26
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r2/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.56,
+     "ori_deg": 0.7,
+     "mp_pos_margin": 0.19,
+     "mp_ori_margin": 0.02
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.09,
+     "ori_deg": 6.1,
+     "mp_pos_margin": 0.36,
+     "mp_ori_margin": 0.2
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r3/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.37,
+     "ori_deg": 0.8,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.97,
+     "ori_deg": 6.1,
+     "mp_pos_margin": 0.32,
+     "mp_ori_margin": 0.2
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r4/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.45,
+     "ori_deg": 0.9,
+     "mp_pos_margin": 0.15,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.0,
+     "ori_deg": 6.6,
+     "mp_pos_margin": 0.33,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r5/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.6,
+     "ori_deg": 1.0,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.95,
+     "ori_deg": 7.6,
+     "mp_pos_margin": 0.32,
+     "mp_ori_margin": 0.25
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r6/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.39,
+     "ori_deg": 0.7,
+     "mp_pos_margin": 0.13,
+     "mp_ori_margin": 0.02
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.04,
+     "ori_deg": 6.1,
+     "mp_pos_margin": 0.35,
+     "mp_ori_margin": 0.2
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r7/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.6,
+     "ori_deg": 0.8,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.13,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.38,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r8/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.49,
+     "ori_deg": 0.9,
+     "mp_pos_margin": 0.16,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.99,
+     "ori_deg": 6.3,
+     "mp_pos_margin": 0.33,
+     "mp_ori_margin": 0.21
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r9/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.39,
+     "ori_deg": 1.0,
+     "mp_pos_margin": 0.13,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.94,
+     "ori_deg": 6.8,
+     "mp_pos_margin": 0.31,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r10/ep16/episode_000016.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.07,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.43,
+     "ori_deg": 1.0,
+     "mp_pos_margin": 0.14,
+     "mp_ori_margin": 0.03
+    },
+    "wooden_spoon": {
+     "pos_cm": 0.99,
+     "ori_deg": 6.6,
+     "mp_pos_margin": 0.33,
+     "mp_ori_margin": 0.22
+    }
+   }
+  }
+ ],
+ "19": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.27,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.59,
+     "ori_deg": 8.9,
+     "mp_pos_margin": 0.53,
+     "mp_ori_margin": 0.3
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.71,
+     "ori_deg": 6.8,
+     "mp_pos_margin": 0.57,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.2,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.03,
+     "ori_deg": 5.8,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.19
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.05,
+     "ori_deg": 6.0,
+     "mp_pos_margin": 0.35,
+     "mp_ori_margin": 0.2
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.21,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.1,
+     "ori_deg": 5.6,
+     "mp_pos_margin": 0.37,
+     "mp_ori_margin": 0.19
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.06,
+     "ori_deg": 6.3,
+     "mp_pos_margin": 0.35,
+     "mp_ori_margin": 0.21
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.24,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.13,
+     "ori_deg": 7.1,
+     "mp_pos_margin": 0.38,
+     "mp_ori_margin": 0.24
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.19,
+     "ori_deg": 6.5,
+     "mp_pos_margin": 0.4,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.23,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.22,
+     "ori_deg": 6.5,
+     "mp_pos_margin": 0.41,
+     "mp_ori_margin": 0.22
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.21,
+     "ori_deg": 6.5,
+     "mp_pos_margin": 0.4,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.27,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.17,
+     "ori_deg": 7.4,
+     "mp_pos_margin": 0.39,
+     "mp_ori_margin": 0.25
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.39,
+     "ori_deg": 8.0,
+     "mp_pos_margin": 0.46,
+     "mp_ori_margin": 0.27
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.21,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.09,
+     "ori_deg": 5.9,
+     "mp_pos_margin": 0.36,
+     "mp_ori_margin": 0.2
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.1,
+     "ori_deg": 6.1,
+     "mp_pos_margin": 0.37,
+     "mp_ori_margin": 0.2
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.22,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.23,
+     "ori_deg": 6.6,
+     "mp_pos_margin": 0.41,
+     "mp_ori_margin": 0.22
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.23,
+     "ori_deg": 6.0,
+     "mp_pos_margin": 0.41,
+     "mp_ori_margin": 0.2
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.22,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.16,
+     "ori_deg": 6.2,
+     "mp_pos_margin": 0.39,
+     "mp_ori_margin": 0.21
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.27,
+     "ori_deg": 6.5,
+     "mp_pos_margin": 0.42,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep19/episode_000019.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.23,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.2,
+     "ori_deg": 5.9,
+     "mp_pos_margin": 0.4,
+     "mp_ori_margin": 0.2
+    },
+    "mini_dust_pan": {
+     "pos_cm": 1.24,
+     "ori_deg": 7.5,
+     "mp_pos_margin": 0.41,
+     "mp_ori_margin": 0.25
+    }
+   }
+  }
+ ],
+ "20": [
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r1/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.08,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 0.87,
+     "ori_deg": 2.0,
+     "mp_pos_margin": 0.29,
+     "mp_ori_margin": 0.07
+    },
+    "water_pitcher": {
+     "pos_cm": 0.78,
+     "ori_deg": 3.4,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.11
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r2/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.11,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 0.72,
+     "ori_deg": 2.3,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.08
+    },
+    "water_pitcher": {
+     "pos_cm": 1.02,
+     "ori_deg": 3.8,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.13
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r3/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 0.0,
+   "sp_pos_margin": 0.28,
+   "sp_ori_margin": 0.26,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 0.83,
+     "ori_deg": 2.5,
+     "mp_pos_margin": 0.28,
+     "mp_ori_margin": 0.08
+    },
+    "water_pitcher": {
+     "pos_cm": 4.76,
+     "ori_deg": 12.5,
+     "mp_pos_margin": 1.59,
+     "mp_ori_margin": 0.42
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r4/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.01,
+     "ori_deg": 2.8,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.09
+    },
+    "water_pitcher": {
+     "pos_cm": 1.12,
+     "ori_deg": 4.1,
+     "mp_pos_margin": 0.37,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r5/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 0.89,
+     "ori_deg": 2.6,
+     "mp_pos_margin": 0.3,
+     "mp_ori_margin": 0.09
+    },
+    "water_pitcher": {
+     "pos_cm": 0.85,
+     "ori_deg": 3.4,
+     "mp_pos_margin": 0.28,
+     "mp_ori_margin": 0.11
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r6/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.08,
+     "ori_deg": 3.6,
+     "mp_pos_margin": 0.36,
+     "mp_ori_margin": 0.12
+    },
+    "water_pitcher": {
+     "pos_cm": 0.94,
+     "ori_deg": 4.4,
+     "mp_pos_margin": 0.31,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r7/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 0.83,
+     "ori_deg": 2.0,
+     "mp_pos_margin": 0.28,
+     "mp_ori_margin": 0.07
+    },
+    "water_pitcher": {
+     "pos_cm": 0.97,
+     "ori_deg": 3.8,
+     "mp_pos_margin": 0.32,
+     "mp_ori_margin": 0.13
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r8/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.12,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 0.79,
+     "ori_deg": 2.4,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.08
+    },
+    "water_pitcher": {
+     "pos_cm": 0.98,
+     "ori_deg": 4.3,
+     "mp_pos_margin": 0.33,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r9/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 0.81,
+     "ori_deg": 2.0,
+     "mp_pos_margin": 0.27,
+     "mp_ori_margin": 0.07
+    },
+    "water_pitcher": {
+     "pos_cm": 1.08,
+     "ori_deg": 3.3,
+     "mp_pos_margin": 0.36,
+     "mp_ori_margin": 0.11
+    }
+   }
+  },
+  {
+   "file": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r10/ep20/episode_000020.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.16,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 0.93,
+     "ori_deg": 3.4,
+     "mp_pos_margin": 0.31,
+     "mp_ori_margin": 0.11
+    },
+    "water_pitcher": {
+     "pos_cm": 1.21,
+     "ori_deg": 5.5,
+     "mp_pos_margin": 0.4,
+     "mp_ori_margin": 0.18
+    }
+   }
+  }
+ ],
+ "25": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.24,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.51,
+     "ori_deg": 7.7,
+     "mp_pos_margin": 0.5,
+     "mp_ori_margin": 0.26
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.58,
+     "ori_deg": 6.0,
+     "mp_pos_margin": 0.53,
+     "mp_ori_margin": 0.2
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.27,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.67,
+     "ori_deg": 7.5,
+     "mp_pos_margin": 0.56,
+     "mp_ori_margin": 0.25
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.57,
+     "ori_deg": 7.9,
+     "mp_pos_margin": 0.52,
+     "mp_ori_margin": 0.26
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.17,
+   "sp_ori_margin": 0.29,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.58,
+     "ori_deg": 8.5,
+     "mp_pos_margin": 0.53,
+     "mp_ori_margin": 0.28
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.91,
+     "ori_deg": 8.2,
+     "mp_pos_margin": 0.64,
+     "mp_ori_margin": 0.27
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.26,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.54,
+     "ori_deg": 8.0,
+     "mp_pos_margin": 0.51,
+     "mp_ori_margin": 0.27
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.65,
+     "ori_deg": 6.9,
+     "mp_pos_margin": 0.55,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.17,
+   "sp_ori_margin": 0.23,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.72,
+     "ori_deg": 6.8,
+     "mp_pos_margin": 0.57,
+     "mp_ori_margin": 0.23
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.71,
+     "ori_deg": 6.7,
+     "mp_pos_margin": 0.57,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.29,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.62,
+     "ori_deg": 8.9,
+     "mp_pos_margin": 0.54,
+     "mp_ori_margin": 0.3
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.51,
+     "ori_deg": 7.6,
+     "mp_pos_margin": 0.5,
+     "mp_ori_margin": 0.25
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.17,
+   "sp_ori_margin": 0.29,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.58,
+     "ori_deg": 7.4,
+     "mp_pos_margin": 0.53,
+     "mp_ori_margin": 0.25
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.82,
+     "ori_deg": 9.4,
+     "mp_pos_margin": 0.61,
+     "mp_ori_margin": 0.31
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.19,
+   "sp_ori_margin": 0.33,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.85,
+     "ori_deg": 9.0,
+     "mp_pos_margin": 0.62,
+     "mp_ori_margin": 0.3
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.91,
+     "ori_deg": 9.8,
+     "mp_pos_margin": 0.64,
+     "mp_ori_margin": 0.33
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.31,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.6,
+     "ori_deg": 8.1,
+     "mp_pos_margin": 0.53,
+     "mp_ori_margin": 0.27
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.56,
+     "ori_deg": 9.9,
+     "mp_pos_margin": 0.52,
+     "mp_ori_margin": 0.33
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep25/episode_000025.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.3,
+   "objects": {
+    "wooden_piece_1": {
+     "pos_cm": 1.54,
+     "ori_deg": 9.6,
+     "mp_pos_margin": 0.51,
+     "mp_ori_margin": 0.32
+    },
+    "wooden_piece_2": {
+     "pos_cm": 1.54,
+     "ori_deg": 7.8,
+     "mp_pos_margin": 0.51,
+     "mp_ori_margin": 0.26
+    }
+   }
+  }
+ ],
+ "28": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.17,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.59,
+     "ori_deg": 1.9,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.06
+    },
+    "white_pot": {
+     "pos_cm": 1.84,
+     "ori_deg": 7.7,
+     "mp_pos_margin": 0.61,
+     "mp_ori_margin": 0.26
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.5,
+     "ori_deg": 1.4,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.05
+    },
+    "white_pot": {
+     "pos_cm": 1.61,
+     "ori_deg": 7.1,
+     "mp_pos_margin": 0.54,
+     "mp_ori_margin": 0.24
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.46,
+     "ori_deg": 1.2,
+     "mp_pos_margin": 0.15,
+     "mp_ori_margin": 0.04
+    },
+    "white_pot": {
+     "pos_cm": 1.35,
+     "ori_deg": 6.7,
+     "mp_pos_margin": 0.45,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.09,
+   "sp_ori_margin": 0.16,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.4,
+     "ori_deg": 1.9,
+     "mp_pos_margin": 0.13,
+     "mp_ori_margin": 0.06
+    },
+    "white_pot": {
+     "pos_cm": 1.45,
+     "ori_deg": 7.4,
+     "mp_pos_margin": 0.48,
+     "mp_ori_margin": 0.25
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.52,
+     "ori_deg": 1.1,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.04
+    },
+    "white_pot": {
+     "pos_cm": 1.39,
+     "ori_deg": 6.9,
+     "mp_pos_margin": 0.46,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 0.0,
+   "sp_pos_margin": 0.38,
+   "sp_ori_margin": 0.88,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.91,
+     "ori_deg": 1.7,
+     "mp_pos_margin": 0.3,
+     "mp_ori_margin": 0.06
+    },
+    "white_pot": {
+     "pos_cm": 6.63,
+     "ori_deg": 48.7,
+     "mp_pos_margin": 2.21,
+     "mp_ori_margin": 1.62
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.57,
+     "ori_deg": 1.5,
+     "mp_pos_margin": 0.19,
+     "mp_ori_margin": 0.05
+    },
+    "white_pot": {
+     "pos_cm": 1.6,
+     "ori_deg": 7.2,
+     "mp_pos_margin": 0.53,
+     "mp_ori_margin": 0.24
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.64,
+     "ori_deg": 1.2,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.04
+    },
+    "white_pot": {
+     "pos_cm": 1.5,
+     "ori_deg": 7.0,
+     "mp_pos_margin": 0.5,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.14,
+   "sp_ori_margin": 0.18,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.64,
+     "ori_deg": 1.3,
+     "mp_pos_margin": 0.21,
+     "mp_ori_margin": 0.04
+    },
+    "white_pot": {
+     "pos_cm": 2.12,
+     "ori_deg": 8.8,
+     "mp_pos_margin": 0.71,
+     "mp_ori_margin": 0.29
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep28/episode_000028.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.1,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "plastic_dish_rack": {
+     "pos_cm": 0.37,
+     "ori_deg": 0.8,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.03
+    },
+    "white_pot": {
+     "pos_cm": 1.69,
+     "ori_deg": 6.5,
+     "mp_pos_margin": 0.56,
+     "mp_ori_margin": 0.22
+    }
+   }
+  }
+ ],
+ "30": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.21,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.85,
+     "ori_deg": 10.8,
+     "mp_pos_margin": 0.62,
+     "mp_ori_margin": 0.36
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.71,
+     "ori_deg": 1.3,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.04
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.24,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.93,
+     "ori_deg": 11.9,
+     "mp_pos_margin": 0.64,
+     "mp_ori_margin": 0.4
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.74,
+     "ori_deg": 1.6,
+     "mp_pos_margin": 0.25,
+     "mp_ori_margin": 0.05
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.22,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.88,
+     "ori_deg": 10.7,
+     "mp_pos_margin": 0.63,
+     "mp_ori_margin": 0.36
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 1.07,
+     "ori_deg": 2.1,
+     "mp_pos_margin": 0.36,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.23,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.85,
+     "ori_deg": 11.8,
+     "mp_pos_margin": 0.62,
+     "mp_ori_margin": 0.39
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.69,
+     "ori_deg": 1.5,
+     "mp_pos_margin": 0.23,
+     "mp_ori_margin": 0.05
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.23,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.81,
+     "ori_deg": 10.8,
+     "mp_pos_margin": 0.6,
+     "mp_ori_margin": 0.36
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.72,
+     "ori_deg": 2.3,
+     "mp_pos_margin": 0.24,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.2,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.93,
+     "ori_deg": 9.9,
+     "mp_pos_margin": 0.64,
+     "mp_ori_margin": 0.33
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.77,
+     "ori_deg": 1.2,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.04
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 0.0,
+   "sp_pos_margin": 0.59,
+   "sp_ori_margin": 0.69,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 11.02,
+     "ori_deg": 37.1,
+     "mp_pos_margin": 3.67,
+     "mp_ori_margin": 1.24
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.75,
+     "ori_deg": 2.6,
+     "mp_pos_margin": 0.25,
+     "mp_ori_margin": 0.09
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.23,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.93,
+     "ori_deg": 10.9,
+     "mp_pos_margin": 0.64,
+     "mp_ori_margin": 0.36
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 1.17,
+     "ori_deg": 2.1,
+     "mp_pos_margin": 0.39,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.14,
+   "sp_ori_margin": 0.22,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 1.99,
+     "ori_deg": 11.1,
+     "mp_pos_margin": 0.66,
+     "mp_ori_margin": 0.37
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.78,
+     "ori_deg": 1.5,
+     "mp_pos_margin": 0.26,
+     "mp_ori_margin": 0.05
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep30/episode_000030.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.21,
+   "objects": {
+    "mini_sweeper": {
+     "pos_cm": 2.33,
+     "ori_deg": 10.4,
+     "mp_pos_margin": 0.78,
+     "mp_ori_margin": 0.35
+    },
+    "plastic_dish_rack": {
+     "pos_cm": 0.87,
+     "ori_deg": 1.7,
+     "mp_pos_margin": 0.29,
+     "mp_ori_margin": 0.06
+    }
+   }
+  }
+ ],
+ "32": [
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r1/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.23,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.53,
+     "ori_deg": 6.7,
+     "mp_pos_margin": 0.51,
+     "mp_ori_margin": 0.22
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.51,
+     "ori_deg": 6.3,
+     "mp_pos_margin": 0.5,
+     "mp_ori_margin": 0.21
+    }
+   }
+  },
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r2/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.19,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.7,
+     "ori_deg": 4.8,
+     "mp_pos_margin": 0.57,
+     "mp_ori_margin": 0.16
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.25,
+     "ori_deg": 5.8,
+     "mp_pos_margin": 0.42,
+     "mp_ori_margin": 0.19
+    }
+   }
+  },
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r3/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.14,
+   "sp_ori_margin": 0.16,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.45,
+     "ori_deg": 3.8,
+     "mp_pos_margin": 0.48,
+     "mp_ori_margin": 0.13
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.37,
+     "ori_deg": 5.3,
+     "mp_pos_margin": 0.46,
+     "mp_ori_margin": 0.18
+    }
+   }
+  },
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r4/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.25,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.69,
+     "ori_deg": 7.7,
+     "mp_pos_margin": 0.56,
+     "mp_ori_margin": 0.26
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.52,
+     "ori_deg": 6.7,
+     "mp_pos_margin": 0.51,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r5/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.23,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.6,
+     "ori_deg": 7.7,
+     "mp_pos_margin": 0.53,
+     "mp_ori_margin": 0.26
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.37,
+     "ori_deg": 5.4,
+     "mp_pos_margin": 0.46,
+     "mp_ori_margin": 0.18
+    }
+   }
+  },
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r6/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.19,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.65,
+     "ori_deg": 4.3,
+     "mp_pos_margin": 0.55,
+     "mp_ori_margin": 0.14
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.29,
+     "ori_deg": 6.7,
+     "mp_pos_margin": 0.43,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r7/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.14,
+   "sp_ori_margin": 0.22,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.42,
+     "ori_deg": 5.8,
+     "mp_pos_margin": 0.47,
+     "mp_ori_margin": 0.19
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.32,
+     "ori_deg": 6.5,
+     "mp_pos_margin": 0.44,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r8/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.22,
+   "sp_ori_margin": 0.27,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 2.64,
+     "ori_deg": 9.0,
+     "mp_pos_margin": 0.88,
+     "mp_ori_margin": 0.3
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.72,
+     "ori_deg": 6.5,
+     "mp_pos_margin": 0.57,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r9/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.22,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.69,
+     "ori_deg": 6.6,
+     "mp_pos_margin": 0.56,
+     "mp_ori_margin": 0.22
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.47,
+     "ori_deg": 6.2,
+     "mp_pos_margin": 0.49,
+     "mp_ori_margin": 0.21
+    }
+   }
+  },
+  {
+   "file": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r10/ep32/episode_000032.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.16,
+   "sp_ori_margin": 0.16,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.6,
+     "ori_deg": 3.5,
+     "mp_pos_margin": 0.53,
+     "mp_ori_margin": 0.12
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.51,
+     "ori_deg": 5.8,
+     "mp_pos_margin": 0.5,
+     "mp_ori_margin": 0.19
+    }
+   }
+  }
+ ],
+ "33": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.11,
+   "sp_ori_margin": 0.21,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.02,
+     "ori_deg": 4.3,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.14
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.17,
+     "ori_deg": 7.5,
+     "mp_pos_margin": 0.39,
+     "mp_ori_margin": 0.25
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.22,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.03,
+     "ori_deg": 4.6,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.15
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.29,
+     "ori_deg": 7.7,
+     "mp_pos_margin": 0.43,
+     "mp_ori_margin": 0.26
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.23,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.21,
+     "ori_deg": 4.3,
+     "mp_pos_margin": 0.4,
+     "mp_ori_margin": 0.14
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.21,
+     "ori_deg": 8.9,
+     "mp_pos_margin": 0.4,
+     "mp_ori_margin": 0.3
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.18,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.29,
+     "ori_deg": 3.6,
+     "mp_pos_margin": 0.43,
+     "mp_ori_margin": 0.12
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.24,
+     "ori_deg": 6.9,
+     "mp_pos_margin": 0.41,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.2,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.03,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.15
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.3,
+     "ori_deg": 6.9,
+     "mp_pos_margin": 0.43,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.19,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.02,
+     "ori_deg": 4.2,
+     "mp_pos_margin": 0.34,
+     "mp_ori_margin": 0.14
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.29,
+     "ori_deg": 6.7,
+     "mp_pos_margin": 0.43,
+     "mp_ori_margin": 0.22
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.13,
+   "sp_ori_margin": 0.2,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.1,
+     "ori_deg": 4.5,
+     "mp_pos_margin": 0.37,
+     "mp_ori_margin": 0.15
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.49,
+     "ori_deg": 6.9,
+     "mp_pos_margin": 0.5,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.19,
+   "sp_ori_margin": 0.26,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.88,
+     "ori_deg": 6.0,
+     "mp_pos_margin": 0.63,
+     "mp_ori_margin": 0.2
+    },
+    "wooden_spoon": {
+     "pos_cm": 2.02,
+     "ori_deg": 9.0,
+     "mp_pos_margin": 0.67,
+     "mp_ori_margin": 0.3
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.2,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.09,
+     "ori_deg": 4.4,
+     "mp_pos_margin": 0.36,
+     "mp_ori_margin": 0.15
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.35,
+     "ori_deg": 7.0,
+     "mp_pos_margin": 0.45,
+     "mp_ori_margin": 0.23
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep33/episode_000033.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.12,
+   "sp_ori_margin": 0.21,
+   "objects": {
+    "blue_cup": {
+     "pos_cm": 1.08,
+     "ori_deg": 4.6,
+     "mp_pos_margin": 0.36,
+     "mp_ori_margin": 0.15
+    },
+    "wooden_spoon": {
+     "pos_cm": 1.38,
+     "ori_deg": 7.2,
+     "mp_pos_margin": 0.46,
+     "mp_ori_margin": 0.24
+    }
+   }
+  }
+ ],
+ "35": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.35,
+     "ori_deg": 2.7,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.09
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.11,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.39,
+     "ori_deg": 3.1,
+     "mp_pos_margin": 0.13,
+     "mp_ori_margin": 0.1
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.36,
+     "ori_deg": 2.8,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.09
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.38,
+     "ori_deg": 2.7,
+     "mp_pos_margin": 0.13,
+     "mp_ori_margin": 0.09
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.37,
+     "ori_deg": 2.8,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.09
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.39,
+     "ori_deg": 2.5,
+     "mp_pos_margin": 0.13,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.34,
+     "ori_deg": 2.5,
+     "mp_pos_margin": 0.11,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.35,
+     "ori_deg": 2.6,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.09
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.38,
+     "ori_deg": 3.6,
+     "mp_pos_margin": 0.13,
+     "mp_ori_margin": 0.12
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep35/episode_000035.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.37,
+     "ori_deg": 2.8,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.09
+    }
+   }
+  }
+ ],
+ "36": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.05,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.5,
+     "ori_deg": 3.8,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.13
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.56,
+     "ori_deg": 4.1,
+     "mp_pos_margin": 0.19,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.05,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.51,
+     "ori_deg": 3.7,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.12
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.55,
+     "ori_deg": 4.2,
+     "mp_pos_margin": 0.18,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.05,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.52,
+     "ori_deg": 4.4,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.15
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.05,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.52,
+     "ori_deg": 3.8,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.13
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.55,
+     "ori_deg": 4.1,
+     "mp_pos_margin": 0.18,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.05,
+   "sp_ori_margin": 0.13,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.52,
+     "ori_deg": 3.9,
+     "mp_pos_margin": 0.17,
+     "mp_ori_margin": 0.13
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.06,
+   "sp_ori_margin": 0.15,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.6,
+     "ori_deg": 4.2,
+     "mp_pos_margin": 0.2,
+     "mp_ori_margin": 0.14
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep36/episode_000036.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.05,
+   "sp_ori_margin": 0.14,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.54,
+     "ori_deg": 4.0,
+     "mp_pos_margin": 0.18,
+     "mp_ori_margin": 0.13
+    }
+   }
+  }
+ ],
+ "37": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.07,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.29,
+     "ori_deg": 2.0,
+     "mp_pos_margin": 0.1,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.07,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.28,
+     "ori_deg": 2.0,
+     "mp_pos_margin": 0.09,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.32,
+     "ori_deg": 2.5,
+     "mp_pos_margin": 0.11,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.31,
+     "ori_deg": 2.2,
+     "mp_pos_margin": 0.1,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.32,
+     "ori_deg": 2.5,
+     "mp_pos_margin": 0.11,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.1,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.27,
+     "ori_deg": 2.7,
+     "mp_pos_margin": 0.09,
+     "mp_ori_margin": 0.09
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.07,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.29,
+     "ori_deg": 2.1,
+     "mp_pos_margin": 0.1,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.35,
+     "ori_deg": 2.3,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.33,
+     "ori_deg": 2.2,
+     "mp_pos_margin": 0.11,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep37/episode_000037.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "wooden_spoon": {
+     "pos_cm": 0.29,
+     "ori_deg": 2.3,
+     "mp_pos_margin": 0.1,
+     "mp_ori_margin": 0.08
+    }
+   }
+  }
+ ],
+ "38": [
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.07,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 0.34,
+     "ori_deg": 2.0,
+     "mp_pos_margin": 0.11,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.15,
+   "sp_ori_margin": 0.34,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 1.52,
+     "ori_deg": 9.6,
+     "mp_pos_margin": 0.51,
+     "mp_ori_margin": 0.32
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 0.33,
+     "ori_deg": 2.4,
+     "mp_pos_margin": 0.11,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.07,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 0.31,
+     "ori_deg": 2.1,
+     "mp_pos_margin": 0.1,
+     "mp_ori_margin": 0.07
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 0.37,
+     "ori_deg": 2.5,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 0.36,
+     "ori_deg": 2.3,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 0.33,
+     "ori_deg": 2.3,
+     "mp_pos_margin": 0.11,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 0.33,
+     "ori_deg": 2.3,
+     "mp_pos_margin": 0.11,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.03,
+   "sp_ori_margin": 0.08,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 0.34,
+     "ori_deg": 2.4,
+     "mp_pos_margin": 0.11,
+     "mp_ori_margin": 0.08
+    }
+   }
+  },
+  {
+   "file": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep38/episode_000038.parquet",
+   "sp_sr": 1.0,
+   "mp_sr": 1.0,
+   "sp_pos_margin": 0.04,
+   "sp_ori_margin": 0.09,
+   "objects": {
+    "mini_dust_pan": {
+     "pos_cm": 0.35,
+     "ori_deg": 2.6,
+     "mp_pos_margin": 0.12,
+     "mp_ori_margin": 0.09
+    }
+   }
+  }
+ ]
+}

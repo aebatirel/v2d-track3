@@ -1,0 +1,497 @@
+[
+ {
+  "target": "wooden_piece_1",
+  "partner": "wooden_piece_2",
+  "run": {
+   "frames": [
+    164,
+    274
+   ],
+   "n": 56,
+   "kind": "INSERTION",
+   "travel_mm": 122.3,
+   "straightness": 0.908,
+   "d": [
+    0.0419,
+    -0.9979,
+    -0.0496
+   ],
+   "assembled": [
+    218,
+    274
+   ],
+   "n_assembled": 29,
+   "n_build": 30,
+   "n_check": 26,
+   "flags": []
+  },
+  "voxels": 127,
+  "region_voxels": 67,
+  "cm3": 4.29,
+  "nmin": 8,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 132.2,
+   "plane_point": [
+    0.00063,
+    -0.00655,
+    0.00205
+   ],
+   "plane_normal": [
+    0.0419,
+    -0.9979,
+    -0.0496
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": true,
+   "kept_voxels": 60,
+   "carved_side_voxels": 67
+  },
+  "linked": true,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 9.0,
+  "image_width_info": {
+   "views": 102,
+   "p10_p90": [
+    7.94,
+    9.0
+   ]
+  },
+  "class_mix": {
+   "U": 2,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 65,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.97,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 21.72,
+   "entering_samples_mm": 10.78,
+   "partner_collider_mm": 19.72,
+   "w_sub_mm": 12.55,
+   "centre_n_mm": 0.49,
+   "axes_dnm": [
+    [
+     0.0419,
+     -0.9979,
+     -0.0496
+    ],
+    [
+     -0.046,
+     0.0477,
+     -0.9978
+    ],
+    [
+     0.9981,
+     0.0441,
+     -0.0439
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false,
+    "reason": "silhouette gate failed"
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "wooden_piece_1": "PUSH",
+   "wooden_piece_2": "PUSH"
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    164,
+    274
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0,
+  "waiver_fi4": {
+   "rule": "PREREG F-I4 (c13f53c); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct ~16:00 UTC: \"Okay I waive that camera rule\"",
+   "plate": {
+    "wooden_piece_1": {
+     "obj": "wooden_piece_1",
+     "sigma_mm": 3.0,
+     "points": {
+      "owned": 2535338,
+      "in_box": 1759879,
+      "within_6mm": 1759844
+     },
+     "plate": false,
+     "n_down": 36675,
+     "planes": [
+      {
+       "n": [
+        1.0,
+        -0.0035,
+        0.0014
+       ],
+       "n_pts": 26022,
+       "rms_mm": 3.7109
+      }
+     ],
+     "pairs": [],
+     "why": "no_plane_pair",
+     "sec": 58.4
+    },
+    "wooden_piece_2": {
+     "obj": "wooden_piece_2",
+     "sigma_mm": 0.74,
+     "points": {
+      "owned": 1460641,
+      "in_box": 1408262,
+      "within_6mm": 1408169
+     },
+     "plate": false,
+     "n_down": 22304,
+     "planes": [
+      {
+       "n": [
+        -0.9999,
+        -0.0074,
+        0.0141
+       ],
+       "n_pts": 13795,
+       "rms_mm": 1.1232
+      },
+      {
+       "n": [
+        -0.9999,
+        0.0073,
+        0.0098
+       ],
+       "n_pts": 1319,
+       "rms_mm": 0.5591
+      },
+      {
+       "n": [
+        -0.9995,
+        0.0281,
+        0.0107
+       ],
+       "n_pts": 429,
+       "rms_mm": 0.6362
+      },
+      {
+       "n": [
+        -0.9996,
+        0.0259,
+        0.0079
+       ],
+       "n_pts": 342,
+       "rms_mm": 0.6544
+      }
+     ],
+     "pairs": [],
+     "why": "no_plane_pair",
+     "sec": 53.8
+    }
+   },
+   "in_scope": false,
+   "why_out": "not plate-like: wooden_piece_1, wooden_piece_2"
+  }
+ },
+ {
+  "target": "wooden_piece_1",
+  "partner": "wooden_piece_2",
+  "run": {
+   "frames": [
+    164,
+    274
+   ],
+   "n": 56,
+   "kind": "INSERTION",
+   "travel_mm": 122.3,
+   "straightness": 0.908,
+   "d": [
+    0.0419,
+    -0.9979,
+    -0.0496
+   ],
+   "assembled": [
+    218,
+    274
+   ],
+   "n_assembled": 29,
+   "n_build": 30,
+   "n_check": 26,
+   "flags": []
+  },
+  "voxels": 1,
+  "region_voxels": 1,
+  "cm3": 0.06,
+  "nmin": 8,
+  "split": {
+   "through_column": false,
+   "exit_share_entry_end": 0.0,
+   "exit_share_far_end": 0.0,
+   "extent_along_d_mm": 4.0
+  },
+  "linked": true,
+  "flags": [],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 21.72,
+   "entering_samples_mm": 3.72,
+   "partner_collider_mm": 19.72,
+   "w_sub_mm": 12.55,
+   "centre_n_mm": -11.63,
+   "axes_dnm": [
+    [
+     0.0419,
+     -0.9979,
+     -0.0496
+    ],
+    [
+     -0.046,
+     0.0477,
+     -0.9978
+    ],
+    [
+     0.9981,
+     0.0441,
+     -0.0439
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false,
+    "reason": "silhouette gate failed"
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "wooden_piece_1": "IGNORE",
+   "wooden_piece_2": "PUSH"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "wooden_piece_2",
+  "partner": "wooden_piece_1",
+  "run": {
+   "frames": [
+    162,
+    274
+   ],
+   "n": 57,
+   "kind": "INSERTION",
+   "travel_mm": 127.7,
+   "straightness": 0.915,
+   "d": [
+    -0.038,
+    -0.9991,
+    0.0211
+   ],
+   "assembled": [
+    218,
+    274
+   ],
+   "n_assembled": 29,
+   "n_build": 30,
+   "n_check": 27,
+   "flags": []
+  },
+  "voxels": 222,
+  "region_voxels": 118,
+  "cm3": 7.55,
+  "nmin": 8,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 128.1,
+   "plane_point": [
+    0.00058,
+    0.00284,
+    0.00039
+   ],
+   "plane_normal": [
+    -0.0297,
+    0.999,
+    0.0338
+   ],
+   "carve_side": "entry of the partner pair (s > 0)",
+   "shared": true,
+   "kept_voxels": 104,
+   "carved_side_voxels": 118
+  },
+  "linked": true,
+  "flags": [
+   "interlock_disagree",
+   "interlock_push"
+  ],
+  "class_mix": {
+   "U": 41,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 77,
+   "O_testable_solid": 77
+  },
+  "class_o_share": 0.653,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 14.55,
+   "entering_samples_mm": 12.55,
+   "partner_collider_mm": 7.46,
+   "w_sub_mm": 14.55,
+   "centre_n_mm": -1.59,
+   "axes_dnm": [
+    [
+     -0.038,
+     -0.9991,
+     0.0211
+    ],
+    [
+     -0.0174,
+     -0.0205,
+     -0.9996
+    ],
+    [
+     0.9991,
+     -0.0383,
+     -0.0166
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": false,
+    "sil_share": 0.008,
+    "testable": 118
+   },
+   "ab": null
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    162,
+    274
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0,
+  "waiver_fi4": {
+   "rule": "PREREG F-I4 (c13f53c); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct ~16:00 UTC: \"Okay I waive that camera rule\"",
+   "plate": {
+    "wooden_piece_1": {
+     "obj": "wooden_piece_1",
+     "sigma_mm": 3.0,
+     "points": {
+      "owned": 2535338,
+      "in_box": 1759879,
+      "within_6mm": 1759844
+     },
+     "plate": false,
+     "n_down": 36675,
+     "planes": [
+      {
+       "n": [
+        1.0,
+        -0.0035,
+        0.0014
+       ],
+       "n_pts": 26022,
+       "rms_mm": 3.7109
+      }
+     ],
+     "pairs": [],
+     "why": "no_plane_pair",
+     "sec": 58.4
+    },
+    "wooden_piece_2": {
+     "obj": "wooden_piece_2",
+     "sigma_mm": 0.74,
+     "points": {
+      "owned": 1460641,
+      "in_box": 1408262,
+      "within_6mm": 1408169
+     },
+     "plate": false,
+     "n_down": 22304,
+     "planes": [
+      {
+       "n": [
+        -0.9999,
+        -0.0074,
+        0.0141
+       ],
+       "n_pts": 13795,
+       "rms_mm": 1.1232
+      },
+      {
+       "n": [
+        -0.9999,
+        0.0073,
+        0.0098
+       ],
+       "n_pts": 1319,
+       "rms_mm": 0.5591
+      },
+      {
+       "n": [
+        -0.9995,
+        0.0281,
+        0.0107
+       ],
+       "n_pts": 429,
+       "rms_mm": 0.6362
+      },
+      {
+       "n": [
+        -0.9996,
+        0.0259,
+        0.0079
+       ],
+       "n_pts": 342,
+       "rms_mm": 0.6544
+      }
+     ],
+     "pairs": [],
+     "why": "no_plane_pair",
+     "sec": 53.8
+    }
+   },
+   "in_scope": false,
+   "why_out": "not plate-like: wooden_piece_1, wooden_piece_2"
+  }
+ }
+]

@@ -1,0 +1,22 @@
+03:17:45 epcand3 done in 119.8 s: H0 52 / 161, H30 33, receiver blue_cup
+cand3 f111 (gate): max nefc 756 ncon 189 step0 nefc 224 overflow 2/16 classes {'guest_receiver': 131, 'guest_table': 35, 'receiver_table': 23} disp [33.1, 33.4] 1.2 s
+cand3 f142 (gate): max nefc 376 ncon 94 step0 nefc 152 overflow 0/16 classes {'guest_receiver': 93, 'guest_table': 0, 'receiver_table': 1} disp [17.4, 28.45] 1.3 s
+cand3 f116 (gate): max nefc 752 ncon 188 step0 nefc 272 overflow 4/16 classes {'guest_receiver': 132, 'guest_table': 35, 'receiver_table': 21} disp [33.9, 34.9] 1.6 s
+cand3 f124 (report): max nefc 684 ncon 171 step0 nefc 168 overflow 3/16 classes {'guest_receiver': 118, 'guest_table': 33, 'receiver_table': 20} disp [25.9, 29.7] 1.6 s
+cand3 f160 (report): max nefc 380 ncon 95 step0 nefc 148 overflow 0/16 classes {'guest_receiver': 47, 'guest_table': 24, 'receiver_table': 24} disp [2.1500000000000004, 28.05] 1.8 s
+cand3 f117 (report_rule_not_static_in_hand): max nefc 712 ncon 178 step0 nefc 340 overflow 13/16 classes {'guest_receiver': 147, 'guest_table': 31, 'receiver_table': 0} disp [37.4, 37.599999999999994] 1.7 s
+gate2 {"frames": [111, 142, 116], "max_nefc": 756, "max_ncon": 189, "overflow_copies": 6, "pass": false}
+cand3 124 {"frame": 124, "max": {"step": 8, "nefc": 688, "ncon": 172, "guest_receiver_by_guest_group_band1_2_3_base": [2, 6, 6, 104]}, "nefc_step0": 152, "nefc_last_0p5s_median": 160.0, "ncon_last_0p5s_median": 40.0, "guest_rel_disp_end_mm": [-5.23, 0.86, 4.28], "receiver_tilt_end_deg": 2.04}
+cand3 142 {"frame": 142, "max": {"step": 21, "nefc": 492, "ncon": 123, "guest_receiver_by_guest_group_band1_2_3_base": [0, 0, 0, 104]}, "nefc_step0": 112, "nefc_last_0p5s_median": 160.0, "ncon_last_0p5s_median": 40.0, "guest_rel_disp_end_mm": [-4.41, -1.11, 11.95], "receiver_tilt_end_deg": 4.03}
+cand3 160 {"frame": 160, "max": {"step": 4, "nefc": 216, "ncon": 54, "guest_receiver_by_guest_group_band1_2_3_base": [4, 4, 14, 12]}, "nefc_step0": 80, "nefc_last_0p5s_median": 160.0, "ncon_last_0p5s_median": 40.0, "guest_rel_disp_end_mm": [-5.42, -1.55, 27.28], "receiver_tilt_end_deg": 0.91}
+packed 124 {"frame": 124, "max": {"step": 3, "nefc": 780, "ncon": 195, "guest_receiver_by_guest_group_band1_2_3_base": [
+packed 142 {"frame": 142, "max": {"step": 0, "nefc": 512, "ncon": 128, "guest_receiver_by_guest_group_band1_2_3_base": [
+packed 160 {"frame": 160, "max": {"step": 1, "nefc": 480, "ncon": 120, "guest_receiver_by_guest_group_band1_2_3_base": [
+cand 124 {"frame": 124, "max": {"step": 27, "nefc": 740, "ncon": 185, "guest_receiver_by_guest_group_band1_2_3_base": [0
+cand 142 {"frame": 142, "max": {"step": 199, "nefc": 776, "ncon": 194, "guest_receiver_by_guest_group_band1_2_3_base": [
+cand 160 {"frame": 160, "max": {"step": 25, "nefc": 772, "ncon": 193, "guest_receiver_by_guest_group_band1_2_3_base": [1
+cand2 124 {"frame": 124, "max": {"step": 0, "nefc": 332, "ncon": 83, "guest_receiver_by_guest_group_band1_2_3_base": [8,
+cand2 142 {"frame": 142, "max": {"step": 0, "nefc": 256, "ncon": 64, "guest_receiver_by_guest_group_band1_2_3_base": [0,
+cand2 160 {"frame": 160, "max": {"step": 22, "nefc": 284, "ncon": 71, "guest_receiver_by_guest_group_band1_2_3_base": [1
+
+[exited with code 0]

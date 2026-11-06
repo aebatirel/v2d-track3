@@ -1,0 +1,6 @@
+[09:19:59] b4_extract ep39 objects ['mini_dust_pan'] det True start {'commit': '3367ee4f714debae18a08c893ff55a81d8e646cc', 'dirty': ''}
+[09:25:04] hands 305.2 s: frames with hand 318 / 319
+[09:28:35] ep39 pass 0: 160 frames, 7687196 samples, voxels [69094], 210.0 s
+[09:29:25] extract timing {"table_s": 0.5, "pass0_samples_s": 204.1, "pass0_votes_s": 5.9, "pass0_s": 210.0, "pass0_voxels": [69094], "pass1_s": 5.4, "pass2_s": 0.3, "pass3_s": 0.6, "pass4_grids_s": 9.9, "sigma_s": 31.5, "total_s": 258.2}
+[09:29:34] sanity mini_dust_pan: 160/160 good, flags [], below 0.0, resid {'median': 0.988, 'p90': 1.044, 'max': 1.13}
+[09:30:01] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep39 total 602.2 s

@@ -1,0 +1,3 @@
+{"file": "/content/results/c0b/pts/A/ep26_white_pot.npz", "half_m": 0.3, "kept": 2754856, "near_face": 5075, "share": 0.001842, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/A/ep26_white_pot.npz", "half_m": 0.45, "kept": 2831930, "near_face": 0, "share": 0.0, "max_abs_mm": 430.0, "rebuild": false}
+{"file": "/content/results/c0b/pts/B/ep26_white_pot.npz", "half_m": 0.3, "kept": 1697754, "near_face": 0, "share": 0.0, "max_abs_mm": 260.2, "rebuild": false}

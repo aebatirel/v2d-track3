@@ -1,0 +1,260 @@
+{
+ "ep": 10,
+ "mode": "glock",
+ "source_run": "20261026-gl10A2-5e0e100",
+ "lib": "library_v3",
+ "pieces": "meshes/carve/ev10",
+ "md5_listed": "1a5003d94852c275519066645a1b9869",
+ "ref": "20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "ref_md5": "1a5003d94852c275519066645a1b9869",
+ "md5_match": true,
+ "names": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "cd611b11f86a313620e750e438f7c34d",
+  "radius": 0.317944
+ },
+ "shared_assets": {
+  "lib": "library_v3",
+  "pieces": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/build/I/results/ev10-cavsafe/ev10cs4",
+  "make_assets": [
+   "beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.56] cm, 21 collision pieces",
+   "blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.05 0.11 1.58] cm, 24 collision pieces"
+  ]
+ },
+ "first_H30_rest_frame_per_object": {},
+ "f0_hand_mm": {
+  "blue_cup": 68.8,
+  "beige_cup": 178.1
+ },
+ "first_H30_rest_frame": null,
+ "objects": {
+  "blue_cup": {
+   "urdf_md5": "8511f0d3fdc154c6e2dba609aa195c4c",
+   "pieces": 24,
+   "collision": [
+    "24 piece files"
+   ],
+   "mass": 0.3
+  },
+  "beige_cup": {
+   "urdf_md5": "1a8cb9d813c7a8085b4759347a16a8ba",
+   "pieces": 21,
+   "collision": [
+    "21 piece files"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "blue_cup": {
+     "pen_mm": -0.0,
+     "com_height_mm": 72.8,
+     "hand_mm": 68.8,
+     "support": {
+      "band1mm": {
+       "points": 113,
+       "com_margin_mm": 26.5
+      },
+      "band3mm": {
+       "points": 216,
+       "com_margin_mm": 31.8
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 90.3,
+     "settle_mm": 0.86,
+     "settle_deg": 0.55,
+     "max_mm": 0.98,
+     "max_deg": 0.55,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 1.205,
+       "max": 2.08,
+       "min": 0.7,
+       "q90": 1.865
+      },
+      "deg": {
+       "n": 16,
+       "median": 0.705,
+       "max": 1.31,
+       "min": 0.31,
+       "q90": 1.185
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    },
+    "beige_cup": {
+     "pen_mm": -0.87,
+     "com_height_mm": 93.2,
+     "hand_mm": 178.1,
+     "support": {
+      "band1mm": {
+       "points": 5,
+       "com_margin_mm": -15.8
+      },
+      "band3mm": {
+       "points": 28,
+       "com_margin_mm": 17.2
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 110.8,
+     "settle_mm": 6.54,
+     "settle_deg": 3.98,
+     "max_mm": 9.6,
+     "max_deg": 6.34,
+     "falls_over": false,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 6.435,
+       "max": 7.57,
+       "min": 5.71,
+       "q90": 7.39
+      },
+      "deg": {
+       "n": 16,
+       "median": 3.905,
+       "max": 4.51,
+       "min": 3.5,
+       "q90": 4.335
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [
+      "hull corner below the support (5 pts within 1 mm, COM -15.8 mm; within 3 mm COM 17.2 mm inside)"
+     ],
+     "flags": [
+      "hull corner below the support (5 pts within 1 mm, COM -15.8 mm; within 3 mm COM 17.2 mm inside)"
+     ]
+    }
+   },
+   "pairs": {
+    "blue_cup|beige_cup": 0.0
+   }
+  },
+  {
+   "frame": 124,
+   "kind": "requested",
+   "hand_mm": {},
+   "objects": {
+    "blue_cup": {
+     "pen_mm": -24.41,
+     "com_height_mm": 97.9,
+     "hand_mm": 1.5,
+     "support": {
+      "band1mm": {
+       "points": 73,
+       "com_margin_mm": -6.8
+      },
+      "band3mm": {
+       "points": 213,
+       "com_margin_mm": 30.6
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 0.4,
+     "settle_mm": 25.72,
+     "settle_deg": 6.59,
+     "max_mm": 28.06,
+     "max_deg": 7.18,
+     "falls_over": false,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 25.85,
+       "max": 26.47,
+       "min": 24.8,
+       "q90": 26.28
+      },
+      "deg": {
+       "n": 16,
+       "median": 4.45,
+       "max": 6.96,
+       "min": 2.85,
+       "q90": 6.42
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [
+      "held at f124 (hand 1.5 mm)",
+      "overlap 2.61 cm3 with beige_cup"
+     ],
+     "flags": [
+      "held at f124 (hand 1.5 mm)",
+      "overlap 2.61 cm3 with beige_cup"
+     ]
+    },
+    "beige_cup": {
+     "pen_mm": -32.22,
+     "com_height_mm": 124.0,
+     "hand_mm": 1.2,
+     "support": {
+      "band1mm": {
+       "points": 10,
+       "com_margin_mm": -8.6
+      },
+      "band3mm": {
+       "points": 36,
+       "com_margin_mm": 24.6
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 0.3,
+     "settle_mm": 27.09,
+     "settle_deg": 4.19,
+     "max_mm": 30.53,
+     "max_deg": 10.89,
+     "falls_over": false,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 27.32,
+       "max": 28.17,
+       "min": 26.09,
+       "q90": 27.915
+      },
+      "deg": {
+       "n": 16,
+       "median": 6.595,
+       "max": 10.73,
+       "min": 4.32,
+       "q90": 7.88
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [
+      "held at f124 (hand 1.2 mm)",
+      "overlap 2.61 cm3 with blue_cup"
+     ],
+     "flags": [
+      "held at f124 (hand 1.2 mm)",
+      "overlap 2.61 cm3 with blue_cup"
+     ]
+    }
+   },
+   "pairs": {
+    "blue_cup|beige_cup": 2.61
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 7.6
+}

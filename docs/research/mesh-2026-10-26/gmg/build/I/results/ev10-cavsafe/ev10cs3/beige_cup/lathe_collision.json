@@ -1,0 +1,52 @@
+{
+ "tool": "lathe_cavsafe (lathe_collision.py blob 680cc2f9 + opt-in cavity-safe options)",
+ "profile": "PROF/beige_cup_v3_profile.npz",
+ "name": "beige_cup_v3",
+ "hollow": true,
+ "wall_t_mm": 7.41,
+ "shrink_mm": 8.0,
+ "segments": 8,
+ "band_cm": 6.0,
+ "pieces": 33,
+ "volume_cm3": 250.1,
+ "height_cm": 16.71,
+ "r_out_cm": [
+  3.12,
+  4.06
+ ],
+ "base_end": "hi",
+ "wall_fitted_mm": 7.41,
+ "base_extended_mm": 7.1,
+ "max_piece_vertices": 32,
+ "inner_circ": false,
+ "outer_insc": true,
+ "outer_circ": false,
+ "base": "ring base",
+ "bands": [
+  {
+   "h_mm": [
+    -50.12,
+    9.88
+   ],
+   "bins": 31,
+   "outer_lowered_max_mm": 0.697
+  },
+  {
+   "h_mm": [
+    9.88,
+    69.88
+   ],
+   "bins": 31,
+   "outer_lowered_max_mm": 4.831
+  },
+  {
+   "h_mm": [
+    69.88,
+    107.88
+   ],
+   "bins": 20,
+   "outer_lowered_max_mm": 0.559
+  }
+ ],
+ "floor_plate": null
+}

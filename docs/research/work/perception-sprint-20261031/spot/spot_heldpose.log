@@ -1,0 +1,15 @@
+ep39: refineP S2 lib 0.9759 Δlib g/r/t -0.0537/-0.2921/-0.0821 | Po S2 lib 0.9759 Δlib g/r/t -0.0537/-0.2921/-0.0821 (19.9 s)
+heldpose 39 refineP S10g rerun -0.0537 stored -0.0537 MATCH
+heldpose 39 refineP S10r rerun -0.2921 stored -0.2921 MATCH
+heldpose 39 refineP S10t rerun -0.0821 stored -0.0821 MATCH
+heldpose 39 Po S10g rerun -0.0537 stored -0.0537 MATCH
+heldpose 39 Po S10r rerun -0.2921 stored -0.2921 MATCH
+heldpose 39 Po S10t rerun -0.0821 stored -0.0821 MATCH
+ep11: refineP S2 lib 0.9012 Δlib g/r/t +0.0185/+0.0349/-0.0513 | Po S2 lib 0.9012 Δlib g/r/t +0.0185/+0.0349/-0.0513 (486.4 s)
+heldpose 11 refineP S10g rerun 0.0185 stored 0.0185 MATCH
+heldpose 11 refineP S10r rerun 0.0349 stored 0.0349 MATCH
+heldpose 11 refineP S10t rerun -0.0513 stored -0.0513 MATCH
+heldpose 11 Po S10g rerun 0.0185 stored 0.0185 MATCH
+heldpose 11 Po S10r rerun 0.0349 stored 0.0349 MATCH
+heldpose 11 Po S10t rerun -0.0513 stored -0.0513 MATCH
+all match: True

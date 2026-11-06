@@ -1,0 +1,9 @@
+[10:21:14] b4_extract ep11 objects ['blue_cup', 'beige_cup'] det True start {'commit': '3a24ee40c63d29fd625af14dc2a884cc6d555912', 'dirty': '?? docs/research/mesh-2026-10-26/gmg/gen_slot.py\n?? docs/research/mesh-2026-10-26/gmg/physcheck.py\n?? docs/research/mesh-2026-10-26/gmg/simphys.py\n?? docs/research/mesh-2026-10-26/gmg/simpieces.py'}
+[10:23:17] hands 123.2 s: frames with hand 136 / 137
+[10:24:45] ep11 pass 0: 69 frames, 3523766 samples, voxels [79323, 61932], 87.5 s
+[10:26:32] extract timing {"table_s": 0.4, "pass0_samples_s": 83.0, "pass0_votes_s": 4.5, "pass0_s": 87.5, "pass0_voxels": [79323, 61932], "pass1_s": 27.6, "pass2_s": 0.5, "pass3_s": 1.6, "pass4_grids_s": 21.9, "sigma_s": 52.7, "total_s": 193.6}
+[10:26:34] sanity blue_cup: 69/69 good, flags [], below 0.0, resid {'median': 1.034, 'p90': 1.23, 'max': 1.387}
+[10:26:39] sanity beige_cup: 69/69 good, flags [], below 0.0, resid {'median': 0.978, 'p90': 1.045, 'max': 1.143}
+[10:28:03] split test blue_cup: {"beige_cup": [true, 3.531, 4.049, 3.581]}
+[10:28:47] split test beige_cup: {"blue_cup": [true, 3.311, 3.607, 3.663]}
+[10:28:49] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep11 total 455.1 s

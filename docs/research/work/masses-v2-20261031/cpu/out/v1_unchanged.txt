@@ -1,0 +1,12 @@
+v1 default unchanged on the first check's stored results (2026-10-31, CPU)
+inputs: docs/research/work/masses-transfer-20261031/results/verify.json (committed) + store runs/20261031-mass-2ed46ea/results/{mass0,mass1}s{42,43}_glock_public/ep{2,12}/best/summary.json and results/mass_check/arms_ep{2,12}.json (10 single-file downloads, cpu/out/store_downloads.jsonl)
+command: python3 -I tools/mass_verdict.py --eps "2 12" --seeds "42 43" --control mass0 --treatment mass1 --verify <first>/verify.json --manifests "<dl>/arms_ep2.json <dl>/arms_ep12.json" --content <dl run root> --out S.json
+
+ORIGINAL tool (2ed46ea, md5 d089dc8cf82a): output == committed summary.json byte for byte: YES
+NEW tool (working tree, md5 210d61b7205a): output == committed summary.json byte for byte: YES
+NEW verdict line == ORIGINAL verdict line == job.log RESULT line: YES
+
+verdict line: NOT ADOPTED: ep12: delta -0.0128 < +0.03 | ep2 mass0 0.5665 mass1 0.7234 delta 0.157 per seed {'42': 0.0809, '43': 0.233}; ep12 mass0 0.9237 mass1 0.9109 delta -0.0128 per seed {'42': -0.0064, '43': -0.0192}
+
+same inputs through --rule v2 --partial (a reading, not a v2 verdict):
+PARTIAL {'mean_delta': 0.072072, 'mean_delta_4dp': 0.0721, 'delta_4dp': {'ep2': 0.157, 'ep12': -0.0128}, 'n_positive': 1, 'drops': [], 'episodes_scored': 2}

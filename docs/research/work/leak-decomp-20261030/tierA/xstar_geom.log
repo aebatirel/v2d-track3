@@ -1,0 +1,35 @@
+beige_cup          rot   90.10 shift  1.81 cm  sym   8.02 mm  ratio 1.122  minima [(1.0, 0.0), (1.367, 25.1), (1.432, 171.0)]  (20 s)
+blue_cup           rot    0.54 shift  0.18 cm  sym   3.74 mm  ratio 1.142  minima [(1.0, 0.0), (1.988, 178.4), (2.065, 173.2)]  (38 s)
+mini_dust_pan      rot    0.88 shift  0.56 cm  sym   3.11 mm  ratio 1.078  minima [(1.0, 0.0), (1.146, 5.9), (2.052, 15.8)]  (48 s)
+mini_sweeper       rot    1.98 shift  0.17 cm  sym   3.21 mm  ratio 0.951  minima [(1.0, 0.0), (1.015, 179.8), (1.721, 180.0)]  AMBIGUOUS  (56 s)
+plastic_dish_rack  rot    0.44 shift  1.36 cm  sym   6.41 mm  ratio 0.973  minima [(1.0, 0.0), (1.757, 178.0), (2.461, 179.1)]  (64 s)
+water_pitcher      rot    0.61 shift  2.28 cm  sym   9.51 mm  ratio 1.031  minima [(1.0, 0.0), (1.36, 168.0), (1.441, 21.7)]  (70 s)
+white_pot          rot    0.93 shift  0.87 cm  sym   5.52 mm  ratio 0.964  minima [(1.0, 0.0), (1.08, 7.4), (2.614, 88.7)]  AMBIGUOUS  (77 s)
+white_pot_lid      rot    0.40 shift  0.86 cm  sym   3.99 mm  ratio 1.034  minima [(1.0, 0.0), (1.062, 157.4), (1.149, 67.3)]  AMBIGUOUS  (85 s)
+wooden_piece_1     rot    0.35 shift  0.08 cm  sym   2.17 mm  ratio 1.033  minima [(1.0, 0.0), (1.079, 179.9), (1.155, 180.0)]  AMBIGUOUS  (92 s)
+wooden_piece_2     rot    0.82 shift  0.32 cm  sym   2.09 mm  ratio 1.009  minima [(1.0, 0.0), (1.038, 180.0), (1.068, 180.0)]  AMBIGUOUS  (98 s)
+ep0: white_pot E 0.77 cm, white_pot_lid E 0.26 cm
+ep2: white_pot E 0.75 cm, white_pot_lid E 0.24 cm
+ep11: blue_cup E 0.82 cm, beige_cup E 1.48 cm
+ep12: blue_cup E 0.76 cm, plastic_dish_rack E 1.39 cm
+ep13: blue_cup E 0.88 cm, plastic_dish_rack E 1.13 cm
+ep18: mini_sweeper E 0.30 cm, mini_dust_pan E 0.21 cm
+ep21: blue_cup E 0.89 cm, water_pitcher E 1.75 cm
+ep22: blue_cup E 0.85 cm, water_pitcher E 1.71 cm
+ep23: wooden_piece_1 E 0.14 cm, wooden_piece_2 E 0.09 cm
+ep24: wooden_piece_1 E 0.21 cm, wooden_piece_2 E 0.16 cm
+ep26: plastic_dish_rack E 1.23 cm, white_pot E 0.82 cm
+ep27: plastic_dish_rack E 1.26 cm, white_pot E 0.79 cm
+ep31: mini_sweeper E 0.32 cm, plastic_dish_rack E 1.39 cm
+ep39: mini_dust_pan E 0.22 cm
+ep40: mini_dust_pan E 0.25 cm
+ep41: white_pot E 0.81 cm
+ep42: white_pot E 0.80 cm
+ep43: white_pot E 0.84 cm
+ep44: white_pot E 0.79 cm
+ep45: white_pot E 0.88 cm
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/xstar_geom_v2.json
+
+real	3m47.690s
+user	3m36.151s
+sys	0m5.628s

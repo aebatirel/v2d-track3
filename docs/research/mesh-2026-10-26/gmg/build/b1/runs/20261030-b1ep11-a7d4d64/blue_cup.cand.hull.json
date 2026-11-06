@@ -1,0 +1,53 @@
+{
+ "cid": "hull",
+ "producer": "P-HULL",
+ "cls": "HULL",
+ "params": {
+  "grow": 1,
+  "coarsen_k": 1
+ },
+ "n_params": 0,
+ "t_mm": null,
+ "balls": 0,
+ "built_on_frames": "all",
+ "flags": [],
+ "report": {
+  "voxels_not_free": 21312,
+  "observed": 3359,
+  "table_cut": 0,
+  "components": 32,
+  "kept_voxels": 16334,
+  "kept_observed": 3346,
+  "partner_clip_grow": 1,
+  "partner_clip": {
+   "deep_total": 0,
+   "deep_max_frame": 0,
+   "partners": {
+    "beige_cup": {
+     "contact_frames": 51,
+     "band_mm": 8.0,
+     "deep": 0,
+     "deep_max_frame": 0
+    }
+   },
+   "method": "voxel depth (distance transform)"
+  },
+  "faces_dense": 25952,
+  "watertight_dense": true,
+  "coarsen_k": 1,
+  "surface_vox_mm": 4.0,
+  "coarsen_tries": [
+   {
+    "k": 1,
+    "faces_dense": 25952,
+    "euler": -270,
+    "watertight_dense": true,
+    "packed_faces": 3356,
+    "packed_watertight": true
+   }
+  ]
+ },
+ "sha256": "57b869ea0b17e26ff8bd8df5d0611c9c91a459aa212754b0e67ed42893caf784",
+ "faces": 3356,
+ "watertight_after_decode": true
+}

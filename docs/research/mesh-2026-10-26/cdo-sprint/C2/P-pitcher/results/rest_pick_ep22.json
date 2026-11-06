@@ -1,0 +1,708 @@
+{
+ "poses": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep22/poses.npz",
+ "table": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/diag/table_ep22.json",
+ "obj": "water_pitcher",
+ "frames": 189,
+ "rest_candidates": [
+  0,
+  1,
+  18,
+  119,
+  132,
+  147,
+  157,
+  174,
+  188
+ ],
+ "meshes": {
+  "library_v3": {
+   "path": "/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb",
+   "watertight": true,
+   "volume_cm3": 1221.4,
+   "rest": [
+    {
+     "frame": 0,
+     "resting": true,
+     "gap_mm": -8.1,
+     "com_height_mm": 167.2,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.0,
+       0.4
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     }
+    },
+    {
+     "frame": 1,
+     "resting": true,
+     "gap_mm": -8.9,
+     "com_height_mm": 167.2,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.0,
+       0.4
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     }
+    },
+    {
+     "frame": 18,
+     "resting": true,
+     "gap_mm": -8.2,
+     "com_height_mm": 167.5,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.0,
+       0.4
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     }
+    },
+    {
+     "frame": 119,
+     "resting": true,
+     "gap_mm": -11.3,
+     "com_height_mm": 167.8,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.0,
+       0.2
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     }
+    },
+    {
+     "frame": 132,
+     "resting": true,
+     "gap_mm": -11.2,
+     "com_height_mm": 167.7,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.0,
+       0.2
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     }
+    },
+    {
+     "frame": 147,
+     "resting": true,
+     "gap_mm": -8.5,
+     "com_height_mm": 167.8,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.0,
+       0.2
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     }
+    },
+    {
+     "frame": 157,
+     "resting": true,
+     "gap_mm": -7.7,
+     "com_height_mm": 167.6,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.0,
+       0.2
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     }
+    },
+    {
+     "frame": 174,
+     "resting": true,
+     "gap_mm": -8.3,
+     "com_height_mm": 167.7,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.0,
+       0.2
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     }
+    },
+    {
+     "frame": 188,
+     "resting": true,
+     "gap_mm": -9.3,
+     "com_height_mm": 168.0,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.0,
+       0.2
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     }
+    }
+   ],
+   "verdict": "UNSTABLE at 0,1,18,119,132,147,157,174,188"
+  },
+  "pick_ep22_g1_a2": {
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/cdo-sprint/C2/P-pitcher/meshes/ep22_water_pitcher_g1_a2.glb",
+   "watertight": true,
+   "volume_cm3": -753.6,
+   "rest": [
+    {
+     "frame": 0,
+     "resting": true,
+     "gap_mm": -6.9,
+     "com_height_mm": 172.4,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.6,
+       0.5
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     },
+     "up_axis_deg": 89.43
+    },
+    {
+     "frame": 1,
+     "resting": true,
+     "gap_mm": -7.6,
+     "com_height_mm": 172.5,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.6,
+       0.5
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     },
+     "up_axis_deg": 89.51
+    },
+    {
+     "frame": 18,
+     "resting": true,
+     "gap_mm": -7.0,
+     "com_height_mm": 172.6,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.6,
+       0.5
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     },
+     "up_axis_deg": 88.88
+    },
+    {
+     "frame": 119,
+     "resting": true,
+     "gap_mm": -10.1,
+     "com_height_mm": 173.0,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.6,
+       0.6
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     },
+     "up_axis_deg": 89.15
+    },
+    {
+     "frame": 132,
+     "resting": true,
+     "gap_mm": -10.0,
+     "com_height_mm": 172.9,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.6,
+       0.6
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     },
+     "up_axis_deg": 89.47
+    },
+    {
+     "frame": 147,
+     "resting": true,
+     "gap_mm": -7.3,
+     "com_height_mm": 173.0,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.6,
+       0.6
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     },
+     "up_axis_deg": 89.18
+    },
+    {
+     "frame": 157,
+     "resting": true,
+     "gap_mm": -6.4,
+     "com_height_mm": 172.8,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.6,
+       0.6
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     },
+     "up_axis_deg": 89.14
+    },
+    {
+     "frame": 174,
+     "resting": true,
+     "gap_mm": -7.0,
+     "com_height_mm": 172.9,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.6,
+       0.6
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     },
+     "up_axis_deg": 89.41
+    },
+    {
+     "frame": 188,
+     "resting": true,
+     "gap_mm": -8.1,
+     "com_height_mm": 173.1,
+     "settle": {
+      "settle_deg": "> 3.0",
+      "contacts_cm": [
+       1.6,
+       0.6
+      ],
+      "inside": false,
+      "margin_mm": 0.0,
+      "tip_deg": 0.0,
+      "ok": false,
+      "note": "still rocking"
+     },
+     "up_axis_deg": 88.93
+    }
+   ],
+   "verdict": "UNSTABLE at 0,1,18,119,132,147,157,174,188"
+  },
+  "ep22r_g0": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand_a2/ep22r_water_pitcher_g0.glb",
+   "watertight": true,
+   "volume_cm3": 1066.6,
+   "rest": [
+    {
+     "frame": 0,
+     "resting": true,
+     "gap_mm": 7.6,
+     "com_height_mm": 117.4,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       10.2,
+       10.2
+      ],
+      "inside": true,
+      "margin_mm": 49.8,
+      "tip_deg": 23.0,
+      "ok": true
+     },
+     "up_axis_deg": 0.53
+    },
+    {
+     "frame": 1,
+     "resting": true,
+     "gap_mm": 6.9,
+     "com_height_mm": 117.3,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       10.2,
+       10.2
+      ],
+      "inside": true,
+      "margin_mm": 49.9,
+      "tip_deg": 23.0,
+      "ok": true
+     },
+     "up_axis_deg": 0.46
+    },
+    {
+     "frame": 18,
+     "resting": true,
+     "gap_mm": 7.8,
+     "com_height_mm": 117.4,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       10.2,
+       10.2
+      ],
+      "inside": true,
+      "margin_mm": 49.7,
+      "tip_deg": 23.0,
+      "ok": true
+     },
+     "up_axis_deg": 0.54
+    },
+    {
+     "frame": 119,
+     "resting": true,
+     "gap_mm": 5.2,
+     "com_height_mm": 117.1,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       10.2,
+       10.2
+      ],
+      "inside": true,
+      "margin_mm": 50.4,
+      "tip_deg": 23.3,
+      "ok": true
+     },
+     "up_axis_deg": 0.24
+    },
+    {
+     "frame": 132,
+     "resting": true,
+     "gap_mm": 5.1,
+     "com_height_mm": 117.2,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       10.2,
+       10.2
+      ],
+      "inside": true,
+      "margin_mm": 50.1,
+      "tip_deg": 23.2,
+      "ok": true
+     },
+     "up_axis_deg": 0.36
+    },
+    {
+     "frame": 147,
+     "resting": true,
+     "gap_mm": 8.0,
+     "com_height_mm": 117.2,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       10.2,
+       10.2
+      ],
+      "inside": true,
+      "margin_mm": 50.2,
+      "tip_deg": 23.2,
+      "ok": true
+     },
+     "up_axis_deg": 0.32
+    },
+    {
+     "frame": 157,
+     "resting": true,
+     "gap_mm": 8.8,
+     "com_height_mm": 117.0,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       10.2,
+       10.2
+      ],
+      "inside": true,
+      "margin_mm": 50.6,
+      "tip_deg": 23.4,
+      "ok": true
+     },
+     "up_axis_deg": 0.13
+    },
+    {
+     "frame": 174,
+     "resting": true,
+     "gap_mm": 8.1,
+     "com_height_mm": 117.2,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       10.2,
+       10.2
+      ],
+      "inside": true,
+      "margin_mm": 50.2,
+      "tip_deg": 23.2,
+      "ok": true
+     },
+     "up_axis_deg": 0.3
+    },
+    {
+     "frame": 188,
+     "resting": true,
+     "gap_mm": 7.2,
+     "com_height_mm": 117.3,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       10.2,
+       10.2
+      ],
+      "inside": true,
+      "margin_mm": 49.9,
+      "tip_deg": 23.1,
+      "ok": true
+     },
+     "up_axis_deg": 0.45
+    }
+   ],
+   "verdict": "STANDS (certified at every resting frame)"
+  },
+  "mergedr_g0": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand_a2/mergedr_water_pitcher_g0.glb",
+   "watertight": true,
+   "volume_cm3": 1011.8,
+   "rest": [
+    {
+     "frame": 0,
+     "resting": true,
+     "gap_mm": 7.3,
+     "com_height_mm": 120.2,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       9.5,
+       9.6
+      ],
+      "inside": true,
+      "margin_mm": 34.2,
+      "tip_deg": 15.9,
+      "ok": true
+     },
+     "up_axis_deg": 0.7
+    },
+    {
+     "frame": 1,
+     "resting": true,
+     "gap_mm": 6.6,
+     "com_height_mm": 120.2,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       8.9,
+       9.6
+      ],
+      "inside": true,
+      "margin_mm": 26.9,
+      "tip_deg": 12.6,
+      "ok": true
+     },
+     "up_axis_deg": 0.77
+    },
+    {
+     "frame": 18,
+     "resting": true,
+     "gap_mm": 8.0,
+     "com_height_mm": 119.7,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       9.6,
+       9.6
+      ],
+      "inside": true,
+      "margin_mm": 47.7,
+      "tip_deg": 21.7,
+      "ok": true
+     },
+     "up_axis_deg": 0.13
+    },
+    {
+     "frame": 119,
+     "resting": true,
+     "gap_mm": 4.7,
+     "com_height_mm": 120.2,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       8.4,
+       9.6
+      ],
+      "inside": true,
+      "margin_mm": 30.7,
+      "tip_deg": 14.3,
+      "ok": true
+     },
+     "up_axis_deg": 0.72
+    },
+    {
+     "frame": 132,
+     "resting": true,
+     "gap_mm": 4.4,
+     "com_height_mm": 120.4,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       6.1,
+       9.6
+      ],
+      "inside": true,
+      "margin_mm": 11.4,
+      "tip_deg": 5.4,
+      "ok": true
+     },
+     "up_axis_deg": 0.97
+    },
+    {
+     "frame": 147,
+     "resting": true,
+     "gap_mm": 7.5,
+     "com_height_mm": 120.3,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       7.7,
+       9.6
+      ],
+      "inside": true,
+      "margin_mm": 21.5,
+      "tip_deg": 10.1,
+      "ok": true
+     },
+     "up_axis_deg": 0.82
+    },
+    {
+     "frame": 157,
+     "resting": true,
+     "gap_mm": 8.3,
+     "com_height_mm": 120.0,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       9.6,
+       9.6
+      ],
+      "inside": true,
+      "margin_mm": 46.9,
+      "tip_deg": 21.4,
+      "ok": true
+     },
+     "up_axis_deg": 0.5
+    },
+    {
+     "frame": 174,
+     "resting": true,
+     "gap_mm": 7.5,
+     "com_height_mm": 120.3,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       6.4,
+       9.6
+      ],
+      "inside": true,
+      "margin_mm": 15.8,
+      "tip_deg": 7.5,
+      "ok": true
+     },
+     "up_axis_deg": 0.91
+    },
+    {
+     "frame": 188,
+     "resting": true,
+     "gap_mm": 6.9,
+     "com_height_mm": 120.2,
+     "settle": {
+      "settle_deg": 0.0,
+      "contacts_cm": [
+       9.2,
+       9.6
+      ],
+      "inside": true,
+      "margin_mm": 30.7,
+      "tip_deg": 14.3,
+      "ok": true
+     },
+     "up_axis_deg": 0.74
+    }
+   ],
+   "verdict": "STANDS (certified at every resting frame)"
+  }
+ }
+}

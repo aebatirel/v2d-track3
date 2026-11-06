@@ -1,0 +1,48 @@
+{
+ "ck": "/content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors",
+ "ck_sha256": "3c75ca1debb558d7c6a6266efbdc1973c2514dba9d76b90493abf1a5f83b7537",
+ "ck_steps": "70004736",
+ "control": "/content/e10v_in/s43/policy.safetensors",
+ "control_sha256": "bcc51063339de4f36b46c343f53e5b5e52791dd24c31b4ee98de9b8d721882e8",
+ "config_diff": [
+  "env.sim.nconmax",
+  "env.sim.njmax",
+  "output_dir",
+  "reference.parquet",
+  "sim.nconmax",
+  "sim.njmax",
+  "task.parquet"
+ ],
+ "sim": {
+  "sim.njmax": 1024,
+  "sim.nconmax": 512,
+  "env.sim.njmax": 1024,
+  "env.sim.nconmax": 512
+ },
+ "control_sim": {
+  "sim.njmax": 512,
+  "sim.nconmax": 256,
+  "env.sim.njmax": 512,
+  "env.sim.nconmax": 256
+ },
+ "reset_seed": 43,
+ "task_parquet": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "reference_file": "/workspace/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "reference_md5": "5d22fc5782a919f2466988768d0708fa",
+ "loaded_urdfs": {
+  "blue_cup": {
+   "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+   "md5": "82ff6cb8049b527a7ec770965128e37c",
+   "mass": 0.3,
+   "com": "0.000728 0.001551 0.002992"
+  },
+  "beige_cup": {
+   "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+   "md5": "b994e584931ff45b8f162ff7891d49a6",
+   "mass": 0.3,
+   "com": "0.001523 0.005527 -0.004172"
+  }
+ },
+ "ok": true,
+ "failures": []
+}

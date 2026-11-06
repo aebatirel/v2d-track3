@@ -1,0 +1,85 @@
+EVAL-10 CAVITY-SAFE RETRAIN: launch job string (prepared 1 Nov 2026 ~05:45 UTC; NOTHING LAUNCHED, nothing rented)
+PACKABLE if it passes (stock contact limits). The owner's go (relayed by the orchestrator, 1 Nov ~05:15 UTC) covers this one
+box, ~$3.5. Pre-registration: PREREG.md (written before any result; commit it unchanged with the code; sha256 at the build
+commit in BUILD.md section 9). Build notes and CPU evidence: BUILD.md, cpu/ (same folder).
+
+Before the launch (orchestrator):
+  1. merge this build's branch (worktree-agent-a85860be5329e0f22) into the session branch, commit + push; SHA=<that commit>,
+     S7=${SHA:0:7}. Check on that commit: ops/jobs/ev10_cs.sh, tools/e10cs.py, tools/e10cs_pieces.py, the EVAL_CS_REF line in
+     ops/jobs/glock_public.sh, meshes/carve/ev10cs4 + ev10cs5 (python3 tools/e10cs_pieces.py check --dir meshes/carve/ev10cs5;
+     MD5SUMS md5 045d8921d5fe548ffebbee3cc21e798b), docs/research/work/eval10-cs4-20261101/PREREG.md unchanged;
+  2. the piece set: PREREG section 2.2's rule picked ev10cs5 (a, b, c all hold; recorded there before any result). The
+     ev10cs5 slot is already filled (imported at 2b016b4 with its md5 manifest); nothing to do. (Had a set needed importing,
+     the step would be:
+       python3 tools/e10cs_pieces.py import --rev <frozen commit> --src docs/research/mesh-2026-10-26/gmg/build/I/results/ev10-cavsafe/<set> --dst meshes/carve/<set>
+       python3 tools/e10cs_pieces.py compare --base meshes/carve/ev10cs4 --cand meshes/carve/<set>   # clause (a)
+     plus its MD5SUMS md5 and URDF md5s pinned in tools/e10cs.py SETS before the commit.)
+  3. ledger line:
+       LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned <date>-e10cs-$S7 3.50 "eval-10 retrain on cavity-safe pieces ev10cs5 (stock 512/256; packable): 2 seeds on e10v's stored V4p reference + training-box gate + 10 official draws if met; swap rule on V and P + pack-10 inclusion bar +0.02; PREREG eval10-cs4-20261101" owner
+  4. offer: ONE RTX PRO 6000 (96 GB) on demand, <= $1.50/h (`ops/vast.sh offers`); snapshot pt2.11-cu130-py313-20261020.
+     Not in the same minute as another box create. The box self-destroys when the job ends (run_job.sh); the stall
+     watchdog (30 min without new log lines / files or GPU use) protects the spend; there is no fixed time limit.
+
+Run id: <date>-e10cs-$S7   e.g. 20261101-e10cs-$S7   (ev10_cs.sh refuses a run id without "-e10cs-")
+Job string (everything else is fixed inside the script: episode 10, reference run 20261031-e10v-caf38fb, prefix perc2e10cs,
+seeds 42 and 43, e10v's recipe lines verbatim but for PIECES, stock limits, NREP 10, CURVE_REP 3, EVAL_TIMEOUT 1200, the
+training-box gate 0.4632, 10 official draws, H5P7 run 20261031-h5p7-1a7cdff):
+
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-e10cs-$S7 'PIECESET=ev10cs5 bash ops/jobs/ev10_cs.sh'
+
+What it runs on the box (in order; PREREG sections 2-5):
+  - tools/e10cs.py pieces (ev10cs5: MD5SUMS md5 pinned, file set = MD5SUMS = FROZEN.md, clause (a) vs ev10cs4); no_oracle on
+    the folder; make_assets.py library_v3 --pieces meshes/carve/ev10cs5 -> /content/assets; tools/e10cs.py assets (URDF md5
+    blue ac8d296b..., beige 1a8cb9d8...; col_NN = piece_NN; inertial = inertia.json) -> assets.json (the URDF inertials used);
+  - single-file pulls from runs/20261031-e10v-caf38fb (no listing): rerun_files.txt and of its entries refs/perc2e10vmck/ep10/*,
+    refs/perc2e10v_glockt/ep10/* (V + its support usda), results/perc2e10v_glock_public/ep10/{rest_check.json, zero_score.txt},
+    results/ev10_v4p/{arms.json, identity.json, b0.json, build.json, packed_ref/ref_gl_ilc.parquet, packed_ck/policy.safetensors,
+    old/r1/episode_000010.*} (md5 checked); e10v's two curve.json files (lift control). e10v copies go to /content/e10v_in
+    (not pushed);
+  - tools/e10cs.py arms: seed copies refs/perc2e10css{42,43}_glockt/ep10 (V md5 5d22fc57... / fingerprint 8f408d51... / base
+    ca4ae8dc...; V's URDFs = the ev10cs5 build); no_oracle on every input;
+  - per seed: glock_public.sh REUSE_REF=1 REQUIRE_REUSE=1 EVAL_CS_REF=1 SEED=<s> PAIRS="10:local:mck:perc2e10css<s>": 70M
+    steps, curve 7 x 3, checkpoint by sim_vs_ref vs V, 10 training-box evaluations;
+  - FIRST check: tools/e10nj.py overflow per training log -> overflow.json (> 1000 lines = "pieces not clean in training");
+    tools/e10nj.py lift per seed -> lift_s42.json, lift_s43.json (beige / blue per checkpoint; e10v's curves as control);
+  - tools/e10cs.py cells (config = packed gl10A2 but paths / seeds, stock limits, V md5, URDF md5, rollouts' sha256) ->
+    cells.json; choose (pack 9b section 2) -> choice.json; gate (> 0.4632 vs V) -> gate.json;
+  - only with a chosen seed AND the gate met: no_oracle on the chosen checkpoint, 10 official draws of it (the kit's
+    run_policy_evaluation.py on /content/v2d_clean, one call per draw, 1200 s cap, <= 13 calls) -> results/ev10_cs/conf/r<i>;
+  - H5p7 eval-10 draws pulled (single files); tools/e10v_score.py vs V and P (conf, old, packed, train42, train43) ->
+    score.json; tools/e10cs.py verify -> verify.json; verdict -> summary.json + "ev10_cs RESULT: <label> :: pack 10: ..." in
+    job.log (and the instance label); ckpt_meta.txt; ONE store push.
+
+EXPECTED COST [estimates] (PREREG section 10; basis: e10v's job.log, same box type):
+| stage                                                            | low (h) | central (h) | high (h) |
+|------------------------------------------------------------------|---------|-------------|----------|
+| boot, snapshot restore, setup, make_assets, piece / asset checks | 0.15    | 0.20        | 0.60     |
+| e10v pulls (~40 files), seed copies, guard                       | 0.03    | 0.06        | 0.20     |
+| 2 trainings (70M) + curves (7 x 3) + 10 evaluations each         | 1.60    | 1.85        | 2.50     |
+| 10 official draws (skipped if the gate is not met)               | 0.08    | 0.10        | 0.25     |
+| scoring (~41 rollouts x 2 refs), verify, verdict, push           | 0.05    | 0.08        | 0.20     |
+| total wall                                                       | 1.91    | 2.29        | 3.75     |
+| $ at 1.27 / 1.375 / 1.50 per h                                   | $2.4    | $3.1        | $5.6     |
+  => central ~$3.1 (planned $3.50). [M] basis: e10v 139 min, $3.25 at $1.375/h (setup + inputs 10 min, track + reference
+     stages 9.7 min (not run here), seeds 54.2 / 55.6 min, choice + 10 draws + scoring 9.6 min). [E] the cavity-safe pieces
+     (45 instead of 102 collision geoms, no dropped rows) may change training speed either way; the high column assumes +35 %.
+     Tail risks: a failed final push waits 60 min (+~$1.4); a STOP before training ends after setup (~$0.5-1.2 incl. the
+     30-min FAIL_HOLD).
+
+After the box (CPU, $0):
+  - read results/ev10_cs/{summary.json, verdict.txt, overflow.json, lift_s42.json, lift_s43.json, cells.json, choice.json,
+    gate.json, verify.json, pieces.json, assets.json, score.json} and job.log from the store, ONE hf_hub_download per file (HF 429),
+    e.g. docs/research/work/perception-sprint-20261031/ev10retrain/cpu/scripts/dl.py <dir> runs/<run id>/results/ev10_cs/summary.json ...
+    (the train.logs may be large if the overflow count is large: read overflow.json, not the logs);
+  - if the packed side was not complete on the box (summary counts packed < 10): pull the H5p7 eval-10 draws and re-run
+    tools/e10v_score.py + tools/e10cs.py verify / verdict on CPU with the same arguments (same code);
+  - copy the small result files into docs/research/work/eval10-cs4-20261101/results/ (never the checkpoints);
+  - write the reading in the work log and STATUS.md: the PREREG section 5.5 label first, then the pack-10 inclusion reading
+    (gain on V and P vs +0.02), the overflow count per training log (vs e10v's 6.0 M; label if > 1000), the beige lift per
+    seed next to e10v's control, the gate (seed means vs 0.4632), the clauses with margins, the chosen seed, the piece set
+    (ev10cs5, MD5SUMS 045d8921...) and the URDF inertials, training minutes, cost;
+  - ledger actual: LEDGER_SESSION=focused-pascal python3 ops/ledger.py add actual <run id> <usd> "<note>";
+  - ONLY if SWAP-ELIGIBLE AND included: build the pack-10 candidate on CPU (tools/pack_swap_rollouts.py with
+    --swap 10=<results/ev10_cs/conf/r<draw 1>/ep10/episode_000010.parquet> --expect-checkpoint 10=<choice.json sha256>, on the
+    current best pack as base; no_oracle; offline validation). The upload stays with the session where the owner gives the
+    word. Otherwise eval 10 stays as packed.

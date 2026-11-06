@@ -1,0 +1,72 @@
+LEAK DECOMPOSITION, PHASE 1 (GPU perception, PUBLIC episodes): launch job strings
+Prepared 30 Oct 2026 ~17:45 UTC; review fixes ~18:20 UTC (BUILD.md §6). NOTHING LAUNCHED. Owner approved Phase 1 at ~14:50 UTC ("go ahead with phase",
+plan figure ~$11-15 on 3 boxes); the estimate below is lower (central ~$4.4). Plan: ../PLAN.md §3 Phase 1, §7 B4.
+Build notes, CPU mock and risks: BUILD.md (this folder).
+
+Before any launch (orchestrator):
+  1. both reviews GO (done, fixes applied); commit + push the build (ops/jobs/perc_leak.sh, tools/leak_p1.py,
+     ops/box/store.sh (pull-files), docs/research/work/leak-decomp-20261030/phase1/; tools/no_oracle.py with B8 is
+     already in e0f53ce); SHA=<that commit>, S7=${SHA:0:7}.
+     The job reads phase1/inputs.tsv from the checked-out commit: it must be in that commit.
+  2. Vast credit check (17:15: $36.07 with orcB running at $1.467/h), then one ledger planned line per box:
+       python3 ops/ledger.py add planned <run_id> 2.50 "leak Phase 1 perception (public, owner-approved 30 Oct 14:50)" owner
+  3. offer: RTX PRO 6000 (96 GB) on demand, <= $1.50/h, as every perception box so far; snapshot
+     pt2.11-cu130-py313-20261020; DISK default (150 GB; a box needs ~13 GB for its depth caches). Start the boxes
+     ~10 min apart (HF 429: each setup restores the env snapshot from the store). Each box self-destroys after the
+     final push (run_job.sh); the stall watchdog (30 min without progress) protects the spend; no fixed time limit.
+  The run ids MUST be <yyyymmdd>-orc<X>-<sha>: perc_leak.sh exits 1 unless tools/no_oracle.py refuses the run id
+  (the guard keeps such runs out of packs; with B8 it also refuses the bare perc2scan folder name).
+  <date> = the launch day in UTC (20261030 or 20261031).
+
+Split: 20 public episodes, 50 perc2 runs, balanced by frame count x arms (scripts/balance.py; mock/out/balance.txt):
+  box a  7 eps, 16 runs (o 7, s 7, o2 2)  arm-frames 4337  depth 12.2 GB  library-template perc2 time 1452 s [M]
+  box b  7 eps, 18 runs (o 7, s 7, o2 4)  arm-frames 4338  depth 10.9 GB  1515 s [M]
+  box c  6 eps, 16 runs (o 6, s 6, o2 4)  arm-frames 4337  depth 10.5 GB  1426 s [M]
+  REPEAT (o2) = the 10 Phase-2 twins 2, 11, 12, 13, 18, 21, 24, 27, 31, 39 (PLAN §3).
+
+======================================================================================================================
+Box a  run <date>-orcP1a-$S7
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-orcP1a-$S7 'EPS="13 2 26 44 45 41 0" REPEAT="13 2" ARMS=o,s,o2 LIB=/content/v2d-track3/meshes/library_v3 bash ops/jobs/perc_leak.sh'
+
+Box b  run <date>-orcP1b-$S7
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-orcP1b-$S7 'EPS="11 21 31 39 22 42 23" REPEAT="11 21 31 39" ARMS=o,s,o2 LIB=/content/v2d-track3/meshes/library_v3 bash ops/jobs/perc_leak.sh'
+
+Box c  run <date>-orcP1c-$S7
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-orcP1c-$S7 'EPS="12 27 24 18 40 43" REPEAT="12 27 24 18" ARMS=o,s,o2 LIB=/content/v2d-track3/meshes/library_v3 bash ops/jobs/perc_leak.sh'
+======================================================================================================================
+
+EXPECTED COST [estimates]. Basis:
+  - perc2 per run with a cached depth, library templates: 53-123 s from process start to the last 'tracked' line,
+    scoring +0-1 s [M: the refine-input runs, 25 Oct, perc_log_inference.txt / DONE timestamps]; per box summed above;
+  - per-run process start (torch import) before perc2's clock: 10-20 s [E];
+  - scan templates (arm s): the scans have ~98k faces vs 4-33k for library_v3 (mock/out/realcheck.txt) [M]; their
+    FoundationPose time is NOT measured: 1.0-2.0x the library run [E]; the upper bound applies 2x to every s run;
+  - boot + setup (snapshot restore + dataset): 2-8 min on a normal day plus boot; 43 min on 30 Oct under HF 429 [M];
+  - inputs: 18-21 single-file downloads per box (10.5-12.2 GB), in the background; only the first episode's cache
+    (0.9-1.2 GB) delays the GPU: 1-6 min [E];
+  - final push: 110-126 MB per box (mock push list, real file sizes) [M], 1-6 min [E];
+  - price RTX PRO 6000 on demand $1.30-1.50/h [M: $1.295 and $1.467/h on 30 Oct].
+
+| Box | Boot + setup | First input | perc2 (50 runs total) | Push    | Wall        | $ ($1.30-1.50/h) | central (@$1.45) |
+|-----|--------------|-------------|-----------------------|---------|-------------|------------------|------------------|
+| a   | 0.2-0.75 h   | 0.02-0.1 h  | 27-40 min (16 runs)   | 1-6 min | 0.71-1.65 h | 0.92-2.47        | 1.01 h  $1.46    |
+| b   | 0.2-0.75 h   | 0.02-0.1 h  | 28-41 min (18 runs)   | 1-6 min | 0.73-1.66 h | 0.95-2.50        | 1.03 h  $1.49    |
+| c   | 0.2-0.75 h   | 0.02-0.1 h  | 26-38 min (16 runs)   | 1-6 min | 0.70-1.61 h | 0.91-2.42        | 0.99 h  $1.43    |
+| all 3, in parallel |   |             |                       |         | ~1 h wall; 2.1-4.9 box-h | 2.78-7.39 | 3.0 box-h $4.38 |
+Extra cost cases (not in the table): a failed final push (HF 429) waits 60 min, then retries once (+1 h, ~$1.5 per
+box); an arm that fails (job rc 3) holds the box 30 min for debugging (FAIL_HOLD_MIN, +~$0.7 per box).
+The plan's figure (8-10 box-h, $11-15) was a design-stage estimate; the measured perc2 times make it ~3 box-h.
+Alternative (not prepared as a string): all 20 episodes on ONE box, 1.6-3.0 h wall, ~$2.1-4.5, and a third of the
+setup store traffic; the 3-box split was the approved plan and finishes in about half the wall time.
+
+Store traffic per box: env restore + dataset (setup), 18-21 single-file input downloads (store.sh pull-files, no
+listing), the watchdog's interim pushes (every 30 min: 1-3), and ONE final push (run_job.sh); no pull-run.
+
+After the boxes (CPU, $0; orchestrator):
+  1. per box ONE hf_hub_download of runs/<rid>/results/leak_p1/summary.json (+ job.log if anything failed); per
+     episode ONE download of runs/<rid>/results/leak_p1/bundle_ep<N>_oracle.tar (20 files in all). No listings.
+  2. checks (BUILD.md §5): every arm's world_T_cam vs the refine inputs' (the hands were made on that camera; expect
+     <= 1e-6 m), template md5s, depth reuse, hands md5, gdino (no NO-GDINO arm). The tars hold no result.json or
+     log.txt (mocap scores); those stay only in the folder push, for diagnostics.
+  3. Tier A re-run on the Phase-1 tracks (R lib / * / trk per arm; R*(P_s) - R*(P_o) against the P_o-repeat noise).
+  4. ledger actual lines; STATUS.md and the work log.

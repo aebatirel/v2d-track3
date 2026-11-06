@@ -1,0 +1,149 @@
+{
+ "ep": 1,
+ "mode": "std",
+ "source_run": "20261024-pack-31ef267",
+ "lib": "library_v3",
+ "pieces": "meshes/carve/ev01",
+ "md5_listed": "7f2304663b4e3c55a0a1ad12503174c1",
+ "ref": "20261024-pack-31ef267/refs/perc2mck/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+ "ref_md5": "7f2304663b4e3c55a0a1ad12503174c1",
+ "md5_match": true,
+ "names": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "8b57b982ea3beb8e4efe1ca56af9c32d",
+  "radius": 0.2392
+ },
+ "shared_assets": {
+  "lib": "library_v3",
+  "pieces": "meshes/carve/ev01",
+  "make_assets": [
+   "white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm, 53 collision pieces",
+   "white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm, 107 collision pieces"
+  ]
+ },
+ "f0_hand_mm": {
+  "white_pot": 158.7,
+  "white_pot_lid": 170.8
+ },
+ "first_H30_rest_frame": 0,
+ "objects": {
+  "white_pot": {
+   "urdf_md5": "311507eedf13063e448d3a6ffdc5b286",
+   "pieces": 53,
+   "collision": [
+    "53 piece files"
+   ],
+   "mass": 0.3
+  },
+  "white_pot_lid": {
+   "urdf_md5": "0e5d8fcb08794df1c8b59989c5e04683",
+   "pieces": 107,
+   "collision": [
+    "107 piece files"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "white_pot": {
+     "pen_mm": 0.25,
+     "com_height_mm": 47.3,
+     "hand_mm": 158.7,
+     "support": {
+      "band1mm": {
+       "points": 76,
+       "com_margin_mm": 41.6
+      },
+      "band3mm": {
+       "points": 380,
+       "com_margin_mm": 60.7
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 1.5,
+     "settle_mm": 0.25,
+     "settle_deg": 0.31,
+     "max_mm": 0.61,
+     "max_deg": 0.68,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.565,
+       "max": 0.88,
+       "min": 0.26,
+       "q90": 0.81
+      },
+      "deg": {
+       "n": 16,
+       "median": 0.59,
+       "max": 0.89,
+       "min": 0.07,
+       "q90": 0.74
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    },
+    "white_pot_lid": {
+     "pen_mm": -78.24,
+     "com_height_mm": 93.0,
+     "hand_mm": 170.8,
+     "support": {
+      "band1mm": {
+       "points": 109,
+       "com_margin_mm": -78.3
+      },
+      "band3mm": {
+       "points": 205,
+       "com_margin_mm": -35.7
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 0.2,
+     "settle_mm": 4.31,
+     "settle_deg": 1.56,
+     "max_mm": 4.93,
+     "max_deg": 1.95,
+     "falls_over": false,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 4.565,
+       "max": 10.81,
+       "min": 3.18,
+       "q90": 6.87
+      },
+      "deg": {
+       "n": 16,
+       "median": 1.53,
+       "max": 4.75,
+       "min": 0.66,
+       "q90": 1.82
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    }
+   },
+   "pairs": {
+    "white_pot|white_pot_lid": 0.0
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 28.7
+}

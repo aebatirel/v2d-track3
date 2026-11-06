@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_potlid.py", line 952, in <module>
+    main()
+    ~~~~^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_potlid.py", line 940, in main
+    mesh, info = build_lid(P, C, a.variant, a.lib)
+                 ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_potlid.py", line 692, in build_lid
+    Fp = P[fl]; mf_ = Fp.mean(0); w2, V2 = np.linalg.eigh(np.cov((Fp - mf_).T)); d2 = V2[:, 0]
+                                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/c0bw/venv/lib/python3.13/site-packages/numpy/linalg/_linalg.py", line 1654, in eigh
+    w, vt = gufunc(a, signature=signature)
+            ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/c0bw/venv/lib/python3.13/site-packages/numpy/linalg/_linalg.py", line 150, in _raise_linalgerror_eigenvalues_nonconvergence
+    raise LinAlgError("Eigenvalues did not converge")
+numpy.linalg.LinAlgError: Eigenvalues did not converge

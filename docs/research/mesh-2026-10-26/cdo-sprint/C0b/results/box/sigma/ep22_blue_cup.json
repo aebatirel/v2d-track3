@@ -1,0 +1,15 @@
+{
+ "obj": "blue_cup",
+ "file": "/content/results/c0b/pts/B/ep22_blue_cup.npz",
+ "sigma_m": 0.0011616441837279017,
+ "T": 189,
+ "stride": 2,
+ "info": {
+  "even_points": 620909,
+  "odd_points": 601556,
+  "sheet_faces": 119876,
+  "raw_median_mm": 1.162,
+  "n": 50000
+ },
+ "sec": 59.4
+}

@@ -1,0 +1,46 @@
+test_w8_i_cross (__main__.WaiverR2.test_w8_i_cross)
+F-I4.15.7 w8 (I-shaped cross, sigma 1 mm). ... FAIL
+test_w8b_i_cross_sigma3 (__main__.WaiverR2.test_w8b_i_cross_sigma3)
+F-I4.15.7 w8b (w8 at sigma 3 mm). ... FAIL
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/fi415/tests/test_fi415_w8rerun.json
+
+======================================================================
+FAIL: test_w8_i_cross (__main__.WaiverR2.test_w8_i_cross)
+F-I4.15.7 w8 (I-shaped cross, sigma 1 mm).
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py", line 287, in test_w8_i_cross
+    self.assertEqual(m, [], m)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+AssertionError: Lists differ: ['A CARVE not from the waiver route: gate [99 chars]one'] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+'A CARVE not from the waiver route: gate plate_body_over_cap body None'
+
++ []
+- ['A CARVE not from the waiver route: gate plate_body_over_cap body None',
+-  'B CARVE not from the waiver route: gate plate_body_over_cap body None'] : ['A CARVE not from the waiver route: gate plate_body_over_cap body None', 'B CARVE not from the waiver route: gate plate_body_over_cap body None']
+
+======================================================================
+FAIL: test_w8b_i_cross_sigma3 (__main__.WaiverR2.test_w8b_i_cross_sigma3)
+F-I4.15.7 w8b (w8 at sigma 3 mm).
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py", line 292, in test_w8b_i_cross_sigma3
+    self.assertEqual(m, [], m)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+AssertionError: Lists differ: ['A CARVE not from the waiver route: gate [99 chars]one'] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+'A CARVE not from the waiver route: gate plate_body_over_cap body None'
+
++ []
+- ['A CARVE not from the waiver route: gate plate_body_over_cap body None',
+-  'B CARVE not from the waiver route: gate plate_body_over_cap body None'] : ['A CARVE not from the waiver route: gate plate_body_over_cap body None', 'B CARVE not from the waiver route: gate plate_body_over_cap body None']
+
+----------------------------------------------------------------------
+Ran 2 tests in 210.765s
+
+FAILED (failures=2)

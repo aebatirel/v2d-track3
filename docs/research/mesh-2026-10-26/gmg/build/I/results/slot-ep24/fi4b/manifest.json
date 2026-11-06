@@ -1,0 +1,1269 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T17:30:26Z",
+ "commit": "42ab81531eebb2ce664d8d70168e764a7e193b43",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/build/I.md"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13",
+  "--ep",
+  "24",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24",
+  "--cands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/cand/public/ep24",
+  "--pick",
+  "wooden_piece_1=shell_t5p36,wooden_piece_2=shell_t5p36",
+  "--video",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+  "--calib",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz",
+  "--proxy-copies",
+  "16",
+  "--identity",
+  "eval",
+  "--waiver-fi4",
+  "--no-physcheck",
+  "--tag",
+  "fi4b"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 5811,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-i2probe-626ce13",
+  "root": "runs-dev",
+  "pid": 26444,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T10:23:17Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_1.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_2.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "calib",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "sha256": "23e2d9c46369292cdda492a777e7a6083815369a25d1af4bb82560669fde5d52",
+   "bytes": 16640,
+   "tier": "P0"
+  },
+  {
+   "role": "video",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+   "sha256": "30d08191dbe3f02880d4950197ab6a1d1d6c97de7483255835152c1ee1a5d3b3",
+   "bytes": 31443302,
+   "tier": "P0"
+  },
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60",
+   "bytes": 71220,
+   "tier": "P1",
+   "keys": [
+    "cam_T_wooden_piece_1",
+    "cam_T_wooden_piece_2",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz",
+   "sha256": "b21f0eaa1a276737a6ec0a86dee0f30971b142f2b921a8ae1a183dae1e34021f",
+   "bytes": 205692,
+   "tier": "DEV",
+   "keys": [
+    "Da",
+    "KR",
+    "Ka",
+    "T",
+    "T_rect_a",
+    "a_offset",
+    "chir_left",
+    "chir_right",
+    "depth_ok_left",
+    "depth_ok_right",
+    "dz_med_left",
+    "dz_med_right",
+    "filled_left",
+    "filled_right",
+    "joints_left",
+    "joints_right",
+    "measured_left",
+    "measured_right",
+    "n_depth_inl_left",
+    "n_depth_inl_right",
+    "n_depth_left",
+    "n_depth_right",
+    "n_det",
+    "rms_px_left",
+    "rms_px_right",
+    "scale_left",
+    "scale_right",
+    "score_left",
+    "score_right",
+    "size_a",
+    "swap",
+    "uv_a_left",
+    "uv_a_right",
+    "valid_left",
+    "valid_right",
+    "wl_mirror",
+    "world_frame"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/episode.json",
+   "sha256": "df9393261b3a9e0975833ce18a6df311bb642bb272ccd6fff418b1bec064f522",
+   "bytes": 45765,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_1.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_1.npz",
+   "sha256": "a0f0976d53905189875d9b3b697b8e39d3eccbe60046e27391918f8903569b19",
+   "bytes": 28119499,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_2.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_2.npz",
+   "sha256": "3edfbd1da7f363302ee7a8c56c429b46a4d2115e81bd18d16c69667570b73fb6",
+   "bytes": 16391151,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "sil.hand_mask_max",
+   "value": 0.25,
+   "origin": "generic:F-I1.2 hands <= 25 % of the mask",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.hand_px",
+   "value": 16,
+   "origin": "generic:F-I1.2 no hand pixel within 16 px",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.max_frames",
+   "value": 24,
+   "origin": "generic:numerical cap of qualifying frames used (evenly spaced)",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.tex_win",
+   "value": 5,
+   "origin": "generic:F-I1.14 5 x 5 texture",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.pos_inset_px",
+   "value": 3,
+   "origin": "generic:F-I1.2 positives >= 3 px from the outline",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.max_pixels",
+   "value": 60000,
+   "origin": "generic:numerical cap of training pixels per class",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.holdout",
+   "value": 0.2,
+   "origin": "generic:F-I1.14 20 % pixel split",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.gmm_k",
+   "value": 3,
+   "origin": "generic:F-I1.14 GMM 3 components",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.interior_hits",
+   "value": 10,
+   "origin": "generic:F-I1.2 strongly observed: hits >= 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.acc_min",
+   "value": 0.9,
+   "origin": "generic:F-I1.2 held-out pixel accuracy >= 0.9",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "il.engaged_min_vox",
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.gap_bridge_frames",
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.transient_frames",
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_speed_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_min_frames",
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.block_frames",
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.holdout_min_frames",
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_min",
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_share",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_min_m",
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_k_j",
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.max_rounds",
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.link_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 linking share 50 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.through_beyond_vox",
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.depth_scale",
+   "value": 0.5,
+   "origin": "sensor:depth input at half the 1600 x 1000 rectified resolution (depths_fs0.5)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.w_bridge_px",
+   "value": 8.0,
+   "origin": "generic:F-I1.14 w_bridge 8 depth pixels [H]",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.class_o_max",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 25 % class O",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.min_testable",
+   "value": 3,
+   "origin": "generic:INTERLOCK 3.4 fewer than 3 testable voxels = absent",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.agree_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.offset_grid_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 OFFSET 2 mm grid",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.offset_lateral",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 OFFSET lateral share 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "pb.near_m",
+   "value": 0.006,
+   "origin": "generic:F-I2.10 owned points within 6 mm of the pick",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:64"
+  },
+  {
+   "name": "struct_vox_m",
+   "value": 0.002,
+   "origin": "generic:obs-first sym_probe / rot_probe voxel downsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:58"
+  },
+  {
+   "name": "struct_max_points",
+   "value": 60000,
+   "origin": "generic:obs-first probe cap (numerical)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:59"
+  },
+  {
+   "name": "rot_consistency_trim",
+   "value": 0.8,
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:60"
+  },
+  {
+   "name": "rot_consistency_angles_deg",
+   "value": [
+    45,
+    90,
+    135
+   ],
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:61"
+  },
+  {
+   "name": "rot_consistency_subsample",
+   "value": 20000,
+   "origin": "generic:lathe_obs.fit_axis subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:62"
+  },
+  {
+   "name": "sym_accept_rotc_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (rotational consistency)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:63"
+  },
+  {
+   "name": "sym_accept_resid_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (mirror residual)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:64"
+  },
+  {
+   "name": "sym_accept_observed_share",
+   "value": 0.7,
+   "origin": "generic:PREREG A.6 symmetry acceptance (observed share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:65"
+  },
+  {
+   "name": "sym_accept_free_share",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6 symmetry acceptance (free share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:66"
+  },
+  {
+   "name": "noise_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 / SPEC section 8 noise band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:67"
+  },
+  {
+   "name": "sym_moved_min_share",
+   "value": 0.5,
+   "origin": "generic:a symmetry must move at least half the points",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:68"
+  },
+  {
+   "name": "sym_resid_trim",
+   "value": 0.8,
+   "origin": "generic:obs-first sym_probe trimmed mean",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:69"
+  },
+  {
+   "name": "mirror_search_normals",
+   "value": 400,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:70"
+  },
+  {
+   "name": "sym_search_subsample",
+   "value": 6000,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:71"
+  },
+  {
+   "name": "sym_eval_subsample",
+   "value": 20000,
+   "origin": "generic:obs-first sym_probe evaluation",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:72"
+  },
+  {
+   "name": "mirror_distinct_deg",
+   "value": 20.0,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:73"
+  },
+  {
+   "name": "mirror_top",
+   "value": 3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:74"
+  },
+  {
+   "name": "mirror_search_min_observed",
+   "value": 0.3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:75"
+  },
+  {
+   "name": "mirror_search_free_weight_m",
+   "value": 0.02,
+   "origin": "generic:obs-first sym_probe ranking weight",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:76"
+  },
+  {
+   "name": "sym_perturb_deg",
+   "value": [
+    4.0,
+    1.5
+   ],
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:77"
+  },
+  {
+   "name": "sym_perturb_n",
+   "value": 12,
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:78"
+  },
+  {
+   "name": "sym_nm_step",
+   "value": 2.0,
+   "origin": "generic:numerical refinement (initial simplex 2 deg / 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:79"
+  },
+  {
+   "name": "sym_nm_xatol",
+   "value": 0.02,
+   "origin": "generic:numerical refinement (deg / mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:80"
+  },
+  {
+   "name": "sym_nm_maxfev",
+   "value": 400,
+   "origin": "generic:numerical refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:81"
+  },
+  {
+   "name": "sym_pairing_iters",
+   "value": 4,
+   "origin": "generic:numerical refinement (sym_probe refine_offset passes)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:82"
+  },
+  {
+   "name": "axis_search_rim_w_s",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6b E1 (lathe.rim_w) = 0.05 s",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:83"
+  },
+  {
+   "name": "plane_min_pts",
+   "value": 300,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:84"
+  },
+  {
+   "name": "plane_max",
+   "value": 4,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:85"
+  },
+  {
+   "name": "plane_seeds",
+   "value": 200,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:86"
+  },
+  {
+   "name": "plane_deg",
+   "value": 30.0,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:87"
+  },
+  {
+   "name": "plane_conn_vox_m",
+   "value": 0.003,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:88"
+  },
+  {
+   "name": "slab_two_face_thickness_m",
+   "value": [
+    0.003,
+    0.025
+   ],
+   "origin": "informed:slab two-face thickness (PREREG A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:89"
+  },
+  {
+   "name": "plane_pair_overlap_min",
+   "value": 0.5,
+   "origin": "generic:footprints of a plate's two faces overlap",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:90"
+  },
+  {
+   "name": "repeat_orders",
+   "value": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "origin": "generic:discrete rotations C2..C6",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:91"
+  },
+  {
+   "name": "pb.frames_min",
+   "value": 3,
+   "origin": "generic:F-I4.11 >= 3 frames per outline cell (= OBSERVED hits >= 3, A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:64"
+  },
+  {
+   "name": "il.push_step_m",
+   "value": 0.002,
+   "origin": "generic:numerical 2 mm (one sub-voxel)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_cap_m",
+   "value": 0.06,
+   "origin": "generic:numerical cap of the push search (6 x the prior)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_frames_max",
+   "value": 12,
+   "origin": "generic:numerical subsample of the build frames for the push proxy",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_prior_m",
+   "value": 0.01,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 10 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.swept_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "pb.slab_sigma",
+   "value": 3.0,
+   "origin": "generic:F-I4.11 outline slab margin 3 sigma (A.6 noise band)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:64"
+  },
+  {
+   "name": "pb.raster_m",
+   "value": 0.002,
+   "origin": "generic:F-I4.11 outline raster 2 mm (= the carve sub-grid)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:64"
+  },
+  {
+   "name": "pb.fill_min",
+   "value": 0.9,
+   "origin": "generic:F-I4.11 rectangle fill share 0.9",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:64"
+  },
+  {
+   "name": "sp.pitch_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.8 solid at 1.5-2 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "sp.nsurf",
+   "value": 60000,
+   "origin": "generic:numerical surface samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "sp.near_vox",
+   "value": 2,
+   "origin": "generic:F-I1.8 keep-out within 2 voxels of the surface",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "sp.lam",
+   "value": 10.0,
+   "origin": "generic:collision_decomp.py partner weight 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "sp.overlap_m",
+   "value": 0.001,
+   "origin": "generic:collision_decomp.py cells overlap 1 mm across a cut",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "sp.mass_kg",
+   "value": 0.3,
+   "origin": "generic:F-I1.14 placeholder mass 0.3 kg (make_assets default; owner decision D-I1 open)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "interlock/public/ep24-fi4b/T_asm.npy",
+   "sha256": "a0c835c274ef48b10b9a4289b68baa3d6d0be2769a41871ae95db3e515c3c877",
+   "bytes": 256,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4b/decisions.json",
+   "sha256": "76f93e2dd44855b5df9fc3e2e349a983e8494aefecebe681633db89a5c533e0f",
+   "bytes": 18882,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4b/overlap_wooden_piece_1_wooden_piece_2.json",
+   "sha256": "ecfbf63ab6eea4fcdc190e7192d3eb92e7eae7d977e160c8d05bbdbc3cff07db",
+   "bytes": 2958,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4b/physcheck.json",
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4b/push_list.json",
+   "sha256": "ce561d62f532e7629d26c7dd6bbcfe117887f15e6f81d01d60fd11e6ec1e9022",
+   "bytes": 458,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4b/report.json",
+   "sha256": "504f54b8be4fdade5affbbd88acfb91ceb1903df717464fead66a3dc2eaf6f1b",
+   "bytes": 14379,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4b/sil_wooden_piece_2.npz",
+   "sha256": "c32554412ac36d01419524b8b69959fc3f6259bcc9def87b1529ba189c09a899",
+   "bytes": 3829,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4b/voxels_wooden_piece_1.npz",
+   "sha256": "25dc3ca2842730e05707c9b9e0e859ed326588321072440b47d9290b4f481b7f",
+   "bytes": 3448,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4b/voxels_wooden_piece_2.npz",
+   "sha256": "b79d0ceef6c35bc586468af749b219f46ed97c7e03219934ba292ff42a87644a",
+   "bytes": 3197,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/DO_NOT_USE.json",
+   "sha256": "69d80fa69fa39c5abd3ee8434b46921b10ff2b6df5c7ecc78e752fa599b242f9",
+   "bytes": 286,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/_fit/wooden_piece_1.glb",
+   "sha256": "2aa6ce90b5e967673ecaa8ba4d84021d33e8eb503beac4c73eba4b328d393e9e",
+   "bytes": 72500,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/_fit/wooden_piece_2.glb",
+   "sha256": "29baaebf502c7321cef18acad63e7d3d23e148e544a4c9611ccf6218e8be7e63",
+   "bytes": 70148,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/manifest.json",
+   "sha256": "8ee653d55a051e0bdfbb2d6753f25ca6c00fb5933b6188d0ad0470a38b426f2b",
+   "bytes": 19895,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/props_gmg.json",
+   "sha256": "0166d4e43db3a7107924ab12ff74936822bb8aca40a1a194614543fb932e3b78",
+   "bytes": 1673,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/sources/wooden_piece_1.npz",
+   "sha256": "1e1421158f3c9f4165836a9b67629d19be203bd263fa4e9056a79176f4a52246",
+   "bytes": 1611,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/sources/wooden_piece_2.npz",
+   "sha256": "20e47faa07f8960e216578f2307ccef6b76d5958ed4398a153a6876db75ce9a3",
+   "bytes": 21822,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/carve.json",
+   "sha256": "07dd5de7f9aa03d6ca86359f7adb9a2ed6f0082f1b471213ad8ea7b3098a27cf",
+   "bytes": 13129,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/inertia.json",
+   "sha256": "d184ef5971fdb63e84944d997e694bb1c4258576ff915debf80bc8fad52aa72c",
+   "bytes": 406,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_00.obj",
+   "sha256": "6939ec433ebb1ef324d36e8eab6f8b4a7f7c1e84e536e7c849f7507cf9893609",
+   "bytes": 3629,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_01.obj",
+   "sha256": "60825346fedae8b124ae6c4cad87d5c1329d651406908278237cc2f6805f1c89",
+   "bytes": 3690,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_02.obj",
+   "sha256": "ce8d8300bb4d0484b0a9a519f193516d3a0fabe2acea3c7cc85b475cd7d64c1f",
+   "bytes": 3706,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_03.obj",
+   "sha256": "df3f90b91e7e7b0d71cca9616279dd27f24c0d1f335504ab317d4358e8cbd70e",
+   "bytes": 3707,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_04.obj",
+   "sha256": "02094169b2a1060ad70066060b5821a049508a43cfb3fb54c85633a4213da10b",
+   "bytes": 3603,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_05.obj",
+   "sha256": "4b3638d2b00b1342310e8ca782f7853204d5ed7da9ee0b92db54732db9cbb3f2",
+   "bytes": 3664,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_06.obj",
+   "sha256": "b27e55e0dcbf4d97d01651baa671e918901de9a8a3fd881fbf4becf19fa6ce7a",
+   "bytes": 3611,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_07.obj",
+   "sha256": "8ea7730da2a82823247a192e818cf296aa757ce52dce39d1c011ebda41bec16d",
+   "bytes": 3635,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_08.obj",
+   "sha256": "ad21cb44dfb2a01745502816e5fb946113961bfa7ee9304da0a8b2526ef727b8",
+   "bytes": 3647,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_09.obj",
+   "sha256": "1dbe4248f3fe8d8966dca2c6198737fef8ed17069324449b20387f85515ff124",
+   "bytes": 3719,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_10.obj",
+   "sha256": "abdb37649c7d6d2b6defff7ea178cc0fdc004cacb7dcbdf61554d9da3838634c",
+   "bytes": 3670,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_11.obj",
+   "sha256": "3733a26c07eec2369d696e201ce66c82392d149b508b89af3a3cf2b89dfff3c9",
+   "bytes": 3673,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_12.obj",
+   "sha256": "3044d16feae390ae15a815dd83249c77897aa5efa7bb77a2854de41770d57e32",
+   "bytes": 3728,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_13.obj",
+   "sha256": "4a7dadddb46ebeb43e6a33da3c280370bc3ebd1d6853823c44991ed6d90efa1e",
+   "bytes": 3657,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_14.obj",
+   "sha256": "a172b4047f0dd6397035f07ba81d6b0ab67e285433c7508ed08170312dd63570",
+   "bytes": 3652,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_15.obj",
+   "sha256": "73e07d9e84ec035f1f4da82dd9fd9ac38039f8f92cecf0555b00db4a87ec30e6",
+   "bytes": 3717,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_16.obj",
+   "sha256": "a2cf609b41baa3fb6f5469fcc7c2b177e0fde9dcc2700a4be39f5b607a916fd0",
+   "bytes": 3093,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_17.obj",
+   "sha256": "3bdc10d51994bb2cba4b0742deb9373c0fd75d89db91a659e4a12e96878f01e6",
+   "bytes": 3578,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_18.obj",
+   "sha256": "5affa8930118fba4273d60a4d32dab507611fb1451dddc0d990a77ee3e3b9625",
+   "bytes": 3401,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_19.obj",
+   "sha256": "1c4d940f76ae34613799d2ee4f2fb27289c31e2141354ce0cbc44ffb2e7fd7fe",
+   "bytes": 3628,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_20.obj",
+   "sha256": "602d34419af04a6da7e89dae38f44c36a3501404ef3f9446f9cc22bb0396e504",
+   "bytes": 3636,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_21.obj",
+   "sha256": "b8d2ee9d2cacbfdf063598361dd09ce818dd14312aa348ac4bd59280e97950e4",
+   "bytes": 2482,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_22.obj",
+   "sha256": "6db796270bdea3b0ac3c2993cd86eff59bc821cd23406cee412844b789aa3caf",
+   "bytes": 2857,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_23.obj",
+   "sha256": "5ce6bb1175e914053e6fce988960da7f656a3f1337f4b7564e4c7e3c7a9f7170",
+   "bytes": 3463,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_24.obj",
+   "sha256": "5e14c0a05245ab26449b2196a2c159decf8265c7a46a47c5eda817c90bc02868",
+   "bytes": 3725,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_25.obj",
+   "sha256": "aa99d95b63429626ba5a220a97e0e7a59c3fb5b1e17591660982839ac986a642",
+   "bytes": 3164,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_26.obj",
+   "sha256": "3f04e643d0bfc4db6aea8457cfce98cab52178ba6c4de666c49096f3459e0019",
+   "bytes": 3266,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_27.obj",
+   "sha256": "c9ee03ee3963c9b9848f49f905c431043ce9298754a5a2f3bcca75ecabcf72ac",
+   "bytes": 2414,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_28.obj",
+   "sha256": "66098bda3ddb75b50cffde77c021e99492e0a4541182bad7ca019de74445feb2",
+   "bytes": 1955,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_29.obj",
+   "sha256": "37098ada295d5d78a0acd7038c10bdc040f629a6e97197f9c5ebd1ca6dbd4920",
+   "bytes": 1509,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_30.obj",
+   "sha256": "169581ea24081cb078b8c92db5d53c02e8d81a0e2f2edb07f11fe712b36a6296",
+   "bytes": 2489,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/piece_31.obj",
+   "sha256": "9527f489c93edbfe770c8cd576d6b1fcead879ef5082a5db9ad906588d48d86a",
+   "bytes": 1043,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_1/wooden_piece_1.glb",
+   "sha256": "3a949482d5dad09688825b14aa42443101e5eb622f30fac8396bb8e0e0bb604b",
+   "bytes": 70188,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/carve.json",
+   "sha256": "29871141f05970455781c256477246b241206f366f84d3b726a7d11a58916945",
+   "bytes": 11600,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/inertia.json",
+   "sha256": "4483aec42796498aa06de6fa2abc0824e94863c12329241e9c6a2603c4300135",
+   "bytes": 408,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_00.obj",
+   "sha256": "6a0b3749f560ab4f9d02e1372548962ac5309da0fea5ed50c5ec5259b7450940",
+   "bytes": 3647,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_01.obj",
+   "sha256": "76a242046f1922d2896da42b14dd79a396812f2db74ac5ec3b5e5e9289f043b9",
+   "bytes": 3594,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_02.obj",
+   "sha256": "a76d81f4304b828a3ad8507c58ef081dd1da58a741e811056d7aee8d6d444d27",
+   "bytes": 3725,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_03.obj",
+   "sha256": "db929635d1b65f60cb4da1a5263f1b08d149fbb19c550cc4692d0de8181515bd",
+   "bytes": 3707,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_04.obj",
+   "sha256": "e5a9010ee2da73b0b1b8ea0599d83f40c772484a9d2c56ce96baf3cff6b474d9",
+   "bytes": 3698,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_05.obj",
+   "sha256": "b3d42e2b72d8a2a7c791b7c23094e6a652f1954ba3075540d2f63f21eab654ec",
+   "bytes": 3640,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_06.obj",
+   "sha256": "69ae6fb13a61e584959e630456d4a40dfb9cb9bb1e4a2cb74d3eb7adf39d0c7d",
+   "bytes": 3639,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_07.obj",
+   "sha256": "71f1282c9b839e87fd1df6a188aac543d2977645200c2a600495f4935ab57143",
+   "bytes": 3759,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_08.obj",
+   "sha256": "8ce7636daaba770429506a517354dfccaaa3987c258b1a37c159b6bbde41fc68",
+   "bytes": 3672,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_09.obj",
+   "sha256": "5d3217dece55266c462adf70ccca992792fd324b0d24724c379cd63467eb963e",
+   "bytes": 3729,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_10.obj",
+   "sha256": "a056a818fcf7f453869021910d67e5659f7d63d7a38205aceb37585c27084229",
+   "bytes": 3651,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_11.obj",
+   "sha256": "0a46ab493e27252a1c4d96ee906e42daf601fcf8371adcea5237e3eafafb064d",
+   "bytes": 3682,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_12.obj",
+   "sha256": "ab29ab56ddab974c05d7d7be28d9638d97cc1823bd627397ea84ef9a3bf74208",
+   "bytes": 3744,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_13.obj",
+   "sha256": "9de7ce1d7c733caaf83d90e0cc89e7ea4b12757b6960a42e815f9ea213d3d86e",
+   "bytes": 3657,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_14.obj",
+   "sha256": "ba7a54d625d9abf5f064686e69b814c081bcbcdd49f924135a14a7a1c588895d",
+   "bytes": 3751,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_15.obj",
+   "sha256": "9d6965fbc3275f6d2b89f52810e46b3a92db1165fde26d69e1801e737ef6f3c9",
+   "bytes": 3723,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_16.obj",
+   "sha256": "8eda255f56fe87ffbe08c7ced6ebe180176d58755a15f31edd59bbdf63bce039",
+   "bytes": 3740,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_17.obj",
+   "sha256": "d8e0a8b8e3ac5ccfc34b4fbbbea8a4b61413e616fd72a92e9e2b3bd4face8a83",
+   "bytes": 3685,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_18.obj",
+   "sha256": "308bc94f204e7fe51422cbfbab7ee3128a2755755225e81d7b13615d67da668c",
+   "bytes": 2666,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_19.obj",
+   "sha256": "f08ee206348f2e3d4f5642d133919b486806602ff453f544ba985f41049e93ab",
+   "bytes": 2517,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_20.obj",
+   "sha256": "810d35aa050f5fd6d32792ba6f158419500beccfde76f2d5e69843da8b26ee6f",
+   "bytes": 3573,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_21.obj",
+   "sha256": "f74d6006602cbc870a66ac7f7174f2d641dd68ac2c164ec195648ca22a5548d1",
+   "bytes": 3639,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_22.obj",
+   "sha256": "019d21b4942b3122ff3c23f883c80ad19e0aa3e76e9c3af1804b5f6a576820a6",
+   "bytes": 3677,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_23.obj",
+   "sha256": "7b395503f9b902b606c1076d46c0b02b7499cbeb0f60d40b09e961cb6c695e4d",
+   "bytes": 2664,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_24.obj",
+   "sha256": "e424cc22b0094c4061463ade1d88fce65ccb10a9923d3c88b0c49f6b35e914de",
+   "bytes": 1608,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_25.obj",
+   "sha256": "e660de4aac3a6f867d3f4b277311eac0db0e5ae3c5cd331da9ec078e38431b14",
+   "bytes": 3439,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_26.obj",
+   "sha256": "34e2f999ab3ed407014ee564c75be124dd3589c7e101f749ac5b1bac55a9ed79",
+   "bytes": 3405,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_27.obj",
+   "sha256": "d02c8307549959ba110e77f85545d2f26909a0726e06d5fb5e0734334909eebe",
+   "bytes": 1935,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_28.obj",
+   "sha256": "830408c4587e096ecb718745c4c99b5345bab718659737d658fb32f7834ee3d9",
+   "bytes": 2166,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_29.obj",
+   "sha256": "1f0c044780fb12afcc433add9852079db2431288d5e0b8c0d40d1546c248f651",
+   "bytes": 1365,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_30.obj",
+   "sha256": "30fdeef04831dbe5ac612a9a0e8dc64b79b8cfb17746f2a55a554b1c47306e4e",
+   "bytes": 2501,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/piece_31.obj",
+   "sha256": "000295dedf1b219e256df7a1fd83a3ceeeb360eb9b4f9327523f2bc660c6418e",
+   "bytes": 1821,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4b/r0/wooden_piece_2/wooden_piece_2.glb",
+   "sha256": "60b5fc1f58e548aa1bfeb3ba7bdd9f07d8443ea2db2464c2ada1ec8e079ab198",
+   "bytes": 71892,
+   "how": "python"
+  }
+ ]
+}

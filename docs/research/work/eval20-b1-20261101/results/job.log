@@ -1,0 +1,198 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+vb1420-ee7ba8e, prefix e20b1, seeds [42 43], LIB /content/v2d-track3/meshes/library_v3, NREP 10, NCONF 10, STEPS 70004736, SF 0, stock sim limits, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15], H5P7_RUN 20261031-h5p7-1a7cdff
+[2026-11-01T07:34:28Z] ev20_b1 pieces: PIECES OK :: ev20b1 41 pieces, MD5SUMS fe9aeca079fdcc7524a06f46fcd0a7ae, FROZEN.md 4259a6cf8a4c28dcbc212ff0a77bad5b, md5 list 4bd96b7a
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/glockt/ep20/reconstructed_stage/t3_ep020_support.usda
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/contact_retarget.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/contact_retarget_log.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/e2s_raw/sequence_id=t3_ep020/robot_name=sharpa_wave/3982f7e5c2434ea0ba9c275809268fda-0.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/e2s_reference.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/hand_refine_log.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/hands.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/hands_log.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/hands_log.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/hands_overlay.jpg
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/hands_refined.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/hands_refined.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/loaded/sequence_id=t3_ep020/robot_name=sharpa_wave/d0936f61cb164e9891418cf8937873e5-0.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/mkref_log.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/d63c79230d594fbebdf4402355643770-0.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/qa_ref.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/reconstructed_stage/t3_ep020_support.usda
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/ref_summary.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/table_frame.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/mesh/blue_cup/blue_cup.glb
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/mesh/water_pitcher/water_pitcher.glb
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/blue_cup_rigid.urdf
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_0.stl
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_1.stl
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_2.stl
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_3.stl
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_4.stl
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_5.stl
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_6.stl
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/foot/water_pitcher_foot0_7.stl
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/assets/urdf/water_pitcher_rigid.urdf
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_sf.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_sf_support_fill.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/reconstructed_stage/t3_ep020_support.usda
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/results/glock_public/ep20/rest_check.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/results/glock_public/ep20/zero_score.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/results/glock_public/ep20/support_fill.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-evb1420-ee7ba8e/results/final_eval/ep20/policy.safetensors
+[2026-11-01T07:35:01Z] ev20_b1 inputs: INPUTS OK :: P 4d06d8d42d57d84b1d25a166e8a90adc (fingerprint c1e09fcc24b9), stage 1388703a, blue_cup URDF 31cd001d 1 collisions glb d2be7e3d, water_pitcher URDF 6772f954 9 collisions glb adb315f3, packed checkpoint 61dcd7a63396
+[2026-11-01T07:35:02Z] ev20_b1 carve: {"out": "/content/sf20_b1", "carved": [["water_pitcher", 41]]}  :: ASSETS OK :: changed ['urdf/water_pitcher_rigid.urdf'], added 41, removed 0; water_pitcher URDF 6772f954 -> 77b395a5, 9 -> 41 collisions, inertial equal True, visual equal True, mass 0.3; blue_cup URDF 31cd001d -> 31cd001d, 1 -> 1 collisions, inertial equal True, visual equal True, mass 0.3
+[2026-11-01T07:35:03Z] ev20_b1 arms: ARMS OK :: P 4d06d8d42d57d84b1d25a166e8a90adc (fingerprint c1e09fcc24b9), seeds ['42', '43'], blue_cup 0.3 kg URDF 31cd001d, water_pitcher 0.3 kg URDF 77b395a5
+[2026-11-01T07:35:03Z] ev20_b1: inputs ok; no_oracle: no_oracle: 7 inputs checked, none oracle-derived
+[2026-11-01T07:35:03Z] ev20_b1: seed 42, PAIRS [20:local:mck:e20b1s42]
+[2026-11-01T07:35:03Z] glock_public code 4207ce42, pairs [20:local:mck:e20b1s42], seed 42, steps 70004736, NREP 10, SPLIT eval, SETTLE 0, SF 0, REPLAN 1, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-11-01T07:35:03Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-11-01T07:35:05Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-11-01T07:35:05Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-11-01T07:35:06Z] glock e20b1s42 ep20: base mck (/content/refs/e20b1s42mck/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/d63c79230d594fbebdf4402355643770-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/e20b1s42_glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-11-01T08:12:04Z] glock e20b1s42 ep20: trained 7 checkpoints
+[2026-11-01T08:14:41Z] glock e20b1s42 ep20: curve  10M sim_vs_ref 0.266 | blue_cup: lift 0; 20M sim_vs_ref 0.212 | blue_cup: lift 0; 30M sim_vs_ref 0.191 | blue_cup: lift 0; 40M sim_vs_ref 0.325 | blue_cup: lift 4; 50M sim_vs_ref 0.290 | blue_cup: lift 6; 60M sim_vs_ref 0.616 | blue_cup: lift 6; 70M sim_vs_ref 0.845 | blue_cup: lift 5;; chosen by sim_vs_ref: policy_70004736.safetensors
+[2026-11-01T08:15:53Z] glock e20b1s42 ep20 RESULT (policy_70004736.safetensors): n 10 sim_vs_ref {'mean': 0.7861, 'std': 0.1473, 'min': 0.4109, 'max': 0.9109} registered AUC vs mocap None
+[2026-11-01T08:15:53Z] glock_public summary: {}
+[2026-11-01T08:15:53Z] ev20_b1: seed 42 training + curve + 10 evaluations took 40 min
+[2026-11-01T08:15:53Z] ev20_b1: seed 43, PAIRS [20:local:mck:e20b1s43]
+[2026-11-01T08:15:53Z] glock_public code 4207ce42, pairs [20:local:mck:e20b1s43], seed 43, steps 70004736, NREP 10, SPLIT eval, SETTLE 0, SF 0, REPLAN 1, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-11-01T08:15:53Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-11-01T08:15:54Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-11-01T08:15:54Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-11-01T08:15:55Z] glock e20b1s43 ep20: base mck (/content/refs/e20b1s43mck/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/d63c79230d594fbebdf4402355643770-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/e20b1s43_glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-11-01T08:51:16Z] glock e20b1s43 ep20: trained 7 checkpoints
+[2026-11-01T08:53:51Z] glock e20b1s43 ep20: curve  10M sim_vs_ref 0.236 | blue_cup: lift 4; 20M sim_vs_ref 0.138 | blue_cup: lift 0; 30M sim_vs_ref 0.411 | blue_cup: lift 4; 40M sim_vs_ref 0.112 | blue_cup: lift 0; 50M sim_vs_ref 0.293 | blue_cup: lift 9; 60M sim_vs_ref 0.647 | blue_cup: lift 7; 70M sim_vs_ref 0.897 | blue_cup: lift 5;; chosen by sim_vs_ref: policy_70004736.safetensors
+[2026-11-01T08:55:03Z] glock e20b1s43 ep20 RESULT (policy_70004736.safetensors): n 10 sim_vs_ref {'mean': 0.8929, 'std': 0.0359, 'min': 0.8175, 'max': 0.9302} registered AUC vs mocap None
+[2026-11-01T08:55:03Z] glock_public summary: {}
+[2026-11-01T08:55:03Z] ev20_b1: seed 43 training + curve + 10 evaluations took 39 min
+[2026-11-01T08:55:03Z] ev20_b1 overflow (FIRST check; > 1000 lines in a training log = pieces not clean in training): overflow train_s42: 1 files, 1411 lines; nefc 1236 (requested median 532.0 p95 565.75 max 604), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow train_oom_s42: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow curve_s42: 21 files, 1974 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow best_s42: 10 files, 940 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow train_s43: 1 files, 1511 lines; nefc 1334 (requested median 528.0 p95 556.0 max 600), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow train_oom_s43: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow curve_s43: 21 files, 1974 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow best_s43: 10 files, 940 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow conf: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 
+[2026-11-01T08:55:15Z] ev20_b1 rest check of P on the b1 copy (reported, not gating; packed run: pitcher 10.4 mm / 3.9 deg until f14): {"all_ok": false, "mm": 5.0, "deg": 2.0, "objects": {"blue_cup": {"until_frame": 1, "max_mm": 0.0, "max_deg": 0.0, "worst_frame": 0, "ok": true}, "water_pitcher": {"until_frame": 14, "max_mm": 9.5, "max_deg": 3.1, "worst_frame": 11, "ok": false}}} | floor_vs_ref 0.3649 zero_action: sim_vs_ref 0.3424 
+[2026-11-01T08:55:15Z] ev20_b1 cells: CELLS :: s42 VERIFIED n 10 mean 0.7861 sd 0.1553 min 0.4109 config diff ['output_dir', 'reference.parquet', 'task.parquet'] | s43 VERIFIED n 10 mean 0.8929 sd 0.0378 min 0.8175 config diff ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']
+[2026-11-01T08:55:15Z] ev20_b1 choice: CHOSEN seed 43 :: s42 VERIFIED n 10 mean 0.7861 sd 0.1553; s43 VERIFIED n 10 mean 0.8929 sd 0.0378
+[2026-11-01T08:55:15Z] ev20_b1 gate: GATE NOT MET (training-box gate not met: no confirmation draws) (bar > 0.8933 vs P) :: s42 VERIFIED n 10 mean 0.7861 margin -0.1072; s43 VERIFIED n 10 mean 0.8929 margin -0.0004
+[2026-11-01T08:55:15Z] ev20_b1: training-box gate not met: NO-SWAP, no confirmation draws (PREREG section 4)
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/h5_summary.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r1/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r1/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r2/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r2/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r3/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r3/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r4/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r4/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r5/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r5/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r6/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r6/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r7/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r7/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r8/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r8/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r9/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r9/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r10/ep20/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r10/ep20/episode_000020.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261026-pack6-5203d42/results/submission/results/episode_000020.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261026-pack6-5203d42/results/submission/results/episode_000020.json
+[2026-11-01T08:55:52Z] ev20_b1 scores: ep20 conf (own P): 0 rollouts, 0 scored;  ep20 old (own P): 1 rollouts, 1 scored; r1 P s_v_r 0.8948 RPE 1.30 ep20 packed (own P): 10 rollouts, 10 scored; r1 P s_v_r 0.8968 RPE 1.96; r2 P s_v_r 0.9112 RPE 1.87; r3 P s_v_r 0.9146 RPE 1.73; r4 P s_v_r 0.8945 RPE 1.56; r5 P s_v_r 0.8193 RPE 4.10; r6 P s_v_r 0.9058 RPE 1.37; r7 P s_v_r 0.9076 RPE 1.51; r8 P s_v_r 0.8922 RPE 1.61; r9 P s_v_r 0.8815 RPE 1.99; r10 P s_v_r 0.9100 RPE 1.31 ep20 train42 (own P): 10 rollouts, 10 scored; r1 P s_v_r 0.8987 RPE 4.20; r2 P s_v_r 0.8283 RPE 2.93; r3 P s_v_r 0.8125 RPE 3.77; r4 P s_v_r 0.8866 RPE 4.61; r5 P s_v_r 0.6798 RPE 16.28; r6 P s_v_r 0.6996 RPE 27.23; r7 P s_v_r 0.9109 RPE 2.68; r8 P s_v_r 0.4109 RPE 14.34; r9 P s_v_r 0.9095 RPE 2.11; r10 P s_v_r 0.8239 RPE 6.54 ep20 train43 (own P): 10 rollouts, 10 scored; r1 P s_v_r 0.8377 RPE 2.75; r2 P s_v_r 0.8175 RPE 8.72; r3 P s_v_r 0.8800 RPE 2.42; r4 P s_v_r 0.8960 RPE 2.24; r5 P s_v_r 0.9189 RPE 2.18; r6 P s_v_r 0.8948 RPE 2.70; r7 P s_v_r 0.9302 RPE 1.68; r8 P s_v_r 0.9196 RPE 2.64; r9 P s_v_r 0.9146 RPE 1.57; r10 P s_v_r 0.9196 RPE 2.53 
+[2026-11-01T08:55:52Z] ev20_b1 verify: VERIFIED :: set ev20b1 :: chosen 43 :: confirmation draws 0 (rc {}) :: own-reference checks 31/31
+[2026-11-01T08:55:52Z] ev20_b1 RESULT: NO-SWAP [pieces not clean in training] :: pack 10: not swap-eligible: not included (gain vs P None; bar 0.02) :: training-box gate not met: no seed's training-box mean sim_vs_ref vs P above 0.8933 ({'42': 0.7861, '43': 0.8929}); no confirmation draws ::  vs packed 0.8934 (n 10, fails 0, RPE med 1.6712) :: gate NOT met {'42': 0.7861, '43': 0.8929} :: overflow lines per training log {s42: 1236, s43: 1334} (bar 1000) :: chosen seed 43 :: set ev20b1 (MD5SUMS fe9aeca079fd)

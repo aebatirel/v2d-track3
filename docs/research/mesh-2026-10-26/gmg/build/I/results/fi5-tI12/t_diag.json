@@ -1,0 +1,4663 @@
+{
+ "x1_diag_nojit_c01": {
+  "routes": {
+   "A": "2_lathe",
+   "B": "2_lathe"
+  },
+  "pieces": {
+   "A": 65,
+   "B": 65
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 65,
+    "max_cm3": 0.168,
+    "sum_cm3": 4.816,
+    "over_tol": 0,
+    "keepout_points": 601,
+    "keepout_cm3": 4.808
+   },
+   "B": {
+    "pass_": true,
+    "n": 65,
+    "max_cm3": 0.144,
+    "sum_cm3": 3.664,
+    "over_tol": 0,
+    "keepout_points": 458,
+    "keepout_cm3": 3.664
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 9.072,
+    "median_cm3": 3.584
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {
+    "A<-B#0": {
+     "voxels": 634,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.154,
+     "observed_voxels": 272,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "A<-B#1": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "A<-B#2": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "B<-A#3": {
+     "voxels": 589,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.28,
+     "observed_voxels": 411,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "in_scope": true,
+   "receiver": "A",
+   "guest": "B",
+   "receiver_info": {
+    "containment": {
+     "A": 0.904,
+     "B": 0.0949
+    },
+    "frames": 24
+   },
+   "components": [
+    {
+     "gates": {
+      "voxels": 4,
+      "run_kind": "SEAT",
+      "run": [
+       35,
+       89
+      ],
+      "n_build": 30,
+      "sweep_share": 1.0,
+      "observed_voxels": 0,
+      "persistent_nmin": 8,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 55,
+      "hands_off_static": 34,
+      "assembled_hands_off": 34,
+      "s_frames": [
+       73
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       1.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      [
+       0.0,
+       1.0,
+       0.0,
+       -0.0
+      ],
+      [
+       0.0,
+       0.0,
+       1.0,
+       0.0105
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 24,
+     "build_frames_entered": 24,
+     "clearance": {
+      "surface_samples": 258551,
+      "in_Rplus": 3048,
+      "sigma_sup": 0.0515,
+      "c_mm": 0.1,
+      "c_override_mm": 0.1,
+      "flag_diag": "DIAGNOSTIC c override (never delivered)"
+     },
+     "R_voxels": 4,
+     "Rplus_voxels": 54
+    },
+    {
+     "gates": {
+      "voxels": 4,
+      "run_kind": "SEAT",
+      "run": [
+       35,
+       89
+      ],
+      "n_build": 30,
+      "sweep_share": 1.0,
+      "observed_voxels": 0,
+      "persistent_nmin": 8,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 55,
+      "hands_off_static": 34,
+      "assembled_hands_off": 34,
+      "s_frames": [
+       73
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       1.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      [
+       0.0,
+       1.0,
+       0.0,
+       -0.0
+      ],
+      [
+       0.0,
+       0.0,
+       1.0,
+       0.0105
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 24,
+     "build_frames_entered": 24,
+     "clearance": {
+      "surface_samples": 258551,
+      "in_Rplus": 3072,
+      "sigma_sup": 0.0515,
+      "c_mm": 0.1,
+      "c_override_mm": 0.1,
+      "flag_diag": "DIAGNOSTIC c override (never delivered)"
+     },
+     "R_voxels": 4,
+     "Rplus_voxels": 54
+    }
+   ],
+   "carve": {
+    "route": "2_lathe",
+    "K_pieces": 3120,
+    "n_sectors": 16,
+    "carved_ranges_mm": {
+     "3": [
+      65.31,
+      95.0
+     ],
+     "4": [
+      65.31,
+      95.0
+     ],
+     "7": [
+      65.31,
+      95.0
+     ],
+     "8": [
+      65.31,
+      95.0
+     ]
+    },
+    "lathe": {
+     "conflicts": 8,
+     "options": {
+      "widen": 8
+     },
+     "removed_pieces": 0,
+     "rounds": 2,
+     "infeasible": 0,
+     "unresolved_after_rounds": 0
+    },
+    "pieces": 73,
+    "sec": 63.9
+   },
+   "caps": {
+    "removed_cm3": 0.769,
+    "cumulative_share": 0.0077,
+    "vol0_cm3": 100.4,
+    "reach": null,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": true,
+    "pass_": true,
+    "fail": null
+   },
+   "report": {
+    "rigid_shift": {
+     "frames": 12,
+     "cleared_share": 0.167,
+     "per_frame": [
+      {
+       "f": 41,
+       "cm3": 4.35,
+       "cleared": true,
+       "t_mm": 4.0,
+       "tilt_deg": 1
+      },
+      {
+       "f": 43,
+       "cm3": 5.38,
+       "cleared": true,
+       "t_mm": 6.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 55,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 57,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 59,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 61,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 64,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 76,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 78,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 80,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 82,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 84,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      }
+     ],
+     "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+    },
+    "carve_of_pose_error": false,
+    "one_sided": {
+     "frames": 24,
+     "one_sided_share": 0.0
+    },
+    "decision_f_i3_same_sides": {
+     "A<-B": "IGNORE",
+     "B<-A": "PUSH"
+    }
+   },
+   "acceptance": {
+    "S": {
+     "frames": [
+      {
+       "frame": 73,
+       "carved": {
+        "disp_mm": 4.637,
+        "dz_mm": -4.637,
+        "lateral_mm": 0.012,
+        "tilt_deg": 0.029,
+        "per_copy": [
+         {
+          "disp_mm": 4.45,
+          "dz_mm": -4.45,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.84,
+          "dz_mm": -4.84,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.64,
+          "dz_mm": -4.64,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.5,
+          "dz_mm": -4.5,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.67,
+          "dz_mm": -4.67,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.42,
+          "dz_mm": -4.42,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.75,
+          "dz_mm": -4.75,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.65,
+          "dz_mm": -4.65,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 5.07,
+          "dz_mm": -5.07,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.23,
+          "dz_mm": -4.23,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.83,
+          "dz_mm": -4.83,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.62,
+          "dz_mm": -4.62,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.29,
+          "dz_mm": -4.29,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.99,
+          "dz_mm": -4.99,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.37,
+          "dz_mm": -4.37,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.89,
+          "dz_mm": -4.89,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         }
+        ],
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": false
+       },
+       "default": {
+        "disp_mm": 4.587,
+        "dz_mm": -4.587,
+        "lateral_mm": 0.001,
+        "tilt_deg": 0.001,
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": false
+       }
+      }
+     ],
+     "pass_": false
+    },
+    "P2": {
+     "carved_mm": {
+      "+d": 0.0,
+      "+n": 0.5,
+      "-n": 0.0,
+      "gravity": 0.0
+     },
+     "default_mm": {
+      "+d": 0.0,
+      "+n": 0.5,
+      "-n": 0.0,
+      "gravity": 0.0
+     },
+     "overlap_at_pose_cm3": [
+      9.017,
+      8.467
+     ],
+     "pass_": true,
+     "pose": "T_rest"
+    },
+    "P3": {
+     "default": {
+      "lag_cm_asm": 0.878,
+      "lag_cm_asm_sd": 0.034,
+      "lag_deg_asm": 0.5,
+      "lag_cm_after_max": 0.878,
+      "copies": 16,
+      "nan": 0
+     },
+     "carved": {
+      "lag_cm_asm": 0.868,
+      "lag_cm_asm_sd": 0.033,
+      "lag_deg_asm": 0.5,
+      "lag_cm_after_max": 0.868,
+      "copies": 16,
+      "nan": 0
+     },
+     "nocollide": {
+      "lag_cm_asm": 0.0,
+      "lag_cm_asm_sd": 0.0,
+      "lag_deg_asm": 0.0,
+      "lag_cm_after_max": 0.0,
+      "copies": 16,
+      "nan": 0
+     },
+     "judge": {
+      "pass_": false,
+      "slot_not_limiting": true,
+      "overlap_asm_cm3": 8.467,
+      "overlap_ok": false
+     }
+    },
+    "P4": {
+     "removed_cm3": 0.77,
+     "carve_cm3": 0.13,
+     "default_cm3": 100.4,
+     "carved_cm3": 99.63,
+     "kept_share": 0.992,
+     "pass_": false
+    },
+    "P5": {
+     "shapes": 138,
+     "cap": 165,
+     "pass_": true
+    },
+    "P6": {
+     "frames": 24,
+     "n_worse": 0,
+     "worse": [],
+     "pass_": true,
+     "default_max": 9.017,
+     "carved_max": 8.467
+    },
+    "P7": {
+     "check_frames": 25,
+     "default_sum_cm3": 198.639,
+     "carved_sum_cm3": 186.113,
+     "pass_": false
+    },
+    "gate_carved": {
+     "pass_": true,
+     "n": 73,
+     "max_cm3": 0.168,
+     "sum_cm3": 4.336,
+     "over_tol": 0,
+     "keepout_points": 541,
+     "keepout_cm3": 4.328
+    },
+    "gate_default": {
+     "pass_": true,
+     "n": 65,
+     "max_cm3": 0.168,
+     "sum_cm3": 4.816,
+     "over_tol": 0,
+     "keepout_points": 601,
+     "keepout_cm3": 4.808
+    },
+    "tests": {
+     "S": false,
+     "P2": true,
+     "P3": false,
+     "P4": false,
+     "P5": true,
+     "P6": true,
+     "P7": false,
+     "gate": true
+    },
+    "failing": [
+     "S",
+     "P3",
+     "P4",
+     "P7"
+    ],
+    "pass_all_but_P1": false,
+    "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I5.5)"
+   },
+   "deliver": "default",
+   "diagnostic": "override set: never delivered"
+  },
+  "decisions": [
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep"
+    ],
+    "gates": {
+     "voxels": 634,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.154,
+     "observed_voxels": 272,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "CARVE",
+    "flags": [
+     "owner_waiver_fi5"
+    ],
+    "gates": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "CARVE",
+    "flags": [
+     "owner_waiver_fi5"
+    ],
+    "gates": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 589,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.28,
+     "observed_voxels": 411,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   }
+  ],
+  "sec": 783.0,
+  "summary": {
+   "in_scope": true,
+   "receiver": "A",
+   "deliver": "default",
+   "containment": {
+    "A": 0.904,
+    "B": 0.0949
+   },
+   "c_mm": 0.1,
+   "sigma_sup": 0.0515,
+   "overshoot": 0,
+   "caps": {
+    "removed_cm3": 0.769,
+    "cumulative_share": 0.0077,
+    "vol0_cm3": 100.4,
+    "reach": null,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": true,
+    "pass_": true,
+    "fail": null
+   },
+   "tests": {
+    "S": false,
+    "P2": true,
+    "P3": false,
+    "P4": false,
+    "P5": true,
+    "P6": true,
+    "P7": false,
+    "gate": true
+   },
+   "failing": [
+    "S",
+    "P3",
+    "P4",
+    "P7"
+   ],
+   "S": [
+    {
+     "f": 73,
+     "carved": {
+      "disp_mm": 4.637,
+      "dz_mm": -4.637,
+      "lateral_mm": 0.012,
+      "tilt_deg": 0.029,
+      "pass_": false
+     },
+     "default": {
+      "disp_mm": 4.587,
+      "dz_mm": -4.587,
+      "tilt_deg": 0.001,
+      "pass_": false
+     }
+    }
+   ],
+   "P2": {
+    "+d": 0.0,
+    "+n": 0.5,
+    "-n": 0.0,
+    "gravity": 0.0
+   },
+   "P2_default": {
+    "+d": 0.0,
+    "+n": 0.5,
+    "-n": 0.0,
+    "gravity": 0.0
+   },
+   "shift": 0.167,
+   "one_sided": 0.0,
+   "gates": {
+    "A<-B#0": {
+     "voxels": 634,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.154,
+     "observed_voxels": 272,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "A<-B#1": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "A<-B#2": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "B<-A#3": {
+     "voxels": 589,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.28,
+     "observed_voxels": 411,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "carve": {
+    "route": "2_lathe",
+    "K_pieces": 3120,
+    "n_sectors": 16,
+    "carved_ranges_mm": {
+     "3": [
+      65.31,
+      95.0
+     ],
+     "4": [
+      65.31,
+      95.0
+     ],
+     "7": [
+      65.31,
+      95.0
+     ],
+     "8": [
+      65.31,
+      95.0
+     ]
+    },
+    "lathe": {
+     "conflicts": 8,
+     "options": {
+      "widen": 8
+     },
+     "removed_pieces": 0,
+     "rounds": 2,
+     "infeasible": 0,
+     "unresolved_after_rounds": 0
+    },
+    "pieces": 73,
+    "sec": 63.9
+   }
+  },
+  "note": "DIAGNOSTIC (after x1 missed; never delivered): c forced to 0.10 mm; track without jitter"
+ },
+ "x1_diag_c01": {
+  "routes": {
+   "A": "2_lathe",
+   "B": "2_lathe"
+  },
+  "pieces": {
+   "A": 65,
+   "B": 65
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 65,
+    "max_cm3": 0.168,
+    "sum_cm3": 4.816,
+    "over_tol": 0,
+    "keepout_points": 601,
+    "keepout_cm3": 4.808
+   },
+   "B": {
+    "pass_": true,
+    "n": 65,
+    "max_cm3": 0.144,
+    "sum_cm3": 3.664,
+    "over_tol": 0,
+    "keepout_points": 458,
+    "keepout_cm3": 3.664
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 11.728,
+    "median_cm3": 6.856
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {
+    "A<-B#0": {
+     "voxels": 800,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.869,
+     "observed_voxels": 434,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "A<-B#1": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#2": {
+     "voxels": 736,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.822,
+     "observed_voxels": 606,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "B<-A#3": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#4": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#5": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#6": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#7": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#8": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   "in_scope": true,
+   "receiver": "A",
+   "guest": "B",
+   "receiver_info": {
+    "containment": {
+     "A": 0.8847,
+     "B": 0.0649
+    },
+    "frames": 40
+   },
+   "components": [
+    {
+     "gates": {
+      "voxels": 800,
+      "run_kind": "INSERTION",
+      "run": [
+       16,
+       89
+      ],
+      "n_build": 40,
+      "sweep_share": 0.869,
+      "observed_voxels": 434,
+      "persistent_nmin": 10,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 65,
+      "hands_off_static": 30,
+      "assembled_hands_off": 18,
+      "s_frames": [
+       81,
+       62
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       0.999998,
+       3.7e-05,
+       0.001846,
+       5e-05
+      ],
+      [
+       -3.7e-05,
+       1.0,
+       -0.000338,
+       -0.00017
+      ],
+      [
+       -0.001846,
+       0.000338,
+       0.999998,
+       0.010463
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 38,
+     "build_frames_entered": 38,
+     "clearance": {
+      "surface_samples": 258551,
+      "in_Rplus": 209983,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0,
+      "c_override_mm": 0.1,
+      "flag_diag": "DIAGNOSTIC c override (never delivered)"
+     },
+     "R_voxels": 800,
+     "Rplus_voxels": 4337
+    }
+   ],
+   "carve": {
+    "route": "2_lathe",
+    "K_pieces": 2470,
+    "n_sectors": 8,
+    "carved_ranges_mm": {
+     "0": [
+      9.33,
+      95.0
+     ],
+     "1": [
+      9.45,
+      95.0
+     ],
+     "2": [
+      9.56,
+      95.0
+     ],
+     "3": [
+      9.53,
+      95.0
+     ],
+     "4": [
+      9.41,
+      95.0
+     ],
+     "5": [
+      9.3,
+      95.0
+     ],
+     "6": [
+      9.27,
+      95.0
+     ],
+     "7": [
+      9.27,
+      95.0
+     ]
+    },
+    "lathe": {
+     "conflicts": 72,
+     "options": {
+      "trim_top": 8
+     },
+     "removed_pieces": 64,
+     "rounds": 2,
+     "infeasible": 64,
+     "infeasible_rows": [
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        33.77
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.28
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        34.8
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.33
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        35.86
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.39
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        36.92
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.35
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        33.98
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.5
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        35.03
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        36.11
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.66
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        37.2
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.63
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        34.19
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.66
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        35.18
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.74
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        36.29
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.85
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        37.4
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.85
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        35.03
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        35.53
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        36.04
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        36.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        37.07
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        37.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        38.09
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        38.5
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        35.03
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        35.53
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        36.05
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        36.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        37.1
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        37.62
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        38.15
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        38.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        34.16
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.68
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        35.22
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.78
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        36.34
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.92
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        37.5
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.96
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        34.1
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.58
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        35.07
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.6
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        36.13
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.66
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        37.19
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.61
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        33.77
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.28
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        34.8
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.33
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        35.86
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.39
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        36.92
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.35
+       ]
+      }
+     ],
+     "unresolved_after_rounds": 0
+    },
+    "pieces": 25,
+    "sec": 59.0
+   },
+   "caps": {
+    "removed_cm3": 78.315,
+    "cumulative_share": 0.78,
+    "vol0_cm3": 100.4,
+    "reach": 1.0,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": false,
+    "ok_reach": false,
+    "ok_topology": true,
+    "pass_": false,
+    "fail": "budget_iv_fail"
+   },
+   "report": {
+    "rigid_shift": {
+     "frames": 12,
+     "cleared_share": 0.5,
+     "per_frame": [
+      {
+       "f": 16,
+       "cm3": 0.45,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 20,
+       "cm3": 0.58,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 24,
+       "cm3": 0.9,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 38,
+       "cm3": 4.86,
+       "cleared": true,
+       "t_mm": 6.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 41,
+       "cm3": 5.12,
+       "cleared": true,
+       "t_mm": 6.0,
+       "tilt_deg": 1
+      },
+      {
+       "f": 45,
+       "cm3": 7.36,
+       "cleared": true,
+       "t_mm": 10.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 58,
+       "cm3": 13.95,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 62,
+       "cm3": 9.47,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 65,
+       "cm3": 9.98,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 78,
+       "cm3": 9.54,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 82,
+       "cm3": 13.38,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 85,
+       "cm3": 10.3,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      }
+     ],
+     "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+    },
+    "carve_of_pose_error": false,
+    "one_sided": {
+     "frames": 38,
+     "one_sided_share": 0.816
+    },
+    "decision_f_i3_same_sides": {
+     "A<-B": "IGNORE",
+     "B<-A": "IGNORE"
+    }
+   },
+   "deliver": "default",
+   "diagnostic": "override set: never delivered"
+  },
+  "decisions": [
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "owner_waiver_fi5",
+     "budget_iv_fail"
+    ],
+    "gates": {
+     "voxels": 800,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.869,
+     "observed_voxels": 434,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 736,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.822,
+     "observed_voxels": 606,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   }
+  ],
+  "sec": 118.2,
+  "summary": {
+   "in_scope": true,
+   "receiver": "A",
+   "deliver": "default",
+   "containment": {
+    "A": 0.8847,
+    "B": 0.0649
+   },
+   "c_mm": 1.0,
+   "sigma_sup": 1.0,
+   "overshoot": 0,
+   "caps": {
+    "removed_cm3": 78.315,
+    "cumulative_share": 0.78,
+    "vol0_cm3": 100.4,
+    "reach": 1.0,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": false,
+    "ok_reach": false,
+    "ok_topology": true,
+    "pass_": false,
+    "fail": "budget_iv_fail"
+   },
+   "tests": null,
+   "failing": null,
+   "S": [],
+   "P2": null,
+   "P2_default": null,
+   "shift": 0.5,
+   "one_sided": 0.816,
+   "gates": {
+    "A<-B#0": {
+     "voxels": 800,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.869,
+     "observed_voxels": 434,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "A<-B#1": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#2": {
+     "voxels": 736,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.822,
+     "observed_voxels": 606,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "B<-A#3": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#4": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#5": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#6": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#7": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#8": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      16,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   "carve": {
+    "route": "2_lathe",
+    "K_pieces": 2470,
+    "n_sectors": 8,
+    "carved_ranges_mm": {
+     "0": [
+      9.33,
+      95.0
+     ],
+     "1": [
+      9.45,
+      95.0
+     ],
+     "2": [
+      9.56,
+      95.0
+     ],
+     "3": [
+      9.53,
+      95.0
+     ],
+     "4": [
+      9.41,
+      95.0
+     ],
+     "5": [
+      9.3,
+      95.0
+     ],
+     "6": [
+      9.27,
+      95.0
+     ],
+     "7": [
+      9.27,
+      95.0
+     ]
+    },
+    "lathe": {
+     "conflicts": 72,
+     "options": {
+      "trim_top": 8
+     },
+     "removed_pieces": 64,
+     "rounds": 2,
+     "infeasible": 64,
+     "infeasible_rows": [
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        33.77
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.28
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        34.8
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.33
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        35.86
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.39
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        36.92
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 0,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.35
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        33.98
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.5
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        35.03
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        36.11
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.66
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        37.2
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 1,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.63
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        34.19
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.66
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        35.18
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.74
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        36.29
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.85
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        37.4
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 2,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.85
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        35.03
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        35.53
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        36.04
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        36.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        37.07
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        37.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        38.09
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 3,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        38.5
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        35.03
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        35.53
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        36.05
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        36.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        37.1
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        37.62
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        38.15
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 4,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        38.57
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        34.16
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.68
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        35.22
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.78
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        36.34
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.92
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        37.5
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 5,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.96
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        34.1
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.58
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        35.07
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.6
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        36.13
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.66
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        37.19
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 6,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.61
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_h_mm": [
+        17.81,
+        27.71
+       ],
+       "K_r_mm": [
+        29.47,
+        33.77
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_h_mm": [
+        27.71,
+        37.6
+       ],
+       "K_r_mm": [
+        29.96,
+        34.28
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_h_mm": [
+        37.6,
+        47.5
+       ],
+       "K_r_mm": [
+        30.44,
+        34.8
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_h_mm": [
+        47.5,
+        57.4
+       ],
+       "K_r_mm": [
+        30.92,
+        35.33
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_h_mm": [
+        57.4,
+        67.29
+       ],
+       "K_r_mm": [
+        31.4,
+        35.86
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_h_mm": [
+        67.29,
+        77.19
+       ],
+       "K_r_mm": [
+        31.88,
+        36.39
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_h_mm": [
+        77.19,
+        87.08
+       ],
+       "K_r_mm": [
+        32.36,
+        36.92
+       ]
+      },
+      {
+       "kind": "wall",
+       "s": 7,
+       "h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_h_mm": [
+        87.08,
+        95.0
+       ],
+       "K_r_mm": [
+        32.84,
+        37.35
+       ]
+      }
+     ],
+     "unresolved_after_rounds": 0
+    },
+    "pieces": 25,
+    "sec": 59.0
+   }
+  },
+  "note": "DIAGNOSTIC (after x1 missed; never delivered): c forced to 0.10 mm; jittered track"
+ },
+ "x1_diag_nojit": {
+  "routes": {
+   "A": "2_lathe",
+   "B": "2_lathe"
+  },
+  "pieces": {
+   "A": 65,
+   "B": 65
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 65,
+    "max_cm3": 0.168,
+    "sum_cm3": 4.816,
+    "over_tol": 0,
+    "keepout_points": 601,
+    "keepout_cm3": 4.808
+   },
+   "B": {
+    "pass_": true,
+    "n": 65,
+    "max_cm3": 0.144,
+    "sum_cm3": 3.664,
+    "over_tol": 0,
+    "keepout_points": 458,
+    "keepout_cm3": 3.664
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 9.072,
+    "median_cm3": 3.584
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {
+    "A<-B#0": {
+     "voxels": 634,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.154,
+     "observed_voxels": 272,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "A<-B#1": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "A<-B#2": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "B<-A#3": {
+     "voxels": 589,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.28,
+     "observed_voxels": 411,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "in_scope": true,
+   "receiver": "A",
+   "guest": "B",
+   "receiver_info": {
+    "containment": {
+     "A": 0.904,
+     "B": 0.0949
+    },
+    "frames": 24
+   },
+   "components": [
+    {
+     "gates": {
+      "voxels": 4,
+      "run_kind": "SEAT",
+      "run": [
+       35,
+       89
+      ],
+      "n_build": 30,
+      "sweep_share": 1.0,
+      "observed_voxels": 0,
+      "persistent_nmin": 8,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 55,
+      "hands_off_static": 34,
+      "assembled_hands_off": 34,
+      "s_frames": [
+       73
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       1.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      [
+       0.0,
+       1.0,
+       0.0,
+       -0.0
+      ],
+      [
+       0.0,
+       0.0,
+       1.0,
+       0.0105
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 24,
+     "build_frames_entered": 24,
+     "clearance": {
+      "surface_samples": 258551,
+      "in_Rplus": 3048,
+      "sigma_sup": 0.0515,
+      "c_mm": 0.1
+     },
+     "R_voxels": 4,
+     "Rplus_voxels": 54
+    },
+    {
+     "gates": {
+      "voxels": 4,
+      "run_kind": "SEAT",
+      "run": [
+       35,
+       89
+      ],
+      "n_build": 30,
+      "sweep_share": 1.0,
+      "observed_voxels": 0,
+      "persistent_nmin": 8,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 55,
+      "hands_off_static": 34,
+      "assembled_hands_off": 34,
+      "s_frames": [
+       73
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       1.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      [
+       0.0,
+       1.0,
+       0.0,
+       -0.0
+      ],
+      [
+       0.0,
+       0.0,
+       1.0,
+       0.0105
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 24,
+     "build_frames_entered": 24,
+     "clearance": {
+      "surface_samples": 258551,
+      "in_Rplus": 3072,
+      "sigma_sup": 0.0515,
+      "c_mm": 0.1
+     },
+     "R_voxels": 4,
+     "Rplus_voxels": 54
+    }
+   ],
+   "carve": {
+    "route": "2_lathe",
+    "K_pieces": 3120,
+    "n_sectors": 16,
+    "carved_ranges_mm": {
+     "3": [
+      65.31,
+      95.0
+     ],
+     "4": [
+      65.31,
+      95.0
+     ],
+     "7": [
+      65.31,
+      95.0
+     ],
+     "8": [
+      65.31,
+      95.0
+     ]
+    },
+    "lathe": {
+     "conflicts": 8,
+     "options": {
+      "widen": 8
+     },
+     "removed_pieces": 0,
+     "rounds": 2,
+     "infeasible": 0,
+     "unresolved_after_rounds": 0
+    },
+    "pieces": 73,
+    "sec": 22.0
+   },
+   "caps": {
+    "removed_cm3": 0.769,
+    "cumulative_share": 0.0077,
+    "vol0_cm3": 100.4,
+    "reach": null,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": true,
+    "pass_": true,
+    "fail": null
+   },
+   "report": {
+    "rigid_shift": {
+     "frames": 12,
+     "cleared_share": 0.167,
+     "per_frame": [
+      {
+       "f": 41,
+       "cm3": 4.35,
+       "cleared": true,
+       "t_mm": 4.0,
+       "tilt_deg": 1
+      },
+      {
+       "f": 43,
+       "cm3": 5.38,
+       "cleared": true,
+       "t_mm": 6.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 55,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 57,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 59,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 61,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 64,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 76,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 78,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 80,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 82,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      },
+      {
+       "f": 84,
+       "cm3": 9.22,
+       "cleared": false,
+       "t_mm": null,
+       "tilt_deg": null
+      }
+     ],
+     "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+    },
+    "carve_of_pose_error": false,
+    "one_sided": {
+     "frames": 24,
+     "one_sided_share": 0.0
+    },
+    "decision_f_i3_same_sides": {
+     "A<-B": "IGNORE",
+     "B<-A": "PUSH"
+    }
+   },
+   "acceptance": {
+    "S": {
+     "frames": [
+      {
+       "frame": 73,
+       "carved": {
+        "disp_mm": 4.637,
+        "dz_mm": -4.637,
+        "lateral_mm": 0.012,
+        "tilt_deg": 0.029,
+        "per_copy": [
+         {
+          "disp_mm": 4.45,
+          "dz_mm": -4.45,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.84,
+          "dz_mm": -4.84,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.64,
+          "dz_mm": -4.64,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.5,
+          "dz_mm": -4.5,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.67,
+          "dz_mm": -4.67,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.42,
+          "dz_mm": -4.42,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.75,
+          "dz_mm": -4.75,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.65,
+          "dz_mm": -4.65,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 5.07,
+          "dz_mm": -5.07,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.23,
+          "dz_mm": -4.23,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.83,
+          "dz_mm": -4.83,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.62,
+          "dz_mm": -4.62,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.29,
+          "dz_mm": -4.29,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.99,
+          "dz_mm": -4.99,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.37,
+          "dz_mm": -4.37,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         },
+         {
+          "disp_mm": 4.89,
+          "dz_mm": -4.89,
+          "lateral_mm": 0.01,
+          "tilt_deg": 0.03,
+          "below": false
+         }
+        ],
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": false
+       },
+       "default": {
+        "disp_mm": 4.587,
+        "dz_mm": -4.587,
+        "lateral_mm": 0.001,
+        "tilt_deg": 0.001,
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": false
+       }
+      }
+     ],
+     "pass_": false
+    },
+    "P2": {
+     "carved_mm": {
+      "+d": 0.0,
+      "+n": 0.5,
+      "-n": 0.0,
+      "gravity": 0.0
+     },
+     "default_mm": {
+      "+d": 0.0,
+      "+n": 0.5,
+      "-n": 0.0,
+      "gravity": 0.0
+     },
+     "overlap_at_pose_cm3": [
+      9.017,
+      8.467
+     ],
+     "pass_": true,
+     "pose": "T_rest"
+    },
+    "P3": {
+     "default": {
+      "lag_cm_asm": 0.878,
+      "lag_cm_asm_sd": 0.034,
+      "lag_deg_asm": 0.5,
+      "lag_cm_after_max": 0.878,
+      "copies": 16,
+      "nan": 0
+     },
+     "carved": {
+      "lag_cm_asm": 0.868,
+      "lag_cm_asm_sd": 0.033,
+      "lag_deg_asm": 0.5,
+      "lag_cm_after_max": 0.868,
+      "copies": 16,
+      "nan": 0
+     },
+     "nocollide": {
+      "lag_cm_asm": 0.0,
+      "lag_cm_asm_sd": 0.0,
+      "lag_deg_asm": 0.0,
+      "lag_cm_after_max": 0.0,
+      "copies": 16,
+      "nan": 0
+     },
+     "judge": {
+      "pass_": false,
+      "slot_not_limiting": true,
+      "overlap_asm_cm3": 8.467,
+      "overlap_ok": false
+     }
+    },
+    "P4": {
+     "removed_cm3": 0.77,
+     "carve_cm3": 0.13,
+     "default_cm3": 100.4,
+     "carved_cm3": 99.63,
+     "kept_share": 0.992,
+     "pass_": false
+    },
+    "P5": {
+     "shapes": 138,
+     "cap": 165,
+     "pass_": true
+    },
+    "P6": {
+     "frames": 24,
+     "n_worse": 0,
+     "worse": [],
+     "pass_": true,
+     "default_max": 9.017,
+     "carved_max": 8.467
+    },
+    "P7": {
+     "check_frames": 25,
+     "default_sum_cm3": 198.639,
+     "carved_sum_cm3": 186.113,
+     "pass_": false
+    },
+    "gate_carved": {
+     "pass_": true,
+     "n": 73,
+     "max_cm3": 0.168,
+     "sum_cm3": 4.336,
+     "over_tol": 0,
+     "keepout_points": 541,
+     "keepout_cm3": 4.328
+    },
+    "gate_default": {
+     "pass_": true,
+     "n": 65,
+     "max_cm3": 0.168,
+     "sum_cm3": 4.816,
+     "over_tol": 0,
+     "keepout_points": 601,
+     "keepout_cm3": 4.808
+    },
+    "tests": {
+     "S": false,
+     "P2": true,
+     "P3": false,
+     "P4": false,
+     "P5": true,
+     "P6": true,
+     "P7": false,
+     "gate": true
+    },
+    "failing": [
+     "S",
+     "P3",
+     "P4",
+     "P7"
+    ],
+    "pass_all_but_P1": false,
+    "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I5.5)"
+   },
+   "deliver": "default"
+  },
+  "decisions": [
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep"
+    ],
+    "gates": {
+     "voxels": 634,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.154,
+     "observed_voxels": 272,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "CARVE",
+    "flags": [
+     "owner_waiver_fi5"
+    ],
+    "gates": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "CARVE",
+    "flags": [
+     "owner_waiver_fi5"
+    ],
+    "gates": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 589,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.28,
+     "observed_voxels": 411,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   }
+  ],
+  "sec": 887.9,
+  "summary": {
+   "in_scope": true,
+   "receiver": "A",
+   "deliver": "default",
+   "containment": {
+    "A": 0.904,
+    "B": 0.0949
+   },
+   "c_mm": 0.1,
+   "sigma_sup": 0.0515,
+   "overshoot": 0,
+   "caps": {
+    "removed_cm3": 0.769,
+    "cumulative_share": 0.0077,
+    "vol0_cm3": 100.4,
+    "reach": null,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": true,
+    "pass_": true,
+    "fail": null
+   },
+   "tests": {
+    "S": false,
+    "P2": true,
+    "P3": false,
+    "P4": false,
+    "P5": true,
+    "P6": true,
+    "P7": false,
+    "gate": true
+   },
+   "failing": [
+    "S",
+    "P3",
+    "P4",
+    "P7"
+   ],
+   "S": [
+    {
+     "f": 73,
+     "carved": {
+      "disp_mm": 4.637,
+      "dz_mm": -4.637,
+      "lateral_mm": 0.012,
+      "tilt_deg": 0.029,
+      "pass_": false
+     },
+     "default": {
+      "disp_mm": 4.587,
+      "dz_mm": -4.587,
+      "tilt_deg": 0.001,
+      "pass_": false
+     }
+    }
+   ],
+   "P2": {
+    "+d": 0.0,
+    "+n": 0.5,
+    "-n": 0.0,
+    "gravity": 0.0
+   },
+   "P2_default": {
+    "+d": 0.0,
+    "+n": 0.5,
+    "-n": 0.0,
+    "gravity": 0.0
+   },
+   "shift": 0.167,
+   "one_sided": 0.0,
+   "gates": {
+    "A<-B#0": {
+     "voxels": 634,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.154,
+     "observed_voxels": 272,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "A<-B#1": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "A<-B#2": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 8,
+     "pass_": true
+    },
+    "B<-A#3": {
+     "voxels": 589,
+     "run_kind": "SEAT",
+     "run": [
+      35,
+      89
+     ],
+     "n_build": 30,
+     "sweep_share": 0.28,
+     "observed_voxels": 411,
+     "persistent_nmin": 8,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "carve": {
+    "route": "2_lathe",
+    "K_pieces": 3120,
+    "n_sectors": 16,
+    "carved_ranges_mm": {
+     "3": [
+      65.31,
+      95.0
+     ],
+     "4": [
+      65.31,
+      95.0
+     ],
+     "7": [
+      65.31,
+      95.0
+     ],
+     "8": [
+      65.31,
+      95.0
+     ]
+    },
+    "lathe": {
+     "conflicts": 8,
+     "options": {
+      "widen": 8
+     },
+     "removed_pieces": 0,
+     "rounds": 2,
+     "infeasible": 0,
+     "unresolved_after_rounds": 0
+    },
+    "pieces": 73,
+    "sec": 22.0
+   }
+  },
+  "note": "DIAGNOSTIC (after x1 missed; never delivered): c by the rule; track without jitter"
+ }
+}

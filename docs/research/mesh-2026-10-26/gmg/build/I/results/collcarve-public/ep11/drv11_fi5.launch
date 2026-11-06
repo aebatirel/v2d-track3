@@ -1,0 +1,39 @@
+launched_utc 2026-10-31T19:30:28
+machine vm (this container, 4 shared cores, load 12.07 12.77 15.34)
+head cdc8b4016a207653fad83f0d21fe55b406d52d99
+cmd GMG_MODE=dev nice -n 5 /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python -m gmg.tools.interlock_dev --run /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78 --ep 11 --bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11 --cands /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/cand/public/ep11 --pick blue_cup=shell_t5p36,beige_cup=shell_t5p36 --hands /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/in/hands11/hands.npz --proxy-copies 16 --identity eval --waiver-fi5 --no-physcheck --tag fi5
+status_gmg:
+?? docs/research/mesh-2026-10-26/gmg/build/I/fi5_png.py
+?? docs/research/mesh-2026-10-26/gmg/build/I/fi5_png_data.py
+?? docs/research/mesh-2026-10-26/gmg/build/I/fi5_public_summary.py
+sha256:
+d8fc9020907a2762086f9022312be4c4a1d621d4e04b8b0c1e2d4bdbf441f674  __init__.py
+17a984d9aa7e41651780ee23a084b8abd42139ed16654410c000e81d9b6d610b  bundle.py
+2f5a3776425ef836063c42d09da889f72908f2b3169a80b673a69d5079ef8235  cavpieces.py
+a27f7b950fbee73e83b0727fd1a7f2854d9c9118212c0902fadc3d1aa6b728ad  collcarve.py
+e9acf5021782cca8457933d3e1d2be7b98341da4f7e2cb5fde5a95d8fb6a98a9  complete.py
+41d05a1ea3c8c435aaa9239dc954239992f4199bb30fccc3f8c46839bc6724b2  contact.py
+ea89e838acfb0cfddbb5641d8cd9a81d994a7c565dc85046be139180362be8d4  extract_joint.py
+2451d3968bc6048fe73655e6b47feaccc76605f6788d7f6942a4f97fb0b49195  gen_inputs.py
+faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4  gen_slot.py
+1a01c5b81faaeeca4784d3f1b6e87a092f48caccf15997402ec5adac32d1b305  geom.py
+a381bc95e991b6d2dc4bda8cb3cf7505c66926d5f90f96696c27a42088fc9298  guard.py
+3f77cf6ce021ed47b551878bb5ad05ecdee280a5153028623b80d6ae72d32ee7  hands_cpu.py
+9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1  interlock.py
+3c7add17659b559d70f46829a3126c4b93ae16ba3991dfd72aa875b68eed1efc  markers.py
+925e5a5b2a0d7d917e6fe88e6ef097f541e21cd96eeea2e109f158fa66b723c1  obs_census2.py
+83cebe53b1f7b705078a18dff0d3d56219c696e46977cba21c9ab54107ea8fb6  pack.py
+138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21  physcheck.py
+a1ca8960b0d7980509e76ebcba18f873e2df4877064146ed57c39bff91a866b9  platebody.py
+5367bfc647ec995d0d8962eda319338af6ad55aa265f1bca28f89ace6a2d6b04  remesh.py
+f89dbecf987d19b83d4462f3d8ca3a4ef101eb5b43f1995949c70a9da7074435  run_episode.py
+63c25f56154d90f15f3684275420cc7dc5a5194dd6fa624d43ea61fee3feede9  score.py
+774b3b32a55204299fbc585705d77de61811314ba2a96ad413b5e5556f0ebe40  select.py
+4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8  silhouette.py
+12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1  simphys.py
+248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78  simpieces.py
+4055ed433f52706699b45de1e8e0a1450f5fd624fa51a2088861d06aa80ce413  structure.py
+005b34131b25be2338c5348163e01c134fb1c7d15e7c5f84fa6f3e374488ebcc  thickness.py
+038edbc21e8e891ee216fdee719782e9bb07a84af5ae93a9f054cfa8bc259435  track_sanity.py
+f3ea47dc22d4a9c98bdef6414531ef558ab826dd7ba851eb82e0fe4cf0d249fe  tools/interlock_dev.py
+pid 20120

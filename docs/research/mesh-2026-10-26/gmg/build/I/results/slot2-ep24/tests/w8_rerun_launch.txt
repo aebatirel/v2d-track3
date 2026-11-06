@@ -1,0 +1,1 @@
+launch 20:01:31 commit 212d2a133190b2325eef0c472f4e7773cab26a68 status:  M docs/research/mesh-2026-10-26/gmg/tests/test_fi415.py  (w8 / w8b re-run after the test-harness fix of the physics guard)

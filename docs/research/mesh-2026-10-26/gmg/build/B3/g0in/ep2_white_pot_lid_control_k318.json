@@ -1,0 +1,93 @@
+{
+ "ep": 2,
+ "obj": "white_pot_lid",
+ "kind": "control",
+ "k": 318,
+ "j": 319,
+ "mode": "contact_naive",
+ "partners": [
+  "white_pot"
+ ],
+ "seeds": [
+  0,
+  1
+ ],
+ "mask_info": {
+  "projected_area": 117887,
+  "final_area": 111401,
+  "refined": false,
+  "flags": [
+   "naive_mask"
+  ],
+  "refined_iou_projected": null
+ },
+ "tag": "ep2_white_pot_lid_control_k318",
+ "files": {
+  "rgb": "ep2_white_pot_lid_control_k318.png",
+  "mask": "ep2_white_pot_lid_control_k318_mask.png",
+  "pointmap": "ep2_white_pot_lid_control_k318_pointmap.npz"
+ },
+ "sha256": {
+  "rgb": "a09f15dbcced767a1b352da255e98221cff0e45b73e1398c68068cdd1f46f2af",
+  "mask": "2a3b4cc184c94aafc47b2191473ef15516eed2097d539b22e5cc27b03cd4da40",
+  "pointmap": "cb685500982875e20b464d94f21de79c7e855e94621d75115a1f7fdf0f31f56e"
+ },
+ "K": [
+  [
+   1149.804931640625,
+   0.0,
+   994.8043212890625
+  ],
+  [
+   0.0,
+   1149.730712890625,
+   767.544677734375
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "camA_T_obj": [
+  [
+   -0.042634852758406255,
+   0.9327483964953883,
+   -0.35799874541946175,
+   -0.028111735337041144
+  ],
+  [
+   -0.6693257061356975,
+   -0.2926932485532655,
+   -0.6828871489963662,
+   0.046881092669050946
+  ],
+  [
+   -0.7417456197080029,
+   0.21050308236886572,
+   0.6367918486986869,
+   0.5329260550870538
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "stats": {
+  "mask_px_distorted": 111401,
+  "mask_px": 112565,
+  "depth_px_in_mask": 103811,
+  "behind_dropped_px": 4005,
+  "pointmap_valid_px": 99806,
+  "pointmap_valid_share": 0.8867,
+  "z_median_m": 0.5187,
+  "extent_m": [
+   0.16269999742507935,
+   0.13429999351501465,
+   0.11599999666213989
+  ]
+ },
+ "convention": "pointmap: OpenCV camera (x right, y down, z forward), metres, pinhole K = cam_a K, image undistorted from cam_a with that K; mesh layout -> camA_T_mesh; obj_T_mesh = inv(camA_T_obj) camA_T_mesh"
+}

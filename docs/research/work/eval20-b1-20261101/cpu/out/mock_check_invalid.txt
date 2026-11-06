@@ -1,0 +1,32 @@
+ok   label INVALID  [INVALID; ['verify failed: [\'s43: ["saved config differs from the packed eval-20 checkpoint in [\\\'training.mock_extra_setting\\\']"]\']']]
+ok   rc 0  [rc=0]
+ok   RESULT line in the job log
+ok   no store listing (single-file downloads only)  [62]
+ok   every download is the packed run's, the H5p7 draws or pack 6's eval-20 rollout  [['20261025-evb1420-ee7ba8e', '20261026-pack6-5203d42', '20261031-h5p7-1a7cdff']]
+ok   exactly one store upload (the final push), into this run id, holding summary.json  [[{'kind': 'upload', 'src': '<MR>/content/push/20261101-e20b1-mocksha', 'dst': 'runs/20261101-e20b1-mocksha', 'msg': 'run 20261101-e20b1-mocksha: 2026-11-01T07:23:37Z'}]]
+ok   hands_mp / hand_refine / perc2 / score_registered never ran
+ok   piece set ev20b1: MD5SUMS / FROZEN.md md5 = the pinned ones, 41 pieces  [('fe9aeca079fdcc7524a06f46fcd0a7ae', [])]
+ok   inputs: the packed P (fingerprint), stage, packed asset copy (pitcher 6772f954 9 collisions, cup 31cd001d, glbs) and checkpoint sha256  [[]]
+ok   carve (REAL placement_carve.py assets): only the pitcher URDF changed (-> 77b395a5, 41 collisions), 41 col_NN byte copies added, visual + inertial unchanged, blue cup untouched  [(['urdf/water_pitcher_rigid.urdf'], [])]
+ok   the carve ran on refs/sf/ep20/assets (the mesh lane's command)
+ok   on the box: refs/sf/ep20/assets is the b1 copy; the pristine packed copy is kept in e20b1_in
+ok   the push holds the b1 asset copy under this run id and not the pristine copy; the packed run's store files are unchanged
+ok   arms: seed copies 42 / 43 are byte copies of P; P names the b1 URDFs at 0.3 kg  [[]]
+ok   no_oracle accepted the piece set and every input
+ok   two trainings: seeds 42 and 43, 70,004,736 steps, runs/e20b1s<seed>_glock/ep20-s<seed>, on the seed copies  [[('t/runs/e20b1s42_glock/ep20-s42', '42'), ('t/runs/e20b1s43_glock/ep20-s43', '43')]]
+ok   the trainings loaded the b1 URDFs (md5) at 0.3 kg, from refs/sf/ep20/assets
+ok   stock contact limits: no sim.* override, saved sim / env.sim 512 / 256
+ok   every CLI training key equals the REAL packed eval-20 config (no mismatch; >= 10 keys compared)  [[({}, 10), ({}, 10)]]
+ok   TRAIN_ARGS = the packed run evb1420's REAL job-log line, byte for byte  [({'curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 '}, {'curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 '})]
+ok   the training command has exactly the glock_public.sh template keys + TRAIN_ARGS keys  [[['curriculum', 'embodiment', 'experiment', 'logging.mode', 'objective.contact_wrench_support.weight', 'objective.force_closure.enabled', 'objective.force_closure.weight', 'objective.unintended_contact.weight', 'output_dir', 'reset.seed', 'task.motion_speed', 'task.parquet', 'training.total_environment_steps']]]
+ok   glock_public ran with REUSE_REF / REQUIRE_REUSE, SF 0, and never rebuilt a reference  [0]
+ok   no make_assets --pieces anywhere (PIECES unset: no "collision pieces from" line)
+ok   overflow: each training log has 0 nefc lines (the injected count), the summary reads the same  [{'42': 0, '43': 0}]
+ok   overflow label absent  [[]]
+ok   the b1 zero-action rest check ran and is reported (not gating)
+ok   cells: seed 43 INVALID (the extra config key), seed 42 VERIFIED  [{'42': ('VERIFIED', []), '43': ('INVALID', ["saved config differs from the packed eval-20 checkpoint in ['training.mock_extra_setting']"])}]
+ok   no official draw (INVALID cell: no choice)  [0]
+ok   choice status INVALID
+ok   summary records the piece set, its MD5SUMS md5 and the 41-line manifest; the URDFs used  [('ev20b1', 41)]
+{"mr": "<MR>", "expect": "INVALID:CELLS", "checks": 30, "failed": []}
+30/30 checks pass

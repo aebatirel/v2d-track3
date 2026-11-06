@@ -1,0 +1,6 @@
+packed {"receiver": {"pieces": 53, "cavity_depth_max_mm": 30.4653, "cavity_intrusion_cm3": 54.197, "pieces_intruding": 50, "gate3_pass": false}, "guest": {"pieces": 49, "excursion_beyond_shrunk_profile_mm": 2.7057, "excursion_beyond_unshrunk_profile_mm": -5.2943}}
+cand {"receiver": {"pieces": 53, "cavity_depth_max_mm": 30.4653, "cavity_intrusion_cm3": 0.0, "pieces_intruding": 14, "gate3_pass": false}, "guest": {"pieces": 49, "excursion_beyond_shrunk_profile_mm": 0.0, "excursion_beyond_unshrunk_profile_mm": -8.0}}
+f124-160 V_visual: median 80.79 min 67.83 max 88.61
+f124-160 V_visual_in_cavity: median 46.11 min 41.88 max 50.52
+f124-160 V_visual_outside_cavity: median 33.76 min 25.15 max 38.51
+f124-160 V_design_floor: median 6.68 min 1.26 max 21.28

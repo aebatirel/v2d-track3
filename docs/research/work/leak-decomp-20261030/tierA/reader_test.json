@@ -1,0 +1,703 @@
+{
+ "units": {
+  "shapley_max_err": 2.220446049250313e-16,
+  "lb": {
+   "evals": [
+    1,
+    8,
+    10,
+    14,
+    19,
+    20,
+    25,
+    28,
+    30,
+    38
+   ],
+   "missing_evals": [],
+   "c0.74": {
+    "L": 0.0198,
+    "lo90": 0.01576,
+    "hi90": 0.02383
+   },
+   "c1.0": {
+    "L": 0.02675,
+    "lo90": 0.02129,
+    "hi90": 0.03221
+   },
+   "action": "top priority (>= 0.010 at c 0.74)"
+  },
+  "refrule": [
+   "leaks",
+   "no leak",
+   "inconclusive",
+   "inconclusive",
+   "truth worse"
+  ],
+  "refconv": {
+   "rows": {
+    "3": {
+     "dT": 0.01845,
+     "counted": true,
+     "label": "[M]"
+    },
+    "5": {
+     "dT": 0.01435,
+     "counted": false,
+     "label": "S < 0.8: not converted"
+    },
+    "7": {
+     "dT": 0.04869,
+     "counted": false,
+     "label": "[E-analogy] spoon"
+    }
+   },
+   "L_c0.74": 0.00068,
+   "L_c1.0": 0.00092
+  }
+ },
+ "exact": {
+  "max_err_twin": 1.6653345369377348e-16,
+  "max_err_pooled": 5.551115123125783e-17,
+  "verdicts": {
+   "phi_T": "leaks",
+   "phi_K": "leaks",
+   "phi_G": "truth worse",
+   "L6_AOI": "no leak",
+   "L2_AOI": "leaks",
+   "L2_scan": "leaks",
+   "L3_AOI": "no leak",
+   "L3_LOO": "no leak",
+   "K_AOI": "leaks",
+   "L5_AOI": "truth worse",
+   "L5_LOO": "truth worse",
+   "L6_LOO": "no leak",
+   "total": "leaks"
+  },
+  "players": {
+   "T": {
+    "AOI": 0.12,
+    "LOO": 0.0,
+    "shapley": 0.06,
+    "interaction": -0.12
+   },
+   "K": {
+    "AOI": 0.12,
+    "LOO": -0.0,
+    "shapley": 0.06,
+    "interaction": -0.12
+   },
+   "G": {
+    "AOI": -0.035,
+    "LOO": -0.035,
+    "shapley": -0.035,
+    "interaction": 0.0
+   }
+  },
+  "explained": {
+   "c0.74": {
+    "sum_phi": 0.03109,
+    "ceiling": 0.04995,
+    "total": 0.08104,
+    "gap_vs_0_185": 0.10396
+   },
+   "c1.0": {
+    "sum_phi": 0.04202,
+    "ceiling": 0.0675,
+    "total": 0.10952,
+    "gap_vs_0_185": 0.07548
+   },
+   "note": "only the evals with a twin (1, 8, 10, 14, 19, 20, 25, 28, 30, 38) enter; a gap > 0.03 means the twin map or the spoon proxy is wrong (reported, not forced closed)"
+  }
+ },
+ "noisy": {
+  "phi_T": {
+   "dT": 0.05054,
+   "ci90": [
+    0.03893,
+    0.06214
+   ],
+   "verdict": "leaks"
+  },
+  "phi_K": {
+   "dT": 0.06881,
+   "ci90": [
+    0.0474,
+    0.09023
+   ],
+   "verdict": "leaks"
+  },
+  "phi_G": {
+   "dT": -0.014,
+   "ci90": [
+    -0.0299,
+    0.0019
+   ],
+   "verdict": "no leak"
+  },
+  "L6_AOI": {
+   "dT": -0.00195,
+   "ci90": [
+    -0.03337,
+    0.02946
+   ],
+   "verdict": "no leak"
+  },
+  "L2_AOI": {
+   "dT": 0.08265,
+   "ci90": [
+    0.04173,
+    0.12357
+   ],
+   "verdict": "leaks"
+  },
+  "L2_scan": {
+   "dT": 0.13791,
+   "ci90": [
+    0.10838,
+    0.16744
+   ],
+   "verdict": "leaks"
+  },
+  "L3_AOI": {
+   "dT": 0.04032,
+   "ci90": [
+    -0.00393,
+    0.08456
+   ],
+   "verdict": "inconclusive"
+  },
+  "L3_LOO": {
+   "dT": -0.00376,
+   "ci90": [
+    -0.03199,
+    0.02446
+   ],
+   "verdict": "no leak"
+  },
+  "K_AOI": {
+   "dT": 0.12297,
+   "ci90": [
+    0.08841,
+    0.15753
+   ],
+   "verdict": "leaks"
+  },
+  "L5_AOI": {
+   "dT": -0.0288,
+   "ci90": [
+    -0.06055,
+    0.00296
+   ],
+   "verdict": "inconclusive"
+  },
+  "L5_LOO": {
+   "dT": -0.01762,
+   "ci90": [
+    -0.03912,
+    0.00389
+   ],
+   "verdict": "no leak"
+  },
+  "L6_LOO": {
+   "dT": -0.00408,
+   "ci90": [
+    -0.04829,
+    0.04014
+   ],
+   "verdict": "inconclusive"
+  },
+  "total": {
+   "dT": 0.10535,
+   "ci90": [
+    0.07,
+    0.1407
+   ],
+   "verdict": "leaks"
+  }
+ },
+ "refusals": {
+  "GL_ARGS on one arm": {
+   "rc": 2,
+   "refused_lines": 1,
+   "first": [
+    "  ep12 c3 s43 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_gl/ep12/c3/s43/summary.json): ep12: a fixed field differs from the modal arm (c1 s42) in ['GL_ARGS']"
+   ],
+   "drop_rc": 0
+  },
+  "hands md5 of one c1-c6 arm": {
+   "rc": 2,
+   "refused_lines": 1,
+   "first": [
+    "  ep2 c4 s44 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_hands/ep2/c4/s44/summary.json): ep2: hands.* at bundle differs from the modal arm (c1 s42) in ['hands.md5']"
+   ],
+   "drop_rc": 0
+  },
+  "P_s pose = P_o pose (no-op swap)": {
+   "rc": 2,
+   "refused_lines": 4,
+   "first": [
+    "  ep21 c2 s42 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_noop/ep21/c2/s42/summary.json): ep21: the declared stage did not change (pose.* content identical at P_o and P_s)",
+    "  ep21 c2 s43 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_noop/ep21/c2/s43/summary.json): ep21: the declared stage did not change (pose.* content identical at P_o and P_s)"
+   ],
+   "drop_rc": 0
+  },
+  "STEPS on one twin": {
+   "rc": 2,
+   "refused_lines": 24,
+   "first": [
+    "  ep31 c1 s42 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_steps/ep31/c1/s42/summary.json): a study key (commit, learner, STEPS, CURVE_REP, NREP) differs from the modal arm (c1 s42) in ['STEPS']",
+    "  ep31 c1 s43 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_steps/ep31/c1/s43/summary.json): a study key (commit, learner, STEPS, CURVE_REP, NREP) differs from the modal arm (c1 s42) in ['STEPS']"
+   ],
+   "drop_rc": 0
+  },
+  "config seed != record seed": {
+   "rc": 2,
+   "refused_lines": 1,
+   "first": [
+    "  ep11 c1 s42 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_seed/ep11/c1/s42/summary.json): config seed 43 != record seed 42"
+   ],
+   "drop_rc": 0
+  },
+  "no config": {
+   "rc": 2,
+   "refused_lines": 1,
+   "first": [
+    "  ep39 c5 s43 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_none/ep39/c5/s43/summary.json): no config (the arm cannot be checked)"
+   ],
+   "drop_rc": 0
+  },
+  "no hands.* fields": {
+   "rc": 2,
+   "refused_lines": 1,
+   "first": [
+    "  ep27 c2 s42 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_nohands/ep27/c2/s42/summary.json): no hands.* fields: the declared stages cannot be checked"
+   ],
+   "drop_rc": 0
+  },
+  "mocap pose md5 of one c6 seed": {
+   "rc": 2,
+   "refused_lines": 1,
+   "first": [
+    "  ep18 c6 s43 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/reader_test_oracle_synth/refuse_m_tie/ep18/c6/s43/summary.json): ep18: pose.* at O differs from the modal arm (c3 s42) in ['pose.md5']"
+   ],
+   "drop_rc": 0
+  }
+ },
+ "formats": {
+  "oracle_twins": {
+   "ep11": [
+    0.2302,
+    0.2302
+   ],
+   "ep13": [
+    0.2642,
+    0.2642
+   ],
+   "ep31": [
+    0.2605,
+    0.2605
+   ]
+  },
+  "glock": {
+   "mean": 0.6664666666666668,
+   "se": 0.015262867067203038,
+   "df": Infinity,
+   "sigma_s_seen": null,
+   "sigma_d": 0.028244126233018193
+  },
+  "crash": {
+   "drop": {
+    "T": {
+     "mean": 0.8500000000000001,
+     "se": 0.050990195135927834,
+     "df": Infinity,
+     "sigma_s_seen": null,
+     "sigma_d": 0.07071067811865474
+    },
+    "S": {
+     "mean": 0.835,
+     "se": 0.04609772228646442,
+     "df": Infinity,
+     "sigma_s_seen": null,
+     "sigma_d": 0.06363961030678926
+    },
+    "g": {
+     "mean": 0.015000000000000013,
+     "se": 0.01118033988749895,
+     "df": Infinity,
+     "sigma_s_seen": null,
+     "sigma_d": 0.007071067811865481
+    },
+    "cls": "stable",
+    "seeds": [
+     42
+    ],
+    "seed_means": [
+     0.85
+    ],
+    "k": [
+     2
+    ],
+    "crashes": 1,
+    "fail70": 0,
+    "fail_med": 0,
+    "weak_seeds": [],
+    "min_draw": 0.8,
+    "L1_lib_minus_star": null,
+    "trk_minus_star": null,
+    "cost_usd": null
+   },
+   "zero": {
+    "T": {
+     "mean": 0.5666666666666668,
+     "se": 0.28497563248655333,
+     "df": Infinity,
+     "sigma_s_seen": null,
+     "sigma_d": 0.49328828623162474
+    },
+    "S": {
+     "mean": 0.5566666666666666,
+     "se": 0.2797220842987633,
+     "df": Infinity,
+     "sigma_s_seen": null,
+     "sigma_d": 0.48418316093533587
+    },
+    "g": {
+     "mean": 0.010000000000000009,
+     "se": 0.011547005383792518,
+     "df": Infinity,
+     "sigma_s_seen": null,
+     "sigma_d": 0.010000000000000009
+    },
+    "cls": "stable",
+    "seeds": [
+     42
+    ],
+    "seed_means": [
+     0.5667
+    ],
+    "k": [
+     3
+    ],
+    "crashes": 1,
+    "fail70": 1,
+    "fail_med": 1,
+    "weak_seeds": [],
+    "min_draw": 0.0,
+    "L1_lib_minus_star": null,
+    "trk_minus_star": null,
+    "cost_usd": null
+   }
+  }
+ },
+ "mc": {
+  "power": {
+   "0.03": {
+    "phi_T": {
+     "scenario": "a=2d",
+     "reject": 0.903,
+     "leaks": 0.505,
+     "true": 0.03
+    },
+    "phi_K": {
+     "scenario": "b=d",
+     "reject": 0.536,
+     "leaks": 0.42,
+     "true": 0.03
+    },
+    "phi_G": {
+     "scenario": "gamma=d",
+     "reject": 0.526,
+     "leaks": 0.407,
+     "true": 0.03
+    },
+    "L2_AOI": {
+     "scenario": "a=d",
+     "reject": 0.425,
+     "leaks": 0.378,
+     "true": 0.03
+    },
+    "L3_AOI": {
+     "scenario": "b=d",
+     "reject": 0.433,
+     "leaks": 0.381,
+     "true": 0.03
+    },
+    "L5_AOI": {
+     "scenario": "gamma=d",
+     "reject": 0.427,
+     "leaks": 0.38,
+     "true": 0.03
+    }
+   },
+   "0.05": {
+    "phi_T": {
+     "scenario": "a=2d",
+     "reject": 0.999,
+     "leaks": 0.996,
+     "true": 0.05
+    },
+    "phi_K": {
+     "scenario": "b=d",
+     "reject": 0.884,
+     "leaks": 0.878,
+     "true": 0.05
+    },
+    "phi_G": {
+     "scenario": "gamma=d",
+     "reject": 0.891,
+     "leaks": 0.882,
+     "true": 0.05
+    },
+    "L2_AOI": {
+     "scenario": "a=d",
+     "reject": 0.753,
+     "leaks": 0.738,
+     "true": 0.05
+    },
+    "L3_AOI": {
+     "scenario": "b=d",
+     "reject": 0.759,
+     "leaks": 0.745,
+     "true": 0.05
+    },
+    "L5_AOI": {
+     "scenario": "gamma=d",
+     "reject": 0.762,
+     "leaks": 0.747,
+     "true": 0.05
+    }
+   },
+   "0.1": {
+    "phi_T": {
+     "scenario": "a=2d",
+     "reject": 1.0,
+     "leaks": 1.0,
+     "true": 0.1
+    },
+    "phi_K": {
+     "scenario": "b=d",
+     "reject": 1.0,
+     "leaks": 1.0,
+     "true": 0.1
+    },
+    "phi_G": {
+     "scenario": "gamma=d",
+     "reject": 1.0,
+     "leaks": 1.0,
+     "true": 0.1
+    },
+    "L2_AOI": {
+     "scenario": "a=d",
+     "reject": 0.992,
+     "leaks": 0.992,
+     "true": 0.1
+    },
+    "L3_AOI": {
+     "scenario": "b=d",
+     "reject": 0.996,
+     "leaks": 0.996,
+     "true": 0.1
+    },
+    "L5_AOI": {
+     "scenario": "gamma=d",
+     "reject": 0.995,
+     "leaks": 0.995,
+     "true": 0.1
+    }
+   }
+  },
+  "null": {
+   "params": {
+    "a": 0,
+    "b": 0,
+    "gamma": 0
+   },
+   "familywise_reject_up": 0.033,
+   "tests": {
+    "phi_T": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.0073,
+     "cover90": 0.906,
+     "reject_up": 0.013,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.046,
+     "reject_perm_unadj": 0.047,
+     "per_twin_reject_up": {
+      "stable": 0.004,
+      "typical": 0.005,
+      "hard": 0.009
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.99,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.01
+    },
+    "phi_K": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.0125,
+     "cover90": 0.897,
+     "reject_up": 0.013,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.057,
+     "reject_perm_unadj": 0.059,
+     "per_twin_reject_up": {
+      "stable": 0.011,
+      "typical": 0.007,
+      "hard": 0.014
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.777,
+     "P_truth worse": 0.002,
+     "P_inconclusive": 0.221
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.0122,
+     "cover90": 0.914,
+     "reject_up": 0.009,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.044,
+     "reject_perm_unadj": 0.045,
+     "per_twin_reject_up": {
+      "stable": 0.009,
+      "typical": 0.008,
+      "hard": 0.013
+     },
+     "P_leaks": 0.002,
+     "P_no leak": 0.786,
+     "P_truth worse": 0.003,
+     "P_inconclusive": 0.209
+    },
+    "L2_AOI": {
+     "true": 0.0,
+     "mean": -0.0002,
+     "bias": -0.0002,
+     "rmse": 0.0197,
+     "cover90": 0.909,
+     "reject_up": 0.041,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.043,
+     "reject_perm_unadj": 0.044,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.298,
+     "P_truth worse": 0.029,
+     "P_inconclusive": 0.672
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": 0.0006,
+     "bias": 0.0006,
+     "rmse": 0.02,
+     "cover90": 0.897,
+     "reject_up": 0.054,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.056,
+     "reject_perm_unadj": 0.058,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.296,
+     "P_truth worse": 0.032,
+     "P_inconclusive": 0.672
+    },
+    "K_AOI": {
+     "true": 0.0,
+     "mean": 0.0004,
+     "bias": 0.0004,
+     "rmse": 0.0201,
+     "cover90": 0.907,
+     "reject_up": 0.046,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.049,
+     "reject_perm_unadj": 0.052,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.28,
+     "P_truth worse": 0.028,
+     "P_inconclusive": 0.693
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.02,
+     "cover90": 0.904,
+     "reject_up": 0.046,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.0,
+      "hard": 0.007
+     },
+     "P_leaks": 0.03,
+     "P_no leak": 0.296,
+     "P_truth worse": 0.032,
+     "P_inconclusive": 0.642
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": -0.0003,
+     "bias": -0.0003,
+     "rmse": 0.0194,
+     "cover90": 0.915,
+     "reject_up": 0.037,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.038,
+     "reject_perm_unadj": 0.042,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.025,
+     "P_no leak": 0.297,
+     "P_truth worse": 0.03,
+     "P_inconclusive": 0.648
+    },
+    "total": {
+     "true": 0.0,
+     "mean": 0.0001,
+     "bias": 0.0001,
+     "rmse": 0.0197,
+     "cover90": 0.9,
+     "reject_up": 0.051,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.053,
+     "reject_perm_unadj": 0.056,
+     "per_twin_reject_up": {
+      "stable": 0.002,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.034,
+     "P_no leak": 0.303,
+     "P_truth worse": 0.029,
+     "P_inconclusive": 0.634
+    }
+   }
+  }
+ },
+ "fails": []
+}

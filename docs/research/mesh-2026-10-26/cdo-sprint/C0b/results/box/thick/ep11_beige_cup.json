@@ -1,0 +1,14 @@
+{
+ "obj": "beige_cup",
+ "ep": 11,
+ "file": "/content/results/c0b/pts/B/ep11_beige_cup.npz",
+ "n": 59,
+ "median_m": 0.0015,
+ "info": {
+  "points": 511462,
+  "samples": 16356,
+  "measured": 59,
+  "median_mm": 1.5
+ },
+ "sec": 20.0
+}

@@ -1,0 +1,1 @@
+CHOSEN seed 43 :: s42 VERIFIED n 10 mean 0.9997 sd 0.0006; s43 VERIFIED n 10 mean 0.9999 sd 0.0002

@@ -1,0 +1,23 @@
+VERDICT FAIL
+  mean dR -0.16974 (>= +0.01: False); dR > 0 on 3/20 (>= 12: False); min dR -0.9732 (>= -0.03: False); mean dRPE +1.32120 cm (<= 0: False); changed episodes 12/20; raw mean dR -0.16909; control (unchanged) {'n': 8, 'max_abs_dR': 0.0118, 'max_abs_dRPE': 1.8823}
+  code identical; delivery {'status': 'flagged', 'meshes': 13, 'provenance_tiers': ['inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or scan-derived constants'], 'validated': '2026-10-31T21:24:41Z', 'commit': 'd6428216bedc8f2a698263882f2d141247c098cc'}
+  ep0   R 0.9620 -> 0.0374 dR -0.9246  RPE 1.383 -> 17.300 dRPE +15.9172  changed white_pot  cam 0.0000 cm
+  ep2   R 0.9866 -> 0.7233 dR -0.2633  RPE 1.439 -> 1.964 dRPE +0.5249  changed white_pot  cam 0.0000 cm
+  ep11  R 0.8978 -> 0.1927 dR -0.7051  RPE 1.739 -> 10.037 dRPE +8.2977  changed blue_cup,beige_cup  cam 0.0000 cm
+  ep12  R 0.9662 -> 0.9674 dR +0.0012  RPE 1.139 -> 1.143 dRPE +0.0042  changed - (enters as 0)  cam 0.0000 cm
+  ep13  R 0.9595 -> 0.9709 dR +0.0114  RPE 1.387 -> 0.668 dRPE -0.7187  changed blue_cup  cam 0.0768 cm
+  ep18  R 0.9144 -> 0.9144 dR +0.0000  RPE 4.068 -> 4.068 dRPE +0.0000  changed - (enters as 0)  cam 0.0000 cm
+  ep21  R 0.8325 -> 0.8476 dR +0.0151  RPE 1.255 -> 1.310 dRPE +0.0549  changed blue_cup  cam 0.0000 cm
+  ep22  R 0.8707 -> 0.8808 dR +0.0101  RPE 1.223 -> 1.453 dRPE +0.2303  changed blue_cup  cam 0.0000 cm
+  ep23  R 0.0414 -> 0.0414 dR +0.0000  RPE 14.180 -> 16.062 dRPE +1.8823  changed - (enters as 0)  cam 0.0000 cm
+  ep24  R 0.8117 -> 0.8117 dR +0.0000  RPE 0.983 -> 0.983 dRPE +0.0000  changed - (enters as 0)  cam 0.0000 cm
+  ep26  R 0.9717 -> 0.4968 dR -0.4749  RPE 1.293 -> 3.410 dRPE +2.1177  changed white_pot  cam 0.0000 cm
+  ep27  R 0.9605 -> 0.9723 dR +0.0118  RPE 1.155 -> 1.157 dRPE +0.0022  changed - (enters as 0)  cam 0.0000 cm
+  ep31  R 0.7998 -> 0.7998 dR +0.0000  RPE 1.908 -> 1.912 dRPE +0.0037  changed - (enters as 0)  cam 0.0000 cm
+  ep39  R 0.9602 -> 0.9602 dR +0.0000  RPE 0.000 -> 0.000 dRPE +0.0000  changed - (enters as 0)  cam 0.0000 cm
+  ep40  R 0.9570 -> 0.9570 dR +0.0000  RPE 0.000 -> 0.000 dRPE +0.0000  changed - (enters as 0)  cam 0.0000 cm
+  ep41  R 0.9910 -> 0.9388 dR -0.0522  RPE 0.000 -> 0.000 dRPE +0.0000  changed white_pot  cam 0.0000 cm
+  ep42  R 0.9903 -> 0.9728 dR -0.0175  RPE 0.000 -> 0.000 dRPE +0.0000  changed white_pot  cam 0.0000 cm
+  ep43  R 0.9477 -> 0.9444 dR -0.0033  RPE 0.000 -> 0.000 dRPE +0.0000  changed white_pot  cam 0.0000 cm
+  ep44  R 0.9967 -> 0.9794 dR -0.0173  RPE 0.000 -> 0.000 dRPE +0.0000  changed white_pot  cam 0.0000 cm
+  ep45  R 0.9795 -> 0.0063 dR -0.9732  RPE 0.000 -> 0.000 dRPE +0.0000  changed white_pot  cam 0.0284 cm

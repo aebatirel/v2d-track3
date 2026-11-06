@@ -1,0 +1,65 @@
+ep12: * 0.9738  re-anchor body 0.9981 world 0.9855  trk 0.9991  blue_cup occ 6/181, plastic_dish_rack occ 6/181  (166.6 s)
+ep11: * 0.8739  re-anchor body 0.9240 world 0.9097  trk 0.9302  blue_cup occ 44/137, beige_cup occ 57/137  (233.3 s)
+ep13: * 0.9036  re-anchor body 0.9738 world 0.9535  trk 0.9748  blue_cup occ 43/190, plastic_dish_rack occ 8/190  (137.1 s)
+ep21: * 0.8313  re-anchor body 0.9941 world 0.9424  trk 0.9945  blue_cup occ 52/186, water_pitcher occ 0/186  (136.7 s)
+ep0: * 0.9612  re-anchor body 0.9955 world 0.9791  trk 0.9959  white_pot occ 0/373, white_pot_lid occ 99/373  (5.9 s)
+ep2: * 0.9792  re-anchor body 0.9952 world 0.9774  trk 0.9955  white_pot occ 27/343, white_pot_lid occ 68/343  (5.8 s)
+ep18: * 0.9680  re-anchor body 0.9968 world 0.9962  trk 0.9971  mini_sweeper occ 223/353, mini_dust_pan occ 1/353  (4.9 s)
+ep23: * 0.0418  re-anchor body 0.0854 world 0.0847  trk 0.0418  wooden_piece_1 occ 0/325, wooden_piece_2 occ 97/325  (4.6 s)
+ep22: * 0.8710  re-anchor body 0.9947 world 0.9661  trk 0.9950  blue_cup occ 43/189, water_pitcher occ 0/189  (159.0 s)
+ep24: * 0.8105  re-anchor body 0.9045 world 0.8105  trk 0.9859  wooden_piece_1 occ 123/275, wooden_piece_2 occ 26/275  (4.4 s)
+ep26: * 0.9565  re-anchor body 0.9873 world 0.9606  trk 0.9947  plastic_dish_rack occ 4/158, white_pot occ 0/158  (1.5 s)
+ep27: * 0.9376  re-anchor body 0.9902 world 0.9676  trk 0.9971  plastic_dish_rack occ 0/246, white_pot occ 0/246  (3.0 s)
+ep39: * 0.9804  re-anchor body 0.9963 world 0.9804  trk 0.9961  mini_dust_pan occ 0/319  (2.0 s)
+ep31: * 0.8391  re-anchor body 0.9959 world 0.9614  trk 0.9976  mini_sweeper occ 137/290, plastic_dish_rack occ 25/290  (3.8 s)
+ep40: * 0.9740  re-anchor body 0.9851 world 0.9740  trk 0.9853  mini_dust_pan occ 8/260  (1.7 s)
+ep41: * 0.9881  re-anchor body 0.9937 world 0.9881  trk 0.9941  white_pot occ 0/299  (2.0 s)
+ep42: * 0.9740  re-anchor body 0.9964 world 0.9740  trk 0.9966  white_pot occ 0/257  (1.5 s)
+ep43: * 0.9429  re-anchor body 0.9956 world 0.9429  trk 0.9952  white_pot occ 0/326  (2.0 s)
+ep44: * 0.9982  re-anchor body 0.9982 world 0.9982  trk 0.9987  white_pot occ 0/249  (1.8 s)
+ep45: * 0.9789  re-anchor body 0.9903 world 0.9789  trk 0.9903  white_pot occ 132/290  (1.0 s)
+{
+ "all": {
+  "n_eps": 20,
+  "loss_1_minus_Rstar": 0.1108,
+  "phase_loss": {
+  },
+  "phase_share": {
+  },
+  "phase_occ_loss": {
+  },
+  "reanchor_body_gain": 0.0504,
+  "reanchor_body_pos": 19,
+  "reanchor_body_neg": 0,
+  "reanchor_world_gain": 0.0274,
+  "reanchor_world_pos": 11,
+  "bias_trk": 0.0536,
+  "reanchor_body_over_bias": 0.94
+ },
+ "no_ep23": {
+  "n_eps": 19,
+  "loss_1_minus_Rstar": 0.0662,
+  "phase_loss": {
+  },
+  "phase_share": {
+  },
+  "phase_occ_loss": {
+  },
+  "reanchor_body_gain": 0.0507,
+  "reanchor_body_pos": 18,
+  "reanchor_body_neg": 0,
+  "reanchor_world_gain": 0.0265,
+  "reanchor_world_pos": 10,
+  "bias_trk": 0.0564,
+  "reanchor_body_over_bias": 0.899
+ },
+ "H3_objects_over_30deg": {
+  "n": 19,
+  "reanchor_gain_sum": 1.2893,
+  "bias_sum": 1.4877,
+  "ratio": 0.867,
+  "rows": [
+  ]
+ }
+}
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a2.json (586.8 s)

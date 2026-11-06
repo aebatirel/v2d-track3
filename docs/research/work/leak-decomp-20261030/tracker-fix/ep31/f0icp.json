@@ -1,0 +1,126 @@
+{
+ "gtfree": {
+  "mask_px": 714,
+  "predicted_visible_px": 1275,
+  "coverage": 0.514,
+  "completed_px": 1109
+ },
+ "oracle_depth_vs_truth": {
+  "true_vis_in_mask": {
+   "n": 629,
+   "median_cm": 0.35,
+   "within_1cm": 0.558
+  },
+  "true_vis_outside_mask": {
+   "n": 634,
+   "median_cm": 2.61,
+   "within_1cm": 0.295
+  },
+  "mask_not_true_sweeper": {
+   "n": 85,
+   "median_cm": -4.29,
+   "within_1cm": 0.141
+  }
+ },
+ "oracle_completed_mask": {
+  "iou_with_true_visible": 0.598,
+  "iou_ourmask_with_true_visible": 0.467
+ },
+ "oracle_f0_error": {
+  "Po": {
+   "rot_deg": 9.2,
+   "anchor_cm": 0.17
+  },
+  "icp_ourmask": {
+   "rot_deg": 3.74,
+   "anchor_cm": 0.64
+  },
+  "icp_completed": {
+   "rot_deg": 7.46,
+   "anchor_cm": 0.29
+  }
+ },
+ "perceived_onset": 23,
+ "auc": {
+  "Po": {
+   "star": {
+    "AUC": 0.8351,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9259,
+     "plastic_dish_rack": 0.7444
+    }
+   },
+   "lib": {
+    "AUC": 0.7998,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9121,
+     "plastic_dish_rack": 0.6875
+    }
+   }
+  },
+  "icp_ourmask": {
+   "star": {
+    "AUC": 0.9199,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9894,
+     "plastic_dish_rack": 0.8504
+    }
+   },
+   "lib": {
+    "AUC": 0.9514,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9881,
+     "plastic_dish_rack": 0.9147
+    }
+   }
+  },
+  "icp_completed": {
+   "star": {
+    "AUC": 0.8861,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9597,
+     "plastic_dish_rack": 0.8125
+    }
+   },
+   "lib": {
+    "AUC": 0.8822,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9519,
+     "plastic_dish_rack": 0.8125
+    }
+   }
+  },
+  "ORACLE_rest_true": {
+   "star": {
+    "AUC": 0.9628,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9886,
+     "plastic_dish_rack": 0.9371
+    }
+   },
+   "lib": {
+    "AUC": 0.985,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9815,
+     "plastic_dish_rack": 0.9886
+    }
+   }
+  },
+  "ORACLE_f0_only_true": {
+   "star": {
+    "AUC": 0.9628,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9886,
+     "plastic_dish_rack": 0.9371
+    }
+   },
+   "lib": {
+    "AUC": 0.985,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9815,
+     "plastic_dish_rack": 0.9886
+    }
+   }
+  }
+ }
+}

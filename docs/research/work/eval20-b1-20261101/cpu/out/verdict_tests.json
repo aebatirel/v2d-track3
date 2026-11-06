@@ -1,0 +1,99 @@
+{
+ "ok": true,
+ "n": 23,
+ "passed": 23,
+ "cases": [
+  {
+   "ok": true,
+   "what": "seeds 0.8892 / 0.8701 (packed-like) -> NO-SWAP, gate not met :: NO-SWAP :: pack 10: not swap-eligible: not included (gain vs P None; bar 0.02) :: training-box gate not met: no seed's training-box mean sim_vs_ref vs P above 0"
+  },
+  {
+   "ok": true,
+   "what": "a seed mean exactly at the bar 0.8933 does not meet the gate (strict)"
+  },
+  {
+   "ok": true,
+   "what": "a thin seed (n 7) -> INCOMPLETE and does not count for the gate"
+  },
+  {
+   "ok": true,
+   "what": "an INVALID cell -> INVALID (no single-seed fallback), not counted for the gate"
+  },
+  {
+   "ok": true,
+   "what": "a missing seed -> INCOMPLETE"
+  },
+  {
+   "ok": true,
+   "what": "conf 0.92, 0 fails, RPE 1.4 vs packed 0.8933 -> SWAP-ELIGIBLE, INCLUDE (gain 0.0267) :: SWAP-ELIGIBLE :: pack 10: INCLUDE in pack 10 (gain vs P 0.0267; bar 0.02) :: every clause holds :: a ok margin 0.0267 | b ok margin 0.0 | c ok margin 0.27 | s ok margin 0.0742 :: new 0.92 (n 10, fails 0, RPE med 1.4) vs "
+  },
+  {
+   "ok": true,
+   "what": "SWAP-ELIGIBLE at gain 0.0116 -> NOT included :: SWAP-ELIGIBLE but below the 0.02 inclusion bar: NOT included in pack 10"
+  },
+  {
+   "ok": true,
+   "what": "gain exactly +0.02 over the raw packed mean 0.89335 -> included (>=) 0.02"
+  },
+  {
+   "ok": true,
+   "what": "gain +0.0199 -> NOT included 0.0199"
+  },
+  {
+   "ok": true,
+   "what": "mean below the packed 0.8933 -> NO-SWAP (a)"
+  },
+  {
+   "ok": true,
+   "what": "one draw with RPE > 5 cm against the packed 0 / 10 -> NO-SWAP (b), even with a higher mean"
+  },
+  {
+   "ok": true,
+   "what": "median RPE 1.8 cm vs packed 1.67 -> NO-SWAP (c)"
+  },
+  {
+   "ok": true,
+   "what": "draw 1 at 0.84 < old 0.8948 - 0.05 = 0.8448 -> NO-SWAP (s)"
+  },
+  {
+   "ok": true,
+   "what": "9 scored confirmation draws -> INCOMPLETE"
+  },
+  {
+   "ok": true,
+   "what": "a score file whose P is not the packed reference -> INVALID"
+  },
+  {
+   "ok": true,
+   "what": "a packed-side rollout naming another checkpoint -> INVALID"
+  },
+  {
+   "ok": true,
+   "what": "verify not ok -> INVALID"
+  },
+  {
+   "ok": true,
+   "what": "STOPPED -> INVALID"
+  },
+  {
+   "ok": true,
+   "what": "1,001 overflow lines in one training log -> \"pieces not clean in training\" attached; the rule still applies"
+  },
+  {
+   "ok": true,
+   "what": "1,000 lines -> no label (> 1,000 is the bar)"
+  },
+  {
+   "ok": true,
+   "what": "choose: means within 0.005 -> the lower sd (42)"
+  },
+  {
+   "ok": true,
+   "what": "choose: 0.006 apart -> the higher mean (43)"
+  },
+  {
+   "ok": true,
+   "what": "choose: full tie -> seed 42"
+  }
+ ]
+}

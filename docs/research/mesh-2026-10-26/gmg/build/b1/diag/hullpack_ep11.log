@@ -1,0 +1,18 @@
+dense 17016 True -134 bodies 1
+agg 1 tgt 4000 faces 6310 wt True area 0.0
+agg 1 tgt 3800 faces 6310 wt True area 0.0
+agg 1 tgt 3500 faces 6310 wt True area 0.0
+agg 1 tgt 3000 faces 6310 wt True area 0.0
+agg 3 tgt 4000 faces 3998 wt False area -0.0096
+agg 3 tgt 3800 faces 3800 wt False area -0.0105
+agg 3 tgt 3500 faces 3500 wt False area -0.0136
+agg 3 tgt 3000 faces 3000 wt False area -0.0198
+agg 5 tgt 4000 faces 4000 wt False area -0.0075
+agg 5 tgt 3800 faces 3800 wt False area -0.0089
+agg 5 tgt 3500 faces 3500 wt False area -0.0113
+agg 5 tgt 3000 faces 3000 wt False area -0.017
+agg 7 tgt 4000 faces 4000 wt False area -0.0203
+agg 7 tgt 3800 faces 3800 wt False area -0.0237
+agg 7 tgt 3500 faces 3500 wt False area -0.0297
+agg 7 tgt 3000 faces 3000 wt False area -0.037
+{"budget": 4000, "patch_faces": 0, "solid_faces_in": 17016, "solid_area_change": -0.0096, "solid_watertight": false, "agg": 3, "tries": [[3, 3998, false], [1, 6310, true], [7, 4000, false], ["3+refill@0.97", 3475, false], ["3+refill@0.94", 3360, false], ["3+refill@0.91", 3253, false]], "solid_faces_out": 3998, "faces_out": 3998, "within_budget": true}

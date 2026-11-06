@@ -1,0 +1,4 @@
+[2026-10-31T15:52:35Z] ep11_gate code mocksha0000000, arms [e11c e11t], seeds [42 43], LIB <MR>/content/v2d-track3/meshes/library_v3, PIECES <MR>/content/v2d-track3/meshes/carve/ev10, NREP 10, STEPS 70004736, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-10-31T15:52:38Z] ep11_gate: inputs ok ({"path": "<MR>/content/hfstore/cache/depth/public/ep11/depths_fs0.5.npy", "bytes": 876800128, "shape": [137, 1000, 1600], "frame0_sha256": "070547135e460052c1c2cf15862068feaf6225076b2bf614fef9a6349468)
+[2026-10-31T15:52:49Z] ep11_gate B0: STOP: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t MISMATCH (max 53.3761 mm, 11.7786 deg) md5 25801979433d7265bfd5aef2ca868dcc
+[2026-10-31T15:52:49Z] ep11_gate STOP: B0 MISMATCH: the rebuilt tracks are not the pre-registered ones (b0.json); no reference built

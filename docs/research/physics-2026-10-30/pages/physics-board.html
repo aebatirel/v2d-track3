@@ -1,0 +1,170 @@
+<title>Physics Study Board</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a status board; facts strip on top, then lanes ordered by what needs the owner first; same tokens as the Solver–RL Loop page. */
+:root {
+  --bg: #F3F6F7; --surface: #FFFFFF; --ink: #15212B; --muted: #566573; --line: #D3DBE1;
+  --rl: #0E7782; --rl-soft: #DCEFF1; --solver: #A86400; --solver-soft: #F6EAD6;
+  --good: #2C7A4B; --bad: #B0281F; --wait: #5B5FA8;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E141A; --surface: #151E27; --ink: #E3E9EF; --muted: #93A2AF; --line: #2A3743;
+  --rl: #52C2CC; --rl-soft: #15343A; --solver: #EDA545; --solver-soft: #3A2C14;
+  --good: #6CC98C; --bad: #F08A80; --wait: #A6A9F0; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0E141A; --surface: #151E27; --ink: #E3E9EF; --muted: #93A2AF; --line: #2A3743;
+  --rl: #52C2CC; --rl-soft: #15343A; --solver: #EDA545; --solver-soft: #3A2C14;
+  --good: #6CC98C; --bad: #F08A80; --wait: #A6A9F0; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 920px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; display: grid; gap: 34px; }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; line-height: 1.15; text-wrap: balance; }
+h1 { font-size: 2rem; font-weight: 700; }
+h2 { font-size: 1.3rem; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+h3 { font-size: 1.02rem; font-weight: 600; }
+p { margin: 0; max-width: 70ch; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.fact { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; display: grid; gap: 2px; min-width: 0; }
+.fact .v { font-family: var(--f-mono); font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+.fact .l { font-size: 0.82rem; color: var(--muted); }
+section { display: grid; gap: 12px; }
+.count { font-family: var(--f-mono); font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+.items { display: grid; gap: 10px; }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 13px 16px; display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; align-items: start; }
+.item > div { min-width: 0; display: grid; gap: 5px; }
+.item.decide { border-left: 4px solid var(--solver); }
+.item.run { border-left: 4px solid var(--rl); }
+.item.wait { border-left: 4px solid var(--wait); }
+.tag { font-family: var(--f-mono); font-size: 0.74rem; padding: 2px 8px; border-radius: 99px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.decide { color: var(--solver); } .tag.run { color: var(--rl); } .tag.wait { color: var(--wait); } .tag.done { color: var(--good); } .tag.no { color: var(--bad); }
+.cost { font-family: var(--f-mono); font-size: 0.86rem; color: var(--ink); white-space: nowrap; text-align: right; }
+.note { background: var(--solver-soft); border-radius: 6px; padding: 12px 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-display); font-weight: 600; font-size: 0.86rem; color: var(--muted); }
+td.r { white-space: nowrap; }
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+a { color: var(--rl); }
+a:focus-visible { outline: 2px solid var(--rl); outline-offset: 2px; }
+footer { font-size: 0.82rem; color: var(--muted); }
+@media (max-width: 520px) { .item { grid-template-columns: 1fr; } .cost { text-align: left; } }
+</style>
+
+<div class="wrap">
+<header style="display:grid;gap:10px">
+  <div class="eyebrow">V2D Track 3 · physics session · as of 31 Oct 2026, 11:05 UTC</div>
+  <h1>Physics Study Board</h1>
+  <p>What I am doing right now, what waits on other sessions, what needs your decision, and what we learned. Money figures marked "est." are estimates; the rest are measured.</p>
+</header>
+
+<div class="facts">
+  <div class="fact"><span class="v">$29.16</span><span class="l">Vast credit, measured 10:35 UTC</span></div>
+  <div class="fact"><span class="v">0</span><span class="l">machines of mine running</span></div>
+  <div class="fact"><span class="v">1</span><span class="l">machine running for the mass check ($1.45/h)</span></div>
+  <div class="fact"><span class="v">4 Nov 22:00</span><span class="l">leaderboard freeze (UTC)</span></div>
+</div>
+
+<section>
+  <h2>Budget to the freeze, all sessions</h2>
+  <p class="muted">Collected from the leaderboard, mesh and analysis sessions at 10:45 UTC. All figures are estimates. Board effects are the analysis session's estimates, and they show why: Kaggle keeps the trajectories already uploaded, so a new policy only pays where its fresh run beats a packed run that was often lucky.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>lane</th><th>item</th><th>cost</th><th>expected effect on the board</th></tr></thead>
+    <tbody>
+      <tr><td>Leaderboard</td><td>Mass check, remainder (running)</td><td class="r mono">$4–6</td><td>decides whether the masses go into the eval retrain</td></tr>
+      <tr><td>Leaderboard</td><td>Eval 10 cup-nest and masking fix, 2-seed retrain</td><td class="r mono">$4–7</td><td><strong>largest bankable gain</strong>: about +0.022 if eval 10 reaches 0.90 (its twin shows a 0.94 ceiling)</td></tr>
+      <tr><td>Leaderboard</td><td>Masses eval retrain, top 5 episodes, 2 seeds + confirmation (only if the check adopts)</td><td class="r mono">$16–26</td><td>about +0.005 to +0.009</td></tr>
+      <tr><td>Leaderboard</td><td>Spoon wave, if the spoon pilots pass</td><td class="r mono">~$10</td><td>high ceiling, low confidence: 10 episodes hold a third of the score</td></tr>
+      <tr><td>Mesh</td><td>SAM 3D, generator test, generation, clean re-track (one box at a time, each gated)</td><td class="r mono">$15–28</td><td>the shape board (CD-O), our worst at 11th; the final rank sums six boards</td></tr>
+      <tr><td>Physics (me)</td><td>Recipe screen: control, your high-then-low learning rate, slower assist fade, start-position randomization; ep2/12/18/24 × 2 seeds, 10 runs per pick</td><td class="r mono">$38–45</td><td>insurance against organiser re-runs: readouts are the spread and the worst run as well as the mean; about +0.006 per +0.03 lift</td></tr>
+      <tr><td>Physics (me)</td><td>Confirm the winner on 4 more public episodes × 2 seeds</td><td class="r mono">~$20</td><td>guards against a lucky screen</td></tr>
+      <tr><td>Leaderboard</td><td>Second, smaller eval retrain with the winning recipe on the top episodes</td><td class="r mono">$10–15</td><td>where the recipe reaches the board</td></tr>
+      <tr><td>Physics (me)</td><td>Overlap tool for carving; eval 10 cup-in-cup check</td><td class="r mono">$0</td><td>feeds the mesh carving and the eval 10 fix</td></tr>
+      <tr><td>Analysis</td><td>Replay-spread analysis</td><td class="r mono">$0</td><td>sets where randomization and solver turns aim</td></tr>
+      <tr><td>Optional</td><td>Loop v2 pilot, only if money remains</td><td class="r mono">~$12</td><td>research bet; no evidence yet</td></tr>
+      <tr><td>All</td><td>Buffer for stalls and re-runs</td><td class="r mono">$15–20</td><td></td></tr>
+    </tbody>
+  </table></div>
+  <div class="facts">
+    <div class="fact"><span class="v">$132–177</span><span class="l">full plan, without the optional loop v2 · top-up needed <strong>$105–150</strong></span></div>
+    <div class="fact"><span class="v">$87–121</span><span class="l">lean plan: no spoon wave, a 3-arm screen, a 2-episode confirm · top-up <strong>$60–90</strong></span></div>
+    <div class="fact"><span class="v">$29.16</span><span class="l">credit now; covers only the leaderboard session's core items</span></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>day (UTC)</th><th>plan</th></tr></thead>
+    <tbody>
+      <tr><td class="r">31 Oct</td><td>Mass check result 12:30–14:00. I build and pre-register the screen on CPU; it runs tonight on 2–3 boxes in parallel (6–8 h).</td></tr>
+      <tr><td class="r">1 Nov</td><td>Read the screen; start the confirm runs. Leaderboard session: eval 10 fix and the masses retrain in parallel.</td></tr>
+      <tr><td class="r">2 Nov</td><td>Read the confirm; second eval retrain with the winner. Earliest carved eval meshes.</td></tr>
+      <tr><td class="r">3 Nov</td><td>Packs, fresh official runs, buffer for anything that failed.</td></tr>
+      <tr><td class="r">4 Nov 22:00</td><td>Leaderboard freeze.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Needs your decision <span class="count">3</span></h2>
+  <div class="note"><p><strong>Budget clash:</strong> the leaderboard session's eval retrain with the new masses needs about $25 (est.). After the mass check finishes, credit will be about $23–26 (est.). So any GPU run of mine below needs a top-up, or has to wait until after the retrain.</p></div>
+  <div class="items">
+    <div class="item decide"><div><h3>Learning-rate check</h3><p class="muted">Re-run the control with the shorter learning-rate schedule, 3 seeds on ep2. Tells us whether ep2's +0.25 came from the schedule, not the loop.</p></div><div class="cost">~$3–4 est.<br><span class="tag decide">your call</span></div></div>
+    <div class="item decide"><div><h3>Loop v2, the aggressive version</h3><p class="muted">A solver turn every 10M, 16 nudged replays to find failures, solves 4× bigger, a fair control branched from the same checkpoint. CPU build and dry run first. Details on the Solver–RL Loop page.</p></div><div class="cost">~$10–15 est.<br><span class="tag decide">your call</span></div></div>
+    <div class="item decide"><div><h3>Physics fit v2</h3><p class="muted">You made it conditional on the solver results showing a chance. Today's results do not, so it stays on hold unless you say otherwise.</p></div><div class="cost">CPU<br><span class="tag no">on hold</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Running now <span class="count">2</span></h2>
+  <div class="items">
+    <div class="item run"><div><h3>Overlap tool for the carving loop</h3><p class="muted">Your idea, relayed by the mesh session: carve slots where objects must fit into each other. My side is a tool that reports, frame by frame, where one object sinks into another, read from our own reference only. A helper is building and testing it on simple boxes first; the first real test is ep24's two boards.</p></div><div class="cost">$0 (CPU)<br><span class="tag run">building</span></div></div>
+    <div class="item run"><div><h3>Mass check on our own meshes (other session)</h3><p class="muted">Realistic masses vs the 0.3 kg default on ep2 and ep12, 2 seeds each, using our generated meshes. I reviewed it: 4 bugs found, all fixed, then GO. Now on its second seed.</p></div><div class="cost">$6.5–11 est.<br><span class="tag run">on GPU</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Waiting on other sessions <span class="count">2</span></h2>
+  <div class="items">
+    <div class="item wait"><div><h3>ep2 replay-spread analysis</h3><p class="muted">Where repeated runs of one policy go different ways on the chaotic ep2. Runs on the mass check's saved replays, due about 12:30–14:00 UTC. It feeds the failure-finding part of loop v2.</p></div><div class="cost">$0<br><span class="tag wait">waiting</span></div></div>
+    <div class="item wait"><div><h3>First carved meshes for ep24</h3><p class="muted">The mesh session sends carved simulator copies; my tool then measures whether the overlap went down. At most 3 rounds, judged on frames held back from the carving.</p></div><div class="cost">$0<br><span class="tag wait">waiting</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Done today <span class="count">6</span></h2>
+  <div class="tbl"><table>
+    <thead><tr><th>what</th><th>result</th><th>cost</th></tr></thead>
+    <tbody>
+      <tr><td>Option 3 GPU test (solver and RL taking turns)</td><td>Rule says "signal" (+0.068), but 3 of 4 winning checkpoints are from before the loop, and the first round's learning rate differed from the control's. No evidence yet that the loop helps.</td><td class="r mono">$6.48 est.</td></tr>
+      <tr><td>Why the loop barely acted</td><td>The solver changed 0 frames in 4 of 8 turns; one failure window per turn; restart bank of 4 states.</td><td class="r mono">$0</td></tr>
+      <tr><td>True vs perceived object motion</td><td>Giving the plan the true motion barely helps (ep13 0.569 vs 0.551, ep31 0.556 vs 0.554). The limit is the grip, not our perception.</td><td class="r mono">$0</td></tr>
+      <tr><td>Review of the mass check</td><td>NO-GO, then GO after fixes: a lost run no longer voids the result; timeouts are now reported.</td><td class="r mono">$0</td></tr>
+      <tr><td>Spend ledger</td><td>Fixed the bug that wrote the same cost line several times.</td><td class="r mono">$0</td></tr>
+      <tr><td>Carving interface</td><td>Agreed the file format with the mesh session.</td><td class="r mono">$0</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>What the physics study has shown so far</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>question</th><th>answer</th><th>status</th></tr></thead>
+    <tbody>
+      <tr><td>Do realistic object masses help?</td><td>Yes: +0.090 on average over 4 public episodes and 3 seeds.</td><td class="r"><span class="tag done">adopted</span></td></tr>
+      <tr><td>Is the centre of mass right?</td><td>On the scans, yes. Ours sit about 8 mm off, but the effect is lost in the simulator's chaos (a 2 mm nudge flips results).</td><td class="r"><span class="tag no">no change</span></td></tr>
+      <tr><td>Would a human-like hand work better?</td><td>No: with RL it scored 0.161 lower than the Sharpa hand.</td><td class="r"><span class="tag no">dropped</span></td></tr>
+      <tr><td>Frame-by-frame physics fit (v1)</td><td>Did not improve the reference.</td><td class="r"><span class="tag no">not adopted</span></td></tr>
+      <tr><td>Can a solver make the plan physically work?</td><td>Yes, as a replay: 0.763 and 0.832 vs 0.524 and 0.578. But RL trained on solved plans collapsed on ep2.</td><td class="r"><span class="tag no">harm by rule</span></td></tr>
+      <tr><td>Solver and RL taking turns (option 3)</td><td>No evidence yet; the test was confounded. Loop v2 or the learning-rate check would settle it.</td><td class="r"><span class="tag decide">open</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  <p>See the Solver–RL Loop page for the loop's diagram and the v2 design: <a href="https://claude.ai/artifact/A254GDBKXmA7Kxig7ET2cU">Solver–RL Loop</a>. Repository branch: claude/determined-wright-3joens (STATUS.md, docs/work-log.md). Public episodes only; inference never reads ground truth.</p>
+</footer>
+</div>

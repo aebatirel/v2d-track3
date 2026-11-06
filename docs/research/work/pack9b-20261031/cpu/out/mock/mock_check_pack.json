@@ -1,0 +1,122 @@
+{
+ "n": 27,
+ "passed": 27,
+ "failures": [],
+ "labels": {
+  "14": "NO-SWAP",
+  "16": "PASS",
+  "25": "PASS",
+  "30": "NO-SWAP",
+  "33": "PASS"
+ },
+ "checks": {
+  "P1_only_candidates_evaluated": {
+   "ok": true,
+   "detail": "(['14', '16', '25', '30', '33'], ['14', '16', '25', '30', '33'])"
+  },
+  "P1_N_draws_each": {
+   "ok": true,
+   "detail": "{'14': 10, '16': 10, '25': 10, '30': 10, '33': 10}"
+  },
+  "P2_ep14_eval0": {
+   "ok": true,
+   "detail": "{'sha': '62cac7b8d4fe', 'want': '62cac7b8d4fe', 'ref': 'MS/box/content/refs/drs42_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet', 'md5': '7d808716db88e674f67fdd039252b6db', 'env': {}}"
+  },
+  "P2_ep14_all_draws": {
+   "ok": true,
+   "detail": ""
+  },
+  "P2_ep16_eval0": {
+   "ok": true,
+   "detail": "{'sha': '538eaae64054', 'want': '538eaae64054', 'ref': 'MS/box/content/refs/drs42_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet', 'md5': 'ff59708e867893ea1137fa7f2222cbcd', 'env': {}}"
+  },
+  "P2_ep16_all_draws": {
+   "ok": true,
+   "detail": ""
+  },
+  "P2_ep25_eval0": {
+   "ok": true,
+   "detail": "{'sha': '5b9665ab00b4', 'want': '5b9665ab00b4', 'ref': 'MS/box/content/refs/perc2mckdr/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet', 'md5': 'b8927222ccce422e8685052b630a74e8', 'env': {}}"
+  },
+  "P2_ep25_all_draws": {
+   "ok": true,
+   "detail": ""
+  },
+  "P2_ep30_eval0": {
+   "ok": true,
+   "detail": "{'sha': '887f7966860e', 'want': '887f7966860e', 'ref': 'MS/box/content/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet', 'md5': 'cb21238d01dc078e457ef9a66520a94f', 'env': {}}"
+  },
+  "P2_ep30_all_draws": {
+   "ok": true,
+   "detail": ""
+  },
+  "P2_ep33_eval0": {
+   "ok": true,
+   "detail": "{'sha': '266a83d3d2ae', 'want': '266a83d3d2ae', 'ref': 'MS/box/content/refs/drs42_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet', 'md5': '0dc12ef4152cb121c5abb19fdece736a', 'env': {}}"
+  },
+  "P2_ep33_all_draws": {
+   "ok": true,
+   "detail": ""
+  },
+  "P3_dr_pack_check_final_eval": {
+   "ok": true,
+   "detail": "(True, [], ['14', '16', '25', '30', '33'])"
+  },
+  "P3_dr_pack_check_h5": {
+   "ok": true,
+   "detail": "(True, [], ['14', '16', '25', '30', '33'])"
+  },
+  "P4_unchanged_rollouts_byte_identical": {
+   "ok": true,
+   "detail": "{}"
+  },
+  "P4_unchanged_name_pack7_checkpoints": {
+   "ok": true,
+   "detail": "{}"
+  },
+  "P5_ep14_rollouts_kept": {
+   "ok": true,
+   "detail": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+  },
+  "P5_ep16_rollouts_kept": {
+   "ok": true,
+   "detail": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+  },
+  "P5_ep25_rollouts_kept": {
+   "ok": true,
+   "detail": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+  },
+  "P5_ep30_rollouts_kept": {
+   "ok": true,
+   "detail": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+  },
+  "P5_ep33_rollouts_kept": {
+   "ok": true,
+   "detail": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+  },
+  "P5_h5_summary_n": {
+   "ok": true,
+   "detail": "{'14': 10, '16': 10, '25': 10, '30': 10, '33': 10}"
+  },
+  "P6_verdict_decided": {
+   "ok": true,
+   "detail": "{'14': 'NO-SWAP', '16': 'PASS', '25': 'PASS', '30': 'NO-SWAP', '33': 'PASS'}"
+  },
+  "P6_verdict_n": {
+   "ok": true,
+   "detail": "{'14': (10, 10), '16': (10, 10), '25': (10, 10), '30': (10, 10), '33': (10, 10)}"
+  },
+  "P6_old_draw_matches_pack7": {
+   "ok": true,
+   "detail": "{'14': {'scored': 0.9094, 'pack7': 0.9094, 'matches': True}, '16': {'scored': 0.9079, 'pack7': 0.9079, 'matches': True}, '25': {'scored': 0.8937, 'pack7': 0.8937, 'matches': True}, '30': {'scored': 0.9229, 'pack7': 0.9229, 'matches': True}, '33': {'scored': 0.9401, 'pack7': 0.9401, 'matches': True}}"
+  },
+  "P6_pack9b_is_the_PASS_set": {
+   "ok": true,
+   "detail": "{'16': {'r': 1, 'path': 'MS/done_C/content/results/h5/r1/ep16/episode_000016.parquet', 'checkpoint_sha256': '538eaae640547142a7c390acaf39e7dbe61e8f7aaeb80f7fc7631a2e4ce7e9e1'}, '25': {'r': 1, 'path': 'MS/done_C/content/results/h5/r1/ep25/episode_000025.parquet', 'checkpoint_sha256': '5b9665ab00b4c280d9e798ffeb9f66848fbb9aba665e3550b01c71e7dc601b66'}, '33': {'r': 1, 'path': 'SCRATCH"
+  },
+  "P7_job_string": {
+   "ok": true,
+   "detail": "N=10 KEEP_RESULTS=\"20261026-pack6-5203d42 20261030-c33B-0202139\" RUNS_EXTRA=\"20261101-drG-mocksha@refs/drs42_glockt/ep14 20261101-drG-mocksha@refs/drs42_glockt/ep16 20261101-drS25s42-mocksha@refs/perc2mckdr/ep25 20261101-drS30s43-mocksha@refs/perc2mckdr/ep30 20261101-drG-mocksha@refs/drs42_glockt/ep33\" PICK_EXTRA=\"33:20261029-rcB-34bf6ae 14:20261101-drG-mocksha:ck=results/drs42_glock_public/ep14/best/policy.safetensors 16:20261101-drG-mocksha:ck=results/drs42_glock_public/ep16/best/policy.safetensors 25:20261101-drS25s42-mocksha:ck=runs/perc2mckdr/ep25-s42/policy_107143168.safetensors 30:20261"
+  }
+ }
+}

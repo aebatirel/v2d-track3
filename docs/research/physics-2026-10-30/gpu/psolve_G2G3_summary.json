@@ -1,0 +1,243 @@
+{
+ "G2": {
+  "ep2": {
+   "glock": {
+    "nominal": 0.5639,
+    "mean": 0.5242,
+    "sd": 0.104,
+    "min": 0.2392,
+    "max": 0.7755,
+    "k": 64
+   },
+   "g1": {
+    "nominal": 0.684,
+    "mean": 0.5996,
+    "sd": 0.0993,
+    "min": 0.3008,
+    "max": 0.8826,
+    "k": 64
+   },
+   "g2": {
+    "nominal": 0.82,
+    "mean": 0.763,
+    "sd": 0.1413,
+    "min": 0.3123,
+    "max": 0.9431,
+    "k": 64
+   },
+   "solve": {
+    "wall_s": 3952.2,
+    "deadline_t": null,
+    "rollbacks": 0,
+    "paced_replans": 0,
+    "mean_iters": 7.0
+   },
+   "delta_vs_g1": 0.1634,
+   "delta_vs_glock": 0.2388
+  },
+  "ep12": {
+   "glock": {
+    "nominal": 0.5608,
+    "mean": 0.5782,
+    "sd": 0.0206,
+    "min": 0.5418,
+    "max": 0.6079,
+    "k": 64
+   },
+   "g1": {
+    "nominal": 0.5796,
+    "mean": 0.6555,
+    "sd": 0.0997,
+    "min": 0.4706,
+    "max": 0.8717,
+    "k": 64
+   },
+   "g2": {
+    "nominal": 0.8027,
+    "mean": 0.8323,
+    "sd": 0.0736,
+    "min": 0.5863,
+    "max": 0.8831,
+    "k": 64
+   },
+   "solve": {
+    "wall_s": 2470.5,
+    "deadline_t": null,
+    "rollbacks": 3,
+    "paced_replans": 0,
+    "mean_iters": 10.8
+   },
+   "delta_vs_g1": 0.1768,
+   "delta_vs_glock": 0.2541
+  },
+  "reading": {
+   "rule": "scale helps iff mean(G2 - G1 jittered) over the G2 episodes >= +0.03 and none <= -0.05; hurts iff mean <= -0.03 or any <= -0.10; else no scale effect (an episode without a G2 result is left out and flagged)",
+   "mean_delta_vs_g1": 0.1701,
+   "n": 2,
+   "missing": [],
+   "verdict": "scale helps",
+   "g1_bar_kept_vs_glock": {
+    "2": true,
+    "12": true
+   }
+  }
+ },
+ "G3": {
+  "ep2": {
+   "reference": "G2 /content/refs/psolve2/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_ps.parquet",
+   "curve": [
+    "  10M  sim_vs_ref 0.884  |  white_pot: lift   9.4 (ref 10.6) in3cm 0.85 lost@None/343  white_pot_li: lift   6.3 (ref  5.6) in3cm 0.91 lost@327/343",
+    "  20M  sim_vs_ref 0.610  |  white_pot: lift   6.1 (ref 10.6) in3cm 0.34 lost@182/343  white_pot_li: lift   5.1 (ref  5.6) in3cm 0.18 lost@67/343",
+    "  30M  sim_vs_ref 0.965  |  white_pot: lift  10.6 (ref 10.6) in3cm 1.00 lost@None/343  white_pot_li: lift   8.9 (ref  5.6) in3cm 0.99 lost@None/343",
+    "  40M  sim_vs_ref 0.495  |  white_pot: lift   0.0 (ref 10.6) in3cm 0.34 lost@129/343  white_pot_li: lift   2.1 (ref  5.6) in3cm 0.34 lost@65/343",
+    "  50M  sim_vs_ref 0.478  |  white_pot: lift   0.1 (ref 10.6) in3cm 0.41 lost@129/343  white_pot_li: lift   3.2 (ref  5.6) in3cm 0.18 lost@66/343",
+    "  60M  sim_vs_ref 0.469  |  white_pot: lift   0.1 (ref 10.6) in3cm 0.34 lost@160/343  white_pot_li: lift   1.4 (ref  5.6) in3cm 0.18 lost@66/343",
+    "  70M  sim_vs_ref 0.474  |  white_pot: lift   0.1 (ref 10.6) in3cm 0.34 lost@129/343  white_pot_li: lift   1.3 (ref  5.6) in3cm 0.20 lost@65/343"
+   ],
+   "curve_30M": 0.965,
+   "delta_30M_vs_S1": 0.482,
+   "best": {
+    "checkpoint": "/content/runs/glock/ep2-s42/policy_30003200.safetensors",
+    "n": 5,
+    "sim_vs_ref": {
+     "mean": 0.5944,
+     "std": 0.3407,
+     "min": 0.2046,
+     "max": 0.9752
+    },
+    "auc": {
+     "mean": 0.584,
+     "std": 0.3391,
+     "min": 0.1968,
+     "max": 0.9677
+    }
+   },
+   "delta_auc_vs_S1": -0.1522,
+   "S1_round1": {
+    "auc": 0.7362,
+    "curve_30M": 0.483
+   },
+   "S1_round2_ep2_auc": {
+    "s43": 0.979,
+    "s44": 0.9799
+   }
+  },
+  "ep12": {
+   "reference": "G2 /content/refs/psolve2/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_ps.parquet",
+   "curve": [
+    "  10M  sim_vs_ref 0.772  |  blue_cup: lift  16.6 (ref 17.4) in3cm 0.58 lost@163/181  plastic_dish: lift   0.7 (ref  0.5) in3cm 1.00 lost@None/181",
+    "  20M  sim_vs_ref 0.707  |  blue_cup: lift  15.0 (ref 17.4) in3cm 0.34 lost@83/181  plastic_dish: lift   0.4 (ref  0.5) in3cm 1.00 lost@None/181",
+    "  30M  sim_vs_ref 0.761  |  blue_cup: lift  16.6 (ref 17.4) in3cm 0.49 lost@98/181  plastic_dish: lift   1.7 (ref  0.5) in3cm 1.00 lost@None/181",
+    "  40M  sim_vs_ref 0.756  |  blue_cup: lift  18.9 (ref 17.4) in3cm 0.85 lost@None/181  plastic_dish: lift   0.5 (ref  0.5) in3cm 1.00 lost@None/181",
+    "  50M  sim_vs_ref 0.728  |  blue_cup: lift  17.9 (ref 17.4) in3cm 0.63 lost@165/181  plastic_dish: lift  20.7 (ref  0.5) in3cm 0.67 lost@164/181",
+    "  60M  sim_vs_ref 0.922  |  blue_cup: lift  17.7 (ref 17.4) in3cm 0.88 lost@None/181  plastic_dish: lift   1.4 (ref  0.5) in3cm 1.00 lost@None/181",
+    "  70M  sim_vs_ref 0.840  |  blue_cup: lift  17.4 (ref 17.4) in3cm 0.90 lost@None/181  plastic_dish: lift   1.6 (ref  0.5) in3cm 1.00 lost@None/181"
+   ],
+   "curve_30M": 0.761,
+   "delta_30M_vs_S1": 0.212,
+   "best": {
+    "checkpoint": "/content/runs/glock/ep12-s42/policy_60002304.safetensors",
+    "n": 5,
+    "sim_vs_ref": {
+     "mean": 0.8989,
+     "std": 0.0385,
+     "min": 0.8296,
+     "max": 0.9301
+    },
+    "auc": {
+     "mean": 0.8921,
+     "std": 0.0374,
+     "min": 0.8218,
+     "max": 0.9232
+    }
+   },
+   "delta_auc_vs_S1": 0.0074,
+   "S1_round1": {
+    "auc": 0.8847,
+    "curve_30M": 0.549
+   }
+  },
+  "ep18": {
+   "reference": "G1 /content/refs/psolve/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/ref_ps.parquet",
+   "curve": [
+    "  10M  sim_vs_ref 0.579  |  mini_sweeper: lift   0.2 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   0.0 (ref 16.1) in3cm 0.57 lost@122/353",
+    "  20M  sim_vs_ref 0.593  |  mini_sweeper: lift   0.1 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   0.0 (ref 16.1) in3cm 0.55 lost@122/353",
+    "  30M  sim_vs_ref 0.523  |  mini_sweeper: lift   5.7 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   0.0 (ref 16.1) in3cm 0.47 lost@122/353",
+    "  40M  sim_vs_ref 0.421  |  mini_sweeper: lift   3.7 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   1.5 (ref 16.1) in3cm 0.05 lost@122/353",
+    "  50M  sim_vs_ref 0.492  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   3.1 (ref 16.1) in3cm 0.05 lost@25/353",
+    "  60M  sim_vs_ref 0.472  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   0.5 (ref 16.1) in3cm 0.06 lost@122/353",
+    "  70M  sim_vs_ref 0.355  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   5.6 (ref 16.1) in3cm 0.07 lost@46/353"
+   ],
+   "curve_30M": 0.523,
+   "delta_30M_vs_S1": -0.006,
+   "best": {
+    "checkpoint": "/content/runs/glock/ep18-s42/policy_20000768.safetensors",
+    "n": 5,
+    "sim_vs_ref": {
+     "mean": 0.5916,
+     "std": 0.0036,
+     "min": 0.5845,
+     "max": 0.5944
+    },
+    "auc": {
+     "mean": 0.6223,
+     "std": 0.0042,
+     "min": 0.6139,
+     "max": 0.6252
+    }
+   },
+   "delta_auc_vs_S1": -0.0022,
+   "S1_round1": {
+    "auc": 0.6245,
+    "curve_30M": 0.529
+   }
+  },
+  "ep24": {
+   "reference": "G1 /content/refs/psolve/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/ref_ps.parquet",
+   "curve": [
+    "  10M  sim_vs_ref 0.230  |  wooden_piece: lift  10.9 (ref 23.1) in3cm 0.07 lost@23/275  wooden_piece: lift  10.0 (ref 26.1) in3cm 0.21 lost@123/275",
+    "  20M  sim_vs_ref 0.220  |  wooden_piece: lift  24.4 (ref 23.1) in3cm 0.07 lost@25/275  wooden_piece: lift   3.6 (ref 26.1) in3cm 0.21 lost@123/275",
+    "  30M  sim_vs_ref 0.191  |  wooden_piece: lift   4.4 (ref 23.1) in3cm 0.05 lost@23/275  wooden_piece: lift   0.2 (ref 26.1) in3cm 0.21 lost@123/275",
+    "  40M  sim_vs_ref 0.201  |  wooden_piece: lift   3.8 (ref 23.1) in3cm 0.06 lost@24/275  wooden_piece: lift   0.1 (ref 26.1) in3cm 0.21 lost@123/275",
+    "  50M  sim_vs_ref 0.203  |  wooden_piece: lift   3.0 (ref 23.1) in3cm 0.05 lost@23/275  wooden_piece: lift   1.0 (ref 26.1) in3cm 0.23 lost@125/275",
+    "  60M  sim_vs_ref 0.204  |  wooden_piece: lift  28.8 (ref 23.1) in3cm 0.05 lost@23/275  wooden_piece: lift   0.3 (ref 26.1) in3cm 0.22 lost@123/275",
+    "  70M  sim_vs_ref 0.127  |  wooden_piece: lift   3.7 (ref 23.1) in3cm 0.05 lost@22/275  wooden_piece: lift  11.6 (ref 26.1) in3cm 0.21 lost@123/275"
+   ],
+   "curve_30M": 0.191,
+   "delta_30M_vs_S1": 0.079,
+   "best": {
+    "checkpoint": "/content/runs/glock/ep24-s42/policy_10002432.safetensors",
+    "n": 5,
+    "sim_vs_ref": {
+     "mean": 0.2528,
+     "std": 0.0482,
+     "min": 0.2267,
+     "max": 0.3491
+    },
+    "auc": {
+     "mean": 0.2441,
+     "std": 0.0249,
+     "min": 0.2295,
+     "max": 0.2939
+    }
+   },
+   "delta_auc_vs_S1": 0.0117,
+   "S1_round1": {
+    "auc": 0.2324,
+    "curve_30M": 0.112
+   }
+  },
+  "H_RL": {
+   "rule": "supported iff curve sim_vs_ref at 30M (3 official evaluations) >= round-1 S1 seed 42 + 0.03 on >= 2 of 4 episodes (no 30M result = not)",
+   "episodes": 3,
+   "verdict": "supported"
+  },
+  "final_auc": {
+   "rule": "registered AUC vs mocap (NREP 5, checkpoint chosen by sim_vs_ref) minus round-1 S1 seed 42: signal iff mean >= +0.03 and none <= -0.05; harm iff mean <= -0.03 or any <= -0.10; else inconclusive (one seed: a signal buys a second seed)",
+   "mean_delta": -0.0338,
+   "n": 4,
+   "missing": [],
+   "verdict": "harm"
+  }
+ }
+}

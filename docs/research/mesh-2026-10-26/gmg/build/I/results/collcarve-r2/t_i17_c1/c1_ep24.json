@@ -1,0 +1,1284 @@
+{
+ "check": "T-I17 c1 (PREREG F-I5.16 (1)(h))",
+ "r0": "gmg/build/I/results/slot2-ep24/fi4o/r0",
+ "pose_npz": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cc2eval/c1_pose_f246.npz",
+ "frame": 246,
+ "names": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "host": "wooden_piece_1",
+ "guest": "wooden_piece_2",
+ "table_top_m": 0.6,
+ "sim_rl": {
+  "path": "docs/research/work/15-verify/cfg_sim_rl.yaml",
+  "sha256": "695536b798ff5f7b1d391e3a6932288e23329c026f27cd364f77230d703f4b66",
+  "sha_matches_prereg": true
+ },
+ "options": {
+  "timestep": 0.01,
+  "solver": "Newton",
+  "cone": "pyramidal",
+  "integrator": "implicitfast",
+  "iterations": 100,
+  "ls_iterations": 50,
+  "impratio": 20.0,
+  "njmax": 512,
+  "nconmax": 256
+ },
+ "steps": 200,
+ "copies": 16,
+ "draws": "default_rng(0).normal((16, 2, 6)), pos x 0.0005 m, rotvec x 0.005 rad, R_j @ R about the mesh origin, both objects (determined-wright settle_p1.py)",
+ "versions": {
+  "mujoco": "3.17.0",
+  "trimesh": "5.2.0"
+ },
+ "sets": {
+  "carved": {
+   "dir": "gmg/build/I/results/slot2-ep24/fi4o/r0",
+   "pieces": [
+    57,
+    77
+   ],
+   "lowest_vertex_above_table_mm_nominal": {
+    "wooden_piece_1": 35.19,
+    "wooden_piece_2": 30.85
+   },
+   "max_nefc": 2948,
+   "median_max_nefc": 614.0,
+   "max_ncon": 737,
+   "median_max_ncon": 153.5,
+   "overflow_copies": 12,
+   "nan_copies": 0,
+   "secs": 3.8,
+   "nominal": {
+    "max_ncon": 119,
+    "step_max_ncon": 0,
+    "max_nefc": 476,
+    "step_max_nefc": 0,
+    "classes_at_max_nefc": {
+     "guest_receiver": 119,
+     "guest_table": 0,
+     "receiver_table": 0,
+     "other": 0
+    },
+    "warn_contactfull": 0,
+    "warn_cnstrfull": 0,
+    "nan": false,
+    "steps": 200,
+    "overflow": false,
+    "stopped_at_overflow": false,
+    "copy": 0,
+    "at_forward": {
+     "ncon": 119,
+     "nefc": 476
+    },
+    "end": {
+     "wooden_piece_1": {
+      "dz_mm": -35.81,
+      "drift_mm": 35.81
+     },
+     "wooden_piece_2": {
+      "dz_mm": -31.19,
+      "drift_mm": 31.19
+     }
+    },
+    "end_ncon": 20,
+    "end_nefc": 80
+   },
+   "per_copy": [
+    {
+     "max_ncon": 141,
+     "step_max_ncon": 0,
+     "max_nefc": 564,
+     "step_max_nefc": 0,
+     "classes_at_max_nefc": {
+      "guest_receiver": 141,
+      "guest_table": 0,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 1,
+     "at_forward": {
+      "ncon": 141,
+      "nefc": 564
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -36.13,
+       "drift_mm": 36.16
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.84,
+       "drift_mm": 30.9
+      }
+     },
+     "end_ncon": 20,
+     "end_nefc": 80
+    },
+    {
+     "max_ncon": 344,
+     "step_max_ncon": 0,
+     "max_nefc": 1376,
+     "step_max_nefc": 0,
+     "classes_at_max_nefc": {
+      "guest_receiver": 344,
+      "guest_table": 0,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 2,
+     "at_forward": {
+      "ncon": 344,
+      "nefc": 1376
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -35.18,
+       "drift_mm": 35.18
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.13,
+       "drift_mm": 31.14
+      }
+     },
+     "end_ncon": 20,
+     "end_nefc": 80
+    },
+    {
+     "max_ncon": 85,
+     "step_max_ncon": 8,
+     "max_nefc": 340,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 32,
+      "guest_table": 41,
+      "receiver_table": 12,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": false,
+     "stopped_at_overflow": false,
+     "copy": 3,
+     "at_forward": {
+      "ncon": 63,
+      "nefc": 252
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -35.43,
+       "drift_mm": 35.47
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.03,
+       "drift_mm": 31.03
+      }
+     },
+     "end_ncon": 16,
+     "end_nefc": 64
+    },
+    {
+     "max_ncon": 212,
+     "step_max_ncon": 9,
+     "max_nefc": 848,
+     "step_max_nefc": 9,
+     "classes_at_max_nefc": {
+      "guest_receiver": 102,
+      "guest_table": 32,
+      "receiver_table": 78,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 4,
+     "at_forward": {
+      "ncon": 134,
+      "nefc": 536
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -36.2,
+       "drift_mm": 37.55
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.28,
+       "drift_mm": 33.16
+      }
+     },
+     "end_ncon": 22,
+     "end_nefc": 88
+    },
+    {
+     "max_ncon": 163,
+     "step_max_ncon": 9,
+     "max_nefc": 652,
+     "step_max_nefc": 9,
+     "classes_at_max_nefc": {
+      "guest_receiver": 67,
+      "guest_table": 26,
+      "receiver_table": 70,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 5,
+     "at_forward": {
+      "ncon": 76,
+      "nefc": 304
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -35.99,
+       "drift_mm": 35.99
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.31,
+       "drift_mm": 31.33
+      }
+     },
+     "end_ncon": 15,
+     "end_nefc": 60
+    },
+    {
+     "max_ncon": 292,
+     "step_max_ncon": 0,
+     "max_nefc": 1168,
+     "step_max_nefc": 0,
+     "classes_at_max_nefc": {
+      "guest_receiver": 292,
+      "guest_table": 0,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 6,
+     "at_forward": {
+      "ncon": 292,
+      "nefc": 1168
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -36.68,
+       "drift_mm": 36.68
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.5,
+       "drift_mm": 31.53
+      }
+     },
+     "end_ncon": 14,
+     "end_nefc": 56
+    },
+    {
+     "max_ncon": 178,
+     "step_max_ncon": 0,
+     "max_nefc": 712,
+     "step_max_nefc": 0,
+     "classes_at_max_nefc": {
+      "guest_receiver": 178,
+      "guest_table": 0,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 7,
+     "at_forward": {
+      "ncon": 178,
+      "nefc": 712
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -36.72,
+       "drift_mm": 36.75
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.28,
+       "drift_mm": 31.3
+      }
+     },
+     "end_ncon": 14,
+     "end_nefc": 56
+    },
+    {
+     "max_ncon": 135,
+     "step_max_ncon": 0,
+     "max_nefc": 540,
+     "step_max_nefc": 0,
+     "classes_at_max_nefc": {
+      "guest_receiver": 135,
+      "guest_table": 0,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 8,
+     "at_forward": {
+      "ncon": 135,
+      "nefc": 540
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -36.1,
+       "drift_mm": 36.26
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.92,
+       "drift_mm": 31.02
+      }
+     },
+     "end_ncon": 24,
+     "end_nefc": 96
+    },
+    {
+     "max_ncon": 59,
+     "step_max_ncon": 8,
+     "max_nefc": 236,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 3,
+      "guest_table": 44,
+      "receiver_table": 12,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": false,
+     "stopped_at_overflow": false,
+     "copy": 9,
+     "at_forward": {
+      "ncon": 48,
+      "nefc": 192
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -35.14,
+       "drift_mm": 35.16
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.63,
+       "drift_mm": 31.64
+      }
+     },
+     "end_ncon": 20,
+     "end_nefc": 80
+    },
+    {
+     "max_ncon": 737,
+     "step_max_ncon": 0,
+     "max_nefc": 2948,
+     "step_max_nefc": 0,
+     "classes_at_max_nefc": {
+      "guest_receiver": 737,
+      "guest_table": 0,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 10,
+     "at_forward": {
+      "ncon": 737,
+      "nefc": 2948
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -35.52,
+       "drift_mm": 35.52
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.9,
+       "drift_mm": 31.93
+      }
+     },
+     "end_ncon": 20,
+     "end_nefc": 80
+    },
+    {
+     "max_ncon": 166,
+     "step_max_ncon": 9,
+     "max_nefc": 664,
+     "step_max_nefc": 9,
+     "classes_at_max_nefc": {
+      "guest_receiver": 64,
+      "guest_table": 32,
+      "receiver_table": 70,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 11,
+     "at_forward": {
+      "ncon": 92,
+      "nefc": 368
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -35.84,
+       "drift_mm": 35.88
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.87,
+       "drift_mm": 30.87
+      }
+     },
+     "end_ncon": 14,
+     "end_nefc": 56
+    },
+    {
+     "max_ncon": 162,
+     "step_max_ncon": 9,
+     "max_nefc": 648,
+     "step_max_nefc": 9,
+     "classes_at_max_nefc": {
+      "guest_receiver": 80,
+      "guest_table": 32,
+      "receiver_table": 50,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 12,
+     "at_forward": {
+      "ncon": 72,
+      "nefc": 288
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -35.8,
+       "drift_mm": 35.87
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.33,
+       "drift_mm": 31.34
+      }
+     },
+     "end_ncon": 14,
+     "end_nefc": 56
+    },
+    {
+     "max_ncon": 72,
+     "step_max_ncon": 0,
+     "max_nefc": 288,
+     "step_max_nefc": 0,
+     "classes_at_max_nefc": {
+      "guest_receiver": 72,
+      "guest_table": 0,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": false,
+     "stopped_at_overflow": false,
+     "copy": 13,
+     "at_forward": {
+      "ncon": 72,
+      "nefc": 288
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -34.86,
+       "drift_mm": 34.86
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.76,
+       "drift_mm": 30.77
+      }
+     },
+     "end_ncon": 14,
+     "end_nefc": 56
+    },
+    {
+     "max_ncon": 45,
+     "step_max_ncon": 8,
+     "max_nefc": 180,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 1,
+      "guest_table": 32,
+      "receiver_table": 12,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": false,
+     "stopped_at_overflow": false,
+     "copy": 14,
+     "at_forward": {
+      "ncon": 29,
+      "nefc": 116
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -35.21,
+       "drift_mm": 35.23
+      },
+      "wooden_piece_2": {
+       "dz_mm": -32.07,
+       "drift_mm": 32.08
+      }
+     },
+     "end_ncon": 14,
+     "end_nefc": 56
+    },
+    {
+     "max_ncon": 129,
+     "step_max_ncon": 0,
+     "max_nefc": 516,
+     "step_max_nefc": 0,
+     "classes_at_max_nefc": {
+      "guest_receiver": 129,
+      "guest_table": 0,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 15,
+     "at_forward": {
+      "ncon": 129,
+      "nefc": 516
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -36.34,
+       "drift_mm": 36.41
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.45,
+       "drift_mm": 30.49
+      }
+     },
+     "end_ncon": 20,
+     "end_nefc": 80
+    },
+    {
+     "max_ncon": 145,
+     "step_max_ncon": 9,
+     "max_nefc": 580,
+     "step_max_nefc": 9,
+     "classes_at_max_nefc": {
+      "guest_receiver": 64,
+      "guest_table": 27,
+      "receiver_table": 54,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 16,
+     "at_forward": {
+      "ncon": 140,
+      "nefc": 560
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -36.11,
+       "drift_mm": 36.12
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.31,
+       "drift_mm": 31.31
+      }
+     },
+     "end_ncon": 16,
+     "end_nefc": 64
+    }
+   ]
+  },
+  "default": {
+   "dir": "gmg/build/I/results/slot2-ep24/fi4o/r0/_default",
+   "pieces": [
+    50,
+    71
+   ],
+   "lowest_vertex_above_table_mm_nominal": {
+    "wooden_piece_1": 35.19,
+    "wooden_piece_2": 30.85
+   },
+   "max_nefc": 688,
+   "median_max_nefc": 632.0,
+   "max_ncon": 172,
+   "median_max_ncon": 158.0,
+   "overflow_copies": 16,
+   "nan_copies": 0,
+   "secs": 2.1,
+   "nominal": {
+    "max_ncon": 157,
+    "step_max_ncon": 8,
+    "max_nefc": 628,
+    "step_max_nefc": 8,
+    "classes_at_max_nefc": {
+     "guest_receiver": 80,
+     "guest_table": 77,
+     "receiver_table": 0,
+     "other": 0
+    },
+    "warn_contactfull": 0,
+    "warn_cnstrfull": 0,
+    "nan": false,
+    "steps": 200,
+    "overflow": true,
+    "stopped_at_overflow": false,
+    "copy": 0,
+    "at_forward": {
+     "ncon": 69,
+     "nefc": 276
+    },
+    "end": {
+     "wooden_piece_1": {
+      "dz_mm": -26.38,
+      "drift_mm": 28.35
+     },
+     "wooden_piece_2": {
+      "dz_mm": -31.19,
+      "drift_mm": 31.25
+     }
+    },
+    "end_ncon": 96,
+    "end_nefc": 384
+   },
+   "per_copy": [
+    {
+     "max_ncon": 159,
+     "step_max_ncon": 8,
+     "max_nefc": 636,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 83,
+      "guest_table": 76,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 1,
+     "at_forward": {
+      "ncon": 69,
+      "nefc": 276
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -26.71,
+       "drift_mm": 28.53
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.84,
+       "drift_mm": 30.88
+      }
+     },
+     "end_ncon": 97,
+     "end_nefc": 388
+    },
+    {
+     "max_ncon": 172,
+     "step_max_ncon": 8,
+     "max_nefc": 688,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 83,
+      "guest_table": 83,
+      "receiver_table": 6,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 2,
+     "at_forward": {
+      "ncon": 72,
+      "nefc": 288
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -30.57,
+       "drift_mm": 30.92
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.02,
+       "drift_mm": 31.05
+      }
+     },
+     "end_ncon": 72,
+     "end_nefc": 288
+    },
+    {
+     "max_ncon": 167,
+     "step_max_ncon": 8,
+     "max_nefc": 668,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 75,
+      "guest_table": 86,
+      "receiver_table": 6,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 3,
+     "at_forward": {
+      "ncon": 67,
+      "nefc": 268
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -27.05,
+       "drift_mm": 29.99
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.99,
+       "drift_mm": 31.08
+      }
+     },
+     "end_ncon": 80,
+     "end_nefc": 320
+    },
+    {
+     "max_ncon": 155,
+     "step_max_ncon": 8,
+     "max_nefc": 620,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 83,
+      "guest_table": 72,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 4,
+     "at_forward": {
+      "ncon": 69,
+      "nefc": 276
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -27.51,
+       "drift_mm": 29.01
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.4,
+       "drift_mm": 31.42
+      }
+     },
+     "end_ncon": 76,
+     "end_nefc": 304
+    },
+    {
+     "max_ncon": 157,
+     "step_max_ncon": 8,
+     "max_nefc": 628,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 71,
+      "guest_table": 86,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 5,
+     "at_forward": {
+      "ncon": 67,
+      "nefc": 268
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -29.65,
+       "drift_mm": 34.29
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.82,
+       "drift_mm": 33.05
+      }
+     },
+     "end_ncon": 64,
+     "end_nefc": 256
+    },
+    {
+     "max_ncon": 151,
+     "step_max_ncon": 8,
+     "max_nefc": 604,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 83,
+      "guest_table": 68,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 6,
+     "at_forward": {
+      "ncon": 72,
+      "nefc": 288
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -27.7,
+       "drift_mm": 31.14
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.85,
+       "drift_mm": 32.27
+      }
+     },
+     "end_ncon": 91,
+     "end_nefc": 364
+    },
+    {
+     "max_ncon": 149,
+     "step_max_ncon": 8,
+     "max_nefc": 596,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 79,
+      "guest_table": 70,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 7,
+     "at_forward": {
+      "ncon": 67,
+      "nefc": 268
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -31.98,
+       "drift_mm": 33.16
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.28,
+       "drift_mm": 31.9
+      }
+     },
+     "end_ncon": 74,
+     "end_nefc": 296
+    },
+    {
+     "max_ncon": 156,
+     "step_max_ncon": 8,
+     "max_nefc": 624,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 82,
+      "guest_table": 74,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 8,
+     "at_forward": {
+      "ncon": 67,
+      "nefc": 268
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -26.61,
+       "drift_mm": 28.42
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.92,
+       "drift_mm": 31.61
+      }
+     },
+     "end_ncon": 90,
+     "end_nefc": 360
+    },
+    {
+     "max_ncon": 157,
+     "step_max_ncon": 8,
+     "max_nefc": 628,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 77,
+      "guest_table": 74,
+      "receiver_table": 6,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 9,
+     "at_forward": {
+      "ncon": 68,
+      "nefc": 272
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -25.7,
+       "drift_mm": 27.98
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.63,
+       "drift_mm": 31.67
+      }
+     },
+     "end_ncon": 98,
+     "end_nefc": 392
+    },
+    {
+     "max_ncon": 149,
+     "step_max_ncon": 8,
+     "max_nefc": 596,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 83,
+      "guest_table": 66,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 10,
+     "at_forward": {
+      "ncon": 70,
+      "nefc": 280
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -27.01,
+       "drift_mm": 28.16
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.9,
+       "drift_mm": 31.95
+      }
+     },
+     "end_ncon": 93,
+     "end_nefc": 372
+    },
+    {
+     "max_ncon": 169,
+     "step_max_ncon": 8,
+     "max_nefc": 676,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 77,
+      "guest_table": 86,
+      "receiver_table": 6,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 11,
+     "at_forward": {
+      "ncon": 66,
+      "nefc": 264
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -29.6,
+       "drift_mm": 34.06
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.4,
+       "drift_mm": 32.72
+      }
+     },
+     "end_ncon": 67,
+     "end_nefc": 268
+    },
+    {
+     "max_ncon": 165,
+     "step_max_ncon": 8,
+     "max_nefc": 660,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 80,
+      "guest_table": 85,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 12,
+     "at_forward": {
+      "ncon": 69,
+      "nefc": 276
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -29.46,
+       "drift_mm": 34.07
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.71,
+       "drift_mm": 33.34
+      }
+     },
+     "end_ncon": 66,
+     "end_nefc": 264
+    },
+    {
+     "max_ncon": 170,
+     "step_max_ncon": 8,
+     "max_nefc": 680,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 78,
+      "guest_table": 86,
+      "receiver_table": 6,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 13,
+     "at_forward": {
+      "ncon": 68,
+      "nefc": 272
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -25.42,
+       "drift_mm": 27.55
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.77,
+       "drift_mm": 30.81
+      }
+     },
+     "end_ncon": 94,
+     "end_nefc": 376
+    },
+    {
+     "max_ncon": 149,
+     "step_max_ncon": 8,
+     "max_nefc": 596,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 79,
+      "guest_table": 64,
+      "receiver_table": 6,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 14,
+     "at_forward": {
+      "ncon": 69,
+      "nefc": 276
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -31.47,
+       "drift_mm": 32.61
+      },
+      "wooden_piece_2": {
+       "dz_mm": -32.6,
+       "drift_mm": 33.05
+      }
+     },
+     "end_ncon": 72,
+     "end_nefc": 288
+    },
+    {
+     "max_ncon": 170,
+     "step_max_ncon": 8,
+     "max_nefc": 680,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 84,
+      "guest_table": 86,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 15,
+     "at_forward": {
+      "ncon": 70,
+      "nefc": 280
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -27.1,
+       "drift_mm": 28.78
+      },
+      "wooden_piece_2": {
+       "dz_mm": -30.46,
+       "drift_mm": 30.47
+      }
+     },
+     "end_ncon": 70,
+     "end_nefc": 280
+    },
+    {
+     "max_ncon": 163,
+     "step_max_ncon": 8,
+     "max_nefc": 652,
+     "step_max_nefc": 8,
+     "classes_at_max_nefc": {
+      "guest_receiver": 79,
+      "guest_table": 84,
+      "receiver_table": 0,
+      "other": 0
+     },
+     "warn_contactfull": 0,
+     "warn_cnstrfull": 0,
+     "nan": false,
+     "steps": 200,
+     "overflow": true,
+     "stopped_at_overflow": false,
+     "copy": 16,
+     "at_forward": {
+      "ncon": 70,
+      "nefc": 280
+     },
+     "end": {
+      "wooden_piece_1": {
+       "dz_mm": -31.59,
+       "drift_mm": 32.09
+      },
+      "wooden_piece_2": {
+       "dz_mm": -31.3,
+       "drift_mm": 31.31
+      }
+     },
+     "end_ncon": 73,
+     "end_nefc": 292
+    }
+   ]
+  }
+ },
+ "verdict": {
+  "pass_": false,
+  "legs": {
+   "carved_overflow_ge_15": false,
+   "default_overflow_none": false,
+   "ratio_ge_3": true
+  },
+  "ratio_carved_default": 4.285,
+  "target_mujoco_warp": {
+   "carved_max_nefc": 2027,
+   "default_max_nefc": 416,
+   "carved_overflow": "16/16",
+   "default_overflow": "0/16",
+   "source": "determined-wright p1_ep24 RESULT.md (3c7fd32)"
+  }
+ }
+}

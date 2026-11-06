@@ -1,0 +1,600 @@
+{
+ "ep": 2,
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep2",
+ "bundle_tier": "P1",
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "a_offset": 1,
+ "video_frames": 343,
+ "depth": "data/depth/ep2/depths_fs0.5.npy",
+ "depth_frames": 343,
+ "partner_dilate_px_cam_a": 19,
+ "refine": "sam2.1-hiera-tiny",
+ "seeds": [
+  0,
+  1
+ ],
+ "census": {
+  "white_pot|white_pot_lid": {
+   "frames": 172,
+   "contact": 79,
+   "separated": 93,
+   "sep3d": 95,
+   "overlap2d": 77,
+   "j_mm": 1.2515,
+   "band_mm": 6.0132
+  },
+  "white_pot_lid|white_pot": {
+   "frames": 172,
+   "contact": 79,
+   "separated": 93,
+   "sep3d": 95,
+   "overlap2d": 77,
+   "j_mm": 1.3146,
+   "band_mm": 6.1332
+  }
+ },
+ "sigma_mm": {
+  "white_pot": 1.3669,
+  "white_pot_lid": 0.7635
+ },
+ "targets": {
+  "white_pot": {
+   "obj": "white_pot",
+   "partners": [
+    "white_pot_lid"
+   ],
+   "mode": "separated",
+   "flags": [
+    "one_view",
+    "mv_skipped"
+   ],
+   "frames": 171,
+   "separated": 93,
+   "separated_in_table": 93,
+   "area_max": 155584,
+   "qualifying": 93,
+   "fail_counts": {
+    "hands": 47,
+    "area": 72,
+    "depth": 0
+   },
+   "pool_span_deg": 11.17,
+   "pool_p90_deg": 4.37,
+   "views": [
+    {
+     "obj": "white_pot",
+     "k": 246,
+     "j": 247,
+     "mode": "separated",
+     "dir": [
+      0.692671,
+      -0.082215,
+      0.716553
+     ],
+     "area": 151233,
+     "hand_share": 0.0,
+     "depth_share": 0.9017,
+     "partner_share": 0.0,
+     "rank": 0,
+     "min_angle_deg": null
+    }
+   ],
+   "n_views": 1,
+   "views_span_deg": 0.0,
+   "view_angles_deg": [
+    [
+     0.0
+    ]
+   ],
+   "control": {
+    "pool": 74,
+    "examined": 34,
+    "hand_free_found": true,
+    "d3_mm": 0.07,
+    "naive": {
+     "k": 24,
+     "area_fp": 153514,
+     "area": 153361,
+     "hand_share": 0.0,
+     "partner_share": 0.7751,
+     "depth_share": 0.9102
+    }
+   },
+   "g0_views": [
+    {
+     "kind": "primary",
+     "view": {
+      "k": 246,
+      "j": 247,
+      "mode": "separated",
+      "rank": 0,
+      "area": 151233,
+      "hand_share": 0.0,
+      "depth_share": 0.9017,
+      "partner_share": 0.0
+     },
+     "masks": {
+      "k": 246,
+      "j": 247,
+      "projected_area": 151233,
+      "refined": true,
+      "flags": [],
+      "pos": [
+       [
+        846,
+        1008
+       ],
+       [
+        866,
+        1477
+       ],
+       [
+        882,
+        760
+       ],
+       [
+        885,
+        1241
+       ],
+       [
+        665,
+        873
+       ]
+      ],
+      "neg": [
+       [
+        1405,
+        1012
+       ],
+       [
+        1744,
+        1518
+       ],
+       [
+        1253,
+        927
+       ],
+       [
+        1567,
+        1065
+       ],
+       [
+        1393,
+        1180
+       ]
+      ],
+      "refine": {
+       "box": [
+        289,
+        570,
+        1387,
+        1520
+       ],
+       "ious": [
+        0.9473,
+        0.8008,
+        0.9401
+       ],
+       "pick": 0,
+       "sam_scores": [
+        0.9267,
+        0.7705,
+        0.9467
+       ],
+       "n_pos": 5,
+       "n_neg": 1
+      },
+      "refined_area": 153698,
+      "refined_gain_partner": 0,
+      "refined_iou_projected": 0.9478,
+      "refined_gain_outside": 5316,
+      "fragments_dropped_px": 0,
+      "final_area": 148382
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 1970620,
+      "footprint_inside": 0,
+      "min_dist_px": 188.0,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 1970620,
+      "footprint_inside": 0,
+      "min_dist_px": 191.0,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": true,
+     "separated_ok": true,
+     "b11_pass": true,
+     "sam3d_input": {
+      "tag": "ep2_white_pot_primary_k246",
+      "mask_px_distorted": 148382,
+      "mask_px": 157337,
+      "depth_px_in_mask": 142939,
+      "behind_dropped_px": 12830,
+      "pointmap_valid_px": 130109,
+      "pointmap_valid_share": 0.8269,
+      "z_median_m": 0.5988,
+      "extent_m": [
+       0.1590999960899353,
+       0.2184000015258789,
+       0.2667999863624573
+      ]
+     }
+    },
+    {
+     "kind": "control",
+     "view": {
+      "k": 24,
+      "j": 25,
+      "mode": "contact_naive",
+      "rank": 0,
+      "area": 153361,
+      "hand_share": 0.0,
+      "depth_share": 0.9102,
+      "partner_share": 0.7751
+     },
+     "masks": {
+      "k": 24,
+      "j": 25,
+      "projected_area": 153514,
+      "final_area": 153361,
+      "refined": false,
+      "flags": [
+       "naive_mask"
+      ],
+      "hand_share": 0.0,
+      "partner_px_in_mask": 108179
+     },
+     "partner_in_mask": {
+      "points_inside": 1968382,
+      "points_projected": 2004125,
+      "footprint_inside": 108179,
+      "min_dist_px": 0.0,
+      "pass": false
+     },
+     "sam3d_input": {
+      "tag": "ep2_white_pot_control_k24",
+      "mask_px_distorted": 153361,
+      "mask_px": 157506,
+      "depth_px_in_mask": 143204,
+      "behind_dropped_px": 6255,
+      "pointmap_valid_px": 136949,
+      "pointmap_valid_share": 0.8695,
+      "z_median_m": 0.5132,
+      "extent_m": [
+       0.15929999947547913,
+       0.20059999823570251,
+       0.22259999811649323
+      ]
+     }
+    }
+   ]
+  },
+  "white_pot_lid": {
+   "obj": "white_pot_lid",
+   "partners": [
+    "white_pot"
+   ],
+   "mode": "separated",
+   "flags": [
+    "one_view",
+    "mv_skipped"
+   ],
+   "frames": 164,
+   "separated": 93,
+   "separated_in_table": 86,
+   "area_max": 91319,
+   "qualifying": 60,
+   "fail_counts": {
+    "hands": 40,
+    "area": 86,
+    "depth": 0
+   },
+   "pool_span_deg": 3.65,
+   "pool_p90_deg": 1.14,
+   "views": [
+    {
+     "obj": "white_pot_lid",
+     "k": 132,
+     "j": 133,
+     "mode": "separated",
+     "dir": [
+      0.835827,
+      -0.21575,
+      -0.504821
+     ],
+     "area": 91319,
+     "hand_share": 0.0144,
+     "depth_share": 0.9328,
+     "partner_share": 0.0,
+     "rank": 0,
+     "min_angle_deg": null
+    }
+   ],
+   "n_views": 1,
+   "views_span_deg": 0.0,
+   "view_angles_deg": [
+    [
+     0.08
+    ]
+   ],
+   "control": {
+    "pool": 74,
+    "examined": 22,
+    "hand_free_found": true,
+    "d3_mm": 0.08,
+    "naive": {
+     "k": 318,
+     "area_fp": 117887,
+     "area": 111401,
+     "hand_share": 0.0,
+     "partner_share": 0.945,
+     "depth_share": 0.9233
+    }
+   },
+   "g0_views": [
+    {
+     "kind": "primary",
+     "view": {
+      "k": 132,
+      "j": 133,
+      "mode": "separated",
+      "rank": 0,
+      "area": 91319,
+      "hand_share": 0.0144,
+      "depth_share": 0.9328,
+      "partner_share": 0.0
+     },
+     "masks": {
+      "k": 132,
+      "j": 133,
+      "projected_area": 91319,
+      "refined": true,
+      "flags": [],
+      "pos": [
+       [
+        1450,
+        1003
+       ],
+       [
+        1796,
+        1519
+       ],
+       [
+        1625,
+        1026
+       ],
+       [
+        1278,
+        967
+       ],
+       [
+        1392,
+        853
+       ]
+      ],
+      "neg": [
+       [
+        892,
+        880
+       ],
+       [
+        643,
+        1519
+       ],
+       [
+        961,
+        1274
+       ],
+       [
+        929,
+        609
+       ],
+       [
+        702,
+        714
+       ],
+       [
+        1460,
+        1171
+       ],
+       [
+        1363,
+        1147
+       ],
+       [
+        1504,
+        1163
+       ],
+       [
+        1436,
+        1175
+       ],
+       [
+        1482,
+        1167
+       ]
+      ],
+      "refine": {
+       "box": [
+        1028,
+        670,
+        2028,
+        1520
+       ],
+       "ious": [
+        0.3892,
+        0.8808,
+        0.9029
+       ],
+       "pick": 2,
+       "sam_scores": [
+        0.1731,
+        0.2934,
+        0.4427
+       ],
+       "n_pos": 5,
+       "n_neg": 5
+      },
+      "refined_area": 85090,
+      "refined_gain_partner": 0,
+      "refined_iou_projected": 0.9082,
+      "refined_gain_outside": 1130,
+      "fragments_dropped_px": 0,
+      "final_area": 84029
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 3288333,
+      "footprint_inside": 0,
+      "min_dist_px": 196.95,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 3288333,
+      "footprint_inside": 0,
+      "min_dist_px": 198.57,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": true,
+     "separated_ok": true,
+     "b11_pass": true,
+     "sam3d_input": {
+      "tag": "ep2_white_pot_lid_primary_k132",
+      "mask_px_distorted": 84029,
+      "mask_px": 103196,
+      "depth_px_in_mask": 98425,
+      "behind_dropped_px": 667,
+      "pointmap_valid_px": 97758,
+      "pointmap_valid_share": 0.9473,
+      "z_median_m": 0.5612,
+      "extent_m": [
+       0.16660000383853912,
+       0.1216999962925911,
+       0.11320000141859055
+      ]
+     }
+    },
+    {
+     "kind": "control",
+     "view": {
+      "k": 318,
+      "j": 319,
+      "mode": "contact_naive",
+      "rank": 0,
+      "area": 111401,
+      "hand_share": 0.0,
+      "depth_share": 0.9233,
+      "partner_share": 0.945
+     },
+     "masks": {
+      "k": 318,
+      "j": 319,
+      "projected_area": 117887,
+      "final_area": 111401,
+      "refined": false,
+      "flags": [
+       "naive_mask"
+      ],
+      "hand_share": 0.0,
+      "partner_px_in_mask": 108527
+     },
+     "partner_in_mask": {
+      "points_inside": 2301992,
+      "points_projected": 3285611,
+      "footprint_inside": 108527,
+      "min_dist_px": 0.0,
+      "pass": false
+     },
+     "sam3d_input": {
+      "tag": "ep2_white_pot_lid_control_k318",
+      "mask_px_distorted": 111401,
+      "mask_px": 112565,
+      "depth_px_in_mask": 103811,
+      "behind_dropped_px": 4005,
+      "pointmap_valid_px": 99806,
+      "pointmap_valid_share": 0.8867,
+      "z_median_m": 0.5187,
+      "extent_m": [
+       0.16269999742507935,
+       0.13429999351501465,
+       0.11599999666213989
+      ]
+     }
+    }
+   ]
+  }
+ },
+ "jobs": [
+  {
+   "tag": "ep2_white_pot_primary_k246",
+   "seeds": [
+    0,
+    1
+   ],
+   "kind": "primary",
+   "obj": "white_pot",
+   "k": 246,
+   "sha256": {
+    "rgb": "5e0884a4b07c51dea0c35041e17ab656e4ef267ce1cceaf72af9a0e24969a685",
+    "mask": "0a83a8dc09334d84afd0d2acbfcddbe0ab6f5312523a77c4043df36a4a8f2dfc",
+    "pointmap": "5ffd9b390783752b9ca3ac979d4accb17fcec7594cc5fe7abfed41d324c6d5ab"
+   }
+  },
+  {
+   "tag": "ep2_white_pot_control_k24",
+   "seeds": [
+    0,
+    1
+   ],
+   "kind": "control",
+   "obj": "white_pot",
+   "k": 24,
+   "sha256": {
+    "rgb": "86760d062fa7eaec56bcc611d52c5a06b49f29318d0dd73e0f14fed8f0dbc8dd",
+    "mask": "50978b9d8415b40aef02c8ad63f2e0e8dc72ee4bda20918a6a2437f5ba7aab0d",
+    "pointmap": "52de7b578b4b78ca1470455ed5b62b5fc6abb40df8ac8fbde19e39aec27f6125"
+   }
+  },
+  {
+   "tag": "ep2_white_pot_lid_primary_k132",
+   "seeds": [
+    0,
+    1
+   ],
+   "kind": "primary",
+   "obj": "white_pot_lid",
+   "k": 132,
+   "sha256": {
+    "rgb": "e905b61ad8b28d8891752e0a970c88ab91b7259885dafdf954d5ad6a0f755919",
+    "mask": "4a55ef187098acfb1af100a1a1f71aa3f49275227fa1de84b2b9bb7918676008",
+    "pointmap": "42af884fd025cdae82ba9ef957fa70edda31d148c00d134d6404d5933b90e447"
+   }
+  },
+  {
+   "tag": "ep2_white_pot_lid_control_k318",
+   "seeds": [
+    0,
+    1
+   ],
+   "kind": "control",
+   "obj": "white_pot_lid",
+   "k": 318,
+   "sha256": {
+    "rgb": "a09f15dbcced767a1b352da255e98221cff0e45b73e1398c68068cdd1f46f2af",
+    "mask": "2a3b4cc184c94aafc47b2191473ef15516eed2097d539b22e5cc27b03cd4da40",
+    "pointmap": "cb685500982875e20b464d94f21de79c7e855e94621d75115a1f7fdf0f31f56e"
+   }
+  }
+ ],
+ "b11_pass": true
+}

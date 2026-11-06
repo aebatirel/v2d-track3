@@ -1,0 +1,23 @@
+{
+ "coacd_version": "unknown",
+ "spoon_ep32sf": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/dl/runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/wooden_spoon/wooden_spoon.glb",
+  "md5": "6bf5b0e37789cac13e6939e4c7c0ae08",
+  "V": 1562,
+  "F": 3124,
+  "pieces": 10,
+  "hull_vol_sum_cm3": 122.2,
+  "mesh_vol_cm3": 99.7,
+  "sec": 22.4
+ },
+ "spoon_lib": {
+  "path": "/home/user/v2d-track3/meshes/library_v3/wooden_spoon.glb",
+  "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+  "V": 1614,
+  "F": 3224,
+  "pieces": 9,
+  "hull_vol_sum_cm3": 100.4,
+  "mesh_vol_cm3": 84.8,
+  "sec": 17.1
+ }
+}
