@@ -1,0 +1,9 @@
+803588ad37ac8f8b9cc598fb047006ec  ep27_inspire/processed/sequence_id=t3_ep027/robot_name=inspire/ref.parquet
+7208eec730189e5c47a643498e7a5420  ep27_barrett/processed/sequence_id=t3_ep027/robot_name=barrett/ref.parquet
+a30a446ef3baaff8a8424acf4f07fa63  ep27_panda/processed/sequence_id=t3_ep027/robot_name=panda/ref.parquet
+827b24a8aeae2ab2a3f002cf9045430f  ep27_sharpa/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/2061130e6c6a4a03a00710d331762fe9-0.parquet
+c3ad635d4ea2b2345722ad4c7b30f9c2  ep27_allegro/processed/sequence_id=t3_ep027/robot_name=allegro/ref.parquet
+7bbe505a1c3274934766ac7c88199dd0  ep27_leap/processed/sequence_id=t3_ep027/robot_name=leap/ref.parquet
+67e4afce2fef7465f9e543aafccb3bb2  ep27_dex3/processed/sequence_id=t3_ep027/robot_name=dex3/ref.parquet
+cf591545371c93168a7fccd83026835a  ep27_dclaw/processed/sequence_id=t3_ep027/robot_name=dclaw/ref.parquet
+af8ea4ab97f39097331c7caf92dc7a8f  ep27_shadow/processed/sequence_id=t3_ep027/robot_name=shadow/ref.parquet
