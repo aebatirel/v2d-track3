@@ -12358,3 +12358,6 @@ score.
     the scans (solid, so the holes did not matter to the grasps). Phase 2 can use the clean meshes in physics too.
     The deck will footnote the render swap.
   - Ambient light lowered to 0.25 so the white objects show shading.
+- 11:47 UTC, LEAP (box B) [M]: AUC vs mocap 0.9704 ± 0.0049; MP-SR 5/5.
+- 12:09 UTC, Allegro (box A) [M]: 0.9746 ± 0.0020; MP-SR 5/5.
+- Still training: Shadow (A), Inspire then Dex3 (B), D'Claw (C).
