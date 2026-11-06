@@ -12327,3 +12327,16 @@ score.
   in between change only logs and CPU render tools, not `ops/jobs/showcase.sh` or the showcase modules.
 - B's env-snapshot download stalled: one 1.41 GB part frozen from 09:23. At 09:31 UTC I killed the stuck
   `hf download`, and run_job fell back to the full `pipeline/setup.sh`: about +25 min on B (≈ $0.60).
+- 10:34 UTC, first result, Panda gripper (box C) [M]:
+  - candidate checkpoints by sim_vs_ref: 150M 0.740, 200M 0.625, 250M 0.707; 150M kept;
+  - 5 official draws vs mocap: AUC 0.648 ± 0.066 (0.556–0.730); pot 0.16–0.46; rack knocked in 2 draws (0.81, 0.85);
+    MP-SR 0/5;
+  - physics replay rendered on CPU (`phys_panda_ep27_PHYSICS.jpg`): the gripper lifts the pot by the handle and
+    starts the flip, then the pot pivots in the two-finger pinch and falls off the table before the place.
+    Candidate fix: grasp search (grip the rim or body, not the handle).
+- The job's mp4 render failed on these boxes: pyglet `NoSuchConfigException`, no GL config. A trace with the viewer
+  off (`viewer.backend=none`) works.
+  - The job is fixed for future runs (`ops/jobs/showcase.sh`).
+  - For the running boxes, a helper (`showcase/box/trace_helper.sh`) traces each robot after its summary and pushes.
+    It holds the box until all are done; HOLD is bounded: A 15:45, B 16:45, C 14:45 UTC.
+  - Videos are rendered on CPU here from the traces.
