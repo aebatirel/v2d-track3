@@ -12383,3 +12383,13 @@ score.
   ≈ $5 [E]. Ledger planned $5.
 - 12:59 UTC, Inspire (box B) [M]: AUC vs mocap 0.9731 ± 0.0063; MP-SR 5/5. Dex3 trains next on B.
 - 12:59 UTC, D'Claw (box C) [M]: AUC vs mocap 0.9579 ± 0.0079; pot 0.90–0.94; MP-SR 5/5. Box C's job is done; the helper releases the HOLD → box C saves and self-destroys.
+- ~13:02 UTC: box C (panda, barrett, dclaw) saved and self-destroyed. Up from about 08:53, so about 4.15 h × $1.42 ≈
+  $5.9 [E]; the ledger actual will follow from billing.
+- 13:04 UTC (owner: "we gotta fix franka as well"; Franka Hand = the Panda tile, already retraining on D): a second fix
+  runs in parallel.
+  - Grip location ruled out [M]: the human (Sharpa reference) already grips the handle 2–8 cm from its root (pot frame
+    z 10–16 cm; root about 8 cm), so a root grip would cut the lever only about 25%.
+  - Lever used instead: wider soft pads. Variant `panda_pads_wide`: condim 4, torsional 0.03 (2× panda_pads), same
+    140 N grip; a dose-response check against D.
+  - Box E `20261106-scE-ee75ba2`: ROBOTS="panda:panda_pads_wide:44"; offer 56500949 → instance 59417477,
+    RTX PRO 6000 WS, $1.420/h; ≈ $3.4 [E].
