@@ -709,7 +709,7 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 </tr>
 </tbody>
 </table></div>
-<p>The final rank is the <strong>sum of the six board ranks</strong> (FAQ). An early research note (6 Oct) assumed AUC alone ranked teams; the first rank-sum check came only on 31 Oct (section 4). Each board keeps a team's best (or selected) submission, so a variant that is worse on five boards and better on one costs nothing.</p>
+<p>The final rank is the <strong>sum of the six board ranks</strong> (FAQ). An early research note (6 Oct) assumed AUC alone ranked teams; the first rank-sum check came only on 31 Oct (section 4). Each board keeps a team's best (or selected) submission, so a variant that is worse on five boards and better on one costs nothing. Rank arithmetic (coordinator, 2 Nov): each board ranks us separately and the sum decides, so one more SP-SR episode was worth about 4 rank points while five teams stood at 1.00. Two scores must not be confused: our "own score" (sim_vs_ref, mean of 10 official runs against our own reference, about 0.94 on average at the end) measures how well the robot follows our reference, while the board scores one stored run against real motion, so a high own score does not guarantee a high board score. The scorer also aligns the whole scene once at frame 0, using the first object without a symmetry axis, and fits our submitted mesh onto its scan of the real object, so the submitted mesh changes the pose scores and not only CD-O.</p>
 <p><strong>Two "lotteries" inside the scorer</strong> (robustness review, 26-27 Oct):</p>
 <ol>
 <li><strong>Frame-0 alignment.</strong> The kit aligns the whole achieved scene once, at frame 0: rotation from the first object without a symmetry axis, translation from slot 0. Any anchor error reaches every object and every frame, while RPE is blind to such common-mode error. Our frame 0 is the noisiest frame (FoundationPose register: 1.07 degrees median against about 0.5 later), and in rollouts frame 0 is recorded after the first control step. A slot-0 mesh offset (the blue cup, about 1 cm along its axis) moves every object.</li>
@@ -804,6 +804,38 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 <li><strong>22 Oct:</strong> the owner asked about a Rust rewrite (no), cost levers and the 250M budget (section 11). A seven-agent novelty review rated the method 1.5-2 of 5 as research. The room map was dropped because it used GT constants. The owner chose CPU work and 3-4 public episodes before a full run; overnight A/Bs (13 boxes, $49.76) after "go crazy, I trust you".</li>
 <li><strong>23 Oct:</strong> FDR rewards became the default ("Fdr can be default ... We need to fix the spoon episodes before full launch"), the VOC inertia bug was fixed, the spoon wrap grasp was built ("wrap the hand around the handle, that's the strongest grasp"), and detection rules were frozen.</li>
 </ul>
+<h4 id="detail-from-the-early-chat-20-23-oct">Detail from the early chat, 20-23 Oct</h4>
+<p>This block comes from turn summaries of the main early session (the first message of 20 Oct 13:20 UTC to 23 Oct 22:58). The owner's own messages were mostly not in the summaries, so owner wording is quoted only where the agent quoted it. Dollar figures are the agent's statements unless marked.</p>
+<p><strong>Setup problems (20 Oct).</strong>
+- The session's network policy blocked the Vast API and Hugging Face with HTTP 403. Outbound SSH (port 22) timed out; port 443 worked. SSH from the session stayed blocked for the whole project, so boxes were watched through Vast labels, the Vast log API, an upload to the store every 30 minutes and an HTTPS terminal on the box [M].
+- The agent asked for open network access, a new Vast key, a Hugging Face read token, a GitHub token limited to one repository (read-only, expiring 30 Nov) and $25-50 of credit. It warned that rented machines belong to third parties. Vast answered with a $0 balance at 14:24 and $25.00 at 14:52. An API key pasted into chat was treated as exposed and the agent advised rotating it. Auto top-up stayed off; the agent noted that Vast charges a saved card when the balance goes negative (risk: cents).
+- Permission friction (14:56-15:04): the agent tried to add an allow rule for its own launcher to the repository settings. The safety check blocked this as self-modification and the file was removed. An earlier message had wrongly said a launcher fix was pushed; the agent admitted it. Two later launches, including a plain test, were blocked. The agent said only the owner's settings could lift the check, so the owner changed the session mode.
+- Smoke test (15:04-15:20): one RTX PRO 6000 in Greece at $1.44/h, deleted itself at 15:19, cost $0.01. Passed: key delivery, private repo download, a 0.69 GB download in 45 s, store upload, progress labels, live commands, self-deletion. Not yet tested: the full setup on Vast's image and auto-delete on a stalled job.
+- First real box: it stopped because <code>pandas</code> was missing from the image ($0.29). Setup now checks every import, and a failed job keeps the box up 30 minutes. The second attempt finished setup in about 10 minutes. The FoundationStereo weights (3.3 GB) and both FoundationPose models went into the store, so later boxes no longer needed Google Drive. Perception on ep12 reproduced Colab (AUC 0.997 against 0.986-0.998). Two trainings on one card ran at about 45k steps/s alone and 50k combined, using 41.5 of 96 GB [M].
+- The owner asked about cost at 18:15: $3.97 spent of $25; about $2 per policy on demand and about $1 interruptible; the project through the 4 Nov freeze about $300-450 on demand, central $250 [E]. The measured range later turned out to be about $330-500 (section 12.1). The owner also asked whether the leaderboard was being smashed. The answer was that the Colab 0.809 was tracking only and cannot be submitted, and that public episodes need not be run at all: the submission is 20 policies for the eval videos.
+- The AUC 0.009 run (section 6) cost about three hours of two trainings on a broken scene, roughly $9-10 by then [E].</p>
+<p><strong>Hard episodes, 21-22 Oct.</strong>
+- Three hard public "twins" were set up for the hard evals: ep24 for eval 25, ep18 for evals 19 and 30, ep21 for eval 20. Results with our own meshes (registered): ep18 0.396 and ep24 0.232, both no better than doing nothing (0.637 and 0.229) [D].
+- The first diagnosis of ep24: depth at the grasped board squashed the left hand to 4 cm from wrist to fingertip after frame 100 (real about 18 cm, good episodes 10-15 cm), so the robot fitted a squashed hand with wrist errors of 17-20 cm [D].
+- Two reconstruction faults: the dust pan came out 3.5 cm and the white pot 5.5 cm below the table, because the camera never sees the underside of a resting object. Both ep24 trainings also ran out of memory because the simulator split each colour into its own piece (174 pieces per copy across 4,096 worlds); colourless copies fixed it.
+- The overnight rounds (22 Oct) found two root causes: a start mismatch (training never practised the evaluation's exact start) and floating objects (boards 2-4 cm above the table). The sweeper's underside was rounded because the table hid it; a flattened underside plus a settled start moved ep18 from 0.345 to 0.715 on average (five of six evaluations 0.79-0.84) [D]. The ep18 brush fell in about five steps because it touched the table on 0.3 cm2 with its centre of mass 3.3 cm outside that patch.
+- The owner watched the video of the hard episodes (22 Oct 05:11): the robot laid the boards flat while the person stood each board on its edge. The same night the money went fast: credit fell from $52.69 to $7.55 over 12 boxes and 15 trainings (the agent's figures).
+- Owner decisions that shaped the work: the principle that "object motion is the goal, the human hand is the guide" and the leaderboard scores only the object (21 Oct); the interaction idea (space the camera sees past a hand or table counts as empty), accepted as "the general form of the slot fix"; and four answers on 22 Oct 08:07: take the spoon from eval videos (agreed), automatic rules only (agreed), drop the room map (it used ground-truth constants), recreate eval meshes from eval videos (adopted). A Claude usage limit blocked the session 10:19-10:50 UTC that day.
+- On 22 Oct the owner was shown official CHORD material and the agent corrected itself: the whole object motion is fed to the policy, the robot does not purely mimic the human (corrections of +/-5 cm and +/-0.15 rad around the human motion), and early training has an assist. Reward weights read from it: object pose 20, contact 10, hand copy 0.5.</p>
+<p><strong>Owner questions on selection (22-23 Oct).</strong> The owner asked whether the best checkpoint is a late one: of 19 picked policies the best was 250M nine times, 200M six times, 150M and 100M twice each. On 23 Oct 09:00 he asked whether early checks predict the end: over 29 stored runs (67 pairs) the early run was better at the end in 72 % of pairs at 40 % of training and in 79 % at 60 % [D]. (Section 7.6 has the larger 31 standard and 66 glock-curve study, which gave 30 of 36 for the standard learner but only 22 of 38 for glock; the later study is the better evidence.) He also asked whether seeds were picked from thousands of trials: no, seeds 42 and 43 were fixed in advance, 1,248 detection-rule variants were checked on CPU, and training uses 4,096 parallel worlds.</p>
+<p><strong>A data-loss incident (21-23 Oct).</strong> Five final checkpoints were lost when the Hugging Face store hit its quota. The seven surviving policies (35 MB) went into git with a SHA-256 index, and the store was upgraded to Pro (1 TB private, 21 Oct). On 23 Oct 14:31 a box was destroyed after its hold expired and the agent could not confirm from the session that its upload had landed.</p>
+<h4 id="overnight-23-24-oct-the-choice-rule-question-and-the-owners-decision">Overnight 23-24 Oct: the choice-rule question and the owner's decision</h4>
+<ul>
+<li><strong>Overnight (23 Oct 23:01 - 24 Oct 06:55).</strong> With about $7 left, the agent ran seed 43 on ep27 and ep12 (same curves as seed 42, flat then a jump on ep12), added three evaluations per checkpoint, and spent $12.72 overnight, leaving $4.08. Its morning report (the artifact "overnight report, 24 Oct") said grasp lock was strong on rigid objects a hand can close around and failed on flat plates and on starts where objects sit on or inside each other.</li>
+<li><strong>A rule the owner had to settle.</strong> The agent proposed running both recipes per eval and keeping whichever tracked its own reference better (a GT-free rule). It noted the owner had earlier said picking between pipelines was against the rules, while the agent's own reading of the rules was that per-episode checkpoint choice is allowed. The owner decided on 25 Oct ("use both", section 7.2).</li>
+<li><strong>06:53, owner:</strong> "Did you managed to fix ep18? I woke up". The agent's answer: no, ep18 was still failing (0.22-0.41 for four different fixes). <strong>07:01, owner:</strong> "Lets go with 2 make sure it is the case all the failed ones, do research on grasping and holding something ... anatomically ... biomechanics ... even evolution of the grasping in humans do an in depth research also while at it research evolutionary algorithms ... see if using evolutionary algorithms genetic algoriths give us an edge over rl." Option 2 was a designed plate grasp. Nine agents then ran on CPU and the web only, with no spending.</li>
+<li><strong>07:31, owner (phone):</strong> he pasted four model families and asked what kind of model the pipeline uses. The agent said none: the human hand is copied, the grasp lock curls the copied fingers onto the surface, and the RL policy fine-tunes 70M steps. Its fit ratings: GraspGen low (two-finger, 0.363 zero-shot on a five-finger hand), DexGraspNet 2.0 medium (non-commercial), DexEvolve high as a method, DemoGrasp high as a method (84.6 % over six hands, as reported by its authors). Hypothesis [H]: per-grasp evolutionary search beats RL for grasp design. 07:44, owner: "Okay lets test thay then".</li>
+<li><strong>The 0.584 number that was not real.</strong> At 09:13 the owner asked "what is this 0.584? Can we rl fine tune that?" The number came from an in-process search with a warm-start bug (commit bbe57e6): replays of the same edit gave 0.35-0.51 depending on batch state, and a fresh batch gave 0.508 with sd 0.0. Every CPU search number from before the fix is unverified.</li>
+<li><strong>Estimates before the first board result.</strong> At 06:55 the agent estimated its 20-eval score at about 0.77 (range 0.67-0.86), roughly fourth; at 09:01 about 0.74 (range 0.58-0.92) with the 10 spoon episodes at 0.85. The first board score was 0.575 the same day [M]. Both were [E] and both were too high; section 5.3 explains the main miss (eval references worse than public twins).</li>
+<li><strong>09:47, owner:</strong> "I topped up 10 buck do the fix also we did achieve the pinch hold when we scored 0.889 analyze that grip as well. Fix this issue give me a reliable recipe, I wanna run 20 eval tonight". The pinch from the 0.889 run, used directly as a template, scored only 0.243 at zero action; the evolved grasp reached 0.81-0.865. The EA-versus-RL report concluded that evolution is not expected to beat SAC for the 1.2M-parameter policy (literature: ES needed 3.6-8.0 times more timesteps than TRPO) but does win for grasp design on the measured case (ep39: 40,640 world-steps against 250M of RL).</li>
+<li><strong>Stale-score incident (24 Oct 10:55).</strong> Box A was about to choose its ep39 checkpoint from an old run's scores, pulled from the store earlier. The agent deleted them about six minutes before training ended; commit 95d5e70 now moves leftover scores aside before each episode. At 11:07 the eval-video path was proved on GPU for eval 38 (perception 94 s; wrist IK error p95 6.4 mm left, 23.8 mm right).</li>
+<li><strong>Cost of the assistant.</strong> The session's list-price cost rose from $873 (23 Oct 23:01) to $1,050 (24 Oct 11:07), about $176 in 12 hours of agent work (nine research and audit agents ran in parallel from 07:07) [M, list price, not a bill].</li>
+</ul>
 <h3 id="phase-2-first-submissions-and-the-big-jump-24-26-oct">Phase 2: first submissions and the big jump (24-26 Oct)</h3>
 <ul>
 <li><strong>24 Oct:</strong> the grasp-lock recipe was frozen after ep18 reached 0.957. "run the whole pipeline with 20 eval, let's get our ranking." Pack 1 scored 0.575 (9th) against a projection of 0.68. The owner got videos of all 20 evals and a failure analysis.</li>
@@ -812,6 +844,18 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 </ul>
 <h3 id="phase-3-small-swaps-while-the-field-moved-27-30-oct">Phase 3: small swaps while the field moved (27-30 Oct)</h3>
 <p>The robustness review verified the reference calculation (scale 1.004, frame indexing, scorer fidelity to 4-6 decimals) and proposed a registration-stability gate. Mesh research started ("I want a combination of A and B and want the minimal CD-O vs public scan"; "don't worry about the deadline / leaderboard freeze, that's for me to worry"). H5 (29 Oct) showed pack 6's draws were lucky (0.9164 vs 0.8755). Recipe arms were inconclusive. Pack 7 (eval 33 arm B) gave 0.8146, but we were 7th: "small swaps cannot close the gap". The first advisor meeting with Roman Klis (30 Oct, 31 min) questioned what the judged video shows and whether hands and masses were right; the coordinator session began relaying work between sessions.</p>
+<h4 id="detail-from-the-builder-session-26-31-oct">Detail from the builder session (26-31 Oct)</h4>
+<p>This block comes from turn summaries of the builder session (26 Oct 15:34 to 31 Oct 19:34 UTC). Owner decisions in it usually arrive as quotes relayed by other sessions, not as typed messages. Costs are the session's own statements or ledger lines.</p>
+<ul>
+<li><strong>Carry-control research (26 Oct).</strong> The policy gets touch per finger link (contact location and force direction, no magnitude), no future frames and no object velocity. A CPU model of the wrist carrying the 27 public object paths found the soft wrist (25 N/m) out of range on 23 of 27 [E, model only]; feed-forward of object weight, or kp 50-100, brought it to 0 of 27. A 0.3 kg object pulls the soft wrist about 11.8 cm below target with about 0.24 s lag. The first GPU plan (about 55 GPU-hours) was corrected at 17:02 after an owner prompt to measure by physics replay first, which needs seconds of GPU per episode. The correction found a recipe difference: NVIDIA plays references at half speed (<code>motion_speed 0.5</code>), we play real speed, and the soft wrist is out of range on 0 of 27 tracks at half speed and 23 of 27 at real speed [E].</li>
+<li><strong>Rules set in that period.</strong> Never change world physics (friction, contact solver, masses, evaluator) without asking the organisers; wrist gains count as hand configuration. After the NVIDIA FAQ was read on 27 Oct ("Other embodiments are welcome, including fixed-base arm-and-hand setups and floating hands"), the stiffer wrist was judged allowed; the open organiser question was whether the simulator's collision shape may differ from the submitted mesh.</li>
+<li><strong>Budget night (29 Oct, 21:07-23:51).</strong> Three sessions drew on one budget (the main session, blocked on a top-up; a mesh session; this one). The builder proposed one GPU launcher and a shared spend ledger in the store with a "planned" line before each box and an "actual" line after. Rules recorded at 21:41-21:45: each box destroys itself, a watchdog kills one stalled about 30 minutes, a hard cap of $60 of the $100 for the night, nothing to Kaggle; shares were mesh session up to $25, builder up to $45, at least $30 kept for the owner's morning review. A ledger helper later erased lines and they were restored. A Claude usage limit ("5-hour limit, resets 2am UTC") stopped work from 23:51 to about 00:25 and again until about 04:45 on 30 Oct.</li>
+<li><strong>30 Oct, 13:21, owner: no budget cap for this work.</strong> The builder then wrote a "leak decomposition" plan before any run: a ladder R0 (today), R1 scan meshes, R2 plus mocap object motion, R3 plus mocap hands, R4 plus scans and realistic mass, on five public twins of the worst evals (ep11 for eval 10, ep13 for 14, ep31 for 30, ep24 for 25, ep21 for 20). The full plan was priced at about $345 [E]; Phase 1 (perception with scanned meshes on all 20 public episodes) about $11-15 [E] and was approved at 14:59. CPU-heavy work moved to cheap Vast CPU boxes ($0.12-0.19/h). Phase 1 finished for about $2.30 against a $4.40 estimate: with exact scanned meshes 16 of 20 episodes scored 0.96-1.00, ep11, ep31 and ep24 about 0.85-0.86 and ep0 0.08 [D, provisional].</li>
+<li><strong>Oracle-twin rule, written before results.</strong> Perception-limited when the true-motion run reaches 0.90 or more and beats ours by at least 0.12 beyond noise (ep11 for eval 10: 0.940 against 0.595); learner-limited when true-motion is at most 0.75 and both match (ep13 for eval 14: 0.544 against 0.543); otherwise inconclusive (ep31 for eval 30: +0.086). The learner bucket also contains hand perception, because public data has no true hand motion. The Embodiment session's condition for the eval-episode choice: pick episodes by the library_v3 baseline only, never by a recipe-test result.</li>
+<li><strong>Diagnoses of the worst evals (30 Oct, 23:45).</strong> Four guesses were checked and none was fully right. Eval 1's twin ep0: the detector took the round table top for the pot in frame 0 and fitted it upside down, and the scorer aligns the whole scene from frame 0, so one bad frame wrecks the episode; the table is a decoy in 8 of 9 public pot episodes. Eval 10's twin ep11: the outer cup's track rises 2.5-5.3 cm while nested. Eval 25's twin ep24: the camera estimate jumps about 2.4 cm in a fast burst. Eval 30's twin ep31: the rack starts tilted about 9 degrees because its first-frame mask is contaminated by the sweeper's fins.</li>
+<li><strong>Pack 9a, 31 Oct, minute by minute.</strong> At 16:34 the mesh session flagged that the pot, lid and rack carried marker-ball radii traced to the public scans (a 7 mm fallback and a 5-9.5 mm fit window); the builder put 9a on hold. At 16:35 the owner answered: "Ship 9a, flagged." At 16:36 the builder's upload command (all six boards) was refused by the auto-mode permission check ("Unrequested Commit in a Connected App"). The builder treated that as blocked under the owner's standing rule ("dont send anything to kaggle without my approval") and did not retry. At about 17:20 the owner said "Upload which you think of the highest score potential", relayed to the score-status session, which chose and uploaded 9a+ at 18:13 and told the builder not to upload too. Lesson: one upload channel per pack, and a note in the chat of who uploads. Measured result of 9a+ against pack 7: AUC 0.81757 (+0.00297), RPE -0.053 cm, MPPE -0.025 cm, CD-O 0.332 (-0.069); ranks 8, 8, 8, 11, 11, 14; rank sum 60, 11th [M].</li>
+<li><strong>The owner's pack-10 scope, about 18:30-18:45 (relayed).</strong> "I think we can improve in all of these with the new method and carving method for the board ... I think if we can get almost perfect on our perception we can approach to 0.9 ehich with the new methods I think is possible since we know where the objects will be." And: "Okay lets fix the perception as you said also for spoon the solution is the market on top of it. Those are very easy to track compared to other. Also like I said you dont need to mention the deadline there is pleanty of time and thats for me to worry. Go retrack." The builder's estimate for pack 10 was 0.85-0.86 at best, and 0.9 would need near-best scores on nearly every episode [E]. The re-track test, with a pre-registered rule and an "incomplete" clause, was the lane that later failed (Set B, -0.170, section 9.1). From then on the builder did not raise deadlines in messages to the owner.</li>
+</ul>
 <h3 id="phase-4-the-rank-sum-discovery-and-eval-10-31-oct-1-nov">Phase 4: the rank-sum discovery and eval 10 (31 Oct - 1 Nov)</h3>
 <ul>
 <li><strong>31 Oct:</strong> Prof. Arda Inceoglu's feedback pointed at rollout variance and missing domain randomisation, and split the pipeline in two, reference from video and RL; in his words (translated from Turkish), if the first part is not good enough, it sets the upper limit however well we train the second. The owner: "Look other people achieved it ... get me into that top tier, Im giving you everything you need". The first rank-sum check (15:00) showed CD-O 18th of 20 and a rank sum of 62 (11th): meshes became the cheapest rank lever. "Ship 9a, flagged"; "Upload which you think of the highest score potential": 9a+ took CD-O 0.402 -&gt; 0.332. A second Roman meeting (29 min) focused on bias vs noise and Kalman filtering. That night the eval-10 contact-buffer overflow was found.</li>
@@ -821,6 +865,17 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 <p>Twelve uploads in one day. Pack 12b (reference repairs, 10th overall), 12c (C0 blue cup: "For blue cup I give you mey yes"), 12d (CD-O variant), 13 and 13b (lift windows; "Upload 13b, you dont need my permission to upload anymore"). Then "Okay I give you permission for all" opened the GT-informed Tier B meshes: <strong>12e, +0.029 AUC with no pose change, rank sum 54 -&gt; 47 (7th)</strong>. Reading the kit scorer at about 19:40 explained it. The owner topped up: "If I give you this money I expect you to do anything in your power to reach top 3"; the coordinator's estimate [E] was top 3 under 5 %. The night brought 13f, 13f1, 13p (pose-CV meshes +0.011), 13p2 and 14p (0.88571, the final pose-board best).</p>
 <h3 id="phase-6-cd-o-variants-and-closing-the-lanes-3-nov">Phase 6: CD-O variants and closing the lanes (3 Nov)</h3>
 <p>13h, 13i and 13j took CD-O 0.262 -&gt; 0.239 (4th). Retrains with new meshes and the perception lanes (bias calibration, pot network, hand-aware tracking) all failed; two-host confirmation was adopted. The final plan: 14p for the five pose boards, 13j for CD-O; rank sum 45, 7th. The owner asked for this report at 12:07 ("I dont want you to miss anything ... this info is very valuable").</p>
+<h4 id="detail-from-the-coordinator-session-30-oct-3-nov">Detail from the coordinator session (30 Oct - 3 Nov)</h4>
+<p>This block comes from the coordinator's own explanations, decisions and worker reports. "Own score" means sim_vs_ref over 10 official runs; the board scores one stored run against real motion, so it is always lower.</p>
+<ul>
+<li><strong>The first Roman Klis meeting, answered 30 Oct 12:15.</strong> The coordinator judged that "fix hand tracking first, then use a human-sized hand" rests on a misreading: the middle panel of the video is the simulated robot, trained to move the objects along our reference, not along our hand tracking. Measured then: the simulated pot against the reference costs 0.083 AUC; reconstruction error costs about 0.10 [E], mostly the spoon; grasp and hand problems explain about 0.017 of the 0.185 lost. Hand facts: 2-D landmarks sit on the real hands (about 11 px), but the 3-D hand is 11.9 cm against about 18.5 cm for an adult, fingers 25-40 % short and fingertips 0.2-1.8 cm off the object. The Sharpa index finger (10.45 cm) is about 1.1 times a real one; it only looks 2 times too big because the perceived hand is too small. A human-shaped hand was tested the same day; copying the motion fails with either hand. Recommendation: keep the Sharpa; run a human-hand test (about $6.50) only if a grip-force test passes and gains at least +0.05 with no episode dropping by 0.05. Licence note: winners must release Apache-2.0 code and MANO forbids redistribution, which is why the Embodiment lane built its own hand.</li>
+<li><strong>Overnight 30-31 Oct (04:59).</strong> Copying fails with every input fixed. A 2 mm centre-of-mass nudge changes a copy as much as a real 1-2 cm correction, and the solver's gain vanished under 0.5 mm of target noise. Human-shaped hand with training: 0.53 against 0.94 (ep2) and 0.56 against 0.86 (ep12), mean -0.16 [D]. Board value of a recipe gain [E, from the 10-draw study]: +0.03 on average gives about +0.006 on the board, +0.05 about +0.010, +0.10 about +0.018; eval 10 fixed to 0.90 about +0.022.</li>
+<li><strong>Arda Inceoglu's points, answered 31 Oct.</strong> He suggested domain randomisation and a frame-by-frame comparison of good and failed rollouts. The reply: the team had no randomisation and no observation noise, which was the one untested idea, but the big swings came from overlapping collision shapes. Measured spread (sd over 10 runs): eval 30 0.255 (sweeper starts inside the rack), eval 1 0.239 (lid inside the pot; cut to 0.924 +/- 0.017 over 20 runs), eval 14 0.199 (hand-over), eval 33 0.137 (two hands; fixed to 0.934 +/- 0.008). A trap: the evaluator rebuilds the simulator from settings saved in the checkpoint, so any randomisation has to be a training-only patch. Proposed test about $8-12 on evals 25, 16 and 3; pass if the spread falls 40 % on two of three with no average drop over 0.02. The frame-by-frame look at kept trajectories ($0) found that runs of one policy stay within 5 mm until a contact event and split there: ep31 (eval 30's twin) at frame 52 when the sweeper lifts off the rack, ep11 with true motion (eval 10's twin) at frame 41. Where every run fails the same way (ep11 with our motion, ep13), the spread is at most 0.003: a plan failure, not noise.</li>
+<li><strong>A wrong label, 31 Oct 19:24.</strong> The coordinator first called the two sides of the video shown to Roman "old versus new" and blamed variance. The owner corrected the wording: the gap is not necessarily run-to-run noise. Both sides used the same solved reference and masses; the right side had a re-planning loop, but its 20M-step checkpoint was taken before the loop acted, and its first round was a 30M-step run whose learning rate fell about 30 % faster (unplanned).</li>
+<li><strong>The overnight plan (31 Oct 21:14-21:28).</strong> The owner asked for a better pack by morning. Decisions recorded at 21:14:50: start the D cells (domain-randomised start states) that night, upload pack 9b automatically if it passes, only the coordinator uploads (the pack session's guard blocks Kaggle sends without the owner's direct word), credit $69.22, $30-40 planned, $10 kept in reserve. The coordinator's clock ran about an hour ahead of real time that day [E]; the Embodiment lane noticed.</li>
+<li><strong>1 Nov.</strong> The contact-limit lead (eval 10 overflowed MuJoCo's contact buffer about 6 million times per seed, against 62-123 lines for ep11) got "go" at 02:41 for one test run at a higher limit (about $3, kept out of packs). The D cells passed only on eval 33 (ten training runs $17.24, final check $1.75). Why not pack the best draw? Kaggle already counts the best per board; inside a pack we cannot see true eval scores, the organisers re-run policies, and picking by board score is tuning on the test set. A claim from 04:06 that overlaps came from tracked poses was wrong: the pose fix failed (-0.011, 17 of 20 worse) and overlaps persist at true poses (cups 65 cm3, sweeper and rack 11, lid and pot 5.9), so they are mostly mesh shape. For pack 11 the pack guard refused an approval relayed through the coordinator, so the owner pasted it into the other session; the coordinator did not work around it. The visible approvals were 10:53 (a clarification that the setting matters for training only) and 11:04 ("I give you go"); a later message claimed an approval "in this chat at 09:11" that does not appear in the transcript read, so the 09:11 time in section 7.4 is unverified.</li>
+<li><strong>3 Nov cost misquote.</strong> At 06:18 the coordinator priced the long-term plan at $400-900 (steps 1 and 2 at $150-250). After the owner asked, it revised to $40-70: the first figures had used a 96 GB card at about $1.40/h, while the work needed a 24 GB card at about $0.35-0.50/h.</li>
+</ul>
 <h3 id="after-the-uploads-4-6-nov">After the uploads (4-6 Nov)</h3>
 <p>The freeze was 4 Nov 22:00 UTC; no upload was made after 3 Nov 10:30. The first report attempt stopped on the Claude usage limit; on 6 Nov the owner renewed it and asked for a cheaper route. The 6 Nov board reading gave rank sum 56 (8th among teams in all six top-20 lists).</p>
 <h3 id="how-the-strategy-changed">How the strategy changed</h3>
@@ -1108,6 +1163,16 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 <li><strong>GPU cost of perception work</strong> [E, from instance hours]: about $45 in total, for example the 2 Nov tracking lane about $25-26 (five boxes), TRACK_GUARD validation $0.8, the iteration sweep $3.7, the re-track test $1.54. The physics, room map, point track, hand-aware, marker, depth-audit, H1 and pose-CV work ran on CPU at $0.</li>
 <li><strong>Not tested:</strong> a BootsTAPIR learned point tracker, camera a as a third view for markers, a VLM candidate selector, running perception twice per eval episode to check repeatability, a frozen all-rules-together scoring, and the half-frame advance (S2) inside packed eval references (about +0.004 board [E]).</li>
 <li><strong>Spoon:</strong> 10 of 20 eval episodes contain the spoon and 5 use it as the anchor, but there is no public spoon scan or ground truth. Its roll frame bit, a roughly 5 degree disagreement between our track's mean roll and the template's marker model, and hidden phases (stirring inside a pot or cup) stayed unmeasured.</li>
+</ul>
+<h3 id="57-further-measurements-from-the-chat-sessions">5.7 Further measurements from the chat sessions</h3>
+<p>These come from the builder and coordinator chats (26 Oct - 3 Nov) and the early chat (20-23 Oct); they add to, and do not replace, the numbers above.</p>
+<ul>
+<li><strong>Early perception checks (20-22 Oct).</strong> The compact prior's A/B showed no regressions on episodes 0, 12, 27 and 39 (within +/-0.003); ep26 went 0.065 -&gt; 0.988, ep2 0.977 -&gt; 0.993, ep31 0.876 -&gt; 0.887. Ep39 scored 0.998 on Vast against 0.55 on Colab, a sign of large run-to-run variance in the first stack. The detection rules found the spoon in all 10 eval spoon episodes at frame 0; in evals 3, 5 and 6 the pot and the spoon's handle merge into one object. Ground-truth masks for a spoon detector were rendered for 18 of 20 public episodes (ep0 and ep26 excluded because their tracking was 5.7 cm and 35 cm off). The kit lists the objects of each eval episode, which fixes slot order: spoon alone in evals 35-37, pot and spoon in 3, 5, 6, rack and spoon in 15, 16, cup and spoon in 32, 33, and no spoon in the other 10.</li>
+<li><strong>Hand audit on 20 public episodes (27 Oct, $0).</strong> MediaPipe saw at least one hand on 2,610 of 2,612 carry frames (99.9 %). In the pour episodes 21 and 22 both hands were visible on only 22-25 % of pour frames, because the pitcher hand is outside the colour camera's view (gaps of 1.5-1.7 s). Left and right labels flipped up to 50 times in one clip. NVIDIA's own reference had hand contact on 100 % of moving frames, with a peak object speed of 0.08 m/s against about 0.33 m/s in our clips. The tool <code>pipeline/audit_ref.py</code> now runs after every reference build. An independent reviewer with synthetic tests found six bugs in it (for example a <code>table_z</code> default equal to the lowest object's height, so that object always read 0 cm, and a crash at T=1); all were fixed and NVIDIA's reference output did not change.</li>
+<li><strong>Perception accuracy by object (29 Oct, registered AUC against mocap, own meshes) [D].</strong> Original pipeline 0.809; current, all 20 episodes, 0.868; with the newest meshes and the identity guard about 0.892 (derived); after building the final reference 0.915-0.902 on 10 episodes (reference building loses about 0.013, the frame-0 table snap alone about 0.016). Per object: lid 0.97, sweeper and dust pan 0.95, blue cup 0.93, pot and rack 0.92, beige cup 0.91, boards 0.82, pitcher 0.575 (weakest). Resting objects jitter at 1.9 cm/s and 13 deg/s against 0.27 cm/s and 2.8 deg/s in mocap. The spoon has no public ground truth; the leaderboard implied 0.73-0.80 for it [E].</li>
+<li><strong>Camera fix.</strong> A depth cut at 2 m took public ep24 from 0.81 to 0.994 (the 2 m clip had been hiding the camera motion); no eval episode showed that jump (eval 25 clean, eval 35 unverifiable), so it was kept in the pipeline at no cost. The static-object freeze (no motion for objects that do not move) was right on 20 of 20 static objects and fixed ep11 (+0.07), but failed its no-harm rule by 0.0023 against a 0.002 limit and never fires on eval 10, where the outer cup really slides about 4 cm; it was dropped. (Section 9.1 lists the older "S6" static-hold test at -0.0003 against the same kind of rule; the two are different versions.)</li>
+<li><strong>Why ep0 is a trap (30 Oct).</strong> The detector took the round table top for the pot in frame 0 and fitted it upside down. The scorer aligns the scene from frame 0, so one bad frame wrecks the whole episode; the table is a decoy in 8 of 9 public pot episodes. With exact scanned meshes as templates ep0 still scored only 0.08 while 16 of 20 episodes reached 0.96-1.00 [D].</li>
+<li><strong>Cup spin (1 Nov, 19:53).</strong> Following our perceived blue cup scored 0.34 against 0.60 for true motion. The tracker spins the resting cup (12 degrees by frame 8, 140 by frame 30). After the official code was read, the finding was corrected: the leaderboard ignores spin about a cup's axis, but our own score counts it. This is one reason our own score can disagree with the board.</li>
 </ul></section><section><h2 id="6-references-contacts-and-grip">6. References, contacts and grip</h2>
 <p>The <strong>reference</strong> is the target the RL policy follows: per-frame object poses from perception plus robot-hand wrist and finger targets retargeted from the perceived human hands, written by <code>mkref</code> into a parquet. This section covers how references were built and repaired, and how grasps were made. Policy training itself is in section 7.</p>
 <h3 id="61-building-references">6.1 Building references</h3>
@@ -1256,13 +1321,22 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 </tbody>
 </table></div>
 <p>Two integrity notes: these rules were developed on eval episodes 3 and 35 using our own GT-free reference (no ground truth and no board feedback), and the note itself asked for public-episode confirmation, which was never done; and the kp 400 wrist was "owner to confirm before any submission uses it", with no confirmation recorded. The FAQ says "Other embodiments are welcome", but this is a disclosure item for the technical report.</p>
+<p>More from the early chat (22-23 Oct) on how the spoon recipe was reached:</p>
+<ul>
+<li><strong>The recipe in four parts:</strong> (1) build the grip from video (wrap the hand round the handle, knuckles first, thumb last, palm pressing); (2) lock the hand while the spoon is carried and correct wrist lag; (3) the stiffer-wrist setting; (4) an RL fine-tune of 40-70M steps (11-19 minutes on one GPU). Means of five official runs against our own reconstruction: eval 3 (spoon and pot) do nothing 0.439, RL alone 0.38-0.41, new recipe 0.968; eval 35 (spoon) do nothing 0.112, RL alone 0.29-0.34, new recipe 0.978 [M, own reference, not mocap]. Seed 43 reproduced eval 35 (0.971 at 30M, 0.973 at 40M); eval 3 seed 43 reached only 0.843 at 40M because the pot, held by a copied grip, was within 3 cm in 54 % of frames. The rule adopted: train 70M steps, re-run each candidate several times, keep the best by the agent's own reconstruction score.</li>
+<li><strong>Why RL alone failed:</strong> pick-up appears only at about 90M steps, and from 100M to 250M the spoon drops at the same frame in every checkpoint (frames 141-147 in eval 35, 105-109 in eval 3). About 370 grip variants in the evaluator's physics held nothing; a pot grasp-lock with lag correction lifted the pot with no policy (6 cm against the reference's 8.3 cm), the spoon did not.</li>
+<li><strong>Dead ends the same day:</strong> opening fingertips before the knuckles kept the spoon within 2 mm but pulling away dragged it (0.150 against 0.267 for the same grip, replayed three times); a 25-degree angled grip 0.093; the anatomy rule lifted eval 35 (about 0.18 -&gt; 0.52) but cost eval 3 (0.658 -&gt; 0.429) and was rejected for it.</li>
+<li><strong>The organisers' kit (research note 23, 23 Oct):</strong> other embodiments are allowed (FlashCHORD ships a simpler-collision Sharpa, a stiffer-wrist Sharpa, an arm plus Sharpa and a three-finger hand); no official Sharpa grasp library exists (BODex and Dexonomy could be adapted in one to two days); anything magnetic must be gone by evaluation (training uses a fading helper force); holding from below is physically right and the wrap does it.</li>
+<li><strong>Hand placement (21 Oct):</strong> the CPU-tested hand-placement fix cut frames with the robot hand more than 2 mm inside something from 242 of 275 to 62 (ep24) and from about 77 % to 41 of 361 frames (ep18). The "fixed hand reference" cost ep27 (0.942 -&gt; 0.911) and the primitive hand was mixed (ep18 0.377 +/- 0.021 against base 0.345; ep24 slightly below), so neither became default.</li>
+<li><strong>Official material vs our reading (22 Oct):</strong> the whole object motion is fed to the policy and the robot is allowed corrections of +/-5 cm and +/-0.15 rad around the human motion. A competing method, FlashDexRetarget (arXiv 2610.01849, authors' numbers 86 % success on this hand against 50 % for NVIDIA's retargeter), inspired our FDR rewards; its numbers were not reproduced, and each of its changes needs training from scratch.</li>
+</ul>
 <h3 id="65-grasp-locks-carry-and-hand-overs">6.5 Grasp locks, carry and hand-overs</h3>
 <ul>
 <li><code>grasp_lock.py</code> keeps one carrier hand. On public ep13 the reference parked the left hand at z = 57.0 cm for all 190 frames while the cup rose 9-12 cm. Eval 14's packed reference was also single-hand, while the human hands over at about f40-46: exactly the measured failure onset (f42-45 in 7 of 10 draws). So "control-limited" may have been "construction-limited" [I].</li>
 <li>The <strong>lane finding</strong> that the grasp-lock "fine-tune" is a fresh 70M run on a reference that already carries the object, which ends before the training assist is fully off, so those policies never train under the exact scoring conditions [H].</li>
 <li>Hand-held repairs that passed: eval 16's right hand kept on the spoon through release (+0.124) and the guard bridge on evals 14 and 32 (section 7). Two-hand references and a first-picker lock did not transfer to eval.</li>
 <li><strong>Lift-window resets</strong> (training starts sampled around the grasp and lift windows) passed on eval 20 and, by owner waiver, eval 15; 1 of 8 eval tries passed on its own merits.</li>
-<li><strong>Carry-aware ideas</strong> (note 26): the kp 25 N/m wrist has a natural frequency of about 0.64 Hz with an object and saturates on 23 of 27 moving public tracks; kp of 100 or more removed saturation in reruns; an 18 mm contact threshold can mislabel a carry as "no contact"; a 16-30 run wrist-gain study ($35-100) was planned and never approved. Restricting the wrist residual during holds (DexMachina-style) was never tested.</li>
+<li><strong>Carry-aware ideas</strong> (note 26): the kp 25 N/m wrist has a natural frequency of about 0.64 Hz with an object and saturates on 23 of 27 moving public tracks; kp of 100 or more removed saturation in reruns; an 18 mm contact threshold can mislabel a carry as "no contact"; a 16-30 run wrist-gain study ($35-100) was planned and never approved. Restricting the wrist residual during holds (DexMachina-style) was never tested. From the builder chat (27 Oct) [E, CPU model]: median hand error while carrying and hand jump after release were 11.9 cm and 1.4 cm for the default PD, 3.7 cm and 0.5 cm for kp 100, 8-9 cm and 11-14 cm for a PID on the soft wrist, and 0.6 cm and 0.2 cm for feed-forward. PID was rejected (unstable at strong gain, slow grip build-up, pushes after release). A dropped object costs about 0.3-0.6 AUC on its episode, roughly 0.015-0.03 on the 20-episode mean; a lag of 0.2 s costs about 0.07 AUC and 0.3 s about 0.11. Rule: keep kp 100 only if it wins on at least 3 of 4 episodes. The soft wrist is 12-14 times softer than DexMachina's (300-350 N/m) and 40 times softer than SPIDER's.</li>
 <li><strong>Hands in replay:</strong> moving hands knock resting objects (eval 5 pot 25.7 vs 3.3 mm parked; eval 8 pot 41.7 vs 8.9 mm; eval 33 spoon 87.0 vs 10.6 mm), but these episodes already scored 0.94-0.97, so no rebuild.</li>
 </ul></section><section><h2 id="7-robot-movement-policies-training-and-following">7. Robot movement: policies, training and following</h2>
 <p>The robot is a simulated dexterous hand pair (the kit's Sharpa embodiment) in MuJoCo-Warp. For each eval episode we train a policy with reinforcement learning (RL) to make the simulated objects follow our reference (section 6). Kaggle scores the submitted rollouts as they are; nothing is re-run.</p>
@@ -1310,6 +1384,7 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 </tr>
 </tbody>
 </table></div>
+<p>Further facts from the chats. A resting spoon reads 1,477-2,045 N on the simulator's contact-force readout against a 2.9 N weight, so force magnitude cannot be used as a policy input (builder, 27 Oct). NVIDIA plays references at half speed (<code>motion_speed 0.5</code>) and we play real speed; at half speed the soft wrist is out of range on 0 of 27 tracks, at real speed on 23 of 27 [E, CPU model]. The evaluator rebuilds the simulator from settings saved in the checkpoint, so any randomisation or physics change must be a training-only patch (coordinator, 31 Oct). Two evaluators exist: the official FlashCHORD evaluator (which produces the rollout we submit, about 12 s per run and accepts only FlashCHORD checkpoints) and <code>sim_vs_ref</code> (our reconstruction, no ground truth); the procedure adopted on 23 Oct was seeds 42 and 43, six official runs per seed from frame 0 with no assist, and the rollout with the higher six-run mean is submitted. A no-action replay of ep12 scored 0.656 on one box and 0.560 on another with the same reference: GPU randomness alone is about 0.10.</p>
 <h3 id="72-learners-and-recipes">7.2 Learners and recipes</h3>
 <div class="tw"><table>
 <thead>
@@ -1416,6 +1491,7 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 </tr>
 </tbody>
 </table></div>
+<p>Details from the coordinator chat: the contact-limit lead was sent on at 02:41 with "go"; the same chat explained that <code>njmax</code> is the number of contact equations solved per step (default 512) and <code>nconmax</code> the number of contact points (256); nested cups plus fingers need 600-1,000, and the extra equations are dropped silently. The 1024 diagnostic scored 0.913 over 10 official runs; the same policy at 512 scored 0.903; before the fix the lift was 0.3-2.5 cm and the score 0.459. The saved policy recorded 1024, so it stayed out of packs until the pack-11 conditions were written: save with the standard 512, reuse official runs only from the untouched evaluator, zero overflow, the swap rule, a guard exception for one checkpoint, only eval 10, and disclosure as "trained at 1024, scored at 512". The approval time of 09:11 quoted above could not be found among the owner messages the coordinator transcript shows (the visible approvals are 10:53 and 11:04), so treat it as unverified. Pack 10's SP-SR loss (0.85 -&gt; 0.80) came from eval 10 alone; the coordinator guessed that the old cup barely moved and so counted as a success [H].</p>
 <p>A <code>budget.py</code> check at 32 worlds x 60 steps became the binding test for every new collision set. The eval 20 pitcher collision set b1 (41 pieces) missed its retrain bar by 0.0004 (0.8929 vs more than 0.8933) and was not packed.</p>
 <h3 id="75-recipe-screens-and-physics-changes-29-oct-1-nov">7.5 Recipe screens and physics changes (29 Oct - 1 Nov)</h3>
 <p>None of these changed the recipe. All numbers are registered AUC against mocap on public episodes, mean (draw sd).</p>
@@ -1496,6 +1572,8 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 </tbody>
 </table></div>
 <p><strong>Conflict in the sources on masses.</strong> One overnight summary and the 31 Oct round-3 entry say "realistic masses adopted (+0.090)". The more specific later entries say the transfer check and Masses v2 failed and masses were not adopted. The packs do not show a mass change, so this report treats masses as not adopted.</p>
+<p><strong>Details of the mass tests (builder chat, 30-31 Oct).</strong> The kit's default is 0.3 kg for every object. The first test, run by the Embodiment lane on the organisers' scanned meshes with realistic masses (cups about 130 g, pot 277 g, pitcher 503 g, rack 387 g, sweeper 45 g, spoon 50 g as an estimate), gave seed-averaged gains against mocap of ep2 +0.160, ep12 +0.103, ep24 +0.084, ep18 +0.011, mean +0.090 [D]. The transfer check to our own meshes then had a pass rule written before the run: realistic masses must gain at least +0.03 on both ep2 and ep12, with no seed more than 0.05 worse (a Texas RTX PRO 6000 box at $1.45/h, estimated $6.5-11). Result: ep2 seed 42 0.552 -&gt; 0.633 (+0.081), ep2 seed 43 0.581 -&gt; 0.814 (+0.233), ep12 seed 42 0.928 against 0.921 (-0.007), so ep12 needed about +0.07 from seed 43 to pass; the verdict was fail. Masses v2 (31 Oct, episodes chosen by lowest current score: ep24 0.24, ep11 0.52, ep13 0.54, ep31 0.70) was cleared in advance by a reviewing session, which put the chance of an "adopt" verdict at about 0.59 [E] even if masses added +0.12 on ep24 and ep31, because ep11 and ep13 sit at floors and the "3 of 4 above 0" clause was close to a coin flip there. A seed-selection rounding bug in the rule code was fixed (42 rule tests pass).</p>
+<p><strong>Confirmation runs on the training machines (30 Oct).</strong> Eval 33 arm B: 0.934 +/- 0.008 over 10 fresh runs, worst 0.917 (bar: mean at least 0.884 and spread at most 0.137), against 0.854 +/- 0.137 for the packed policy; the board value of the swap is only about +0.0003, because the leaderboard scores the submitted trajectory, not a re-run (an earlier +0.003 estimate was corrected). Eval 14 with reshaped collision meshes failed (0.617 +/- 0.236 and 0.579 +/- 0.099 against a bar of 0.645), so the packed eval 14 stayed. Eval 1 retrained with trimmed pot and lid collision meshes: 0.924 +/- 0.017 over 20 official runs, worst 0.884. A warning from the same day: on training machines the submitted eval 1 and eval 30 policies had zero bad runs in 10, while the official evaluator gave them 5 bad runs in 22. This fits the later move to official-evaluator checks and, on 3 Nov, to two hosts [I].</p>
 <h3 id="76-seeds-draws-and-what-a-packed-draw-is-worth">7.6 Seeds, draws and what a packed draw is worth</h3>
 <ul>
 <li><strong>Single evaluations mislead.</strong> Eight repeat evaluations of one ep18 policy: mean 0.332, sd 0.08, range 0.131-0.410 [D]. Eval 1 at pack 6: 0.822 +/- 0.239 over 10 draws.</li>
@@ -1930,7 +2008,16 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 </tr>
 </tbody>
 </table></div>
-<p>Physical facts that limited the collision work: there are no measured object properties (all masses a 0.3 kg placeholder until the realistic-mass study), friction is one global 1.0, and the real boards are 8.5 mm thick against 2.7-3.1 cm in our meshes.</p></section><section><h2 id="9-every-test-that-failed-or-was-declined">9. Every test that failed or was declined</h2>
+<p>Physical facts that limited the collision work: there are no measured object properties (all masses a 0.3 kg placeholder until the realistic-mass study), friction is one global 1.0, and the real boards are 8.5 mm thick against 2.7-3.1 cm in our meshes.</p>
+<h3 id="86-more-from-the-chat-sessions">8.6 More from the chat sessions</h3>
+<ul>
+<li><strong>Own versus scan meshes, first look (21 Oct, registered AUC, Kaggle-style):</strong> pot 0.998 against 0.999; boards 0.992-0.997 against 0.999; dust pan 0.953 against 0.997; cup and pitcher 0.917 against 0.975 [D]. The route definitions at the time were A-lite (2-3 days, scans only as a development aid on public videos) and A-strict (5+ days, no scans at all); the owner chose route A (section 8.1).</li>
+<li><strong>False bottoms (21 Oct):</strong> the dust pan came out 3.5 cm and the white pot 5.5 cm below the table, because the camera never sees the underside of a resting object. The ep18 brush was reconstructed with a closed, rounded underside: it touched the table on 0.3 cm2 with its centre of mass 3.3 cm outside that patch and fell in about five steps. The flattened underside (library_v3) fixed the stand; the 0.889 run combined flattened underside, settled start and 250M steps.</li>
+<li><strong>Do the organisers' meshes matter for training? (22 Oct):</strong> on ep24, own meshes scored 0.307 (seed 42) and 0.306 (seed 43), mean 0.307; the organisers' meshes 0.389 and 0.245, mean 0.317. The agent's conclusion: "it's not the mesh". A CPU round over 186 mesh variants found that mesh polish barely moved the metric; mesh rebuilding gave small, risky gains [D].</li>
+<li><strong>Pack 9a and its provenance flag (31 Oct):</strong> the pot, lid and rack carried marker-ball radii from a fallback <code>MK_R0 = 7 mm</code> and a fit window of 5-9.5 mm, both traced to the public scans (<code>prim_potlid.py</code>, marked "SCAN-DERIVED"); shipped balls were pot 7.00 / 7.00 / 7.00 / 6.94 mm, lid 7.00 mm, rack 7.00 and 5.22 mm, plus the disclosed 2.5 mm walls. The effect was judged small [H]; the AUC guard on 15 public twins (51 runs) gave mean +0.0079, minimum -0.0092, RPE -0.121 cm. The owner said "Ship 9a, flagged." and the README carries the flag text. The pack-10 clean rebuild audited every constant by origin (generic, own observation, scan-derived, unknown).</li>
+<li><strong>9a+ signed off with flags (31 Oct 17:15):</strong> the beige cup on real public registration had a total rotation of 4.04 deg and an anchor shift of 0.47 cm (almost all free spin about the symmetry axis); 32-seed metric max 3.5 deg, 0 flips; end-to-end on ep11 the beige cup went 0.933 -&gt; 0.949 (episode +0.008). Eval 8 was only a conditional yes (no public twin). Provenance flags written out: the lathe tool was developed in a loop that read public scans, with a 3 mm wall fallback, a floor rule, a minimum thickness of 1.5 mm and a tie factor, and its configuration was chosen after blue-cup scoring; the dust pan was a SAM 3D output placed by a GT-free ICP and picked by a GT-free metric (Spearman 0.46 against scans, measured after scoring). The board estimates by the mesh session [E]: pack 9a 0.3667, 9a+ 0.3327, beige on eval 10 only 0.3459; measured for 9a+: 0.33234.</li>
+<li><strong>Rotation and scale (31 Oct 16:02-16:16):</strong> the leaderboard rescales our mesh to the true object size before scoring, so scale cannot cost points. The rack's 2.3 degree rotation against the old mesh was tested both ways: rotated back, the pose rows were -0.005 average and -0.036 worst (would fail the check); as fitted, +0.016 average and -0.009 worst. Decision: as fitted; the rotated-back versions were kept as a fallback. The offline imitation of the scorer flipped the near-symmetric lid by about 162 degrees, which the builder judged an artefact.</li>
+</ul></section><section><h2 id="9-every-test-that-failed-or-was-declined">9. Every test that failed or was declined</h2>
 <p>"Margin" is the result minus the pass gate (or the board change against the expectation). Public results are [D] registered AUC averaged over the episodes named; eval results are sim_vs_ref over 10 fresh draws unless stated; board results are [M]. Costs are GPU dollars where the sources state them ("CPU" = $0). Details and context are in the stage sections (5-8).</p>
 <h3 id="91-perception">9.1 Perception</h3>
 <div class="tw"><table>
@@ -2405,6 +2492,66 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 <td>CPU</td>
 </tr>
 <tr>
+<td>22 Oct</td>
+<td>rest settling on ep12</td>
+<td>settling resting objects stabilises starts</td>
+<td>beat retargeting alone (0.790)</td>
+<td>0.740 (one seed)</td>
+<td>-0.050</td>
+<td>one seed; kept as opt-in <code>SETTLE=1</code>, off by default</td>
+<td>small</td>
+</tr>
+<tr>
+<td>22 Oct</td>
+<td>primitive hand model</td>
+<td>simpler hand collision helps</td>
+<td>both episodes</td>
+<td>ep18 0.377 +/- 0.021 vs 0.345 (+0.032); ep24 slightly below base (-0.015)</td>
+<td>mixed</td>
+<td>gain on one episode only</td>
+<td>small</td>
+</tr>
+<tr>
+<td>23 Oct</td>
+<td>anatomy closing rule (knuckles first, palm press) for the spoon</td>
+<td>one rule for both spoon evals</td>
+<td>both evals</td>
+<td>eval 35 about 0.18 -&gt; 0.52, eval 3 0.658 -&gt; 0.429</td>
+<td>-0.23 on eval 3</td>
+<td>helped one eval, hurt the other</td>
+<td>small</td>
+</tr>
+<tr>
+<td>23 Oct</td>
+<td>opening fingertips first; 25-degree angled grip (eval 35)</td>
+<td>cleaner release or hold</td>
+<td>gain over 0.267</td>
+<td>0.150 (replayed 3 times); 0.093</td>
+<td>-0.12 / -0.17</td>
+<td>pulling away dragged the spoon</td>
+<td>small</td>
+</tr>
+<tr>
+<td>24 Oct</td>
+<td>the 0.889 run's pinch used directly as a template; template-seeded search</td>
+<td>copy the grip that worked once</td>
+<td>beat the copied-grasp search (0.81-0.865)</td>
+<td>0.243 at zero action; search stayed at the template's 0.373</td>
+<td>-0.44</td>
+<td>not stated in the sources</td>
+<td>CPU</td>
+</tr>
+<tr>
+<td>24 Oct</td>
+<td>recovery training, early approach 15 cm, re-plan on a knocked brush (ep18)</td>
+<td>fix the ep18 start or drops</td>
+<td>gain over 0.30</td>
+<td>0.22; 0.302; 0.22</td>
+<td>-0.08 to 0</td>
+<td>the grasp failure remained</td>
+<td>small</td>
+</tr>
+<tr>
 <td>24 Oct</td>
 <td>SETTLE start-overlap box</td>
 <td>removing start overlaps helps</td>
@@ -2620,6 +2767,56 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 <td>not reproduced</td>
 <td>cause unknown [H]</td>
 <td>$1.1</td>
+</tr>
+<tr>
+<td>30 Oct</td>
+<td>widened blue-cup collision shape (eval 10)</td>
+<td>a wider cup stops the clash</td>
+<td>clash gone, no sinking</td>
+<td>the beige cup sat about 5 mm off-centre, clashed on the same side in 60 of 61 frames; wider shape still clashed and let the beige cup sink about 11 mm with no hands</td>
+<td>fails both checks</td>
+<td>reference-side problem; led to corrected reference V4p</td>
+<td>CPU</td>
+</tr>
+<tr>
+<td>30 Oct</td>
+<td>PID on the soft wrist (CPU model)</td>
+<td>feedback force fixes carry</td>
+<td>stable, no push after release</td>
+<td>hand jump after release 11-14 cm</td>
+<td>rejected</td>
+<td>unstable at strong gain, slow grip build-up</td>
+<td>CPU</td>
+</tr>
+<tr>
+<td>30 Oct</td>
+<td>eval 14 reshaped collision meshes</td>
+<td>carve helps the hand-over</td>
+<td>0.645</td>
+<td>0.617 +/- 0.236 and 0.579 +/- 0.099</td>
+<td>-0.03</td>
+<td>packed eval 14 stayed</td>
+<td>-</td>
+</tr>
+<tr>
+<td>30 Oct</td>
+<td>static freeze of non-moving objects</td>
+<td>freezing helps ep11</td>
+<td>no-harm limit 0.002</td>
+<td>+0.07 on ep11 but harm 0.0023</td>
+<td>-0.0003</td>
+<td>fired on 20/20 static objects, never on eval 10 (the cup slides 4 cm)</td>
+<td>CPU</td>
+</tr>
+<tr>
+<td>31 Oct</td>
+<td>home-made smoother cross-check</td>
+<td>smoother halves agree</td>
+<td>same settings</td>
+<td>the halves chose 16 mm and 8 mm; a 0.5-1.2 % gain came from a rotation smoothing too small to act</td>
+<td>corrected</td>
+<td>reported gain was an artefact</td>
+<td>CPU</td>
 </tr>
 <tr>
 <td>22-31 Oct</td>
@@ -3027,7 +3224,14 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 </tr>
 </tbody>
 </table></div>
-<p>Two cautions recorded in the sources: a near-miss under a strict gate is still a fail (physics, -0.00002), and post-hoc thresholds or best-per-board coin-flip variants were refused as eval-set probing. Two rules were bent with explicit owner approval and disclosure: the eval 15 clause-c waiver (median RPE 0.47 mm worse) and the hand-aware lane's gate addendum before holdout scoring (recorded, but should be checked against the original text).</p></section><section><h2 id="11-what-we-learned-about-current-technology">11. What we learned about current technology</h2>
+<p>Two cautions recorded in the sources: a near-miss under a strict gate is still a fail (physics, -0.00002), and post-hoc thresholds or best-per-board coin-flip variants were refused as eval-set probing. Two rules were bent with explicit owner approval and disclosure: the eval 15 clause-c waiver (median RPE 0.47 mm worse) and the hand-aware lane's gate addendum before holdout scoring (recorded, but should be checked against the original text).</p>
+<h3 id="103-more-noise-evidence-from-the-chat-sessions">10.3 More noise evidence from the chat sessions</h3>
+<ul>
+<li><strong>Same reference, different machine.</strong> A no-action replay of ep12 scored 0.656 on one box and 0.560 on another with the same reference (23 Oct): GPU randomness alone is about 0.10 [M]. Eval 1 and eval 30 policies had zero bad runs in 10 on training machines but 5 bad runs in 22 on the official evaluator (30 Oct), which is why confirmation moved to the official evaluator.</li>
+<li><strong>Warm-start contamination (24 Oct, commit bbe57e6).</strong> The simulator's warm-start state survived <code>env.reset</code>, so the same edit scored 0.41-0.59 depending on what had run before it, against 0.508 with sd 0.0 in a fresh batch. The 0.584 seen in one in-process search was not reproducible (a replay gave 0.352 and 0.354). Every CPU search number from before the fix is unverified. A related robustness test on ep18 (K jittered copies per candidate): jitter 1e-3 gave mean 0.8412 (sd 0.0509), jitter 1e-2 gave mean 0.4627 (sd 0.3369), so the ep18 edit is chaotic at the 1 cm scale.</li>
+<li><strong>Run-to-run spread on one training.</strong> Ep12 scored 0.890, 0.860 and 0.858 in three trainings and 0.604 once; seed spread was up to 0.14 on hard episodes and about +/-0.04 on easy ones (22 Oct). The seed 42 / seed 43 single-rollout curves on ep12 (FDR) differed by 0.02-0.16 at the same step count.</li>
+<li><strong>Small swaps are coin flips.</strong> Expected gains under about 0.02 per episode could not be separated from noise on the board (pack 9b: +0.0001 expected, -0.0008 measured). A policy can look better on one machine and not on another (eval 30: 0.938 on the box, 0.768 fresh), so every swap needs two machines. Inside a pack the typical run counts, not the lucky one: pack 6's packed run was 0.916 against a 10-run mean of 0.876, and choosing a draw by its board score is tuning on the test set.</li>
+</ul></section><section><h2 id="11-what-we-learned-about-current-technology">11. What we learned about current technology</h2>
 <p>Each entry: what it did well, where it broke, and the evidence. Licence notes come from the October survey (note 03): FoundationPose, FoundationStereo, BundleSDF, UniDepth, MASt3R-SLAM, WiLoR, HaWoR, GoTrack and SPIDER are non-commercial; MANO is research-only; SAM2.1, Grounding DINO, MoGe-2, DROID-SLAM, MegaPose and GigaPose are OSI-clean. CoTracker3 was rejected for its CC-BY-NC licence.</p>
 <div class="tw"><table>
 <thead>
@@ -3159,6 +3363,30 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 <td>summaries overstated results; a literature sub-agent's numbers were wrong against the repo CSV; context limits forced continuation summaries; crossed messages between sessions</td>
 <td>section 12</td>
 </tr>
+<tr>
+<td><strong>Cloud agent sandbox</strong> (chat environment)</td>
+<td>outbound HTTPS on 443; box control through Vast labels, the log API and an HTTPS terminal</td>
+<td>network policy returned 403 for the Vast and Hugging Face hosts until opened; outbound SSH (22) timed out all project; a safety check blocked the agent's own allow rule for its launcher (20 Oct) and, later, Kaggle uploads and relayed approvals; local dev box of 15 GB RAM OOM-killed a 13 GB search; background jobs exiting with code 144; chained <code>sleep</code> waits blocked; Claude usage limits (5-hour windows, one weekly)</td>
+<td>sections 4 and 12</td>
+</tr>
+<tr>
+<td><strong>Hugging Face store quota</strong></td>
+<td>a private store for checkpoints</td>
+<td>five final checkpoints were lost when the free quota filled (21 Oct); upgraded to Pro (1 TB); seven surviving policies (35 MB) went into git with a SHA-256 index</td>
+<td>section 4</td>
+</tr>
+<tr>
+<td><strong>Kit evaluators</strong></td>
+<td>FlashCHORD evaluator makes the rollout we submit (about 12 s per run); accepts only FlashCHORD checkpoints</td>
+<td>training machines and the official evaluator disagreed on eval 1 and eval 30 (0 bad runs in 10 against 5 in 22)</td>
+<td>section 7</td>
+</tr>
+<tr>
+<td><strong>Other methods read</strong> (24 Oct literature scan)</td>
+<td>GraspGen (two-finger; 0.363 zero-shot on a five-finger hand), DexGraspNet 2.0 (non-commercial), DexEvolve and DemoGrasp (84.6 % over six hands, as reported by its authors), the GRASP paper (94.2 % against 81.0 % and 71.4 %, Harvard, mixed licence)</td>
+<td>none used as a model; at most as seeds or as a method idea</td>
+<td>sections 4 and 6</td>
+</tr>
 </tbody>
 </table></div>
 <p>Three general lessons about the 2026 toolset:</p>
@@ -3231,6 +3459,13 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 </tbody>
 </table></div>
 <p>Credit history: the first $25 of credit was nearly used on 20 Oct ($22.78); top-ups on 21 Oct took credit to $27.19; then $50 (22 Oct, "go crazy, I trust you"), $10 and $50 (24 Oct), $100 (25 Oct), $100 (29 Oct), $100 (31 Oct, "lean"), a top-up to $122.85 (1 Nov) and one to $127.97 (2 Nov). Credit was $75.62 on 3 Nov 06:40. <strong>No source gives a project total.</strong> The rows above overlap in places; depending on whether the 1 Nov ledger already includes the October batches, they add up to roughly $330-500 of GPU spend over 20 Oct - 3 Nov [E]. For comparison, the professor had called $1,000-1,500 reasonable. Kaggle uploads cost $0, and from 9a+ on, mesh packs were built on CPU at $0.</p>
+<p><strong>Spending detail from the chat sessions</strong> (the agents' statements or ledger lines; they fill gaps in the table above and overlap with it):</p>
+<ul>
+<li><strong>20-21 Oct.</strong> The first smoke test cost $0.01 and the first failed real box $0.29. By 18:15 on 20 Oct $3.97 of $25 was spent; the day ended at about $22.80. The hard-episode test of 21 Oct cost about $16.60 and the store cleanup $0.25, so about $39.60 had been spent by 21 Oct 10:35, with $10.35 left. Credit read $18.39 before the 13:35 relaunch on 21 Oct and $2.69 at 20:04; after a top-up it stood at $52.69 and fell to $7.55 by 22 Oct 03:55 (the agent's figures), over 12 boxes and 15 trainings. Three boxes on 22-23 Oct cost $13.40.</li>
+<li><strong>23-24 Oct.</strong> The public check (five runs on four episodes) cost about $3.90 and left $5.15 (23 Oct 19:20). The overnight batch cost $12.72 and left $4.08; the owner topped up $10 at 09:47 on 24 Oct (credit $14.08). A standard-recipe episode costs about 1.8 h at 250M steps; the new spoon recipe about $0.80-1.10 per episode [E].</li>
+<li><strong>29-30 Oct.</strong> The shared ledger started 29 Oct 21:32 with a $100 line (a $60 hard cap for that night). Credit was $3.51 at 21:07, $16.17 at 04:47 on 30 Oct and $41.17 after the owner's top-up at 04:51. The builder's own spend was about $21.28 at 04:52, about $28 at 08:01 and about $36 at 12:05 against a $45 session cap; the ledger at 10:09 read $35.48 spent and $14.20 planned. A video machine stuck on Hugging Face rate limits burned about $4.30 over 3 h 20 min of downloads. At 14:28 the ledger read $51.78 spent and $17.50 committed of $100.</li>
+<li><strong>Credit trail from the coordinator chat:</strong> $69.22 (31 Oct 21:20), $35.80 (1 Nov 01:47), $23.67 (08:54), $122.85 after a top-up (1 Nov 19:34), $127.97 after a second top-up (2 Nov 20:13), $101.05 (23:16), $82.96 (3 Nov 03:17), $75.62 (05:57), about $59 (11:38). The perfect-following lane started with $110 (cut to $102 to keep a $10 reserve); the perception and GRASP lanes got $8 together for cheap Vast CPUs.</li>
+</ul>
 <p>Unit costs [M]: an eval box with 3 episodes $3-6; the standard learner about $5.5 per episode for 2 seeds (3.5-4.5 h per box); grasp lock 2 seeds $3.2-4; a pack build $0.5-1.5; a full 20-episode rerun with packing about $50.</p>
 <p><strong>AI assistant usage cost.</strong> The chat sessions report a cumulative list-price cost per session (not a bill): main early session $1,371, builder session $1,289, mesh lane $2,219 (usage $2,249), embodiment lane $349, perfect-following lane $105, perception-accuracy lane $86, others $2-27. These are [M] list-price estimates from the session records and dwarf the GPU spend.</p>
 <h3 id="122-vast-setup-and-the-money-losing-bugs">12.2 Vast setup and the money-losing bugs</h3>
@@ -3248,11 +3483,11 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 <p>What worked: one uploader with byte diffs and receipts; pre-registration files on the branches; adversarial verifiers; CPU-first tests ($0) before GPU.</p>
 <p>What failed:</p>
 <ul>
-<li><strong>Duplicate launches.</strong> On 25 Oct the owner's go-ahead reached two chats; one launched 9 boxes, the other 6 duplicates (destroyed in setup). A batch-ownership rule was proposed and not adopted.</li>
+<li><strong>Duplicate launches.</strong> On 25 Oct the owner's go-ahead reached two chats; one launched 9 boxes, the other 6 duplicates (destroyed in setup). A batch-ownership rule was proposed and not adopted. On 31 Oct the opposite happened for uploads: the builder's upload of pack 9a was refused by the permission check (16:36) while the score-status session, with the owner's word, uploaded 9a+ at 18:13 and told the builder not to upload too. The lesson recorded was one upload channel per pack with a note in the chat of who uploads; from 1 Nov the coordinator was the single uploader. On 29 Oct three sessions drew on one budget, which led to the shared ledger with planned and actual lines.</li>
 <li><strong>Crossed messages.</strong> The registration lane's draft said "I've emailed" while the email was a draft; the embodiment lane re-listed checks it had already sent; two sessions worked on ep13 at once; a room-map "camera guard" was requested and then stopped; the perfect-following lane gave the tracking session two wrong store paths.</li>
 <li><strong>Relayed approvals.</strong> The permission guard rejected owner approvals relayed between sessions (31 Oct 16:40; 1 Nov 08:35 and 11:25; 2 Nov 01:15, 08:58, 19:15), so uploads waited for the owner's own words until "Upload 13b, you dont need my permission to upload anymore" (2 Nov 19:20).</li>
 <li><strong>Context limits.</strong> The coordinator ran out of context twice (continuation summaries on 1 Nov 02:39 and 2 Nov 14:55); the owner said on 1 Nov: "all of the sessions are getting super crowded and context is getting out of hand".</li>
-<li><strong>Usage limits.</strong> A weekly limit on 29 Oct 21:00 UTC stopped a 6-agent stage with 0 results; 5-hour limits hit on 30-31 Oct; the robustness review stopped at 18:30 UTC on 26 Oct with 4 of 9 agents done and idled about 8.8 h until the owner typed "Continue".</li>
+<li><strong>Usage limits.</strong> A weekly limit on 29 Oct 21:00 UTC stopped a 6-agent stage with 0 results; 5-hour limits hit on 30-31 Oct (windows seen: 22 Oct 10:19-10:50 in the early session; 29 Oct 23:51 to about 00:25 and again to about 04:45; 30 Oct 10:23-10:30 and 15:13 to about 17:00); the robustness review stopped at 18:30 UTC on 26 Oct with 4 of 9 agents done and idled about 8.8 h until the owner typed "Continue".</li>
 </ul>
 <h3 id="124-integrity">12.4 Integrity</h3>
 <ul>
@@ -3264,7 +3499,25 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 <li><strong>Registration and rules:</strong> a late-registration email was drafted on 31 Oct (the form had closed); the repository was public from about 11:02 UTC on 31 Oct (a scan found no leaked keys) and had to be shared with the organisers' GitHub account (rule 9.a). An API key once pasted into chat was treated as exposed. The method's working name was kept out of reports from 2 Nov (owner request).</li>
 </ul>
 <h3 id="125-the-report-incident">12.5 The report incident</h3>
-<p>On 3 Nov at 12:07 the owner asked for this long report ("I dont want you to miss anything ... this info is very valuable"). The first attempt was cut off: the worker restarted twice (12:49 and 13:01) and the account hit its Claude usage limit. On 6 Nov the owner renewed it and asked for a cheaper way ("We ran out of credits and just renewed, dont destroy all the credits again"). This report was then built from digests of all sources, with the coverage gaps listed in section 14.</p></section><section><h2 id="13-open-questions-and-what-we-would-do-next">13. Open questions and what we would do next</h2>
+<p>On 3 Nov at 12:07 the owner asked for this long report ("I dont want you to miss anything ... this info is very valuable"). The first attempt was cut off: the worker restarted twice (12:49 and 13:01) and the account hit its Claude usage limit. On 6 Nov the owner renewed it and asked for a cheaper way ("We ran out of credits and just renewed, dont destroy all the credits again"). This report was then built from digests of all sources, with the coverage gaps listed in section 14.</p>
+<h3 id="126-mistakes-corrections-and-crossed-messages-from-the-chat-sessions">12.6 Mistakes, corrections and crossed messages (from the chat sessions)</h3>
+<p>Most of these were small and were corrected in the chat; they are listed because they show where the process leaked.</p>
+<ul>
+<li><strong>Early session (20-24 Oct).</strong> An earlier message wrongly said a launcher fix had been pushed (20 Oct; the agent admitted it). The first end-to-end score (AUC 0.009, 61 cm) came from a floor fit, and two trainings of about three hours ran on a broken scene. A box was destroyed after its hold expired with its upload unconfirmed (23 Oct 14:31). Box A nearly chose a checkpoint from stale scores (24 Oct 10:55). The 0.584 search number was a warm-start artefact. The agent's 20-eval estimate (0.74-0.77) was well above the first board score (0.575). The choice rule "use both recipes per eval" was contested until the owner ruled on 25 Oct.</li>
+<li><strong>Builder (26-31 Oct).</strong> The first carry plan priced about 55 GPU-hours before a CPU/physics-replay step that was cheaper; the owner's prompt corrected it. A ledger helper erased lines. A first estimate of +0.003 for the eval 33 swap was corrected to +0.0003 once it was clear that the leaderboard scores the submitted trajectory. Four frames of eval-3 depth were viewed before the depth audit's bar was set, so eval 3 was excluded from the spoon test (disclosed 30 Oct 07:39). An independent review of <code>audit_ref.py</code> found six bugs, including one that made the lowest object always read 0 cm.</li>
+<li><strong>Coordinator (30 Oct - 3 Nov).</strong></li>
+<li>Also corrected in the chat and described in section 4 or 5.7: the overlap claim of 1 Nov, the smoother cross-check, the video labels, the clock offset and the 3 Nov cost misquote ($400-900 revised to $40-70).</li>
+<li>Pack 9b (1 Nov 05:02): a +0.0001 expected swap lost 0.0008; the swap threshold became 0.02.</li>
+<li>Eval 1 retrain (2 Nov 20:25): reported as running but it had stopped during setup (about $0.10); the slot went to eval 14 and a correction was posted.</li>
+<li>Setup bugs (2 Nov 20:45, 21:29): retrain boxes for evals 20, 28 and 30 started without a needed folder, and eval 14's test silently ran with old meshes; about $6.50 lost.</li>
+<li>Ep27 (3 Nov 09:59): an earlier message said the tracker failed the ep27 pot lift; that error belonged to the failed pot-network lane.</li>
+<li>Crossed messages (2 Nov): the spoon-anchor test was stopped at 20:09 (a coin flip and a probe of the hidden set), but at 20:15 the perfect-following lane had a spoon-test box ready to launch if it did not hear back, and the coordinator's "don't launch" crossed with that plan.</li>
+<li>Approval routing (1 Nov 11:17) and approval date (1 Nov 11:46): see section 4 and 7.4. The permission check also blocked Kaggle uploads for pack 10 (1 Nov 08:19), pack 12 (2 Nov 01:06), pack 12d (2 Nov 08:55) and pack 13b (2 Nov 19:03); each time the coordinator reported it, did not retry, and waited for the owner's direct word. From 19:07 on 2 Nov the owner said no further permission was needed, and each pack was still checked.</li>
+<li>Rank claims: rank sums were recomputed at each check (58, then 54 tied with DSAIL for 9th/10th, 47, 46, 45) but positions were not always re-verified against live boards.</li>
+<li>Open question: on 2 Nov 14:56 the coordinator asked whether to stop a report-only perception box (saving about $2.70-3.50). No answer appears in the transcript.</li>
+<li>Name: the owner gave the algorithm a codename, which the coordinator wrote into STATUS; on 2 Nov 07:11 the owner asked that it be removed from the report and the current entries. Older commit messages still carry it. It is not reproduced here.</li>
+<li><strong>Projection record:</strong> most next-rank estimates were close (pack 10 estimated +0.002 against +0.0016 measured; CD-O estimates within 0.0007 cm); the larger misses were the first board result (0.74-0.77 expected, 0.575 scored) and the Tier B pose-board gain that was not predicted at all.</li>
+</ul></section><section><h2 id="13-open-questions-and-what-we-would-do-next">13. Open questions and what we would do next</h2>
 <p>Ranked by the strength of the evidence behind each. Each is labelled as a hypothesis [H] or an estimate [E], with the experiment that would test it.</p>
 <div class="tw"><table>
 <thead>
@@ -3368,16 +3621,17 @@ pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; co
 <li>Digests of the merged work logs of all 20 git branches (5 slices, 1 Oct - 3 Nov).</li>
 <li>Digests of 86 analysis reports and plans (two parts), including the loss budgets, forensics, H5, overnight reports, mesh sprint rounds C0-C4, E0, G2, G3 and R, grasp audits and plans.</li>
 <li>A digest of 26 deep-research notes (notes 01-26, 4-30 Oct).</li>
-<li>Chat digests: the main early session (24-27 Oct), the builder session (from 31 Oct), the Rust-rewrite evaluation (22 Oct), the contact-slot and pack-3 session (25-27 Oct), the robustness review (26-27 Oct), 14 lane sessions, and the coordinator session's owner and cross-session messages (30 Oct - 3 Nov), including the two advisor meetings with Roman Klis and Prof. Arda Inceoglu's feedback.</li>
+<li>Chat digests, in three groups. (1) The <strong>main early session</strong> from its first message (20 Oct 13:20 UTC) to 24 Oct 11:09 UTC, and the <strong>builder session</strong> from its start (26 Oct) to 31 Oct 19:34 UTC, both read from turn summaries and, where present, owner messages. (2) The <strong>coordinator session</strong> (30 Oct - 3 Nov) through the owner's messages plus its own explanations, decisions and worker reports. (3) Earlier digests: the main early session (24-27 Oct), the builder session (from 31 Oct), the Rust-rewrite evaluation (22 Oct), the contact-slot and pack-3 session (25-27 Oct), the robustness review (26-27 Oct), 14 lane sessions, and the two advisor meetings with Roman Klis and Prof. Arda Inceoglu's feedback.</li>
 </ul>
-<h3 id="coverage-gaps-honest-list">Coverage gaps (honest list)</h3>
+<h3 id="coverage-and-gaps-honest-list">Coverage and gaps (honest list)</h3>
+<p>All three gaps named in the first version of this report are now covered, with the limits below.</p>
 <ul>
-<li>The main early chat session for <strong>20-24 Oct</strong> was not read from the chat itself. The work logs and the decisions record cover that period, so owner messages from those days appear only where the logs quote them.</li>
-<li>For the <strong>14 lane sessions</strong>, only their newest results were read. Earlier experiments in each lane are covered only where the work logs and reports record them.</li>
-<li>The <strong>builder session</strong> was read only from 31 Oct 21:07 UTC on.</li>
-<li>The <strong>coordinator's own chat</strong> is covered through the owner's messages and the work log, not turn by turn.</li>
-<li>The digests were written by a cheaper model and sometimes disagree. Where they did, this report used the Kaggle table for board scores and otherwise the more specific, later-dated measurement, and named the conflict (for example realistic masses "adopted" vs "not adopted", section 7; the spoon loss estimate, section 3; the GPU total, section 12).</li>
-<li>Some figures exist only as estimates in the sources (most GPU totals, several per-lane costs, the spoon's share of the loss). They are marked [E] and were not recomputed.</li>
+<li><strong>Main early session, 20 Oct 13:20 - 24 Oct 11:09 UTC.</strong> Covered from the first message. It was read from turn summaries, not message by message: the owner's own messages were mostly not in the summaries, so owner wording appears only where the agent quoted it (a few typed messages of 24 Oct, 06:53 - 09:47, are verbatim). Between 23 Oct 23:01 and 24 Oct 00:33 only results were read, so typed owner messages in that window, if any, were not captured. Cost and timing figures are the agent's own statements or estimates.</li>
+<li><strong>Builder session, 26 Oct - 31 Oct 19:34 UTC.</strong> The span 26 Oct 15:34 to 31 Oct 16:27 was read from turn summaries only (the session began at 15:16 on 26 Oct and the first 18 minutes have no result events); 31 Oct 16:28 - 19:34 was read with user and result events. Day labels for events after about 13:00 on 30 Oct are less certain than the times. Owner decisions in this session mostly arrive as quotes relayed by other sessions. The 19:11 - 19:34 stretch of 31 Oct was not checked separately. Costs are self-reported or ledger figures, because the per-result cost field is not monotone across restarts.</li>
+<li><strong>Coordinator session, 30 Oct - 3 Nov.</strong> Covered through the owner's messages plus the coordinator's own explanations, decisions and worker reports, not turn by turn. Some of its figures conflict with later or more specific records: the 09:11 approval time of pack 11 (section 7.4), the coordinator's clock running about an hour ahead on 31 Oct, and the final timing of pack 13j (Kaggle record used).</li>
+<li><strong>The 14 lane sessions</strong> are still covered only through their newest results plus their branches' work logs. This is an accepted gap: earlier experiments in each lane are covered only where the work logs and reports record them.</li>
+<li><strong>How conflicts were resolved.</strong> The digests were written by a cheaper model from summaries and sometimes disagree. Where they did, this report used the Kaggle table for board scores and otherwise the more specific, later-dated measurement, and named the conflict (for example realistic masses "adopted" vs "not adopted", section 7; the spoon loss estimate, section 3; the GPU total, section 12; the early-checkpoint study of 29 runs against the larger one, sections 4 and 7.6; the static-freeze test, section 5.7). Where the new chat material gave a different figure for something the report had already cited from the Kaggle table or a later measurement, the report's figure was kept.</li>
+<li>Some figures exist only as estimates in the sources (most GPU totals, several per-lane costs, the spoon's share of the loss, the agent's own score projections). They are marked [E] and were not recomputed.</li>
 <li>No new measurement was made for this report.</li>
 </ul></section></main>
 <footer>The board charts, the AUC-change chart, the submissions table and the leaderboard gap table come directly from the Kaggle API (our 26 submissions; leaderboards read 6 Nov 2026, about 06:15 UTC). The narrative comes from the repository's work logs, analysis reports and research notes on all 20 branches, and from the chat sessions.</footer>

@@ -15,8 +15,14 @@ How it was built: cheap extraction, then one synthesis pass, after the first att
 4. `build/render.py` renders the page. The charts and the submission and leaderboard tables come straight from the
    Kaggle data, not from model text.
 
-Coverage gaps (also stated in section 14):
-- The main early chat session for 20–24 Oct was not read from the chat itself. The work logs and
-  `docs/context-and-decisions.md` cover that period.
-- For the 14 lane sessions, only their newest results were read.
-- The builder session was read from 31 Oct on.
+Coverage (version 2, 6 Nov ~09:30 UTC):
+- Three gaps from version 1 were filled by 5 more small extraction agents and one partial update pass that added
+  about 9,400 words:
+  - the main early chat session from its start (20 Oct 13:20 UTC);
+  - the builder session from its start (26 Oct);
+  - the coordinator's own explanations, 30 Oct – 3 Nov (`digests/chats_early*.md`, `chats_builder_*.md`,
+    `coordinator_full.md`).
+- The early main session and the builder session's 26–31 Oct part were read from turn summaries, not message by
+  message.
+- Accepted remaining gap: the 14 lane sessions are covered by their newest results and their branches' work logs.
+- Version 1 of the sections is kept in git history (commit abd572e4).

@@ -7581,3 +7581,11 @@ arm and a no-policy replay floor to stage B.
   - Charts and tables come directly from Kaggle data.
   - Coverage gaps: early main chat 20–24 Oct (work logs cover it); lane chats newest results only; builder session
     from 31 Oct.
+- ~09:30 UTC 6 Nov **journey report v2 republished** (same link). Owner: "go ahead with the haiku agents".
+  - 5 Haiku agents filled three gaps: main chat from its start (20 Oct 13:20), builder session from its start
+    (26 Oct), coordinator explanations (30 Oct – 3 Nov).
+  - Lesson: list_events with kinds ["user"] drags in tool outputs (~23 k chars per page) and stalls the paging.
+    kinds ["result"] (turn summaries) covered whole sessions.
+  - One partial update pass added ≈ 9.4 k words (mostly to the journey, process and stage sections). Total
+    ≈ 30 k words.
+  - Remaining accepted gap: 14 lane sessions (newest results plus branch work logs).

@@ -55,6 +55,12 @@
 | 2 Nov | eval 16 hold-to-end | holding to the end helps | swap rule | 0.687 / 0.719 vs 0.769 / 0.792 | -0.08 | - | $3.5 |
 | 2 Nov | eval 33 guard bridge | bridge the cup jump | +0.02 | +0.0196 | -0.0004 | just below the bar | in batch |
 | 25-31 Oct | board slot rounds F-I4; carve F-I5 | slotted collision boards interlock | contact ratio 2.0; wall 1.5 mm | ratio 3.875; walls -21 to -173 mm | fails | collision budget and geometry | CPU |
+| 22 Oct | rest settling on ep12 | settling resting objects stabilises starts | beat retargeting alone (0.790) | 0.740 (one seed) | -0.050 | one seed; kept as opt-in `SETTLE=1`, off by default | small |
+| 22 Oct | primitive hand model | simpler hand collision helps | both episodes | ep18 0.377 +/- 0.021 vs 0.345 (+0.032); ep24 slightly below base (-0.015) | mixed | gain on one episode only | small |
+| 23 Oct | anatomy closing rule (knuckles first, palm press) for the spoon | one rule for both spoon evals | both evals | eval 35 about 0.18 -> 0.52, eval 3 0.658 -> 0.429 | -0.23 on eval 3 | helped one eval, hurt the other | small |
+| 23 Oct | opening fingertips first; 25-degree angled grip (eval 35) | cleaner release or hold | gain over 0.267 | 0.150 (replayed 3 times); 0.093 | -0.12 / -0.17 | pulling away dragged the spoon | small |
+| 24 Oct | the 0.889 run's pinch used directly as a template; template-seeded search | copy the grip that worked once | beat the copied-grasp search (0.81-0.865) | 0.243 at zero action; search stayed at the template's 0.373 | -0.44 | not stated in the sources | CPU |
+| 24 Oct | recovery training, early approach 15 cm, re-plan on a knocked brush (ep18) | fix the ep18 start or drops | gain over 0.30 | 0.22; 0.302; 0.22 | -0.08 to 0 | the grasp failure remained | small |
 | 24 Oct | SETTLE start-overlap box | removing start overlaps helps | - | destroyed before running (~$0.2) | est. at most +0.002 | not worth it | $0.2 |
 
 ### 9.3 Policies and training
@@ -80,6 +86,11 @@
 | 1 Nov | eval 20 b1 pitcher collision | clean collision helps eval 20 | > 0.8933 | 0.8929 | -0.0004 | - | $2.14 |
 | 2-3 Nov | retrains with new mesh collision: evals 20, 28, 30, 32, 33, 19 | new shapes help policies | swap rule, two hosts | 0.604 / 0.914 / 0.768 / 0.826 / 0.917 / 0.828 vs 0.926 / 0.919 / 0.897 / 0.890 / 0.923 / 0.929 | -0.006 to -0.32 | grasps were built on the old shapes; box-to-fresh drop | ~$36 + ~$11 |
 | 3 Nov | evaluator-gap test | the patched training evaluator explains fresh drops | reproduce gap | 0.935 / 0.926 / 0.930 | not reproduced | cause unknown [H] | $1.1 |
+| 30 Oct | widened blue-cup collision shape (eval 10) | a wider cup stops the clash | clash gone, no sinking | the beige cup sat about 5 mm off-centre, clashed on the same side in 60 of 61 frames; wider shape still clashed and let the beige cup sink about 11 mm with no hands | fails both checks | reference-side problem; led to corrected reference V4p | CPU |
+| 30 Oct | PID on the soft wrist (CPU model) | feedback force fixes carry | stable, no push after release | hand jump after release 11-14 cm | rejected | unstable at strong gain, slow grip build-up | CPU |
+| 30 Oct | eval 14 reshaped collision meshes | carve helps the hand-over | 0.645 | 0.617 +/- 0.236 and 0.579 +/- 0.099 | -0.03 | packed eval 14 stayed | - |
+| 30 Oct | static freeze of non-moving objects | freezing helps ep11 | no-harm limit 0.002 | +0.07 on ep11 but harm 0.0023 | -0.0003 | fired on 20/20 static objects, never on eval 10 (the cup slides 4 cm) | CPU |
+| 31 Oct | home-made smoother cross-check | smoother halves agree | same settings | the halves chose 16 mm and 8 mm; a 0.5-1.2 % gain came from a rotation smoothing too small to act | corrected | reported gain was an artefact | CPU |
 | 22-31 Oct | declined or never run: 125M vs 250M A/B ($9-29); seed race ($12-23); domain randomisation GPU check ($1.5-2); wrist-gain study ($35-100); NVIDIA baseline rerun ($15-70); interruptible-only batches | - | - | not run | - | owner priority or preempted boxes | $0 |
 
 ### 9.4 Meshes and submissions

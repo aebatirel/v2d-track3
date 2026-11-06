@@ -14,13 +14,13 @@ def f(x):
     except Exception: return None
 
 def short(desc):
-    d = desc.replace('K'+'URSAD', 'a team member').replace('K'+'ursad', 'a team member')
+    d = desc.replace('K'+'URSAD', 'a team member')
     m = re.match(r'(pack \w+\+?|first full run|25 Oct pack 3|fourth pack|fifth pack|sixth pack|seventh pack|25 Oct)', d)
     lab = m.group(1) if m else d[:14]
     return {'first full run': 'pack 1', '25 Oct': 'pack 2', '25 Oct pack 3': 'pack 3', 'fourth pack': 'pack 4',
             'fifth pack': 'pack 5', 'sixth pack': 'pack 6', 'seventh pack': 'pack 7'}.get(lab, lab)
 
-for s in subs: s['label'] = short(s['desc']); s['desc'] = s['desc'].replace('K'+'URSAD', 'a team member').replace('K'+'ursad', 'a team member')
+for s in subs: s['label'] = short(s['desc']); s['desc'] = s['desc'].replace('K'+'URSAD', 'a team member')
 
 # ---------- small multiples: each board over submissions ----------
 def board_chart(key, name, higher):
@@ -104,7 +104,7 @@ md = markdown.Markdown(extensions=['tables', 'fenced_code', 'toc', 'sane_lists']
 secs = sorted(glob.glob(f'{R}/sections/*.md'))
 body, toc = '', ''
 for p in secs:
-    t = open(p).read().replace('K'+'URSAD', 'a team member').replace('K'+'ursad', 'a team member')
+    t = open(p).read().replace('K'+'URSAD', 'a team member')
     t = t.replace('{{CHART_BOARDS}}', '<div class="grid6">' + charts + '</div>')
     t = t.replace('{{CHART_DELTAS}}', delta_chart())
     t = t.replace('{{TABLE_GAP}}', gap_table())
