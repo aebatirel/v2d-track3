@@ -7574,3 +7574,10 @@ arm and a no-policy replay floor to stage B.
   - our ranks: AUC 9, SP-SR 12, MP-SR 10, RPE 10, MPPE 10, CD-O 5;
   - rank sum 56, 8th among teams in the top 20 of every board;
   - leaders: richchentw sum 7; DDD 15; rlwrld 23; Zihao Guo 24.
+- ~07:40 UTC 6 Nov **journey report published** (private artifact https://claude.ai/artifact/6pNjoK3xEqi8ry4ceA6jLS;
+  copy and sources in `docs/analysis/journey-report-20261106/`).
+  - Built cheaply: scripts plus 12 small extraction agents (2 of them gap-fillers for chats), plus 5 cached results
+    from the failed run, then 1 synthesis pass. 14 sections, ≈ 21 k words.
+  - Charts and tables come directly from Kaggle data.
+  - Coverage gaps: early main chat 20–24 Oct (work logs cover it); lane chats newest results only; builder session
+    from 31 Oct.
