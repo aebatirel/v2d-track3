@@ -7589,3 +7589,11 @@ arm and a no-policy replay floor to stage B.
   - One partial update pass added ≈ 9.4 k words (mostly to the journey, process and stage sections). Total
     ≈ 30 k words.
   - Remaining accepted gap: 14 lane sessions (newest results plus branch work logs).
+- ~11:00 UTC 6 Nov **journey report v3 republished** (same link). Owner: "cover those as well with haiku".
+  - 5 Haiku agents read all 14 lane sessions to their starts (`kinds ["result"]`); one resumed two lanes from
+    their cursors.
+  - One partial update pass added ≈ 4.3 k words: lane process detail in sections 5–12 and a lane table in
+    section 14. Total ≈ 38.6 k words.
+  - New measured fact: Vast billing $376.41 for 20–30 Oct (135 machines, 246 GPU-hours). Campaign GPU total
+    ≈ $556 [E]; the report's earlier $330–500 range was too low.
+  - Coverage is now complete. Limit: some sessions were read from turn summaries rather than every message.

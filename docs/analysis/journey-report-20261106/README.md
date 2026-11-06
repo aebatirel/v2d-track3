@@ -24,5 +24,10 @@ Coverage (version 2, 6 Nov ~09:30 UTC):
     `coordinator_full.md`).
 - The early main session and the builder session's 26–31 Oct part were read from turn summaries, not message by
   message.
-- Accepted remaining gap: the 14 lane sessions are covered by their newest results and their branches' work logs.
+- Version 3 (6 Nov ~11:00 UTC): 5 more small agents read all 14 lane sessions to their starts (`digests/lanes_*.md`).
+  One partial update pass added about 4,300 words, including a "Lane sessions at a glance" table in section 14.
+- GPU total: about $556 [E], from the Vast billing record ($376.41 through 30 Oct [M]) plus about $180 [E] for
+  31 Oct – 3 Nov. This replaces the $330–500 range of version 1.
+- Remaining limit: the early main session, the builder session and the lanes were read from turn summaries, not
+  every message verbatim.
 - Version 1 of the sections is kept in git history (commit abd572e4).

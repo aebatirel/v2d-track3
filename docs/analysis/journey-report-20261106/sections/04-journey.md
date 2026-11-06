@@ -24,7 +24,7 @@ This block comes from turn summaries of the main early session (the first messag
 - Permission friction (14:56-15:04): the agent tried to add an allow rule for its own launcher to the repository settings. The safety check blocked this as self-modification and the file was removed. An earlier message had wrongly said a launcher fix was pushed; the agent admitted it. Two later launches, including a plain test, were blocked. The agent said only the owner's settings could lift the check, so the owner changed the session mode.
 - Smoke test (15:04-15:20): one RTX PRO 6000 in Greece at $1.44/h, deleted itself at 15:19, cost $0.01. Passed: key delivery, private repo download, a 0.69 GB download in 45 s, store upload, progress labels, live commands, self-deletion. Not yet tested: the full setup on Vast's image and auto-delete on a stalled job.
 - First real box: it stopped because `pandas` was missing from the image ($0.29). Setup now checks every import, and a failed job keeps the box up 30 minutes. The second attempt finished setup in about 10 minutes. The FoundationStereo weights (3.3 GB) and both FoundationPose models went into the store, so later boxes no longer needed Google Drive. Perception on ep12 reproduced Colab (AUC 0.997 against 0.986-0.998). Two trainings on one card ran at about 45k steps/s alone and 50k combined, using 41.5 of 96 GB [M].
-- The owner asked about cost at 18:15: $3.97 spent of $25; about $2 per policy on demand and about $1 interruptible; the project through the 4 Nov freeze about $300-450 on demand, central $250 [E]. The measured range later turned out to be about $330-500 (section 12.1). The owner also asked whether the leaderboard was being smashed. The answer was that the Colab 0.809 was tracking only and cannot be submitted, and that public episodes need not be run at all: the submission is 20 policies for the eval videos.
+- The owner asked about cost at 18:15: $3.97 spent of $25; about $2 per policy on demand and about $1 interruptible; the project through the 4 Nov freeze about $300-450 on demand, central $250 [E]. The actual total later came to about $556 [E]: $376.41 billed through 30 Oct [M] plus about $180 [E] for 31 Oct - 3 Nov (section 12.1). The owner also asked whether the leaderboard was being smashed. The answer was that the Colab 0.809 was tracking only and cannot be submitted, and that public episodes need not be run at all: the submission is 20 policies for the eval videos.
 - The AUC 0.009 run (section 6) cost about three hours of two trainings on a broken scene, roughly $9-10 by then [E].
 
 **Hard episodes, 21-22 Oct.**
@@ -63,6 +63,12 @@ This block comes from turn summaries of the main early session (the first messag
 ### Phase 3: small swaps while the field moved (27-30 Oct)
 
 The robustness review verified the reference calculation (scale 1.004, frame indexing, scorer fidelity to 4-6 decimals) and proposed a registration-stability gate. Mesh research started ("I want a combination of A and B and want the minimal CD-O vs public scan"; "don't worry about the deadline / leaderboard freeze, that's for me to worry"). H5 (29 Oct) showed pack 6's draws were lucky (0.9164 vs 0.8755). Recipe arms were inconclusive. Pack 7 (eval 33 arm B) gave 0.8146, but we were 7th: "small swaps cannot close the gap". The first advisor meeting with Roman Klis (30 Oct, 31 min) questioned what the judged video shows and whether hands and masses were right; the coordinator session began relaying work between sessions.
+
+#### Turning points seen only in the lane sessions
+
+- **26 Oct, mesh lane:** the finding that the mesher turned 2-4 mm walls into 12-20 mm slabs, while stereo points were 1-2 mm accurate, started the work that took CD-O from 0.402 to 0.239 cm (section 8.7). The weekly Claude usage limit then paused that lane for about two days (27-29 Oct).
+- **30 Oct 07:03, policy review lane:** the first billing-based cost total ($376.41 spent 20-30 Oct, 135 machines) and the merge of every session branch into `main` (section 12.1).
+- **30 Oct 13:52, performance lane:** NVIDIA's own defaults cannot exceed 0.415 AUC on public episodes, so there is no head-to-head baseline to compare with (section 11).
 
 #### Detail from the builder session (26-31 Oct)
 

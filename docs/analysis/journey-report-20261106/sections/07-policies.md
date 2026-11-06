@@ -141,3 +141,50 @@ Two lessons came out of this: an entry rule ("zero-shot within 0.02 of control")
 | 3 Nov SR audit of the 14p rollouts | all 20 pass SP-SR and MP-SR against our references, none within 20 % of a threshold; tightest MP margins eval 10 beige 1.85 cm, eval 30 sweeper 1.82 cm / 11 degrees |
 
 So by the end the policies follow our references well; what remains is mostly the gap between our reference and the truth (sections 5 and 6), plus draw-to-draw failures on a few hard episodes.
+
+### 7.10 What the policy lanes tried on the way (30 Oct - 3 Nov)
+
+Four lane sessions worked on policies and following. Final verdicts are in 7.5, 7.7 and 9.3; this section keeps the steps before them.
+
+**Embodiment lane (30 Oct - 1 Nov): hands, masses, solver.**
+
+- **Catalogue (30 Oct) [M].** The team variant `sharpa_hands_mid` (wrist kp 400, default 25 N/m) is used on 15 of the 20 eval policies; eval 3 scores 0.97 with it and 0.23-0.42 at kp 25. `_kp100` was never trained. NVIDIA's `_primitive` collision variant gave about +0.03 on two hard episodes. Magnet or sticky fingers were ruled out.
+- **Human-shaped hand.** The lane read the MANO licence as research-only with no redistribution (its own reading, not legal advice) and proposed its own hand design; the perceived digit-to-palm ratio was 1.2-1.3 against 1.7-2.1 expected [H, untested]. A first run was void: a naming bug made the grasp tool look for the robot hand. Re-run: plain copy, extra grip and locked grip all dropped the cup at frame 37, as the robot hand does.
+- **Centre of gravity and mass.** NVIDIA's scans put the centre of gravity within about 4 mm of right; our meshes were 2-25 mm off (pitcher 25, beige cup 16, rack 13) [M]. Material-based masses (for example cups 128 and 137 g, pot 277, pitcher 503, rack 387) are good to about x0.6-1.6 [E]. First seed on ep2: 0.944 -> 0.736 (harm); three seeds later 0.738 -> 0.898 ("signal"), with one seed each on ep12, 18 and 24.
+- **Physics fit v1** (owner's idea; literature found the approach established). v1 gave mean +0.007 and worst -0.018, inside its pre-registered limits; the control with frame 0 held fixed gave -0.006. The gain was a shift of frame 0, which the scorer uses to align the whole episode. Not adopted [M].
+- **Solver ladder.** On ep12 the solver beat wrist-ILC on one exact replay (0.6899 against 0.600) but not with 8 noisy copies (0.556-0.564 against a 0.586 bar). G3 (RL from solved references) harmed ep2 (0.584 against 0.736, mean -0.034 derived); at 30M steps it had led far ahead (0.965 against 0.483) and then collapsed, as round 1's seed had.
+- **Solver re-test (31 Oct, four machines, $23.13 [E]).** ep2 0.78 against 0.91 (-0.13 on both seeds); ep12 0.82 against 0.59 (+0.22); ep18 0.58 against 0.62; ep24 unchanged. The stop rule (any episode down 0.05) kept it out. An eval-solve job (15 references, $9-14) was built and CPU-tested but never launched.
+
+**Recipe screen, arm D, and the owner's answer.** Arm D nudges objects by up to 1.5 mm and 1 degree, then settles for 20 steps, in training only; the motive was that official re-runs drift about 5 mm in the first second and about 2 cm once hands touch. Seed 43, mean +/- spread over 10 runs [M]:
+
+| Episode | C (current) | K (higher LR) | D (random starts) |
+|---|---|---|---|
+| ep2 | 0.87 +/- 0.17 | 0.96 +/- 0.02 | 0.86 +/- 0.24 |
+| ep12 | 0.61 +/- 0.01 | 0.58 +/- 0.02 | 0.92 +/- 0.02 |
+| ep18 | 0.62 +/- 0.00 | 0.62 +/- 0.01 | 0.60 +/- 0.06 |
+| ep24 | 0.24 +/- 0.00 | 0.25 +/- 0.01 | 0.23 +/- 0.00 |
+
+The lane warned that D widened ep2 (spread 0.10 -> 0.25) and records the owner's "No D" at 20:29 on 31 Oct. The score-status lane records a "yes" to a second D version for evals 14, 16, 25, 30 and 33 at 20:30-20:52 the same night and ran it ($19.41; only eval 33 passed). The sources do not reconcile the two entries.
+
+**Eval-10 contact chain (1 Nov, CPU unless stated).** Rows needed per world, 32 worlds, limit 512 (share = steps with at least one world over the limit):
+
+| Cup pieces | Hold-phase max / share | Scoring-style max / share | Overflow warnings |
+|---|---|---|---|
+| packed | 661 / 100 % | 918 / 33 % | 9,723 |
+| v1 | 598 / 75 % | 699 / 19 % | 7,086 |
+| v3 | 534 / 15 % | 477 / 0 % | 576 |
+| v4 (mesh lane) | peak 459 | - | 0 |
+| v5 (8 mm cup floor) | peak 503-504 | - | 0 (floor margin 4 mm against 0.5; cup mass centre moved 12.8 mm) |
+
+The ep24 boards showed the same budget problem: the carved pieces needed about 2,030 rows per world against 416-425 for the default, and overflowed in 16 of 16 copies at 512, so they were marked do-not-use and a hard cap of 380 rows per world was set for future pieces.
+
+**Perfect-following lane (1-3 Nov).**
+
+- **Two-hand references, on the lane's own bridged references.** Eval 14 two-hand 0.680 (unbridged 0.581) against 0.880 single-hand; eval 16 0.713 and 0.696 against packed 0.850; eval 15 0.943 and 0.913 against 0.906, which went to confirmation and failed the median-error check.
+- **Why 12b worked.** The tracked cup drifted 3-14 cm out of the hand, then jumped 11-20 cm in one frame; on eval 32 the cup was upside down for 13 frames. `tools/guard_bridge.py` smooths this without ground truth. Caveat: pack 11's eval-14 draw was lucky (0.909); the new policy scores 0.882 on the same yardstick.
+- **Lift windows, how the idea arose.** The hold-through-release fix did not fit evals 25, 30, 1 and 3, whose errors start about 10 frames after the grasp, during the lift. So 30 % of training starts were sampled around each grasp and lift (training only). Public ep31: 0.730 and 0.704 against control 0.589 and 0.707 (mean +0.069 against +0.02); the whole gain came from seed 42, where the control had failed draws.
+- **Seed pairs on the boxes (seed 42 / seed 43) [M].** ep14 0.923 / 0.908; ep28 0.864 / 0.651; ep25 0.529 / 0.541 (both lift seeds in the low mode; earlier runs without lift windows reached 0.79 and 0.82); ep30 0.787 / 0.932; ep20 0.297 / 0.921. Two seeds cannot separate lift windows from the usual seed split.
+- **Setup losses.** Lift windows keyed by arm and seed instead of episode (three episodes used eval 32's windows; about $0.50); a stalled Japan machine destroyed by the watchdog (about $0.90); a box at a third of normal speed (about $1.45); three Tier B retrain boxes that failed at step one because the scene-support folder was not copied (about $1.50).
+- **Spoon-anchor test, built and not run.** The spoon's start orientation was rebuilt for evals 32, 33, 35, 36, 37 (by 2.0, 1.8, 3.2, 6.1, 5.2 degrees), 10 draws each, about $2. The agent expected each episode to move 0.03-0.15 on the board in an unpredictable direction; the coordinator said no-go.
+
+**Policy review lane (30 Oct).** It built a briefing page (billing totals in section 12.1) and merged every session branch into `main`. Its "stuck on" list: policies do not follow our reference (0.083 measured; eval 10 is 0.027 of it); the reference differs from the truth by about 0.10 [E], mostly the spoon; the score rests on lucky draws (a re-run could give about 0.78 [E]). Its depth check failed its pre-set test (AUROC 0.600 against a 0.65 bar here; section 9.1 records 0.75), so no money went to reference or spoon fixes on its strength.

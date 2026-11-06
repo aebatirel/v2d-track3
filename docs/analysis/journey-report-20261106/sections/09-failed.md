@@ -16,6 +16,8 @@
 | 30 Oct | free-space depth audit | depth flags > 2 cm reference errors | AUROC 0.75 | 0.600 (CI 0.40-0.78) | -0.15 | depth sees large offsets, not 2-3 cm errors | CPU |
 | 30 Oct | refine S1 / S3 / S4 | snap, tilt-to-plane, pre-contact hold | positive mean | -0.0077 / -0.0013 / +0.0003 | - | snap to wrong-shape priors | CPU |
 | 31 Oct | marker correction layer | marker blobs correct the tracker | positive, 16 units | -0.083, 1/16 better, worst -0.407 | -0.083 | marker fixes 1.0-2.2 cm vs tracker 0.26-0.42 cm | CPU |
+| 31 Oct | colour camera a as third view for markers | extra view makes spoon markers usable | 2 of 3 objects improve | 0 of 3 (spoon roll-marker visibility at rest 43 % -> 83 %) | -2 objects | visibility is not the limit | CPU |
+| 30 Oct | physics fit v1 (embodiment lane) | a physics-consistent video fit helps | mean +0.005, worst -0.02 | +0.007, worst -0.018; control with frame 0 held fixed -0.006 | control fails | the gain was a frame-0 shift, which the scorer uses for alignment | CPU |
 | 31 Oct | S11 offset ICP / S10 held pose / K1 / K2 | fit constant offsets or holds | +0.005 / +0.01 | +0.0005 / -0.018 / +0.001 / +0.001 | all below | bias not observable this way | CPU |
 | 31 Oct | per-episode Set B templates | own clean templates track better | mean dR +0.01, 12/20 better | -0.170, 3/20, min -0.973 | -0.18 | template changes break FoundationPose | $1.54 |
 | 31 Oct | causal Kalman / RTS smoothers | the error is noise | +0.005 | Kalman 1.3-22 % worse; RTS -0.00011 | -0.005 | the error is bias plus a half-frame delay | CPU |
@@ -54,6 +56,7 @@
 | 1-2 Nov | lift windows on evals 3, 14, 25, 28, 30, 32 | lift resets fix the failing phase | swap rule | e.g. eval 25 0.529 vs 0.878; eval 14 box 0.923 but fresh 0.826 | -0.05 to -0.35 | box draws overstate lift policies | ~$28 batch |
 | 2 Nov | eval 16 hold-to-end | holding to the end helps | swap rule | 0.687 / 0.719 vs 0.769 / 0.792 | -0.08 | - | $3.5 |
 | 2 Nov | eval 33 guard bridge | bridge the cup jump | +0.02 | +0.0196 | -0.0004 | just below the bar | in batch |
+| 30 Oct | grip-force squeeze during holds (embodiment lane) | more force stops slips | +0.05 on 3 of 4 | ep2 +0.009, ep12 -0.019, ep18 +0.019, ep24 +0.002 | -0.03 to -0.07 | copying the video does not reproduce the episode, even with a human-shaped hand | part of a ~$13 two-box study |
 | 25-31 Oct | board slot rounds F-I4; carve F-I5 | slotted collision boards interlock | contact ratio 2.0; wall 1.5 mm | ratio 3.875; walls -21 to -173 mm | fails | collision budget and geometry | CPU |
 | 22 Oct | rest settling on ep12 | settling resting objects stabilises starts | beat retargeting alone (0.790) | 0.740 (one seed) | -0.050 | one seed; kept as opt-in `SETTLE=1`, off by default | small |
 | 22 Oct | primitive hand model | simpler hand collision helps | both episodes | ep18 0.377 +/- 0.021 vs 0.345 (+0.032); ep24 slightly below base (-0.015) | mixed | gain on one episode only | small |
@@ -103,6 +106,8 @@
 | 26 Oct | pack 5 lathe pitcher | single-twin +0.098 transfers | board gain +0.005 to +0.007 | -0.00115 (pitcher cost -0.0045) | -0.0095 | the hidden anchor and points differ | upload |
 | 26 Oct | submitted-mesh carves; appendage-only meshes | carve the scored mesh | CD-O / AUC | lid +0.14-0.18 cm CD-O; appendage-only scores above the scan | rejected | a mesh beating the true shape compensates errors | CPU |
 | 27 Oct | primitive boards | boxes with slots | flips 0 | 1/6 and 3/6 flips | fails | primitives add symmetry, symmetry flips | CPU |
+| 26-27 Oct | single-frame lathe on public data | one view is enough for round objects | CD-O under 0.4 | 1.1-1.3; both cups flipped on 7 of 7 seeds | fails | no symmetry-breaking details, one view | CPU |
+| 31 Oct | board-2 chooser (ep24) and board-2 variants (2 Nov) | automatic parts choice; marker balls cut flips | flip rate at most 10 % of 50 runs | chooser built a 6.8 cm box for a 1-2 cm board; shipped plate 34 %, V1 18 %, V2 70 % | fails | flip-prone rule, not tweaked after scoring | CPU |
 | 29 Oct | generator batch 2 | one-shot generators beat library | Pixal3D median 0.08 below 0.40 | 0.399 | falsified | typical outputs far worse than best | $4.36 |
 | 31 Oct | C0a, C2, C0b rack/cup/lid, E0b, T3 in C1 | other mesh routes | guard and CD-O gates | C0a rack -0.036; pitcher 1.160 vs 0.8742; rack 0.4413 vs 0.436; lid 16/16 builds fail | all fail | frame errors, unseen far side | ~$1.3 |
 | 2 Nov | pack 12d on pose boards | (disclosed CD-O variant) | - | AUC -0.00733 | planned | T3 shapes register worse | upload |
