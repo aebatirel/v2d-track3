@@ -1,0 +1,35 @@
+{
+ "white_pot": {
+  "source": "meshes/library_c0/white_pot.glb",
+  "faces": 16454,
+  "watertight": true,
+  "icp_translation_mm": 2.412130654600392,
+  "icp_rotation_deg": 1.2694981480987344,
+  "scan_to_clean_mm_median": 1.6509166763342977,
+  "scan_to_clean_mm_p90": 4.762540740609795,
+  "clean_to_scan_mm_median": 2.310725022493523,
+  "clean_to_scan_mm_p90": 5.20146979100188
+ },
+ "plastic_dish_rack": {
+  "source": "meshes/library_c0/plastic_dish_rack.glb",
+  "faces": 2356,
+  "watertight": true,
+  "icp_translation_mm": 5.2886934296267585,
+  "icp_rotation_deg": 3.007525999589532,
+  "scan_to_clean_mm_median": 2.081078336166858,
+  "scan_to_clean_mm_p90": 10.227455349972987,
+  "clean_to_scan_mm_median": 1.7549421739238003,
+  "clean_to_scan_mm_p90": 6.0260249222578635
+ },
+ "white_pot_lid": {
+  "source": "meshes/library_c0/white_pot_lid.glb",
+  "faces": 9550,
+  "watertight": true,
+  "icp_translation_mm": 2.046155053007169,
+  "icp_rotation_deg": 2.2636764540047025,
+  "scan_to_clean_mm_median": 1.0782192452333936,
+  "scan_to_clean_mm_p90": 3.306276631830899,
+  "clean_to_scan_mm_median": 0.9829462886439698,
+  "clean_to_scan_mm_p90": 2.507247930685344
+ }
+}

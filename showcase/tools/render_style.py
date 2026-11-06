@@ -13,12 +13,31 @@ p = argparse.ArgumentParser(); p.add_argument('parquet'); p.add_argument('out');
 p.add_argument('--trace', default=''); p.add_argument('--frames', default='')
 p.add_argument('--eye', default='0.35,-0.95,1.15'); p.add_argument('--target', default='-0.08,-0.15,0.72')
 p.add_argument('--size', default='960x720'); p.add_argument('--robot_rgb', default='0.30,0.33,0.38')
-p.add_argument('--object_rgb', default='0.94,0.94,0.92'); p.add_argument('--table_rgb', default='0.58,0.34,0.18')
+p.add_argument('--object_rgb', default='0.85,0.85,0.83'); p.add_argument('--table_rgb', default='0.58,0.34,0.18')
 p.add_argument('--ground_rgb', default='0.82,0.83,0.85'); p.add_argument('--bg_rgb', default='0.95,0.96,0.97')
 p.add_argument('--ego', default='', help='REFDIR,PERCDIR: render from the head camera (camera a) path of the video')
 p.add_argument('--ego_fov', type=float, default=72.65, help='vertical FOV (deg) of camera a after undistortion (ep27 calibration: 72.65; pinhole 66.9)')
+p.add_argument('--objects_dir', default='', help='render-only object swap: DIR/urdf/<name>_rigid.urdf (showcase/tools/clean_meshes.py)')
+p.add_argument('--ambient', type=float, default=0.25, help='ambient light level (lower = more shading on white objects); -1 keeps the viewer default')
 p.add_argument('--device', default='cpu'); a = p.parse_args()
 rgb = lambda s: tuple(float(x) for x in s.split(','))
+
+if a.objects_dir:                         # render-only copy of the reference whose objects point at the clean meshes
+    import shutil, tempfile
+    import pyarrow as pa, pyarrow.parquet as pq
+    hive = os.path.dirname(os.path.abspath(a.parquet)); root = os.path.dirname(os.path.dirname(os.path.dirname(hive)))
+    tmp = tempfile.mkdtemp(prefix='render_ref_'); rel = os.path.relpath(hive, root)
+    os.makedirs(os.path.join(tmp, rel)); shutil.copytree(os.path.join(root, 'reconstructed_stage'), os.path.join(tmp, 'reconstructed_stage'))
+    t = pq.ParquetFile(a.parquet).read(); row = t.to_pylist()[0]
+    for k, sub in (('object_urdf_paths', 'urdf'), ('object_mesh_paths', 'mesh')):
+        new = []
+        for pth in row[k]:
+            b = os.path.basename(pth); cand = os.path.join(a.objects_dir, 'urdf', b) if sub == 'urdf' else os.path.join(a.objects_dir, 'mesh', os.path.basename(os.path.dirname(pth)), b)
+            new.append(cand if os.path.exists(cand) else pth)
+        row[k] = new
+    pq.write_table(pa.Table.from_pylist([row], schema=t.schema), os.path.join(tmp, rel, 'ref.parquet'))
+    a.parquet = os.path.join(tmp, rel, 'ref.parquet')
+    print('render-only objects:', row['object_urdf_paths'], flush=True)
 
 import warp as wp
 if a.device == 'cpu':                     # no CUDA: the GL viewer asks for pinned host buffers; plain ones work
@@ -47,17 +66,16 @@ with wp.ScopedDevice(a.device):
     f0, f1 = (0, n_all) if not a.frames else [int(x) for x in a.frames.split(':')]
     vc = ViewerConfig(backend='mp4', output_path=a.out, num_frames=f1 - f0, headless=True, realtime=False, width=W, height=H,
                       camera_position=rgb(a.eye), camera_target=rgb(a.target), background_color=rgb(a.bg_rgb),
-                      support_color=rgb(a.table_rgb), ground_color=rgb(a.ground_rgb), draw_shadows=True)
+                      support_color=rgb(a.table_rgb), ground_color=rgb(a.ground_rgb), draw_shadows=True,
+                      ambient_sky=(a.ambient,) * 3 if a.ambient >= 0 else None, ambient_ground=(a.ambient * 0.6,) * 3 if a.ambient >= 0 else None)
     viewer = create_viewer(vc, a.device); viewer.set_model(m); configure_camera(viewer, vc)
     configure_render_style(viewer, vc, sc)
     col = m.shape_color.numpy().copy(); body = m.shape_body.numpy()
-    obj_shapes = set()
-    for ob in sc.objects:
-        obj_shapes.update(range(ob.shapes.start, ob.shapes.stop))
+    obj_bodies = {int(bb.body_id) for ob in sc.objects for bb in ob.bodies}   # visual and collision shapes alike
     labels = list(getattr(m, 'body_label', []) or [])
     for s in range(len(col)):
         b = int(body[s])
-        if s in obj_shapes:
+        if b in obj_bodies:
             col[s] = rgb(a.object_rgb)
         elif b >= 0 and b < len(labels) and str(labels[b]).split('/')[-1].startswith(('left_', 'right_')):
             col[s] = rgb(a.robot_rgb)

@@ -14,7 +14,9 @@ p = argparse.ArgumentParser(); p.add_argument('--ep', type=int, default=27); p.a
 p.add_argument('--out', required=True); p.add_argument('--fc', required=True); p.add_argument('--real', default='')
 p.add_argument('--store', default='aebatirel/v2d-store'); p.add_argument('--order', default='sharpa,shadow,inspire,allegro,leap,dex3,barrett,dclaw,panda')
 p.add_argument('--eye', default='0.35,-0.95,1.15'); p.add_argument('--target', default='-0.08,-0.15,0.72')
-p.add_argument('--title', default=''); p.add_argument('--skip_render', action='store_true'); a = p.parse_args()
+p.add_argument('--title', default=''); p.add_argument('--skip_render', action='store_true')
+p.add_argument('--objects_dir', default='/content/showcase/objects_clean', help='clean closed meshes for rendering (showcase/tools/clean_meshes.py); empty = official scans')
+a = p.parse_args()
 os.makedirs(a.out, exist_ok=True); dl = os.path.join(a.out, 'dl')
 
 from huggingface_hub import snapshot_download
@@ -42,7 +44,7 @@ for r in [x for x in a.order.split(',') if x in found] + sorted(set(found) - set
     tile = os.path.join(a.out, f'tile_{r}.mp4')
     if not a.skip_render and os.path.exists(f'{d}/policy_trace.npz') and not os.path.exists(tile):
         subprocess.run(['xvfb-run', '-a', '-s', '-screen 0 1280x1024x24', f'{a.fc}/.venv/bin/python', f'{HERE}/render_style.py', pq, tile,
-                        '--emb', EMB.get(r, r), '--trace', f'{d}/policy_trace.npz', '--size', '772x680', '--eye', a.eye, '--target', a.target],
+                        '--emb', EMB.get(r, r), '--trace', f'{d}/policy_trace.npz', '--size', '772x680', '--eye', a.eye, '--target', a.target] + (['--objects_dir', a.objects_dir] if a.objects_dir else []),
                        cwd=a.fc, check=False)
     n, auc, sd, mp = s['n'], s['auc_mocap_mean'], s['auc_mocap_sd'], s['mp_sr_pass']
     pot = [x['per_obj'] for x in s['draws']]
