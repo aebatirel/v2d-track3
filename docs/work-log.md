@@ -12340,3 +12340,7 @@ score.
   - For the running boxes, a helper (`showcase/box/trace_helper.sh`) traces each robot after its summary and pushes.
     It holds the box until all are done; HOLD is bounded: A 15:45, B 16:45, C 14:45 UTC.
   - Videos are rendered on CPU here from the traces.
+- 10:53 UTC, Sharpa (box A) [M]:
+  - candidates by sim_vs_ref: 150M 0.9851, 200M 0.9873, 250M 0.9870;
+  - 5 draws vs mocap: AUC 0.9655 ± 0.0062 (0.956–0.974); pot 0.91–0.95; MPPE 0.78–0.91 cm; MP-SR 5/5;
+  - matches the 20 Oct reproduction (0.965), so the showcase pipeline is sound for the native hand.
