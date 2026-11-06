@@ -12321,3 +12321,9 @@ score.
   - grid composer `showcase/tools/grid_video.py`: real clip + 3×3 tiles with labels and score lines.
   - Kinematic previews are labelled "no physics" and are never presented as results (owner asked what "no physics"
     means: answered that the presented videos are physics rollouts of trained policies).
+- 09:23 UTC: training started on A (Sharpa: 45.3k env steps/s, about 92 min per 250M) and C (Panda: 60.7k env steps/s,
+  about 69 min). Box setup took about 20 min, plus about 9 min for the inputs download and pip.
+- Box codes: B runs commit baaa3ccb and C runs a later HEAD (5f4bf20f). The run-id suffix is 84c009f; the commits
+  in between change only logs and CPU render tools, not `ops/jobs/showcase.sh` or the showcase modules.
+- B's env-snapshot download stalled: one 1.41 GB part frozen from 09:23. At 09:31 UTC I killed the stuck
+  `hf download`, and run_job fell back to the full `pipeline/setup.sh`: about +25 min on B (≈ $0.60).
