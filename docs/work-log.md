@@ -12409,3 +12409,8 @@ score.
   - Uploaded with all tiles to the HF store `showcase/outputs/20261106/ep27/` (commit 549d191a).
   - Results table: `docs/research/work/embodiment-showcase-20261106/results/ep27_results_table.md`.
 - Credit $39.89 at 14:53 UTC (was $67.25). Ledger actuals [E] from durations: A $7.10, B $7.80, C $5.90.
+- ~15:10 UTC, box E `panda_pads_wide` seed 44 [M]: AUC vs mocap 0.9396 ± 0.0074; pot 0.87–0.91; MP-SR 5/5; 250M kept
+  (sim_vs_ref 0.9601).
+  - The pad fix holds on a second seed.
+  - Doubling the torsional friction (0.015 → 0.03) did not improve on panda_pads s42 (0.947), so it is not a lever.
+  - Box E self-destroyed; ledger actual $3.00 [E]. Box D (panda_pads s43) is still evaluating.
