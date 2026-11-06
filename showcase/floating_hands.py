@@ -65,6 +65,11 @@ class FloatingHandsConfig:
     default_joint: JointControlSpec = field(default_factory=JointControlSpec)
     joint_overrides: dict[str, dict] = field(default_factory=_default_overrides)
     finger_overrides: dict[str, dict] = field(default_factory=dict)  # merged after joint_overrides
+    # soft-pad contact model for the hand's shapes (2026-11-06, Panda fix): MuJoCo condim 4 adds torsional friction, so a
+    # two-finger pinch resists the object twisting about the pinch axis, as rubber pads do; None keeps the defaults
+    pad_condim: int | None = None
+    pad_torsional: float | None = None   # m (MuJoCo torsional friction coefficient, ~ contact patch radius x mu)
+    pad_mu: float | None = None
 
     def __post_init__(self) -> None:
         self.digits = tuple(self.digits)
@@ -213,6 +218,17 @@ class FloatingHands:
             semantic.update(self._add_hand(builder, side, path, base))
             body_span[side] = (b0, len(builder.body_label))
         geometry = self._capture_geometry(builder, body_span)
+        if self.config.pad_condim is not None or self.config.pad_torsional is not None or self.config.pad_mu is not None:
+            condim = builder.custom_attributes["mujoco:condim"].values
+            for side_links in geometry.values():
+                for link in side_links:
+                    for shape in link.shape_ids:
+                        if self.config.pad_condim is not None:
+                            condim[shape] = int(self.config.pad_condim)
+                        if self.config.pad_torsional is not None:
+                            builder.shape_material_mu_torsional[shape] = float(self.config.pad_torsional)
+                        if self.config.pad_mu is not None:
+                            builder.shape_material_mu[shape] = float(self.config.pad_mu)
         shape_count = len(builder.shape_body)
         collapse_result = builder.collapse_fixed_joints()
         if len(builder.shape_body) != shape_count:

@@ -44,7 +44,7 @@ for r in [x for x in a.order.split(',') if x in found] + sorted(set(found) - set
     tile = os.path.join(a.out, f'tile_{r}.mp4')
     if not a.skip_render and os.path.exists(f'{d}/policy_trace.npz') and not os.path.exists(tile):
         subprocess.run(['xvfb-run', '-a', '-s', '-screen 0 1280x1024x24', f'{a.fc}/.venv/bin/python', f'{HERE}/render_style.py', pq, tile,
-                        '--emb', EMB.get(r, r), '--trace', f'{d}/policy_trace.npz', '--size', '772x680', '--eye', a.eye, '--target', a.target] + (['--objects_dir', a.objects_dir] if a.objects_dir else []),
+                        '--emb', EMB.get(r, r), '--trace', f'{d}/policy_trace.npz', '--size', '772x680', f'--eye={a.eye}', f'--target={a.target}'] + (['--objects_dir', a.objects_dir] if a.objects_dir else []),
                        cwd=a.fc, check=False)
     n, auc, sd, mp = s['n'], s['auc_mocap_mean'], s['auc_mocap_sd'], s['mp_sr_pass']
     pot = [x['per_obj'] for x in s['draws']]

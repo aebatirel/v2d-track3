@@ -43,7 +43,7 @@ pip install -q fast_simplification manifold3d >> $J 2>&1 || true
 hf download "$HF_STORE" --repo-type dataset --include "$INPUTS/*" --local-dir /content/sc_in >> $J 2>&1 \
   || { log "showcase: inputs download FAILED" >> $J; exit 1; }
 mkdir -p /content/refs/sc
-for r in $ROBOTS; do
+for r in $(for x in $ROBOTS; do echo ${x%%:*}; done | sort -u); do
   src=/content/sc_in/$INPUTS/ep${EP}_$r; [ -d $src ] || { log "showcase: no inputs for $r ($src)" >> $J; exit 1; }
   rm -rf /content/refs/sc/ep${EP}_$r; cp -r $src /content/refs/sc/ep${EP}_$r
 done
@@ -105,24 +105,26 @@ EOF
 }
 
 pids=()
-for r in $ROBOTS; do
-  emb=$r; [ $r = sharpa ] && emb=sharpa_hands_mid
+for x in $ROBOTS; do                     # ROBOT[:EMBODIMENT[:SEED]] (2026-11-06: variants, e.g. panda:panda_pads:43)
+  IFS=: read -r r emb sd <<< "$x"
+  [ -n "$emb" ] || emb=$r; [ "$emb" = sharpa ] && emb=sharpa_hands_mid
+  sd=${sd:-$SEED}; tag=$r; [ "$emb" != "$r" ] && [ "$emb" != sharpa_hands_mid ] && tag=$emb; [ "$sd" != "$SEED" ] && tag=${tag}_s$sd
   PQ=$(ls /content/refs/sc/ep${EP}_$r/processed/*/*/*.parquet | head -1)
-  RUN=/content/runs/showcase/ep${EP}_$r; mkdir -p $RUN
-  label "showcase: training $r"
-  log "showcase $r: training (embodiment $emb, reference $PQ)" >> $J
+  RUN=/content/runs/showcase/ep${EP}_$tag; mkdir -p $RUN
+  label "showcase: training $tag"
+  log "showcase $tag: training (embodiment $emb, seed $sd, reference $PQ)" >> $J
   t0=$(date +%s)
   ( cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py experiment=sharpa_flash_sac \
-      embodiment=$emb "task.parquet='$PQ'" task.motion_speed=1.0 reset.seed=$SEED logging.mode=disabled output_dir=$RUN \
+      embodiment=$emb "task.parquet='$PQ'" task.motion_speed=1.0 reset.seed=$sd logging.mode=disabled output_dir=$RUN \
       training.total_environment_steps=$STEPS sim.njmax=1024 sim.nconmax=512 $TRAIN_ARGS ) >> $RUN/train.log 2>&1
   rc=$?
   if [ $rc -ne 0 ] || ! ls $RUN/policy_*.safetensors > /dev/null 2>&1; then
-    log "showcase $r: training FAILED rc=$rc after $(( ($(date +%s) - t0) / 60 )) min ($(grep -a -iE 'error|exception' $RUN/train.log | tail -2 | tr '\n' ' ' | cut -c1-240))" >> $J
+    log "showcase $tag: training FAILED rc=$rc after $(( ($(date +%s) - t0) / 60 )) min ($(grep -a -iE 'error|exception' $RUN/train.log | tail -2 | tr '\n' ' ' | cut -c1-240))" >> $J
     bash $OPS/store.sh push-run > /dev/null 2>&1 || true; continue
   fi
   touch $RUN/.done
-  log "showcase $r: trained in $(( ($(date +%s) - t0) / 60 )) min, $(ls $RUN/policy_*.safetensors | wc -l) checkpoints; $(grep -a 'env steps/s' $RUN/train.log | tail -1 | grep -oE '[0-9,]+ env steps/s')" >> $J
-  post $r $RUN $PQ >> $OUT/post_$r.log 2>&1 & pids+=($!)
+  log "showcase $tag: trained in $(( ($(date +%s) - t0) / 60 )) min, $(ls $RUN/policy_*.safetensors | wc -l) checkpoints; $(grep -a 'env steps/s' $RUN/train.log | tail -1 | grep -oE '[0-9,]+ env steps/s')" >> $J
+  post $tag $RUN $PQ >> $OUT/post_$tag.log 2>&1 & pids+=($!)
 done
 label "showcase: final evaluations"
 [ ${#pids[@]} -gt 0 ] && wait "${pids[@]}"
