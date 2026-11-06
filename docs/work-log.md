@@ -12382,3 +12382,4 @@ score.
   ROBOT:EMB:SEED). Offer 48845077 → instance 59413687, RTX PRO 6000 S, New York, $1.617/h. Expected ≈ 3.2 h,
   ≈ $5 [E]. Ledger planned $5.
 - 12:59 UTC, Inspire (box B) [M]: AUC vs mocap 0.9731 ± 0.0063; MP-SR 5/5. Dex3 trains next on B.
+- 12:59 UTC, D'Claw (box C) [M]: AUC vs mocap 0.9579 ± 0.0079; pot 0.90–0.94; MP-SR 5/5. Box C's job is done; the helper releases the HOLD → box C saves and self-destroys.
