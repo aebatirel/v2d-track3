@@ -12299,3 +12299,13 @@ score.
   reference of `20261020-day1b-cfbff6b`.
 - CPU smoke: FlashSAC training with Allegro builds the full env (FDR: 8 fingertip frames) and steps at 5 env steps/s
   (4 worlds). Panda and LEAP smoke tests and the evaluator check are running.
+
+### 2026-11-06 ~09:20 UTC — showcase phase 1 launched (owner go: "lets do phase 0 and 1"); credit $67.25 before
+- CPU checks passed:
+  - Allegro, Panda and LEAP train (env + learner + checkpoint save);
+  - the official evaluator rebuilds the FloatingHands Allegro from its checkpoint and runs all 246 steps;
+  - qa.py and score_sim.py score it: untrained sim 0.552 vs mocap, floor 0.560, reference vs mocap 0.997.
+- Batch: 3 boxes × 3 robots, job `ops/jobs/showcase.sh`, code 84c009f, ENV_SNAPSHOT pt2.11-cu130-py313-20261020.
+  Expected ≈ 4.5–5.5 h each, ≈ $19–23 in total [E]; cap $30. Ledger: planned lines per run.
+  - A `20261106-scA-84c009f`: ROBOTS="sharpa allegro shadow". Offer 59209095 → instance 59392238, RTX PRO 6000 WS,
+    South Korea, $1.481/h. Two cheaper offers were gone at create (404 no_such_ask).
