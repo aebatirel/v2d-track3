@@ -12361,3 +12361,23 @@ score.
 - 11:47 UTC, LEAP (box B) [M]: AUC vs mocap 0.9704 ± 0.0049; MP-SR 5/5.
 - 12:09 UTC, Allegro (box A) [M]: 0.9746 ± 0.0020; MP-SR 5/5.
 - Still training: Shadow (A), Inspire then Dex3 (B), D'Claw (C).
+
+### 2026-11-06 ~12:15–12:30 UTC — owner: "fix the failed ones": Panda gripper fix launched (credit $51.90 before)
+- Diagnosis from the phase-1 Panda trace [M]: the pot is lifted and held f60–130, about 16 cm from the palm, twisting a
+  few degrees per 10 frames; at f135–140, during the flip, the handle slides out of the pinch (pot-in-palm y
+  4.5 → 21.9 cm) and the pot falls to the floor (z 0.09 m).
+- Cause [I]:
+  - MuJoCo condim-3 point contacts have no torsional friction, so a two-finger pinch cannot stop the pot rotating
+    about the pinch axis;
+  - the grip force was modest (kp 2000 N/m, about 30 N).
+- Fix [H]: model the Franka Hand realistically.
+  - Rubber pads: `FloatingHandsConfig.pad_condim 4`, `pad_torsional 0.015` m on the hand's shapes.
+  - Franka-spec grip: 70 N continuous / 140 N max, i.e. kp 5000, kd 80, effort 140; embodiment variant `panda_pads`
+    (`showcase/prep_robots.py VARIANTS`).
+  - Verified on CPU: the MuJoCo model has 20 hand geoms at condim 4 / torsional 0.015 and the other 4 unchanged; env
+    and training step.
+  - Falsifier: if both seeds still fail MP-SR on ≥ 4/5 draws, pads + force is not enough; next lever: grasp search
+    (grip near the handle root or the rim).
+- Box D `20261106-scD-76992bb`: ROBOTS="panda:panda_pads:42 panda:panda_pads:43" (the job now takes
+  ROBOT:EMB:SEED). Offer 48845077 → instance 59413687, RTX PRO 6000 S, New York, $1.617/h. Expected ≈ 3.2 h,
+  ≈ $5 [E]. Ledger planned $5.
