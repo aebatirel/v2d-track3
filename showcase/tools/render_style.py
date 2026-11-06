@@ -16,6 +16,7 @@ p.add_argument('--size', default='960x720'); p.add_argument('--robot_rgb', defau
 p.add_argument('--object_rgb', default='0.94,0.94,0.92'); p.add_argument('--table_rgb', default='0.58,0.34,0.18')
 p.add_argument('--ground_rgb', default='0.82,0.83,0.85'); p.add_argument('--bg_rgb', default='0.95,0.96,0.97')
 p.add_argument('--ego', default='', help='REFDIR,PERCDIR: render from the head camera (camera a) path of the video')
+p.add_argument('--ego_fov', type=float, default=72.65, help='vertical FOV (deg) of camera a after undistortion (ep27 calibration: 72.65; pinhole 66.9)')
 p.add_argument('--device', default='cpu'); a = p.parse_args()
 rgb = lambda s: tuple(float(x) for x in s.split(','))
 
@@ -68,7 +69,7 @@ with wp.ScopedDevice(a.device):
         rd, pd = a.ego.split(',')
         Tt = np.load(f'{rd}/table_frame.npz')['T_table_from_world']; WC = np.load(f'{pd}/poses.npz')['world_T_cam'].astype(float)
         hz = np.load(f'{rd}/hands.npz'); Tra = np.linalg.inv(hz['T_rect_a'].astype(float)); fy = float(hz['Ka'][1, 1]); Ha = float(hz['size_a'][1])
-        viewer.camera.fov = math.degrees(2 * math.atan(Ha / 2 / fy))
+        viewer.camera.fov = a.ego_fov if a.ego_fov > 0 else math.degrees(2 * math.atan(Ha / 2 / fy))
         ego = [Tt @ WC[min(k, len(WC) - 1)] @ np.linalg.inv(Tra) for k in range(n_all)]
     for i, f in enumerate(range(f0, f1)):
         if ego is not None:
