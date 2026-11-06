@@ -12309,3 +12309,15 @@ score.
   Expected ≈ 4.5–5.5 h each, ≈ $19–23 in total [E]; cap $30. Ledger: planned lines per run.
   - A `20261106-scA-84c009f`: ROBOTS="sharpa allegro shadow". Offer 59209095 → instance 59392238, RTX PRO 6000 WS,
     South Korea, $1.481/h. Two cheaper offers were gone at create (404 no_such_ask).
+  - B `20261106-scB-84c009f`: ROBOTS="leap inspire dex3". Offer 58893742 → instance 59392513, RTX PRO 6000 WS,
+    South Korea, $1.466/h.
+  - C `20261106-scC-84c009f`: ROBOTS="panda barrett dclaw". Offer 56500949 → instance 59392877, RTX PRO 6000 WS,
+    South Korea, $1.420/h.
+  - All three: $4.37/h in total. Each self-destroys at job end; the stall watchdog applies.
+- While the boxes run (CPU, $0):
+  - styled renderer `showcase/tools/render_style.py`: white objects, wooden table, one colour per robot; also renders
+    from the head-camera path (camera a: T_table_from_world · world_T_cam · T_rect_a⁻¹, no roll, vertical FOV from Ka);
+    on ep27 it matches the real view closely;
+  - grid composer `showcase/tools/grid_video.py`: real clip + 3×3 tiles with labels and score lines.
+  - Kinematic previews are labelled "no physics" and are never presented as results (owner asked what "no physics"
+    means: answered that the presented videos are physics rollouts of trained policies).
