@@ -1,0 +1,305 @@
+{
+ "auc_by_upload": [
+  {
+   "pack": "pack 1",
+   "uploaded": "2026-10-24 18:41",
+   "auc": 0.57468,
+   "best_so_far": 0.57468,
+   "cdo": 0.40513
+  },
+  {
+   "pack": "pack 2",
+   "uploaded": "2026-10-25 00:58",
+   "auc": 0.58252,
+   "best_so_far": 0.58252,
+   "cdo": null
+  },
+  {
+   "pack": "pack 3",
+   "uploaded": "2026-10-25 20:03",
+   "auc": 0.78893,
+   "best_so_far": 0.78893,
+   "cdo": 0.40188
+  },
+  {
+   "pack": "pack 4",
+   "uploaded": "2026-10-26 10:55",
+   "auc": 0.81056,
+   "best_so_far": 0.81056,
+   "cdo": null
+  },
+  {
+   "pack": "pack 5",
+   "uploaded": "2026-10-26 16:06",
+   "auc": 0.80941,
+   "best_so_far": 0.81056,
+   "cdo": null
+  },
+  {
+   "pack": "pack 6",
+   "uploaded": "2026-10-26 17:15",
+   "auc": 0.81391,
+   "best_so_far": 0.81391,
+   "cdo": null
+  },
+  {
+   "pack": "pack 7",
+   "uploaded": "2026-10-30 06:28",
+   "auc": 0.8146,
+   "best_so_far": 0.8146,
+   "cdo": null
+  },
+  {
+   "pack": "pack 9a+",
+   "uploaded": "2026-10-31 18:13",
+   "auc": 0.81757,
+   "best_so_far": 0.81757,
+   "cdo": 0.33234
+  },
+  {
+   "pack": "pack 9b",
+   "uploaded": "2026-11-01 04:58",
+   "auc": 0.81677,
+   "best_so_far": 0.81757,
+   "cdo": 0.33234
+  },
+  {
+   "pack": "pack 10",
+   "uploaded": "2026-11-01 08:38",
+   "auc": 0.81915,
+   "best_so_far": 0.81915,
+   "cdo": 0.33234
+  },
+  {
+   "pack": "pack 11",
+   "uploaded": "2026-11-01 11:39",
+   "auc": 0.83921,
+   "best_so_far": 0.83921,
+   "cdo": 0.33234
+  },
+  {
+   "pack": "pack 12b",
+   "uploaded": "2026-11-02 06:37",
+   "auc": 0.84405,
+   "best_so_far": 0.84405,
+   "cdo": 0.33234
+  },
+  {
+   "pack": "pack 12c",
+   "uploaded": "2026-11-02 08:38",
+   "auc": 0.84738,
+   "best_so_far": 0.84738,
+   "cdo": 0.30008
+  },
+  {
+   "pack": "pack 12d",
+   "uploaded": "2026-11-02 12:42",
+   "auc": 0.84005,
+   "best_so_far": 0.84738,
+   "cdo": 0.29029
+  },
+  {
+   "pack": "pack 13",
+   "uploaded": "2026-11-02 18:44",
+   "auc": 0.84924,
+   "best_so_far": 0.84924,
+   "cdo": 0.30008
+  },
+  {
+   "pack": "pack 13b",
+   "uploaded": "2026-11-02 19:07",
+   "auc": 0.84985,
+   "best_so_far": 0.84985,
+   "cdo": 0.30008
+  },
+  {
+   "pack": "pack 12e",
+   "uploaded": "2026-11-02 19:16",
+   "auc": 0.86905,
+   "best_so_far": 0.86905,
+   "cdo": 0.26775
+  },
+  {
+   "pack": "pack 13e",
+   "uploaded": "2026-11-02 19:27",
+   "auc": 0.87166,
+   "best_so_far": 0.87166,
+   "cdo": 0.26775
+  },
+  {
+   "pack": "pack 13f",
+   "uploaded": "2026-11-02 19:34",
+   "auc": 0.87225,
+   "best_so_far": 0.87225,
+   "cdo": 0.26249
+  },
+  {
+   "pack": "pack 13f1",
+   "uploaded": "2026-11-02 20:34",
+   "auc": 0.87191,
+   "best_so_far": 0.87225,
+   "cdo": 0.26393
+  },
+  {
+   "pack": "pack 13p",
+   "uploaded": "2026-11-02 21:50",
+   "auc": 0.88257,
+   "best_so_far": 0.88257,
+   "cdo": 0.26869
+  },
+  {
+   "pack": "pack 13p2",
+   "uploaded": "2026-11-02 22:17",
+   "auc": 0.88403,
+   "best_so_far": 0.88403,
+   "cdo": 0.26869
+  },
+  {
+   "pack": "pack 14p",
+   "uploaded": "2026-11-02 23:30",
+   "auc": 0.88571,
+   "best_so_far": 0.88571,
+   "cdo": 0.26869
+  },
+  {
+   "pack": "pack 13h",
+   "uploaded": "2026-11-03 00:03",
+   "auc": 0.88001,
+   "best_so_far": 0.88571,
+   "cdo": 0.25159
+  },
+  {
+   "pack": "pack 13i",
+   "uploaded": "2026-11-03 05:52",
+   "auc": 0.87593,
+   "best_so_far": 0.88571,
+   "cdo": 0.24177
+  },
+  {
+   "pack": "pack 13j",
+   "uploaded": "2026-11-03 10:30",
+   "auc": 0.87648,
+   "best_so_far": 0.88571,
+   "cdo": 0.23856
+  }
+ ],
+ "auc_bridge": [
+  {
+   "step": "Pack 1 (24 Oct)",
+   "kind": "total",
+   "value": 0.57468
+  },
+  {
+   "step": "Detection fix and seed picks",
+   "kind": "delta",
+   "value": 0.00784
+  },
+  {
+   "step": "Reference rebuild, second learner, identity fixes",
+   "kind": "delta",
+   "value": 0.20641
+  },
+  {
+   "step": "Simulator collision carving",
+   "kind": "delta",
+   "value": 0.02163
+  },
+  {
+   "step": "Policy retrains and training fixes",
+   "kind": "delta",
+   "value": 0.02401
+  },
+  {
+   "step": "Reference repairs and lift windows",
+   "kind": "delta",
+   "value": 0.00745
+  },
+  {
+   "step": "Submitted meshes and placement",
+   "kind": "delta",
+   "value": 0.04369
+  },
+  {
+   "step": "Pack 14p (2 Nov)",
+   "kind": "total",
+   "value": 0.88571
+  }
+ ],
+ "activity_by_day": [
+  {
+   "day": "2026-10-20",
+   "commits": 56,
+   "uploads": 0
+  },
+  {
+   "day": "2026-10-21",
+   "commits": 91,
+   "uploads": 0
+  },
+  {
+   "day": "2026-10-22",
+   "commits": 62,
+   "uploads": 0
+  },
+  {
+   "day": "2026-10-23",
+   "commits": 93,
+   "uploads": 0
+  },
+  {
+   "day": "2026-10-24",
+   "commits": 104,
+   "uploads": 1
+  },
+  {
+   "day": "2026-10-25",
+   "commits": 92,
+   "uploads": 2
+  },
+  {
+   "day": "2026-10-26",
+   "commits": 11,
+   "uploads": 3
+  },
+  {
+   "day": "2026-10-27",
+   "commits": 25,
+   "uploads": 0
+  },
+  {
+   "day": "2026-10-28",
+   "commits": 0,
+   "uploads": 0
+  },
+  {
+   "day": "2026-10-29",
+   "commits": 41,
+   "uploads": 0
+  },
+  {
+   "day": "2026-10-30",
+   "commits": 174,
+   "uploads": 1
+  },
+  {
+   "day": "2026-10-31",
+   "commits": 708,
+   "uploads": 1
+  },
+  {
+   "day": "2026-11-01",
+   "commits": 372,
+   "uploads": 3
+  },
+  {
+   "day": "2026-11-02",
+   "commits": 352,
+   "uploads": 12
+  },
+  {
+   "day": "2026-11-03",
+   "commits": 171,
+   "uploads": 3
+  }
+ ]
+}

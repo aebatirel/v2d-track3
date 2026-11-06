@@ -1,0 +1,308 @@
+[
+ {
+  "session": "session_01W8Softjo2xx7o6ofSiheuQ",
+  "name": "Mesh research lane",
+  "purpose": "meshes and CD-O",
+  "first": "2026-10-26T16:33",
+  "last": "2026-11-03T12:20",
+  "turns": 219,
+  "usd_competition": 2214.17,
+  "usd_reporting": 4.53,
+  "usd_total": 2218.71,
+  "model_share": {
+   "claude-haiku-5-5": 0.002,
+   "claude-opus-5-5": 0.998
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_01LhbGHrt6epRs52jSRX48AU",
+  "name": "Builder session",
+  "purpose": "references, packs, uploads",
+  "first": "2026-10-26T15:34",
+  "last": "2026-11-03T12:21",
+  "turns": 363,
+  "usd_competition": 1771.76,
+  "usd_reporting": 3.73,
+  "usd_total": 1775.49,
+  "model_share": {
+   "claude-haiku-5-5": 0.001,
+   "claude-opus-5-5": 0.999
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_01P8DcCuq1ho9KkXJuxZbq3o",
+  "name": "Main early session",
+  "purpose": "core build, first 6 uploads",
+  "first": "2026-10-20T13:20",
+  "last": "2026-10-27T06:15",
+  "turns": 793,
+  "usd_competition": 1408.18,
+  "usd_reporting": 0.0,
+  "usd_total": 1408.18,
+  "model_share": {
+   "claude-opus-5-5": 0.998,
+   "claude-haiku-5-5": 0.002
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_01D9UJC7JP3bbasvhFUrxyf7",
+  "name": "Coordinator session",
+  "purpose": "coordination, verification, uploads",
+  "first": "2026-10-30T12:15",
+  "last": "2026-11-06T16:20",
+  "turns": 322,
+  "usd_competition": 452.64,
+  "usd_reporting": 145.92,
+  "usd_total": 598.57,
+  "model_share": {
+   "claude-opus-5-5": 0.836,
+   "claude-haiku-5-5": 0.153,
+   "claude-sonnet-5-5": 0.011
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_01D9UJC7MhytodZodnDDAU3z",
+  "name": "Embodiment options lane",
+  "purpose": "policies",
+  "first": "2026-10-31T20:29",
+  "last": "2026-11-01T08:56",
+  "turns": 36,
+  "usd_competition": 348.96,
+  "usd_reporting": 0.0,
+  "usd_total": 348.96,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": true
+ },
+ {
+  "session": "session_012XqAPiLToh4uBKNWqzx3bV",
+  "name": "Robustness review",
+  "purpose": "analysis",
+  "first": "2026-10-26T11:52",
+  "last": "2026-10-27T10:10",
+  "turns": 8,
+  "usd_competition": 154.66,
+  "usd_reporting": 0.0,
+  "usd_total": 154.66,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_01D9UJC9EUCs5sUCbTVZgvcC",
+  "name": "Perception accuracy lane",
+  "purpose": "perception",
+  "first": "2026-11-01T09:59",
+  "last": "2026-11-03T08:56",
+  "turns": 62,
+  "usd_competition": 149.13,
+  "usd_reporting": 0.0,
+  "usd_total": 149.13,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": true
+ },
+ {
+  "session": "session_01D9UJC8Nz9EEFNmz2yzimzN",
+  "name": "Perfect following lane",
+  "purpose": "policies and retrains",
+  "first": "2026-11-01T01:08",
+  "last": "2026-11-03T08:31",
+  "turns": 114,
+  "usd_competition": 135.0,
+  "usd_reporting": 0.0,
+  "usd_total": 135.0,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": true
+ },
+ {
+  "session": "session_01D9UJC7rdn1DZrNM1rKyE7b",
+  "name": "Score status lane",
+  "purpose": "scores and packs",
+  "first": "2026-10-31T20:55",
+  "last": "2026-11-02T06:43",
+  "turns": 21,
+  "usd_competition": 102.95,
+  "usd_reporting": 0.0,
+  "usd_total": 102.95,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": true
+ },
+ {
+  "session": "session_01FtXg7AwcVxLPzSrYtsfQW8",
+  "name": "Contact-slot fix and eval rerun",
+  "purpose": "references and policies",
+  "first": "2026-10-25T10:13",
+  "last": "2026-10-27T04:02",
+  "turns": 62,
+  "usd_competition": 64.39,
+  "usd_reporting": 0.0,
+  "usd_total": 64.39,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_01D9UJC8CjzgvbaFYA5wbvPg",
+  "name": "GRASP sampler lane",
+  "purpose": "grasps",
+  "first": "2026-11-01T13:39",
+  "last": "2026-11-01T23:50",
+  "turns": 44,
+  "usd_competition": 50.42,
+  "usd_reporting": 0.0,
+  "usd_total": 50.42,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": true
+ },
+ {
+  "session": "session_01D9UJC8kwkZnQELxSNreZD1",
+  "name": "Policy review lane",
+  "purpose": "policies",
+  "first": "2026-10-30T07:03",
+  "last": "2026-10-30T08:27",
+  "turns": 9,
+  "usd_competition": 26.92,
+  "usd_reporting": 0.0,
+  "usd_total": 26.92,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_01D9UJC6vSSNiJqaAdzNUn7d",
+  "name": "Physics-informed perception lane",
+  "purpose": "perception",
+  "first": "2026-11-01T21:21",
+  "last": "2026-11-02T07:34",
+  "turns": 6,
+  "usd_competition": 13.47,
+  "usd_reporting": 0.0,
+  "usd_total": 13.47,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": true
+ },
+ {
+  "session": "session_01D9UJC9SwoRsF13MYzwtVyh",
+  "name": "Hand-aware tracking lane",
+  "purpose": "perception",
+  "first": "2026-11-03T10:27",
+  "last": "2026-11-03T11:39",
+  "turns": 6,
+  "usd_competition": 13.46,
+  "usd_reporting": 0.0,
+  "usd_total": 13.46,
+  "model_share": {
+   "claude-opus-5-5": 0.996,
+   "claude-haiku-5-5": 0.004
+  },
+  "lower_bound": true
+ },
+ {
+  "session": "session_01D9UJC5VUFMLYBMNxA8FsXe",
+  "name": "Pot pose network lane",
+  "purpose": "perception",
+  "first": "2026-11-03T07:02",
+  "last": "2026-11-03T08:45",
+  "turns": 24,
+  "usd_competition": 11.23,
+  "usd_reporting": 0.0,
+  "usd_total": 11.23,
+  "model_share": {
+   "claude-opus-5-5": 1.0,
+   "claude-haiku-5-5": 0.0
+  },
+  "lower_bound": true
+ },
+ {
+  "session": "session_01D9UJC6AegGiAjYM6ukSfHj",
+  "name": "Room map lane",
+  "purpose": "perception",
+  "first": "2026-11-02T20:04",
+  "last": "2026-11-02T20:07",
+  "turns": 4,
+  "usd_competition": 10.0,
+  "usd_reporting": 0.0,
+  "usd_total": 10.0,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_01D9UJC72kCbx1mWTB2pwupw",
+  "name": "Point tracks lane",
+  "purpose": "perception",
+  "first": "2026-11-02T17:37",
+  "last": "2026-11-02T20:07",
+  "turns": 8,
+  "usd_competition": 9.56,
+  "usd_reporting": 0.0,
+  "usd_total": 9.56,
+  "model_share": {
+   "claude-haiku-5-5": 0.0,
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_013dTcPtA6MWRo39ixGqbofc",
+  "name": "Rust rewrite review",
+  "purpose": "engineering review",
+  "first": "2026-10-22T13:39",
+  "last": "2026-10-22T14:00",
+  "turns": 4,
+  "usd_competition": 8.76,
+  "usd_reporting": 0.0,
+  "usd_total": 8.76,
+  "model_share": {},
+  "lower_bound": false
+ },
+ {
+  "session": "session_01D9UJC6UxWpipwjiLiNaMv1",
+  "name": "Team registration lane",
+  "purpose": "admin",
+  "first": "2026-10-30T18:30",
+  "last": "2026-10-31T11:23",
+  "turns": 10,
+  "usd_competition": 5.83,
+  "usd_reporting": 0.0,
+  "usd_total": 5.83,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": false
+ },
+ {
+  "session": "session_01D9UJC9HM6HuNGNhAzddH4G",
+  "name": "NVIDIA comparison lane",
+  "purpose": "policies",
+  "first": "2026-10-30T13:52",
+  "last": "2026-10-30T13:52",
+  "turns": 1,
+  "usd_competition": 2.35,
+  "usd_reporting": 0.0,
+  "usd_total": 2.35,
+  "model_share": {
+   "claude-opus-5-5": 1.0
+  },
+  "lower_bound": false
+ }
+]

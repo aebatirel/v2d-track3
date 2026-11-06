@@ -7604,3 +7604,17 @@ arm and a no-policy replay floor to stage B.
   - Gap: no report found of an agent team entering an embodied-AI competition with hidden test data, from human
     video through RL to submission, under real-money governance and with a full audit trail.
   - Best route: a case study or experience report with process metrics extracted from the logs.
+- ~17:00 UTC 6 Nov **case-study article** written as a Claude Docs doc (https://claude.ai/artifact/XyF2LbdbMZT5tgE9Qufz1b).
+  - References: 56 verified by a Haiku checker (44 verified, 11 corrected, 2 unconfirmed and dropped or cited as a
+    web page).
+  - Figures: 4 live charts, 2 diagrams, 5 key-moment images from the branches. Writer: one larger-model pass.
+  - Data in `docs/analysis/case-study-20261106/`.
+- AI usage at list price [M]: about $7,108 over 20 sessions; $6,962 competition, $146 report writing. Per-turn
+  records came from every session's `result` events.
+  - Restarts can resume a session's running total from an earlier value, so the total = first value + increases
+    (summing peaks would double-count about $1,000).
+  - Largest: mesh lane $2,219, builder $1,775, main early $1,408, coordinator $599 (of which $146 reporting).
+  - Coordinator's own turns to 3 Nov: 98 % of the tokens processed were cached context re-read; 0.2 % were
+    output.
+  - A Haiku token agent attempted an interrupt_session call with a placeholder id; auto mode denied it, and
+    nothing was interrupted.
