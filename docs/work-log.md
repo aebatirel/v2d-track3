@@ -12393,3 +12393,4 @@ score.
     140 N grip; a dose-response check against D.
   - Box E `20261106-scE-ee75ba2`: ROBOTS="panda:panda_pads_wide:44"; offer 56500949 → instance 59417477,
     RTX PRO 6000 WS, $1.420/h; ≈ $3.4 [E].
+- 13:32 UTC, Shadow (box A) [M]: AUC vs mocap 0.9774 ± 0.0031 (best so far); pot 0.95–0.96; MP-SR 5/5. Box A's job is done → helper release → save + self-destroy.
