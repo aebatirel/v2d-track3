@@ -1,5 +1,15 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-06 ~08:30 UTC: post-challenge multi-embodiment showcase PROPOSED (plan only; nothing rented)
+- Owner: the challenge is over; build a presentation showing the real video next to simulated robots of many
+  embodiments (human-like, 3-finger, others), all doing the same task. Rules are relaxed; shortcuts are allowed.
+- Plan: `docs/research/work/embodiment-showcase-20261106/PLAN.md`.
+  - Public episodes ep27 (hero), ep2 and ep18, with ep22 pouring as a stretch; official scans as meshes.
+  - 9 robot tiles: Sharpa, Shadow, Inspire, Allegro, LEAP, Dex3, DEX-EE or Barrett, a parallel gripper, and G1.
+  - Every tile is an RL policy run without help, scored against mocap.
+  - Gated phases: 0 CPU build ($0), 1 hero smoke ($15–25), 2 scale ($50–90), 3 visuals and deck. Total ≈ $110–130 [E].
+- Waiting for the owner's answers to the plan's section 9. No boxes are running.
+
 ## 2026-11-06 ~06:15 UTC: journey report being rebuilt cheaply; leaderboard moved
 - The report workflows stopped on the Claude usage limit (3–5 Nov). Now rebuilding at low cost:
   - script-built corpora from all branches;

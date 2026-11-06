@@ -7581,3 +7581,28 @@ arm and a no-policy replay floor to stage B.
   - Charts and tables come directly from Kaggle data.
   - Coverage gaps: early main chat 20–24 Oct (work logs cover it); lane chats newest results only; builder session
     from 31 Oct.
+
+### 2026-11-06 ~08:30 UTC — post-challenge multi-embodiment showcase: plan proposed (branch `claude/charming-goldberg-glc1xi`)
+- Owner: "the challenge is over but I want to experiment". Pick impressive but easy episodes and recreate the same
+  action with many embodiments (hand-like, 3-finger, others), for a presentation: real video next to the robot
+  simulations. Product framing: egocentric video → trainable robot policy. Best meshes and shortcuts are allowed;
+  propose a plan first.
+- The branch was fast-forwarded to `claude/keen-heisenberg-engcwz` (5981d751, the latest coordinator state).
+- Read today [V]:
+  - **Upstream FlashCHORD** (nvidia-isaac/video_to_data main 9cad120):
+    - embodiments `sharpa_hands`, `dexmate_sharpa` (Vega) and `g1_dex3` (floating-base G1 with Dex3 3-finger hands;
+      it needs a named whole-body reference with a pelvis path);
+    - retargeters `ego_recon_to_dexmate_sharpa.py` and `taco_to_dex3.py` / `arctic_to_dex3.py`.
+  - **Open-source models and configs:**
+    - dex-retargeting (MIT): configs for Shadow, Allegro, LEAP, Inspire, Ability, SVH and the Panda gripper;
+    - dex-urdf: also Barrett and D'Claw;
+    - MuJoCo Menagerie: Shadow DEX-EE, Robotiq 2F-85, the UMI gripper, G1, sharpa_wave and others.
+  - **HF store:** public references with the robot-independent "loaded" stage exist, e.g.
+    `runs/20261023-glockpub-0f7e3a7/refs/`.
+- Episode choice uses earlier measured results vs mocap:
+  - ep27 0.965–0.967;
+  - ep2 0.925–0.926;
+  - ep18 0.957 with the grasp lock, but 0.60–0.62 with the standard-learner variants;
+  - the ep21 pour twin 0.66, a pitcher mesh failure.
+- Plan written: `docs/research/work/embodiment-showcase-20261106/PLAN.md`. Cost ≈ $110–130 [E], range $70–200, in
+  gated phases. Nothing rented; waiting for the owner's decisions (plan section 9).
