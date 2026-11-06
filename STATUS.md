@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-06 ~06:15 UTC: journey report being rebuilt cheaply; leaderboard moved
+- The report workflows stopped on the Claude usage limit (3–5 Nov). Now rebuilding at low cost:
+  - script-built corpora from all branches;
+  - Haiku extraction;
+  - one synthesis.
+- Leaderboard [M]:
+  - our ranks: AUC 9, SP-SR 12, MP-SR 10, RPE 10, MPPE 10, CD-O 5;
+  - rank sum 56, 8th; it was 45 / 7th on 3 Nov, and others have improved since.
+- Bests unchanged: 14p for the pose boards, 13j for CD-O.
+- No GPU boxes are running.
+
 ## 2026-11-03 ~11:40 UTC: hand-aware tracking fails its holdout; perception lanes exhausted
 - Hand-aware gated ray correction: holdout mean ΔAUC −0.0042, all gates fail; no phase 2.
 - 13j uploaded: CD-O 0.23856 (best; 4th after SRL improved to 0.20994). Final selection: 14p for five boards, 13j for

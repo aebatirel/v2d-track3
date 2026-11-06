@@ -7560,3 +7560,17 @@ arm and a no-policy replay floor to stage B.
     - wf_d173a9fc-f43: every V2D chat session read end to end (19 cloud sessions + the coordinator transcript in
       3 windows).
   - A final synthesis then merges both into the report artifact.
+- 3–5 Nov: both report workflows stopped on the Claude weekly usage limit. Completed parts are kept in the journals
+  (leaderboard and perception domains; 3 chat digests). 26+ agents failed.
+- ~06:00 UTC 6 Nov owner: "dont destroy all the credits again … use haiku for info extraction … then combine with a
+  better model". Cheap plan, now running:
+  - free, by script: fetched all 20 branches; merged 363 unique work-log entries (1.25 M chars); built compact
+    corpora (research-note heads and conclusions; 86 analysis / plan / README files ≤ 7 k chars each); pulled the
+    Kaggle submission history (26 submissions on 6 boards) and today's leaderboards;
+  - 10 Haiku extraction agents: 5 work-log slices, research notes, 2 report slices, the 2 owner-facing chats, and
+    14 lane chats (`result` events only);
+  - then one stronger-model synthesis, rendered to HTML by script.
+- 06:15 UTC 6 Nov leaderboard [M] (others moved since 3 Nov; our bests unchanged):
+  - our ranks: AUC 9, SP-SR 12, MP-SR 10, RPE 10, MPPE 10, CD-O 5;
+  - rank sum 56, 8th among teams in the top 20 of every board;
+  - leaders: richchentw sum 7; DDD 15; rlwrld 23; Zihao Guo 24.
