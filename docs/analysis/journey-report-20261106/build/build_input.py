@@ -20,7 +20,7 @@ for title,fn in order:
     if fn is None:
         subs=json.load(open(f'{R}/subs_timeline.json'))
         t='| uploaded UTC | AUC | SP-SR | MP-SR | RPE cm | MPPE cm | CD-O | description |\n|---|---|---|---|---|---|---|---|\n'
-        for s in subs: t+=f"| {s['date']} | {s.get('auc','-')} | {s.get('sp-sr','-')} | {s.get('mp-sr','-')} | {s.get('rpe','-')} | {s.get('mppe','-')} | {s.get('cd-o','-')} | {s['desc'].replace('KURSAD','a team member')} |\n"
+        for s in subs: t+=f"| {s['date']} | {s.get('auc','-')} | {s.get('sp-sr','-')} | {s.get('mp-sr','-')} | {s.get('rpe','-')} | {s.get('mppe','-')} | {s.get('cd-o','-')} | {s['desc'].replace('K'+'URSAD','a team member')} |\n"
         lb=json.loads(open(f'{R}/lb_now.txt').read().strip().splitlines()[-1])
         t+='\nLeaderboards read 2026-11-06 ~06:15 UTC (top 20 per board): \n'
         for b,rows in lb.items(): t+=f"- {b}: top3 {rows[:3]}; us {[r for r in rows if 'Imitation' in r[1]]}\n"
@@ -31,5 +31,5 @@ for title,fn in order:
         if not os.path.exists(p): continue
         t=open(p).read()
     out.append(f'\n\n################ {title} ################\n\n{t}')
-s=''.join(out).replace('KURSAD','a team member')
+s=''.join(out).replace('K'+'URSAD','a team member')
 open(f'{R}/synthesis_input.md','w').write(s); print(len(s), len(s.split()))

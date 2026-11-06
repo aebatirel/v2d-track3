@@ -208,7 +208,7 @@ How the Process Works
 - **2026-11-02T06:35** Whats the current score arent we alrwady close to 0.839 on pack 10
 - **2026-11-02T06:37** Is 12b ready what are we waiting for? I need the artifact for tonight
 - **2026-11-02T06:46** How are we still the 8th what are the other peoples scores
-- **2026-11-02T07:11** Rewrite the artifact without the Kursad name, lets not name the kursad for a while
+- **2026-11-02T07:11** Rewrite the artifact without the a team member name, lets not name the a team member for a while
 - **2026-11-02T07:12** Okay is there anything else running that gan increase our score
 - **2026-11-02T07:16** Go do as much as you can lets go to top also you can run another sesh for increasing general perception and experiment in public eps
 - **2026-11-02T08:04** When should I expect that
