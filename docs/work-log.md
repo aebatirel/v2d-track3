@@ -12394,3 +12394,8 @@ score.
   - Box E `20261106-scE-ee75ba2`: ROBOTS="panda:panda_pads_wide:44"; offer 56500949 → instance 59417477,
     RTX PRO 6000 WS, $1.420/h; ≈ $3.4 [E].
 - 13:32 UTC, Shadow (box A) [M]: AUC vs mocap 0.9774 ± 0.0031 (best so far); pot 0.95–0.96; MP-SR 5/5. Box A's job is done → helper release → save + self-destroy.
+- 14:05 UTC, Dex3 (box B) [M]: AUC vs mocap 0.9818 ± 0.0047 (best of all); pot 0.955–0.978; MPPE 0.59–0.75 cm;
+  MP-SR 5/5. Checkpoint 150M by sim_vs_ref 0.9924. Box B's job is done and on HOLD until its trace is pushed.
+- 14:06 UTC, Franka fix 1 `panda_pads` seed 42 (box D): trained in 83 min (54.0k env steps/s).
+  - Candidates by sim_vs_ref [M]: 150M 0.9675, 200M 0.9627, 250M 0.9459, against 0.740 / 0.625 / 0.707 before the fix.
+  - The vs-mocap draws are running. Seed 43 is training on D; panda_pads_wide s44 on E.
