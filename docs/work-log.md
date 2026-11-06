@@ -7623,3 +7623,8 @@ arm and a no-policy replay floor to stage B.
   - Updated: the article (abstract, 8.3, Figure 11, two lessons, limitations, conclusion), the journey report
     section 12 (republished), and the case-study README.
   - Lesson reframed: in cash AI cost less than the GPU rental; the binding limit was the usage cap.
+- ~20:00 UTC 6 Nov **arXiv LaTeX version** of the case study (`docs/paper-arxiv-20261106/`): 29 pages, 11 figures,
+  12 tables, 56 references.
+  - Built by a converter script from the doc export; it compiles cleanly (no errors, no overfull boxes) and
+    rebuilds from the zip.
+  - Charts redrawn as vector PDFs from the exact data. A "Statement on AI assistance" was added.
