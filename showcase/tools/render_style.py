@@ -15,6 +15,7 @@ p.add_argument('--eye', default='0.35,-0.95,1.15'); p.add_argument('--target', d
 p.add_argument('--size', default='960x720'); p.add_argument('--robot_rgb', default='0.30,0.33,0.38')
 p.add_argument('--object_rgb', default='0.94,0.94,0.92'); p.add_argument('--table_rgb', default='0.58,0.34,0.18')
 p.add_argument('--ground_rgb', default='0.82,0.83,0.85'); p.add_argument('--bg_rgb', default='0.95,0.96,0.97')
+p.add_argument('--ego', default='', help='REFDIR,PERCDIR: render from the head camera (camera a) path of the video')
 p.add_argument('--device', default='cpu'); a = p.parse_args()
 rgb = lambda s: tuple(float(x) for x in s.split(','))
 
@@ -61,7 +62,18 @@ with wp.ScopedDevice(a.device):
             col[s] = rgb(a.robot_rgb)
     m.shape_color.assign(wp.array(col, dtype=wp.vec3))
     state = m.state()
+    ego = None
+    if a.ego:                                 # sim_T_camA = T_table_from_world @ world_T_cam @ inv(T_rect_a); no roll (Newton camera)
+        import math
+        rd, pd = a.ego.split(',')
+        Tt = np.load(f'{rd}/table_frame.npz')['T_table_from_world']; WC = np.load(f'{pd}/poses.npz')['world_T_cam'].astype(float)
+        hz = np.load(f'{rd}/hands.npz'); Tra = np.linalg.inv(hz['T_rect_a'].astype(float)); fy = float(hz['Ka'][1, 1]); Ha = float(hz['size_a'][1])
+        viewer.camera.fov = math.degrees(2 * math.atan(Ha / 2 / fy))
+        ego = [Tt @ WC[min(k, len(WC) - 1)] @ np.linalg.inv(Tra) for k in range(n_all)]
     for i, f in enumerate(range(f0, f1)):
+        if ego is not None:
+            T = ego[f]; pos = T[:3, 3]; fwd = T[:3, 2] / np.linalg.norm(T[:3, 2])
+            viewer.set_camera(wp.vec3(*pos.astype(float)), math.degrees(math.asin(fwd[2])), math.degrees(math.atan2(fwd[1], fwd[0])))
         if Q is not None:
             state.body_q.assign(wp.array(Q[f].astype(np.float32), dtype=wp.transform))
         else:
