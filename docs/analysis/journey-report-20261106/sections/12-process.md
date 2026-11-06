@@ -32,7 +32,7 @@ Credit history: the first $25 of credit was nearly used on 20 Oct ($22.78); top-
 
 Unit costs [M]: an eval box with 3 episodes $3-6; the standard learner about $5.5 per episode for 2 seeds (3.5-4.5 h per box); grasp lock 2 seeds $3.2-4; a pack build $0.5-1.5; a full 20-episode rerun with packing about $50.
 
-**AI assistant usage cost.** The chat sessions report a cumulative list-price cost per session (not a bill): main early session $1,371, builder session $1,289, mesh lane $2,219 (usage $2,249), embodiment lane $349, perfect-following lane $105, perception-accuracy lane $86, others $2-27. These are [M] list-price estimates from the session records and dwarf the GPU spend.
+**AI assistant usage cost.** Per-turn records from all 20 Claude Code sessions (read on 6 Nov) give about $7,108 at API list prices [M, list-price equivalent]: about $6,962 for competition work and about $146 for writing this report and the case study. Largest: mesh lane $2,219, builder session $1,775, main early session $1,408, coordinator $599 (of which $146 reporting). This is not what was paid: the actual AI cost was the owner's $200 Claude Code subscription plus $250 of cloud credit gifted by Anthropic. In cash, AI therefore cost less than the GPU rental; the limit that bound was the weekly usage cap, which stopped the first attempt at this report on 3 Nov. Details: `docs/analysis/case-study-20261106/`.
 
 ### 12.2 Vast setup and the money-losing bugs
 

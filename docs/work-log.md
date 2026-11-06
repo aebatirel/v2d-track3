@@ -7618,3 +7618,8 @@ arm and a no-policy replay floor to stage B.
     output.
   - A Haiku token agent attempted an interrupt_session call with a placeholder id; auto mode denied it, and
     nothing was interrupted.
+- ~17:20 UTC 6 Nov owner correction: the AI work actually ran on a $200 Claude Code subscription plus $250 of cloud
+  credit gifted by Anthropic. The $7,108 is a list-price equivalent, not spend.
+  - Updated: the article (abstract, 8.3, Figure 11, two lessons, limitations, conclusion), the journey report
+    section 12 (republished), and the case-study README.
+  - Lesson reframed: in cash AI cost less than the GPU rental; the binding limit was the usage cap.
