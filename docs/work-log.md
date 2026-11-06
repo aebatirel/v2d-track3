@@ -12381,3 +12381,4 @@ score.
 - Box D `20261106-scD-76992bb`: ROBOTS="panda:panda_pads:42 panda:panda_pads:43" (the job now takes
   ROBOT:EMB:SEED). Offer 48845077 → instance 59413687, RTX PRO 6000 S, New York, $1.617/h. Expected ≈ 3.2 h,
   ≈ $5 [E]. Ledger planned $5.
+- 12:59 UTC, Inspire (box B) [M]: AUC vs mocap 0.9731 ± 0.0063; MP-SR 5/5. Dex3 trains next on B.
