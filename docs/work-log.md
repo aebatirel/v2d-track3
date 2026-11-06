@@ -12414,3 +12414,7 @@ score.
   - The pad fix holds on a second seed.
   - Doubling the torsional friction (0.015 → 0.03) did not improve on panda_pads s42 (0.947), so it is not a lever.
   - Box E self-destroyed; ledger actual $3.00 [E]. Box D (panda_pads s43) is still evaluating.
+- 15:27 UTC, box D `panda_pads` seed 43 [M]: AUC vs mocap 0.9593 ± 0.0070; MP-SR 5/5; 250M kept (sim_vs_ref 0.9788).
+  - The Franka fix passes on 3/3 trainings (0.947, 0.959, 0.940).
+  - Box D self-destroyed; ledger actual $5.00 [E]. No boxes are running.
+  - Credit $38.37 at 15:30 UTC: phases 0–1 + fixes cost ≈ $28.90 [M] (from $67.25).

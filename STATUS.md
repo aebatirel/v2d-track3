@@ -22,10 +22,7 @@
   - HF store: `showcase/outputs/20261106/ep27/`. Stills in the same docs folder.
   - Renders use the clean closed library_c0 meshes, ICP-aligned onto the scans; the physics used the scans.
 - Spend: credit $67.25 → $39.89 at 14:53 UTC. Ledger actuals [E]: A $7.10, B $7.80, C $5.90.
-- Still running:
-  - D `20261106-scD-76992bb`: panda_pads seed 43, ≈ 15:40 UTC;
-  - E `20261106-scE-ee75ba2`: panda_pads_wide seed 44, ≈ 14:55 UTC.
-  - Both self-destroy. Robustness / dose-response only; the video already has a passing Franka.
+- Franka fix robustness: 3/3 trainings pass (0.947, 0.959, 0.940). All boxes destroyed; credit $38.37 at 15:30 UTC (≈ $28.90 spent today).
 - Next (owner decides): phase 2 (ep2 lid, ep18 sweep, ep22 pour) with the clean meshes in physics; deck (phase 3).
 
 ## 2026-11-06 ~08:50 UTC: showcase phase 0 built (CPU, $0); phase 1 (owner: "lets do phase 0 and 1") about to rent

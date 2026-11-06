@@ -16,3 +16,9 @@ Measured [M]: 5 official-evaluator runs per policy (help off, VOC 0), scored aga
 | Franka gripper | 2 / 2 | 0.648 ± 0.066 | 0.16–0.46 | 0/5 | no (failed run, kept for the record) |
 
 Renders use clean closed meshes (meshes/library_c0, ICP-aligned onto the scans); physics used the official scans (convex pieces). Franka + rubber pads = condim-4 pad contacts (torsional friction 0.015 m) and the Franka grip spec.
+
+Franka fix robustness [M]: three independent trainings with pad contacts all pass. panda_pads seed 42: 0.947 ± 0.011
+(the one in the video); seed 43: 0.959 ± 0.007; wider pads (torsional 0.03), seed 44: 0.940 ± 0.007. All 5/5 within
+3 cm.
+
+Spend for phases 0–1 including the fixes: Vast credit $67.25 → $38.37 (≈ $28.90 for 5 boxes, about 23 GPU-hours).
