@@ -12403,3 +12403,9 @@ score.
   MP-SR 5/5 (was 0.648, 0/5). The falsifier was not met, so the fix holds.
   - All 9 robots now pass on ep27.
   - D's seed 43 and E's wide pads run to completion as robustness / dose-response checks.
+- 14:20–14:52 UTC: final ep27 grids assembled on CPU (`showcase/tools/assemble.py`): side camera, and every tile from
+  the person's head-camera path (`--ego`).
+  - 9 robots; Franka = panda_pads s42. Sent to the owner.
+  - Uploaded with all tiles to the HF store `showcase/outputs/20261106/ep27/` (commit 549d191a).
+  - Results table: `docs/research/work/embodiment-showcase-20261106/results/ep27_results_table.md`.
+- Credit $39.89 at 14:53 UTC (was $67.25). Ledger actuals [E] from durations: A $7.10, B $7.80, C $5.90.

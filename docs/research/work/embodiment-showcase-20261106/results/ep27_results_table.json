@@ -1,0 +1,842 @@
+[
+ {
+  "robot": "sharpa",
+  "in_video": true,
+  "label": "Sharpa Wave",
+  "fingers": 5,
+  "joints": 22,
+  "n": 5,
+  "auc_mocap_mean": 0.9655400000000001,
+  "auc_mocap_sd": 0.006197289730196593,
+  "mp_sr_pass": 5,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.9698,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.824,
+    "per_obj": {
+     "plastic_dish_rack": 0.9972,
+     "white_pot": 0.9423
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9841
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.9668,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.856,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9337
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9754
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.9615,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.853,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.923
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9757
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.956,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.912,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9121
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9721
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.9736,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.777,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9472
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9835
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_sharpa/policy_200007680.safetensors"
+ },
+ {
+  "robot": "shadow",
+  "in_video": true,
+  "label": "Shadow Hand",
+  "fingers": 5,
+  "joints": 22,
+  "n": 5,
+  "auc_mocap_mean": 0.97744,
+  "auc_mocap_sd": 0.0031480787791921747,
+  "mp_sr_pass": 5,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.9816,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.682,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9632
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9949
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.9798,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.671,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9596
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9938
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.9752,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.71,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9505
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9924
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.9728,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.804,
+    "per_obj": {
+     "plastic_dish_rack": 0.9967,
+     "white_pot": 0.9489
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9846
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.9778,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.72,
+    "per_obj": {
+     "plastic_dish_rack": 0.9992,
+     "white_pot": 0.9563
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9916
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_shadow/policy_250003456.safetensors"
+ },
+ {
+  "robot": "inspire",
+  "in_video": true,
+  "label": "Inspire RH56",
+  "fingers": 5,
+  "joints": 12,
+  "n": 5,
+  "auc_mocap_mean": 0.9731,
+  "auc_mocap_sd": 0.006257795138864806,
+  "mp_sr_pass": 5,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.9704,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.797,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9408
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9812
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.9822,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.665,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9644
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9902
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.9671,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.85,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9342
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9762
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.967,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.796,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9339
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9809
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.9788,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.706,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9576
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9862
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_inspire/policy_250003456.safetensors"
+ },
+ {
+  "robot": "allegro",
+  "in_video": true,
+  "label": "Allegro Hand",
+  "fingers": 4,
+  "joints": 16,
+  "n": 5,
+  "auc_mocap_mean": 0.97462,
+  "auc_mocap_sd": 0.001999399909972998,
+  "mp_sr_pass": 5,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.9719,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.779,
+    "per_obj": {
+     "plastic_dish_rack": 0.9967,
+     "white_pot": 0.9472
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9826
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.9742,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.737,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9484
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9873
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.9732,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.801,
+    "per_obj": {
+     "plastic_dish_rack": 0.9967,
+     "white_pot": 0.9497
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9876
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.9769,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.745,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9538
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9877
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.9769,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.72,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9538
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9909
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_allegro/policy_200007680.safetensors"
+ },
+ {
+  "robot": "leap",
+  "in_video": true,
+  "label": "LEAP Hand",
+  "fingers": 4,
+  "joints": 16,
+  "n": 5,
+  "auc_mocap_mean": 0.97044,
+  "auc_mocap_sd": 0.004885324963602737,
+  "mp_sr_pass": 5,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.9691,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.918,
+    "per_obj": {
+     "plastic_dish_rack": 0.999,
+     "white_pot": 0.9393
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9798
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.977,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.752,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.954
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.99
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.9722,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.759,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9444
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9803
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.9621,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.861,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9243
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9704
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.9718,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.768,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9436
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9831
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_leap/policy_250003456.safetensors"
+ },
+ {
+  "robot": "dex3",
+  "in_video": true,
+  "label": "Unitree Dex3-1",
+  "fingers": 3,
+  "joints": 7,
+  "n": 5,
+  "auc_mocap_mean": 0.9818,
+  "auc_mocap_sd": 0.004651881339845201,
+  "mp_sr_pass": 5,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.9774,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.687,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9548
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9869
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.9855,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.591,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.971
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9935
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.9787,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.745,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9573
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9935
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.9783,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.728,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9566
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9915
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.9891,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.631,
+    "per_obj": {
+     "plastic_dish_rack": 0.9997,
+     "white_pot": 0.9784
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9973
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_dex3/policy_150007808.safetensors"
+ },
+ {
+  "robot": "barrett",
+  "in_video": true,
+  "label": "Barrett BH8",
+  "fingers": 3,
+  "joints": 8,
+  "n": 5,
+  "auc_mocap_mean": 0.9686199999999999,
+  "auc_mocap_sd": 0.0062687797855723116,
+  "mp_sr_pass": 5,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.9668,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.8,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9337
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9816
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.9587,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.876,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9174
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9743
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.9778,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.752,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9555
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.985
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.9718,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.765,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9436
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9829
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.968,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.783,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.936
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.9776
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_barrett/policy_250003456.safetensors"
+ },
+ {
+  "robot": "dclaw",
+  "in_video": true,
+  "label": "D'Claw",
+  "fingers": 3,
+  "joints": 9,
+  "n": 5,
+  "auc_mocap_mean": 0.9578600000000002,
+  "auc_mocap_sd": 0.007934632946772012,
+  "mp_sr_pass": 5,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.9698,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.753,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9395
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9826
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.9568,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.883,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9136
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9691
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.9521,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.923,
+    "per_obj": {
+     "plastic_dish_rack": 0.9911,
+     "white_pot": 0.9131
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9698
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.9632,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.93,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9263
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.9747
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.9474,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.975,
+    "per_obj": {
+     "plastic_dish_rack": 0.9997,
+     "white_pot": 0.8951
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5595,
+    "sim_vs_ref": 0.96
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_dclaw/policy_250003456.safetensors"
+ },
+ {
+  "robot": "panda_pads",
+  "in_video": true,
+  "label": "Franka gripper + rubber pads",
+  "fingers": 2,
+  "joints": 2,
+  "n": 5,
+  "auc_mocap_mean": 0.9469199999999999,
+  "auc_mocap_sd": 0.01082578403627191,
+  "mp_sr_pass": 5,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.9458,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.917,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.8915
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5592,
+    "sim_vs_ref": 0.9534
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.9273,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 1.081,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.8547
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5592,
+    "sim_vs_ref": 0.936
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.9478,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.914,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.8956
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5592,
+    "sim_vs_ref": 0.9605
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.9578,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.861,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9157
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5592,
+    "sim_vs_ref": 0.962
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.9559,
+    "mp_sr": 1.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 0.892,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9118
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5592,
+    "sim_vs_ref": 0.9634
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_panda_pads/policy_150007808.safetensors"
+ },
+ {
+  "robot": "panda",
+  "in_video": false,
+  "label": "Franka gripper",
+  "fingers": 2,
+  "joints": 2,
+  "n": 5,
+  "auc_mocap_mean": 0.6483000000000001,
+  "auc_mocap_sd": 0.06578860083631509,
+  "mp_sr_pass": 0,
+  "draws": [
+   {
+    "draw": 1,
+    "auc_mocap": 0.7115,
+    "mp_sr": 0.0,
+    "sp_sr": 0.0,
+    "mppe_cm": 3.066,
+    "per_obj": {
+     "plastic_dish_rack": 0.9975,
+     "white_pot": 0.4256
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.7453
+   },
+   {
+    "draw": 2,
+    "auc_mocap": 0.5983,
+    "mp_sr": 0.0,
+    "sp_sr": 0.0,
+    "mppe_cm": 36.547,
+    "per_obj": {
+     "plastic_dish_rack": 0.8082,
+     "white_pot": 0.3885
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.6488
+   },
+   {
+    "draw": 3,
+    "auc_mocap": 0.6452,
+    "mp_sr": 0.0,
+    "sp_sr": 1.0,
+    "mppe_cm": 4.867,
+    "per_obj": {
+     "plastic_dish_rack": 0.8468,
+     "white_pot": 0.4436
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.6726
+   },
+   {
+    "draw": 4,
+    "auc_mocap": 0.7301,
+    "mp_sr": 0.0,
+    "sp_sr": 0.0,
+    "mppe_cm": 4.113,
+    "per_obj": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.4601
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.7467
+   },
+   {
+    "draw": 5,
+    "auc_mocap": 0.5564,
+    "mp_sr": 0.0,
+    "sp_sr": 0.0,
+    "mppe_cm": 9.016,
+    "per_obj": {
+     "plastic_dish_rack": 0.9533,
+     "white_pot": 0.1596
+    },
+    "ref_vs_mocap": 0.997,
+    "floor": 0.5596,
+    "sim_vs_ref": 0.5756
+   }
+  ],
+  "checkpoint": "/content/runs/showcase/ep27_panda/policy_150007808.safetensors"
+ }
+]

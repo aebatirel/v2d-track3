@@ -48,7 +48,7 @@ SPEC = {
                   label="D'Claw", fingers=3),
     'panda': dict(src='panda_gripper/panda_gripper_glb.urdf', root='panda_hand', drop=['panda_hand_tcp'],
                   digits=[('thumb', 'panda_leftfinger', AUTO), ('index', 'panda_rightfinger', AUTO)],
-                  label='Franka Hand (parallel gripper)', fingers=2,
+                  label='Franka gripper', fingers=2,
                   finger_overrides={r'finger_joint\d$': dict(kp=2000.0, kd=40.0, effort_limit=100.0)}),
 }
 # variants: same robot model, different embodiment settings (written as extra emb_<name>.yaml next to the robot's own)

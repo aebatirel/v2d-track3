@@ -35,7 +35,7 @@ print('robots with results:', sorted(found))
 import re
 EMB = {'sharpa': 'sharpa_hands_mid'}
 SPEC = {'sharpa': ('Sharpa Wave', 5, 22)}
-NOTE = {'panda_pads': 'rubber-pad contacts', 'panda_pads_wide': 'wide soft pads'}
+NOTE = {'panda_pads': 'rubber pads', 'panda_pads_wide': 'wide soft pads'}
 
 
 def base_of(tag):

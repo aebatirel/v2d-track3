@@ -1,5 +1,33 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-06 ~14:55 UTC: SHOWCASE PHASE 1 DONE: 9 robots succeed on ep27 (videos delivered); 2 robustness boxes running
+- Owner asked for phases 0 and 1; then "fix the failed ones" / "fix franka"; then holeless meshes.
+- Results, ep27 (pot flipped into the dish rack), 5 official runs each vs mocap [M]:
+
+  | Robot | AUC vs mocap | MP-SR |
+  |---|---|---|
+  | Dex3 | 0.982 | 5/5 |
+  | Shadow | 0.977 | 5/5 |
+  | Allegro | 0.975 | 5/5 |
+  | Inspire | 0.973 | 5/5 |
+  | LEAP | 0.970 | 5/5 |
+  | Barrett | 0.969 | 5/5 |
+  | Sharpa | 0.966 | 5/5 |
+  | D'Claw | 0.958 | 5/5 |
+  | Franka + rubber pads | 0.947 | 5/5 |
+
+  The plain Franka (0.648, 0/5) failed: the pot slid out of the pinch mid-flip. It was fixed with condim-4 pad
+  contacts and the Franka grip spec. Table: `docs/research/work/embodiment-showcase-20261106/results/ep27_results_table.md`.
+- Videos: the side-camera grid and the head-camera-path grid.
+  - HF store: `showcase/outputs/20261106/ep27/`. Stills in the same docs folder.
+  - Renders use the clean closed library_c0 meshes, ICP-aligned onto the scans; the physics used the scans.
+- Spend: credit $67.25 → $39.89 at 14:53 UTC. Ledger actuals [E]: A $7.10, B $7.80, C $5.90.
+- Still running:
+  - D `20261106-scD-76992bb`: panda_pads seed 43, ≈ 15:40 UTC;
+  - E `20261106-scE-ee75ba2`: panda_pads_wide seed 44, ≈ 14:55 UTC.
+  - Both self-destroy. Robustness / dose-response only; the video already has a passing Franka.
+- Next (owner decides): phase 2 (ep2 lid, ep18 sweep, ep22 pour) with the clean meshes in physics; deck (phase 3).
+
 ## 2026-11-06 ~08:50 UTC: showcase phase 0 built (CPU, $0); phase 1 (owner: "lets do phase 0 and 1") about to rent
 - Robots: Sharpa (native), Shadow, Allegro, LEAP, Inspire, Dex3 (G1 hand), Barrett, D'Claw, Panda gripper, all as
   floating hand pairs.
