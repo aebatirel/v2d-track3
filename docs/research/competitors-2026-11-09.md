@@ -168,3 +168,42 @@ Ordered by my estimate of the score at stake.
 ## 5. Open
 - Winners' talks on 12 Nov (CoRL tutorial) should show what richchentw and DDD did. Re-read this note then.
 - Whether the container reproduction accepts scan-templated tracks, row edits and board-selected files.
+
+## 6. Addendum (9 Nov, owner's follow-up): efficiency, and how they handled perception
+
+### 6.1 Efficiency
+| Measure | Teams above us | Us |
+|---|---|---|
+| Policy trainings | Purple: about 22 visible (20 episodes + 2 retrains, 250M steps each) [F]; SRL: 3 seeds x 20 episodes at 100M steps [F, 16 Oct] | at least 158 trainings, 246 GPU-hours, 135 machines by 30 Oct [M] |
+| Uploads | DDD 22, Zihao Guo 29, egocube 34; SRL 60, rlwrld 82, richchentw 84, Purple 84 (+16 on the second account) [M] | 26 |
+| Days from first upload to best | richchentw 0.903 on day 1; DDD 0.931 on day 6 (4th upload); rlwrld 0.934 in 7 days; Purple 0.933 in 9 days [M] | 0.886 in 10 days |
+| Cost | not stated anywhere; SRL and Gravity Aligned use university clusters | about $556 GPU [E] |
+
+- Robot side: they were more efficient, because near-stock RL was enough for them and needed few experiments.
+- Board use: three of the top teams were far heavier users than we were.
+- Total cost cannot be compared. The public repositories are final snapshots (one commit each) and hide failed
+  experiments. Gravity Aligned shows the other direction: 371 runs for 0.780.
+
+### 6.2 Perception
+- Same building blocks as ours in every repository read: stereo depth (Fast-FoundationStereo) and FoundationPose.
+  No top-team source contains a new tracker, marker tracking, a learned corrector or a global optimiser.
+- What differs in Purple's code [F]:
+  - SAM 3 text masks per object and a `hand` mask on all three cameras; hand pixels are dilated and removed before
+    depth is used.
+  - A SLAM world frame (cuVSLAM, hands and objects masked).
+  - An explicit timing model: colour camera A "one frame late", with a per-frame lag. We measured the same pairing
+    and a half-frame lateness; our half-frame advance (S2, +0.006 public) was never in a packed reference.
+  - The spoon is not tracked with FoundationPose. A masked stereo cloud is registered to a spoon model by trimmed
+    ICP (previous pose + 8 PCA starts), scored by distance plus silhouette overlap; the model is fused from all 10
+    eval spoon episodes. We tracked a parametric template per episode and never resolved its frame.
+  - Meshes are corrected against stereo points (at most 3 mm, held-out frame blocks).
+  - Per-episode repairs at the end: fresh tracking for E8, retrains for E14 and E16, the frame-0 fix for E20, the
+    board flip for E25.
+- Board timelines [M]: one large step, then a slow per-episode grind. MPPE in one upload: Purple 4.42 -> 1.95 cm
+  (28 Oct), DDD 2.31 -> 1.24 (29 Oct), SRL 3.11 -> 1.95 (29 Oct), rlwrld 3.16 -> 1.81 (29 Oct). Purple then needed
+  about 80 uploads to go from 1.95 to 1.25 cm.
+- **[I]** The cluster's advantage may be the absence of bad episodes more than a better tracker. Our RPE/MPPE
+  ratio was 1.35 against 0.88-1.03 for the top six (31 Oct), which points to a few large per-episode errors; our
+  proxy could not show which eval references were wrong, while a masked upload shows it directly.
+  Falsifier: per-episode board scores of our counted file (the organisers' reproduction report, if it lists them);
+  falsified if our loss is spread evenly over the 20 episodes.

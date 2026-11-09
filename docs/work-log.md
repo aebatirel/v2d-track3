@@ -5405,4 +5405,8 @@ arm and a no-policy replay floor to stage B.
 - **Not established:** what richchentw, DDD, Zihao Guo and egocube did (no public code). The board-probing
   explanation for richchentw is a hypothesis from upload counts and the score timeline.
 - **No change** to the pipeline, the submissions or the store.
+- **Follow-up (same day):** the owner asked whether the other teams were more efficient and how they handled
+  perception. Added section 6 to the note (training counts, upload counts, days to best score; Purple's perception
+  differences read from its code; MPPE step timelines from the feed). Organisers' PR list 12 Oct - 9 Nov checked: no
+  kit change explains the 28-29 Oct jumps. Read-only, $0.
 
