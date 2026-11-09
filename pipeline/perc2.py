@@ -460,8 +460,10 @@ if TRACK_CAM == 'a':                                                  # colour c
     T_a_rc = np.eye(4); T_a_rc[:3, :3] = T_a_c[:3, :3] @ R1.T; T_a_rc[:3, 3] = T_a_c[:3, 3]
     T_rc_a = np.linalg.inv(T_a_rc)
     A_SCALE = float(os.environ.get('A_SCALE', 0.5)); AW, AH = int(round(2028 * A_SCALE)), int(round(1520 * A_SCALE))
-    KA = K_('ego_cam_a').copy(); KA[:2] *= A_SCALE
-    _MA = cv2.initUndistortRectifyMap(K_('ego_cam_a'), D_('ego_cam_a'), None, KA, (AW, AH), cv2.CV_32FC1)
+    # (K_ is rebound to DET_K above, so the camera-a intrinsics are read from the calibration directly)
+    KA0 = np.array(_cal['ego_cam_a']['intrinsic_matrix'], float); DA0 = np.array(_cal['ego_cam_a']['distortion_coefficients'], float)
+    KA = KA0.copy(); KA[:2] *= A_SCALE
+    _MA = cv2.initUndistortRectifyMap(KA0, DA0, None, KA, (AW, AH), cv2.CV_32FC1)
     _cap = cv2.VideoCapture(f'{VD}/ep{EP}_a.mp4'); FA = []
     while True:
         ok, f = _cap.read()
