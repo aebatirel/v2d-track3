@@ -230,3 +230,26 @@ episode on GPU; The Simsons: hand tracking for 20 episodes in about 35 min on tw
   We rented 96 GB cards and ran two trainings on each.
 - No team states a total, and the snapshots hide earlier rounds. So "Purple used a tenth of our compute" is a lower
   bound on their side, not a measurement.
+
+### 6.4 Purple's upload history: where its lead came from (owner's question, 9 Nov)
+From `submission_history.jsonl` [M]; "n" is the upload count on the AUC board.
+
+| Date | n | AUC | MPPE cm | RPE cm | SP-SR | MP-SR |
+|---|---|---|---|---|---|---|
+| 26 Oct | 2 | 0.696 | 4.42 | 5.09 | 0.60 | 0.45 |
+| 28 Oct | 3 | 0.862 | 1.95 | 1.88 | 0.80 | 0.65 |
+| 29 Oct | 4 | 0.870 | 1.89 | 1.68 | 0.80 | 0.70 |
+| 30 Oct | 5 | 0.907 | 1.63 | 1.53 | 0.85 | 0.80 |
+| 1 Nov | 25 | 0.916 | 1.44 | 1.42 | 0.95 | 0.85 |
+| 2 Nov | 45 | 0.919 | 1.41 | 1.39 | 0.95 | 0.85 |
+| 3 Nov | 64 | 0.921 | 1.35 | 1.39 | 1.00 | 0.95 |
+| 4 Nov | 84 | 0.933 | 1.25 | 1.39 | 1.00 | 1.00 |
+
+- Purple was above our final AUC (0.886) on its 5th upload, with MP-SR 0.80 like ours and SP-SR 0.85 below ours.
+  So about 0.021 of the 0.047 gap existed at an equal number of failed episodes, and about 0.026 came with clearing
+  them. This corrects the inference in 6.2, which put the weight on bad episodes alone: it is about half each.
+- The code has no selection among policies or rollouts: one seed, one policy per episode, world 0 [F].
+- The last 79 uploads gave +0.026 AUC, with MP-SR rising one episode at a time and RPE unchanged after upload 45.
+  **[H]** These were per-episode fixes tried against the board and kept when they scored better; the build script
+  names four (E14 and E16 retrains, the E20 frame-0 rotation, the E25 board flip). What else was tried is not in
+  the repository.

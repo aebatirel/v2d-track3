@@ -5412,4 +5412,7 @@ arm and a no-policy replay floor to stage B.
 - **Follow-up 2 (same day):** the owner meant computation cost. Added section 6.3: steps per policy, time per
   policy and run counts read from Purple, SRL, Gravity Aligned and the rlwrld notes, against our billing record.
   Read-only, $0.
+- **Follow-up 3 (same day):** Purple's upload-by-upload history added as section 6.4. Purple passed our final AUC on
+  its 5th upload (0.907, 30 Oct); the remaining +0.026 took 79 uploads. This corrects the 6.2 inference: the gap is
+  about half typical-episode accuracy and half cleared failures.
 
