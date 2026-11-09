@@ -1,0 +1,170 @@
+# V2D Track 3 after the freeze: what the teams above us did, and what we could have done differently
+
+Research date: 2026-11-09 (winners are announced on 12 Nov; no team has published a write-up yet). Read-only
+research: nothing in the pipeline or a submission changed, no GPU rented ($0). Third-party repositories were read,
+never executed.
+
+Labels: **[F]** fact from a primary source (link or file given). **[M]** number measured in a source (Kaggle API,
+the organisers' leaderboard feed, our own reports). **[I]** inference. **[H]** hypothesis, with the experiment
+that would falsify it.
+
+Sources:
+- Kaggle API, six Track 3 boards, read 2026-11-09 (`/api/v1/competitions/v2d-challenge-track3-*/leaderboard/view`).
+- Organisers' feed: https://github.com/MVerghese/v2d-leaderboard-data (`leaderboard.json` generated 5 Nov 01:43 UTC;
+  `submission_history.jsonl`, 524 Track 3 snapshots).
+- Public competitor repositories (all found by GitHub search on 9 Nov):
+  - https://github.com/cringeyburger/purple-v2d-track3 (Team Purple / Barry Allen, AUC 0.933; one commit, 4 Nov)
+  - https://github.com/kyounginbaik/SRL_V2D (SRL, AUC 0.923, CD-O 1st; one visible commit, 16 Oct)
+  - https://github.com/zjifan121-source/NVIDIA_V2D_Egocentric (Gravity Aligned, 0.780)
+  - https://github.com/the-simsons/ego2sim-nvidia-v2d and https://github.com/shrinidik18/v2d_track3 (The Simsons, 0.651)
+  - https://github.com/civicW/v2d-challenge-asap (ASAP_Team, 0.652)
+  - https://github.com/yuchenzema/v2d-track3 (ycchen99, invalidated)
+  - https://github.com/Att100/Nvidia-V2D-Challenge-Submission (HOI2Policy, 0.453), https://github.com/tianny0078/v2d-track3,
+    https://github.com/Swaguto/NVIDIA-V2D-Challenge, https://github.com/BAp3r/v2d-track3-submission
+  - https://github.com/hobbit04/ObsidianVault (`Project/V2D/`, notes that appear to come from an rlwrld member; weak)
+- Ours: the Track 3 Journey Report (https://claude.ai/artifact/6pNjoK3xEqi8ry4ceA6jLS) and the case study
+  (https://claude.ai/artifact/XyF2LbdbMZT5tgE9Qufz1b).
+
+No public code exists for richchentw, DDD, Zihao Guo or egocube. Everything about them is inferred from board
+timelines.
+
+---
+
+## 1. Final boards [M]
+
+| Rank sum | Team | AUC | SP-SR | MP-SR | RPE cm | MPPE cm | CD-O cm | Uploads |
+|---|---|---|---|---|---|---|---|---|
+| 7 | richchentw | 0.985 | 1.00 | 1.00 | 0.63 | 0.60 | 0.212 | 84 |
+| 15 | DDD | 0.953 | 1.00 | 1.00 | 0.93 | 0.93 | 0.232 | 22 |
+| 23 | rlwrld | 0.934 | 1.00 | 1.00 | 1.05 | 1.23 | 0.246 | 82 |
+| 24 | Zihao Guo | 0.935 | 1.00 | 1.00 | 1.26 | 1.17 | 0.247 | 29 |
+| 33 | egocube | 0.928 | 1.00 | 1.00 | 1.24 | 1.24 | 0.236 | 34 |
+| 37 | SRL | 0.923 | 1.00 | 1.00 | 1.50 | 1.39 | 0.207 | 60 |
+| 46 | Barry Allen | 0.933 | 1.00 | 1.00 | 1.42 | 1.25 | 0.295 | 16 |
+| 47 | Purple | 0.933 | 1.00 | 1.00 | 1.39 | 1.25 | 0.295 | 84 |
+| **56** | **Imitation.Tech** | 0.886 | 0.90 | 0.80 | 2.21 | 1.80 | 0.239 | 26 |
+| 61 | DSAIL | 0.878 | 0.90 | 0.85 | 1.99 | 1.86 | 0.267 | 57 |
+
+- We are 9th by rank sum. Barry Allen and Purple are one solution on two accounts (identical AUC, MPPE and CD-O;
+  the Purple repository belongs to Barry Allen's Kaggle user), so 8th if the organisers merge them. The feed's own
+  `rank` column orders by AUC.
+- Every team above us has SP-SR 1.00 and MP-SR 1.00: no failed episode. We have 2 and 4.
+- Six teams sit in a tight cluster at AUC 0.92–0.935 and MPPE 1.17–1.39 cm. DDD is one step better. richchentw is
+  alone at 0.60 cm.
+- Kaggle allowed 25 uploads per day (`maxDailySubmissions: 25`, competition API) [F]. Our October note recorded
+  "5 submissions/week" from the FAQ.
+
+## 2. What the teams above us did
+
+### 2.1 Stock RL; the poses did the work [F for three teams]
+- **Purple** (verified in code): stock FlashCHORD runtime, floating Sharpa hands, soft stock wrist (`wrist_kp: 25`),
+  250M steps, 4,096 worlds, seed 42, "one policy per episode, fixed world 0". Two retrains (E14, and E16 continued
+  25M steps with `object_keypoints: 40`). No designed grasps, no stiff wrist, no seed race.
+- **SRL** (verified in code, state of 16 Oct): FlashSAC, 100.7M steps, 2,048 worlds, three seeds, wrist kp 100,
+  `motion_speed 1.0`, fixed frame-0 resets, a performance-gated assist curriculum, hand-set masses (pot 0.2 kg,
+  lid and spoon 0.1 kg), checkpoint chosen by a local copy of the six metrics against their own reference.
+- **rlwrld** (notes, weak): stock FlashCHORD at 250M steps; the notes trace failed clips to pose quality.
+- None of the three built grasps by hand. Our grasp-lock, wrist-ILC, evolutionary grasp search and lift-window
+  work has no counterpart in their code.
+
+### 2.2 Half-speed playback, with the rollout resampled to video time [F for Purple]
+- `postprocess/bridge_export.py` maps simulator steps to dataset frames with `step(f) = f (S-1)/(N-1)` and
+  interpolates; it calls the kit packer's unconverted mode "a TRAP". Their training config keeps NVIDIA's
+  `motion_speed: 0.5`.
+- We found the same timing bug (it caps public AUC at 0.415) and fixed it on the other side: we trained at real
+  speed. Our own CPU model says the stock wrist is out of range on 23 of 27 moving public tracks at real speed and
+  on 0 of 27 at half speed (builder session, 26 Oct). Real speed is what led us to the kp 400 wrist.
+- **[H]** Half-speed training with a resampled export would have given us easier following and less run-to-run
+  spread with the stock recipe. Falsifier: three public episodes (12, 18, 27), stock recipe at 0.5 with a
+  resampled export against our packed recipe, 10 fresh draws each; falsified if the registered AUC is not higher
+  or the spread not lower. It is not necessary for 0.92: SRL trained at speed 1.0 with kp 100.
+
+### 2.3 Collision geometry built by hand for the cavity cases [F for Purple]
+- Cups: 192 convex sector pieces, "no global hull over mouth". Dish rack: ten boxes, five for the tray and five
+  for a utensil pocket whose depth is `max(q95 visible depth, deepest spoon reference + 2mm)`.
+- These are the nested-cup and spoon- or sweeper-in-rack cases (our evals 10, 14, 30) that kept our MP-SR at 0.80.
+  We carved two episodes late (pack 4, +0.022) and then found that policies are tied to the shapes they trained
+  on (1 of 7 retrains passed).
+
+### 2.4 Perception front end [F for Purple and Gravity Aligned]
+- SAM 3 text-prompted masks per object, plus a `hand` mask, on all three cameras. We used SAM2 proposals scored by
+  DINOv2 with hand-written rules, and lost objects to the wearer's wrist and watch on five evals.
+- A SLAM world frame (cuVSLAM for Purple, DROID-SLAM for Gravity Aligned and the stock kit). Ours was keyframe
+  SIFT / stereo PnP; our measured drift was already 2–9 mm, so this is probably not the difference [I].
+- Fast-FoundationStereo depth and FoundationPose, as ours.
+- Not found in any top-team source: marker tracking, a learned pose corrector, global trajectory optimisation.
+
+### 2.5 Public scans as tracking templates: a grey zone [F for SRL in development, I beyond that]
+- SRL's development baseline tracked with `mesh='provided'` (the public scans) and then moved the poses onto the
+  submission mesh by a rigid transform (`old_from_submission`; mean surface distance 2.3 mm pot, 2.9 mm lid).
+- Purple's default FoundationPose output is named `T_A_from_scan`; a later variant is "fresh own-model FP ... no
+  stale public-frame rebase"; and the spoon path, the one object with no public scan, is called "scan-free pose".
+  This suggests an earlier scan-templated pass. The final lineage sits in their verification container and cannot
+  be checked [I].
+- Our own measurement [M]: with exact scans as templates 16 of 20 public episodes score 0.96–1.00 in perception
+  (30 Oct); with our own meshes the same stack scored 0.868 (25 Oct) to 0.945 (2 Nov).
+- The organisers removed submissions whose *submitted* meshes were scan-like: CD-O 0.06–0.11 disappeared on
+  23 Oct, 27 Oct and 2 Nov (SoySauceChicken 0.902 AUC -> 0.765; ycchen99 all 29 uploads; richchentw lost four and
+  its CD-O went 0.154 -> 0.213 while its AUC moved only 0.9330 -> 0.9316) [M]. Tracking with a scan while
+  submitting an own mesh is invisible in the file.
+- We chose route A (own meshes everywhere) on 21 Oct. The organiser email that asked this exact question was
+  drafted on 22 Oct and never sent.
+
+### 2.6 Edits aimed at the scorer [F for Purple]
+- E20: one submitted row is changed. The pitcher's frame-0 orientation is rotated toward the mean of reference
+  frames 0–10, which shifts the scorer's one-time scene alignment for every frame.
+- E25: each board's body frame is flipped 180 degrees with the scorer's own mesh helpers, to counter the
+  registration ambiguity of flat boards.
+- We knew both effects (frame-0 "lottery", 26–27 Oct; registration, 21 Oct and 2 Nov) and used mesh choice as the
+  lever (+0.046 AUC). We did not edit rollout rows.
+
+### 2.7 The board as a measuring instrument [F for the mechanism, H for who used it]
+- Episode scores add up exactly (Gravity Aligned measured a maximum gap of 0.00002), so a file with one episode
+  masked reveals that episode's true score. The Simsons' code builds 20 such probe files
+  (`probe/make_probe_packages.py`).
+- Upload counts: richchentw 84, Purple 84, rlwrld 82, EIG 71, SRL 60, DSAIL 57; ours 26.
+- richchentw: 0.945 / 1.09 cm after 16 uploads (30 Oct), then 0.985 / 0.60 cm after 65 more in four days.
+- **[H]** The last step from about 1.1 cm to 0.6 cm came from per-episode selection or tuning against the board.
+  It cannot be confirmed from outside. It is not needed for 0.93–0.95: DDD reached 0.931 on its 4th upload and
+  0.953 on its 20th.
+- Our rules forbid tuning on eval results, and we refused it (one disclosed exception, pack 6).
+- All standings are provisional until the organisers' container reproduces each counted file (PR #215), and a
+  held-out evaluation follows.
+
+## 3. What we could have done better
+
+Ordered by my estimate of the score at stake.
+
+1. **Put the effort where the loss was.** The cluster above us tracks at about 1.2 cm; we ended at 1.8 cm.
+   richchentw's second-ever upload (22 Oct) already had 1.46 cm. From 24 Oct to 1 Nov most of our GPU money and
+   sessions went to the robot side (grasp design, seeds, swaps, carving), while our own split on 30 Oct read
+   policy 0.083 against reference about 0.10. The perception push came in the last four days as about 20 small
+   GT-free patches, and all failed. The bigger options were listed and never run: joint shape and pose
+   (item 8 of our open list, "days of work and $100+") and a SAM 3 front end with a hand mask.
+2. **Settle the rule questions in week one.** One reply from the organisers on scan templates, on collision
+   shapes that differ from the submitted mesh, and on the stiffer wrist would have fixed three strategy branches
+   on 22 Oct. We were strict where it was expensive (own templates for tracking) and later relaxed where it was
+   cheap (GT-informed choice among generated meshes, 2 Nov).
+3. **Read the scorer and the ranking rule before building.** Already in our own lessons: the rank-sum rule was
+   found on 31 Oct and the registration effect was understood on 2 Nov; mesh-only changes then gave +0.046 AUC in
+   about 36 hours. Purple's two row-level fixes come from the same reading.
+4. **No failed episodes first.** One SP-SR episode was worth about four rank points. Analytic collision geometry
+   for cups, rack and boards, built before training, is how Purple cleared the cases that we were still failing.
+5. **Fix the timing on the export side** (section 2.2, hypothesis).
+6. **Gates that were too strict for single ideas.** "Mean +0.005 and no episode below −0.01" on 20 noisy public
+   episodes rejects many true small gains; the closest misses were 0.00002 and 0.007. Ideas were also tested one
+   at a time against a tracker that is fragile to single changes [I]. The gates did protect us from false wins.
+7. **We stopped 36 hours before the freeze.** Last upload 3 Nov 10:30; freeze 4 Nov 22:00. In that window Zihao Guo
+   went 0.921 -> 0.935, SRL 0.903 -> 0.923, Purple 0.920 -> 0.933, DDD 0.939 -> 0.953, and three of them cleared
+   their last MP-SR failures. CD-O third place was 0.006 cm away, about one more mesh round.
+
+## 4. What we did well by comparison
+- CD-O 5th with own meshes, ahead of rlwrld, Zihao Guo and Purple.
+- A complete audit trail and pre-registered tests; no invalidated uploads. Several teams lost their best scores to
+  invalidation.
+- Gravity Aligned, with a similar stack (FoundationStereo, SAM 3, SAM 3D meshes, FoundationPose, 371 runs),
+  ended at 0.780.
+
+## 5. Open
+- Winners' talks on 12 Nov (CoRL tutorial) should show what richchentw and DDD did. Re-read this note then.
+- Whether the container reproduction accepts scan-templated tracks, row edits and board-selected files.

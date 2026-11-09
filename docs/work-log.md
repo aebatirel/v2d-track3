@@ -5389,3 +5389,20 @@ arm and a no-policy replay floor to stage B.
 - Every submission's code commit (6f1aea3, 46b8389, 3758189, f7a49a9, 526918b, 5203d42, 465320b) is reachable from `main`.
 - Code merged without conflicts. STATUS.md and this log conflicted only where sessions appended entries; both sides kept.
 - Sessions still running push to their own branches; merge them into `main` again when they finish.
+
+### 2026-11-09 — post-freeze competitor research (branch `claude/jolly-turing-yqxcxn`, read-only, $0)
+- **Owner asked:** analyse what we did (Journey Report and case study pages), research what we could have done
+  differently and what the top teams may have done.
+- **Run:** cloud session, no GPU. Kaggle API for the six final boards; the organisers' feed
+  `MVerghese/v2d-leaderboard-data` (`leaderboard.json`, `submission_history.jsonl`); GitHub repository search; shallow
+  clones of public competitor repositories into the session scratchpad (read, never executed, then deleted). Three
+  sub-agents read Purple, SRL and ten smaller repositories; I re-checked the key claims in Purple's code myself
+  (`postprocess/bridge_export.py`, `postprocess/build_submission.py`, `reconstruction/tools/*.py`).
+- **Result:** `docs/research/competitors-2026-11-09.md`. Final rank sum 56, 9th. Main findings: the teams above us
+  have no failed episode and track at about 1.2 cm against our 1.8 cm; the three teams with readable sources ran
+  near-stock RL; Purple trains at half speed and resamples the export; Purple builds cup and rack collision geometry
+  by hand; scan-templated tracking is a grey zone that the organiser email of 22 Oct (never sent) would have settled.
+- **Not established:** what richchentw, DDD, Zihao Guo and egocube did (no public code). The board-probing
+  explanation for richchentw is a hypothesis from upload counts and the score timeline.
+- **No change** to the pipeline, the submissions or the store.
+

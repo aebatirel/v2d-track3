@@ -1,5 +1,18 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-09: post-freeze competitor research (read-only, $0); note `docs/research/competitors-2026-11-09.md`
+- Final boards (Kaggle API, 9 Nov): we are 9th by rank sum (56): AUC 0.886, SP-SR 0.90, MP-SR 0.80, RPE 2.21 cm,
+  MPPE 1.80 cm, CD-O 0.239 (5th). All eight teams above have SP-SR and MP-SR 1.00; six cluster at AUC 0.92-0.935 and
+  MPPE 1.17-1.39 cm; DDD 0.953 / 0.93 cm; richchentw 0.985 / 0.60 cm.
+- Read the public source of Purple / Barry Allen (0.933) and SRL (0.923), eight lower repos and the organisers'
+  submission-history feed. Found [F]: stock FlashCHORD with a soft wrist; Purple keeps half-speed playback and
+  resamples the rollout to video frames; hand-built collision geometry for cups and rack; SAM 3 masks with a hand
+  mask; two row-level scorer fixes (frame-0 orientation, board frame flip). Grey zone [I]: public scans as tracking
+  templates. Hypothesis [H]: per-episode board probing explains richchentw's last step (84 uploads).
+- This branch holds the repository as of 30 Oct; the 31 Oct - 6 Nov work is on other session branches and in the
+  Journey Report (https://claude.ai/artifact/6pNjoK3xEqi8ry4ceA6jLS).
+- Next: winners are announced 12 Nov (CoRL tutorial); re-read the note against their talks. Nothing running, 0 boxes.
+
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
 - Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:
