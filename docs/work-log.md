@@ -5437,3 +5437,20 @@ arm and a no-policy replay floor to stage B.
   428,954 pixels; painted blue cup RGB (62, 76, 105), rack (217, 212, 205). Files in `docs/analysis/colourcam-20261109/cpu_checks/`.
 - **Pre-registration:** `docs/analysis/colourcam-20261109/PREREG.md`. Cost plan ≈ $4–5, cap $8, on the owner's go-ahead.
 
+### 2026-11-09 ~20:30-21:00 UTC — colour-camera box running; first-episode crash fixed on the box
+- **Launch (owner go-ahead):** ledger `planned` line ($5); offers 56137476, 57705481 were gone at create, 59154012 gave
+  "upstream request failed" (no instance made, checked with `vast.sh show`); box **59948609** (RTX PRO 6000 S,
+  Bulgaria, $1.761/h) on 48905147, run `20261109-pcol-4124eec`, `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020`,
+  `ops/vast.sh create 48905147 20261109-pcol-4124eec 'bash ops/jobs/perc_colour.sh'`, code 4124eec. Setup 12 min.
+- **Crash:** ep12 AP failed at start: `TypeError: 'int' object is not callable` (`K_` is rebound to DET_K at module level).
+  C and CP were unaffected. Fixed in 5b79523 (intrinsics read from the calibration); a CPU dry run of the whole camera-a
+  block with a stub tracker now passes (`cpu_checks/dryrun.py`).
+- **Hot patch:** the box's checkout was switched to 5b79523 by `vast.sh exec` (only `pipeline/perc2.py` differs from
+  4124eec; the job script and ops are identical, so the running loop is unaffected; the C path did not change). From
+  ep0 AP on, the main loop runs the fixed file. ep12 AP was re-run by a side process on the same box (code 5b79523).
+  The side loop was then stopped so that it could not write ep0 at the same time as the main loop (the kill also hit
+  its subshell; the ep12 tracker process kept running and finished).
+- **First outputs (perc2's own unregistered score, diagnostic only; the gate uses score_registered after all 20):**
+  ep12 C 0.949 / CP 0.939 / AP 0.808; ep0 C 0.994 / CP 0.978 / AP 0.969. AP ran on camera a on every frame, 0 fallbacks.
+  Nothing is changed on this basis (PREREG: no tuning after scores).
+
