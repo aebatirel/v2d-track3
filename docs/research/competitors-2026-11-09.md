@@ -207,3 +207,26 @@ Ordered by my estimate of the score at stake.
   proxy could not show which eval references were wrong, while a masked upload shows it directly.
   Falsifier: per-episode board scores of our counted file (the organisers' reproduction report, if it lists them);
   falsified if our loss is spread evenly over the 20 episodes.
+
+### 6.3 Computation cost (owner's clarification, 9 Nov)
+Compute for every team is almost all RL training. Perception is minutes per episode for everyone (ours: 94 s per
+episode on GPU; The Simsons: hand tracking for 20 episodes in about 35 min on two RTX 4090).
+
+| Team (final AUC) | Steps per policy | Time per policy | Policies trained | GPU-hours |
+|---|---|---|---|---|
+| Purple (0.933) | 250M, 4,096 worlds, stock [F] | about 1.5-1.8 h at our measured 45k steps/s [E] | 22 visible in the final snapshot [F]; earlier rounds unknown | at least about 35 [E] |
+| rlwrld (0.934) | 250M stock [F, notes of 15-19 Oct]; the notes plan 125M, early stopping and warm starts per object | as Purple | unknown | unknown |
+| SRL (0.923) | 100.7M, 2,048 worlds, 3 seeds [F, 16 Oct] | not stated | 60 per full pass | unknown |
+| Gravity Aligned (0.780) | 100M, thresholds x0.4 of the 250M schedule [F] | "~40-55 min on L40S/A100/H100" [F] | 371 runs [F] | about 250-340 [E] |
+| **Us (0.886)** | 250M standard, 70M grasp-lock fine-tunes | 1.5-1.8 h [M] | at least 158 by 30 Oct [M] | 246 billed by 30 Oct [M]; about 360 in all [E, from $556 at $1.53 per GPU-hour] |
+
+- One complete submission needs 20 policies: about $50 at our prices [M, our "full 20-episode rerun with packing"].
+  We spent about 11 times that. Most of it was experiments, second learners and seeds, repeat draws, retrains and
+  side lanes, not final policies.
+- Per policy, the 100M-step teams pay about 40 % of what we paid. SRL reached SP-SR and MP-SR 1.00 with that
+  family of recipe (its final config is not public). Gravity Aligned reports its best checkpoint at 90-100M
+  (median 95M) in 371 runs. We never tested a shorter schedule (open question 6 of the Journey Report).
+- Gravity Aligned fits a 100M run in about 22 GB (njmax 1024, 1M float16 replay), so 24 GB cards work for them.
+  We rented 96 GB cards and ran two trainings on each.
+- No team states a total, and the snapshots hide earlier rounds. So "Purple used a tenth of our compute" is a lower
+  bound on their side, not a measurement.

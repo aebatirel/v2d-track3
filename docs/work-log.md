@@ -5409,4 +5409,7 @@ arm and a no-policy replay floor to stage B.
   perception. Added section 6 to the note (training counts, upload counts, days to best score; Purple's perception
   differences read from its code; MPPE step timelines from the feed). Organisers' PR list 12 Oct - 9 Nov checked: no
   kit change explains the 28-29 Oct jumps. Read-only, $0.
+- **Follow-up 2 (same day):** the owner meant computation cost. Added section 6.3: steps per policy, time per
+  policy and run counts read from Purple, SRL, Gravity Aligned and the rlwrld notes, against our billing record.
+  Read-only, $0.
 
