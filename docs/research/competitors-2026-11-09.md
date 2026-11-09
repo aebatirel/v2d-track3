@@ -253,3 +253,27 @@ From `submission_history.jsonl` [M]; "n" is the upload count on the AUC board.
   **[H]** These were per-episode fixes tried against the board and kept when they scored better; the build script
   names four (E14 and E16 retrains, the E20 frame-0 rotation, the E25 board flip). What else was tried is not in
   the repository.
+
+### 6.5 Purple's perception in detail (second read of the code, 9 Nov)
+Read from `reconstruction/tools/*.py`, `reconstruction/refine/*.py` and `postprocess/build_submission.py` (about
+700 lines). The FoundationPose driver, the mask generation and the reference "bridge" are not in the repository, so
+the cause of the 4.42 -> 1.95 cm step on 28 Oct is not visible.
+
+| Step | Purple [F] | Ours |
+|---|---|---|
+| Object points | A stereo point is kept only if it lies in the object's SAM 3 mask in camera C **and** projects into the object's mask in camera B, and is outside the dilated `hand` mask in both (`sfp_common.frame_points_world`) | SAM2 masks, cut by hands; objects latched onto the wrist and watch on five evals; the hand-aware ray correction failed its gate (-0.0042) |
+| World frame | cuVSLAM camera track with hands and objects masked; object points of all frames are pooled in that frame "no object pose involved" | keyframe SIFT / stereo PnP; points pooled along FoundationPose tracks |
+| Spoon (32.5 % of eval object weight) | no FoundationPose: trimmed point-to-plane ICP of the clean cloud to a spoon model, starts = previous pose + 8 PCA starts, score = mean distance (mm) + 20 x (1 - silhouette IoU); a frame continues the track only at < 3 mm and IoU > 0.6; the model is fused from all 10 eval spoon episodes; fitted on camera C only, cameras A and B "stay held out" | FoundationPose on a parametric template, per episode; frame sign never resolved; "the spoon was never measurable" |
+| Cups (17.5 %) | parametric frustum from a stereo-silhouette fit, 1.4 mm walls; a world-frame "cup" track next to the hands | FoundationPose on TSDF / lathe meshes; the tracker spins resting cups (140 degrees by frame 30) |
+| Other objects | FoundationPose on colour camera A, with A modelled one frame late plus a per-frame lag | FoundationPose; half-frame lateness measured, correction never packed |
+| Mesh | least-squares correction along normals to stereo points, capped at 3 mm, vertices need >= 10 points from >= 5 frames; alternating 20-frame dev / held-out blocks | TSDF, lathe, generated pools chosen by Chamfer to public scans |
+| Frame 0 | E20: frame-0 pitcher orientation replaced by a rotation toward the mean of reference frames 0-10 | frame 0 known as our noisiest frame (1.07 degrees median against about 0.5 later); no correction shipped |
+
+- **[I]** The pattern is "clean the points, then use a geometry-specific fit where FoundationPose is weak" (thin
+  spoon, symmetric cups), not a better general tracker. Spoon and cups are half of the eval object weight.
+- **[I]** Held-out cameras and held-out frame blocks give them a GT-free check on eval episodes that can see a
+  wrong pose or shape (silhouette overlap in a camera the fit never used). Our GT-free proxy (sim_vs_ref) could not.
+- **[H]** For us: spoon and cup poses from clean two-view-masked stereo points with a model-to-cloud ICP would beat
+  our FoundationPose tracks on those objects. Falsifier: public cup episodes (11, 12, 21, 22) scored against mocap
+  with the registered scorer, pre-registered gain of at least +0.02 on the cup objects and no episode worse by 0.01;
+  the spoon has no public truth, so only the held-out-camera silhouette check is available there.

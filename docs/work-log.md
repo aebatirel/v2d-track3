@@ -5415,4 +5415,8 @@ arm and a no-policy replay floor to stage B.
 - **Follow-up 3 (same day):** Purple's upload-by-upload history added as section 6.4. Purple passed our final AUC on
   its 5th upload (0.907, 30 Oct); the remaining +0.026 took 79 uploads. This corrects the 6.2 inference: the gap is
   about half typical-episode accuracy and half cleared failures.
+- **Follow-up 4 (same day):** second, line-by-line read of Purple's reconstruction code; section 6.5 added (two-view
+  mask with hand exclusion, cuVSLAM world frame, spoon by ICP on a model fused over the 10 eval spoon episodes,
+  parametric thin-wall cups, capped mesh correction with held-out frames, frame-0 fix). Their tracker driver is not
+  public.
 
