@@ -277,3 +277,17 @@ the cause of the 4.42 -> 1.95 cm step on 28 Oct is not visible.
   our FoundationPose tracks on those objects. Falsifier: public cup episodes (11, 12, 21, 22) scored against mocap
   with the registered scorer, pre-registered gain of at least +0.02 on the cup objects and no episode worse by 0.01;
   the spoon has no public truth, so only the held-out-camera silhouette check is available there.
+
+### 6.6 Colour versus grey (owner's question, 9 Nov)
+- Purple did not drop stereo [F]: every point cloud, the spoon fit, the cup fit and the mesh correction use
+  Fast-FoundationStereo depth from the grey pair (cameras C and B).
+- The difference is which image the tracker sees. Purple's FoundationPose output is `T_A_from_scan` "at B/C time f
+  (A image = A(f+1))" (`mesh_common.py`), so it ran on **colour camera A**, one frame shifted [I, strong; the driver
+  is not public]. SAM 3 masks exist for A, B and C.
+- Ours ran FoundationPose on **grey camera C** with grey-textured meshes (`pipeline/perc2.py`: "gray textures: the
+  ego stereo cameras are monochrome"; `pipeline/mesh_color.py`). Colour camera A was used only for MediaPipe hands.
+- Our own records show colour matters for detection: Grounding DINO 10/10 objects in colour against 7/10 in grey;
+  OWLv2 4/10 in grey and swapped the twin cups; SAM2 masks failed on the beige cup and the white board.
+- **[H]** FoundationPose on colour camera A (colour-textured meshes, stereo depth reprojected into A, the a[k+1]-b[k]
+  pairing) tracks better than our grey camera-C run. Falsifier: the 20 public episodes, registered AUC against mocap,
+  same meshes; pre-registered pass at mean +0.01, no episode worse by 0.01. About 30 GPU-minutes [E].
