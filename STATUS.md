@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-09 ~21:45 UTC: colour-camera run done ($3.72 incl. an unintended duplicate box, destroyed); scoring
+- All 20 public episodes × 3 arms ran (store run `20261109-pcol-4124eec`, pinned revision ad8b49b). 0 boxes running,
+  credit $34.65. Registered scoring and the pre-registered gate are running on CPU here; results next.
+
 ## 2026-11-09 ~21:00 UTC: colour-camera tracking test built and pre-registered; waiting for the owner's go-ahead to rent
 - Owner asked to test colour tracking on the public episodes. Code (default off, earlier runs unchanged):
   `pipeline/perc2.py` TRACK_CAM=a / TRACK_MESH_DIR, `pipeline/mesh_color.py --cam a`, `ops/jobs/perc_colour.sh`.

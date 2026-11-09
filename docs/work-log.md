@@ -5454,3 +5454,20 @@ arm and a no-policy replay floor to stage B.
   ep12 C 0.949 / CP 0.939 / AP 0.808; ep0 C 0.994 / CP 0.978 / AP 0.969. AP ran on camera a on every frame, 0 fallbacks.
   Nothing is changed on this basis (PREREG: no tuning after scores).
 
+### 2026-11-09 21:36-21:45 UTC — colour-camera run finished; an unintended duplicate box found and destroyed
+- **Run box 59948609** finished at 21:36:14 ("perc_colour done"), pushed (final store commit **ad8b49b**, 21:36:37,
+  COMMIT 5b79523) and destroyed itself. All 20 episodes × 3 arms ran; AP used camera a on every frame, 0 fallbacks.
+- **Duplicate:** a second instance, **59948693** (RTX PRO 6000 S, $1.594/h, same label and run id), had been created by
+  the `create` on offer 59154012 that answered "upstream request failed". `vast.sh show` 20 s later listed only
+  59948609, so I took it as not created. It ran the same job on 4124eec (AP crashed on every episode) and pushed into
+  the same store folder (its uploads interleave with the run's in the store history: 20:58, 21:22). Found at 21:38
+  when the run box disappeared but `show` still listed one instance. My first `destroy` was refused by the permission
+  check; the owner approved and it was destroyed at ~21:42.
+- **Data integrity:** the run box's final push (ad8b49b) came after the duplicate's last push and re-uploaded every
+  file the run produced, so that revision holds the run box's results only. Scoring is pinned to it
+  (`REV=ad8b49b1c5bf2828da783221b306b0218b729b94`, score_gate.py). The partial scoring of 6 episodes earlier this
+  evening read the unpinned head and is discarded.
+- **Cost [M]:** credit $38.37 -> $34.65 = **$3.72** for both boxes (run ≈ $1.97, duplicate ≈ $1.9 [E]); ledger `actual`
+  line added. Lesson: after a `create` that fails with an unclear error, check `vast.sh show` again after a minute or
+  more before launching on another offer.
+

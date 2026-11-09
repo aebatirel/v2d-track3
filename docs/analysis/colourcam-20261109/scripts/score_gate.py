@@ -15,12 +15,13 @@ RUN, WORK, REPO, T3, KIT = sys.argv[1:6]
 EPS = [int(x) for x in sys.argv[6:]] or [0, 2, 11, 12, 13, 18, 21, 22, 23, 24, 26, 27, 31, 39, 40, 41, 42, 43, 44, 45]
 ARMS = ['C', 'CP', 'AP']
 STORE = os.environ.get('HF_STORE', 'aebatirel/v2d-store')
+REV = os.environ.get('REV')      # pin the store revision (9 Nov: a duplicate box pushed into the same run folder)
 NOISE = 0.00002            # |mean dAUC| of two identical control runs, 2 Nov (PREREG.md)
 
 
 def pull(arm, ep, f):
     try:
-        return hf_hub_download(STORE, f'runs/{RUN}/results/pcol/{arm}/ep{ep}/{f}', repo_type='dataset', local_dir=f'{WORK}/store')
+        return hf_hub_download(STORE, f'runs/{RUN}/results/pcol/{arm}/ep{ep}/{f}', repo_type='dataset', local_dir=f'{WORK}/store', revision=REV)
     except Exception:
         return None
 
@@ -86,7 +87,7 @@ def compare(v, c, gated):
     return res
 
 
-out = dict(run=RUN, eps=EPS, gated=compare('AP', 'CP', True), ap_vs_c=compare('AP', 'C', False), cp_vs_c=compare('CP', 'C', False))
+out = dict(run=RUN, store_revision=REV, eps=EPS, gated=compare('AP', 'CP', True), ap_vs_c=compare('AP', 'C', False), cp_vs_c=compare('CP', 'C', False))
 out['ap_track_cam'] = {e: json.load(open(p)) for e in EPS
                        if (p := f'{WORK}/store/runs/{RUN}/results/pcol/AP/ep{e}/track_cam.json') and os.path.exists(p)}
 json.dump(out, open(f'{WORK}/gate.json', 'w'), indent=1)
