@@ -1,0 +1,42 @@
+{
+ "episode": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 137,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 1.86,
+   "anchor_shift_cm": 0.98,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "beige_cup": {
+   "rot_deg": 145.26,
+   "anchor_shift_cm": 0.59,
+   "axis": [
+    0.011,
+    0.03,
+    0.999
+   ],
+   "order": 360
+  }
+ },
+ "perception": {
+  "AUC": 0.8499,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 2.1414,
+  "RPE_cm": 2.3283,
+  "per_obj_AUC": {
+   "blue_cup": 0.7701,
+   "beige_cup": 0.9297
+  }
+ }
+}

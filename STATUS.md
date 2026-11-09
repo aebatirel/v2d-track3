@@ -1,5 +1,12 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-09 ~22:10 UTC: colour-camera tracking test DONE — gate FAILED; no meaningful difference ($3.72)
+- Result `docs/analysis/colourcam-20261109/README.md` [D, 20 public episodes, registered scorer]:
+  - colour camera vs today's grey tracker: mean AUC 0.8900 -> 0.8917 (+0.0018), 9 better / 11 worse;
+  - gated comparison (colour vs grey, both repainted per episode): +0.0144 but ep2 -0.0212 < -0.02 -> FAIL;
+  - repainting templates per episode alone: -0.0127.
+- Colour tracking does not explain the gap to the teams above us on our pipeline. 0 boxes, credit $34.65.
+
 ## 2026-11-09 ~21:45 UTC: colour-camera run done ($3.72 incl. an unintended duplicate box, destroyed); scoring
 - All 20 public episodes × 3 arms ran (store run `20261109-pcol-4124eec`, pinned revision ad8b49b). 0 boxes running,
   credit $34.65. Registered scoring and the pre-registered gate are running on CPU here; results next.

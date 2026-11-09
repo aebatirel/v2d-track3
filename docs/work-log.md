@@ -5471,3 +5471,14 @@ arm and a no-policy replay floor to stage B.
   line added. Lesson: after a `create` that fails with an unclear error, check `vast.sh show` again after a minute or
   more before launching on another offer.
 
+### 2026-11-09 ~22:10 UTC — colour-camera tracking test: result (gate FAILED)
+- Scored all 20 public episodes × 3 arms with `score_registered.py --meshes meshes/library_v3 --per_frame` at store
+  revision ad8b49b (`REV=... python -I docs/analysis/colourcam-20261109/scripts/score_gate.py 20261109-pcol-4124eec ...`).
+- **Gate AP vs CP: FAIL** (mean +0.0144 pass; min ep2 −0.0212 fail by 0.0012; MPPE/RPE pass; > 3 cm frames pass).
+  Not falsified (mean > 0).
+- **AP vs C (today's tracker): +0.0018**, 9 / 11, median −0.0017; without the chaotic ep18 −0.0008 (post hoc).
+  CP vs C −0.0127 (repainting hurt, most on the sweeper).
+- Per object AP vs C: pitcher +0.030, sweeper +0.029, lid −0.031, blue cup −0.011, others within ±0.012.
+- Reading: no meaningful difference for our pipeline; does not explain the board gap. Full record in
+  `docs/analysis/colourcam-20261109/README.md`; competitor note §6.6 updated.
+

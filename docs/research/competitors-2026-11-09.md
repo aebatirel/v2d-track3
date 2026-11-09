@@ -306,3 +306,8 @@ the cause of the 4.42 -> 1.95 cm step on 28 Oct is not visible.
 - **[H]** FoundationPose on colour camera A (colour-textured meshes, stereo depth reprojected into A, the a[k+1]-b[k]
   pairing) tracks better than our grey camera-C run. Falsifier: the 20 public episodes, registered AUC against mocap,
   same meshes; pre-registered pass at mean +0.01, no episode worse by 0.01. About 30 GPU-minutes [E].
+- **Tested (9 Nov, `docs/analysis/colourcam-20261109/README.md`) [D]:** colour camera a vs our grey tracker on the 20
+  public episodes: mean AUC +0.0018 (9 better / 11 worse). The pre-registered gate (colour vs grey with the same
+  per-episode repainting, +0.0144 mean) failed on one episode at −0.0212. Colour tracking alone does not explain the
+  gap on our pipeline; the hypothesis above is not supported. Cost $3.72 (including an unintended duplicate box).
+

@@ -1,0 +1,42 @@
+{
+ "episode": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "registration": {
+  "mini_sweeper": {
+   "rot_deg": 3.1,
+   "anchor_shift_cm": 0.4,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "mini_dust_pan": {
+   "rot_deg": 2.44,
+   "anchor_shift_cm": 0.59,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.7743,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 3.252,
+  "RPE_cm": 14.4282,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.6339,
+   "mini_dust_pan": 0.9148
+  }
+ }
+}

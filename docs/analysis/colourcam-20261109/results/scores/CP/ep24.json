@@ -1,0 +1,42 @@
+{
+ "episode": 24,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 275,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "registration": {
+  "wooden_piece_1": {
+   "rot_deg": 0.35,
+   "anchor_shift_cm": 0.21,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "wooden_piece_2": {
+   "rot_deg": 0.47,
+   "anchor_shift_cm": 0.4,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.8394,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 2.1767,
+  "RPE_cm": 1.0201,
+  "per_obj_AUC": {
+   "wooden_piece_1": 0.8082,
+   "wooden_piece_2": 0.8707
+  }
+ }
+}

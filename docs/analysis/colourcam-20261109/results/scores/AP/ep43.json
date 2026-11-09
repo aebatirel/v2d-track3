@@ -1,0 +1,30 @@
+{
+ "episode": 43,
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 326,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "registration": {
+  "white_pot": {
+   "rot_deg": 1.88,
+   "anchor_shift_cm": 0.7,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.9517,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.008,
+  "RPE_cm": 0.0,
+  "per_obj_AUC": {
+   "white_pot": 0.9517
+  }
+ }
+}

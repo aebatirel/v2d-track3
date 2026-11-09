@@ -1,0 +1,42 @@
+{
+ "episode": 22,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 189,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 1.64,
+   "anchor_shift_cm": 1.01,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "water_pitcher": {
+   "rot_deg": 3.19,
+   "anchor_shift_cm": 0.66,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.8523,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 1.9703,
+  "RPE_cm": 1.1516,
+  "per_obj_AUC": {
+   "blue_cup": 0.9828,
+   "water_pitcher": 0.7219
+  }
+ }
+}

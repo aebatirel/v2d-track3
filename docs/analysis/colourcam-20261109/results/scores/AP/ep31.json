@@ -1,0 +1,42 @@
+{
+ "episode": 31,
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "frames": 290,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "registration": {
+  "mini_sweeper": {
+   "rot_deg": 3.04,
+   "anchor_shift_cm": 0.43,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 1.56,
+   "anchor_shift_cm": 0.67,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.7817,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 2.1465,
+  "RPE_cm": 2.4986,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.8759,
+   "plastic_dish_rack": 0.6875
+  }
+ }
+}
