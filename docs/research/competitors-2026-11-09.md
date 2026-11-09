@@ -288,6 +288,21 @@ the cause of the 4.42 -> 1.95 cm step on 28 Oct is not visible.
   ego stereo cameras are monochrome"; `pipeline/mesh_color.py`). Colour camera A was used only for MediaPipe hands.
 - Our own records show colour matters for detection: Grounding DINO 10/10 objects in colour against 7/10 in grey;
   OWLv2 4/10 in grey and swapped the twin cups; SAM2 masks failed on the beige cup and the white board.
+- **Why we tracked on grey (owner's question, 9 Nov).** A deliberate choice on 7 Oct, never tested:
+  - note 03 (`docs/research/notes/03-lit-perception.md`, H-fit-2, "hypotheses, to be tested — not measured"): track
+    on the global-shutter grey left camera because stereo depth is native there (no reprojection holes or edge
+    bleed), the colour camera is "probably rolling shutter", its sync was unverified, and it is mounted rotated
+    180 degrees. The plan was "use colour for segmentation/appearance/texture" and refine on both views. The colour
+    half was never built.
+  - Later measurements backed the worries in part: camera A pairs a[k+1] with b[k] in 36 of 39 clips; rolling
+    shutter 31.6 ms per image height; a 25-35 px blur smear on a lifted cup in A where B was sharp (note 12, one
+    frame).
+  - On 13 Oct OWLv2 failed on grey frames (missed the white pot, swapped the twin cups). We built a grey-specific
+    detector (perc2: grey renders plus an intensity term) instead of moving detection to colour. It fixed the public
+    cases (ep11 0.10 -> 0.871; public mean 0.932 by 20 Oct), so the choice was not revisited.
+  - Eval lost about 19 % against 3-4 % on public twins (24 Oct), and the eval failures (objects on the wrist and
+    watch, look-alike cups) are where colour helps most. The later perception tests were all patches on the grey
+    stack; no work-log entry tests colour-camera tracking.
 - **[H]** FoundationPose on colour camera A (colour-textured meshes, stereo depth reprojected into A, the a[k+1]-b[k]
   pairing) tracks better than our grey camera-C run. Falsifier: the 20 public episodes, registered AUC against mocap,
   same meshes; pre-registered pass at mean +0.01, no episode worse by 0.01. About 30 GPU-minutes [E].

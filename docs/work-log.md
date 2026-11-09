@@ -5422,4 +5422,6 @@ arm and a no-policy replay floor to stage B.
 - **Follow-up 5 (same day):** owner asked whether Purple used colour instead of stereo. No: both. Purple's
   FoundationPose ran on colour camera A (inferred from `T_A_from_scan`), ours on grey camera C with grey textures
   (verified in `pipeline/perc2.py`). Section 6.6 added with a falsifiable test; nothing run.
+- **Follow-up 6 (same day):** why we tracked on grey: note 03 hypothesis H-fit-2 (7 Oct), never tested; the grey
+  detector fixed the public cases on 13 Oct and the choice was not revisited when eval diverged. Added to 6.6.
 
