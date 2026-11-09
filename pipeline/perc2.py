@@ -190,6 +190,31 @@ def load_mesh(n):
         m.visual.vertex_colors = vc
     return m
 meshes = {n: load_mesh(n) for n in names}
+# TRACK_CAM / TRACK_MESH_DIR (2026-11-09, colour-camera test, docs/analysis/colourcam-20261109/PREREG.md; both default
+# off, so earlier runs reproduce): TRACK_CAM=a runs FoundationPose (register + track) on colour camera a instead of the
+# rectified grey camera c: camera-a frames undistorted to a pinhole at A_SCALE, paired as a[k + A_OFFSET] with stereo
+# frame k, stereo depth splatted into camera a, masks moved into camera a through the depth. Detection, the camera
+# track and the track guard stay on camera c; poses are stored in the rectified-c frame as before.
+# TRACK_MESH_DIR=<dir>: the tracker's templates come from <dir>/<obj>.glb (same geometry, per-episode painted colours,
+# pipeline/mesh_color.py); detection keeps MESH_DIR's meshes.
+TRACK_CAM = os.environ.get('TRACK_CAM', 'c')
+TRACK_MESH_DIR = os.environ.get('TRACK_MESH_DIR')
+def load_track_mesh(n):
+    m = trimesh.load(f'{TRACK_MESH_DIR}/{n}.glb' if TRACK_MESH_DIR else mesh_path(n), force='mesh')
+    try: m.visual = m.visual.to_color()
+    except Exception as e: log('to_color failed', n, e)
+    if TRACK_CAM != 'a' and os.environ.get('GRAY', '1') == '1':
+        vc = np.asarray(m.visual.vertex_colors).copy()
+        vc[:, :3] = (0.299 * vc[:, 0] + 0.587 * vc[:, 1] + 0.114 * vc[:, 2]).astype(np.uint8)[:, None]
+        m.visual.vertex_colors = vc
+    return m
+tmeshes = {n: load_track_mesh(n) for n in names} if (TRACK_MESH_DIR or TRACK_CAM == 'a') else meshes
+if tmeshes is not meshes:
+    for n in names:
+        if len(tmeshes[n].vertices) != len(meshes[n].vertices) or not np.allclose(tmeshes[n].bounds, meshes[n].bounds, atol=1e-5):
+            log('WARNING tracker template geometry differs from the detection mesh', n, len(tmeshes[n].vertices), len(meshes[n].vertices))
+    log('tracker templates', TRACK_MESH_DIR or MESH_DIR or 'scans', 'camera', TRACK_CAM,
+        {n: np.asarray(tmeshes[n].visual.vertex_colors)[:, :3].mean(0).round(1).tolist() for n in names})
 
 # ---------- frame-0 detection: SAM2 proposals x DINOv2 vs gray mesh renders (CNOS-style) + 3-D size gate ----------
 from sam2.build_sam import build_sam2
@@ -422,11 +447,74 @@ vis = img0.copy(); cols = [(0, 0, 255), (0, 255, 0), (255, 0, 0), (0, 255, 255)]
 for j, n in enumerate(names):
     m = MASK[n]; vis[m] = (0.5 * vis[m] + 0.5 * np.array(cols[j % 4])).astype(np.uint8)
 cv2.imwrite(f'{OUT}/masks_f0.jpg', vis)
-ests = {n: FoundationPose(model_pts=meshes[n].vertices, model_normals=meshes[n].vertex_normals, mesh=meshes[n],
+ests = {n: FoundationPose(model_pts=tmeshes[n].vertices, model_normals=tmeshes[n].vertex_normals, mesh=tmeshes[n],
                           scorer=scorer, refiner=refiner, debug_dir=f'{OUT}/dbg', debug=0, glctx=glctx) for n in names}
 poses = {}
 REG_ITERS, TRACK_ITERS = int(os.environ.get('REG_ITERS', 5)), int(os.environ.get('TRACK_ITERS', 2))   # FoundationPose refiner
 log('FoundationPose iterations: register', REG_ITERS, 'track', TRACK_ITERS)                         # steps (2026-10-25 sweep)
+ACAM = {'fallback': 0, 'frames': 0}
+if TRACK_CAM == 'a':                                                  # colour camera a as the tracker's view (see above)
+    _cal = json.load(open(f'{D}/calib.json'))['cameras']
+    _ext = lambda n: np.array(_cal[n]['extrinsics_to_stereo_left'], float)  # noqa: E731
+    T_a_c = np.linalg.inv(_ext('ego_cam_a')) @ _ext('ego_cam_c')          # as det_rules.make_cam
+    T_a_rc = np.eye(4); T_a_rc[:3, :3] = T_a_c[:3, :3] @ R1.T; T_a_rc[:3, 3] = T_a_c[:3, 3]
+    T_rc_a = np.linalg.inv(T_a_rc)
+    A_SCALE = float(os.environ.get('A_SCALE', 0.5)); AW, AH = int(round(2028 * A_SCALE)), int(round(1520 * A_SCALE))
+    KA = K_('ego_cam_a').copy(); KA[:2] *= A_SCALE
+    _MA = cv2.initUndistortRectifyMap(K_('ego_cam_a'), D_('ego_cam_a'), None, KA, (AW, AH), cv2.CV_32FC1)
+    _cap = cv2.VideoCapture(f'{VD}/ep{EP}_a.mp4'); FA = []
+    while True:
+        ok, f = _cap.read()
+        if not ok: break
+        if f.shape[1] != 2028 or f.shape[0] != 1520: raise SystemExit(f'camera a frame size {f.shape} (expected 1520 x 2028)')
+        FA.append(cv2.remap(cv2.cvtColor(f, cv2.COLOR_BGR2RGB), _MA[0], _MA[1], cv2.INTER_LINEAR))
+    log('camera a frames', len(FA), 'size', (AW, AH), 'offset', det_rules.A_OFFSET, 'stereo frames', N)
+    def a_img(i):
+        return FA[min(i + det_rules.A_OFFSET, len(FA) - 1)]
+    _vv, _uu = np.mgrid[0:RSZ[1], 0:RSZ[0]]
+    _RAY = torch.as_tensor(np.stack([(_uu - KR[0, 2]) / KR[0, 0], (_vv - KR[1, 2]) / KR[1, 1], np.ones(_uu.shape)], -1).reshape(-1, 3),
+                           dtype=torch.float32, device='cuda')
+    _RA = torch.as_tensor(T_a_rc[:3, :3], dtype=torch.float32, device='cuda'); _TA = torch.as_tensor(T_a_rc[:3, 3], dtype=torch.float32, device='cuda')
+    _DA = {}
+    def a_depth(i):
+        """Stereo depth of frame i splatted into camera a (nearest surface per pixel; one-pixel holes from the 3 x 3
+        nearest neighbour; still empty = 0, which FoundationPose treats as missing)."""
+        if i in _DA: return _DA[i]
+        z = torch.as_tensor(np.asarray(depths[i]), device='cuda').reshape(-1); ok = z > 0
+        Xa = (_RAY[ok] * z[ok, None]) @ _RA.T + _TA; za = Xa[:, 2]
+        fa_, ca_, fb_, cb_ = float(KA[0, 0]), float(KA[0, 2]), float(KA[1, 1]), float(KA[1, 2])
+        u = torch.round(fa_ * Xa[:, 0] / za + ca_).long(); v = torch.round(fb_ * Xa[:, 1] / za + cb_).long()
+        k = (za > 0.05) & (u >= 0) & (u < AW) & (v >= 0) & (v < AH)
+        Dz = torch.full((AH * AW,), float('inf'), device='cuda').scatter_reduce_(0, v[k] * AW + u[k], za[k], reduce='amin').reshape(AH, AW)
+        mn = -torch.nn.functional.max_pool2d(-Dz[None, None], 3, 1, 1)[0, 0]
+        Dz = torch.where(torch.isinf(Dz), mn, Dz); Dz[torch.isinf(Dz)] = 0
+        if len(_DA) > 3: _DA.clear()
+        _DA[i] = Dz.cpu().numpy().astype(np.float32); return _DA[i]
+    def a_mask(m, i):
+        """A rectified-c mask moved into camera a through frame i's depth (projected points, 5 x 5 closing)."""
+        dep = depths[i]; v, u = np.nonzero(m & (dep > 0))
+        if len(v) < 20: return None
+        z = dep[v, u]; X = np.stack([(u - KR[0, 2]) * z / KR[0, 0], (v - KR[1, 2]) * z / KR[1, 1], z], 1)
+        Xa = X @ T_a_rc[:3, :3].T + T_a_rc[:3, 3]; ok = Xa[:, 2] > 0.05; Xa = Xa[ok]
+        uu = np.round(KA[0, 0] * Xa[:, 0] / Xa[:, 2] + KA[0, 2]).astype(int); vv = np.round(KA[1, 1] * Xa[:, 1] / Xa[:, 2] + KA[1, 2]).astype(int)
+        k = (uu >= 0) & (uu < AW) & (vv >= 0) & (vv < AH)
+        M = np.zeros((AH, AW), np.uint8); M[vv[k], uu[k]] = 1
+        M = cv2.morphologyEx(M, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+        return M.astype(bool) if M.sum() >= 50 else None
+def t_register(est, i, m):
+    """FoundationPose registration on frame i with rectified-c mask m; pose returned in the rectified-c frame."""
+    if TRACK_CAM == 'a':
+        ma = a_mask(m, i)
+        if ma is not None:
+            return T_rc_a @ est.register(K=KA, rgb=a_img(i), depth=a_depth(i), ob_mask=ma, iteration=REG_ITERS)
+        ACAM['fallback'] += 1; log('camera a: mask transfer failed on frame', i, '-> registered on camera c')
+        q = est.register(K=KR, rgb=rgb(rc[i]), depth=depths[i], ob_mask=m, iteration=REG_ITERS); set_last(est, q); return q
+    return est.register(K=KR, rgb=rgb(rc[i]), depth=depths[i], ob_mask=m, iteration=REG_ITERS)
+def t_track(est, i):
+    if TRACK_CAM == 'a':
+        ACAM['frames'] += 1
+        return T_rc_a @ est.track_one(rgb=a_img(i), depth=a_depth(i), K=KA, iteration=TRACK_ITERS)
+    return est.track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=TRACK_ITERS)
 # TRACK_GUARD (2026-10-25; pre-registered in docs/work-log.md): a pose is implausible when the lowest 5 % of the object's
 # surface lies more than GUARD_BELOW under the table plane (frame 0, from our own depth). GT-free, and on the 20 public
 # tracks it fired only on the three known failures (ep0 lid, ep11 beige cup, ep23 board 1), never on a good track.
@@ -446,6 +534,7 @@ def plausible(n, pose, i):
     return TPLANE is None or low5(n, pose, i) >= -GUARD_BELOW
 def set_last(est, X):                                                  # restart FoundationPose's tracker from pose X
     tf = est.get_tf_to_centered_mesh(); tf = tf.detach().cpu().numpy() if hasattr(tf, 'detach') else np.asarray(tf)
+    if TRACK_CAM == 'a': X = T_a_rc @ X                                 # X is in the rectified-c frame; the tracker runs in a
     est.pose_last = torch.as_tensor(X @ np.linalg.inv(tf), dtype=torch.float32, device='cuda')
 _DETC = {}
 def candidates(i, a):
@@ -458,11 +547,11 @@ def candidates(i, a):
 GLOG = {}
 for a, n in enumerate(names):
     t0 = time.time(); est = ests[n]; g = GLOG.setdefault(n, dict(f0_retries=0, implausible=0, redetect=0, reacquired=0, held=0))
-    P = [est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=REG_ITERS)]
+    P = [t_register(est, 0, MASK[n])]
     if TRACK_GUARD and not plausible(n, P[0], 0):
         low0 = low5(n, P[0], 0)
         for m in candidates(0, a)[1:]:
-            g['f0_retries'] += 1; q = est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=m, iteration=REG_ITERS)
+            g['f0_retries'] += 1; q = t_register(est, 0, m)
             if plausible(n, q, 0):
                 P[0] = q; break
         else:
@@ -470,13 +559,13 @@ for a, n in enumerate(names):
         log('track guard', n, 'frame-0 registration implausible (low5 %.3f m)' % low0, '->', 'replaced' if plausible(n, P[0], 0) else 'kept', g['f0_retries'], 'retries')
     last_ok, last_try = (0 if plausible(n, P[0], 0) else None), -10 ** 6
     for i in range(1, N):
-        X = est.track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=TRACK_ITERS)
+        X = t_track(est, i)
         if TRACK_GUARD and not plausible(n, X, i):
             g['implausible'] += 1; got = None
             if i - last_try >= GUARD_EVERY:
                 last_try = i; g['redetect'] += 1
                 for m in candidates(i, a):
-                    q = est.register(K=KR, rgb=rgb(rc[i]), depth=depths[i], ob_mask=m, iteration=REG_ITERS)
+                    q = t_register(est, i, m)
                     if plausible(n, q, i):
                         got = q; break
             if got is not None:
@@ -490,6 +579,9 @@ for a, n in enumerate(names):
     poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1), 'guard', g if TRACK_GUARD else 'off')
 if TRACK_GUARD:
     json.dump(GLOG, open(f'{OUT}/track_guard.json', 'w'), indent=1)
+if TRACK_CAM != 'c' or TRACK_MESH_DIR:
+    json.dump(dict(track_cam=TRACK_CAM, track_mesh_dir=TRACK_MESH_DIR, **ACAM), open(f'{OUT}/track_cam.json', 'w'), indent=1)
+    log('tracker camera', TRACK_CAM, ACAM)
 np.savez(f'{OUT}/poses.npz', world_T_cam=W_C, **{f'cam_T_{n}': poses[n] for n in names})
 if SPLIT == 'eval':                                                   # no ground truth exists: write outputs, stop
     np.savez(f'{OUT}/poses_world_vo.npz', **{n: np.stack([W_C[i] @ poses[n][i] for i in range(N)]) for n in names})

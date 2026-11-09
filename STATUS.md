@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-09 ~21:00 UTC: colour-camera tracking test built and pre-registered; waiting for the owner's go-ahead to rent
+- Owner asked to test colour tracking on the public episodes. Code (default off, earlier runs unchanged):
+  `pipeline/perc2.py` TRACK_CAM=a / TRACK_MESH_DIR, `pipeline/mesh_color.py --cam a`, `ops/jobs/perc_colour.sh`.
+- Pre-registration: `docs/analysis/colourcam-20261109/PREREG.md` (arms C / CP / AP on 20 public episodes, gate AP vs
+  CP). CPU checks on ep12 passed ($0). Plan: one RTX PRO 6000 box, ≈ 2.5–3 h, ≈ $4–5, cap $8. Credit $38.37, 0 boxes.
+
 ## 2026-11-09: post-freeze competitor research (read-only, $0); note `docs/research/competitors-2026-11-09.md`
 - Final boards (Kaggle API, 9 Nov): we are 9th by rank sum (56): AUC 0.886, SP-SR 0.90, MP-SR 0.80, RPE 2.21 cm,
   MPPE 1.80 cm, CD-O 0.239 (5th). All eight teams above have SP-SR and MP-SR 1.00; six cluster at AUC 0.92-0.935 and

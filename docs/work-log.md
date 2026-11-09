@@ -5425,3 +5425,15 @@ arm and a no-policy replay floor to stage B.
 - **Follow-up 6 (same day):** why we tracked on grey: note 03 hypothesis H-fit-2 (7 Oct), never tested; the grey
   detector fixed the public cases on 13 Oct and the choice was not revisited when eval diverged. Added to 6.6.
 
+### 2026-11-09 ~21:00 UTC — colour-camera tracking test: code, CPU checks, pre-registration (no GPU yet)
+- **Owner:** "can you test color tracking on the public episodes to see if it made a difference".
+- **Base:** `pipeline/perc2.py` on main is the eval tracker of 2 Nov (identical on the final branches); the 2 Nov tracking
+  lane (`claude/perception-tracking-20261102`) supplies the job pattern, the gate and the noise reference.
+- **Code (default off):** perc2 TRACK_CAM=a runs FoundationPose on undistorted camera a (half resolution) with stereo depth
+  splatted into it and masks moved through the depth; detection, camera track and guard stay on camera c; poses stay in
+  the rectified-c frame. TRACK_MESH_DIR gives the tracker per-episode painted templates. `mesh_color.py --cam a` paints
+  RGB from camera a. `ops/jobs/perc_colour.sh` runs arms C / CP / AP.
+- **CPU checks (ep12, $0):** control track drawn into a[k+1] sits on the objects; torch splat = numpy splat except 2 of
+  428,954 pixels; painted blue cup RGB (62, 76, 105), rack (217, 212, 205). Files in `docs/analysis/colourcam-20261109/cpu_checks/`.
+- **Pre-registration:** `docs/analysis/colourcam-20261109/PREREG.md`. Cost plan ≈ $4–5, cap $8, on the owner's go-ahead.
+
