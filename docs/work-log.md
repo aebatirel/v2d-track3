@@ -5488,3 +5488,11 @@ arm and a no-policy replay floor to stage B.
   the pipeline (scan templates not allowed); teams with valid submissions were to be emailed about CoRL posters and orals;
   the Industry Innovation Award needs a valid entry plus a technical report; AI-tool documentation asked for.
 
+### 2026-11-10 — organiser contact: late-registration email was sent; follow-up drafted
+- Correction to the 31 Oct record ("unsent draft"): the owner sent the late-registration email to
+  V2D_Challenge@nvidia.com on 31 Oct 11:04 UTC from ahmet@ophanic.com (Gmail sent folder). No reply as of 10 Nov.
+- A follow-up reply in the same thread is saved as a Gmail draft in that account (not sent): final standing, and four
+  questions (registration accepted? where and when to send the container and technical report? CoRL poster session,
+  remote? Industry Innovation Award eligibility?), plus a list of settings to be declared in the technical report.
+  The owner reviews and sends.
+
