@@ -43,10 +43,13 @@ Kaggle timestamps converted to Pacific time (PDT until 1 Nov 02:00, then PST):
 - The strict-counting estimate in the first version (AUC 0.847, CD-O 0.290) is withdrawn: it assumed no final-days window.
 
 ### 2. Dependence on public data: present in the submitted pipeline [F, from our own records]
+- **What is not the problem:** every submitted mesh is our own reconstruction or generation; no public scan was ever submitted as a mesh (the case the organisers check for in ruling 32). Under the FAQ text we worked from ("submit their own reconstructed meshes") we were compliant. The Discord rulings of 21-28 Oct, which we did not see during the challenge, set a stricter bar: no public videos as reconstruction input and no dependency on public data in the final pipeline.
+- **What is the problem: the inputs and the selection.** Our meshes were built from public-episode data, and the eval-built alternatives (E0, E0b) were not adopted because they were less accurate:
 - Tracking templates: eval references were tracked with `library_v3` meshes, fused from public-episode videos (and, for
   libraries v1-v4, along scan-templated tracks; disclosed 26 Oct).
 - Submitted meshes: the C0 kit-of-parts meshes and later ones "come from public episodes like library_v3"
-  (mesh lane, 27 Oct); Tier B, Tier B+, G2, G3 and round R choices were selected by Chamfer distance to the public scans
+  (mesh lane, 27 Oct); the generated meshes (G2, G3, round R) were generated from public-episode images (e.g. the 13j rack
+  `hy21 ep12`: Hunyuan3D-2.1 on public episode 12); Tier B, Tier B+, G2, G3 and round R choices were selected by Chamfer distance to the public scans
   (GT-informed, owner-approved, stated in every upload description); 13p chose meshes by public pose CV.
 - Development uses (detection rules, gates, public-twin tests) are allowed by ruling 19.
 - So, as built, the verification container could not reproduce our counted files "from the track 3 inputs" with "no
