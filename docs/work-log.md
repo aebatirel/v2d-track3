@@ -5495,4 +5495,5 @@ arm and a no-policy replay floor to stage B.
   questions (registration accepted? where and when to send the container and technical report? CoRL poster session,
   remote? Industry Innovation Award eligibility?), plus a list of settings to be declared in the technical report.
   The owner reviews and sends.
+- 08:12 UTC: the owner sent the follow-up from ahmet@ophanic.com (Gmail thread now 2 messages).
 
