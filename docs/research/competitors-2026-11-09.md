@@ -95,6 +95,7 @@ timelines.
 - Not found in any top-team source: marker tracking, a learned pose corrector, global trajectory optimisation.
 
 ### 2.5 Public scans as tracking templates: a grey zone [F for SRL in development, I beyond that]
+- **Rule clarified by the organisers (kickoff livestream, about 10 Oct, https://www.youtube.com/watch?v=U8GHIxXqHLQ at ~1:01:30) [F]:** for Track 3, participants must reconstruct "all the object meshes", both the mesh that is scored "and any object mesh that you use as part of your pipeline". So tracking with the public scans is not allowed, not a grey zone. Our route A was right; our disclosed early provenance issues (libraries v1-v4 fused along scan-templated tracks) and GT-informed mesh choices are the items the container review may question.
 - SRL's development baseline tracked with `mesh='provided'` (the public scans) and then moved the poses onto the
   submission mesh by a rigid transform (`old_from_submission`; mean surface distance 2.3 mm pot, 2.9 mm lid).
 - Purple's default FoundationPose output is named `T_A_from_scan`; a later variant is "fresh own-model FP ... no
@@ -310,4 +311,19 @@ the cause of the 4.42 -> 1.95 cm step on 28 Oct is not visible.
   public episodes: mean AUC +0.0018 (9 better / 11 worse). The pre-registered gate (colour vs grey with the same
   per-episode repainting, +0.0144 mean) failed on one episode at −0.0212. Colour tracking alone does not explain the
   gap on our pipeline; the hypothesis above is not supported. Cost $3.72 (including an unintended duplicate box).
+
+## 7. The organisers' kickoff livestream (about 10 Oct 2026; transcript read 10 Nov) [F]
+https://www.youtube.com/watch?v=U8GHIxXqHLQ (NVIDIA Omniverse). Points that matter now:
+- Public meshes (~1:01:30): every mesh used anywhere in a Track 3 pipeline must be reconstructed (see §2.5).
+- CoRL (~18:24, ~1:07:02): "teams with valid submissions are invited to present posters" at the tutorial; the
+  organisers said they would email teams about poster and oral slots. The 12 Nov schedule has a poster session
+  3:30-4:00 PM local.
+- Industry Innovation Award (~50:25-54:41): eligibility = a valid leaderboard entry plus a technical report. Judges
+  score 1-5 on economic viability, data flywheel, innovation and complexity reduction; each judge nominates three per
+  track; the panel picks one winner per track (ties broken by those pillars in order); scores and rationale to be
+  published at CoRL with the announcement. Prize per track: DGX Spark plus $3K GPU credits.
+- AI tools (~44:12-48:00): document what the tools did, resource use (tokens, compute time, wall clock), which parts
+  are automatable, and make the pipeline reproducible.
+- Ranking (~43:03): sum of the per-board ranks; ties go to the team with the best single-board placement.
+- Post-deadline large-scale evaluation (~20:10): does not change leaderboard prizes; it feeds the industry award.
 

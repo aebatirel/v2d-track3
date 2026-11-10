@@ -5482,3 +5482,9 @@ arm and a no-policy replay floor to stage B.
 - Reading: no meaningful difference for our pipeline; does not explain the board gap. Full record in
   `docs/analysis/colourcam-20261109/README.md`; competitor note §6.6 updated.
 
+### 2026-11-10 — organisers' kickoff livestream read (owner pasted the transcript)
+- Video https://www.youtube.com/watch?v=U8GHIxXqHLQ is the challenge kickoff (about 10 Oct), not the winners' session.
+- Recorded in `docs/research/competitors-2026-11-09.md` §2.5 and §7: Track 3 must reconstruct every mesh used anywhere in
+  the pipeline (scan templates not allowed); teams with valid submissions were to be emailed about CoRL posters and orals;
+  the Industry Innovation Award needs a valid entry plus a technical report; AI-tool documentation asked for.
+

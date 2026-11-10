@@ -1,5 +1,10 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-10: CoRL session 12 Nov (Hilton Austin, Salon D): poster session 3:30-4:00 PM, winners 5:00-6:00 PM CST
+- Kickoff livestream (U8GHIxXqHLQ) says teams with valid submissions are invited to present posters and that the
+  organisers email about slots; the Industry Innovation Award needs a technical report. Owner: check the inbox for the
+  organisers' email; no technical report or container submission is recorded in the repo.
+
 ## 2026-11-09 ~22:10 UTC: colour-camera tracking test DONE — gate FAILED; no meaningful difference ($3.72)
 - Result `docs/analysis/colourcam-20261109/README.md` [D, 20 public episodes, registered scorer]:
   - colour camera vs today's grey tracker: mean AUC 0.8900 -> 0.8917 (+0.0018), 9 better / 11 worse;
