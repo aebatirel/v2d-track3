@@ -12418,3 +12418,16 @@ score.
   - The Franka fix passes on 3/3 trainings (0.947, 0.959, 0.940).
   - Box D self-destroyed; ledger actual $5.00 [E]. No boxes are running.
   - Credit $38.37 at 15:30 UTC: phases 0–1 + fixes cost ≈ $28.90 [M] (from $67.25).
+
+### 2026-11-10 ~13:55 UTC — pitch-deck asset catalogue (owner: "detailed sources of different images videos etc. for a pitch deck")
+- Catalogue: `docs/research/work/embodiment-showcase-20261106/PITCH_ASSETS.md`. It lists every asset with what it shows,
+  specs, suggested captions, footnotes and licences. Licences checked [M]:
+  - the V2D dataset is CC BY 4.0, attribution required;
+  - the Inspire model (derived from vendor CAD) and the Panda gripper files (no licence file) need a check before
+    public release.
+- Bundle: `pitch_assets_ep27.zip` (55 MB, 49 files), sent to the owner and stored in the HF store
+  `showcase/outputs/20261106/`. New today (CPU, $0):
+  - the failed Franka run re-rendered with the final camera;
+  - a before/after Franka clip;
+  - key-moment stills;
+  - a 1280-wide copy of the input video.
