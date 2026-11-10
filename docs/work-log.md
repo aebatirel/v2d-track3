@@ -5512,3 +5512,10 @@ arm and a no-policy replay floor to stage B.
   three questions, one line on why each person: mverghese@, yachang@, zeol@, xinghaoz@, shalinj@, aanwar@, jwelsh@,
   dzou@, michalin@, chenranl@ (all @nvidia.com).
 
+### 2026-11-10 ~09:00 UTC — Discord Track 3 channel read; compliance check
+- Owner pasted the full channel (50 messages). Rulings and our position in `docs/analysis/compliance-20261110.md`.
+- Kaggle submission list (26, all `complete`) converted to Pacific weeks: 2 / 7 / 17. Over the 5-per-week limit by 2 and
+  12. Strict first-five counting [E]: AUC 0.84738, CD-O 0.29029.
+- Public-data dependency of the submitted pipeline confirmed from our own records (templates, meshes, GT-informed
+  selection). The earlier competitor note understated the weekly limit; corrected here.
+
