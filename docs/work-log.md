@@ -5495,5 +5495,17 @@ arm and a no-policy replay floor to stage B.
   questions (registration accepted? where and when to send the container and technical report? CoRL poster session,
   remote? Industry Innovation Award eligibility?), plus a list of settings to be declared in the technical report.
   The owner reviews and sends.
-- 08:12 UTC: the owner sent the follow-up from ahmet@ophanic.com (Gmail thread now 2 messages).
+- 08:12 UTC: the owner sent the follow-up from ahmet@ophanic.com (Gmail thread now 2 messages).- Further contacts (owner asked), from public sources:
+  - organisers' work addresses in the commit metadata of github.com/nvidia-isaac/video_to_data:
+    mverghese@nvidia.com (Mrinal Verghese: leaderboard, submission kit, container guide), yachang@nvidia.com (Yan Chang:
+    lead, challenge and tutorial pages), zeol@nvidia.com (Zeo Liu: presented Track 3 in the kickoff stream),
+    xinghaoz@nvidia.com, shalinj@nvidia.com, aanwar@nvidia.com, jwelsh@nvidia.com, dzou@nvidia.com, michalin@nvidia.com,
+    chenranl@nvidia.com;
+  - no public address found for Naema Bhatti (PM, Industry Innovation Award);
+  - the FAQ (19 Oct) mentions a Discord channel without a link; the kickoff stream pointed to the NVIDIA Omniverse
+    Discord (discord.gg/nvidiaomniverse).
+- Kit `CONTAINER_SUBMISSION.md` (main): the container link, tarball sha256 and image digest go "with your technical
+  report"; no address or deadline given.
+- Gmail draft (ahmet@ophanic.com, not sent): to mverghese@nvidia.com, cc yachang@, zeol@ and the challenge inbox, with the
+  three questions (registration, where and when to send report and container, CoRL poster).
 
