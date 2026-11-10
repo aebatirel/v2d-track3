@@ -5507,5 +5507,8 @@ arm and a no-policy replay floor to stage B.
 - Kit `CONTAINER_SUBMISSION.md` (main): the container link, tarball sha256 and image digest go "with your technical
   report"; no address or deadline given.
 - Gmail draft (ahmet@ophanic.com, not sent): to mverghese@nvidia.com, cc yachang@, zeol@ and the challenge inbox, with the
-  three questions (registration, where and when to send report and container, CoRL poster).
+  three questions (registration, where and when to send report and container, CoRL poster).- Owner: "mail all individually". The combined draft was deleted and ten separate emails were sent from
+  ahmet@ophanic.com, no cc, subject "V2D Track 3, team Imitation.Tech: registration and award submission", same
+  three questions, one line on why each person: mverghese@, yachang@, zeol@, xinghaoz@, shalinj@, aanwar@, jwelsh@,
+  dzou@, michalin@, chenranl@ (all @nvidia.com).
 
