@@ -20,22 +20,27 @@ as of 10 Nov 08:30 UTC). Labels: [F] fact from a source, [M] measured, [E] estim
 | 50 | 5 Nov | Clear abuse was warned and invalidated; good-faith cases with no significant advantage were not punished. |
 
 ## Where we stand
-### 1. Weekly submission limit: exceeded in two weeks [M]
-Kaggle timestamps converted to Pacific time (PDT until 1 Nov 02:00, then PST):
-| Week (Sun-Sat, Pacific) | Our submissions | Limit | Over by | Packs |
-|---|---|---|---|---|
-| 18-24 Oct | 2 | 5 | 0 | 1, 2 (25 Oct 00:58 UTC = 24 Oct PDT) |
-| 25-31 Oct | 7 | 5 | 2 | 3, 4, 5, 6, 7, 9a+, 9b (1 Nov 04:58 UTC = 31 Oct PDT) |
-| 1-7 Nov | 17 | 5 | 12 | 10, 11, 12b, 12c, 12d, 13, 13b, 12e, 13e, 13f, 13f1, 13p, 13p2, 14p, 13h, 13i, 13j |
+### 1. Weekly submission limit: exceeded by 2 in one week; the counted files are inside the unlimited final days [M]
+**Correction (10 Nov, after the owner's note "last 4 days were unlimited"):** the kit's written policy
+(`config/tracks.json`) is "five (5) Submissions per week, with unlimited Submissions during the final three (3) days of
+the Competition Period" (freeze 4 Nov 2026, 5:00 p.m. EST = 22:00 UTC). The first version of this section ignored that
+window and overstated the problem.
 
-- The limit was known: `docs/research/track3-requirements.md` (4 Oct) records "5 submissions/week per track and tier" from
-  the FAQ. Kaggle itself allowed 25 per day, so nothing blocked the uploads. The competitor note of 9 Nov mentioned the
-  limit only in passing; this is the correction.
-- Our counted files are far past the fifth of their week: 14p is the 14th and 13j the 17th upload of the week of 1 Nov.
-- If only the first five per week counted [E]: best AUC 0.84738 (12c) instead of 0.88571; best CD-O 0.29029 (12d)
-  instead of 0.23856; 12c's other boards RPE 3.01 cm, MPPE 2.47 cm, SP-SR 0.85, MP-SR 0.75.
-- No invalidation or warning has reached us. Ruling 50 says good-faith cases without significant advantage were not
-  punished; whether our case counts as that is the organisers' decision.
+Kaggle timestamps converted to Pacific time (PDT until 1 Nov 02:00, then PST):
+| Week (Sun-Sat, Pacific) | Our submissions | Outside the final-days window | Over the limit |
+|---|---|---|---|
+| 18-24 Oct | 2 | 2 | 0 |
+| 25-31 Oct | 7 | 7 | **2** (6th 9a+, 31 Oct 18:13 UTC; 7th 9b, 1 Nov 04:58 UTC = 31 Oct PDT) |
+| 1-7 Nov | 17 | 2 or 3 (10 and 11, plus 12b at 2 Nov 06:37 UTC if the window starts at midnight Pacific) | 0 |
+
+- The final-days window starts on 1 Nov 22:00 UTC (72 h before the freeze) or at midnight of 2 Nov (EST: 05:00 UTC;
+  Pacific: 08:00 UTC). Under every reading, 12c onwards (2 Nov 08:38 UTC), including both counted files 14p and 13j,
+  fall inside it.
+- So the only excess is 2 uploads in the week of 25-31 Oct (packs 9a+ and 9b). Neither is a counted best file.
+  The limit was known (`docs/research/track3-requirements.md`, 4 Oct; work log 30 Oct: "already above the written weekly
+  figure; Kaggle did not block them").
+- Ruling 50 (5 Nov): good-faith cases without significant advantage were not punished. No warning has reached us.
+- The strict-counting estimate in the first version (AUC 0.847, CD-O 0.290) is withdrawn: it assumed no final-days window.
 
 ### 2. Dependence on public data: present in the submitted pipeline [F, from our own records]
 - Tracking templates: eval references were tracked with `library_v3` meshes, fused from public-episode videos (and, for

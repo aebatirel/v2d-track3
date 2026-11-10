@@ -1,11 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-10 ~09:00 UTC: Discord rulings read; our entry has two real compliance problems
-- `docs/analysis/compliance-20261110.md`: (1) the 5-per-week limit (Sun-Sat Pacific) was exceeded: 7 uploads in the
-  week of 25 Oct and 17 in the week of 1 Nov; our counted files are the 14th and 17th of their week; (2) the submitted
-  pipeline depends on public data (library_v3 templates and meshes from public videos; GT-informed mesh choices), which
-  the organisers ruled out for the final pipeline and the container check. Also: one final submission only; Apache 2.0
-  required (no LICENSE file). No invalidation or warning so far. Owner decides on disclosure.
+## 2026-11-10 ~09:00 UTC: Discord rulings read; one real compliance problem (public data), one small one
+- `docs/analysis/compliance-20261110.md`: (1) public data in the submitted pipeline (library_v3 templates and meshes
+  from public videos; GT-informed mesh choices), which the organisers ruled out for the final pipeline and the container
+  check; (2) the weekly limit was exceeded by 2 uploads in the week of 25-31 Oct only; the counted files 14p and 13j are
+  inside the kit's "unlimited final three days" window (corrected after the owner's note). Also: one final submission
+  only; Apache 2.0 required (no LICENSE file). No invalidation or warning so far. Owner decides on disclosure.
 
 ## 2026-11-10: CoRL session 12 Nov (Hilton Austin, Salon D): poster session 3:30-4:00 PM, winners 5:00-6:00 PM CST
 - Kickoff livestream (U8GHIxXqHLQ) says teams with valid submissions are invited to present posters and that the

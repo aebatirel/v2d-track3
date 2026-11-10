@@ -5517,5 +5517,7 @@ arm and a no-policy replay floor to stage B.
 - Kaggle submission list (26, all `complete`) converted to Pacific weeks: 2 / 7 / 17. Over the 5-per-week limit by 2 and
   12. Strict first-five counting [E]: AUC 0.84738, CD-O 0.29029.
 - Public-data dependency of the submitted pipeline confirmed from our own records (templates, meshes, GT-informed
-  selection). The earlier competitor note understated the weekly limit; corrected here.
+  selection). The earlier competitor note understated the weekly limit; corrected here.- Correction (owner: "last 4 days were unlimited"): the kit policy is 5 per week "with unlimited Submissions during
+  the final three (3) days". Recounted: only the week of 25-31 Oct is over (7 vs 5: packs 9a+ and 9b); the week of
+  1-7 Nov has 2-3 uploads before the window; 14p and 13j are inside it. The strict-counting estimate is withdrawn.
 
