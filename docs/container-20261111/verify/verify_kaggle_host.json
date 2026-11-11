@@ -1,0 +1,107 @@
+{
+ "manifest": "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/container/build/submission/submission.json",
+ "results": [
+  {
+   "submission": "container",
+   "check": "checked-out commit matches code.commit_url",
+   "status": "PASS",
+   "detail": "HEAD 9610329e1177, manifest 9610329e1177"
+  },
+  {
+   "submission": "container",
+   "check": "no tracked file differs from the commit",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "submitted file is in the container",
+   "status": "PASS",
+   "detail": "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/container/build/submission/submitted/track3_submission.parquet sha256 d917b0022336"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "provenance columns present",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "submitted code_commit_url is the container's commit",
+   "status": "PASS",
+   "detail": "9610329e1177"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "packer_script_sha256 matches the container",
+   "status": "PASS",
+   "detail": "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/container/build/submission/kit/tools/pack_submission.py 49b13052e3bb"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "uploader_script_sha256 matches the container",
+   "status": "PASS",
+   "detail": "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/container/build/submission/kit/submit/v2d_submit.py d31d4a7c179b"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "eval_script_sha256 matches the container",
+   "status": "PASS",
+   "detail": "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/container/build/submission/kit/flash_chord/scripts/evaluate_policy.py 160d24f5fbeb"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "eval_code_sha256 matches the container",
+   "status": "FAIL",
+   "detail": "evaluation package not found: /opt/v2d/robotic_grounding/flash_chord/src/flash_chord/evaluation"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "checkpoint_sha256 matches the container for all 20 episodes",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "re-packed stored outputs match the submitted file",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "Kaggle submission 57925185 (add_auc) matches",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "Kaggle submission 57925189 (spider_sr) matches",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "Kaggle submission 57925196 (maniptrans_sr) matches",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "Kaggle submission 57925202 (rpe_cm) matches",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "Kaggle submission 57925211 (mppe_cm) matches",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "Kaggle submission 57925216 (cd_o_cm) matches",
+   "status": "PASS",
+   "detail": ""
+  }
+ ]
+}

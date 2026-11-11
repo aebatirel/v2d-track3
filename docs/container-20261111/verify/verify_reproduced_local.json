@@ -1,0 +1,89 @@
+{
+ "manifest": "/submission/submission.json",
+ "results": [
+  {
+   "submission": "container",
+   "check": "checked-out commit matches code.commit_url",
+   "status": "PASS",
+   "detail": "HEAD 9610329e1177, manifest 9610329e1177"
+  },
+  {
+   "submission": "container",
+   "check": "no tracked file differs from the commit",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "submitted file is in the container",
+   "status": "PASS",
+   "detail": "/submission/submitted/track3_submission.parquet sha256 d917b0022336"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "provenance columns present",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "submitted code_commit_url is the container's commit",
+   "status": "PASS",
+   "detail": "9610329e1177"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "packer_script_sha256 matches the container",
+   "status": "PASS",
+   "detail": "/submission/kit/tools/pack_submission.py 49b13052e3bb"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "uploader_script_sha256 matches the container",
+   "status": "PASS",
+   "detail": "/submission/kit/submit/v2d_submit.py d31d4a7c179b"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "eval_script_sha256 matches the container",
+   "status": "PASS",
+   "detail": "/submission/kit/flash_chord/scripts/evaluate_policy.py 160d24f5fbeb"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "eval_code_sha256 matches the container",
+   "status": "PASS",
+   "detail": "/opt/v2d/robotic_grounding/flash_chord/src/flash_chord/evaluation b1b3ebe3ae46"
+  },
+  {
+   "submission": "track3_13h",
+   "check": "checkpoint_sha256 matches the container for all 20 episodes",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "re-packed stored outputs match the submitted file",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "reproduced file has the submitted rows",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "reproduced provenance equals the submitted provenance",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "submission": "track3_13h",
+   "check": "reproduced object positions vs submitted",
+   "status": "INFO",
+   "detail": "median 0.55 cm, 95th percentile 2.67 cm (score the reproduced file to compare with the leaderboard)"
+  }
+ ]
+}

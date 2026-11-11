@@ -1,0 +1,40 @@
+Authentication required to call the Kaggle API.
+
+First, you will need a Kaggle account. You can sign up at
+  https://www.kaggle.com/account/login
+
+Recommended: log in with OAuth via a web-based authorization flow.
+No token to manage; credentials are cached locally for you.
+    kaggle auth login
+
+If you'd rather not use OAuth, generate an API token at
+  https://www.kaggle.com/settings/api  (click "Generate New Token" under "API")
+and supply it to the CLI in one of these ways:
+
+  Option A: Environment variable
+    export KAGGLE_API_TOKEN=xxxxxxxxxxxxxx  # token copied from the settings UI
+
+  Option B: API token file
+    Save the token to ~/.kaggle/access_token
+container Imitation.Tech
+  PASS  checked-out commit matches code.commit_url: HEAD 9610329e1177, manifest 9610329e1177
+  PASS  no tracked file differs from the commit
+
+track3_13h (track_3)
+  PASS  submitted file is in the container: /tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/container/build/submission/submitted/track3_submission.parquet sha256 d917b0022336
+  PASS  provenance columns present
+  PASS  submitted code_commit_url is the container's commit: 9610329e1177
+  PASS  packer_script_sha256 matches the container: /tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/container/build/submission/kit/tools/pack_submission.py 49b13052e3bb
+  PASS  uploader_script_sha256 matches the container: /tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/container/build/submission/kit/submit/v2d_submit.py d31d4a7c179b
+  PASS  eval_script_sha256 matches the container: /tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/container/build/submission/kit/flash_chord/scripts/evaluate_policy.py 160d24f5fbeb
+  FAIL  eval_code_sha256 matches the container: evaluation package not found: /opt/v2d/robotic_grounding/flash_chord/src/flash_chord/evaluation
+  PASS  checkpoint_sha256 matches the container for all 20 episodes
+  PASS  re-packed stored outputs match the submitted file
+  PASS  Kaggle submission 57925185 (add_auc) matches
+  PASS  Kaggle submission 57925189 (spider_sr) matches
+  PASS  Kaggle submission 57925196 (maniptrans_sr) matches
+  PASS  Kaggle submission 57925202 (rpe_cm) matches
+  PASS  Kaggle submission 57925211 (mppe_cm) matches
+  PASS  Kaggle submission 57925216 (cd_o_cm) matches
+
+16 pass, 1 fail, 0 warn, 0 skip

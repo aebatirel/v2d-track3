@@ -1,0 +1,54 @@
+{
+  "schema": "v2d_container_v1",
+  "team": "Imitation.Tech",
+  "code": {
+    "path": "code",
+    "commit_url": "https://github.com/aebatirel/v2d-track3/commit/9610329e1177921827a9b66e38103e746efd8a0c"
+  },
+  "kit": "kit",
+  "submissions": [
+    {
+      "label": "track3_13h",
+      "track": "track_3",
+      "file": "submitted/track3_submission.parquet",
+      "kaggle_submission_ids": {
+        "add_auc": 57925185,
+        "spider_sr": 57925189,
+        "maniptrans_sr": 57925196,
+        "rpe_cm": 57925202,
+        "mppe_cm": 57925211,
+        "cd_o_cm": 57925216
+      },
+      "evaluator": {
+        "script": "kit/flash_chord/scripts/evaluate_policy.py",
+        "evaluation_package": "/opt/v2d/robotic_grounding/flash_chord/src/flash_chord/evaluation"
+      },
+      "checkpoints": {
+        "1": "weights/track3_13h/episode_000001.safetensors",
+        "3": "weights/track3_13h/episode_000003.safetensors",
+        "5": "weights/track3_13h/episode_000005.safetensors",
+        "6": "weights/track3_13h/episode_000006.safetensors",
+        "8": "weights/track3_13h/episode_000008.safetensors",
+        "10": "weights/track3_13h/episode_000010.safetensors",
+        "14": "weights/track3_13h/episode_000014.safetensors",
+        "15": "weights/track3_13h/episode_000015.safetensors",
+        "16": "weights/track3_13h/episode_000016.safetensors",
+        "19": "weights/track3_13h/episode_000019.safetensors",
+        "20": "weights/track3_13h/episode_000020.safetensors",
+        "25": "weights/track3_13h/episode_000025.safetensors",
+        "28": "weights/track3_13h/episode_000028.safetensors",
+        "30": "weights/track3_13h/episode_000030.safetensors",
+        "32": "weights/track3_13h/episode_000032.safetensors",
+        "33": "weights/track3_13h/episode_000033.safetensors",
+        "35": "weights/track3_13h/episode_000035.safetensors",
+        "36": "weights/track3_13h/episode_000036.safetensors",
+        "37": "weights/track3_13h/episode_000037.safetensors",
+        "38": "weights/track3_13h/episode_000038.safetensors"
+      },
+      "outputs": "outputs/track3_13h/rollouts",
+      "meshes": "meshes/track3_13h",
+      "eval_inputs": "eval_inputs/track3_13h",
+      "cd_o_file": "submitted/track3_submission.cd-o.parquet"
+    }
+  ]
+}

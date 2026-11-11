@@ -1,0 +1,16 @@
+container Imitation.Tech
+  PASS  checked-out commit matches code.commit_url: HEAD 9610329e1177, manifest 9610329e1177
+  PASS  no tracked file differs from the commit
+
+track3_13h (track_3)
+  PASS  submitted file is in the container: /submission/submitted/track3_submission.parquet sha256 d917b0022336
+  PASS  provenance columns present
+  PASS  submitted code_commit_url is the container's commit: 9610329e1177
+  PASS  packer_script_sha256 matches the container: /submission/kit/tools/pack_submission.py 49b13052e3bb
+  PASS  uploader_script_sha256 matches the container: /submission/kit/submit/v2d_submit.py d31d4a7c179b
+  PASS  eval_script_sha256 matches the container: /submission/kit/flash_chord/scripts/evaluate_policy.py 160d24f5fbeb
+  PASS  eval_code_sha256 matches the container: /opt/v2d/robotic_grounding/flash_chord/src/flash_chord/evaluation b1b3ebe3ae46
+  PASS  checkpoint_sha256 matches the container for all 20 episodes
+  PASS  re-packed stored outputs match the submitted file
+
+11 pass, 0 fail, 0 warn, 0 skip

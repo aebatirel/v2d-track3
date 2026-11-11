@@ -1,0 +1,3002 @@
+{
+ "19": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep19/episode_000019.json",
+   "add_auc": 0.9408244680851063,
+   "mppe_cm": 1.7225033487705992,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.5728521169292673,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep19/episode_000019.json",
+   "add_auc": 0.9261968085106382,
+   "mppe_cm": 1.844254532078694,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8029400923392163,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep19/episode_000019.json",
+   "add_auc": 0.9158244680851064,
+   "mppe_cm": 1.9487401176647539,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.089133305185384,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep19/episode_000019.json",
+   "add_auc": 0.9466755319148936,
+   "mppe_cm": 1.6030827368940939,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.521159890432869,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep19/episode_000019.json",
+   "add_auc": 0.9389627659574469,
+   "mppe_cm": 1.6712386623023403,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.409267296442233,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep19/episode_000019.json",
+   "add_auc": 0.8251329787234042,
+   "mppe_cm": 2.9659575288763746,
+   "maniptrans_sr": 1.0,
+   "rpe": 4.888771485145278,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep19/episode_000019.json",
+   "add_auc": 0.9050531914893616,
+   "mppe_cm": 2.0317876467339215,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.9633506717045073,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep19/episode_000019.json",
+   "add_auc": 0.9368351063829787,
+   "mppe_cm": 1.695056943371741,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.337301996441759,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep19/episode_000019.json",
+   "add_auc": 0.9327127659574468,
+   "mppe_cm": 1.7595713577260363,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.605647469090234,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep19/episode_000019.json",
+   "add_auc": 0.9285904255319148,
+   "mppe_cm": 1.8129328678056782,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7921525427190934,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep19/episode_000019.json",
+   "add_auc": 0.9355053191489362,
+   "mppe_cm": 1.768422325939612,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.97502297087444,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep19/episode_000019.json",
+   "add_auc": 0.885904255319149,
+   "mppe_cm": 2.2112927822984716,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.592246125436139,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep19/episode_000019.json",
+   "add_auc": 0.9263297872340425,
+   "mppe_cm": 1.792914175146296,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6811581329061784,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep19/episode_000019.json",
+   "add_auc": 0.9445478723404255,
+   "mppe_cm": 1.62468559786611,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4243004372606203,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep19/episode_000019.json",
+   "add_auc": 0.9429521276595745,
+   "mppe_cm": 1.6842289567599862,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.38329201470174,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep19/episode_000019.json",
+   "add_auc": 0.9293882978723405,
+   "mppe_cm": 1.8239033066651926,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7811025257973525,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep19/episode_000019.json",
+   "add_auc": 0.928191489361702,
+   "mppe_cm": 1.823239539429232,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7961353018015442,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep19/episode_000019.json",
+   "add_auc": 0.9188829787234043,
+   "mppe_cm": 1.8944436924023798,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.880832877997492,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/results/episode_000019.json",
+   "add_auc": 0.9188829787234043,
+   "mppe_cm": 1.8944436924023798,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.880832877997492,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep19/episode_000019.json",
+   "add_auc": 0.9384308510638297,
+   "mppe_cm": 1.714317966213149,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4480881374467174,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep19/episode_000019.json",
+   "add_auc": 0.9289893617021276,
+   "mppe_cm": 1.8589268452015102,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4909688920190916,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep19/episode_000019.json",
+   "add_auc": 0.9303191489361702,
+   "mppe_cm": 1.806512536248888,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6316690231524644,
+   "chord_sr": 1.0
+  }
+ ],
+ "25": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep25/episode_000025.json",
+   "add_auc": 0.8840414325842696,
+   "mppe_cm": 2.382348178465641,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.0582673770401003,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep25/episode_000025.json",
+   "add_auc": 0.9124824438202247,
+   "mppe_cm": 2.0522232809341823,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4669145079051495,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep25/episode_000025.json",
+   "add_auc": 0.8764044943820225,
+   "mppe_cm": 2.5205467696543327,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.766942611954503,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep25/episode_000025.json",
+   "add_auc": 0.8723665730337078,
+   "mppe_cm": 2.65495989305332,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.0922371129338635,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep25/episode_000025.json",
+   "add_auc": 0.90625,
+   "mppe_cm": 2.0618994148027108,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.422173789444541,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep25/episode_000025.json",
+   "add_auc": 0.8238237359550562,
+   "mppe_cm": 3.1349522980685074,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.701796573669792,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep25/episode_000025.json",
+   "add_auc": 0.8793012640449438,
+   "mppe_cm": 2.389827794968449,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.9651445807525105,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep25/episode_000025.json",
+   "add_auc": 0.8126755617977528,
+   "mppe_cm": 3.3970804497182705,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8311323713102374,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep25/episode_000025.json",
+   "add_auc": 0.8450667134831461,
+   "mppe_cm": 2.759549261454314,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6327152333669104,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep25/episode_000025.json",
+   "add_auc": 0.578125,
+   "mppe_cm": 11.282658442778033,
+   "maniptrans_sr": 0.0,
+   "rpe": 14.505669382297453,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep25/episode_000025.json",
+   "add_auc": 0.9044066011235955,
+   "mppe_cm": 2.065894250887503,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4910034501266174,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep25/episode_000025.json",
+   "add_auc": 0.8853581460674158,
+   "mppe_cm": 2.3958193053451793,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6545768694119314,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep25/episode_000025.json",
+   "add_auc": 0.8707865168539326,
+   "mppe_cm": 2.4634959016845794,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.826653123900727,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep25/episode_000025.json",
+   "add_auc": 0.8800035112359551,
+   "mppe_cm": 2.380188964891702,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.959131870328841,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep25/episode_000025.json",
+   "add_auc": 0.8517380617977528,
+   "mppe_cm": 2.6346605996281967,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.230265781206201,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep25/episode_000025.json",
+   "add_auc": 0.8764044943820225,
+   "mppe_cm": 2.4191348230985903,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.949446557902926,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep25/episode_000025.json",
+   "add_auc": 0.8616573033707864,
+   "mppe_cm": 2.5474333411973116,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.9798964899567424,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep25/episode_000025.json",
+   "add_auc": 0.876316713483146,
+   "mppe_cm": 2.391238367371869,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.851590231103494,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep25/episode_000025.json",
+   "add_auc": 0.8645540730337078,
+   "mppe_cm": 2.660771044635992,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.3169286318685978,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep25/episode_000025.json",
+   "add_auc": 0.8422577247191012,
+   "mppe_cm": 2.895884396538388,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.718213396507699,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep25/episode_000025.json",
+   "add_auc": 0.8699087078651685,
+   "mppe_cm": 2.370784307839178,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.963047621651787,
+   "chord_sr": 1.0
+  }
+ ],
+ "28": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep28/episode_000028.json",
+   "add_auc": 0.8596590909090909,
+   "mppe_cm": 2.5057853792708187,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3949136830257616,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep28/episode_000028.json",
+   "add_auc": 0.9427556818181818,
+   "mppe_cm": 1.6247539056929858,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.8527779599358318,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep28/episode_000028.json",
+   "add_auc": 0.9288352272727273,
+   "mppe_cm": 1.8389247059317648,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.9034851138245206,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep28/episode_000028.json",
+   "add_auc": 0.9467329545454546,
+   "mppe_cm": 1.5093855897314044,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6534098717937291,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep28/episode_000028.json",
+   "add_auc": 0.9492897727272727,
+   "mppe_cm": 1.4317042923278251,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.502178390880634,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep28/episode_000028.json",
+   "add_auc": 0.8775568181818182,
+   "mppe_cm": 2.617669669813311,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4961413967657426,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep28/episode_000028.json",
+   "add_auc": 0.9086647727272728,
+   "mppe_cm": 1.970640892889392,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.9055160638010795,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep28/episode_000028.json",
+   "add_auc": 0.9556818181818182,
+   "mppe_cm": 1.427790628362461,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4063445921570046,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep28/episode_000028.json",
+   "add_auc": 0.9204545454545454,
+   "mppe_cm": 1.9983589964900799,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.9518451537783996,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep28/episode_000028.json",
+   "add_auc": 0.9515625,
+   "mppe_cm": 1.4419175450203243,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4416761599848602,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep28/episode_000028.json",
+   "add_auc": 0.9203125,
+   "mppe_cm": 1.640904957174679,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.72423709127821,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep28/episode_000028.json",
+   "add_auc": 0.9261363636363636,
+   "mppe_cm": 1.9156828286968897,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.9033193968603388,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep28/episode_000028.json",
+   "add_auc": 0.9325284090909091,
+   "mppe_cm": 1.749862646129024,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.7594668194997811,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep28/episode_000028.json",
+   "add_auc": 0.9426136363636364,
+   "mppe_cm": 1.693590445193082,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6639547656593534,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep28/episode_000028.json",
+   "add_auc": 0.9522727272727273,
+   "mppe_cm": 1.4579081010966943,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.528490988738314,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep28/episode_000028.json",
+   "add_auc": 0.9464488636363636,
+   "mppe_cm": 1.5411831363739887,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.5951090571446447,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep28/episode_000028.json",
+   "add_auc": 0.946590909090909,
+   "mppe_cm": 1.4938286390232192,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.5626789574722029,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep28/episode_000028.json",
+   "add_auc": 0.6870738636363636,
+   "mppe_cm": 7.364074834049829,
+   "maniptrans_sr": 0.0,
+   "rpe": 7.117619693192674,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep28/episode_000028.json",
+   "add_auc": 0.9407670454545455,
+   "mppe_cm": 1.680729908046575,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.677022750574626,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep28/episode_000028.json",
+   "add_auc": 0.9413352272727273,
+   "mppe_cm": 1.6048723812866614,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6938524475247925,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep28/episode_000028.json",
+   "add_auc": 0.8987215909090909,
+   "mppe_cm": 2.208185393847288,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.544060762537627,
+   "chord_sr": 1.0
+  }
+ ],
+ "3": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep3/episode_000003.json",
+   "add_auc": 0.9334065495207668,
+   "mppe_cm": 1.6610571318234326,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6596852922811003,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep3/episode_000003.json",
+   "add_auc": 0.9189297124600639,
+   "mppe_cm": 1.9458853354455126,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6574655504669775,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep3/episode_000003.json",
+   "add_auc": 0.9304113418530351,
+   "mppe_cm": 1.695369789906425,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.535064139007189,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/results/episode_000003.json",
+   "add_auc": 0.9304113418530351,
+   "mppe_cm": 1.695369789906425,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.535064139007189,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep3/episode_000003.json",
+   "add_auc": 0.8984624600638977,
+   "mppe_cm": 2.0446371775983123,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.71568772421939,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep3/episode_000003.json",
+   "add_auc": 0.9379992012779552,
+   "mppe_cm": 1.623559789090322,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3088954013536034,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep3/episode_000003.json",
+   "add_auc": 0.9152356230031949,
+   "mppe_cm": 1.9743951618737352,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.146931124213798,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep3/episode_000003.json",
+   "add_auc": 0.6945886581469649,
+   "mppe_cm": 4.459645803871745,
+   "maniptrans_sr": 0.0,
+   "rpe": 5.513642456981049,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep3/episode_000003.json",
+   "add_auc": 0.9236222044728435,
+   "mppe_cm": 1.722090526709264,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8110517210333823,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep3/episode_000003.json",
+   "add_auc": 0.9109424920127795,
+   "mppe_cm": 1.9410017836401383,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.1816000031787577,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep3/episode_000003.json",
+   "add_auc": 0.9052515974440895,
+   "mppe_cm": 2.0588360357845223,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.1637259998837264,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep3/episode_000003.json",
+   "add_auc": 0.9369009584664536,
+   "mppe_cm": 1.701191632859787,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.387578207869389,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep3/episode_000003.json",
+   "add_auc": 0.9389976038338658,
+   "mppe_cm": 1.594853843022775,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.0911386310633455,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep3/episode_000003.json",
+   "add_auc": 0.9537739616613419,
+   "mppe_cm": 1.3616628157472161,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.1656851131284958,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep3/episode_000003.json",
+   "add_auc": 0.9296126198083068,
+   "mppe_cm": 1.697269784791354,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.613528447927572,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep3/episode_000003.json",
+   "add_auc": 0.9329073482428115,
+   "mppe_cm": 1.674360562613205,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.825554084107392,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep3/episode_000003.json",
+   "add_auc": 0.9126397763578276,
+   "mppe_cm": 2.021458279784366,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.079990701304654,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep3/episode_000003.json",
+   "add_auc": 0.9429912140575081,
+   "mppe_cm": 1.5794845350651103,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.1306098016134336,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep3/episode_000003.json",
+   "add_auc": 0.9377995207667732,
+   "mppe_cm": 1.516336909612824,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.563537744278471,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/results/episode_000003.json",
+   "add_auc": 0.9377995207667732,
+   "mppe_cm": 1.516336909612824,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.563537744278471,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep3/episode_000003.json",
+   "add_auc": 0.8393570287539935,
+   "mppe_cm": 2.8834241826557894,
+   "maniptrans_sr": 1.0,
+   "rpe": 5.499552653433863,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep3/episode_000003.json",
+   "add_auc": 0.9436900958466454,
+   "mppe_cm": 1.4971139251831542,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.216335565891946,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep3/episode_000003.json",
+   "add_auc": 0.9406948881789137,
+   "mppe_cm": 1.6483278823093448,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6843285929390865,
+   "chord_sr": 1.0
+  }
+ ],
+ "30": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep30/episode_000030.json",
+   "add_auc": 0.9193203422053231,
+   "mppe_cm": 2.1162218632297605,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.159036767104284,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep30/episode_000030.json",
+   "add_auc": 0.9114781368821292,
+   "mppe_cm": 2.054550433061894,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7141835557580127,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep30/episode_000030.json",
+   "add_auc": 0.9150427756653992,
+   "mppe_cm": 2.157530556440682,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.113408228919513,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep30/episode_000030.json",
+   "add_auc": 0.9202709125475286,
+   "mppe_cm": 2.081449908452389,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3060989405677357,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep30/episode_000030.json",
+   "add_auc": 0.9219344106463878,
+   "mppe_cm": 2.0856273126329365,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.2115212611244734,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep30/episode_000030.json",
+   "add_auc": 0.9170627376425855,
+   "mppe_cm": 2.154152542459768,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8891244319727094,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep30/episode_000030.json",
+   "add_auc": 0.25605988593155893,
+   "mppe_cm": 8.98531820826476,
+   "maniptrans_sr": 0.0,
+   "rpe": 9.280117299921963,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep30/episode_000030.json",
+   "add_auc": 0.9250237642585551,
+   "mppe_cm": 2.054070120367759,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.751373425970826,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep30/episode_000030.json",
+   "add_auc": 0.9159933460076046,
+   "mppe_cm": 2.144319665110623,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6145182583911923,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep30/episode_000030.json",
+   "add_auc": 0.3668013307984791,
+   "mppe_cm": 9.41703001412603,
+   "maniptrans_sr": 0.0,
+   "rpe": 10.666741647933376,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep30/episode_000030.json",
+   "add_auc": 0.3518298479087452,
+   "mppe_cm": 10.140054482035827,
+   "maniptrans_sr": 0.0,
+   "rpe": 11.925551809276469,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep30/episode_000030.json",
+   "add_auc": 0.9268060836501901,
+   "mppe_cm": 1.998770935807757,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8530013539041867,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep30/episode_000030.json",
+   "add_auc": 0.8908032319391634,
+   "mppe_cm": 2.4604798739979197,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.081896744900078,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep30/episode_000030.json",
+   "add_auc": 0.9186074144486691,
+   "mppe_cm": 2.112811554413029,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.110019623964976,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep30/episode_000030.json",
+   "add_auc": 0.9120722433460076,
+   "mppe_cm": 2.052524064647037,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.825581624332568,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep30/episode_000030.json",
+   "add_auc": 0.9249049429657794,
+   "mppe_cm": 2.0209010307707156,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.853460745752949,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep30/episode_000030.json",
+   "add_auc": 0.9298954372623575,
+   "mppe_cm": 1.9699044566713702,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.990276857637685,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep30/episode_000030.json",
+   "add_auc": 0.9190826996197718,
+   "mppe_cm": 2.045877498788229,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.860499057652701,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep30/episode_000030.json",
+   "add_auc": 0.6797766159695817,
+   "mppe_cm": 11.53679368849605,
+   "maniptrans_sr": 0.0,
+   "rpe": 9.631514719828722,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep30/episode_000030.json",
+   "add_auc": 0.9043488593155893,
+   "mppe_cm": 2.1450497621580977,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.1863129200675724,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep30/episode_000030.json",
+   "add_auc": 0.9163498098859315,
+   "mppe_cm": 2.1619431848155872,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7697213761606294,
+   "chord_sr": 1.0
+  }
+ ],
+ "35": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep35/episode_000035.json",
+   "add_auc": 0.998812351543943,
+   "mppe_cm": 0.4542955508518076,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep35/episode_000035.json",
+   "add_auc": 0.9992577197149644,
+   "mppe_cm": 0.4516000002325922,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep35/episode_000035.json",
+   "add_auc": 0.9970308788598574,
+   "mppe_cm": 0.4678560444639003,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep35/episode_000035.json",
+   "add_auc": 0.9991092636579573,
+   "mppe_cm": 0.43601245316448123,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep35/episode_000035.json",
+   "add_auc": 0.9985154394299287,
+   "mppe_cm": 0.4471793529924142,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep35/episode_000035.json",
+   "add_auc": 0.9934679334916865,
+   "mppe_cm": 0.5255284400493874,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep35/episode_000035.json",
+   "add_auc": 0.9989608076009502,
+   "mppe_cm": 0.4491412630259185,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep35/episode_000035.json",
+   "add_auc": 0.9904988123515439,
+   "mppe_cm": 0.690538518709148,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep35/episode_000035.json",
+   "add_auc": 0.9974762470308789,
+   "mppe_cm": 0.4633108493009251,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep35/episode_000035.json",
+   "add_auc": 0.9986638954869359,
+   "mppe_cm": 0.44925511135741214,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep35/episode_000035.json",
+   "add_auc": 0.9956947743467933,
+   "mppe_cm": 0.4535333685674033,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep35/episode_000035.json",
+   "add_auc": 0.9992577197149644,
+   "mppe_cm": 0.4020737603032067,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep35/episode_000035.json",
+   "add_auc": 0.9985154394299287,
+   "mppe_cm": 0.4235313443049842,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep35/episode_000035.json",
+   "add_auc": 0.9973277909738717,
+   "mppe_cm": 0.4501497103989299,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep35/episode_000035.json",
+   "add_auc": 0.9989608076009502,
+   "mppe_cm": 0.419943986538562,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep35/episode_000035.json",
+   "add_auc": 0.9980700712589073,
+   "mppe_cm": 0.42663502601638975,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep35/episode_000035.json",
+   "add_auc": 0.998812351543943,
+   "mppe_cm": 0.4226551349059491,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep35/episode_000035.json",
+   "add_auc": 0.9992577197149644,
+   "mppe_cm": 0.42867596978470834,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep35/episode_000035.json",
+   "add_auc": 0.9997030878859857,
+   "mppe_cm": 0.3886417258594166,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep35/episode_000035.json",
+   "add_auc": 0.9997030878859857,
+   "mppe_cm": 0.3950407020219983,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep35/episode_000035.json",
+   "add_auc": 0.9989608076009502,
+   "mppe_cm": 0.46339549220266174,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  }
+ ],
+ "36": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep36/episode_000036.json",
+   "add_auc": 0.9917076167076166,
+   "mppe_cm": 0.6731245174527514,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep36/episode_000036.json",
+   "add_auc": 0.9924754299754299,
+   "mppe_cm": 0.6743967096547206,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep36/episode_000036.json",
+   "add_auc": 0.992014742014742,
+   "mppe_cm": 0.6991838078638101,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep36/episode_000036.json",
+   "add_auc": 0.9938574938574939,
+   "mppe_cm": 0.6200430747742689,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep36/episode_000036.json",
+   "add_auc": 0.992014742014742,
+   "mppe_cm": 0.6651973760944431,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep36/episode_000036.json",
+   "add_auc": 0.992014742014742,
+   "mppe_cm": 0.6282321294818694,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep36/episode_000036.json",
+   "add_auc": 0.9929361179361179,
+   "mppe_cm": 0.6530371270384098,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep36/episode_000036.json",
+   "add_auc": 0.9742014742014742,
+   "mppe_cm": 0.996448733860865,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep36/episode_000036.json",
+   "add_auc": 0.9933968058968059,
+   "mppe_cm": 0.6204007743939157,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep36/episode_000036.json",
+   "add_auc": 0.9937039312039312,
+   "mppe_cm": 0.6836851552316445,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep36/episode_000036.json",
+   "add_auc": 0.9914004914004915,
+   "mppe_cm": 0.6768188129044515,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep36/episode_000036.json",
+   "add_auc": 0.9938574938574939,
+   "mppe_cm": 0.5748419772130079,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep36/episode_000036.json",
+   "add_auc": 0.9929361179361179,
+   "mppe_cm": 0.6187326550301191,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep36/episode_000036.json",
+   "add_auc": 0.9917076167076166,
+   "mppe_cm": 0.6458771046619352,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep36/episode_000036.json",
+   "add_auc": 0.9947788697788698,
+   "mppe_cm": 0.5811686743682423,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep36/episode_000036.json",
+   "add_auc": 0.9927825552825553,
+   "mppe_cm": 0.641854997428959,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep36/episode_000036.json",
+   "add_auc": 0.9941646191646192,
+   "mppe_cm": 0.617040912452246,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep36/episode_000036.json",
+   "add_auc": 0.9946253071253071,
+   "mppe_cm": 0.5930342711556448,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep36/episode_000036.json",
+   "add_auc": 0.9895577395577395,
+   "mppe_cm": 0.6316272325530767,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep36/episode_000036.json",
+   "add_auc": 0.9941646191646192,
+   "mppe_cm": 0.6008435890251,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep36/episode_000036.json",
+   "add_auc": 0.9864864864864865,
+   "mppe_cm": 0.6960421130705527,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  }
+ ],
+ "37": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep37/episode_000037.json",
+   "add_auc": 0.9995860927152318,
+   "mppe_cm": 0.3635393866049864,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep37/episode_000037.json",
+   "add_auc": 0.9991721854304636,
+   "mppe_cm": 0.3627826909229395,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep37/episode_000037.json",
+   "add_auc": 0.9995860927152318,
+   "mppe_cm": 0.45737735859016576,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep37/episode_000037.json",
+   "add_auc": 0.9995860927152318,
+   "mppe_cm": 0.3392458831801476,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep37/episode_000037.json",
+   "add_auc": 0.994205298013245,
+   "mppe_cm": 0.5120369467081567,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep37/episode_000037.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3388189475017099,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep37/episode_000037.json",
+   "add_auc": 0.9995860927152318,
+   "mppe_cm": 0.34370148026484815,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep37/episode_000037.json",
+   "add_auc": 0.9995860927152318,
+   "mppe_cm": 0.33243410119051486,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep37/episode_000037.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.33900074634252503,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep37/episode_000037.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3657383421258361,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep37/episode_000037.json",
+   "add_auc": 0.9995860927152318,
+   "mppe_cm": 0.39801632184950375,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep37/episode_000037.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3307002208485719,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep37/episode_000037.json",
+   "add_auc": 0.9991721854304636,
+   "mppe_cm": 0.33564853956376767,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep37/episode_000037.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3224783354637597,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep37/episode_000037.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3593920700509501,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep37/episode_000037.json",
+   "add_auc": 0.9995860927152318,
+   "mppe_cm": 0.343805993792533,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep37/episode_000037.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3588878881203342,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep37/episode_000037.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.34067178558910777,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep37/episode_000037.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3277118692601971,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep37/episode_000037.json",
+   "add_auc": 0.9995860927152318,
+   "mppe_cm": 0.37963741103946064,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep37/episode_000037.json",
+   "add_auc": 0.9995860927152318,
+   "mppe_cm": 0.36765411636734296,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  }
+ ],
+ "38": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.37232884935527694,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep38/episode_000038.json",
+   "add_auc": 0.9997623574144486,
+   "mppe_cm": 0.365381780865019,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3828531199461343,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep38/episode_000038.json",
+   "add_auc": 0.9995247148288974,
+   "mppe_cm": 0.40830352479992893,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.37246864673054175,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3544206449202998,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep38/episode_000038.json",
+   "add_auc": 0.9997623574144486,
+   "mppe_cm": 0.41622697596879726,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.35476221383905937,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep38/episode_000038.json",
+   "add_auc": 0.9969106463878327,
+   "mppe_cm": 0.46067741428955533,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep38/episode_000038.json",
+   "add_auc": 0.999287072243346,
+   "mppe_cm": 0.36128713921859507,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep38/episode_000038.json",
+   "add_auc": 0.9997623574144486,
+   "mppe_cm": 0.41306622532466875,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3736151740949534,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep38/episode_000038.json",
+   "add_auc": 0.9997623574144486,
+   "mppe_cm": 0.39849990471074676,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep38/episode_000038.json",
+   "add_auc": 0.8723859315589353,
+   "mppe_cm": 1.620173041664697,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3650622046973359,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep38/episode_000038.json",
+   "add_auc": 0.9995247148288974,
+   "mppe_cm": 0.347478673476512,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep38/episode_000038.json",
+   "add_auc": 0.998574144486692,
+   "mppe_cm": 0.40797202648420045,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3918102506402606,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.36653504754394556,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.3671361510646716,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep38/episode_000038.json",
+   "add_auc": 1.0,
+   "mppe_cm": 0.38234023192305355,
+   "maniptrans_sr": 1.0,
+   "rpe": 0.0,
+   "chord_sr": 1.0
+  }
+ ],
+ "5": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep5/episode_000005.json",
+   "add_auc": 0.9593098958333333,
+   "mppe_cm": 1.323781878254076,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6859708013422938,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep5/episode_000005.json",
+   "add_auc": 0.9669053819444444,
+   "mppe_cm": 1.1343653609101092,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4693964558561887,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep5/episode_000005.json",
+   "add_auc": 0.9643012152777777,
+   "mppe_cm": 1.1967929594960665,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4419436273917645,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/results/episode_000005.json",
+   "add_auc": 0.9643012152777777,
+   "mppe_cm": 1.1967929594960665,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4419436273917645,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep5/episode_000005.json",
+   "add_auc": 0.9662543402777779,
+   "mppe_cm": 1.1921026157475545,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4682219428400078,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep5/episode_000005.json",
+   "add_auc": 0.9650607638888888,
+   "mppe_cm": 1.2370671090531011,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6957480917946708,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep5/episode_000005.json",
+   "add_auc": 0.9635416666666666,
+   "mppe_cm": 1.2009054027541932,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6931663622992705,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep5/episode_000005.json",
+   "add_auc": 0.9517144097222222,
+   "mppe_cm": 1.3446744220304365,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.8370063106767975,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep5/episode_000005.json",
+   "add_auc": 0.9683159722222222,
+   "mppe_cm": 1.144416556745418,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4328836310864512,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep5/episode_000005.json",
+   "add_auc": 0.9708116319444444,
+   "mppe_cm": 1.1020209474344353,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.500593931047488,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep5/episode_000005.json",
+   "add_auc": 0.9729817708333333,
+   "mppe_cm": 1.1017005236538444,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.5526020400563143,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep5/episode_000005.json",
+   "add_auc": 0.966796875,
+   "mppe_cm": 1.2048683989836158,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.3798306106319027,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep5/episode_000005.json",
+   "add_auc": 0.9718967013888888,
+   "mppe_cm": 1.0726170165903044,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.634016888751249,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep5/episode_000005.json",
+   "add_auc": 0.9611545138888888,
+   "mppe_cm": 1.2799890541423553,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.5334629439273526,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep5/episode_000005.json",
+   "add_auc": 0.967013888888889,
+   "mppe_cm": 1.156779130193634,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.5572599907450584,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep5/episode_000005.json",
+   "add_auc": 0.9662543402777777,
+   "mppe_cm": 1.168628239642569,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4660639910360052,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep5/episode_000005.json",
+   "add_auc": 0.9537760416666667,
+   "mppe_cm": 1.3505492446904919,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6914791997330925,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep5/episode_000005.json",
+   "add_auc": 0.9708116319444444,
+   "mppe_cm": 1.1073705209694262,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4091195511647467,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep5/episode_000005.json",
+   "add_auc": 0.9643012152777777,
+   "mppe_cm": 1.2161410258168601,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6144013900502123,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/results/episode_000005.json",
+   "add_auc": 0.9643012152777777,
+   "mppe_cm": 1.2161410258168601,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6144013900502123,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep5/episode_000005.json",
+   "add_auc": 0.9547526041666667,
+   "mppe_cm": 1.3470440821404295,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.067448578005976,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep5/episode_000005.json",
+   "add_auc": 0.9555121527777778,
+   "mppe_cm": 1.3184902547275132,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6693725167590694,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep5/episode_000005.json",
+   "add_auc": 0.9608289930555556,
+   "mppe_cm": 1.2823964866795674,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6437688599326372,
+   "chord_sr": 1.0
+  }
+ ],
+ "6": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep6/episode_000006.json",
+   "add_auc": 0.9844393004115226,
+   "mppe_cm": 0.8866344001425784,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.1256721197831154,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep6/episode_000006.json",
+   "add_auc": 0.9503600823045267,
+   "mppe_cm": 1.3849076692721898,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.7971879113565374,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep6/episode_000006.json",
+   "add_auc": 0.9814814814814815,
+   "mppe_cm": 0.9977163922851864,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.1397880958943407,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep6/episode_000006.json",
+   "add_auc": 0.9242541152263375,
+   "mppe_cm": 1.84613602253913,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.220350823328724,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep6/episode_000006.json",
+   "add_auc": 0.9774948559670782,
+   "mppe_cm": 1.1437665592790485,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.2924568275591757,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep6/episode_000006.json",
+   "add_auc": 0.9758230452674898,
+   "mppe_cm": 1.1078132986314724,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.5482948662663485,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep6/episode_000006.json",
+   "add_auc": 0.946630658436214,
+   "mppe_cm": 1.4685734528120118,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.7236349904480504,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep6/episode_000006.json",
+   "add_auc": 0.9516460905349795,
+   "mppe_cm": 1.3183683208502301,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.1198184617608518,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep6/episode_000006.json",
+   "add_auc": 0.9306841563786008,
+   "mppe_cm": 1.7546707631012546,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.007485912810976,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep6/episode_000006.json",
+   "add_auc": 0.9333847736625513,
+   "mppe_cm": 1.6218275886971494,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.9504997580531733,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep6/episode_000006.json",
+   "add_auc": 0.9900977366255144,
+   "mppe_cm": 0.7603036789286071,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.2299736442105578,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep6/episode_000006.json",
+   "add_auc": 0.990869341563786,
+   "mppe_cm": 0.812588586252778,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.0094113633788193,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep6/episode_000006.json",
+   "add_auc": 0.9877829218106996,
+   "mppe_cm": 0.7695640152599137,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.2039364646466182,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep6/episode_000006.json",
+   "add_auc": 0.9828960905349795,
+   "mppe_cm": 0.9412667904550996,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.7130034754304677,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep6/episode_000006.json",
+   "add_auc": 0.9723508230452675,
+   "mppe_cm": 1.1209528158705206,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.6363703842887882,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep6/episode_000006.json",
+   "add_auc": 0.9876543209876543,
+   "mppe_cm": 0.9003864500710761,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.0173575168431803,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep6/episode_000006.json",
+   "add_auc": 0.9872685185185185,
+   "mppe_cm": 0.8705223545737961,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.1257605145625995,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep6/episode_000006.json",
+   "add_auc": 0.9893261316872428,
+   "mppe_cm": 0.8375522028177768,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.0384504702607888,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/results/episode_000006.json",
+   "add_auc": 0.9893261316872428,
+   "mppe_cm": 0.8375522028177768,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.0384504702607888,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep6/episode_000006.json",
+   "add_auc": 0.98559670781893,
+   "mppe_cm": 0.8243574458070727,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.1811789722305988,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep6/episode_000006.json",
+   "add_auc": 0.9807098765432098,
+   "mppe_cm": 0.9443300774507795,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.3852243600356284,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep6/episode_000006.json",
+   "add_auc": 0.9858539094650205,
+   "mppe_cm": 0.847064940955875,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.290580779480475,
+   "chord_sr": 1.0
+  }
+ ],
+ "8": [
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r1/ep8/episode_000008.json",
+   "add_auc": 0.980736301369863,
+   "mppe_cm": 1.0149657076312646,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.2847795554439796,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r10/ep8/episode_000008.json",
+   "add_auc": 0.9790239726027397,
+   "mppe_cm": 1.0251723475467722,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.9479884859520131,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r2/ep8/episode_000008.json",
+   "add_auc": 0.963898401826484,
+   "mppe_cm": 1.2751220970310153,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8470812838911037,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r3/ep8/episode_000008.json",
+   "add_auc": 0.983019406392694,
+   "mppe_cm": 1.0190078780850933,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.324539643272274,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r4/ep8/episode_000008.json",
+   "add_auc": 0.9771689497716894,
+   "mppe_cm": 1.0832496460504568,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3005445804739377,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r5/ep8/episode_000008.json",
+   "add_auc": 0.9731735159817352,
+   "mppe_cm": 1.18374710871843,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.27264947633343,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r6/ep8/episode_000008.json",
+   "add_auc": 0.9741723744292237,
+   "mppe_cm": 1.0937265135458027,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3826683654879224,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r7/ep8/episode_000008.json",
+   "add_auc": 0.89925799086758,
+   "mppe_cm": 2.0541361137847454,
+   "maniptrans_sr": 1.0,
+   "rpe": 4.5418718444427695,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r8/ep8/episode_000008.json",
+   "add_auc": 0.9603310502283106,
+   "mppe_cm": 1.2918401374200887,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8829927296223365,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261029-h5-755303f/results/h5/r9/ep8/episode_000008.json",
+   "add_auc": 0.9667522831050228,
+   "mppe_cm": 1.248030491038658,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8209623482351005,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep8/episode_000008.json",
+   "add_auc": 0.9790239726027397,
+   "mppe_cm": 1.0504121191714355,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3579969915654275,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep8/episode_000008.json",
+   "add_auc": 0.9718892694063928,
+   "mppe_cm": 1.1603547586028817,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.9123962054723402,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep8/episode_000008.json",
+   "add_auc": 0.9531963470319634,
+   "mppe_cm": 1.3891476030136936,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.5214836708459143,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep8/episode_000008.json",
+   "add_auc": 0.9673230593607306,
+   "mppe_cm": 1.2211253575454493,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.3992245113531374,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep8/episode_000008.json",
+   "add_auc": 0.9803082191780822,
+   "mppe_cm": 1.0145379935592365,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.5407444512832753,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep8/episode_000008.json",
+   "add_auc": 0.9570490867579908,
+   "mppe_cm": 1.3591085324963519,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4400241295304554,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep8/episode_000008.json",
+   "add_auc": 0.9743150684931507,
+   "mppe_cm": 1.157123269036258,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.272461895045357,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep8/episode_000008.json",
+   "add_auc": 0.9594748858447488,
+   "mppe_cm": 1.3272843988175087,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7188058609601584,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/results/episode_000008.json",
+   "add_auc": 0.9594748858447488,
+   "mppe_cm": 1.3272843988175087,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7188058609601584,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep8/episode_000008.json",
+   "add_auc": 0.9754566210045662,
+   "mppe_cm": 1.0766577991775261,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.625138888898668,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep8/episode_000008.json",
+   "add_auc": 0.969035388127854,
+   "mppe_cm": 1.2030695446721187,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.4174697010775357,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep8/episode_000008.json",
+   "add_auc": 0.9827340182648401,
+   "mppe_cm": 1.0156004025128342,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.1859559984560617,
+   "chord_sr": 1.0
+  }
+ ],
+ "33": [
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r1/ep33/episode_000033.json",
+   "add_auc": 0.9400143678160919,
+   "mppe_cm": 1.6057747746774784,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8060568797715324,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r10/ep33/episode_000033.json",
+   "add_auc": 0.9364224137931034,
+   "mppe_cm": 1.6481157280620229,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.743924397047437,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r2/ep33/episode_000033.json",
+   "add_auc": 0.9456716954022989,
+   "mppe_cm": 1.5639151792226338,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7963934697810933,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r3/ep33/episode_000033.json",
+   "add_auc": 0.9316630747126438,
+   "mppe_cm": 1.7234111252433262,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.1179366373228135,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r4/ep33/episode_000033.json",
+   "add_auc": 0.9347162356321839,
+   "mppe_cm": 1.6766694528458799,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.3676382418092143,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r5/ep33/episode_000033.json",
+   "add_auc": 0.9383081896551724,
+   "mppe_cm": 1.6039717699773421,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7924747629087525,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r6/ep33/episode_000033.json",
+   "add_auc": 0.9266343390804597,
+   "mppe_cm": 1.7684373130631057,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.1098540022979497,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r7/ep33/episode_000033.json",
+   "add_auc": 0.9366020114942528,
+   "mppe_cm": 1.670532385747384,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6556517988662107,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r8/ep33/episode_000033.json",
+   "add_auc": 0.9366918103448276,
+   "mppe_cm": 1.6333259009643362,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.859892156844237,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-c33B-0202139/results/h5/r9/ep33/episode_000033.json",
+   "add_auc": 0.919989224137931,
+   "mppe_cm": 1.8577027233870513,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.9064573312793294,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r1/ep33/episode_000033.json",
+   "add_auc": 0.9435165229885057,
+   "mppe_cm": 1.5583850888994153,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.912764500749735,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r10/ep33/episode_000033.json",
+   "add_auc": 0.9287895114942528,
+   "mppe_cm": 1.7378488632934033,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.9743635571987297,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r2/ep33/episode_000033.json",
+   "add_auc": 0.9319324712643677,
+   "mppe_cm": 1.6824516924460422,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.2323001572424217,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r3/ep33/episode_000033.json",
+   "add_auc": 0.9298670977011494,
+   "mppe_cm": 1.755464089722488,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.2656845925100995,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r4/ep33/episode_000033.json",
+   "add_auc": 0.9297772988505747,
+   "mppe_cm": 1.7160906976959565,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8257240985324525,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r5/ep33/episode_000033.json",
+   "add_auc": 0.9361530172413792,
+   "mppe_cm": 1.6781988079006216,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8007352771648235,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r6/ep33/episode_000033.json",
+   "add_auc": 0.9378591954022988,
+   "mppe_cm": 1.6170327828188984,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.74171960451468,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r7/ep33/episode_000033.json",
+   "add_auc": 0.921246408045977,
+   "mppe_cm": 1.8038938199041823,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.9360124529527183,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r8/ep33/episode_000033.json",
+   "add_auc": 0.8449173850574712,
+   "mppe_cm": 2.6263979804610447,
+   "maniptrans_sr": 1.0,
+   "rpe": 4.6141727106541195,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5p7-1a7cdff/results/h5/r9/ep33/episode_000033.json",
+   "add_auc": 0.9312140804597702,
+   "mppe_cm": 1.6994298202154086,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.7321664584939773,
+   "chord_sr": 0.0
+  }
+ ],
+ "1": [
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r1/ep1/episode_000001.json",
+   "add_auc": 0.9208955223880597,
+   "mppe_cm": 2.0199309007879647,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4748100183947153,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r10/ep1/episode_000001.json",
+   "add_auc": 0.9319029850746269,
+   "mppe_cm": 1.8879371662984634,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.191620695955294,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r11/ep1/episode_000001.json",
+   "add_auc": 0.9284514925373133,
+   "mppe_cm": 1.9531705874273866,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.1929207549328438,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r12/ep1/episode_000001.json",
+   "add_auc": 0.9349813432835821,
+   "mppe_cm": 1.8082162807966546,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.492814562330228,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r13/ep1/episode_000001.json",
+   "add_auc": 0.9238805970149254,
+   "mppe_cm": 1.877153165282801,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.324381151981516,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r14/ep1/episode_000001.json",
+   "add_auc": 0.9326492537313433,
+   "mppe_cm": 1.858360139846085,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.2418245601906377,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r15/ep1/episode_000001.json",
+   "add_auc": 0.9356343283582089,
+   "mppe_cm": 1.7873176182514665,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3552616460145406,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r16/ep1/episode_000001.json",
+   "add_auc": 0.8838619402985075,
+   "mppe_cm": 3.0069817527480147,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.595579819936338,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r17/ep1/episode_000001.json",
+   "add_auc": 0.9145522388059701,
+   "mppe_cm": 1.9013720723995293,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3339189518950443,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r18/ep1/episode_000001.json",
+   "add_auc": 0.9302238805970149,
+   "mppe_cm": 1.8505243008630767,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6460171033303332,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r19/ep1/episode_000001.json",
+   "add_auc": 0.9261194029850747,
+   "mppe_cm": 1.9311491326644645,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.2828552899927272,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r2/ep1/episode_000001.json",
+   "add_auc": 0.9127798507462686,
+   "mppe_cm": 2.1764050528120524,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.759231768368063,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r20/ep1/episode_000001.json",
+   "add_auc": 0.9307835820895523,
+   "mppe_cm": 1.8004402616586275,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4387603268894065,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r3/ep1/episode_000001.json",
+   "add_auc": 0.884794776119403,
+   "mppe_cm": 2.285068876886597,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.745104882056681,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r4/ep1/episode_000001.json",
+   "add_auc": 0.9245335820895523,
+   "mppe_cm": 1.9997679085529998,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.0989918248283193,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r5/ep1/episode_000001.json",
+   "add_auc": 0.93544776119403,
+   "mppe_cm": 1.7802325882210281,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.250784083024657,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r6/ep1/episode_000001.json",
+   "add_auc": 0.9337686567164178,
+   "mppe_cm": 1.824857426629482,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3312284614786365,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r7/ep1/episode_000001.json",
+   "add_auc": 0.8909514925373134,
+   "mppe_cm": 2.212704147979255,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.405673994664155,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r8/ep1/episode_000001.json",
+   "add_auc": 0.9291977611940299,
+   "mppe_cm": 1.936211179006477,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.455336344551603,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261030-e1conf2-d41382e/results/h5/r9/ep1/episode_000001.json",
+   "add_auc": 0.9300373134328359,
+   "mppe_cm": 1.8405665331332988,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.5145345780068022,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r1/ep1/episode_000001.json",
+   "add_auc": 0.9269589552238806,
+   "mppe_cm": 1.961490204532273,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4138693206711643,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r10/ep1/episode_000001.json",
+   "add_auc": 0.9384328358208955,
+   "mppe_cm": 1.7578915012661427,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.330908921909003,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r2/ep1/episode_000001.json",
+   "add_auc": 0.9354477611940298,
+   "mppe_cm": 1.7663474428913781,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.1803806533622883,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r3/ep1/episode_000001.json",
+   "add_auc": 0.8664179104477612,
+   "mppe_cm": 2.6747867992944396,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.1902152046811425,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r4/ep1/episode_000001.json",
+   "add_auc": 0.9290111940298507,
+   "mppe_cm": 1.8544415822639115,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3990337327087783,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r5/ep1/episode_000001.json",
+   "add_auc": 0.919776119402985,
+   "mppe_cm": 1.980970790884692,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.546161349091095,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r6/ep1/episode_000001.json",
+   "add_auc": 0.7940298507462686,
+   "mppe_cm": 7.135214138148865,
+   "maniptrans_sr": 0.0,
+   "rpe": 7.942387764250469,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r7/ep1/episode_000001.json",
+   "add_auc": 0.9338619402985074,
+   "mppe_cm": 1.8362623060860208,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.6215836599680853,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r8/ep1/episode_000001.json",
+   "add_auc": 0.8809701492537314,
+   "mppe_cm": 2.381072701859501,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.0663777197182562,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261031-h5e1-1a7cdff/results/h5/r9/ep1/episode_000001.json",
+   "add_auc": 0.9305037313432836,
+   "mppe_cm": 1.863271222434011,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.4538590200363606,
+   "chord_sr": 1.0
+  }
+ ],
+ "10": [
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r1/ep10/episode_000010.json",
+   "add_auc": 0.9142080745341615,
+   "mppe_cm": 2.0227003596120836,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.057746185742348,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r10/ep10/episode_000010.json",
+   "add_auc": 0.923913043478261,
+   "mppe_cm": 1.7828284170705562,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.8555271686086154,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r2/ep10/episode_000010.json",
+   "add_auc": 0.8519021739130435,
+   "mppe_cm": 2.881350950222433,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.990157135019101,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r3/ep10/episode_000010.json",
+   "add_auc": 0.9109083850931676,
+   "mppe_cm": 2.1441579932703863,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.3156657148139073,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r4/ep10/episode_000010.json",
+   "add_auc": 0.8767468944099379,
+   "mppe_cm": 2.54936387087087,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.5830915665483003,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r5/ep10/episode_000010.json",
+   "add_auc": 0.9349767080745341,
+   "mppe_cm": 1.7272306884404927,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.9124272848668855,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r6/ep10/episode_000010.json",
+   "add_auc": 0.859472049689441,
+   "mppe_cm": 2.7894756017747815,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.8435459835627284,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r7/ep10/episode_000010.json",
+   "add_auc": 0.8503493788819876,
+   "mppe_cm": 2.8116761001105757,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.831364396086165,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r8/ep10/episode_000010.json",
+   "add_auc": 0.9310947204968945,
+   "mppe_cm": 1.7817758779547654,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.0069388762715388,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-e10nj-451b82d/results/ev10_nj/conf512/r9/ep10/episode_000010.json",
+   "add_auc": 0.9268245341614907,
+   "mppe_cm": 1.9246112213198503,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.1571503415125175,
+   "chord_sr": 1.0
+  }
+ ],
+ "14": [
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r1/ep14/episode_000014.json",
+   "add_auc": 0.8868670886075949,
+   "mppe_cm": 2.3958284819363684,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.9864689432307014,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r10/ep14/episode_000014.json",
+   "add_auc": 0.9147547468354431,
+   "mppe_cm": 2.084216236821889,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.3408989528486406,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r2/ep14/episode_000014.json",
+   "add_auc": 0.8965585443037974,
+   "mppe_cm": 2.410191418906726,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.4672268228129446,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r3/ep14/episode_000014.json",
+   "add_auc": 0.9155458860759493,
+   "mppe_cm": 2.0421954045983437,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.037100401269275,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r4/ep14/episode_000014.json",
+   "add_auc": 0.9011075949367089,
+   "mppe_cm": 2.3418694103084854,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.7772302147148067,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r5/ep14/episode_000014.json",
+   "add_auc": 0.8943829113924051,
+   "mppe_cm": 2.43979624390711,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.589734051026245,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r6/ep14/episode_000014.json",
+   "add_auc": 0.866495253164557,
+   "mppe_cm": 2.975590078268127,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.619744864791369,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r7/ep14/episode_000014.json",
+   "add_auc": 0.7501977848101267,
+   "mppe_cm": 16.329417960406392,
+   "maniptrans_sr": 0.0,
+   "rpe": 15.615937969544506,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r8/ep14/episode_000014.json",
+   "add_auc": 0.854628164556962,
+   "mppe_cm": 2.7962042045443147,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.3324835893668165,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r9/ep14/episode_000014.json",
+   "add_auc": 0.7905458860759493,
+   "mppe_cm": 3.946718277162732,
+   "maniptrans_sr": 0.0,
+   "rpe": 5.3086260051554035,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261102-pfR2-c1a5471/results/pf_arms/zeroshot_ep14/r1/ep14/episode_000014.json",
+   "add_auc": 0.8724287974683544,
+   "mppe_cm": 2.8205068796511097,
+   "maniptrans_sr": 1.0,
+   "rpe": 4.154793706177088,
+   "chord_sr": 1.0
+  }
+ ],
+ "32": [
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r1/ep32/episode_000032.json",
+   "add_auc": 0.9016650579150579,
+   "mppe_cm": 2.0722391488115437,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.9038711851982515,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r10/ep32/episode_000032.json",
+   "add_auc": 0.899734555984556,
+   "mppe_cm": 2.1256121652372335,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.0241807113708155,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r2/ep32/episode_000032.json",
+   "add_auc": 0.9026303088803089,
+   "mppe_cm": 2.06148066023071,
+   "maniptrans_sr": 1.0,
+   "rpe": 4.26617704821145,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r3/ep32/episode_000032.json",
+   "add_auc": 0.9119208494208495,
+   "mppe_cm": 1.9122796600421759,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.1126856513130057,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r4/ep32/episode_000032.json",
+   "add_auc": 0.8833252895752896,
+   "mppe_cm": 2.1829181605483385,
+   "maniptrans_sr": 1.0,
+   "rpe": 4.7830275325299585,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r5/ep32/episode_000032.json",
+   "add_auc": 0.9045608108108109,
+   "mppe_cm": 2.100508731372103,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.3101339091913493,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r6/ep32/episode_000032.json",
+   "add_auc": 0.9022683397683398,
+   "mppe_cm": 2.076374297617535,
+   "maniptrans_sr": 1.0,
+   "rpe": 4.256717966420681,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r7/ep32/episode_000032.json",
+   "add_auc": 0.9154198841698842,
+   "mppe_cm": 1.9103235722944856,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.844019560301848,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r8/ep32/episode_000032.json",
+   "add_auc": 0.8184121621621621,
+   "mppe_cm": 3.0136930800179704,
+   "maniptrans_sr": 1.0,
+   "rpe": 6.071179847570681,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r9/ep32/episode_000032.json",
+   "add_auc": 0.893219111969112,
+   "mppe_cm": 2.1503956942520515,
+   "maniptrans_sr": 1.0,
+   "rpe": 4.221251599438431,
+   "chord_sr": 1.0
+  }
+ ],
+ "16": [
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r1/ep16/episode_000016.json",
+   "add_auc": 0.9801300578034682,
+   "mppe_cm": 1.1481294867580487,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.2032685935596368,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r10/ep16/episode_000016.json",
+   "add_auc": 0.9804913294797688,
+   "mppe_cm": 1.0976628513521882,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.1358453874345713,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r2/ep16/episode_000016.json",
+   "add_auc": 0.9692919075144508,
+   "mppe_cm": 1.225298679654928,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.363079895277526,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r3/ep16/episode_000016.json",
+   "add_auc": 0.9821170520231214,
+   "mppe_cm": 1.0837365975161903,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.1309423028594436,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r4/ep16/episode_000016.json",
+   "add_auc": 0.9786849710982659,
+   "mppe_cm": 1.1067903391130813,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.159191279289974,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r5/ep16/episode_000016.json",
+   "add_auc": 0.9783236994219653,
+   "mppe_cm": 1.1093286080694018,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.1469489856712194,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r6/ep16/episode_000016.json",
+   "add_auc": 0.9777817919075145,
+   "mppe_cm": 1.1360564217213338,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.247136764503658,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r7/ep16/episode_000016.json",
+   "add_auc": 0.9680274566473989,
+   "mppe_cm": 1.2073599660088852,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.32386466433142,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r8/ep16/episode_000016.json",
+   "add_auc": 0.976878612716763,
+   "mppe_cm": 1.1058817196412614,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.1948493518179508,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfG-86cfc19/results/pf_arms/conf_ep16_pz/r9/ep16/episode_000016.json",
+   "add_auc": 0.9839234104046243,
+   "mppe_cm": 1.0704901358505394,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.0407566015823222,
+   "chord_sr": 1.0
+  }
+ ],
+ "15": [
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r1/ep15/episode_000015.json",
+   "add_auc": 0.9553840361445783,
+   "mppe_cm": 1.4255475951300456,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4234122385340906,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r10/ep15/episode_000015.json",
+   "add_auc": 0.9572665662650602,
+   "mppe_cm": 1.4903723303954028,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4468775650590147,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r2/ep15/episode_000015.json",
+   "add_auc": 0.9619728915662651,
+   "mppe_cm": 1.338195068262078,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.2345838995904312,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r3/ep15/episode_000015.json",
+   "add_auc": 0.9585843373493976,
+   "mppe_cm": 1.4350667008615492,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.334406853995974,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r4/ep15/episode_000015.json",
+   "add_auc": 0.9600903614457832,
+   "mppe_cm": 1.3993787910025073,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.3003457733051142,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r5/ep15/episode_000015.json",
+   "add_auc": 0.9544427710843373,
+   "mppe_cm": 1.4709772941671402,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.3487815472377884,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r6/ep15/episode_000015.json",
+   "add_auc": 0.9495481927710843,
+   "mppe_cm": 1.559733541298874,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.3434942315064882,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r7/ep15/episode_000015.json",
+   "add_auc": 0.9565135542168675,
+   "mppe_cm": 1.5869391172109695,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.395672995858549,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r8/ep15/episode_000015.json",
+   "add_auc": 0.9619728915662651,
+   "mppe_cm": 1.2910256503629096,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.3291931725138129,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep15_plw/r9/ep15/episode_000015.json",
+   "add_auc": 0.9439006024096386,
+   "mppe_cm": 1.814382782591752,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.4012235172157335,
+   "chord_sr": 0.0
+  }
+ ],
+ "20": [
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r1/ep20/episode_000020.json",
+   "add_auc": 0.9675123762376238,
+   "mppe_cm": 1.0812229929798702,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.090269752430925,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r10/ep20/episode_000020.json",
+   "add_auc": 0.9405940594059405,
+   "mppe_cm": 1.450766843974393,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.64215276955022,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r2/ep20/episode_000020.json",
+   "add_auc": 0.9681311881188119,
+   "mppe_cm": 1.2186161232460966,
+   "maniptrans_sr": 1.0,
+   "rpe": 3.3932423301446413,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r3/ep20/episode_000020.json",
+   "add_auc": 0.9060952970297029,
+   "mppe_cm": 4.939862648066667,
+   "maniptrans_sr": 0.0,
+   "rpe": 6.052108331516999,
+   "chord_sr": 0.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r4/ep20/episode_000020.json",
+   "add_auc": 0.9542079207920793,
+   "mppe_cm": 1.3532091162529414,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.411426709486453,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r5/ep20/episode_000020.json",
+   "add_auc": 0.9675123762376238,
+   "mppe_cm": 1.127234408997924,
+   "maniptrans_sr": 1.0,
+   "rpe": 1.8480899560088193,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r6/ep20/episode_000020.json",
+   "add_auc": 0.9492574257425742,
+   "mppe_cm": 1.3187120881354515,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.894071574231598,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r7/ep20/episode_000020.json",
+   "add_auc": 0.9656559405940595,
+   "mppe_cm": 1.1654017810763224,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.58550886657607,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r8/ep20/episode_000020.json",
+   "add_auc": 0.969214108910891,
+   "mppe_cm": 1.1563870232631253,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.528666307812133,
+   "chord_sr": 1.0
+  },
+  {
+   "path": "runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r9/ep20/episode_000020.json",
+   "add_auc": 0.9627165841584158,
+   "mppe_cm": 1.2526972155464389,
+   "maniptrans_sr": 1.0,
+   "rpe": 2.359776616213986,
+   "chord_sr": 1.0
+  }
+ ]
+}

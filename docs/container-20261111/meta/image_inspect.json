@@ -1,0 +1,101 @@
+[
+    {
+        "Id": "sha256:f314c838218416fc2fb625ab1fc1f38267ecad3e3dd68be01763581dade8b3ae",
+        "RepoTags": [
+            "imitation.tech-v2d-submission:final"
+        ],
+        "RepoDigests": [],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-11-11T22:16:50.539849213Z",
+        "Config": {
+            "Env": [
+                "PATH=/opt/instance-tools/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "IMAGE_TYPE=vast",
+                "DATA_DIRECTORY=/workspace",
+                "WORKSPACE=/workspace",
+                "PIP_BREAK_SYSTEM_PACKAGES=1",
+                "DEBIAN_FRONTEND=noninteractive",
+                "PYTHONUNBUFFERED=1",
+                "TCLLIBPATH=/usr/lib/tcltk/default",
+                "NVIDIA_DRIVER_CAPABILITIES=all",
+                "UV_CACHE_DIR=/.uv/cache",
+                "UV_NO_CACHE=1",
+                "UV_LINK_MODE=copy",
+                "UV_PYTHON_BIN_DIR=/.uv/python_bin",
+                "UV_PYTHON_INSTALL_DIR=/.uv/python_install",
+                "PYTHON_VERSION=3.13",
+                "PYTORCH_VERSION=2.11.0",
+                "PYTORCH_BACKEND=cu130"
+            ],
+            "Cmd": [
+                "/submission/run.sh",
+                "verify"
+            ],
+            "WorkingDir": "/submission",
+            "Labels": {
+                "maintainer": "Vast.ai Inc <contact@vast.ai>",
+                "org.opencontainers.image.description": "PyTorch image suitable for Vast.ai.",
+                "org.opencontainers.image.source": "https://github.com/vastai/",
+                "org.opencontainers.image.version": "24.04"
+            },
+            "ArgsEscaped": true,
+            "Shell": [
+                "/bin/bash",
+                "-c",
+                "umask 002 && /bin/bash -c \"$@\"",
+                "-"
+            ]
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 19338097985,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/n2jf2jw3kibwcb6j6mqfaaavy/diff:/var/lib/docker/overlay2/cfnz6vbm82tlq4321zz9n7vcw/diff:/var/lib/docker/overlay2/tbheozl0tg61tjz4hhsxq21c0/diff:/var/lib/docker/overlay2/245cb29415381887037467ee1c73018f3804d3987c36644426afdea6cbf20064/diff:/var/lib/docker/overlay2/2a6439947331f23f01f3f3bb9e57663994a9fdc315b034d5dae06e189f117cce/diff:/var/lib/docker/overlay2/c2a90c3e58fc47c37233b7c75d63be11e735be64682ecbf6ff95c3b4c708b38e/diff:/var/lib/docker/overlay2/db40a0a3416ec515771e448dff59bc5d6bc9351f59d23c8e399e5b9832023183/diff:/var/lib/docker/overlay2/a2ed01bb911e78d5158459eda5f91d81d27369be4efec0846b2dca1e43ee2230/diff:/var/lib/docker/overlay2/71d7aef30c742f11fa7e3a77234a704f91bff5643579ef7cd1b97614423f3b31/diff:/var/lib/docker/overlay2/7e0dfc47cde4c01426fccf742b90d2cf24b7a91a8136fbb1d78aab81247b23e0/diff:/var/lib/docker/overlay2/c5742d6c9104c54671bc60e7b6041a41e9e5c93bedec94bbbbdb85d155772aef/diff:/var/lib/docker/overlay2/a4251007985acf5532d63df120c836353a477d4754a94b60345f45895dcf6470/diff:/var/lib/docker/overlay2/89668a3854d918e3748a52414cc955bc2f17c07b0871ff35e831d603d8dbf6b9/diff:/var/lib/docker/overlay2/86be1c724f66303dbf8808f8ca14e0111fa84b02f13d19efc9f88207f1f4cdb3/diff:/var/lib/docker/overlay2/356d66e710955096a0de3aeea2753f22273f1151cf4d05123d0fc5395526da6a/diff:/var/lib/docker/overlay2/babe067d72afa979c4d9a6b851ae0c0617477334a9987e247037470e3732e3d7/diff:/var/lib/docker/overlay2/320e816326faec898b56a6cbda437196d3ef650df859770a6f2afd4c7631f3b8/diff:/var/lib/docker/overlay2/8599862e9fbac9f1fc75f32f45e79c22c8db488045e33925daee91b3a7c73a9e/diff:/var/lib/docker/overlay2/da0ad04df528338e97048dbbede8fb3b13e9d11cd5b63315978f5fe5e63becf0/diff:/var/lib/docker/overlay2/72c6038662f88eb1dcb4431163c3e0ac414f20d1c351033769cfb881e4dd5340/diff:/var/lib/docker/overlay2/a82ae5529f35f69b85b4d27d17817e11c90152991acece613e32257e1f33b842/diff:/var/lib/docker/overlay2/4800bb124b9888fe69439952a877234d568027939351d201abae410514b9af32/diff:/var/lib/docker/overlay2/3b5649adadad8917bf7060ad01e7e85cf75ebffaf85451f5550ecfd9d60266c0/diff:/var/lib/docker/overlay2/0c091e0d3f559acb61b9ce68b5d7c49b1cf5e219c1ee6a4d6405a5adfea99554/diff:/var/lib/docker/overlay2/07f39a8b02e699f7cc90251e74cfdd559bad902cc2924b26f94d4fb85940a012/diff:/var/lib/docker/overlay2/cef8bc9e2a9c06aec803f9f2fc14b6b5672013da0a3a1e85c650772e80f6f02f/diff:/var/lib/docker/overlay2/d8f6b0365eedc7a01614226eeb01c9c399776b4f9b478f1a6518e0c1b5893d79/diff:/var/lib/docker/overlay2/319b84632c3356e5bb0394d797a7da4afb19d0bd3c37e67f62a8cc0a4638eecb/diff:/var/lib/docker/overlay2/bd9a0cb46ca935fb058c5a172939ee95085c487bae03efd087def9f087355e79/diff:/var/lib/docker/overlay2/fc7fa6bc899357441f1cec376c2336ce047f817e3b26d6c047f28045a65c396b/diff",
+                "MergedDir": "/var/lib/docker/overlay2/pvgexenzabuyk95s2ub2frc0k/merged",
+                "UpperDir": "/var/lib/docker/overlay2/pvgexenzabuyk95s2ub2frc0k/diff",
+                "WorkDir": "/var/lib/docker/overlay2/pvgexenzabuyk95s2ub2frc0k/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:d81fb2a7c6ee3be05fdefaa7fd223be219c1ab172083ec1b994c3ecda33ac0a8",
+                "sha256:f987b41cc64c3d3bd2bb6c849b03ebd3846c26c76207e7d4780eab3264f811ad",
+                "sha256:64ea62677b875a5837f4037fea64a607da21954eb154e3c16b0b12dffd374df4",
+                "sha256:ddc380428ec32cbb78cdb54945ce9062d31643077915b574517f42bb02c32dc2",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:95ec31592f849a068d6f34cea3c942fef6741413a1ab502a20b68a734cf169cf",
+                "sha256:0fabc264e86b5008480d56aa2feab5840a5313d1fe6c0d4acbe18fc072611681",
+                "sha256:0593f06b27ea0de479585001516bba2790f33d451c749f34852afed023c44079",
+                "sha256:f8abcd374920e3432a8edf2ef66938dc420145fdda3298dd1e416865b4a6a09d",
+                "sha256:e418900107011b019cb63efeedc95d43dcd84b84587352e226fe37bfb702f709",
+                "sha256:9a3fd2220d47ae609231b86d93477c84a669aeee4f51ab9d7a9d9c3921cec2ca",
+                "sha256:1aa1dd06eda14c7af6b3fdfeb517a8ce9976fb4605a9af1d5bf0db8c0ced9629",
+                "sha256:df8fa95b52abd88a56bae5ece6e768f807679c20bf44dd0b159c68e55f77ff2f",
+                "sha256:c3edc4bf56bb713b4027f9501fb53a872692fdf34fd416b6d0322128f2487bde",
+                "sha256:9a635ac2e5da3f0b255db4bfa46cbf5f23bba603ad9d26acc5d867997ddaf266",
+                "sha256:6ccb5909801d00fb4efb52fd583c4568aa6e421ff2766461c39ee0c5b4bda643",
+                "sha256:15a39d27ad9358df6fc956c5e76aea91f2a1b7939c8e31607e6c51ab7d07d667",
+                "sha256:3b472a1dd71541a5be8833054bbb3ac435f15221ffc1c0f2720c9813a9fca74f",
+                "sha256:497e059fe8046a6370be047eccdccadea30c45518f049bacb813205a3c71548e",
+                "sha256:23c34ed416e9bf7b5b41feca8b64e7843d52f0dbd3424ed1aab666758fbf26a0",
+                "sha256:7ca2c2c9e79f57f8c08da73ed317325cc5c1bffc096c0782af8c7c1f16799548",
+                "sha256:6c4236f01d9eb67ffb58e39af3710ea230972633199e6c1481b0a280fc73e5bc",
+                "sha256:0e6decece6f30f0e03044e069fcbdd5e4b4991269e9609fb1056781813948650",
+                "sha256:616110ac7251ea2763c7a4f1abd196b0c74415718cb1b82ff7f6a055f638321a",
+                "sha256:4ca2e610fd5ec765925fea8f085d7dcbf093483252872189d25a9d222caa31dc",
+                "sha256:78316cc1922a9e5e687e8b59ebfd4d6bd8bec00895592a6efdc417ff0bff925f",
+                "sha256:ce68da4de3c162a930c7c8d9ba0ca29cdc1df3d4b9dca1e2e80b91c8e60b4831",
+                "sha256:206ca651f9936b8ae095b7705f85cc1964b3e32339d8437d87500eb6855f8a2b",
+                "sha256:12a983c6b4d16222fb1052011b875cde51811d428e3ff2de49acbb1f7c69ba8e",
+                "sha256:9162fb40b856ff8d3f1aab6848de27a208a87550c5e8a40c823521b68c00a815",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-11-11T22:17:11.322994801Z"
+        }
+    }
+]

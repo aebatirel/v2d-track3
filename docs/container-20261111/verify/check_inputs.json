@@ -1,0 +1,238 @@
+{
+ "1": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000001/assets/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000001/assets/urdf/white_pot_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000001/assets/urdf/white_pot_lid_rigid.urdf"
+  ],
+  "n_meshes": 162,
+  "support": "/submission/eval_inputs/track3_13h/episode_000001/assets/refs/perc2mcks/ep1/reconstructed_stage/t3_ep001_support.usda",
+  "frames": 335,
+  "saved_frames": 335,
+  "outside": []
+ },
+ "3": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000003/assets/refs/glockt/ep3/processed/sequence_id=t3_ep003/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000003/assets/urdf/white_pot_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000003/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000003/assets/refs/glockt/ep3/reconstructed_stage/t3_ep003_support.usda",
+  "frames": 313,
+  "saved_frames": 313,
+  "outside": []
+ },
+ "5": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000005/assets/refs/glockt/ep5/processed/sequence_id=t3_ep005/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000005/assets/urdf/white_pot_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000005/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000005/assets/refs/glockt/ep5/reconstructed_stage/t3_ep005_support.usda",
+  "frames": 288,
+  "saved_frames": 288,
+  "outside": []
+ },
+ "6": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000006/assets/refs/glockt/ep6/processed/sequence_id=t3_ep006/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000006/assets/urdf/white_pot_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000006/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000006/assets/refs/glockt/ep6/reconstructed_stage/t3_ep006_support.usda",
+  "frames": 243,
+  "saved_frames": 243,
+  "outside": []
+ },
+ "8": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000008/assets/refs/glockt/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000008/assets/urdf/beige_cup_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000008/assets/urdf/white_pot_rigid.urdf"
+  ],
+  "n_meshes": 20,
+  "support": "/submission/eval_inputs/track3_13h/episode_000008/assets/refs/glockt/ep8/reconstructed_stage/t3_ep008_support.usda",
+  "frames": 219,
+  "saved_frames": 219,
+  "outside": []
+ },
+ "10": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000010/assets/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000010/assets/urdf/blue_cup_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000010/assets/urdf/beige_cup_rigid.urdf"
+  ],
+  "n_meshes": 104,
+  "support": "/submission/eval_inputs/track3_13h/episode_000010/assets/refs/perc2e10njs43_glockt/ep10/reconstructed_stage/t3_ep010_support.usda",
+  "frames": 161,
+  "saved_frames": 161,
+  "outside": []
+ },
+ "14": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000014/assets/refs/pfss43_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000014/assets/urdf/blue_cup_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000014/assets/urdf/plastic_dish_rack_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000014/assets/refs/pfss43_glockt/ep14/reconstructed_stage/t3_ep014_support.usda",
+  "frames": 158,
+  "saved_frames": 158,
+  "outside": []
+ },
+ "15": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000015/assets/refs/pfplws42_glockt/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000015/assets/urdf/plastic_dish_rack_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000015/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000015/assets/refs/pfplws42_glockt/ep15/reconstructed_stage/t3_ep015_support.usda",
+  "frames": 166,
+  "saved_frames": 166,
+  "outside": []
+ },
+ "16": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000016/assets/refs/pfpzs43_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000016/assets/urdf/plastic_dish_rack_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000016/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000016/assets/refs/pfpzs43_glockt/ep16/reconstructed_stage/t3_ep016_support.usda",
+  "frames": 173,
+  "saved_frames": 173,
+  "outside": []
+ },
+ "19": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000019/assets/refs/perc2mcks/ep19/processed/sequence_id=t3_ep019/robot_name=sharpa_wave/afc53914ae7542d7b565119fc4892688-0.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000019/assets/urdf/mini_sweeper_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000019/assets/urdf/mini_dust_pan_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000019/assets/refs/perc2mcks/ep19/reconstructed_stage/t3_ep019_support.usda",
+  "frames": 235,
+  "saved_frames": 235,
+  "outside": []
+ },
+ "20": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000020/assets/refs/pfplws43_glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000020/assets/urdf/blue_cup_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000020/assets/urdf/water_pitcher_rigid.urdf"
+  ],
+  "n_meshes": 12,
+  "support": "/submission/eval_inputs/track3_13h/episode_000020/assets/refs/pfplws43_glockt/ep20/reconstructed_stage/t3_ep020_support.usda",
+  "frames": 202,
+  "saved_frames": 202,
+  "outside": []
+ },
+ "25": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000025/assets/refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000025/assets/urdf/wooden_piece_1_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000025/assets/urdf/wooden_piece_2_rigid.urdf"
+  ],
+  "n_meshes": 34,
+  "support": "/submission/eval_inputs/track3_13h/episode_000025/assets/refs/perc2mcks/ep25/reconstructed_stage/t3_ep025_support.usda",
+  "frames": 356,
+  "saved_frames": 356,
+  "outside": []
+ },
+ "28": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000028/assets/refs/perc2mcks/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000028/assets/urdf/plastic_dish_rack_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000028/assets/urdf/white_pot_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000028/assets/refs/perc2mcks/ep28/reconstructed_stage/t3_ep028_support.usda",
+  "frames": 220,
+  "saved_frames": 220,
+  "outside": []
+ },
+ "30": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000030/assets/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000030/assets/urdf/mini_sweeper_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000030/assets/urdf/plastic_dish_rack_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000030/assets/refs/perc2mcks/ep30/reconstructed_stage/t3_ep030_support.usda",
+  "frames": 263,
+  "saved_frames": 263,
+  "outside": []
+ },
+ "32": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000032/assets/refs/pfss43_glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000032/assets/urdf/blue_cup_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000032/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000032/assets/refs/pfss43_glockt/ep32/reconstructed_stage/t3_ep032_support.usda",
+  "frames": 259,
+  "saved_frames": 259,
+  "outside": []
+ },
+ "33": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000033/assets/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000033/assets/urdf/blue_cup_rigid.urdf",
+   "/submission/eval_inputs/track3_13h/episode_000033/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 4,
+  "support": "/submission/eval_inputs/track3_13h/episode_000033/assets/refs/glockt/ep33/reconstructed_stage/t3_ep033_support.usda",
+  "frames": 348,
+  "saved_frames": 348,
+  "outside": []
+ },
+ "35": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000035/assets/refs/glockt/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000035/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 2,
+  "support": "/submission/eval_inputs/track3_13h/episode_000035/assets/refs/glockt/ep35/reconstructed_stage/t3_ep035_support.usda",
+  "frames": 421,
+  "saved_frames": 421,
+  "outside": []
+ },
+ "36": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000036/assets/refs/glockt/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000036/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 2,
+  "support": "/submission/eval_inputs/track3_13h/episode_000036/assets/refs/glockt/ep36/reconstructed_stage/t3_ep036_support.usda",
+  "frames": 407,
+  "saved_frames": 407,
+  "outside": []
+ },
+ "37": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000037/assets/refs/glockt/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000037/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "n_meshes": 2,
+  "support": "/submission/eval_inputs/track3_13h/episode_000037/assets/refs/glockt/ep37/reconstructed_stage/t3_ep037_support.usda",
+  "frames": 151,
+  "saved_frames": 151,
+  "outside": []
+ },
+ "38": {
+  "parquet": "/submission/eval_inputs/track3_13h/episode_000038/assets/refs/glockt/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "urdfs": [
+   "/submission/eval_inputs/track3_13h/episode_000038/assets/urdf/mini_dust_pan_rigid.urdf"
+  ],
+  "n_meshes": 2,
+  "support": "/submission/eval_inputs/track3_13h/episode_000038/assets/refs/glockt/ep38/reconstructed_stage/t3_ep038_support.usda",
+  "frames": 263,
+  "saved_frames": 263,
+  "outside": []
+ }
+}

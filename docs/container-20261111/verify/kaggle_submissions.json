@@ -1,0 +1,1373 @@
+{
+ "v2d-challenge-track3-auc": [
+  {
+   "ref": "57943952",
+   "description": "pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; commit 3a933d1d)",
+   "date": "2026-11-03 10:30:29.507000",
+   "public_score": "0.87648",
+   "private_score": "0.87648",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57935089",
+   "description": "pack 13i: CD-O variant, 13h + G3 pot/dust pan/board 1 (GT-informed best-of-N, disclosed; commit edd6d690)",
+   "date": "2026-11-03 05:52:17.777000",
+   "public_score": "0.87593",
+   "private_score": "0.87593",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57925185",
+   "description": "pack 13h: CD-O variant, 13f + G2 pot/cup/rack meshes (GT-informed best-of-N, disclosed; commit 9610329e)",
+   "date": "2026-11-03 00:03:37.857000",
+   "public_score": "0.88001",
+   "private_score": "0.88001",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57924186",
+   "description": "pack 14p: 13p2 + eval 14 retrain with Tier B collision (commit cc191721)",
+   "date": "2026-11-02 23:30:37.147000",
+   "public_score": "0.88571",
+   "private_score": "0.88571",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922817",
+   "description": "pack 13p2: 13p + eval 20 pitcher placed from depth (GT-free; commit b0bd91fc)",
+   "date": "2026-11-02 22:17:03.440000",
+   "public_score": "0.88403",
+   "private_score": "0.88403",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922330",
+   "description": "pack 13p: 13f1 + pose-board meshes by public pose CV (TSDF pot, library_c0 rack; commit 116dfe70)",
+   "date": "2026-11-02 21:50:41.767000",
+   "public_score": "0.88257",
+   "private_score": "0.88257",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57920845",
+   "description": "pack 13f1: pack 13f with eval 25 board-2 mesh reverted (no-flip gate D1; commit e182f362)",
+   "date": "2026-11-02 20:34:35.213000",
+   "public_score": "0.87191",
+   "private_score": "0.87191",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919615",
+   "description": "pack 13f: pack 13e + Tier B+ blue cup and dust pan meshes (commit 158dd372)",
+   "date": "2026-11-02 19:34:22.763000",
+   "public_score": "0.87225",
+   "private_score": "0.87225",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919442",
+   "description": "pack 13e: pack 13b poses + pack 12e meshes (commit b96170b9)",
+   "date": "2026-11-02 19:27:18.300000",
+   "public_score": "0.87166",
+   "private_score": "0.87166",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919161",
+   "description": "pack 12e: pack 12d + Tier B meshes (GT-informed selection, owner-approved; CD-O variant; commit 9684395b)",
+   "date": "2026-11-02 19:16:58.980000",
+   "public_score": "0.86905",
+   "private_score": "0.86905",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918857",
+   "description": "pack 13b: pack 13 + eval 15 lift-window retrain (owner waiver of clause c; commit 8efca116)",
+   "date": "2026-11-02 19:07:21.270000",
+   "public_score": "0.84985",
+   "private_score": "0.84985",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918229",
+   "description": "pack 13: pack 12c + eval 20 lift-window retrain (commit b45b377b)",
+   "date": "2026-11-02 18:44:38.597000",
+   "public_score": "0.84924",
+   "private_score": "0.84924",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57908795",
+   "description": "pack 12d 2 Nov 2026: pack 12c + pre-registered T3 pot and pitcher meshes (CD-O-only variant); code 91342da",
+   "date": "2026-11-02 12:42:23.667000",
+   "public_score": "0.84005",
+   "private_score": "0.84005",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57902023",
+   "description": "pack 12c 2 Nov 2026: pack 12b + C0 blue-cup mesh (CD-O; selector written after public scoring, owner-accepted); code 7d7f8d3",
+   "date": "2026-11-02 08:38:35.630000",
+   "public_score": "0.84738",
+   "private_score": "0.84738",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57898411",
+   "description": "pack 12b 2 Nov 2026 (a team member): pack 11 + evals 14, 32 (guard-bridged) and 16 (hand held through release), stock limits; code fa129a1",
+   "date": "2026-11-02 06:37:20.127000",
+   "public_score": "0.84405",
+   "private_score": "0.84405",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57870406",
+   "description": "pack 11 1 Nov 2026: pack 10 with eval 10 policy trained at njmax 1024 (training-only), evaluated at stock 512/256; code 5031231",
+   "date": "2026-11-01 11:39:38.500000",
+   "public_score": "0.83921",
+   "private_score": "0.83921",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57866069",
+   "description": "pack 10 1 Nov 2026: pack 9a+ with eval 10's ev10cs5 stock-limit retrain (swap rule PASS), code commit a187a8c",
+   "date": "2026-11-01 08:38:36.740000",
+   "public_score": "0.81915",
+   "private_score": "0.81915",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57860700",
+   "description": "pack 9b 1 Nov 2026: pack 9a+ with eval 33's D-arm rollout (swap rule PASS), code commit dd24ed4",
+   "date": "2026-11-01 04:58:00.187000",
+   "public_score": "0.81677",
+   "private_score": "0.81677",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57847040",
+   "description": "pack 9a+ 31 Oct 2026: pack 8 + mesh swaps (pot, lid, rack C0; beige cup, dust pan C1; flagged), code commit d7ecaef",
+   "date": "2026-10-31 18:13:36.113000",
+   "public_score": "0.81757",
+   "private_score": "0.81757",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57795535",
+   "description": "seventh pack 30 Oct 2026 (pack 6 with eval 33 from arm B, 10-draw confirmed), code commit 465320b",
+   "date": "2026-10-30 06:28:03.250000",
+   "public_score": "0.81460",
+   "private_score": "0.81460",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57673585",
+   "description": "sixth pack 26 Oct 2026 (pack 5 with eval 20 pitcher mesh reverted to library_v3), code commit 5203d42",
+   "date": "2026-10-26 17:15:14.530000",
+   "public_score": "0.81391",
+   "private_score": "0.81391",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57671864",
+   "description": "fifth pack 26 Oct 2026 (eval 20 lathe-completed pitcher mesh, eval 32 seed 46, eval 10 gl10A2), code commit 526918b",
+   "date": "2026-10-26 16:06:11.810000",
+   "public_score": "0.80941",
+   "private_score": "0.80941",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57663666",
+   "description": "fourth pack 26 Oct 2026 (carved collision copies 10/25, seed 43 for 33, restored 3/5/15/16), code commit f7a49a9",
+   "date": "2026-10-26 10:55:22.130000",
+   "public_score": "0.81056",
+   "private_score": "0.81056",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57641652",
+   "description": "25 Oct pack 3: second learner (1,19,25,28,30), rebuilt refs (8,14,20,32,33), eval 25 board identities fixed (commit 3758189)",
+   "date": "2026-10-25 20:03:15.093000",
+   "public_score": "0.78893",
+   "private_score": "0.78893",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57612195",
+   "description": "25 Oct: eval 30 detection fix + seed-43 picks (commit 46b8389)",
+   "date": "2026-10-25 00:58:44.657000",
+   "public_score": "0.58252",
+   "private_score": "0.58252",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57603766",
+   "description": "first full run 24 Oct 2026, code commit 6f1aea3",
+   "date": "2026-10-24 18:41:08.337000",
+   "public_score": "0.57468",
+   "private_score": "0.57468",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  }
+ ],
+ "v2d-challenge-track3-sp-sr": [
+  {
+   "ref": "57943953",
+   "description": "pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; commit 3a933d1d)",
+   "date": "2026-11-03 10:30:32.300000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57935092",
+   "description": "pack 13i: CD-O variant, 13h + G3 pot/dust pan/board 1 (GT-informed best-of-N, disclosed; commit edd6d690)",
+   "date": "2026-11-03 05:52:20.627000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57925189",
+   "description": "pack 13h: CD-O variant, 13f + G2 pot/cup/rack meshes (GT-informed best-of-N, disclosed; commit 9610329e)",
+   "date": "2026-11-03 00:03:40.637000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57924189",
+   "description": "pack 14p: 13p2 + eval 14 retrain with Tier B collision (commit cc191721)",
+   "date": "2026-11-02 23:30:39.817000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922822",
+   "description": "pack 13p2: 13p + eval 20 pitcher placed from depth (GT-free; commit b0bd91fc)",
+   "date": "2026-11-02 22:17:08.097000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922331",
+   "description": "pack 13p: 13f1 + pose-board meshes by public pose CV (TSDF pot, library_c0 rack; commit 116dfe70)",
+   "date": "2026-11-02 21:50:44.457000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57920846",
+   "description": "pack 13f1: pack 13f with eval 25 board-2 mesh reverted (no-flip gate D1; commit e182f362)",
+   "date": "2026-11-02 20:34:38.227000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919616",
+   "description": "pack 13f: pack 13e + Tier B+ blue cup and dust pan meshes (commit 158dd372)",
+   "date": "2026-11-02 19:34:25.440000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919443",
+   "description": "pack 13e: pack 13b poses + pack 12e meshes (commit b96170b9)",
+   "date": "2026-11-02 19:27:21.210000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919162",
+   "description": "pack 12e: pack 12d + Tier B meshes (GT-informed selection, owner-approved; CD-O variant; commit 9684395b)",
+   "date": "2026-11-02 19:17:01.683000",
+   "public_score": "0.90000",
+   "private_score": "0.90000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918861",
+   "description": "pack 13b: pack 13 + eval 15 lift-window retrain (owner waiver of clause c; commit 8efca116)",
+   "date": "2026-11-02 19:07:24.250000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918230",
+   "description": "pack 13: pack 12c + eval 20 lift-window retrain (commit b45b377b)",
+   "date": "2026-11-02 18:44:41.680000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57908800",
+   "description": "pack 12d 2 Nov 2026: pack 12c + pre-registered T3 pot and pitcher meshes (CD-O-only variant); code 91342da",
+   "date": "2026-11-02 12:42:26.497000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57902028",
+   "description": "pack 12c 2 Nov 2026: pack 12b + C0 blue-cup mesh (CD-O; selector written after public scoring, owner-accepted); code 7d7f8d3",
+   "date": "2026-11-02 08:38:38.473000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57898412",
+   "description": "pack 12b 2 Nov 2026 (a team member): pack 11 + evals 14, 32 (guard-bridged) and 16 (hand held through release), stock limits; code fa129a1",
+   "date": "2026-11-02 06:37:22.750000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57870408",
+   "description": "pack 11 1 Nov 2026: pack 10 with eval 10 policy trained at njmax 1024 (training-only), evaluated at stock 512/256; code 5031231",
+   "date": "2026-11-01 11:39:41.190000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57866071",
+   "description": "pack 10 1 Nov 2026: pack 9a+ with eval 10's ev10cs5 stock-limit retrain (swap rule PASS), code commit a187a8c",
+   "date": "2026-11-01 08:38:39.497000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57860701",
+   "description": "pack 9b 1 Nov 2026: pack 9a+ with eval 33's D-arm rollout (swap rule PASS), code commit dd24ed4",
+   "date": "2026-11-01 04:58:02.817000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57847045",
+   "description": "pack 9a+ 31 Oct 2026: pack 8 + mesh swaps (pot, lid, rack C0; beige cup, dust pan C1; flagged), code commit d7ecaef",
+   "date": "2026-10-31 18:13:38.767000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57795537",
+   "description": "seventh pack 30 Oct 2026 (pack 6 with eval 33 from arm B, 10-draw confirmed), code commit 465320b",
+   "date": "2026-10-30 06:28:05.903000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57673590",
+   "description": "sixth pack 26 Oct 2026 (pack 5 with eval 20 pitcher mesh reverted to library_v3), code commit 5203d42",
+   "date": "2026-10-26 17:15:17.260000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57671865",
+   "description": "fifth pack 26 Oct 2026 (eval 20 lathe-completed pitcher mesh, eval 32 seed 46, eval 10 gl10A2), code commit 526918b",
+   "date": "2026-10-26 16:06:15.037000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57663668",
+   "description": "fourth pack 26 Oct 2026 (carved collision copies 10/25, seed 43 for 33, restored 3/5/15/16), code commit f7a49a9",
+   "date": "2026-10-26 10:55:24.653000",
+   "public_score": "0.85000",
+   "private_score": "0.85000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57641653",
+   "description": "25 Oct pack 3: second learner (1,19,25,28,30), rebuilt refs (8,14,20,32,33), eval 25 board identities fixed (commit 3758189)",
+   "date": "2026-10-25 20:03:17.620000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57612196",
+   "description": "25 Oct: eval 30 detection fix + seed-43 picks (commit 46b8389)",
+   "date": "2026-10-25 00:58:47.173000",
+   "public_score": "0.50000",
+   "private_score": "0.50000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57603974",
+   "description": "first full run 24 Oct 2026, code commit 6f1aea3",
+   "date": "2026-10-24 18:50:49.850000",
+   "public_score": "0.45000",
+   "private_score": "0.45000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  }
+ ],
+ "v2d-challenge-track3-mp-sr": [
+  {
+   "ref": "57943955",
+   "description": "pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; commit 3a933d1d)",
+   "date": "2026-11-03 10:30:35.057000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57935096",
+   "description": "pack 13i: CD-O variant, 13h + G3 pot/dust pan/board 1 (GT-informed best-of-N, disclosed; commit edd6d690)",
+   "date": "2026-11-03 05:52:23.367000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57925196",
+   "description": "pack 13h: CD-O variant, 13f + G2 pot/cup/rack meshes (GT-informed best-of-N, disclosed; commit 9610329e)",
+   "date": "2026-11-03 00:03:43.547000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57924191",
+   "description": "pack 14p: 13p2 + eval 14 retrain with Tier B collision (commit cc191721)",
+   "date": "2026-11-02 23:30:42.487000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922825",
+   "description": "pack 13p2: 13p + eval 20 pitcher placed from depth (GT-free; commit b0bd91fc)",
+   "date": "2026-11-02 22:17:10.827000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922335",
+   "description": "pack 13p: 13f1 + pose-board meshes by public pose CV (TSDF pot, library_c0 rack; commit 116dfe70)",
+   "date": "2026-11-02 21:50:47.240000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57920850",
+   "description": "pack 13f1: pack 13f with eval 25 board-2 mesh reverted (no-flip gate D1; commit e182f362)",
+   "date": "2026-11-02 20:34:41.063000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919617",
+   "description": "pack 13f: pack 13e + Tier B+ blue cup and dust pan meshes (commit 158dd372)",
+   "date": "2026-11-02 19:34:28.107000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919449",
+   "description": "pack 13e: pack 13b poses + pack 12e meshes (commit b96170b9)",
+   "date": "2026-11-02 19:27:24.647000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919164",
+   "description": "pack 12e: pack 12d + Tier B meshes (GT-informed selection, owner-approved; CD-O variant; commit 9684395b)",
+   "date": "2026-11-02 19:17:04.407000",
+   "public_score": "0.80000",
+   "private_score": "0.80000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918863",
+   "description": "pack 13b: pack 13 + eval 15 lift-window retrain (owner waiver of clause c; commit 8efca116)",
+   "date": "2026-11-02 19:07:27.083000",
+   "public_score": "0.75000",
+   "private_score": "0.75000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918232",
+   "description": "pack 13: pack 12c + eval 20 lift-window retrain (commit b45b377b)",
+   "date": "2026-11-02 18:44:44.440000",
+   "public_score": "0.75000",
+   "private_score": "0.75000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57908802",
+   "description": "pack 12d 2 Nov 2026: pack 12c + pre-registered T3 pot and pitcher meshes (CD-O-only variant); code 91342da",
+   "date": "2026-11-02 12:42:29.173000",
+   "public_score": "0.75000",
+   "private_score": "0.75000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57902031",
+   "description": "pack 12c 2 Nov 2026: pack 12b + C0 blue-cup mesh (CD-O; selector written after public scoring, owner-accepted); code 7d7f8d3",
+   "date": "2026-11-02 08:38:41.370000",
+   "public_score": "0.75000",
+   "private_score": "0.75000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57898413",
+   "description": "pack 12b 2 Nov 2026 (a team member): pack 11 + evals 14, 32 (guard-bridged) and 16 (hand held through release), stock limits; code fa129a1",
+   "date": "2026-11-02 06:37:25.540000",
+   "public_score": "0.75000",
+   "private_score": "0.75000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57870411",
+   "description": "pack 11 1 Nov 2026: pack 10 with eval 10 policy trained at njmax 1024 (training-only), evaluated at stock 512/256; code 5031231",
+   "date": "2026-11-01 11:39:43.857000",
+   "public_score": "0.70000",
+   "private_score": "0.70000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57866072",
+   "description": "pack 10 1 Nov 2026: pack 9a+ with eval 10's ev10cs5 stock-limit retrain (swap rule PASS), code commit a187a8c",
+   "date": "2026-11-01 08:38:42.460000",
+   "public_score": "0.65000",
+   "private_score": "0.65000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57860703",
+   "description": "pack 9b 1 Nov 2026: pack 9a+ with eval 33's D-arm rollout (swap rule PASS), code commit dd24ed4",
+   "date": "2026-11-01 04:58:05.480000",
+   "public_score": "0.65000",
+   "private_score": "0.65000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57847047",
+   "description": "pack 9a+ 31 Oct 2026: pack 8 + mesh swaps (pot, lid, rack C0; beige cup, dust pan C1; flagged), code commit d7ecaef",
+   "date": "2026-10-31 18:13:41.480000",
+   "public_score": "0.65000",
+   "private_score": "0.65000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57795538",
+   "description": "seventh pack 30 Oct 2026 (pack 6 with eval 33 from arm B, 10-draw confirmed), code commit 465320b",
+   "date": "2026-10-30 06:28:08.520000",
+   "public_score": "0.65000",
+   "private_score": "0.65000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57673591",
+   "description": "sixth pack 26 Oct 2026 (pack 5 with eval 20 pitcher mesh reverted to library_v3), code commit 5203d42",
+   "date": "2026-10-26 17:15:19.857000",
+   "public_score": "0.65000",
+   "private_score": "0.65000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57671867",
+   "description": "fifth pack 26 Oct 2026 (eval 20 lathe-completed pitcher mesh, eval 32 seed 46, eval 10 gl10A2), code commit 526918b",
+   "date": "2026-10-26 16:06:18.153000",
+   "public_score": "0.65000",
+   "private_score": "0.65000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57663670",
+   "description": "fourth pack 26 Oct 2026 (carved collision copies 10/25, seed 43 for 33, restored 3/5/15/16), code commit f7a49a9",
+   "date": "2026-10-26 10:55:27.300000",
+   "public_score": "0.65000",
+   "private_score": "0.65000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57641654",
+   "description": "25 Oct pack 3: second learner (1,19,25,28,30), rebuilt refs (8,14,20,32,33), eval 25 board identities fixed (commit 3758189)",
+   "date": "2026-10-25 20:03:20.217000",
+   "public_score": "0.60000",
+   "private_score": "0.60000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57612198",
+   "description": "25 Oct: eval 30 detection fix + seed-43 picks (commit 46b8389)",
+   "date": "2026-10-25 00:58:50.880000",
+   "public_score": "0.40000",
+   "private_score": "0.40000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57603976",
+   "description": "first full run 24 Oct 2026, code commit 6f1aea3",
+   "date": "2026-10-24 18:50:52.450000",
+   "public_score": "0.35000",
+   "private_score": "0.35000",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  }
+ ],
+ "v2d-challenge-track3-rpe": [
+  {
+   "ref": "57943956",
+   "description": "pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; commit 3a933d1d)",
+   "date": "2026-11-03 10:30:37.983000",
+   "public_score": "2.31701",
+   "private_score": "2.31701",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57935099",
+   "description": "pack 13i: CD-O variant, 13h + G3 pot/dust pan/board 1 (GT-informed best-of-N, disclosed; commit edd6d690)",
+   "date": "2026-11-03 05:52:25.960000",
+   "public_score": "2.32822",
+   "private_score": "2.32822",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57925202",
+   "description": "pack 13h: CD-O variant, 13f + G2 pot/cup/rack meshes (GT-informed best-of-N, disclosed; commit 9610329e)",
+   "date": "2026-11-03 00:03:46.287000",
+   "public_score": "2.28085",
+   "private_score": "2.28085",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57924193",
+   "description": "pack 14p: 13p2 + eval 14 retrain with Tier B collision (commit cc191721)",
+   "date": "2026-11-02 23:30:45.177000",
+   "public_score": "2.21325",
+   "private_score": "2.21325",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922826",
+   "description": "pack 13p2: 13p + eval 20 pitcher placed from depth (GT-free; commit b0bd91fc)",
+   "date": "2026-11-02 22:17:13.477000",
+   "public_score": "2.22531",
+   "private_score": "2.22531",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922337",
+   "description": "pack 13p: 13f1 + pose-board meshes by public pose CV (TSDF pot, library_c0 rack; commit 116dfe70)",
+   "date": "2026-11-02 21:50:49.963000",
+   "public_score": "2.22667",
+   "private_score": "2.22667",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57920851",
+   "description": "pack 13f1: pack 13f with eval 25 board-2 mesh reverted (no-flip gate D1; commit e182f362)",
+   "date": "2026-11-02 20:34:44.023000",
+   "public_score": "2.37520",
+   "private_score": "2.37520",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919619",
+   "description": "pack 13f: pack 13e + Tier B+ blue cup and dust pan meshes (commit 158dd372)",
+   "date": "2026-11-02 19:34:30.903000",
+   "public_score": "2.38260",
+   "private_score": "2.38260",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919450",
+   "description": "pack 13e: pack 13b poses + pack 12e meshes (commit b96170b9)",
+   "date": "2026-11-02 19:27:27.583000",
+   "public_score": "2.39478",
+   "private_score": "2.39478",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919170",
+   "description": "pack 12e: pack 12d + Tier B meshes (GT-informed selection, owner-approved; CD-O variant; commit 9684395b)",
+   "date": "2026-11-02 19:17:16.690000",
+   "public_score": "2.39138",
+   "private_score": "2.39138",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918865",
+   "description": "pack 13b: pack 13 + eval 15 lift-window retrain (owner waiver of clause c; commit 8efca116)",
+   "date": "2026-11-02 19:07:30.010000",
+   "public_score": "3.01275",
+   "private_score": "3.01275",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918234",
+   "description": "pack 13: pack 12c + eval 20 lift-window retrain (commit b45b377b)",
+   "date": "2026-11-02 18:44:47.330000",
+   "public_score": "3.00841",
+   "private_score": "3.00841",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57908803",
+   "description": "pack 12d 2 Nov 2026: pack 12c + pre-registered T3 pot and pitcher meshes (CD-O-only variant); code 91342da",
+   "date": "2026-11-02 12:42:31.877000",
+   "public_score": "3.14219",
+   "private_score": "3.14219",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57902032",
+   "description": "pack 12c 2 Nov 2026: pack 12b + C0 blue-cup mesh (CD-O; selector written after public scoring, owner-accepted); code 7d7f8d3",
+   "date": "2026-11-02 08:38:44.223000",
+   "public_score": "3.00843",
+   "private_score": "3.00843",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57898415",
+   "description": "pack 12b 2 Nov 2026 (a team member): pack 11 + evals 14, 32 (guard-bridged) and 16 (hand held through release), stock limits; code fa129a1",
+   "date": "2026-11-02 06:37:28.203000",
+   "public_score": "3.02339",
+   "private_score": "3.02339",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57870415",
+   "description": "pack 11 1 Nov 2026: pack 10 with eval 10 policy trained at njmax 1024 (training-only), evaluated at stock 512/256; code 5031231",
+   "date": "2026-11-01 11:39:46.497000",
+   "public_score": "3.17899",
+   "private_score": "3.17899",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57866075",
+   "description": "pack 10 1 Nov 2026: pack 9a+ with eval 10's ev10cs5 stock-limit retrain (swap rule PASS), code commit a187a8c",
+   "date": "2026-11-01 08:38:45.180000",
+   "public_score": "3.68275",
+   "private_score": "3.68275",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57860704",
+   "description": "pack 9b 1 Nov 2026: pack 9a+ with eval 33's D-arm rollout (swap rule PASS), code commit dd24ed4",
+   "date": "2026-11-01 04:58:08.207000",
+   "public_score": "3.88283",
+   "private_score": "3.88283",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57847049",
+   "description": "pack 9a+ 31 Oct 2026: pack 8 + mesh swaps (pot, lid, rack C0; beige cup, dust pan C1; flagged), code commit d7ecaef",
+   "date": "2026-10-31 18:13:44.243000",
+   "public_score": "3.87853",
+   "private_score": "3.87853",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57795540",
+   "description": "seventh pack 30 Oct 2026 (pack 6 with eval 33 from arm B, 10-draw confirmed), code commit 465320b",
+   "date": "2026-10-30 06:28:10.973000",
+   "public_score": "3.93179",
+   "private_score": "3.93179",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57673593",
+   "description": "sixth pack 26 Oct 2026 (pack 5 with eval 20 pitcher mesh reverted to library_v3), code commit 5203d42",
+   "date": "2026-10-26 17:15:22.860000",
+   "public_score": "3.94176",
+   "private_score": "3.94176",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57671869",
+   "description": "fifth pack 26 Oct 2026 (eval 20 lathe-completed pitcher mesh, eval 32 seed 46, eval 10 gl10A2), code commit 526918b",
+   "date": "2026-10-26 16:06:21.933000",
+   "public_score": "4.00841",
+   "private_score": "4.00841",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57663673",
+   "description": "fourth pack 26 Oct 2026 (carved collision copies 10/25, seed 43 for 33, restored 3/5/15/16), code commit f7a49a9",
+   "date": "2026-10-26 10:55:29.820000",
+   "public_score": "4.03314",
+   "private_score": "4.03314",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57641655",
+   "description": "25 Oct pack 3: second learner (1,19,25,28,30), rebuilt refs (8,14,20,32,33), eval 25 board identities fixed (commit 3758189)",
+   "date": "2026-10-25 20:03:22.863000",
+   "public_score": "4.58961",
+   "private_score": "4.58961",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57612199",
+   "description": "25 Oct: eval 30 detection fix + seed-43 picks (commit 46b8389)",
+   "date": "2026-10-25 00:58:54.710000",
+   "public_score": "8.81997",
+   "private_score": "8.81997",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57603977",
+   "description": "first full run 24 Oct 2026, code commit 6f1aea3",
+   "date": "2026-10-24 18:50:55.103000",
+   "public_score": "12.58468",
+   "private_score": "12.58468",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  }
+ ],
+ "v2d-challenge-track3-mppe": [
+  {
+   "ref": "57943957",
+   "description": "pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; commit 3a933d1d)",
+   "date": "2026-11-03 10:30:40.653000",
+   "public_score": "1.88872",
+   "private_score": "1.88872",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57935101",
+   "description": "pack 13i: CD-O variant, 13h + G3 pot/dust pan/board 1 (GT-informed best-of-N, disclosed; commit edd6d690)",
+   "date": "2026-11-03 05:52:28.730000",
+   "public_score": "1.89380",
+   "private_score": "1.89380",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57925211",
+   "description": "pack 13h: CD-O variant, 13f + G2 pot/cup/rack meshes (GT-informed best-of-N, disclosed; commit 9610329e)",
+   "date": "2026-11-03 00:03:49.150000",
+   "public_score": "1.85258",
+   "private_score": "1.85258",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57924197",
+   "description": "pack 14p: 13p2 + eval 14 retrain with Tier B collision (commit cc191721)",
+   "date": "2026-11-02 23:30:47.927000",
+   "public_score": "1.79779",
+   "private_score": "1.79779",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922828",
+   "description": "pack 13p2: 13p + eval 20 pitcher placed from depth (GT-free; commit b0bd91fc)",
+   "date": "2026-11-02 22:17:16.310000",
+   "public_score": "1.80932",
+   "private_score": "1.80932",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57922339",
+   "description": "pack 13p: 13f1 + pose-board meshes by public pose CV (TSDF pot, library_c0 rack; commit 116dfe70)",
+   "date": "2026-11-02 21:50:52.740000",
+   "public_score": "1.82356",
+   "private_score": "1.82356",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57920853",
+   "description": "pack 13f1: pack 13f with eval 25 board-2 mesh reverted (no-flip gate D1; commit e182f362)",
+   "date": "2026-11-02 20:34:46.670000",
+   "public_score": "1.92513",
+   "private_score": "1.92513",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919620",
+   "description": "pack 13f: pack 13e + Tier B+ blue cup and dust pan meshes (commit 158dd372)",
+   "date": "2026-11-02 19:34:33.557000",
+   "public_score": "1.92530",
+   "private_score": "1.92530",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919452",
+   "description": "pack 13e: pack 13b poses + pack 12e meshes (commit b96170b9)",
+   "date": "2026-11-02 19:27:30.500000",
+   "public_score": "1.92180",
+   "private_score": "1.92180",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57919171",
+   "description": "pack 12e: pack 12d + Tier B meshes (GT-informed selection, owner-approved; CD-O variant; commit 9684395b)",
+   "date": "2026-11-02 19:17:19.467000",
+   "public_score": "1.95269",
+   "private_score": "1.95269",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918869",
+   "description": "pack 13b: pack 13 + eval 15 lift-window retrain (owner waiver of clause c; commit 8efca116)",
+   "date": "2026-11-02 19:07:32.807000",
+   "public_score": "2.43592",
+   "private_score": "2.43592",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57918236",
+   "description": "pack 13: pack 12c + eval 20 lift-window retrain (commit b45b377b)",
+   "date": "2026-11-02 18:44:50.300000",
+   "public_score": "2.45263",
+   "private_score": "2.45263",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57908806",
+   "description": "pack 12d 2 Nov 2026: pack 12c + pre-registered T3 pot and pitcher meshes (CD-O-only variant); code 91342da",
+   "date": "2026-11-02 12:42:34.567000",
+   "public_score": "2.52460",
+   "private_score": "2.52460",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57902035",
+   "description": "pack 12c 2 Nov 2026: pack 12b + C0 blue-cup mesh (CD-O; selector written after public scoring, owner-accepted); code 7d7f8d3",
+   "date": "2026-11-02 08:38:46.947000",
+   "public_score": "2.46736",
+   "private_score": "2.46736",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57898417",
+   "description": "pack 12b 2 Nov 2026 (a team member): pack 11 + evals 14, 32 (guard-bridged) and 16 (hand held through release), stock limits; code fa129a1",
+   "date": "2026-11-02 06:37:30.937000",
+   "public_score": "2.49546",
+   "private_score": "2.49546",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57870417",
+   "description": "pack 11 1 Nov 2026: pack 10 with eval 10 policy trained at njmax 1024 (training-only), evaluated at stock 512/256; code 5031231",
+   "date": "2026-11-01 11:39:49.147000",
+   "public_score": "2.54531",
+   "private_score": "2.54531",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57866077",
+   "description": "pack 10 1 Nov 2026: pack 9a+ with eval 10's ev10cs5 stock-limit retrain (swap rule PASS), code commit a187a8c",
+   "date": "2026-11-01 08:38:47.947000",
+   "public_score": "2.84759",
+   "private_score": "2.84759",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57860707",
+   "description": "pack 9b 1 Nov 2026: pack 9a+ with eval 33's D-arm rollout (swap rule PASS), code commit dd24ed4",
+   "date": "2026-11-01 04:58:10.787000",
+   "public_score": "2.90186",
+   "private_score": "2.90186",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57847052",
+   "description": "pack 9a+ 31 Oct 2026: pack 8 + mesh swaps (pot, lid, rack C0; beige cup, dust pan C1; flagged), code commit d7ecaef",
+   "date": "2026-10-31 18:13:46.937000",
+   "public_score": "2.89663",
+   "private_score": "2.89663",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57795541",
+   "description": "seventh pack 30 Oct 2026 (pack 6 with eval 33 from arm B, 10-draw confirmed), code commit 465320b",
+   "date": "2026-10-30 06:28:13.573000",
+   "public_score": "2.92126",
+   "private_score": "2.92126",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57673595",
+   "description": "sixth pack 26 Oct 2026 (pack 5 with eval 20 pitcher mesh reverted to library_v3), code commit 5203d42",
+   "date": "2026-10-26 17:15:25.537000",
+   "public_score": "2.92493",
+   "private_score": "2.92493",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57671871",
+   "description": "fifth pack 26 Oct 2026 (eval 20 lathe-completed pitcher mesh, eval 32 seed 46, eval 10 gl10A2), code commit 526918b",
+   "date": "2026-10-26 16:06:25.053000",
+   "public_score": "2.96226",
+   "private_score": "2.96226",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57663675",
+   "description": "fourth pack 26 Oct 2026 (carved collision copies 10/25, seed 43 for 33, restored 3/5/15/16), code commit f7a49a9",
+   "date": "2026-10-26 10:55:32.353000",
+   "public_score": "2.93590",
+   "private_score": "2.93590",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57641658",
+   "description": "25 Oct pack 3: second learner (1,19,25,28,30), rebuilt refs (8,14,20,32,33), eval 25 board identities fixed (commit 3758189)",
+   "date": "2026-10-25 20:03:25.480000",
+   "public_score": "3.28955",
+   "private_score": "3.28955",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57612202",
+   "description": "25 Oct: eval 30 detection fix + seed-43 picks (commit 46b8389)",
+   "date": "2026-10-25 00:58:57.307000",
+   "public_score": "6.69321",
+   "private_score": "6.69321",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  },
+  {
+   "ref": "57603978",
+   "description": "first full run 24 Oct 2026, code commit 6f1aea3",
+   "date": "2026-10-24 18:50:57.737000",
+   "public_score": "8.65855",
+   "private_score": "8.65855",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.parquet"
+  }
+ ],
+ "v2d-challenge-track3-cd-o": [
+  {
+   "ref": "57943958",
+   "description": "pack 13j: CD-O variant, 13i + round-R rack (GT-informed best-of-N, disclosed; commit 3a933d1d)",
+   "date": "2026-11-03 10:30:43.460000",
+   "public_score": "0.23856",
+   "private_score": "0.23856",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57935106",
+   "description": "pack 13i: CD-O variant, 13h + G3 pot/dust pan/board 1 (GT-informed best-of-N, disclosed; commit edd6d690)",
+   "date": "2026-11-03 05:52:31.450000",
+   "public_score": "0.24177",
+   "private_score": "0.24177",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57925216",
+   "description": "pack 13h: CD-O variant, 13f + G2 pot/cup/rack meshes (GT-informed best-of-N, disclosed; commit 9610329e)",
+   "date": "2026-11-03 00:03:52.463000",
+   "public_score": "0.25159",
+   "private_score": "0.25159",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57924198",
+   "description": "pack 14p: 13p2 + eval 14 retrain with Tier B collision (commit cc191721)",
+   "date": "2026-11-02 23:30:50.570000",
+   "public_score": "0.26869",
+   "private_score": "0.26869",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57922829",
+   "description": "pack 13p2: 13p + eval 20 pitcher placed from depth (GT-free; commit b0bd91fc)",
+   "date": "2026-11-02 22:17:19",
+   "public_score": "0.26869",
+   "private_score": "0.26869",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57922340",
+   "description": "pack 13p: 13f1 + pose-board meshes by public pose CV (TSDF pot, library_c0 rack; commit 116dfe70)",
+   "date": "2026-11-02 21:50:55.640000",
+   "public_score": "0.26869",
+   "private_score": "0.26869",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57920856",
+   "description": "pack 13f1: pack 13f with eval 25 board-2 mesh reverted (no-flip gate D1; commit e182f362)",
+   "date": "2026-11-02 20:34:49.513000",
+   "public_score": "0.26393",
+   "private_score": "0.26393",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57919621",
+   "description": "pack 13f: pack 13e + Tier B+ blue cup and dust pan meshes (commit 158dd372)",
+   "date": "2026-11-02 19:34:36.310000",
+   "public_score": "0.26249",
+   "private_score": "0.26249",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57919454",
+   "description": "pack 13e: pack 13b poses + pack 12e meshes (commit b96170b9)",
+   "date": "2026-11-02 19:27:33.507000",
+   "public_score": "0.26775",
+   "private_score": "0.26775",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57919177",
+   "description": "pack 12e: pack 12d + Tier B meshes (GT-informed selection, owner-approved; CD-O variant; commit 9684395b)",
+   "date": "2026-11-02 19:17:22.367000",
+   "public_score": "0.26775",
+   "private_score": "0.26775",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57918870",
+   "description": "pack 13b: pack 13 + eval 15 lift-window retrain (owner waiver of clause c; commit 8efca116)",
+   "date": "2026-11-02 19:07:35.777000",
+   "public_score": "0.30008",
+   "private_score": "0.30008",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57918242",
+   "description": "pack 13: pack 12c + eval 20 lift-window retrain (commit b45b377b)",
+   "date": "2026-11-02 18:44:53.653000",
+   "public_score": "0.30008",
+   "private_score": "0.30008",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57908809",
+   "description": "pack 12d 2 Nov 2026: pack 12c + pre-registered T3 pot and pitcher meshes (CD-O-only variant); code 91342da",
+   "date": "2026-11-02 12:42:37.380000",
+   "public_score": "0.29029",
+   "private_score": "0.29029",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57902037",
+   "description": "pack 12c 2 Nov 2026: pack 12b + C0 blue-cup mesh (CD-O; selector written after public scoring, owner-accepted); code 7d7f8d3",
+   "date": "2026-11-02 08:38:49.690000",
+   "public_score": "0.30008",
+   "private_score": "0.30008",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57898422",
+   "description": "pack 12b 2 Nov 2026 (a team member): pack 11 + evals 14, 32 (guard-bridged) and 16 (hand held through release), stock limits; code fa129a1",
+   "date": "2026-11-02 06:37:33.863000",
+   "public_score": "0.33234",
+   "private_score": "0.33234",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57870420",
+   "description": "pack 11 1 Nov 2026: pack 10 with eval 10 policy trained at njmax 1024 (training-only), evaluated at stock 512/256; code 5031231",
+   "date": "2026-11-01 11:39:51.970000",
+   "public_score": "0.33234",
+   "private_score": "0.33234",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57866079",
+   "description": "pack 10 1 Nov 2026: pack 9a+ with eval 10's ev10cs5 stock-limit retrain (swap rule PASS), code commit a187a8c",
+   "date": "2026-11-01 08:38:50.800000",
+   "public_score": "0.33234",
+   "private_score": "0.33234",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57860708",
+   "description": "pack 9b 1 Nov 2026: pack 9a+ with eval 33's D-arm rollout (swap rule PASS), code commit dd24ed4",
+   "date": "2026-11-01 04:58:13.623000",
+   "public_score": "0.33234",
+   "private_score": "0.33234",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57847054",
+   "description": "pack 9a+ 31 Oct 2026: pack 8 + mesh swaps (pot, lid, rack C0; beige cup, dust pan C1; flagged), code commit d7ecaef",
+   "date": "2026-10-31 18:13:49.737000",
+   "public_score": "0.33234",
+   "private_score": "0.33234",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57641659",
+   "description": "25 Oct pack 3: second learner (1,19,25,28,30), rebuilt refs (8,14,20,32,33), eval 25 board identities fixed (commit 3758189)",
+   "date": "2026-10-25 20:03:28.130000",
+   "public_score": "0.40188",
+   "private_score": "0.40188",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  },
+  {
+   "ref": "57603979",
+   "description": "first full run 24 Oct 2026, code commit 6f1aea3",
+   "date": "2026-10-24 18:51:00.230000",
+   "public_score": "0.40513",
+   "private_score": "0.40513",
+   "status": "SubmissionStatus.COMPLETE",
+   "file_name": "track3_submission.cd-o.parquet"
+  }
+ ]
+}

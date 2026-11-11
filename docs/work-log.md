@@ -7653,3 +7653,32 @@ arm and a no-policy replay floor to stage B.
   - A Docker daemon runs in this cloud session, so the build and verify run here ($0). One Vast GPU box for the
     reproduce step, capped at $15, self-destroying.
   - The builder agent follows kit skills/v2d-container. No upload until the owner chooses hosting.
+- ~22:35 UTC 11 Nov **verification container for pack 13h built and verified** (builder agent; details and every
+  command in `docs/container-20261111/NOTES.md`; build files, tools and verify logs in that folder).
+  - Checks [M]:
+    - `run.sh verify --network none` in the final image: 11/11 PASS (commit, clean tree, file present, provenance,
+      packer, uploader, eval script, eval code b1b3eb…, 20/20 checkpoints, re-pack byte-identical d917b002…).
+      Also 11/11 as uid 1000 with `/data` mounted.
+    - `verify --reproduced`: 13/13 PASS (rows and provenance equal; object positions median 0.55 cm, p95 2.67 cm).
+    - `verify --kaggle` on the host: all six Kaggle IDs of 13h match.
+  - GPU reproduce: one Vast RTX PRO 6000 WS, instance 60264302, run `20261111-ctrepro-087068a`, ~28 min, ~$0.66 [E].
+    It used the same `/submission` tree and `install_runtime.sh` on the same base image, because Vast has no Docker
+    and pushing the image to a registry would be an upload. Box freezes are identical to the image's.
+    20 episodes in 5.5 min, rc 0; self-destroyed. 0 instances left [M]; Vast credit $33.98.
+  - Leaderboard scores of the reproduced file: not measured (Track 3 GT held out). Proxy vs our own reference [M]:
+    ADD-AUC 0.948 → 0.936, MPPE 1.43 → 1.94 cm, MP-SR 1.00 → 0.95. Stored-draw 95 % band 0.904–0.950 [D].
+    Most of the drop is eval 30's bimodal failure (4/21 stored draws).
+  - Image `imitation.tech-v2d-submission:final`, image ID sha256:f314c838…, OCI manifest sha256:82aa29cf…, 19.3 GB.
+    Tarball `Imitation.Tech-v2d-submission.tar.zst` 9,633,255,804 B, sha256
+    d76096b195d797a5b18654da19eed7f3f4f39a78e44e3076480369f0622f1b36 (re-checked by the coordinator).
+    Written by `tools/stream_save.py` (layer digests checked while streaming), because `docker save` needed 19.5 GB of
+    free disk. Kept in the session scratchpad only. NOT uploaded; hosting is the owner's choice.
+  - Deviations from the kit example are listed in the container README:
+    - `ENTRYPOINT []`;
+    - per-episode `--source-root` input trees (evals 1 and 28 name the same URDF path with different contents);
+    - the CoACD cache and PYTHONPATH set for non-root use;
+    - LFS objects fetched by sha256 from GitHub media URLs;
+    - base image fetched by digest (Docker Hub rate limit).
+  - Open: the owner must mark 13h final on all six boards (otherwise each board counts its best, 14p / 13j), choose
+    hosting, and submit the form. The Vast create call printed the instance-scoped key once in tool output; it was
+    redacted from the log and died with the instance.

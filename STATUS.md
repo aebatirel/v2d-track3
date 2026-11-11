@@ -1,5 +1,12 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-11 ~22:35 UTC: verification container for pack 13h built; all checks pass
+- `run.sh verify` 11/11, `verify --reproduced` 13/13, `verify --kaggle` all six IDs match [M]. GPU reproduce ~$0.66 [E];
+  0 Vast instances left.
+- Tarball (scratchpad only, not uploaded): 9.63 GB, sha256 d76096b195d797a5b18654da19eed7f3f4f39a78e44e3076480369f0622f1b36;
+  image ID sha256:f314c838218416fc2fb625ab1fc1f38267ecad3e3dd68be01763581dade8b3ae. Record: `docs/container-20261111/`.
+- Owner to do: confirm 13h, mark it final on all six boards, choose hosting for the tarball, submit the NVIDIA form.
+
 ## 2026-11-06 ~06:15 UTC: journey report being rebuilt cheaply; leaderboard moved
 - The report workflows stopped on the Claude usage limit (3–5 Nov). Now rebuilding at low cost:
   - script-built corpora from all branches;
