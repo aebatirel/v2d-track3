@@ -7643,3 +7643,13 @@ arm and a no-policy replay floor to stage B.
     sha256 values. The repo is public.
   - The verification container (kit CONTAINER_SUBMISSION.md) is not built yet. The HF store scan for the 20
     checkpoint files is running.
+- ~20:45 UTC 11 Nov **verification container build started** (owner: "can we build the container?"; pack 13h
+  assumed, my recommendation; owner's pick still pending).
+  - Checkpoint scan of the HF store (370 k entries) [M]: all 20 checkpoints of 13h, 13j and 14p exist
+    byte-identical (e.g. runs/20261025-std1928-ee7ba8e/results/final_eval/ep28/policy.safetensors). Map:
+    scratchpad ckpt_found.json.
+  - Latest kit from nvidia-isaac.github.io/video_to_data/v2d_challenge/assets/v2d_submission_kit.zip differs
+    from ours only in requirements.txt (adds `six`). Hash-critical files are identical.
+  - A Docker daemon runs in this cloud session, so the build and verify run here ($0). One Vast GPU box for the
+    reproduce step, capped at $15, self-destroying.
+  - The builder agent follows kit skills/v2d-container. No upload until the owner chooses hosting.
