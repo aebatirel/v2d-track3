@@ -7628,3 +7628,18 @@ arm and a no-policy replay floor to stage B.
   - Built by a converter script from the doc export; it compiles cleanly (no errors, no overfull boxes) and
     rebuilds from the zip.
   - Charts redrawn as vector PDFs from the exact data. A "Statement on AI assistance" was added.
+- 11 Nov owner: NVIDIA "Technical Report & Code Submission" form (team name, contact, Kaggle team ID, track,
+  final submission IDs, report PDF URL, GitHub URL, exact commit, verification container link).
+  - The form requires the SAME single submission marked final on all six Track 3 boards, so the 14p + 13j split
+    is no longer allowed.
+  - Rank sums against today's leaderboards (top 20): 14p 60; 13j 58 (AUC 10, CD-O 5); 13h 58 (AUC 9, MPPE 10,
+    CD-O 7). Margins on the contested boards are thin (0.002–0.007).
+  - Packs (Kaggle IDs auc / sp / mp / rpe / mppe / cd-o):
+    - 13h: 57925185 / 57925189 / 57925196 / 57925202 / 57925211 / 57925216; commit 9610329e1177921827a9b66e38103e746efd8a0c;
+    - 13j: 57943952 / 57943953 / 57943955 / 57943956 / 57943957 / 57943958; commit 3a933d1dc2b63696572b0e3f211ca81bd58c1ad6;
+    - 14p: 57924186 / 57924189 / 57924191 / 57924193 / 57924197 / 57924198; commit cc191721a6e15a8530b366f31592d9625aad1b51.
+  - 13h and 13j use the identical 20 policy checkpoints; 14p differs by one (eval 14 retrain).
+  - Kit hashes verified [M]: our kit's pack_submission.py, v2d_submit.py and evaluate_policy.py match the recorded
+    sha256 values. The repo is public.
+  - The verification container (kit CONTAINER_SUBMISSION.md) is not built yet. The HF store scan for the 20
+    checkpoint files is running.
