@@ -1,5 +1,10 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-12 ~23:55 UTC: ideas 1 and 3 tested: INCONCLUSIVE (the no-policy replay never grips; 99.6% of frames drift)
+- The pre-registered label cannot rank frames, so neither the grasp check nor the blob tree is decided.
+- Next (owner decides): a grasp-locked replay label on CPU ($0, new pre-registration), or test A on GPU (≈ $20–50).
+- Idea 2 (weight repair) still running. An explainer page for the owner is being published.
+
 ## 2026-11-12 ~23:35 UTC: contact-blob tree ready (frozen before labels); exercise 3 picture says reference contacts miss physics failures
 - Blob features + tree: `tools/blob_features.py`, `tools/blob_tree.py`; runs once test C's labels exist (gate agent
   replaying the 19 public references on CPU).

@@ -7,6 +7,10 @@
 
 The gate is built and tested. The scoring script is ready and refuses to run until the data exist.
 
+**Test C was run (section 10; label = zero-residual replay drift, CPU, $0): INCONCLUSIVE by the pre-registered
+positive-share rule.** 99.6% of held frames are positive, because the replay lifts almost no object. Pooled AUROC 0.41,
+95% CI [0.06, 0.59].
+
 Labels: [M] measured here, [C] computed, [E] estimate, [H] hypothesis.
 
 ## 1. Rule (pre-registered, work log "2026-11-12 ~22:20 UTC … PRE-REGISTRATION", unchanged)
@@ -225,3 +229,145 @@ CI and the count of positive episodes were not computed.
     env were not tried.
   - It answers a different question: can the reference be carried open-loop, rather than does the trained policy
     leave it.
+
+## 10. Test C: zero-residual replay label (run 2026-11-12, CPU, $0)
+
+**Verdict: INCONCLUSIVE.** The pre-registered positive-share rule decides it: 99.6% of held frames are positive
+(3,155 of 3,167), above the 90% bar.
+- Pooled AUROC 0.41, 95% episode-bootstrap CI [0.06, 0.59] (2,000 resamples, seed 20261112; 1 one-class resample
+  skipped).
+- All 19 episodes contribute positives.
+- The AUROC rests on only 12 negative units in 6 episodes, so it carries no information [M].
+
+### 10.1 Rule (work log "2026-11-12 ~22:55 UTC — PRE-REGISTRATION, idea 1 test C", unchanged)
+
+- **Gate:** `pipeline/wrench_gate.py` as committed in 61c0b6ad. `score_C.py` refuses to run if `git diff 61c0b6ad`
+  of that file is not empty.
+- **Data:** the 19 references `runs/20261020-refsweep-ea14fdf/refs/perc2/ep*/processed/…` (ep26 is missing).
+- **Label:** a FlashCHORD zero-residual replay on CPU (VOC 0, zero policy action, `tools/trace_rollout.py zero`, the
+  recipe's controller settings).
+  - Per (object, frame) in the gate's held windows: positive if the simulated object is more than 2 cm from the
+    reference.
+  - A missing or non-finite row counts as positive.
+- **Verdict:**
+  - informative if AUROC ≥ 0.75 and ≥ 8 episodes contribute positives;
+  - falsified if AUROC < 0.65;
+  - otherwise inconclusive, and also inconclusive if under 10% or over 90% of held frames are positive.
+- **Order of rules:** `score_C.py` applies the share rule before the AUROC bars. A share outside [0.10, 0.90] is
+  inconclusive whatever the AUROC. That is my reading of "also inconclusive".
+
+### 10.2 Setup and exact commands
+
+- **FlashCHORD at the evaluator pin.** The version is `nvidia-isaac/video_to_data` 8c778f905cb35f76f8e6cd6e2ea486da4fb9e0ef,
+  the pin in `pipeline/setup.sh` that our training and evaluation boxes use. I did not use the shallow clone at
+  `/home/user/nvidia-isaac/video_to_data` (main 1e862a8): it is a newer version, and its LFS meshes are pointer stubs.
+  - In the scratchpad `wgate/fc/`:
+
+        git init -q v2d && cd v2d && git remote add origin https://github.com/nvidia-isaac/video_to_data.git
+        GIT_LFS_SKIP_SMUDGE=1 git fetch -q --depth 1 origin 8c778f905cb35f76f8e6cd6e2ea486da4fb9e0ef
+        GIT_LFS_SKIP_SMUDGE=1 git checkout -q FETCH_HEAD
+
+  - The session's git proxy refuses `git lfs pull` for this repository: it is not attached, and attaching does not
+    serve LFS on the anonymous lane.
+  - The 346 LFS files under `flash_chord/src/flash_chord/assets/meshes/sharpawave` (212 MB) came from
+    `https://media.githubusercontent.com/media/nvidia-isaac/video_to_data/<pin>/<path>`.
+    `wgate/fc/lfs_media.py` verified each one against the sha256 and size in its pointer: 346 of 346.
+  - Venv:
+
+        cd v2d/robotic_grounding/flash_chord && uv venv --python /usr/bin/python3.11 .venv && uv sync --frozen
+
+    No `train` extra, so no JAX. It gives Python 3.11.18, flash_chord 0.4.0, Newton 1.2.0, Warp 1.14.0, MuJoCo 3.8.1,
+    mujoco-warp 3.8.1, CoACD 1.0.11 and numpy 2.4.6.
+- **References and assets.** The references name their objects as `/content/t3/{urdf,mesh}/…`, the kit's public scans.
+  - Fetched from `nvidia/video_to_data_challenge`: `track_3/public/urdf/*_rigid.urdf` and `track_3/public/mesh/**`
+    (10 objects, 89 MB).
+  - The support stages came from the store, `refs/perc2/ep*/reconstructed_stage/t3_ep0NN_support.usda`.
+  - `wgate/scripts/stage_refs.py` writes a replay copy of each reference. Only `object_mesh_paths` and
+    `object_urdf_paths` are rewritten to the local kit files. Every other column was checked to be identical.
+  - The gate and the labels read the original downloaded files.
+- **Replay** (`wgate/scripts/run_zero.sh EP`), from the flash_chord directory, with N = the reference's frame count:
+
+      DEV=cpu OMP_NUM_THREADS=1 .venv/bin/python -B /home/user/v2d-track3/tools/trace_rollout.py zero OUT/epEP.npz REF N
+
+  - ep12 ran first, alone. The other 18 then ran with `xargs -P 3`.
+  - Settings, all from `trace_rollout.py` and the stock configs:
+    - controller: `experiment=sharpa_flash_sac` with its default embodiment `sharpa_hands`, the standard learner's
+      controller; action `residual_hand_pose` (wrist kp 25, wrist τ_max 45, EMA 0.3);
+    - sim `rl`: 20 fps × 5 substeps, pyramidal cone, impratio 20, njmax 512;
+    - `voc_scale=0`, `env.step(None)` (zero residual), auto-reset off, terminations off, motion speed 1.0, one world;
+    - support on, CoACD collision decomposition on.
+  - Our FDR, VOC-inertia and start patches are training-only, or act only at VOC > 0, and were not applied.
+  - `EMB=sharpa_hands_mid` (the kp 400 wrist) belongs to the grasp-lock recipe, not to these references, and was not
+    used.
+- **Scoring** (scratch venv with numpy 2.5.4, scipy 1.18.1, pyarrow 26.0.1, trimesh 5.2.1):
+
+      python -I -B docs/research/work/wrench-gate-20261112/score_C.py MANIFEST.json OUT_DIR
+
+  The manifest holds, per episode, the store-copy reference and its `zero.npz`, with `assets` = the kit folder.
+- **Timings** [M]:
+  - ep12 alone: 262 s for 181 frames, including the Warp kernel builds.
+  - The other 18 with 3 in parallel: 24–190 s each, 230 s wall.
+  - Scoring: under a minute.
+  - All 19 replays exit 0. Each trace has one row per reference frame (0 … T−1). The frame-0 object offset is 0.0 mm
+    in all 19.
+- **Outputs:**
+  - `results_C.json`: statistics, per-episode table, settings, timings, descriptive label diagnostics.
+  - `labels_C.csv`: `episode,object,frame,label`, exactly the gate's 3,167 held-window rows. Its key set was checked
+    equal to the gate output.
+  - The traces (`wgate/replayC/out/ep*.npz`, 5.7 MB) stay in the session scratchpad.
+
+### 10.3 Per-episode table
+
+Columns: positives out of held units; the gate's share of frames scoring > 0.5; mean sim-vs-reference error over the
+held units; median height rise of the object above its frame-0 height in the held frames, simulated vs reference.
+
+| ep | positives / held | gate infeasible | mean err held (cm) | rise sim / ref (cm, median) |
+|---|---|---|---|---|
+| 0 | 48 / 48 | 0.02 | 15.3 | lid −1.0 / 1.8 |
+| 2 | 127 / 128 | 0.20 | 9.7 | pot −0.2 / 6.2; lid 1.1 / 2.7 |
+| 11 | 103 / 104 | 0.46 | 13.7 | blue cup 0.0 / 3.7; beige cup 0.0 / 7.9 |
+| 12 | 88 / 88 | 0.00 | 15.9 | 0.0 / 11.8 |
+| 13 | 120 / 120 | 0.40 | 25.2 | −4.5 / 8.9 |
+| 18 | 236 / 236 | 0.06 | 7.0 | sweeper −4.1 / 1.2; dust pan −0.1 / 2.0 |
+| 21 | 188 / 194 | 0.30 | 18.5 | cup 0.0 / 6.4; pitcher −7.8 / 15.5 |
+| 22 | 176 / 176 | 0.30 | 18.9 | cup 0.0 / 5.3; pitcher −7.0 / 9.3 |
+| 23 | 240 / 240 | 0.02 | 15.7 | piece 1 −0.4 / 6.6; piece 2 0.0 / 14.9 |
+| 24 | 247 / 249 | 0.27 | 14.3 | piece 1 10.2 / 19.6; piece 2 −0.2 / 9.1 |
+| 27 | 117 / 117 | 0.13 | 29.2 | 0.1 / 24.5 |
+| 31 | 212 / 213 | 0.64 | 10.1 | 0.4 / 0.9 |
+| 39 | 213 / 213 | 0.17 | 21.7 | 0.0 / 15.0 |
+| 40 | 159 / 159 | 0.00 | 20.3 | −0.1 / 21.6 |
+| 41 | 194 / 195 | 0.01 | 11.8 | 4.7 / 14.2 |
+| 42 | 158 / 158 | 0.01 | 9.0 | −0.2 / 4.7 |
+| 43 | 236 / 236 | 0.05 | 12.1 | 0.1 / 9.4 |
+| 44 | 115 / 115 | 0.17 | 14.4 | −0.1 / 18.9 |
+| 45 | 178 / 178 | 0.05 | 20.4 | −0.3 / 20.8 |
+
+- **Negatives:** the 12 negatives are in ep2 (1), ep11 (1), ep21 (6), ep24 (2), ep31 (1) and ep41 (1).
+  Within-episode AUROCs (in `results_C.json`) rest on 1–6 negatives and mean nothing.
+- **Secondary, descriptive only:** Spearman ρ between the gate's infeasible share and the mean error is 0.05 over held
+  units and 0.05 over all frames.
+
+### 10.4 What the label measured [M] and why it cannot test the gate [H]
+
+- **Before lift-off the replay follows the reference.** The median object error before the first lift-off is 0.1–1.6
+  cm. The exception is ep24 piece 1 at 10.1 cm: it already leaves the reference in the replay before its reference
+  lift-off.
+- **After lift-off the object stays down.** In the held windows the simulated object mostly stays at table height
+  (median rise −7.8 to +10.2 cm; within ±1.1 cm for 20 of 26 objects) while the reference rises 1–25 cm.
+- **So the replay lifts almost nothing.** The reference hands are PD-tracked with no squeeze and no policy, and do not
+  grip. This matches note 24 (zero-action holds need a designed squeeze) and exercise 3 (the zero-residual replay
+  loses the flask).
+- **Reading [H]:** the label is close to a constant "no open-loop grip". It does not separate the frames the gate
+  separates, so these references cannot answer the question.
+- **A new test would need a new pre-registration.** One option: replay grasp-locked references (`grasp_lock.py` +
+  `wrist_ilc.py`, kp-400 wrist), where zero replays sometimes hold. It is informative only if its positive share
+  falls inside 10–90%; otherwise it is inconclusive in the same way.
+- **Test A** (official policy rollouts) stays blocked by data (section 4).
+
+### 10.5 Limitations
+
+- **Old references:** these are the Oct 20 references; current references (grasp lock, refine stage) were not tested.
+- **Stock replay settings:** njmax 512 is the stock sim config; some later recipes used 1024. Too small a buffer can
+  drop contacts in crowded frames, which was not checked.
+- **Assets:** objects are the kit's public scans, which is what these references name.

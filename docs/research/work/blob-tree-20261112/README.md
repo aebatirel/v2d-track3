@@ -60,3 +60,10 @@ existed.
 ## Files
 - `ex3_blob.py`, `zero_err.py`: the descriptive run (exercise 3 venv for the replay, then plain numpy/scipy).
 - `ex3_blob_timeline_mu1.0.png`, `ex3_blob_timeline_mu0.1.png`.
+
+## 3. Result on test C's labels (2026-11-12 ~23:55 UTC) [M]
+- **Verdict: inconclusive** (pre-registered share rule): 99.6% of the 3,167 rows are positive, because the
+  zero-residual replay never grips.
+- Out-of-fold AUROC 0.58 vs the gate's 0.41; difference 0.17, CI [−0.14, 0.79]; 12 negative rows. Not interpreted.
+  Full output: `results_tree.json`.
+

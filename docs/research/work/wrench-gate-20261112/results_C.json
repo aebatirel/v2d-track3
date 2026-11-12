@@ -1,0 +1,912 @@
+{
+ "test": "C (zero-residual replay label)",
+ "units": 3167,
+ "positives": 3155,
+ "positive_share": 0.9962,
+ "auroc": 0.4106,
+ "bootstrap": {
+  "ci95": [
+   0.0559,
+   0.5898
+  ],
+  "resamples": 2000,
+  "skipped_one_class": 1,
+  "seed": 20261112
+ },
+ "episodes": 19,
+ "episodes_with_positives": 19,
+ "verdict": "inconclusive (positive share 0.996 outside [0.1, 0.9])",
+ "bars": {
+  "informative": "AUROC >= 0.75 and >= 8 positive episodes",
+  "falsified": "AUROC < 0.65",
+  "share_rule": "inconclusive if positive share < 0.1 or > 0.9"
+ },
+ "secondary": {
+  "spearman_share_infeasible_vs_mean_err_held": 0.0483,
+  "spearman_share_infeasible_vs_mean_err_all": 0.0509,
+  "note": "descriptive only"
+ },
+ "per_episode": [
+  {
+   "ep": 0,
+   "held_units": 48,
+   "positives": 48,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.0208,
+   "mean_err_held_cm": 15.268,
+   "mean_err_all_cm": 9.618,
+   "auroc_within": null,
+   "objects": {
+    "white_pot_lid": {
+     "held": 48,
+     "share_infeasible": 0.0208,
+     "positives": 48
+    }
+   }
+  },
+  {
+   "ep": 2,
+   "held_units": 128,
+   "positives": 127,
+   "positive_share": 0.9922,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.1953,
+   "mean_err_held_cm": 9.747,
+   "mean_err_all_cm": 10.019,
+   "auroc_within": 0.0039,
+   "objects": {
+    "white_pot": {
+     "held": 82,
+     "share_infeasible": 0.0732,
+     "positives": 82
+    },
+    "white_pot_lid": {
+     "held": 46,
+     "share_infeasible": 0.413,
+     "positives": 45
+    }
+   }
+  },
+  {
+   "ep": 11,
+   "held_units": 104,
+   "positives": 103,
+   "positive_share": 0.9904,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.4615,
+   "mean_err_held_cm": 13.676,
+   "mean_err_all_cm": 8.647,
+   "auroc_within": 0.1845,
+   "objects": {
+    "blue_cup": {
+     "held": 38,
+     "share_infeasible": 0.2105,
+     "positives": 37
+    },
+    "beige_cup": {
+     "held": 66,
+     "share_infeasible": 0.6061,
+     "positives": 66
+    }
+   }
+  },
+  {
+   "ep": 12,
+   "held_units": 88,
+   "positives": 88,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.0,
+   "mean_err_held_cm": 15.881,
+   "mean_err_all_cm": 7.258,
+   "auroc_within": null,
+   "objects": {
+    "blue_cup": {
+     "held": 88,
+     "share_infeasible": 0.0,
+     "positives": 88
+    }
+   }
+  },
+  {
+   "ep": 13,
+   "held_units": 120,
+   "positives": 120,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.4,
+   "mean_err_held_cm": 25.192,
+   "mean_err_all_cm": 11.216,
+   "auroc_within": null,
+   "objects": {
+    "blue_cup": {
+     "held": 120,
+     "share_infeasible": 0.4,
+     "positives": 120
+    }
+   }
+  },
+  {
+   "ep": 18,
+   "held_units": 236,
+   "positives": 236,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.0636,
+   "mean_err_held_cm": 7.03,
+   "mean_err_all_cm": 5.715,
+   "auroc_within": null,
+   "objects": {
+    "mini_sweeper": {
+     "held": 84,
+     "share_infeasible": 0.1429,
+     "positives": 84
+    },
+    "mini_dust_pan": {
+     "held": 152,
+     "share_infeasible": 0.0197,
+     "positives": 152
+    }
+   }
+  },
+  {
+   "ep": 21,
+   "held_units": 194,
+   "positives": 188,
+   "positive_share": 0.9691,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.3041,
+   "mean_err_held_cm": 18.457,
+   "mean_err_all_cm": 13.375,
+   "auroc_within": 0.6622,
+   "objects": {
+    "blue_cup": {
+     "held": 110,
+     "share_infeasible": 0.0091,
+     "positives": 104
+    },
+    "water_pitcher": {
+     "held": 84,
+     "share_infeasible": 0.6905,
+     "positives": 84
+    }
+   }
+  },
+  {
+   "ep": 22,
+   "held_units": 176,
+   "positives": 176,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.3011,
+   "mean_err_held_cm": 18.939,
+   "mean_err_all_cm": 12.958,
+   "auroc_within": null,
+   "objects": {
+    "blue_cup": {
+     "held": 87,
+     "share_infeasible": 0.0,
+     "positives": 87
+    },
+    "water_pitcher": {
+     "held": 89,
+     "share_infeasible": 0.5955,
+     "positives": 89
+    }
+   }
+  },
+  {
+   "ep": 23,
+   "held_units": 240,
+   "positives": 240,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.0167,
+   "mean_err_held_cm": 15.724,
+   "mean_err_all_cm": 11.84,
+   "auroc_within": null,
+   "objects": {
+    "wooden_piece_1": {
+     "held": 128,
+     "share_infeasible": 0.0234,
+     "positives": 128
+    },
+    "wooden_piece_2": {
+     "held": 112,
+     "share_infeasible": 0.0089,
+     "positives": 112
+    }
+   }
+  },
+  {
+   "ep": 24,
+   "held_units": 249,
+   "positives": 247,
+   "positive_share": 0.992,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.2691,
+   "mean_err_held_cm": 14.337,
+   "mean_err_all_cm": 12.183,
+   "auroc_within": 0.1215,
+   "objects": {
+    "wooden_piece_1": {
+     "held": 69,
+     "share_infeasible": 0.0145,
+     "positives": 69
+    },
+    "wooden_piece_2": {
+     "held": 180,
+     "share_infeasible": 0.3667,
+     "positives": 178
+    }
+   }
+  },
+  {
+   "ep": 27,
+   "held_units": 117,
+   "positives": 117,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.1282,
+   "mean_err_held_cm": 29.17,
+   "mean_err_all_cm": 10.534,
+   "auroc_within": null,
+   "objects": {
+    "white_pot": {
+     "held": 117,
+     "share_infeasible": 0.1282,
+     "positives": 117
+    }
+   }
+  },
+  {
+   "ep": 31,
+   "held_units": 213,
+   "positives": 212,
+   "positive_share": 0.9953,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.6385,
+   "mean_err_held_cm": 10.064,
+   "mean_err_all_cm": 4.654,
+   "auroc_within": 0.6934,
+   "objects": {
+    "mini_sweeper": {
+     "held": 213,
+     "share_infeasible": 0.6385,
+     "positives": 212
+    }
+   }
+  },
+  {
+   "ep": 39,
+   "held_units": 213,
+   "positives": 213,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.169,
+   "mean_err_held_cm": 21.746,
+   "mean_err_all_cm": 16.517,
+   "auroc_within": null,
+   "objects": {
+    "mini_dust_pan": {
+     "held": 213,
+     "share_infeasible": 0.169,
+     "positives": 213
+    }
+   }
+  },
+  {
+   "ep": 40,
+   "held_units": 159,
+   "positives": 159,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.0,
+   "mean_err_held_cm": 20.267,
+   "mean_err_all_cm": 13.649,
+   "auroc_within": null,
+   "objects": {
+    "mini_dust_pan": {
+     "held": 159,
+     "share_infeasible": 0.0,
+     "positives": 159
+    }
+   }
+  },
+  {
+   "ep": 41,
+   "held_units": 195,
+   "positives": 194,
+   "positive_share": 0.9949,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.0051,
+   "mean_err_held_cm": 11.75,
+   "mean_err_all_cm": 8.948,
+   "auroc_within": 0.5206,
+   "objects": {
+    "white_pot": {
+     "held": 195,
+     "share_infeasible": 0.0051,
+     "positives": 194
+    }
+   }
+  },
+  {
+   "ep": 42,
+   "held_units": 158,
+   "positives": 158,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.0127,
+   "mean_err_held_cm": 8.967,
+   "mean_err_all_cm": 6.696,
+   "auroc_within": null,
+   "objects": {
+    "white_pot": {
+     "held": 158,
+     "share_infeasible": 0.0127,
+     "positives": 158
+    }
+   }
+  },
+  {
+   "ep": 43,
+   "held_units": 236,
+   "positives": 236,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.0466,
+   "mean_err_held_cm": 12.065,
+   "mean_err_all_cm": 10.046,
+   "auroc_within": null,
+   "objects": {
+    "white_pot": {
+     "held": 236,
+     "share_infeasible": 0.0466,
+     "positives": 236
+    }
+   }
+  },
+  {
+   "ep": 44,
+   "held_units": 115,
+   "positives": 115,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.1652,
+   "mean_err_held_cm": 14.368,
+   "mean_err_all_cm": 7.75,
+   "auroc_within": null,
+   "objects": {
+    "white_pot": {
+     "held": 115,
+     "share_infeasible": 0.1652,
+     "positives": 115
+    }
+   }
+  },
+  {
+   "ep": 45,
+   "held_units": 178,
+   "positives": 178,
+   "positive_share": 1.0,
+   "missing_or_nonfinite": 0,
+   "share_infeasible": 0.0506,
+   "mean_err_held_cm": 20.412,
+   "mean_err_all_cm": 13.171,
+   "auroc_within": null,
+   "objects": {
+    "white_pot": {
+     "held": 178,
+     "share_infeasible": 0.0506,
+     "positives": 178
+    }
+   }
+  }
+ ],
+ "trace_checks": {
+  "0": {
+   "trace_rows": 373,
+   "frame_min": 0,
+   "frame_max": 372,
+   "frames_unique": 373,
+   "frames_ref": 373,
+   "frame0_offset_mm_white_pot": 0.0,
+   "frame0_offset_mm_white_pot_lid": 0.0
+  },
+  "2": {
+   "trace_rows": 343,
+   "frame_min": 0,
+   "frame_max": 342,
+   "frames_unique": 343,
+   "frames_ref": 343,
+   "frame0_offset_mm_white_pot": 0.0,
+   "frame0_offset_mm_white_pot_lid": 0.0
+  },
+  "11": {
+   "trace_rows": 137,
+   "frame_min": 0,
+   "frame_max": 136,
+   "frames_unique": 137,
+   "frames_ref": 137,
+   "frame0_offset_mm_blue_cup": 0.0,
+   "frame0_offset_mm_beige_cup": 0.0
+  },
+  "12": {
+   "trace_rows": 181,
+   "frame_min": 0,
+   "frame_max": 180,
+   "frames_unique": 181,
+   "frames_ref": 181,
+   "frame0_offset_mm_blue_cup": 0.0,
+   "frame0_offset_mm_plastic_dish_rack": 0.0
+  },
+  "13": {
+   "trace_rows": 190,
+   "frame_min": 0,
+   "frame_max": 189,
+   "frames_unique": 190,
+   "frames_ref": 190,
+   "frame0_offset_mm_blue_cup": 0.0,
+   "frame0_offset_mm_plastic_dish_rack": 0.0
+  },
+  "18": {
+   "trace_rows": 353,
+   "frame_min": 0,
+   "frame_max": 352,
+   "frames_unique": 353,
+   "frames_ref": 353,
+   "frame0_offset_mm_mini_sweeper": 0.0,
+   "frame0_offset_mm_mini_dust_pan": 0.0
+  },
+  "21": {
+   "trace_rows": 186,
+   "frame_min": 0,
+   "frame_max": 185,
+   "frames_unique": 186,
+   "frames_ref": 186,
+   "frame0_offset_mm_blue_cup": 0.0,
+   "frame0_offset_mm_water_pitcher": 0.0
+  },
+  "22": {
+   "trace_rows": 189,
+   "frame_min": 0,
+   "frame_max": 188,
+   "frames_unique": 189,
+   "frames_ref": 189,
+   "frame0_offset_mm_blue_cup": 0.0,
+   "frame0_offset_mm_water_pitcher": 0.0
+  },
+  "23": {
+   "trace_rows": 325,
+   "frame_min": 0,
+   "frame_max": 324,
+   "frames_unique": 325,
+   "frames_ref": 325,
+   "frame0_offset_mm_wooden_piece_1": 0.0,
+   "frame0_offset_mm_wooden_piece_2": 0.0
+  },
+  "24": {
+   "trace_rows": 275,
+   "frame_min": 0,
+   "frame_max": 274,
+   "frames_unique": 275,
+   "frames_ref": 275,
+   "frame0_offset_mm_wooden_piece_1": 0.0,
+   "frame0_offset_mm_wooden_piece_2": 0.0
+  },
+  "27": {
+   "trace_rows": 246,
+   "frame_min": 0,
+   "frame_max": 245,
+   "frames_unique": 246,
+   "frames_ref": 246,
+   "frame0_offset_mm_plastic_dish_rack": 0.0,
+   "frame0_offset_mm_white_pot": 0.0
+  },
+  "31": {
+   "trace_rows": 290,
+   "frame_min": 0,
+   "frame_max": 289,
+   "frames_unique": 290,
+   "frames_ref": 290,
+   "frame0_offset_mm_mini_sweeper": 0.0,
+   "frame0_offset_mm_plastic_dish_rack": 0.0
+  },
+  "39": {
+   "trace_rows": 319,
+   "frame_min": 0,
+   "frame_max": 318,
+   "frames_unique": 319,
+   "frames_ref": 319,
+   "frame0_offset_mm_mini_dust_pan": 0.0
+  },
+  "40": {
+   "trace_rows": 260,
+   "frame_min": 0,
+   "frame_max": 259,
+   "frames_unique": 260,
+   "frames_ref": 260,
+   "frame0_offset_mm_mini_dust_pan": 0.0
+  },
+  "41": {
+   "trace_rows": 299,
+   "frame_min": 0,
+   "frame_max": 298,
+   "frames_unique": 299,
+   "frames_ref": 299,
+   "frame0_offset_mm_white_pot": 0.0
+  },
+  "42": {
+   "trace_rows": 257,
+   "frame_min": 0,
+   "frame_max": 256,
+   "frames_unique": 257,
+   "frames_ref": 257,
+   "frame0_offset_mm_white_pot": 0.0
+  },
+  "43": {
+   "trace_rows": 326,
+   "frame_min": 0,
+   "frame_max": 325,
+   "frames_unique": 326,
+   "frames_ref": 326,
+   "frame0_offset_mm_white_pot": 0.0
+  },
+  "44": {
+   "trace_rows": 249,
+   "frame_min": 0,
+   "frame_max": 248,
+   "frames_unique": 249,
+   "frames_ref": 249,
+   "frame0_offset_mm_white_pot": 0.0
+  },
+  "45": {
+   "trace_rows": 290,
+   "frame_min": 0,
+   "frame_max": 289,
+   "frames_unique": 290,
+   "frames_ref": 290,
+   "frame0_offset_mm_white_pot": 0.0
+  }
+ },
+ "gate_frozen_at": "61c0b6ad",
+ "pre_registration": "docs/work-log.md, \"2026-11-12 ~22:55 UTC \u2014 PRE-REGISTRATION, idea 1 test C (zero-residual replay label; written before any label)\"",
+ "auroc_note": "pooled AUROC and CI are reported as required; the verdict is inconclusive by the pre-registered positive-share rule",
+ "data": {
+  "references": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep*/processed (19; ep26 missing), support stages from the same folders",
+  "store": [
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep0/processed/sequence_id=t3_ep000/robot_name=sharpa_wave/d885f9c13d184f8ebd7fcef519252461-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/55ed3f7f5ab14dd8b404f89a29c4b6eb-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/3c96a4968c3241eb90220d930973c357-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/52a61b51b3cc4effb0e59ab8c5fc04b2-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/3468521ff9bd48db93376f0dfae7d875-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/250358dc316249b098c6efa126802393-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/e7196e5daa2d4996a938d45e77883317-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep22/processed/sequence_id=t3_ep022/robot_name=sharpa_wave/700c0cf3cd854208bf26f6a41505285f-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep23/processed/sequence_id=t3_ep023/robot_name=sharpa_wave/aa744602acb74229bf71519f9f1faa3b-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/9b24770f78754cefb1a38b59bf7b0198-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/570d2a9ecf95415ab2f75b557b06f059-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/cc8ca2259c3c4777bb40d792234203dd-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep39/processed/sequence_id=t3_ep039/robot_name=sharpa_wave/d153d633c5234a628a2bb42bd1324a42-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep40/processed/sequence_id=t3_ep040/robot_name=sharpa_wave/5e84d546686d49c799b0f504e96f8659-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep41/processed/sequence_id=t3_ep041/robot_name=sharpa_wave/fa375392380f44989508de5101417073-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep42/processed/sequence_id=t3_ep042/robot_name=sharpa_wave/7d8907953a794ea8afb8be075286dea2-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep43/processed/sequence_id=t3_ep043/robot_name=sharpa_wave/68940fb6dbc14052adca2e3b775caf99-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep44/processed/sequence_id=t3_ep044/robot_name=sharpa_wave/94fe16053d7141cba8fc55c964fbf5a5-0.parquet",
+   "runs/20261020-refsweep-ea14fdf/refs/perc2/ep45/processed/sequence_id=t3_ep045/robot_name=sharpa_wave/fc87c551cc2e4db19ac30f188e8e686e-0.parquet"
+  ],
+  "object_assets": "kit public URDFs and meshes, nvidia/video_to_data_challenge track_3/public/{urdf,mesh} (the assets the references name as /content/t3/...)",
+  "replay_copies": "only object_mesh_paths and object_urdf_paths rewritten to the local kit copies; every other column checked identical"
+ },
+ "replay": {
+  "tool": "tools/trace_rollout.py zero (repo), DEV=cpu, OMP_NUM_THREADS=1, no EMB (default sharpa_hands embodiment of experiment=sharpa_flash_sac)",
+  "settings": "VOC 0 (voc_scale=0), zero residual action (env.step(None)), auto_reset off, terminations off, motion_speed 1.0, world_count 1, support on, CoACD decomposition on; action residual_hand_pose: wrist_kp 25, wrist_tau_max 45, ema 0.3; sim rl: 20 fps x 5 substeps, pyramidal cone, impratio 20, njmax 512",
+  "flashchord": "nvidia-isaac/video_to_data 8c778f905cb35f76f8e6cd6e2ea486da4fb9e0ef (evaluator pin in pipeline/setup.sh), flash_chord 0.4.0; Sharpa meshes (346 LFS files, 212 MB) from media.githubusercontent.com, sha256-verified",
+  "python": "3.11.18 venv from uv.lock (no train extra): newton 1.2.0, warp-lang 1.14.0, mujoco 3.8.1, mujoco-warp 3.8.1, coacd 1.0.11, numpy 2.4.6",
+  "timings_s": {
+   "0": {
+    "frames": 373,
+    "rc": 0,
+    "seconds": 190
+   },
+   "2": {
+    "frames": 343,
+    "rc": 0,
+    "seconds": 122
+   },
+   "11": {
+    "frames": 137,
+    "rc": 0,
+    "seconds": 136
+   },
+   "12": {
+    "frames": 181,
+    "rc": 0,
+    "seconds": 262,
+    "note": "first run alone (includes warp kernel builds)"
+   },
+   "13": {
+    "frames": 190,
+    "rc": 0,
+    "seconds": 24
+   },
+   "18": {
+    "frames": 353,
+    "rc": 0,
+    "seconds": 176
+   },
+   "21": {
+    "frames": 186,
+    "rc": 0,
+    "seconds": 99
+   },
+   "22": {
+    "frames": 189,
+    "rc": 0,
+    "seconds": 100
+   },
+   "23": {
+    "frames": 325,
+    "rc": 0,
+    "seconds": 64
+   },
+   "24": {
+    "frames": 275,
+    "rc": 0,
+    "seconds": 44
+   },
+   "27": {
+    "frames": 246,
+    "rc": 0,
+    "seconds": 27
+   },
+   "31": {
+    "frames": 290,
+    "rc": 0,
+    "seconds": 31
+   },
+   "39": {
+    "frames": 319,
+    "rc": 0,
+    "seconds": 35
+   },
+   "40": {
+    "frames": 260,
+    "rc": 0,
+    "seconds": 30
+   },
+   "41": {
+    "frames": 299,
+    "rc": 0,
+    "seconds": 28
+   },
+   "42": {
+    "frames": 257,
+    "rc": 0,
+    "seconds": 26
+   },
+   "43": {
+    "frames": 326,
+    "rc": 0,
+    "seconds": 29
+   },
+   "44": {
+    "frames": 249,
+    "rc": 0,
+    "seconds": 25
+   },
+   "45": {
+    "frames": 290,
+    "rc": 0,
+    "seconds": 26
+   }
+  },
+  "batch": "18 episodes, 3 in parallel on 4 cores: 230 s wall; ep12 alone 262 s",
+  "alignment": "frame-0 object offset 0.0 mm in all 19 traces; trace frames 0..T-1 one row each"
+ },
+ "label_diagnostics_descriptive": {
+  "0": {
+   "white_pot_lid": {
+    "err_before_first_liftoff_median_cm": 1.39,
+    "err_held_median_cm": 17.4,
+    "sim_rise_held_median_cm": -0.96,
+    "ref_rise_held_median_cm": 1.8
+   }
+  },
+  "2": {
+   "white_pot": {
+    "err_before_first_liftoff_median_cm": 0.46,
+    "err_held_median_cm": 8.17,
+    "sim_rise_held_median_cm": -0.18,
+    "ref_rise_held_median_cm": 6.23
+   },
+   "white_pot_lid": {
+    "err_before_first_liftoff_median_cm": 1.22,
+    "err_held_median_cm": 10.08,
+    "sim_rise_held_median_cm": 1.06,
+    "ref_rise_held_median_cm": 2.66
+   }
+  },
+  "11": {
+   "blue_cup": {
+    "err_before_first_liftoff_median_cm": 0.5,
+    "err_held_median_cm": 3.83,
+    "sim_rise_held_median_cm": 0.02,
+    "ref_rise_held_median_cm": 3.7
+   },
+   "beige_cup": {
+    "err_before_first_liftoff_median_cm": 0.23,
+    "err_held_median_cm": 18.69,
+    "sim_rise_held_median_cm": -0.01,
+    "ref_rise_held_median_cm": 7.9
+   }
+  },
+  "12": {
+   "blue_cup": {
+    "err_before_first_liftoff_median_cm": 0.22,
+    "err_held_median_cm": 17.33,
+    "sim_rise_held_median_cm": -0.0,
+    "ref_rise_held_median_cm": 11.8
+   }
+  },
+  "13": {
+   "blue_cup": {
+    "err_before_first_liftoff_median_cm": 0.21,
+    "err_held_median_cm": 26.88,
+    "sim_rise_held_median_cm": -4.5,
+    "ref_rise_held_median_cm": 8.9
+   }
+  },
+  "18": {
+   "mini_sweeper": {
+    "err_before_first_liftoff_median_cm": 0.79,
+    "err_held_median_cm": 8.46,
+    "sim_rise_held_median_cm": -4.13,
+    "ref_rise_held_median_cm": 1.24
+   },
+   "mini_dust_pan": {
+    "err_before_first_liftoff_median_cm": 0.25,
+    "err_held_median_cm": 4.95,
+    "sim_rise_held_median_cm": -0.13,
+    "ref_rise_held_median_cm": 1.97
+   }
+  },
+  "21": {
+   "blue_cup": {
+    "err_before_first_liftoff_median_cm": 0.26,
+    "err_held_median_cm": 7.09,
+    "sim_rise_held_median_cm": 0.02,
+    "ref_rise_held_median_cm": 6.39
+   },
+   "water_pitcher": {
+    "err_before_first_liftoff_median_cm": 1.09,
+    "err_held_median_cm": 37.96,
+    "sim_rise_held_median_cm": -7.82,
+    "ref_rise_held_median_cm": 15.48
+   }
+  },
+  "22": {
+   "blue_cup": {
+    "err_before_first_liftoff_median_cm": 0.56,
+    "err_held_median_cm": 8.14,
+    "sim_rise_held_median_cm": 0.04,
+    "ref_rise_held_median_cm": 5.25
+   },
+   "water_pitcher": {
+    "err_before_first_liftoff_median_cm": 0.84,
+    "err_held_median_cm": 27.4,
+    "sim_rise_held_median_cm": -6.97,
+    "ref_rise_held_median_cm": 9.27
+   }
+  },
+  "23": {
+   "wooden_piece_1": {
+    "err_before_first_liftoff_median_cm": 0.47,
+    "err_held_median_cm": 12.86,
+    "sim_rise_held_median_cm": -0.37,
+    "ref_rise_held_median_cm": 6.59
+   },
+   "wooden_piece_2": {
+    "err_before_first_liftoff_median_cm": 0.18,
+    "err_held_median_cm": 19.75,
+    "sim_rise_held_median_cm": -0.04,
+    "ref_rise_held_median_cm": 14.88
+   }
+  },
+  "24": {
+   "wooden_piece_1": {
+    "err_before_first_liftoff_median_cm": 10.1,
+    "err_held_median_cm": 12.06,
+    "sim_rise_held_median_cm": 10.22,
+    "ref_rise_held_median_cm": 19.59
+   },
+   "wooden_piece_2": {
+    "err_before_first_liftoff_median_cm": 0.32,
+    "err_held_median_cm": 18.39,
+    "sim_rise_held_median_cm": -0.18,
+    "ref_rise_held_median_cm": 9.14
+   }
+  },
+  "27": {
+   "white_pot": {
+    "err_before_first_liftoff_median_cm": 0.63,
+    "err_held_median_cm": 31.88,
+    "sim_rise_held_median_cm": 0.06,
+    "ref_rise_held_median_cm": 24.52
+   }
+  },
+  "31": {
+   "mini_sweeper": {
+    "err_before_first_liftoff_median_cm": 1.56,
+    "err_held_median_cm": 10.45,
+    "sim_rise_held_median_cm": 0.39,
+    "ref_rise_held_median_cm": 0.89
+   }
+  },
+  "39": {
+   "mini_dust_pan": {
+    "err_before_first_liftoff_median_cm": 0.12,
+    "err_held_median_cm": 20.98,
+    "sim_rise_held_median_cm": -0.03,
+    "ref_rise_held_median_cm": 15.02
+   }
+  },
+  "40": {
+   "mini_dust_pan": {
+    "err_before_first_liftoff_median_cm": 0.23,
+    "err_held_median_cm": 21.83,
+    "sim_rise_held_median_cm": -0.07,
+    "ref_rise_held_median_cm": 21.59
+   }
+  },
+  "41": {
+   "white_pot": {
+    "err_before_first_liftoff_median_cm": 0.27,
+    "err_held_median_cm": 11.98,
+    "sim_rise_held_median_cm": 4.69,
+    "ref_rise_held_median_cm": 14.18
+   }
+  },
+  "42": {
+   "white_pot": {
+    "err_before_first_liftoff_median_cm": 0.33,
+    "err_held_median_cm": 7.13,
+    "sim_rise_held_median_cm": -0.18,
+    "ref_rise_held_median_cm": 4.67
+   }
+  },
+  "43": {
+   "white_pot": {
+    "err_before_first_liftoff_median_cm": 0.68,
+    "err_held_median_cm": 11.25,
+    "sim_rise_held_median_cm": 0.09,
+    "ref_rise_held_median_cm": 9.43
+   }
+  },
+  "44": {
+   "white_pot": {
+    "err_before_first_liftoff_median_cm": 0.75,
+    "err_held_median_cm": 19.44,
+    "sim_rise_held_median_cm": -0.08,
+    "ref_rise_held_median_cm": 18.87
+   }
+  },
+  "45": {
+   "white_pot": {
+    "err_before_first_liftoff_median_cm": 0.51,
+    "err_held_median_cm": 21.38,
+    "sim_rise_held_median_cm": -0.29,
+    "ref_rise_held_median_cm": 20.82
+   }
+  }
+ },
+ "run": {
+  "machine": "cloud session container, 4 CPU cores, no GPU",
+  "cost_usd": 0.0,
+  "scorer": "docs/research/work/wrench-gate-20261112/score_C.py (scratch venv: numpy 2.5.4, scipy 1.18.1, pyarrow 26.0.1, trimesh 5.2.1)",
+  "gate": "pipeline/wrench_gate.py at 61c0b6ad (git diff checked empty by score_C.py)",
+  "traces": "/tmp/claude-0/-home-user-v2d-track3/c39cfb04-cc2f-58cd-b84d-df803d82b152/scratchpad/wgate/replayC/out/ep*.npz (5.7 MB, scratchpad only)"
+ }
+}

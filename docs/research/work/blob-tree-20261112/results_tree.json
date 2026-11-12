@@ -1,0 +1,26 @@
+{
+ "rows": 3167,
+ "episodes": 19,
+ "positive_share": 0.9962,
+ "episodes_with_positives": 19,
+ "auroc_tree_oof": 0.5825,
+ "auroc_gate": 0.4106,
+ "diff": 0.1719,
+ "diff_ci95": [
+  -0.1355,
+  0.785
+ ],
+ "bootstrap_valid": 1999,
+ "verdict": "inconclusive (positive share outside 10-90% or a class missing)",
+ "tree_all_rows": "|--- F_N <= 2.965\n|   |--- class: 1\n|--- F_N >  2.965\n|   |--- hands <= 1.500\n|   |   |--- tau_Nm <= 0.005\n|   |   |   |--- class: 0\n|   |   |--- tau_Nm >  0.005\n|   |   |   |--- class: 1\n|   |--- hands >  1.500\n|   |   |--- class: 1\n",
+ "importances": {
+  "score": 0.0,
+  "h_demand": 0.0,
+  "h_up": 0.0,
+  "gap": 0.0,
+  "contacts": 0.0,
+  "hands": 0.2699,
+  "F_N": 0.6317,
+  "tau_Nm": 0.0983
+ }
+}

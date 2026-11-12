@@ -5550,3 +5550,22 @@ arm and a no-policy replay floor to stage B.
   - Reading [H]: the reference's proximity contacts are not the contacts physics realises. This lowers the prior for
     test C and the tree; the next feature set should come from simulator contacts.
 
+### 2026-11-12 ~23:55 UTC — test C (idea 1) and the blob tree (idea 3): both INCONCLUSIVE by the pre-registered share rule
+- Test C: 3,155 of 3,167 held rows positive (99.6% > 90%), so inconclusive whatever the AUROC.
+  - Pooled AUROC 0.41, CI [0.06, 0.59]; it rests on 12 negative rows in 6 episodes, so it carries no information.
+  - Files: `docs/research/work/wrench-gate-20261112/README.md` §10, `results_C.json`, `labels_C.csv`, `score_C.py`.
+- Why: the zero-residual replay lifts almost nothing. 20 of 26 objects stay within ±1.1 cm of their start height
+  while the reference rises 1–25 cm. Hypothesis: without a policy the hands follow the pose but do not squeeze. The
+  label is nearly constant ("no open-loop grip"), so it cannot rank frames.
+- Run details (agent):
+  - FlashCHORD at the evaluator pin 8c778f9 on CPU (Python 3.11, Newton 1.2.0, Warp 1.14.0); Sharpa meshes fetched
+    from GitHub LFS media URLs, sha256-checked 346/346; kit URDFs and meshes from `nvidia/video_to_data_challenge`.
+  - Embodiment `sharpa_hands` (wrist kp 25), VOC 0, zero action; 19 replays, about 4 min wall on 4 CPUs.
+  - Traces only in the scratchpad (`wgate/replayC/out`, 5.7 MB; regenerable).
+- Blob tree (`tools/blob_tree.py` on the same labels): out-of-fold AUROC 0.58 vs gate 0.41; difference 0.17, CI
+  [−0.14, 0.79]. Verdict inconclusive by the same share rule. Recorded in
+  `docs/research/work/blob-tree-20261112/results_tree.json`; not interpreted.
+- Next options (owner decides; each needs its own pre-registration):
+  - label from replays of grasp-locked references (`sharpa_hands_mid`, kp 400, grasp lock), on CPU, $0;
+  - test A: one GPU batch training and evaluating all 20 public episodes, about $20–50.
+
