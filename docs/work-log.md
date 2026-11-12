@@ -5502,3 +5502,11 @@ arm and a no-policy replay floor to stage B.
   - 95% CI from 2,000 episode-bootstrap resamples, seed 20261112.
 - If FlashCHORD cannot run on CPU here, report blocked; no GPU without the owner's go-ahead.
 
+### 2026-11-12 ~21:43 UTC (container clock) — Gemini access working through the environment's network secret
+- Owner saved the key as a network secret for generativelanguage.googleapis.com, header x-goog-api-key, no Bearer
+  prefix. The earlier entry had sent the key with a Bearer prefix (API_KEY_INVALID).
+- Checks: `gemini-flash-latest:generateContent` HTTP 200; Decisions API (`v1beta/decisions`, gemini-decision-1) on a
+  text-only test question HTTP 200 (192 input tokens, 0 output). No challenge data was sent.
+- The key was pasted in chat twice; the owner was advised to rotate it. Not stored in any file (checked).
+- Open before idea 5 sends challenge frames: the dataset licence on third-party processing (owner).
+
