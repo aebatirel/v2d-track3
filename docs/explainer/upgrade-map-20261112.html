@@ -141,7 +141,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
     <article class="idea"><span class="num">② weight repair</span><h3>LLM edits the policy</h3><p>An LLM fixes a failing policy by writing small circuits into its weights.</p><span class="chip block">pilot done · not a repair</span></article>
     <article class="idea"><span class="num">③ fix router</span><h3>Decision tree picks the fix</h3><p>Turns the contact “blob” into features and predicts which frames will drift.</p><span class="chip block">2 tests inconclusive · needs GPU test</span></article>
     <article class="idea"><span class="num">④ LLM triage</span><h3>Names each failure</h3><p>Reads failed rollouts, labels the failure type, suggests a fix family.</p><span class="chip wait">waits on your 20 min of labels</span></article>
-    <article class="idea"><span class="num">⑤ Gemini judge</span><h3>Visual yes/no check</h3><p>Gemini’s Decisions API compares a rollout with the source video.</p><span class="chip run">licence OK · tests being built</span></article>
+    <article class="idea"><span class="num">⑤ Gemini judge</span><h3>Visual yes/no check</h3><p>Gemini’s Decisions API compares a rollout with the source video.</p><span class="chip block">both tests negative</span></article>
   </div>
 </section>
 
@@ -389,7 +389,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
   </div>
 
   <div class="addon" id="a5">
-    <div class="addon-head"><span class="n">⑤</span><h3>Gemini judge: fast yes/no questions about images</h3><span class="chip run">tests being built</span></div>
+    <div class="addon-head"><span class="n">⑤</span><h3>Gemini judge: fast yes/no questions about images</h3><span class="chip block">both tests negative</span></div>
     <p>Gemini’s Decisions API does not write text. It answers closed questions (yes/no, pick one, rate on a scale) with probabilities, in about a quarter of a second, for $0.10 per million input tokens. We would ask it whether a rendered rollout matches the source video, and use it to judge mesh candidates.</p>
     <figure>
       <div class="scroll">
@@ -418,9 +418,9 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
       <figcaption>The key is saved as an environment secret and works. The challenge dataset is CC BY 4.0, so public-episode frames may be sent, with attribution in anything we publish. Ground truth is never sent.</figcaption>
     </figure>
     <div class="facts">
-      <div class="fact"><span class="k">First tests</span><span class="v">Mesh selector on 104 scored meshes (≈ $0.09); track audit on 7,835 object-frames (≈ $1).</span></div>
-      <div class="fact"><span class="k">Pass bars</span><span class="v">Mesh pick beats today’s rank correlation of 0.46; track audit AUROC ≥ 0.75.</span></div>
-      <div class="fact"><span class="k">Limit</span><span class="v">Google’s own benchmarks never test centimetre geometry; our 2–3 cm errors may be too small for it.</span></div>
+      <div class="fact"><span class="k">Mesh selector (104 meshes)</span><span class="v">FAIL: rank correlation 0.43 (bar 0.46); picks the best mesh on 1 of 10 objects. Our own metric does slightly better.</span></div>
+      <div class="fact"><span class="k">Track audit (7,808 frames)</span><span class="v">FALSIFIED: AUROC 0.52 (bar 0.75), below the failed depth check. Its answers depend on the object more than on whether the track is right.</span></div>
+      <div class="fact"><span class="k">Cost and verdict</span><span class="v">$1.11 of API in total. As expected beforehand, it cannot see our 2–3 cm errors; no place for it as a geometry judge.</span></div>
     </div>
   </div>
 </section>
@@ -470,6 +470,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
         <tr><td>A full 20-episode rollout set in our store?</td><td>no: 9 public episodes have no rollout at all</td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Exercise 3 contacts vs physics (μ 1.0)</td><td>contacts say “can hold” on <span class="mono">95%</span> of frames; no-policy replay is <span class="mono">2 cm</span> off at <span class="mono">2.7 s</span></td><td><span class="tag m">measured · 1 episode</span></td></tr>
         <tr><td>Grasp check and tree, test C (no-policy replay as the label)</td><td><span class="mono">99.6%</span> of held frames drift, because the hands never grip without a policy; both tests inconclusive</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>Gemini mesh selector and track audit</td><td>mesh pick: correlation <span class="mono">0.43</span>, best on <span class="mono">1</span> of <span class="mono">10</span> (fail); track audit: AUROC <span class="mono">0.52</span> (falsified); cost <span class="mono">$1.11</span></td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Grasp check and tree, test C2 (grasp-locked replay as the label)</td><td><span class="mono">98.6%</span> of held frames still drift; all 19 replays ran cleanly; both tests inconclusive</td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Bending the hand path around obstacles (Roman’s idea)</td><td>dropped: our collisions are object overlaps from perception (lid in pot, cup in rack, sweeper in rack), not the hand hitting other objects</td><td><span class="tag m">from records</span></td></tr>
         <tr><td>LLM weight repair on exercise 3</td><td>fixes the failing run; <span class="mono">11</span> vs <span class="mono">9</span> of <span class="mono">20</span> varied starts (bar <span class="mono">+10</span>); breaks one; not a repair</td><td><span class="tag m">measured</span></td></tr>
@@ -513,7 +514,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
 <section aria-labelledby="need-h">
   <h2 id="need-h">What I need from you</h2>
   <div class="needs">
-        <div class="need-item"><div><b>Go or park for ① and ③.</b><p>Both free tests were inconclusive. The only test left trains and evaluates policies for all 20 public episodes on GPU, about $20–50; Vast has $33.98, so the upper end needs a top-up. Or park both ideas as unproven.</p></div></div>
+        <div class="need-item"><div><b>Nothing for ① and ③ right now.</b><p>You approved the GPU test on 8 selected episodes (cap $30, inside the current credit). It launches after its CPU dry run passes.</p></div></div>
     <div class="need-item"><div><b>About 20 minutes of labelling.</b><p>Pick a failure type for each failed public rollout clip, so ④ has something to be checked against. I will prepare the page.</p></div></div>
     <div class="need-item"><div><b>Replace the Gemini key.</b><p>The current key appeared in chat. Make a new one in AI Studio, delete the old one, and put the new one in the same network-secret entry.</p></div></div>
     <div class="need-item"><div><b>OK on my usage.</b><p>Triage and any rerun use a lot of my usage; earlier sessions hit the limit on 3–5 Nov. The repair pilot used about 1 hour of agent work.</p></div></div>
