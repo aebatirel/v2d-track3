@@ -5,7 +5,9 @@
   0 Vast instances left.
 - Tarball (scratchpad only, not uploaded): 9.63 GB, sha256 d76096b195d797a5b18654da19eed7f3f4f39a78e44e3076480369f0622f1b36;
   image ID sha256:f314c838218416fc2fb625ab1fc1f38267ecad3e3dd68be01763581dade8b3ae. Record: `docs/container-20261111/`.
-- Owner to do: confirm 13h, mark it final on all six boards, choose hosting for the tarball, submit the NVIDIA form.
+- 12 Nov: archive published at https://huggingface.co/aebatirel/v2d-track3-container (public). The paper's section 6.4
+  names 13h and the container.
+- Owner to do: mark 13h final on all six boards, choose the contact email, submit the NVIDIA form.
 
 ## 2026-11-06 ~06:15 UTC: journey report being rebuilt cheaply; leaderboard moved
 - The report workflows stopped on the Claude usage limit (3–5 Nov). Now rebuilding at low cost:
