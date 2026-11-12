@@ -18,9 +18,10 @@ object's reference motion needs?
           friction (the simulator's condim-3 contacts have none either, note 24 section 1).
   frames  object-event windows (pipeline/object_events.hold_events, grasp_lock --events convention): for each hold of
           an object (pipeline/hold_phases.py, both hands merged per object), the window runs from the object's lift-off
-          to its settle frame (or to the hold's end when no placement is found). The contact labels only say which
-          hold the events belong to; the window edges come from the object's own track, because the MANO labels are
-          mistimed by up to ~24 frames (object_events.py docstring). Objects that are never lifted get no window.
+          to the frame after its last movement inside the hold (hold_events' settle frame; used also when hold_events
+          rejects it as a placement, so a still tail resting on a rack or pot is left out). The contact labels only
+          say which hold the events belong to; the window edges come from the object's own track, because the MANO
+          labels are mistimed by up to ~24 frames (object_events.py docstring). Objects never lifted get no window.
 Parameters (defaults fixed with the pre-registered test, docs/research/work/wrench-gate-20261112/README.md):
   mu 1.0   FlashCHORD scene contact friction: configs/scene/{train,eval}.yaml contact_friction 1.0, which leaves every
            shape at Newton 1.2.0's ShapeConfig.mu = 1.0 (also measured, note 24 section 1).
@@ -157,11 +158,15 @@ def held_windows(ref, names, OP, OR):
                 merged[-1][1] = max(merged[-1][1], b)
             else:
                 merged.append([a, b])
-        wins, prev_end = [], 0
+        wins, prev_end, mv = [], 0, oe.moving(OP[:, j], OR[j])
         for s0, s1 in merged:
             lf, se = oe.hold_events(OP[:, j], OR[j], prev_end, s1)
             if lf is not None:
-                end = se if se is not None else s1
+                # end = the frame after the object's last movement inside the hold: hold_events' settle candidate,
+                # also when it rejects it as a placement (put on a rack / lid on the pot / held still): the still
+                # tail is dropped (it is resting on something in nearly all cases; up to 78 frames on public refs)
+                idx = np.nonzero(mv[lf:min(s1, len(mv))])[0]
+                end = lf + int(idx[-1]) + 1 if len(idx) else lf + 1
                 if end > lf:
                     wins.append((int(lf), int(end), dict(hold=[int(s0), int(s1)], rest_from=int(prev_end), liftoff=int(lf),
                                                          settle=None if se is None else int(se))))
