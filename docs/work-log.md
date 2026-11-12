@@ -5621,3 +5621,36 @@ arm and a no-policy replay floor to stage B.
 - Decision under the 12 Nov plan: no GPU pilot on our episodes; retraining stays the fix. A rerun would need varied
   starts during development and a sound random control (new pre-registration).
 
+### 2026-11-13 ~00:50 UTC — owner: "okay go crazy"; data licence checked; PRE-REGISTRATION of tests C2, G-A and G-B
+- Data licence: the challenge dataset (`nvidia/video_to_data_challenge`) is CC BY 4.0 and not gated, and its card
+  adds no other restriction. Sending public-episode frames to the Gemini API is allowed (attribution in anything
+  published). Only public episodes are sent; ground truth is never sent.
+- **Test C2 (ideas 1 and 3; new label, same features).**
+  - Gate and blob features: unchanged, frozen code, computed on the 19 original refsweep perc2 references.
+  - Label per (object, frame) in the gate's held windows: the grasp-locked physics replay of that reference
+    (`tools/cpu_glock_zero.sh` chain: `pipeline/grasp_lock.py` default args → `pipeline/wrist_ilc.py` kp 400,
+    4 iterations → zero-action replay with `sharpa_hands_mid`, CPU). Positive if the object is > 2 cm from the
+    replayed reference's object pose; missing or non-finite counts as positive.
+  - Episodes where grasp lock or ILC fails are excluded and reported. If more than 5 of 19 fail, the test is
+    inconclusive.
+  - Verdict bars and the 10–90% share rule as for test C (22:55 UTC); the tree as pre-registered at 23:05 UTC.
+- **Test G-A (Gemini mesh selector, note 28 idea 2).** The 104 scored meshes of the 30 Oct generative probe
+  (`docs/research/mesh-2026-10-26/results/gen-probe/`).
+  - Per mesh: one Decisions API `score` question (5 levels, 0–4: shape match) on real crops plus renders of the
+    candidate at our own tracked pose.
+  - ρ = Spearman(Gemini expected score, −CD-O) over all 104 meshes.
+  - **Pass:** ρ > 0.46 (the GT-free metric's value) and Gemini's top mesh is the CD-O best on more than 2 of 10
+    objects.
+  - **Fail:** ρ ≤ 0.46 and the top mesh is the CD-O best on 2 or fewer. Otherwise inconclusive.
+- **Test G-B (Gemini track audit, note 28 idea 1).** The depth audit's rows (30 Oct; 19 public episodes, 7,835 valid
+  object-frames).
+  - Per row: one `noul` question ("is the outlined model aligned with the real object?") on a crop with our tracked
+    mesh overlaid. Score = 1 − P(aligned).
+  - Label: the depth audit's primary label (registered ADD > 2 cm, kit frame-0 alignment).
+  - **Informative:** AUROC ≥ 0.75 and ≥ 8 episodes contribute positives. **Falsified:** AUROC < 0.65. Otherwise
+    inconclusive. 95% CI by episode bootstrap.
+- Rules for G-A and G-B:
+  - The exact question texts, image layout and resolution are fixed in a PREREG file committed before the first
+    scored call. Only a format dry run on non-challenge images is allowed before that.
+  - Cost cap $5 of Gemini API in total; stop and report if the estimate goes over.
+
