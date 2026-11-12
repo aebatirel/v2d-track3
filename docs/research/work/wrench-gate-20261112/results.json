@@ -1,0 +1,737 @@
+{
+ "experiment": "wrench-feasibility gate, note 29 idea 1",
+ "pre_registration": "docs/work-log.md, \"2026-11-12 ~22:20 UTC - owner: go for all; PRE-REGISTRATION for note 29 ideas 1 and 2\"",
+ "status": "not run: blocked by missing data",
+ "verdict": null,
+ "auroc": null,
+ "ci95": null,
+ "episodes_with_positives": null,
+ "missing": {
+  "what": "one recipe (one code commit, reference builder and training recipe) with a trained policy and its first official evaluator rollout on each of the 20 public episodes",
+  "public_without_any_rollout": [
+   0,
+   22,
+   23,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45
+  ],
+  "public_with_rollouts_only_from_mixed_recipes": [
+   2,
+   11,
+   12,
+   13,
+   18,
+   21,
+   24,
+   26,
+   27,
+   31,
+   39
+  ],
+  "largest_single_results_group": {
+   "group": "20261022-r1a-65c5a52/results/final",
+   "public_episodes": [
+    12,
+    18,
+    24,
+    27
+   ],
+   "n": 4
+  },
+  "largest_single_run": {
+   "run": "20261024-ev3-2c1e4dd",
+   "public_episodes": [
+    2,
+    12,
+    18,
+    24,
+    27,
+    39
+   ],
+   "note": "mixed result groups and reference recipes"
+  },
+  "full_public_reference_sets": [
+   {
+    "set": "20261020-refsweep-ea14fdf/refs/perc2",
+    "public_episodes": [
+     0,
+     2,
+     11,
+     12,
+     13,
+     18,
+     21,
+     22,
+     23,
+     24,
+     27,
+     31,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45
+    ],
+    "n": 19
+   }
+  ],
+  "substituted": false
+ },
+ "store_inventory": {
+  "store": "aebatirel/v2d-store",
+  "listed": "2026-11-12, container clock ~21:20-21:35 UTC",
+  "runs_listed": 226,
+  "files_listed": 267746,
+  "runs_with_official_rollout_per_public_episode": {
+   "2": 17,
+   "11": 5,
+   "12": 68,
+   "13": 4,
+   "18": 64,
+   "21": 4,
+   "24": 31,
+   "26": 1,
+   "27": 55,
+   "31": 7,
+   "39": 3
+  },
+  "rollout_runs_per_public_episode": {
+   "2": [
+    "20261020-day1b-cfbff6b",
+    "20261024-e3-e49e83d",
+    "20261024-ev3-2c1e4dd",
+    "20261030-p2hu-5ba27bd",
+    "20261030-p2s0-5ba27bd",
+    "20261030-p2s1-5ba27bd",
+    "20261030-physS0-6a814df",
+    "20261030-physS1-6a814df",
+    "20261030-psolverl-04301a2",
+    "20261031-mass-2ed46ea",
+    "20261031-rlloop-ccf9058",
+    "20261031-rscr42-2e25459",
+    "20261031-rscr43-865dfbb",
+    "20261031-rscrS42-cc9c32f",
+    "20261031-rscrS43-d6787a8",
+    "20261031-rscrV42-0636f20",
+    "20261031-rscrV43-0636f20"
+   ],
+   "11": [
+    "20261025-twin11v3-0e8aebb",
+    "20261025-twin11v3x-0e8aebb",
+    "20261030-orcB-38234d1",
+    "20261031-e11g-663b7df",
+    "20261031-mv2b-b5043ce"
+   ],
+   "12": [
+    "20261020-day1b-cfbff6b",
+    "20261020-refsweep-ea14fdf",
+    "20261021-auto18-966eb96",
+    "20261022-r1a-65c5a52",
+    "20261022-r1b-65c5a52",
+    "20261022-r1c-65c5a52",
+    "20261022-r1c2-d4ac331",
+    "20261022-r2p-d4ac331",
+    "20261022-r2q-d4ac331",
+    "20261022-r3i-1fc3dc9",
+    "20261022-r3ki-342d72c",
+    "20261022-r3kie-342d72c",
+    "20261022-r3kpi-342d72c",
+    "20261022-r3kri-764afba",
+    "20261022-r4kfi-a30ac72",
+    "20261022-r4kr-28e4883",
+    "20261023-dr12-a674fd7",
+    "20261023-dr18-a674fd7",
+    "20261023-fdr42-715c9f7",
+    "20261023-fdr43-715c9f7",
+    "20261023-glockpub-0f7e3a7",
+    "20261023-kf18-a674fd7",
+    "20261023-rp18-a674fd7",
+    "20261023-sf1227-bfb973a",
+    "20261023-sf18b-a674fd7",
+    "20261024-e1-e49e83d",
+    "20261024-ev2-2c1e4dd",
+    "20261024-ev3-2c1e4dd",
+    "20261024-pack-31ef267",
+    "20261024-packtest2-6ab78d0",
+    "20261024-seed43-61101f5",
+    "20261024-vid-7f31368",
+    "20261024-w2-37cc551",
+    "20261025-cups-46b8389",
+    "20261025-lib5-c476e68",
+    "20261025-pack2-46b8389",
+    "20261025-pack3-3758189",
+    "20261025-std0116-ee7ba8e",
+    "20261025-std1928-ee7ba8e",
+    "20261026-pack4-f7a49a9",
+    "20261026-pack5-526918b",
+    "20261026-pack6-5203d42",
+    "20261026-subvid-58468be",
+    "20261026-subvid2-d9c3f7d",
+    "20261029-h5-755303f",
+    "20261029-rcA-34bf6ae",
+    "20261029-rcB-34bf6ae",
+    "20261029-rcC-34bf6ae",
+    "20261030-c33B-0202139",
+    "20261030-e1conf2-d41382e",
+    "20261030-p2hu-5ba27bd",
+    "20261030-p3ms0-2298cd3",
+    "20261030-p3ms1-2298cd3",
+    "20261030-physS0-6a814df",
+    "20261030-physS1-6a814df",
+    "20261030-psolverl-04301a2",
+    "20261030-vid5-817b135",
+    "20261031-h5e1-1a7cdff",
+    "20261031-h5p7-1a7cdff",
+    "20261031-mass-2ed46ea",
+    "20261031-rlloop-ccf9058",
+    "20261031-rscr42-2e25459",
+    "20261031-rscr43-865dfbb",
+    "20261031-rscrS42-cc9c32f",
+    "20261031-rscrS43-d6787a8",
+    "20261031-rscrV42-0636f20",
+    "20261031-rscrV43-0636f20",
+    "20261101-drC-a1a7e25"
+   ],
+   "13": [
+    "20261030-orcB-38234d1",
+    "20261031-mv2a2-b5043ce",
+    "20261101-pfA-21ab92e",
+    "20261101-pfE-acfab9b"
+   ],
+   "18": [
+    "20261021-auto18-966eb96",
+    "20261021-hard-ep18-6f2f98a",
+    "20261021-render-186b3b1",
+    "20261022-r1a-65c5a52",
+    "20261022-r1b-65c5a52",
+    "20261022-r1c-65c5a52",
+    "20261022-r1c2-d4ac331",
+    "20261022-r2p-d4ac331",
+    "20261022-r2q-d4ac331",
+    "20261022-r3i-1fc3dc9",
+    "20261022-r3ki-342d72c",
+    "20261022-r3kie-342d72c",
+    "20261022-r3kpi-342d72c",
+    "20261022-r3kri-764afba",
+    "20261022-r4kfi-a30ac72",
+    "20261022-r4kr-28e4883",
+    "20261023-dr12-a674fd7",
+    "20261023-dr18-a674fd7",
+    "20261023-fdr42-715c9f7",
+    "20261023-fdr43-715c9f7",
+    "20261023-glockpub-0f7e3a7",
+    "20261023-kf18-a674fd7",
+    "20261023-rp18-a674fd7",
+    "20261023-sf1227-bfb973a",
+    "20261023-sf18b-a674fd7",
+    "20261024-e1-e49e83d",
+    "20261024-ev2-2c1e4dd",
+    "20261024-ev3-2c1e4dd",
+    "20261024-pack-31ef267",
+    "20261024-packtest2-6ab78d0",
+    "20261024-seed43-61101f5",
+    "20261024-vid-7f31368",
+    "20261024-w2-37cc551",
+    "20261025-cups-46b8389",
+    "20261025-lib5-c476e68",
+    "20261025-pack2-46b8389",
+    "20261025-pack3-3758189",
+    "20261025-std0116-ee7ba8e",
+    "20261025-std1928-ee7ba8e",
+    "20261026-pack4-f7a49a9",
+    "20261026-pack5-526918b",
+    "20261026-pack6-5203d42",
+    "20261026-subvid-58468be",
+    "20261026-subvid2-d9c3f7d",
+    "20261029-h5-755303f",
+    "20261030-c33B-0202139",
+    "20261030-e1conf2-d41382e",
+    "20261030-p2hu-5ba27bd",
+    "20261030-p3ms0-2298cd3",
+    "20261030-p3ms1-2298cd3",
+    "20261030-physS0-6a814df",
+    "20261030-physS1-6a814df",
+    "20261030-psolverl-04301a2",
+    "20261030-vid5-817b135",
+    "20261031-h5e1-1a7cdff",
+    "20261031-h5p7-1a7cdff",
+    "20261031-rlloop-ccf9058",
+    "20261031-rscr42-2e25459",
+    "20261031-rscr43-865dfbb",
+    "20261031-rscrS42-cc9c32f",
+    "20261031-rscrS43-d6787a8",
+    "20261031-rscrV42-0636f20",
+    "20261031-rscrV43-0636f20",
+    "20261101-drC-a1a7e25"
+   ],
+   "21": [
+    "20261021-hard-ep21-6f2f98a",
+    "20261024-e2-e49e83d",
+    "20261025-twin21arc-ee7ba8e",
+    "20261025-twin21base-ee7ba8e"
+   ],
+   "24": [
+    "20261021-auto24-966eb96",
+    "20261021-hard-ep24-6f2f98a",
+    "20261021-render-186b3b1",
+    "20261022-r1a-65c5a52",
+    "20261022-r1c-65c5a52",
+    "20261022-r1c2-d4ac331",
+    "20261022-r2p-d4ac331",
+    "20261022-r2q-d4ac331",
+    "20261022-r3ki-342d72c",
+    "20261022-r3kpi-342d72c",
+    "20261022-r3kri-764afba",
+    "20261022-r5ks-72ecb2f",
+    "20261022-r5ks43-72ecb2f",
+    "20261023-glockpub-0f7e3a7",
+    "20261024-ev3-2c1e4dd",
+    "20261025-cups-46b8389",
+    "20261025-lib5-c476e68",
+    "20261030-p2hu-5ba27bd",
+    "20261030-p3ms0-2298cd3",
+    "20261030-p3ms1-2298cd3",
+    "20261030-physS0-6a814df",
+    "20261030-physS1-6a814df",
+    "20261030-psolverl-04301a2",
+    "20261031-mv2a2-b5043ce",
+    "20261031-rlloop-ccf9058",
+    "20261031-rscr42-2e25459",
+    "20261031-rscr43-865dfbb",
+    "20261031-rscrS42-cc9c32f",
+    "20261031-rscrS43-d6787a8",
+    "20261031-rscrV42-0636f20",
+    "20261031-rscrV43-0636f20"
+   ],
+   "26": [
+    "20261024-w1-37cc551"
+   ],
+   "27": [
+    "20261020-day1b-cfbff6b",
+    "20261021-auto18-966eb96",
+    "20261022-r1a-65c5a52",
+    "20261022-r1b-65c5a52",
+    "20261022-r1c-65c5a52",
+    "20261022-r1c2-d4ac331",
+    "20261022-r2p-d4ac331",
+    "20261022-r2q-d4ac331",
+    "20261022-r3i-1fc3dc9",
+    "20261022-r3ki-342d72c",
+    "20261022-r3kie-342d72c",
+    "20261022-r3kpi-342d72c",
+    "20261022-r3kri-764afba",
+    "20261022-r4kfi-a30ac72",
+    "20261022-r4kr-28e4883",
+    "20261023-dr12-a674fd7",
+    "20261023-dr18-a674fd7",
+    "20261023-fdr42-715c9f7",
+    "20261023-fdr43-715c9f7",
+    "20261023-glockpub-0f7e3a7",
+    "20261023-kf18-a674fd7",
+    "20261023-rp18-a674fd7",
+    "20261023-sf1227-bfb973a",
+    "20261023-sf18b-a674fd7",
+    "20261024-e1-e49e83d",
+    "20261024-ev2-2c1e4dd",
+    "20261024-ev3-2c1e4dd",
+    "20261024-pack-31ef267",
+    "20261024-packtest2-6ab78d0",
+    "20261024-seed43-61101f5",
+    "20261024-vid-7f31368",
+    "20261024-w2-37cc551",
+    "20261025-cups-46b8389",
+    "20261025-lib5-c476e68",
+    "20261025-pack2-46b8389",
+    "20261025-pack3-3758189",
+    "20261025-std0116-ee7ba8e",
+    "20261025-std1928-ee7ba8e",
+    "20261026-pack4-f7a49a9",
+    "20261026-pack5-526918b",
+    "20261026-pack6-5203d42",
+    "20261026-subvid-58468be",
+    "20261026-subvid2-d9c3f7d",
+    "20261029-h5-755303f",
+    "20261030-c33B-0202139",
+    "20261030-e1conf2-d41382e",
+    "20261030-vid5-817b135",
+    "20261031-h5e1-1a7cdff",
+    "20261031-h5p7-1a7cdff",
+    "20261101-drC-a1a7e25",
+    "20261106-scA-84c009f",
+    "20261106-scB-84c009f",
+    "20261106-scC-84c009f",
+    "20261106-scD-76992bb",
+    "20261106-scE-ee75ba2"
+   ],
+   "31": [
+    "20261024-e2-e49e83d",
+    "20261024-ev30rp-07eef1a",
+    "20261025-pack2-46b8389",
+    "20261025-std30-ee7ba8e",
+    "20261030-orcB-38234d1",
+    "20261031-mv2b-b5043ce",
+    "20261102-pfH-a419bc9"
+   ],
+   "39": [
+    "20261024-e3-e49e83d",
+    "20261024-ev3-2c1e4dd",
+    "20261024-std39-1f306be"
+   ]
+  }
+ },
+ "analysis_plan": {
+  "unit": "(object, frame) inside a held window of pipeline/wrench_gate.py",
+  "label_threshold_m": 0.02,
+  "label_missing_or_invalid_row": "positive",
+  "rollout": "first official draw per episode, one recipe, 20 public episodes",
+  "provenance_check_mm": 1.0,
+  "auroc": "Mann-Whitney, mid-ranks",
+  "bootstrap": {
+   "resamples": 2000,
+   "seed": 20261112,
+   "unit": "episode"
+  },
+  "secondary": "share score > 0.5 vs mean sim-vs-ref error (held units; all frames), Spearman, descriptive"
+ },
+ "gate": {
+  "module": "pipeline/wrench_gate.py",
+  "mu": 1.0,
+  "mu_source": "FlashCHORD configs/scene/{train,eval}.yaml contact_friction 1.0; Newton 1.2.0 ShapeConfig.mu 1.0; note 24 section 1",
+  "mass_kg": 0.3,
+  "mass_source": "URDF <mass> (all 10 public kit URDFs: 0.3)",
+  "com_inertia": "URDF <inertial>; fallbacks mesh solid, then sphere of radius rc",
+  "rc": "object_mesh_radius from the reference",
+  "cone": "8 unit edge rays + normal, Frisvad basis (exercise 3 contacts.py)",
+  "windows": "object-event windows: hold_events lift-off .. frame after the last movement inside each hold (hold_phases.py, hands merged)",
+  "infeasible_threshold": 0.5
+ },
+ "checks": {
+  "selftest": "21/21 PASS (score_gate.py selftest)",
+  "provenance_on_real_data": "ev3 ep12 rollout vs runs/20261024-ev3-2c1e4dd/refs/perc2mc/ep12: 0.0 mm; vs refsweep perc2/ep12: 10.4 mm (reference columns only)",
+  "synthetic_end_to_end": "3 public references with synthetic rollouts: AUROC 1.0, verdict inconclusive (3 < 8 positive episodes); 5 mm reference shift -> provenance refusal"
+ },
+ "gate_output_19_public_refs_no_labels": {
+  "note": "inference only, NOT the test; Oct 20 refsweep perc2 references, kit URDFs",
+  "source": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep*/processed",
+  "per_episode": [
+   {
+    "ep": 0,
+    "frames": 373,
+    "held_units": 48,
+    "share_infeasible": 0.021,
+    "share_no_contact": 0.0,
+    "median_contacts": 4.0,
+    "objects": {
+     "white_pot_lid": {
+      "held": 48,
+      "share_infeasible": 0.0208
+     }
+    }
+   },
+   {
+    "ep": 2,
+    "frames": 343,
+    "held_units": 128,
+    "share_infeasible": 0.195,
+    "share_no_contact": 0.0,
+    "median_contacts": 6.0,
+    "objects": {
+     "white_pot": {
+      "held": 82,
+      "share_infeasible": 0.0732
+     },
+     "white_pot_lid": {
+      "held": 46,
+      "share_infeasible": 0.413
+     }
+    }
+   },
+   {
+    "ep": 11,
+    "frames": 137,
+    "held_units": 104,
+    "share_infeasible": 0.462,
+    "share_no_contact": 0.0,
+    "median_contacts": 4.0,
+    "objects": {
+     "blue_cup": {
+      "held": 38,
+      "share_infeasible": 0.2105
+     },
+     "beige_cup": {
+      "held": 66,
+      "share_infeasible": 0.6061
+     }
+    }
+   },
+   {
+    "ep": 12,
+    "frames": 181,
+    "held_units": 88,
+    "share_infeasible": 0.0,
+    "share_no_contact": 0.0,
+    "median_contacts": 9.0,
+    "objects": {
+     "blue_cup": {
+      "held": 88,
+      "share_infeasible": 0.0
+     }
+    }
+   },
+   {
+    "ep": 13,
+    "frames": 190,
+    "held_units": 120,
+    "share_infeasible": 0.4,
+    "share_no_contact": 0.0,
+    "median_contacts": 4.0,
+    "objects": {
+     "blue_cup": {
+      "held": 120,
+      "share_infeasible": 0.4
+     }
+    }
+   },
+   {
+    "ep": 18,
+    "frames": 353,
+    "held_units": 236,
+    "share_infeasible": 0.064,
+    "share_no_contact": 0.0,
+    "median_contacts": 6.0,
+    "objects": {
+     "mini_sweeper": {
+      "held": 84,
+      "share_infeasible": 0.1429
+     },
+     "mini_dust_pan": {
+      "held": 152,
+      "share_infeasible": 0.0197
+     }
+    }
+   },
+   {
+    "ep": 21,
+    "frames": 186,
+    "held_units": 194,
+    "share_infeasible": 0.304,
+    "share_no_contact": 0.278,
+    "median_contacts": 10.0,
+    "objects": {
+     "blue_cup": {
+      "held": 110,
+      "share_infeasible": 0.0091
+     },
+     "water_pitcher": {
+      "held": 84,
+      "share_infeasible": 0.6905
+     }
+    }
+   },
+   {
+    "ep": 22,
+    "frames": 189,
+    "held_units": 176,
+    "share_infeasible": 0.301,
+    "share_no_contact": 0.284,
+    "median_contacts": 7.0,
+    "objects": {
+     "blue_cup": {
+      "held": 87,
+      "share_infeasible": 0.0
+     },
+     "water_pitcher": {
+      "held": 89,
+      "share_infeasible": 0.5955
+     }
+    }
+   },
+   {
+    "ep": 23,
+    "frames": 325,
+    "held_units": 240,
+    "share_infeasible": 0.017,
+    "share_no_contact": 0.0,
+    "median_contacts": 7.0,
+    "objects": {
+     "wooden_piece_1": {
+      "held": 128,
+      "share_infeasible": 0.0234
+     },
+     "wooden_piece_2": {
+      "held": 112,
+      "share_infeasible": 0.0089
+     }
+    }
+   },
+   {
+    "ep": 24,
+    "frames": 275,
+    "held_units": 249,
+    "share_infeasible": 0.269,
+    "share_no_contact": 0.249,
+    "median_contacts": 6.0,
+    "objects": {
+     "wooden_piece_1": {
+      "held": 69,
+      "share_infeasible": 0.0145
+     },
+     "wooden_piece_2": {
+      "held": 180,
+      "share_infeasible": 0.3667
+     }
+    }
+   },
+   {
+    "ep": 27,
+    "frames": 246,
+    "held_units": 117,
+    "share_infeasible": 0.128,
+    "share_no_contact": 0.0,
+    "median_contacts": 6.0,
+    "objects": {
+     "white_pot": {
+      "held": 117,
+      "share_infeasible": 0.1282
+     }
+    }
+   },
+   {
+    "ep": 31,
+    "frames": 290,
+    "held_units": 213,
+    "share_infeasible": 0.638,
+    "share_no_contact": 0.0,
+    "median_contacts": 3.0,
+    "objects": {
+     "mini_sweeper": {
+      "held": 213,
+      "share_infeasible": 0.6385
+     }
+    }
+   },
+   {
+    "ep": 39,
+    "frames": 319,
+    "held_units": 213,
+    "share_infeasible": 0.169,
+    "share_no_contact": 0.146,
+    "median_contacts": 8.0,
+    "objects": {
+     "mini_dust_pan": {
+      "held": 213,
+      "share_infeasible": 0.169
+     }
+    }
+   },
+   {
+    "ep": 40,
+    "frames": 260,
+    "held_units": 159,
+    "share_infeasible": 0.0,
+    "share_no_contact": 0.0,
+    "median_contacts": 15.0,
+    "objects": {
+     "mini_dust_pan": {
+      "held": 159,
+      "share_infeasible": 0.0
+     }
+    }
+   },
+   {
+    "ep": 41,
+    "frames": 299,
+    "held_units": 195,
+    "share_infeasible": 0.005,
+    "share_no_contact": 0.0,
+    "median_contacts": 13.0,
+    "objects": {
+     "white_pot": {
+      "held": 195,
+      "share_infeasible": 0.0051
+     }
+    }
+   },
+   {
+    "ep": 42,
+    "frames": 257,
+    "held_units": 158,
+    "share_infeasible": 0.013,
+    "share_no_contact": 0.0,
+    "median_contacts": 13.0,
+    "objects": {
+     "white_pot": {
+      "held": 158,
+      "share_infeasible": 0.0127
+     }
+    }
+   },
+   {
+    "ep": 43,
+    "frames": 326,
+    "held_units": 236,
+    "share_infeasible": 0.047,
+    "share_no_contact": 0.0,
+    "median_contacts": 11.0,
+    "objects": {
+     "white_pot": {
+      "held": 236,
+      "share_infeasible": 0.0466
+     }
+    }
+   },
+   {
+    "ep": 44,
+    "frames": 249,
+    "held_units": 115,
+    "share_infeasible": 0.165,
+    "share_no_contact": 0.0,
+    "median_contacts": 4.0,
+    "objects": {
+     "white_pot": {
+      "held": 115,
+      "share_infeasible": 0.1652
+     }
+    }
+   },
+   {
+    "ep": 45,
+    "frames": 290,
+    "held_units": 178,
+    "share_infeasible": 0.051,
+    "share_no_contact": 0.0,
+    "median_contacts": 9.0,
+    "objects": {
+     "white_pot": {
+      "held": 178,
+      "share_infeasible": 0.0506
+     }
+    }
+   }
+  ],
+  "pooled": {
+   "units": 3167,
+   "share_infeasible": 0.1734,
+   "share_exactly_feasible": 0.7215,
+   "percentiles_50_75_90_95": [
+    0.0,
+    0.1456,
+    0.9229,
+    1.0
+   ]
+  }
+ },
+ "run": {
+  "machine": "cloud session container, 4 CPU cores, no GPU",
+  "cost_usd": 0.0,
+  "downloads_mb": 25,
+  "code": "branch claude/gallant-franklin-8gvsv3 working tree (parent WIP commits a9f71461, c134272b, 61c0b6ad); commit final files before citing",
+  "python": "scratch venv: numpy 2.5.4, scipy 1.18.1, pyarrow 26.0.1, trimesh 5.2.1"
+ }
+}
