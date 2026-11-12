@@ -7682,3 +7682,11 @@ arm and a no-policy replay floor to stage B.
   - Open: the owner must mark 13h final on all six boards (otherwise each board counts its best, 14p / 13j), choose
     hosting, and submit the form. The Vast create call printed the instance-scoped key once in tool output; it was
     redacted from the log and died with the instance.
+- ~06:55 UTC 12 Nov paper (technical report) revised to match the form: new section 6.4 "Final submission and
+  verification container" in `docs/paper-arxiv-20261106/main.tex`. It covers:
+  - pack 13h with its six Kaggle IDs, scores and commit;
+  - why 13h: rank sums on 11 Nov, 13h 58 = 13j 58 < 14p 60; 13h higher on AUC; no new upload;
+  - the container checks, the GPU re-run and the image and archive hashes.
+  PDF rebuilt (29 pages, no overfull boxes); arXiv zip rebuilt and test-compiled.
+  Remaining for the form: container hosting (owner's choice), 13h marked final on all six boards (owner, Kaggle web
+  UI), contact email (owner).

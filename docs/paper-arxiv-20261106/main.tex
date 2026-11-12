@@ -22,7 +22,7 @@
 \emergencystretch=2em
 \title{An AI Agent Team in a Robot-Learning Challenge: A Case Study}
 \author{Ahmet Ercan Batirel\\Imitation.Tech\\\texttt{aebatirel@gmail.com}}
-\date{November 2026}
+\date{November 2026 (revised 12 November: final submission and container)}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -351,6 +351,36 @@ CD-O (cm) & 0.23856 & 4 & 5 & 0.23213 & 2.7 \% less error \\
 \end{tabularx}
 \end{table}
 The rank sum improved from 62 (11th) on 31 October to 45 (7th) on 3 November. It fell to 56 by 6 November without any new upload of ours, because other teams kept improving. On 6 November we were 8th among the teams that appear in all six top-20 lists. Third place on AUC rose from 0.883 on 30 October to 0.935, and the leader's rank sum was 7. CD-O was the only board within reach of 3rd. Pack 13j beat that morning's 3rd-place value by 0.00044 cm, but another team improved the same morning.
+
+\subsection{Final submission and verification container}
+The challenge counts one submission per team: the same file, marked final on all six boards. Until then we had reported the best pack on each board (14p for the five pose boards, 13j for CD-O). Among the packs already scored, we named \textbf{pack 13h} {[}M{]}. Against the leaderboards of 11 November, 13h and 13j each gave a rank sum of 58 and 14p gave 60. 13h ranked higher on AUC (9th against 10th). This choice compared ranks of packs already on the board, as any final selection must; we made no new upload for it.
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{lllX}
+\toprule
+\textbf{Board} & \textbf{Kaggle submission} & \textbf{Score of 13h} & \textbf{Best of ours (pack)} \\
+\midrule
+AUC & 57925185 & 0.88001 & 0.88571 (14p) \\
+SP-SR & 57925189 & 0.90 & 0.90 \\
+MP-SR & 57925196 & 0.80 & 0.80 \\
+RPE (cm) & 57925202 & 2.28085 & 2.21325 (14p) \\
+MPPE (cm) & 57925211 & 1.85258 & 1.79779 (14p) \\
+CD-O (cm) & 57925216 & 0.25159 & 0.23856 (13j) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+13h's code is commit {\footnotesize\texttt{9610329e1177921827a9b66e38103e746efd8a0c}} of the project repository. 13h and 13j use the same 20 policy checkpoints; 14p differs in one.
+
+We packed 13h into the organisers' verification container, following their kit {[}M{]}:
+\begin{itemize}[itemsep=2pt,topsep=3pt]
+\item \textbf{Contents.} The code at the commit above, the kit copy that packed and uploaded the file, the 20 checkpoints, the 40 evaluator outputs, the 36 submitted meshes and each episode's evaluator inputs. The image builds on the base image of our evaluation machines, with the evaluator at its pinned commit.
+\item \textbf{Offline checks.} The kit's verifier passed 11 of 11 checks: commit, clean tree, provenance, packer, uploader, evaluator script and code, all 20 checkpoints, and re-packing the stored outputs into a byte-identical file. All six Kaggle copies matched.
+\item \textbf{Re-run.} One rented GPU rolled out all 20 policies again in 5.5 minutes, for about \$0.66 {[}E{]}. The re-run passed 13 of 13 checks: same rows and provenance; object positions differ from the upload by a median of 0.55 cm (95th percentile 2.67 cm). Against our own references, mean ADD-AUC was 0.936 against 0.948 for the upload. Repeated stored rollouts of the same checkpoints span 0.904--0.950 (95 \%), so the re-run lies within normal run-to-run variation {[}D{]}. Its leaderboard score is not known, because the ground truth is hidden.
+\item \textbf{Identifiers.} The compressed archive is 9.6 GB. Image ID, then the archive's sha256:\\
+{\footnotesize\texttt{sha256:f314c838218416fc2fb625ab1fc1f38267ecad3e3dd68be01763581dade8b3ae}}\\
+{\footnotesize\texttt{d76096b195d797a5b18654da19eed7f3f4f39a78e44e3076480369f0622f1b36}}\\
+The build files, logs and notes are in the repository under \texttt{docs/container-20261111/}.
+\end{itemize}
 
 \subsection{Where the remaining error sits}
 The evidence points to reconstruction bias, mostly while objects are held, and not to policy following {[}I{]}:

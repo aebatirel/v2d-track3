@@ -1,6 +1,6 @@
 # arXiv version of the case study (6 Nov 2026)
 
-"An AI Agent Team in a Robot-Learning Challenge: A Case Study": 29 pages, 11 figures, 12 tables, 56 references.
+"An AI Agent Team in a Robot-Learning Challenge: A Case Study": 29 pages, 11 figures, 13 tables, 56 references. Revised 12 Nov: section 6.4 names the final submission (pack 13h) and the verification container.
 
 - `main.pdf`: compiled paper.
 - `arxiv_submission.zip`: what arXiv needs (`main.tex` + `figures/`). It rebuilds cleanly with pdflatex, run twice.
