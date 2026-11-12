@@ -5684,3 +5684,19 @@ arm and a no-policy replay floor to stage B.
 - The only label left that varies is trained-policy rollouts (test A): GPU, about $20–50, needs the owner's go-ahead.
   Otherwise ideas 1 and 3 are parked as unproven.
 
+### 2026-11-13 ~02:30 UTC — owner: "you can do gpu test, how much do you need?"; test A plan and PRE-REGISTRATION amendment
+- Plan:
+  - 19 public episodes with the refsweep perc2 references the gate was computed on
+    (`runs/20261020-refsweep-ea14fdf/refs/perc2`). ep26 has no reference there; building one would need a new
+    perception run.
+  - Recipe: standard FDR RL learner (`ops/jobs/hard_ab.sh` route, FDR + VOC inertia, 250M steps, seed 42, library_v3
+    meshes, CR=0), then one official evaluator draw per policy.
+  - 10 on-demand RTX PRO 6000 boxes in parallel, 2 episodes each.
+- Prices now (Vast offers, 13 Nov ~02:25 UTC): on-demand $1.41–1.71/h all-in; interruptible $0.54–0.82/h, with
+  preemption seen on 26 and 29 Oct, so on-demand.
+- Estimate [E]: 19 × ~1.6 GPU-h training + ~0.5 h setup per box + evaluation ≈ 37 box-hours ≈ $55–60. Cap $75.
+  Wall time ≈ 4 h. Credit $33.98, so a top-up of about $45 is needed before launch.
+- **Amendment (before any data):** test A uses these 19 episodes (not 20); every other rule of the 22:20 UTC entry is
+  unchanged (bars, ≥ 8 episodes with positives, first official draw, > 2 cm label, the 10–90% share rule).
+  The tree test (23:05 UTC) runs on the same labels.
+
