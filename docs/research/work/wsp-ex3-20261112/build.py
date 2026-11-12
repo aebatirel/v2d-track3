@@ -97,13 +97,14 @@ VERSIONS = {'v02': v02, 'v03': v03, 'v04': v04, 'v05': v05}
 LWP = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lwrist_pos_controller.json')))
 
 
-def lwrist_pos(w, ch, unit, kappa=100.0, per_cm=1.0):
+def lwrist_pos(w, ch, unit, kappa=100.0, per_cm=1.0, threshold=None):
     """End-phase left-wrist position controller on private coordinate ch (already privatized).
     Gate = kappa * relu(m . e - threshold), e = left-wrist position error in its body frame (inputs 158:161),
     m and threshold from lwrist_pos_controller.json (gate 1 per cm of excess). Output: Joint1-7_L pre-tanh
     += per_cm * dq_k per unit gate, dq = pinv(Jp) m (rad per m), at stream rms 1.2."""
     m = LWP['m_body']
-    w = edits.gate_unit_block0(w, unit, {158 + k: m[k] for k in range(3)}, LWP['threshold_m'], kappa, ch)
+    th = LWP['threshold_m'] if threshold is None else threshold
+    w = edits.gate_unit_block0(w, unit, {158 + k: m[k] for k in range(3)}, th, kappa, ch)
     return edits.head_row(w, ch, {29 + k: per_cm * LWP['dq_per_m'][k] for k in range(7)}, 1.2)
 
 
@@ -146,6 +147,84 @@ def v07(w):
 
 
 VERSIONS['v07'] = v07
+
+
+def inhibitor(w, ch, unit, terms, threshold, kappa, weight):
+    """Inhibit the controller on private coordinate ch: a second idle block-0 unit computes
+    relu(kappa * (sum c_i x_i - threshold)) and writes `weight` (< 0) into the same wire. The wire's own ReLU then gives
+    relu(controller gate + weight * inhibitor): a two-level AND-NOT gate."""
+    return edits.gate_unit_block0(w, unit, terms, threshold, kappa, ch, weight=weight)
+
+
+def v08(w):
+    """v07 with the left-wrist orientation controller (a) switched off while the left hand grasps or holds the flask,
+    because after the grasp its rotation turned the held flask against its reference (rollouts 5-7, cos -0.4..-0.99),
+    and (b) threshold 0.15 rad (was 0.20). Two inhibitors write -10 into the controller's wire (OR):
+    A (unit 659): mean left finger command (ref - q, inputs 187:209) above 0.04, i.e. the reference closes the hand
+      ahead of the fingers (grasp onset, from ~300);
+    B (unit 106): mean normalised q of the five best-read left finger inputs (84, 98, 80, 91, 96; h0 readout r 0.98)
+      above 0.30, i.e. the hand is closed (carry; these never exceeded 0.21 before frame 240 in rollouts 2-7)."""
+    for ch in (78, 39, 159, 161):
+        w = edits.privatize_coordinate(w, ch)
+    w = limit(w, 78, 887, 5, 'upper')
+    w = lwrist(w, 39, 777, threshold=0.15)
+    w = inhibitor(w, 39, 659, {i: 1.0 / 22 for i in range(187, 209)}, 0.04, 100.0, -10.0)
+    w = inhibitor(w, 39, 106, {i: 1.0 / 5 for i in (84, 98, 80, 91, 96)}, 0.30, 20.0, -10.0)
+    w = lwrist_pos(w, 159, 322)
+    return lrelease(w, 161, 67)
+
+
+VERSIONS['v08'] = v08
+
+
+def lrelease2(w, ch, unit, threshold=-0.06, kappa=20.0, per_unit=-3.0):
+    """Left-hand release, version 2: gate = kappa * relu(-(mean left finger command) + threshold), i.e. fires when the
+    mean of ref - q over the 22 left fingers is below `threshold` (-0.06; it never fell below -0.044 during grasp and
+    carry, frames 300-869, of rollouts 5 and 8). Output: all left finger pre-tanh += per_unit per unit gate."""
+    idx = list(range(187, 209))
+    w = edits.gate_unit_block0(w, unit, {i: -1.0 / len(idx) for i in idx}, -threshold, kappa, ch)
+    return edits.head_row(w, ch, {j: per_unit for j in range(36, 58)}, 1.2)
+
+
+FIVE = (84, 98, 80, 91, 96)   # best-read left finger q inputs (h0 readout r >= 0.95)
+
+
+def v09(w):
+    """v08 with (a) a stronger release that can open the hand to ~ref + 0.06 (threshold -0.06, was -0.144) and is
+    inhibited while the flask is off the table (object y > -0.56 m; the table spans y -1.1..-0.5; unit 453), and (b) the
+    end-phase wrist-position controller inhibited while the left hand is still closed (mean q of FIVE > 0.30; unit 514),
+    so it no longer drags a gripped flask (rollouts 6 and 8: flask rotation 0.27 and 0.37 rad at the last frame)."""
+    for ch in (78, 39, 159, 161):
+        w = edits.privatize_coordinate(w, ch)
+    w = limit(w, 78, 887, 5, 'upper')
+    w = lwrist(w, 39, 777, threshold=0.15)
+    w = inhibitor(w, 39, 659, {i: 1.0 / 22 for i in range(187, 209)}, 0.04, 100.0, -10.0)
+    w = inhibitor(w, 39, 106, {i: 1.0 / 5 for i in FIVE}, 0.30, 20.0, -10.0)
+    w = lwrist_pos(w, 159, 322)
+    w = inhibitor(w, 159, 514, {i: 1.0 / 5 for i in FIVE}, 0.30, 20.0, -10.0)
+    w = lrelease2(w, 161, 67)
+    return inhibitor(w, 161, 453, {145: 1.0}, -0.56, 50.0, -10.0)
+
+
+VERSIONS['v09'] = v09
+
+
+def v10(w):
+    """v08 with the end-phase wrist-position controller threshold raised from 0.06 to 0.10 m (readout units; the readout
+    reads ~0.87x the true error at the end): it now only caps the error near the 0.15 m limit with a small late
+    correction, because every correction made while the left hand still touches the placed flask turns the flask
+    (rollouts 6, 8, 9). Everything that acts before frame ~950 is identical to v08."""
+    for ch in (78, 39, 159, 161):
+        w = edits.privatize_coordinate(w, ch)
+    w = limit(w, 78, 887, 5, 'upper')
+    w = lwrist(w, 39, 777, threshold=0.15)
+    w = inhibitor(w, 39, 659, {i: 1.0 / 22 for i in range(187, 209)}, 0.04, 100.0, -10.0)
+    w = inhibitor(w, 39, 106, {i: 1.0 / 5 for i in FIVE}, 0.30, 20.0, -10.0)
+    w = lwrist_pos(w, 159, 322, threshold=0.10)
+    return lrelease(w, 161, 67)
+
+
+VERSIONS['v10'] = v10
 
 
 if __name__ == '__main__':
