@@ -5569,3 +5569,10 @@ arm and a no-policy replay floor to stage B.
   - label from replays of grasp-locked references (`sharpa_hands_mid`, kp 400, grasp lock), on CPU, $0;
   - test A: one GPU batch training and evaluating all 20 public episodes, about $20–50.
 
+### 2026-11-13 ~00:10 UTC — explainer page for the owner: "Track 3 Upgrade Map"
+- Owner asked for a visual explanation of the whole plan. Published as a private artifact:
+  https://claude.ai/artifact/9bme8GokXWJUD4WYShTuAK. Source copy: `docs/explainer/upgrade-map-20261112.html`.
+- Contents: status of the five add-ons; the pipeline with their plug-in points; how each works; the exercise-3 chart
+  drawn from measured data; a table of measured results; next-step flows; what is needed from the owner.
+- Checked once by screenshot at desktop (light) and phone (dark); fixed three label overlaps.
+

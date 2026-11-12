@@ -1,0 +1,525 @@
+<title>Track 3 Upgrade Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one engineering-notebook column; the pipeline diagram is the spine, each add-on hangs off its numbered plug-in point. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --ink: #17202a; --muted: #5a6775; --line: #c8d0d9; --faint: #e3e8ee;
+  --accent: #1d67a8; --accent-soft: #e2edf7;
+  --run: #1d67a8; --wait: #a8620c; --wait-soft: #f8ecdb; --block: #b23b2b; --block-soft: #f7e3df; --ok: #2c7a4b; --ok-soft: #e1f1e7;
+  --c-left: #2f6fb8; --c-right: #cf7a22; --c-score: #6a45b0; --c-zero: #6d7884; --c-policy: #c0392b;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1419; --surface: #171f27; --ink: #e5ebf1; --muted: #9babba; --line: #34414e; --faint: #222c36;
+  --accent: #6db0ec; --accent-soft: #19304a;
+  --run: #6db0ec; --wait: #e8a44f; --wait-soft: #33260f; --block: #ec7a68; --block-soft: #3a1d18; --ok: #62c48b; --ok-soft: #17301f;
+  --c-left: #6aa8ee; --c-right: #f0a352; --c-score: #ad8ff0; --c-zero: #9aa6b2; --c-policy: #f0725f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #171f27; --ink: #e5ebf1; --muted: #9babba; --line: #34414e; --faint: #222c36;
+  --accent: #6db0ec; --accent-soft: #19304a;
+  --run: #6db0ec; --wait: #e8a44f; --wait-soft: #33260f; --block: #ec7a68; --block-soft: #3a1d18; --ok: #62c48b; --ok-soft: #17301f;
+  --c-left: #6aa8ee; --c-right: #f0a352; --c-score: #ad8ff0; --c-zero: #9aa6b2; --c-policy: #f0725f; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15.5px; line-height: 1.55; }
+.wrap { max-width: 1060px; margin: 0 auto; padding-block: 40px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(2rem, 4.6vw, 3rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.6rem; font-weight: 600; }
+h3 { font-size: 1.22rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 1.08rem; color: var(--muted); max-width: 62ch; }
+section { display: grid; gap: 18px; min-width: 0; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+/* hero */
+.hero { display: grid; gap: 14px; }
+.context { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 0.92rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+.context b { color: var(--ink); font-weight: 600; }
+/* status board */
+.board { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.idea { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 14px 12px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.idea .num { font-family: var(--f-mono); font-size: 0.78rem; color: var(--accent); font-weight: 500; }
+.idea h3 { font-size: 1.08rem; }
+.idea p { font-size: 0.88rem; color: var(--muted); }
+.chip { justify-self: start; font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.03em; padding: 3px 8px; border-radius: 999px; border: 1px solid currentColor; }
+.chip.run { color: var(--run); background: var(--accent-soft); }
+.chip.wait { color: var(--wait); background: var(--wait-soft); }
+.chip.block { color: var(--block); background: var(--block-soft); }
+.chip.ok { color: var(--ok); background: var(--ok-soft); }
+/* figures */
+figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.scroll { overflow-x: auto; }
+figure svg { display: block; width: 100%; height: auto; min-width: 640px; }
+figcaption { font-size: 0.9rem; color: var(--muted); max-width: 80ch; }
+/* svg classes */
+.node { fill: var(--surface); stroke: var(--line); stroke-width: 1.4; }
+.node-new { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.6; }
+.node-note { fill: var(--bg); stroke: var(--line); stroke-dasharray: 4 3; }
+.t { fill: var(--ink); font-family: var(--f-display); font-size: 14px; font-weight: 600; }
+.ts { fill: var(--muted); font-family: var(--f-body); font-size: 11.5px; }
+.tl { fill: var(--muted); font-family: var(--f-mono); font-size: 11px; }
+.ta { fill: var(--accent); font-family: var(--f-mono); font-size: 11px; }
+.tw { fill: var(--block); font-family: var(--f-mono); font-size: 11px; }
+.tn { fill: var(--accent); font-family: var(--f-display); font-size: 14px; font-weight: 700; }
+.ar { stroke: var(--ink); stroke-width: 1.4; fill: none; }
+.ar-new { stroke: var(--accent); stroke-width: 1.6; fill: none; }
+.ar-d { stroke: var(--accent); stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+.mk-ink { fill: var(--ink); } .mk-acc { fill: var(--accent); }
+.nl { stroke: var(--line); stroke-width: 0.8; } .nl-c { stroke: var(--accent); stroke-width: 2.4; }
+.nu { fill: var(--muted); } .nu-idle { fill: var(--surface); stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 2 2; } .nu-c { fill: var(--accent); }
+.cone { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+.obj { fill: var(--faint); stroke: var(--muted); stroke-width: 1.4; }
+.need { stroke: var(--c-policy); stroke-width: 3; fill: none; } .mk-need { fill: var(--c-policy); }
+.tneed { fill: var(--c-policy); font-family: var(--f-mono); font-size: 11px; }
+.ok-badge { fill: var(--ok-soft); stroke: var(--ok); } .ok-t { fill: var(--ok); font-family: var(--f-mono); font-size: 12px; font-weight: 500; }
+.bad-badge { fill: var(--block-soft); stroke: var(--block); } .bad-t { fill: var(--block); font-family: var(--f-mono); font-size: 12px; font-weight: 500; }
+.blob { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.6; } .ring { fill: none; stroke: var(--line); stroke-dasharray: 3 3; }
+.feat { fill: var(--bg); stroke: var(--line); } .tf { fill: var(--ink); font-family: var(--f-body); font-size: 11.5px; }
+.leaf-hi { fill: var(--block-soft); stroke: var(--block); } .leaf-mid { fill: var(--wait-soft); stroke: var(--wait); } .leaf-lo { fill: var(--ok-soft); stroke: var(--ok); }
+.bar-bg { fill: var(--faint); } .bar { fill: var(--accent); }
+.axis { stroke: var(--line); stroke-width: 1; } .grid { stroke: var(--faint); stroke-width: 1; }
+.ln-left { stroke: var(--c-left); } .ln-right { stroke: var(--c-right); } .ln-score { stroke: var(--c-score); } .ln-zero { stroke: var(--c-zero); } .ln-policy { stroke: var(--c-policy); }
+.ln { fill: none; stroke-width: 1.8; stroke-linejoin: round; }
+.thr { stroke: var(--c-policy); stroke-dasharray: 5 4; stroke-width: 1; }
+.fail { stroke: var(--c-policy); stroke-width: 1; opacity: 0.7; }
+.c-left { fill: var(--c-left); } .c-right { fill: var(--c-right); } .c-score { fill: var(--c-score); } .c-zero { fill: var(--c-zero); } .c-policy { fill: var(--c-policy); }
+.lane { fill: var(--ink); font-family: var(--f-display); font-size: 12.5px; font-weight: 600; }
+/* add-on sections */
+.addon { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 22px; border-top: 1px solid var(--line); }
+.addon-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; }
+.addon-head .n { font-family: var(--f-mono); color: var(--accent); font-size: 0.95rem; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.fact { display: grid; gap: 4px; align-content: start; min-width: 0; }
+.fact .k { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.fact .v { font-size: 0.93rem; }
+ul.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; max-width: 72ch; }
+/* tables */
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 0.92rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--faint); vertical-align: top; }
+th { font-family: var(--f-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 500; }
+tr:last-child td { border-bottom: 0; }
+.tag { font-family: var(--f-mono); font-size: 0.72rem; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+.tag.m { background: var(--ok-soft); color: var(--ok); } .tag.e { background: var(--wait-soft); color: var(--wait); } .tag.h { background: var(--accent-soft); color: var(--accent); }
+/* needs */
+.needs { display: grid; gap: 10px; counter-reset: need; }
+.need-item { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+.need-item::before { counter-increment: need; content: counter(need); font-family: var(--f-display); font-weight: 700; font-size: 1.3rem; color: var(--wait); }
+.need-item b { font-weight: 600; }
+.need-item p { color: var(--muted); font-size: 0.92rem; margin-top: 2px; }
+footer { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 6px; }
+code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+@media (max-width: 560px) { body { font-size: 15px; } .wrap { gap: 44px; padding-block: 28px 56px; } figure { padding: 12px; } }
+</style>
+
+<main class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">V2D Challenge · Track 3 · plan as of 12 Nov 2026</div>
+  <h1>Track 3 Upgrade Map</h1>
+  <p class="lede">Five add-ons that bring LLMs and small decision models into our video-to-robot pipeline. This page shows where each one plugs in, how it works, how we test it, what it costs, and what is already measured.</p>
+  <div class="context">
+    <span><b>Boards froze 4 Nov.</b> Final boards (9 Nov): 9th by rank sum.</span>
+    <span><b>Final pack 13h</b> and its container are done.</span>
+    <span>So these upgrades are for the <b>report, the award or a next round</b>, not the ranking.</span>
+    <span>Organisers allow <b>agentic (LLM) decisions</b>; public data only for development.</span>
+  </div>
+</header>
+
+<section aria-labelledby="board-h">
+  <h2 id="board-h">Status of the five add-ons</h2>
+  <div class="board">
+    <article class="idea"><span class="num">① grasp check</span><h3>Can the contacts hold it?</h3><p>Physics check on each reference before we spend GPU on training.</p><span class="chip block">built · first test inconclusive</span></article>
+    <article class="idea"><span class="num">② weight repair</span><h3>LLM edits the policy</h3><p>An LLM fixes a failing policy by writing small circuits into its weights.</p><span class="chip run">pilot running on CPU</span></article>
+    <article class="idea"><span class="num">③ fix router</span><h3>Decision tree picks the fix</h3><p>Turns the contact “blob” into features and predicts which frames will drift.</p><span class="chip block">built · first test inconclusive</span></article>
+    <article class="idea"><span class="num">④ LLM triage</span><h3>Names each failure</h3><p>Reads failed rollouts, labels the failure type, suggests a fix family.</p><span class="chip wait">waits on your 20 min of labels</span></article>
+    <article class="idea"><span class="num">⑤ Gemini judge</span><h3>Visual yes/no check</h3><p>Gemini’s Decisions API compares a rollout with the source video.</p><span class="chip wait">key works · waits on licence answer</span></article>
+  </div>
+</section>
+
+<section aria-labelledby="pipe-h">
+  <h2 id="pipe-h">The pipeline, and where each add-on plugs in</h2>
+  <p class="muted">Grey boxes are today’s pipeline. Blue boxes are the add-ons. Red notes mark where we lose points today.</p>
+  <figure>
+    <div class="scroll">
+    <svg viewBox="0 0 1170 380" role="img" aria-label="Pipeline from video to score with five add-ons: the grasp check reads the reference, the fix router picks a fix for training, LLM weight repair edits the trained policy and tests it in the evaluator, LLM triage reads failed rollouts, and the Gemini judge compares rollouts with the video.">
+      <defs>
+        <marker id="d1-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-ink" d="M0,0 L10,5 L0,10 z"/></marker>
+        <marker id="d1-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-acc" d="M0,0 L10,5 L0,10 z"/></marker>
+      </defs>
+      <!-- main row -->
+      <rect class="node" x="20" y="150" width="132" height="60" rx="6"/><text class="t" x="86" y="176" text-anchor="middle">Video</text><text class="ts" x="86" y="195" text-anchor="middle">human demo</text>
+      <rect class="node" x="216" y="150" width="132" height="60" rx="6"/><text class="t" x="282" y="176" text-anchor="middle">Perception</text><text class="ts" x="282" y="195" text-anchor="middle">objects + hands</text>
+      <rect class="node" x="412" y="150" width="132" height="60" rx="6"/><text class="t" x="478" y="176" text-anchor="middle">Reference</text><text class="ts" x="478" y="195" text-anchor="middle">robot motion + contacts</text>
+      <rect class="node" x="608" y="150" width="132" height="60" rx="6"/><text class="t" x="674" y="176" text-anchor="middle">RL training</text><text class="ts" x="674" y="195" text-anchor="middle">1 policy, ~2 h GPU</text>
+      <rect class="node" x="804" y="150" width="132" height="60" rx="6"/><text class="t" x="870" y="176" text-anchor="middle">Evaluator</text><text class="ts" x="870" y="195" text-anchor="middle">replays it in sim</text>
+      <rect class="node" x="1000" y="150" width="132" height="60" rx="6"/><text class="t" x="1066" y="176" text-anchor="middle">Score &amp; pack</text><text class="ts" x="1066" y="195" text-anchor="middle">vs ground truth</text>
+      <line class="ar" x1="152" y1="180" x2="212" y2="180" marker-end="url(#d1-a)"/><text class="tl" x="182" y="172" text-anchor="middle">frames</text>
+      <line class="ar" x1="348" y1="180" x2="408" y2="180" marker-end="url(#d1-a)"/><text class="tl" x="378" y="172" text-anchor="middle">tracks</text>
+      <line class="ar" x1="544" y1="180" x2="604" y2="180" marker-end="url(#d1-a)"/><text class="tl" x="574" y="172" text-anchor="middle">targets</text>
+      <line class="ar" x1="740" y1="180" x2="800" y2="180" marker-end="url(#d1-a)"/><text class="tl" x="770" y="172" text-anchor="middle">policy</text>
+      <line class="ar" x1="936" y1="180" x2="996" y2="180" marker-end="url(#d1-a)"/><text class="tl" x="966" y="172" text-anchor="middle">rollout</text>
+      <text class="tw" x="478" y="232" text-anchor="middle">main loss: 2–3 cm off</text>
+      <text class="tw" x="944" y="244">runs vary (sd up to 0.24)</text>
+      <!-- top band add-ons -->
+      <rect class="node-new" x="370" y="40" width="180" height="60" rx="6"/><text class="t" x="460" y="66" text-anchor="middle"><tspan class="tn">①</tspan> Grasp check</text><text class="ts" x="460" y="85" text-anchor="middle">can the contacts hold it?</text>
+      <rect class="node-new" x="580" y="40" width="180" height="60" rx="6"/><text class="t" x="670" y="66" text-anchor="middle"><tspan class="tn">③</tspan> Fix router</text><text class="ts" x="670" y="85" text-anchor="middle">small decision tree</text>
+      <rect class="node-new" x="790" y="40" width="160" height="60" rx="6"/><text class="t" x="870" y="66" text-anchor="middle"><tspan class="tn">④</tspan> LLM triage</text><text class="ts" x="870" y="85" text-anchor="middle">names each failure</text>
+      <rect class="node-new" x="980" y="40" width="170" height="60" rx="6"/><text class="t" x="1065" y="66" text-anchor="middle"><tspan class="tn">⑤</tspan> Gemini judge</text><text class="ts" x="1065" y="85" text-anchor="middle">rollout vs video</text>
+      <line class="ar-new" x1="478" y1="150" x2="478" y2="104" marker-end="url(#d1-b)"/><text class="ta" x="486" y="132">reads</text>
+      <line class="ar-new" x1="550" y1="70" x2="576" y2="70" marker-end="url(#d1-b)"/>
+      <line class="ar-new" x1="790" y1="70" x2="764" y2="70" marker-end="url(#d1-b)"/>
+      <line class="ar-new" x1="674" y1="100" x2="674" y2="146" marker-end="url(#d1-b)"/><text class="ta" x="682" y="132">picks the fix</text>
+      <line class="ar-new" x1="870" y1="150" x2="870" y2="104" marker-end="url(#d1-b)"/><text class="ta" x="862" y="132" text-anchor="end">failed runs</text>
+      <line class="ar-new" x1="1066" y1="150" x2="1066" y2="104" marker-end="url(#d1-b)"/><text class="ta" x="1058" y="132" text-anchor="end">rollout + video</text>
+      <!-- bottom band -->
+      <rect class="node-new" x="560" y="270" width="200" height="60" rx="6"/><text class="t" x="660" y="296" text-anchor="middle"><tspan class="tn">②</tspan> LLM weight repair</text><text class="ts" x="660" y="315" text-anchor="middle">hand-edits the trained policy</text>
+      <line class="ar-new" x1="650" y1="210" x2="650" y2="266" marker-end="url(#d1-b)"/><text class="ta" x="642" y="244" text-anchor="end">checkpoint</text>
+      <line class="ar-new" x1="700" y1="270" x2="700" y2="214" marker-end="url(#d1-b)"/><text class="ta" x="708" y="244">edited weights</text>
+      <polyline class="ar-d" points="760,300 870,300 870,214" marker-end="url(#d1-b)"/><text class="ta" x="815" y="292" text-anchor="middle">test runs</text>
+      <!-- legend -->
+      <rect class="node" x="20" y="344" width="22" height="14" rx="3"/><text class="tl" x="50" y="355">today’s pipeline</text>
+      <rect class="node-new" x="170" y="344" width="22" height="14" rx="3"/><text class="tl" x="200" y="355">new add-on (numbered as in this plan)</text>
+    </svg>
+    </div>
+    <figcaption>The grasp check ① and the fix router ③ act before the expensive GPU step. Weight repair ② acts on a trained policy. Triage ④ and the Gemini judge ⑤ read rollouts after the evaluator and feed what they find back to the router.</figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="addons-h">
+  <h2 id="addons-h">How each add-on works</h2>
+
+  <div class="addon" id="a1">
+    <div class="addon-head"><span class="n">①</span><h3>Grasp check: can the contacts hold it?</h3><span class="chip block">first test inconclusive</span></div>
+    <p>From our reference we know how the object moves, so we know the push the hands must give it (its weight plus its acceleration). From the reference’s contact points we know where fingers touch, and friction lets each finger push inside a cone. If the needed push fits inside those cones, the grasp can work. If it does not, training on that reference will struggle.</p>
+    <figure>
+      <div class="scroll">
+      <svg viewBox="0 0 760 250" role="img" aria-label="Two panels. Left: fingers on both sides of a cup can together push upward inside their friction cones, so the needed upward push fits and the score is 0. Right: one finger on one side only cannot push straight up, so the needed push falls outside its cone and the score is near 1.">
+        <defs><marker id="d3-n" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="mk-need" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <text class="lane" x="20" y="24">Feasible: two-sided grip</text>
+        <rect class="obj" x="135" y="85" width="90" height="110" rx="10"/><text class="ts" x="180" y="214" text-anchor="middle">object</text>
+        <polygon class="cone" points="135,140 99.6,104.6 99.6,175.4"/><circle class="nu" cx="135" cy="140" r="4"/>
+        <polygon class="cone" points="225,140 260.4,104.6 260.4,175.4"/><circle class="nu" cx="225" cy="140" r="4"/>
+        <text class="ta" x="96" y="92" text-anchor="end">friction cone</text>
+        <line class="need" x1="180" y1="150" x2="180" y2="58" marker-end="url(#d3-n)"/><text class="tneed" x="188" y="56">needed push</text>
+        <rect class="ok-badge" x="240" y="200" width="112" height="26" rx="13"/><text class="ok-t" x="296" y="218" text-anchor="middle">score 0 · holds</text>
+        <line class="axis" x1="380" y1="20" x2="380" y2="235"/>
+        <text class="lane" x="400" y="24">Infeasible: one finger, one side</text>
+        <rect class="obj" x="535" y="85" width="90" height="110" rx="10"/><text class="ts" x="580" y="214" text-anchor="middle">object</text>
+        <polygon class="cone" points="535,140 499.6,104.6 499.6,175.4"/><circle class="nu" cx="535" cy="140" r="4"/>
+        <line class="need" x1="580" y1="150" x2="580" y2="58" marker-end="url(#d3-n)"/><text class="tneed" x="588" y="56">needed push</text>
+        <text class="ts" x="630" y="128">no contact can</text><text class="ts" x="630" y="143">push straight up</text>
+        <rect class="bad-badge" x="616" y="200" width="132" height="26" rx="13"/><text class="bad-t" x="682" y="218" text-anchor="middle">score ≈ 1 · drops</text>
+      </svg>
+      </div>
+      <figcaption>Drawn in 2-D for clarity; the real check works in 6-D (3 force and 3 torque directions). Score = how much of the needed push is left over after the best possible mix of contact pushes: 0 means it fits, 1 means nothing touches. Friction μ = 1.0, the simulator’s own value.</figcaption>
+    </figure>
+    <div class="facts">
+      <div class="fact"><span class="k">Test and pass bar</span><span class="v">Does a high score predict frames where the object drifts more than 2 cm in physics? Useful if AUROC ≥ 0.75; falsified below 0.65.</span></div>
+      <div class="fact"><span class="k">What happened</span><span class="v">Built, 21/21 self-tests pass. Test A blocked: no 20-episode rollout set exists. Test C inconclusive: with no policy the hands never grip, so 99.6% of frames drift and nothing can be ranked.</span></div>
+      <div class="fact"><span class="k">Cost</span><span class="v">CPU only, $0. Seconds per episode.</span></div>
+    </div>
+  </div>
+
+  <div class="addon" id="a3">
+    <div class="addon-head"><span class="n">③</span><h3>Fix router: the contact blob through a decision tree</h3><span class="chip block">first test inconclusive</span></div>
+    <p>NVIDIA’s exercise 3 draws a “blob” for each frame: how hard the hands can push in every direction. We turn that blob into eight numbers and let a small decision tree learn which frames will drift. The tree is always tested on episodes it has not seen.</p>
+    <figure>
+      <div class="scroll">
+      <svg viewBox="0 0 900 270" role="img" aria-label="The contact blob is summarised into eight features, which feed a small decision tree that outputs a drift risk per frame for the fix router.">
+        <defs><marker id="d4-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk-acc" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <text class="lane" x="20" y="24">Contact blob</text>
+        <circle class="ring" cx="115" cy="135" r="80"/>
+        <polygon class="blob" points="115,63 141,75 172,96 190,135 168,168 136,185 115,190 115,190 92,173 66,160 50,135 66,103 90,80"/>
+        <circle class="nu" cx="115" cy="135" r="3"/>
+        <text class="ts" x="115" y="238" text-anchor="middle">push strength per direction</text>
+        <text class="ts" x="115" y="253" text-anchor="middle">(6-D; a 2-D slice shown)</text>
+        <line class="ar-new" x1="205" y1="135" x2="250" y2="135" marker-end="url(#d4-a)"/><text class="ta" x="228" y="126" text-anchor="middle">sum up</text>
+        <text class="lane" x="262" y="24">8 features per frame</text>
+        <rect class="feat" x="262" y="38" width="96" height="40" rx="5"/><text class="tf" x="310" y="55" text-anchor="middle">grasp-check</text><text class="tf" x="310" y="70" text-anchor="middle">score</text>
+        <rect class="feat" x="366" y="38" width="96" height="40" rx="5"/><text class="tf" x="414" y="55" text-anchor="middle">push along</text><text class="tf" x="414" y="70" text-anchor="middle">the need</text>
+        <rect class="feat" x="262" y="86" width="96" height="40" rx="5"/><text class="tf" x="310" y="103" text-anchor="middle">push</text><text class="tf" x="310" y="118" text-anchor="middle">straight up</text>
+        <rect class="feat" x="366" y="86" width="96" height="40" rx="5"/><text class="tf" x="414" y="103" text-anchor="middle">directions</text><text class="tf" x="414" y="118" text-anchor="middle">with no push</text>
+        <rect class="feat" x="262" y="134" width="96" height="40" rx="5"/><text class="tf" x="310" y="159" text-anchor="middle">contacts</text>
+        <rect class="feat" x="366" y="134" width="96" height="40" rx="5"/><text class="tf" x="414" y="151" text-anchor="middle">hands</text><text class="tf" x="414" y="166" text-anchor="middle">touching</text>
+        <rect class="feat" x="262" y="182" width="96" height="40" rx="5"/><text class="tf" x="310" y="199" text-anchor="middle">force</text><text class="tf" x="310" y="214" text-anchor="middle">needed</text>
+        <rect class="feat" x="366" y="182" width="96" height="40" rx="5"/><text class="tf" x="414" y="199" text-anchor="middle">torque</text><text class="tf" x="414" y="214" text-anchor="middle">needed</text>
+        <line class="ar-new" x1="470" y1="135" x2="515" y2="135" marker-end="url(#d4-a)"/>
+        <text class="lane" x="528" y="24">Decision tree (example shape)</text>
+        <rect class="node-new" x="600" y="40" width="190" height="40" rx="6"/><text class="tf" x="695" y="64" text-anchor="middle">push along need &lt; 0.4 ?</text>
+        <line class="ar" x1="650" y1="80" x2="590" y2="118"/><text class="tl" x="606" y="104" text-anchor="end">yes</text>
+        <line class="ar" x1="740" y1="80" x2="800" y2="118"/><text class="tl" x="784" y="104">no</text>
+        <rect class="node-new" x="528" y="118" width="150" height="40" rx="6"/><text class="tf" x="603" y="142" text-anchor="middle">one hand only ?</text>
+        <rect class="leaf-lo" x="770" y="118" width="110" height="40" rx="6"/><text class="tf" x="825" y="142" text-anchor="middle">low risk</text>
+        <line class="ar" x1="570" y1="158" x2="555" y2="192"/><text class="tl" x="552" y="180" text-anchor="end">yes</text>
+        <line class="ar" x1="636" y1="158" x2="651" y2="192"/><text class="tl" x="652" y="180">no</text>
+        <rect class="leaf-hi" x="500" y="192" width="110" height="40" rx="6"/><text class="tf" x="555" y="216" text-anchor="middle">high risk</text>
+        <rect class="leaf-mid" x="620" y="192" width="110" height="40" rx="6"/><text class="tf" x="675" y="216" text-anchor="middle">medium risk</text>
+        <text class="ta" x="800" y="216">→ router ③</text>
+        <text class="ts" x="528" y="256">The real tree (3 levels) is learned from the 19 public references.</text>
+      </svg>
+      </div>
+      <figcaption>The tree shown is an example of the shape, not a trained result. The real test compares the tree with the single grasp-check score on the same frames. It counts only if the tree is clearly better: AUROC ≥ 0.75 and at least 0.05 above the score.</figcaption>
+    </figure>
+    <div class="facts">
+      <div class="fact"><span class="k">Ready</span><span class="v">Features built for 3,167 frames in 19 public references. Rule and code frozen in git before any label.</span></div>
+      <div class="fact"><span class="k">Result</span><span class="v">Inconclusive on test C’s labels (same reason as ①): 0.58 vs 0.41, resting on only 12 non-drifting frames. The script itself works: it finds a planted signal and nothing in random labels.</span></div>
+      <div class="fact"><span class="k">Warning sign</span><span class="v">On exercise 3’s flask, the reference contacts said “can hold” while physics dropped the flask (chart below).</span></div>
+    </div>
+  </div>
+
+  <div class="addon" id="a2">
+    <div class="addon-head"><span class="n">②</span><h3>LLM weight repair: fixing a policy without retraining</h3><span class="chip run">pilot running on CPU</span></div>
+    <p>From the blog post we read: an LLM opens a failing robot policy, finds neurons the network never uses, and writes small controllers into them, such as “if the gripper closed on nothing, lift and reopen”. It tests each edit, keeps what works, and repeats. In the post this took policies from 0–5% to 33–95% success with no new data. We test it first on NVIDIA’s exercise 3, whose trained policy fails on our CPU.</p>
+    <figure>
+      <div class="scroll">
+      <svg viewBox="0 0 980 330" role="img" aria-label="Left: a small policy network with hollow idle neurons and one blue circuit written through two idle neurons from a sensor input to a motor output. Right: the repair loop of reading weights and traces, diagnosing, writing a circuit and running one of 25 tests, ending in a final check on 20 varied starts against the unedited policy and a random edit.">
+        <defs><marker id="d2-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk-acc" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <text class="ts" x="170" y="40" text-anchor="middle">sensor inputs</text><text class="ts" x="430" y="40" text-anchor="middle">motor outputs</text>
+        <g transform="translate(110,0)">
+<line class="nl" x1="60" y1="60.0" x2="150" y2="60.0"/>
+<line class="nl" x1="60" y1="60.0" x2="150" y2="154.3"/>
+<line class="nl" x1="60" y1="60.0" x2="150" y2="280.0"/>
+<line class="nl" x1="60" y1="104.0" x2="150" y2="60.0"/>
+<line class="nl" x1="60" y1="104.0" x2="150" y2="154.3"/>
+<line class="nl" x1="60" y1="104.0" x2="150" y2="185.7"/>
+<line class="nl" x1="60" y1="148.0" x2="150" y2="185.7"/>
+<line class="nl" x1="60" y1="192.0" x2="150" y2="185.7"/>
+<line class="nl" x1="60" y1="236.0" x2="150" y2="60.0"/>
+<line class="nl" x1="60" y1="236.0" x2="150" y2="91.4"/>
+<line class="nl" x1="60" y1="280.0" x2="150" y2="154.3"/>
+<line class="nl" x1="60" y1="280.0" x2="150" y2="217.1"/>
+<line class="nl" x1="150" y1="60.0" x2="240" y2="122.9"/>
+<line class="nl" x1="150" y1="60.0" x2="240" y2="154.3"/>
+<line class="nl" x1="150" y1="60.0" x2="240" y2="185.7"/>
+<line class="nl" x1="150" y1="60.0" x2="240" y2="280.0"/>
+<line class="nl" x1="150" y1="91.4" x2="240" y2="122.9"/>
+<line class="nl" x1="150" y1="91.4" x2="240" y2="185.7"/>
+<line class="nl" x1="150" y1="91.4" x2="240" y2="248.6"/>
+<line class="nl" x1="150" y1="185.7" x2="240" y2="122.9"/>
+<line class="nl" x1="150" y1="217.1" x2="240" y2="122.9"/>
+<line class="nl" x1="150" y1="217.1" x2="240" y2="248.6"/>
+<line class="nl" x1="150" y1="217.1" x2="240" y2="280.0"/>
+<line class="nl" x1="150" y1="280.0" x2="240" y2="154.3"/>
+<line class="nl" x1="150" y1="280.0" x2="240" y2="248.6"/>
+<line class="nl" x1="150" y1="280.0" x2="240" y2="280.0"/>
+<line class="nl" x1="240" y1="60.0" x2="320" y2="60.0"/>
+<line class="nl" x1="240" y1="60.0" x2="320" y2="280.0"/>
+<line class="nl" x1="240" y1="122.9" x2="320" y2="133.3"/>
+<line class="nl" x1="240" y1="122.9" x2="320" y2="280.0"/>
+<line class="nl" x1="240" y1="185.7" x2="320" y2="60.0"/>
+<line class="nl" x1="240" y1="185.7" x2="320" y2="133.3"/>
+<line class="nl" x1="240" y1="185.7" x2="320" y2="280.0"/>
+<line class="nl" x1="240" y1="248.6" x2="320" y2="60.0"/>
+<line class="nl" x1="240" y1="248.6" x2="320" y2="133.3"/>
+<line class="nl" x1="240" y1="248.6" x2="320" y2="280.0"/>
+<line class="nl" x1="240" y1="280.0" x2="320" y2="60.0"/>
+<line class="nl" x1="240" y1="280.0" x2="320" y2="206.7"/>
+<line class="nl-c" x1="60" y1="236.0" x2="150" y2="248.6"/>
+<line class="nl-c" x1="150" y1="248.6" x2="240" y2="217.1"/>
+<line class="nl-c" x1="240" y1="217.1" x2="320" y2="133.3"/>
+<circle class="nu" cx="60" cy="60.0" r="7"/>
+<circle class="nu" cx="60" cy="104.0" r="7"/>
+<circle class="nu" cx="60" cy="148.0" r="7"/>
+<circle class="nu" cx="60" cy="192.0" r="7"/>
+<circle class="nu-c" cx="60" cy="236.0" r="7"/>
+<circle class="nu" cx="60" cy="280.0" r="7"/>
+<circle class="nu" cx="150" cy="60.0" r="7"/>
+<circle class="nu" cx="150" cy="91.4" r="7"/>
+<circle class="nu-idle" cx="150" cy="122.9" r="7"/>
+<circle class="nu" cx="150" cy="154.3" r="7"/>
+<circle class="nu" cx="150" cy="185.7" r="7"/>
+<circle class="nu" cx="150" cy="217.1" r="7"/>
+<circle class="nu-c" cx="150" cy="248.6" r="7"/>
+<circle class="nu" cx="150" cy="280.0" r="7"/>
+<circle class="nu" cx="240" cy="60.0" r="7"/>
+<circle class="nu-idle" cx="240" cy="91.4" r="7"/>
+<circle class="nu" cx="240" cy="122.9" r="7"/>
+<circle class="nu" cx="240" cy="154.3" r="7"/>
+<circle class="nu" cx="240" cy="185.7" r="7"/>
+<circle class="nu-c" cx="240" cy="217.1" r="7"/>
+<circle class="nu" cx="240" cy="248.6" r="7"/>
+<circle class="nu" cx="240" cy="280.0" r="7"/>
+<circle class="nu" cx="320" cy="60.0" r="7"/>
+<circle class="nu-c" cx="320" cy="133.3" r="7"/>
+<circle class="nu" cx="320" cy="206.7" r="7"/>
+<circle class="nu" cx="320" cy="280.0" r="7"/>
+
+        </g>
+        <circle class="nu" cx="40" cy="310" r="6"/><text class="tl" x="52" y="314">trained neuron</text>
+        <circle class="nu-idle" cx="170" cy="310" r="6"/><text class="tl" x="182" y="314">idle (never fires)</text>
+        <circle class="nu-c" cx="320" cy="310" r="6"/><text class="tl" x="332" y="314">circuit the LLM wrote</text>
+        <rect class="node-new" x="520" y="40" width="200" height="56" rx="6"/><text class="t" x="620" y="65" text-anchor="middle">Read weights + traces</text><text class="ts" x="620" y="83" text-anchor="middle">every test run is recorded</text>
+        <rect class="node-new" x="760" y="40" width="200" height="56" rx="6"/><text class="t" x="860" y="65" text-anchor="middle">Diagnose</text><text class="ts" x="860" y="83" text-anchor="middle">swap inputs, compare frames</text>
+        <rect class="node-new" x="760" y="140" width="200" height="56" rx="6"/><text class="t" x="860" y="165" text-anchor="middle">Write a small circuit</text><text class="ts" x="860" y="183" text-anchor="middle">into idle neurons</text>
+        <rect class="node-new" x="520" y="140" width="200" height="56" rx="6"/><text class="t" x="620" y="165" text-anchor="middle">Test run</text><text class="ts" x="620" y="183" text-anchor="middle">1 of 25 on the failing task</text>
+        <line class="ar-new" x1="720" y1="68" x2="756" y2="68" marker-end="url(#d2-a)"/>
+        <line class="ar-new" x1="860" y1="96" x2="860" y2="136" marker-end="url(#d2-a)"/>
+        <line class="ar-new" x1="760" y1="168" x2="724" y2="168" marker-end="url(#d2-a)"/>
+        <line class="ar-new" x1="620" y1="140" x2="620" y2="100" marker-end="url(#d2-a)"/><text class="ta" x="612" y="124" text-anchor="end">not fixed yet</text>
+        <rect class="node" x="520" y="250" width="440" height="56" rx="6"/><text class="t" x="740" y="275" text-anchor="middle">Final check, run once</text><text class="ts" x="740" y="293" text-anchor="middle">20 varied starts · edited vs unedited vs a random edit of the same size</text>
+        <line class="ar-new" x1="620" y1="196" x2="620" y2="246" marker-end="url(#d2-a)"/><text class="ta" x="628" y="226">after the last edit</text>
+      </svg>
+      </div>
+      <figcaption>Rules copied from the blog: no gradients, no automated search, no new demonstrations; the LLM hand-derives every weight. Pass bar: the edit finishes the failing task and finishes at least 10 more of the 20 varied starts than the unedited policy, without breaking any start it already finished. A random edit of the same size is the control.</figcaption>
+    </figure>
+    <div class="facts">
+      <div class="fact"><span class="k">Why exercise 3 first</span><span class="v">Its trained policy fails on our CPU at 17.6 s, every time. A free, repeatable broken policy with the same network as ours.</span></div>
+      <div class="fact"><span class="k">If it works</span><span class="v">GPU pilot on 3 of our public episodes, about $10–20, against a plain retrain.</span></div>
+      <div class="fact"><span class="k">Cost</span><span class="v">CPU, $0. My usage: an LLM repair run is hundreds of turns (blog runs about 320).</span></div>
+    </div>
+  </div>
+
+  <div class="addon" id="a4">
+    <div class="addon-head"><span class="n">④</span><h3>LLM triage: name the failure, suggest the fix</h3><span class="chip wait">waits on your labels</span></div>
+    <p>For each failed public rollout, an LLM reads the drift timeline, the contact traces and the hold phases, then picks one failure type: <b>drop at lift</b>, <b>slip while carrying</b>, <b>collision</b>, <b>wrong placement</b> or <b>never grasps</b>. A fixed rule, not the LLM, decides what actually runs.</p>
+    <div class="facts">
+      <div class="fact"><span class="k">Test and pass bar</span><span class="v">The LLM’s label matches your label on at least 80% of failed public episodes.</span></div>
+      <div class="fact"><span class="k">What I need</span><span class="v">About 20 minutes: you watch short rollout clips and pick a failure type for each.</span></div>
+      <div class="fact"><span class="k">Cost</span><span class="v">CPU and my usage only.</span></div>
+    </div>
+  </div>
+
+  <div class="addon" id="a5">
+    <div class="addon-head"><span class="n">⑤</span><h3>Gemini judge: fast yes/no questions about images</h3><span class="chip wait">key works · waits on licence</span></div>
+    <p>Gemini’s Decisions API does not write text. It answers closed questions (yes/no, pick one, rate on a scale) with probabilities, in about a quarter of a second, for $0.10 per million input tokens. We would ask it whether a rendered rollout matches the source video, and use it to judge mesh candidates.</p>
+    <figure>
+      <div class="scroll">
+      <svg viewBox="0 0 860 240" role="img" aria-label="An input and closed questions go into the Decisions API, which returns probabilities: object lifted 0.99, phase grasp and lift 0.999, place 0.0006, approach 0.0003. These are real answers from our first text-only test.">
+        <defs><marker id="d5-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk-acc" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <text class="lane" x="20" y="24">Input</text>
+        <rect class="node" x="20" y="40" width="220" height="150" rx="8"/>
+        <rect class="feat" x="36" y="56" width="58" height="42" rx="3"/><rect class="feat" x="101" y="56" width="58" height="42" rx="3"/><rect class="feat" x="166" y="56" width="58" height="42" rx="3"/>
+        <text class="ts" x="130" y="120" text-anchor="middle">later: video frames or renders</text>
+        <text class="tf" x="130" y="150" text-anchor="middle">today’s test (text):</text>
+        <text class="ts" x="130" y="168" text-anchor="middle">“hand closed on the cup and</text>
+        <text class="ts" x="130" y="182" text-anchor="middle">lifted it 10 cm”</text>
+        <line class="ar-new" x1="240" y1="115" x2="284" y2="115" marker-end="url(#d5-a)"/>
+        <text class="lane" x="290" y="24">Closed questions</text>
+        <rect class="node-new" x="290" y="48" width="240" height="50" rx="6"/><text class="tf" x="304" y="69">Was the object lifted?</text><text class="tl" x="304" y="87">yes / no</text>
+        <rect class="node-new" x="290" y="118" width="240" height="62" rx="6"/><text class="tf" x="304" y="139">Which phase is this?</text><text class="tl" x="304" y="157">approach / grasp-lift /</text><text class="tl" x="304" y="171">place</text>
+        <line class="ar-new" x1="530" y1="115" x2="574" y2="115" marker-end="url(#d5-a)"/>
+        <text class="lane" x="580" y="24">Answers with probabilities</text>
+        <text class="tf" x="580" y="66">lifted</text><rect class="bar-bg" x="680" y="56" width="150" height="12" rx="2"/><rect class="bar" x="680" y="56" width="148.5" height="12" rx="2"/><text class="tl" x="680" y="84">0.99</text>
+        <text class="tf" x="580" y="126">grasp-lift</text><rect class="bar-bg" x="680" y="116" width="150" height="12" rx="2"/><rect class="bar" x="680" y="116" width="149.9" height="12" rx="2"/><text class="tl" x="680" y="144">0.999</text>
+        <text class="tf" x="580" y="166">place</text><rect class="bar-bg" x="680" y="156" width="150" height="12" rx="2"/><rect class="bar" x="680" y="156" width="1" height="12"/><text class="tl" x="690" y="166">0.0006</text>
+        <text class="tf" x="580" y="196">approach</text><rect class="bar-bg" x="680" y="186" width="150" height="12" rx="2"/><rect class="bar" x="680" y="186" width="1" height="12"/><text class="tl" x="690" y="196">0.0003</text>
+        <text class="ts" x="580" y="228">real answers from our first test · 192 tokens</text>
+      </svg>
+      </div>
+      <figcaption>The key is saved as an environment secret and works. Before sending any challenge frames to Google, we need to know the data licence allows it; until then only text and NVIDIA’s exercise assets are sent.</figcaption>
+    </figure>
+    <div class="facts">
+      <div class="fact"><span class="k">First tests</span><span class="v">Mesh selector on 104 scored meshes (≈ $0.09); track audit on 7,835 object-frames (≈ $1).</span></div>
+      <div class="fact"><span class="k">Pass bars</span><span class="v">Mesh pick beats today’s rank correlation of 0.46; track audit AUROC ≥ 0.75.</span></div>
+      <div class="fact"><span class="k">Limit</span><span class="v">Google’s own benchmarks never test centimetre geometry; our 2–3 cm errors may be too small for it.</span></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="ex3-h">
+  <h2 id="ex3-h">What exercise 3 showed: contacts on paper vs physics</h2>
+  <p>NVIDIA’s flask handover, measured on our CPU. The reference’s contacts say the grasp can hold the flask almost all the time. Physics disagrees twice: with no policy the flask is lost within 3 seconds, and the trained policy fails right at the handover, where the contacts look strongest.</p>
+  <figure>
+    <div class="scroll">
+    <svg viewBox="0 0 760 330" role="img" aria-label="Timeline of the flask handover over 51 seconds. The right hand holds until 17.6 s and the left hand takes over. The grasp-check score stays near 0 from 1 s to 45 s. With no policy the flask drifts past 10 cm at 4.7 s; the trained policy stays near 1 to 2 cm and then fails at 17.6 s at the handover.">
+      <line class="grid" x1="70" y1="100" x2="740" y2="100"/><line class="grid" x1="70" y1="190" x2="740" y2="190"/><line class="grid" x1="70" y1="300" x2="740" y2="300"/>
+      <text class="lane" x="70" y="22">Contacts per hand</text>
+      <text class="tl" x="62" y="34" text-anchor="end">15</text><text class="tl" x="62" y="104" text-anchor="end">0</text>
+      <polyline class="ln ln-left" points="70.0,100.0 72.0,100.0 73.9,100.0 75.9,100.0 77.9,100.0 79.8,100.0 81.8,100.0 83.8,100.0 85.7,100.0 87.7,100.0 89.7,100.0 91.6,100.0 93.6,100.0 95.6,100.0 97.5,100.0 99.5,100.0 101.5,100.0 103.4,100.0 105.4,100.0 107.4,100.0 109.3,100.0 111.3,100.0 113.3,100.0 115.2,100.0 117.2,100.0 119.2,100.0 121.1,100.0 123.1,100.0 125.1,100.0 127.0,100.0 129.0,100.0 131.0,100.0 132.9,100.0 134.9,100.0 136.9,100.0 138.8,100.0 140.8,100.0 142.8,100.0 144.7,100.0 146.7,100.0 148.7,90.7 150.6,90.7 152.6,90.7 154.6,90.7 156.5,90.7 158.5,90.7 160.5,90.7 162.4,90.7 164.4,90.7 166.4,90.7 168.3,86.0 170.3,86.0 172.3,86.0 174.2,86.0 176.2,86.0 178.2,86.0 180.1,86.0 182.1,86.0 184.1,86.0 186.0,86.0 188.0,86.0 190.0,86.0 191.9,86.0 193.9,86.0 195.9,86.0 197.8,86.0 199.8,86.0 201.8,86.0 203.7,86.0 205.7,86.0 207.7,86.0 209.6,86.0 211.6,86.0 213.6,86.0 215.5,86.0 217.5,86.0 219.5,86.0 221.4,86.0 223.4,86.0 225.4,86.0 227.3,86.0 229.3,76.7 231.3,76.7 233.2,72.0 235.2,72.0 237.2,72.0 239.1,72.0 241.1,72.0 243.1,72.0 245.0,72.0 247.0,72.0 249.0,72.0 250.9,72.0 252.9,72.0 254.9,72.0 256.8,67.3 258.8,72.0 260.8,72.0 262.7,72.0 264.7,72.0 266.7,72.0 268.6,72.0 270.6,67.3 272.6,58.0 274.5,58.0 276.5,53.3 278.5,48.7 280.4,48.7 282.4,48.7 284.4,44.0 286.3,39.3 288.3,39.3 290.3,34.7 292.2,39.3 294.2,39.3 296.2,39.3 298.1,39.3 300.1,39.3 302.1,39.3 304.0,39.3 306.0,39.3 308.0,39.3 309.9,39.3 311.9,39.3 313.9,39.3 315.8,39.3 317.8,39.3 319.8,39.3 321.7,39.3 323.7,39.3 325.7,39.3 327.6,39.3 329.6,39.3 331.6,39.3 333.5,39.3 335.5,39.3 337.5,39.3 339.4,39.3 341.4,39.3 343.4,39.3 345.3,39.3 347.3,39.3 349.3,39.3 351.2,39.3 353.2,39.3 355.2,39.3 357.1,39.3 359.1,39.3 361.1,39.3 363.0,39.3 365.0,39.3 367.0,39.3 368.9,39.3 370.9,39.3 372.9,39.3 374.8,39.3 376.8,39.3 378.8,39.3 380.7,39.3 382.7,39.3 384.7,39.3 386.6,39.3 388.6,39.3 390.6,39.3 392.5,39.3 394.5,39.3 396.5,39.3 398.4,39.3 400.4,39.3 402.4,39.3 404.3,39.3 406.3,39.3 408.3,39.3 410.2,39.3 412.2,39.3 414.2,39.3 416.1,39.3 418.1,39.3 420.1,39.3 422.0,39.3 424.0,39.3 426.0,39.3 427.9,39.3 429.9,39.3 431.9,39.3 433.8,39.3 435.8,39.3 437.8,39.3 439.7,39.3 441.7,39.3 443.7,39.3 445.6,39.3 447.6,39.3 449.6,39.3 451.5,39.3 453.5,39.3 455.5,39.3 457.4,39.3 459.4,39.3 461.4,39.3 463.3,39.3 465.3,39.3 467.3,39.3 469.2,39.3 471.2,39.3 473.2,39.3 475.1,39.3 477.1,39.3 479.1,39.3 481.0,39.3 483.0,39.3 485.0,39.3 486.9,39.3 488.9,39.3 490.9,39.3 492.8,39.3 494.8,39.3 496.8,39.3 498.7,39.3 500.7,39.3 502.7,39.3 504.6,39.3 506.6,39.3 508.6,39.3 510.5,39.3 512.5,39.3 514.5,39.3 516.4,39.3 518.4,39.3 520.4,39.3 522.3,39.3 524.3,39.3 526.3,39.3 528.2,39.3 530.2,39.3 532.2,39.3 534.1,39.3 536.1,39.3 538.1,39.3 540.0,39.3 542.0,39.3 544.0,39.3 545.9,39.3 547.9,39.3 549.9,39.3 551.8,39.3 553.8,39.3 555.8,39.3 557.7,39.3 559.7,39.3 561.7,39.3 563.6,39.3 565.6,39.3 567.6,39.3 569.5,39.3 571.5,39.3 573.5,39.3 575.5,39.3 577.4,39.3 579.4,39.3 581.4,39.3 583.3,39.3 585.3,39.3 587.3,39.3 589.2,39.3 591.2,39.3 593.2,39.3 595.1,39.3 597.1,39.3 599.1,39.3 601.0,39.3 603.0,39.3 605.0,39.3 606.9,39.3 608.9,39.3 610.9,39.3 612.8,39.3 614.8,39.3 616.8,39.3 618.7,39.3 620.7,39.3 622.7,39.3 624.6,39.3 626.6,39.3 628.6,39.3 630.5,39.3 632.5,39.3 634.5,39.3 636.4,39.3 638.4,39.3 640.4,39.3 642.3,39.3 644.3,39.3 646.3,44.0 648.2,48.7 650.2,53.3 652.2,53.3 654.1,53.3 656.1,53.3 658.1,53.3 660.0,53.3 662.0,53.3 664.0,53.3 665.9,62.7 667.9,62.7 669.9,67.3 671.8,67.3 673.8,67.3 675.8,67.3 677.7,67.3 679.7,67.3 681.7,67.3 683.6,67.3 685.6,67.3 687.6,62.7 689.5,58.0 691.5,67.3 693.5,67.3 695.4,67.3 697.4,67.3 699.4,67.3 701.3,67.3 703.3,67.3 705.3,67.3 707.2,67.3 709.2,67.3 711.2,67.3 713.1,72.0 715.1,72.0 717.1,72.0 719.0,72.0 721.0,67.3 723.0,62.7 724.9,62.7 726.9,72.0 728.9,86.0 730.8,86.0 732.8,81.3 734.8,86.0 736.7,86.0 738.7,86.0 740.0,86.0"/>
+      <polyline class="ln ln-right" points="70.0,95.3 72.0,95.3 73.9,95.3 75.9,95.3 77.9,95.3 79.8,95.3 81.8,86.0 83.8,72.0 85.7,67.3 87.7,62.7 89.7,62.7 91.6,62.7 93.6,67.3 95.6,67.3 97.5,67.3 99.5,67.3 101.5,67.3 103.4,67.3 105.4,67.3 107.4,58.0 109.3,58.0 111.3,58.0 113.3,58.0 115.2,58.0 117.2,58.0 119.2,58.0 121.1,58.0 123.1,58.0 125.1,58.0 127.0,58.0 129.0,58.0 131.0,58.0 132.9,58.0 134.9,58.0 136.9,58.0 138.8,58.0 140.8,58.0 142.8,58.0 144.7,62.7 146.7,62.7 148.7,62.7 150.6,67.3 152.6,62.7 154.6,62.7 156.5,62.7 158.5,62.7 160.5,62.7 162.4,62.7 164.4,62.7 166.4,62.7 168.3,62.7 170.3,62.7 172.3,62.7 174.2,62.7 176.2,62.7 178.2,62.7 180.1,62.7 182.1,62.7 184.1,62.7 186.0,62.7 188.0,62.7 190.0,62.7 191.9,62.7 193.9,62.7 195.9,62.7 197.8,62.7 199.8,62.7 201.8,62.7 203.7,62.7 205.7,62.7 207.7,62.7 209.6,62.7 211.6,62.7 213.6,58.0 215.5,58.0 217.5,58.0 219.5,58.0 221.4,58.0 223.4,58.0 225.4,58.0 227.3,58.0 229.3,58.0 231.3,58.0 233.2,58.0 235.2,58.0 237.2,58.0 239.1,58.0 241.1,58.0 243.1,58.0 245.0,58.0 247.0,58.0 249.0,58.0 250.9,58.0 252.9,58.0 254.9,58.0 256.8,58.0 258.8,58.0 260.8,58.0 262.7,58.0 264.7,58.0 266.7,58.0 268.6,58.0 270.6,58.0 272.6,58.0 274.5,58.0 276.5,58.0 278.5,58.0 280.4,58.0 282.4,58.0 284.4,58.0 286.3,58.0 288.3,58.0 290.3,53.3 292.2,58.0 294.2,58.0 296.2,58.0 298.1,58.0 300.1,72.0 302.1,81.3 304.0,95.3 306.0,95.3 308.0,95.3 309.9,95.3 311.9,100.0 313.9,100.0 315.8,100.0 317.8,100.0 319.8,100.0 321.7,100.0 323.7,100.0 325.7,100.0 327.6,100.0 329.6,100.0 331.6,100.0 333.5,100.0 335.5,100.0 337.5,100.0 339.4,100.0 341.4,100.0 343.4,100.0 345.3,100.0 347.3,100.0 349.3,100.0 351.2,100.0 353.2,100.0 355.2,100.0 357.1,100.0 359.1,100.0 361.1,100.0 363.0,100.0 365.0,100.0 367.0,100.0 368.9,100.0 370.9,100.0 372.9,100.0 374.8,100.0 376.8,100.0 378.8,100.0 380.7,100.0 382.7,100.0 384.7,100.0 386.6,100.0 388.6,100.0 390.6,100.0 392.5,100.0 394.5,100.0 396.5,100.0 398.4,100.0 400.4,100.0 402.4,100.0 404.3,100.0 406.3,100.0 408.3,100.0 410.2,100.0 412.2,100.0 414.2,100.0 416.1,100.0 418.1,100.0 420.1,100.0 422.0,100.0 424.0,100.0 426.0,100.0 427.9,100.0 429.9,100.0 431.9,100.0 433.8,100.0 435.8,100.0 437.8,100.0 439.7,100.0 441.7,100.0 443.7,100.0 445.6,100.0 447.6,100.0 449.6,100.0 451.5,100.0 453.5,100.0 455.5,100.0 457.4,100.0 459.4,100.0 461.4,100.0 463.3,100.0 465.3,100.0 467.3,100.0 469.2,100.0 471.2,100.0 473.2,100.0 475.1,100.0 477.1,100.0 479.1,100.0 481.0,100.0 483.0,100.0 485.0,100.0 486.9,100.0 488.9,100.0 490.9,100.0 492.8,100.0 494.8,100.0 496.8,100.0 498.7,100.0 500.7,100.0 502.7,100.0 504.6,100.0 506.6,100.0 508.6,100.0 510.5,100.0 512.5,100.0 514.5,100.0 516.4,100.0 518.4,100.0 520.4,100.0 522.3,100.0 524.3,100.0 526.3,100.0 528.2,100.0 530.2,100.0 532.2,100.0 534.1,100.0 536.1,100.0 538.1,100.0 540.0,100.0 542.0,100.0 544.0,100.0 545.9,100.0 547.9,100.0 549.9,100.0 551.8,100.0 553.8,100.0 555.8,100.0 557.7,100.0 559.7,100.0 561.7,100.0 563.6,100.0 565.6,100.0 567.6,100.0 569.5,100.0 571.5,100.0 573.5,100.0 575.5,100.0 577.4,100.0 579.4,100.0 581.4,100.0 583.3,100.0 585.3,100.0 587.3,100.0 589.2,100.0 591.2,100.0 593.2,100.0 595.1,100.0 597.1,100.0 599.1,100.0 601.0,100.0 603.0,100.0 605.0,100.0 606.9,100.0 608.9,100.0 610.9,100.0 612.8,100.0 614.8,100.0 616.8,100.0 618.7,100.0 620.7,100.0 622.7,100.0 624.6,100.0 626.6,100.0 628.6,100.0 630.5,100.0 632.5,100.0 634.5,100.0 636.4,100.0 638.4,100.0 640.4,100.0 642.3,100.0 644.3,100.0 646.3,100.0 648.2,100.0 650.2,100.0 652.2,100.0 654.1,100.0 656.1,100.0 658.1,100.0 660.0,100.0 662.0,100.0 664.0,100.0 665.9,100.0 667.9,100.0 669.9,100.0 671.8,100.0 673.8,100.0 675.8,100.0 677.7,100.0 679.7,100.0 681.7,100.0 683.6,100.0 685.6,100.0 687.6,100.0 689.5,100.0 691.5,100.0 693.5,100.0 695.4,100.0 697.4,100.0 699.4,100.0 701.3,100.0 703.3,100.0 705.3,100.0 707.2,100.0 709.2,100.0 711.2,100.0 713.1,100.0 715.1,100.0 717.1,100.0 719.0,100.0 721.0,100.0 723.0,100.0 724.9,100.0 726.9,100.0 728.9,100.0 730.8,100.0 732.8,100.0 734.8,100.0 736.7,100.0 738.7,100.0 740.0,100.0"/>
+      <text class="tl c-left" x="600" y="62">left hand</text><text class="tl c-right" x="150" y="44">right hand</text>
+      <text class="lane" x="70" y="122">Grasp-check score (0 = can hold)</text>
+      <text class="tl" x="62" y="134" text-anchor="end">1</text><text class="tl" x="62" y="194" text-anchor="end">0</text>
+      <polyline class="ln ln-score" points="70.0,145.4 72.0,145.4 73.9,145.4 75.9,145.4 77.9,145.4 79.8,149.3 81.8,190.0 83.8,190.0 85.7,190.0 87.7,190.0 89.7,190.0 91.6,190.0 93.6,190.0 95.6,190.0 97.5,190.0 99.5,190.0 101.5,190.0 103.4,190.0 105.4,190.0 107.4,190.0 109.3,190.0 111.3,190.0 113.3,190.0 115.2,190.0 117.2,190.0 119.2,190.0 121.1,190.0 123.1,190.0 125.1,190.0 127.0,190.0 129.0,190.0 131.0,190.0 132.9,190.0 134.9,190.0 136.9,190.0 138.8,190.0 140.8,190.0 142.8,190.0 144.7,190.0 146.7,190.0 148.7,190.0 150.6,190.0 152.6,190.0 154.6,190.0 156.5,190.0 158.5,190.0 160.5,190.0 162.4,190.0 164.4,190.0 166.4,190.0 168.3,190.0 170.3,190.0 172.3,190.0 174.2,190.0 176.2,190.0 178.2,190.0 180.1,190.0 182.1,190.0 184.1,190.0 186.0,190.0 188.0,190.0 190.0,190.0 191.9,190.0 193.9,190.0 195.9,190.0 197.8,190.0 199.8,190.0 201.8,190.0 203.7,190.0 205.7,190.0 207.7,190.0 209.6,190.0 211.6,190.0 213.6,190.0 215.5,190.0 217.5,190.0 219.5,190.0 221.4,190.0 223.4,190.0 225.4,190.0 227.3,190.0 229.3,190.0 231.3,190.0 233.2,190.0 235.2,190.0 237.2,190.0 239.1,190.0 241.1,190.0 243.1,190.0 245.0,190.0 247.0,190.0 249.0,190.0 250.9,190.0 252.9,190.0 254.9,190.0 256.8,190.0 258.8,190.0 260.8,190.0 262.7,190.0 264.7,190.0 266.7,190.0 268.6,190.0 270.6,190.0 272.6,190.0 274.5,190.0 276.5,190.0 278.5,190.0 280.4,190.0 282.4,190.0 284.4,190.0 286.3,190.0 288.3,190.0 290.3,190.0 292.2,190.0 294.2,190.0 296.2,190.0 298.1,190.0 300.1,190.0 302.1,190.0 304.0,190.0 306.0,190.0 308.0,190.0 309.9,190.0 311.9,190.0 313.9,190.0 315.8,190.0 317.8,190.0 319.8,190.0 321.7,190.0 323.7,190.0 325.7,190.0 327.6,190.0 329.6,190.0 331.6,190.0 333.5,190.0 335.5,190.0 337.5,190.0 339.4,190.0 341.4,190.0 343.4,190.0 345.3,190.0 347.3,190.0 349.3,190.0 351.2,190.0 353.2,190.0 355.2,190.0 357.1,190.0 359.1,190.0 361.1,190.0 363.0,190.0 365.0,190.0 367.0,190.0 368.9,190.0 370.9,190.0 372.9,190.0 374.8,190.0 376.8,190.0 378.8,190.0 380.7,190.0 382.7,190.0 384.7,190.0 386.6,190.0 388.6,190.0 390.6,190.0 392.5,190.0 394.5,190.0 396.5,190.0 398.4,190.0 400.4,190.0 402.4,190.0 404.3,190.0 406.3,190.0 408.3,190.0 410.2,190.0 412.2,190.0 414.2,190.0 416.1,190.0 418.1,190.0 420.1,190.0 422.0,190.0 424.0,190.0 426.0,190.0 427.9,190.0 429.9,190.0 431.9,190.0 433.8,190.0 435.8,190.0 437.8,190.0 439.7,190.0 441.7,190.0 443.7,190.0 445.6,190.0 447.6,190.0 449.6,190.0 451.5,190.0 453.5,190.0 455.5,190.0 457.4,190.0 459.4,190.0 461.4,190.0 463.3,190.0 465.3,190.0 467.3,190.0 469.2,190.0 471.2,190.0 473.2,190.0 475.1,190.0 477.1,190.0 479.1,190.0 481.0,190.0 483.0,190.0 485.0,190.0 486.9,190.0 488.9,190.0 490.9,190.0 492.8,190.0 494.8,190.0 496.8,190.0 498.7,190.0 500.7,190.0 502.7,190.0 504.6,190.0 506.6,190.0 508.6,190.0 510.5,190.0 512.5,190.0 514.5,190.0 516.4,190.0 518.4,190.0 520.4,190.0 522.3,190.0 524.3,190.0 526.3,190.0 528.2,190.0 530.2,190.0 532.2,190.0 534.1,190.0 536.1,190.0 538.1,190.0 540.0,190.0 542.0,190.0 544.0,190.0 545.9,190.0 547.9,190.0 549.9,190.0 551.8,190.0 553.8,190.0 555.8,190.0 557.7,190.0 559.7,190.0 561.7,190.0 563.6,190.0 565.6,190.0 567.6,190.0 569.5,190.0 571.5,190.0 573.5,190.0 575.5,190.0 577.4,190.0 579.4,190.0 581.4,190.0 583.3,190.0 585.3,190.0 587.3,190.0 589.2,190.0 591.2,190.0 593.2,190.0 595.1,190.0 597.1,190.0 599.1,190.0 601.0,190.0 603.0,190.0 605.0,190.0 606.9,190.0 608.9,190.0 610.9,190.0 612.8,190.0 614.8,190.0 616.8,190.0 618.7,190.0 620.7,190.0 622.7,190.0 624.6,190.0 626.6,190.0 628.6,190.0 630.5,190.0 632.5,190.0 634.5,190.0 636.4,190.0 638.4,190.0 640.4,190.0 642.3,190.0 644.3,190.0 646.3,190.0 648.2,190.0 650.2,190.0 652.2,190.0 654.1,190.0 656.1,190.0 658.1,190.0 660.0,190.0 662.0,190.0 664.0,190.0 665.9,166.9 667.9,163.3 669.9,174.4 671.8,172.5 673.8,178.1 675.8,190.0 677.7,190.0 679.7,190.0 681.7,178.0 683.6,190.0 685.6,190.0 687.6,190.0 689.5,190.0 691.5,162.1 693.5,162.0 695.4,162.0 697.4,162.2 699.4,162.2 701.3,161.8 703.3,161.8 705.3,161.8 707.2,161.9 709.2,161.8 711.2,161.6 713.1,150.8 715.1,150.8 717.1,150.8 719.0,148.6 721.0,162.6 723.0,161.7 724.9,162.3 726.9,163.5 728.9,136.5 730.8,137.8 732.8,146.5 734.8,139.0 736.7,144.0 738.7,144.1 740.0,144.1"/>
+      <text class="lane" x="70" y="212">Flask error in physics (cm, cut at 40)</text>
+      <text class="tl" x="62" y="224" text-anchor="end">40</text><text class="tl" x="62" y="284" text-anchor="end">10</text><text class="tl" x="62" y="304" text-anchor="end">0</text>
+      <line class="thr" x1="70" y1="280.0" x2="740" y2="280.0"/>
+      <polyline class="ln ln-zero" points="70.0,300.0 72.0,299.8 73.9,299.8 75.9,299.8 77.9,299.8 79.8,299.8 81.8,299.8 83.8,299.7 85.7,299.5 87.7,299.3 89.7,298.7 91.6,298.4 93.6,298.1 95.6,297.9 97.5,297.8 99.5,297.6 101.5,297.2 103.4,296.6 105.4,295.9 107.4,295.3 109.3,295.0 111.3,294.8 113.3,294.2 115.2,293.3 117.2,292.6 119.2,291.1 121.1,289.7 123.1,287.8 125.1,285.4 127.0,283.5 129.0,281.6 131.0,279.6 132.9,277.5 134.9,275.5 136.9,273.4 138.8,271.2 140.8,269.1 142.8,267.0 144.7,265.0 146.7,262.5 148.7,259.8 150.6,256.7 152.6,253.9 154.6,251.2 156.5,248.7 158.5,248.3 160.5,247.8 162.4,247.4 164.4,246.9 166.4,246.5 168.3,246.0 170.3,245.7 172.3,245.3 174.2,244.9 176.2,244.6 178.2,244.2 180.1,243.8 182.1,243.6 184.1,243.3 186.0,243.1 188.0,242.8 190.0,242.5 191.9,242.2 193.9,242.1 195.9,241.9 197.8,241.7 199.8,241.5 201.8,241.3 203.7,241.1 205.7,241.0 207.7,240.9 209.6,240.7 211.6,240.6 213.6,240.4 215.5,240.3 217.5,240.1 219.5,240.0 221.4,239.8 223.4,239.6 225.4,239.5 227.3,239.3 229.3,239.1 231.3,238.9 233.2,238.7 235.2,238.5 237.2,238.2 239.1,237.6 241.1,236.8 243.1,235.9 245.0,235.1 247.0,234.6 249.0,234.3 250.9,234.1 252.9,234.2 254.9,234.3 256.8,234.4 258.8,234.5 260.8,234.5 262.7,234.5 264.7,234.5 266.7,234.4 268.6,234.3 270.6,234.1 272.6,234.0 274.5,233.8 276.5,233.5 278.5,233.2 280.4,233.0 282.4,232.5 284.4,231.9 286.3,231.4 288.3,230.5 290.3,229.4 292.2,228.3 294.2,226.9 296.2,225.6 298.1,224.2 300.1,222.8 302.1,221.4 304.0,220.0 306.0,220.0 308.0,220.0 309.9,220.0 311.9,220.0 313.9,220.0 315.8,220.0 317.8,220.0 319.8,220.0 321.7,220.0 323.7,220.0 325.7,220.0 327.6,220.0 329.6,220.0 331.6,220.0 333.5,220.0 335.5,220.0 337.5,220.0 339.4,220.0 341.4,220.0 343.4,220.0 345.3,220.0 347.3,220.0 349.3,220.0 351.2,220.0 353.2,220.0 355.2,220.0 357.1,220.0 359.1,220.0 361.1,220.0 363.0,220.0 365.0,220.0 367.0,220.0 368.9,220.0 370.9,220.0 372.9,220.0 374.8,220.0 376.8,220.0 378.8,220.0 380.7,220.0 382.7,220.0 384.7,220.0 386.6,220.0 388.6,220.0 390.6,220.0 392.5,220.0 394.5,220.0 396.5,220.0 398.4,220.0 400.4,220.0 402.4,220.0 404.3,220.0 406.3,220.0 408.3,220.0 410.2,220.0 412.2,220.0 414.2,220.0 416.1,220.0 418.1,220.0 420.1,220.0 422.0,220.0 424.0,220.0 426.0,220.0 427.9,220.0 429.9,220.0 431.9,220.0 433.8,220.0 435.8,220.0 437.8,220.0 439.7,220.0 441.7,220.0 443.7,220.0 445.6,220.0 447.6,220.0 449.6,220.0 451.5,220.0 453.5,220.0 455.5,220.0 457.4,220.0 459.4,220.0 461.4,220.0 463.3,220.0 465.3,220.0 467.3,220.0 469.2,220.0 471.2,220.0 473.2,220.0 475.1,220.0 477.1,220.0 479.1,220.0 481.0,220.0 483.0,220.0 485.0,220.0 486.9,220.0 488.9,220.0 490.9,220.0 492.8,220.0 494.8,220.0 496.8,220.0 498.7,220.0 500.7,220.0 502.7,220.0 504.6,220.0 506.6,220.0 508.6,220.0 510.5,220.0 512.5,220.0 514.5,220.0 516.4,220.0 518.4,220.0 520.4,220.0 522.3,220.0 524.3,220.0 526.3,220.0 528.2,220.0 530.2,220.0 532.2,220.0 534.1,220.0 536.1,220.0 538.1,220.0 540.0,220.0 542.0,220.0 544.0,220.0 545.9,220.0 547.9,220.0 549.9,220.0 551.8,220.0 553.8,220.0 555.8,220.0 557.7,220.0 559.7,220.0 561.7,221.3 563.6,222.5 565.6,223.6 567.6,224.8 569.5,226.2 571.5,227.6 573.5,229.0 575.5,230.2 577.4,231.1 579.4,231.8 581.4,232.6 583.3,233.7 585.3,235.2 587.3,237.1 589.2,239.0 591.2,241.1 593.2,243.5 595.1,245.9 597.1,248.3 599.1,250.8 601.0,253.1 603.0,255.3 605.0,257.5 606.9,259.7 608.9,261.9 610.9,263.7 612.8,265.4 614.8,267.5 616.8,269.7 618.7,272.1 620.7,274.9 622.7,277.2 624.6,278.5 626.6,279.7 628.6,280.6 630.5,281.5 632.5,282.4 634.5,283.7 636.4,285.1 638.4,286.5 640.4,287.3 642.3,287.7 644.3,287.8 646.3,287.8 648.2,287.7 650.2,287.7 652.2,287.8 654.1,287.8 656.1,287.8 658.1,287.8 660.0,287.8 662.0,287.9 664.0,287.9 665.9,287.9 667.9,287.9 669.9,287.8 671.8,287.8 673.8,287.8 675.8,287.8 677.7,287.8 679.7,287.8 681.7,287.8 683.6,287.8 685.6,287.8 687.6,287.8 689.5,287.8 691.5,287.8 693.5,287.8 695.4,287.8 697.4,287.8 699.4,287.8 701.3,287.8 703.3,287.8 705.3,287.8 707.2,287.8 709.2,287.8 711.2,287.9 713.1,287.9 715.1,287.9 717.1,287.9 719.0,287.9 721.0,287.9 723.0,287.9 724.9,287.9 726.9,287.9 728.9,287.9 730.8,287.9 732.8,287.9 734.8,287.9 736.7,287.9 738.7,287.9 740.0,287.9"/>
+      <polyline class="ln ln-policy" points="70.0,300.0 71.3,299.9 72.6,299.3 73.9,298.3 75.2,298.4 76.6,299.5 77.9,299.3 79.2,298.2 80.5,297.5 81.8,297.4 83.1,297.4 84.4,297.4 85.7,297.4 87.0,297.4 88.4,297.2 89.7,297.1 91.0,297.0 92.3,297.2 93.6,297.3 94.9,297.3 96.2,297.3 97.5,297.3 98.8,297.3 100.2,297.3 101.5,297.5 102.8,297.5 104.1,297.5 105.4,297.4 106.7,297.4 108.0,297.3 109.3,297.1 110.6,297.0 112.0,296.8 113.3,296.8 114.6,296.9 115.9,296.9 117.2,296.8 118.5,296.8 119.8,296.8 121.1,296.8 122.4,296.7 123.8,296.7 125.1,296.6 126.4,296.7 127.7,296.6 129.0,296.6 130.3,296.5 131.6,296.4 132.9,296.3 134.2,296.2 135.6,296.0 136.9,296.1 138.2,296.1 139.5,296.2 140.8,296.2 142.1,296.0 143.4,295.9 144.7,295.6 146.0,295.4 147.4,295.6 148.7,296.0 150.0,296.4 151.3,296.4 152.6,296.4 153.9,296.6 155.2,296.4 156.5,296.4 157.8,297.6 159.2,298.3 160.5,298.7 161.8,298.8 163.1,298.6 164.4,298.5 165.7,298.4 167.0,298.3 168.3,298.2 169.6,298.1 171.0,298.0 172.3,297.9 173.6,297.9 174.9,298.0 176.2,298.0 177.5,298.1 178.8,298.1 180.1,298.1 181.4,298.1 182.8,298.1 184.1,298.1 185.4,298.2 186.7,298.2 188.0,298.2 189.3,298.2 190.6,298.3 191.9,298.3 193.2,298.3 194.6,298.4 195.9,298.5 197.2,298.5 198.5,298.6 199.8,298.7 201.1,298.7 202.4,298.7 203.7,298.7 205.0,298.6 206.4,298.7 207.7,298.6 209.0,298.5 210.3,298.5 211.6,298.3 212.9,298.1 214.2,297.9 215.5,297.8 216.8,297.0 218.2,294.9 219.5,294.7 220.8,295.5 222.1,297.6 223.4,298.1 224.7,298.5 226.0,298.6 227.3,298.7 228.6,298.7 230.0,298.7 231.3,299.0 232.6,299.1 233.9,299.4 235.2,299.5 236.5,298.7 237.8,298.4 239.1,297.7 240.5,296.9 241.8,296.1 243.1,296.3 244.4,296.7 245.7,297.3 247.0,297.8 248.3,297.6 249.6,297.8 250.9,298.2 252.3,298.7 253.6,298.3 254.9,298.4 256.2,298.6 257.5,298.7 258.8,298.8 260.1,298.9 261.4,298.6 262.7,298.5 264.1,298.4 265.4,298.3 266.7,298.2 268.0,297.9 269.3,296.4 270.6,296.2 271.9,295.6 273.2,294.9 274.5,294.5 275.9,293.2 277.2,292.1 278.5,290.8 279.8,289.0 281.1,288.3 282.4,287.3 283.7,287.0 285.0,286.8 286.3,286.6 287.7,286.5 289.0,286.4 290.3,286.2 291.6,286.0 292.9,285.6 294.2,284.5 295.5,283.2 296.8,282.0 298.1,281.2 299.5,280.5 300.8,279.9 300.8,279.9"/>
+      <text class="tl c-zero" x="440" y="236">no policy</text><text class="tl c-policy" x="232" y="268">trained policy</text>
+      <line class="fail" x1="300.8" y1="30" x2="300.8" y2="300"/>
+      <text class="tw" x="306.8" y="160">policy fails 17.6 s</text>
+      <line class="axis" x1="70" y1="300" x2="740" y2="300"/>
+      <line class="axis" x1="70.0" y1="300" x2="70.0" y2="305"/><text class="tl" x="70.0" y="318" text-anchor="middle">0</text><line class="axis" x1="201.1" y1="300" x2="201.1" y2="305"/><text class="tl" x="201.1" y="318" text-anchor="middle">10</text><line class="axis" x1="332.2" y1="300" x2="332.2" y2="305"/><text class="tl" x="332.2" y="318" text-anchor="middle">20</text><line class="axis" x1="463.3" y1="300" x2="463.3" y2="305"/><text class="tl" x="463.3" y="318" text-anchor="middle">30</text><line class="axis" x1="594.5" y1="300" x2="594.5" y2="305"/><text class="tl" x="594.5" y="318" text-anchor="middle">40</text><line class="axis" x1="725.6" y1="300" x2="725.6" y2="305"/><text class="tl" x="725.6" y="318" text-anchor="middle">50</text>
+      <text class="tl" x="405" y="326" text-anchor="middle">time (s)</text>
+    </svg>
+    </div>
+    <figcaption>Measured on one episode, so it decides nothing alone, but it is a warning: the reference’s “contacts” are proximity labels (hand within 10 mm), and the simulated hand does not make those contacts. If the public test of ① and ③ fails for the same reason, the next version builds the blob from the contacts the simulator really makes.</figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="meas-h">
+  <h2 id="meas-h">Measured so far</h2>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>What</th><th>Result</th><th>Kind</th></tr></thead>
+      <tbody>
+        <tr><td>Our policy loader vs NVIDIA’s own code</td><td>identical actions (difference <span class="mono">0.0</span>) on two of our checkpoints</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>Exercise 3’s trained policy on our CPU</td><td>fails at <span class="mono">17.6 s</span>: flask <span class="mono">10.1 cm</span> off, limit <span class="mono">10 cm</span>; same result twice</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>Time for one policy rollout on CPU</td><td>about <span class="mono">17 s</span></td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>Grasp check on 19 public references</td><td><span class="mono">72%</span> of held frames fit; <span class="mono">17%</span> clearly do not (worst: the sweeper, <span class="mono">64%</span>)</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>A full 20-episode rollout set in our store?</td><td>no: 9 public episodes have no rollout at all</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>Exercise 3 contacts vs physics (μ 1.0)</td><td>contacts say “can hold” on <span class="mono">95%</span> of frames; no-policy replay is <span class="mono">2 cm</span> off at <span class="mono">2.7 s</span></td><td><span class="tag m">measured · 1 episode</span></td></tr>
+        <tr><td>Grasp check and tree, test C (no-policy replay as the label)</td><td><span class="mono">99.6%</span> of held frames drift, because the hands never grip without a policy; both tests inconclusive</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>Gemini key and Decisions API</td><td>working; first test cost a tiny fraction of a cent</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>Cost of one LLM repair run</td><td>about <span class="mono">$20–40</span> and 3–4 hours, vs <span class="mono">$1–2.5</span> for a retrain</td><td><span class="tag e">estimate</span></td></tr>
+        <tr><td>GPU spent on this plan</td><td><span class="mono">$0</span>; Vast credit <span class="mono">$33.98</span>, nothing running</td><td><span class="tag m">measured</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section aria-labelledby="next-h">
+  <h2 id="next-h">What happens next</h2>
+  <figure>
+    <div class="scroll">
+    <svg viewBox="0 0 960 320" role="img" aria-label="Two decision flows. Grasp check test C was inconclusive because the no-policy replay never grips; next is either a free CPU test with grasp-locked replays or a paid GPU test on all 20 public episodes. Weight-repair pilot: a repair leads to a GPU pilot on our episodes; no repair means retraining stays the fix.">
+      <defs><marker id="d6-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk-ink" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+      <rect class="node-new" x="20" y="50" width="210" height="70" rx="6"/><text class="t" x="125" y="78" text-anchor="middle">① / ③ test C</text><text class="ts" x="125" y="98" text-anchor="middle">inconclusive: replay never grips</text>
+      <path class="ar" d="M230,85 C270,85 270,48 310,48" marker-end="url(#d6-a)"/><text class="tl" x="262" y="52" text-anchor="middle">free</text>
+      <path class="ar" d="M230,85 C270,85 270,150 310,150" marker-end="url(#d6-a)"/><text class="tl" x="262" y="140" text-anchor="middle">paid</text>
+      <rect class="leaf-lo" x="314" y="22" width="300" height="52" rx="6"/><text class="tf" x="328" y="43">Better label on CPU: replay grasp-locked</text><text class="tf" x="328" y="60">references, which do grip ($0)</text>
+      <rect class="leaf-mid" x="314" y="124" width="300" height="52" rx="6"/><text class="tf" x="328" y="145">Test A on GPU: train and evaluate all</text><text class="tf" x="328" y="162">20 public episodes, about $20–50</text>
+      <rect class="node-new" x="20" y="230" width="210" height="70" rx="6"/><text class="t" x="125" y="258" text-anchor="middle">② weight-repair pilot</text><text class="ts" x="125" y="278" text-anchor="middle">exercise 3, 20 varied starts</text>
+      <path class="ar" d="M230,265 C270,265 270,236 310,236" marker-end="url(#d6-a)"/><text class="tl" x="262" y="238" text-anchor="middle">repair</text>
+      <path class="ar" d="M230,265 C270,265 270,292 310,292" marker-end="url(#d6-a)"/><text class="tl" x="262" y="300" text-anchor="middle">no repair</text>
+      <rect class="leaf-lo" x="314" y="214" width="300" height="44" rx="6"/><text class="tf" x="328" y="233">GPU pilot on 3 of our public episodes,</text><text class="tf" x="328" y="249">about $10–20, vs a plain retrain</text>
+      <rect class="leaf-hi" x="314" y="272" width="300" height="40" rx="6"/><text class="tf" x="328" y="296">Drop it: retraining stays the fix</text>
+      <rect class="node-note" x="660" y="80" width="280" height="160" rx="8"/>
+      <text class="t" x="676" y="106">Every GPU batch</text>
+      <text class="ts" x="676" y="128">is announced with its plan and cost</text>
+      <text class="ts" x="676" y="146">before anything is rented.</text>
+      <text class="ts" x="676" y="172">Each test’s pass bar is written in the</text>
+      <text class="ts" x="676" y="190">work log before its data exists.</text>
+      <text class="ts" x="676" y="216">Results are reported even when they fail.</text>
+    </svg>
+    </div>
+    <figcaption>Each new test gets its pass bar written down before its data exists. Nothing in this flow spends GPU money without your go-ahead.</figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="need-h">
+  <h2 id="need-h">What I need from you</h2>
+  <div class="needs">
+    <div class="need-item"><div><b>Data licence answer.</b><p>May challenge video frames, or renders built from them, be sent to Google’s API? This unlocks ⑤.</p></div></div>
+    <div class="need-item"><div><b>Next step for ① and ③, and a GPU budget.</b><p>Either a free CPU test with a better label (replays of grasp-locked references, which do grip), or the full GPU test (about $20–50). Vast has $33.98; the ② pilot on our episodes would add about $10–20. I suggest the free test first.</p></div></div>
+    <div class="need-item"><div><b>About 20 minutes of labelling.</b><p>Pick a failure type for each failed public rollout clip, so ④ has something to be checked against. I will prepare the page.</p></div></div>
+    <div class="need-item"><div><b>Replace the Gemini key.</b><p>The current key appeared in chat. Make a new one in AI Studio, delete the old one, and put the new one in the same network-secret entry.</p></div></div>
+    <div class="need-item"><div><b>OK on my usage.</b><p>The repair pilot and triage use a lot of my usage; earlier sessions hit the limit on 3–5 Nov.</p></div></div>
+  </div>
+</section>
+
+<footer>
+  <span>Sources in the repo (branch <code>claude/gallant-franklin-8gvsv3</code>): notes 27, 28 and 29 in <code>docs/research/notes/</code>; work folders <code>docs/research/work/wrench-gate-20261112/</code>, <code>blob-tree-20261112/</code>, <code>wsp-ex3-20261112/</code>; pass bars in <code>docs/work-log.md</code> (12 Nov, 22:20–23:05 UTC).</span>
+  <span>Outside sources: Stranghöner et al., “Repairing Robot Policies with Weight Space Programming” (11 Nov 2026); Google, “Gemini Decisions API” (11 Nov 2026); NVIDIA video_to_data CoRL tutorial, exercise 3.</span>
+</footer>
+</main>
