@@ -5576,3 +5576,22 @@ arm and a no-policy replay floor to stage B.
   drawn from measured data; a table of measured results; next-step flows; what is needed from the owner.
 - Checked once by screenshot at desktop (light) and phone (dark); fixed three label overlaps.
 
+### 2026-11-13 ~00:20 UTC — read romanklis/ann2snn-pychromo-drone (a2aac4a, 6 Oct) for applicability (CPU, $0)
+- What it is: a 6-DoF quadcopter in a numpy plant (PyChrono for display).
+  - Teacher: an analytic DS-guidance controller with Billard-style obstacle modulation, using true geometry.
+  - Student: distilled offline into a 1,000-neuron sparse recurrent ANN, then rate-coded into an integrate-and-fire
+    SNN. Inputs are the UKF estimate plus 32-beam LiDAR.
+  - Training is MSE on teacher labels for coverage states and teacher rollouts; no DAgger.
+  - A structured variant learns only 24 RBF-field coefficients; analytic DS + modulation + impedance do the control,
+    with A* on a privileged or SLAM map.
+- His results (single seed): end-to-end ANN/SNN avoid the pillar but stop about 0.8 m short and collide on wall and
+  slalom; structured arms 0 collisions, reach 7 of 8; field-SNN fidelity Pearson about 0.45; no efficiency claim.
+- For us:
+  - Our policy is already a bounded residual on a reference, so his main lesson (structure + small learned part) is
+    in place.
+  - SNN conversion offers nothing for the evaluator.
+  - Distillation matters only for real-robot transfer, and then with DAgger or DART: his offline cloning shows the
+    compounding error the weight-editing blog describes.
+  - One idea worth a test [H]: DS obstacle modulation of the reference's wrist approach around other objects, for
+    collision-caused failures (evals 1, 14, 30; eval 10's rim). Not pre-registered or started.
+
