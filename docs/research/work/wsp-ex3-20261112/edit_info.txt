@@ -1,0 +1,20 @@
+{
+ "edit": "final/actor_final.npz",
+ "sha256": "c0a12954d7fa7235d6c8eeaa36f8c1c9fe58ce82d0e2533bbd27c8bac0cccfac",
+ "changed": 21024,
+ "zeroed": 19415,
+ "random": {
+  "path": "final/actor_random.npz",
+  "sha256": "dd662cfdffd1fb657bd45a8439f0f61a8278d88f3d0914dc66453b5ce104c266",
+  "fro_match": true,
+  "changed": 21024,
+  "negative_variances": 6
+ },
+ "random_sanitized": {
+  "path": "final/actor_random_sanitized.npz",
+  "sha256": "70ca1850a88ab17b3e19fb2b3439f28f8950b723bc6db5d42a8f8caa234e514a",
+  "fro_match": true,
+  "negative_variances": 0
+ }
+}
+{"params/block_0/contract/unit_kernel": {"changed": 5608, "zeroed": 5602, "fro": 14.476036037154161}, "params/block_0/contract_norm/unit_bias": {"changed": 4, "zeroed": 4, "fro": 1.0418382799523989}, "params/block_0/contract_norm/unit_scale": {"changed": 4, "zeroed": 0, "fro": 0.29673097290194483}, "params/block_0/expand/unit_kernel": {"changed": 5608, "zeroed": 4072, "fro": 24.4007308702137}, "params/block_0/expand_norm/unit_bias": {"changed": 6, "zeroed": 0, "fro": 11.8381625882535}, "params/block_0/expand_norm/unit_scale": {"changed": 6, "zeroed": 0, "fro": 0.45552772827730004}, "params/block_1/contract/unit_kernel": {"changed": 4096, "zeroed": 4096, "fro": 2.000000104406136}, "params/block_1/contract_norm/unit_bias": {"changed": 4, "zeroed": 4, "fro": 0.4531709640427397}, "params/block_1/contract_norm/unit_scale": {"changed": 4, "zeroed": 0, "fro": 0.17690278584977845}, "params/block_1/expand/unit_kernel": {"changed": 4096, "zeroed": 4096, "fro": 4.163907944491844}, "params/embed/unit_kernel": {"changed": 1328, "zeroed": 1328, "fro": 2.000000051936696}, "params/mean/unit_kernel": {"changed": 232, "zeroed": 199, "fro": 16.84288153573743}, "batch_stats/block_0/contract_norm/running_mean": {"changed": 4, "zeroed": 4, "fro": 0.16488186175973396}, "batch_stats/block_0/contract_norm/running_variance": {"changed": 4, "zeroed": 0, "fro": 1.8454523443659834}, "batch_stats/block_0/expand_norm/running_mean": {"changed": 6, "zeroed": 6, "fro": 2.816274420684361}, "batch_stats/block_0/expand_norm/running_variance": {"changed": 6, "zeroed": 0, "fro": 2.059231514671077}, "batch_stats/block_1/contract_norm/running_mean": {"changed": 4, "zeroed": 4, "fro": 0.15269074519697245}, "batch_stats/block_1/contract_norm/running_variance": {"changed": 4, "zeroed": 0, "fro": 1.8470887998309498}}

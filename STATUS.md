@@ -1,5 +1,12 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 ~00:35 UTC: idea 2 (LLM weight repair) done: inconclusive by rule, not a repair in substance; no GPU pilot
+- On exercise 3 the LLM's edit fixes the failing run (unedited fails at 17.6 s) and halves handover failures, but over
+  20 varied starts it completes 11 vs 9 (bar +10) and breaks one; it adds early pickup failures it never saw.
+- My random-control recipe was flawed (negative batch-norm variances → NaN). Details: work log 00:35 UTC.
+- All five ideas now: 1 and 3 inconclusive (no-policy replay never grips); 2 inconclusive; 4 waits on owner labels;
+  5 waits on the licence answer. Explainer page updated.
+
 ## 2026-11-12 ~23:55 UTC: ideas 1 and 3 tested: INCONCLUSIVE (the no-policy replay never grips; 99.6% of frames drift)
 - The pre-registered label cannot rank frames, so neither the grasp check nor the blob tree is decided.
 - Next (owner decides): a grasp-locked replay label on CPU ($0, new pre-registration), or test A on GPU (≈ $20–50).

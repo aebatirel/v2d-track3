@@ -5595,3 +5595,29 @@ arm and a no-policy replay floor to stage B.
   - One idea worth a test [H]: DS obstacle modulation of the reference's wrist approach around other objects, for
     collision-caused failures (evals 1, 14, 30; eval 10's rim). Not pre-registered or started.
 
+### 2026-11-13 ~00:35 UTC — idea 2 (LLM weight repair on exercise 3): INCONCLUSIVE by the rule, in substance NOT a repair
+- Agent run: about 1 h wall (21:22–22:23 container clock), CPU only; 24 of 25 rollouts; every prediction written
+  before its run. Files: `docs/research/work/wsp-ex3-20261112/` (README, `edit.py` reproduces the final edit
+  byte-identically, sha256 c0a12954…cfac; `rollouts.jsonl`, `final_eval.jsonl`). Edited npz files are in the
+  scratchpad only.
+- Edit: 21,024 of 1,160,356 numbers changed (1.81%): 19,415 zeroed, 1,609 written. Four hand-built controllers
+  (right-wrist joint limit; left-wrist orientation controller for the approach, off once grasping; end-phase
+  left-wrist cap; weak left-hand release), written through idle block-0 units with least-squares readouts of the
+  embedding.
+- Final evaluation:
+  - unperturbed run: the edit completes it; the unedited fails at 17.6 s;
+  - perturbed runs: edit 11 of 20, unedited 9 (bar: +10); the edit fails one run the unedited completes (start 0,
+    delay 3);
+  - handover failures: 2 of 13 with the edit vs 6 of 15 unedited; pickup failures (starts 8–20): 7 vs 5;
+  - flask rotation during a successful handover is about 4× smaller.
+- The "not a repair" clause could not fire because the random control is broken. My pre-registered recipe ("same
+  entries, same Frobenius norm, random signs") makes 6 batch-norm variances negative, so the output is NaN; a
+  sanitised version still fails every run within 1–6 s. My design error: a fair control must keep variances positive
+  and treat zeroed entries as zeroed. Also, start 0 / delay 0 duplicates the unperturbed run.
+- Test-bed lessons (agent):
+  - the unperturbed task is chaotic (an action change of 0.08 flips success), so 25 rollouts on one start mostly
+    measure luck;
+  - development saw only handover failures, while the perturbed set adds pickup failures.
+- Decision under the 12 Nov plan: no GPU pilot on our episodes; retraining stays the fix. A rerun would need varied
+  starts during development and a sound random control (new pre-registration).
+

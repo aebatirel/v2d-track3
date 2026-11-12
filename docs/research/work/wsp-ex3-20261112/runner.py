@@ -86,6 +86,9 @@ def run_one(workshop, actor, frame=0, delay=0, continue_after_fail=0, record=Tru
         t0 = time.perf_counter(); fail_frame = -1; reason = ''; extra = 0
         for i in range(count):
             action = policy(obs)
+            if not np.isfinite(action).all():   # e.g. a network with a negative batch-norm variance
+                fail_frame = sim.frame; reason = 'non-finite action from the policy'
+                break
             if record:
                 T['obs'].append(obs.copy()); T['act'].append(action.copy())
             obs = sim.step(action)
