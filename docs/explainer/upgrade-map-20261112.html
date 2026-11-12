@@ -138,7 +138,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
   <h2 id="board-h">Status of the five add-ons</h2>
   <div class="board">
     <article class="idea"><span class="num">① grasp check</span><h3>Can the contacts hold it?</h3><p>Physics check on each reference before we spend GPU on training.</p><span class="chip block">built · first test inconclusive</span></article>
-    <article class="idea"><span class="num">② weight repair</span><h3>LLM edits the policy</h3><p>An LLM fixes a failing policy by writing small circuits into its weights.</p><span class="chip run">pilot running on CPU</span></article>
+    <article class="idea"><span class="num">② weight repair</span><h3>LLM edits the policy</h3><p>An LLM fixes a failing policy by writing small circuits into its weights.</p><span class="chip block">pilot done · not a repair</span></article>
     <article class="idea"><span class="num">③ fix router</span><h3>Decision tree picks the fix</h3><p>Turns the contact “blob” into features and predicts which frames will drift.</p><span class="chip block">built · first test inconclusive</span></article>
     <article class="idea"><span class="num">④ LLM triage</span><h3>Names each failure</h3><p>Reads failed rollouts, labels the failure type, suggests a fix family.</p><span class="chip wait">waits on your 20 min of labels</span></article>
     <article class="idea"><span class="num">⑤ Gemini judge</span><h3>Visual yes/no check</h3><p>Gemini’s Decisions API compares a rollout with the source video.</p><span class="chip wait">key works · waits on licence answer</span></article>
@@ -277,7 +277,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
   </div>
 
   <div class="addon" id="a2">
-    <div class="addon-head"><span class="n">②</span><h3>LLM weight repair: fixing a policy without retraining</h3><span class="chip run">pilot running on CPU</span></div>
+    <div class="addon-head"><span class="n">②</span><h3>LLM weight repair: fixing a policy without retraining</h3><span class="chip block">pilot done · not a repair</span></div>
     <p>From the blog post we read: an LLM opens a failing robot policy, finds neurons the network never uses, and writes small controllers into them, such as “if the gripper closed on nothing, lift and reopen”. It tests each edit, keeps what works, and repeats. In the post this took policies from 0–5% to 33–95% success with no new data. We test it first on NVIDIA’s exercise 3, whose trained policy fails on our CPU.</p>
     <figure>
       <div class="scroll">
@@ -373,8 +373,8 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
     </figure>
     <div class="facts">
       <div class="fact"><span class="k">Why exercise 3 first</span><span class="v">Its trained policy fails on our CPU at 17.6 s, every time. A free, repeatable broken policy with the same network as ours.</span></div>
-      <div class="fact"><span class="k">If it works</span><span class="v">GPU pilot on 3 of our public episodes, about $10–20, against a plain retrain.</span></div>
-      <div class="fact"><span class="k">Cost</span><span class="v">CPU, $0. My usage: an LLM repair run is hundreds of turns (blog runs about 320).</span></div>
+      <div class="fact"><span class="k">Result</span><span class="v">The edit fixes the one failing run and halves handover failures (2 of 13 vs 6 of 15), but over 20 varied starts it finishes 11 vs 9 (bar: +10) and breaks one. Inconclusive by the rule; not a repair in substance. No GPU pilot.</span></div>
+      <div class="fact"><span class="k">What we learned</span><span class="v">1 h of CPU, 24 test runs, 1.8% of weights changed. The task flips on tiny changes, so one start says little. My random-edit control was flawed (it broke the network), which a rerun must fix.</span></div>
     </div>
   </div>
 
@@ -470,6 +470,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
         <tr><td>A full 20-episode rollout set in our store?</td><td>no: 9 public episodes have no rollout at all</td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Exercise 3 contacts vs physics (μ 1.0)</td><td>contacts say “can hold” on <span class="mono">95%</span> of frames; no-policy replay is <span class="mono">2 cm</span> off at <span class="mono">2.7 s</span></td><td><span class="tag m">measured · 1 episode</span></td></tr>
         <tr><td>Grasp check and tree, test C (no-policy replay as the label)</td><td><span class="mono">99.6%</span> of held frames drift, because the hands never grip without a policy; both tests inconclusive</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>LLM weight repair on exercise 3</td><td>fixes the failing run; <span class="mono">11</span> vs <span class="mono">9</span> of <span class="mono">20</span> varied starts (bar <span class="mono">+10</span>); breaks one; not a repair</td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Gemini key and Decisions API</td><td>working; first test cost a tiny fraction of a cent</td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Cost of one LLM repair run</td><td>about <span class="mono">$20–40</span> and 3–4 hours, vs <span class="mono">$1–2.5</span> for a retrain</td><td><span class="tag e">estimate</span></td></tr>
         <tr><td>GPU spent on this plan</td><td><span class="mono">$0</span>; Vast credit <span class="mono">$33.98</span>, nothing running</td><td><span class="tag m">measured</span></td></tr>
@@ -489,11 +490,11 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
       <path class="ar" d="M230,85 C270,85 270,150 310,150" marker-end="url(#d6-a)"/><text class="tl" x="262" y="140" text-anchor="middle">paid</text>
       <rect class="leaf-lo" x="314" y="22" width="300" height="52" rx="6"/><text class="tf" x="328" y="43">Better label on CPU: replay grasp-locked</text><text class="tf" x="328" y="60">references, which do grip ($0)</text>
       <rect class="leaf-mid" x="314" y="124" width="300" height="52" rx="6"/><text class="tf" x="328" y="145">Test A on GPU: train and evaluate all</text><text class="tf" x="328" y="162">20 public episodes, about $20–50</text>
-      <rect class="node-new" x="20" y="230" width="210" height="70" rx="6"/><text class="t" x="125" y="258" text-anchor="middle">② weight-repair pilot</text><text class="ts" x="125" y="278" text-anchor="middle">exercise 3, 20 varied starts</text>
+      <rect class="node-new" x="20" y="230" width="210" height="70" rx="6"/><text class="t" x="125" y="258" text-anchor="middle">② weight-repair pilot</text><text class="ts" x="125" y="278" text-anchor="middle">result: 11 vs 9, not a repair</text>
       <path class="ar" d="M230,265 C270,265 270,236 310,236" marker-end="url(#d6-a)"/><text class="tl" x="262" y="238" text-anchor="middle">repair</text>
       <path class="ar" d="M230,265 C270,265 270,292 310,292" marker-end="url(#d6-a)"/><text class="tl" x="262" y="300" text-anchor="middle">no repair</text>
       <rect class="leaf-lo" x="314" y="214" width="300" height="44" rx="6"/><text class="tf" x="328" y="233">GPU pilot on 3 of our public episodes,</text><text class="tf" x="328" y="249">about $10–20, vs a plain retrain</text>
-      <rect class="leaf-hi" x="314" y="272" width="300" height="40" rx="6"/><text class="tf" x="328" y="296">Drop it: retraining stays the fix</text>
+      <rect class="leaf-hi" x="314" y="272" width="300" height="40" rx="6" stroke-width="2.5"/><text class="tf" x="328" y="296">Drop it: retraining stays the fix ← now</text>
       <rect class="node-note" x="660" y="80" width="280" height="160" rx="8"/>
       <text class="t" x="676" y="106">Every GPU batch</text>
       <text class="ts" x="676" y="128">is announced with its plan and cost</text>
@@ -514,7 +515,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
     <div class="need-item"><div><b>Next step for ① and ③, and a GPU budget.</b><p>Either a free CPU test with a better label (replays of grasp-locked references, which do grip), or the full GPU test (about $20–50). Vast has $33.98; the ② pilot on our episodes would add about $10–20. I suggest the free test first.</p></div></div>
     <div class="need-item"><div><b>About 20 minutes of labelling.</b><p>Pick a failure type for each failed public rollout clip, so ④ has something to be checked against. I will prepare the page.</p></div></div>
     <div class="need-item"><div><b>Replace the Gemini key.</b><p>The current key appeared in chat. Make a new one in AI Studio, delete the old one, and put the new one in the same network-secret entry.</p></div></div>
-    <div class="need-item"><div><b>OK on my usage.</b><p>The repair pilot and triage use a lot of my usage; earlier sessions hit the limit on 3–5 Nov.</p></div></div>
+    <div class="need-item"><div><b>OK on my usage.</b><p>Triage and any rerun use a lot of my usage; earlier sessions hit the limit on 3–5 Nov. The repair pilot used about 1 hour of agent work.</p></div></div>
   </div>
 </section>
 
