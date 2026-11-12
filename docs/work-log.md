@@ -5389,3 +5389,21 @@ arm and a no-policy replay floor to stage B.
 - Every submission's code commit (6f1aea3, 46b8389, 3758189, f7a49a9, 526918b, 5203d42, 465320b) is reachable from `main`.
 - Code merged without conflicts. STATUS.md and this log conflicted only where sessions appended entries; both sides kept.
 - Sessions still running push to their own branches; merge them into `main` again when they finish.
+
+### 2026-11-12 ~20:45 UTC — reading note 27: LLM weight-space repair and decision-model replacements (CPU, $0)
+- Owner: "read analyze this see how they are using the llm and think how we can use decision models to replace the
+  llm and how efficient and improvement would that be" (blog by Stranghöner et al., 11 Nov 2026).
+- Machine: cloud session container, no GPU, nothing rented. Branch `claude/gallant-franklin-8gvsv3` from main f34da0e.
+- Method: downloaded the page with curl and read all of it as text (the first fetch through a sub-agent returned only
+  the first third verbatim, so its summary was not used for numbers). Per-model scores and harness budgets were checked
+  against the page source. Scanned three cited works for baselines and cost: Takehi et al. (Sparks of Weight-Space
+  Programming), Zhang et al. arXiv:2611.09376 (abstract), Gong et al. (π0.5 weight editing).
+- Result: `docs/research/notes/27-weight-space-programming-and-decision-models.md`.
+  - The post reports no tokens, cost or time and no non-LLM baseline. Cost per repair is my estimate ($20–40,
+    3–4 h), scaled from the one usage record Gong et al. publish (187 requests, 184,614 output tokens, 36.8M
+    cache-read tokens, 1 h 51 min) at list prices; the cache-write price is assumed.
+  - My classification of the 23 key edits gives six repeating fix families plus two output recalibrations.
+  - Replacement designs A–D and four falsifying experiments (F1–F4) are hypotheses. None is planned or costed; all
+    need an OCBench setup we do not have.
+- Not done: no code, no experiment, no check of our checkpoint format against the "reflex inside the weights" idea.
+

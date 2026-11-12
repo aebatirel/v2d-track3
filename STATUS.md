@@ -1,5 +1,14 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-12 ~20:45 UTC: reading note 27 (LLM weight-space repair vs decision models); nothing run, $0
+- Owner asked for an analysis of https://jstranghoener.github.io/blog/robotic-weight-space-programming/ and of
+  replacing its LLM with a decision model. Note: `docs/research/notes/27-weight-space-programming-and-decision-models.md`.
+- The LLM there is an offline repair agent (320–341 turns, 25 test rounds of 100 episodes), not part of the control
+  loop. Its 23 key edits fall into six repeating families [C].
+- Design proposed [H]: fix library + tuner, with the LLM kept only for new fix structures. LLM repair ≈ $20–40 per
+  run [E]; retraining one of our policies ≈ $1–2.5 [C], so no cost case for Track 3.
+- No change to the submission or the plan. Branch `claude/gallant-franklin-8gvsv3`.
+
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
 - Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:
