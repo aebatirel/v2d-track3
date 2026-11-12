@@ -1,5 +1,15 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-12 ~21:55 UTC: tutorial exercise 3 read and run on CPU; note 29 (LLMs and decision models in the pipeline)
+- NVIDIA's exercise 3 is a CPU notebook with a flask handover: physics replay, a contact-wrench support check, and a
+  FlashSAC policy of our exact architecture. `tools/actor_np.py` matches NVIDIA's numpy actor exactly [M].
+- Run here [M]: zero-residual replay loses the flask; the bundled trained policy fails deterministically at 17.6 s
+  (object 0.101 m vs 0.10 m limit); a rollout costs about 17 s of CPU.
+- Ranked ideas (note 29 §3): (1) wrench-feasibility gate on references (task wrench inside the contact cone; CPU, $0);
+  (2) LLM weight-editing pilot on the exercise's failing policy (CPU, $0) before any GPU pilot on our episodes;
+  (3) small decision tree routing each episode's fix; (4) LLM failure triage; (5) Gemini visual judge.
+- **Owner decides:** which of ideas 1 and 2 to run. Both are CPU-only.
+
 ## 2026-11-12 ~21:40 UTC: LLM weight editing on our policies: feasible on paper; pilot planned, NOT started ($0 so far)
 - Owner: "can we see if the llm method helps with better policies". Note 27 §9; tool `tools/actor_np.py` (numpy
   loader, forward and idle-unit census; forward not yet checked against JAX).

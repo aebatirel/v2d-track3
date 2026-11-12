@@ -5430,3 +5430,20 @@ arm and a no-policy replay floor to stage B.
   fewer (9 and 47), so real counts need recorded observations. Forward not checked against JAX.
 - Plan and pre-registered rule: note 27 §9.3. Nothing rented; the owner decides.
 
+### 2026-11-12 ~21:55 UTC — NVIDIA tutorial exercise 3: read, run on CPU, note 29 (CPU, $0)
+- Owner: "look at these links go for exercise 3 and see how we can improve the pipeline with llms and desicion models
+  based on the research in this sesssion".
+- Source: exercise_3.zip from nvidia-isaac/video_to_data main 1e862a8 (exercise 1 is an LFS pointer, not fetched);
+  extracted into the session scratchpad, not the repo.
+- Parity: NVIDIA's `policy.py` and our `tools/actor_np.py` give identical actions on two of our checkpoints (ep12
+  public 250M; spoon ep35 fine-tune, 504 inputs): max difference 0.0 over 256 sampled inputs.
+- Run (this container, 4 CPU cores, Python 3.12 venv with the exercise's pins: Newton 1.2.0, Warp 1.14.0,
+  MuJoCo 3.8.1; headless runner in the scratchpad that loads the exercise's simulation.py and policy.py):
+  - zero-residual replay: 1,023 frames, 12.0 s compute; flask lost (max 0.81 m; 757 frames over 0.10 m);
+  - bundled policy: terminated at 17.6 s (frame 353): object 0.101 m, 0.325 rad, wrist 0.053 m; 6.0 s compute;
+  - rerun: identical (max difference 0.0).
+  The notebook calls it fully trained and was tested on Apple M4; the failure here is probably a platform
+  difference, not checked.
+- Result: `docs/research/notes/29-exercise3-llms-and-decision-models.md` (five ranked ideas, each with a public test
+  and bar). Nothing in the pipeline changed.
+
