@@ -130,10 +130,11 @@ def main():
          '| object | n | rho | Gemini pick (E) | its CD-O | CD-O rank | best (CD-O) | regret | GT-free rho |',
          '|---|---|---|---|---|---|---|---|---|']
     for p in per:
-        L.append(f"| {p['object']} | {p['n']} | {p['rho']:.2f} | {p['pick'].split('/', 1)[1]} ({p['pick_E']:.2f}"
+        f2 = lambda v: '-' if v is None or not np.isfinite(v) else f'{v:.2f}'  # noqa: E731
+        L.append(f"| {p['object']} | {p['n']} | {f2(p['rho'])} | {p['pick'].split('/', 1)[1]} ({p['pick_E']:.2f}"
                  f"{', tie x' + str(p['n_tied_top']) if p['n_tied_top'] > 1 else ''}) | {p['pick_cdo']:.3f} | "
                  f"{p['pick_cdo_rank']} | {p['best'].split('/', 1)[1]} ({p['best_cdo']:.3f}) | {p['regret']:.3f} | "
-                 f"{p['gtfree_rho']:.2f} |")
+                 f"{f2(p['gtfree_rho'])} |")
     open(os.path.join(a.out, 'GA_result.md'), 'w').write('\n'.join(L) + '\n')
     print('\n'.join(L[:7]))
 

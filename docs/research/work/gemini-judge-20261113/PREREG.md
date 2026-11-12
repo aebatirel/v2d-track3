@@ -1,6 +1,7 @@
 # Gemini judge tests G-A and G-B: protocol (pre-registration, phase 1)
 
-Written 2026-11-13 (session clock 2026-11-12 ~23:xx UTC) **before any scored Decisions API call**. Phase 1 built the
+Written in phase 1 (finished 23:20 UTC by this session's clock, 2026-11-12; the work log's pre-registration entry is
+stamped 2026-11-13 ~00:50 UTC) **before any scored Decisions API call**. Phase 1 built the
 inputs, fixed the texts and made one format dry run on synthetic images. No challenge image has been sent to the API.
 
 Labels: [M] measured here, [C] read from code or a file, [E] estimate, [H] hypothesis.
@@ -58,7 +59,8 @@ Labels: [M] measured here, [C] read from code or a file, [E] estimate, [H] hypot
   probe's view metadata (`views/*/probe_meta.json`: which frames the generators saw). `gj_common.guard()` refuses
   paths that match ground-truth patterns (`calib_gt`, `/gt/`, `_pf.npz`, `per_frame.*`, `score_registered`,
   `result.json`, `rows.json`, `scores.jsonl`, `table.md`, `selection.json`, `.parquet`, `mocap`, scans).
-- **G-B row list:** defined by the depth audit's own `valid` flag (inference side). `gb_rows.py` reads it from the
+- **G-B row list:** defined by the depth audit's own `valid` flag (inference side: our poses, our hands, our meshes,
+  stereo depth). `gb_rows.py` reads it from the
   committed `audit.json` summaries (18 of 19 episodes: every frame valid) and from a re-audit of ep11 with the
   unchanged `pipeline/depth_audit.py` on the same inputs (poses, depth, hands sha256 equal to the original
   `audit.json`; summary identical; invalid frames 59–65 of the blue cup) [M]. A key check against the label table read
@@ -106,7 +108,12 @@ Labels: [M] measured here, [C] read from code or a file, [E] estimate, [H] hypot
   2. seeds = the frames the generators were conditioned on (crop k of each single-image label, Pixal3D view k);
   3. 4 frames by seeded farthest-point sampling of the viewing direction in the object frame (largest minimum angle
      to seeds and chosen frames; within 2° of the best, the largest visible silhouette; ≥ 10 frames apart).
-  The chosen frames are listed in §3.5.
+  The chosen frames are listed in §3.5. **The beige cup gets 2 frames, not 4:** its 26 usable frames all lie in
+  frames 0–25 of ep11 (later frames fail the hand, motion or occlusion gates; none fails the track check), and the
+  10-frame spacing leaves room for two. Its request says
+  "2 pictures". All its candidates see the same 2 pictures.
+- A GT-free overlay of library_v3 on every chosen frame (`sheet_GA_trackcheck.png`) shows the tracks on the objects in
+  all 38 chosen frames [M, visual].
 - **Why the track check (decided in phase 1, before any scored call) [M]:** the first build (no track check, kept in
   the scratchpad as `ga_v0_noedgegate/`) picked wooden_piece_1 frames 284, 197 and 230 of ep23, where a library_v3
   overlay shows our track off the board: farthest-point sampling is drawn to the odd poses of a lost track. Along that
@@ -118,7 +125,8 @@ Labels: [M] measured here, [C] read from code or a file, [E] estimate, [H] hypot
 - **Each picture:** left = real colour crop, right = ray-cast grey render of the candidate alone at our tracked pose,
   same distorted camera and same window (headlight + weak key light, white background), each 512 × 512; 6 px grey
   separator; 1030 × 512 JPEG, quality 90.
-- **Request:** intro text, then 4 × ("Picture i:" text + picture at resolution `high`), then the score question.
+- **Request:** intro text, then 4 × ("Picture i:" text + picture at resolution `high`) (2 × for the beige cup), then
+  the score question.
 
 ### 3.3 Exact texts
 Input intro (`{name}` = slot name with spaces, e.g. "white pot"; `{n}` = 4):
@@ -153,7 +161,18 @@ Criteria (level 0 to 4):
   metric, and the GT-free reference recomputed on the same meshes.
 
 ### 3.5 Chosen frames (from `frames_GA.json`)
-GA_FRAMES_TABLE
+| object | episode | usable / candidate frames | seed frames (generators saw) | chosen frames k (min angle to seeds and earlier picks, deg) | colour frames j |
+|---|---|---|---|---|---|
+| white_pot | 41 | 209 / 298 | 278, 279 | 110 (47.4), 72 (35.6), 215 (26.6), 90 (17.8) | 111, 73, 216, 91 |
+| white_pot_lid | 2 | 285 / 342 | 321, 324 | 79 (9.2), 269 (4.0), 279 (3.0), 315 (0.9) | 80, 270, 280, 316 |
+| blue_cup | 22 | 179 / 188 | 154, 156 | 75 (14.4), 52 (12.3), 9 (6.7), 87 (4.4) | 76, 53, 10, 88 |
+| water_pitcher | 22 | 108 / 188 | 34, 174 | 7 (3.2), 110 (4.6), 17 (2.0), 32 (0.3) | 8, 111, 18, 33 |
+| wooden_piece_1 | 23 | 135 / 324 | 27, 28 | 134 (8.6), 106 (4.9), 30 (1.3), 10 (1.6) | 135, 107, 31, 11 |
+| wooden_piece_2 | 23 | 310 / 324 | 6, 298 | 56 (35.9), 69 (16.1), 46 (15.4), 30 (7.7) | 57, 70, 47, 31 |
+| plastic_dish_rack | 26 | 77 / 157 | 138, 144 | 97 (1.4), 111 (1.1), 65 (2.0), 144 (0.0) | 98, 112, 66, 145 |
+| mini_sweeper | 31 | 140 / 289 | 270 | 156 (38.0), 257 (15.0), 133 (11.3), 72 (8.1) | 157, 258, 134, 73 |
+| mini_dust_pan | 39 | 187 / 318 | 0, 220, 297, 316 | 91 (23.0), 119 (17.8), 188 (9.8), 67 (9.7) | 92, 120, 189, 68 |
+| beige_cup | 11 | 26 / 136 | 6 | 18 (6.5), 6 (0.0) | 19, 7 |
 
 ## 4. Test G-B (track audit)
 
@@ -167,7 +186,7 @@ GA_FRAMES_TABLE
 ### 4.2 Pictures
 - **Camera:** the rectified left camera our tracks live in (`ego_cam_c` video, `track_overlay.rectify_maps`, 1600 ×
   1000, K equal to the audit's K [M]); video frame t = track frame t = depth frame t (frame counts equal on all 19
-  episodes [M]). This camera is mono, so the crops are grey.
+  episodes [M]). This camera is mono (its mp4 channels differ by ≈ 2–3 grey levels), so the crops are grey.
 - **Window:** square around the silhouette of our library_v3 mesh at our tracked pose, 1.6 × its longest edge (≥ 160
   px), black outside the image.
 - **Picture:** left = the clean crop, right = the same crop with the external outline of the silhouette (closed with a
@@ -213,7 +232,7 @@ types came back in the documented format (`score` with `probabilities`, `legend`
 
 | test | requests | tokens per request | total tokens | cost |
 |---|---|---|---|---|
-| G-A | 104 | ≈ 4,800–4,950 (4 images + ≈ 470 text) | ≈ 0.51 M | ≈ $0.05 |
+| G-A | 104 | ≈ 4,800–4,950 (4 images + ≈ 470 text; beige cup 2 images) | ≈ 0.50 M | ≈ $0.05 |
 | G-B | 7,835 | ≈ 1,330–1,370 (1 image + ≈ 250 text) | ≈ 10.4–10.8 M | ≈ $1.04–1.08 |
 | **total** | 7,939 | | ≈ 11 M | **≈ $1.1** (runner's own conservative estimate $1.15) |
 
@@ -239,13 +258,18 @@ Time [E]: G-B is token-limited, ≈ 14 min at 800k tokens/min; G-A under a minut
 | `score_GB.py` | **ground truth** | G-B statistic and verdict |
 | `dryrun_format.py` | – | the one format dry run on synthetic images |
 | `make_sheets.py` | – | contact sheets |
+| `frames_GA.json` | inference | G-A frame selection log (parameters, usable frames, edge support, picks) |
+| `sheet_GA_white_pot.png`, `sheet_GA_objects.png`, `sheet_GB_examples.png` | – | example inputs, exactly as sent (examples chosen by model name or track position, not by score) |
+| `sheet_GA_trackcheck.png` | – | GT-free library_v3 overlay on the 38 chosen G-A frames (not sent) |
 
 Checks done [M]:
 - runner on fake answers (`--fake`): all 7,835 G-B and 104 G-A specs; resume skips answered ids; a $0.01 cap stops
   after 71 requests; mixing fake and real answers in one cache is refused;
 - `score_GB.py` on fake answers: AUROC ≈ 0.49 (random answers), `behind` check 0.6002; refuses fake answers without
   `--allow_fake`; the bootstrap reproduces the audit's CI exactly (0.40–0.781, 63.9 % of draws < 0.65);
-- `score_GA.py` on fake answers: see §8 for the reference reproduction (GT-free ρ and hits).
+- `score_GA.py` on fake answers: ρ 0.023 (random answers); the GT-free reference reproduces ρ 0.4650 and 2 hits;
+  refuses fake answers without `--allow_fake`; with 10 answers removed it reports INCONCLUSIVE (missing data);
+- `score_GB.py` with only 71 answered rows reports INCONCLUSIVE (missing data).
 
 ## 7. Phase-2 commands (exact)
 
@@ -273,13 +297,30 @@ $PY $W/score_GB.py --cache $S/gb/cache_GB.jsonl --specs $S/gb/specs_GB.jsonl \
   G-B.
 
 ## 8. Frozen inputs (sha256)
-SHA_TABLE
+| file | sha256 |
+|---|---|
+| scratchpad `ga/specs_GA.jsonl` (104 specs; every picture pinned by sha256) | `2d3879ba5acd2e1ffcdaa0e71636a58b44b9333c7550e20ec1c76ec0a21a6ead` |
+| scratchpad `gb/specs_GB.jsonl` (7,835 specs; every picture pinned by sha256) | `8f24e33a78c2aad1c8c8e8f8216091c3bf9c70fafebbbfae23d9e44f703351a1` |
+| scratchpad `gb/gb_rows.csv` | `5f18f53d1037f2330a477847097fb9251394fa13dc2df4e3a122921e80715347` |
+| scratchpad `ga/frames_GA.json` (copied here as `frames_GA.json`) | `b9547cd3ac5fc0f48ef84f00c308d99e6d14a5fc5e519d95fb4a166955742f54` |
+| `dryrun_format.py` | `9fa4cd991c0b6ff0c9d33bf266ab4c5096689e0bb115a2b5f188e7ae51f07ab9` |
+| `ga_build.py` | `c0ab175b7107f8acb0c60b41e4e9478941bcf8d4876da1bf751a24a2ef89da10` |
+| `gb_build.py` | `49d54986619436158193b21937cfee895f4cb7cd4880b813b4ff5127cc174cac` |
+| `gb_rows.py` | `e28884d2fdfde24743ed2a36d7fad691d43356e8f07df9e8c5029ca049cd78e2` |
+| `gj_common.py` | `669cfafc90194a465858055a19ded0b8e0e22d472e082f9c161a802c523039fc` |
+| `make_sheets.py` | `b7acd0fda5fade89861356bae08f756341bb4492fe4580bb99a30d6bf0367288` |
+| `questions.json` | `a62f4d0db25245122d98df06a36ee4075614992c94189b81705a0913ca12d869` |
+| `run_gemini.py` | `6b5fcca36175ffe50b307d46340cd5a0d4ed9a10db1e2718f7d287ad028688f6` |
+| `score_GA.py` | `976899522de9546a7e1696878237732f78d7bcace62ee92d494a6865172c8615` |
+| `score_GB.py` | `e8cb53c89ede2b52d1b9b2916d0e1e1a05d4cde63a363f55f390feffa039a7b2` |
 
 ## 9. What this can and cannot show [H]
 - G-A tests whether a calibrated visual judge ranks shape quality better than the geometric GT-free metric. The
-  judge sees only views our camera saw; on objects whose usable frames cover few viewing directions (the lid, the
-  pitcher, the blue cup: the chosen frames lie within 1–15° of the frames the generators saw, §3.5) it can mostly
-  judge the visible side and the render's plausibility.
+  judge sees only views our camera saw. On six objects the usable frames cover few viewing directions: the chosen
+  frames lie within 0–2° (rack), 0.3–4.6° (pitcher), 0.9–9.2° (lid), 1.3–8.6° (wooden piece 1), 4.4–14.4° (blue cup)
+  and 0–6.5° (beige cup) of the frames the generators saw (§3.5). There the judge mostly sees the side the generator
+  was given, plus shading cues of the unseen shape. The pot (up to 47°), sweeper (38°), wooden piece 2 (36°) and dust
+  pan (23°) show more new sides.
   Falsifier of "the judge adds information over the GT-free metric": ρ ≤ 0.4650 and hits ≤ 2.
 - Renders are at our tracked pose, so a candidate whose Sim(3) registration is off looks turned or shifted; the
   question asks to ignore small differences, but large registration errors may lower the score although CD-O ignores

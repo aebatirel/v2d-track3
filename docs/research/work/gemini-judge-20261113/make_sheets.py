@@ -47,8 +47,9 @@ def main():
     for o in dict.fromkeys(x['object'] for x in ga):
         s = [x for x in ga if x['object'] == o and x['group'] == 'pixal_mv' and x['id'].endswith('_s42')][0]
         p = imgs(s)
-        tiles = [cv2.resize(cv2.imread(p[i]), None, fx=0.4, fy=0.4, interpolation=cv2.INTER_AREA) for i in (0, 2)]
-        rows.append(label(np.hstack(tiles), f'{s["id"]}   (pictures 1 and 3)'))
+        ix = (0, min(2, len(p) - 1))
+        tiles = [cv2.resize(cv2.imread(p[i]), None, fx=0.4, fy=0.4, interpolation=cv2.INTER_AREA) for i in ix]
+        rows.append(label(np.hstack(tiles), f'{s["id"]}   (pictures {ix[0] + 1} and {ix[1] + 1} of {len(p)})'))
     pairs = [np.hstack(rows[i:i + 2]) if i + 1 < len(rows) else np.hstack([rows[i], np.full_like(rows[i], 255)])
              for i in range(0, len(rows), 2)]
     n2 = save_png(np.vstack(pairs), os.path.join(a.out, 'sheet_GA_objects.png'))

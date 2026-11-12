@@ -117,13 +117,14 @@ def main():
                alt_alignment={'global_fit': pooled(S['score'], S['glob'], THR),
                               'frame0_all_objects': pooled(S['score'], S['f0all'], THR)},
                per_episode=per_ep, per_class=per_cls,
-               loo=dict(values=loo, min=min(x for x in loo.values() if x is not None),
-                        max=max(x for x in loo.values() if x is not None)),
+               loo=dict(values=loo, min=min([x for x in loo.values() if x is not None], default=None),
+                        max=max([x for x in loo.values() if x is not None], default=None)),
                within_track=dict(n_tracks=len(wt), mean=round(float(np.mean(wt)), 4) if wt else None),
                flag_rates=dict(pos_p_lt_0p5=round(float((S['p'][pos] < 0.5).mean()), 4) if pos.any() else None,
                                neg_p_lt_0p5=round(float((S['p'][~pos] < 0.5).mean()), 4) if (~pos).any() else None),
-               spearman_with_behind=round(float(spearmanr(S['score'], S['behind']).correlation), 4),
-               mean_confidence=round(float(S['conf'].mean()), 4), fake=any(ans[k].get('fake') for k in ans))
+               spearman_with_behind=round(float(spearmanr(S['score'], S['behind']).correlation), 4) if rows else None,
+               mean_confidence=round(float(S['conf'].mean()), 4) if rows else None,
+               fake=any(ans[k].get('fake') for k in ans))
     json.dump(out, open(os.path.join(a.out, 'GB_result.json'), 'w'), indent=1, default=float)
     ci = (prim.get('ci95') or {}).get('ci')
     M = [f'# Test G-B result{" (FAKE ANSWERS - pipeline test only)" if out["fake"] else ""}', '',

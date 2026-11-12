@@ -5700,3 +5700,20 @@ arm and a no-policy replay floor to stage B.
   unchanged (bars, ≥ 8 episodes with positives, first official draw, > 2 cm label, the 10–90% share rule).
   The tree test (23:05 UTC) runs on the same labels.
 
+### 2026-11-13 ~02:45 UTC — Gemini judge (G-A, G-B): phase 1 done; PREREG committed before any scored call
+- `docs/research/work/gemini-judge-20261113/`:
+  - PREREG.md: exact questions, layout, rows, sha256 of every script and spec, phase-2 commands with caps $0.5 (G-A)
+    and $3.0 (G-B);
+  - builders, `run_gemini.py` (resumable cache, cost cap, refuses changed questions), `score_GA.py`, `score_GB.py`;
+  - contact sheets of what Gemini sees.
+- Inputs in the scratchpad only (`scratchpad/gem/`; 104 + 7,835 requests, 8,231 sha256-pinned JPEGs). They can be
+  rebuilt in about 12 min.
+- Format dry run on synthetic images: HTTP 200, 2,855 tokens, $0.0003. Estimate for both tests about 11M tokens,
+  about $1.1.
+- Changed during phase 1 without ground truth: an edge-support frame gate for G-A. The first build picked ep23
+  wooden-piece frames where our own overlay shows the track lost; kept as `ga_v0_noedgegate/`.
+- G-B rows rebuilt from the audit's valid flags: 7,835 rows, 1,447 positives in 16 episodes (key-column check).
+- Disclosure: the agent read `table.md`, which shows CD-O, at the start. Frame choice and questions do not use it.
+- ρ bar stays 0.46 as written. The GT-free metric is 0.4650; a ρ between the two passes by the rule but is reported
+  as not beating it.
+
