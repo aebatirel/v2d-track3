@@ -5717,3 +5717,19 @@ arm and a no-policy replay floor to stage B.
 - ρ bar stays 0.46 as written. The GT-free metric is 0.4650; a ρ between the two passes by the rule but is reported
   as not beating it.
 
+### 2026-11-13 ~03:00 UTC — owner: "lets not do all refs but selection of them"; test A AMENDMENT (before any data)
+- Selection from the gate's own scores only (no labels exist for these policies): episodes sorted by the gate's
+  infeasible share, picked to cover low, mid and high tiers and distinct object types.
+  - **Low:** ep12 (blue cup, 0.00), ep40 (dust pan, 0.00), ep23 (wooden pieces, 0.017).
+  - **Mid:** ep18 (sweeper + dust pan, 0.064), ep2 (pot + lid, 0.195).
+  - **High:** ep24 (wooden pieces, 0.269), ep21 (pitcher + cup, 0.304), ep31 (sweeper, 0.639).
+- Recipe and label unchanged (standard FDR learner 250M, seed 42; first official draw; > 2 cm vs our reference).
+- Bars:
+  - informative: AUROC ≥ 0.75 and ≥ 4 of the 8 episodes contribute positives (scaled from 8 of 19);
+  - falsified: AUROC < 0.65;
+  - the 10–90% share rule and the episode-bootstrap CI as before;
+  - the tree test (23:05 UTC) runs leave-one-episode-out over the same 8 episodes.
+- Boxes: 4 on-demand RTX PRO 6000, 2 episodes each: (12, 31), (40, 21), (23, 2), (18, 24).
+- Estimate [E]: 4 × (0.5 h setup + ~3.2 h shared training + 0.2 h evaluation) ≈ 16 box-hours ≈ $23–26 at
+  $1.41–1.61/h. Cap $30, inside the current credit ($33.98), so no top-up is needed.
+
