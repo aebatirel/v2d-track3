@@ -5536,3 +5536,17 @@ arm and a no-policy replay floor to stage B.
 - Separately, descriptive only: the same features over exercise 3's flask handover against its zero-residual replay
   error (one episode; no verdict).
 
+### 2026-11-12 ~23:35 UTC — blob features built; exercise 3 descriptive run (CPU, $0)
+- `tools/blob_features.py` and `tools/blob_tree.py` frozen in 314515e9 before any test-C label.
+  - 3,167 rows on the 19 refsweep references, matching the gate run (72.2% score 0; 17.3% > 0.5).
+  - Synthetic-label checks: a planted signal gives "adds value"; random labels give "no added value".
+- Exercise 3, descriptive (`docs/research/work/blob-tree-20261112/README.md`):
+  - At the simulator's μ 1.0 (calibration `geom_friction` = 1.0 everywhere), the reference's contacts score the grasp
+    feasible on 95% of frames.
+  - Yet the zero-residual replay leaves the reference by 2 cm at 2.7 s, and the trained policy fails at the handover
+    (17.6 s), where the blob says the grasp is strong.
+  - At the exercise's display μ 0.1, 40% of frames score infeasible and the early phase "matches" the replay. That
+    match is spurious (wrong μ).
+  - Reading [H]: the reference's proximity contacts are not the contacts physics realises. This lowers the prior for
+    test C and the tree; the next feature set should come from simulator contacts.
+

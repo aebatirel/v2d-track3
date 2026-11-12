@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-12 ~23:35 UTC: contact-blob tree ready (frozen before labels); exercise 3 picture says reference contacts miss physics failures
+- Blob features + tree: `tools/blob_features.py`, `tools/blob_tree.py`; runs once test C's labels exist (gate agent
+  replaying the 19 public references on CPU).
+- Exercise 3 (one episode, descriptive): at the simulator's friction, the reference's contacts say the flask grasp is
+  fine, yet physics drops it at 2.7 s without a policy, and the policy fails at the handover. See
+  `docs/research/work/blob-tree-20261112/`.
+- Idea 2 (weight repair) still running. Gemini works (network secret fixed); idea 5 waits for the data-licence answer.
+
 ## 2026-11-12 ~22:55 UTC: idea 1 gate built; first test blocked (no 20-episode rollout set); test C pre-registered
 - `pipeline/wrench_gate.py` works (21/21 self-tests). Test A has no data: no recipe has official rollouts on all 20
   public episodes. Test C (label = zero-residual physics replay drift, CPU) pre-registered in the work log 22:55 UTC.
