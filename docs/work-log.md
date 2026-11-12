@@ -5510,3 +5510,29 @@ arm and a no-policy replay floor to stage B.
 - The key was pasted in chat twice; the owner was advised to rotate it. Not stored in any file (checked).
 - Open before idea 5 sends challenge frames: the dataset licence on third-party processing (owner).
 
+### 2026-11-12 ~23:05 UTC — owner: "use the physical contact blob from exercise 3 … through the decision tree";
+### PRE-REGISTRATION of the blob-feature tree (idea 3 variant), written before any test-C label exists
+- Question: does the full contact-wrench "blob" (exercise 3's 6-D support, h(u) = max(0, maxᵢ uᵀwᵢ)) predict physical
+  drift better than the single gate score?
+- Same rows and labels as test C (22:55 UTC): (object, frame) in the gate's held windows on the 19 references.
+- Features per row, from our reference only, with the generators of `pipeline/wrench_gate.py` (both hands combined),
+  computed by `tools/blob_features.py`:
+  1. gate score;
+  2. support along the demand direction, h(Ŵ);
+  3. support along a pure upward force, h([0,0,1,0,0,0]);
+  4. share of 512 fixed unit 6-D directions (Gaussian, seed 0, normalised) with zero support;
+  5. number of active contacts;
+  6. number of hands in contact (0, 1 or 2);
+  7. demand force norm |F| (N);
+  8. demand torque norm |τ| (N m).
+- Model: scikit-learn `DecisionTreeClassifier(max_depth=3, min_samples_leaf=50, class_weight="balanced",
+  random_state=0)`.
+- Evaluation: leave-one-episode-out over episodes with held rows; pooled out-of-fold AUROC; the gate score's AUROC on
+  the same rows; their difference with a 95% CI from 2,000 paired episode-bootstrap resamples, seed 20261112.
+- Verdict:
+  - **adds value:** out-of-fold AUROC ≥ 0.75, the difference ≥ 0.05, and the CI of the difference above 0;
+  - **no added value:** difference < 0.02;
+  - otherwise inconclusive, and also inconclusive when test C is (positive share under 10% or over 90%).
+- Separately, descriptive only: the same features over exercise 3's flask handover against its zero-residual replay
+  error (one episode; no verdict).
+
