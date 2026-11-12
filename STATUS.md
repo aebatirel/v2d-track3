@@ -1,5 +1,18 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-12 ~22:30 UTC: owner "go for all" (note 29 ideas 1–5); ideas 1 and 2 RUNNING on CPU, rules pre-registered
+- Context (other branches): boards froze 4 Nov; final pack 13h + container done. These improvements are for the
+  report, the award or a next round, not the ranking. Ruling 39 allows agentic intervention; public data only for
+  development.
+- Running (background agents, CPU, $0 GPU):
+  - idea 2, LLM weight-editing pilot on exercise 3 → `docs/research/work/wsp-ex3-20261112/`;
+  - idea 1, wrench-feasibility gate on the 20 public references → `pipeline/wrench_gate.py`,
+    `docs/research/work/wrench-gate-20261112/`.
+  Rules: work log 22:20 UTC.
+- Next: idea 3 (fix-routing tree) once 1 and 2 report; idea 4 (LLM triage) needs owner labels of failed public
+  rollouts; idea 5 (Gemini judge) needs a paid-tier Gemini API key (requested as an environment secret).
+- Access checked 22:15 UTC: HF store and Vast connected (credit $33.98, 0 instances); no Gemini key yet.
+
 ## 2026-11-12 ~21:55 UTC: tutorial exercise 3 read and run on CPU; note 29 (LLMs and decision models in the pipeline)
 - NVIDIA's exercise 3 is a CPU notebook with a flask handover: physics replay, a contact-wrench support check, and a
   FlashSAC policy of our exact architecture. `tools/actor_np.py` matches NVIDIA's numpy actor exactly [M].
