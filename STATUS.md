@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-12 ~22:55 UTC: idea 1 gate built; first test blocked (no 20-episode rollout set); test C pre-registered
+- `pipeline/wrench_gate.py` works (21/21 self-tests). Test A has no data: no recipe has official rollouts on all 20
+  public episodes. Test C (label = zero-residual physics replay drift, CPU) pre-registered in the work log 22:55 UTC.
+- Idea 2 (weight-repair pilot) still running. Gemini key: the owner is re-adding the network secret (header
+  `x-goog-api-key`, no Bearer prefix).
+
 ## 2026-11-12 ~22:30 UTC: owner "go for all" (note 29 ideas 1–5); ideas 1 and 2 RUNNING on CPU, rules pre-registered
 - Context (other branches): boards froze 4 Nov; final pack 13h + container done. These improvements are for the
   report, the award or a next round, not the ranking. Ruling 39 allows agentic intervention; public data only for

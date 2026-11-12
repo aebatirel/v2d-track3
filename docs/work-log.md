@@ -5469,3 +5469,36 @@ arm and a no-policy replay floor to stage B.
   - **Informative:** pooled AUROC ≥ 0.75 and ≥ 8 episodes contribute positives.
   - **Falsified:** AUROC < 0.65. Otherwise inconclusive. 95% CI by episode bootstrap, reported with the result.
 
+### 2026-11-12 ~22:50 UTC — idea 1 (wrench-feasibility gate): built and self-tested; pre-registered test BLOCKED by data
+- Agent report and files: `docs/research/work/wrench-gate-20261112/README.md`, `results.json`, `score_gate.py`;
+  `pipeline/wrench_gate.py` (inference only, no ground truth). CPU only, $0, about 25 MB downloaded to the scratchpad.
+- **No verdict.** The store has no single recipe with official evaluator rollouts on all 20 public episodes.
+  - 9 public episodes have none: 0, 22, 23, 40–45.
+  - The best run covers 6 episodes (`runs/20261024-ev3-2c1e4dd`).
+  - Nothing was substituted.
+- Built and checked:
+  - 21/21 self-tests pass;
+  - the reference/rollout pairing check catches a 10.4 mm mismatch;
+  - a synthetic end-to-end run works.
+- Choices: μ 1.0 (FlashCHORD `contact_friction: 1.0`); 0.3 kg and URDF inertia; torque scale = `object_mesh_radius`;
+  object-event windows from lift-off to the last movement.
+- Gate scores without labels, on the 19 Oct-20 perc2 references (`runs/20261020-refsweep-ea14fdf/refs/perc2`; ep26
+  missing): 3,167 (object, frame) pairs, 72% exactly feasible, 17.3% score > 0.5. Range 0% (ep12, ep40) to 64% (ep31
+  sweeper); airborne objects with no contact: the pitcher in ep21 and ep22 (28%), ep24 (25%), ep39 (15%).
+
+### 2026-11-12 ~22:55 UTC — PRE-REGISTRATION, idea 1 test C (zero-residual replay label; written before any label)
+- Reason: test A (official rollouts) has no data; C answers the question a gate before training is for — does the
+  reference survive physics?
+- Gate: `pipeline/wrench_gate.py` frozen as committed in 61c0b6ad. Its scores on these references were already
+  computed without labels (entry above).
+- Data: the 19 public references in `runs/20261020-refsweep-ea14fdf/refs/perc2`.
+- Label: FlashCHORD zero-residual replay of each reference on CPU (VOC 0, zero policy action, as
+  `tools/trace_rollout.py zero`, the recipe's controller settings). Per (object, frame) in the gate's held windows,
+  positive if the simulated object is > 2 cm from the reference. Missing or non-finite rows count as positive.
+- Verdict, same bars as before:
+  - informative: pooled AUROC ≥ 0.75 and ≥ 8 episodes contribute positives;
+  - falsified: AUROC < 0.65;
+  - otherwise inconclusive, and also inconclusive if under 10% or over 90% of held frames are positive.
+  - 95% CI from 2,000 episode-bootstrap resamples, seed 20261112.
+- If FlashCHORD cannot run on CPU here, report blocked; no GPU without the owner's go-ahead.
+
