@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 ~02:50 UTC: Gemini tests running (≈ $1.1 API); GPU test A being prepared (owner approved; top-up pending)
+- Gemini G-A (mesh selector) and G-B (track audit): PREREG committed (ffc8a6e8); phase 2 running.
+- Test A (19 public episodes, standard FDR learner, 1 evaluator draw each): estimate $55–60, cap $75. Credit $33.98,
+  so the owner tops up about $45. Job strings and a CPU dry run are being prepared; nothing is launched before the
+  top-up.
+
 ## 2026-11-13 ~02:05 UTC: C2 inconclusive (98.6% of frames drift even when grasp-locked); DS modulation dropped
 - Ideas 1 and 3 cannot be tested without trained-policy rollouts: test A on GPU (≈ $20–50; Vast $33.98). Owner decides
   go or park.
