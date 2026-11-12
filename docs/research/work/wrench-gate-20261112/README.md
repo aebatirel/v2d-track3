@@ -469,7 +469,7 @@ held units; median height rise of the object above its frame-0 height in the hel
 
 - **Grasp lock changes what happens, but not the outcome.** It now lifts some objects at least half-way for most of
   their held frames: ep24 piece 1, ep42 and ep43 (pot), ep18 (dust pan), ep31 (sweeper).
-- **Lifted objects still leave the reference.** Median held errors stay at 4–31 cm. Most objects still stay on the
+- **Lifted objects still leave the reference.** For these five, median held errors are still 4–24 cm. Most objects still stay on the
   table. Only ep43 (pot, mean error 4.4 cm) gives a block of frames within 2 cm.
 - **So the label is again near-constant [H].** Both open-loop replays, raw (C) and grasp-locked (C2), fail on almost
   every held frame of these Oct 20 references. Their failure is not the per-frame wrench shortfall that the gate and
