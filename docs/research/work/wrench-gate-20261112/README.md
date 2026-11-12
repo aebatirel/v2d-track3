@@ -11,6 +11,9 @@ The gate is built and tested. The scoring script is ready and refuses to run unt
 positive-share rule.** 99.6% of held frames are positive, because the replay lifts almost no object. Pooled AUROC 0.41,
 95% CI [0.06, 0.59].
 
+**Test C2 was run (section 11; label = grasp-locked replay): INCONCLUSIVE by the same rule.** 98.6% of held frames
+are positive. Pooled AUROC 0.53, 95% CI [0.33, 0.66]. The blob tree on the same rows is also inconclusive.
+
 Labels: [M] measured here, [C] computed, [E] estimate, [H] hypothesis.
 
 ## 1. Rule (pre-registered, work log "2026-11-12 ~22:20 UTC … PRE-REGISTRATION", unchanged)
@@ -371,3 +374,114 @@ held units; median height rise of the object above its frame-0 height in the hel
 - **Stock replay settings:** njmax 512 is the stock sim config; some later recipes used 1024. Too small a buffer can
   drop contacts in crowded frames, which was not checked.
 - **Assets:** objects are the kit's public scans, which is what these references name.
+
+## 11. Test C2: grasp-locked replay label (run 2026-11-12/13, CPU, $0)
+
+**Verdict: INCONCLUSIVE**, again by the pre-registered positive-share rule: 98.6% of held frames are positive (3,122 of
+3,167), over the 90% bar.
+- Pooled AUROC 0.53, 95% episode-bootstrap CI [0.33, 0.66] (2,000 resamples, seed 20261112; 8 one-class resamples
+  skipped).
+- All 19 episodes contribute positives.
+- No episode failed grasp lock or ILC (0 of 19 against the limit of 5).
+- **Blob tree on the same rows** (`tools/blob_tree.py`, rule of 12 Nov ~23:05 UTC): also inconclusive by the share
+  rule. The tree's out-of-fold AUROC is 0.35 against the gate's 0.53, a difference of −0.18 with 95% CI [−0.23, 0.09]
+  (`docs/research/work/blob-tree-20261112/results_tree_C2.json`) [M].
+
+### 11.1 Rule (work log "2026-11-13 ~00:50 UTC — owner: okay go crazy … PRE-REGISTRATION of tests C2, G-A and G-B")
+
+- **Gate and blob features:** unchanged. The gate is frozen at 61c0b6ad and runs on the 19 original refsweep perc2
+  references. `score_C2.py` refuses to run if the gate file differs.
+- **Label:** the grasp-locked physics replay of each reference, on CPU, using the `tools/cpu_glock_zero.sh` chain:
+  `grasp_lock.py` with default args, then `wrist_ilc.py` at kp 400 for 4 iterations, then a zero-action replay with
+  `sharpa_hands_mid`.
+  - Positive if the object is more than 2 cm from the replayed reference's object pose.
+  - A missing or non-finite row counts as positive.
+- **Exclusions:** episodes where grasp lock or ILC fails are excluded. More than 5 of 19 failures makes the test
+  inconclusive.
+- **Bars:** the same verdict bars and 10–90% share rule as test C.
+- **Object trajectory:** grasp lock and ILC leave it unchanged on all 19 episodes: the largest change between
+  `ref_gl_ilc.parquet` and the original is 0.0 mm and 0.0° [M]. The label uses the replayed reference's own object
+  pose, which here is identical to the original.
+
+### 11.2 Commands and settings
+
+- **Runner:** `wgate/scripts/run_glock.sh EP` in the session scratchpad follows `tools/cpu_glock_zero.sh` step by step
+  with the same settings and environment, and with local paths. Input: the staged reference copy of test C (only the
+  asset paths rewritten). It runs from the 8c778f9 flash_chord directory with `OMP_NUM_THREADS=1`:
+
+      FC=$FCD GL_WRIST_KP=400 $PY -B pipeline/grasp_lock.py $D/ref_in.parquet $D/ref_gl.parquet
+      EMB=sharpa_hands_mid $PY -B pipeline/wrist_ilc.py $D/ref_gl.parquet $D/ref_gl_ilc.parquet --iters 4 --device cpu
+      EMB=sharpa_hands_mid DEV=cpu $PY -B tools/trace_rollout.py zero $ARM/zero.npz $D/ref_gl_ilc.parquet N
+
+  - `flashchord_conf/embodiment/sharpa_hands_mid.yaml` (wrist xyz kp 400, kd 20, 150 N) was copied into the scratch
+    FlashCHORD configs, as `ops/jobs/glock_public.sh` does on the boxes.
+  - The script's last step, `trace_score.py` (the kit's sim-vs-reference score), was not run: it is not part of the
+    label.
+- **Code and environment:** repository HEAD 983bd272 for all 19 runs. `grasp_lock.py`, `wrist_ilc.py`,
+  `trace_rollout.py` and `wrench_gate.py` are unmodified. The FlashCHORD venv is the one from test C.
+- **Scoring and tree:**
+
+      python -I -B docs/research/work/wrench-gate-20261112/score_C2.py MANIFEST_C2.json OUT_DIR
+      mlvenv/bin/python -I -B tools/blob_tree.py blob/features.csv labels_C2.csv results_tree_C2.json
+
+  - The scorer used the scratch venv. The tree used `mlvenv`: scikit-learn 1.9.1, numpy 2.5.3.
+  - `features.csv` md5 is e484aa85…; it was used unchanged. All 3,167 rows join, since no episode was excluded.
+- **Timings** [M]:
+  - ep12 alone: 222 s for 181 frames. That is grasp lock 96 s, ILC 67 s (5 replays), then the final replay.
+  - The other 18 ran 3 in parallel on 4 cores shared with two other agents: 175–527 s each, 1,532 s wall.
+  - Scoring: under a minute. The tree: 6 s.
+- **Checks:**
+  - All 19 chains exit 0, with no ILC divergence.
+  - Every trace has one row per reference frame.
+  - The frame-0 object offset is 0.0 mm in all 19.
+  - `labels_C2.csv` holds exactly the gate's 3,167 rows.
+
+### 11.3 Per-episode table
+
+| ep | positives / held | gate infeasible | mean err held (cm) | rise sim / ref (cm, median) | held frames lifted ≥ half the ref rise |
+|---|---|---|---|---|---|
+| 0 | 48 / 48 | 0.02 | 13.0 | lid −0.9 / 1.8 | 0.38 |
+| 2 | 128 / 128 | 0.20 | 14.7 | pot 3.1 / 6.2; lid 1.2 / 2.7 | 0.45; 0.41 |
+| 11 | 104 / 104 | 0.46 | 16.0 | blue −3.9 / 3.7; beige −4.7 / 7.9 | 0; 0.11 |
+| 12 | 87 / 88 | 0.00 | 13.4 | 2.4 / 11.8 | 0.15 |
+| 13 | 120 / 120 | 0.40 | 14.9 | 0.6 / 8.9 | 0.43 |
+| 18 | 236 / 236 | 0.06 | 10.3 | sweeper −4.2 / 1.2; pan 2.2 / 2.0 | 0; 0.68 |
+| 21 | 194 / 194 | 0.30 | 25.2 | cup 0.0 / 6.4; pitcher −0.4 / 15.5 | 0; 0 |
+| 22 | 176 / 176 | 0.30 | 13.4 | cup 1.2 / 5.3; pitcher 0.1 / 9.3 | 0.29; 0.09 |
+| 23 | 240 / 240 | 0.02 | 25.5 | piece 1 0.0 / 6.6; piece 2 −0.3 / 14.9 | 0.01; 0 |
+| 24 | 248 / 249 | 0.27 | 12.2 | piece 1 21.4 / 19.6; piece 2 −0.4 / 9.1 | 1.0; 0 |
+| 27 | 117 / 117 | 0.13 | 30.6 | 0.1 / 24.5 | 0 |
+| 31 | 213 / 213 | 0.64 | 8.3 | 0.6 / 0.9 | 0.67 |
+| 39 | 213 / 213 | 0.17 | 23.8 | 0.0 / 15.0 | 0.01 |
+| 40 | 157 / 159 | 0.00 | 20.2 | −0.1 / 21.6 | 0 |
+| 41 | 195 / 195 | 0.01 | 11.7 | 5.4 / 14.2 | 0.20 |
+| 42 | 158 / 158 | 0.01 | 23.7 | 9.2 / 4.7 | 0.88 |
+| 43 | 196 / 236 | 0.05 | 4.4 | 4.7 / 9.4 | 0.78 |
+| 44 | 115 / 115 | 0.17 | 29.0 | −0.1 / 18.9 | 0.01 |
+| 45 | 177 / 178 | 0.05 | 20.2 | −0.3 / 20.8 | 0.01 |
+
+- **Negatives:** the 45 negatives are in ep43 (40), ep12, ep24, ep45 (1 each) and ep40 (2). The within-episode AUROCs
+  in `results_C2.json` rest on 1–40 negatives.
+- **Secondary, descriptive only:** Spearman ρ between the gate's infeasible share and the mean error is −0.04 over held
+  units and 0.02 over all frames.
+
+### 11.4 Reading [M] and hypotheses [H]
+
+- **Grasp lock changes what happens, but not the outcome.** It now lifts some objects at least half-way for most of
+  their held frames: ep24 piece 1, ep42 and ep43 (pot), ep18 (dust pan), ep31 (sweeper).
+- **Lifted objects still leave the reference.** Median held errors stay at 4–31 cm. Most objects still stay on the
+  table. Only ep43 (pot, mean error 4.4 cm) gives a block of frames within 2 cm.
+- **So the label is again near-constant [H].** Both open-loop replays, raw (C) and grasp-locked (C2), fail on almost
+  every held frame of these Oct 20 references. Their failure is not the per-frame wrench shortfall that the gate and
+  the blob features measure.
+- **A physics-replay label cannot test the gate on these references** under the pre-registered share rule. Test A
+  (trained-policy rollouts) is still blocked by data (section 4).
+- **A test that can discriminate needs a label that varies across frames.** Trained-policy rollouts (test A) are one
+  such label: they need a GPU and a new owner go-ahead.
+
+### 11.5 Limitations
+
+- **Same reference set as C:** the Oct 20 references with kit assets.
+- **Grasp-lock options:** only the default arguments, as pre-registered. Later recipe options (`--events`,
+  `--force_design`, `--sim_trace` re-planning) were not used.
+- **No kit score:** `trace_score.py` was skipped. The label does not depend on it.
