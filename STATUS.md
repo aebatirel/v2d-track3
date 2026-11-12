@@ -1,5 +1,15 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-12 ~21:40 UTC: LLM weight editing on our policies: feasible on paper; pilot planned, NOT started ($0 so far)
+- Owner: "can we see if the llm method helps with better policies". Note 27 §9; tool `tools/actor_np.py` (numpy
+  loader, forward and idle-unit census; forward not yet checked against JAX).
+- Checkpoints: inputs are physical (object pose, reference command, contacts). Outputs are bounded residuals on our
+  reference. Rough idle-unit estimate: 14–225 of 1,024 per first-block layer; none in the 256-wide layers [C].
+- Prior [H]: no distribution shift to fix (RL in the evaluator's own simulator); the plausible lever is rare failures
+  that make draws vary.
+- **Waiting on the owner:** go-ahead for the pilot (3 public episodes, GPU ≈ $10–20 [E] incl. a reseed baseline).
+  Rule fixed in note 27 §9.3.
+
 ## 2026-11-12 ~21:00 UTC: ideas note 28 (Gemini Decisions API in the pipeline); nothing run, $0
 - Owner asked how to bring the Gemini Decisions API (released 11 Nov) into the workflow. Note:
   `docs/research/notes/28-gemini-decisions-api-in-the-pipeline.md`.

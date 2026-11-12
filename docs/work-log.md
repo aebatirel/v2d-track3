@@ -5419,3 +5419,14 @@ arm and a no-policy replay floor to stage B.
 - Open: whether the competition allows a hosted proprietary model in the pipeline; the dataset licence on sending
   frames to a third party.
 
+### 2026-11-12 ~21:40 UTC — can the LLM weight-editing method improve our policies? Feasibility (CPU, $0)
+- Owner: "can we see if the llm method helps with better policies" (after notes 27 and 28, and a read of
+  romanklis/ann2snn-pychromo-drone, which needed no repo change).
+- Read FlashCHORD's actor network (NVIDIA video_to_data main 1e862a8, cloned read-only) and our checkpoint metadata;
+  mapped the 32 stored tensors to names by jax's sorted-key order (checked by shapes and value ranges).
+- New `tools/actor_np.py`: numpy loader, eval-mode forward, idle-unit census. Census on the 12 committed checkpoints:
+  first-block wide layer 0–225 of 1,024 idle (0 only for the two short spoon fine-tunes), second block 0–142, 256-wide
+  layers 0. Estimate assumes normalised Gaussian inputs; a sampled forward with independent Gaussian inputs gave
+  fewer (9 and 47), so real counts need recorded observations. Forward not checked against JAX.
+- Plan and pre-registered rule: note 27 §9.3. Nothing rented; the owner decides.
+

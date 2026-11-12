@@ -179,3 +179,67 @@ None of these is planned or costed. Each needs the OCBench setup, which we do no
     need to live inside the weights only if a checkpoint must carry all behaviour, for example if the organisers
     re-run checkpoints. Not checked against our checkpoint format or the kit rules.
 - No change to the submission or the plan follows from this note.
+
+## 9. Testing it on our own policies (added 2026-11-12, owner: "can we see if the llm method helps with better policies")
+
+### 9.1 What the checkpoints allow (checked on CPU, $0)
+
+- **Network [V].** Read from FlashCHORD's `training/flash_sac/network.py` (NVIDIA `video_to_data` main, 1e862a8,
+  12 Nov 2026) and our checkpoint metadata. Batch norm on 722 inputs → linear to 256 → two residual blocks
+  (256 → 1024 → ReLU → 256 → ReLU, batch norm on each, plus the skip) → RMS norm → 56 action residuals.
+  1.28M stored numbers. Eval mode uses the stored batch-norm statistics, so the forward pass is fixed and editable.
+- **Inputs are physical quantities [V].** Wrist and finger state, object pose, the reference command relative to the
+  hands and object, the previous action, and per-slot contact positions and force directions. This is easier to
+  write controllers on than the post's camera features.
+- **Outputs are bounded corrections to our reference [V].** Wrist position scale 0.05, clip 0.2; wrist
+  orientation scale 0.15, clip 1.0; fingers scale 0.15, clip 1.0; smoothing 0.3. An edit can only nudge the
+  reference, not replace it.
+- **Idle units [C, rough].** Estimated from batch-norm bias and scale, assuming normalised Gaussian inputs
+  (`tools/actor_np.py census`):
+  - first block's 1024 wide units: 14–225 idle per checkpoint across the 10 public 250M/150M checkpoints;
+  - second block's: 1–142 idle;
+  - the two short fine-tuned spoon checkpoints: none idle;
+  - the 256-wide layers: none idle.
+  So there is room for small circuits, but every write passes through a 256-wide layer that is always in use, then
+  a whole-vector RMS norm. That is harder than the post's plain network. Real counts need recorded observations.
+- **Not done:** the numpy forward (`tools/actor_np.py`) is not yet checked against JAX.
+
+### 9.2 Where it could help, and where not [H]
+
+- **The post's main lever is missing.** Its policies failed under a distribution shift and retraining was banned. Ours
+  are trained with RL in the same simulator and on the same reference that the evaluator uses.
+- **The plausible lever is rare failures.** Several packed policies vary widely between evaluator draws (evals 1, 14,
+  25, 30, 33; sd up to 0.24, H5, 29 Oct). A reflex such as a grip tighten or retry when the object slips could cut
+  that spread.
+- **Unlikely to help** where the reference is wrong (2–3 cm perception errors, collisions written into the
+  reference), because the edit can only nudge the reference.
+- **Bar to beat:** a reseed or retrain costs about $1–2.5 per policy.
+
+### 9.3 Pilot plan (not started; needs the owner's go-ahead)
+
+Public episodes only; ground truth is read only after the loop ends.
+
+1. **Stage 0, CPU, $0:** check the numpy forward against JAX on CPU. Write a fixed rule that picks 3 public
+   episodes (policy-side failures or high draw spread; public twins of the high-variance evals where they exist).
+2. **Stage 1, one GPU box, about 1 h, about $1–2 [E]:** 10 evaluator draws per episode with the current policy.
+   Record observations, actions, contacts and body poses (`tools/trace_rollout.py` needs an observation and action
+   recorder added).
+3. **Stage 2, CPU, $0 of GPU:** the agent reads weights and traces, states a mechanism and a predicted effect, and
+   writes at most 2 edits per episode per round. Shapes stay unchanged, so the evaluator loads edited checkpoints.
+4. **Stage 3, GPU, up to 6 rounds:** each round runs every edit for 10 draws. The loop sees only the GT-free score
+   (`pipeline/qa.py policy`: simulation against our reference).
+5. **Baseline:** one reseeded retrain per episode at the packed recipe, with 10 draws.
+
+**Cost [E].** About 2.5 min per evaluator draw (work log, 15 min for 6 evaluations) at $0.55–1.18/h. GPU about
+$10–20 for the whole pilot, plus the agent's Claude usage (hundreds of turns; not a Vast cost).
+
+**Rule, fixed now.** After the loop, 10 fresh draws per arm are scored against ground truth with the kit scorer.
+- **Helps:** the final edit raises mean AUC by ≥ 0.02 over the original, without a larger sd, on at least 2 of 3
+  episodes, and is not below the reseed baseline on those episodes.
+- **Falsified:** the gain is < 0.005 on all 3 episodes, or the edit is below the reseed baseline on at least 2.
+- **Otherwise:** inconclusive.
+
+**Open before any submission use.**
+- Whether the competition allows a hand-edited checkpoint.
+- The leaderboard scores the submitted rollouts as they are, so an edit counts only through new rollouts, which the
+  owner uploads.
