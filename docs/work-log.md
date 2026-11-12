@@ -5654,3 +5654,20 @@ arm and a no-policy replay floor to stage B.
     scored call. Only a format dry run on non-challenge images is allowed before that.
   - Cost cap $5 of Gemini API in total; stop and report if the estimate goes over.
 
+### 2026-11-13 ~01:45 UTC — DS obstacle modulation (Roman's idea): phase 1 done; phase 2 NOT RUN (decision)
+- Agent output: `pipeline/ds_modulate.py` (off by default, nothing calls it), `tests/test_ds_modulate.py` (24/24 pass,
+  rerun here), `docs/research/work/ds-modulation-20261113/` (PREREG.md, eval_ds.py, run_phase2.sh). CPU, $0.
+- Finding from recorded evidence (nothing new measured): the target evals' collisions are not the hand hitting a
+  bystander, so DS modulation cannot reach them.
+  - Eval 1 (ep2): the lid lies inside the pot's hulls at the start and the placed pose (44–51 cm³; hull census,
+    26 Oct).
+  - Eval 14 (ep12/ep13): the cup is inside the rack mesh during insertion. That is the goal itself, and DS needs the
+    goal outside every obstacle.
+  - Eval 30 (ep31): the sweeper starts inside the rack from frame 0 (perception).
+  - Eval 10 (ep11): the reference path is clear (≤ 2.4 mm); the failure is a 6–7 cm in-simulation misalignment.
+  - Every twin has two objects, so the hand's only non-target object is the receptacle, met while grasping or
+    placing: the frames DS must leave alone.
+- The agent's written prediction for phase 2: most likely Fail (< 20% removed), else Not applicable.
+- **Decision: phase 2 not run.** The evidence already says the method targets a collision type our failures do not
+  have. The code and PREREG are kept for a future scene with bystander objects.
+
