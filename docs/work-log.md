@@ -7695,5 +7695,6 @@ arm and a no-policy replay floor to stage B.
   - Files: `Imitation.Tech-v2d-submission.tar.zst` (9,633,255,804 B; HF LFS sha256 d76096b1…f1b36 = local [M]),
     the `.sha256` file and a README with the load, verify and reproduce commands, the six IDs, the commit, the report
     link and the disclosures. Copies: `docs/container-20261111/hf_README.md`, `tools/hf_upload.py`.
-  - Upload took 249 s. An end-to-end check (stream download and sha256) is running.
+  - Upload took 249 s. End-to-end check [M]: the public file, streamed back (348 s), has sha256 d76096b1…f1b36,
+    identical to the local archive.
   - Remaining owner steps: mark 13h final on all six boards; contact email; submit the form.
