@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 ~03:30 UTC: Gemini judge negative on both tests (G-A FAIL ρ 0.43; G-B FALSIFIED AUROC 0.52); $1.11
+- The Decisions API does not see our cm-level geometry errors and does not pick better meshes than our own metric.
+- Remaining open item: GPU test A (8 episodes, cap $30), being dry-run on CPU; nothing rented yet.
+
 ## 2026-11-13 ~02:50 UTC: Gemini tests running (≈ $1.1 API); GPU test A being prepared (owner approved; top-up pending)
 - Gemini G-A (mesh selector) and G-B (track audit): PREREG committed (ffc8a6e8); phase 2 running.
 - Test A (19 public episodes, standard FDR learner, 1 evaluator draw each): estimate $55–60, cap $75. Credit $33.98,

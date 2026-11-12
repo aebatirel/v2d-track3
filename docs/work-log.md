@@ -5733,3 +5733,22 @@ arm and a no-policy replay floor to stage B.
 - Estimate [E]: 4 × (0.5 h setup + ~3.2 h shared training + 0.2 h evaluation) ≈ 16 box-hours ≈ $23–26 at
   $1.41–1.61/h. Cap $30, inside the current credit ($33.98), so no top-up is needed.
 
+### 2026-11-13 ~03:30 UTC — Gemini judge results: G-A FAIL, G-B FALSIFIED (actual API cost $1.112)
+- Run as the PREREG §7 commands, after the §8 hash check (14 files match ffc8a6e8; 8,231 images match their pinned
+  sha256). Cost: G-A $0.0478, G-B $1.0639, dry run $0.0003; 11.12M input tokens.
+- **G-A (mesh selector): FAIL.**
+  - ρ 0.426 (object-bootstrap CI 0.16–0.65), below 0.46 and below the GT-free metric's 0.4650.
+  - Gemini's top mesh is the CD-O best on 1 of 10 objects (the dish rack); the bar was more than 2.
+  - 104/104 answered.
+  - Gemini ranks generators roughly (SAM 3D highest, TripoSG lowest) but rarely finds the best mesh within an object.
+- **G-B (track audit): FALSIFIED.**
+  - AUROC 0.5245, CI 0.43–0.63; 1,445 positives in 16 episodes; 7,808 of 7,835 rows answered.
+  - Below the depth audit's 0.599 on the same rows. No diagnostic reached 0.75 (ADD > 1 cm 0.62; leave-one-out
+    0.51–0.58).
+  - Answers vary more by object than by frame quality.
+  - 27 rows (0.34%) returned `400 prohibited_content` on ordinary frames: under the 2% limit, marked blocked.
+- Files: `docs/research/work/gemini-judge-20261113/` README.md, `results_GA.json`, `results_GB.json`,
+  `gb_scores.csv` (304 KB, no labels). Raw caches in the scratchpad only.
+- Consequence, as note 28 §5 said in advance: Gemini has no place in the pipeline as a visual judge of geometry.
+  Ideas 3–6 of note 28 drop unless a new reason appears (owner's call).
+
