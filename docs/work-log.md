@@ -5447,3 +5447,25 @@ arm and a no-policy replay floor to stage B.
 - Result: `docs/research/notes/29-exercise3-llms-and-decision-models.md` (five ranked ideas, each with a public test
   and bar). Nothing in the pipeline changed.
 
+### 2026-11-12 ~22:20 UTC — owner: "go for all"; PRE-REGISTRATION for note 29 ideas 1 and 2 (written before any data)
+- Context found on other branches: boards froze 4 Nov 22:00 UTC (final boards 9 Nov: 9th by rank sum); final pack 13h
+  and its container are built (keen-heisenberg, 11–12 Nov); Discord ruling 39 allows agentic intervention, rulings 19 /
+  25 / 44 allow public data for development only. Vast credit $33.98, 0 instances (checked 22:15 UTC).
+- **Idea 2, LLM weight-editing pilot on exercise 3 (CPU).** Task: the bundled policy, unperturbed (start frame 0,
+  delay 0), fails at 17.6 s. Repair agent rules as in the blog post: no gradients, optimizers, fitting or automated
+  weight search; hand-derived values and data-derived directions with a stated derivation are allowed; 25 test
+  rollouts of the unperturbed task, each returning full traces. Final evaluation, run once after the last edit:
+  20 perturbed runs = start frame {0, 4, …, 36} × delay {0, 3} physics steps, plus the unperturbed run, for three
+  arms: unedited, final edit, random edit (same entries changed, same Frobenius norm per matrix, random signs).
+  Success = reaches the last reference frame without a threshold failure.
+  - **Repair:** the edit completes the unperturbed run, completes ≥ 10 more perturbed runs than the unedited policy
+    (if the unedited completes k > 10, instead ≥ ceil((20 − k)/2) more), and fails none the unedited completes.
+  - **Not a repair:** it does not complete the unperturbed run, or completes no more perturbed runs than the random
+    edit. Otherwise inconclusive.
+- **Idea 1, wrench-feasibility gate (CPU).** Score per reference frame in held phases: the residual of the task wrench
+  (`pipeline/task_wrench.py`) after a non-negative fit in the cone of the contact wrenches (friction cone 8 edges +
+  normal, as exercise 3's `contacts.py`), normalised by the task wrench norm. Inputs are only our reference. Label per
+  frame: the official evaluator rollout's object deviates > 2 cm from our reference (GT-free). 20 public episodes.
+  - **Informative:** pooled AUROC ≥ 0.75 and ≥ 8 episodes contribute positives.
+  - **Falsified:** AUROC < 0.65. Otherwise inconclusive. 95% CI by episode bootstrap, reported with the result.
+
