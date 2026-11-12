@@ -1,5 +1,14 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-12 ~21:00 UTC: ideas note 28 (Gemini Decisions API in the pipeline); nothing run, $0
+- Owner asked how to bring the Gemini Decisions API (released 11 Nov) into the workflow. Note:
+  `docs/research/notes/28-gemini-decisions-api-in-the-pipeline.md`.
+- It answers closed questions (yes/no, choice, rubric score) about images or video with probabilities; no text, no
+  poses. Possible role: an automatic visual judge at our weak ground-truth-free gates [H].
+- Six ideas ranked; top two: track audit (replaces the falsified depth audit) and mesh selector (Spearman 0.46).
+- **Waiting on the owner:** go-ahead for two offline public tests (≈ $1.1 of API [C]), a Gemini API key (paid tier),
+  and a check that the competition allows a hosted model in the pipeline.
+
 ## 2026-11-12 ~20:45 UTC: reading note 27 (LLM weight-space repair vs decision models); nothing run, $0
 - Owner asked for an analysis of https://jstranghoener.github.io/blog/robotic-weight-space-programming/ and of
   replacing its LLM with a decision model. Note: `docs/research/notes/27-weight-space-programming-and-decision-models.md`.

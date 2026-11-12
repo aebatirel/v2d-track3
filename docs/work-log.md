@@ -5407,3 +5407,15 @@ arm and a no-policy replay floor to stage B.
     need an OCBench setup we do not have.
 - Not done: no code, no experiment, no check of our checkpoint format against the "reflex inside the weights" idea.
 
+### 2026-11-12 ~21:00 UTC — ideas note 28: Gemini Decisions API (CPU, $0, no API call made)
+- Owner: "look into this and ideate how we can implement this into the workflow" (Google announcement, 11 Nov 2026).
+  This is what the earlier "decision models" question meant; note 27 had read the term generically.
+- Read with curl: the announcement, the Decisions API docs, and the model, pricing, rate-limit and media-resolution
+  pages on aistudio.google.com/docs. The benchmark table is an image; read it by eye.
+- Result: `docs/research/notes/28-gemini-decisions-api-in-the-pipeline.md`. Six integration ideas with a public test
+  and a bar each; constraints; a first test of two offline checks (mesh selector on the 104 scored meshes, track audit
+  on the depth audit's 7,835 object-frames; ≈ $1.1 of API, computed from list prices).
+- Not done: no key, no call, no code. No pre-registration yet; the rules get written here before any scoring.
+- Open: whether the competition allows a hosted proprietary model in the pipeline; the dataset licence on sending
+  frames to a third party.
+

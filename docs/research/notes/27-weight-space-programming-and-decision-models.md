@@ -17,6 +17,7 @@ Sources (all read in full or scanned on 2026-11-12):
 - Gong et al. *We Asked Opus-5.5 to Edit π0.5's Weights.* Blog, 2026.
   https://cuzyoung.github.io/robotics-weight-editing/en (scanned for cost and baselines)
 
+Later the same day the owner pointed to the Gemini Decisions API as the product meant; see note 28 §6.
 "Decision model" is read broadly here: any small trained or algorithmic model that makes the repair decisions
 (which failure, which fix, which numbers) in place of the LLM. The Decision Transformer reading is design C in §4.
 
