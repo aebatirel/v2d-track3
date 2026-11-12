@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 ~02:05 UTC: C2 inconclusive (98.6% of frames drift even when grasp-locked); DS modulation dropped
+- Ideas 1 and 3 cannot be tested without trained-policy rollouts: test A on GPU (≈ $20–50; Vast $33.98). Owner decides
+  go or park.
+- DS obstacle modulation: not run; our collisions are object overlaps from perception, not hand-bystander contacts.
+- Running: Gemini judge phase 1 (inputs + PREREG).
+
 ## 2026-11-13 ~01:00 UTC: owner "go crazy": three CPU tracks running, rules pre-registered (work log 00:50 UTC)
 - Data licence: CC BY 4.0, so public-episode frames may go to Gemini (no ground truth is ever sent).
 - Running (background agents, CPU, $0 GPU):

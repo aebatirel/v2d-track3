@@ -5671,3 +5671,16 @@ arm and a no-policy replay floor to stage B.
 - **Decision: phase 2 not run.** The evidence already says the method targets a collision type our failures do not
   have. The code and PREREG are kept for a future scene with bystander objects.
 
+### 2026-11-13 ~02:05 UTC — test C2 (ideas 1 and 3, grasp-locked replay label): INCONCLUSIVE by the share rule
+- 3,122 of 3,167 rows positive (98.6% > 90%). Pooled AUROC 0.53, CI [0.33, 0.66]; the 45 negatives are mostly ep43
+  (40). Tree: out-of-fold AUROC 0.35 vs gate 0.53 (diff −0.18, CI [−0.23, 0.09]); inconclusive by the same rule.
+- All 19 grasp-lock + ILC + replay chains ran cleanly (CPU, 8c778f9 venv, `sharpa_hands_mid`, HEAD 983bd272);
+  1,532 s wall for 18 episodes at 3 in parallel. Grasp lock leaves the object trajectory unchanged (0.0 mm).
+- What the label shows: five objects now lift (ep24 piece 1, ep42 and ep43 pots, ep18 dust pan, ep31 sweeper), but
+  even those end 4–24 cm from the reference. Both open-loop labels (C and C2) fail on almost every held frame of these
+  20 Oct references, so neither can test the gate.
+- Files: `docs/research/work/wrench-gate-20261112/` README §11, `results_C2.json`, `labels_C2.csv`, `score_C2.py`;
+  `docs/research/work/blob-tree-20261112/results_tree_C2.json`. Traces only in the scratchpad (`wgate/replayC2`).
+- The only label left that varies is trained-policy rollouts (test A): GPU, about $20–50, needs the owner's go-ahead.
+  Otherwise ideas 1 and 3 are parked as unproven.
+
