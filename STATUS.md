@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 ~01:00 UTC: owner "go crazy": three CPU tracks running, rules pre-registered (work log 00:50 UTC)
+- Data licence: CC BY 4.0, so public-episode frames may go to Gemini (no ground truth is ever sent).
+- Running (background agents, CPU, $0 GPU):
+  - test C2: grasp-locked replay labels for ideas 1 and 3;
+  - DS obstacle modulation of the reference (Roman's idea), phase 1 = design + PREREG only;
+  - Gemini judge tests G-A (mesh selector) and G-B (track audit), phase 1 = inputs + PREREG; API cap $5.
+- Phase 2 of the last two starts only after their PREREG files are committed.
+
 ## 2026-11-13 ~00:35 UTC: idea 2 (LLM weight repair) done: inconclusive by rule, not a repair in substance; no GPU pilot
 - On exercise 3 the LLM's edit fixes the failing run (unedited fails at 17.6 s) and halves handover failures, but over
   20 varied starts it completes 11 vs 9 (bar +10) and breaks one; it adds early pickup failures it never saw.
