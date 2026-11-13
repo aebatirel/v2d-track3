@@ -12468,3 +12468,27 @@ score.
   - a before/after Franka clip;
   - key-moment stills;
   - a 1280-wide copy of the input video.
+
+### 2026-11-13 — reward A/B (H-W2) PREPARED and PRE-REGISTERED before any result; not launched
+- Owner: "okay lets do those see if we get any improvements" (plan `docs/research/work/plan-20261113/PLAN.md`).
+- Merged `claude/charming-goldberg-glc1xi` (perfect-following lane + showcase, the newest training code) into this
+  branch (2333704e).
+- Code (0535138a): opt-in `FC_FDR_OBJ_MODE=centroid` in `ops/box/fc_v2d_fdr.py`.
+  - Six keypoints at 0.1 m around the surface centroid; `FC_FDR_OBJ_SIGMA` sets the width.
+  - Default unchanged.
+  - `tests/test_fdr_centroid.py` passes on CPU (warp 1.14 + newton 1.2): kernel vs numpy, 1° → 1.745 mm, centroid,
+    attach/evaluate wiring.
+- **Reward centering left out on purpose.**
+  - Per-step reward = 0.05 × weighted sum (≤ ~1.5); termination −100 × 0.05 = −5; γ 0.99.
+  - Naive centering makes termination attractive whenever the reward runs ≥ 0.05 below average for the remaining
+    horizon.
+  - Its terminal correction (−γb/(1−γ)) would dominate FlashSAC's return scaling.
+  - Hypothesis only; not built.
+- **A/B design and rule:** `docs/research/work/reward-ab-20261113/README.md`.
+  - Public ep12/2/40/23; control = test A's chosen checkpoints; treatment = centroid reward, σ 3 cm.
+  - 5 fresh draws each, registered AUC vs mocap.
+  - Promising if mean Δ ≥ +0.010 and no episode < −0.030; falsified if mean Δ ≤ 0.
+- Jobs `jobs/rA1.job` (ep12, ep2) and `jobs/rA2.job` (ep40, ep23).
+  - Reference sha256 checked equal to test A's input.
+  - Control selection files and policies present in the store.
+- Estimate ≈ $11–14 for 2 boxes (cap $16); credit $9.58.

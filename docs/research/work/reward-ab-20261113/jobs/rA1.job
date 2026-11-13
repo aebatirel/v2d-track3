@@ -1,0 +1,24 @@
+# reward A/B box rA1: ep12 ep2 (training order). Plan + PREREG: docs/research/work/reward-ab-20261113/README.md
+R0=20261020-refsweep-ea14fdf
+for i in 1 2 3; do PULL_SUB="perc2/ep12" bash ops/box/store.sh pull-run $R0 >> /content/prepull.log 2>&1 && PULL_SUB="refs/perc2s/ep12" bash ops/box/store.sh pull-run 20261113-gA1b-25cb421 >> /content/prepull.log 2>&1 && break; echo "[$(date -u +%FT%TZ)] reward A/B: pull for ep12 failed (try $i)" >> /content/job.log; sleep 120; done
+bash ops/box/store.sh pull-files runs/20261113-gA1b-25cb421/results/perc2s/ep12-s42/selection.json >> /content/prepull.log 2>&1
+CK=$(python3 -c "import json; print(json.load(open('/content/hfstore/runs/20261113-gA1b-25cb421/results/perc2s/ep12-s42/selection.json'))['chosen'])")
+bash ops/box/store.sh pull-files runs/20261113-gA1b-25cb421/runs/perc2s/ep12-s42/$(basename $CK) >> /content/prepull.log 2>&1
+mkdir -p /content/results/perc2s/ep12-s42 /content/runs/perc2s/ep12-s42 && cp /content/hfstore/runs/20261113-gA1b-25cb421/results/perc2s/ep12-s42/selection.json /content/results/perc2s/ep12-s42/ && cp /content/hfstore/runs/20261113-gA1b-25cb421/runs/perc2s/ep12-s42/$(basename $CK) $CK
+for i in 1 2 3; do PULL_SUB="perc2/ep2" bash ops/box/store.sh pull-run $R0 >> /content/prepull.log 2>&1 && PULL_SUB="refs/perc2s/ep2" bash ops/box/store.sh pull-run 20261113-gA3-25cb421 >> /content/prepull.log 2>&1 && break; echo "[$(date -u +%FT%TZ)] reward A/B: pull for ep2 failed (try $i)" >> /content/job.log; sleep 120; done
+bash ops/box/store.sh pull-files runs/20261113-gA3-25cb421/results/perc2s/ep2-s42/selection.json >> /content/prepull.log 2>&1
+CK=$(python3 -c "import json; print(json.load(open('/content/hfstore/runs/20261113-gA3-25cb421/results/perc2s/ep2-s42/selection.json'))['chosen'])")
+bash ops/box/store.sh pull-files runs/20261113-gA3-25cb421/runs/perc2s/ep2-s42/$(basename $CK) >> /content/prepull.log 2>&1
+mkdir -p /content/results/perc2s/ep2-s42 /content/runs/perc2s/ep2-s42 && cp /content/hfstore/runs/20261113-gA3-25cb421/results/perc2s/ep2-s42/selection.json /content/results/perc2s/ep2-s42/ && cp /content/hfstore/runs/20261113-gA3-25cb421/runs/perc2s/ep2-s42/$(basename $CK) $CK
+for x in 12:86316dcedab00803ab79347e63dd71982c60ca5c606f3790ebcbb19e0ff24955 2:a35dc7069a6a2980acacd106a2c42f32054fdd21502c2390db8b0fec00494d4f ; do
+  e=${x%%:*}; f=$(ls /content/refs/perc2s/ep$e/processed/*/*/*.parquet 2> /dev/null | head -1)
+  [ -n "$f" ] && [ "$(sha256sum < $f | cut -c1-64)" = "${x#*:}" ] && [ -s /content/perc2/ep$e/poses.npz ] && [ -s "$(python3 -c "import json; print(json.load(open(\"/content/results/perc2s/ep$e-s42/selection.json\"))[\"chosen\"])")" ] \
+    || { echo "[$(date -u +%FT%TZ)] reward A/B: ep$e reference, perception or control checkpoint missing, or reference sha256 mismatch" >> /content/job.log; exit 1; }
+  echo "[$(date -u +%FT%TZ)] reward A/B: ep$e reference $f sha256 OK (test A input); control checkpoint present" >> /content/job.log
+done
+. /content/v2d-track3/ops/box/lib.sh
+export FC_FDR_OBJ=1 FC_FDR_TIPS=1 FC_VOC_INERTIA=1 FC_IMMEDIATE_FIRST_FRAME=0.25 TRAIN_ARGS="$FDR_TRAIN_ARGS" \
+  FC_FDR_OBJ_MODE=centroid FC_FDR_OBJ_LEVER=0.1 FC_FDR_OBJ_SIGMA=0.03 \
+  SPLIT=public PDIR_ROOT=/content/perc2 SUF=c CR=0 BASE_EVAL=1 NREP=5 SEED=42 LIB=/content/v2d-track3/meshes/library_v3 \
+  PAIRS="12:local:s 2:local:s"
+bash ops/jobs/hard_ab.sh
