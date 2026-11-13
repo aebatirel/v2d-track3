@@ -12517,3 +12517,19 @@ score.
   - Segments whose tracker pose sits within 2 cm of the plane are pulled onto it (σ 3 mm); others may not sink below
     it.
   - Running arms JS / PS on the three dev episodes.
+- Dev arms JS / PS (support term) [D], ΔAUC vs C on ep21 / ep11 / ep31:
+  - J +0.056 / −0.006 / −0.023, mean +0.009;
+  - P +0.031 / −0.003 / +0.026, mean +0.018;
+  - JS +0.037 / +0.009 / −0.004, mean +0.014;
+  - PS +0.028 / −0.003 / +0.024, mean +0.016.
+  - With the support term the rack's and sweeper's scales still run to the +15 % bound, so shape is not
+    identifiable from this evidence for those objects.
+- **AMENDMENT before the frozen run (no 20-episode result exists yet):**
+  - primary arm = **P** (`--no_shape`, silhouette + depth poses, no support term): best dev mean and best worst case;
+  - secondary, report only = **JS** (`--plane_log`, shape + support).
+  - Gate and everything else unchanged.
+  - Code frozen: `docs/research/work/joint-fit-20261113/FROZEN.sha256`
+    87a674c5cb5f6601cab52971f2dbb61cd6329c4a9868012c716084b9d89b767a  stage1b.py
+    7cb80d592ce49a30e97ab49cf5f6bb752e3a8d2ce92a9ab5d3a7c5a21ec28568  run_all.sh
+    0a41fb3c1ed71038e37dde29d8288d20978c47c32f8f78501bd8b601de6cdb31  gate1b.py
+    0137aec7ecc8533c0100c527591f583e47bed0cb7a34ff7f116921cf0cfa6ee4  fetch_ep.sh
