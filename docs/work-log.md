@@ -13102,3 +13102,17 @@ score.
   - mean draw 0.8982; E[best of 3] 0.9195; best of 10 0.9278 (+0.030);
   - largest gains: eval 14 0.727 → 0.912, eval 15 0.906 → 0.976, eval 16 0.850 → 0.916.
 - Estimated board effect of best-of-10 ≈ +0.02–0.03 AUC [E, transfer 0.74–0.98].
+- **Best-of-N extrapolation** (owner: "assuming a normal distribution, how much would 320 runs bring"), sim_vs_ref,
+  20-episode means:
+
+  | N | normal | beta | measured |
+  |---|---|---|---|
+  | 1 | 0.898 | 0.898 | 0.898 |
+  | 10 | 0.944 | 0.938 | 0.928 |
+  | 50 | 0.953 | 0.947 | — |
+  | 320 | 0.959 | 0.952 | — |
+
+  - Normal: per-episode mean + sd × E[max of N], capped at 1. Beta: fitted by moments.
+  - Both over-predict the measured best of 10 (skewed scores), so the normal gain is scaled by 0.65.
+  - Best of 320 ≈ 0.938 [E]: about +0.02 over the packed (already lucky) draws, ≈ +0.016–0.021 board AUC [E].
+  - The gain sits in evals 14, 15, 28 and 30.
