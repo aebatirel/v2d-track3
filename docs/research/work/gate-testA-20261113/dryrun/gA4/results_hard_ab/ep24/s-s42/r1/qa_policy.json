@@ -1,0 +1,7 @@
+{
+ "kind": "policy",
+ "ep": 24,
+ "sim_vs_ref": 0.9842,
+ "floor_vs_ref": 0.2202,
+ "verdict": "ok"
+}

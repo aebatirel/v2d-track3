@@ -1,0 +1,17 @@
+# test A box gA2: public ep40 then ep21 (training order). Plan: docs/work-log.md 2026-11-13 ~02:30 and ~03:00 UTC.
+R=20261020-refsweep-ea14fdf
+for i in 1 2 3; do
+  PULL_SUB="perc2/ep40 refs/perc2/ep40 perc2/ep21 refs/perc2/ep21" bash ops/box/store.sh pull-run $R >> /content/prepull.log 2>&1 && break
+  echo "[$(date -u +%FT%TZ)] test A: pull of $R failed (try $i)" >> /content/job.log; sleep 120
+done
+for x in 40:26b969a60c506fefe076b1a3ce1a3b628f2da0297b5b0c0b6e372c974752c121 21:1af78da9de49b4cd9ab8d6e4c3c9e4991c7298d67fdf42206074dd529f14ab6d; do
+  e=${x%%:*}; f=$(ls /content/refs/perc2/ep$e/processed/*/*/*.parquet 2> /dev/null | head -1)
+  [ -n "$f" ] && [ "$(sha256sum < $f | cut -c1-64)" = "${x#*:}" ] && [ -s /content/perc2/ep$e/poses.npz ] \
+    || { echo "[$(date -u +%FT%TZ)] test A: ep$e reference or perception missing, or reference sha256 mismatch" >> /content/job.log; exit 1; }
+  echo "[$(date -u +%FT%TZ)] test A: ep$e reference $f sha256 OK (the gate's input)" >> /content/job.log
+done
+. /content/v2d-track3/ops/box/lib.sh
+export FC_FDR_OBJ=1 FC_FDR_TIPS=1 FC_VOC_INERTIA=1 FC_IMMEDIATE_FIRST_FRAME=0.25 TRAIN_ARGS="$FDR_TRAIN_ARGS" \
+  SPLIT=public PDIR_ROOT=/content/perc2 SUF=s CR=0 BASE_EVAL=0 NREP=1 SEED=42 LIB=/content/v2d-track3/meshes/library_v3 \
+  PAIRS="40:local: 21:local:"
+bash ops/jobs/hard_ab.sh

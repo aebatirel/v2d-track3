@@ -1,0 +1,52 @@
+{
+ "episode": 23,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 325,
+ "sim_vs_mocap": {
+  "AUC": 0.9873,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.659,
+  "RPE_cm": 0.876,
+  "per_obj": {
+   "wooden_piece_1": 0.9779,
+   "wooden_piece_2": 0.9967
+  }
+ },
+ "static_floor": {
+  "AUC": 0.2453,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 12.213,
+  "RPE_cm": 25.226,
+  "per_obj": {
+   "wooden_piece_1": 0.0829,
+   "wooden_piece_2": 0.4077
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.9981,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.455,
+  "RPE_cm": 0.62,
+  "per_obj": {
+   "wooden_piece_1": 0.9994,
+   "wooden_piece_2": 0.9967
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 0.9908,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.26,
+  "RPE_cm": 0.52,
+  "per_obj": {
+   "wooden_piece_1": 0.9815,
+   "wooden_piece_2": 1.0
+  }
+ }
+}

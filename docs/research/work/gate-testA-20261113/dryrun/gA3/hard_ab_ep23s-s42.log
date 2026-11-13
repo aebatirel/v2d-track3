@@ -1,0 +1,57 @@
+[23:57:11] ep23 start (public, perception perc2, steps 250003456, seed 42, code ee653b38)
+[23:57:11] perception: [  174.2s] vo                           AUC 0.999 SP 1.00 MP 1.00 MPPE 0.42 RPE 0.57 {'wooden_piece_1': 0.999, 'wooden_p
+[23:57:11] hands done
+[23:57:12] reference: /content/refs/perc2s/ep23/processed/sequence_id=t3_ep023/robot_name=sharpa_wave (code ee653b38)
+[23:57:12] qa_ref: {"kind": "ref", "reasons": ["left wrist IK p95 144 mm > 60", "right wrist IK p95 93 mm > 60", "right wrist step 11.7 cm > 10"], "wrist_p95_mm": {"left": 143.9, "right": 93.4}, "max_step_cm": {"left": 9.2, "right": 11.7}, "pass": false, "score": 143.9}
+[23:57:13] waiting for the GPU (TRAIN_LOCK)
+[23:57:13] GPU lock acquired
+[23:57:14] trained: /content/runs/perc2s/ep23-s42/policy_250003456.safetensors (code ee653b38)
+[23:57:14] evaluated
+[23:57:16] sweep policy_100003840.safetensors: sim_vs_ref 0.9379 (best so far 0.9551, floor 0.248)
+[23:57:17] sweep policy_150005760.safetensors: sim_vs_ref 0.9908 (best so far 0.9551, floor 0.248)
+[23:57:18] sweep policy_200007680.safetensors: sim_vs_ref 0.9561 (best so far 0.9908, floor 0.248)
+[23:57:18] qa_policy: {"kind":"policy","ep":23,"sim_vs_ref":0.9908,"floor_vs_ref":0.248,"verdict":"ok"}
+  "RPE_cm": 0.876,
+  "per_obj": {
+   "wooden_piece_1": 0.9779,
+   "wooden_piece_2": 0.9967
+  }
+ },
+ "static_floor": {
+  "AUC": 0.2453,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 12.213,
+  "RPE_cm": 25.226,
+  "per_obj": {
+   "wooden_piece_1": 0.0829,
+   "wooden_piece_2": 0.4077
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.9981,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.455,
+  "RPE_cm": 0.62,
+  "per_obj": {
+   "wooden_piece_1": 0.9994,
+   "wooden_piece_2": 0.9967
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 0.9908,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.26,
+  "RPE_cm": 0.52,
+  "per_obj": {
+   "wooden_piece_1": 0.9815,
+   "wooden_piece_2": 1.0
+  }
+ }
+}
+render FAILED
+DRY RUN: view_policy.py (render) not run
+render failed (not fatal)
+[23:57:19] ep23 DONE

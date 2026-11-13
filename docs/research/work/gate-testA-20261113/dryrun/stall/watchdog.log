@@ -1,0 +1,5 @@
+[2026-11-13T00:05:26Z] stalled: no progress for 2 min
+[2026-11-13T00:05:26Z] self-destroy: stalled 2 min
+pushed runs/dry-20261113-stall-ee653b3 (28K)
+{"success": true, "dryrun": true}
+[2026-11-13T00:05:26Z] destroy requested

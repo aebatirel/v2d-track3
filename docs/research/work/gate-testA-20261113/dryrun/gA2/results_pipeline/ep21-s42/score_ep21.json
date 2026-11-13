@@ -1,0 +1,52 @@
+{
+ "episode": 21,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 186,
+ "sim_vs_mocap": {
+  "AUC": 0.9795,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.764,
+  "RPE_cm": 1.138,
+  "per_obj": {
+   "blue_cup": 1.0,
+   "water_pitcher": 0.959
+  }
+ },
+ "static_floor": {
+  "AUC": 0.3587,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 8.78,
+  "RPE_cm": 20.221,
+  "per_obj": {
+   "blue_cup": 0.4862,
+   "water_pitcher": 0.2312
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.9795,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.766,
+  "RPE_cm": 1.154,
+  "per_obj": {
+   "blue_cup": 1.0,
+   "water_pitcher": 0.959
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 1.0,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.016,
+  "RPE_cm": 0.033,
+  "per_obj": {
+   "blue_cup": 1.0,
+   "water_pitcher": 1.0
+  }
+ }
+}

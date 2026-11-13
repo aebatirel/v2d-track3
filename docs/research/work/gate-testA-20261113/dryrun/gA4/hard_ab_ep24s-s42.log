@@ -1,0 +1,57 @@
+[23:58:59] ep24 start (public, perception perc2, steps 250003456, seed 42, code ee653b38)
+[23:58:59] perception: [  150.2s] vo                           AUC 0.843 SP 1.00 MP 1.00 MPPE 2.18 RPE 0.65 {'wooden_piece_1': 0.835, 'wooden_p
+[23:58:59] hands done
+[23:59:00] reference: /content/refs/perc2s/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave (code ee653b38)
+[23:59:00] qa_ref: {"kind": "ref", "reasons": ["left wrist IK p95 95 mm > 60", "left wrist step 13.4 cm > 10", "right wrist IK p95 133 mm > 60", "right wrist step 18.3 cm > 10"], "wrist_p95_mm": {"left": 94.5, "right": 133.4}, "max_step_cm": {"left": 13.4, "right": 18.3}, "pass": false, "score": 133.4}
+[23:59:00] waiting for the GPU (TRAIN_LOCK)
+[23:59:00] GPU lock acquired
+[23:59:01] trained: /content/runs/perc2s/ep24-s42/policy_250003456.safetensors (code ee653b38)
+[23:59:02] evaluated
+[23:59:03] sweep policy_100003840.safetensors: sim_vs_ref 0.9526 (best so far 1.0, floor 0.2202)
+[23:59:04] sweep policy_150005760.safetensors: sim_vs_ref 0.9469 (best so far 1.0, floor 0.2202)
+[23:59:06] sweep policy_200007680.safetensors: sim_vs_ref 0.9567 (best so far 1.0, floor 0.2202)
+[23:59:06] qa_policy: {"kind":"policy","ep":24,"sim_vs_ref":1.0,"floor_vs_ref":0.2202,"verdict":"ok"}
+  "RPE_cm": 0.686,
+  "per_obj": {
+   "wooden_piece_1": 0.8409,
+   "wooden_piece_2": 0.8477
+  }
+ },
+ "static_floor": {
+  "AUC": 0.2439,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 13.781,
+  "RPE_cm": 29.219,
+  "per_obj": {
+   "wooden_piece_1": 0.0573,
+   "wooden_piece_2": 0.4305
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.8416,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 2.221,
+  "RPE_cm": 0.624,
+  "per_obj": {
+   "wooden_piece_1": 0.8355,
+   "wooden_piece_2": 0.8477
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 1.0,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.089,
+  "RPE_cm": 0.177,
+  "per_obj": {
+   "wooden_piece_1": 1.0,
+   "wooden_piece_2": 1.0
+  }
+ }
+}
+render FAILED
+DRY RUN: view_policy.py (render) not run
+render failed (not fatal)
+[23:59:07] ep24 DONE

@@ -1,0 +1,7 @@
+{
+ "dry_run": true,
+ "checkpoint": "/content/runs/perc2s/ep21-s42/policy_200007680.safetensors",
+ "steps": 186,
+ "objects": 2,
+ "drift_m": 0.038409068176499604
+}

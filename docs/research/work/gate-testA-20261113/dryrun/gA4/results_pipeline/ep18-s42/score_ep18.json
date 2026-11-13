@@ -1,0 +1,52 @@
+{
+ "episode": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "sim_vs_mocap": {
+  "AUC": 0.9704,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.889,
+  "RPE_cm": 1.35,
+  "per_obj": {
+   "mini_sweeper": 0.9942,
+   "mini_dust_pan": 0.9467
+  }
+ },
+ "static_floor": {
+  "AUC": 0.6072,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 4.2,
+  "RPE_cm": 8.456,
+  "per_obj": {
+   "mini_sweeper": 0.6009,
+   "mini_dust_pan": 0.6135
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.9704,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.89,
+  "RPE_cm": 1.293,
+  "per_obj": {
+   "mini_sweeper": 0.9942,
+   "mini_dust_pan": 0.9467
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 1.0,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.067,
+  "RPE_cm": 0.134,
+  "per_obj": {
+   "mini_sweeper": 1.0,
+   "mini_dust_pan": 1.0
+  }
+ }
+}

@@ -1,0 +1,5 @@
+[2026-11-12T23:56:35Z] VAST PUT https://console.vast.ai/api/v0/instances/DRYRUN-gA4/ data={"label": "dry-20261113-gA4-ee653b3 setup"}
+[2026-11-12T23:56:35Z] VAST PUT https://console.vast.ai/api/v0/instances/DRYRUN-gA4/ data={"label": "dry-20261113-gA4-ee653b3 job running"}
+[2026-11-12T23:57:38Z] VAST PUT https://console.vast.ai/api/v0/instances/DRYRUN-gA4/ data={"label": "dry-20261113-gA4-ee653b3 hard A/B: 18:local: 24:local:"}
+[2026-11-13T00:00:20Z] VAST PUT https://console.vast.ai/api/v0/instances/DRYRUN-gA4/ data={"label": "dry-20261113-gA4-ee653b3 saving, then destroy: job finished rc=0"}
+[2026-11-13T00:00:21Z] VAST DELETE https://console.vast.ai/api/v0/instances/DRYRUN-gA4/ data=

@@ -1,0 +1,34 @@
+{
+ "12": {
+  "sha256": "86316dcedab00803ab79347e63dd71982c60ca5c606f3790ebcbb19e0ff24955",
+  "path": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/52a61b51b3cc4effb0e59ab8c5fc04b2-0.parquet"
+ },
+ "31": {
+  "sha256": "4eded4a37ad70bbe8379c854fac37464c05109f038fb32322ea0bed357f606a6",
+  "path": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/cc8ca2259c3c4777bb40d792234203dd-0.parquet"
+ },
+ "40": {
+  "sha256": "26b969a60c506fefe076b1a3ce1a3b628f2da0297b5b0c0b6e372c974752c121",
+  "path": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep40/processed/sequence_id=t3_ep040/robot_name=sharpa_wave/5e84d546686d49c799b0f504e96f8659-0.parquet"
+ },
+ "21": {
+  "sha256": "1af78da9de49b4cd9ab8d6e4c3c9e4991c7298d67fdf42206074dd529f14ab6d",
+  "path": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/e7196e5daa2d4996a938d45e77883317-0.parquet"
+ },
+ "23": {
+  "sha256": "4ad4020ceabd333a21988693a9bc90074c7714ce25bcc9913174c1f86e4f98d2",
+  "path": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep23/processed/sequence_id=t3_ep023/robot_name=sharpa_wave/aa744602acb74229bf71519f9f1faa3b-0.parquet"
+ },
+ "2": {
+  "sha256": "a35dc7069a6a2980acacd106a2c42f32054fdd21502c2390db8b0fec00494d4f",
+  "path": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/55ed3f7f5ab14dd8b404f89a29c4b6eb-0.parquet"
+ },
+ "18": {
+  "sha256": "477cefec725393793ac7479b7935df4bc29d1a33fbe2ba955540277b1409ba8b",
+  "path": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/250358dc316249b098c6efa126802393-0.parquet"
+ },
+ "24": {
+  "sha256": "a13533659dcecf49a17a1961e68bf9251651d735524bbdcf4452f19bfb3efae0",
+  "path": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/9b24770f78754cefb1a38b59bf7b0198-0.parquet"
+ }
+}

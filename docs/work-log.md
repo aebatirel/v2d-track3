@@ -5752,3 +5752,30 @@ arm and a no-policy replay floor to stage B.
 - Consequence, as note 28 §5 said in advance: Gemini has no place in the pipeline as a visual judge of geometry.
   Ideas 3–6 of note 28 drop unless a new reason appears (owner's call).
 
+### 2026-11-13 ~04:10 UTC — test A: dry run passed; decisions D1–D3 recorded BEFORE any result; launch
+- Owner go-ahead (this conversation): "you can do gpu test, how much do you need?", then "lets not do all refs but
+  selection of them" (8 episodes, cap $30, inside the $33.98 credit; amendment 03:00 UTC).
+- Prep and dry run: `docs/research/work/gate-testA-20261113/` (README, JOBS.txt, jobs/gA1–gA4.job with SHA256SUMS,
+  dryrun/).
+  - All 4 job strings ran end to end in a CPU sandbox, from onstart to the self-destroy call. Training, evaluator,
+    Vast and store were stubbed.
+  - References are sha256-checked against the gate's input.
+  - The FlashCHORD environment built on CPU for all 8 references.
+  - The stall watchdog was tested.
+  - No code change: the jobs reuse `ops/jobs/hard_ab.sh` with the std_learner recipe.
+- **Decisions (fixed now, before results):**
+  - **D1, simulator meshes:** the organisers' public object files (`/content/t3/urdf/*_rigid.urdf`, scans), because
+    the 20 Oct references point at them. This is the same input the gate was scored on and that C/C2 replayed.
+    `LIB=library_v3` does not reach the simulator. The 02:30 entry's "library_v3 meshes" was wrong. The result
+    transfers to the library_v3 pipeline only in part (oracle-mesh condition).
+  - **D2, label rollout:** `results/hard_ab/ep<N>/s-s42/r1/episode_<E6>.parquet`, the one fresh official-evaluator
+    draw (NREP=1) of the checkpoint hard_ab's sweep (0.4/0.6/0.8 plus final) chose. The sweep's own draws are not
+    labels.
+  - **D3, evaluator:** draws run on the training box's patched FlashCHORD, not the untouched kit evaluator. The 3 Nov
+    evaluator-gap test found no gap.
+- Known risk: all 8 references fail today's reference QA (wrist IK 62–171 mm vs 60 mm). Policies may track badly and
+  push more than 90% of frames positive, making the test inconclusive by the share rule.
+- Cost: 3.3–4.2 h per box; ≈ $21–28 central at $1.51–1.66/h; cap $30 (stop rule: the 4 rates must sum ≤ $7.1/h).
+- Ledger: `ops/ledger.py` needs a store write credential this session lacks (read-only HF). Planned and actual lines
+  are recorded in this log instead (planned $7.00 per box).
+

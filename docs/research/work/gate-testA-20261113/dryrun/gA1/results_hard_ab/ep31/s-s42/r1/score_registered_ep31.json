@@ -1,0 +1,64 @@
+{
+ "episode": 31,
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "frames": 290,
+ "meshes": "/content/v2d-track3/meshes/library_v3",
+ "registration": {
+  "mini_sweeper": {
+   "rot_deg": 3.04,
+   "anchor_shift_cm": 0.43,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 1.56,
+   "anchor_shift_cm": 0.67,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "sim": {
+  "AUC": 0.7096,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 2.9763,
+  "RPE_cm": 3.1539,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.8545,
+   "plastic_dish_rack": 0.5647
+  }
+ },
+ "reference": {
+  "AUC": 0.7377,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 2.7391,
+  "RPE_cm": 2.8498,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.9108,
+   "plastic_dish_rack": 0.5647
+  }
+ },
+ "static_floor": {
+  "AUC": 0.3796,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 6.2019,
+  "RPE_cm": 11.8735,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.1968,
+   "plastic_dish_rack": 0.5625
+  }
+ }
+}

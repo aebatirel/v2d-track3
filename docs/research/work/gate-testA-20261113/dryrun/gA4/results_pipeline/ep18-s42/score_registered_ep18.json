@@ -1,0 +1,64 @@
+{
+ "episode": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "meshes": "/content/v2d-track3/meshes/library_v3",
+ "registration": {
+  "mini_sweeper": {
+   "rot_deg": 3.1,
+   "anchor_shift_cm": 0.4,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "mini_dust_pan": {
+   "rot_deg": 2.44,
+   "anchor_shift_cm": 0.59,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "sim": {
+  "AUC": 0.9662,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.9417,
+  "RPE_cm": 1.3719,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.992,
+   "mini_dust_pan": 0.9403
+  }
+ },
+ "reference": {
+  "AUC": 0.9662,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.9284,
+  "RPE_cm": 1.39,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.992,
+   "mini_dust_pan": 0.9403
+  }
+ },
+ "static_floor": {
+  "AUC": 0.6084,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 4.1681,
+  "RPE_cm": 8.7338,
+  "per_obj_AUC": {
+   "mini_sweeper": 0.6006,
+   "mini_dust_pan": 0.6161
+  }
+ }
+}

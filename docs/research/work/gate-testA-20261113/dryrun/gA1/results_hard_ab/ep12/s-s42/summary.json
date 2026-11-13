@@ -1,0 +1,26 @@
+{
+ "checkpoint": "/content/runs/perc2s/ep12-s42/policy_250003456.safetensors",
+ "n": 1,
+ "sim_vs_ref": {
+  "mean": 0.9865,
+  "std": 0.0,
+  "min": 0.9865,
+  "max": 0.9865
+ },
+ "auc": {
+  "mean": 0.6792,
+  "std": 0.0,
+  "min": 0.6792,
+  "max": 0.6792
+ },
+ "auc_of_best_sim_vs_ref": 0.6792,
+ "rollouts": [
+  {
+   "rollout": "r1",
+   "sim_vs_ref": 0.9865,
+   "auc": 0.6792,
+   "sp": 1.0,
+   "mp": 0.0
+  }
+ ]
+}

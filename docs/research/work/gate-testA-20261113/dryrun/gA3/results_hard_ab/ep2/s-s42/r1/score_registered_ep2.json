@@ -1,0 +1,64 @@
+{
+ "episode": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 343,
+ "meshes": "/content/v2d-track3/meshes/library_v3",
+ "registration": {
+  "white_pot": {
+   "rot_deg": 1.83,
+   "anchor_shift_cm": 0.63,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "white_pot_lid": {
+   "rot_deg": 1.05,
+   "anchor_shift_cm": 0.79,
+   "axis": [
+    1.0,
+    -0.003,
+    0.005
+   ],
+   "order": 2
+  }
+ },
+ "sim": {
+  "AUC": 0.9344,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.2253,
+  "RPE_cm": 2.2672,
+  "per_obj_AUC": {
+   "white_pot": 0.9173,
+   "white_pot_lid": 0.9515
+  }
+ },
+ "reference": {
+  "AUC": 0.9719,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.7928,
+  "RPE_cm": 1.6985,
+  "per_obj_AUC": {
+   "white_pot": 0.9923,
+   "white_pot_lid": 0.9515
+  }
+ },
+ "static_floor": {
+  "AUC": 0.4934,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 9.6072,
+  "RPE_cm": 17.233,
+  "per_obj_AUC": {
+   "white_pot": 0.6682,
+   "white_pot_lid": 0.3187
+  }
+ }
+}
