@@ -485,3 +485,92 @@ held units; median height rise of the object above its frame-0 height in the hel
 - **Grasp-lock options:** only the default arguments, as pre-registered. Later recipe options (`--events`,
   `--force_design`, `--sim_trace` re-planning) were not used.
 - **No kit score:** `trace_score.py` was skipped. The label does not depend on it.
+
+## 12. Test A: official evaluator rollouts on 8 public episodes (scoring PREPARED; no label or AUROC computed yet)
+
+**Status:** the scorer is built and self-tested on synthetic rollouts. The pairing check passes on the 7 rollouts that
+exist [M]. Labels, AUROC and the tree have **not** been computed from any achieved pose. The run waits for ep31's
+label rollout (gA1b, due about 06:05 UTC).
+
+### 12.1 Rules
+
+- **Test A** (work log "2026-11-12 ~22:20 UTC"), as amended at "2026-11-13 ~02:30 UTC" and "~03:00 UTC":
+  - episodes ep12, ep40, ep23, ep18, ep2, ep24, ep21, ep31;
+  - informative if AUROC ≥ 0.75 and ≥ 4 of the 8 episodes contribute positives;
+  - falsified if AUROC < 0.65;
+  - the 10–90% share rule;
+  - CI from 2,000 episode-bootstrap resamples, seed 20261112;
+  - the tree leave-one-episode-out over the same 8 episodes.
+- **Decisions D1–D3 ("~04:10 UTC"):**
+  - D1: the simulator ran on the kit scans.
+  - D2: the label rollout is `results/hard_ab/ep<N>/s-s42/r1/episode_<E6>.parquet`, the one fresh official draw of
+    the checkpoint the sweep chose.
+  - D3: the draw ran on the box's patched FlashCHORD.
+- **What `score_A.py` implements:**
+  - Gate: `pipeline/wrench_gate.py` frozen at 61c0b6ad (git-diff checked), on the original refsweep perc2 references
+    with kit assets. These are the same 1,507 held-window rows as in tests C and C2 for these 8 episodes.
+  - Label: per (object, frame), |achieved − our reference| object position > 0.02 m. It uses the rollout row of
+    `environment_id` = min, matched by `reference_frame`. No row, `environment_valid` false, or a non-finite pose
+    counts as positive.
+  - Pairing: the training copy `refs/perc2s/ep<N>/processed/<x>.parquet` must be byte-identical (sha256) to the gate
+    input. The rollout's `reference_position` must match our reference within 1 mm on every row. Otherwise the scorer
+    refuses.
+  - Verdict order: the share rule first, then falsified, then informative, else inconclusive.
+
+### 12.2 Store paths (label rollouts and training copies)
+
+| ep | run | label rollout (D2) | training copy |
+|---|---|---|---|
+| 12 | 20261113-gA1b-25cb421 | `results/hard_ab/ep12/s-s42/r1/episode_000012.parquet` (+ `.json`) | `refs/perc2s/ep12/` |
+| 31 | 20261113-gA1b-25cb421 | `results/hard_ab/ep31/s-s42/r1/episode_000031.parquet` (pending) | `refs/perc2s/ep31/` |
+| 40, 21 | 20261113-gA2-25cb421 | `results/hard_ab/ep40/…/episode_000040.parquet`, `ep21/…/episode_000021.parquet` | `refs/perc2s/ep40/`, `ep21/` |
+| 23, 2 | 20261113-gA3-25cb421 | `results/hard_ab/ep23/…/episode_000023.parquet`, `ep2/…/episode_000002.parquet` | `refs/perc2s/ep23/`, `ep2/` |
+| 18, 24 | 20261113-gA4-25cb421 | `results/hard_ab/ep18/…/episode_000018.parquet`, `ep24/…/episode_000024.parquet` | `refs/perc2s/ep18/`, `ep24/` |
+
+Only the r1 parquet, its json and `refs/perc2s/ep<N>/` were downloaded (38 MB, scratchpad `wgate/testA/store/`).
+
+### 12.3 Checks done before any label [M]
+
+- **Pairing on the 7 available rollouts** (`score_A.py pair`). It reads only the reference columns, plus the json's
+  provenance keys (`checkpoint`, `checkpoint_sha256`, `motion_start_frame` …), never its metrics.
+  - All 7 pass: max |reference_position − our reference| is 0.0 mm.
+  - Each `refs/perc2s` copy is byte-identical to the gate input.
+  - Each rollout's schema metadata names that same parquet file.
+  - One environment; frames 0 … T−1 for every object (T = 181 to 353); `motion_start_frame` 0.
+  - Chosen checkpoints: 150M (ep12, ep18, ep21), 200M (ep2, ep24, ep40), 250M (ep23).
+- **Self-test** (`score_A.py selftest`, 11 checks, all pass). It uses synthetic evaluator-schema rollouts built from the
+  8 references:
+  - labels shaped like the gate (3 cm off exactly where the gate score > 0.5, 0.5 cm elsewhere) give 306 positives
+    of 1,507, AUROC 1.0 and "informative";
+  - all rows 3 cm off is inconclusive;
+  - a 5 mm reference shift is refused by the pairing check;
+  - 5 dropped rows count as 5 positives;
+  - the verdict thresholds, including the share rule at 5% and 95%.
+- **Refusal:** the 7-episode manifest is refused ("missing [31]") before anything else is read.
+- **Tree path:** `score_A.py features` keeps 1,507 of the 3,167 blob-feature rows (the 8 episodes). `tools/blob_tree.py`
+  joins them with the synthetic labels with no row mismatch. Its result on synthetic labels is not a result.
+
+### 12.4 Commands to run once ep31 is in
+
+Environment, from the session scratchpad:
+- `W=…/scratchpad/wgate`; `PY=$W/venv/bin/python` (numpy 2.5.4, scipy 1.18.1, pyarrow 26.0.1, trimesh 5.2.1);
+- `ML=…/scratchpad/mlvenv/bin/python` (scikit-learn 1.9.1);
+- `D=docs/research/work/wrench-gate-20261112`.
+
+    # 1. fetch ep31's label rollout and json (the rest is already in $W/testA/store)
+    B=https://huggingface.co/datasets/aebatirel/v2d-store/resolve/main
+    for x in parquet json; do p=runs/20261113-gA1b-25cb421/results/hard_ab/ep31/s-s42/r1/episode_000031.$x
+      mkdir -p $W/testA/store/$(dirname $p); curl -sSL -o $W/testA/store/$p $B/$p; done
+    # 2. manifest (gate inputs in $W/store, test A files in $W/testA/store, kit assets in $W/store/kit)
+    $PY -I -B $D/score_A.py manifest $W/store $W/testA/store $W/store/kit $W/testA/manifest_A.json
+    # 3. pairing, all 8 (must exit 0)
+    $PY -I -B $D/score_A.py pair $W/testA/manifest_A.json $W/testA/pairing_8.json
+    # 4. the test: results_A.json and labels_A.csv
+    $PY -I -B $D/score_A.py score $W/testA/manifest_A.json $D
+    # 5. the tree on the same 8 episodes
+    $PY -I -B $D/score_A.py features $W/../blob/features.csv $W/testA/features_A8.csv
+    $ML -I -B tools/blob_tree.py $W/testA/features_A8.csv $D/labels_A.csv docs/research/work/blob-tree-20261112/results_tree_A.json
+
+- Step 4 writes `results_A.json` and `labels_A.csv` straight into this folder.
+- If any refusal fires (missing episode, sha256 mismatch, reference poses off by ≥ 1 mm, a changed gate file), the
+  output is `status: blocked` and no label is computed.
