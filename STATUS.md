@@ -8,8 +8,15 @@ FoundationPose, MediaPipe to Sharpa, SAC in Newton, one policy per episode. They
 - meshes fitted per eval video by nvdiffrast, plus RecGen (RGB-D, outputs pose) for the pitcher;
 - key-frame-map head pose and masks in every frame.
 
-All four are hypotheses H-W1..W4, each with a falsifier in the notes. Remaining slides (Select, Results, Lessons) are
-pending from the owner.
+All four are hypotheses H-W1..W4, each with a falsifier in the notes.
+- Part 2 (Select, Results, Lessons) added.
+  - Winner's boards: AUC 0.984, RPE 0.63, MPPE 0.60, SP/MP-SR 1.00, CD-O 0.217 (2nd).
+  - Ours (pack 7): AUC 0.8146, RPE 3.93, MPPE 2.92, SP 0.85, MP 0.65, CD-O 0.402.
+  - Their policies track their own reference to 0.10 cm MPPE; ours lose ≈ 0.08–0.12 AUC to the policy.
+  - They submit the best of up to 320 official rollouts, scored against their own reference. We used "never a best
+    draw".
+  - Their first upload was already 0.902.
+  - New hypotheses: H-W5 best-of-N, H-W6 anchor levelling judged on MP-SR, H-W7 registration calibration.
 
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.

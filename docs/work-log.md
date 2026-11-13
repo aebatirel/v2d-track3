@@ -5402,3 +5402,11 @@ arm and a no-policy replay floor to stage B.
   - SIFT + PnP key-frame-map head pose.
 - Our 22 Oct keypoint-scale test (0.15 m) was confounded by broken references on ep18/ep24, so it does not falsify
   their reward. Hypotheses H-W1..W4 with falsifiers are in the notes. Nothing rented, $0.
+- Part 2 (11 slides: Select, Results, Lessons, Next steps) added to the notes.
+  - Winner's boards: AUC 0.984, RPE 0.63, MPPE 0.60, SP/MP-SR 1.00, CD-O 0.217. Their first upload was already 0.902.
+  - They submit the best of up to 320 official rollouts, scored against their own reference.
+  - Their policy tracks its reference to 0.10 cm MPPE. Ours loses 0.08–0.12 AUC to the policy (H5) [M].
+  - Our 20 Oct public perception (scan templates) had a median MPPE of 0.68 cm against their 0.60, but a mean of 3.92
+    because of tail failures [M, results/registered/perc2_refsweep_*].
+  - The S3 anchor tilt test (30 Oct) stored AUC only, so its MP-SR effect is unmeasured.
+  - New hypotheses H-W5..W7. No runs, $0.

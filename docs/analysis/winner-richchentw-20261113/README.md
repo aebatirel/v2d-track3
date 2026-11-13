@@ -3,7 +3,7 @@
 Source: 16 phone photos of the online V2D tutorial session (CoRL), shared by the owner in chat on 13 Nov. The photos are
 not in git (faces of participants). Everything below the "Their pipeline" heading is transcribed from the slides and
 the live captions. It is **their claim**, not verified by us. Our numbers are from this repo and labelled [M] measured,
-[E] estimate, [H] hypothesis. Slides still to come: the rest of 4 Learn, 5 Select, Results, Lessons, Next steps.
+[E] estimate, [H] hypothesis. Part 2 (11 more slides, the rest of Learn through Next steps) was added the same day; see "Part 2" below.
 
 ## Their pipeline (as shown)
 
@@ -104,10 +104,88 @@ the spoon tip is about 12 cm out.
 5. **Key-frame-map head pose and per-frame masks.** Robustness; they would also give automatic, GT-free triggers
    in place of our hand-applied per-episode fixes.
 
-## What to read in the remaining slides
-- **Select:** what is selected (seeds, checkpoints or rollouts), by which GT-free criterion, and how many draws. This
-  is our lucky-draw problem.
-- **Results:** per-board scores (CD-O especially), weak episodes (eval 10 cup stacking? spoon?).
-- **Compute:** training steps and wall-clock per policy on a laptop, against our 250M steps.
-- **Embodiment:** stock wrist kp 25 or a stiffer custom one?
-- **Spoon:** how it is tracked under occlusion (10 of 20 eval episodes).
+
+## Part 2: Select, Results, Lessons, Next steps (11 slides)
+
+### What they showed
+- **Learn:** the human and the policy side by side from the same head camera (eval 1-type pot + lid scene).
+- **Select:** "the best of up to 320 official-evaluator rollouts".
+  - The simulator is not deterministic. Their white-pot distance to their own reference over 90 rollouts stays in a
+    0–3.5 mm band (10–90 %).
+  - Each policy is run up to 320 times with the official evaluator. Every rollout is scored with the official metric
+    code against **their own reference**, and the best one is submitted.
+  - Scatter of 320 rollouts: MPPE 0.108–0.181 cm, RPE 0.236–0.347 cm, all against their own reference.
+- **Results, hidden test set (20 eval episodes, 11 object types, 14 combinations, 20 policies):**
+
+  | Board | Winner | Best other team | Us, pack 7 (30 Oct) [M] |
+  |---|---|---|---|
+  | ADD-AUC | **0.984** (1st) | 0.953 | 0.8146 |
+  | RPE | **0.630 cm** (1st) | 0.925 | 3.932 |
+  | MPPE | **0.603 cm** (1st) | 0.928 | 2.921 |
+  | SP-SR | 1.00 (tied 1st) | 1.00 | 0.85 |
+  | MP-SR | 1.00 (tied 1st) | 1.00 | 0.65 |
+  | CD-O | 0.217 cm (2nd) | 0.207 | 0.402 |
+
+  Their episode tiles use our numbering (ep8 pot + cup, ep10 two cups, ep14 cup + rack, ep15 rack + spoon). The ep10
+  tile shows the cups nested. Every episode is "solved by its own policy".
+- **Score history on the hidden set** (AUC; RPE / MPPE cm):
+
+  | Step | AUC | RPE | MPPE |
+  |---|---|---|---|
+  | First submission | 0.902 | 1.519 | 1.465 |
+  | + FoundationPose references | 0.940 | 1.150 | 1.151 |
+  | + metric-aligned reward | 0.963 | 0.802 | 0.900 |
+  | + levelled world, rest refits | 0.968 | 0.720 | 0.821 |
+  | + registration calibration | 0.980 | 0.715 | 0.690 |
+  | Final | 0.984 | 0.630 | 0.603 |
+
+  Their **first** upload (0.902) was already above our best (0.8146). It had no FoundationPose: their silhouette +
+  depth tracker alone. The slides do not say what else it contained.
+- **Lessons (theirs):**
+  1. *The reference dominates.* Policy vs its own reference MPPE 0.10 cm; leaderboard vs Vicon 0.60 cm. "Most of the
+     error is in the video estimate, not in the policy."
+  2. *The reward must match the metric.* Centroid reward "with polishing": public-episode MPPE 0.851 → 0.666 cm.
+  3. *Mesh shape and pose are coupled.* A mesh tuned only for shape dropped ADD-AUC 0.984 → 0.963 and MPPE
+     0.636 → 0.793 cm. The scorer's registration flipped the lid by 159°. "Re-posing fixed it."
+  4. *One anchor amplifies small errors.* The scorer aligns the scene on one anchor object. 1° at 30 cm ≈ 5 mm; a
+     3.7° anchor tilt took MP-SR 1.00 → 0.95, and levelling restored 1.00. "Make rest phases physically consistent
+     first."
+- **Next steps (theirs):** estimate object pose, hand pose and contact jointly, with the simulator in the loop. For
+  the benchmark: align over all static objects instead of one anchor; average several rollouts "to remove simulator
+  noise from the ranking".
+- Not shown anywhere: training steps, wall-clock per policy, wrist stiffness, how the spoon is tracked.
+
+### Our error, split the same way
+- **Policy vs our own reference [M]:**
+  - packed sim_vs_ref 0.917; mean of 10 fresh draws 0.876 (H5).
+  - That is ≈ 0.08–0.12 AUC lost to the policy alone. Theirs is ≈ 0 (MPPE 0.10 cm).
+  - Our draws spread widely: sd up to 0.255 (evals 1, 14, 30). Their 320 draws all sit in a band ~0.07 cm wide.
+- **Our reference vs truth:**
+  - ≈ 0.10 AUC [E] on eval.
+  - On 20 public episodes, the 20 Oct perception (public scans as templates, `results/registered/perc2_refsweep_*`)
+    had a **median MPPE of 0.68 cm** [M], close to their 0.60. But the mean was 3.92 cm because of failures (ep26 53.8,
+    ep0 9.3, ep24 2.2).
+  - So on a typical episode our tracking was at their level. Tail failures, eval meshes and the policy are where we
+    lost.
+
+### What this changes in our hypotheses
+- **H-W1 (physically consistent reference) moves up.** Their policies track to about 1 mm. Ours miss by centimetres,
+  exactly where our references are infeasible: cup into rack (14), sweeper inside rack (30), lid inside pot hulls (1),
+  release flips (15, 16), the eval-10 stack.
+- **New H-W5: best-of-N official rollouts against our own reference.**
+  - Our rule (d) since 29 Oct was "never a best draw". We feared organiser re-runs.
+  - The winner submitted the best of up to 320 and won. Their own "next steps" asks the benchmark to average
+    rollouts. That says single submitted trajectories are what was scored.
+  - With our spread, best-of-N would have recovered much of the 0.04 gap between our packed and mean draws, and more
+    on evals 1, 14 and 30. That is an estimate. It cannot fix systematic failures (eval 10 at 0.45 ± 0.007).
+  - Spending best-of-N against our own reference is GT-free and within the rules as they evidently applied.
+- **New H-W6: level the anchor object's frame-0 pose, and judge it on SP-SR/MP-SR, not only on AUC.**
+  - Our S3 "tilt-to-plane anchor" was rejected on AUC (−0.0013, 30 Oct).
+  - Its MP-SR effect was never measured: `docs/research/work/refine/results/` stores AUC only.
+  - MP-SR (0.65) was our weakest pose board, and the final rank sums six board ranks.
+  - Falsifier: on public episodes, S3 does not raise MP-SR or SP-SR.
+- **New H-W7: calibrate how our mesh registers to the scan before shipping a mesh change.**
+  - They gained +0.012 from it. Our pitcher swap lost 0.0045 the same way.
+  - We already have `pipeline/score_registered.py`, which emulates the scorer's ICP.
+  - Open rule question for the owner: they appear to calibrate against the scan of the same physical object.
+- **H-W2 (reward) confirmed as their second-largest step:** +0.023 AUC on the hidden set.
