@@ -5799,3 +5799,15 @@ arm and a no-policy replay floor to stage B.
 - Ledger, planned (here instead of the store ledger, no write credential): $7.00 per box, batch cap $30. Expected
   3.3–4.2 h per box, ≈ $20–25.
 
+### 2026-11-13 01:10 UTC — test A check-in 1: 3 boxes training, gA1 slow in setup (progressing); credit $29.52
+- gA2, gA3, gA4: label "hard A/B: …"; job logs show the FlashCHORD patches applied at 00:37–00:40 UTC (training
+  stage).
+- gA1 (60424679): still in setup at 01:10.
+  - The env snapshot downloaded at about 00:32 (4 min 16 s).
+  - `apt-get install libeigen3-dev libboost-all-dev` had run 22 min; dpkg was configuring one package every
+    12–14 s, the last at 01:10:10.
+  - Load 6.5–8.5; dpkg waits on the XFS log (`xlog_wait_on_iclog`), so the host disk is slow.
+  - Progressing, so not cut (CLAUDE.md).
+  - Expected extra cost of the delay: about $1–1.5 [E].
+- Spend so far: $33.98 − $29.52 = $4.46 in about 50 min, matching $6.01/h.
+
