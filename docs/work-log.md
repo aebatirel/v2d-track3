@@ -13091,3 +13091,14 @@ score.
   - release check tool built (`tools/release_fix.py`); its cold-reset drop test is not reliable on grasp-lock
     references (126 cm pot fling; delays can worsen), so it is not used automatically.
 - Reward A/B amended (before any result): arm `cr` (centroid + FC_RC) added beside `c`; ≈ $22–24 for 2 boxes.
+
+### 2026-11-13 21:30 TRT — owner: "they brute-forced it?"; best-of-N value measured on our pack-7 policies (CPU, $0)
+- **Correction to my earlier reading of the winner's slides.** The 320-run scatter (MPPE 1.1–1.8 mm vs their own
+  reference) is ONE policy on one unnamed episode. The other chart is a 10–90 % band of 90 runs (tails cut). Their
+  "policy vs own reference 0.10 cm" is most likely measured after best-of-N selection. Their spread on hard episodes
+  is unknown.
+- **Measured [M]** from `runs/20261031-h5p7-1a7cdff/results/h5/r*/ep*/qa_policy.json` (10 official draws per pack-7
+  checkpoint), sim_vs_ref vs our own reference:
+  - mean draw 0.8982; E[best of 3] 0.9195; best of 10 0.9278 (+0.030);
+  - largest gains: eval 14 0.727 → 0.912, eval 15 0.906 → 0.976, eval 16 0.850 → 0.916.
+- Estimated board effect of best-of-10 ≈ +0.02–0.03 AUC [E, transfer 0.74–0.98].
