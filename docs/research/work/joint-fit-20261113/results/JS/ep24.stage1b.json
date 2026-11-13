@@ -1,0 +1,385 @@
+{
+ "episode": 24,
+ "settings": {
+  "frames_per_seg": 6,
+  "depth_pts": 400,
+  "sil_pts": 400,
+  "recall_pts": 150,
+  "dense_pts": 1500,
+  "fscale": 0.005,
+  "prior_t": 0.02,
+  "prior_r": 5.0,
+  "prior_s": 0.05,
+  "smin": 0.85,
+  "smax": 1.15,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5,
+  "max_nfev": 60,
+  "no_shape": false,
+  "no_sil": false,
+  "plane_log": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep24/log.txt",
+  "on_table": 0.02,
+  "sup_sigma": 0.003
+ },
+ "inputs": {
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep24/poses.npz",
+  "depth": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/data/depth/ep24.npy",
+  "vos": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep24/vos_masks.npz",
+  "ksrc": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep24/det_f0.npz",
+  "meshes": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/meshes_9aplus"
+ },
+ "objects": {
+  "wooden_piece_1": {
+   "segments_total": 4,
+   "segments_fit": 4,
+   "frames": 24,
+   "cost0": 75452.77,
+   "cost1": 51454.786,
+   "nfev": 57,
+   "scale": [
+    0.9929,
+    1.0646,
+    0.9397
+   ],
+   "median_mm_before": {
+    "depth": 2.57,
+    "prec": 0.0,
+    "rec": 0.15
+   },
+   "median_mm_after": {
+    "depth": 1.93,
+    "prec": 0.0,
+    "rec": 0.13
+   },
+   "support_mm_before": [
+    -3.77,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "support_mm_after": [
+    -2.82,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "shape": "fitted",
+   "segments": [
+    {
+     "frames": [
+      0,
+      11
+     ],
+     "fit": [
+      2,
+      9
+     ],
+     "points": 2400,
+     "frames_used": [
+      2,
+      3,
+      4,
+      6,
+      7,
+      8
+     ],
+     "support": "table",
+     "h0_cm": -0.38,
+     "move_cm": 0.3,
+     "rot_deg": 1.31,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      37,
+      48
+     ],
+     "fit": [
+      39,
+      46
+     ],
+     "points": 2400,
+     "frames_used": [
+      39,
+      40,
+      41,
+      43,
+      44,
+      45
+     ],
+     "support": "other",
+     "h0_cm": 17.71,
+     "move_cm": 0.36,
+     "rot_deg": 3.04,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      88,
+      226
+     ],
+     "fit": [
+      90,
+      224
+     ],
+     "points": 2332,
+     "frames_used": [
+      90,
+      117,
+      143,
+      170,
+      196,
+      223
+     ],
+     "support": "other",
+     "h0_cm": 2.33,
+     "move_cm": 1.31,
+     "rot_deg": 6.1,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      233,
+      275
+     ],
+     "fit": [
+      235,
+      273
+     ],
+     "points": 2349,
+     "frames_used": [
+      235,
+      242,
+      250,
+      257,
+      265,
+      272
+     ],
+     "support": "other",
+     "h0_cm": 2.91,
+     "move_cm": 0.64,
+     "rot_deg": 2.12,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 229
+  },
+  "wooden_piece_2": {
+   "segments_total": 7,
+   "segments_fit": 7,
+   "frames": 42,
+   "cost0": 183184.503,
+   "cost1": 144159.612,
+   "nfev": 55,
+   "scale": [
+    1.0036,
+    1.1443,
+    1.15
+   ],
+   "median_mm_before": {
+    "depth": 2.1,
+    "prec": 0.0,
+    "rec": 0.15
+   },
+   "median_mm_after": {
+    "depth": 1.71,
+    "prec": 0.0,
+    "rec": 0.15
+   },
+   "support_mm_before": [
+    -15.99,
+    -6.75,
+    0.35,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "support_mm_after": [
+    -17.26,
+    -3.79,
+    0.05,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "shape": "fitted",
+   "segments": [
+    {
+     "frames": [
+      0,
+      48
+     ],
+     "fit": [
+      2,
+      46
+     ],
+     "points": 2400,
+     "frames_used": [
+      2,
+      11,
+      19,
+      28,
+      36,
+      45
+     ],
+     "support": "table",
+     "h0_cm": -1.6,
+     "move_cm": 0.46,
+     "rot_deg": 2.02,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      54,
+      76
+     ],
+     "fit": [
+      56,
+      74
+     ],
+     "points": 2303,
+     "frames_used": [
+      56,
+      59,
+      63,
+      66,
+      70,
+      73
+     ],
+     "support": "table",
+     "h0_cm": -0.67,
+     "move_cm": 0.41,
+     "rot_deg": 6.49,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      78,
+      114
+     ],
+     "fit": [
+      80,
+      112
+     ],
+     "points": 2400,
+     "frames_used": [
+      80,
+      86,
+      92,
+      99,
+      105,
+      111
+     ],
+     "support": "table",
+     "h0_cm": 0.03,
+     "move_cm": 0.32,
+     "rot_deg": 1.79,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      150,
+      176
+     ],
+     "fit": [
+      152,
+      174
+     ],
+     "points": 2400,
+     "frames_used": [
+      152,
+      156,
+      160,
+      165,
+      169,
+      173
+     ],
+     "support": "other",
+     "h0_cm": 13.61,
+     "move_cm": 1.18,
+     "rot_deg": 1.67,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      179,
+      209
+     ],
+     "fit": [
+      181,
+      207
+     ],
+     "points": 2400,
+     "frames_used": [
+      181,
+      186,
+      191,
+      196,
+      201,
+      206
+     ],
+     "support": "other",
+     "h0_cm": 7.72,
+     "move_cm": 0.28,
+     "rot_deg": 4.08,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      213,
+      226
+     ],
+     "fit": [
+      215,
+      224
+     ],
+     "points": 2400,
+     "frames_used": [
+      215,
+      217,
+      218,
+      220,
+      221,
+      223
+     ],
+     "support": "other",
+     "h0_cm": 2.1,
+     "move_cm": 0.31,
+     "rot_deg": 1.12,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      229,
+      275
+     ],
+     "fit": [
+      231,
+      273
+     ],
+     "points": 2400,
+     "frames_used": [
+      231,
+      239,
+      247,
+      256,
+      264,
+      272
+     ],
+     "support": "other",
+     "h0_cm": 2.01,
+     "move_cm": 0.45,
+     "rot_deg": 1.69,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 249
+  }
+ },
+ "sha256": "f576a1615a3321f67c7c083b95eaccaedb9279ea9a26f018fbb07037346d1036",
+ "seconds": 75.1
+}

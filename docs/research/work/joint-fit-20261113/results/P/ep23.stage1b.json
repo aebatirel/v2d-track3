@@ -1,0 +1,279 @@
+{
+ "episode": 23,
+ "settings": {
+  "frames_per_seg": 6,
+  "depth_pts": 400,
+  "sil_pts": 400,
+  "recall_pts": 150,
+  "dense_pts": 1500,
+  "fscale": 0.005,
+  "prior_t": 0.02,
+  "prior_r": 5.0,
+  "prior_s": 0.05,
+  "smin": 0.85,
+  "smax": 1.15,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5,
+  "max_nfev": 60,
+  "no_shape": true,
+  "no_sil": false,
+  "plane_log": null,
+  "on_table": 0.02,
+  "sup_sigma": 0.003
+ },
+ "inputs": {
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep23/poses.npz",
+  "depth": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/data/depth/ep23.npy",
+  "vos": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep23/vos_masks.npz",
+  "ksrc": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep23/det_f0.npz",
+  "meshes": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/meshes_9aplus"
+ },
+ "objects": {
+  "wooden_piece_1": {
+   "segments_total": 3,
+   "segments_fit": 3,
+   "frames": 18,
+   "cost0": 80842.596,
+   "cost1": 56025.207,
+   "nfev": 53,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "median_mm_before": {
+    "depth": 2.87,
+    "prec": 0.0,
+    "rec": 0.3
+   },
+   "median_mm_after": {
+    "depth": 1.73,
+    "prec": 0.0,
+    "rec": 0.29
+   },
+   "support_mm_before": [],
+   "support_mm_after": [],
+   "shape": "template",
+   "segments": [
+    {
+     "frames": [
+      0,
+      105
+     ],
+     "fit": [
+      2,
+      103
+     ],
+     "points": 2400,
+     "frames_used": [
+      2,
+      22,
+      42,
+      62,
+      82,
+      102
+     ],
+     "support": null,
+     "move_cm": 0.72,
+     "rot_deg": 2.18,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      108,
+      126
+     ],
+     "fit": [
+      110,
+      124
+     ],
+     "points": 2400,
+     "frames_used": [
+      110,
+      113,
+      115,
+      118,
+      120,
+      123
+     ],
+     "support": null,
+     "move_cm": 0.29,
+     "rot_deg": 1.5,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      247,
+      325
+     ],
+     "fit": [
+      249,
+      323
+     ],
+     "points": 997,
+     "frames_used": [
+      249,
+      264,
+      278,
+      293,
+      307,
+      322
+     ],
+     "support": null,
+     "move_cm": 1.92,
+     "rot_deg": 7.59,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 214
+  },
+  "wooden_piece_2": {
+   "segments_total": 5,
+   "segments_fit": 5,
+   "frames": 30,
+   "cost0": 54063.692,
+   "cost1": 35915.927,
+   "nfev": 60,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "median_mm_before": {
+    "depth": 1.91,
+    "prec": 0.0,
+    "rec": 0.13
+   },
+   "median_mm_after": {
+    "depth": 1.52,
+    "prec": 0.0,
+    "rec": 0.13
+   },
+   "support_mm_before": [],
+   "support_mm_after": [],
+   "shape": "template",
+   "segments": [
+    {
+     "frames": [
+      0,
+      21
+     ],
+     "fit": [
+      2,
+      19
+     ],
+     "points": 2400,
+     "frames_used": [
+      2,
+      5,
+      8,
+      12,
+      15,
+      18
+     ],
+     "support": null,
+     "move_cm": 0.23,
+     "rot_deg": 2.38,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      35,
+      45
+     ],
+     "fit": [
+      37,
+      43
+     ],
+     "points": 2400,
+     "frames_used": [
+      37,
+      38,
+      39,
+      40,
+      41,
+      42
+     ],
+     "support": null,
+     "move_cm": 0.26,
+     "rot_deg": 1.87,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      94,
+      144
+     ],
+     "fit": [
+      96,
+      142
+     ],
+     "points": 2188,
+     "frames_used": [
+      96,
+      105,
+      114,
+      123,
+      132,
+      141
+     ],
+     "support": null,
+     "move_cm": 0.49,
+     "rot_deg": 1.13,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      146,
+      194
+     ],
+     "fit": [
+      148,
+      192
+     ],
+     "points": 1996,
+     "frames_used": [
+      148,
+      157,
+      165,
+      174,
+      182,
+      191
+     ],
+     "support": null,
+     "move_cm": 2.11,
+     "rot_deg": 6.72,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      197,
+      325
+     ],
+     "fit": [
+      199,
+      323
+     ],
+     "points": 1657,
+     "frames_used": [
+      199,
+      224,
+      248,
+      273,
+      297,
+      322
+     ],
+     "support": null,
+     "move_cm": 0.87,
+     "rot_deg": 5.57,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 282
+  }
+ },
+ "sha256": "321233fcc3cf0bcb7fd688933c1df10f71d361e7f9cd8fe22f9a2014f55ce5bc",
+ "seconds": 52.2
+}

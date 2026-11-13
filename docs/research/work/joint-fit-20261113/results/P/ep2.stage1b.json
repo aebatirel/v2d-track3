@@ -1,0 +1,279 @@
+{
+ "episode": 2,
+ "settings": {
+  "frames_per_seg": 6,
+  "depth_pts": 400,
+  "sil_pts": 400,
+  "recall_pts": 150,
+  "dense_pts": 1500,
+  "fscale": 0.005,
+  "prior_t": 0.02,
+  "prior_r": 5.0,
+  "prior_s": 0.05,
+  "smin": 0.85,
+  "smax": 1.15,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5,
+  "max_nfev": 60,
+  "no_shape": true,
+  "no_sil": false,
+  "plane_log": null,
+  "on_table": 0.02,
+  "sup_sigma": 0.003
+ },
+ "inputs": {
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep2/poses.npz",
+  "depth": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/data/depth/ep2.npy",
+  "vos": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep2/vos_masks.npz",
+  "ksrc": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep2/det_f0.npz",
+  "meshes": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/meshes_9aplus"
+ },
+ "objects": {
+  "white_pot": {
+   "segments_total": 5,
+   "segments_fit": 5,
+   "frames": 30,
+   "cost0": 570736.92,
+   "cost1": 475014.097,
+   "nfev": 60,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "median_mm_before": {
+    "depth": 3.13,
+    "prec": 0.0,
+    "rec": 0.3
+   },
+   "median_mm_after": {
+    "depth": 4.16,
+    "prec": 0.0,
+    "rec": 0.33
+   },
+   "support_mm_before": [],
+   "support_mm_after": [],
+   "shape": "template",
+   "segments": [
+    {
+     "frames": [
+      0,
+      61
+     ],
+     "fit": [
+      2,
+      59
+     ],
+     "points": 2400,
+     "frames_used": [
+      2,
+      13,
+      24,
+      36,
+      47,
+      58
+     ],
+     "support": null,
+     "move_cm": 1.43,
+     "rot_deg": 6.49,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      63,
+      115
+     ],
+     "fit": [
+      65,
+      113
+     ],
+     "points": 2400,
+     "frames_used": [
+      65,
+      74,
+      84,
+      93,
+      103,
+      112
+     ],
+     "support": null,
+     "move_cm": 0.93,
+     "rot_deg": 11.93,
+     "kept": "tracker (guard)"
+    },
+    {
+     "frames": [
+      202,
+      272
+     ],
+     "fit": [
+      204,
+      270
+     ],
+     "points": 2400,
+     "frames_used": [
+      204,
+      217,
+      230,
+      243,
+      256,
+      269
+     ],
+     "support": null,
+     "move_cm": 0.47,
+     "rot_deg": 0.99,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      273,
+      308
+     ],
+     "fit": [
+      275,
+      306
+     ],
+     "points": 2400,
+     "frames_used": [
+      275,
+      281,
+      287,
+      293,
+      299,
+      305
+     ],
+     "support": null,
+     "move_cm": 1.56,
+     "rot_deg": 65.74,
+     "kept": "tracker (guard)"
+    },
+    {
+     "frames": [
+      312,
+      332
+     ],
+     "fit": [
+      314,
+      330
+     ],
+     "points": 2400,
+     "frames_used": [
+      314,
+      317,
+      320,
+      323,
+      326,
+      329
+     ],
+     "support": null,
+     "move_cm": 1.04,
+     "rot_deg": 3.06,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 176
+  },
+  "white_pot_lid": {
+   "segments_total": 3,
+   "segments_fit": 3,
+   "frames": 18,
+   "cost0": 65960.226,
+   "cost1": 54992.608,
+   "nfev": 60,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "median_mm_before": {
+    "depth": 1.37,
+    "prec": 0.0,
+    "rec": 0.19
+   },
+   "median_mm_after": {
+    "depth": 1.46,
+    "prec": 0.0,
+    "rec": 0.2
+   },
+   "support_mm_before": [],
+   "support_mm_after": [],
+   "shape": "template",
+   "segments": [
+    {
+     "frames": [
+      0,
+      59
+     ],
+     "fit": [
+      2,
+      57
+     ],
+     "points": 2400,
+     "frames_used": [
+      2,
+      13,
+      24,
+      34,
+      45,
+      56
+     ],
+     "support": null,
+     "move_cm": 0.27,
+     "rot_deg": 0.94,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      81,
+      250
+     ],
+     "fit": [
+      83,
+      248
+     ],
+     "points": 2400,
+     "frames_used": [
+      83,
+      116,
+      149,
+      181,
+      214,
+      247
+     ],
+     "support": null,
+     "move_cm": 0.24,
+     "rot_deg": 2.94,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      277,
+      333
+     ],
+     "fit": [
+      279,
+      331
+     ],
+     "points": 2400,
+     "frames_used": [
+      279,
+      289,
+      299,
+      310,
+      320,
+      330
+     ],
+     "support": null,
+     "move_cm": 0.63,
+     "rot_deg": 2.23,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 309
+  }
+ },
+ "sha256": "c3ea5856191f5e4e7c22097991e244622dcce61a21ccc664a87b34554a98ac8a",
+ "seconds": 71.3
+}

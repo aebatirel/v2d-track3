@@ -1,0 +1,181 @@
+{
+ "episode": 43,
+ "settings": {
+  "frames_per_seg": 6,
+  "depth_pts": 400,
+  "sil_pts": 400,
+  "recall_pts": 150,
+  "dense_pts": 1500,
+  "fscale": 0.005,
+  "prior_t": 0.02,
+  "prior_r": 5.0,
+  "prior_s": 0.05,
+  "smin": 0.85,
+  "smax": 1.15,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5,
+  "max_nfev": 60,
+  "no_shape": true,
+  "no_sil": false,
+  "plane_log": null,
+  "on_table": 0.02,
+  "sup_sigma": 0.003
+ },
+ "inputs": {
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep43/poses.npz",
+  "depth": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/data/depth/ep43.npy",
+  "vos": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep43/vos_masks.npz",
+  "ksrc": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep43/det_f0.npz",
+  "meshes": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/meshes_9aplus"
+ },
+ "objects": {
+  "white_pot": {
+   "segments_total": 5,
+   "segments_fit": 5,
+   "frames": 30,
+   "cost0": 131478.342,
+   "cost1": 63569.158,
+   "nfev": 54,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "median_mm_before": {
+    "depth": 2.65,
+    "prec": 0.0,
+    "rec": 0.26
+   },
+   "median_mm_after": {
+    "depth": 2.1,
+    "prec": 0.0,
+    "rec": 0.23
+   },
+   "support_mm_before": [],
+   "support_mm_after": [],
+   "shape": "template",
+   "segments": [
+    {
+     "frames": [
+      0,
+      29
+     ],
+     "fit": [
+      2,
+      27
+     ],
+     "points": 2400,
+     "frames_used": [
+      2,
+      7,
+      12,
+      16,
+      21,
+      26
+     ],
+     "support": null,
+     "move_cm": 1.15,
+     "rot_deg": 3.15,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      33,
+      53
+     ],
+     "fit": [
+      35,
+      51
+     ],
+     "points": 2400,
+     "frames_used": [
+      35,
+      38,
+      41,
+      44,
+      47,
+      50
+     ],
+     "support": null,
+     "move_cm": 0.85,
+     "rot_deg": 3.19,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      217,
+      231
+     ],
+     "fit": [
+      219,
+      229
+     ],
+     "points": 2400,
+     "frames_used": [
+      219,
+      221,
+      223,
+      224,
+      226,
+      228
+     ],
+     "support": null,
+     "move_cm": 0.64,
+     "rot_deg": 3.6,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      242,
+      266
+     ],
+     "fit": [
+      244,
+      264
+     ],
+     "points": 2400,
+     "frames_used": [
+      244,
+      248,
+      252,
+      255,
+      259,
+      263
+     ],
+     "support": null,
+     "move_cm": 0.79,
+     "rot_deg": 1.62,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      267,
+      326
+     ],
+     "fit": [
+      269,
+      324
+     ],
+     "points": 2400,
+     "frames_used": [
+      269,
+      280,
+      291,
+      301,
+      312,
+      323
+     ],
+     "support": null,
+     "move_cm": 0.48,
+     "rot_deg": 0.75,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 171
+  }
+ },
+ "sha256": "72b2906017211deb86a5d02b65292c2c2f6bd5d49f295697290b36e29665ffe3",
+ "seconds": 30.1
+}

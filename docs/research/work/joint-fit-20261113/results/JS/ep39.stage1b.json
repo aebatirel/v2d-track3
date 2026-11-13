@@ -1,0 +1,120 @@
+{
+ "episode": 39,
+ "settings": {
+  "frames_per_seg": 6,
+  "depth_pts": 400,
+  "sil_pts": 400,
+  "recall_pts": 150,
+  "dense_pts": 1500,
+  "fscale": 0.005,
+  "prior_t": 0.02,
+  "prior_r": 5.0,
+  "prior_s": 0.05,
+  "smin": 0.85,
+  "smax": 1.15,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5,
+  "max_nfev": 60,
+  "no_shape": false,
+  "no_sil": false,
+  "plane_log": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep39/log.txt",
+  "on_table": 0.02,
+  "sup_sigma": 0.003
+ },
+ "inputs": {
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep39/poses.npz",
+  "depth": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/data/depth/ep39.npy",
+  "vos": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep39/vos_masks.npz",
+  "ksrc": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep39/det_f0.npz",
+  "meshes": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/meshes_9aplus"
+ },
+ "objects": {
+  "mini_dust_pan": {
+   "segments_total": 2,
+   "segments_fit": 2,
+   "frames": 12,
+   "cost0": 47430.116,
+   "cost1": 33863.67,
+   "nfev": 29,
+   "scale": [
+    1.0504,
+    0.9286,
+    1.15
+   ],
+   "median_mm_before": {
+    "depth": 2.36,
+    "prec": 0.0,
+    "rec": 0.16
+   },
+   "median_mm_after": {
+    "depth": 1.55,
+    "prec": 0.0,
+    "rec": 0.16
+   },
+   "support_mm_before": [
+    -7.12,
+    -11.62
+   ],
+   "support_mm_after": [
+    -3.5,
+    -11.84
+   ],
+   "shape": "fitted",
+   "segments": [
+    {
+     "frames": [
+      0,
+      50
+     ],
+     "fit": [
+      2,
+      48
+     ],
+     "points": 2400,
+     "frames_used": [
+      2,
+      11,
+      20,
+      29,
+      38,
+      47
+     ],
+     "support": "table",
+     "h0_cm": -0.71,
+     "move_cm": 0.56,
+     "rot_deg": 3.45,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      271,
+      319
+     ],
+     "fit": [
+      273,
+      317
+     ],
+     "points": 2400,
+     "frames_used": [
+      273,
+      282,
+      290,
+      299,
+      307,
+      316
+     ],
+     "support": "table",
+     "h0_cm": -1.16,
+     "move_cm": 0.41,
+     "rot_deg": 2.66,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 108
+  }
+ },
+ "sha256": "8fb7f1dc658d67a65a5a31bd27769430bb371f5a3636575c3953ad9438a3d4c9",
+ "seconds": 20.6
+}

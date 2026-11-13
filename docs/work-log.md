@@ -12551,3 +12551,15 @@ score.
   - Per-frame PCA starts cannot tell a cup's top from its bottom from one side.
 - **Exploratory PUT** (our tracker pose added as a start): 0.8285, still below C.
 - Episodes 12 / 21 / 22 / 13 running for the pre-registered rule.
+
+### 2026-11-13 — stage 1b frozen run: FALSIFIED (CPU, $0)
+- `docs/research/work/joint-fit-20261113/RESULTS.md`.
+- **P (primary):** mean ΔAUC −0.0254 (17 non-dev −0.0329); worse on 16/20; min −0.157 (ep2); rest-frame ADD lower
+  on 4/20; MPPE +0.25 cm.
+- **JS:** mean −0.0211 (non-dev −0.0273); rest ADD lower on 3/20.
+- All four gate clauses fail for both arms.
+- **Causes:**
+  - the fit is noisier than a good tracker;
+  - pot-anchor frame-0 rotation (ep0, ep2: −0.14 / −0.16);
+  - shape not identifiable.
+- Gains only on the dev episodes and ep22.

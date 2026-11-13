@@ -1,0 +1,250 @@
+{
+ "episode": 41,
+ "settings": {
+  "frames_per_seg": 6,
+  "depth_pts": 400,
+  "sil_pts": 400,
+  "recall_pts": 150,
+  "dense_pts": 1500,
+  "fscale": 0.005,
+  "prior_t": 0.02,
+  "prior_r": 5.0,
+  "prior_s": 0.05,
+  "smin": 0.85,
+  "smax": 1.15,
+  "min_pts": 300,
+  "max_move_cm": 3.0,
+  "max_rot_deg": 10.0,
+  "ramp": 5,
+  "max_nfev": 60,
+  "no_shape": true,
+  "no_sil": false,
+  "plane_log": null,
+  "on_table": 0.02,
+  "sup_sigma": 0.003
+ },
+ "inputs": {
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep41/poses.npz",
+  "depth": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/data/depth/ep41.npy",
+  "vos": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep41/vos_masks.npz",
+  "ksrc": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/C/ep41/det_f0.npz",
+  "meshes": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/b1/meshes_9aplus"
+ },
+ "objects": {
+  "white_pot": {
+   "segments_total": 8,
+   "segments_fit": 8,
+   "frames": 48,
+   "cost0": 176403.473,
+   "cost1": 108600.281,
+   "nfev": 60,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "median_mm_before": {
+    "depth": 2.52,
+    "prec": 0.0,
+    "rec": 0.24
+   },
+   "median_mm_after": {
+    "depth": 2.13,
+    "prec": 0.0,
+    "rec": 0.22
+   },
+   "support_mm_before": [],
+   "support_mm_after": [],
+   "shape": "template",
+   "segments": [
+    {
+     "frames": [
+      0,
+      32
+     ],
+     "fit": [
+      2,
+      30
+     ],
+     "points": 2400,
+     "frames_used": [
+      2,
+      7,
+      13,
+      18,
+      24,
+      29
+     ],
+     "support": null,
+     "move_cm": 0.37,
+     "rot_deg": 1.78,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      43,
+      53
+     ],
+     "fit": [
+      45,
+      51
+     ],
+     "points": 2400,
+     "frames_used": [
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+     ],
+     "support": null,
+     "move_cm": 0.62,
+     "rot_deg": 1.48,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      71,
+      87
+     ],
+     "fit": [
+      73,
+      85
+     ],
+     "points": 2400,
+     "frames_used": [
+      73,
+      75,
+      77,
+      80,
+      82,
+      84
+     ],
+     "support": null,
+     "move_cm": 0.58,
+     "rot_deg": 1.32,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      143,
+      154
+     ],
+     "fit": [
+      145,
+      152
+     ],
+     "points": 2400,
+     "frames_used": [
+      145,
+      146,
+      147,
+      149,
+      150,
+      151
+     ],
+     "support": null,
+     "move_cm": 1.22,
+     "rot_deg": 8.72,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      165,
+      178
+     ],
+     "fit": [
+      167,
+      176
+     ],
+     "points": 2400,
+     "frames_used": [
+      167,
+      169,
+      170,
+      172,
+      173,
+      175
+     ],
+     "support": null,
+     "move_cm": 0.49,
+     "rot_deg": 0.64,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      185,
+      198
+     ],
+     "fit": [
+      187,
+      196
+     ],
+     "points": 2400,
+     "frames_used": [
+      187,
+      189,
+      190,
+      192,
+      193,
+      195
+     ],
+     "support": null,
+     "move_cm": 0.69,
+     "rot_deg": 1.21,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      208,
+      226
+     ],
+     "fit": [
+      210,
+      224
+     ],
+     "points": 2400,
+     "frames_used": [
+      210,
+      213,
+      215,
+      218,
+      220,
+      223
+     ],
+     "support": null,
+     "move_cm": 0.62,
+     "rot_deg": 2.74,
+     "kept": "fit"
+    },
+    {
+     "frames": [
+      228,
+      299
+     ],
+     "fit": [
+      230,
+      297
+     ],
+     "points": 2400,
+     "frames_used": [
+      230,
+      243,
+      256,
+      270,
+      283,
+      296
+     ],
+     "support": null,
+     "move_cm": 0.89,
+     "rot_deg": 1.73,
+     "kept": "fit"
+    }
+   ],
+   "frames_changed": 243
+  }
+ },
+ "sha256": "60349787c868cd32015687d877704d8f5384f0465ffda17a3abe0e18b9700a83",
+ "seconds": 53.6
+}
