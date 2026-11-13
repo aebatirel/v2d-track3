@@ -137,9 +137,9 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
 <section aria-labelledby="board-h">
   <h2 id="board-h">Status of the five add-ons</h2>
   <div class="board">
-    <article class="idea"><span class="num">① grasp check</span><h3>Can the contacts hold it?</h3><p>Physics check on each reference before we spend GPU on training.</p><span class="chip block">2 tests inconclusive · needs GPU test</span></article>
+    <article class="idea"><span class="num">① grasp check</span><h3>Can the contacts hold it?</h3><p>Physics check on each reference before we spend GPU on training.</p><span class="chip block">falsified on GPU test</span></article>
     <article class="idea"><span class="num">② weight repair</span><h3>LLM edits the policy</h3><p>An LLM fixes a failing policy by writing small circuits into its weights.</p><span class="chip block">pilot done · not a repair</span></article>
-    <article class="idea"><span class="num">③ fix router</span><h3>Decision tree picks the fix</h3><p>Turns the contact “blob” into features and predicts which frames will drift.</p><span class="chip block">2 tests inconclusive · needs GPU test</span></article>
+    <article class="idea"><span class="num">③ fix router</span><h3>Decision tree picks the fix</h3><p>Turns the contact “blob” into features and predicts which frames will drift.</p><span class="chip block">no added value</span></article>
     <article class="idea"><span class="num">④ LLM triage</span><h3>Names each failure</h3><p>Reads failed rollouts, labels the failure type, suggests a fix family.</p><span class="chip wait">waits on your 20 min of labels</span></article>
     <article class="idea"><span class="num">⑤ Gemini judge</span><h3>Visual yes/no check</h3><p>Gemini’s Decisions API compares a rollout with the source video.</p><span class="chip block">both tests negative</span></article>
   </div>
@@ -198,7 +198,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
   <h2 id="addons-h">How each add-on works</h2>
 
   <div class="addon" id="a1">
-    <div class="addon-head"><span class="n">①</span><h3>Grasp check: can the contacts hold it?</h3><span class="chip block">2 tests inconclusive</span></div>
+    <div class="addon-head"><span class="n">①</span><h3>Grasp check: can the contacts hold it?</h3><span class="chip block">falsified</span></div>
     <p>From our reference we know how the object moves, so we know the push the hands must give it (its weight plus its acceleration). From the reference’s contact points we know where fingers touch, and friction lets each finger push inside a cone. If the needed push fits inside those cones, the grasp can work. If it does not, training on that reference will struggle.</p>
     <figure>
       <div class="scroll">
@@ -224,13 +224,13 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
     </figure>
     <div class="facts">
       <div class="fact"><span class="k">Test and pass bar</span><span class="v">Does a high score predict frames where the object drifts more than 2 cm in physics? Useful if AUROC ≥ 0.75; falsified below 0.65.</span></div>
-      <div class="fact"><span class="k">What happened</span><span class="v">Built, 21/21 self-tests pass. Test A blocked: no 20-episode rollout set exists. Tests C and C2 inconclusive: replays without a trained policy drift on almost every frame (99.6% plain, 98.6% grasp-locked), so nothing can be ranked. Only trained-policy rollouts can decide it.</span></div>
+      <div class="fact"><span class="k">What happened</span><span class="v">Two free tests were inconclusive (no-policy replays drift almost everywhere). The GPU test trained policies on 8 public episodes ($24.40): AUROC 0.63, below the 0.65 bar, so falsified. Inside an episode it does not find the bad frames (median 0.49). It does rank whole episodes (ρ 0.78 over 8), an untested hint for an episode-level screen.</span></div>
       <div class="fact"><span class="k">Cost</span><span class="v">CPU only, $0. Seconds per episode.</span></div>
     </div>
   </div>
 
   <div class="addon" id="a3">
-    <div class="addon-head"><span class="n">③</span><h3>Fix router: the contact blob through a decision tree</h3><span class="chip block">2 tests inconclusive</span></div>
+    <div class="addon-head"><span class="n">③</span><h3>Fix router: the contact blob through a decision tree</h3><span class="chip block">no added value</span></div>
     <p>NVIDIA’s exercise 3 draws a “blob” for each frame: how hard the hands can push in every direction. We turn that blob into eight numbers and let a small decision tree learn which frames will drift. The tree is always tested on episodes it has not seen.</p>
     <figure>
       <div class="scroll">
@@ -271,7 +271,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
     </figure>
     <div class="facts">
       <div class="fact"><span class="k">Ready</span><span class="v">Features built for 3,167 frames in 19 public references. Rule and code frozen in git before any label.</span></div>
-      <div class="fact"><span class="k">Result</span><span class="v">Inconclusive twice, for the same reason as ①: test C 0.58 vs 0.41, test C2 0.35 vs 0.53, each resting on a handful of non-drifting frames. The script itself works: it finds a planted signal and nothing in random labels.</span></div>
+      <div class="fact"><span class="k">Result</span><span class="v">On the GPU test it scored 0.30 against the grasp check’s 0.63 on unseen episodes: no added value. It leaned on contact count and ignored the physics score. Earlier free tests were inconclusive.</span></div>
       <div class="fact"><span class="k">Warning sign</span><span class="v">On exercise 3’s flask, the reference contacts said “can hold” while physics dropped the flask (chart below).</span></div>
     </div>
   </div>
@@ -470,13 +470,14 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
         <tr><td>A full 20-episode rollout set in our store?</td><td>no: 9 public episodes have no rollout at all</td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Exercise 3 contacts vs physics (μ 1.0)</td><td>contacts say “can hold” on <span class="mono">95%</span> of frames; no-policy replay is <span class="mono">2 cm</span> off at <span class="mono">2.7 s</span></td><td><span class="tag m">measured · 1 episode</span></td></tr>
         <tr><td>Grasp check and tree, test C (no-policy replay as the label)</td><td><span class="mono">99.6%</span> of held frames drift, because the hands never grip without a policy; both tests inconclusive</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>Grasp check on trained-policy runs (GPU test A, 8 episodes)</td><td>AUROC <span class="mono">0.630</span> (bar <span class="mono">0.65</span>): falsified; 66% of frames drift; tree <span class="mono">0.300</span>: no added value; GPU cost <span class="mono">$24.40</span></td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Gemini mesh selector and track audit</td><td>mesh pick: correlation <span class="mono">0.43</span>, best on <span class="mono">1</span> of <span class="mono">10</span> (fail); track audit: AUROC <span class="mono">0.52</span> (falsified); cost <span class="mono">$1.11</span></td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Grasp check and tree, test C2 (grasp-locked replay as the label)</td><td><span class="mono">98.6%</span> of held frames still drift; all 19 replays ran cleanly; both tests inconclusive</td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Bending the hand path around obstacles (Roman’s idea)</td><td>dropped: our collisions are object overlaps from perception (lid in pot, cup in rack, sweeper in rack), not the hand hitting other objects</td><td><span class="tag m">from records</span></td></tr>
         <tr><td>LLM weight repair on exercise 3</td><td>fixes the failing run; <span class="mono">11</span> vs <span class="mono">9</span> of <span class="mono">20</span> varied starts (bar <span class="mono">+10</span>); breaks one; not a repair</td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Gemini key and Decisions API</td><td>working; first test cost a tiny fraction of a cent</td><td><span class="tag m">measured</span></td></tr>
         <tr><td>Cost of one LLM repair run</td><td>about <span class="mono">$20–40</span> and 3–4 hours, vs <span class="mono">$1–2.5</span> for a retrain</td><td><span class="tag e">estimate</span></td></tr>
-        <tr><td>GPU spent on this plan</td><td><span class="mono">$0</span>; Vast credit <span class="mono">$33.98</span>, nothing running</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td>Spent on this plan</td><td>GPU <span class="mono">$24.40</span> (test A); Gemini <span class="mono">$1.11</span>; Vast credit now <span class="mono">$9.58</span>, nothing running</td><td><span class="tag m">measured</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -488,11 +489,11 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
     <div class="scroll">
     <svg viewBox="0 0 960 320" role="img" aria-label="Two decision flows. Grasp check test C was inconclusive because the no-policy replay never grips; next is either a free CPU test with grasp-locked replays or a paid GPU test on all 20 public episodes. Weight-repair pilot: a repair leads to a GPU pilot on our episodes; no repair means retraining stays the fix.">
       <defs><marker id="d6-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk-ink" d="M0,0 L10,5 L0,10 z"/></marker></defs>
-      <rect class="node-new" x="20" y="50" width="210" height="70" rx="6"/><text class="t" x="125" y="78" text-anchor="middle">① / ③ test C</text><text class="ts" x="125" y="98" text-anchor="middle">C and C2 both inconclusive</text>
+      <rect class="node-new" x="20" y="50" width="210" height="70" rx="6"/><text class="t" x="125" y="78" text-anchor="middle">① / ③ grasp check</text><text class="ts" x="125" y="98" text-anchor="middle">GPU test: falsified (0.63)</text>
       <path class="ar" d="M230,85 C270,85 270,48 310,48" marker-end="url(#d6-a)"/><text class="tl" x="262" y="52" text-anchor="middle">done</text>
-      <path class="ar" d="M230,85 C270,85 270,150 310,150" marker-end="url(#d6-a)"/><text class="tl" x="262" y="140" text-anchor="middle">paid</text>
+      <path class="ar" d="M230,85 C270,85 270,150 310,150" marker-end="url(#d6-a)"/><text class="tl" x="262" y="140" text-anchor="middle">next?</text>
       <rect class="leaf-lo" x="314" y="22" width="300" height="52" rx="6"/><text class="tf" x="328" y="43">Tried: grasp-locked replays on CPU</text><text class="tf" x="328" y="60">also inconclusive (98.6% drift)</text>
-      <rect class="leaf-mid" x="314" y="124" width="300" height="52" rx="6"/><text class="tf" x="328" y="145">Only test left, on GPU: train and evaluate</text><text class="tf" x="328" y="162">all 20 public episodes, about $20–50</text>
+      <rect class="leaf-mid" x="314" y="124" width="300" height="52" rx="6"/><text class="tf" x="328" y="145">Optional: test it as an episode-level</text><text class="tf" x="328" y="162">screen on 11 more episodes, ~$30–40</text>
       <rect class="node-new" x="20" y="230" width="210" height="70" rx="6"/><text class="t" x="125" y="258" text-anchor="middle">② weight-repair pilot</text><text class="ts" x="125" y="278" text-anchor="middle">result: 11 vs 9, not a repair</text>
       <path class="ar" d="M230,265 C270,265 270,236 310,236" marker-end="url(#d6-a)"/><text class="tl" x="262" y="238" text-anchor="middle">repair</text>
       <path class="ar" d="M230,265 C270,265 270,292 310,292" marker-end="url(#d6-a)"/><text class="tl" x="262" y="300" text-anchor="middle">no repair</text>
@@ -514,7 +515,7 @@ code { font-family: var(--f-mono); font-size: 0.86em; background: var(--faint); 
 <section aria-labelledby="need-h">
   <h2 id="need-h">What I need from you</h2>
   <div class="needs">
-        <div class="need-item"><div><b>Nothing for ① and ③ right now.</b><p>You approved the GPU test on 8 selected episodes (cap $30, inside the current credit). It launches after its CPU dry run passes.</p></div></div>
+        <div class="need-item"><div><b>Stop here, or one more test?</b><p>Every idea is now closed without an improvement. The one open lead is the grasp check as a whole-episode screen (ρ 0.78 over 8 episodes, not yet tested): a new GPU batch on the other 11 public episodes, about $30–40, needs a top-up (Vast has $9.58).</p></div></div>
     <div class="need-item"><div><b>About 20 minutes of labelling.</b><p>Pick a failure type for each failed public rollout clip, so ④ has something to be checked against. I will prepare the page.</p></div></div>
     <div class="need-item"><div><b>Replace the Gemini key.</b><p>The current key appeared in chat. Make a new one in AI Studio, delete the old one, and put the new one in the same network-secret entry.</p></div></div>
     <div class="need-item"><div><b>OK on my usage.</b><p>Triage and any rerun use a lot of my usage; earlier sessions hit the limit on 3–5 Nov. The repair pilot used about 1 hour of agent work.</p></div></div>
