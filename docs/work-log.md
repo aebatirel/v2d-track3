@@ -5857,3 +5857,9 @@ arm and a no-policy replay floor to stage B.
 - Credit $11.31; the credit drop $22.67 matches the table.
 - gA1b at 04:41: ep31 37% (42.0k steps/s, ETA 1 h 02 min), so done ≈ 06:05. Projected batch total ≈ $24.6; cap $30.
 
+### 2026-11-13 06:09 UTC — test A batch complete: all 8 label rollouts in the store; 0 instances; cost $24.40
+- gA1b (60434477): ep12 and ep31 done; rc 0; self-destroyed 05:48:51 UTC. Actual: 01:57 → 05:49 × $1.508 = $5.83.
+- Batch total (duration × rate): $1.33 + $5.78 + $5.01 + $6.19 + $5.83 = $24.14. Credit $33.98 → $9.58, a drop of
+  $24.40 (storage and transfer included). Cap $30 held.
+- Scoring started with the frozen `score_A.py` (1744cfa4), steps 1–5 of README §12.
+
