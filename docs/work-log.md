@@ -5824,3 +5824,8 @@ arm and a no-policy replay floor to stage B.
 - Watchdog false positive noted for later: the setup stage should write heartbeat lines while apt runs. Not changed
   now, to keep the box code identical to the dry run.
 
+### 2026-11-13 02:24 UTC — test A check-in 3: all 4 boxes in the training job; credit $23.07 (spent $10.91)
+- gA1b (60434477): apt finished at 02:09; FlashCHORD patched at 02:18; `train_flash_sac.py` on ep12 running for
+  5 min, GPU 100%, 41 GB. No heartbeat was needed.
+- gA2, gA3, gA4: still in "hard A/B" (training/evaluation); expected to end ≈ 03:45–04:40 UTC. gA1b ≈ 05:15–06:00 UTC.
+
