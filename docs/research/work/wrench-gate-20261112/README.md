@@ -14,6 +14,10 @@ positive-share rule.** 99.6% of held frames are positive, because the replay lif
 **Test C2 was run (section 11; label = grasp-locked replay): INCONCLUSIVE by the same rule.** 98.6% of held frames
 are positive. Pooled AUROC 0.53, 95% CI [0.33, 0.66]. The blob tree on the same rows is also inconclusive.
 
+**Test A, amended to 8 episodes, was run (section 12; label = official evaluator rollouts of trained policies): the gate is
+FALSIFIED.** Pooled AUROC 0.630 < 0.65, 95% CI [0.492, 0.748]; 66.2% positive; 8 of 8 episodes with positives. The blob
+tree adds no value: out-of-fold AUROC 0.300, difference −0.330, CI [−0.520, −0.050].
+
 Labels: [M] measured here, [C] computed, [E] estimate, [H] hypothesis.
 
 ## 1. Rule (pre-registered, work log "2026-11-12 ~22:20 UTC … PRE-REGISTRATION", unchanged)
@@ -486,11 +490,11 @@ held units; median height rise of the object above its frame-0 height in the hel
   `--force_design`, `--sim_trace` re-planning) were not used.
 - **No kit score:** `trace_score.py` was skipped. The label does not depend on it.
 
-## 12. Test A: official evaluator rollouts on 8 public episodes (scoring PREPARED; no label or AUROC computed yet)
+## 12. Test A: official evaluator rollouts on 8 public episodes (result: gate FALSIFIED, tree no added value; §12.5)
 
-**Status:** the scorer is built and self-tested on synthetic rollouts. The pairing check passes on the 7 rollouts that
-exist [M]. Labels, AUROC and the tree have **not** been computed from any achieved pose. The run waits for ep31's
-label rollout (gA1b, due about 06:05 UTC).
+**Status:** sections 12.1–12.4 were written and committed (1744cfa4) before any label was computed. At that point the
+scorer was self-tested on synthetic rollouts and the pairing check had passed on 7 rollouts. Section 12.5 holds the
+result, run on all 8 episodes once ep31 arrived.
 
 ### 12.1 Rules
 
@@ -574,3 +578,61 @@ Environment, from the session scratchpad:
 - Step 4 writes `results_A.json` and `labels_A.csv` straight into this folder.
 - If any refusal fires (missing episode, sha256 mismatch, reference poses off by ≥ 1 mm, a changed gate file), the
   output is `status: blocked` and no label is computed.
+
+### 12.5 Results (run 2026-11-13 after 06:09 UTC, container clock; code at 1744cfa4, unchanged; CPU, $0)
+
+Steps 1–5 of §12.4 ran exactly as written. ep31's r1 parquet and json were downloaded; the manifest and the 8-episode
+pairing check exit 0 (max |reference − ours| 0.0 mm and byte-identical training copies, all 8 episodes).
+
+**Gate verdict: FALSIFIED.** Pooled AUROC **0.630** < 0.65 [M].
+
+| Statistic (pre-registered) | Value |
+|---|---|
+| Held (object, frame) units | 1,507 (8 episodes) |
+| Positives (> 2 cm from our reference) | 997, share **66.2%** (inside 10–90%, so the share rule does not apply) |
+| Missing or invalid rollout rows | 0 |
+| Pooled AUROC | **0.630**, 95% CI [0.492, 0.748] (2,000 episode resamples, seed 20261112, none skipped) |
+| Episodes contributing positives | 8 of 8 (bar ≥ 4) |
+
+**Tree verdict (`tools/blob_tree.py`, rule of 12 Nov ~23:05 UTC, leave-one-episode-out over the 8 episodes): NO ADDED
+VALUE.**
+- The tree's out-of-fold AUROC is 0.300 against the gate's 0.630 on the same rows.
+- The difference is −0.330, 95% CI [−0.520, −0.050] (2,000 paired episode resamples, all valid), below the 0.02 bar.
+- On all rows the tree splits first on the number of contacts; the gate score gets importance 0 there
+  (`docs/research/work/blob-tree-20261112/results_tree_A.json`).
+
+**Per-episode table [M].** Columns: positives out of held units; the gate's infeasible share (score > 0.5); mean
+sim-vs-reference error over the held units and over all frames. The within-episode AUROCs are descriptive only.
+
+| ep | positives / held | gate infeasible share | mean err held (cm) | mean err all (cm) | within-episode AUROC | checkpoint |
+|---|---|---|---|---|---|---|
+| 12 | 63 / 88 (0.72) | 0.00 | 2.8 | 1.7 | 0.52 | 150M |
+| 40 | 14 / 159 (0.09) | 0.00 | 1.0 | 0.8 | 0.50 | 200M |
+| 23 | 27 / 240 (0.11) | 0.02 | 1.1 | 1.0 | 0.53 | 250M |
+| 18 | 225 / 236 (0.95) | 0.06 | 5.1 | 16.2 | 0.32 | 150M |
+| 2 | 35 / 128 (0.27) | 0.20 | 1.6 | 0.9 | 0.38 | 200M |
+| 24 | 241 / 249 (0.97) | 0.27 | 7.0 | 7.8 | 0.49 | 200M |
+| 21 | 184 / 194 (0.95) | 0.30 | 27.1 | 23.9 | 0.63 | 150M |
+| 31 | 208 / 213 (0.98) | 0.64 | 6.6 | 4.5 | 0.34 | 150M |
+
+**Descriptive only (not part of any verdict; 8 episodes):**
+- **Episode level:** Spearman ρ between an episode's infeasible share and its mean error is 0.78 over held units and
+  0.59 over all frames. Episodes where the gate flags more frames also track worse on average.
+- **Within episodes, there is no frame-level signal.** The within-episode AUROCs run from 0.32 to 0.63, with a median
+  of 0.49. The pooled 0.63 comes mostly from differences between episodes, not from the gate finding the bad
+  frames inside an episode [C].
+- **Object level:** the water pitcher (ep21) has infeasible share 0.69 and 84 of 84 frames positive (mean error 27 cm).
+  The ep12 blue cup has share 0.00 but 63 of 88 frames positive.
+
+**Reading [H].** As a frame-level predictor of where a trained policy leaves our reference, the gate is falsified on
+these 8 episodes. It might still help as an episode-level screen (ρ 0.78 above).
+- That is a new hypothesis, not tested here.
+- Falsifying experiment: a pre-registered episode-level test on episodes not used here (the 11 other public
+  episodes), with the episode infeasible share as the score and the episode mean error, or a per-episode failure
+  flag, as the label.
+
+**Outputs:**
+- `results_A.json`: statistics, per-episode table, pairing records.
+- `labels_A.csv`: 1,507 rows, `episode,object,frame,label`.
+- `docs/research/work/blob-tree-20261112/results_tree_A.json`.
+- Scratchpad only: `wgate/testA/pairing_8.json`, `features_A8.csv`, `manifest_A.json`.

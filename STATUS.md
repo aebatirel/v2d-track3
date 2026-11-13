@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 06:20 UTC: TEST A DONE: grasp-feasibility gate FALSIFIED (AUROC 0.63); blob tree no value; $24.40 GPU
+- Per frame, the gate does not predict where trained policies drift (within-episode AUROC median 0.49). Descriptive
+  only: episode-level ρ 0.78 over 8 episodes (an untested hypothesis for an episode screen).
+- All ideas from 12–13 Nov are closed: no improvement found. Spend: GPU $24.40, Gemini $1.11. Vast credit $9.58,
+  0 instances. Explainer page updated.
+- Open owner choices: episode-level screen test (new GPU batch, ≈ $30–40); LLM triage (needs about 20 min of labels);
+  or stop here.
+
 ## 2026-11-13 01:57 UTC: test A: gA1 lost to a watchdog false positive in setup, re-run as gA1b (60434477)
 - gA2–gA4 training (ends ≈ 03:45–04:40 UTC); gA1b started 01:57 (ends ≈ 05:15–06:00 UTC). Spent $8.05 so far;
   batch estimate $24–26, cap $30.

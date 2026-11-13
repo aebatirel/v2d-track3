@@ -1,0 +1,26 @@
+{
+ "rows": 1507,
+ "episodes": 8,
+ "positive_share": 0.6616,
+ "episodes_with_positives": 8,
+ "auroc_tree_oof": 0.2999,
+ "auroc_gate": 0.6296,
+ "diff": -0.3297,
+ "diff_ci95": [
+  -0.5196,
+  -0.0495
+ ],
+ "bootstrap_valid": 2000,
+ "verdict": "no added value",
+ "tree_all_rows": "|--- contacts <= 4.500\n|   |--- gap <= 0.013\n|   |   |--- tau_Nm <= 0.003\n|   |   |   |--- class: 1\n|   |   |--- tau_Nm >  0.003\n|   |   |   |--- class: 1\n|   |--- gap >  0.013\n|   |   |--- F_N <= 2.976\n|   |   |   |--- class: 1\n|   |   |--- F_N >  2.976\n|   |   |   |--- class: 1\n|--- contacts >  4.500\n|   |--- h_demand <= 0.765\n|   |   |--- h_demand <= 0.717\n|   |   |   |--- class: 0\n|   |   |--- h_demand >  0.717\n|   |   |   |--- class: 0\n|   |--- h_demand >  0.765\n|   |   |--- hands <= 1.500\n|   |   |   |--- class: 1\n|   |   |--- hands >  1.500\n|   |   |   |--- class: 0\n",
+ "importances": {
+  "score": 0.0,
+  "h_demand": 0.1103,
+  "h_up": 0.0,
+  "gap": 0.0505,
+  "contacts": 0.6338,
+  "hands": 0.1732,
+  "F_N": 0.004,
+  "tau_Nm": 0.0282
+ }
+}

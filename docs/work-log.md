@@ -5863,3 +5863,24 @@ arm and a no-policy replay floor to stage B.
   $24.40 (storage and transfer included). Cap $30 held.
 - Scoring started with the frozen `score_A.py` (1744cfa4), steps 1–5 of README §12.
 
+### 2026-11-13 06:20 UTC — TEST A RESULT: gate FALSIFIED (AUROC 0.630); blob tree NO ADDED VALUE (0.300)
+- Run: steps 1–5 of README §12 with the frozen code (1744cfa4; `score_A.py`, `wrench_gate.py`, `blob_tree.py`
+  unchanged). Pairing 8/8 at 0.0 mm; training copies byte-identical to the gate input. CPU, $0.
+- Gate:
+  - 1,507 held rows; 997 positive (66.2%, inside 10–90%); 0 missing;
+  - pooled AUROC 0.630, CI [0.492, 0.748]; 8 of 8 episodes have positives;
+  - verdict **falsified** (< 0.65).
+- Tree (leave-one-episode-out over 8): out-of-fold AUROC 0.300 vs the gate's 0.630; difference −0.330, CI
+  [−0.520, −0.050]; verdict **no added value**. It splits first on contact count and gives the gate score zero
+  importance.
+- Descriptive only (not a verdict):
+  - within-episode AUROCs 0.32–0.63 (median 0.49), so the pooled value comes from differences between episodes;
+  - episode-level Spearman between infeasible share and mean held error is 0.78 (n = 8).
+  - Hypothesis, untested: the gate as an episode-level screen. That needs a new pre-registration on the other
+    11 public episodes and another GPU batch (≈ $30–40 [E]).
+- Files: `docs/research/work/wrench-gate-20261112/` README §12.5, `results_A.json`, `labels_A.csv`;
+  `docs/research/work/blob-tree-20261112/results_tree_A.json`.
+- Session summary of ideas 1–5 plus Roman's DS idea: none improves the pipeline. 1 falsified (frame level), 2 not a
+  repair, 3 no added value, 5 fail/falsified, DS dropped as inapplicable, 4 not run (needs owner labels).
+  - Spend: GPU $24.40 (test A); Gemini API $1.11; the rest CPU.
+

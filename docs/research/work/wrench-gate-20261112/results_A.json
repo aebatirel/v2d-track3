@@ -1,0 +1,510 @@
+{
+ "status": "run",
+ "test": "A (official evaluator rollouts, 8-episode amendment)",
+ "synthetic": false,
+ "episodes": 8,
+ "units": 1507,
+ "positives": 997,
+ "positive_share": 0.6616,
+ "auroc": 0.6296,
+ "bootstrap": {
+  "ci95": [
+   0.492,
+   0.7475
+  ],
+  "resamples": 2000,
+  "skipped_one_class": 0,
+  "seed": 20261112
+ },
+ "episodes_with_positives": 8,
+ "verdict": "falsified",
+ "bars": {
+  "informative": "AUROC >= 0.75 and >= 4 of 8 episodes with positives",
+  "falsified": "AUROC < 0.65",
+  "share_rule": "inconclusive if positive share < 0.1 or > 0.9"
+ },
+ "secondary": {
+  "spearman_share_infeasible_vs_mean_err_held": 0.7785,
+  "spearman_share_infeasible_vs_mean_err_all": 0.5868,
+  "note": "descriptive only"
+ },
+ "per_episode": [
+  {
+   "ep": 2,
+   "held_units": 128,
+   "positives": 35,
+   "positive_share": 0.2734,
+   "missing_or_invalid": 0,
+   "share_infeasible": 0.1953,
+   "mean_err_held_cm": 1.584,
+   "mean_err_all_cm": 0.906,
+   "auroc_within": 0.375,
+   "objects": {
+    "white_pot": {
+     "held": 82,
+     "share_infeasible": 0.0732,
+     "positives": 28
+    },
+    "white_pot_lid": {
+     "held": 46,
+     "share_infeasible": 0.413,
+     "positives": 7
+    }
+   }
+  },
+  {
+   "ep": 12,
+   "held_units": 88,
+   "positives": 63,
+   "positive_share": 0.7159,
+   "missing_or_invalid": 0,
+   "share_infeasible": 0.0,
+   "mean_err_held_cm": 2.769,
+   "mean_err_all_cm": 1.702,
+   "auroc_within": 0.5175,
+   "objects": {
+    "blue_cup": {
+     "held": 88,
+     "share_infeasible": 0.0,
+     "positives": 63
+    }
+   }
+  },
+  {
+   "ep": 18,
+   "held_units": 236,
+   "positives": 225,
+   "positive_share": 0.9534,
+   "missing_or_invalid": 0,
+   "share_infeasible": 0.0636,
+   "mean_err_held_cm": 5.082,
+   "mean_err_all_cm": 16.161,
+   "auroc_within": 0.3194,
+   "objects": {
+    "mini_sweeper": {
+     "held": 84,
+     "share_infeasible": 0.1429,
+     "positives": 78
+    },
+    "mini_dust_pan": {
+     "held": 152,
+     "share_infeasible": 0.0197,
+     "positives": 147
+    }
+   }
+  },
+  {
+   "ep": 21,
+   "held_units": 194,
+   "positives": 184,
+   "positive_share": 0.9485,
+   "missing_or_invalid": 0,
+   "share_infeasible": 0.3041,
+   "mean_err_held_cm": 27.067,
+   "mean_err_all_cm": 23.943,
+   "auroc_within": 0.6261,
+   "objects": {
+    "blue_cup": {
+     "held": 110,
+     "share_infeasible": 0.0091,
+     "positives": 100
+    },
+    "water_pitcher": {
+     "held": 84,
+     "share_infeasible": 0.6905,
+     "positives": 84
+    }
+   }
+  },
+  {
+   "ep": 23,
+   "held_units": 240,
+   "positives": 27,
+   "positive_share": 0.1125,
+   "missing_or_invalid": 0,
+   "share_infeasible": 0.0167,
+   "mean_err_held_cm": 1.108,
+   "mean_err_all_cm": 0.95,
+   "auroc_within": 0.5317,
+   "objects": {
+    "wooden_piece_1": {
+     "held": 128,
+     "share_infeasible": 0.0234,
+     "positives": 19
+    },
+    "wooden_piece_2": {
+     "held": 112,
+     "share_infeasible": 0.0089,
+     "positives": 8
+    }
+   }
+  },
+  {
+   "ep": 24,
+   "held_units": 249,
+   "positives": 241,
+   "positive_share": 0.9679,
+   "missing_or_invalid": 0,
+   "share_infeasible": 0.2691,
+   "mean_err_held_cm": 7.001,
+   "mean_err_all_cm": 7.848,
+   "auroc_within": 0.4868,
+   "objects": {
+    "wooden_piece_1": {
+     "held": 69,
+     "share_infeasible": 0.0145,
+     "positives": 63
+    },
+    "wooden_piece_2": {
+     "held": 180,
+     "share_infeasible": 0.3667,
+     "positives": 178
+    }
+   }
+  },
+  {
+   "ep": 31,
+   "held_units": 213,
+   "positives": 208,
+   "positive_share": 0.9765,
+   "missing_or_invalid": 0,
+   "share_infeasible": 0.6385,
+   "mean_err_held_cm": 6.578,
+   "mean_err_all_cm": 4.469,
+   "auroc_within": 0.3375,
+   "objects": {
+    "mini_sweeper": {
+     "held": 213,
+     "share_infeasible": 0.6385,
+     "positives": 208
+    }
+   }
+  },
+  {
+   "ep": 40,
+   "held_units": 159,
+   "positives": 14,
+   "positive_share": 0.0881,
+   "missing_or_invalid": 0,
+   "share_infeasible": 0.0,
+   "mean_err_held_cm": 1.047,
+   "mean_err_all_cm": 0.772,
+   "auroc_within": 0.5,
+   "objects": {
+    "mini_dust_pan": {
+     "held": 159,
+     "share_infeasible": 0.0,
+     "positives": 14
+    }
+   }
+  }
+ ],
+ "pairing": {
+  "2": {
+   "ok": true,
+   "max_ref_diff_mm": 0.0,
+   "per_object_max_mm": {
+    "white_pot": 0.0,
+    "white_pot_lid": 0.0
+   },
+   "frames_ref": 343,
+   "coverage": {
+    "white_pot": {
+     "rows": 343,
+     "frames_unique": 343,
+     "frame_min": 0,
+     "frame_max": 342
+    },
+    "white_pot_lid": {
+     "rows": 343,
+     "frames_unique": 343,
+     "frame_min": 0,
+     "frame_max": 342
+    }
+   },
+   "sha256_gate_input": "a35dc7069a6a2980acacd106a2c42f32054fdd21502c2390db8b0fec00494d4f",
+   "sha256_training_copy": "a35dc7069a6a2980acacd106a2c42f32054fdd21502c2390db8b0fec00494d4f",
+   "copy_identical": true,
+   "rollout_reference_parquet": "/workspace/refs/perc2s/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/55ed3f7f5ab14dd8b404f89a29c4b6eb-0.parquet",
+   "rollout_step_count": "343",
+   "rollout_envs": [
+    0
+   ],
+   "provenance": {
+    "checkpoint": "/workspace/runs/perc2s/ep2-s42/policy_200007680.safetensors",
+    "checkpoint_sha256": "3e517c8afa93a245a0d1d4c325e267db85157bfe90b1c7948278a2b6624d0521",
+    "environment_steps": 200007680,
+    "motion_start_frame": 0,
+    "motion_end_frame": -1,
+    "parquet": "/workspace/refs/perc2s/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/55ed3f7f5ab14dd8b404f89a29c4b6eb-0.parquet"
+   }
+  },
+  "12": {
+   "ok": true,
+   "max_ref_diff_mm": 0.0,
+   "per_object_max_mm": {
+    "blue_cup": 0.0,
+    "plastic_dish_rack": 0.0
+   },
+   "frames_ref": 181,
+   "coverage": {
+    "blue_cup": {
+     "rows": 181,
+     "frames_unique": 181,
+     "frame_min": 0,
+     "frame_max": 180
+    },
+    "plastic_dish_rack": {
+     "rows": 181,
+     "frames_unique": 181,
+     "frame_min": 0,
+     "frame_max": 180
+    }
+   },
+   "sha256_gate_input": "86316dcedab00803ab79347e63dd71982c60ca5c606f3790ebcbb19e0ff24955",
+   "sha256_training_copy": "86316dcedab00803ab79347e63dd71982c60ca5c606f3790ebcbb19e0ff24955",
+   "copy_identical": true,
+   "rollout_reference_parquet": "/workspace/refs/perc2s/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/52a61b51b3cc4effb0e59ab8c5fc04b2-0.parquet",
+   "rollout_step_count": "181",
+   "rollout_envs": [
+    0
+   ],
+   "provenance": {
+    "checkpoint": "/workspace/runs/perc2s/ep12-s42/policy_150007808.safetensors",
+    "checkpoint_sha256": "8d516071f5518ae5eaf7bedc950f6b13359aa9cf67ce86f175f6d41fb3790979",
+    "environment_steps": 150007808,
+    "motion_start_frame": 0,
+    "motion_end_frame": -1,
+    "parquet": "/workspace/refs/perc2s/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/52a61b51b3cc4effb0e59ab8c5fc04b2-0.parquet"
+   }
+  },
+  "18": {
+   "ok": true,
+   "max_ref_diff_mm": 0.0,
+   "per_object_max_mm": {
+    "mini_sweeper": 0.0,
+    "mini_dust_pan": 0.0
+   },
+   "frames_ref": 353,
+   "coverage": {
+    "mini_sweeper": {
+     "rows": 353,
+     "frames_unique": 353,
+     "frame_min": 0,
+     "frame_max": 352
+    },
+    "mini_dust_pan": {
+     "rows": 353,
+     "frames_unique": 353,
+     "frame_min": 0,
+     "frame_max": 352
+    }
+   },
+   "sha256_gate_input": "477cefec725393793ac7479b7935df4bc29d1a33fbe2ba955540277b1409ba8b",
+   "sha256_training_copy": "477cefec725393793ac7479b7935df4bc29d1a33fbe2ba955540277b1409ba8b",
+   "copy_identical": true,
+   "rollout_reference_parquet": "/workspace/refs/perc2s/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/250358dc316249b098c6efa126802393-0.parquet",
+   "rollout_step_count": "353",
+   "rollout_envs": [
+    0
+   ],
+   "provenance": {
+    "checkpoint": "/workspace/runs/perc2s/ep18-s42/policy_150007808.safetensors",
+    "checkpoint_sha256": "42dff0ff09b0672f1263724cdc8f7ef20ad4ec8d91f26d93f5b8a2cc79ea6839",
+    "environment_steps": 150007808,
+    "motion_start_frame": 0,
+    "motion_end_frame": -1,
+    "parquet": "/workspace/refs/perc2s/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/250358dc316249b098c6efa126802393-0.parquet"
+   }
+  },
+  "21": {
+   "ok": true,
+   "max_ref_diff_mm": 0.0,
+   "per_object_max_mm": {
+    "blue_cup": 0.0,
+    "water_pitcher": 0.0
+   },
+   "frames_ref": 186,
+   "coverage": {
+    "blue_cup": {
+     "rows": 186,
+     "frames_unique": 186,
+     "frame_min": 0,
+     "frame_max": 185
+    },
+    "water_pitcher": {
+     "rows": 186,
+     "frames_unique": 186,
+     "frame_min": 0,
+     "frame_max": 185
+    }
+   },
+   "sha256_gate_input": "1af78da9de49b4cd9ab8d6e4c3c9e4991c7298d67fdf42206074dd529f14ab6d",
+   "sha256_training_copy": "1af78da9de49b4cd9ab8d6e4c3c9e4991c7298d67fdf42206074dd529f14ab6d",
+   "copy_identical": true,
+   "rollout_reference_parquet": "/workspace/refs/perc2s/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/e7196e5daa2d4996a938d45e77883317-0.parquet",
+   "rollout_step_count": "186",
+   "rollout_envs": [
+    0
+   ],
+   "provenance": {
+    "checkpoint": "/workspace/runs/perc2s/ep21-s42/policy_150007808.safetensors",
+    "checkpoint_sha256": "1b8634474a82d39307201940c7536392c945b933bdb5ffe399ee1683339bacd9",
+    "environment_steps": 150007808,
+    "motion_start_frame": 0,
+    "motion_end_frame": -1,
+    "parquet": "/workspace/refs/perc2s/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/e7196e5daa2d4996a938d45e77883317-0.parquet"
+   }
+  },
+  "23": {
+   "ok": true,
+   "max_ref_diff_mm": 0.0,
+   "per_object_max_mm": {
+    "wooden_piece_1": 0.0,
+    "wooden_piece_2": 0.0
+   },
+   "frames_ref": 325,
+   "coverage": {
+    "wooden_piece_1": {
+     "rows": 325,
+     "frames_unique": 325,
+     "frame_min": 0,
+     "frame_max": 324
+    },
+    "wooden_piece_2": {
+     "rows": 325,
+     "frames_unique": 325,
+     "frame_min": 0,
+     "frame_max": 324
+    }
+   },
+   "sha256_gate_input": "4ad4020ceabd333a21988693a9bc90074c7714ce25bcc9913174c1f86e4f98d2",
+   "sha256_training_copy": "4ad4020ceabd333a21988693a9bc90074c7714ce25bcc9913174c1f86e4f98d2",
+   "copy_identical": true,
+   "rollout_reference_parquet": "/workspace/refs/perc2s/ep23/processed/sequence_id=t3_ep023/robot_name=sharpa_wave/aa744602acb74229bf71519f9f1faa3b-0.parquet",
+   "rollout_step_count": "325",
+   "rollout_envs": [
+    0
+   ],
+   "provenance": {
+    "checkpoint": "/workspace/runs/perc2s/ep23-s42/policy_250003456.safetensors",
+    "checkpoint_sha256": "f9ad0b9e1dbcab6e05187d8582bd765557b8f2efc932724ff2a631cccd7c766c",
+    "environment_steps": 250003456,
+    "motion_start_frame": 0,
+    "motion_end_frame": -1,
+    "parquet": "/workspace/refs/perc2s/ep23/processed/sequence_id=t3_ep023/robot_name=sharpa_wave/aa744602acb74229bf71519f9f1faa3b-0.parquet"
+   }
+  },
+  "24": {
+   "ok": true,
+   "max_ref_diff_mm": 0.0,
+   "per_object_max_mm": {
+    "wooden_piece_1": 0.0,
+    "wooden_piece_2": 0.0
+   },
+   "frames_ref": 275,
+   "coverage": {
+    "wooden_piece_1": {
+     "rows": 275,
+     "frames_unique": 275,
+     "frame_min": 0,
+     "frame_max": 274
+    },
+    "wooden_piece_2": {
+     "rows": 275,
+     "frames_unique": 275,
+     "frame_min": 0,
+     "frame_max": 274
+    }
+   },
+   "sha256_gate_input": "a13533659dcecf49a17a1961e68bf9251651d735524bbdcf4452f19bfb3efae0",
+   "sha256_training_copy": "a13533659dcecf49a17a1961e68bf9251651d735524bbdcf4452f19bfb3efae0",
+   "copy_identical": true,
+   "rollout_reference_parquet": "/workspace/refs/perc2s/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/9b24770f78754cefb1a38b59bf7b0198-0.parquet",
+   "rollout_step_count": "275",
+   "rollout_envs": [
+    0
+   ],
+   "provenance": {
+    "checkpoint": "/workspace/runs/perc2s/ep24-s42/policy_200007680.safetensors",
+    "checkpoint_sha256": "1a5b8189317910505a99633cab5a821f0443d9ae22f386d298c5c5393c8c2a25",
+    "environment_steps": 200007680,
+    "motion_start_frame": 0,
+    "motion_end_frame": -1,
+    "parquet": "/workspace/refs/perc2s/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/9b24770f78754cefb1a38b59bf7b0198-0.parquet"
+   }
+  },
+  "31": {
+   "ok": true,
+   "max_ref_diff_mm": 0.0,
+   "per_object_max_mm": {
+    "mini_sweeper": 0.0,
+    "plastic_dish_rack": 0.0
+   },
+   "frames_ref": 290,
+   "coverage": {
+    "mini_sweeper": {
+     "rows": 290,
+     "frames_unique": 290,
+     "frame_min": 0,
+     "frame_max": 289
+    },
+    "plastic_dish_rack": {
+     "rows": 290,
+     "frames_unique": 290,
+     "frame_min": 0,
+     "frame_max": 289
+    }
+   },
+   "sha256_gate_input": "4eded4a37ad70bbe8379c854fac37464c05109f038fb32322ea0bed357f606a6",
+   "sha256_training_copy": "4eded4a37ad70bbe8379c854fac37464c05109f038fb32322ea0bed357f606a6",
+   "copy_identical": true,
+   "rollout_reference_parquet": "/workspace/refs/perc2s/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/cc8ca2259c3c4777bb40d792234203dd-0.parquet",
+   "rollout_step_count": "290",
+   "rollout_envs": [
+    0
+   ],
+   "provenance": {
+    "checkpoint": "/workspace/runs/perc2s/ep31-s42/policy_150007808.safetensors",
+    "checkpoint_sha256": "3675b9381638c5cbc9c46b21cf52c55745826504f035b0e0661de5662f2dd8e7",
+    "environment_steps": 150007808,
+    "motion_start_frame": 0,
+    "motion_end_frame": -1,
+    "parquet": "/workspace/refs/perc2s/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/cc8ca2259c3c4777bb40d792234203dd-0.parquet"
+   }
+  },
+  "40": {
+   "ok": true,
+   "max_ref_diff_mm": 0.0,
+   "per_object_max_mm": {
+    "mini_dust_pan": 0.0
+   },
+   "frames_ref": 260,
+   "coverage": {
+    "mini_dust_pan": {
+     "rows": 260,
+     "frames_unique": 260,
+     "frame_min": 0,
+     "frame_max": 259
+    }
+   },
+   "sha256_gate_input": "26b969a60c506fefe076b1a3ce1a3b628f2da0297b5b0c0b6e372c974752c121",
+   "sha256_training_copy": "26b969a60c506fefe076b1a3ce1a3b628f2da0297b5b0c0b6e372c974752c121",
+   "copy_identical": true,
+   "rollout_reference_parquet": "/workspace/refs/perc2s/ep40/processed/sequence_id=t3_ep040/robot_name=sharpa_wave/5e84d546686d49c799b0f504e96f8659-0.parquet",
+   "rollout_step_count": "260",
+   "rollout_envs": [
+    0
+   ],
+   "provenance": {
+    "checkpoint": "/workspace/runs/perc2s/ep40-s42/policy_200007680.safetensors",
+    "checkpoint_sha256": "c555ecc2200c1ca606fc537ebc75d237d70fc6635822b32b09fa9243a7d39603",
+    "environment_steps": 200007680,
+    "motion_start_frame": 0,
+    "motion_end_frame": -1,
+    "parquet": "/workspace/refs/perc2s/ep40/processed/sequence_id=t3_ep040/robot_name=sharpa_wave/5e84d546686d49c799b0f504e96f8659-0.parquet"
+   }
+  }
+ },
+ "gate_frozen_at": "61c0b6ad"
+}
