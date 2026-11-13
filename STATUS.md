@@ -1,5 +1,17 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 20:40 TRT: winner-recipe CPU part done; GPU reward A/B (arms c, cr) ready, owner to approve
+- **Built and CPU-tested:** centroid reward σ 3 cm (`FC_FDR_OBJ_MODE=centroid`) and reward centring with the
+  termination correction (`FC_RC=1`).
+- **Rest levelling:**
+  - production `mck` references already rest-settle (22 Oct);
+  - extra levelling (refine S1+S3+S5) FAILS its safety rule (mean −0.0146).
+- **Release check:** `tools/release_fix.py` built; the cold-reset drop test is unreliable on grasp-lock references,
+  so it is not used automatically.
+- **GPU batch ready** (`docs/research/work/reward-ab-20261113/`): 2 boxes, test A's 4 followable public episodes;
+  control vs c (centroid) vs cr (centroid + centring); ≈ $22–24, cap $28. Credit $9.58, so a top-up of about $20 is
+  needed. Nothing rented.
+
 ## 2026-11-13 (evening): replication tests done; both FALSIFIED on public data (CPU, $0)
 - **Stage 1b** (joint fit of rest-segment poses to SAM2 silhouettes + stereo depth, the winner's idea as a post-hoc
   CPU add-on):
