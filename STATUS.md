@@ -1,5 +1,17 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13: plan after the winners' talks — `docs/research/work/plan-20261113/PLAN.md` (nothing rented)
+- **Final standing (Kaggle API, 13 Nov):** Imitation.Tech AUC 0.886, 9th by rank sum. This branch held the 30 Oct
+  repository; the 31 Oct – 13 Nov work is on other session branches (latest: gallant-franklin, keen-heisenberg).
+- **The loss is reference vs truth, not the policy** (perfect-following audit, 3 Nov).
+- **Proposed order:**
+  1. reference v2: per-frame SAM 3 masks, joint shape + pose by nvdiffrast on the episode's own video, marker spin,
+     render-and-compare tracking;
+  2. physical consistency of references and collision proxies (CPU);
+  3. metric-aligned reward (GPU ≈ $50–65);
+  4. best-of-N rollouts.
+- Steps 1–2 are CPU-first. The owner decides. Vast credit $9.58.
+
 ## 2026-11-13: winner's talk analysed (team richchentw, first 16 slides); no runs, $0
 Notes: `docs/analysis/winner-richchentw-20261113/README.md`. Their pipeline is ours in outline: FoundationStereo,
 FoundationPose, MediaPipe to Sharpa, SAC in Newton, one policy per episode. They differ in four places:

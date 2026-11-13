@@ -5419,3 +5419,11 @@ arm and a no-policy replay floor to stage B.
     - room map: note 18 relocalised every eval clip to 1–2 mm; dropped 22 Oct because it used GT constants, and a
       GT-free rebuild was estimated at only +0.01.
   - New hypotheses H-E1..E3. No runs, $0.
+- Owner asked what would make our algorithm better.
+  - Read the Kaggle boards via API: we are Imitation.Tech, 0.88571, 9th by rank sum.
+  - Read the 31 Oct – 13 Nov branches: STATUS of gallant-franklin, keen-heisenberg, jolly-turing (competitors note
+    9 Nov), charming-goldberg and perfect-following.
+  - Corrected the winner notes, which had used pack 7 numbers.
+  - Wrote `docs/research/work/plan-20261113/PLAN.md`: reference v2 (joint shape and pose on the episode's own video,
+    per-frame masks, marker spin), then physical consistency and collision proxies, then the metric-aligned reward,
+    then best-of-N. Each step has a test and a falsifier. Nothing rented, $0.

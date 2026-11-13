@@ -157,6 +157,14 @@ the spoon tip is about 12 cm out.
 - Not shown anywhere: training steps, wall-clock per policy, wrist stiffness, how the spoon is tracked.
 
 ### Our error, split the same way
+> **Correction (13 Nov, later):** this section uses our 30 Oct state (pack 7), because this branch held only the
+> repository as of 30 Oct.
+> - Our final counted file was pack 14p: AUC 0.886, SP-SR 0.90, MP-SR 0.80, RPE 2.21, MPPE 1.80, CD-O 0.239. That is
+>   9th by rank sum (Kaggle API, 13 Nov).
+> - By 3 Nov our packed rollouts all passed SP/MP-SR against our own references (branch
+>   `claude/perfect-following-20261101`), so the final loss is mainly reference vs truth.
+> - The plan that follows from this: `docs/research/work/plan-20261113/PLAN.md`.
+
 - **Policy vs our own reference [M]:**
   - packed sim_vs_ref 0.917; mean of 10 fresh draws 0.876 (H5).
   - That is ≈ 0.08–0.12 AUC lost to the policy alone. Theirs is ≈ 0 (MPPE 0.10 cm).
