@@ -1,0 +1,133 @@
+{
+ "input": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs_gl/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "settings": {
+  "inp": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs_gl/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix_gl/ep24_out.parquet",
+  "report": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix_gl/ep24.json",
+  "k": 20,
+  "still_cm": 1.0,
+  "max_cm": 1.5,
+  "max_deg": 10.0,
+  "delays": "4,8,12,20,40,end",
+  "blend": 6,
+  "pre": 2
+ },
+ "releases": [
+  {
+   "hand": "right",
+   "object": "wooden_piece_1",
+   "release": 78,
+   "skip": "not a placement (object moves after the release in the reference)"
+  },
+  {
+   "hand": "left",
+   "object": "wooden_piece_1",
+   "release": 240,
+   "drift_D0": [
+    11.03,
+    69.6
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      41.96,
+      94.9
+     ]
+    },
+    {
+     "D": "8",
+     "drift": [
+      47.04,
+      125.2
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      47.91,
+      135.1
+     ]
+    },
+    {
+     "D": "20",
+     "drift": [
+      44.77,
+      113.5
+     ]
+    },
+    {
+     "D": "40",
+     "drift": [
+      2.36,
+      39.3
+     ]
+    },
+    {
+     "D": "end",
+     "drift": [
+      3.71,
+      39.5
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  },
+  {
+   "hand": "right",
+   "object": "wooden_piece_2",
+   "release": 244,
+   "drift_D0": [
+    33.47,
+    57.6
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      48.19,
+      92.8
+     ]
+    },
+    {
+     "D": "8",
+     "drift": [
+      45.76,
+      92.4
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      45.73,
+      90.1
+     ]
+    },
+    {
+     "D": "20",
+     "drift": [
+      45.02,
+      89.5
+     ]
+    },
+    {
+     "D": "40",
+     "drift": [
+      45.32,
+      88.3
+     ]
+    },
+    {
+     "D": "end",
+     "drift": [
+      45.2,
+      64.3
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  }
+ ],
+ "changed": false,
+ "seconds": 95.3
+}
