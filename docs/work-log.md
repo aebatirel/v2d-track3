@@ -12492,3 +12492,28 @@ score.
   - Reference sha256 checked equal to test A's input.
   - Control selection files and policies present in the store.
 - Estimate ≈ $11–14 for 2 boxes (cap $16); credit $9.58.
+
+### 2026-11-13 — stage 1b (joint shape + pose, silhouette + depth) development on ep21 / ep11 / ep31 (CPU, $0)
+- Built `docs/research/work/joint-fit-20261113/stage1b.py` (extends ptrk stage 1) and `fetch_ep.sh`.
+- Harness check: the control C scores reproduce exactly on CPU [M]: ep21 0.8375, ep11 0.8999, ep31 0.8647.
+  - `score_registered.py` from perception-tracking; scoring meshes = library_v3 + c0_pack9a + c1_pack9aplus.
+  - Kit sha256 7e1fdd00.
+- Dev results [D], registered AUC vs mocap:
+
+  | ep | C | J (shape+pose) | P (pose only, sil+depth) |
+  |---|---|---|---|
+  | 21 | 0.8375 | 0.8938 | 0.8688 |
+  | 11 | 0.8999 | 0.8935 | 0.8967 |
+  | 31 | 0.8647 | 0.8419 | 0.8907 |
+
+  - J split on ep21: fitted mesh alone +0.004, fitted poses alone +0.034, both +0.056.
+  - J's scales hit the +15 % bound on the rack (height) and the sweeper.
+  - Reading: shape along the view axis trades against translation (depth sees the front surface only, top-down views
+    give no height silhouette).
+- Masks checked: SAM2 logits > 0 → INTER_NEAREST from 800×500 to 400×250 (`pipeline/vos_guide.py`), so no
+  downsampling inflation.
+- Dev amendment (before the frozen run): `--plane_log` support term (the winner's "at rest, level on its support").
+  - Uses perc2's own frame-0 table plane from our depth (GT-free).
+  - Segments whose tracker pose sits within 2 cm of the plane are pulled onto it (σ 3 mm); others may not sink below
+    it.
+  - Running arms JS / PS on the three dev episodes.
