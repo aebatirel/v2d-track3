@@ -12533,3 +12533,21 @@ score.
     7cb80d592ce49a30e97ab49cf5f6bb752e3a8d2ce92a9ab5d3a7c5a21ec28568  run_all.sh
     0a41fb3c1ed71038e37dde29d8288d20978c47c32f8f78501bd8b601de6cdb31  gate1b.py
     0137aec7ecc8533c0100c527591f583e47bed0cb7a34ff7f116921cf0cfa6ee4  fetch_ep.sh
+
+### 2026-11-13 — Purple port (cups), first result on ep11 [D]
+- Owner: "can you test their system or try to replicate it, you can also look at the other people in github who scored
+  higher than us".
+- **Searched GitHub and HF (13 Nov):** no code from richchentw, DDD, Zihao Guo or egocube; SRL's repository is
+  gone. Purple (cringeyburger/purple-v2d-track3 @ 8f823be) is a source snapshot.
+  - Present: mesh refinement, spoon registration and post-processing.
+  - Absent: their FoundationPose driver, SAM 3 masks, cuVSLAM tracks and cup tracker.
+  - So their system cannot be run end to end.
+- **Ported their registration** (`spoon_register.py`) onto our data as
+  `docs/research/work/purple-port-20261113/purple_track.py`.
+  - Hand mask from the MediaPipe joints instead of SAM 3.
+- **ep11 (two cups):** C 0.8999 → PU 0.6635 (blue 0.856 → 0.648, beige 0.944 → 0.679; RPE 1.67 → 7.14 cm).
+  - Cause: up-down flips. The fitted cup axis is > 90° from the tracker's in 23/104 (blue) and 39/137 (beige)
+    frames; centre offset p90 5 cm.
+  - Per-frame PCA starts cannot tell a cup's top from its bottom from one side.
+- **Exploratory PUT** (our tracker pose added as a start): 0.8285, still below C.
+- Episodes 12 / 21 / 22 / 13 running for the pre-registered rule.
