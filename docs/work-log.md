@@ -13076,3 +13076,11 @@ score.
   judged inside the recipe batch.
 - Precedent for the release rule [M, 2 Nov]: eval 16 with the hand held to the end (`tools/hold_freeze.py`, frame
   chosen by hand) gave 10 fresh official draws 0.974 vs 0.850 packed.
+- **Rest rule = existing refine steps** S1 (support-gated snap) + S3 (anchor tilt to the stable face) + S5 (constant
+  pose per rest segment): the winner's "levelled world + rest refits".
+  - S1 and S3 were judged on reference AUC only (30 Oct: −0.0077, −0.0013); S5 never tested. Success rates never
+    measured.
+- **Safety check, pre-registered before running:** refine(S1,S3,S5) on the 20 control tracks C.
+  - Pass if mean reference ΔAUC ≥ −0.005 and no episode < −0.02.
+  - SP/MP-SR, MPPE and RPE reported.
+  - Its training value is judged only in the GPU recipe batch.
