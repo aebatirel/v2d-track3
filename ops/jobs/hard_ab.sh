@@ -71,8 +71,8 @@ if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}${FC_IMMEDIATE_FIRST_FRAME:-}" ] \
 fi
 if [ -n "${FC_FDR_OBJ:-}${FC_FDR_TIPS:-}" ]; then   # FlashDexRetarget-style rewards (ops/box/patch_flashchord_fdr.py)
   python $REPO_DIR/ops/box/patch_flashchord_fdr.py $FC >> $J 2>&1 || { log "FlashCHORD FDR patch FAILED" >> $J; exit 1; }
-  export FC_FDR_OBJ FC_FDR_TIPS FC_FDR_OBJ_POINTS FC_FDR_OBJ_TOPK FC_FDR_OBJ_RADIUS FC_FDR_TIP_SIGMA
-  log "patched FlashCHORD (FDR rewards): object points ${FC_FDR_OBJ:-0} (radius ${FC_FDR_OBJ_RADIUS:-true}, top-k ${FC_FDR_OBJ_TOPK:-3}), fingertip bound ${FC_FDR_TIPS:-0} (sigma ${FC_FDR_TIP_SIGMA:-0.01} m)" >> $J
+  export FC_FDR_OBJ FC_FDR_TIPS FC_FDR_OBJ_POINTS FC_FDR_OBJ_TOPK FC_FDR_OBJ_RADIUS FC_FDR_TIP_SIGMA FC_FDR_OBJ_MODE FC_FDR_OBJ_LEVER FC_FDR_OBJ_SIGMA
+  log "patched FlashCHORD (FDR rewards): object points ${FC_FDR_OBJ:-0} (mode ${FC_FDR_OBJ_MODE:-topk}, lever ${FC_FDR_OBJ_LEVER:-0.1}, sigma ${FC_FDR_OBJ_SIGMA:-config}, radius ${FC_FDR_OBJ_RADIUS:-true}, top-k ${FC_FDR_OBJ_TOPK:-3}), fingertip bound ${FC_FDR_TIPS:-0} (sigma ${FC_FDR_TIP_SIGMA:-0.01} m)" >> $J
 fi
 if [ "${FC_VOC_INERTIA:-0}" != 0 ]; then   # VOC with the full inertia tensor (ops/box/patch_flashchord_voc.py); opt-in here
   python $REPO_DIR/ops/box/patch_flashchord_voc.py $FC >> $J 2>&1 || { log "FlashCHORD VOC patch FAILED" >> $J; exit 1; }

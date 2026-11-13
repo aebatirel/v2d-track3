@@ -12,6 +12,14 @@ FC_FDR_OBJ=1 -> the "object_keypoints" slot holds FDR's point-match reward (arXi
   FDR's exp(-10 e)); the slot is the mean over objects.
   FC_FDR_OBJ_POINTS (128), FC_FDR_OBJ_TOPK (3, at most 4), FC_FDR_OBJ_RADIUS ("true" = the object's own size, the
   default; a number rescales the points to that largest radius, FDR uses 0.058).
+  FC_FDR_OBJ_MODE=centroid (2026-11-13, after the Track 3 winner's talk) replaces the point match by six keypoints on
+  a FC_FDR_OBJ_LEVER (default 0.1 m) lever arm around each object's surface centroid, along the object-frame axes:
+  value = mean over objects and keypoints of shaped_objective(d^2, var, shape), so with LAPLACIAN and
+  objective.object_keypoints.var=0.03 each keypoint scores exp(-d / 3 cm). 1 deg of rotation then moves a keypoint
+  1.7 mm (FlashCHORD's 1 m vectors: 17 mm), closer to how ADD-AUC weighs rotation. Default mode "topk" = unchanged.
+  FC_FDR_OBJ_SIGMA (either mode, optional) replaces objective.object_keypoints.var for this term only, so arms with
+  different widths can share a box through ENV_EP<N> (the checkpoint's resolved config still shows the config var;
+  the training log line "v2d_fdr: ..." records the value used).
 FC_FDR_TIPS=1 -> the "force_closure" slot (enable it: objective.force_closure.enabled=true, weight > 0) holds FDR's
   one-sided fingertip distance bound (tracking_ref_mano_tip_distance_bound_exp): per fingertip
   eps = max(0, d_sim - d_ref), value = mean over both hands' five tips of exp(-eps / FC_FDR_TIP_SIGMA (0.01 m)).
@@ -103,6 +111,51 @@ def object_points_objective(
     elif top_k >= 4:
         e = (m1 + m2 + m3 + m4) / 4.0
     wp.atomic_add(objective, world, shaped_objective(e * e, var, kind, 0.0) / float(n_obj))
+
+
+_AXES_NP = np.array(
+    [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0], [-1.0, 0.0, 0.0], [0.0, -1.0, 0.0], [0.0, 0.0, -1.0]],
+    dtype=np.float32,
+)
+
+
+@wp.kernel
+def object_centroid_keypoints_objective(
+    body_q: wp.array(dtype=wp.transform),
+    object_body_ids: wp.array(dtype=wp.int32),  # [n_obj] per-world object body ids
+    target_pos: wp.array(dtype=wp.vec3),  # [W * n_obj] command object positions
+    target_quat: wp.array(dtype=wp.quat),  # [W * n_obj] command object quats (xyzw)
+    centroids: wp.array(dtype=wp.vec3),  # [n_obj] object-frame surface centroids (unscaled)
+    axes: wp.array(dtype=wp.vec3),  # [6] unit axis vectors
+    lever: float,
+    body_object_ids: wp.array(dtype=wp.int32),  # [n_obj] logical object of each body
+    object_scales: wp.array(dtype=wp.float32),  # [W * num_objects]
+    n_obj: int,
+    num_objects: int,
+    bodies_per_world: int,
+    var: float,
+    kind: int,
+    objective: wp.array(dtype=wp.float32),  # [W] atomic: mean over objects and keypoints
+) -> None:
+    """Per (world, object body, keypoint): shaped error of centroid + lever * axis; launch over W*n_obj*6."""
+    tid = wp.tid()
+    kp = tid % 6
+    body = (tid // 6) % n_obj
+    world = tid // (6 * n_obj)
+    xf = body_q[world * bodies_per_world + object_body_ids[body]]
+    scale = object_scales[world * num_objects + body_object_ids[body]]
+    v = centroids[body] * scale + axes[kp] * lever
+    p_sim = wp.transform_get_translation(xf) + wp.quat_rotate(wp.transform_get_rotation(xf), v)
+    p_ref = target_pos[world * n_obj + body] + wp.quat_rotate(target_quat[world * n_obj + body], v)
+    d = p_sim - p_ref
+    wp.atomic_add(objective, world, shaped_objective(wp.dot(d, d), var, kind, 0.0) / float(6 * n_obj))
+
+
+def surface_centroid(vertices: np.ndarray, faces: np.ndarray) -> np.ndarray:
+    """Area-weighted centroid of a triangle surface (exact; robust to open meshes)."""
+    tri = vertices[faces]
+    area = 0.5 * np.linalg.norm(np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0]), axis=1)
+    return (tri.mean(axis=1) * area[:, None]).sum(axis=0) / area.sum()
 
 
 @wp.func
@@ -238,7 +291,21 @@ def attach(objective, model, embodiment, robot_reference, reference, command, de
     surfaces = [_body_mesh(model, int(b)) for b in body_ids]
     objective.v2d_fdr_num_objects = int(command.object_scales.shape[0] // command.world_count)
     log = []
-    if objective.v2d_fdr_obj:
+    objective.v2d_fdr_mode = os.environ.get("FC_FDR_OBJ_MODE", "topk")
+    if objective.v2d_fdr_mode not in ("topk", "centroid"):
+        raise ValueError(f"FC_FDR_OBJ_MODE must be topk or centroid, got {objective.v2d_fdr_mode}")
+    if objective.v2d_fdr_obj and objective.v2d_fdr_mode == "centroid":
+        lever = float(os.environ.get("FC_FDR_OBJ_LEVER", "0.1"))
+        if not lever > 0.0:
+            raise ValueError(f"FC_FDR_OBJ_LEVER must be positive, got {lever}")
+        cents = np.stack([surface_centroid(v, f) for v, f in surfaces]).astype(np.float32)
+        objective.v2d_fdr_centroids = wp.array(cents, dtype=wp.vec3, device=device)
+        objective.v2d_fdr_axes = wp.array(_AXES_NP, dtype=wp.vec3, device=device)
+        objective.v2d_fdr_lever = lever
+        for body, c in enumerate(cents):
+            log.append(f"body {body_ids[body]}: centroid ({c[0]:+.3f}, {c[1]:+.3f}, {c[2]:+.3f}) m, lever {lever} m")
+        log.append(f"shape {objective.config.object_keypoints.shape}")
+    elif objective.v2d_fdr_obj:
         n_points = int(os.environ.get("FC_FDR_OBJ_POINTS", "128"))
         top_k = int(os.environ.get("FC_FDR_OBJ_TOPK", "3"))
         if not 1 <= top_k <= 4:
@@ -276,7 +343,13 @@ def attach(objective, model, embodiment, robot_reference, reference, command, de
         objective.v2d_fdr_sigma = float(os.environ.get("FC_FDR_TIP_SIGMA", "0.01"))
         objective.v2d_fdr_max_dist = float(os.environ.get("FC_FDR_TIP_MAXDIST", "1.0"))
         log.append(f"tips: {len(tip_frames)} fingertip frames, sigma {objective.v2d_fdr_sigma} m")
-    print(f"v2d_fdr: object points {'ON' if objective.v2d_fdr_obj else 'off'}, tip bound "
+    sigma_env = os.environ.get("FC_FDR_OBJ_SIGMA", "")
+    objective.v2d_fdr_obj_var = float(sigma_env) if sigma_env else float(objective.config.object_keypoints.var)
+    if not objective.v2d_fdr_obj_var > 0.0:
+        raise ValueError(f"FC_FDR_OBJ_SIGMA must be positive, got {sigma_env}")
+    if objective.v2d_fdr_obj:
+        log.append(f"object var {objective.v2d_fdr_obj_var} ({'FC_FDR_OBJ_SIGMA' if sigma_env else 'config'})")
+    print(f"v2d_fdr: object points {'ON (' + objective.v2d_fdr_mode + ')' if objective.v2d_fdr_obj else 'off'}, tip bound "
           f"{'ON' if objective.v2d_fdr_tips else 'off'}; " + "; ".join(log), flush=True)
 
 
@@ -285,7 +358,30 @@ def evaluate(objective, state, timestep) -> bool:
     if not (getattr(objective, "v2d_fdr_obj", False) or getattr(objective, "v2d_fdr_tips", False)):
         return False
     buffers, command = objective.buffers, objective.command
-    if objective.v2d_fdr_obj:
+    if objective.v2d_fdr_obj and getattr(objective, "v2d_fdr_mode", "topk") == "centroid":
+        wp.launch(_zero, dim=objective.world_count, inputs=[buffers.object_keypoints])
+        wp.launch(
+            object_centroid_keypoints_objective,
+            dim=objective.world_count * objective.num_bodies * 6,
+            inputs=[
+                state.body_q,
+                command.body_ids,
+                command.body_target_pos_w,
+                command.body_target_quat_w,
+                objective.v2d_fdr_centroids,
+                objective.v2d_fdr_axes,
+                objective.v2d_fdr_lever,
+                command.body_object_ids,
+                command.object_scales,
+                objective.num_bodies,
+                objective.v2d_fdr_num_objects,
+                objective.bodies_per_world,
+                objective.v2d_fdr_obj_var,
+                int(objective.config.object_keypoints.shape),
+            ],
+            outputs=[buffers.object_keypoints],
+        )
+    elif objective.v2d_fdr_obj:
         wp.launch(_zero, dim=objective.world_count, inputs=[buffers.object_keypoints])
         wp.launch(
             object_points_objective,
@@ -303,7 +399,7 @@ def evaluate(objective, state, timestep) -> bool:
                 objective.v2d_fdr_n_points,
                 objective.v2d_fdr_top_k,
                 objective.bodies_per_world,
-                objective.config.object_keypoints.var,
+                objective.v2d_fdr_obj_var,
                 int(objective.config.object_keypoints.shape),
             ],
             outputs=[buffers.object_keypoints],
