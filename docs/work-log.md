@@ -5779,3 +5779,23 @@ arm and a no-policy replay floor to stage B.
 - Ledger: `ops/ledger.py` needs a store write credential this session lacks (read-only HF). Planned and actual lines
   are recorded in this log instead (planned $7.00 per box).
 
+### 2026-11-13 00:26 UTC (container clock) — test A LAUNCHED: 4 boxes, $6.01/h combined
+- Clock note: work-log times in this session's entries from "~22:20 UTC" (12 Nov) to "~04:10 UTC" (13 Nov) were
+  estimates and ran ahead of the container clock (it read 00:18 UTC at launch). Their order is right; git commit
+  times are authoritative. From here on, times are the container clock.
+- Commit on the boxes: 25cb421 (box code identical to the dry-run commit ee653b38; job files pass SHA256SUMS).
+  ENV_SNAPSHOT pt2.11-cu130-py313-20261020; image from ops/config.env.
+- Credit before: $33.98; 0 instances.
+
+| Box | Run id | Episodes | Instance | GPU | $/h | Created (UTC) |
+|---|---|---|---|---|---|---|
+| gA1 | 20261113-gA1-25cb421 | ep12, ep31 | 60424679 | RTX PRO 6000 WS | 1.508 | 00:19 |
+| gA2 | 20261113-gA2-25cb421 | ep40, ep21 | 60424841 | RTX PRO 6000 WS | 1.508 | 00:21 |
+| gA3 | 20261113-gA3-25cb421 | ep23, ep2 | 60425356 | RTX PRO 6000 S | 1.347 | 00:26 |
+| gA4 | 20261113-gA4-25cb421 | ep18, ep24 | 60425291 | RTX PRO 6000 S | 1.642 | 00:25 |
+
+- gA3's first offer (59405105) was gone at create time (no_such_ask), so nothing was created or billed. It was
+  re-created on offer 58257843.
+- Ledger, planned (here instead of the store ledger, no write credential): $7.00 per box, batch cap $30. Expected
+  3.3–4.2 h per box, ≈ $20–25.
+

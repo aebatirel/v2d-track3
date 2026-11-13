@@ -1,5 +1,10 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 00:26 UTC: TEST A RUNNING on 4 Vast boxes ($6.01/h; cap $30; expected end ≈ 03:45–04:40 UTC)
+- Runs 20261113-gA1..gA4-25cb421 (instances 60424679, 60424841, 60425356, 60425291), 8 public episodes. Each box
+  self-destroys after pushing to the store. Label rollouts: runs/<run>/results/hard_ab/ep<N>/s-s42/r1/.
+- After all boxes are gone: score test A (gate) and the blob tree on the fresh draws, report, update the page.
+
 ## 2026-11-13 ~03:30 UTC: Gemini judge negative on both tests (G-A FAIL ρ 0.43; G-B FALSIFIED AUROC 0.52); $1.11
 - The Decisions API does not see our cm-level geometry errors and does not pick better meshes than our own metric.
 - Remaining open item: GPU test A (8 episodes, cap $30), being dry-run on CPU; nothing rented yet.
