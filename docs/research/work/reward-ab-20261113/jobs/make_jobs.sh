@@ -31,6 +31,8 @@ mk() {  # $1 job name, then pairs RUN:EP:SHA256(reference parquet of test A)
     echo '  SPLIT=public PDIR_ROOT=/content/perc2 SUF=c CR=0 BASE_EVAL=1 NREP=5 SEED=42 LIB=/content/v2d-track3/meshes/library_v3 \'
     echo "  PAIRS=\"$(for x in "$@"; do echo -n "$(echo $x | cut -d: -f2):local:s "; done | sed 's/ $//')\""
     echo 'bash ops/jobs/hard_ab.sh'
+    echo '# arm 2 (13 Nov amendment): the same centroid reward + reward centring (FC_RC=1); control already evaluated above'
+    echo 'FC_RC=1 FC_RC_GAMMA=0.99 FC_RC_BETA=1e-3 SUF=cr BASE_EVAL=0 bash ops/jobs/hard_ab.sh'
   } > $name.job
 }
 # reference sha256 = the parquet test A trained on (refs/perc2s/ep<N>/processed in its run; same file as the gate input)

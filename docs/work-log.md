@@ -13084,3 +13084,10 @@ score.
   - Pass if mean reference ΔAUC ≥ −0.005 and no episode < −0.02.
   - SP/MP-SR, MPPE and RPE reported.
   - Its training value is judged only in the GPU recipe batch.
+- **Winner recipe, CPU part done** (`docs/research/work/winner-recipe-20261113/README.md`):
+  - reward centring built and tested;
+  - rest levelling (refine S1+S3+S5) FAILS its safety rule (mean −0.0146, worst −0.059); production `mck` already
+    rest-settles;
+  - release check tool built (`tools/release_fix.py`); its cold-reset drop test is not reliable on grasp-lock
+    references (126 cm pot fling; delays can worsen), so it is not used automatically.
+- Reward A/B amended (before any result): arm `cr` (centroid + FC_RC) added beside `c`; ≈ $22–24 for 2 boxes.

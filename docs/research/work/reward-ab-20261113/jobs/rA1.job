@@ -22,3 +22,5 @@ export FC_FDR_OBJ=1 FC_FDR_TIPS=1 FC_VOC_INERTIA=1 FC_IMMEDIATE_FIRST_FRAME=0.25
   SPLIT=public PDIR_ROOT=/content/perc2 SUF=c CR=0 BASE_EVAL=1 NREP=5 SEED=42 LIB=/content/v2d-track3/meshes/library_v3 \
   PAIRS="12:local:s 2:local:s"
 bash ops/jobs/hard_ab.sh
+# arm 2 (13 Nov amendment): the same centroid reward + reward centring (FC_RC=1); control already evaluated above
+FC_RC=1 FC_RC_GAMMA=0.99 FC_RC_BETA=1e-3 SUF=cr BASE_EVAL=0 bash ops/jobs/hard_ab.sh

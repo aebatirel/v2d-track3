@@ -1,0 +1,102 @@
+{
+ "input": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs_gl/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "settings": {
+  "inp": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs_gl/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix_gl/ep18_out.parquet",
+  "report": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix_gl/ep18.json",
+  "k": 20,
+  "still_cm": 1.0,
+  "max_cm": 1.5,
+  "max_deg": 10.0,
+  "delays": "4,8,12,20,40,end",
+  "blend": 6,
+  "pre": 2
+ },
+ "releases": [
+  {
+   "hand": "left",
+   "object": "mini_dust_pan",
+   "release": 187,
+   "drift_D0": [
+    1.38,
+    3.7
+   ],
+   "decision": "release as is"
+  },
+  {
+   "hand": "right",
+   "object": "mini_sweeper",
+   "release": 219,
+   "drift_D0": [
+    1.11,
+    14.8
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      1.29,
+      16.7
+     ]
+    },
+    {
+     "D": "8",
+     "drift": [
+      1.2,
+      17.7
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      1.31,
+      19.2
+     ]
+    },
+    {
+     "D": "20",
+     "drift": [
+      1.27,
+      26.8
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  },
+  {
+   "hand": "right",
+   "object": "mini_sweeper",
+   "release": 323,
+   "drift_D0": [
+    1.65,
+    15.2
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      2.51,
+      23.3
+     ]
+    },
+    {
+     "D": "8",
+     "drift": [
+      2.79,
+      27.6
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      1.23,
+      5.9
+     ]
+    }
+   ],
+   "decision": "hold 12 frames longer"
+  }
+ ],
+ "changed": true,
+ "seconds": 207.6
+}

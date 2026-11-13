@@ -2,6 +2,12 @@
 
 Status: **PREPARED, NOT LAUNCHED.** Waiting for the owner's go-ahead and credit. Credit $9.58 at 13 Nov.
 
+**Amendment (13 Nov, before any result):** a second treatment arm `cr` = the same centroid reward + reward centring
+(FC_RC=1, γ 0.99, β 1e-3; `tests/test_reward_centering.py`). Each job now runs hard_ab.sh twice: arm `c` (with
+BASE_EVAL=1, the control's 5 draws), then arm `cr` (BASE_EVAL=0). Both arms are judged against the control by the
+rule below; `cr` vs `c` is reported descriptively. Cost: 4 trainings per box, ≈ 7–7.5 h × $1.45–1.65/h ≈ $11–12 per
+box, ≈ $22–24 for both (cap $28).
+
 ## Question
 - Does the winner's object reward make our policies follow their reference more closely, and score higher against
   mocap?

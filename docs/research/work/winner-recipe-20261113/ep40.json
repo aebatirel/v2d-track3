@@ -1,0 +1,71 @@
+{
+ "input": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs/ep40/processed/sequence_id=t3_ep040/robot_name=sharpa_wave/5e84d546686d49c799b0f504e96f8659-0.parquet",
+ "settings": {
+  "inp": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs/ep40/processed/sequence_id=t3_ep040/robot_name=sharpa_wave/5e84d546686d49c799b0f504e96f8659-0.parquet",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix/ep40_out.parquet",
+  "report": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix/ep40.json",
+  "k": 20,
+  "still_cm": 1.0,
+  "max_cm": 1.5,
+  "max_deg": 10.0,
+  "delays": "4,12",
+  "blend": 6,
+  "pre": 2
+ },
+ "releases": [
+  {
+   "hand": "left",
+   "object": "mini_dust_pan",
+   "release": 228,
+   "drift_D0": [
+    17.06,
+    65.2
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      2.97,
+      3.0
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      3.36,
+      3.5
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  },
+  {
+   "hand": "right",
+   "object": "mini_dust_pan",
+   "release": 229,
+   "drift_D0": [
+    17.08,
+    94.7
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      11.19,
+      5.7
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      15.85,
+      54.0
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  }
+ ],
+ "changed": false,
+ "seconds": 81.2
+}

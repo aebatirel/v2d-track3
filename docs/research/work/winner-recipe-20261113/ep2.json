@@ -1,0 +1,107 @@
+{
+ "input": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/55ed3f7f5ab14dd8b404f89a29c4b6eb-0.parquet",
+ "settings": {
+  "inp": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/55ed3f7f5ab14dd8b404f89a29c4b6eb-0.parquet",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix/ep2_out.parquet",
+  "report": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix/ep2.json",
+  "k": 20,
+  "still_cm": 1.0,
+  "max_cm": 1.5,
+  "max_deg": 10.0,
+  "delays": "4,12",
+  "blend": 6,
+  "pre": 2
+ },
+ "releases": [
+  {
+   "hand": "right",
+   "object": "white_pot_lid",
+   "release": 158,
+   "drift_D0": [
+    0.33,
+    2.5
+   ],
+   "decision": "release as is"
+  },
+  {
+   "hand": "left",
+   "object": "white_pot",
+   "release": 234,
+   "drift_D0": [
+    2.5,
+    9.8
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      1.58,
+      4.7
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      1.67,
+      6.2
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  },
+  {
+   "hand": "left",
+   "object": "white_pot",
+   "release": 300,
+   "drift_D0": [
+    3.35,
+    29.3
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      2.9,
+      23.6
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      3.46,
+      20.0
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  },
+  {
+   "hand": "right",
+   "object": "white_pot_lid",
+   "release": 304,
+   "drift_D0": [
+    3.12,
+    20.6
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      4.82,
+      27.3
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      5.09,
+      27.3
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  }
+ ],
+ "changed": false,
+ "seconds": 156.0
+}
