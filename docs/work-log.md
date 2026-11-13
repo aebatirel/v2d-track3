@@ -5841,3 +5841,19 @@ arm and a no-policy replay floor to stage B.
 - gA1b ep12: 88%, 41.6k/s, ETA 12 min; then ep31 (≈ 1.6 h), so done ≈ 06:00.
 - Projected total ≈ $26 (≈ $6.5 more at the current rates); cap $30.
 
+### 2026-11-13 04:41 UTC — test A check-in 5: gA2, gA3, gA4 done (rc 0, self-destroyed); 7 of 8 labels in the store
+- Label rollouts present: ep40, ep21 (gA2); ep23, ep2 (gA3); ep18, ep24 (gA4); ep12 (gA1b).
+  `run_state/exit_code` 0 for gA2–gA4.
+- Ledger, actual (duration × rate):
+
+| Box | Instance | Created → gone (UTC) | $/h | Cost |
+|---|---|---|---|---|
+| gA1 (watchdog false positive) | 60424679 | 00:19 → 01:12 | 1.508 | $1.33 |
+| gA2 | 60424841 | 00:21 → 04:11 | 1.508 | $5.78 |
+| gA3 | 60425356 | 00:26 → 04:09 | 1.347 | $5.01 |
+| gA4 | 60425291 | 00:25 → 04:11 | 1.642 | $6.19 |
+| gA1b (running) | 60434477 | 01:57 → … | 1.508 | $4.12 so far |
+
+- Credit $11.31; the credit drop $22.67 matches the table.
+- gA1b at 04:41: ep31 37% (42.0k steps/s, ETA 1 h 02 min), so done ≈ 06:05. Projected batch total ≈ $24.6; cap $30.
+
