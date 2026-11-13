@@ -20,6 +20,14 @@ FC_FDR_OBJ=1 -> the "object_keypoints" slot holds FDR's point-match reward (arXi
   FC_FDR_OBJ_SIGMA (either mode, optional) replaces objective.object_keypoints.var for this term only, so arms with
   different widths can share a box through ENV_EP<N> (the checkpoint's resolved config still shows the config var;
   the training log line "v2d_fdr: ..." records the value used).
+FC_RC=1 (2026-11-13, the Track 3 winner's "b = reward centering"; needs the hook, i.e. FC_FDR_OBJ or FC_FDR_TIPS set):
+  after composition the per-world reward becomes r - b, with b an on-device running mean of the raw reward of
+  non-terminal transitions (running average for the first 1/FC_RC_BETA updates, then an EMA with rate FC_RC_BETA,
+  default 1e-3 per vector step). A terminating transition additionally gets -gamma b / (1 - gamma) (FC_RC_GAMMA, default
+  0.99 = training.discount): the absorbing state's centred value, so ending an episode is exactly as unattractive as
+  without centring (naive centring makes termination pay whenever the reward runs below b). Optimal policy unchanged;
+  the intended effect is a better-centred return for FlashSAC's categorical critic. Uncertain benefit [H]: FlashSAC
+  scales returns by their lifetime maximum, so the gain in critic resolution is modest.
 FC_FDR_TIPS=1 -> the "force_closure" slot (enable it: objective.force_closure.enabled=true, weight > 0) holds FDR's
   one-sided fingertip distance bound (tracking_ref_mano_tip_distance_bound_exp): per fingertip
   eps = max(0, d_sim - d_ref), value = mean over both hands' five tips of exp(-eps / FC_FDR_TIP_SIGMA (0.01 m)).
@@ -111,6 +119,61 @@ def object_points_objective(
     elif top_k >= 4:
         e = (m1 + m2 + m3 + m4) / 4.0
     wp.atomic_add(objective, world, shaped_objective(e * e, var, kind, 0.0) / float(n_obj))
+
+
+@wp.kernel
+def _rc_accumulate(score: wp.array(dtype=wp.float32), terminated: wp.array(dtype=wp.int32),
+                   acc: wp.array(dtype=wp.float32)) -> None:
+    """acc[0] += raw reward of non-terminal worlds, acc[1] += their count (launch over W)."""
+    w = wp.tid()
+    if terminated[w] == 0:
+        wp.atomic_add(acc, 0, score[w])
+        wp.atomic_add(acc, 1, 1.0)
+
+
+@wp.kernel
+def _rc_apply(score: wp.array(dtype=wp.float32), terminated: wp.array(dtype=wp.int32), state: wp.array(dtype=wp.float32),
+              gamma: float) -> None:
+    """r <- r - b; a terminating transition also gets -gamma b / (1 - gamma) (launch over W)."""
+    w = wp.tid()
+    b = state[0]
+    corr = float(0.0)
+    if terminated[w] != 0:
+        corr = gamma * b / (1.0 - gamma)
+    score[w] = score[w] - b - corr
+
+
+@wp.kernel
+def _rc_update(acc: wp.array(dtype=wp.float32), state: wp.array(dtype=wp.float32), beta: float) -> None:
+    """b <- b + max(beta, 1/(n+1)) (mean - b); n += 1; acc <- 0 (launch over 1)."""
+    if acc[1] > 0.0:
+        n = state[1]
+        rate = wp.max(beta, 1.0 / (n + 1.0))
+        state[0] = state[0] + rate * (acc[0] / acc[1] - state[0])
+        state[1] = n + 1.0
+    acc[0] = 0.0
+    acc[1] = 0.0
+
+
+def center_reward(objective, terminated) -> None:
+    """FC_RC: centre objective.buffers.score in place (raw mean taken before b is applied)."""
+    buf = objective.buffers
+    if not hasattr(objective, 'v2d_rc_state'):
+        dev = buf.score.device
+        objective.v2d_rc_state = wp.zeros(2, dtype=wp.float32, device=dev)   # [b, n]
+        objective.v2d_rc_acc = wp.zeros(2, dtype=wp.float32, device=dev)
+        objective.v2d_rc_gamma = float(os.environ.get('FC_RC_GAMMA', '0.99'))
+        objective.v2d_rc_beta = float(os.environ.get('FC_RC_BETA', '1e-3'))
+        if not (0.0 < objective.v2d_rc_gamma < 1.0 and 0.0 < objective.v2d_rc_beta <= 1.0):
+            raise ValueError('FC_RC_GAMMA must be in (0, 1) and FC_RC_BETA in (0, 1]')
+    W = objective.world_count
+    wp.launch(_rc_accumulate, dim=W, inputs=[buf.score, terminated, objective.v2d_rc_acc])
+    wp.launch(_rc_apply, dim=W, inputs=[buf.score, terminated, objective.v2d_rc_state, objective.v2d_rc_gamma])
+    wp.launch(_rc_update, dim=1, inputs=[objective.v2d_rc_acc, objective.v2d_rc_state, objective.v2d_rc_beta])
+
+
+def rc_enabled() -> bool:
+    return os.environ.get('FC_RC', '0') not in ('', '0')
 
 
 _AXES_NP = np.array(
@@ -450,10 +513,17 @@ def install(cls) -> None:
         attach(objective, a["model"], a["embodiment"], a["robot_reference"], a["reference"], a["command"], a["device"])
         return objective
 
+    use_rc = rc_enabled()
+    if use_rc:
+        print(f"v2d_fdr: reward centring ON (FC_RC; gamma {os.environ.get('FC_RC_GAMMA', '0.99')}, "
+              f"beta {os.environ.get('FC_RC_BETA', '1e-3')})", flush=True)
+
     def evaluate(self, state, timestep, terminated):
         original_evaluate(self, state, timestep, terminated)
         if evaluate_fdr(self, state, timestep):
             self.buffers.compose(terminated, self.action_rate_l2, self.action_l2)
+        if use_rc:
+            center_reward(self, terminated)
 
     evaluate_fdr = globals()["evaluate"]
     cls.build = classmethod(build)

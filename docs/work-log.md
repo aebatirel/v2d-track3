@@ -13061,3 +13061,18 @@ score.
   repair, 3 no added value, 5 fail/falsified, DS dropped as inapplicable, 4 not run (needs owner labels).
   - Spend: GPU $24.40 (test A); Gemini API $1.11; the rest CPU.
 
+
+### 2026-11-13 — winner recipe, CPU part (owner: "sure"): reward centring built
+- Code: `FC_RC=1` in `ops/box/fc_v2d_fdr.py` (installed by the FDR hook; FC_RC also activates it now).
+  - The reward becomes r − b, with b an on-device running mean of non-terminal raw reward (running average, then EMA,
+    rate FC_RC_BETA 1e-3).
+  - Terminating transitions get −γb/(1−γ) (γ = FC_RC_GAMMA 0.99 = FlashSAC's discount), so the optimal policy is
+    unchanged.
+  - Graph-capturable (device kernels only). hard_ab.sh exports FC_RC*.
+- `tests/test_reward_centering.py` passes on CPU: shift, terminal correction, running mean vs a numpy reference,
+  incentive invariance.
+- Expectation [H, low prior]: FlashSAC normalises returns by the lifetime maximum |return|, and terminations set that
+  maximum, so centring improves critic resolution only modestly (≈ 20 %). Kept because the winner used it; it is
+  judged inside the recipe batch.
+- Precedent for the release rule [M, 2 Nov]: eval 16 with the hand held to the end (`tools/hold_freeze.py`, frame
+  chosen by hand) gave 10 fresh official draws 0.974 vs 0.850 packed.

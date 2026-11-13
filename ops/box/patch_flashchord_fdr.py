@@ -29,11 +29,11 @@ elif 'class TrackingObjective:' not in s:
 else:
     s += f'''
 
-{tag} (ops/box/patch_flashchord_fdr.py); inert unless FC_FDR_OBJ or FC_FDR_TIPS is set
+{tag} (ops/box/patch_flashchord_fdr.py); inert unless FC_FDR_OBJ, FC_FDR_TIPS or FC_RC is set
 def _v2d_fdr_hook() -> None:
     import os
 
-    if any(os.environ.get(name, "0") not in ("", "0") for name in ("FC_FDR_OBJ", "FC_FDR_TIPS")):
+    if any(os.environ.get(name, "0") not in ("", "0") for name in ("FC_FDR_OBJ", "FC_FDR_TIPS", "FC_RC")):
         from flash_chord.objectives.v2d_fdr import install
 
         install(TrackingObjective)
