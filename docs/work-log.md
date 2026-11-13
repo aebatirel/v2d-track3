@@ -12563,3 +12563,7 @@ score.
   - pot-anchor frame-0 rotation (ep0, ep2: −0.14 / −0.16);
   - shape not identifiable.
 - Gains only on the dev episodes and ep22.
+- **Purple port verdict (9 Nov rule): FALSIFIED.** `docs/research/work/purple-port-20261113/RESULTS.md`.
+  - PU (as published): mean cup ΔAUC −0.198 over eps 11/12/21/22; every episode worse (−0.05 to −0.24).
+  - PUT (+ tracker start, exploratory): −0.061.
+  - Up-down flips and no temporal model. Their cup tracker is not public.

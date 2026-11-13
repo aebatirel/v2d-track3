@@ -1,0 +1,19 @@
+{
+ "episode": 12,
+ "settings": {
+  "hand_dilate": 31,
+  "min_mask_px": 146,
+  "max_pts": 5000,
+  "tracker_start": false
+ },
+ "objects": {
+  "blue_cup": {
+   "frames": 181,
+   "fitted": 181,
+   "dist_med_mm": 1.8251323414391667,
+   "iou_med": 0.8884946781550938,
+   "good": 145
+  }
+ },
+ "seconds": 224.4
+}

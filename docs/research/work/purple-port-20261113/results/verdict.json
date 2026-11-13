@@ -1,0 +1,180 @@
+{
+ "PU": {
+  "variant": "PU",
+  "cup_objects": 5,
+  "mean_cup_dAUC": -0.1983,
+  "min_episode_dAUC": -0.2364,
+  "pass_": false,
+  "falsified": true,
+  "rows": [
+   {
+    "ep": 11,
+    "rule": true,
+    "C": 0.8999,
+    "arm": 0.6635,
+    "dAUC": -0.2364,
+    "cup_d": [
+     [
+      "blue_cup",
+      -0.2075
+     ],
+     [
+      "beige_cup",
+      -0.2651
+     ]
+    ],
+    "dMPPE": 1.7,
+    "dRPE": 5.468
+   },
+   {
+    "ep": 12,
+    "rule": true,
+    "C": 0.9584,
+    "arm": 0.846,
+    "dAUC": -0.1124,
+    "cup_d": [
+     [
+      "blue_cup",
+      -0.1972
+     ]
+    ],
+    "dMPPE": 0.806,
+    "dRPE": 2.847
+   },
+   {
+    "ep": 21,
+    "rule": true,
+    "C": 0.8375,
+    "arm": 0.744,
+    "dAUC": -0.0935,
+    "cup_d": [
+     [
+      "blue_cup",
+      -0.2
+     ]
+    ],
+    "dMPPE": 0.755,
+    "dRPE": 10.341
+   },
+   {
+    "ep": 22,
+    "rule": true,
+    "C": 0.8704,
+    "arm": 0.8161,
+    "dAUC": -0.0543,
+    "cup_d": [
+     [
+      "blue_cup",
+      -0.1217
+     ]
+    ],
+    "dMPPE": 0.427,
+    "dRPE": 1.473
+   },
+   {
+    "ep": 13,
+    "rule": false,
+    "C": 0.9628,
+    "arm": 0.8507,
+    "dAUC": -0.1121,
+    "cup_d": [
+     [
+      "blue_cup",
+      -0.1845
+     ]
+    ],
+    "dMPPE": 0.7,
+    "dRPE": 4.297
+   }
+  ]
+ },
+ "PUT": {
+  "variant": "PUT",
+  "cup_objects": 5,
+  "mean_cup_dAUC": -0.0611,
+  "min_episode_dAUC": -0.0714,
+  "pass_": false,
+  "falsified": true,
+  "rows": [
+   {
+    "ep": 11,
+    "rule": true,
+    "C": 0.8999,
+    "arm": 0.8285,
+    "dAUC": -0.0714,
+    "cup_d": [
+     [
+      "blue_cup",
+      -0.0337
+     ],
+     [
+      "beige_cup",
+      -0.109
+     ]
+    ],
+    "dMPPE": 0.551,
+    "dRPE": 0.859
+   },
+   {
+    "ep": 12,
+    "rule": true,
+    "C": 0.9584,
+    "arm": 0.9035,
+    "dAUC": -0.0549,
+    "cup_d": [
+     [
+      "blue_cup",
+      -0.0825
+     ]
+    ],
+    "dMPPE": 0.402,
+    "dRPE": 0.655
+   },
+   {
+    "ep": 21,
+    "rule": true,
+    "C": 0.8375,
+    "arm": 0.8083,
+    "dAUC": -0.0292,
+    "cup_d": [
+     [
+      "blue_cup",
+      -0.0511
+     ]
+    ],
+    "dMPPE": 0.338,
+    "dRPE": 2.374
+   },
+   {
+    "ep": 22,
+    "rule": true,
+    "C": 0.8704,
+    "arm": 0.8623,
+    "dAUC": -0.0081,
+    "cup_d": [
+     [
+      "blue_cup",
+      -0.0294
+     ]
+    ],
+    "dMPPE": 0.056,
+    "dRPE": 1.042
+   },
+   {
+    "ep": 13,
+    "rule": false,
+    "C": 0.9628,
+    "arm": 0.9484,
+    "dAUC": -0.0144,
+    "cup_d": [
+     [
+      "blue_cup",
+      0.0109
+     ]
+    ],
+    "dMPPE": 0.09,
+    "dRPE": 0.173
+   }
+  ]
+ }
+}

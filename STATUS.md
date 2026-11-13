@@ -1,5 +1,20 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 (evening): replication tests done; both FALSIFIED on public data (CPU, $0)
+- **Stage 1b** (joint fit of rest-segment poses to SAM2 silhouettes + stereo depth, the winner's idea as a post-hoc
+  CPU add-on):
+  - P mean ΔAUC −0.025 (17 non-dev −0.033), rest ADD lower 4/20;
+  - JS −0.021.
+  - Pot-anchor episodes −0.14 / −0.16.
+  - `docs/research/work/joint-fit-20261113/RESULTS.md`.
+- **Purple port** (their published registration on our public cups):
+  - mean cup ΔAUC −0.198 (as published), −0.061 with our tracker as a start;
+  - cause: up-down flips.
+  - `docs/research/work/purple-port-20261113/RESULTS.md`.
+- **Code availability (GitHub + HF, 13 Nov):** no code from richchentw, DDD, Zihao Guo or egocube; SRL's repository
+  is gone. Purple's snapshot lacks its tracker driver, masks and camera track.
+- **Still ready, owner held:** the reward A/B (`docs/research/work/reward-ab-20261113/`, ≈ $11–14). Vast credit $9.58.
+
 ## 2026-11-13 (afternoon): improvement work started (owner: "lets do those"); reward A/B held; stage 1b frozen run going
 - **Track A, reward (H-W2):**
   - Code: opt-in `FC_FDR_OBJ_MODE=centroid` (0.1 m lever, `FC_FDR_OBJ_SIGMA`), CPU-tested.
