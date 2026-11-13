@@ -26,7 +26,7 @@ Recipe from the winner's slides: (1) metric-aligned reward + reward centring; (2
   - the scene is reset explicitly at the release, VOC 0, zero action;
   - the object's drift from its reference rest pose is measured;
   - the releasing hand is held longer (D frames, then a blend) until the drop test passes.
-- **Results** (`ep*.json` here):
+- **Results** (`testA_refs_ep*.json`, `glock_physS1_ep*.json` here):
   - Old 20 Oct references (test A, no rest settling):
     - lid on the open table: stable (0.33 cm), so the test works on an easy case;
     - cup into rack: 14 cm; dust pan: 17 cm; pot: 2.5 cm.

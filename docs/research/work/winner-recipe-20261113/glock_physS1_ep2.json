@@ -1,0 +1,214 @@
+{
+ "input": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs_gl/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "settings": {
+  "inp": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs_gl/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix_gl/ep2_out.parquet",
+  "report": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix_gl/ep2.json",
+  "k": 20,
+  "still_cm": 1.0,
+  "max_cm": 1.5,
+  "max_deg": 10.0,
+  "delays": "4,8,12,20,40,end",
+  "blend": 6,
+  "pre": 2
+ },
+ "releases": [
+  {
+   "hand": "right",
+   "object": "white_pot_lid",
+   "release": 122,
+   "drift_D0": [
+    3.51,
+    28.1
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      4.05,
+      37.3
+     ]
+    },
+    {
+     "D": "8",
+     "drift": [
+      2.62,
+      30.9
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      3.03,
+      32.4
+     ]
+    },
+    {
+     "D": "20",
+     "drift": [
+      3.7,
+      31.1
+     ]
+    },
+    {
+     "D": "40",
+     "drift": [
+      2.89,
+      35.6
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  },
+  {
+   "hand": "left",
+   "object": "white_pot",
+   "release": 234,
+   "drift_D0": [
+    5.46,
+    84.1
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      7.47,
+      66.2
+     ]
+    },
+    {
+     "D": "8",
+     "drift": [
+      5.34,
+      55.5
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      3.91,
+      43.8
+     ]
+    },
+    {
+     "D": "20",
+     "drift": [
+      5.44,
+      60.2
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  },
+  {
+   "hand": "right",
+   "object": "white_pot_lid",
+   "release": 304,
+   "drift_D0": [
+    17.82,
+    47.4
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      27.88,
+      66.6
+     ]
+    },
+    {
+     "D": "8",
+     "drift": [
+      27.91,
+      71.2
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      29.3,
+      73.7
+     ]
+    },
+    {
+     "D": "20",
+     "drift": [
+      27.84,
+      72.0
+     ]
+    },
+    {
+     "D": "40",
+     "drift": [
+      3.74,
+      19.6
+     ]
+    },
+    {
+     "D": "end",
+     "drift": [
+      3.31,
+      19.5
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  },
+  {
+   "hand": "left",
+   "object": "white_pot",
+   "release": 337,
+   "drift_D0": [
+    126.29,
+    92.5
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      65.0,
+      124.1
+     ]
+    },
+    {
+     "D": "8",
+     "drift": [
+      65.0,
+      124.1
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      65.0,
+      124.1
+     ]
+    },
+    {
+     "D": "20",
+     "drift": [
+      65.0,
+      124.1
+     ]
+    },
+    {
+     "D": "40",
+     "drift": [
+      65.0,
+      124.1
+     ]
+    },
+    {
+     "D": "end",
+     "drift": [
+      65.0,
+      124.1
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  }
+ ],
+ "changed": false,
+ "seconds": 232.2
+}

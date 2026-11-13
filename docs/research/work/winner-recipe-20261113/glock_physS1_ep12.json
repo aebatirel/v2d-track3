@@ -1,0 +1,79 @@
+{
+ "input": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs_gl/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "settings": {
+  "inp": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/refs_gl/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix_gl/ep12_out.parquet",
+  "report": "/tmp/claude-0/-home-user-v2d-track3/6efa5ade-9123-5529-ab36-1e525f06f7a5/scratchpad/relfix_gl/ep12.json",
+  "k": 20,
+  "still_cm": 1.0,
+  "max_cm": 1.5,
+  "max_deg": 10.0,
+  "delays": "4,8,12,20,40,end",
+  "blend": 6,
+  "pre": 2
+ },
+ "releases": [
+  {
+   "hand": "left",
+   "object": "blue_cup",
+   "release": 85,
+   "skip": "not a placement (object moves after the release in the reference)"
+  },
+  {
+   "hand": "right",
+   "object": "blue_cup",
+   "release": 144,
+   "drift_D0": [
+    5.41,
+    43.7
+   ],
+   "tried": [
+    {
+     "D": "4",
+     "drift": [
+      10.85,
+      64.7
+     ]
+    },
+    {
+     "D": "8",
+     "drift": [
+      33.3,
+      118.3
+     ]
+    },
+    {
+     "D": "12",
+     "drift": [
+      30.52,
+      113.7
+     ]
+    },
+    {
+     "D": "20",
+     "drift": [
+      28.35,
+      115.6
+     ]
+    },
+    {
+     "D": "40",
+     "drift": [
+      2.91,
+      23.4
+     ]
+    },
+    {
+     "D": "end",
+     "drift": [
+      2.42,
+      21.6
+     ]
+    }
+   ],
+   "decision": "no delay passes; release kept"
+  }
+ ],
+ "changed": false,
+ "seconds": 157.1
+}
