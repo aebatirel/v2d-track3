@@ -1,5 +1,20 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 (afternoon): improvement work started (owner: "lets do those"); reward A/B held; stage 1b frozen run going
+- **Track A, reward (H-W2):**
+  - Code: opt-in `FC_FDR_OBJ_MODE=centroid` (0.1 m lever, `FC_FDR_OBJ_SIGMA`), CPU-tested.
+  - A/B pre-registered and job files ready: `docs/research/work/reward-ab-20261113/` (control = test A's checkpoints;
+    2 boxes ≈ $11–14).
+  - **Owner chose HOLD**: nothing rented. Vast credit $9.58.
+- **Track B, stage 1b** (joint fit of rest-segment poses to SAM2 silhouettes + stereo depth, optional shape scale; CPU,
+  $0): `docs/research/work/joint-fit-20261113/`.
+  - Dev (ep21 / 11 / 31) mean ΔAUC: P (poses only) +0.018; J (shape + pose) +0.009.
+  - Shape is not identifiable for the rack and sweeper.
+  - Frozen run of arm P (primary) and JS (secondary) on all 20 public episodes is running in the session scratchpad.
+  - Verdict by the pre-registered gate (`gate1b.py`): mean ≥ +0.005, no episode < −0.01, rest ADD lower on 14/20,
+    MPPE and RPE not up.
+- Branch `claude/vibrant-wright-58kyse` now includes charming-goldberg (newest training code).
+
 ## 2026-11-13: plan after the winners' talks — `docs/research/work/plan-20261113/PLAN.md` (nothing rented)
 - **Final standing (Kaggle API, 13 Nov):** Imitation.Tech AUC 0.886, 9th by rank sum. This branch held the 30 Oct
   repository; the 31 Oct – 13 Nov work is on other session branches (latest: gallant-franklin, keen-heisenberg).
