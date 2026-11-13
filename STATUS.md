@@ -17,6 +17,14 @@ All four are hypotheses H-W1..W4, each with a falsifier in the notes.
     draw".
   - Their first upload was already 0.902.
   - New hypotheses: H-W5 best-of-N, H-W6 anchor levelling judged on MP-SR, H-W7 registration calibration.
+- egoCUBE (CMU, 5th overall) notes: `docs/analysis/egocube-cmu-20261113/README.md`.
+  - Agents (Claude Opus 5.5) run inside their pipeline: SAM 3 prompts including distractors (watch, forearm), view
+    picks, primitive Blender programs (AgentSTAR), and per-episode collision rebuilds.
+  - Their mesh ladder: SAM 3D 0.596 → MV-SAM3D 0.527 → stereo fit 0.436 → best across videos 0.342 → primitives
+    0.269 cm CD-O.
+  - They use visible markers to fix the spin of symmetric objects.
+  - Post-mortem: three of the ideas the top teams shipped were already in our notes and never shipped (note 17 marker
+    spin, note 18 room map, kit-of-parts meshes).
 
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.

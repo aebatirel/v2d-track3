@@ -5410,3 +5410,12 @@ arm and a no-policy replay floor to stage B.
     because of tail failures [M, results/registered/perc2_refsweep_*].
   - The S3 anchor tilt test (30 Oct) stored AUC only, so its MP-SR effect is unmeasured.
   - New hypotheses H-W5..W7. No runs, $0.
+- egoCUBE (CMU, 5th overall), 9 photos, notes in `docs/analysis/egocube-cmu-20261113/README.md`.
+  - Runtime agents: masks with distractor prompts, view picks, primitive meshes via AgentSTAR, collision rebuilds
+    (spoon holder, as in our evals 15/16; pot/lid scale, as in our eval 1).
+  - Marker-based symmetry fixes for FoundationPose. Mesh ablation down to CD-O 0.269 cm.
+  - Checked our own history:
+    - marker spin: note 17 found marker-only lid AUC 0.977; on the 21 Oct fix list, never integrated;
+    - room map: note 18 relocalised every eval clip to 1–2 mm; dropped 22 Oct because it used GT constants, and a
+      GT-free rebuild was estimated at only +0.01.
+  - New hypotheses H-E1..E3. No runs, $0.
