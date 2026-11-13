@@ -5829,3 +5829,15 @@ arm and a no-policy replay floor to stage B.
   5 min, GPU 100%, 41 GB. No heartbeat was needed.
 - gA2, gA3, gA4: still in "hard A/B" (training/evaluation); expected to end ≈ 03:45–04:40 UTC. gA1b ≈ 05:15–06:00 UTC.
 
+### 2026-11-13 03:50 UTC — test A check-in 4: first-episode label rollouts in the store; credit $14.39 (spent $19.59)
+- In the store: `results/hard_ab/ep40/`, `ep23/` and `ep18/` (`s-s42/r1/episode_*.parquet`, the D2 label rollouts).
+  - gA2 ep40: chosen checkpoint `policy_200007680`; pipeline 00:37–02:16 UTC. Its r1 draw has sim_vs_ref 0.9637.
+    Its mocap score is also in the log; it is not used in this test.
+- Second episodes in training at 03:50:
+  - gA2 ep21: 86%, 39.4k steps/s;
+  - gA3 ep2: 86%, 37.0k/s;
+  - gA4 ep24: 81%, 46.0k/s;
+  - all with ETA 15–17 min, then checkpoint sweep and the fresh draw, so done ≈ 04:30.
+- gA1b ep12: 88%, 41.6k/s, ETA 12 min; then ep31 (≈ 1.6 h), so done ≈ 06:00.
+- Projected total ≈ $26 (≈ $6.5 more at the current rates); cap $30.
+
