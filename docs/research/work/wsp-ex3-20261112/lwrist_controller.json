@@ -1,0 +1,26 @@
+{
+ "n_body": [
+  0.0,
+  0.7071067811865475,
+  0.7071067811865475
+ ],
+ "frame": 290,
+ "c": [
+  -0.9343547439287191,
+  0.15252685872359695,
+  -0.5824615607138479,
+  -0.08442178674403389,
+  0.993570023145684,
+  0.008240253977081443,
+  -0.7076077362294997
+ ],
+ "dq567_per_rad": [
+  0.9102210600071029,
+  0.008438379625958042,
+  -0.13504954942831027
+ ],
+ "train_mean": -0.04840302418147046,
+ "train_sd_indep": 0.20201130642754675,
+ "threshold_1p5sd": 0.25461393545984967,
+ "derivation": "c_k = n . J_k with J the body-frame angular Jacobian of Marvin_pro_809_left_hand_C_MC w.r.t. Joint1_L..Joint7_L at reference qpos frame 290 (finite differences, simulation.Kinematics); n = (0,1,1)/sqrt2 is the common direction of the left-wrist orientation error at the approach in rollouts 1-4; dq567 = J[:,4:7]^-1 n"
+}

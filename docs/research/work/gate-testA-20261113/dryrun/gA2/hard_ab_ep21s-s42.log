@@ -1,0 +1,57 @@
+[23:58:00] ep21 start (public, perception perc2, steps 250003456, seed 42, code ee653b38)
+[23:58:00] perception: [  122.3s] vo                           AUC 0.972 SP 1.00 MP 1.00 MPPE 0.79 RPE 1.01 {'blue_cup': 1.0, 'water_pitcher': 
+[23:58:00] hands done
+[23:58:01] reference: /content/refs/perc2s/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave (code ee653b38)
+[23:58:01] qa_ref: {"kind": "ref", "reasons": ["left wrist IK p95 84 mm > 60", "left wrist step 10.2 cm > 10", "right wrist IK p95 90 mm > 60", "right wrist step 14.2 cm > 10"], "wrist_p95_mm": {"left": 83.9, "right": 90.4}, "max_step_cm": {"left": 10.2, "right": 14.2}, "pass": false, "score": 90.4}
+[23:58:01] waiting for the GPU (TRAIN_LOCK)
+[23:58:01] GPU lock acquired
+[23:58:02] trained: /content/runs/perc2s/ep21-s42/policy_250003456.safetensors (code ee653b38)
+[23:58:03] evaluated
+[23:58:04] sweep policy_100003840.safetensors: sim_vs_ref 0.9388 (best so far 0.9992, floor 0.3609)
+[23:58:05] sweep policy_150005760.safetensors: sim_vs_ref 0.9929 (best so far 0.9992, floor 0.3609)
+[23:58:06] sweep policy_200007680.safetensors: sim_vs_ref 1.0 (best so far 0.9992, floor 0.3609)
+[23:58:06] qa_policy: {"kind":"policy","ep":21,"sim_vs_ref":1.0,"floor_vs_ref":0.3609,"verdict":"ok"}
+  "RPE_cm": 1.138,
+  "per_obj": {
+   "blue_cup": 1.0,
+   "water_pitcher": 0.959
+  }
+ },
+ "static_floor": {
+  "AUC": 0.3587,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 8.78,
+  "RPE_cm": 20.221,
+  "per_obj": {
+   "blue_cup": 0.4862,
+   "water_pitcher": 0.2312
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.9795,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.766,
+  "RPE_cm": 1.154,
+  "per_obj": {
+   "blue_cup": 1.0,
+   "water_pitcher": 0.959
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 1.0,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.016,
+  "RPE_cm": 0.033,
+  "per_obj": {
+   "blue_cup": 1.0,
+   "water_pitcher": 1.0
+  }
+ }
+}
+render FAILED
+DRY RUN: view_policy.py (render) not run
+render failed (not fatal)
+[23:58:08] ep21 DONE

@@ -1,0 +1,57 @@
+[23:58:31] ep2 start (public, perception perc2, steps 250003456, seed 42, code ee653b38)
+[23:58:31] perception: [  249.4s] vo                           AUC 0.977 SP 1.00 MP 1.00 MPPE 0.74 RPE 0.72 {'white_pot': 0.992, 'white_pot_lid
+[23:58:31] hands done
+[23:58:32] reference: /content/refs/perc2s/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave (code ee653b38)
+[23:58:32] qa_ref: {"kind": "ref", "reasons": ["left wrist IK p95 81 mm > 60", "left wrist step 31.3 cm > 10", "right wrist IK p95 72 mm > 60"], "wrist_p95_mm": {"left": 80.9, "right": 71.6}, "max_step_cm": {"left": 31.3, "right": 5.2}, "pass": false, "score": 80.9}
+[23:58:32] waiting for the GPU (TRAIN_LOCK)
+[23:58:32] GPU lock acquired
+[23:58:33] trained: /content/runs/perc2s/ep2-s42/policy_250003456.safetensors (code ee653b38)
+[23:58:34] evaluated
+[23:58:35] sweep policy_100003840.safetensors: sim_vs_ref 0.9815 (best so far 1.0, floor 0.5025)
+[23:58:36] sweep policy_150005760.safetensors: sim_vs_ref 0.935 (best so far 1.0, floor 0.5025)
+[23:58:38] sweep policy_200007680.safetensors: sim_vs_ref 0.9524 (best so far 1.0, floor 0.5025)
+[23:58:38] qa_policy: {"kind":"policy","ep":2,"sim_vs_ref":1.0,"floor_vs_ref":0.5025,"verdict":"ok"}
+  "RPE_cm": 0.945,
+  "per_obj": {
+   "white_pot": 0.9923,
+   "white_pot_lid": 0.9647
+  }
+ },
+ "static_floor": {
+  "AUC": 0.5025,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 9.546,
+  "RPE_cm": 17.008,
+  "per_obj": {
+   "white_pot": 0.6685,
+   "white_pot_lid": 0.3364
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.9785,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.688,
+  "RPE_cm": 0.918,
+  "per_obj": {
+   "white_pot": 0.9923,
+   "white_pot_lid": 0.9647
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 1.0,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.068,
+  "RPE_cm": 0.135,
+  "per_obj": {
+   "white_pot": 1.0,
+   "white_pot_lid": 1.0
+  }
+ }
+}
+render FAILED
+DRY RUN: view_policy.py (render) not run
+render failed (not fatal)
+[23:58:39] ep2 DONE

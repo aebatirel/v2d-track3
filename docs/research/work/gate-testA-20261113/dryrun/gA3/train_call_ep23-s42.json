@@ -1,0 +1,93 @@
+{
+ "time": "2026-11-12T23:57:13Z",
+ "cwd": "/tmp/claude-0/-home-user-v2d-track3/c39cfb04-cc2f-58cd-b84d-df803d82b152/scratchpad/wgate/fc/v2d/robotic_grounding/flash_chord",
+ "argv": [
+  "scripts/train_flash_sac.py",
+  "experiment=sharpa_flash_sac",
+  "task.parquet='/content/refs/perc2s/ep23/processed/sequence_id=t3_ep023/robot_name=sharpa_wave'",
+  "task.motion_speed=1.0",
+  "reset.seed=42",
+  "logging.mode=disabled",
+  "output_dir=/content/runs/perc2s/ep23-s42",
+  "training.total_environment_steps=250003456",
+  "curriculum=tracking_250m_mixed_reset_v2d",
+  "objective.force_closure.enabled=true",
+  "objective.force_closure.weight=6",
+  "objective.contact_wrench_support.weight=3",
+  "objective.unintended_contact.weight=-2"
+ ],
+ "env": {
+  "FC_IMMEDIATE_FIRST_FRAME": "0.25",
+  "TRAIN_ARGS": "curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2",
+  "FC_VOC_INERTIA": "1",
+  "MUJOCO_GL": "egl",
+  "XLA_PYTHON_CLIENT_PREALLOCATE": "false",
+  "TRAIN_LOCK": "/content/train.lock",
+  "FC_FDR_OBJ": "1",
+  "FC_FDR_TIPS": "1"
+ },
+ "compose": {
+  "rc": 0,
+  "out": "task.parquet = /content/refs/perc2s/ep23/processed/sequence_id=t3_ep023/robot_name=sharpa_wave\ntask.motion_speed = 1.0\nreset.seed = 42\ntraining.total_environment_steps = 250003456\noutput_dir = /content/runs/perc2s/ep23-s42\nobjective.force_closure.enabled = True\nobjective.force_closure.weight = 6\nobjective.contact_wrench_support.weight = 3\nobjective.unintended_contact.weight = -2\nsim.njmax = 512\naction.wrist_kp = 25.0\ncurriculum stages = 11\ndefaults/experiment chosen: embodiment = flash_chord.embodiments.sharpa_hands.SharpaHands\n",
+  "err": ""
+ },
+ "reference_parquets": [
+  "/content/refs/perc2s/ep23/processed/sequence_id=t3_ep023/robot_name=sharpa_wave/aa744602acb74229bf71519f9f1faa3b-0.parquet"
+ ],
+ "support_stage": [
+  "/content/refs/perc2s/ep23/reconstructed_stage/t3_ep023_support.usda"
+ ],
+ "assets": [
+  {
+   "kind": "object_urdf_paths",
+   "path": "/content/t3/urdf/wooden_piece_1_rigid.urdf",
+   "exists": true,
+   "realpath": "/workspace/t3/urdf/wooden_piece_1_rigid.urdf"
+  },
+  {
+   "kind": "urdf_mesh",
+   "urdf": "wooden_piece_1_rigid.urdf",
+   "path": "/content/t3/mesh/wooden_piece_1/wooden_piece_1_visual.glb",
+   "exists": true
+  },
+  {
+   "kind": "urdf_mesh",
+   "urdf": "wooden_piece_1_rigid.urdf",
+   "path": "/content/t3/mesh/wooden_piece_1/wooden_piece_1_collision.glb",
+   "exists": true
+  },
+  {
+   "kind": "object_urdf_paths",
+   "path": "/content/t3/urdf/wooden_piece_2_rigid.urdf",
+   "exists": true,
+   "realpath": "/workspace/t3/urdf/wooden_piece_2_rigid.urdf"
+  },
+  {
+   "kind": "urdf_mesh",
+   "urdf": "wooden_piece_2_rigid.urdf",
+   "path": "/content/t3/mesh/wooden_piece_2/wooden_piece_2_visual.glb",
+   "exists": true
+  },
+  {
+   "kind": "urdf_mesh",
+   "urdf": "wooden_piece_2_rigid.urdf",
+   "path": "/content/t3/mesh/wooden_piece_2/wooden_piece_2_collision.glb",
+   "exists": true
+  },
+  {
+   "kind": "object_mesh_paths",
+   "path": "/content/t3/mesh/wooden_piece_1/wooden_piece_1_visual.glb",
+   "exists": true,
+   "realpath": "/workspace/t3/mesh/wooden_piece_1/wooden_piece_1_visual.glb"
+  },
+  {
+   "kind": "object_mesh_paths",
+   "path": "/content/t3/mesh/wooden_piece_2/wooden_piece_2_visual.glb",
+   "exists": true,
+   "realpath": "/workspace/t3/mesh/wooden_piece_2/wooden_piece_2_visual.glb"
+  }
+ ],
+ "assets_all_resolve": true,
+ "fps": 20.0,
+ "frames": 325
+}

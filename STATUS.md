@@ -521,6 +521,123 @@ Analysis: `docs/analysis/roman-meeting-20261030.md`.
   - $0 CPU: a hand-anchored spoon test on public held objects;
   - ≈ $6.5: a human-hand RL A/B, only if H-squeeze passes.
   - The Sharpa stays in submissions.
+## 2026-11-13 06:20 UTC: TEST A DONE: grasp-feasibility gate FALSIFIED (AUROC 0.63); blob tree no value; $24.40 GPU
+- Per frame, the gate does not predict where trained policies drift (within-episode AUROC median 0.49). Descriptive
+  only: episode-level ρ 0.78 over 8 episodes (an untested hypothesis for an episode screen).
+- All ideas from 12–13 Nov are closed: no improvement found. Spend: GPU $24.40, Gemini $1.11. Vast credit $9.58,
+  0 instances. Explainer page updated.
+- Open owner choices: episode-level screen test (new GPU batch, ≈ $30–40); LLM triage (needs about 20 min of labels);
+  or stop here.
+
+## 2026-11-13 01:57 UTC: test A: gA1 lost to a watchdog false positive in setup, re-run as gA1b (60434477)
+- gA2–gA4 training (ends ≈ 03:45–04:40 UTC); gA1b started 01:57 (ends ≈ 05:15–06:00 UTC). Spent $8.05 so far;
+  batch estimate $24–26, cap $30.
+
+## 2026-11-13 00:26 UTC: TEST A RUNNING on 4 Vast boxes ($6.01/h; cap $30; expected end ≈ 03:45–04:40 UTC)
+- Runs 20261113-gA1..gA4-25cb421 (instances 60424679, 60424841, 60425356, 60425291), 8 public episodes. Each box
+  self-destroys after pushing to the store. Label rollouts: runs/<run>/results/hard_ab/ep<N>/s-s42/r1/.
+- After all boxes are gone: score test A (gate) and the blob tree on the fresh draws, report, update the page.
+
+## 2026-11-13 ~03:30 UTC: Gemini judge negative on both tests (G-A FAIL ρ 0.43; G-B FALSIFIED AUROC 0.52); $1.11
+- The Decisions API does not see our cm-level geometry errors and does not pick better meshes than our own metric.
+- Remaining open item: GPU test A (8 episodes, cap $30), being dry-run on CPU; nothing rented yet.
+
+## 2026-11-13 ~02:50 UTC: Gemini tests running (≈ $1.1 API); GPU test A being prepared (owner approved; top-up pending)
+- Gemini G-A (mesh selector) and G-B (track audit): PREREG committed (ffc8a6e8); phase 2 running.
+- Test A (19 public episodes, standard FDR learner, 1 evaluator draw each): estimate $55–60, cap $75. Credit $33.98,
+  so the owner tops up about $45. Job strings and a CPU dry run are being prepared; nothing is launched before the
+  top-up.
+
+## 2026-11-13 ~02:05 UTC: C2 inconclusive (98.6% of frames drift even when grasp-locked); DS modulation dropped
+- Ideas 1 and 3 cannot be tested without trained-policy rollouts: test A on GPU (≈ $20–50; Vast $33.98). Owner decides
+  go or park.
+- DS obstacle modulation: not run; our collisions are object overlaps from perception, not hand-bystander contacts.
+- Running: Gemini judge phase 1 (inputs + PREREG).
+
+## 2026-11-13 ~01:00 UTC: owner "go crazy": three CPU tracks running, rules pre-registered (work log 00:50 UTC)
+- Data licence: CC BY 4.0, so public-episode frames may go to Gemini (no ground truth is ever sent).
+- Running (background agents, CPU, $0 GPU):
+  - test C2: grasp-locked replay labels for ideas 1 and 3;
+  - DS obstacle modulation of the reference (Roman's idea), phase 1 = design + PREREG only;
+  - Gemini judge tests G-A (mesh selector) and G-B (track audit), phase 1 = inputs + PREREG; API cap $5.
+- Phase 2 of the last two starts only after their PREREG files are committed.
+
+## 2026-11-13 ~00:35 UTC: idea 2 (LLM weight repair) done: inconclusive by rule, not a repair in substance; no GPU pilot
+- On exercise 3 the LLM's edit fixes the failing run (unedited fails at 17.6 s) and halves handover failures, but over
+  20 varied starts it completes 11 vs 9 (bar +10) and breaks one; it adds early pickup failures it never saw.
+- My random-control recipe was flawed (negative batch-norm variances → NaN). Details: work log 00:35 UTC.
+- All five ideas now: 1 and 3 inconclusive (no-policy replay never grips); 2 inconclusive; 4 waits on owner labels;
+  5 waits on the licence answer. Explainer page updated.
+
+## 2026-11-12 ~23:55 UTC: ideas 1 and 3 tested: INCONCLUSIVE (the no-policy replay never grips; 99.6% of frames drift)
+- The pre-registered label cannot rank frames, so neither the grasp check nor the blob tree is decided.
+- Next (owner decides): a grasp-locked replay label on CPU ($0, new pre-registration), or test A on GPU (≈ $20–50).
+- Idea 2 (weight repair) still running. An explainer page for the owner is being published.
+
+## 2026-11-12 ~23:35 UTC: contact-blob tree ready (frozen before labels); exercise 3 picture says reference contacts miss physics failures
+- Blob features + tree: `tools/blob_features.py`, `tools/blob_tree.py`; runs once test C's labels exist (gate agent
+  replaying the 19 public references on CPU).
+- Exercise 3 (one episode, descriptive): at the simulator's friction, the reference's contacts say the flask grasp is
+  fine, yet physics drops it at 2.7 s without a policy, and the policy fails at the handover. See
+  `docs/research/work/blob-tree-20261112/`.
+- Idea 2 (weight repair) still running. Gemini works (network secret fixed); idea 5 waits for the data-licence answer.
+
+## 2026-11-12 ~22:55 UTC: idea 1 gate built; first test blocked (no 20-episode rollout set); test C pre-registered
+- `pipeline/wrench_gate.py` works (21/21 self-tests). Test A has no data: no recipe has official rollouts on all 20
+  public episodes. Test C (label = zero-residual physics replay drift, CPU) pre-registered in the work log 22:55 UTC.
+- Idea 2 (weight-repair pilot) still running. Gemini key: the owner is re-adding the network secret (header
+  `x-goog-api-key`, no Bearer prefix).
+
+## 2026-11-12 ~22:30 UTC: owner "go for all" (note 29 ideas 1–5); ideas 1 and 2 RUNNING on CPU, rules pre-registered
+- Context (other branches): boards froze 4 Nov; final pack 13h + container done. These improvements are for the
+  report, the award or a next round, not the ranking. Ruling 39 allows agentic intervention; public data only for
+  development.
+- Running (background agents, CPU, $0 GPU):
+  - idea 2, LLM weight-editing pilot on exercise 3 → `docs/research/work/wsp-ex3-20261112/`;
+  - idea 1, wrench-feasibility gate on the 20 public references → `pipeline/wrench_gate.py`,
+    `docs/research/work/wrench-gate-20261112/`.
+  Rules: work log 22:20 UTC.
+- Next: idea 3 (fix-routing tree) once 1 and 2 report; idea 4 (LLM triage) needs owner labels of failed public
+  rollouts; idea 5 (Gemini judge) needs a paid-tier Gemini API key (requested as an environment secret).
+- Access checked 22:15 UTC: HF store and Vast connected (credit $33.98, 0 instances); no Gemini key yet.
+
+## 2026-11-12 ~21:55 UTC: tutorial exercise 3 read and run on CPU; note 29 (LLMs and decision models in the pipeline)
+- NVIDIA's exercise 3 is a CPU notebook with a flask handover: physics replay, a contact-wrench support check, and a
+  FlashSAC policy of our exact architecture. `tools/actor_np.py` matches NVIDIA's numpy actor exactly [M].
+- Run here [M]: zero-residual replay loses the flask; the bundled trained policy fails deterministically at 17.6 s
+  (object 0.101 m vs 0.10 m limit); a rollout costs about 17 s of CPU.
+- Ranked ideas (note 29 §3): (1) wrench-feasibility gate on references (task wrench inside the contact cone; CPU, $0);
+  (2) LLM weight-editing pilot on the exercise's failing policy (CPU, $0) before any GPU pilot on our episodes;
+  (3) small decision tree routing each episode's fix; (4) LLM failure triage; (5) Gemini visual judge.
+- **Owner decides:** which of ideas 1 and 2 to run. Both are CPU-only.
+
+## 2026-11-12 ~21:40 UTC: LLM weight editing on our policies: feasible on paper; pilot planned, NOT started ($0 so far)
+- Owner: "can we see if the llm method helps with better policies". Note 27 §9; tool `tools/actor_np.py` (numpy
+  loader, forward and idle-unit census; forward not yet checked against JAX).
+- Checkpoints: inputs are physical (object pose, reference command, contacts). Outputs are bounded residuals on our
+  reference. Rough idle-unit estimate: 14–225 of 1,024 per first-block layer; none in the 256-wide layers [C].
+- Prior [H]: no distribution shift to fix (RL in the evaluator's own simulator); the plausible lever is rare failures
+  that make draws vary.
+- **Waiting on the owner:** go-ahead for the pilot (3 public episodes, GPU ≈ $10–20 [E] incl. a reseed baseline).
+  Rule fixed in note 27 §9.3.
+
+## 2026-11-12 ~21:00 UTC: ideas note 28 (Gemini Decisions API in the pipeline); nothing run, $0
+- Owner asked how to bring the Gemini Decisions API (released 11 Nov) into the workflow. Note:
+  `docs/research/notes/28-gemini-decisions-api-in-the-pipeline.md`.
+- It answers closed questions (yes/no, choice, rubric score) about images or video with probabilities; no text, no
+  poses. Possible role: an automatic visual judge at our weak ground-truth-free gates [H].
+- Six ideas ranked; top two: track audit (replaces the falsified depth audit) and mesh selector (Spearman 0.46).
+- **Waiting on the owner:** go-ahead for two offline public tests (≈ $1.1 of API [C]), a Gemini API key (paid tier),
+  and a check that the competition allows a hosted model in the pipeline.
+
+## 2026-11-12 ~20:45 UTC: reading note 27 (LLM weight-space repair vs decision models); nothing run, $0
+- Owner asked for an analysis of https://jstranghoener.github.io/blog/robotic-weight-space-programming/ and of
+  replacing its LLM with a decision model. Note: `docs/research/notes/27-weight-space-programming-and-decision-models.md`.
+- The LLM there is an offline repair agent (320–341 turns, 25 test rounds of 100 episodes), not part of the control
+  loop. Its 23 key edits fall into six repeating families [C].
+- Design proposed [H]: fix library + tuner, with the LLM kept only for new fix structures. LLM repair ≈ $20–40 per
+  run [E]; retraining one of our policies ≈ $1–2.5 [C], so no cost case for Track 3.
+- No change to the submission or the plan. Branch `claude/gallant-franklin-8gvsv3`.
 
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.

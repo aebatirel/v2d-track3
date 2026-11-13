@@ -1,0 +1,5 @@
+[2026-11-13T00:01:26Z] VAST PUT https://console.vast.ai/api/v0/instances/DRYRUN-stall/ data={"label": "dry-20261113-stall-ee653b3 setup"}
+[2026-11-13T00:01:26Z] VAST PUT https://console.vast.ai/api/v0/instances/DRYRUN-stall/ data={"label": "dry-20261113-stall-ee653b3 job running"}
+[2026-11-13T00:05:26Z] VAST PUT https://console.vast.ai/api/v0/instances/DRYRUN-stall/ data={"label": "dry-20261113-stall-ee653b3 saving, then destroy: stalled 2 min"}
+[2026-11-13T00:05:26Z] VAST DELETE https://console.vast.ai/api/v0/instances/DRYRUN-stall/ data=
+[2026-11-13T00:12:48Z] VAST PUT https://console.vast.ai/api/v0/instances/DRYRUN-stall/ data={"label": "dry-20261113-stall-ee653b3 done rc=143, on HOLD"}

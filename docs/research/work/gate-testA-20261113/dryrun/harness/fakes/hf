@@ -1,0 +1,12 @@
+#!/bin/bash
+# DRY RUN ONLY. 'hf upload' goes to a local fake store (/dryrun/fakestore/<path in repo>); everything else (downloads,
+# read-only) goes to the real CLI.
+if [ "${1:-}" = upload ]; then
+  repo=$2; src=$3; dst=$4; shift 4
+  mkdir -p "/dryrun/fakestore/$dst"
+  if [ -d "$src" ]; then cp -a "$src"/. "/dryrun/fakestore/$dst"/; else cp -a "$src" "/dryrun/fakestore/$dst"; fi
+  echo "[$(date -u +%FT%TZ)] hf upload $repo $src -> $dst [$*] $(du -sh "$src" | cut -f1)" >> /dryrun/hf_uploads.log
+  exit 0
+fi
+echo "[$(date -u +%FT%TZ)] hf $*" >> /dryrun/hf_calls.log
+exec "$(dirname "$0")/hf.real" "$@"

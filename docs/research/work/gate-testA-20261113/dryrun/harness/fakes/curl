@@ -1,0 +1,12 @@
+#!/bin/bash
+# DRY RUN ONLY. Intercepts every console.vast.ai call (instance label, self-destroy): logged, never sent.
+# Any other URL goes to the real curl unchanged.
+for a in "$@"; do
+  case "$a" in *console.vast.ai*)
+    m=GET; d=""; prev=""
+    for b in "$@"; do [ "$prev" = -X ] && m=$b; [ "$prev" = -d ] && d=$b; prev=$b; done
+    echo "[$(date -u +%FT%TZ)] VAST $m $a data=$d" >> /dryrun/vast_calls.log
+    echo '{"success": true, "dryrun": true}'; exit 0 ;;
+  esac
+done
+exec /usr/bin/curl "$@"

@@ -1,0 +1,83 @@
+# Test A (wrench-feasibility gate, idea 1), GPU batch: launch commands. PREPARED, NOT LAUNCHED.
+# Plan and rules: docs/work-log.md, 2026-11-12 ~22:20 UTC (test A rules), 2026-11-13 ~02:30 UTC (plan) and ~03:00 UTC
+# (amendment: 8 episodes, 4 boxes, cap $30). Dry run, cost table, risks and open decisions: README.md in this folder.
+#
+# 4 on-demand RTX PRO 6000 boxes (WS or Server Edition, not Max-Q), 2 public episodes each, trained one after the other
+# on the box's GPU (hard_ab.sh TRAIN_LOCK), in this order:
+#   gA1: ep12 then ep31     gA2: ep40 then ep21     gA3: ep23 then ep2     gA4: ep18 then ep24
+# Job per box: jobs/gA<k>.job (sha256 in jobs/SHA256SUMS). Each job pulls only that pair's perception and reference
+# from runs/20261020-refsweep-ea14fdf, checks each reference parquet's sha256 against the file the gate was scored on,
+# then runs ops/jobs/hard_ab.sh with std_learner.sh's recipe on SPLIT=public:
+#   FC_FDR_OBJ=1 FC_FDR_TIPS=1 FC_VOC_INERTIA=1 FC_IMMEDIATE_FIRST_FRAME=0.25 TRAIN_ARGS="$FDR_TRAIN_ARGS"
+#   SPLIT=public PDIR_ROOT=/content/perc2 SUF=s CR=0 BASE_EVAL=0 NREP=1 SEED=42 LIB=meshes/library_v3, 250,003,456 steps
+# PAIRS use RUN "local" (the pre-pull already placed the files), so hard_ab.sh does not pull the store a second time.
+# Every box saves to the store, then destroys itself (run_job.sh); the stall watchdog stays on (STALL_MIN 30, default).
+#
+# ---------------------------------------------------------------------------------------------------------------------
+# 0) BEFORE ANY CREATE (coordinator; nothing below has been run)
+#    a. Owner go-ahead for this batch (cap $30 total, inside the $33.98 Vast credit read 2026-11-12 23:31 UTC container
+#       clock). Decisions D1-D3 of README.md section 7 recorded in the work log BEFORE any result exists.
+#    b. Commit and push this folder; the boxes clone the commit given as V2D_COMMIT.
+# ---------------------------------------------------------------------------------------------------------------------
+cd /home/user/v2d-track3
+SHA=$(git rev-parse HEAD)                                    # the pushed commit that holds this file
+git branch -r --contains $SHA | grep -q . || echo "STOP: $SHA is not on origin"
+# The dry run used ee653b38; the box code must be identical to it:
+git diff --quiet ee653b3882516b0838e4be75fd8e292c9198f6be $SHA -- ops pipeline meshes/library_v3 spoon flashchord_conf \
+  && echo "box code = dry-run code" || echo "STOP: box code differs from the dry-run commit ee653b38"
+(cd docs/research/work/gate-testA-20261113/jobs && sha256sum -c SHA256SUMS)    # job files unchanged since the dry run
+D=$(date -u +%Y%m%d); C7=${SHA:0:7}; SNAP=pt2.11-cu130-py313-20261020; J=docs/research/work/gate-testA-20261113/jobs
+bash ops/vast.sh show                                        # expect "0 instance(s)" (or only boxes you know about)
+curl -sS https://console.vast.ai/api/v0/users/current/ | python3 -c 'import json,sys; print("credit", json.load(sys.stdin)["credit"])'
+bash ops/vast.sh offers                                      # pick 4 offers, rule below
+# Offer rule (README section 5): RTX PRO 6000 WS or S only (Max-Q trains at 51-76 % of WS speed, measured 22 Oct);
+# effective rate = all-in + 18 GB x ($/TB down) / 1000 / 3.7 h <= $1.75/h (the env snapshot is 16.3 GB); one offer per
+# box. If fewer than 4 qualify, or the 4 effective rates sum to more than $7.1/h (high estimate > $30), stop and ask.
+# Seen (container clock): 23:31 UTC 59926095 S $1.513 | 42702277 S $1.541 | 56857401 WS $1.610 | 48845069 S $1.640;
+#   00:16 UTC (the first four gone) 57962402 WS $1.577 | 59405105 S $1.596 | 57838530 S $1.636 ($20/TB) | 47972964 S $1.662
+O1=<offer>; O2=<offer>; O3=<offer>; O4=<offer>
+#
+# ---------------------------------------------------------------------------------------------------------------------
+# 1) LEDGER: one planned line per box (protocol: ops/ledger.py; needs huggingface_hub and a store write credential)
+# ---------------------------------------------------------------------------------------------------------------------
+python3 ops/ledger.py show
+export LEDGER_SESSION=gallant-franklin-8gvsv3
+python3 ops/ledger.py add planned $D-gA1-$C7 7.00 "test A box 1: std FDR learner 250M s42 + 1 official draw, public ep12+ep31 (refsweep perc2 refs, gate input); batch cap 30 for 4 boxes" "owner go-ahead <time, words>"
+python3 ops/ledger.py add planned $D-gA2-$C7 7.00 "test A box 2: std FDR learner 250M s42 + 1 official draw, public ep40+ep21 (refsweep perc2 refs, gate input); batch cap 30 for 4 boxes" "owner go-ahead <time, words>"
+python3 ops/ledger.py add planned $D-gA3-$C7 7.00 "test A box 3: std FDR learner 250M s42 + 1 official draw, public ep23+ep2 (refsweep perc2 refs, gate input); batch cap 30 for 4 boxes" "owner go-ahead <time, words>"
+python3 ops/ledger.py add planned $D-gA4-$C7 7.00 "test A box 4: std FDR learner 250M s42 + 1 official draw, public ep18+ep24 (refsweep perc2 refs, gate input); batch cap 30 for 4 boxes" "owner go-ahead <time, words>"
+#
+# ---------------------------------------------------------------------------------------------------------------------
+# 2) CREATE: one call per box, about 2 minutes apart (the first store pull lists the whole store tree; staggering
+#    lowers the chance of HF HTTP 429). Check `ops/vast.sh show` after each; never re-send a create that answered
+#    "upstream request failed" without checking show first (a duplicate box was billed that way on 9 Nov).
+# ---------------------------------------------------------------------------------------------------------------------
+bash ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create $O1 $D-gA1-$C7 "$(cat $J/gA1.job)"
+bash ops/vast.sh show
+bash ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create $O2 $D-gA2-$C7 "$(cat $J/gA2.job)"
+bash ops/vast.sh show
+bash ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create $O3 $D-gA3-$C7 "$(cat $J/gA3.job)"
+bash ops/vast.sh show
+bash ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create $O4 $D-gA4-$C7 "$(cat $J/gA4.job)"
+bash ops/vast.sh show
+# Record in the work log for each box: offer, instance id, $/h, run id, commit $SHA, job file sha256.
+#
+# ---------------------------------------------------------------------------------------------------------------------
+# 3) WHILE RUNNING (labels: "setup" -> "job running" -> "hard A/B: ..." -> "saving, then destroy: ...")
+# ---------------------------------------------------------------------------------------------------------------------
+bash ops/vast.sh show
+# Expected: about 3.3-4.2 h per box from create to self-destroy (README section 5). The store gets an interim push
+# every 30 min under runs/$D-gA<k>-$C7/. Do not cut a box that is still making progress (CLAUDE.md).
+#
+# ---------------------------------------------------------------------------------------------------------------------
+# 4) AFTER EACH BOX IS GONE: actual ledger line (duration x rate, or the measured credit drop), then results
+# ---------------------------------------------------------------------------------------------------------------------
+python3 ops/ledger.py add actual $D-gA1-$C7 <usd> "instance <id> <gpu> <rate>/h <start>-<end> UTC (estimate from duration); destroyed, confirmed absent"
+# Per episode N (E6 = zero-padded to 6 digits) the store then holds, under runs/$D-gA<k>-$C7/:
+#   results/hard_ab/epN/s-s42/r1/episode_E6.parquet   the ONE fresh official-evaluator draw of the chosen checkpoint
+#                                                     (achieved and reference object poses per step; D2 in README)
+#   results/hard_ab/epN/s-s42/summary.json            which checkpoint, sim_vs_ref of that draw
+#   results/perc2s/epN-s42/{episode_E6.parquet,sweep/*,selection.json}   the recipe's checkpoint-selection draws
+#   runs/perc2s/epN-s42/policy_*.safetensors          chosen + newest + every 10th checkpoint (5.1 MB each), train.log
+#   refs/perc2s/epN/                                  the reference used (byte-identical copy of the gate's input)
+#   job.log, run_job.log, hard_ab_epNs-s42.log, prepull.log, watchdog.log, COMMIT, run_state/

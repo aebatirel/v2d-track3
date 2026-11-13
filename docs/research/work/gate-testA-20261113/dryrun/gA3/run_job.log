@@ -1,0 +1,26 @@
+[2026-11-12T23:56:05Z] run dry-20261113-gA3-ee653b3: job [# test A box gA3: public ep23 then ep2 (training order). Plan: docs/work-log.md 2026-11-13 ~02:30 and ~03:00 UTC.
+R=20261020-refsweep-ea14fdf
+for i in 1 2 3; do
+  PULL_SUB="perc2/ep23 refs/perc2/ep23 perc2/ep2 refs/perc2/ep2" bash ops/box/store.sh pull-run $R >> /content/prepull.log 2>&1 && break
+  echo "[$(date -u +%FT%TZ)] test A: pull of $R failed (try $i)" >> /content/job.log; sleep 120
+done
+for x in 23:4ad4020ceabd333a21988693a9bc90074c7714ce25bcc9913174c1f86e4f98d2 2:a35dc7069a6a2980acacd106a2c42f32054fdd21502c2390db8b0fec00494d4f; do
+  e=${x%%:*}; f=$(ls /content/refs/perc2/ep$e/processed/*/*/*.parquet 2> /dev/null | head -1)
+  [ -n "$f" ] && [ "$(sha256sum < $f | cut -c1-64)" = "${x#*:}" ] && [ -s /content/perc2/ep$e/poses.npz ] \
+    || { echo "[$(date -u +%FT%TZ)] test A: ep$e reference or perception missing, or reference sha256 mismatch" >> /content/job.log; exit 1; }
+  echo "[$(date -u +%FT%TZ)] test A: ep$e reference $f sha256 OK (the gate's input)" >> /content/job.log
+done
+. /content/v2d-track3/ops/box/lib.sh
+export FC_FDR_OBJ=1 FC_FDR_TIPS=1 FC_VOC_INERTIA=1 FC_IMMEDIATE_FIRST_FRAME=0.25 TRAIN_ARGS="$FDR_TRAIN_ARGS" \
+  SPLIT=public PDIR_ROOT=/content/perc2 SUF=s CR=0 BASE_EVAL=0 NREP=1 SEED=42 LIB=/content/v2d-track3/meshes/library_v3 \
+  PAIRS="23:local: 2:local:"
+bash ops/jobs/hard_ab.sh] commit ee653b3882516b0838e4be75fd8e292c9198f6be instance DRYRUN-gA3
+[2026-11-12T23:56:05Z] gpu: v2d-track3/ops/box/run_job.sh: line 11: nvidia-smi: command not found  cpus: 4  ram: 15 GB  disk free: 14G
+[2026-11-12T23:56:05Z] SETUP=none: skipping environment and data setup
+grep: /content/setup.log: No such file or directory
+[2026-11-12T23:56:05Z] setup took 0 min: 
+[2026-11-12T23:59:52Z] job exit 0 after 3 min total
+[2026-11-12T23:59:52Z] self-destroy: job finished rc=0
+pushed runs/dry-20261113-gA3-ee653b3 (24M)
+{"success": true, "dryrun": true}
+[2026-11-12T23:59:53Z] destroy requested

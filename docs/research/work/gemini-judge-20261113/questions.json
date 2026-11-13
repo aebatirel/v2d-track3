@@ -1,0 +1,36 @@
+{
+ "version": "gemini-judge-20261113-v1",
+ "model": "gemini-decision-1",
+ "GA": {
+  "image_resolution": "high",
+  "input_intro": "Object: {name}.\nBelow are {n} pictures of this object, each taken at a different moment. In every picture the left half is a crop of a real photo from a head-mounted camera, with the object in the centre; hands or other objects may cover part of it. The right half is a grey, untextured render of a candidate 3-D model of the same object, drawn alone from the same camera at the same moment, so it should look like the object in the left half.\n",
+  "input_view": "Picture {i}:\n",
+  "questions": {
+   "shape_match": {
+    "type": "score",
+    "instructions": "How well does the 3-D shape of the candidate model (right halves) match the shape of the real object (left halves)? Judge shape only: the overall form, the proportions, the thickness of walls and parts, and parts such as handles, rims, spouts, bristles, holes and slots. Ignore colour, texture, lighting and background, small differences in position, size or angle between the halves, and parts of the real object that hands or other objects hide.",
+    "criteria": [
+     "No match: the model is a different kind of object, or a broken, fragmentary or badly distorted shape.",
+     "Poor match: the same kind of object, but with major shape errors, such as a missing or extra part (handle, rim, wall, base), clearly wrong proportions, or a large hole or blob.",
+     "Partial match: the overall form is right, but some parts are clearly wrong, such as a misshapen handle, walls far too thick or too thin, a lumpy or melted surface, or a wrong profile in some pictures.",
+     "Good match: the shape matches in all pictures, with only small differences in fine details or surface smoothness.",
+     "Near-exact match: the shape matches in every picture, including fine parts and thin features."
+    ]
+   }
+  }
+ },
+ "GB": {
+  "image_resolution": "high",
+  "input_intro": "Object: {name}.\nThe picture has two halves that show the same crop of one video frame from a head-mounted camera. Left half: the frame as recorded. Right half: the same frame with a magenta outline, the outline of a 3-D model of this object drawn where an object tracker places it in this frame.\n",
+  "questions": {
+   "aligned": {
+    "type": "noul",
+    "instructions": "Is the outlined 3-D model aligned with the real object, so that the magenta outline lies on the real object's edges?",
+    "criteria": {
+     "true_description": "The outline follows the real object's visible edges all the way round, apart from gaps of a few pixels: the model has the real object's position, size and orientation. Parts of the object hidden by hands or other objects do not count.",
+     "false_description": "The outline is visibly shifted, rotated, tilted or scaled against the real object, follows another object, or lies where the object is not."
+    }
+   }
+  }
+ }
+}

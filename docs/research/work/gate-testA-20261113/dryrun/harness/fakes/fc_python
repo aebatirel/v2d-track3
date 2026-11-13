@@ -1,0 +1,10 @@
+#!/bin/bash
+# DRY RUN ONLY: replaces FlashCHORD's .venv/bin/python. Training and the evaluator are stubbed (no GPU here);
+# every other call goes to the real interpreter (python.real).
+echo "[$(date -u +%FT%TZ)] cwd=$PWD python $*" >> /dryrun/fc_python_calls.log
+case "${1:-}" in
+  scripts/train_flash_sac.py) shift; exec /venv/main/bin/python -I /dryrun/fake_train.py "$@" ;;
+  scripts/evaluate_policy.py) shift; exec /venv/main/bin/python -I /dryrun/fake_eval.py "$@" ;;
+  scripts/view_policy.py) echo "DRY RUN: view_policy.py (render) not run"; exit 3 ;;
+  *) exec "$(dirname "$0")/python.real" "$@" ;;
+esac

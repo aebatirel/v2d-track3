@@ -1,0 +1,7 @@
+Fetching 169 files:   0%|          | 0/169 [00:00<?, ?it/s]Fetching 169 files:  29%|██▉       | 49/169 [00:00<00:00, 464.97it/s]Fetching 169 files:  59%|█████▉    | 100/169 [00:00<00:00, 490.53it/s]Fetching 169 files:  89%|████████▉ | 150/169 [00:00<00:00, 489.75it/s]Fetching 169 files: 100%|██████████| 169/169 [00:00<00:00, 500.39it/s]
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+public videos: 60  eval videos: 60  parquets: 20  meshes: 11  urdfs: 11
+DATA-OK

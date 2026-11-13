@@ -1,0 +1,57 @@
+[23:57:39] ep18 start (public, perception perc2, steps 250003456, seed 42, code ee653b38)
+[23:57:39] perception: [  231.1s] vo                           AUC 0.957 SP 1.00 MP 1.00 MPPE 1.16 RPE 1.42 {'mini_sweeper': 0.994, 'mini_dust_
+[23:57:39] hands done
+[23:57:40] reference: /content/refs/perc2s/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave (code ee653b38)
+[23:57:40] qa_ref: {"kind": "ref", "reasons": ["right wrist IK p95 68 mm > 60"], "wrist_p95_mm": {"left": 44.3, "right": 67.7}, "max_step_cm": {"left": 5.0, "right": 8.9}, "pass": false, "score": 67.7}
+[23:57:40] waiting for the GPU (TRAIN_LOCK)
+[23:57:40] GPU lock acquired
+[23:57:41] trained: /content/runs/perc2s/ep18-s42/policy_250003456.safetensors (code ee653b38)
+[23:57:42] evaluated
+[23:57:43] sweep policy_100003840.safetensors: sim_vs_ref 0.9926 (best so far 0.9542, floor 0.6206)
+[23:57:44] sweep policy_150005760.safetensors: sim_vs_ref 1.0 (best so far 0.9926, floor 0.6206)
+[23:57:46] sweep policy_200007680.safetensors: sim_vs_ref 0.994 (best so far 1.0, floor 0.6206)
+[23:57:46] qa_policy: {"kind":"policy","ep":18,"sim_vs_ref":1.0,"floor_vs_ref":0.6206,"verdict":"ok"}
+  "RPE_cm": 1.35,
+  "per_obj": {
+   "mini_sweeper": 0.9942,
+   "mini_dust_pan": 0.9467
+  }
+ },
+ "static_floor": {
+  "AUC": 0.6072,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 4.2,
+  "RPE_cm": 8.456,
+  "per_obj": {
+   "mini_sweeper": 0.6009,
+   "mini_dust_pan": 0.6135
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.9704,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.89,
+  "RPE_cm": 1.293,
+  "per_obj": {
+   "mini_sweeper": 0.9942,
+   "mini_dust_pan": 0.9467
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 1.0,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.067,
+  "RPE_cm": 0.134,
+  "per_obj": {
+   "mini_sweeper": 1.0,
+   "mini_dust_pan": 1.0
+  }
+ }
+}
+render FAILED
+DRY RUN: view_policy.py (render) not run
+render failed (not fatal)
+[23:57:47] ep18 DONE

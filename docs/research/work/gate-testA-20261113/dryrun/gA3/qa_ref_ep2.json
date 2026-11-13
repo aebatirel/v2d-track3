@@ -1,0 +1,18 @@
+{
+ "kind": "ref",
+ "reasons": [
+  "left wrist IK p95 81 mm > 60",
+  "left wrist step 31.3 cm > 10",
+  "right wrist IK p95 72 mm > 60"
+ ],
+ "wrist_p95_mm": {
+  "left": 80.9,
+  "right": 71.6
+ },
+ "max_step_cm": {
+  "left": 31.3,
+  "right": 5.2
+ },
+ "pass": false,
+ "score": 80.9
+}

@@ -12567,3 +12567,497 @@ score.
   - PU (as published): mean cup ΔAUC −0.198 over eps 11/12/21/22; every episode worse (−0.05 to −0.24).
   - PUT (+ tracker start, exploratory): −0.061.
   - Up-down flips and no temporal model. Their cup tracker is not public.
+### 2026-11-12 ~20:45 UTC — reading note 27: LLM weight-space repair and decision-model replacements (CPU, $0)
+- Owner: "read analyze this see how they are using the llm and think how we can use decision models to replace the
+  llm and how efficient and improvement would that be" (blog by Stranghöner et al., 11 Nov 2026).
+- Machine: cloud session container, no GPU, nothing rented. Branch `claude/gallant-franklin-8gvsv3` from main f34da0e.
+- Method: downloaded the page with curl and read all of it as text (the first fetch through a sub-agent returned only
+  the first third verbatim, so its summary was not used for numbers). Per-model scores and harness budgets were checked
+  against the page source. Scanned three cited works for baselines and cost: Takehi et al. (Sparks of Weight-Space
+  Programming), Zhang et al. arXiv:2611.09376 (abstract), Gong et al. (π0.5 weight editing).
+- Result: `docs/research/notes/27-weight-space-programming-and-decision-models.md`.
+  - The post reports no tokens, cost or time and no non-LLM baseline. Cost per repair is my estimate ($20–40,
+    3–4 h), scaled from the one usage record Gong et al. publish (187 requests, 184,614 output tokens, 36.8M
+    cache-read tokens, 1 h 51 min) at list prices; the cache-write price is assumed.
+  - My classification of the 23 key edits gives six repeating fix families plus two output recalibrations.
+  - Replacement designs A–D and four falsifying experiments (F1–F4) are hypotheses. None is planned or costed; all
+    need an OCBench setup we do not have.
+- Not done: no code, no experiment, no check of our checkpoint format against the "reflex inside the weights" idea.
+
+### 2026-11-12 ~21:00 UTC — ideas note 28: Gemini Decisions API (CPU, $0, no API call made)
+- Owner: "look into this and ideate how we can implement this into the workflow" (Google announcement, 11 Nov 2026).
+  This is what the earlier "decision models" question meant; note 27 had read the term generically.
+- Read with curl: the announcement, the Decisions API docs, and the model, pricing, rate-limit and media-resolution
+  pages on aistudio.google.com/docs. The benchmark table is an image; read it by eye.
+- Result: `docs/research/notes/28-gemini-decisions-api-in-the-pipeline.md`. Six integration ideas with a public test
+  and a bar each; constraints; a first test of two offline checks (mesh selector on the 104 scored meshes, track audit
+  on the depth audit's 7,835 object-frames; ≈ $1.1 of API, computed from list prices).
+- Not done: no key, no call, no code. No pre-registration yet; the rules get written here before any scoring.
+- Open: whether the competition allows a hosted proprietary model in the pipeline; the dataset licence on sending
+  frames to a third party.
+
+### 2026-11-12 ~21:40 UTC — can the LLM weight-editing method improve our policies? Feasibility (CPU, $0)
+- Owner: "can we see if the llm method helps with better policies" (after notes 27 and 28, and a read of
+  romanklis/ann2snn-pychromo-drone, which needed no repo change).
+- Read FlashCHORD's actor network (NVIDIA video_to_data main 1e862a8, cloned read-only) and our checkpoint metadata;
+  mapped the 32 stored tensors to names by jax's sorted-key order (checked by shapes and value ranges).
+- New `tools/actor_np.py`: numpy loader, eval-mode forward, idle-unit census. Census on the 12 committed checkpoints:
+  first-block wide layer 0–225 of 1,024 idle (0 only for the two short spoon fine-tunes), second block 0–142, 256-wide
+  layers 0. Estimate assumes normalised Gaussian inputs; a sampled forward with independent Gaussian inputs gave
+  fewer (9 and 47), so real counts need recorded observations. Forward not checked against JAX.
+- Plan and pre-registered rule: note 27 §9.3. Nothing rented; the owner decides.
+
+### 2026-11-12 ~21:55 UTC — NVIDIA tutorial exercise 3: read, run on CPU, note 29 (CPU, $0)
+- Owner: "look at these links go for exercise 3 and see how we can improve the pipeline with llms and desicion models
+  based on the research in this sesssion".
+- Source: exercise_3.zip from nvidia-isaac/video_to_data main 1e862a8 (exercise 1 is an LFS pointer, not fetched);
+  extracted into the session scratchpad, not the repo.
+- Parity: NVIDIA's `policy.py` and our `tools/actor_np.py` give identical actions on two of our checkpoints (ep12
+  public 250M; spoon ep35 fine-tune, 504 inputs): max difference 0.0 over 256 sampled inputs.
+- Run (this container, 4 CPU cores, Python 3.12 venv with the exercise's pins: Newton 1.2.0, Warp 1.14.0,
+  MuJoCo 3.8.1; headless runner in the scratchpad that loads the exercise's simulation.py and policy.py):
+  - zero-residual replay: 1,023 frames, 12.0 s compute; flask lost (max 0.81 m; 757 frames over 0.10 m);
+  - bundled policy: terminated at 17.6 s (frame 353): object 0.101 m, 0.325 rad, wrist 0.053 m; 6.0 s compute;
+  - rerun: identical (max difference 0.0).
+  The notebook calls it fully trained and was tested on Apple M4; the failure here is probably a platform
+  difference, not checked.
+- Result: `docs/research/notes/29-exercise3-llms-and-decision-models.md` (five ranked ideas, each with a public test
+  and bar). Nothing in the pipeline changed.
+
+### 2026-11-12 ~22:20 UTC — owner: "go for all"; PRE-REGISTRATION for note 29 ideas 1 and 2 (written before any data)
+- Context found on other branches: boards froze 4 Nov 22:00 UTC (final boards 9 Nov: 9th by rank sum); final pack 13h
+  and its container are built (keen-heisenberg, 11–12 Nov); Discord ruling 39 allows agentic intervention, rulings 19 /
+  25 / 44 allow public data for development only. Vast credit $33.98, 0 instances (checked 22:15 UTC).
+- **Idea 2, LLM weight-editing pilot on exercise 3 (CPU).** Task: the bundled policy, unperturbed (start frame 0,
+  delay 0), fails at 17.6 s. Repair agent rules as in the blog post: no gradients, optimizers, fitting or automated
+  weight search; hand-derived values and data-derived directions with a stated derivation are allowed; 25 test
+  rollouts of the unperturbed task, each returning full traces. Final evaluation, run once after the last edit:
+  20 perturbed runs = start frame {0, 4, …, 36} × delay {0, 3} physics steps, plus the unperturbed run, for three
+  arms: unedited, final edit, random edit (same entries changed, same Frobenius norm per matrix, random signs).
+  Success = reaches the last reference frame without a threshold failure.
+  - **Repair:** the edit completes the unperturbed run, completes ≥ 10 more perturbed runs than the unedited policy
+    (if the unedited completes k > 10, instead ≥ ceil((20 − k)/2) more), and fails none the unedited completes.
+  - **Not a repair:** it does not complete the unperturbed run, or completes no more perturbed runs than the random
+    edit. Otherwise inconclusive.
+- **Idea 1, wrench-feasibility gate (CPU).** Score per reference frame in held phases: the residual of the task wrench
+  (`pipeline/task_wrench.py`) after a non-negative fit in the cone of the contact wrenches (friction cone 8 edges +
+  normal, as exercise 3's `contacts.py`), normalised by the task wrench norm. Inputs are only our reference. Label per
+  frame: the official evaluator rollout's object deviates > 2 cm from our reference (GT-free). 20 public episodes.
+  - **Informative:** pooled AUROC ≥ 0.75 and ≥ 8 episodes contribute positives.
+  - **Falsified:** AUROC < 0.65. Otherwise inconclusive. 95% CI by episode bootstrap, reported with the result.
+
+### 2026-11-12 ~22:50 UTC — idea 1 (wrench-feasibility gate): built and self-tested; pre-registered test BLOCKED by data
+- Agent report and files: `docs/research/work/wrench-gate-20261112/README.md`, `results.json`, `score_gate.py`;
+  `pipeline/wrench_gate.py` (inference only, no ground truth). CPU only, $0, about 25 MB downloaded to the scratchpad.
+- **No verdict.** The store has no single recipe with official evaluator rollouts on all 20 public episodes.
+  - 9 public episodes have none: 0, 22, 23, 40–45.
+  - The best run covers 6 episodes (`runs/20261024-ev3-2c1e4dd`).
+  - Nothing was substituted.
+- Built and checked:
+  - 21/21 self-tests pass;
+  - the reference/rollout pairing check catches a 10.4 mm mismatch;
+  - a synthetic end-to-end run works.
+- Choices: μ 1.0 (FlashCHORD `contact_friction: 1.0`); 0.3 kg and URDF inertia; torque scale = `object_mesh_radius`;
+  object-event windows from lift-off to the last movement.
+- Gate scores without labels, on the 19 Oct-20 perc2 references (`runs/20261020-refsweep-ea14fdf/refs/perc2`; ep26
+  missing): 3,167 (object, frame) pairs, 72% exactly feasible, 17.3% score > 0.5. Range 0% (ep12, ep40) to 64% (ep31
+  sweeper); airborne objects with no contact: the pitcher in ep21 and ep22 (28%), ep24 (25%), ep39 (15%).
+
+### 2026-11-12 ~22:55 UTC — PRE-REGISTRATION, idea 1 test C (zero-residual replay label; written before any label)
+- Reason: test A (official rollouts) has no data; C answers the question a gate before training is for — does the
+  reference survive physics?
+- Gate: `pipeline/wrench_gate.py` frozen as committed in 61c0b6ad. Its scores on these references were already
+  computed without labels (entry above).
+- Data: the 19 public references in `runs/20261020-refsweep-ea14fdf/refs/perc2`.
+- Label: FlashCHORD zero-residual replay of each reference on CPU (VOC 0, zero policy action, as
+  `tools/trace_rollout.py zero`, the recipe's controller settings). Per (object, frame) in the gate's held windows,
+  positive if the simulated object is > 2 cm from the reference. Missing or non-finite rows count as positive.
+- Verdict, same bars as before:
+  - informative: pooled AUROC ≥ 0.75 and ≥ 8 episodes contribute positives;
+  - falsified: AUROC < 0.65;
+  - otherwise inconclusive, and also inconclusive if under 10% or over 90% of held frames are positive.
+  - 95% CI from 2,000 episode-bootstrap resamples, seed 20261112.
+- If FlashCHORD cannot run on CPU here, report blocked; no GPU without the owner's go-ahead.
+
+### 2026-11-12 ~21:43 UTC (container clock) — Gemini access working through the environment's network secret
+- Owner saved the key as a network secret for generativelanguage.googleapis.com, header x-goog-api-key, no Bearer
+  prefix. The earlier entry had sent the key with a Bearer prefix (API_KEY_INVALID).
+- Checks: `gemini-flash-latest:generateContent` HTTP 200; Decisions API (`v1beta/decisions`, gemini-decision-1) on a
+  text-only test question HTTP 200 (192 input tokens, 0 output). No challenge data was sent.
+- The key was pasted in chat twice; the owner was advised to rotate it. Not stored in any file (checked).
+- Open before idea 5 sends challenge frames: the dataset licence on third-party processing (owner).
+
+### 2026-11-12 ~23:05 UTC — owner: "use the physical contact blob from exercise 3 … through the decision tree";
+### PRE-REGISTRATION of the blob-feature tree (idea 3 variant), written before any test-C label exists
+- Question: does the full contact-wrench "blob" (exercise 3's 6-D support, h(u) = max(0, maxᵢ uᵀwᵢ)) predict physical
+  drift better than the single gate score?
+- Same rows and labels as test C (22:55 UTC): (object, frame) in the gate's held windows on the 19 references.
+- Features per row, from our reference only, with the generators of `pipeline/wrench_gate.py` (both hands combined),
+  computed by `tools/blob_features.py`:
+  1. gate score;
+  2. support along the demand direction, h(Ŵ);
+  3. support along a pure upward force, h([0,0,1,0,0,0]);
+  4. share of 512 fixed unit 6-D directions (Gaussian, seed 0, normalised) with zero support;
+  5. number of active contacts;
+  6. number of hands in contact (0, 1 or 2);
+  7. demand force norm |F| (N);
+  8. demand torque norm |τ| (N m).
+- Model: scikit-learn `DecisionTreeClassifier(max_depth=3, min_samples_leaf=50, class_weight="balanced",
+  random_state=0)`.
+- Evaluation: leave-one-episode-out over episodes with held rows; pooled out-of-fold AUROC; the gate score's AUROC on
+  the same rows; their difference with a 95% CI from 2,000 paired episode-bootstrap resamples, seed 20261112.
+- Verdict:
+  - **adds value:** out-of-fold AUROC ≥ 0.75, the difference ≥ 0.05, and the CI of the difference above 0;
+  - **no added value:** difference < 0.02;
+  - otherwise inconclusive, and also inconclusive when test C is (positive share under 10% or over 90%).
+- Separately, descriptive only: the same features over exercise 3's flask handover against its zero-residual replay
+  error (one episode; no verdict).
+
+### 2026-11-12 ~23:35 UTC — blob features built; exercise 3 descriptive run (CPU, $0)
+- `tools/blob_features.py` and `tools/blob_tree.py` frozen in 314515e9 before any test-C label.
+  - 3,167 rows on the 19 refsweep references, matching the gate run (72.2% score 0; 17.3% > 0.5).
+  - Synthetic-label checks: a planted signal gives "adds value"; random labels give "no added value".
+- Exercise 3, descriptive (`docs/research/work/blob-tree-20261112/README.md`):
+  - At the simulator's μ 1.0 (calibration `geom_friction` = 1.0 everywhere), the reference's contacts score the grasp
+    feasible on 95% of frames.
+  - Yet the zero-residual replay leaves the reference by 2 cm at 2.7 s, and the trained policy fails at the handover
+    (17.6 s), where the blob says the grasp is strong.
+  - At the exercise's display μ 0.1, 40% of frames score infeasible and the early phase "matches" the replay. That
+    match is spurious (wrong μ).
+  - Reading [H]: the reference's proximity contacts are not the contacts physics realises. This lowers the prior for
+    test C and the tree; the next feature set should come from simulator contacts.
+
+### 2026-11-12 ~23:55 UTC — test C (idea 1) and the blob tree (idea 3): both INCONCLUSIVE by the pre-registered share rule
+- Test C: 3,155 of 3,167 held rows positive (99.6% > 90%), so inconclusive whatever the AUROC.
+  - Pooled AUROC 0.41, CI [0.06, 0.59]; it rests on 12 negative rows in 6 episodes, so it carries no information.
+  - Files: `docs/research/work/wrench-gate-20261112/README.md` §10, `results_C.json`, `labels_C.csv`, `score_C.py`.
+- Why: the zero-residual replay lifts almost nothing. 20 of 26 objects stay within ±1.1 cm of their start height
+  while the reference rises 1–25 cm. Hypothesis: without a policy the hands follow the pose but do not squeeze. The
+  label is nearly constant ("no open-loop grip"), so it cannot rank frames.
+- Run details (agent):
+  - FlashCHORD at the evaluator pin 8c778f9 on CPU (Python 3.11, Newton 1.2.0, Warp 1.14.0); Sharpa meshes fetched
+    from GitHub LFS media URLs, sha256-checked 346/346; kit URDFs and meshes from `nvidia/video_to_data_challenge`.
+  - Embodiment `sharpa_hands` (wrist kp 25), VOC 0, zero action; 19 replays, about 4 min wall on 4 CPUs.
+  - Traces only in the scratchpad (`wgate/replayC/out`, 5.7 MB; regenerable).
+- Blob tree (`tools/blob_tree.py` on the same labels): out-of-fold AUROC 0.58 vs gate 0.41; difference 0.17, CI
+  [−0.14, 0.79]. Verdict inconclusive by the same share rule. Recorded in
+  `docs/research/work/blob-tree-20261112/results_tree.json`; not interpreted.
+- Next options (owner decides; each needs its own pre-registration):
+  - label from replays of grasp-locked references (`sharpa_hands_mid`, kp 400, grasp lock), on CPU, $0;
+  - test A: one GPU batch training and evaluating all 20 public episodes, about $20–50.
+
+### 2026-11-13 ~00:10 UTC — explainer page for the owner: "Track 3 Upgrade Map"
+- Owner asked for a visual explanation of the whole plan. Published as a private artifact:
+  https://claude.ai/artifact/9bme8GokXWJUD4WYShTuAK. Source copy: `docs/explainer/upgrade-map-20261112.html`.
+- Contents: status of the five add-ons; the pipeline with their plug-in points; how each works; the exercise-3 chart
+  drawn from measured data; a table of measured results; next-step flows; what is needed from the owner.
+- Checked once by screenshot at desktop (light) and phone (dark); fixed three label overlaps.
+
+### 2026-11-13 ~00:20 UTC — read romanklis/ann2snn-pychromo-drone (a2aac4a, 6 Oct) for applicability (CPU, $0)
+- What it is: a 6-DoF quadcopter in a numpy plant (PyChrono for display).
+  - Teacher: an analytic DS-guidance controller with Billard-style obstacle modulation, using true geometry.
+  - Student: distilled offline into a 1,000-neuron sparse recurrent ANN, then rate-coded into an integrate-and-fire
+    SNN. Inputs are the UKF estimate plus 32-beam LiDAR.
+  - Training is MSE on teacher labels for coverage states and teacher rollouts; no DAgger.
+  - A structured variant learns only 24 RBF-field coefficients; analytic DS + modulation + impedance do the control,
+    with A* on a privileged or SLAM map.
+- His results (single seed): end-to-end ANN/SNN avoid the pillar but stop about 0.8 m short and collide on wall and
+  slalom; structured arms 0 collisions, reach 7 of 8; field-SNN fidelity Pearson about 0.45; no efficiency claim.
+- For us:
+  - Our policy is already a bounded residual on a reference, so his main lesson (structure + small learned part) is
+    in place.
+  - SNN conversion offers nothing for the evaluator.
+  - Distillation matters only for real-robot transfer, and then with DAgger or DART: his offline cloning shows the
+    compounding error the weight-editing blog describes.
+  - One idea worth a test [H]: DS obstacle modulation of the reference's wrist approach around other objects, for
+    collision-caused failures (evals 1, 14, 30; eval 10's rim). Not pre-registered or started.
+
+### 2026-11-13 ~00:35 UTC — idea 2 (LLM weight repair on exercise 3): INCONCLUSIVE by the rule, in substance NOT a repair
+- Agent run: about 1 h wall (21:22–22:23 container clock), CPU only; 24 of 25 rollouts; every prediction written
+  before its run. Files: `docs/research/work/wsp-ex3-20261112/` (README, `edit.py` reproduces the final edit
+  byte-identically, sha256 c0a12954…cfac; `rollouts.jsonl`, `final_eval.jsonl`). Edited npz files are in the
+  scratchpad only.
+- Edit: 21,024 of 1,160,356 numbers changed (1.81%): 19,415 zeroed, 1,609 written. Four hand-built controllers
+  (right-wrist joint limit; left-wrist orientation controller for the approach, off once grasping; end-phase
+  left-wrist cap; weak left-hand release), written through idle block-0 units with least-squares readouts of the
+  embedding.
+- Final evaluation:
+  - unperturbed run: the edit completes it; the unedited fails at 17.6 s;
+  - perturbed runs: edit 11 of 20, unedited 9 (bar: +10); the edit fails one run the unedited completes (start 0,
+    delay 3);
+  - handover failures: 2 of 13 with the edit vs 6 of 15 unedited; pickup failures (starts 8–20): 7 vs 5;
+  - flask rotation during a successful handover is about 4× smaller.
+- The "not a repair" clause could not fire because the random control is broken. My pre-registered recipe ("same
+  entries, same Frobenius norm, random signs") makes 6 batch-norm variances negative, so the output is NaN; a
+  sanitised version still fails every run within 1–6 s. My design error: a fair control must keep variances positive
+  and treat zeroed entries as zeroed. Also, start 0 / delay 0 duplicates the unperturbed run.
+- Test-bed lessons (agent):
+  - the unperturbed task is chaotic (an action change of 0.08 flips success), so 25 rollouts on one start mostly
+    measure luck;
+  - development saw only handover failures, while the perturbed set adds pickup failures.
+- Decision under the 12 Nov plan: no GPU pilot on our episodes; retraining stays the fix. A rerun would need varied
+  starts during development and a sound random control (new pre-registration).
+
+### 2026-11-13 ~00:50 UTC — owner: "okay go crazy"; data licence checked; PRE-REGISTRATION of tests C2, G-A and G-B
+- Data licence: the challenge dataset (`nvidia/video_to_data_challenge`) is CC BY 4.0 and not gated, and its card
+  adds no other restriction. Sending public-episode frames to the Gemini API is allowed (attribution in anything
+  published). Only public episodes are sent; ground truth is never sent.
+- **Test C2 (ideas 1 and 3; new label, same features).**
+  - Gate and blob features: unchanged, frozen code, computed on the 19 original refsweep perc2 references.
+  - Label per (object, frame) in the gate's held windows: the grasp-locked physics replay of that reference
+    (`tools/cpu_glock_zero.sh` chain: `pipeline/grasp_lock.py` default args → `pipeline/wrist_ilc.py` kp 400,
+    4 iterations → zero-action replay with `sharpa_hands_mid`, CPU). Positive if the object is > 2 cm from the
+    replayed reference's object pose; missing or non-finite counts as positive.
+  - Episodes where grasp lock or ILC fails are excluded and reported. If more than 5 of 19 fail, the test is
+    inconclusive.
+  - Verdict bars and the 10–90% share rule as for test C (22:55 UTC); the tree as pre-registered at 23:05 UTC.
+- **Test G-A (Gemini mesh selector, note 28 idea 2).** The 104 scored meshes of the 30 Oct generative probe
+  (`docs/research/mesh-2026-10-26/results/gen-probe/`).
+  - Per mesh: one Decisions API `score` question (5 levels, 0–4: shape match) on real crops plus renders of the
+    candidate at our own tracked pose.
+  - ρ = Spearman(Gemini expected score, −CD-O) over all 104 meshes.
+  - **Pass:** ρ > 0.46 (the GT-free metric's value) and Gemini's top mesh is the CD-O best on more than 2 of 10
+    objects.
+  - **Fail:** ρ ≤ 0.46 and the top mesh is the CD-O best on 2 or fewer. Otherwise inconclusive.
+- **Test G-B (Gemini track audit, note 28 idea 1).** The depth audit's rows (30 Oct; 19 public episodes, 7,835 valid
+  object-frames).
+  - Per row: one `noul` question ("is the outlined model aligned with the real object?") on a crop with our tracked
+    mesh overlaid. Score = 1 − P(aligned).
+  - Label: the depth audit's primary label (registered ADD > 2 cm, kit frame-0 alignment).
+  - **Informative:** AUROC ≥ 0.75 and ≥ 8 episodes contribute positives. **Falsified:** AUROC < 0.65. Otherwise
+    inconclusive. 95% CI by episode bootstrap.
+- Rules for G-A and G-B:
+  - The exact question texts, image layout and resolution are fixed in a PREREG file committed before the first
+    scored call. Only a format dry run on non-challenge images is allowed before that.
+  - Cost cap $5 of Gemini API in total; stop and report if the estimate goes over.
+
+### 2026-11-13 ~01:45 UTC — DS obstacle modulation (Roman's idea): phase 1 done; phase 2 NOT RUN (decision)
+- Agent output: `pipeline/ds_modulate.py` (off by default, nothing calls it), `tests/test_ds_modulate.py` (24/24 pass,
+  rerun here), `docs/research/work/ds-modulation-20261113/` (PREREG.md, eval_ds.py, run_phase2.sh). CPU, $0.
+- Finding from recorded evidence (nothing new measured): the target evals' collisions are not the hand hitting a
+  bystander, so DS modulation cannot reach them.
+  - Eval 1 (ep2): the lid lies inside the pot's hulls at the start and the placed pose (44–51 cm³; hull census,
+    26 Oct).
+  - Eval 14 (ep12/ep13): the cup is inside the rack mesh during insertion. That is the goal itself, and DS needs the
+    goal outside every obstacle.
+  - Eval 30 (ep31): the sweeper starts inside the rack from frame 0 (perception).
+  - Eval 10 (ep11): the reference path is clear (≤ 2.4 mm); the failure is a 6–7 cm in-simulation misalignment.
+  - Every twin has two objects, so the hand's only non-target object is the receptacle, met while grasping or
+    placing: the frames DS must leave alone.
+- The agent's written prediction for phase 2: most likely Fail (< 20% removed), else Not applicable.
+- **Decision: phase 2 not run.** The evidence already says the method targets a collision type our failures do not
+  have. The code and PREREG are kept for a future scene with bystander objects.
+
+### 2026-11-13 ~02:05 UTC — test C2 (ideas 1 and 3, grasp-locked replay label): INCONCLUSIVE by the share rule
+- 3,122 of 3,167 rows positive (98.6% > 90%). Pooled AUROC 0.53, CI [0.33, 0.66]; the 45 negatives are mostly ep43
+  (40). Tree: out-of-fold AUROC 0.35 vs gate 0.53 (diff −0.18, CI [−0.23, 0.09]); inconclusive by the same rule.
+- All 19 grasp-lock + ILC + replay chains ran cleanly (CPU, 8c778f9 venv, `sharpa_hands_mid`, HEAD 983bd272);
+  1,532 s wall for 18 episodes at 3 in parallel. Grasp lock leaves the object trajectory unchanged (0.0 mm).
+- What the label shows: five objects now lift (ep24 piece 1, ep42 and ep43 pots, ep18 dust pan, ep31 sweeper), but
+  even those end 4–24 cm from the reference. Both open-loop labels (C and C2) fail on almost every held frame of these
+  20 Oct references, so neither can test the gate.
+- Files: `docs/research/work/wrench-gate-20261112/` README §11, `results_C2.json`, `labels_C2.csv`, `score_C2.py`;
+  `docs/research/work/blob-tree-20261112/results_tree_C2.json`. Traces only in the scratchpad (`wgate/replayC2`).
+- The only label left that varies is trained-policy rollouts (test A): GPU, about $20–50, needs the owner's go-ahead.
+  Otherwise ideas 1 and 3 are parked as unproven.
+
+### 2026-11-13 ~02:30 UTC — owner: "you can do gpu test, how much do you need?"; test A plan and PRE-REGISTRATION amendment
+- Plan:
+  - 19 public episodes with the refsweep perc2 references the gate was computed on
+    (`runs/20261020-refsweep-ea14fdf/refs/perc2`). ep26 has no reference there; building one would need a new
+    perception run.
+  - Recipe: standard FDR RL learner (`ops/jobs/hard_ab.sh` route, FDR + VOC inertia, 250M steps, seed 42, library_v3
+    meshes, CR=0), then one official evaluator draw per policy.
+  - 10 on-demand RTX PRO 6000 boxes in parallel, 2 episodes each.
+- Prices now (Vast offers, 13 Nov ~02:25 UTC): on-demand $1.41–1.71/h all-in; interruptible $0.54–0.82/h, with
+  preemption seen on 26 and 29 Oct, so on-demand.
+- Estimate [E]: 19 × ~1.6 GPU-h training + ~0.5 h setup per box + evaluation ≈ 37 box-hours ≈ $55–60. Cap $75.
+  Wall time ≈ 4 h. Credit $33.98, so a top-up of about $45 is needed before launch.
+- **Amendment (before any data):** test A uses these 19 episodes (not 20); every other rule of the 22:20 UTC entry is
+  unchanged (bars, ≥ 8 episodes with positives, first official draw, > 2 cm label, the 10–90% share rule).
+  The tree test (23:05 UTC) runs on the same labels.
+
+### 2026-11-13 ~02:45 UTC — Gemini judge (G-A, G-B): phase 1 done; PREREG committed before any scored call
+- `docs/research/work/gemini-judge-20261113/`:
+  - PREREG.md: exact questions, layout, rows, sha256 of every script and spec, phase-2 commands with caps $0.5 (G-A)
+    and $3.0 (G-B);
+  - builders, `run_gemini.py` (resumable cache, cost cap, refuses changed questions), `score_GA.py`, `score_GB.py`;
+  - contact sheets of what Gemini sees.
+- Inputs in the scratchpad only (`scratchpad/gem/`; 104 + 7,835 requests, 8,231 sha256-pinned JPEGs). They can be
+  rebuilt in about 12 min.
+- Format dry run on synthetic images: HTTP 200, 2,855 tokens, $0.0003. Estimate for both tests about 11M tokens,
+  about $1.1.
+- Changed during phase 1 without ground truth: an edge-support frame gate for G-A. The first build picked ep23
+  wooden-piece frames where our own overlay shows the track lost; kept as `ga_v0_noedgegate/`.
+- G-B rows rebuilt from the audit's valid flags: 7,835 rows, 1,447 positives in 16 episodes (key-column check).
+- Disclosure: the agent read `table.md`, which shows CD-O, at the start. Frame choice and questions do not use it.
+- ρ bar stays 0.46 as written. The GT-free metric is 0.4650; a ρ between the two passes by the rule but is reported
+  as not beating it.
+
+### 2026-11-13 ~03:00 UTC — owner: "lets not do all refs but selection of them"; test A AMENDMENT (before any data)
+- Selection from the gate's own scores only (no labels exist for these policies): episodes sorted by the gate's
+  infeasible share, picked to cover low, mid and high tiers and distinct object types.
+  - **Low:** ep12 (blue cup, 0.00), ep40 (dust pan, 0.00), ep23 (wooden pieces, 0.017).
+  - **Mid:** ep18 (sweeper + dust pan, 0.064), ep2 (pot + lid, 0.195).
+  - **High:** ep24 (wooden pieces, 0.269), ep21 (pitcher + cup, 0.304), ep31 (sweeper, 0.639).
+- Recipe and label unchanged (standard FDR learner 250M, seed 42; first official draw; > 2 cm vs our reference).
+- Bars:
+  - informative: AUROC ≥ 0.75 and ≥ 4 of the 8 episodes contribute positives (scaled from 8 of 19);
+  - falsified: AUROC < 0.65;
+  - the 10–90% share rule and the episode-bootstrap CI as before;
+  - the tree test (23:05 UTC) runs leave-one-episode-out over the same 8 episodes.
+- Boxes: 4 on-demand RTX PRO 6000, 2 episodes each: (12, 31), (40, 21), (23, 2), (18, 24).
+- Estimate [E]: 4 × (0.5 h setup + ~3.2 h shared training + 0.2 h evaluation) ≈ 16 box-hours ≈ $23–26 at
+  $1.41–1.61/h. Cap $30, inside the current credit ($33.98), so no top-up is needed.
+
+### 2026-11-13 ~03:30 UTC — Gemini judge results: G-A FAIL, G-B FALSIFIED (actual API cost $1.112)
+- Run as the PREREG §7 commands, after the §8 hash check (14 files match ffc8a6e8; 8,231 images match their pinned
+  sha256). Cost: G-A $0.0478, G-B $1.0639, dry run $0.0003; 11.12M input tokens.
+- **G-A (mesh selector): FAIL.**
+  - ρ 0.426 (object-bootstrap CI 0.16–0.65), below 0.46 and below the GT-free metric's 0.4650.
+  - Gemini's top mesh is the CD-O best on 1 of 10 objects (the dish rack); the bar was more than 2.
+  - 104/104 answered.
+  - Gemini ranks generators roughly (SAM 3D highest, TripoSG lowest) but rarely finds the best mesh within an object.
+- **G-B (track audit): FALSIFIED.**
+  - AUROC 0.5245, CI 0.43–0.63; 1,445 positives in 16 episodes; 7,808 of 7,835 rows answered.
+  - Below the depth audit's 0.599 on the same rows. No diagnostic reached 0.75 (ADD > 1 cm 0.62; leave-one-out
+    0.51–0.58).
+  - Answers vary more by object than by frame quality.
+  - 27 rows (0.34%) returned `400 prohibited_content` on ordinary frames: under the 2% limit, marked blocked.
+- Files: `docs/research/work/gemini-judge-20261113/` README.md, `results_GA.json`, `results_GB.json`,
+  `gb_scores.csv` (304 KB, no labels). Raw caches in the scratchpad only.
+- Consequence, as note 28 §5 said in advance: Gemini has no place in the pipeline as a visual judge of geometry.
+  Ideas 3–6 of note 28 drop unless a new reason appears (owner's call).
+
+### 2026-11-13 ~04:10 UTC — test A: dry run passed; decisions D1–D3 recorded BEFORE any result; launch
+- Owner go-ahead (this conversation): "you can do gpu test, how much do you need?", then "lets not do all refs but
+  selection of them" (8 episodes, cap $30, inside the $33.98 credit; amendment 03:00 UTC).
+- Prep and dry run: `docs/research/work/gate-testA-20261113/` (README, JOBS.txt, jobs/gA1–gA4.job with SHA256SUMS,
+  dryrun/).
+  - All 4 job strings ran end to end in a CPU sandbox, from onstart to the self-destroy call. Training, evaluator,
+    Vast and store were stubbed.
+  - References are sha256-checked against the gate's input.
+  - The FlashCHORD environment built on CPU for all 8 references.
+  - The stall watchdog was tested.
+  - No code change: the jobs reuse `ops/jobs/hard_ab.sh` with the std_learner recipe.
+- **Decisions (fixed now, before results):**
+  - **D1, simulator meshes:** the organisers' public object files (`/content/t3/urdf/*_rigid.urdf`, scans), because
+    the 20 Oct references point at them. This is the same input the gate was scored on and that C/C2 replayed.
+    `LIB=library_v3` does not reach the simulator. The 02:30 entry's "library_v3 meshes" was wrong. The result
+    transfers to the library_v3 pipeline only in part (oracle-mesh condition).
+  - **D2, label rollout:** `results/hard_ab/ep<N>/s-s42/r1/episode_<E6>.parquet`, the one fresh official-evaluator
+    draw (NREP=1) of the checkpoint hard_ab's sweep (0.4/0.6/0.8 plus final) chose. The sweep's own draws are not
+    labels.
+  - **D3, evaluator:** draws run on the training box's patched FlashCHORD, not the untouched kit evaluator. The 3 Nov
+    evaluator-gap test found no gap.
+- Known risk: all 8 references fail today's reference QA (wrist IK 62–171 mm vs 60 mm). Policies may track badly and
+  push more than 90% of frames positive, making the test inconclusive by the share rule.
+- Cost: 3.3–4.2 h per box; ≈ $21–28 central at $1.51–1.66/h; cap $30 (stop rule: the 4 rates must sum ≤ $7.1/h).
+- Ledger: `ops/ledger.py` needs a store write credential this session lacks (read-only HF). Planned and actual lines
+  are recorded in this log instead (planned $7.00 per box).
+
+### 2026-11-13 00:26 UTC (container clock) — test A LAUNCHED: 4 boxes, $6.01/h combined
+- Clock note: work-log times in this session's entries from "~22:20 UTC" (12 Nov) to "~04:10 UTC" (13 Nov) were
+  estimates and ran ahead of the container clock (it read 00:18 UTC at launch). Their order is right; git commit
+  times are authoritative. From here on, times are the container clock.
+- Commit on the boxes: 25cb421 (box code identical to the dry-run commit ee653b38; job files pass SHA256SUMS).
+  ENV_SNAPSHOT pt2.11-cu130-py313-20261020; image from ops/config.env.
+- Credit before: $33.98; 0 instances.
+
+| Box | Run id | Episodes | Instance | GPU | $/h | Created (UTC) |
+|---|---|---|---|---|---|---|
+| gA1 | 20261113-gA1-25cb421 | ep12, ep31 | 60424679 | RTX PRO 6000 WS | 1.508 | 00:19 |
+| gA2 | 20261113-gA2-25cb421 | ep40, ep21 | 60424841 | RTX PRO 6000 WS | 1.508 | 00:21 |
+| gA3 | 20261113-gA3-25cb421 | ep23, ep2 | 60425356 | RTX PRO 6000 S | 1.347 | 00:26 |
+| gA4 | 20261113-gA4-25cb421 | ep18, ep24 | 60425291 | RTX PRO 6000 S | 1.642 | 00:25 |
+
+- gA3's first offer (59405105) was gone at create time (no_such_ask), so nothing was created or billed. It was
+  re-created on offer 58257843.
+- Ledger, planned (here instead of the store ledger, no write credential): $7.00 per box, batch cap $30. Expected
+  3.3–4.2 h per box, ≈ $20–25.
+
+### 2026-11-13 01:10 UTC — test A check-in 1: 3 boxes training, gA1 slow in setup (progressing); credit $29.52
+- gA2, gA3, gA4: label "hard A/B: …"; job logs show the FlashCHORD patches applied at 00:37–00:40 UTC (training
+  stage).
+- gA1 (60424679): still in setup at 01:10.
+  - The env snapshot downloaded at about 00:32 (4 min 16 s).
+  - `apt-get install libeigen3-dev libboost-all-dev` had run 22 min; dpkg was configuring one package every
+    12–14 s, the last at 01:10:10.
+  - Load 6.5–8.5; dpkg waits on the XFS log (`xlog_wait_on_iclog`), so the host disk is slow.
+  - Progressing, so not cut (CLAUDE.md).
+  - Expected extra cost of the delay: about $1–1.5 [E].
+- Spend so far: $33.98 − $29.52 = $4.46 in about 50 min, matching $6.01/h.
+
+### 2026-11-13 01:57 UTC — test A check-in 2: gA1 self-destroyed by its watchdog in setup; re-created as gA1b
+- gA1 (60424679): the box's stall watchdog fired at 01:11:52 UTC ("stalled: no progress for 30 min", watchdog.log)
+  and destroyed it, 2 min after check-in 1 had seen dpkg still progressing.
+  - The watchdog counts job-log lines. The slow apt step (libboost on a slow XFS disk) wrote none for 30 min, so it
+    read as a stall: a false positive during setup.
+  - No results; cost about $1.3 (52 min × $1.508).
+- Re-created at 01:57 as **gA1b**: run 20261113-gA1b-25cb421, instance 60434477, offer 28746313, RTX PRO 6000 WS,
+  Spain, $1.508/h. Same commit 25cb421, same `gA1.job` (sha256 OK), episodes ep12, ep31.
+- gA2, gA3, gA4 still in the training job. Credit $25.93 at 01:56; spent $8.05.
+- Updated estimate [E]: about $24–26 for the batch with the re-run; cap $30.
+- Watchdog false positive noted for later: the setup stage should write heartbeat lines while apt runs. Not changed
+  now, to keep the box code identical to the dry run.
+
+### 2026-11-13 02:24 UTC — test A check-in 3: all 4 boxes in the training job; credit $23.07 (spent $10.91)
+- gA1b (60434477): apt finished at 02:09; FlashCHORD patched at 02:18; `train_flash_sac.py` on ep12 running for
+  5 min, GPU 100%, 41 GB. No heartbeat was needed.
+- gA2, gA3, gA4: still in "hard A/B" (training/evaluation); expected to end ≈ 03:45–04:40 UTC. gA1b ≈ 05:15–06:00 UTC.
+
+### 2026-11-13 03:50 UTC — test A check-in 4: first-episode label rollouts in the store; credit $14.39 (spent $19.59)
+- In the store: `results/hard_ab/ep40/`, `ep23/` and `ep18/` (`s-s42/r1/episode_*.parquet`, the D2 label rollouts).
+  - gA2 ep40: chosen checkpoint `policy_200007680`; pipeline 00:37–02:16 UTC. Its r1 draw has sim_vs_ref 0.9637.
+    Its mocap score is also in the log; it is not used in this test.
+- Second episodes in training at 03:50:
+  - gA2 ep21: 86%, 39.4k steps/s;
+  - gA3 ep2: 86%, 37.0k/s;
+  - gA4 ep24: 81%, 46.0k/s;
+  - all with ETA 15–17 min, then checkpoint sweep and the fresh draw, so done ≈ 04:30.
+- gA1b ep12: 88%, 41.6k/s, ETA 12 min; then ep31 (≈ 1.6 h), so done ≈ 06:00.
+- Projected total ≈ $26 (≈ $6.5 more at the current rates); cap $30.
+
+### 2026-11-13 04:41 UTC — test A check-in 5: gA2, gA3, gA4 done (rc 0, self-destroyed); 7 of 8 labels in the store
+- Label rollouts present: ep40, ep21 (gA2); ep23, ep2 (gA3); ep18, ep24 (gA4); ep12 (gA1b).
+  `run_state/exit_code` 0 for gA2–gA4.
+- Ledger, actual (duration × rate):
+
+| Box | Instance | Created → gone (UTC) | $/h | Cost |
+|---|---|---|---|---|
+| gA1 (watchdog false positive) | 60424679 | 00:19 → 01:12 | 1.508 | $1.33 |
+| gA2 | 60424841 | 00:21 → 04:11 | 1.508 | $5.78 |
+| gA3 | 60425356 | 00:26 → 04:09 | 1.347 | $5.01 |
+| gA4 | 60425291 | 00:25 → 04:11 | 1.642 | $6.19 |
+| gA1b (running) | 60434477 | 01:57 → … | 1.508 | $4.12 so far |
+
+- Credit $11.31; the credit drop $22.67 matches the table.
+- gA1b at 04:41: ep31 37% (42.0k steps/s, ETA 1 h 02 min), so done ≈ 06:05. Projected batch total ≈ $24.6; cap $30.
+
+### 2026-11-13 06:09 UTC — test A batch complete: all 8 label rollouts in the store; 0 instances; cost $24.40
+- gA1b (60434477): ep12 and ep31 done; rc 0; self-destroyed 05:48:51 UTC. Actual: 01:57 → 05:49 × $1.508 = $5.83.
+- Batch total (duration × rate): $1.33 + $5.78 + $5.01 + $6.19 + $5.83 = $24.14. Credit $33.98 → $9.58, a drop of
+  $24.40 (storage and transfer included). Cap $30 held.
+- Scoring started with the frozen `score_A.py` (1744cfa4), steps 1–5 of README §12.
+
+### 2026-11-13 06:20 UTC — TEST A RESULT: gate FALSIFIED (AUROC 0.630); blob tree NO ADDED VALUE (0.300)
+- Run: steps 1–5 of README §12 with the frozen code (1744cfa4; `score_A.py`, `wrench_gate.py`, `blob_tree.py`
+  unchanged). Pairing 8/8 at 0.0 mm; training copies byte-identical to the gate input. CPU, $0.
+- Gate:
+  - 1,507 held rows; 997 positive (66.2%, inside 10–90%); 0 missing;
+  - pooled AUROC 0.630, CI [0.492, 0.748]; 8 of 8 episodes have positives;
+  - verdict **falsified** (< 0.65).
+- Tree (leave-one-episode-out over 8): out-of-fold AUROC 0.300 vs the gate's 0.630; difference −0.330, CI
+  [−0.520, −0.050]; verdict **no added value**. It splits first on contact count and gives the gate score zero
+  importance.
+- Descriptive only (not a verdict):
+  - within-episode AUROCs 0.32–0.63 (median 0.49), so the pooled value comes from differences between episodes;
+  - episode-level Spearman between infeasible share and mean held error is 0.78 (n = 8).
+  - Hypothesis, untested: the gate as an episode-level screen. That needs a new pre-registration on the other
+    11 public episodes and another GPU batch (≈ $30–40 [E]).
+- Files: `docs/research/work/wrench-gate-20261112/` README §12.5, `results_A.json`, `labels_A.csv`;
+  `docs/research/work/blob-tree-20261112/results_tree_A.json`.
+- Session summary of ideas 1–5 plus Roman's DS idea: none improves the pipeline. 1 falsified (frame level), 2 not a
+  repair, 3 no added value, 5 fail/falsified, DS dropped as inapplicable, 4 not run (needs owner labels).
+  - Spend: GPU $24.40 (test A); Gemini API $1.11; the rest CPU.
+

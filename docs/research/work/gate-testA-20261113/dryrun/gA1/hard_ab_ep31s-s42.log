@@ -1,0 +1,57 @@
+[23:57:30] ep31 start (public, perception perc2, steps 250003456, seed 42, code ee653b38)
+[23:57:30] perception: [  172.2s] vo                           AUC 0.876 SP 1.00 MP 1.00 MPPE 1.60 RPE 1.38 {'mini_sweeper': 0.94, 'plastic_dis
+[23:57:30] hands done
+[23:57:31] reference: /content/refs/perc2s/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave (code ee653b38)
+[23:57:31] qa_ref: {"kind": "ref", "reasons": ["left wrist IK p95 63 mm > 60", "right wrist IK p95 64 mm > 60"], "wrist_p95_mm": {"left": 62.5, "right": 63.7}, "max_step_cm": {"left": 3.2, "right": 6.3}, "pass": false, "score": 63.7}
+[23:57:32] waiting for the GPU (TRAIN_LOCK)
+[23:57:32] GPU lock acquired
+[23:57:33] trained: /content/runs/perc2s/ep31-s42/policy_250003456.safetensors (code ee653b38)
+[23:57:33] evaluated
+[23:57:35] sweep policy_100003840.safetensors: sim_vs_ref 0.9817 (best so far 0.9863, floor 0.5968)
+[23:57:36] sweep policy_150005760.safetensors: sim_vs_ref 0.9858 (best so far 0.9863, floor 0.5968)
+[23:57:37] sweep policy_200007680.safetensors: sim_vs_ref 0.9691 (best so far 0.9863, floor 0.5968)
+[23:57:37] qa_policy: {"kind":"policy","ep":31,"sim_vs_ref":0.9863,"floor_vs_ref":0.5968,"verdict":"ok"}
+  "RPE_cm": 2.287,
+  "per_obj": {
+   "mini_sweeper": 0.9045,
+   "plastic_dish_rack": 0.6991
+  }
+ },
+ "static_floor": {
+  "AUC": 0.4445,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 5.654,
+  "RPE_cm": 11.11,
+  "per_obj": {
+   "mini_sweeper": 0.1981,
+   "plastic_dish_rack": 0.6909
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.8197,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 2.044,
+  "RPE_cm": 1.93,
+  "per_obj": {
+   "mini_sweeper": 0.9403,
+   "plastic_dish_rack": 0.6991
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 0.9863,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.294,
+  "RPE_cm": 0.588,
+  "per_obj": {
+   "mini_sweeper": 0.9726,
+   "plastic_dish_rack": 1.0
+  }
+ }
+}
+render FAILED
+DRY RUN: view_policy.py (render) not run
+render failed (not fatal)
+[23:57:39] ep31 DONE

@@ -1,0 +1,5 @@
+[2026-11-12T23:55:17Z] hf download nvidia/video_to_data_challenge --repo-type dataset --include track_3/* --local-dir /content/hfds
+[2026-11-12T23:55:35Z] hf download aebatirel/v2d-store --repo-type dataset --include runs/20261020-refsweep-ea14fdf/perc2/ep40/* --local-dir /content/hfstore
+[2026-11-12T23:56:27Z] hf download aebatirel/v2d-store --repo-type dataset --include runs/20261020-refsweep-ea14fdf/refs/perc2/ep40/* --local-dir /content/hfstore
+[2026-11-12T23:56:30Z] hf download aebatirel/v2d-store --repo-type dataset --include runs/20261020-refsweep-ea14fdf/perc2/ep21/* --local-dir /content/hfstore
+[2026-11-12T23:56:34Z] hf download aebatirel/v2d-store --repo-type dataset --include runs/20261020-refsweep-ea14fdf/refs/perc2/ep21/* --local-dir /content/hfstore

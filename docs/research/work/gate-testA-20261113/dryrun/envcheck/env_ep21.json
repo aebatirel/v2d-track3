@@ -1,0 +1,35 @@
+{
+ "parquet": "/content/refs/perc2s/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/e7196e5daa2d4996a938d45e77883317-0.parquet",
+ "overrides": [
+  "experiment=sharpa_flash_sac",
+  "task.parquet='/content/refs/perc2s/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave'",
+  "task.motion_speed=1.0",
+  "reset.seed=42",
+  "logging.mode=disabled",
+  "training.total_environment_steps=250003456",
+  "curriculum=tracking_250m_mixed_reset_v2d",
+  "objective.force_closure.enabled=true",
+  "objective.force_closure.weight=6",
+  "objective.contact_wrench_support.weight=3",
+  "objective.unintended_contact.weight=-2"
+ ],
+ "env": {
+  "FC_VOC_INERTIA": "1",
+  "FC_FDR_TIPS": "1",
+  "FC_IMMEDIATE_FIRST_FRAME": "0.25",
+  "FC_FDR_OBJ": "1"
+ },
+ "setup_s": 4.7,
+ "frames": 186,
+ "objective": "TrackingObjective",
+ "rewards": [
+  0.28631123900413513,
+  0.14700482785701752,
+  0.07722271233797073,
+  0.04276345297694206,
+  0.028637608513236046
+ ],
+ "finite": true,
+ "total_s": 6.4,
+ "fdr_hook_in_tracking_py": true
+}
