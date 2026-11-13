@@ -1,0 +1,1 @@
+VERIFY FAILED (1): s43: saved config differs from the packed gl10A2 checkpoint in ['training.mock_extra_setting'] :: B0 IDENTICAL :: identity e2s {'V4p_track': 0.007, 'stored_track': 1.751} :: chosen 43 :: confirmation draws 10 (rc {'0': 10}) :: own-reference checks 41/41

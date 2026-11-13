@@ -1,0 +1,49 @@
+{
+ "cid": "shell_t5p36",
+ "producer": "P-SHELL",
+ "cls": "SHELL",
+ "params": {
+  "t0_mm": 5.3588
+ },
+ "n_params": 0,
+ "t_mm": 5.3588,
+ "balls": 0,
+ "built_on_frames": "all",
+ "flags": [
+  "no_support_closing_B8"
+ ],
+ "report": {
+  "points": 1489411,
+  "frames": 172,
+  "samples": 18355,
+  "two_sided_frac": 0.0,
+  "sheet_area_cm2": 299.05,
+  "faces": 3956,
+  "watertight": true,
+  "bodies": 16,
+  "area_cm2": 713.3,
+  "volume_cm3": 159.77,
+  "extents_cm": [
+   5.9,
+   19.0,
+   18.6
+  ],
+  "islands_dropped": 200,
+  "sec": 26.4,
+  "partner_clip": {
+   "deep_total": 0,
+   "deep_max_frame": 0,
+   "partners": {
+    "white_pot": {
+     "contact_frames": 79,
+     "band_mm": 6.083,
+     "deep": 0,
+     "deep_max_frame": 0
+    }
+   }
+  }
+ },
+ "sha256": "e6d4f1fe3f9141572a24dde1a59f6d5a48be8ac366ecb8417ee7ff03fa5605f0",
+ "faces": 3956,
+ "watertight_after_decode": true
+}

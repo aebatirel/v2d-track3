@@ -1,0 +1,129 @@
+{
+ "ep": 42,
+ "variant": "C",
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 257,
+ "changed_frames": {
+  "white_pot": 31
+ },
+ "rest_frames": {
+  "white_pot": 47
+ },
+ "segments": [
+  {
+   "obj": "white_pot",
+   "start": 0,
+   "end": 18,
+   "status": "frame0_kept",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.066041,
+    0.101936,
+    0.579874
+   ],
+   "constraint_frames": 19,
+   "pair_frames": {},
+   "before": {
+    "ok": 0.0,
+    "max_mm": 10.91,
+    "median_mm": 7.36
+   },
+   "hand_min_mm": 32.5,
+   "lowest_above_table_mm_median": -7.36,
+   "after": {
+    "ok": 0.0,
+    "max_mm": 10.91,
+    "median_mm": 7.36
+   },
+   "after_all_rest_partners": {
+    "ok": 0.0,
+    "max_mm": 10.91,
+    "median_mm": 7.36
+   }
+  },
+  {
+   "obj": "white_pot",
+   "start": 229,
+   "end": 256,
+   "status": "shift_t",
+   "t_mm": [
+    -0.287,
+    -4.255,
+    -4.12
+   ],
+   "t_norm_mm": 5.93,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.0549,
+    0.12056,
+    0.555999
+   ],
+   "constraint_frames": 28,
+   "pair_frames": {},
+   "before": {
+    "ok": 0.0,
+    "max_mm": 8.25,
+    "median_mm": 6.33
+   },
+   "hand_min_mm": 36.3,
+   "lowest_above_table_mm_median": -6.33,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 8.25,
+    "median_mm": 6.33
+   },
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 8.25,
+    "median_mm": 6.33
+   },
+   "stage1": {
+    "it": 3,
+    "ok": 0.679,
+    "max_mm": 2.32,
+    "viol": 4352,
+    "t_mm": [
+     -0.29,
+     -4.26,
+     -4.12
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.679,
+    "max_mm": 2.32,
+    "median_mm": 0.4
+   },
+   "after_all_rest_partners": {
+    "ok": 0.679,
+    "max_mm": 2.32,
+    "median_mm": 0.4
+   }
+  }
+ ],
+ "seconds": 1.2
+}

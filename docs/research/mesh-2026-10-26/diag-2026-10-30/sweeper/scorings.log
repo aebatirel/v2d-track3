@@ -1,0 +1,9 @@
+S01 06:58 library_v3 replay (flip axis)
+S01b 06:59 library_v3 basin margins (same mesh as S01, 6 seeds)
+S02 07:11 M2_libsym_balls (GT-free: library ∩ own-C2 image + 2 observed ep31 balls) score + basin margins
+S01c+S02c 07:13 flip rate over 24 extra seeds (registration only) for library_v3 and M2 (same meshes as S01/S02)
+S03 07:14 M2b_libsym_balls_base (M2 + library v3 bottom 8 mm slab, GT-free) score + basin margins
+PRE-REG S04 (written before scoring): P1 part program predicted 0/6 flips, basin margin >= 0.1 mm on every seed; CD-O <= 0.35. Falsified by any flip or CD-O > 0.35.
+S04 07:18 P1_partprog (GT-free part program from ep31 obs) score + basin margins
+PRE-REG S05 (before scoring): P1v0 = P1 with the rules as first written, before any scan comparison (mid-plane from library C2 axis, soft-l1 ring circle, ring x half-thickness from obs p97). Purpose: size of the scan-informed rule changes. Prediction: 0/6 flips; CD-O worse than P1 (thicker parts) but <= 0.317.
+S05 07:21 P1v0_partprog_preleak score + basin margins

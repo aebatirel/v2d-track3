@@ -1,0 +1,50 @@
+MOCK (stub perc2, stub hf): every AUC below is fake
+== faults: EPS="11 39 12" REPEAT="11"; 429 on ep11 depth, corrupted ep39 hands_refined, perc2 crash on ep39 perc2scan,
+   crash after poses.npz on ep11 perc2rep, ep12 depth cache one frame short. job rc 3 (expected 3)
+[2026-10-30T18:18:16Z] perc_leak code mocksha, episodes [11 39 12], repeat [11], arms o,s,o2, LIB <MR>/content/v2d-track3/meshes/library_v3, inputs <MR>/content/v2d-track3/docs/research/work/leak-decomp-20261030/phase1/inputs.tsv, gpu MOCK GPU (CPU mock)
+[2026-10-30T18:18:17Z] perc_leak: Grounding DINO cached (try 1); perc2 runs offline (HF_HUB_OFFLINE=1)
+[leak_p1] ep11 inputs: depth usable frame-0 = refine; hands md5 [True, True]
+[2026-10-30T18:18:28Z] perc_leak ep11 o rc=0 0 s: [    1.0s] depth ready 137 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked beige_cup sec 7.0 guard {} 
+[2026-10-30T18:18:29Z] perc_leak ep11 s rc=0 1 s: [    1.0s] depth ready 137 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked beige_cup sec 7.0 guard {} 
+[2026-10-30T18:18:29Z] perc_leak ep11 o2 rc=1 0 s: [    1.0s] depth ready 137 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked blue_cup sec 7.0 guard {} [   60.0s] tracked beige_cup sec 7.0 guard {} 
+[leak_p1] ep11 bundle NOT OK: o rc 0 0 s library depth reused True poses True; s rc 0 1 s scan depth reused True poses True cam 0.0e+00; o2 rc 1 0 s library depth reused True poses True cam 0.0e+00
+[leak_p1] ep39 inputs: depth usable frame-0 = refine; hands md5 [True, False]; PROBLEMS ['hands_refined.npz md5 differs from the refine inputs']
+[2026-10-30T18:18:31Z] perc_leak ep39 o rc=0 1 s: [    1.0s] depth ready 319 [   14.0s] vo keyframes 4 fails 0 median inliers 179 min 124 [   50.0s] tracked mini_dust_pan sec 7.0 guard {} 
+[2026-10-30T18:18:31Z] perc_leak ep39 s rc=1 0 s: [    1.0s] depth ready 319 
+[leak_p1] ep39 bundle NOT OK: o rc 0 1 s library depth reused True poses True; s rc 1 0 s scan depth reused True poses False
+[leak_p1] ep12 inputs: depth UNUSABLE frame-0 not read; hands md5 [True, True]; PROBLEMS ['depth cache size/shape differs from the refine inputs: not used']
+[2026-10-30T18:18:32Z] perc_leak ep12: depth cache unusable (inputs rc=2): perception skipped
+[2026-10-30T18:18:33Z] perc_leak RESULT ep11: NOT OK o ok rc 0 0 s library | s ok rc 0 1 s scan | o2 FAIL rc 1 0 s library | P_s vo AUC (scan frame, unregistered) 0.979
+[2026-10-30T18:18:33Z] perc_leak RESULT ep39: NOT OK o ok rc 0 1 s library | s FAIL rc 1 0 s scan | P_s vo AUC (scan frame, unregistered) None | ['hands_refined.npz md5 differs from the refine inputs']
+[2026-10-30T18:18:33Z] perc_leak RESULT ep12: NO BUNDLE (perception not run): ['depth cache size/shape differs from the refine inputs: not used']
+[2026-10-30T18:18:33Z] perc_leak RESULT all bundles ok: False (0/3); every arm ran (rc 0, tracks written): False
+[2026-10-30T18:18:33Z] perc_leak: guard refuses runs/20261030-orcP1f-mocksha/results/leak_p1/... (run id)
+[2026-10-30T18:18:33Z] perc_leak: guard refuses the bare perc2scan folder name
+[2026-10-30T18:18:33Z] perc_leak done (rc 3); run_job.sh pushes runs/20261030-orcP1f-mocksha once and self-destroys
+-- results/leak_p1/leak_pull.log
+pull-files: cache/depth/public/ep11/depths_fs0.5.npy try 1 failed; retrying in 1 s
+pulled cache/depth/public/ep11/depths_fs0.5.npy
+pulled runs/20261025-g1-022fece/refs/perc2m/ep11/hands.npz
+pulled runs/20261025-g1-022fece/refs/perc2m/ep11/hands_refined.npz
+pulled cache/depth/public/ep39/depths_fs0.5.npy
+pulled runs/20261025-g1-022fece/refs/perc2m/ep39/hands.npz
+pulled runs/20261025-g1-022fece/refs/perc2m/ep39/hands_refined.npz
+pulled cache/depth/public/ep12/depths_fs0.5.npy
+pulled runs/20261021-auto18-966eb96/refs/perc2m/ep12/hands.npz
+pulled runs/20261021-auto18-966eb96/refs/perc2m/ep12/hands_refined.npz
+-- hf.log
+{"kind": "file", "path": "cache/depth/public/ep11/depths_fs0.5.npy", "result": "429"}
+{"kind": "file", "path": "cache/depth/public/ep11/depths_fs0.5.npy", "result": "ok", "bytes": 876800128}
+{"kind": "file", "path": "runs/20261025-g1-022fece/refs/perc2m/ep11/hands.npz", "result": "ok", "bytes": 110710}
+{"kind": "file", "path": "runs/20261025-g1-022fece/refs/perc2m/ep11/hands_refined.npz", "result": "ok", "bytes": 111398}
+{"kind": "file", "path": "cache/depth/public/ep39/depths_fs0.5.npy", "result": "ok", "bytes": 2041600128}
+{"kind": "file", "path": "runs/20261025-g1-022fece/refs/perc2m/ep39/hands.npz", "result": "ok", "bytes": 232058}
+{"kind": "file", "path": "runs/20261025-g1-022fece/refs/perc2m/ep39/hands_refined.npz", "result": "ok", "bytes": 233015}
+{"kind": "file", "path": "cache/depth/public/ep12/depths_fs0.5.npy", "result": "ok", "bytes": 1152000128}
+{"kind": "file", "path": "runs/20261021-auto18-966eb96/refs/perc2m/ep12/hands.npz", "result": "ok", "bytes": 133333}
+{"kind": "file", "path": "runs/20261021-auto18-966eb96/refs/perc2m/ep12/hands_refined.npz", "result": "ok", "bytes": 133957}
+{"kind": "upload", "src": "<MR>/content/push/20261030-orcP1f-mocksha", "dst": "runs/20261030-orcP1f-mocksha", "msg": "run 20261030-orcP1f-mocksha: 2026-10-30T18:18:34Z"}
+-- ep11 perc2rep in bundle.json:
+{'rc': 1, 'poses_ok': True, 'poses_world_vo_written_here': True, 'world_vo_maxdiff': 0.0, 'ok': False}
+-- ep39 problems: ['hands_refined.npz md5 differs from the refine inputs']
+-- ep12 folder: hands inputs.json ; push: pushed runs/20261030-orcP1f-mocksha (33M) push rc=0 

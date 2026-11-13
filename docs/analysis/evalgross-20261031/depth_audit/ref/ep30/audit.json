@@ -1,0 +1,175 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-std30-ee7ba8e/perc2/ep30/poses.npz",
+  "--ref",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+  "--table",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30/table_frame.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep30/cache/depth/eval/ep30/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/depth/ref/ep30",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/pylib",
+  "--no_rest",
+  "--force"
+ ],
+ "time_utc": "2026-10-31T16:55:04Z",
+ "mode": "reference",
+ "code": {
+  "refine_sha256": "1f6a2adfc4dbbdd058d294c78a9a9a59a74c97d2975decdce48a3c8f2c652e54",
+  "branch": "refs/heads/claude/standings-20261031",
+  "commit": "ca853eaaf896511045b6fa0243f8eb28b02164e1",
+  "depth_audit_sha256": "53fc8abf05e689d8242adb3695f999293b5de71687f1ef8ec0377a12467516f0"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-std30-ee7ba8e/perc2/ep30/poses.npz",
+   "sha256": "1ba722ca2d6d1b82ed0c7d049411cbfe456d9be137549cc73fa715a040f4852c"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep30/cache/depth/eval/ep30/depths_fs0.5.npy",
+   "sha256": "64aa80ede7114b2063546c5cd683a8578e53adb2b548959749ebdfda3f75a59c"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-std30-ee7ba8e/refs/perc2mck/ep30/hands_refined.npz",
+   "sha256": "be3375e803cbeb1df4f2d800cf4d6579135efede09c8f27d4172c75543256c1a"
+  },
+  "ref": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+   "sha256": "b9c54f60f3c632a4c357d3e4a97a6aa494cbe39b253572dc0a8b97e774919cb2"
+  },
+  "table": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30/table_frame.npz",
+   "sha256": "4e706f8e69fb5ccab12de8a8bdc524bafb21787f662ff43b49425f9ab84f5766"
+  },
+  "meshes": {
+   "mini_sweeper": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/mini_sweeper.glb",
+    "sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e"
+   },
+   "plastic_dish_rack": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+    "sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+   }
+  }
+ },
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "T": 263,
+ "frames_audited": 263,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  263,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.015,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": null,
+ "selftest": null,
+ "summary": {
+  "mini_sweeper": {
+   "frames": 263,
+   "valid": 263,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0006,
+    0.0195,
+    0.2553
+   ],
+   "behind_mean": 0.0763,
+   "share_behind_gt_0p2": 0.1369,
+   "front_p10_p50_p90": [
+    0.0022,
+    0.024,
+    0.1103
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.2605,
+    -0.1134,
+    0.1895
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.5604,
+    0.8521,
+    0.9378
+   ],
+   "hand_frac_mean": 0.3129,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 134
+  },
+  "plastic_dish_rack": {
+   "frames": 263,
+   "valid": 263,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0225,
+    0.0601,
+    0.3747
+   ],
+   "behind_mean": 0.1389,
+   "share_behind_gt_0p2": 0.2966,
+   "front_p10_p50_p90": [
+    0.0341,
+    0.0566,
+    0.1081
+   ],
+   "med_r_cm_p10_p50_p90": [
+    0.0859,
+    0.3443,
+    1.1646
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.7041,
+    0.7791,
+    0.8827
+   ],
+   "hand_frac_mean": 0.1357,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 0
+  }
+ },
+ "seconds": 19.1
+}

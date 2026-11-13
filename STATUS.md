@@ -37,6 +37,460 @@ All four are hypotheses H-W1..W4, each with a falsifier in the notes.
   - They use visible markers to fix the spin of symmetric objects.
   - Post-mortem: three of the ideas the top teams shipped were already in our notes and never shipped (note 17 marker
     spin, note 18 room map, kit-of-parts meshes).
+## 2026-11-06 ~15:30 UTC: SHOWCASE PHASE 1 DONE: 9 robots succeed on ep27 (videos delivered); no boxes running
+- Owner asked for phases 0 and 1; then "fix the failed ones" / "fix franka"; then holeless meshes.
+- Results, ep27 (pot flipped into the dish rack), 5 official runs each vs mocap [M]:
+
+  | Robot | AUC vs mocap | MP-SR |
+  |---|---|---|
+  | Dex3 | 0.982 | 5/5 |
+  | Shadow | 0.977 | 5/5 |
+  | Allegro | 0.975 | 5/5 |
+  | Inspire | 0.973 | 5/5 |
+  | LEAP | 0.970 | 5/5 |
+  | Barrett | 0.969 | 5/5 |
+  | Sharpa | 0.966 | 5/5 |
+  | D'Claw | 0.958 | 5/5 |
+  | Franka + rubber pads | 0.947 | 5/5 |
+
+  The plain Franka (0.648, 0/5) failed: the pot slid out of the pinch mid-flip. It was fixed with condim-4 pad
+  contacts and the Franka grip spec. Table: `docs/research/work/embodiment-showcase-20261106/results/ep27_results_table.md`.
+- Videos: the side-camera grid and the head-camera-path grid.
+  - HF store: `showcase/outputs/20261106/ep27/`. Stills in the same docs folder.
+  - Renders use the clean closed library_c0 meshes, ICP-aligned onto the scans; the physics used the scans.
+- Spend: credit $67.25 → $39.89 at 14:53 UTC. Ledger actuals [E]: A $7.10, B $7.80, C $5.90.
+- Franka fix robustness: 3/3 trainings pass (0.947, 0.959, 0.940). All boxes destroyed; credit $38.37 at 15:30 UTC (≈ $28.90 spent today).
+- Next (owner decides): phase 2 (ep2 lid, ep18 sweep, ep22 pour) with the clean meshes in physics; deck (phase 3).
+
+## 2026-11-06 ~08:50 UTC: showcase phase 0 built (CPU, $0); phase 1 (owner: "lets do phase 0 and 1") about to rent
+- Robots: Sharpa (native), Shadow, Allegro, LEAP, Inspire, Dex3 (G1 hand), Barrett, D'Claw, Panda gripper, all as
+  floating hand pairs.
+  - Class: `showcase/floating_hands.py`.
+  - Models: `showcase/prep_robots.py`, from dex-urdf f5e7132 and FlashCHORD's G1.
+  - All 9 build in FlashCHORD on CPU.
+- Retargeting (`showcase/retarget.py`, pinocchio):
+  - each robot is fitted to the Sharpa reference's link keypoints (perc2vc ep27, the 0.965-vs-mocap reference);
+  - median fingertip error 0.2–2.5 cm;
+  - kinematic previews: `docs/research/work/embodiment-showcase-20261106/retarget/`.
+- Inputs are in the HF store at `showcase/inputs/20261106/` (md5 in the same folder).
+- Phase-1 job: `ops/jobs/showcase.sh`.
+  - Per robot: standard learner, 250M steps, FDR + VOC fix, njmax 1024.
+  - Then the best of 3 checkpoints by sim_vs_ref, 5 official draws scored vs mocap, and a traced replay with an mp4.
+- CPU smoke tests (training + evaluator) are running before rental. Plan: 3 boxes × 3 robots, about $18 [E].
+- Episode preview strips: `docs/research/work/embodiment-showcase-20261106/preview/episodes.jpg`.
+
+## 2026-11-06 ~08:30 UTC: post-challenge multi-embodiment showcase PROPOSED (plan only; nothing rented)
+- Owner: the challenge is over; build a presentation showing the real video next to simulated robots of many
+  embodiments (human-like, 3-finger, others), all doing the same task. Rules are relaxed; shortcuts are allowed.
+- Plan: `docs/research/work/embodiment-showcase-20261106/PLAN.md`.
+  - Public episodes ep27 (hero), ep2 and ep18, with ep22 pouring as a stretch; official scans as meshes.
+  - 9 robot tiles: Sharpa, Shadow, Inspire, Allegro, LEAP, Dex3, DEX-EE or Barrett, a parallel gripper, and G1.
+  - Every tile is an RL policy run without help, scored against mocap.
+  - Gated phases: 0 CPU build ($0), 1 hero smoke ($15–25), 2 scale ($50–90), 3 visuals and deck. Total ≈ $110–130 [E].
+- Waiting for the owner's answers to the plan's section 9. No boxes are running.
+
+## 2026-11-06 ~06:15 UTC: journey report being rebuilt cheaply; leaderboard moved
+- The report workflows stopped on the Claude usage limit (3–5 Nov). Now rebuilding at low cost:
+  - script-built corpora from all branches;
+  - Haiku extraction;
+  - one synthesis.
+- Leaderboard [M]:
+  - our ranks: AUC 9, SP-SR 12, MP-SR 10, RPE 10, MPPE 10, CD-O 5;
+  - rank sum 56, 8th; it was 45 / 7th on 3 Nov, and others have improved since.
+- Bests unchanged: 14p for the pose boards, 13j for CD-O.
+- No GPU boxes are running.
+
+## 2026-11-03 ~11:40 UTC: hand-aware tracking fails its holdout; perception lanes exhausted
+- Hand-aware gated ray correction: holdout mean ΔAUC −0.0042, all gates fail; no phase 2.
+- 13j uploaded: CD-O 0.23856 (best; 4th after SRL improved to 0.20994). Final selection: 14p for five boards, 13j for
+  CD-O. Rank sum 45, 7th.
+- Perception conclusion [I]: our FoundationPose + stereo tracker is at the limit of cheap fixes. Remaining losses are
+  sub-visible held-phase errors, the pitcher template and the board merge in ep23 (eval 25 clean).
+
+## 2026-11-03 ~10:00 UTC: hand-aware tracking lane started (owner go); perception audits done
+- Today's perception tests all failed or found nothing to fix:
+  - bias calibration; pot instance-pose network;
+  - board-face rule (failed validation); spoon flips (none);
+  - eval gross-failure audit (references clean).
+- Stored rollouts pass SP / MP-SR against our references, so the board's SR losses are reference-vs-truth errors
+  (≈ 2–3 cm), concentrated in held phases.
+- New lane: hand-aware (session_01D9UJC9SwoRsF13MYzwtVyh), phase 1 public validation (≤ $20).
+- Running: rack round R (CD-O 3rd target). Bests unchanged: 14p pose boards, 13i CD-O; rank sum 45, 7th.
+
+## 2026-11-03 ~06:40 UTC: owner "go in all": three perception lanes started
+- Eval gross-failure audit (A, ≤ $6) and round-3 pose-mesh CV ($0): perception-tracking.
+- Object-specific pot pose network proof of concept (≤ $15; rendered-only vs + public mocap fine-tune): new session
+  instance-pose (session_01D9UJC5VUFMLYBMNxA8FsXe).
+- Bests unchanged: 14p (AUC 0.88571, RPE 2.21325, MPPE 1.79779), 13i (CD-O 0.24177). Rank sum 45, 7th.
+
+## 2026-11-03 ~05:55 UTC: PACK 13i UPLOADED: CD-O 0.24177 (4th). Rank sum 45, 7th
+- Bests: AUC 0.88571 / RPE 2.21325 / MPPE 1.79779 (14p); SP-SR 0.90; MP-SR 0.80; CD-O 0.24177 (13i).
+- Final selection plan: 14p for AUC / SP-SR / MP-SR / RPE / MPPE; 13i for CD-O.
+- H1 bias calibration falsified except for the pitcher (episode-specific bias). Retrains of evals 32 / 33 failed;
+  eval 19 pending.
+
+## 2026-11-03 03:20 UTC: MORNING REPORT. Rank sum 46 (7th); bests AUC 0.88571 / RPE 2.21325 / MPPE 1.79779 (14p), CD-O 0.25159 (13h), SP-SR 0.90, MP-SR 0.80
+- Report: docs/analysis/overnight-20261102/README.md.
+- Overnight uploads: 13f1, 13p, 13p2, 14p, 13h. Spend ≈ $45. Credit $82.96.
+- Running: pf-mesh2 retrains (evals 32 / 33 / 19, two-host) → pack 15; G3 meshes → 13i.
+- Final selection: 14p for five boards, 13h for CD-O.
+
+## 2026-11-02 23:16 UTC: overnight check-in 1. Best: 13p2 (AUC 0.88403, RPE 2.22531, MPPE 1.80932); 13f (CD-O 0.26249); rank sum 46, 7th
+- Credit $101.05; 3 retrain boxes running (evals 28 / 30 / 14).
+- Promising on the box: eval 14 0.938 (gate 0.875), eval 30 0.938 (gate 0.897). Eval 20 retrain: no swap.
+- G2 meshes pass the scan rules for pot / blue cup / rack (D1 pending) → 13h CD-O variant on 13f.
+- Round-2 pose CV running → 13p3.
+
+## 2026-11-02 ~21:55 UTC: PACK 13p UPLOADED: AUC 0.88257, RPE 2.22667, MPPE 1.82356 (best); rank sum 46, 7th
+- 13p = 13f1 + pose-board meshes chosen by pre-registered public-pose leave-one-episode-out CV (TSDF pot,
+  library_c0 rack). The CD-O board keeps 13f (0.26249).
+- Overnight uploads so far: 13f1 (eval 25 board D1 revert; RPE 2.3752 then), 13p.
+- Running:
+  - retrains 20 / 28 / 30 / 14 with Tier B collision (results ≈ 01:00–02:30 UTC);
+  - G2 mesh generation;
+  - test B (tracking with 13f templates);
+  - round-2 pose CV + eval 20 pitcher placement (13p2 / 13p3).
+
+## 2026-11-02 ~20:15 UTC: owner top-up ($127.97); full push tonight
+- Best uploaded: 13f (AUC 0.87225, RPE 2.3826, CD-O 0.26249), 13e (MPPE 1.9218); SP-SR 0.90, MP-SR 0.80.
+  Rank sum 47, 7th.
+- Lanes (all pre-registered, stop below $15):
+  - retrains 20 / 28 / 30 / 1 with better collision meshes (perfect-following, ≤ $45) → pack 14;
+  - mesh placement from depth and tracking with 13f templates (perception-tracking, ≤ $12, eval application on a pass);
+  - new mesh candidates and the C4 audit (bold-albattani, ≤ $25) → packs 13g / 13h via focused-pascal.
+- Declined (expected value ≈ 0 or eval probing): spoon-anchor re-evaluation, room-map camera guard.
+
+## 2026-11-02 ~19:25 UTC: PACK 12e UPLOADED (Tier B meshes): BEST ON EVERY BOARD; rank sum 47, 7th
+- AUC **0.86905**, SP-SR **0.90**, MP-SR **0.80**, RPE **2.39138**, MPPE **1.95269**, CD-O **0.26775**.
+- 12e = 12d + Tier B meshes (GT-informed selection by public-scan score, owner yes 19:00, disclosed in
+  C3/tierB/README.md). Record: results/submissions/20261102-track3p-candidate/build_12e/UPLOAD_keen.md.
+- Better meshes improve the pose boards through registered scoring, far beyond the CD-O estimate.
+- Next:
+  - pack 13e = 13b's poses + 12e's meshes (focused-pascal);
+  - pack 13f = 13e + generated blue cup and dust pan, which pass C3's pre-set ≥ 0.02 public-scan rule
+    (bold-albattani sign-off).
+  - Mesh variants are chosen by the pre-set rule only, never by leaderboard results.
+
+## 2026-11-02 ~19:20 UTC: PACK 13b UPLOADED: AUC 0.84985, MPPE 2.43592 (best); RPE 3.01275 (13 keeps 3.00841)
+- Pack 13b = 13 + eval 15 (owner waiver of clause c, post hoc). Record:
+  results/submissions/20261102-track3p-candidate/build_13b/UPLOAD.md.
+- Owner (19:20): "you dont need my permission to upload anymore". Verification before upload continues.
+- Final selection plan: AUC / SP-SR / MP-SR / MPPE → 13b; RPE → 13; CD-O → 12d (or 12e).
+- Rank sum 54, tied with DSAIL. Pack 12e (Tier B meshes, owner yes 19:00) is being built by focused-pascal and
+  bold-albattani.
+
+## 2026-11-02 ~18:50 UTC: PACK 13 UPLOADED: AUC 0.84924, RPE 3.00841, MPPE 2.45263 (best); SP-SR 0.85, MP-SR 0.75, CD-O 0.30008
+- Pack 13 = 12c + eval 20. Record: results/submissions/20261102-track3p-candidate/build_13/UPLOAD.md.
+- Standings: rank sum 54, tied with DSAIL (9th / 10th). Final selection plan: pack 13 for five boards, 12d for CD-O.
+- Next-rank gaps: AUC +0.0075; RPE −0.34 cm; MPPE −0.18 cm; CD-O −0.0042; one more SP-SR success.
+
+## 2026-11-02 ~18:40 UTC: perception tests done (all fail); pack 13 verified, waits for the owner's word
+- **Pack 13 = 12c + eval 20** (lift-window plw s43; fresh 0.926 vs 0.893, gain +0.033).
+  - sha 791c3922…; record results/submissions/20261102-track3p-candidate/build_13/UPLOAD.md.
+  - Verified here, dry run valid, not uploaded.
+  - Eval 15 is a near miss (fails clause c by 0.47 mm); a waiver is the owner's call.
+- **Public perception tests [D], all pre-registered:**
+  - room map: perc2 camera drift is only 2–9 mm on 19 / 20 eval clips, bound +0.003, G1 fails (public (b) report-only
+    still running);
+  - rest-segment fit −0.0088 (mesh-limited);
+  - point tracks −0.058;
+  - SAM-6D-style detector scores +0.0010 (below the bar);
+  - full-resolution depth −0.0079;
+  - complete-base pitcher template −0.249;
+  - mask-guided tracking −0.0009.
+- Found: ep23's public 0.041 is an identity_fix wiring gap (0.663 with it); eval 25 already has it. Also, perc2's ep0
+  frame-0 lid mask sits on the pot handle.
+- Reading [I]: the remaining perception loss sits in mesh shape and frame-0 detection, not in cameras or the tracker.
+  The one direct mesh test failed, so any mesh lane needs its own public test.
+- Lift-window batch: only eval 20 passes; no swap on 3, 14, 25, 28, 30, 32.
+
+## 2026-11-02 ~17:05 UTC: perception tests first; retrains wait for the owner's top-up
+- Owner: "first do the tests and let me add more money once we increase the perception."
+- Public perception tests (GT used only for scoring):
+  - **room map** (session_01D9UJC6AegGiAjYM6ukSfHj, branch claude/room-map-20261102, $0 CPU): drift-free camera
+    relocalisation against a public-only map. It first measures perc2's camera drift on the 20 eval clips (GT-free).
+    The map is rebuilt (370 images, 1.11 px).
+  - **rest-segment pose fit** (perception-tracking, ≤ $4): Stage 1 of DESIGN_offline_joint (oracle +0.032 public
+    AUC).
+  - **point tracks** (session_01D9UJC72kCbx1mWTB2pwupw, branch claude/point-track-20261102, ≤ $4): catch and repair
+    lost tracks (ep23 control AUC 0.041, ep18, ep0).
+  - SAM-6D-style detector (ptrkE, ≤ $6): no gain so far.
+- Lift-window eval retrains:
+  - no swap on evals 3, 14 (fresh draws 0.826 vs 0.875), 25 and 32;
+  - evals 20 / 30 have a second seed running;
+  - eval 15 (0.953 vs 0.906 on the box) awaits fresh draws, and is the only pack-13 candidate.
+  - No new retrain boxes until the top-up.
+- Credit $33.41 at 17:00 UTC.
+
+## 2026-11-02 ~08:43 UTC: PACK 12c UPLOADED: AUC 0.84738, CD-O 0.300, RPE 3.008, MPPE 2.467 (best on every board)
+- Pack 12c = pack 12b + the C0 blue-cup mesh (owner-accepted GT-informed public selection). Record
+  results/submissions/20261102-track3n-candidate/build_12c/UPLOAD.md.
+- Standings: rank sum 58, 10th; 9th DSAIL 56. Next gains: AUC +0.0019 (passes DSAIL), MP-SR one more episode.
+
+## 2026-11-02 ~07:30 UTC: push to the top. Two GPU lanes running
+- Perfect-following (session_01D9UJC8Nz9EEFNmz2yzimzN): lift-window training (public test first, then evals 3 / 14 /
+  25 / 30); up to $50 more.
+- Perception accuracy on public episodes (session_01D9UJC9EUCs5sUCbTVZgvcC): GT-free perception improvements, public
+  only; up to $30. It hands passing changes to perfect-following.
+- Credit $91.35 at 07:12 UTC. Standings: 10th (rank sum 61); 9th DSAIL 60; AUC 0.84405 vs DSAIL 0.84925.
+- Open owner decision: the CD-O blue-cup variant ($0, about +3 CD-O ranks [E]).
+
+## 2026-11-02 ~06:42 UTC: PACK 12b UPLOADED: AUC 0.84405, MP-SR 0.75, RPE 3.023, MPPE 2.495 (best on every board)
+- Pack 12b = pack 11 + evals 14 / 32 (perception track-guard jump bridged) + eval 16 (hand held through release),
+  reference repairs, stock limits.
+- Record: results/submissions/20261102-track3m-candidate/build_12b/UPLOAD.md (this branch).
+- Night report for Roman: https://claude.ai/artifact/MaRrQ84gMR1HutKx5TDfMS (private until the owner shares it).
+
+## 2026-11-01 ~20:08 UTC: overnight push toward AUC 0.9
+- (Method name withheld for now at the owner's request, 2 Nov.)
+- Overnight sessions:
+  - perfect following of the perceived trajectory (session_01D9UJC8Nz9EEFNmz2yzimzN, GPU $102);
+  - physics-informed perception (session_01D9UJC6vSSNiJqaAdzNUn7d, CPU);
+  - GRASP / ep13 (session_01D9UJC8CjzgvbaFYA5wbvPg, CPU).
+  - Cheap Vast CPU rentals are allowed for the two CPU sessions ($8 combined).
+- Morning check at 06:30 UTC 2 Nov (keen-heisenberg).
+## 2026-11-03 08:56 TRT (05:56 UTC): second night batch closed — no new swaps; 0 boxes
+- Retrains with the new collision shapes on evals 32 / 33 (cup) and 19 (sweeper): none beat the board policy on its
+  training box (32: 0.83 vs 0.89; 33: 0.917 vs 0.923; 19: 0.83 vs 0.93). No pack 15; pack 14p stays our best upload.
+- Pattern [I]: the new shapes only helped where today's policy already coped with them unchanged (eval 14).
+- Spend this batch ≈ $11 (of $35 allowed). Credit $75.62 at 08:56 TRT.
+
+## 2026-11-03 04:46 TRT (01:46 UTC): night lane closed — PACK 14p UPLOADED (AUC 0.88571); evaluator check done; 0 boxes
+- Uploaded by keen-heisenberg: AUC 0.88571, RPE 2.21325, MPPE 1.79779. Future swaps need confirmation on two hosts.
+- **Pack 14p** (pack 13p2 + eval 14, retrained with the new rack / cup shapes as collision): results/submissions/
+  20261102-track3s-candidate/build_14p/track3_submission.parquet (sha256 b6c6100d…). keen-heisenberg uploads.
+- Other retrains tonight did not pass: eval 20 (new pitcher), eval 28 (new rack), eval 30 (new sweeper / rack; strong on
+  its training box but low on its fresh official draws).
+- **Evaluator check** (≈ $1): the training-box evaluator and the official one agree on the same machine, so training-box
+  numbers are trustworthy. But the official evaluator gave eval 30's policy 0.93 on this machine vs 0.77 on its own
+  training machine: fresh-draw results vary by machine for reasons we do not know yet. The rejections stand; future
+  confirmations could be run on two machines.
+- Spend tonight ≈ $36 (≈ $6 lost to my own job bugs and one faulty GPU host). Credit $94.58 at 04:45 TRT.
+
+## 2026-11-03 02:35 TRT (2 Nov 23:35 UTC): PACK 14 READY (not uploaded) — pack 13f + eval 14
+- **File:** results/submissions/20261102-track3s-candidate/build_14/track3_submission.parquet (sha256 1dbc33c4…), on
+  pack 13f (the board's best). keen-heisenberg uploads on the owner's word.
+- **Eval 14:** retrained on its own reference with the new (Tier B) rack and cup shapes as collision geometry: 10 fresh
+  official draws 0.933 vs the board policy's 0.875, no failed draws, lower median error (1.97 vs 2.71 cm). Note: those
+  shapes were picked using the organisers' object scans (owner-approved tier), so this rollout is GT-informed.
+- Same batch: eval 20 (new pitcher) fails; eval 30 (new sweeper + rack) promising on its first seed (0.938 vs 0.897),
+  second seed running; eval 28 behind on its first seed. Spoon anchor: planned, not run (expected value ≈ 0).
+
+## 2026-11-02 22:12 TRT (19:12 UTC): PACK 13b READY (not uploaded) — pack 13 + eval 15 (owner waiver)
+- **File:** results/submissions/20261102-track3m-candidate/build_13b/track3_submission.parquet (sha256 c8b85ba4…),
+  built on pack 13; all checks pass. keen-heisenberg uploads on the owner's word.
+- **Eval 15:** 10 fresh official draws 0.958 vs 0.906, no failed draws. It missed one rule clause (median error
+  0.47 mm worse: 1.346 vs 1.299 cm); the owner waived that clause for eval 15 after seeing the result (recorded as post
+  hoc in the pre-registration). Earlier notes said 0.05 mm; the correct figure is 0.47 mm.
+
+## 2026-11-02 21:50 TRT (18:50 UTC): PACK 13 UPLOADED — AUC 0.84924 (+0.0019 over 12c), rank sum 54 (tied with DSAIL)
+- keen-heisenberg uploaded pack 13 (12c + eval 20) on the owner's word: AUC 0.84924, MPPE 2.45263 (−0.0147), RPE 3.00841;
+  SP-SR / MP-SR / CD-O unchanged. Eval-15 waiver (pack 13b) waits for the owner. No boxes running; no rentals until a top-up.
+
+## 2026-11-02 20:42 TRT (17:42 UTC): PACK 13 READY (not uploaded) — pack 12c + eval 20
+- **File:** results/submissions/20261102-track3m-candidate/build_13/track3_submission.parquet (sha256 791c3922…), built on
+  pack 12c (blue-cup meshes kept). All checks pass. keen-heisenberg uploads on the owner's word.
+- **Eval 20** (lift-window training on the packed reference, seed 43): 10 fresh official draws 0.926 vs the board
+  policy's 0.893; no failed draws; median error 1.38 vs 1.67 cm → passes the swap rule, gain +0.033.
+- **Eval 15 near-miss (owner's call):** 0.958 vs 0.906 on fresh draws, no failed draws, but the median error is 0.47 mm
+  worse (1.346 vs 1.299 cm), so the pre-registered rule says no. Can be added as pack 13b in minutes if waived.
+- Not passing: eval 14 (good on the training box 0.923, worse on fresh draws 0.826 vs 0.875), evals 3 / 25 / 28 / 30 / 32
+  (below the board policy already on the training box).
+- Spend: credit $33.41 at 20:00 TRT; no new boxes until the owner tops up.
+
+## 2026-11-02 16:00 TRT (13:00 UTC): lift-window training scaled to the eval episodes; 3 boxes running
+- **pfI** (evals 3 / 14 / 32, grasp lock on the board reference + lift windows): training seed 42 since 15:55 TRT, each
+  episode with its own windows [M, box log]. **pfJ** (evals 20 / 15, same arm): setting up. **pfK** (eval 25, standard
+  learner + lift windows, new arm `slw`, addendum C): setting up. Each box: 2 seeds, then 10 fresh official draws and the
+  swap rule (+0.02 inclusion bar); passing episodes go into **pack 13 on top of pack 12c**.
+- Results expected [E]: pfI / pfJ ≈ 20:30–21:30 TRT, pfK ≈ 22:00 TRT.
+- Spend: credit $70.53 at 15:56 TRT; the $50 window ends at $41.35 credit. These boxes use most of what is left, so
+  eval 30 (and 28 / 1) wait for the owner's go.
+
+## 2026-11-02 14:35 TRT (11:35 UTC): lift-window training passed its public test; eval retrains running
+- Public ep31 (eval 30's twin), AUC vs mocap: lift windows 0.730 / 0.704 vs control 0.589 / 0.707 (2 seeds) → mean
+  +0.069, PASS by the pre-registered rule. Honest reading: it mainly removes failed draws (worst draw 0.69 / 0.62 vs
+  0.25 / 0.40) rather than raising the ceiling.
+- Now on eval (box pfI, ≈ $8): evals 3, 14 and 32 retrained with lift windows on their current references, 2 seeds,
+  10 fresh draws, swap rule + ≥ +0.02 bar against the policies on the board. Results ≈ 17:30–18:30 TRT.
+- Spend since the new $50 cap (10:32 TRT): ≈ $6; total ≈ $37.
+
+## 2026-11-02 10:20 TRT (07:20 UTC): next step running — lift-window training, public test first
+- Your "what else" (via keen-heisenberg): hold-freeze does not fit evals 25 / 30 / 1 / 3 [M]: their losses start ~10
+  frames after the grasp (the lift), not after a release. So the matching lever is contact-moment training.
+- Built: training starts drawn 30 % of the time from grasp/lift windows (training-only patch; evaluation untouched).
+  Public test on ep31 (eval 30's twin), 2 seeds, pre-registered (docs/research/work/pf-lift-20261102/PREREG.md), ≈ $4.5,
+  result ≈ 13:30 TRT. Only if it passes: evals 3 / 14 (and 25 / 30 if feasible) on eval, ≈ $10–15.
+- Spend so far $31.48 of $102.
+
+## 2026-11-02 09:43 TRT (06:43 UTC): PACK 12b UPLOADED by keen-heisenberg — AUC 0.84405 (+0.0048), our best on every board
+- MP-SR 0.75, RPE 3.023, MPPE 2.495; AUC now above DSAIL's 0.84391. Record: build_12b/UPLOAD.md on
+  claude/keen-heisenberg-engcwz. (The "upload needs your word" line in the report below is superseded.)
+
+## 2026-11-02 ~06:40 UTC: MORNING REPORT — perfect-following lane. PACK 12b READY (not uploaded)
+**Owner decision needed:** upload pack 12b? `results/submissions/20261102-track3m-candidate/build_12b/` (sha bde0ae84…)
+= pack 11 + evals 14, 16, 32 retrained on repaired references. Verified by keen-heisenberg (pack 12); its upload call was
+blocked by that session's permission classifier, so it waits for your word. Pack 12 (evals 14 + 32 only) is the subset.
+
+Per-episode sim_vs_ref (10 official draws each; "plain" = vs our reference; board-style symmetric differs ≤ 0.01) [M]:
+| eval | before (packed) | after (new) | what changed |
+|---|---|---|---|
+| 14 | 0.727 (4 / 10 draws fail) | **0.861** vs the old reference, 0.875 vs the repaired one (1 / 10 fail) | perception jump repaired |
+| 16 | 0.850 | **0.974** (0 fails, draw 1 0.974 vs board draw 0.908) | robot hand keeps holding the spoon after release |
+| 32 | 0.852 | **0.867** vs old, 0.890 vs repaired (0 / 10 fail) | perception jump + upside-down flip repaired |
+| 33 | 0.923 | 0.935 (passes, gain +0.0196 < +0.02 bar: not packed) | same repair |
+| 15 | 0.906 | 0.947 two-hand (fails the median-RPE clause: not packed) | two-hand reference |
+| others | unchanged | unchanged | — |
+Mean over the 20 evals [E: new confirmation means for 14 / 16 / 32, H5p7 for the rest, eval 10 = pack 11's 0.903]:
+**0.921 → 0.934**. Symmetric scoring changes nothing material (cup spin was not the loss).
+
+What passed / failed:
+- PASS: guard-bridge repair on evals 14 and 32 (pf-bridge PREREG); hold-freeze on eval 16's packed reference (PREREG_B).
+- FAIL / not adopted: two-hand references on eval (14 / 16 worse; 15 fails clause c); public ep13 two-hand passes its rule
+  only through one seed (fragile); rebuilt references with today's grasp-lock code lose to the packed ones (eval 16
+  0.69–0.79); GRASP's hold filter failed its public gate; twist canonicalisation not useful.
+- Root causes found [M]: (1) perception's track guard re-found the cup after a 3–14 cm drift out of the hand, leaving
+  one-frame 11–20 cm jumps (evals 14 / 32 / 33); (2) eval 16's spoon falls in the simulator after the hand lets go while
+  our reference keeps it still.
+- Board caveat [E]: the board scores stored rollouts; pack 11's eval-14 row was a lucky draw (0.909 vs P) vs the new
+  draw 1 0.882, so eval 14 may not gain on the board; eval 16 should (0.908 → 0.974 vs our reference).
+
+Spend: **$31.48** of the $102 cap (credit $122.85 → $91.37); nothing running. No permission was blocked in this session;
+the upload is blocked in keen-heisenberg (classifier) pending your word.
+Next decision: (a) upload 12b; (b) if more is wanted: apply the hold-freeze idea and the "train on the packed reference"
+lesson elsewhere, and contact-moment training for the remaining lift losses (eval 14 f27–31, 25, 3, 1).
+Details: docs/analysis/perfect-following-20261101/README.md, docs/research/work/pf-*/, docs/work-log.md (1–2 Nov).
+
+## 2026-11-02 ~01:15 UTC: PERFECT-FOLLOWING: PACK 12 READY (not uploaded) — evals 14 and 32 fixed
+`results/submissions/20261102-track3m-candidate/build_12/` (sha 7b0cd7df…) = pack 11 + evals 14 and 32. Record sent to
+keen-heisenberg; the owner decides the upload.
+
+| eval | before (packed, 10 draws) | after (new policy, 10 fresh draws) | how |
+|---|---|---|---|
+| 14 | 0.727 (4 / 10 draws fail) | **0.861** vs our old reference, 0.875 vs the repaired one (1 / 10 fail) | perception jump repaired |
+| 32 | 0.852 | **0.867** vs old, 0.890 vs repaired (0 / 10 fail) | perception jump + flip repaired |
+| 33 | 0.923 | 0.935 / 0.940 — passes, but +0.0196 < the +0.02 bar: not packed | same repair |
+| 15 | 0.906 | 0.947 (two-hand) — fails the median-RPE clause: not packed | two-hand reference |
+| 16 | 0.850 | two-hand 0.71 / 0.70 (worse); hold-to-end test running | — |
+Symmetric (board-style) sim_vs_ref differs from plain by ≤ 0.01 everywhere. Mean over 20 evals, packed → pack 12
+[E, confirmation means for 14 / 32 vs P, H5p7 for the rest, eval 10 = pack 11's 0.903]: 0.921 → 0.928.
+- Board caveat [E]: the board scores the stored rollouts; pack 11's eval-14 row was a lucky good draw, so the stored gain
+  is uncertain; the expected gain on re-runs is clear.
+- Spend ≈ $22 of the $102 cap (credit $100.77 at 00:33 UTC).
+
+## 2026-11-02 ~00:35 UTC: PERFECT-FOLLOWING lane: eval 14 fixed — 0.727 → 0.861 (old yardstick), passes the swap rule
+- Cause found [M]: our perception's track guard re-found the cup at f46 after the tracker had drifted 3–14 cm out of the
+  human's hand; the reference held a 19 cm one-frame jump no robot can follow.
+- Fix (GT-free, tools/guard_bridge.py): bridge the drift frames. Retrained with the packed recipe, 2 seeds, 10 fresh
+  official draws: sim_vs_ref 0.875 vs the repaired reference (packed 0.706), 0.861 vs the old one (packed 0.727);
+  failed draws 1 / 10 vs 4 / 10. Swap rule PASS, inclusion gain +0.169.
+- Did not work: two-hand references (evals 14 / 16 worse than packed: NO-SWAP); public ep13 two-hand passes its rule
+  only through one seed. GRASP's hold filter failed its public gate.
+- Still running: eval 32 (repaired) and eval 15 (two-hand) confirmations. Next: pack 12 = pack 11 + eval 14 (+ any
+  other PASS), built here, handed to keen-heisenberg for upload.
+
+## 2026-11-01 ~20:20 UTC: PERFECT-FOLLOWING session: steps 1–2 done (CPU, $0); GPU batch next
+Branch `claude/perfect-following-20261101`; report `docs/analysis/perfect-following-20261101/README.md`.
+- Symmetric vs plain sim_vs_ref on the 200 H5p7 draws: ≤ +0.009 difference everywhere [M]. Cup spin is not the loss.
+- The losses sit at the same frames in every draw (reference problems, not luck) [M]:
+  - eval 14: the human hands the cup over (L → R → L); our reference carries it with the left hand only (f42–46);
+  - eval 32: our perceived cup jumps 15 cm sideways and back inside the hold (f15–36);
+  - eval 16 / 25 / 30 / 1: an object keeps moving with no robot hand on it (after release, or outside holds).
+- 20:31 UTC GPU batch 1 running (pre-registered, docs/research/work/pf-hands-20261101/PREREG.md), ≈ $10–11 [E]:
+  - pfA: public ep13 (eval 14's twin), single-hand vs two-hand reference, 2 seeds each, scored vs mocap;
+  - pfB: evals 14 and 16 retrained on two-hand references, 2 seeds, 10 fresh draws, swap rule + ≥ +0.02 bar.
+  - Results ≈ 00:00–01:00 UTC. The GRASP session is asked for the "no mover, no motion" reference repair (for evals 32,
+    16, 25) with its public gate.
+- 20:48 UTC **new finding [M]:** the losses of evals 14 / 32 / 33 sit exactly where perception's track guard re-found the
+  cup: a one-frame jump of 11–20 cm (eval 32: the cup also flips upside down for 13 frames). Before the jump the tracked
+  cup has drifted 3–14 cm out of the human's hand. New repair tools/guard_bridge.py smooths over the drift (GT-free).
+  No public episode has such an event, so it is judged on eval against both our old and the repaired reference.
+- GPU batch 2 running (pre-registered, docs/research/work/pf-bridge-20261101/PREREG.md), ≈ $12 [E]: eval 14 repaired
+  (single / two-hand), evals 32 / 33 repaired, eval 15 two-hand. 4 boxes ≈ $5.7/h.
+
+## 2026-11-01 ~11:44 UTC: PACK 11 UPLOADED: AUC 0.83921, our best on every board (MP-SR 0.70, RPE 3.179, MPPE 2.545, SP-SR 0.85)
+- Pack 11 = pack 10 with eval 10's policy trained at njmax 1024 (training-only) and evaluated at stock 512 / 256
+  (disclosed).
+- Record: results/submissions/20261101-track3l-candidate/build_11/UPLOAD.md (branch claude/keen-heisenberg-engcwz).
+- Next block: GRASP-style sampler for eval 14 / ep13 (new session); CD-O blue-cup variant (owner's compliance call).
+
+## 2026-11-01 ~08:43 UTC: PACK 10 UPLOADED: AUC 0.81915, our best (RPE 3.68275, MPPE 2.84759 also best; SP-SR 0.80)
+- Pack 10 = 9a+ with eval 10's stock-limit retrain on the ev10cs5 cavity-safe pieces (+0.069 on the GT-free proxy).
+- SP-SR dropped one episode: eval 10 now moves the cup without completing the nest. The SP-SR best stays 0.85 from
+  9a+.
+- Record: results/submissions/20261101-track3k-candidate/build_10/UPLOAD.md (branch claude/keen-heisenberg-engcwz).
+- 09:00: eval-20 b1 NO-SWAP (no 10b). All lanes done, nothing running, credit $23.63.
+- **Open decisions, half-done items and ranked opportunities: docs/analysis/overnight-20261101/README.md.** Start
+  there.
+
+## 2026-11-01 ~05:02 UTC: PACK 9b UPLOADED: AUC 0.81677, below 9a+ (0.81757 stays our best)
+- 9b = 9a+ with eval 33's D-arm rollout; eval 33 was the only D cell to pass the swap rule (14 / 16 / 25 / 30 NO-SWAP).
+- Boards (9b vs 9a+): AUC 0.81677 vs 0.81757; SP-SR 0.85 =; MP-SR 0.65 =; RPE 3.88283 vs 3.87853; MPPE 2.90186 vs
+  2.89663; CD-O 0.33234 =.
+- Record: results/submissions/20261101-track3j-candidate/build_9b/UPLOAD.md (branch claude/keen-heisenberg-engcwz).
+- **Eval 10's floor explained [M]:** training-time contact overflow.
+  - The njmax-1024 diagnostic scores 0.913 vs 0.459 (0.903 when evaluated at stock limits); never packed.
+  - The stock route: the eval-10 retrain on ev10cs5 pieces at 512 (0 overflow), next, for pack 10 under the swap rule.
+- **Pose fix falsified** on public episodes (ΔAUC −0.0107, 17 / 20 worse). The rest overlaps are largely mesh shape;
+  the C0 pot base sits ~7–8 mm below the real base.
+- Next on CPU: re-base the pot / pitcher collision bases (bold-albattani).
+- Credit $28.95 (05:47).
+
+## 2026-11-01 ~02:50 UTC: owner gave blanket permission; overnight geometry push (keen-heisenberg coordinating)
+- Owner: "I give you permission for everything" (02:50 UTC). Scope and limits: docs/work-log.md 02:50 entry.
+- Plan: fix the collision overlaps behind evals 10 / 30 / 14.
+  - bold-albattani builds the pieces on CPU.
+  - determined-wright checks them with budget.py.
+  - focused-pascal retrains, confirms under the swap rule, and packs.
+  - keen-heisenberg uploads passing packs (checks at 05:00, 07:30, 10:30 UTC).
+- Running: the D arm (verdict after the G box and the confirmation box); the njmax-1024 diagnostic (eval 10, diagnostic
+  only, never packed).
+- Owner-only: credit top-up.
+
+## 2026-10-31 ~21:30 UTC: overnight coordination (owner asleep; goal "a new better pack in the morning")
+- **Owner decisions (this chat, ~21:25 UTC):**
+  - (1) start the targeted D cells (evals 14, 16, 25, 30, 33, 2 seeds, ≈ $16–23 [E]) TONIGHT on the current packed
+    configuration;
+  - (2) pack 9b = pack 9a+ + eval-10 V4p (if it passes) + passing D cells, uploaded automatically if every swapped
+    episode passes the pre-registered swap rule and the pack checks pass.
+- **Sent to:**
+  - focused-pascal: launch, swap rule, pack, upload, budget, carve risk;
+  - determined-wright: D settings, standard-learner start-skip flag, CPU reset check; arm V proceeds;
+  - standings: records;
+  - bold-albattani: a delivery statement for pack 10 by 08:00 UTC.
+- **At 21:20 UTC:** Vast credit $69.22. Running: mv2b (masses v2), h5p7 (self-destroying), e10v (eval-10 V4p).
+  Arm V was approved in determined-wright (≈ $7–9).
+- **Risk:** the mesh lane delivered no rack/cup carves tonight, and the eval-25 slot was not run. Pack 10 Tier 1 may
+  shrink.
+- **Morning check-in** scheduled for 05:00 UTC (summary for the owner; no spend or upload from this chat).
+
+## 2026-10-31 ~07:40 UTC: Prof. İnceoğlu's feedback on the Learner Notebook analysed (no spend, nothing run)
+Analysis: `docs/analysis/arda-feedback-20261031.md`.
+- **His points:** the draw variance matters; training has no domain randomisation or observation noise; compare a
+  good and a failed draw frame by frame; the reference caps RL; transfer learning.
+- **Findings:**
+  - The three largest spreads (evals 30, 1, 14) come with collision overlaps; eval 1 was cured by a carve
+    (sd 0.239 → 0.017) [M].
+  - Domain randomisation is untested. It fits the contact-sensitive episodes (25, 16, 3, 32).
+  - The H5 study did not keep its rollout files, so the frame-by-frame comparison needs new rollouts.
+- **Proposed:**
+  - $0 CPU perturbation screen;
+  - a training-only robustness patch (config-set randomisation can replay into the scored rollout);
+  - a GPU A/B on evals 25, 16 and 3 (≈ $8–12), owner go-ahead.
+
+## 2026-10-30 ~12:20 UTC: meeting with Roman Klis analysed (no spend, nothing run)
+Analysis: `docs/analysis/roman-meeting-20261030.md`.
+- **Roman's advice:** decompose; hands first; a human-sized hand; a human twin, then the robot follows it; make the
+  simulation easy first; avoid hand-overs; IP caution.
+- **The video he judged shows the robot rollout, not the hand tracker.** Hands are not scored.
+- **Loss split:** policy 0.083 [M], reference ≈ 0.10 [E]. The grasp- or hand-related part is ≈ 0.017 [E].
+- **Already tested today** (determined-wright session): a pure-copy human hand does not carry the objects.
+- **Where he is right:** our 3-D hand lift is undersized and collapses while gripping [M].
+- **Proposed next steps, none started:**
+  - $0 CPU: perception-overlay videos for Roman;
+  - $0 CPU: a hand-anchored spoon test on public held objects;
+  - ≈ $6.5: a human-hand RL A/B, only if H-squeeze passes.
+  - The Sharpa stays in submissions.
 
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
@@ -51,6 +505,166 @@ Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs
   folder and can be deleted.
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
+
+## 2026-10-30 ~13:05 UTC: oracle-twin test built and checked on CPU; ready to launch option B (owner's choice), NOT launched
+- Diagnostic on public twins of the hardest eval episodes: ep11 (eval 10), ep13 (eval 14), ep31 (eval 30).
+  - P = our perceived reference; O = mocap object motion; same grasp-lock recipe, box and seed; scored vs mocap.
+  - Readings fixed in `docs/research/work/oracle-twins-20261030/PREREG.md`; job string in `JOBS.txt` there
+    (`ops/jobs/oracle_twins.sh`, run id `<date>-orcB-<sha>`).
+- CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
+- Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
+
+## 2026-11-01 19:28 UTC: robot-hand videos of evals 14 (×3), 25, 30 delivered (store runs/20261101-vid3-b96ae95/results/sub_videos/)
+- Eval-14 replays 0.560 / 0.285 / 0.749 (none in the good mode); eval 25 0.897; eval 30 0.901. Cost $0.70. Nothing running.
+
+## 2026-11-01 11:44 UTC: PACK 11 UPLOADED (keen-heisenberg's session) — new bests AUC 0.83921, MP-SR 0.70, RPE 3.179, MPPE 2.545
+- vs pack 10: AUC +0.020, SP-SR 0.85 (back from 0.80), MP-SR 0.70 (from 0.65), RPE −0.50, MPPE −0.30; CD-O unchanged.
+- Only eval 10 changed: the policy trained with njmax 1024 (training only), evaluated at stock 512 / 256.
+- Nothing running; credit $23.63; ledger closed.
+
+## 2026-11-01 11:50 UTC: PACK 11 READY — results/submissions/20261101-track3l-candidate/build_11/ (not uploaded here)
+- sha256 3c428350…055ec, code 50312319: pack 10 with eval 10 = the njmax-1024-trained policy evaluated at stock 512/256
+  (ck512 aaa077eb…); vs pack 10's eval-10 policy +0.371 (V) / +0.361 (P), 0/10 vs 10/10 fails; only ep10 rows differ.
+- Guard: the owner approved in this session a single sha-specific exception in tools/no_oracle.py (tests 17/17).
+
+## 2026-11-01 11:25 UTC: pack-11 verdict INCLUDE (njmax-1024-trained eval-10 policy at stock limits) — pack NOT built
+- Owner's go (relayed by keen-heisenberg, 09:11): pack the 1024-trained eval-10 policy scored at stock 512 / 256.
+- Verdict (amendment 998385b0, standing rule on already-seen draws): vs pack 10's eval-10 policy 0.9034 vs 0.5322 (V,
+  +0.371) / 0.873 vs 0.5116 (P, +0.361),
+  fail rate 0/10 vs 10/10; stock evaluation proven (stored config 512/256; solver built 512/256; 0 overflow in all draws).
+- (11:25) The sha-specific exception was first denied by this session's permission check on the relayed go; the owner
+  then approved it here directly (11:40) and it was added.
+
+## 2026-11-01 09:00 UTC: wrap-up — nothing running; credit $23.63; ledger closed ($200.12 actual)
+- Eval-20 b1 retrain NO-SWAP (gate missed: s43 0.8929 vs > 0.8933; overflow 1.2–1.3 k lines) → no pack 10b.
+- Best board: pack 10 (AUC 0.81915, RPE 3.683, MPPE 2.848) + 9a+ (SP-SR 0.85, MP-SR 0.65, CD-O 0.332).
+- Open: (1) eval-10 nest completion (njmax-1024 diagnostic 0.913 vs legal 0.532; owner / organiser question on 1024
+  training; legal route = overflow → 0 at 512, e.g. clip the beige low corner [H]); (2) store.sh push race (fix described
+  in the work log, 00:50 entry; not built); (3) eval-19 sweeper support fill certified on CPU, retrain not run.
+
+## 2026-11-01 08:43 UTC: PACK 10 UPLOADED (keen-heisenberg's session) — new bests on AUC 0.81915, RPE 3.683, MPPE 2.848
+- vs 9a+: AUC +0.0016, RPE −0.196, MPPE −0.049; SP-SR 0.80 (board keeps 9a+'s 0.85); MP-SR / CD-O unchanged.
+- Only eval 10 changed (legal ev10cs5 retrain). [H] SP-SR dropped because the new eval-10 policy moves the cup without
+  completing the nest. Next lever there: an eval-10 policy that completes the nest (overflow → 0 at stock limits).
+
+## 2026-11-01 08:13 UTC: eval-10 legal retrain (ev10cs5, stock limits) SWAP-ELIGIBLE → INCLUDE in pack 10
+- Official draws vs V 0.532 (packed 0.463), vs P 0.512 (0.453); gain +0.069 / +0.059 ≥ +0.02 on both; all clauses hold;
+  every draw still fails RPE > 5 cm (equal floor) but draw 1 beats the packed rollout on sim_vs_ref, RPE and MPPE.
+- Overflow 992 / 660 lines (e10v ~6 M); chosen seed 43 (ca7c4e3a…). Cost $2.85.
+- **PACK 10 READY** (08:20): results/submissions/20261101-track3k-candidate/build_10/track3_submission.parquet, sha256
+  e1bef1e5…0e2a, code a187a8c9 — 9a+ with eval 10's draw-1 rollout; all checks pass; NOT uploaded here.
+
+## 2026-11-01 05:45 UTC: eval-10 njmax-1024 diagnostic SUPPORTED — the floor was training-time contact overflow
+- Overflow 0 lines (e10v ~6 M); beige cup lifted 23.9 cm; official sim_vs_ref vs V 0.913 at 1024 (e10v 0.459); the same
+  checkpoint at stock 512 scores 0.903 vs V / 0.873 vs P. DIAGNOSTIC ONLY, NEVER PACKED (guard refuses it).
+- Legal route LAUNCHED 06:10: eval-10 retrain on ev10cs5 at stock 512/256, `20261101-e10cs-50c2d90` (58625218), PREREG
+  eval10-cs4-20261101 (13c4133); swap rule + pack-10 inclusion ≥ +0.02 on V and P; result ~08:30 UTC [E].
+- Owner question: is a policy trained at njmax 1024 but evaluated at stock limits acceptable? (organisers' call).
+- Also running: eval-20 b1 pitcher retrain `20261101-e20b1-4207ce4` (58631864), PREREG eval20-b1-20261101 (36f255a);
+  gate > 0.8933, inclusion ≥ 0.91335 on P. ev10cs5 s42 interim: 992 overflow lines, training box 0.477 (s43 running).
+
+## 2026-11-01 05:03 UTC: pack 9b UPLOADED (by keen-heisenberg's session) — AUC 0.81677 vs 9a+ 0.81757; 9a+ stays best
+- Board: SP-SR / MP-SR / CD-O unchanged; RPE 3.88283 (9a+ 3.87853), MPPE 2.90186 (2.89663). The eval-33 swap's GT-free
+  proxy gain (+0.0018) was noise vs mocap (≈ −0.016 on that episode). Receipt on claude/keen-heisenberg-engcwz (157ed61).
+
+## 2026-11-01 04:56 UTC: PACK 9b READY — results/submissions/20261101-track3j-candidate/build_9b/ (not uploaded here)
+- `track3_submission.parquet`, 9,120 rows, sha256 a6c4105abb4a6a85…44e4a, code https://github.com/aebatirel/v2d-track3/commit/dd24ed412714ecc12cbda275be9b45180a00744e.
+- D-arm swap rule: **eval 33 PASS** (0.936 vs packed 0.923, 0 fails each); 14 / 16 / 25 / 30 NO-SWAP. Pack 9b = 9a+ with
+  eval 33's D draw-1 rollout; expected effect ≈ +0.0001 AUC [E] (robustness: official min 0.903 vs 0.847). D arm $19.41.
+- Checks: only ep33 rows differ from 9a+; meshes and CD-O identical; uploader offline validation; no_oracle. Upload stays
+  with the session where the owner gave the word.
+- Running: eval-10 njmax-1024 diagnostic `20261101-e10nj-451b82d` (never packed).
+
+## 2026-11-01 ~04:20 UTC: D confirmation running; eval-10 njmax-1024 diagnostic launched (never packed)
+- D arm: all five training boxes VERIFIED ($17.24); merge chose 14 s43, 16 s43, 25 s42, 30 s42, 33 s42; confirmation box
+  `20261101-drC-a1a7e25` (58608674) on draw 3 of 10 at 04:16; then after_c.sh → verdict → pack 9b record (~05:00–05:30).
+- Eval 10: training overflows the 512 constraint rows ~6 M times per run (packed run 8.37 M; ep11 gate ~100); scoring
+  never overflows. Owner's go (relayed): one diagnostic at njmax 1024, DIAGNOSTIC ONLY (changed evaluation physics; guard
+  in tools/no_oracle.py). Box `20261101-e10nj-451b82d` (58615195, India $1.392/h), PREREG eval10-njmax-20261101 (086de63).
+- Owner (relayed, 02:50): "I give you permission for everything" — score-serving GPU batches go ahead with plan + cost +
+  PREREG first; uploads stay with the session where the owner gave the word. Carve round 2: no new pieces; overlaps at
+  evals 10/1/14/30 are reference-pose problems. Credit $31.95 at 04:16.
+
+## 2026-10-31 ~23:35 UTC: eval-10 V4p retrain NO-SWAP; masses v2 NOT ADOPTED; D arm running (5 boxes)
+- **Eval-10 V4p retrain** (`20261031-e10v-caf38fb`, VERIFIED, 10/10 confirmation draws rc 0): **NO-SWAP**, equal floor.
+  The moved (beige) cup is never lifted: curve.json beige r1 lift 0.0–0.3 cm at 13 of 14 checkpoints, 2.5 cm once (a knock);
+  the job log's "blue_cup: lift 0" label tracks the blue cup, which stays on the table by design (correction 1 Nov, 04:20). The new policy scores 0.459 vs the
+  packed 0.463 on V and 0.449 vs 0.453 on P. Failure rate is 10/10 on both, RPE ~15.9 cm. The ep11 gate's transfer
+  (+0.142 on the public twin) did not carry to eval 10. Eval 10 stays as packed. Cost $3.25.
+- **Masses v2** (boxes mv2a2 + mv2b, both VERIFIED, no eval timeouts): **NOT ADOPTED**. Mean delta +0.0034 (bar +0.03);
+  1/4 episodes > 0 (needs 3). ep24 +0.038, ep11 −0.014, ep13 −0.002, ep31 −0.009. The placeholder 0.3 kg stays.
+  Record: `docs/research/work/masses-v2-20261031/results/`.
+- **D arm** (pack 9b): G (evals 14/16/33 grasp lock), S25 s42/s43, S30 s42 running; S30 s43 at ~23:45. Canary and
+  std-path D lines verified. Reading after all five + one confirmation box (`dr_eval_merge.py`).
+- Pack 9b = 9a+ plus any D cell that passes the rule (eval 10 is now out). Nothing is uploaded from this session.
+
+## 2026-10-31 ~23:00 UTC: re-track test FAIL (P_o' per-episode C0b/E0b templates vs stored P_o, 20 public eps)
+- Pre-registered verdict (`docs/research/work/retrack-20261031/verdict.txt`): mean dR −0.170 (bar ≥ +0.01), dR > 0 on
+  3/20 (bar ≥ 12), min dR −0.973 (bar ≥ −0.03), mean dRPE +1.32 cm (bar ≤ 0). Raw mean dR −0.169. Fails every clause.
+- Worst: white_pot templates (ep45 0.980 → 0.006, ep0 0.962 → 0.037 with RPE 1.4 → 17.3 cm, ep26 −0.47, ep2 −0.26)
+  and ep11's two cups (−0.71). Blue-cup-only episodes 13/21/22 +0.010 to +0.015 (post-hoc subset, not a result).
+- Boxes clean (exit 0, env pt2.11-cu130-py313-20261020, RTX PRO 6000); cost $1.54 measured. No eval re-track.
+
+## 2026-10-31 20:51 UTC: ep11 gate PASS (Δ +0.142 vs mocap) — eval-10 V4p retrain launching
+- Seed 42 +0.013, seed 43 +0.271 (T 0.861); control stays at its static floor. Verified, no timeouts.
+- Eval-10 retrain (ops/jobs/ev10_v4p.sh, 2 seeds + 10 confirmation draws, swap rule on both references) next.
+
+## 2026-10-31 18:13 UTC: PACK 9a+ UPLOADED — AUC 0.81757 (best), CD-O 0.332 (from 0.402); rank sum 60, 11th
+- Uploaded by the score-status session (owner's word there) from `results/submissions/20261031-track3i-candidate/build_9aplus/`.
+- RPE 3.879, MPPE 2.897; SP-SR / MP-SR unchanged. Next levers: eval 10 (ep11 gate result ~19:30–21:00), pack 10.
+
+## 2026-10-31 ~17:20 UTC: 6 boxes running; pack 9a / 9a+ built and signed off, waiting for the owner's own upload word
+- Running (all past setup): ep11 gate 58552489 (`20261031-e11g-663b7df`, result ~19:30–21:00); Masses v2 boxes
+  `20261031-mv2a2-b5043ce` (ep24+13) and `20261031-mv2b-b5043ce` (ep11+31), verdict ~23:00–01:00; pack-10 comparison set
+  `20261031-h5p7-1a7cdff` and `20261031-h5e1-1a7cdff`. Embodiment recipe screen (2 boxes) and mesh E0 box also running.
+- Pack 9a (pack 8 + C0 pot/lid/rack; `results/submissions/20261031-track3i-candidate/build_3obj`, sha256 9c19bb0c…) and
+  9a+ (+ C1 beige cup and dust pan; `build_9aplus` both beige pairs e02736ea… / `build_9aplus_e10` eval-10 beige only
+  6743f01d…) are built, validated offline and signed off by the mesh session (eval-8 beige conditional, unmeasured).
+  Provenance flags (scan-derived ball radius etc.) disclosed; owner chose "Ship 9a, flagged" in the mesh session.
+  **Upload blocked** until the owner says it in this chat (standing rule: nothing to Kaggle without the owner's word).
+- Pack 10 inputs: swap rule agreed (fresh-draw mean vs packed H5 mean, failure rate GT-free RPE > 5 cm, median RPE,
+  packed-draw guard); eval 10 is the only clear failing eval (GT-free audit); no eval reference fix besides V4p.
+
+## 2026-10-31 ~14:00 UTC: realistic masses NOT ADOPTED; eval-10 cavity widening falsified; ep11 gate prep running (CPU)
+- Mass transfer check (run 20261031-mass-2ed46ea, VERIFIED, no eval timeouts; registered AUC vs mocap, 10 draws/cell):
+  - ep2 (pot + lid): 0.567 → 0.723, Δ +0.157 (seeds +0.081 / +0.233; SE 0.105).
+  - ep12 (cup into rack): 0.924 → 0.911, Δ −0.013 (seeds −0.006 / −0.019; SE 0.007). Bar +0.03 on both → NOT ADOPTED.
+  - The eval pipeline keeps the 0.3 kg placeholder; masses eval retrain (O1–O3) is off. Box cost ≈ $9.10 (ledger).
+- Eval-10 lane: H-nest-a (widened blue-cup cavity, meshes/carve/ev10w) FAILED both pre-registered gates (334393e):
+  the intrusion is the beige ~5 mm off the blue axis (one-sided in 60/61 frames), not a narrow cavity; widening makes
+  the beige sink ~11 mm. ev10 stays. V4p with ev10 is near intrusion-free on hands-off frames.
+  Next: ep11 rollout gate, control vs V4p (ev10 unchanged), seeds 42/43, NREP 10; CPU prep + reviews running
+  (workflow wf_0f7cb69b-fa2); launch (~$4–6) needs the owner's go.
+
+## 2026-10-31 ~11:20 UTC: perception sprint — only the eval-10 cup-nest fix passes; owner topped up $100 (lean plan)
+- Offset fix (S11) and held-pose fix (S10) FAILED their pre-registered rules on 20 public episodes → dropped.
+- Cup-nest fix (S12) passes on ep11 (0.901 → 0.969–0.978 reference); eval-10 version V4p needs an ep11 rollout gate
+  (≈ $10 with the eval-10 retrain), value ≈ +0.007 LB central [E].
+- Mass transfer check (58502738) result ≈ 12:30–14:00 UTC decides the masses eval retrain (O2, ≈ $16–26).
+- Credit $128.43 after the owner's $100 top-up; lean-budget lanes agreed with the Embodiment and mesh sessions.
+
+## 2026-10-31 ~06:35 UTC: tracker fixes measured on CPU; mass check in final fixes; coordination with other sessions
+- S6 static hold: fails its no-harm rule by 0.0003 and does nothing on eval 10 (the cup really slides in our track) →
+  dropped. Robust VO fixes ep24 (0.81 → 0.994) but no eval has that failure. Eval screen: the only remaining eval target
+  for perception fixes is eval 10 (masking re-track, one GPU box ≈ $1–2 + rollout gate).
+- Realistic masses (Embodiment session, +0.090 vs mocap on 4 public eps with scans) → transfer check on our meshes built,
+  two reviews' fixes being applied; ≈ $6.5–11; launch after GO. Eval retrain with masses ≈ $20–25 if it passes.
+- Sessions coordinated (Embodiment: rlloop box running, R5-lite done; mesh: gmg build, its own G0 launch). Credit ≈ $33.
+
+## 2026-10-30 ~19:00 UTC: oracle twins done — eval 10 is perception-limited, eval 14 is a robot/learner limit
+- ep11 (eval 10, cup stacking): true motion 0.940 vs our perceived 0.595 → **C2 perception-limited**. Biggest lever
+  found: make eval 10's reference physically consistent (cup nest), ≤ +0.017 LB if it transfers [E].
+- ep13 (eval 14, hand-over + flip): 0.544 vs 0.543 → **C1**: not perception; robot/learner limit.
+- ep31 (eval 30): +0.086 → inconclusive at one seed.
+- Running: leak plan Phase 1 (3 perception boxes, orcP1a/b/c, ≈ $4.4); Tier A CPU audits. Credit ≈ $30, burn ≈ $6/h.
+  Phase 2 (≈ $200) needs a top-up.
+
+## 2026-10-30 ~08:50 UTC: eval-1 carve CONFIRMED on the official evaluator; pack-8 candidate ready (NOT uploaded)
+- Eval 1 (placement carve, seed 43): 20 official draws 0.924 ± 0.017 (min 0.884) vs packed policy 0.822 ± 0.239.
+- Pack 8 = pack 7 + fresh eval-1 rollout (0.9232): `results/submissions/20261030-track3h-candidate/`. Expected
+  ≈ +0.0002 AUC as scored [estimate]; mainly robustness if checkpoints are re-run. **Owner decides the upload.**
+- Depth audit falsified (no GT-free reference-error detector). Videos of the worst 5 still rendering (HF 429s).
+- Spend this session ≈ $28.2 actual + video box running (≈ $2) of $45.
 
 ## 2026-10-30 ~06:45 UTC: PACK 7 UPLOADED (owner-approved) — AUC 0.81460, our best, but 7th: the field moved
 - Pack 7 = pack 6 + eval 33 from arm B. AUC 0.81460 (+0.0007), RPE 3.932, MPPE 2.921, SP-SR 0.85, MP-SR 0.65.

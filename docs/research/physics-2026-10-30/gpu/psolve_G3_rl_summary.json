@@ -1,0 +1,66 @@
+{
+ "ep12": {
+  "checkpoint": "/content/runs/glock/ep12-s42/policy_60002304.safetensors",
+  "n": 5,
+  "sim_vs_ref": {
+   "mean": 0.8989,
+   "std": 0.0385,
+   "min": 0.8296,
+   "max": 0.9301
+  },
+  "auc": {
+   "mean": 0.8921,
+   "std": 0.0374,
+   "min": 0.8218,
+   "max": 0.9232
+  }
+ },
+ "ep18": {
+  "checkpoint": "/content/runs/glock/ep18-s42/policy_20000768.safetensors",
+  "n": 5,
+  "sim_vs_ref": {
+   "mean": 0.5916,
+   "std": 0.0036,
+   "min": 0.5845,
+   "max": 0.5944
+  },
+  "auc": {
+   "mean": 0.6223,
+   "std": 0.0042,
+   "min": 0.6139,
+   "max": 0.6252
+  }
+ },
+ "ep2": {
+  "checkpoint": "/content/runs/glock/ep2-s42/policy_30003200.safetensors",
+  "n": 5,
+  "sim_vs_ref": {
+   "mean": 0.5944,
+   "std": 0.3407,
+   "min": 0.2046,
+   "max": 0.9752
+  },
+  "auc": {
+   "mean": 0.584,
+   "std": 0.3391,
+   "min": 0.1968,
+   "max": 0.9677
+  }
+ },
+ "ep24": {
+  "checkpoint": "/content/runs/glock/ep24-s42/policy_10002432.safetensors",
+  "n": 5,
+  "sim_vs_ref": {
+   "mean": 0.2528,
+   "std": 0.0482,
+   "min": 0.2267,
+   "max": 0.3491
+  },
+  "auc": {
+   "mean": 0.2441,
+   "std": 0.0249,
+   "min": 0.2295,
+   "max": 0.2939
+  }
+ }
+}

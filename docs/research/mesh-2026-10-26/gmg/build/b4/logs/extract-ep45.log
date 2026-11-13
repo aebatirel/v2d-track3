@@ -1,0 +1,6 @@
+[09:46:13] b4_extract ep45 objects ['white_pot'] det True start {'commit': '5bcfbfd0b34b4cf4052ca003c505fea7831fabd6', 'dirty': 'M docs/research/mesh-2026-10-26/gmg/build/I.md\n?? docs/research/mesh-2026-10-26/gmg/build/I/review_depth.py\n?? docs/research/mesh-2026-10-26/gmg/build/I/review_gapw.py\n?? docs/research/mesh-2026-10-26/gmg/build/I/review_gapw_rerun.txt'}
+[09:51:58] hands 345.5 s: frames with hand 289 / 290
+[09:54:52] ep45 pass 0: 145 frames, 17422071 samples, voxels [194326], 172.8 s
+[10:00:19] extract timing {"table_s": 0.4, "pass0_samples_s": 161.0, "pass0_votes_s": 11.8, "pass0_s": 172.8, "pass0_voxels": [194326], "pass1_s": 20.3, "pass2_s": 1.5, "pass3_s": 2.5, "pass4_grids_s": 27.6, "sigma_s": 261.6, "total_s": 486.9}
+[10:00:50] sanity white_pot: 93/145 good, flags [], below 0.3586, resid {'median': 1.001, 'p90': 1.175, 'max': 1.334}
+[10:05:03] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep45 total 1130.3 s

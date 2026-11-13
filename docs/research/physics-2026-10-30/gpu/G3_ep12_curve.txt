@@ -1,0 +1,7 @@
+  10M  sim_vs_ref 0.772  |  blue_cup: lift  16.6 (ref 17.4) in3cm 0.58 lost@163/181  plastic_dish: lift   0.7 (ref  0.5) in3cm 1.00 lost@None/181
+  20M  sim_vs_ref 0.707  |  blue_cup: lift  15.0 (ref 17.4) in3cm 0.34 lost@83/181  plastic_dish: lift   0.4 (ref  0.5) in3cm 1.00 lost@None/181
+  30M  sim_vs_ref 0.761  |  blue_cup: lift  16.6 (ref 17.4) in3cm 0.49 lost@98/181  plastic_dish: lift   1.7 (ref  0.5) in3cm 1.00 lost@None/181
+  40M  sim_vs_ref 0.756  |  blue_cup: lift  18.9 (ref 17.4) in3cm 0.85 lost@None/181  plastic_dish: lift   0.5 (ref  0.5) in3cm 1.00 lost@None/181
+  50M  sim_vs_ref 0.728  |  blue_cup: lift  17.9 (ref 17.4) in3cm 0.63 lost@165/181  plastic_dish: lift  20.7 (ref  0.5) in3cm 0.67 lost@164/181
+  60M  sim_vs_ref 0.922  |  blue_cup: lift  17.7 (ref 17.4) in3cm 0.88 lost@None/181  plastic_dish: lift   1.4 (ref  0.5) in3cm 1.00 lost@None/181
+  70M  sim_vs_ref 0.840  |  blue_cup: lift  17.4 (ref 17.4) in3cm 0.90 lost@None/181  plastic_dish: lift   1.6 (ref  0.5) in3cm 1.00 lost@None/181

@@ -1,0 +1,15 @@
+{
+ "obj": "white_pot",
+ "file": "/content/results/c0b/pts/B/ep26_white_pot.npz",
+ "sigma_m": 0.0013185365985938456,
+ "T": 158,
+ "stride": 2,
+ "info": {
+  "even_points": 850967,
+  "odd_points": 846787,
+  "sheet_faces": 394220,
+  "raw_median_mm": 1.319,
+  "n": 50000
+ },
+ "sec": 70.0
+}

@@ -1,0 +1,722 @@
+{
+ "schema": "e0b-eval-plan/1",
+ "split": "eval",
+ "episodes": {
+  "1": {
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "slot": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "hands": true,
+   "frames_poses": 335,
+   "depth_bytes": 2144000128,
+   "depth_lfs_sha256": "36519f679fe8e5e22af319b818a6b4174c4167f802b18e420f2c3bd34e51e2fb",
+   "poses_sha256": "4c6917db187faeeb2c17669f1ba91039495be685735f7751b8b9c70bfa7d1262",
+   "hands_sha256": "5c1800242214dd26e6f7855435b612e77ad64a229cb2ab51a481b58ae9fd24c2"
+  },
+  "3": {
+   "objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "slot": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "hands": true,
+   "frames_poses": 313,
+   "depth_bytes": 2003200128,
+   "depth_lfs_sha256": "ab7abf5d727503f1580d43789841d896c015bb492fcbf61d7e5f4f7188e81e83",
+   "poses_sha256": "f3bae3e3a2d1546e0e99ba0953deb7d996b87c1544e2c179312f8f89733af0ba",
+   "hands_sha256": "396bf92851dd29456ee7a01cfe5970c33807c67a200e302d9cce401e4832fb5a"
+  },
+  "5": {
+   "objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "slot": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "hands": true,
+   "frames_poses": 288,
+   "depth_bytes": 1843200128,
+   "depth_lfs_sha256": "000b59cb9f6296889d36251cc5acab478d753d84b40b83ed208b7478cf1d7714",
+   "poses_sha256": "62372509880883f789bde78d6b07c2f7f3a9ff0aed98ed7b5997de083ff21e6e",
+   "hands_sha256": "5f8fc9f88b2403c9e948dfbef5d726460ff10f823dd916dcdd61ec9cbae139a3"
+  },
+  "6": {
+   "objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "slot": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "hands": true,
+   "frames_poses": 243,
+   "depth_bytes": 1555200128,
+   "depth_lfs_sha256": "88a615b3f9b1e0d7bd0d70b2fde46c9cb22bd7266fd0dc17523ec5fd1db5f1e6",
+   "poses_sha256": "916dad7fdd88b259bbc0eeaa9e5c28dedec0c3c4a6c069a1cbaf8b20e5eb7dd6",
+   "hands_sha256": "2307d3cd21d6406383bdf2c9ee33e7a0baf0be75247af783754fd6756974e933"
+  },
+  "8": {
+   "objects": [
+    "beige_cup",
+    "white_pot"
+   ],
+   "slot": [
+    "beige_cup",
+    "white_pot"
+   ],
+   "hands": true,
+   "frames_poses": 219,
+   "depth_bytes": 1401600128,
+   "depth_lfs_sha256": "fc1c2a4212ab41dc167e1a7d7c4990773ca822a63d717e90ea68620ec614c572",
+   "poses_sha256": "a3290382529ece7935834c3a917f3c1568f14cf792e3816ea4889d4b298c5a5c",
+   "hands_sha256": "da84ffdddfea7db0ad6a3c5854bd20b418b654ecec4f5b3a31b91b3e14711e27"
+  },
+  "10": {
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "slot": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "hands": true,
+   "frames_poses": 161,
+   "depth_bytes": 1030400128,
+   "depth_lfs_sha256": "f2d7971d559684974f97754d0e8d48a86bfe4595aff59aaa45881af3ab781d74",
+   "poses_sha256": "e7a0662078d0b74c45452e9c28f2af36d00b46a0dd4847c36e7c3ac1e6245cb9",
+   "hands_sha256": "b0913afe5b04e971d1ea793c701bcf6bc9182e0480e7414a87d488bf24ba4251"
+  },
+  "14": {
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "slot": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "hands": true,
+   "frames_poses": 158,
+   "depth_bytes": 1011200128,
+   "depth_lfs_sha256": "95bec3ab6a72f5b90f578ba61af25d35ebca860560ba90b3b41fb022ddf79aff",
+   "poses_sha256": "1eecb46cf15920c5134cf5f1e6a8e6b2e83e23670838fdf9fb9799af3e2160c0",
+   "hands_sha256": "d2d8cf0d9bab2fd19d3949af7d1d3b11580f930af1372144aa4672f593a9c15c"
+  },
+  "15": {
+   "objects": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "slot": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "hands": true,
+   "frames_poses": 166,
+   "depth_bytes": 1062400128,
+   "depth_lfs_sha256": "9cacdeaf6ef2b8f02ec428c65508c272fbc5715c604a3364f0778cd81984b1d9",
+   "poses_sha256": "7c846aeadeb0dece121de6aec059d9aea2d2f54edcdb0bf4a337dfba905313d3",
+   "hands_sha256": "d09a900ae721760c4ee45639f817a2bdd2dbb21e006edaed63e7c464714950fc"
+  },
+  "16": {
+   "objects": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "slot": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "hands": true,
+   "frames_poses": 173,
+   "depth_bytes": 1107200128,
+   "depth_lfs_sha256": "ff566041225e152bdc2f4b506010e825be3f78136dd98c0801b77d9870aa1d7c",
+   "poses_sha256": "fe96119919e09b369e304c641ad6469c7e5bba9395785384a1560c61d7f8a5bd",
+   "hands_sha256": "02bd128faeb828c8ce869fd3aefd08b0500da8daf7a9e78b7642ffa732355e4e"
+  },
+  "20": {
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "slot": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "hands": true,
+   "frames_poses": 202,
+   "depth_bytes": 1292800128,
+   "depth_lfs_sha256": "eb94b3e1f3d00cf2d57ac025fae7d33450b197ee44b92e48f84eceac171daa5a",
+   "poses_sha256": "13ead8947f1c6d98081a4c6d4f572c8ffee62717312f3e70afff5ea6fae4981a",
+   "hands_sha256": "91fd8e9984b20358cf31e98cf793c3c23674ed4b3dab8bb0ed220b1c9ab908e3"
+  },
+  "28": {
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "slot": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "hands": true,
+   "frames_poses": 220,
+   "depth_bytes": 1408000128,
+   "depth_lfs_sha256": "1947fcf923a0f2900a39ea671ddd216fff3bf4888a17b43adf69db2d8a0ee3d1",
+   "poses_sha256": "5251eb70f6461d3c6dc0c2102620e3c36cdbbca382f231523b3d574429c4735f",
+   "hands_sha256": "91b0377c089cdf9e399bfc6e34876d13078ad418b98c69fb7cfdf91dc44dd124"
+  },
+  "30": {
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "slot": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "hands": true,
+   "frames_poses": 263,
+   "depth_bytes": 1683200128,
+   "depth_lfs_sha256": "64aa80ede7114b2063546c5cd683a8578e53adb2b548959749ebdfda3f75a59c",
+   "poses_sha256": "1ba722ca2d6d1b82ed0c7d049411cbfe456d9be137549cc73fa715a040f4852c",
+   "hands_sha256": "2f7408f06241f8246e703b513e7b9757ae4e6ee509913d92ecc036706d3cf81f"
+  },
+  "32": {
+   "objects": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "slot": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "hands": true,
+   "frames_poses": 259,
+   "depth_bytes": 1657600128,
+   "depth_lfs_sha256": "c8299396ce710526b75c4c369225eb1f124e38d0707ca9a4a448c3ba439ba56b",
+   "poses_sha256": "38416e84a72d3ed54703174b267ca66e835e2f7c314e6906c93c14d0da208dd3",
+   "hands_sha256": "8f872b9e984d4dcb81f7eb26747f9f96b204c9c1350546b88da28fb66dc13ef5"
+  },
+  "33": {
+   "objects": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "slot": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "hands": true,
+   "frames_poses": 348,
+   "depth_bytes": 2227200128,
+   "depth_lfs_sha256": "3a6dbacfdb174d271d1baa3771befc180dfe8d8c9728d209e10de65fd4e3b02f",
+   "poses_sha256": "cf8c24d5d5a80f889b6cbbb20df4beeaa96fda5ff55f5bae19dfc7e4199137c5",
+   "hands_sha256": "f45e1bb91aee6dfc4a0c6f64ad3f07d55489664077ec6c7127691f4eb033afca"
+  }
+ },
+ "candidate_eps": {
+  "white_pot": [
+   1,
+   3,
+   5,
+   6,
+   8,
+   28
+  ],
+  "white_pot_lid": [
+   1
+  ],
+  "plastic_dish_rack": [
+   14,
+   15,
+   16,
+   28,
+   30
+  ],
+  "blue_cup": [
+   10,
+   14,
+   20,
+   32,
+   33
+  ],
+  "beige_cup": [
+   8,
+   10
+  ]
+ },
+ "all_set": {
+  "white_pot": [
+   1,
+   3,
+   5,
+   6,
+   8,
+   28
+  ],
+  "white_pot_lid": [
+   1
+  ],
+  "plastic_dish_rack": [
+   14,
+   15,
+   16,
+   28,
+   30
+  ],
+  "blue_cup": [
+   10,
+   14,
+   20,
+   32,
+   33
+  ],
+  "beige_cup": [
+   8,
+   10
+  ]
+ },
+ "marker_objects": {
+  "1": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "3": [
+   "white_pot"
+  ],
+  "5": [
+   "white_pot"
+  ],
+  "6": [
+   "white_pot"
+  ],
+  "8": [
+   "white_pot"
+  ],
+  "28": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "14": [
+   "plastic_dish_rack"
+  ],
+  "15": [
+   "plastic_dish_rack"
+  ],
+  "16": [
+   "plastic_dish_rack"
+  ],
+  "30": [
+   "plastic_dish_rack"
+  ]
+ },
+ "t0_c0b_m": 0.004559400604354957,
+ "tracks_source": "scratchpad data/eval/ep<N>/poses.npz = store run 20261025-evperc-4f596df (sha256 = E0 plan)",
+ "hands_source": "store run mesh-20261031-e0-b05f001 results/e0/hands/ep<N>/hands.npz (sha256 = E0 box SHA256SUMS)",
+ "depth_source": "store cache/depth/eval/ep<N>/depths_fs0.5.npy (run mesh-20261029-evdepth-92f3d86)",
+ "t0_source": "C0b public box run mesh-20261031-c0b-00e8584 results/c0b/t0_c0b.json (frozen)",
+ "frame_refs": {
+  "white_pot": {
+   "pick": "pot/ep43/fit",
+   "pick_repo_path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/white_pot_c0b_pot_ep43_fit.glb",
+   "pick_sha256": "098ade9d079094afbad2cba01d8f3a1fd08e6d91cc7c3d7256da903071fc7a31",
+   "pick_episode": 43,
+   "references": [
+    {
+     "label": "pot/ep2/fit",
+     "episode": "2",
+     "source_episodes": [
+      2
+     ],
+     "sha256": "b5634d789e14ea53b5aa56d2a4d9b254176d265d4caeebd25513c7d052a06106",
+     "input": "pub/white_pot/pot__ep2__fit.glb"
+    },
+    {
+     "label": "pot/ep2/nomk",
+     "episode": "2",
+     "source_episodes": [
+      2
+     ],
+     "sha256": "6b330aec0a42610bb153081ac582337052c3b5a6516c87fceb07304f14ae25ce",
+     "input": "pub/white_pot/pot__ep2__nomk.glb"
+    },
+    {
+     "label": "pot/ep2/nostem",
+     "episode": "2",
+     "source_episodes": [
+      2
+     ],
+     "sha256": "da20383e7c89cc124ecf4b1ff7fe23eb46ebb4344d858b7565e5150d3694230a",
+     "input": "pub/white_pot/pot__ep2__nostem.glb"
+    },
+    {
+     "label": "pot/ep2/thick",
+     "episode": "2",
+     "source_episodes": [
+      2
+     ],
+     "sha256": "bdf191bb71d1a5f6be466a2cdb0825c1e6e9d2b8332833f3b109ac139af6375e",
+     "input": "pub/white_pot/pot__ep2__thick.glb"
+    },
+    {
+     "label": "pot/ep26/fit",
+     "episode": "26",
+     "source_episodes": [
+      26
+     ],
+     "sha256": "10c147c6a0217cc36ad965084bb994765e6650c677bcd6375ab5004547bf8688",
+     "input": "pub/white_pot/pot__ep26__fit.glb"
+    },
+    {
+     "label": "pot/ep26/nomk",
+     "episode": "26",
+     "source_episodes": [
+      26
+     ],
+     "sha256": "d4c01de83a7e6429b79d4891ad75a5c43613401daa0bd81c4a7a1e7d3c5eaaa8",
+     "input": "pub/white_pot/pot__ep26__nomk.glb"
+    },
+    {
+     "label": "pot/ep26/nostem",
+     "episode": "26",
+     "source_episodes": [
+      26
+     ],
+     "sha256": "d52644d11de7742bc8ea0ae586f006576405c2979c5a3bd6bf88cd82863f5afc",
+     "input": "pub/white_pot/pot__ep26__nostem.glb"
+    },
+    {
+     "label": "pot/ep26/thick",
+     "episode": "26",
+     "source_episodes": [
+      26
+     ],
+     "sha256": "1828b8e57bb5ecbc089d5062544dc3c96456bce3e5be866329fb2b54a2ad869e",
+     "input": "pub/white_pot/pot__ep26__thick.glb"
+    },
+    {
+     "label": "pot/ep27/fit",
+     "episode": "27",
+     "source_episodes": [
+      27
+     ],
+     "sha256": "f4a298a2f981ffbc862626554fac8a2fff981fd0a6a0197ac329541978f0eee0",
+     "input": "pub/white_pot/pot__ep27__fit.glb"
+    },
+    {
+     "label": "pot/ep27/nomk",
+     "episode": "27",
+     "source_episodes": [
+      27
+     ],
+     "sha256": "d4dadf3c2269f5755c64627e8f62b8fee9fac103e768c92e32110562ff20387d",
+     "input": "pub/white_pot/pot__ep27__nomk.glb"
+    },
+    {
+     "label": "pot/ep27/nostem",
+     "episode": "27",
+     "source_episodes": [
+      27
+     ],
+     "sha256": "fead4f11127dc0e6a302dac9541e74bd9c268cb7441f2a5423f9e93faaa6852e",
+     "input": "pub/white_pot/pot__ep27__nostem.glb"
+    },
+    {
+     "label": "pot/ep27/thick",
+     "episode": "27",
+     "source_episodes": [
+      27
+     ],
+     "sha256": "20fe097d5ceb0080274a991adb567dc670e6649aece5b340c36ef4b311e13d00",
+     "input": "pub/white_pot/pot__ep27__thick.glb"
+    },
+    {
+     "label": "pot/ep41/fit",
+     "episode": "41",
+     "source_episodes": [
+      41
+     ],
+     "sha256": "e5ca19709e4470d68515473354a52a25bdbf3bc08eff05e42e95fdab358ccd1c",
+     "input": "pub/white_pot/pot__ep41__fit.glb"
+    },
+    {
+     "label": "pot/ep41/nomk",
+     "episode": "41",
+     "source_episodes": [
+      41
+     ],
+     "sha256": "1368cb42a3bbddc3379c6f7d47c5064c2ea2e3e57063cfd29c9219c885bff7f3",
+     "input": "pub/white_pot/pot__ep41__nomk.glb"
+    },
+    {
+     "label": "pot/ep41/nostem",
+     "episode": "41",
+     "source_episodes": [
+      41
+     ],
+     "sha256": "859af232490a724156886ee569e1051766095ef642f507ec17c7a47ca9c060f8",
+     "input": "pub/white_pot/pot__ep41__nostem.glb"
+    },
+    {
+     "label": "pot/ep41/thick",
+     "episode": "41",
+     "source_episodes": [
+      41
+     ],
+     "sha256": "3bd7d7c1f7c15870dd5801f5bbb7d22c77ecc2179a7e18f9f5314b1cb81c923d",
+     "input": "pub/white_pot/pot__ep41__thick.glb"
+    },
+    {
+     "label": "pot/ep42/fit",
+     "episode": "42",
+     "source_episodes": [
+      42
+     ],
+     "sha256": "95fd95111c5d96cc5227cb9cc82335b0ae345319f76f85d1afd9dd25b5e3dee7",
+     "input": "pub/white_pot/pot__ep42__fit.glb"
+    },
+    {
+     "label": "pot/ep42/nomk",
+     "episode": "42",
+     "source_episodes": [
+      42
+     ],
+     "sha256": "dff67c4cb9e99c325f09f1b6af7fc033bf6cbc546444f0eb4a84741274ff1a20",
+     "input": "pub/white_pot/pot__ep42__nomk.glb"
+    },
+    {
+     "label": "pot/ep42/nostem",
+     "episode": "42",
+     "source_episodes": [
+      42
+     ],
+     "sha256": "95fd95111c5d96cc5227cb9cc82335b0ae345319f76f85d1afd9dd25b5e3dee7",
+     "input": "pub/white_pot/pot__ep42__nostem.glb"
+    },
+    {
+     "label": "pot/ep42/thick",
+     "episode": "42",
+     "source_episodes": [
+      42
+     ],
+     "sha256": "f4f43c3f34376ab08f964ca41fd30830026e6eb9e3a26aece80560c452effd45",
+     "input": "pub/white_pot/pot__ep42__thick.glb"
+    },
+    {
+     "label": "pot/ep44/fit",
+     "episode": "44",
+     "source_episodes": [
+      44
+     ],
+     "sha256": "6a6c420ce1b2aec95188c4bd4a57f02003e2a549effc8720eeb45fd29578d478",
+     "input": "pub/white_pot/pot__ep44__fit.glb"
+    },
+    {
+     "label": "pot/ep44/nomk",
+     "episode": "44",
+     "source_episodes": [
+      44
+     ],
+     "sha256": "6ad21a5c128a5d34bf410d41b59f618939b5b61c1f43a603ff314fa8faedc3d2",
+     "input": "pub/white_pot/pot__ep44__nomk.glb"
+    },
+    {
+     "label": "pot/ep44/nostem",
+     "episode": "44",
+     "source_episodes": [
+      44
+     ],
+     "sha256": "e82688ff294d07ea4fffa6fa0ed88d8547cd955e425f704a6f5892c006c82903",
+     "input": "pub/white_pot/pot__ep44__nostem.glb"
+    },
+    {
+     "label": "pot/ep44/thick",
+     "episode": "44",
+     "source_episodes": [
+      44
+     ],
+     "sha256": "395f595b163dbc2461311271adc0cbdf0492a55c54aa5fc95d32529c493ca807",
+     "input": "pub/white_pot/pot__ep44__thick.glb"
+    },
+    {
+     "label": "pot/ep45/fit",
+     "episode": "45",
+     "source_episodes": [
+      45
+     ],
+     "sha256": "9647bf5b7230eaef3c0fe1f70f59aa62390dfd0a6f3d4e8816446a8f111e1aca",
+     "input": "pub/white_pot/pot__ep45__fit.glb"
+    },
+    {
+     "label": "pot/ep45/nomk",
+     "episode": "45",
+     "source_episodes": [
+      45
+     ],
+     "sha256": "158fc2c50c6d5e147ab36cc41d509e4ffb7f737c240185a0663d4a8857a3ccef",
+     "input": "pub/white_pot/pot__ep45__nomk.glb"
+    },
+    {
+     "label": "pot/ep45/nostem",
+     "episode": "45",
+     "source_episodes": [
+      45
+     ],
+     "sha256": "5e3e161c540ca3e306feb55ce472040ca1c65aa8a7e9a6987b067af2a217cb59",
+     "input": "pub/white_pot/pot__ep45__nostem.glb"
+    },
+    {
+     "label": "pot/ep45/thick",
+     "episode": "45",
+     "source_episodes": [
+      45
+     ],
+     "sha256": "4560bed1dfd2b711b4d6eaf55ad23bead9432f1900b221f0116beecd363a162b",
+     "input": "pub/white_pot/pot__ep45__thick.glb"
+    }
+   ],
+   "n_references": 28,
+   "rule": "eligible C0b public candidates whose source episodes do not include the pick episode (rack joint = eps [13, 27], merged cup = eps 21+22)"
+  },
+  "plastic_dish_rack": {
+   "pick": "rack/ep13/full",
+   "pick_repo_path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/plastic_dish_rack_c0b_rack_ep13_full.glb",
+   "pick_sha256": "985ded99b877bfa2927fde2bdc3448df3cf3418a8767fb21149bc58a13621d9a",
+   "pick_episode": 13,
+   "references": [
+    {
+     "label": "rack/ep12/full",
+     "episode": "12",
+     "source_episodes": [
+      12
+     ],
+     "sha256": "31b23aa08973b879df47e85e201566d6f59cc93f6e4f53232874af25101e64ce",
+     "input": "pub/plastic_dish_rack/rack__ep12__full.glb"
+    },
+    {
+     "label": "rack/ep12/nomk",
+     "episode": "12",
+     "source_episodes": [
+      12
+     ],
+     "sha256": "24fc14659d0d5b4ea0133ddb28b841d3e591cb722f60a59dc9064e55b8fac5c5",
+     "input": "pub/plastic_dish_rack/rack__ep12__nomk.glb"
+    },
+    {
+     "label": "rack/ep26/full",
+     "episode": "26",
+     "source_episodes": [
+      26
+     ],
+     "sha256": "7aa32c47094d4feca6bb2c286ca3771b9a5d2e4b87083a315c51ca90a1b89b01",
+     "input": "pub/plastic_dish_rack/rack__ep26__full.glb"
+    },
+    {
+     "label": "rack/ep26/nomk",
+     "episode": "26",
+     "source_episodes": [
+      26
+     ],
+     "sha256": "76c2eeaedd5bf5fe1cb29b1a263ee3bf36b4034381e9e831b2b9db196ae4e7c0",
+     "input": "pub/plastic_dish_rack/rack__ep26__nomk.glb"
+    },
+    {
+     "label": "rack/ep27/full",
+     "episode": "27",
+     "source_episodes": [
+      27
+     ],
+     "sha256": "04ae6f1b78c161490dea41603f0c9d00499967f73e13eefa04f89f57ddc4fc38",
+     "input": "pub/plastic_dish_rack/rack__ep27__full.glb"
+    },
+    {
+     "label": "rack/ep27/nomk",
+     "episode": "27",
+     "source_episodes": [
+      27
+     ],
+     "sha256": "f6be4a1f6f3cfc59f3881e35ac3fb82d95589ac6e292d5c30325ec26f1f0bf6c",
+     "input": "pub/plastic_dish_rack/rack__ep27__nomk.glb"
+    },
+    {
+     "label": "rack/ep31/full",
+     "episode": "31",
+     "source_episodes": [
+      31
+     ],
+     "sha256": "9635c8d2c78628fc55f74bd5d8441c1764659b9aed96756f3a9d6ac586bb9fd3",
+     "input": "pub/plastic_dish_rack/rack__ep31__full.glb"
+    },
+    {
+     "label": "rack/ep31/nomk",
+     "episode": "31",
+     "source_episodes": [
+      31
+     ],
+     "sha256": "72c717d39d2c93eeb26120041dd7afadb1628e387fd4f425bd557b3d3cc1b86d",
+     "input": "pub/plastic_dish_rack/rack__ep31__nomk.glb"
+    }
+   ],
+   "n_references": 8,
+   "rule": "eligible C0b public candidates whose source episodes do not include the pick episode (rack joint = eps [13, 27], merged cup = eps 21+22)"
+  },
+  "blue_cup": {
+   "pick": "cup/ep21/g1",
+   "pick_repo_path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/blue_cup_c0b_cup_ep21_g1.glb",
+   "pick_sha256": "27957f760653bb05237d275b712deb49b9b7d18ed0f88365bc0e12cb7aad1c0f",
+   "pick_episode": 21,
+   "references": [
+    {
+     "label": "cup/ep22/g0",
+     "episode": "22",
+     "source_episodes": [
+      22
+     ],
+     "sha256": "6d76fac07150fc2e8cc164469a83822b6b68ea6500e2b49a593a19e5e098e7e7",
+     "input": "pub/blue_cup/cup__ep22__g0.glb"
+    },
+    {
+     "label": "cup/ep22/g1",
+     "episode": "22",
+     "source_episodes": [
+      22
+     ],
+     "sha256": "3275ecced7550141fbd8950936387e7beb85d7940dd393feb0ec70f93d672753",
+     "input": "pub/blue_cup/cup__ep22__g1.glb"
+    }
+   ],
+   "n_references": 2,
+   "rule": "eligible C0b public candidates whose source episodes do not include the pick episode (rack joint = eps [13, 27], merged cup = eps 21+22)"
+  },
+  "beige_cup": {
+   "pick": "beige/ep11/g1",
+   "pick_repo_path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/beige_cup_c0b_beige_ep11_g1.glb",
+   "pick_sha256": "5c39b6561c9b17f1caf729397bfa708936b29d5e2601c0b2a5284d690b4f59a3",
+   "pick_episode": 11,
+   "references": [],
+   "n_references": 0,
+   "rule": "eligible C0b public candidates whose source episodes do not include the pick episode (rack joint = eps [13, 27], merged cup = eps 21+22)"
+  }
+ },
+ "report_meshes": {
+  "c0b_public": {
+   "white_pot": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/white_pot_c0b_pot_ep43_fit.glb",
+   "plastic_dish_rack": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/plastic_dish_rack_c0b_rack_ep13_full.glb",
+   "blue_cup": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/blue_cup_c0b_cup_ep21_g1.glb",
+   "beige_cup": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/beige_cup_c0b_beige_ep11_g1.glb"
+  }
+ }
+}

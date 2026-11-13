@@ -1,0 +1,55 @@
+cell          status   ckpt   draws  AUC mean   sd     worst   svr mean  sd     ES stop
+C/ep2-s42     scored     50M     10   0.9554  0.0285  0.8775   0.9618  0.0317  two in a row >= 0.9 at 50003968
+K/ep2-s42     scored     30M     10   0.9647  0.0094  0.9401   0.9728  0.0102  no new best for 20000768 steps at 500039
+D/ep2-s42     scored     30M     10   0.7428  0.2694  0.3309   0.7499  0.2681  two in a row >= 0.9 at 40001536
+S/ep2-s42     scored     20M     10   0.7514  0.2112  0.4011   0.7617  0.1992  no new best for 20000768 steps at 400015
+C/ep2-s43     scored     40M     10   0.8692  0.1736  0.5319   0.8774  0.1665  two in a row >= 0.9 at 40001536
+K/ep2-s43     scored     30M     10   0.9591  0.0195  0.9073   0.9676  0.0183  two in a row >= 0.9 at 30003200
+D/ep2-s43     scored     30M     10   0.8618  0.2362  0.1745   0.8704  0.2366  no new best for 20000768 steps at 500039
+S/ep2-s43     scored     20M     10   0.8081  0.2247  0.3062   0.8144  0.2229  no new best for 20000768 steps at 400015
+C/ep12-s42    scored     20M     10   0.5760  0.0663  0.5085   0.5975  0.0673  no new best for 20000768 steps at 400015
+K/ep12-s42    scored     50M     10   0.5192  0.0672  0.4132   0.5210  0.0634  -
+D/ep12-s42    scored     70M     10   0.9236  0.0207  0.8733   0.9366  0.0187  two in a row >= 0.9 at 70004736
+S/ep12-s42    scored     30M     10   0.8318  0.0702  0.6737   0.8348  0.0739  no new best for 20000768 steps at 500039
+C/ep12-s43    scored     40M     10   0.6119  0.0141  0.5929   0.6163  0.0129  no new best for 20000768 steps at 600023
+K/ep12-s43    scored     40M     10   0.5818  0.0235  0.5447   0.5786  0.0225  no new best for 20000768 steps at 600023
+D/ep12-s43    scored     60M     10   0.9189  0.0219  0.8721   0.9217  0.0244  -
+S/ep12-s43    scored     30M     10   0.8015  0.0817  0.5913   0.8187  0.0817  no new best for 20000768 steps at 500039
+C/ep18-s42    scored     20M     10   0.6198  0.0149  0.5758   0.5899  0.0133  no new best for 20000768 steps at 400015
+K/ep18-s42    scored     10M     10   0.6226  0.0058  0.6099   0.5950  0.0092  no new best for 20000768 steps at 700047
+D/ep18-s42    scored     10M     10   0.6034  0.0527  0.4480   0.5798  0.0390  no new best for 20000768 steps at 400015
+S/ep18-s42    scored     10M     10   0.5526  0.0985  0.3833   0.5334  0.0852  no new best for 20000768 steps at 600023
+C/ep18-s43    scored     20M     10   0.6243  0.0016  0.6219   0.5969  0.0069  no new best for 20000768 steps at 400015
+K/ep18-s43    scored     10M     10   0.6197  0.0090  0.5985   0.5927  0.0005  no new best for 20000768 steps at 500039
+D/ep18-s43    scored     10M      9   0.6004  0.0591  0.4345   0.5746  0.0491  no new best for 20000768 steps at 500039
+S/ep18-s43    scored     10M     10   0.6156  0.0135  0.5915   0.5883  0.0091  no new best for 20000768 steps at 400015
+C/ep24-s42    scored     20M     10   0.2337  0.0026  0.2286   0.2367  0.0034  no new best for 20000768 steps at 400015
+K/ep24-s42    scored     50M     10   0.1911  0.0221  0.1364   0.1675  0.0079  -
+D/ep24-s42    scored     30M     10   0.2326  0.0060  0.2148   0.2348  0.0081  no new best for 20000768 steps at 500039
+S/ep24-s42    scored     10M     10   0.2488  0.0045  0.2439   0.2265  0.0113  no new best for 20000768 steps at 400015
+C/ep24-s43    scored     20M     10   0.2333  0.0012  0.2306   0.2150  0.0018  -
+K/ep24-s43    scored     60M     10   0.2507  0.0130  0.2459   0.2254  0.0161  -
+D/ep24-s43    scored     40M     10   0.2297  0.0025  0.2252   0.2340  0.0015  no new best for 20000768 steps at 600023
+S/ep24-s43    scored     40M     10   0.2370  0.0144  0.2082   0.2193  0.0135  no new best for 20000768 steps at 600023
+K_vs_C: inconclusive  mean delta -0.0018  (provisional on complete episodes -0.0018)
+   ep2: {'C': 0.9123, 'K': 0.9619, 'delta': 0.0496}
+   ep12: {'C': 0.5939, 'K': 0.5505, 'delta': -0.0434}
+   ep18: {'C': 0.622, 'K': 0.6212, 'delta': -0.0009}
+   ep24: {'C': 0.2335, 'K': 0.2209, 'delta': -0.0126}
+D_vs_C: inconclusive  mean delta 0.0487  (provisional on complete episodes 0.0487)  sd falls >=40 % on 1 episodes
+   ep2: {'C': 0.9123, 'D': 0.8023, 'delta': -0.11, 'sd_C': 0.1011, 'sd_D': 0.2528, 'sd_drop': -1.5017, 'sd_falls_40pct': False}
+   ep12: {'C': 0.5939, 'D': 0.9213, 'delta': 0.3273, 'sd_C': 0.0402, 'sd_D': 0.0213, 'sd_drop': 0.4701, 'sd_falls_40pct': True}
+   ep18: {'C': 0.622, 'D': 0.6019, 'delta': -0.0201, 'sd_C': 0.0083, 'sd_D': 0.0559, 'sd_drop': -5.7758, 'sd_falls_40pct': False}
+   ep24: {'C': 0.2335, 'D': 0.2311, 'delta': -0.0023, 'sd_C': 0.0019, 'sd_D': 0.0043, 'sd_drop': -1.2368, 'sd_falls_40pct': False}
+seed selection by sim_vs_ref (gain of the picked seed over the 2-seed mean, AUC): {'C': 0.0159, 'K': 0.0163, 'D': 0.0162}
+sim_vs_ref orders the two seeds like AUC in 12 of 12 (arm, episode) pairs
+S_vs_C: no signal  mean delta 0.0154  min delta -0.1326  (provisional on complete episodes 0.0154)  -> stop: solved references are not used for eval
+   ep2: C 0.9123 S 0.7797 delta -0.1326 draw sd C 0.1011 S 0.218  s42: C 0.9554 @50003968 S 0.7514 @20000768  s43: C 0.8692 @40001536 S 0.8081 @20000768
+   ep12: C 0.5939 S 0.8166 delta 0.2227 draw sd C 0.0402 S 0.0759  s42: C 0.576 @20000768 S 0.8318 @30003200  s43: C 0.6119 @40001536 S 0.8015 @30003200
+   ep18: C 0.622 S 0.5841 delta -0.0379 draw sd C 0.0083 S 0.056  s42: C 0.6198 @20000768 S 0.5526 @10002432  s43: C 0.6243 @20000768 S 0.6156 @10002432
+   ep24: C 0.2335 S 0.2429 delta 0.0094 draw sd C 0.0019 S 0.0095  s42: C 0.2337 @20000768 S 0.2488 @10002432  s43: C 0.2333 @20000768 S 0.237 @40001536
+V_vs_C: INCOMPLETE  mean delta None  min delta None  (provisional on complete episodes None)  missing ['V/ep2-s42', 'V/ep2-s43', 'V/ep12-s42', 'V/ep12-s43', 'V/ep18-s42', 'V/ep18-s43', 'V/ep24-s42', 'V/ep24-s43']  -> no verdict
+   ep2: C 0.9123 V None delta None draw sd C 0.1011 V None  s42: C 0.9554 @50003968 V None @None  s43: C 0.8692 @40001536 V None @None
+   ep12: C 0.5939 V None delta None draw sd C 0.0402 V None  s42: C 0.576 @20000768 V None @None  s43: C 0.6119 @40001536 V None @None
+   ep18: C 0.622 V None delta None draw sd C 0.0083 V None  s42: C 0.6198 @20000768 V None @None  s43: C 0.6243 @20000768 V None @None
+   ep24: C 0.2335 V None delta None draw sd C 0.0019 V None  s42: C 0.2337 @20000768 V None @None  s43: C 0.2333 @20000768 V None @None

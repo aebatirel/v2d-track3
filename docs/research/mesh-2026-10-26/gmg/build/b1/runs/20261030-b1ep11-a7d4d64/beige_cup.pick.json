@@ -1,0 +1,49 @@
+{
+ "cid": "shell_t5p36",
+ "variant": {
+  "K": 3,
+  "b_tie": 1,
+  "prior": true
+ },
+ "tie_set": [
+  [
+   "shell_t5p36",
+   0.0,
+   0.0
+  ]
+ ],
+ "trace": [
+  {
+   "step": "vetoes",
+   "removed": {},
+   "not_applied": [
+    "V3 (tau fitted at B13)",
+    "V5 (B5/B7)"
+   ]
+  },
+  {
+   "step": "tie band",
+   "best": "shell_t5p36",
+   "b_tie": 1,
+   "tie_set": [
+    [
+     "shell_t5p36",
+     0.0,
+     0.0
+    ]
+   ]
+  },
+  {
+   "step": "priors",
+   "order": [
+    "shell_t5p36"
+   ],
+   "keys": "class (STRUCT > FUSE > GEN > SHELL > HULL), then lower E; flip safety, markers and the parameter prior are not in B1"
+  }
+ ],
+ "fallback": null,
+ "flags": [
+  "dev_tier",
+  "skeleton_select_B1"
+ ]
+}

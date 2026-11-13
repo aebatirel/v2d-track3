@@ -1,0 +1,390 @@
+{
+ "rule": "PREREG F-I5.15 (3), INTERLOCK 21.13.4 (P77, P78; report only)",
+ "episodes": {
+  "12": {
+   "receiver": "plastic_dish_rack",
+   "guest": "blue_cup",
+   "faithful_cm3": {
+    "plastic_dish_rack": 355.68,
+    "blue_cup": 224.56
+   },
+   "faithful_boxes": {
+    "plastic_dish_rack": 4045,
+    "blue_cup": 2683
+   },
+   "rows": [
+    {
+     "frame": 6,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": -15.1,
+       "lowest_mesh_mm": -15.12,
+       "pass_": false
+      },
+      "b_support": {
+       "table_mm": 0.0,
+       "receiver_mm": 49.09,
+       "receiver_mesh_mm": 51.93,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 0.0,
+       "pass_": true
+      },
+      "fail": "a_table",
+      "fails": [
+       "a_table"
+      ],
+      "pass_": false
+     },
+     "predicted_fail": "a_table",
+     "verdict": "P77 holds"
+    },
+    {
+     "frame": 176,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": -3.08,
+       "lowest_mesh_mm": -2.2,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 0.0,
+       "receiver_mm": 0.0,
+       "receiver_mesh_mm": 0.02,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 7.408,
+       "removed_share": 0.0237,
+       "topology": {
+        "default": [
+         7,
+         72
+        ],
+        "cut": [
+         22,
+         67
+        ]
+       },
+       "samples_inside": 15346,
+       "wall_samples_needing": 14769,
+       "wall_samples_bad": 4785,
+       "min_wall_left_mm": 0.049,
+       "ok_topology": false,
+       "ok_wall": false,
+       "ok_removed": true,
+       "pass_": false
+      },
+      "fail": "c_overlap",
+      "fails": [
+       "c_overlap"
+      ],
+      "pass_": false
+     },
+     "predicted_fail": null,
+     "verdict": "not in P77 / P78 (reported)"
+    }
+   ],
+   "sec": 259.2
+  },
+  "13": {
+   "receiver": "plastic_dish_rack",
+   "guest": "blue_cup",
+   "faithful_cm3": {
+    "plastic_dish_rack": 282.3,
+    "blue_cup": 212.6
+   },
+   "faithful_boxes": {
+    "plastic_dish_rack": 3307,
+    "blue_cup": 2563
+   },
+   "rows": [
+    {
+     "frame": 146,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": -23.34,
+       "lowest_mesh_mm": -23.27,
+       "pass_": false
+      },
+      "b_support": {
+       "table_mm": 0.0,
+       "receiver_mm": 0.0,
+       "receiver_mesh_mm": 0.0,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 3.2,
+       "removed_share": 0.013,
+       "topology": {
+        "default": [
+         13,
+         85
+        ],
+        "cut": [
+         19,
+         87
+        ]
+       },
+       "samples_inside": 7194,
+       "wall_samples_needing": 6852,
+       "wall_samples_bad": 2040,
+       "min_wall_left_mm": 0.049,
+       "ok_topology": false,
+       "ok_wall": false,
+       "ok_removed": true,
+       "pass_": false
+      },
+      "fail": "a_table",
+      "fails": [
+       "a_table",
+       "c_overlap"
+      ],
+      "pass_": false
+     },
+     "predicted_fail": "a_table",
+     "verdict": "P77 falsified (predicted a_table only, got ['a_table', 'c_overlap'])"
+    }
+   ],
+   "sec": 218.9
+  },
+  "31": {
+   "receiver": "plastic_dish_rack",
+   "guest": "mini_sweeper",
+   "faithful_cm3": {
+    "plastic_dish_rack": 398.93,
+    "mini_sweeper": 34.91
+   },
+   "faithful_boxes": {
+    "plastic_dish_rack": 4751,
+    "mini_sweeper": 736
+   },
+   "rows": [
+    {
+     "frame": 282,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": 46.87,
+       "lowest_mesh_mm": 45.03,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 46.87,
+       "receiver_mm": 11.31,
+       "receiver_mesh_mm": 14.41,
+       "pass_": false
+      },
+      "c_overlap": {
+       "V_ov_cm3": 0.0,
+       "pass_": true
+      },
+      "fail": "b_support",
+      "fails": [
+       "b_support"
+      ],
+      "pass_": false
+     },
+     "predicted_fail": "b_support",
+     "verdict": "P77 holds"
+    },
+    {
+     "frame": 8,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": 47.97,
+       "lowest_mesh_mm": 46.07,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 47.97,
+       "receiver_mm": 33.32,
+       "receiver_mesh_mm": 35.05,
+       "pass_": false
+      },
+      "c_overlap": {
+       "V_ov_cm3": 0.0,
+       "pass_": true
+      },
+      "fail": "b_support",
+      "fails": [
+       "b_support"
+      ],
+      "pass_": false
+     },
+     "predicted_fail": "b_support",
+     "verdict": "P77 holds"
+    }
+   ],
+   "sec": 35.4
+  },
+  "11": {
+   "receiver": "beige_cup",
+   "guest": "blue_cup",
+   "faithful_cm3": {
+    "beige_cup": 167.3,
+    "blue_cup": 172.62
+   },
+   "faithful_boxes": {
+    "beige_cup": 2160,
+    "blue_cup": 2041
+   },
+   "rows": [
+    {
+     "frame": 126,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": 3.25,
+       "lowest_mesh_mm": 3.22,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 3.25,
+       "receiver_mm": 0.0,
+       "receiver_mesh_mm": 0.0,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 85.248,
+       "removed_share": 0.5288,
+       "topology": {
+        "default": [
+         2,
+         79
+        ],
+        "cut": [
+         119,
+         127
+        ]
+       },
+       "samples_inside": 126204,
+       "samples_used": 20000,
+       "wall_samples_needing": 19881,
+       "wall_samples_bad": 8532,
+       "min_wall_left_mm": 0.049,
+       "ok_topology": false,
+       "ok_wall": false,
+       "ok_removed": false,
+       "pass_": false
+      },
+      "fail": "c_overlap",
+      "fails": [
+       "c_overlap"
+      ],
+      "pass_": false
+     },
+     "predicted_fail": "c_overlap",
+     "verdict": "P77 holds"
+    }
+   ],
+   "sec": 80.3
+  },
+  "2": {
+   "receiver": "white_pot",
+   "guest": "white_pot_lid",
+   "faithful_cm3": {
+    "white_pot": 363.92,
+    "white_pot_lid": 180.8
+   },
+   "faithful_boxes": {
+    "white_pot": 3957,
+    "white_pot_lid": 2207
+   },
+   "rows": [
+    {
+     "frame": 24,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": 60.94,
+       "lowest_mesh_mm": 60.5,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 60.94,
+       "receiver_mm": 0.0,
+       "receiver_mesh_mm": 0.0,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 24.616,
+       "removed_share": 0.076,
+       "topology": {
+        "default": [
+         8,
+         44
+        ],
+        "cut": [
+         24,
+         80
+        ]
+       },
+       "samples_inside": 54191,
+       "samples_used": 20000,
+       "wall_samples_needing": 19358,
+       "wall_samples_bad": 6207,
+       "min_wall_left_mm": 0.049,
+       "ok_topology": false,
+       "ok_wall": false,
+       "ok_removed": true,
+       "pass_": false
+      },
+      "fail": "c_overlap",
+      "fails": [
+       "c_overlap"
+      ],
+      "pass_": false
+     },
+     "predicted_fail": null,
+     "verdict": "P78 holds"
+    },
+    {
+     "frame": 328,
+     "precheck": {
+      "a_table": {
+       "lowest_mm": 62.77,
+       "lowest_mesh_mm": 62.0,
+       "pass_": true
+      },
+      "b_support": {
+       "table_mm": 62.77,
+       "receiver_mm": 0.0,
+       "receiver_mesh_mm": 0.0,
+       "pass_": true
+      },
+      "c_overlap": {
+       "V_ov_cm3": 23.664,
+       "removed_share": 0.0708,
+       "topology": {
+        "default": [
+         8,
+         44
+        ],
+        "cut": [
+         20,
+         75
+        ]
+       },
+       "samples_inside": 52749,
+       "samples_used": 20000,
+       "wall_samples_needing": 19478,
+       "wall_samples_bad": 6291,
+       "min_wall_left_mm": 0.049,
+       "ok_topology": false,
+       "ok_wall": false,
+       "ok_removed": true,
+       "pass_": false
+      },
+      "fail": "c_overlap",
+      "fails": [
+       "c_overlap"
+      ],
+      "pass_": false
+     },
+     "predicted_fail": null,
+     "verdict": "P78 holds"
+    }
+   ],
+   "sec": 215.9
+  }
+ }
+}

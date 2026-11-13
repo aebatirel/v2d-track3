@@ -1,0 +1,38 @@
+{
+ "white_pot": {
+  "region_voxels": 10,
+  "plane_point_mm": [
+   60.1,
+   9.8,
+   -28.0
+  ],
+  "sim_solid": {
+   "kind": "voxels",
+   "cm3": 0.9520000000000001,
+   "width_mm": 85.11
+  },
+  "sub_solid": {
+   "kind": "voxels",
+   "cm3": 0.9520000000000001,
+   "width_mm": 84.59
+  }
+ },
+ "white_pot_lid": {
+  "region_voxels": 651,
+  "plane_point_mm": [
+   -0.4,
+   -12.2,
+   14.3
+  ],
+  "sim_solid": {
+   "kind": "voxels",
+   "cm3": 56.21600000000001,
+   "width_mm": 141.72
+  },
+  "sub_solid": {
+   "kind": "voxels",
+   "cm3": 56.21600000000001,
+   "width_mm": 135.17
+  }
+ }
+}

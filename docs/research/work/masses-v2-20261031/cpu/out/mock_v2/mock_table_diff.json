@@ -1,0 +1,70 @@
+{
+ "episodes": {
+  "24": {
+   "fingerprint": "83b9bdd4bfe74aa9bc97df0e4fe34d79",
+   "real_md5": "424a39520f073f20ae436d0ec5636a1a",
+   "mock_md5": "3159a2c512d6f7bd984a2941a35dc94e"
+  },
+  "11": {
+   "fingerprint": "495226c211fc5e381e2f6f45eb2301a0",
+   "real_md5": "fbf03ebdb68f47776c7e20802194ffe6",
+   "mock_md5": "cb269fa8fe1212c2c27e9a5c4a32ceda"
+  },
+  "13": {
+   "fingerprint": "231ba75397e31811d965cc3dc645dd11",
+   "real_md5": "414d0200732b79b260cc2d3080c50107",
+   "mock_md5": "682ff17d1810527ebaa16f3ea6fcc702"
+  },
+  "31": {
+   "fingerprint": "3cf0e9c1fad6b3b9fa97a6ba3040ea65",
+   "real_md5": "0cdf57f7bf7ded3e2b51f69f730cb090",
+   "mock_md5": "cd8c4822913e02a33d01c250d51a35cd"
+  }
+ },
+ "provenance": {
+  "20261024-ev3-2c1e4dd/refs/perc2mcs/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet": "STAND-IN (the glockt parquet, asset paths -> /content/assets)",
+  "20261024-ev3-2c1e4dd/refs/perc2mcs/ep24/reconstructed_stage/t3_ep024_support.usda": "STAND-IN",
+  "20261024-ev3-2c1e4dd/refs/glockt/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/ref_gl_ilc.parquet": "REAL (asset paths re-pointed)",
+  "20261024-ev3-2c1e4dd/refs/glockt/ep24/reconstructed_stage/t3_ep024_support.usda": "STAND-IN",
+  "20261024-ev3-2c1e4dd/refs/sf/ep24/assets/mesh/wooden_piece_1/wooden_piece_1.glb": "STAND-IN (library_v3 glb)",
+  "20261024-ev3-2c1e4dd/refs/sf/ep24/assets/mesh/wooden_piece_2/wooden_piece_2.glb": "STAND-IN (library_v3 glb)",
+  "20261024-ev3-2c1e4dd/refs/sf/ep24/assets/urdf/wooden_piece_1_rigid.urdf": "REAL",
+  "20261024-ev3-2c1e4dd/refs/sf/ep24/assets/urdf/wooden_piece_2_rigid.urdf": "REAL",
+  "20261024-ev3-2c1e4dd/results/glock_public/ep24/rest_check.json": "REAL",
+  "20261024-ev3-2c1e4dd/results/glock_public/ep24/zero_score.txt": "STAND-IN",
+  "20261024-ev3-2c1e4dd/results/glock_public/ep24/support_fill.json": "STAND-IN",
+  "20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d6e85c126bb940e0b7c17ebaff9e87d6-0.parquet": "STAND-IN (the glockt parquet, asset paths -> /content/assets)",
+  "20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/reconstructed_stage/t3_ep011_support.usda": "STAND-IN",
+  "20261025-twin11v3-0e8aebb/refs/glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet": "REAL (asset paths re-pointed)",
+  "20261025-twin11v3-0e8aebb/refs/glockt/ep11/reconstructed_stage/t3_ep011_support.usda": "STAND-IN",
+  "20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/mesh/beige_cup/beige_cup.glb": "STAND-IN (library_v3 glb)",
+  "20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/mesh/blue_cup/blue_cup.glb": "STAND-IN (library_v3 glb)",
+  "20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/urdf/beige_cup_rigid.urdf": "REAL",
+  "20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/urdf/blue_cup_rigid.urdf": "REAL",
+  "20261025-twin11v3-0e8aebb/results/glock_public/ep11/rest_check.json": "REAL",
+  "20261025-twin11v3-0e8aebb/results/glock_public/ep11/zero_score.txt": "STAND-IN",
+  "20261025-twin11v3-0e8aebb/results/glock_public/ep11/support_fill.json": "STAND-IN",
+  "20261030-orcB-38234d1/refs/perc2mck/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/0d7b4754b12b4f4aad38b344b3f82c5f-0.parquet": "STAND-IN (the glockt parquet, asset paths -> /content/assets)",
+  "20261030-orcB-38234d1/refs/perc2mck/ep13/reconstructed_stage/t3_ep013_support.usda": "STAND-IN",
+  "20261030-orcB-38234d1/refs/glockt/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/ref_gl_ilc.parquet": "REAL (asset paths re-pointed)",
+  "20261030-orcB-38234d1/refs/glockt/ep13/reconstructed_stage/t3_ep013_support.usda": "STAND-IN",
+  "20261030-orcB-38234d1/refs/sf/ep13/assets/mesh/blue_cup/blue_cup.glb": "STAND-IN (library_v3 glb)",
+  "20261030-orcB-38234d1/refs/sf/ep13/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb": "STAND-IN (library_v3 glb)",
+  "20261030-orcB-38234d1/refs/sf/ep13/assets/urdf/blue_cup_rigid.urdf": "REAL",
+  "20261030-orcB-38234d1/refs/sf/ep13/assets/urdf/plastic_dish_rack_rigid.urdf": "REAL",
+  "20261030-orcB-38234d1/results/glock_public/ep13/rest_check.json": "REAL",
+  "20261030-orcB-38234d1/results/glock_public/ep13/zero_score.txt": "STAND-IN",
+  "20261030-orcB-38234d1/results/glock_public/ep13/support_fill.json": "STAND-IN",
+  "20261024-ev30rp-07eef1a/refs/perc2mck/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/919152d3c8c943f3a6900a4ee7fa0c19-0.parquet": "STAND-IN (the glockt parquet, asset paths -> /content/assets)",
+  "20261024-ev30rp-07eef1a/refs/perc2mck/ep31/reconstructed_stage/t3_ep031_support.usda": "STAND-IN",
+  "20261024-ev30rp-07eef1a/refs/glockt/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/ref_gl_ilc.parquet": "REAL (asset paths re-pointed)",
+  "20261024-ev30rp-07eef1a/refs/glockt/ep31/reconstructed_stage/t3_ep031_support.usda": "STAND-IN",
+  "20261024-ev30rp-07eef1a/refs/sf/ep31/assets/mesh/mini_sweeper/mini_sweeper.glb": "STAND-IN (library_v3 glb)",
+  "20261024-ev30rp-07eef1a/refs/sf/ep31/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb": "STAND-IN (library_v3 glb)",
+  "20261024-ev30rp-07eef1a/refs/sf/ep31/assets/urdf/mini_sweeper_rigid.urdf": "REAL",
+  "20261024-ev30rp-07eef1a/refs/sf/ep31/assets/urdf/plastic_dish_rack_rigid.urdf": "REAL",
+  "20261024-ev30rp-07eef1a/results/glock_public/ep31/rest_check.json": "REAL",
+  "20261024-ev30rp-07eef1a/results/glock_public/ep31/zero_score.txt": "STAND-IN",
+  "20261024-ev30rp-07eef1a/results/glock_public/ep31/support_fill.json": "STAND-IN"
+ }
+}

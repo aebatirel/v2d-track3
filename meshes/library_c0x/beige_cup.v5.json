@@ -1,0 +1,98 @@
+{
+ "obj": "beige_cup",
+ "mode": "library",
+ "episodes": [
+  [
+   "/content/perc2m/ep11/poses.npz",
+   "/content/cache/depth/ep11/depths_fs0.5.npy",
+   "/content/refs/perc2m/ep11/hands.npz",
+   "blue_cup=/content/results/library_v5/m0/blue_cup_M0.glb"
+  ]
+ ],
+ "params": "pipeline/mesh_v5.json",
+ "timings": {
+  "pass0": 0.0,
+  "fuse": 101.6,
+  "post": 0.8,
+  "F4": 81.5,
+  "support": 0.4,
+  "pieces": 354.4,
+  "total": 574.8
+ },
+ "M0": "/content/results/library_v5/m0/beige_cup_M0_full.glb",
+ "O": {
+  "solid_cm3": 173.14,
+  "g1_seen_free_violation_cm3": 0.02,
+  "g2_unexplained8": 0.028,
+  "g5_coarse_only_share": 0.598,
+  "g1_pass": true,
+  "g2_pass": true,
+  "full_topo": {
+   "watertight": true,
+   "bodies": 2,
+   "euler": -50,
+   "faces": 42312,
+   "vol_cm3": 166.0
+  },
+  "closing": "adj",
+  "unknown_share": 0.05
+ },
+ "gates_O": {
+  "tag": "O",
+  "T": true,
+  "decimate": "open3d",
+  "X": true,
+  "xflips": 0,
+  "xadd_med_mm": 1.44,
+  "G1": true,
+  "G2": true
+ },
+ "gates_F4": {
+  "tag": "F4",
+  "T": true,
+  "decimate": "open3d",
+  "X": true,
+  "xflips": 0,
+  "xadd_med_mm": 1.165
+ },
+ "branch": "O",
+ "support": {
+  "obj": "beige_cup",
+  "rests": [],
+  "clusters": [],
+  "skipped": "no observed unassisted rest"
+ },
+ "final": {
+  "full": {
+   "faces": 42312,
+   "verts": 21106,
+   "watertight": true,
+   "bodies": 2,
+   "euler": -50
+  },
+  "method": "open3d",
+  "out": {
+   "faces": 4096,
+   "verts": 1998,
+   "watertight": true,
+   "bodies": 2,
+   "euler": -50
+  },
+  "tries": [
+   {
+    "method": "open3d",
+    "faces": 4096,
+    "verts": 1998,
+    "watertight": true,
+    "bodies": 2,
+    "euler": -50
+   }
+  ]
+ },
+ "pieces": {
+  "n_pieces": 32,
+  "solid_cm3": 163.8,
+  "union_over_solid": 1.471,
+  "max_piece_excess_cm3": 2.302
+ }
+}

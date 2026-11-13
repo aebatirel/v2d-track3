@@ -1,0 +1,78 @@
+{
+ "white_pot": {
+  "held_frames": 263,
+  "raw": {
+   "pos_rms_cm": 0.597,
+   "rot_median_deg": 1.665,
+   "add_mean_cm": 0.429,
+   "delay_frames": 0.5
+  },
+  "kf_low": {
+   "pos_rms_cm": 0.595,
+   "rot_median_deg": 1.72,
+   "add_mean_cm": 0.427,
+   "delay_frames": 0.5
+  },
+  "kf_medium": {
+   "pos_rms_cm": 0.596,
+   "rot_median_deg": 1.744,
+   "add_mean_cm": 0.428,
+   "delay_frames": 0.5
+  },
+  "kf_high": {
+   "pos_rms_cm": 0.607,
+   "rot_median_deg": 1.757,
+   "add_mean_cm": 0.435,
+   "delay_frames": 0.5
+  },
+  "rts_medium": {
+   "pos_rms_cm": 0.59,
+   "rot_median_deg": 1.648,
+   "add_mean_cm": 0.416,
+   "delay_frames": 0.5
+  },
+  "raw_advanced_0.545": {
+   "pos_rms_cm": 0.538,
+   "rot_median_deg": 1.625,
+   "add_mean_cm": 0.343
+  }
+ },
+ "white_pot_lid": {
+  "held_frames": 106,
+  "raw": {
+   "pos_rms_cm": 0.434,
+   "rot_median_deg": 0.903,
+   "add_mean_cm": 0.307,
+   "delay_frames": 0.55
+  },
+  "kf_low": {
+   "pos_rms_cm": 0.436,
+   "rot_median_deg": 0.866,
+   "add_mean_cm": 0.311,
+   "delay_frames": 0.55
+  },
+  "kf_medium": {
+   "pos_rms_cm": 0.46,
+   "rot_median_deg": 0.864,
+   "add_mean_cm": 0.333,
+   "delay_frames": 0.55
+  },
+  "kf_high": {
+   "pos_rms_cm": 0.521,
+   "rot_median_deg": 0.905,
+   "add_mean_cm": 0.374,
+   "delay_frames": 0.55
+  },
+  "rts_medium": {
+   "pos_rms_cm": 0.432,
+   "rot_median_deg": 0.847,
+   "add_mean_cm": 0.302,
+   "delay_frames": 0.55
+  },
+  "raw_advanced_0.545": {
+   "pos_rms_cm": 0.321,
+   "rot_median_deg": 0.826,
+   "add_mean_cm": 0.241
+  }
+ }
+}

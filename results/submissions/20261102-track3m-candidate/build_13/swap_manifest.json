@@ -1,0 +1,23 @@
+{
+ "tool": "tools/pack_swap_rows.py",
+ "base": "/tmp/claude-0/-home-user-v2d-track3/65a4fd12-426c-5e45-8cf4-6cacb17fbbb8/scratchpad/pack12c/track3_submission.parquet",
+ "base_sha256": "3542f8e546e8e3212594d28dc398fd7e27a4a9abb0e3fb4f1f1c85719c4c8567",
+ "code_commit": "https://github.com/aebatirel/v2d-track3/commit/b45b377bae18d7dc2b0710355ea9dde435169275",
+ "swaps": {
+  "20": {
+   "rollout": "/tmp/claude-0/-home-user-v2d-track3/65a4fd12-426c-5e45-8cf4-6cacb17fbbb8/scratchpad/p13/runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw/r1/ep20/episode_000020.parquet",
+   "rollout_sha256": "797bbeb6004d017a57627724207caa431a9ee51b6a853e0dfcdfc47694f2b9b4",
+   "json_sha256": "7440035aa601cf41bcf84d57d90bf040185b6f1b177983fd2c302d42aa7ac517",
+   "checkpoint_sha256": "1e08b92ff96d076d48fe58ea02d5006aa4ebed4a3767b82fc60f3a99f0763c66",
+   "rows": 404,
+   "pose_rows_changed": 403
+  }
+ },
+ "cd_o": {
+  "sha256": "d55cc9f60a4673c92a7a4776a067e3a1c92444669f0e4ff9d10095dca0318395",
+  "rows": 294912,
+  "rows_changed_vs_base": 0
+ },
+ "checks_pass": true,
+ "out_sha256": "791c3922fffd15f3d63657c3a34bf5e0ee971ec6158f5d2b5e5db2580defb094"
+}

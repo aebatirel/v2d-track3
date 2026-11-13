@@ -1,0 +1,128 @@
+{
+ "precheck": {
+  "p1": {
+   "a_table": {
+    "lowest_mm": -10.0,
+    "lowest_mesh_mm": -10.0,
+    "pass_": false
+   },
+   "b_support": {
+    "table_mm": 0.0,
+    "receiver_mm": 72.95,
+    "receiver_mesh_mm": 73.41,
+    "pass_": true
+   },
+   "c_overlap": {
+    "V_ov_cm3": 0.0,
+    "pass_": true
+   },
+   "fail": "a_table",
+   "fails": [
+    "a_table"
+   ],
+   "pass_": false
+  },
+  "p2": {
+   "a_table": {
+    "lowest_mm": 10.0,
+    "lowest_mesh_mm": 10.0,
+    "pass_": true
+   },
+   "b_support": {
+    "table_mm": 10.0,
+    "receiver_mm": 72.95,
+    "receiver_mesh_mm": 73.38,
+    "pass_": false
+   },
+   "c_overlap": {
+    "V_ov_cm3": 0.0,
+    "pass_": true
+   },
+   "fail": "b_support",
+   "fails": [
+    "b_support"
+   ],
+   "pass_": false
+  },
+  "p3": {
+   "a_table": {
+    "lowest_mm": 0.0,
+    "lowest_mesh_mm": 0.0,
+    "pass_": true
+   },
+   "b_support": {
+    "table_mm": 0.0,
+    "receiver_mm": 0.0,
+    "receiver_mesh_mm": 0.0,
+    "pass_": true
+   },
+   "c_overlap": {
+    "V_ov_cm3": 77.288,
+    "removed_share": 0.7712,
+    "topology": {
+     "default": [
+      1,
+      0
+     ],
+     "cut": [
+      2,
+      2
+     ]
+    },
+    "samples_inside": 98467,
+    "samples_used": 20000,
+    "wall_samples_needing": 20000,
+    "wall_samples_bad": 10041,
+    "min_wall_left_mm": 0.049,
+    "ok_topology": false,
+    "ok_wall": false,
+    "ok_removed": false,
+    "pass_": false
+   },
+   "fail": "c_overlap",
+   "fails": [
+    "c_overlap"
+   ],
+   "pass_": false
+  },
+  "p4": {
+   "a_table": {
+    "lowest_mm": 10.5,
+    "lowest_mesh_mm": 10.5,
+    "pass_": true
+   },
+   "b_support": {
+    "table_mm": 10.5,
+    "receiver_mm": 0.0,
+    "receiver_mesh_mm": 0.02,
+    "pass_": true
+   },
+   "c_overlap": {
+    "V_ov_cm3": 12.904,
+    "removed_share": 0.0876,
+    "topology": {
+     "default": [
+      1,
+      0
+     ],
+     "cut": [
+      1,
+      0
+     ]
+    },
+    "samples_inside": 73705,
+    "samples_used": 20000,
+    "wall_samples_needing": 20000,
+    "wall_samples_bad": 0,
+    "min_wall_left_mm": 3.491,
+    "ok_topology": true,
+    "ok_wall": true,
+    "ok_removed": true,
+    "pass_": true
+   },
+   "fail": null,
+   "fails": [],
+   "pass_": true
+  }
+ }
+}

@@ -1,0 +1,54 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[25], seeds [42], props /content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json (d55089307ff2ced3e3244c95be22c9d6), LIB /content/v2d-track3/meshes/library_v3, PIECES /content/v2d-track3/meshes/carve/ev25, table /content/v2d-track3/docs/research/work/masses-eval-20261031/packed_refs.json (a7ed39d65e52)
+[2026-10-31T23:24:55Z] mass_eval ARM=dr: NO masses (props NOT used: 0.3 kg placeholder everywhere); start-state randomisation FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed> FC_DR_SKIP_IMMEDIATE=1 in the training process; patch ops/box/patch_flashchord_dr.py md5 570a7f47793d02ba5b0bf3d5e6fd6eac; folders /content/results/dr_eval, refs/perc2mckdr, results/hard_ab/ep<N>/mckdr-s<seed>
+[2026-10-31T23:25:38Z] mass_eval ep25: pulled 27 files of 20261026-c25s42-feb0407 (pull_files, no store listing)
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261026-c25s42-feb0407/runs/perc2mcks/ep25-s42/policy_250003456.safetensors
+[2026-10-31T23:25:42Z] mass_eval: packed references checked for [25] (ep25 std 20261026-c25s42-feb0407 71ac95f3764170f29f02fa657e7c057c 6f70983787fdf07a26079508400e8fed /content/refs/perc2mck/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet;)
+[2026-10-31T23:25:43Z] mass_eval: std seed 42, PAIRS [25:local:mck]
+[2026-10-31T23:25:43Z] hard_ab code a1a7e258, pairs [25:local:mck], suffix dr seed 42 CR 0, NREP 10, TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2]
+[2026-10-31T23:25:43Z] hard_ab: EVAL_TIMEOUT 1200, NO_PUSH 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm, 21 collision pieces
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm, 11 collision pieces
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T23:25:47Z] assets: collision copy from convex pieces /content/v2d-track3/meshes/carve/ev25 (carve.json carve.log fc_test wooden_piece_1 wooden_piece_2 )
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/keypoints.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/lifecycle/reset.py
+[2026-10-31T23:25:47Z] patched FlashCHORD (ops/box/patch_flashchord.py): object keypoints 1 m, deployment-exact starts p 0.25 (job-wide; per-episode values in ENV_EP<N>)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-10-31T23:25:47Z] patched FlashCHORD (FDR rewards): object points 1 (radius true, top-k 3), fingertip bound 1 (sigma 0.01 m)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-10-31T23:25:47Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/lifecycle/v2d_dr.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/lifecycle/reset.py
+[2026-10-31T23:25:47Z] patched FlashCHORD (start-state randomisation of sampled training resets, ops/box/patch_flashchord_dr.py md5 570a7f47793d); per-episode env: ENV_EP25=FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42 FC_DR_SKIP_IMMEDIATE=1 
+[2026-10-31T23:25:48Z] ab ep25: ENV_EP25 = FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42 FC_DR_SKIP_IMMEDIATE=1
+[2026-11-01T01:24:02Z] ab ep25 mckdr s42: pipeline rc=0 [01:23:00] qa_policy: {"kind":"policy","ep":25,"sim_vs_ref":0.9327,"floor_vs_ref":0.3078,"verdict":"ok"} 
+chosen checkpoint missing; using 
+[2026-11-01T01:26:10Z] ab ep25 mckdr-s42 (policy_250003456.safetensors): n 10 sim_vs_ref {'mean': 0.8158, 'std': 0.2158, 'min': 0.3454, 'max': 0.9333} registered AUC None
+[2026-11-01T01:26:10Z] hard_ab summary: {"ep25":{"mckdr-s42":{"checkpoint":"/content/runs/perc2mckdr/ep25-s42/policy_250003456.safetensors","n":10,"sim_vs_ref":{"mean":0.8158,"std":0.2158,"min":0.3454,"max":0.9333}}}}
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm, 21 collision pieces
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm, 11 collision pieces
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-11-01T01:26:14Z] mass_eval ARM=dr RESULT: ep25 VERIFIED :: s42 n 10 mean 0.8158 sd 0.2275 min 0.3454 cut 0/0 D-line ok :: candidate 42 hook: {"expected_md5": "d92ed77113adfd1aadeedda70a9d7bde", "installed_md5": "d92ed77113adfd1aadeedda70a9d7bde", "reset_tagged": true}; other training logs: 0 confirmation: {"RUNS_EXTRA": "20261031-drS25s42-a1a7e25@refs/perc2mckdr/ep25", "PICK_EXTRA": "25:20261031-drS25s42-a1a7e25:ck=runs/perc2mckdr/ep25-s42/policy_250003456.safetensors", "DR_EPS": "25", "EVAL_ONLY": "25", "EPS_ONLY": "25", "ASSET_PIECES_EXTRA": ""} 

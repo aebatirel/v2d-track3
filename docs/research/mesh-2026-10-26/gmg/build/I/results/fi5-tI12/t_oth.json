@@ -1,0 +1,523 @@
+{
+ "sweeper": {
+  "routes": {
+   "A": "3_coacd",
+   "B": "3_coacd"
+  },
+  "pieces": {
+   "A": 14,
+   "B": 1
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 14,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "B": {
+    "pass_": true,
+    "n": 1,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 2.4,
+    "median_cm3": 0.016
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {
+    "A<-B#0": {
+     "voxels": 15,
+     "run_kind": "SEAT",
+     "run": [
+      27,
+      37
+     ],
+     "n_build": 11,
+     "sweep_share": 1.0,
+     "observed_voxels": 15,
+     "persistent_nmin": 5,
+     "pass_": true
+    },
+    "A<-B#1": {
+     "voxels": 38,
+     "run_kind": "SLIDE",
+     "run": [
+      42,
+      52
+     ],
+     "n_build": 11,
+     "sweep_share": 1.0,
+     "observed_voxels": 38,
+     "persistent_nmin": 5,
+     "pass_": true
+    },
+    "A<-B#2": {
+     "voxels": 50,
+     "run_kind": "SEAT",
+     "run": [
+      66,
+      89
+     ],
+     "n_build": 14,
+     "sweep_share": 0.0,
+     "observed_voxels": 50,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#3": {
+     "voxels": 50,
+     "run_kind": "INSERTION",
+     "run": [
+      20,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.8,
+     "observed_voxels": 50,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   },
+   "in_scope": true,
+   "receiver": "A",
+   "guest": "B",
+   "receiver_info": {
+    "containment": {
+     "A": 0.18,
+     "B": 0.0072
+    },
+    "frames": 45
+   },
+   "components": [
+    {
+     "gates": {
+      "voxels": 38,
+      "run_kind": "SLIDE",
+      "run": [
+       42,
+       52
+      ],
+      "n_build": 11,
+      "sweep_share": 1.0,
+      "observed_voxels": 38,
+      "persistent_nmin": 5,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 0,
+      "hands_off_static": 0,
+      "assembled_hands_off": 0,
+      "s_frames": [],
+      "flags": [],
+      "rest_source": null
+     },
+     "T_rest": null,
+     "overshoot_frames": [],
+     "carve_frames": 8,
+     "build_frames_entered": 8,
+     "clearance": {
+      "surface_samples": 67212,
+      "in_Rplus": 5331,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0
+     },
+     "R_voxels": 38,
+     "Rplus_voxels": 207
+    },
+    {
+     "gates": {
+      "voxels": 15,
+      "run_kind": "SEAT",
+      "run": [
+       27,
+       37
+      ],
+      "n_build": 11,
+      "sweep_share": 1.0,
+      "observed_voxels": 15,
+      "persistent_nmin": 5,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 5,
+      "hands_off_static": 0,
+      "assembled_hands_off": 0,
+      "s_frames": [],
+      "flags": [],
+      "rest_source": null
+     },
+     "T_rest": null,
+     "overshoot_frames": [],
+     "carve_frames": 7,
+     "build_frames_entered": 7,
+     "clearance": {
+      "surface_samples": 67212,
+      "in_Rplus": 2572,
+      "sigma_sup": 0.00107,
+      "c_mm": 0.0,
+      "flag_c_zero": "c_zero"
+     },
+     "R_voxels": 15,
+     "Rplus_voxels": 105
+    }
+   ],
+   "carve": {
+    "route": "3_coacd",
+    "K_pieces": 15,
+    "cut_cm3": 6.93,
+    "carved_body_cm3": 194.346,
+    "ladder": [
+     {
+      "route": "3_coacd",
+      "report": {
+       "steps": 3,
+       "stuck": 0,
+       "pieces": 27,
+       "max_excess_cm3": 0.08,
+       "cap": 82,
+       "coacd_pieces": 24,
+       "sec": 37.7
+      },
+      "gate": {
+       "pass_": true,
+       "n": 27,
+       "max_cm3": 0.08,
+       "sum_cm3": 0.08,
+       "over_tol": 0,
+       "keepout_points": 1,
+       "keepout_cm3": 0.08
+      }
+     }
+    ],
+    "carved_route": "3_coacd",
+    "sec": 40.1
+   },
+   "caps": {
+    "removed_cm3": 4.076,
+    "cumulative_share": 0.0212,
+    "vol0_cm3": 192.39,
+    "reach": 0.963,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": false,
+    "ok_topology": true,
+    "pass_": false,
+    "fail": "budget_iv_fail"
+   },
+   "report": {
+    "rigid_shift": {
+     "frames": 8,
+     "cleared_share": 1.0,
+     "per_frame": [
+      {
+       "f": 42,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 43,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 44,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 46,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 47,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 49,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 51,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 52,
+       "cm3": 0.0,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      }
+     ],
+     "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+    },
+    "carve_of_pose_error": true,
+    "one_sided": null,
+    "decision_f_i3_same_sides": {
+     "A<-B": "PUSH",
+     "B<-A": "PUSH"
+    }
+   },
+   "deliver": "default"
+  },
+  "decisions": [
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "owner_waiver_fi5",
+     "budget_iv_fail"
+    ],
+    "gates": {
+     "voxels": 15,
+     "run_kind": "SEAT",
+     "run": [
+      27,
+      37
+     ],
+     "n_build": 11,
+     "sweep_share": 1.0,
+     "observed_voxels": 15,
+     "persistent_nmin": 5,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "owner_waiver_fi5",
+     "budget_iv_fail"
+    ],
+    "gates": {
+     "voxels": 38,
+     "run_kind": "SLIDE",
+     "run": [
+      42,
+      52
+     ],
+     "n_build": 11,
+     "sweep_share": 1.0,
+     "observed_voxels": 38,
+     "persistent_nmin": 5,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep"
+    ],
+    "gates": {
+     "voxels": 50,
+     "run_kind": "SEAT",
+     "run": [
+      66,
+      89
+     ],
+     "n_build": 14,
+     "sweep_share": 0.0,
+     "observed_voxels": 50,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 50,
+     "run_kind": "INSERTION",
+     "run": [
+      20,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.8,
+     "observed_voxels": 50,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   }
+  ],
+  "sec": 107.5,
+  "summary": {
+   "in_scope": true,
+   "receiver": "A",
+   "deliver": "default",
+   "containment": {
+    "A": 0.18,
+    "B": 0.0072
+   },
+   "c_mm": 1.0,
+   "sigma_sup": 1.0,
+   "overshoot": 0,
+   "caps": {
+    "removed_cm3": 4.076,
+    "cumulative_share": 0.0212,
+    "vol0_cm3": 192.39,
+    "reach": 0.963,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": false,
+    "ok_topology": true,
+    "pass_": false,
+    "fail": "budget_iv_fail"
+   },
+   "tests": null,
+   "failing": null,
+   "S": [],
+   "P2": null,
+   "P2_default": null,
+   "shift": 1.0,
+   "one_sided": null,
+   "gates": {
+    "A<-B#0": {
+     "voxels": 15,
+     "run_kind": "SEAT",
+     "run": [
+      27,
+      37
+     ],
+     "n_build": 11,
+     "sweep_share": 1.0,
+     "observed_voxels": 15,
+     "persistent_nmin": 5,
+     "pass_": true
+    },
+    "A<-B#1": {
+     "voxels": 38,
+     "run_kind": "SLIDE",
+     "run": [
+      42,
+      52
+     ],
+     "n_build": 11,
+     "sweep_share": 1.0,
+     "observed_voxels": 38,
+     "persistent_nmin": 5,
+     "pass_": true
+    },
+    "A<-B#2": {
+     "voxels": 50,
+     "run_kind": "SEAT",
+     "run": [
+      66,
+      89
+     ],
+     "n_build": 14,
+     "sweep_share": 0.0,
+     "observed_voxels": 50,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#3": {
+     "voxels": 50,
+     "run_kind": "INSERTION",
+     "run": [
+      20,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.8,
+     "observed_voxels": 50,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   },
+   "carve": {
+    "route": "3_coacd",
+    "K_pieces": 15,
+    "cut_cm3": 6.93,
+    "carved_body_cm3": 194.346,
+    "ladder": [
+     {
+      "route": "3_coacd",
+      "report": {
+       "steps": 3,
+       "stuck": 0,
+       "pieces": 27,
+       "max_excess_cm3": 0.08,
+       "cap": 82,
+       "coacd_pieces": 24,
+       "sec": 37.7
+      },
+      "gate": {
+       "pass_": true,
+       "n": 27,
+       "max_cm3": 0.08,
+       "sum_cm3": 0.08,
+       "over_tol": 0,
+       "keepout_points": 1,
+       "keepout_cm3": 0.08
+      }
+     }
+    ],
+    "carved_route": "3_coacd",
+    "sec": 40.1
+   }
+  }
+ }
+}

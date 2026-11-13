@@ -1,0 +1,158 @@
+test_sweep (__main__.Sweep.test_sweep) ... ok
+test_n8_one_side_solid (__main__.Silhouette.test_n8_one_side_solid) ... ok
+test_s1_see_through (__main__.Silhouette.test_s1_see_through) ... ok
+test_s1_t6_resolution_limit (__main__.Silhouette.test_s1_t6_resolution_limit)
+KNOWN MISS of P26 (PREREG F-I2.14, corrected in F-I3.11): at t = 6 mm the 4 mm motion region overhangs the ... expected failure
+test_o1_lateral (__main__.Offset.test_o1_lateral)
+Track offset 11 mm along A's long axis (lateral to d); silhouette see-through at the TRUE slots. ... ok
+test_o2_along_d (__main__.Offset.test_o2_along_d)
+o2a (pre-registered in F-I1.12): offset 11 mm ALONG d with a testable silhouette that sees wood everywhere: ... ok
+test_o2b_along_d_see_through (__main__.Offset.test_o2b_along_d_see_through)
+o2b (pre-registered in F-I3.6 before this run): offset 11 mm ALONG d at all frames, silhouettes that see ... ok
+test_g_generator_t3 (__main__.Sources.test_g_generator_t3)
+(g) a slotted generator plate placed with 4 mm / 5 deg error + see-through silhouette + motion: T3 on both ... ok
+test_n6_solid_silhouette (__main__.Sources.test_n6_solid_silhouette)
+n6: the main case with a testable silhouette that is NOT see-through in the slots: PUSH both. ... ok
+test_w_thick_partner (__main__.Partner.test_w_thick_partner)
+Partner's collider = a 60 mm thick box (a HULL-like partner): w_sim breaks the budget -> PUSH. ... ok
+test_n2_resting_pose_error (__main__.Controls.test_n2_resting_pose_error)
+A box resting 6 mm inside an observed face for 40 frames (no motion): PUSH or IGNORE, never CARVE. ... ok
+test_n3_below_observed_floor (__main__.Controls.test_n3_below_observed_floor)
+n3: an inner cylinder lowered 12 mm below an outer cup's observed floor (floor testable in the silhouette, ... ok
+test_n4_short_contact (__main__.Controls.test_n4_short_contact)
+n4: a 3-frame contact 8 mm deep: the stage sees the intrusion (>= 3 voxels entered in those frames), its run ... ok
+test_n5_random_intrusions (__main__.Controls.test_n5_random_intrusions) ... ok
+test_n9_cup_nesting (__main__.Controls.test_n9_cup_nesting)
+Inner cup lowered into an outer cup whose candidate fills the cavity rim to floor (cavity UNKNOWN): no ... ok
+test_box_removal_and_travel (__main__.Pieces.test_box_removal_and_travel)
+simpieces.remove_box cuts an exact slot out of convex hulls; n7: a thin tall guest in a holder slot whose ... ok
+test_blob_generator_disagrees (__main__.Agreement.test_blob_generator_disagrees)
+B5 (round-1 review): a generator 'concavity' covering the whole candidate (no slot at all) must not agree ... ok
+test_offset_has_budget (__main__.Agreement.test_offset_has_budget)
+B4b: an OFFSET carve (N + t) is measured by budget (iv) and the topology test like any carve: a 1 cm track ... ok
+test_chain_tracks_pose (__main__.Contract.test_chain_tracks_pose)
+F-I3.10 source (ii): our tracks as the independent pose when their sha256 is the chain's poses.npz; the ... /home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmp705hd606/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmp705hd606/intr2.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_export_same_rule (__main__.Contract.test_export_same_rule)
+B2 (round-1 review): write_export -> validate -> carve_from_intrusions on the synthetic cross takes the SAME ... /home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpr_l820fx/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2108: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpr_l820fx/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(intrusions)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2049: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpr_l820fx/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmp725ikac3/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2108: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmp725ikac3/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(intrusions)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2049: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmp725ikac3/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_export_same_rule_no_silhouette (__main__.Contract.test_export_same_rule_no_silhouette)
+KNOWN DIFFERENCE (PREREG F-I3.13, logged, not tuned): without a silhouette, at t = 10 mm the GAP image width ... /home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpn2qcagaz/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2108: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpn2qcagaz/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(intrusions)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2049: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpn2qcagaz/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+expected failure
+test_validator_their_format (__main__.Contract.test_validator_their_format)
+B1 (round-1 review): the Embodiment tool's header (meshes by basename, `frames`, per-step provenance inputs, ... /home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmp1jz_e1xo/intr.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py:1009: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmp1jz_e1xo/intr.json' mode='r' encoding='utf-8'>
+  H = json.load(open(hp))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py:1013: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmp1jz_e1xo/intr.json' mode='w' encoding='utf-8'>
+  json.dump(hdr or H, open(hp, 'w'), default=IL._jdefault)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py:1042: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmp1jz_e1xo/intr.json' mode='w' encoding='utf-8'>
+  json.dump(H, open(hp, 'w'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_two_rounds (__main__.Iteration.test_two_rounds)
+B3 (round-1 review): round 1 from the r0 export carves the cross (a stub physics_fn delivers the carved ... /home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e0.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2108: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e0.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(intrusions)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2049: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e0.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py:1123: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/r1/manifest.json' mode='r' encoding='utf-8'>
+  man1 = json.load(open(os.path.join(td, 'r1', 'manifest.json')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e0.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e1.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2284: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/r1/A/carve.json' mode='r' encoding='utf-8'>
+  cj = json.load(open(os.path.join(sim_new, o, 'carve.json')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2284: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/r1/B/carve.json' mode='r' encoding='utf-8'>
+  cj = json.load(open(os.path.join(sim_new, o, 'carve.json')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2221: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e0.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2221: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e1.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2316: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e0.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2316: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e1.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2324: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/r1/A/carve.json' mode='r' encoding='utf-8'>
+  phys = [json.load(open(os.path.join(sim_new, o, 'carve.json'))).get('physics') for o in objs]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2324: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/r1/B/carve.json' mode='r' encoding='utf-8'>
+  phys = [json.load(open(os.path.join(sim_new, o, 'carve.json'))).get('physics') for o in objs]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2344: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/r1/A/carve.json' mode='r' encoding='utf-8'>
+  for o in objs for d in json.load(open(os.path.join(sim_new, o, 'carve.json'))).get('decisions') or []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2344: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/r1/B/carve.json' mode='r' encoding='utf-8'>
+  for o in objs for d in json.load(open(os.path.join(sim_new, o, 'carve.json'))).get('decisions') or []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:1883: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/bad.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2108: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e1.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(intrusions)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/interlock.py:2049: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpzfe3hhwe/e1.json' mode='r' encoding='utf-8'>
+  hdr = json.load(open(_hdr_path(path)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_container_gate (__main__.PiecesGate.test_container_gate)
+B6 (round-1 review): pieces of an open cup that span its cavity hold far more than 0.3 cm3 of keep-out per ... /home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py:1197: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpsfic8uid/r0/manifest.json' mode='r' encoding='utf-8'>
+  man = json.load(open(os.path.join(sim, 'manifest.json')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py:1198: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/tmpsfic8uid/r0/props_gmg.json' mode='r' encoding='utf-8'>
+  props = json.load(open(os.path.join(sim, 'props_gmg.json')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3b/tests/test_interlock_waiveroff.json
+
+----------------------------------------------------------------------
+Ran 24 tests in 2711.843s
+
+OK (expected failures=2)

@@ -1,0 +1,45 @@
+{
+ "store_parquets_rewritten": [
+  {
+   "file": "runs/20261025-evb1420-ee7ba8e/refs/glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "md5_real": "4d06d8d42d57d84b1d25a166e8a90adc",
+   "md5_mock": "03e1f6497ba8bf62b4160a2b4830c61c"
+  },
+  {
+   "file": "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/e2s_raw/sequence_id=t3_ep020/robot_name=sharpa_wave/3982f7e5c2434ea0ba9c275809268fda-0.parquet",
+   "md5_real": "5291ce2421ab21478f832660d7fe344d",
+   "md5_mock": "583db64e28f6e6dc4316261ddc868a9c"
+  },
+  {
+   "file": "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/e2s_reference.parquet",
+   "md5_real": "4fc592007d1e84316514e906487dcffe",
+   "md5_mock": "bbaaeca2c3a432cf05e0e3c7ba67044c"
+  },
+  {
+   "file": "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/loaded/sequence_id=t3_ep020/robot_name=sharpa_wave/d0936f61cb164e9891418cf8937873e5-0.parquet",
+   "md5_real": "796e96c23a6a322a3596df1291ef378e",
+   "md5_mock": "da05633a0fad3078e73afc9144f496b6"
+  },
+  {
+   "file": "runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/d63c79230d594fbebdf4402355643770-0.parquet",
+   "md5_real": "02a8a36d346f43559bf8687e8511f6ab",
+   "md5_mock": "5093d72603cadfc9b0ce121d3d46aa51"
+  },
+  {
+   "file": "runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_sf.parquet",
+   "md5_real": "e6e548d6c20c71d13aeeb41fd0294fef",
+   "md5_mock": "f5db473d4777ade6818a1d4051d0c301"
+  }
+ ],
+ "repo_copy": [
+  {
+   "file": "tools/e20b1.py",
+   "what": "REF_MD5 4d06d8d42d57d84b1d25a166e8a90adc -> 03e1f6497ba8bf62b4160a2b4830c61c (the rewritten P)"
+  },
+  {
+   "file": "docs/research/work/masses-eval-20261031/packed_refs.json",
+   "what": "episodes.20.md5 4d06d8d42d57d84b1d25a166e8a90adc -> 03e1f6497ba8bf62b4160a2b4830c61c"
+  }
+ ],
+ "unchanged": "piece set, URDF / glb / stage / packed sha256 pins, the gate bar, the reference fingerprint"
+}

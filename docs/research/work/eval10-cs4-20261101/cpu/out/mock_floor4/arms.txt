@@ -1,0 +1,1 @@
+ARMS OK :: V a7173fdce3aa2fd9811069eb46c38954 (fingerprint a9bcfef01803), base 520b7676589ef42ee66877a4e2b07958, seeds ['42', '43'], blue_cup 0.3 kg URDF 8511f0d3 (e10v's: False), beige_cup 0.3 kg URDF 1a8cb9d8 (e10v's: False)

@@ -1,0 +1,171 @@
+{
+ "note": "SUPERSEDED / INVALID: first ev10w build (v0) whose band edges fell between profile bins, leaving 2 mm rings with no wall at h_diag -45.4, -55.4, -65.4, -75.4 mm (wall_ev10w_v0slots.json). Same r_in as v1. Kept for transparency; not used for any verdict.",
+ "ev10w_gl": {
+  "I_max_f100_160": 29.29,
+  "ranges": {
+   "f0-46": null,
+   "f47-99": {
+    "min": 0.01,
+    "median": 8.05,
+    "max": 18.63
+   },
+   "f100-117": {
+    "min": 12.85,
+    "median": 21.85,
+    "max": 29.29
+   },
+   "f118-160": {
+    "min": 1.9,
+    "median": 10.18,
+    "max": 25.85
+   },
+   "f100-160": {
+    "min": 1.9,
+    "median": 13.54,
+    "max": 29.29
+   }
+  }
+ },
+ "ev10w_v4p": {
+  "I_max_f100_160": 11.19,
+  "ranges": {
+   "f0-46": null,
+   "f47-99": {
+    "min": 0.06,
+    "median": 11.12,
+    "max": 18.37
+   },
+   "f100-117": {
+    "min": 2.48,
+    "median": 7.41,
+    "max": 11.19
+   },
+   "f118-160": {
+    "min": 0.01,
+    "median": 0.08,
+    "max": 3.01
+   },
+   "f100-160": {
+    "min": 0.01,
+    "median": 7.08,
+    "max": 11.19
+   }
+  }
+ },
+ "ev10w_trk": {
+  "I_max_f100_160": 37.03,
+  "ranges": {
+   "f0-46": null,
+   "f47-99": {
+    "min": 0.17,
+    "median": 12.48,
+    "max": 21.12
+   },
+   "f100-117": {
+    "min": 14.15,
+    "median": 29.48,
+    "max": 37.03
+   },
+   "f118-160": {
+    "min": 5.98,
+    "median": 15.67,
+    "max": 28.06
+   },
+   "f100-160": {
+    "min": 5.98,
+    "median": 17.51,
+    "max": 37.03
+   }
+  }
+ },
+ "settle_gl_ev10w": {
+  "f100-117": {
+   "passed": 15,
+   "frames": 18,
+   "dz": {
+    "median": 0.94,
+    "min": -5.62,
+    "max": 4.16
+   }
+  },
+  "f118-160": {
+   "passed": 14,
+   "frames": 43,
+   "dz": {
+    "median": -11.13,
+    "min": -25.89,
+    "max": 3.89
+   }
+  },
+  "f100-160": {
+   "passed": 29,
+   "frames": 61,
+   "dz": {
+    "median": -2.92,
+    "min": -25.89,
+    "max": 4.16
+   }
+  }
+ },
+ "settle_v4p_ev10w": {
+  "f100-117": {
+   "passed": 0,
+   "frames": 18,
+   "dz": {
+    "median": -29.63,
+    "min": -31.36,
+    "max": -21.97
+   }
+  },
+  "f118-160": {
+   "passed": 4,
+   "frames": 43,
+   "dz": {
+    "median": -11.93,
+    "min": -26.3,
+    "max": -0.68
+   }
+  },
+  "f100-160": {
+   "passed": 4,
+   "frames": 61,
+   "dz": {
+    "median": -12.58,
+    "min": -31.36,
+    "max": -0.68
+   }
+  }
+ },
+ "wall_holes": [
+  {
+   "s_mm": 36.4,
+   "h_diag_mm": -45.4,
+   "hole": true,
+   "azimuths_without_solid": 72
+  },
+  {
+   "s_mm": 46.4,
+   "h_diag_mm": -55.4,
+   "hole": true,
+   "azimuths_without_solid": 72
+  },
+  {
+   "s_mm": 56.4,
+   "h_diag_mm": -65.4,
+   "hole": true,
+   "azimuths_without_solid": 72
+  },
+  {
+   "s_mm": 66.4,
+   "h_diag_mm": -75.4,
+   "hole": true,
+   "azimuths_without_solid": 72
+  },
+  {
+   "s_mm": 74.4,
+   "h_diag_mm": -83.4,
+   "hole": true,
+   "azimuths_without_solid": 72
+  }
+ ]
+}

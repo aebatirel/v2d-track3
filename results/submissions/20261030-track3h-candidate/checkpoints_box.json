@@ -1,0 +1,22 @@
+{
+ "1": "/content/pick/20261030-c01s43-328139c/runs/20261030-c01s43-328139c/runs/perc2mcks/ep1-s43/policy_250003456.safetensors",
+ "10": "/content/pick/20261026-gl10A2-5e0e100/runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/best/policy.safetensors",
+ "14": "/content/pick/20261025-evb1420-ee7ba8e/runs/20261025-evb1420-ee7ba8e/results/final_eval/ep14/policy.safetensors",
+ "15": "/content/pick/20261024-seed43-61101f5/runs/20261024-seed43-61101f5/results/glock_public/ep15/best/policy.safetensors",
+ "16": "/content/pick/20261024-seed43-61101f5/runs/20261024-seed43-61101f5/results/glock_public/ep16/best/policy.safetensors",
+ "19": "/content/pick/20261025-std1928-ee7ba8e/runs/20261025-std1928-ee7ba8e/results/final_eval/ep19/policy.safetensors",
+ "20": "/content/pick/20261025-evb1420-ee7ba8e/runs/20261025-evb1420-ee7ba8e/results/final_eval/ep20/policy.safetensors",
+ "25": "/content/pick/20261026-c25s42-feb0407/runs/20261026-c25s42-feb0407/runs/perc2mcks/ep25-s42/policy_250003456.safetensors",
+ "28": "/content/pick/20261025-std1928-ee7ba8e/runs/20261025-std1928-ee7ba8e/results/final_eval/ep28/policy.safetensors",
+ "3": "/content/pick/20261024-seed43-61101f5/runs/20261024-seed43-61101f5/results/glock_public/ep3/best/policy.safetensors",
+ "30": "/content/pick/20261025-std30-ee7ba8e/runs/20261025-std30-ee7ba8e/results/final_eval/ep30/policy.safetensors",
+ "32": "/content/pick/20261026-fr32s46b-5e0e100/runs/20261026-fr32s46b-5e0e100/results/glock_public/ep32/best/policy.safetensors",
+ "33": "/content/pick/20261029-rcB-34bf6ae/runs/20261029-rcB-34bf6ae/results/glock_public/ep33/best/policy.safetensors",
+ "35": "/content/results/glock_public/ep35/best/policy.safetensors",
+ "36": "/content/results/glock_public/ep36/best/policy.safetensors",
+ "37": "/content/results/glock_public/ep37/best/policy.safetensors",
+ "38": "/content/results/glock_public/ep38/best/policy.safetensors",
+ "5": "/content/pick/20261024-seed43-61101f5/runs/20261024-seed43-61101f5/results/glock_public/ep5/best/policy.safetensors",
+ "6": "/content/results/glock_public/ep6/best/policy.safetensors",
+ "8": "/content/pick/20261025-evb0810-ee7ba8e/runs/20261025-evb0810-ee7ba8e/results/final_eval/ep8/policy.safetensors"
+}

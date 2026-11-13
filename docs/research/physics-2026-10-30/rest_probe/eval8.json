@@ -1,0 +1,41 @@
+{
+ "hands": {
+  "beige_cup": {
+   "until_frame": 33,
+   "max_mm": 2.5,
+   "max_deg": 1.5,
+   "first_robot_touch": null,
+   "touches_in_window": {}
+  },
+  "white_pot": {
+   "until_frame": 83,
+   "max_mm": 41.7,
+   "max_deg": 15.4,
+   "first_robot_touch": {
+    "frame": 13,
+    "robot_body": "left_sharpa_wave_left_pinky_DP"
+   },
+   "touches_in_window": {
+    "left_sharpa_wave_left_pinky_DP": 1,
+    "left_sharpa_wave_left_index_DP": 8,
+    "left_sharpa_wave_left_middle_DP": 2
+   }
+  }
+ },
+ "parked": {
+  "beige_cup": {
+   "until_frame": 33,
+   "max_mm": 26.6,
+   "max_deg": 15.4,
+   "first_robot_touch": null,
+   "touches_in_window": {}
+  },
+  "white_pot": {
+   "until_frame": 83,
+   "max_mm": 8.9,
+   "max_deg": 8.2,
+   "first_robot_touch": null,
+   "touches_in_window": {}
+  }
+ }
+}

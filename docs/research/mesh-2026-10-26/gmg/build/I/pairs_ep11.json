@@ -1,0 +1,78 @@
+{
+ "blue_cup<-beige_cup": {
+  "contact_frames": 51,
+  "band_mm": 8.0,
+  "hull": {
+   "frames_with_deep_entry": 0,
+   "n6": {
+    "cm3": 0.06,
+    "unknown_free_observed": [
+     0,
+     0,
+     1
+    ],
+    "max_thickness_mm": 8.0,
+    "depth_mm_p50_max": [
+     8.1,
+     8.1
+    ]
+   },
+   "n13": {
+    "cm3": 0.06,
+    "unknown_free_observed": [
+     0,
+     0,
+     1
+    ],
+    "max_thickness_mm": 8.0,
+    "depth_mm_p50_max": [
+     8.1,
+     8.1
+    ]
+   },
+   "n26": {
+    "cm3": 0.0
+   }
+  },
+  "shell_t5p36": {
+   "frames_with_deep_entry": 0,
+   "n6": {
+    "cm3": 0.0
+   },
+   "n13": {
+    "cm3": 0.0
+   },
+   "n26": {
+    "cm3": 0.0
+   }
+  }
+ },
+ "beige_cup<-blue_cup": {
+  "contact_frames": 51,
+  "band_mm": 8.0,
+  "hull": {
+   "frames_with_deep_entry": 0,
+   "n6": {
+    "cm3": 0.0
+   },
+   "n13": {
+    "cm3": 0.0
+   },
+   "n26": {
+    "cm3": 0.0
+   }
+  },
+  "shell_t5p36": {
+   "frames_with_deep_entry": 0,
+   "n6": {
+    "cm3": 0.0
+   },
+   "n13": {
+    "cm3": 0.0
+   },
+   "n26": {
+    "cm3": 0.0
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+[2026-10-31T13:01:41Z] G0 job start: run mesh-20261031-g0-937f9d7 commit 937f9d70a8bfdc5caf6d15bf7461d28adf610ebe
+NVIDIA A40, 46068 MiB, 615.71.10
+[2026-10-31T13:06:49Z] G0-INPUTS-OK 18 files
+[2026-10-31T13:10:42Z] G0-SETUP-OK: C-BASIC-OK C-CODE-OK C-EXTRA-OK C-IMPORT-OK C-KAOLIN-STUB-OK C-MOGE-OK C-P3D-OK C-TORCH-OK C-UV-OK 
+{"tag": "ep2_white_pot_primary_k246", "seed": 0, "ok": true, "sec": 16.5, "faces_raw": 198192, "pointmap_to_mesh_mm": {"median": 31.537, "p90": 49.19, "n": 20000}, "closed_form_max_m": 5.99101751541653e-08, "gpu_peak_gb": 18.4, "error": null}
+{"tag": "ep2_white_pot_primary_k246", "seed": 1, "ok": true, "sec": 12.1, "faces_raw": 177304, "pointmap_to_mesh_mm": {"median": 31.857, "p90": 61.58, "n": 20000}, "closed_form_max_m": 4.577364920432814e-08, "gpu_peak_gb": 18.43, "error": null}
+{"tag": "ep2_white_pot_control_k24", "seed": 0, "ok": true, "sec": 12.0, "faces_raw": 207696, "pointmap_to_mesh_mm": {"median": 20.409, "p90": 37.363, "n": 20000}, "closed_form_max_m": 5.0367809811824316e-08, "gpu_peak_gb": 18.52, "error": null}
+{"tag": "ep2_white_pot_control_k24", "seed": 1, "ok": true, "sec": 12.0, "faces_raw": 165852, "pointmap_to_mesh_mm": {"median": 26.511, "p90": 35.133, "n": 20000}, "closed_form_max_m": 7.124780188050295e-08, "gpu_peak_gb": 18.47, "error": null}
+{"tag": "ep2_white_pot_lid_primary_k132", "seed": 0, "ok": true, "sec": 13.1, "faces_raw": 408668, "pointmap_to_mesh_mm": {"median": 24.741, "p90": 46.377, "n": 20000}, "closed_form_max_m": 3.583198893153394e-08, "gpu_peak_gb": 18.83, "error": null}
+{"tag": "ep2_white_pot_lid_primary_k132", "seed": 1, "ok": true, "sec": 12.8, "faces_raw": 424544, "pointmap_to_mesh_mm": {"median": 17.482, "p90": 38.023, "n": 20000}, "closed_form_max_m": 3.6911302014885905e-08, "gpu_peak_gb": 18.81, "error": null}
+{"tag": "ep2_white_pot_lid_control_k318", "seed": 0, "ok": true, "sec": 13.0, "faces_raw": 450536, "pointmap_to_mesh_mm": {"median": 10.89, "p90": 26.95, "n": 20000}, "closed_form_max_m": 4.1276727036354544e-08, "gpu_peak_gb": 18.89, "error": null}
+{"tag": "ep2_white_pot_lid_control_k318", "seed": 1, "ok": true, "sec": 13.4, "faces_raw": 456452, "pointmap_to_mesh_mm": {"median": 12.761, "p90": 29.401, "n": 20000}, "closed_form_max_m": 4.394199482060657e-08, "gpu_peak_gb": 18.82, "error": null}
+[2026-10-31T13:13:48Z] G0 SAM 3D: rc 0, ok records 8 of 8
+[2026-10-31T13:13:48Z] G0-DONE

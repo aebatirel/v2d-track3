@@ -1,0 +1,9 @@
+[09:30:53] b4_extract ep22 objects ['blue_cup', 'water_pitcher'] det True start {'commit': '7cd51b76a02e0b4e3fabd686a32ee2780b082714', 'dirty': ''}
+[09:34:07] hands 193.5 s: frames with hand 188 / 189
+[09:36:04] ep22 pass 0: 95 frames, 11807451 samples, voxels [125468, 105797], 116.1 s
+[09:45:48] extract timing {"table_s": 0.4, "pass0_samples_s": 110.1, "pass0_votes_s": 6.0, "pass0_s": 116.1, "pass0_voxels": [125468, 105797], "pass1_s": 262.2, "pass2_s": 1.2, "pass3_s": 1.4, "pass4_grids_s": 145.4, "sigma_s": 162.7, "total_s": 695.9}
+[09:45:54] sanity blue_cup: 95/95 good, flags [], below 0.0, resid {'median': 0.96, 'p90': 0.992, 'max': 1.142}
+[09:46:37] sanity water_pitcher: 95/95 good, flags [], below 0.0, resid {'median': 0.987, 'p90': 1.012, 'max': 1.123}
+[09:50:04] split test blue_cup: {"water_pitcher": [true, 2.634, 26.096, 25.811]}
+[09:53:33] split test water_pitcher: {"blue_cup": [true, 4.739, 24.873, 25.488]}
+[09:53:40] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep22 total 1366.1 s

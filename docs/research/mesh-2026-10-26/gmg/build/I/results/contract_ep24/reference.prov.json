@@ -1,0 +1,17 @@
+{
+ "tool": "docs/research/mesh-2026-10-26/gmg/build/I/contract_ext.py (gmg contract-test reference writer: our tracks in a table frame, no snaps)",
+ "code_commit": "5468bbf5537351017a9dcd3359de4c97336965f3",
+ "run_id": "20261031-gmgref24-5468bbf",
+ "sha256": "bdb39df2db895db26f906f22d65f80f677d072bc32e3dd8897fefd5345fcb18e",
+ "command": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/build/I/contract_ext.py --tracks /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz --episode-json /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/episode.json --hands /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz --sim /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-r1evalsem/r0 --tool /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/emb_tool --emb-commit 48cda9f5ee4f8c94d5fdf15a9173aa72f6cfc66e --out /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/r1fix/contract24 --max-nfev 3 --gmg-commit 5468bbf5537351017a9dcd3359de4c97336965f3",
+ "inputs": [
+  {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60"
+  },
+  {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/episode.json",
+   "sha256": "df9393261b3a9e0975833ce18a6df311bb642bb272ccd6fff418b1bec064f522"
+  }
+ ]
+}

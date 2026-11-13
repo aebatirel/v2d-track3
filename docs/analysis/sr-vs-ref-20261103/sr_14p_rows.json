@@ -1,0 +1,438 @@
+{
+ "1": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.28,
+  "sp_ori_mean_rad": 0.079,
+  "objects": {
+   "white_pot": {
+    "pos_cm": 1.5,
+    "ori_deg": 4.6,
+    "mp_pos_margin": 0.5,
+    "mp_ori_margin": 0.15
+   },
+   "white_pot_lid": {
+    "pos_cm": 1.06,
+    "ori_deg": 4.5,
+    "mp_pos_margin": 0.35,
+    "mp_ori_margin": 0.15
+   }
+  },
+  "sp_pos_margin": 0.13,
+  "sp_ori_margin": 0.16
+ },
+ "3": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.03,
+  "sp_ori_mean_rad": 0.08,
+  "objects": {
+   "white_pot": {
+    "pos_cm": 1.35,
+    "ori_deg": 4.4,
+    "mp_pos_margin": 0.45,
+    "mp_ori_margin": 0.15
+   },
+   "wooden_spoon": {
+    "pos_cm": 0.71,
+    "ori_deg": 4.7,
+    "mp_pos_margin": 0.24,
+    "mp_ori_margin": 0.16
+   }
+  },
+  "sp_pos_margin": 0.1,
+  "sp_ori_margin": 0.16
+ },
+ "5": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.92,
+  "sp_ori_mean_rad": 0.09,
+  "objects": {
+   "white_pot": {
+    "pos_cm": 1.01,
+    "ori_deg": 3.5,
+    "mp_pos_margin": 0.34,
+    "mp_ori_margin": 0.12
+   },
+   "wooden_spoon": {
+    "pos_cm": 0.83,
+    "ori_deg": 6.8,
+    "mp_pos_margin": 0.28,
+    "mp_ori_margin": 0.23
+   }
+  },
+  "sp_pos_margin": 0.09,
+  "sp_ori_margin": 0.18
+ },
+ "6": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.83,
+  "sp_ori_mean_rad": 0.079,
+  "objects": {
+   "white_pot": {
+    "pos_cm": 0.85,
+    "ori_deg": 4.5,
+    "mp_pos_margin": 0.28,
+    "mp_ori_margin": 0.15
+   },
+   "wooden_spoon": {
+    "pos_cm": 0.81,
+    "ori_deg": 4.5,
+    "mp_pos_margin": 0.27,
+    "mp_ori_margin": 0.15
+   }
+  },
+  "sp_pos_margin": 0.08,
+  "sp_ori_margin": 0.16
+ },
+ "8": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.7,
+  "sp_ori_mean_rad": 0.066,
+  "objects": {
+   "beige_cup": {
+    "pos_cm": 0.72,
+    "ori_deg": 4.7,
+    "mp_pos_margin": 0.24,
+    "mp_ori_margin": 0.16
+   },
+   "white_pot": {
+    "pos_cm": 0.68,
+    "ori_deg": 2.9,
+    "mp_pos_margin": 0.23,
+    "mp_ori_margin": 0.1
+   }
+  },
+  "sp_pos_margin": 0.07,
+  "sp_ori_margin": 0.13
+ },
+ "10": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.62,
+  "sp_ori_mean_rad": 0.082,
+  "objects": {
+   "blue_cup": {
+    "pos_cm": 1.4,
+    "ori_deg": 3.4,
+    "mp_pos_margin": 0.47,
+    "mp_ori_margin": 0.11
+   },
+   "beige_cup": {
+    "pos_cm": 1.85,
+    "ori_deg": 6.0,
+    "mp_pos_margin": 0.62,
+    "mp_ori_margin": 0.2
+   }
+  },
+  "sp_pos_margin": 0.16,
+  "sp_ori_margin": 0.16
+ },
+ "14": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.13,
+  "sp_ori_mean_rad": 0.056,
+  "objects": {
+   "blue_cup": {
+    "pos_cm": 1.76,
+    "ori_deg": 3.4,
+    "mp_pos_margin": 0.59,
+    "mp_ori_margin": 0.11
+   },
+   "plastic_dish_rack": {
+    "pos_cm": 0.5,
+    "ori_deg": 3.0,
+    "mp_pos_margin": 0.17,
+    "mp_ori_margin": 0.1
+   }
+  },
+  "sp_pos_margin": 0.11,
+  "sp_ori_margin": 0.11
+ },
+ "15": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.84,
+  "sp_ori_mean_rad": 0.048,
+  "objects": {
+   "plastic_dish_rack": {
+    "pos_cm": 0.3,
+    "ori_deg": 1.1,
+    "mp_pos_margin": 0.1,
+    "mp_ori_margin": 0.04
+   },
+   "wooden_spoon": {
+    "pos_cm": 1.39,
+    "ori_deg": 4.5,
+    "mp_pos_margin": 0.46,
+    "mp_ori_margin": 0.15
+   }
+  },
+  "sp_pos_margin": 0.08,
+  "sp_ori_margin": 0.1
+ },
+ "16": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.71,
+  "sp_ori_mean_rad": 0.077,
+  "objects": {
+   "plastic_dish_rack": {
+    "pos_cm": 0.44,
+    "ori_deg": 1.0,
+    "mp_pos_margin": 0.15,
+    "mp_ori_margin": 0.03
+   },
+   "wooden_spoon": {
+    "pos_cm": 0.99,
+    "ori_deg": 7.8,
+    "mp_pos_margin": 0.33,
+    "mp_ori_margin": 0.26
+   }
+  },
+  "sp_pos_margin": 0.07,
+  "sp_ori_margin": 0.15
+ },
+ "19": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.22,
+  "sp_ori_mean_rad": 0.131,
+  "objects": {
+   "mini_sweeper": {
+    "pos_cm": 1.09,
+    "ori_deg": 6.9,
+    "mp_pos_margin": 0.36,
+    "mp_ori_margin": 0.23
+   },
+   "mini_dust_pan": {
+    "pos_cm": 1.34,
+    "ori_deg": 8.0,
+    "mp_pos_margin": 0.45,
+    "mp_ori_margin": 0.27
+   }
+  },
+  "sp_pos_margin": 0.12,
+  "sp_ori_margin": 0.26
+ },
+ "20": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.83,
+  "sp_ori_mean_rad": 0.048,
+  "objects": {
+   "blue_cup": {
+    "pos_cm": 0.87,
+    "ori_deg": 2.0,
+    "mp_pos_margin": 0.29,
+    "mp_ori_margin": 0.07
+   },
+   "water_pitcher": {
+    "pos_cm": 0.78,
+    "ori_deg": 3.4,
+    "mp_pos_margin": 0.26,
+    "mp_ori_margin": 0.11
+   }
+  },
+  "sp_pos_margin": 0.08,
+  "sp_ori_margin": 0.1
+ },
+ "25": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.5,
+  "sp_ori_mean_rad": 0.143,
+  "objects": {
+   "wooden_piece_1": {
+    "pos_cm": 1.48,
+    "ori_deg": 8.4,
+    "mp_pos_margin": 0.49,
+    "mp_ori_margin": 0.28
+   },
+   "wooden_piece_2": {
+    "pos_cm": 1.53,
+    "ori_deg": 7.9,
+    "mp_pos_margin": 0.51,
+    "mp_ori_margin": 0.26
+   }
+  },
+  "sp_pos_margin": 0.15,
+  "sp_ori_margin": 0.29
+ },
+ "28": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.2,
+  "sp_ori_mean_rad": 0.077,
+  "objects": {
+   "plastic_dish_rack": {
+    "pos_cm": 0.7,
+    "ori_deg": 1.7,
+    "mp_pos_margin": 0.23,
+    "mp_ori_margin": 0.06
+   },
+   "white_pot": {
+    "pos_cm": 1.69,
+    "ori_deg": 7.1,
+    "mp_pos_margin": 0.56,
+    "mp_ori_margin": 0.24
+   }
+  },
+  "sp_pos_margin": 0.12,
+  "sp_ori_margin": 0.15
+ },
+ "30": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.35,
+  "sp_ori_mean_rad": 0.106,
+  "objects": {
+   "mini_sweeper": {
+    "pos_cm": 1.82,
+    "ori_deg": 11.1,
+    "mp_pos_margin": 0.61,
+    "mp_ori_margin": 0.37
+   },
+   "plastic_dish_rack": {
+    "pos_cm": 0.87,
+    "ori_deg": 1.1,
+    "mp_pos_margin": 0.29,
+    "mp_ori_margin": 0.04
+   }
+  },
+  "sp_pos_margin": 0.13,
+  "sp_ori_margin": 0.21
+ },
+ "32": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.52,
+  "sp_ori_mean_rad": 0.114,
+  "objects": {
+   "blue_cup": {
+    "pos_cm": 1.53,
+    "ori_deg": 6.7,
+    "mp_pos_margin": 0.51,
+    "mp_ori_margin": 0.22
+   },
+   "wooden_spoon": {
+    "pos_cm": 1.51,
+    "ori_deg": 6.3,
+    "mp_pos_margin": 0.5,
+    "mp_ori_margin": 0.21
+   }
+  },
+  "sp_pos_margin": 0.15,
+  "sp_ori_margin": 0.23
+ },
+ "33": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 1.12,
+  "sp_ori_mean_rad": 0.093,
+  "objects": {
+   "blue_cup": {
+    "pos_cm": 0.96,
+    "ori_deg": 3.9,
+    "mp_pos_margin": 0.32,
+    "mp_ori_margin": 0.13
+   },
+   "wooden_spoon": {
+    "pos_cm": 1.28,
+    "ori_deg": 6.7,
+    "mp_pos_margin": 0.43,
+    "mp_ori_margin": 0.22
+   }
+  },
+  "sp_pos_margin": 0.11,
+  "sp_ori_margin": 0.19
+ },
+ "35": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.43,
+  "sp_ori_mean_rad": 0.081,
+  "objects": {
+   "wooden_spoon": {
+    "pos_cm": 0.43,
+    "ori_deg": 4.6,
+    "mp_pos_margin": 0.14,
+    "mp_ori_margin": 0.15
+   }
+  },
+  "sp_pos_margin": 0.04,
+  "sp_ori_margin": 0.16
+ },
+ "36": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.56,
+  "sp_ori_mean_rad": 0.079,
+  "objects": {
+   "wooden_spoon": {
+    "pos_cm": 0.56,
+    "ori_deg": 4.6,
+    "mp_pos_margin": 0.19,
+    "mp_ori_margin": 0.15
+   }
+  },
+  "sp_pos_margin": 0.06,
+  "sp_ori_margin": 0.16
+ },
+ "37": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.34,
+  "sp_ori_mean_rad": 0.047,
+  "objects": {
+   "wooden_spoon": {
+    "pos_cm": 0.34,
+    "ori_deg": 2.7,
+    "mp_pos_margin": 0.11,
+    "mp_ori_margin": 0.09
+   }
+  },
+  "sp_pos_margin": 0.03,
+  "sp_ori_margin": 0.09
+ },
+ "38": {
+  "sp_sr": 1.0,
+  "mp_sr": 1.0,
+  "worlds": 1,
+  "sp_pos_mean_cm": 0.33,
+  "sp_ori_mean_rad": 0.037,
+  "objects": {
+   "mini_dust_pan": {
+    "pos_cm": 0.33,
+    "ori_deg": 2.1,
+    "mp_pos_margin": 0.11,
+    "mp_ori_margin": 0.07
+   }
+  },
+  "sp_pos_margin": 0.03,
+  "sp_ori_margin": 0.07
+ }
+}

@@ -1,0 +1,474 @@
+{
+ "obj": "blue_cup",
+ "profile": {
+  "rows": 186,
+  "azimuths": 360,
+  "h_span_mm": [
+   -93.98,
+   91.05
+  ],
+  "wall_threshold_mm": 2.975,
+  "runs": [
+   [
+    "wall",
+    -93.98,
+    74.02
+   ],
+   [
+    "solid",
+    74.02,
+    82.02
+   ],
+   [
+    "wall",
+    82.02,
+    91.05
+   ]
+  ]
+ },
+ "runs": [
+  {
+   "kind": "wall",
+   "lo_mm": -93.98,
+   "hi_mm": 74.02,
+   "rows": 168,
+   "rays": 60480,
+   "rays_hit": 55989,
+   "rays_no_hit": 4491,
+   "nint_hist": {
+    "1": 49559,
+    "2": 5699,
+    "3": 663,
+    "4": 64,
+    "5": 4
+   },
+   "r_out_median_mm": [
+    33.72,
+    46.05
+   ],
+   "r_in_median_mm": [
+    28.63,
+    42.09
+   ],
+   "wall_median_mm": 5.02,
+   "rays_rout_10mm_below_median": 617,
+   "rows_with_such_rays": 40,
+   "rays_starting_in_material": 0,
+   "lowest_rout_rays": [
+    {
+     "h_mm": 61.52,
+     "phi_deg": 204,
+     "r_in_mm": 14.25,
+     "r_out_mm": 14.28,
+     "nint": 3,
+     "row_median_out_mm": 35.6
+    },
+    {
+     "h_mm": 61.52,
+     "phi_deg": 203,
+     "r_in_mm": 14.18,
+     "r_out_mm": 14.4,
+     "nint": 4,
+     "row_median_out_mm": 35.6
+    },
+    {
+     "h_mm": 63.52,
+     "phi_deg": 219,
+     "r_in_mm": 14.29,
+     "r_out_mm": 14.49,
+     "nint": 3,
+     "row_median_out_mm": 35.39
+    },
+    {
+     "h_mm": 63.52,
+     "phi_deg": 218,
+     "r_in_mm": 14.26,
+     "r_out_mm": 14.49,
+     "nint": 3,
+     "row_median_out_mm": 35.39
+    },
+    {
+     "h_mm": 63.52,
+     "phi_deg": 220,
+     "r_in_mm": 14.33,
+     "r_out_mm": 14.49,
+     "nint": 3,
+     "row_median_out_mm": 35.39
+    },
+    {
+     "h_mm": 63.52,
+     "phi_deg": 217,
+     "r_in_mm": 14.23,
+     "r_out_mm": 14.5,
+     "nint": 3,
+     "row_median_out_mm": 35.39
+    },
+    {
+     "h_mm": 63.52,
+     "phi_deg": 221,
+     "r_in_mm": 14.38,
+     "r_out_mm": 14.5,
+     "nint": 2,
+     "row_median_out_mm": 35.39
+    },
+    {
+     "h_mm": 63.52,
+     "phi_deg": 216,
+     "r_in_mm": 14.2,
+     "r_out_mm": 14.51,
+     "nint": 3,
+     "row_median_out_mm": 35.39
+    }
+   ],
+   "azimuths_with_low_rays": 145,
+   "low_rays_distance_to_solid_mm": {
+    "q10": 9.5,
+    "q50": 12.5,
+    "q90": 21.5,
+    "max": 163.5,
+    "share_within_15mm": 0.713
+   },
+   "low_rays_rout_over_median": {
+    "q10": 0.486,
+    "q50": 0.618
+   }
+  },
+  {
+   "kind": "solid",
+   "lo_mm": 74.02,
+   "hi_mm": 82.02,
+   "rows": 8,
+   "rays": 2880,
+   "rays_hit": 2738,
+   "rays_no_hit": 142,
+   "nint_hist": {
+    "1": 1134,
+    "2": 971,
+    "3": 495,
+    "4": 119,
+    "5": 19
+   },
+   "r_out_median_mm": [
+    21.75,
+    30.55
+   ],
+   "r_in_median_mm": [
+    0.0,
+    22.04
+   ],
+   "wall_median_mm": 23.31,
+   "rays_rout_10mm_below_median": 671,
+   "rows_with_such_rays": 7,
+   "rays_starting_in_material": 2160,
+   "lowest_rout_rays": [
+    {
+     "h_mm": 80.52,
+     "phi_deg": 270,
+     "r_in_mm": 0.0,
+     "r_out_mm": 0.6,
+     "nint": 1,
+     "row_median_out_mm": 22.46
+    },
+    {
+     "h_mm": 80.52,
+     "phi_deg": 271,
+     "r_in_mm": 0.0,
+     "r_out_mm": 0.6,
+     "nint": 1,
+     "row_median_out_mm": 22.46
+    },
+    {
+     "h_mm": 80.52,
+     "phi_deg": 269,
+     "r_in_mm": 0.0,
+     "r_out_mm": 0.6,
+     "nint": 1,
+     "row_median_out_mm": 22.46
+    },
+    {
+     "h_mm": 80.52,
+     "phi_deg": 272,
+     "r_in_mm": 0.0,
+     "r_out_mm": 0.6,
+     "nint": 1,
+     "row_median_out_mm": 22.46
+    },
+    {
+     "h_mm": 80.52,
+     "phi_deg": 268,
+     "r_in_mm": 0.0,
+     "r_out_mm": 0.6,
+     "nint": 1,
+     "row_median_out_mm": 22.46
+    },
+    {
+     "h_mm": 80.52,
+     "phi_deg": 273,
+     "r_in_mm": 0.0,
+     "r_out_mm": 0.6,
+     "nint": 1,
+     "row_median_out_mm": 22.46
+    },
+    {
+     "h_mm": 80.52,
+     "phi_deg": 267,
+     "r_in_mm": 0.0,
+     "r_out_mm": 0.6,
+     "nint": 1,
+     "row_median_out_mm": 22.46
+    },
+    {
+     "h_mm": 80.52,
+     "phi_deg": 274,
+     "r_in_mm": 0.0,
+     "r_out_mm": 0.6,
+     "nint": 1,
+     "row_median_out_mm": 22.46
+    }
+   ],
+   "azimuths_with_low_rays": 318,
+   "low_rays_distance_to_solid_mm": {
+    "q10": 0.0,
+    "q50": 0.0,
+    "q90": 0.0,
+    "max": 0.0,
+    "share_within_15mm": 1.0
+   },
+   "low_rays_rout_over_median": {
+    "q10": 0.032,
+    "q50": 0.313
+   }
+  },
+  {
+   "kind": "wall",
+   "lo_mm": 82.02,
+   "hi_mm": 91.05,
+   "rows": 10,
+   "rays": 3600,
+   "rays_hit": 830,
+   "rays_no_hit": 2770,
+   "nint_hist": {
+    "1": 719,
+    "2": 104,
+    "3": 7
+   },
+   "r_out_median_mm": [
+    13.95,
+    28.19
+   ],
+   "r_in_median_mm": [
+    13.04,
+    22.45
+   ],
+   "wall_median_mm": 4.2,
+   "rays_rout_10mm_below_median": 47,
+   "rows_with_such_rays": 5,
+   "rays_starting_in_material": 0,
+   "lowest_rout_rays": [
+    {
+     "h_mm": 85.52,
+     "phi_deg": 181,
+     "r_in_mm": 8.8,
+     "r_out_mm": 9.15,
+     "nint": 1,
+     "row_median_out_mm": 23.96
+    },
+    {
+     "h_mm": 83.52,
+     "phi_deg": 182,
+     "r_in_mm": 9.85,
+     "r_out_mm": 10.05,
+     "nint": 1,
+     "row_median_out_mm": 28.19
+    },
+    {
+     "h_mm": 85.52,
+     "phi_deg": 149,
+     "r_in_mm": 9.93,
+     "r_out_mm": 10.1,
+     "nint": 1,
+     "row_median_out_mm": 23.96
+    },
+    {
+     "h_mm": 84.52,
+     "phi_deg": 150,
+     "r_in_mm": 9.9,
+     "r_out_mm": 10.22,
+     "nint": 1,
+     "row_median_out_mm": 26.48
+    },
+    {
+     "h_mm": 86.52,
+     "phi_deg": 180,
+     "r_in_mm": 10.16,
+     "r_out_mm": 10.31,
+     "nint": 1,
+     "row_median_out_mm": 22.64
+    },
+    {
+     "h_mm": 84.52,
+     "phi_deg": 181,
+     "r_in_mm": 9.31,
+     "r_out_mm": 10.37,
+     "nint": 1,
+     "row_median_out_mm": 26.48
+    },
+    {
+     "h_mm": 85.52,
+     "phi_deg": 150,
+     "r_in_mm": 9.76,
+     "r_out_mm": 10.46,
+     "nint": 1,
+     "row_median_out_mm": 23.96
+    },
+    {
+     "h_mm": 84.52,
+     "phi_deg": 151,
+     "r_in_mm": 9.83,
+     "r_out_mm": 10.63,
+     "nint": 1,
+     "row_median_out_mm": 26.48
+    }
+   ],
+   "azimuths_with_low_rays": 17,
+   "low_rays_distance_to_solid_mm": {
+    "q10": 0.5,
+    "q50": 2.5,
+    "q90": 3.5,
+    "max": 4.5,
+    "share_within_15mm": 1.0
+   },
+   "low_rays_rout_over_median": {
+    "q10": 0.391,
+    "q50": 0.463
+   }
+  }
+ ],
+ "layout": {
+  "n_s": 12,
+  "base": "b1",
+  "n_r": 25,
+  "ring_cm3": 0.006,
+  "min_wall_mm": -55.160851517020085,
+  "dropped_negative_wall": 15,
+  "pieces": [
+   {
+    "kind": "wall",
+    "s": 0,
+    "n_s": 12,
+    "run": 2,
+    "h0": 0.08053,
+    "h1": 0.09105,
+    "rho0": 0.03601,
+    "rho1": 0.01203,
+    "R0": 0.02109,
+    "R1": 0.01356,
+    "wall_min_mm": -16.19
+   },
+   {
+    "kind": "wall",
+    "s": 2,
+    "n_s": 12,
+    "run": 2,
+    "h0": 0.08053,
+    "h1": 0.09105,
+    "rho0": 0.02417,
+    "rho1": 0.01963,
+    "R0": 0.02516,
+    "R1": 0.01335,
+    "wall_min_mm": -6.97
+   },
+   {
+    "kind": "wall",
+    "s": 3,
+    "n_s": 12,
+    "run": 2,
+    "h0": 0.08053,
+    "h1": 0.09105,
+    "rho0": 0.02175,
+    "rho1": 0.02166,
+    "R0": 0.02338,
+    "R1": 0.01344,
+    "wall_min_mm": -8.98
+   },
+   {
+    "kind": "wall",
+    "s": 6,
+    "n_s": 12,
+    "run": 2,
+    "h0": 0.08053,
+    "h1": 0.09105,
+    "rho0": 0.05759,
+    "rho1": 0.01087,
+    "R0": 0.00446,
+    "R1": 0.01445,
+    "wall_min_mm": -55.16
+   },
+   {
+    "kind": "wall",
+    "s": 7,
+    "n_s": 12,
+    "run": 2,
+    "h0": 0.08053,
+    "h1": 0.09105,
+    "rho0": 0.02417,
+    "rho1": 0.01963,
+    "R0": 0.03048,
+    "R1": 0.01288,
+    "wall_min_mm": -7.44
+   },
+   {
+    "kind": "wall",
+    "s": 8,
+    "n_s": 12,
+    "run": 2,
+    "h0": 0.08053,
+    "h1": 0.09105,
+    "rho0": 0.02417,
+    "rho1": 0.01963,
+    "R0": 0.03048,
+    "R1": 0.01288,
+    "wall_min_mm": -7.44
+   },
+   {
+    "kind": "wall",
+    "s": 9,
+    "n_s": 12,
+    "run": 2,
+    "h0": 0.08053,
+    "h1": 0.09105,
+    "rho0": 0.02417,
+    "rho1": 0.01963,
+    "R0": 0.03048,
+    "R1": 0.01288,
+    "wall_min_mm": -7.44
+   },
+   {
+    "kind": "wall",
+    "s": 10,
+    "n_s": 12,
+    "run": 2,
+    "h0": 0.08053,
+    "h1": 0.09105,
+    "rho0": 0.02417,
+    "rho1": 0.01963,
+    "R0": 0.03048,
+    "R1": 0.01288,
+    "wall_min_mm": -7.44
+   },
+   {
+    "kind": "wall",
+    "s": 11,
+    "n_s": 12,
+    "run": 2,
+    "h0": 0.08053,
+    "h1": 0.09105,
+    "rho0": 0.02417,
+    "rho1": 0.01963,
+    "R0": 0.03048,
+    "R1": 0.01288,
+    "wall_min_mm": -7.44
+   }
+  ]
+ }
+}

@@ -1,0 +1,83 @@
+{
+ "t0_c0b_m": null,
+ "t0_src": "absent",
+ "clamp_m": [
+  0.0015,
+  0.008
+ ],
+ "targets": {
+  "ep21": {
+   "obs": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/pts/B/ep21_water_pitcher.npz",
+   "episodes": [
+    21
+   ],
+   "sigma_m": 0.0017325467238997459,
+   "app_d_m": 0.005197640171699238,
+   "t_fallback_m": 0.0059921834617853165,
+   "t_src": "thickness.py (n=877)",
+   "lathe_args": [
+    "--tie",
+    "1.0",
+    "--floor",
+    "base_t",
+    "--t_fallback",
+    "0.00599218",
+    "--tmax",
+    "0.008",
+    "--tmin",
+    "0.0015",
+    "--app_d",
+    "0.00519764"
+   ]
+  },
+  "ep22": {
+   "obs": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/pts/B/ep22_water_pitcher.npz",
+   "episodes": [
+    22
+   ],
+   "sigma_m": 0.0017392392238335277,
+   "app_d_m": 0.005217717671500583,
+   "t_fallback_m": -1.0,
+   "t_src": "none: thickness.py n=1 < 200 and absent; lathe fails if it needs the fallback",
+   "lathe_args": [
+    "--tie",
+    "1.0",
+    "--floor",
+    "base_t",
+    "--t_fallback",
+    "-1",
+    "--tmax",
+    "0.008",
+    "--tmin",
+    "0.0015",
+    "--app_d",
+    "0.00521772"
+   ]
+  },
+  "merged": {
+   "obs": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/pts/M/merged_water_pitcher.npz",
+   "episodes": [
+    21,
+    22
+   ],
+   "sigma_m": 0.0017358929738666368,
+   "app_d_m": 0.00520767892159991,
+   "t_fallback_m": 0.0059935711324214935,
+   "t_src": "thickness.py (n=878)",
+   "lathe_args": [
+    "--tie",
+    "1.0",
+    "--floor",
+    "base_t",
+    "--t_fallback",
+    "0.00599357",
+    "--tmax",
+    "0.008",
+    "--tmin",
+    "0.0015",
+    "--app_d",
+    "0.00520768"
+   ]
+  }
+ }
+}

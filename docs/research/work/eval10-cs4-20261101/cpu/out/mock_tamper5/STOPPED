@@ -1,0 +1,1 @@
+piece set check FAILED (PIECES FAILED: e10cs_pieces check failed: CHECK FAILED: md5 differs from MD5SUMS: ['blue_cup/piece_03.obj'] :: ev10cs5 50 input files, MD5SUMS 045d8921d5fe; blue_cup 24 pieces (md5 list 1bfb2e4b, COM mm [0.464, 1.038, 19.052]), beige_cup 21 pieces (md5 list 7f8bff4c, COM mm [1.535, 5.508, -5.568]); )

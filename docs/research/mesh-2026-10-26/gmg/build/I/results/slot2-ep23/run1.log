@@ -1,0 +1,3 @@
+wooden_piece_1 {"plate": true, "t_source": "partner_prior", "t_mm": 10.785, "t_down_mm": null, "why": null, "body_built": false, "body_why": "plate_body_over_cap", "widths": {"waist_30_70": 108.0, "ends_outer_10": 74.0, "end_lo": 70.0, "end_hi": 77.0, "end_minus_waist": -34.0, "max": 112.0}, "free": 0.252, "prisms": 85}
+wooden_piece_2 {"plate": true, "t_source": "plane_pair", "t_mm": 10.785, "t_down_mm": 10.694, "why": null, "body_built": true, "body_why": null, "widths": {"waist_30_70": 126.0, "ends_outer_10": 134.0, "end_lo": 128.6, "end_hi": 142.0, "end_minus_waist": 8.0, "max": 152.0}, "free": 0.346, "prisms": 56}
+done 156.3 s -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/fi415_ep23

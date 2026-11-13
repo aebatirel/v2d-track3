@@ -1,0 +1,102 @@
+{
+ "_note": "2026-10-31, round 3 adopted (pre-registered rule, mean +0.090 vs mocap after RL on 4 public episodes). MASS-ONLY entries for any mesh library (ours: library_v3/v3x/v3p, collision pieces): make_assets.py --physics keeps the mesh's own COM and inertia shape (com_m / inertia_kgm2 null) and sets the mass. Masses from props_public_scans.json (shell model on NVIDIA's scans, materials from the public videos; estimates within about x0.6-x1.6). wooden_spoon: no scan; stated prior 0.05 kg (a ~32 cm wooden spoon, typically 30-70 g; estimate). One value per object, shared by every episode; never fitted to mocap or eval results.",
+ "beige_cup": {
+  "physics": {
+   "model": "mass-only",
+   "material": "plastic (PP) 900 kg/m3, wall 2.0 mm",
+   "mass_kg": 0.1367,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "blue_cup": {
+  "physics": {
+   "model": "mass-only",
+   "material": "plastic (PP) 900 kg/m3, wall 2.0 mm",
+   "mass_kg": 0.128,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "mini_dust_pan": {
+  "physics": {
+   "model": "mass-only",
+   "material": "plastic (PP) 900 kg/m3, wall 2.0 mm, both faces scanned",
+   "mass_kg": 0.0442,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "mini_sweeper": {
+  "physics": {
+   "model": "mass-only",
+   "material": "small brush, wood/plastic block + bristles; stated prior 45 g",
+   "mass_kg": 0.045,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "plastic_dish_rack": {
+  "physics": {
+   "model": "mass-only",
+   "material": "plastic (PP) 900 kg/m3, wall 2.5 mm, both faces scanned",
+   "mass_kg": 0.3865,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "water_pitcher": {
+  "physics": {
+   "model": "mass-only",
+   "material": "plastic (PP) 900 kg/m3, wall 2.5 mm, empty",
+   "mass_kg": 0.5031,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "white_pot": {
+  "physics": {
+   "model": "mass-only",
+   "material": "plastic (PP) 900 kg/m3, wall 2.5 mm",
+   "mass_kg": 0.2771,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "white_pot_lid": {
+  "physics": {
+   "model": "mass-only",
+   "material": "plastic (PP) 900 kg/m3, wall 2.5 mm, both faces scanned",
+   "mass_kg": 0.0882,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "wooden_piece_1": {
+  "physics": {
+   "model": "mass-only",
+   "material": "pine/plywood 550 kg/m3, plate 8.5 mm, both faces scanned",
+   "mass_kg": 0.1389,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "wooden_piece_2": {
+  "physics": {
+   "model": "mass-only",
+   "material": "pine/plywood 550 kg/m3, plate 8.5 mm, both faces scanned",
+   "mass_kg": 0.1409,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ },
+ "wooden_spoon": {
+  "physics": {
+   "model": "mass-only",
+   "material": "wood, stated prior (no scan)",
+   "mass_kg": 0.05,
+   "com_m": null,
+   "inertia_kgm2": null
+  }
+ }
+}

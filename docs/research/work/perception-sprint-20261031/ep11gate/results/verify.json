@@ -1,0 +1,281 @@
+{
+ "ok": true,
+ "failures": [],
+ "missing": [],
+ "b0_bands": {
+  "e11c": "IDENTICAL",
+  "e11t": "DIFFERS"
+ },
+ "identity": {
+  "e11c": {
+   "e2s_vs_tracks_cm": {
+    "e11c": 0.038,
+    "e11t": 2.38
+   },
+   "e2s_ok": true,
+   "trained_vs_bases_cm": {
+    "e11c": 0.0,
+    "e11t": 2.404
+   },
+   "trained_ok": true,
+   "ok": true
+  },
+  "e11t": {
+   "e2s_vs_tracks_cm": {
+    "e11c": 2.456,
+    "e11t": 0.038
+   },
+   "e2s_ok": true,
+   "trained_vs_bases_cm": {
+    "e11c": 2.404,
+    "e11t": 0.0
+   },
+   "trained_ok": true,
+   "ok": true
+  },
+  "arms_apart_blue_cm": {
+   "window": 2.404,
+   "hands_off_f101_136": 2.367
+  },
+  "arms_apart_beige_cm": {
+   "window": 0.0,
+   "hands_off_f101_136": 1.114
+  }
+ },
+ "builds": {
+  "e11c": {
+   "arm": "e11c",
+   "rc": 0,
+   "pdir": "/content/results/ep11_gate/tracks/C/ep11",
+   "poses_md5_before": "b32ab808e560f8a3ebbec3658701066c",
+   "poses_md5_after": "b32ab808e560f8a3ebbec3658701066c",
+   "depth": "/workspace/hfstore/cache/depth/public/ep11/depths_fs0.5.npy",
+   "depth_expected": "/content/hfstore/cache/depth/public/ep11/depths_fs0.5.npy",
+   "hands_md5": "0c7652fde628e502b6fd4836ced85f72",
+   "hands_refined_md5": "d9c391deaf73509b6c52e3b743580272",
+   "mkref_args": "--wrist_cost 3.0",
+   "cr_args": "--rest_settle 1",
+   "reference": [
+    "/content/refs/perc2e11cmck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/67a02523d4c24fe88e8d5a81e410ed42-0.parquet"
+   ],
+   "reference_md5": [
+    "a95db832025cff411d1bf6ae07652398"
+   ],
+   "table_frame": true,
+   "contact_retarget": true
+  },
+  "e11t": {
+   "arm": "e11t",
+   "rc": 0,
+   "pdir": "/content/results/ep11_gate/tracks/T/ep11",
+   "poses_md5_before": "527eac7a6e34d64fb36dccf10aef4725",
+   "poses_md5_after": "527eac7a6e34d64fb36dccf10aef4725",
+   "depth": "/workspace/hfstore/cache/depth/public/ep11/depths_fs0.5.npy",
+   "depth_expected": "/content/hfstore/cache/depth/public/ep11/depths_fs0.5.npy",
+   "hands_md5": "0c7652fde628e502b6fd4836ced85f72",
+   "hands_refined_md5": "d9c391deaf73509b6c52e3b743580272",
+   "mkref_args": "--wrist_cost 3.0",
+   "cr_args": "--rest_settle 1",
+   "reference": [
+    "/content/refs/perc2e11tmck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d5a8ed5cc6a04d7aa731b59d97e23e69-0.parquet"
+   ],
+   "reference_md5": [
+    "cbfebb4947265545c7b86500254a98ab"
+   ],
+   "table_frame": true,
+   "contact_retarget": true
+  }
+ },
+ "pair_config_differences": {
+  "s42": {
+   "e11t/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "s43": {
+   "e11t/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "pair_config_equal_after_arm_name": {
+  "s42": {
+   "e11t/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "s43": {
+   "e11t/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "eval_timeouts": {},
+ "cells": {
+  "e11c/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/perc2e11cs42_glock/ep11-s42/policy_10002432.safetensors",
+   "checkpoint_steps": "10002432",
+   "task_parquet": "/workspace/refs/perc2e11cs42_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/perc2e11cs42_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "e89bb9c7fe96e1dd180afc4800bba0a5",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+     "md5": "82ff6cb8049b527a7ec770965128e37c",
+     "mass": 0.3,
+     "com": "0.000728 0.001551 0.002992"
+    },
+    "beige_cup": {
+     "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+     "md5": "b994e584931ff45b8f162ff7891d49a6",
+     "mass": 0.3,
+     "com": "0.001523 0.005527 -0.004172"
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "evaluations_checked": 10,
+   "checkpoint_sha256": "2074974ae932f6bffcedb7bedf0d9890dbceae08e197df1c66d26098cbcabc0f"
+  },
+  "e11c/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/perc2e11cs43_glock/ep11-s43/policy_10002432.safetensors",
+   "checkpoint_steps": "10002432",
+   "task_parquet": "/workspace/refs/perc2e11cs43_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/perc2e11cs43_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "e89bb9c7fe96e1dd180afc4800bba0a5",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+     "md5": "82ff6cb8049b527a7ec770965128e37c",
+     "mass": 0.3,
+     "com": "0.000728 0.001551 0.002992"
+    },
+    "beige_cup": {
+     "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+     "md5": "b994e584931ff45b8f162ff7891d49a6",
+     "mass": 0.3,
+     "com": "0.001523 0.005527 -0.004172"
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "evaluations_checked": 10,
+   "checkpoint_sha256": "7417ef2ae87ed31b3675195d29524bb1429439a4f98fa0192803b7f341433cf3"
+  },
+  "e11t/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/perc2e11ts42_glock/ep11-s42/policy_70004736.safetensors",
+   "checkpoint_steps": "70004736",
+   "task_parquet": "/workspace/refs/perc2e11ts42_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/perc2e11ts42_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "c527ceb0522d276879a803cd0e8ab3c8",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+     "md5": "82ff6cb8049b527a7ec770965128e37c",
+     "mass": 0.3,
+     "com": "0.000728 0.001551 0.002992"
+    },
+    "beige_cup": {
+     "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+     "md5": "b994e584931ff45b8f162ff7891d49a6",
+     "mass": 0.3,
+     "com": "0.001523 0.005527 -0.004172"
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "evaluations_checked": 10,
+   "checkpoint_sha256": "2d91682f66c64f2eaa53fd1a1f9cfb481141ae10820bf8010549444d5e6bc59e"
+  },
+  "e11t/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/perc2e11ts43_glock/ep11-s43/policy_70004736.safetensors",
+   "checkpoint_steps": "70004736",
+   "task_parquet": "/workspace/refs/perc2e11ts43_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/perc2e11ts43_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "c527ceb0522d276879a803cd0e8ab3c8",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/assets/urdf/blue_cup_rigid.urdf",
+     "md5": "82ff6cb8049b527a7ec770965128e37c",
+     "mass": 0.3,
+     "com": "0.000728 0.001551 0.002992"
+    },
+    "beige_cup": {
+     "urdf": "/content/assets/urdf/beige_cup_rigid.urdf",
+     "md5": "b994e584931ff45b8f162ff7891d49a6",
+     "mass": 0.3,
+     "com": "0.001523 0.005527 -0.004172"
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "evaluations_checked": 10,
+   "checkpoint_sha256": "2de4c6f04560b32d17f84bd7885995d211d13b242cccbf8082e32a1aa87c2db9"
+  }
+ },
+ "rule": "docs/research/work/perception-sprint-20261031/ep11gate/PREREG.md"
+}

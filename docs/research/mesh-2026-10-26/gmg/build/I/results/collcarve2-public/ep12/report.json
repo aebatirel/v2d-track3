@@ -1,0 +1,1044 @@
+{
+ "ep": 12,
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12",
+ "tier": "P1",
+ "picks": {
+  "blue_cup": "shell_t5p36",
+  "plastic_dish_rack": "shell_t5p36"
+ },
+ "constants": {
+  "engaged_min_vox": {
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels"
+  },
+  "gap_bridge_frames": {
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged"
+  },
+  "transient_frames": {
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames"
+  },
+  "static_speed_m": {
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame"
+  },
+  "static_min_frames": {
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames"
+  },
+  "insert_travel_m": {
+   "value": 0.02,
+   "origin": "informed:F-I1.14 travel 20 mm (XCarve design 22 Oct)"
+  },
+  "insert_straightness": {
+   "value": 0.7,
+   "origin": "informed:F-I1.14 straightness 0.7 (XCarve design 22 Oct)"
+  },
+  "block_frames": {
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks"
+  },
+  "holdout_min_frames": {
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum"
+  },
+  "persist_min": {
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count"
+  },
+  "persist_share": {
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile"
+  },
+  "sweep_min_m": {
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)"
+  },
+  "sweep_k_j": {
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)"
+  },
+  "through_beyond_vox": {
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel"
+  },
+  "class_o_max": {
+   "value": 0.25,
+   "origin": "generic:F-I1.14 25 % class O"
+  },
+  "swept_share": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority"
+  },
+  "push_prior_m": {
+   "value": 0.01,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 10 mm"
+  },
+  "push_prior_deg": {
+   "value": 3.0,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 3 deg"
+  },
+  "push_step_m": {
+   "value": 0.002,
+   "origin": "generic:numerical 2 mm (one sub-voxel)"
+  },
+  "push_cap_m": {
+   "value": 0.06,
+   "origin": "generic:numerical cap of the push search (6 x the prior)"
+  },
+  "push_frames_max": {
+   "value": 12,
+   "origin": "generic:numerical subsample of the build frames for the push proxy"
+  },
+  "silgap_share": {
+   "value": 0.75,
+   "origin": "generic:F-I1.3 (iii) 75 %"
+  },
+  "budget_vol": {
+   "value": 0.1,
+   "origin": "generic:F-I1.14 budget 10 %"
+  },
+  "budget_reach": {
+   "value": 0.6,
+   "origin": "generic:F-I1.14 reach 0.6"
+  },
+  "w_bridge_px": {
+   "value": 8.0,
+   "origin": "generic:F-I1.14 w_bridge 8 depth pixels [H]"
+  },
+  "depth_scale": {
+   "value": 0.5,
+   "origin": "sensor:depth input at half the 1600 x 1000 rectified resolution (depths_fs0.5)"
+  },
+  "clearance_m": {
+   "value": 0.001,
+   "origin": "informed:F-I1.14 1 mm clearance (26 Oct pre-registered carve rule)"
+  },
+  "link_share": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 linking share 50 %"
+  },
+  "agree_dist_m": {
+   "value": 0.01,
+   "origin": "generic:F-I1.14 = K-c 10 mm"
+  },
+  "agree_deg": {
+   "value": 15.0,
+   "origin": "generic:F-I1.14 = K-c 15 deg"
+  },
+  "agree_share": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority"
+  },
+  "min_testable": {
+   "value": 3,
+   "origin": "generic:INTERLOCK 3.4 fewer than 3 testable voxels = absent"
+  },
+  "offset_tmax_m": {
+   "value": 0.02,
+   "origin": "informed:F-I1.14 OFFSET t_max 20 mm (dev offset 10.5-12.9 mm seen)"
+  },
+  "offset_lateral": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 OFFSET lateral share 0.5"
+  },
+  "offset_grid_m": {
+   "value": 0.002,
+   "origin": "generic:F-I1.14 OFFSET 2 mm grid"
+  },
+  "sub_m": {
+   "value": 0.002,
+   "origin": "generic:INTERLOCK 3 2 mm refinement"
+  },
+  "fid_tol_m": {
+   "value": 0.0005,
+   "origin": "generic:F-I1.14 fiducials 0.5 mm"
+  },
+  "contain_share": {
+   "value": 0.99,
+   "origin": "generic:F-I1.14 99 % containment"
+  },
+  "contain_n": {
+   "value": 10000,
+   "origin": "generic:INTERLOCK 11.2 10,000 samples"
+  },
+  "max_rounds": {
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds"
+  }
+ },
+ "launch_code": {
+  "commit": "88f49df7e1b8b894a5bfbda2859793b4e010fbab",
+  "dirty": false,
+  "dirty_files": [],
+  "sha256": {
+   "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+   "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+   "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+   "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+   "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+   "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+   "tools/interlock_dev.py": "11b746537993c5f8854c578c2cab8182514888c03acb03363cb592f2737dbd7b",
+   "platebody.py": "da173d6b979a5b4f819b73419c5d9fe7a38fe12b504ee2520d653743e99df468",
+   "collcarve.py": "203eda41fdef5f9cf285cc6598eeefe326908280d65d312f7288e0ade7a52ec8",
+   "cavpieces.py": "4b931e0d579862a77e82fb3e73718b90e7606f7289f62b22e8d77a0fb0c243ae"
+  }
+ },
+ "fi4_rev": null,
+ "identity_semantics": "eval",
+ "owner_waiver_fi4": false,
+ "owner_waiver_fi5": true,
+ "sanity_flags": {
+  "blue_cup": [],
+  "plastic_dish_rack": []
+ },
+ "sim_pose": "P_sel (flag sim_pose_fallback: no provenance-checked replay reference for public dev)",
+ "pairs": {
+  "blue_cup|plastic_dish_rack": {
+   "blue_cup<-plastic_dish_rack": {
+    "contact_frames": 91,
+    "runs": [
+     {
+      "frames": [
+       116,
+       180
+      ],
+      "n": 33,
+      "kind": "INSERTION",
+      "travel_mm": 173.8,
+      "straightness": 0.792,
+      "d": [
+       -0.9892,
+       -0.076,
+       0.1256
+      ],
+      "assembled": [
+       170,
+       180
+      ],
+      "n_assembled": 6,
+      "n_build": 20,
+      "n_check": 13,
+      "flags": []
+     }
+    ],
+    "components": [
+     {
+      "voxels": 38,
+      "swept": 0,
+      "cm3": 2.43
+     },
+     {
+      "voxels": 6,
+      "swept": 0,
+      "cm3": 0.38
+     },
+     {
+      "voxels": 152,
+      "swept": 16,
+      "cm3": 9.73
+     },
+     {
+      "voxels": 8,
+      "swept": 2,
+      "cm3": 0.51
+     },
+     {
+      "voxels": 2,
+      "swept": 1,
+      "cm3": 0.13
+     },
+     {
+      "voxels": 22,
+      "swept": 9,
+      "cm3": 1.41
+     },
+     {
+      "voxels": 2,
+      "swept": 1,
+      "cm3": 0.13
+     },
+     {
+      "voxels": 3,
+      "swept": 3,
+      "cm3": 0.19
+     }
+    ],
+    "good_share": [
+     1.0
+    ],
+    "track_ok": true,
+    "gate": {
+     "good_share": [
+      1.0
+     ],
+     "flags": [],
+     "identity": "eval",
+     "track_ok": true
+    }
+   },
+   "plastic_dish_rack<-blue_cup": {
+    "contact_frames": 91,
+    "runs": [
+     {
+      "frames": [
+       116,
+       180
+      ],
+      "n": 33,
+      "kind": "INSERTION",
+      "travel_mm": 58.5,
+      "straightness": 0.848,
+      "d": [
+       -0.9398,
+       -0.3265,
+       0.1011
+      ],
+      "assembled": [
+       164,
+       180
+      ],
+      "n_assembled": 9,
+      "n_build": 20,
+      "n_check": 13,
+      "flags": []
+     }
+    ],
+    "components": [
+     {
+      "voxels": 211,
+      "swept": 192,
+      "cm3": 13.5
+     },
+     {
+      "voxels": 6,
+      "swept": 0,
+      "cm3": 0.38
+     },
+     {
+      "voxels": 18,
+      "swept": 2,
+      "cm3": 1.15
+     },
+     {
+      "voxels": 2,
+      "swept": 2,
+      "cm3": 0.13
+     }
+    ],
+    "good_share": [
+     1.0
+    ],
+    "track_ok": true,
+    "gate": {
+     "good_share": [
+      1.0
+     ],
+     "flags": [],
+     "identity": "eval",
+     "track_ok": true
+    }
+   }
+  }
+ },
+ "silhouette": {
+  "blue_cup": null,
+  "plastic_dish_rack": null
+ },
+ "fi5_body": {
+  "blue_cup": "shell_t5p36",
+  "plastic_dish_rack": "shell_t5p36"
+ },
+ "fi5": {
+  "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+  "fi5_rev": 2,
+  "routes": {
+   "blue_cup": {
+    "route": "4_voxels",
+    "n": 29,
+    "gate": {
+     "pass_": true,
+     "n": 29,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "lathe_test": {
+     "accepted": true,
+     "rotc_sigma": 1.598
+    },
+    "plate_like": false,
+    "tried": [
+     {
+      "route": "2_lathe",
+      "report": {
+       "profile": {
+        "rows": 186,
+        "azimuths": 360,
+        "h_span_mm": [
+         -93.98,
+         91.05
+        ],
+        "wall_threshold_mm": 2.975,
+        "runs": [
+         [
+          "wall",
+          -93.98,
+          74.02
+         ],
+         [
+          "solid",
+          74.02,
+          82.02
+         ],
+         [
+          "wall",
+          82.02,
+          91.05
+         ]
+        ]
+       },
+       "tried": [
+        {
+         "n_s": 8,
+         "base": "b1",
+         "B_w": 2,
+         "n_r": 17,
+         "ring_cm3": 0.005,
+         "min_wall_mm": -46.974,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b2",
+         "B_w": 2,
+         "n_r": 25,
+         "ring_cm3": 0.116,
+         "min_wall_mm": -46.857,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 12,
+         "base": "b1",
+         "B_w": 2,
+         "n_r": 25,
+         "ring_cm3": 0.006,
+         "min_wall_mm": -55.161,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b1",
+         "B_w": 3,
+         "n_r": 25,
+         "ring_cm3": 0.005,
+         "min_wall_mm": -46.974,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b2",
+         "B_w": 3,
+         "n_r": 33,
+         "ring_cm3": 0.116,
+         "min_wall_mm": -46.857,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 16,
+         "base": "b1",
+         "B_w": 2,
+         "n_r": 33,
+         "ring_cm3": 0.006,
+         "min_wall_mm": -37.197,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b1",
+         "B_w": 4,
+         "n_r": 33,
+         "ring_cm3": 0.005,
+         "min_wall_mm": -46.974,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 12,
+         "base": "b2",
+         "B_w": 2,
+         "n_r": 37,
+         "ring_cm3": 0.177,
+         "min_wall_mm": -54.925,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 12,
+         "base": "b1",
+         "B_w": 3,
+         "n_r": 37,
+         "ring_cm3": 0.006,
+         "min_wall_mm": -55.161,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b2",
+         "B_w": 4,
+         "n_r": 41,
+         "ring_cm3": 0.116,
+         "min_wall_mm": -46.857,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 20,
+         "base": "b1",
+         "B_w": 2,
+         "n_r": 41,
+         "ring_cm3": 0.043,
+         "min_wall_mm": -44.288,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b1",
+         "B_w": 5,
+         "n_r": 41,
+         "ring_cm3": 0.005,
+         "min_wall_mm": -46.974,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 16,
+         "base": "b1",
+         "B_w": 3,
+         "n_r": 49,
+         "ring_cm3": 5.23,
+         "min_wall_mm": -37.197,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b1",
+         "B_w": 6,
+         "n_r": 49,
+         "ring_cm3": 4.511,
+         "min_wall_mm": -46.974,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 12,
+         "base": "b1",
+         "B_w": 4,
+         "n_r": 49,
+         "ring_cm3": 3.805,
+         "min_wall_mm": -55.161,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 16,
+         "base": "b2",
+         "B_w": 2,
+         "n_r": 49,
+         "ring_cm3": 0.251,
+         "min_wall_mm": -36.752,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 12,
+         "base": "b2",
+         "B_w": 3,
+         "n_r": 49,
+         "ring_cm3": 0.177,
+         "min_wall_mm": -54.925,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b2",
+         "B_w": 5,
+         "n_r": 49,
+         "ring_cm3": 0.116,
+         "min_wall_mm": -46.857,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 24,
+         "base": "b1",
+         "B_w": 2,
+         "n_r": 49,
+         "ring_cm3": 0.086,
+         "min_wall_mm": -37.091,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b1",
+         "B_w": 7,
+         "n_r": 57,
+         "ring_cm3": 5.911,
+         "min_wall_mm": -46.974,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b2",
+         "B_w": 6,
+         "n_r": 57,
+         "ring_cm3": 4.622,
+         "min_wall_mm": -46.857,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 20,
+         "base": "b1",
+         "B_w": 3,
+         "n_r": 61,
+         "ring_cm3": 5.888,
+         "min_wall_mm": -44.288,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 12,
+         "base": "b2",
+         "B_w": 4,
+         "n_r": 61,
+         "ring_cm3": 3.976,
+         "min_wall_mm": -54.925,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 12,
+         "base": "b1",
+         "B_w": 5,
+         "n_r": 61,
+         "ring_cm3": 3.805,
+         "min_wall_mm": -55.161,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 20,
+         "base": "b2",
+         "B_w": 2,
+         "n_r": 61,
+         "ring_cm3": 0.349,
+         "min_wall_mm": -43.79,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 16,
+         "base": "b1",
+         "B_w": 4,
+         "n_r": 65,
+         "ring_cm3": 11.641,
+         "min_wall_mm": -37.197,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b1",
+         "B_w": 8,
+         "n_r": 65,
+         "ring_cm3": 7.053,
+         "min_wall_mm": -46.974,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b2",
+         "B_w": 7,
+         "n_r": 65,
+         "ring_cm3": 6.022,
+         "min_wall_mm": -46.857,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 16,
+         "base": "b2",
+         "B_w": 3,
+         "n_r": 65,
+         "ring_cm3": 5.475,
+         "min_wall_mm": -36.752,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 32,
+         "base": "b1",
+         "B_w": 2,
+         "n_r": 65,
+         "ring_cm3": 0.169,
+         "min_wall_mm": -35.073,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 12,
+         "base": "b1",
+         "B_w": 6,
+         "n_r": 73,
+         "ring_cm3": 11.457,
+         "min_wall_mm": -55.161,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b1",
+         "B_w": 9,
+         "n_r": 73,
+         "ring_cm3": 8.451,
+         "min_wall_mm": -46.974,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b2",
+         "B_w": 8,
+         "n_r": 73,
+         "ring_cm3": 7.164,
+         "min_wall_mm": -46.857,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 12,
+         "base": "b2",
+         "B_w": 5,
+         "n_r": 73,
+         "ring_cm3": 3.976,
+         "min_wall_mm": -54.925,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 24,
+         "base": "b1",
+         "B_w": 3,
+         "n_r": 73,
+         "ring_cm3": 2.529,
+         "min_wall_mm": -37.091,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 24,
+         "base": "b2",
+         "B_w": 2,
+         "n_r": 73,
+         "ring_cm3": 0.455,
+         "min_wall_mm": -36.611,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 20,
+         "base": "b1",
+         "B_w": 4,
+         "n_r": 81,
+         "ring_cm3": 22.564,
+         "min_wall_mm": -44.288,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 16,
+         "base": "b1",
+         "B_w": 5,
+         "n_r": 81,
+         "ring_cm3": 18.129,
+         "min_wall_mm": -37.197,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 16,
+         "base": "b2",
+         "B_w": 4,
+         "n_r": 81,
+         "ring_cm3": 11.886,
+         "min_wall_mm": -36.752,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b1",
+         "B_w": 10,
+         "n_r": 81,
+         "ring_cm3": 9.135,
+         "min_wall_mm": -46.974,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 8,
+         "base": "b2",
+         "B_w": 9,
+         "n_r": 81,
+         "ring_cm3": 8.562,
+         "min_wall_mm": -46.857,
+         "fail": "min_wall"
+        },
+        {
+         "n_s": 20,
+         "base": "b2",
+         "B_w": 3,
+         "n_r": 81,
+         "ring_cm3": 6.194,
+         "min_wall_mm": -43.79,
+         "fail": "min_wall"
+        }
+       ],
+       "why": "no_accepted_layout",
+       "sec": 78.6
+      }
+     },
+     {
+      "route": "3_coacd",
+      "report": {
+       "steps": 41,
+       "stuck": 0,
+       "pieces": 82,
+       "max_excess_cm3": 0.352,
+       "cap": 82,
+       "coacd_asked": 41,
+       "coacd_pieces": 41,
+       "sec": 680.7
+      },
+      "gate": {
+       "pass_": false,
+       "n": 82,
+       "max_cm3": 0.48,
+       "sum_cm3": 11.616,
+       "over_tol": 12,
+       "keepout_points": 1384,
+       "keepout_cm3": 11.072
+      }
+     },
+     {
+      "route": "4_voxels",
+      "report": {
+       "pitch_mm": 6.0,
+       "boxes": 29,
+       "cells": 55,
+       "cap": 82
+      },
+      "gate": {
+       "pass_": true,
+       "n": 29,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ]
+   },
+   "plastic_dish_rack": {
+    "route": "4_voxels",
+    "n": 45,
+    "gate": {
+     "pass_": true,
+     "n": 45,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "lathe_test": {
+     "accepted": false,
+     "rotc_sigma": 14.6123
+    },
+    "plate_like": false,
+    "tried": [
+     {
+      "route": "3_coacd",
+      "report": {
+       "steps": 41,
+       "stuck": 0,
+       "pieces": 82,
+       "max_excess_cm3": 0.848,
+       "cap": 82,
+       "coacd_asked": 41,
+       "coacd_pieces": 41,
+       "sec": 214.4
+      },
+      "gate": {
+       "pass_": false,
+       "n": 82,
+       "max_cm3": 0.976,
+       "sum_cm3": 19.176,
+       "over_tol": 22,
+       "keepout_points": 2361,
+       "keepout_cm3": 18.888
+      }
+     },
+     {
+      "route": "4_voxels",
+      "report": {
+       "pitch_mm": 6.0,
+       "boxes": 45,
+       "cells": 108,
+       "cap": 82
+      },
+      "gate": {
+       "pass_": true,
+       "n": 45,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ]
+   }
+  },
+  "pairs": {
+   "blue_cup|plastic_dish_rack": {
+    "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+    "pair": [
+     "blue_cup",
+     "plastic_dish_rack"
+    ],
+    "rev": 2,
+    "gates": {
+     "blue_cup<-plastic_dish_rack#0": {
+      "voxels": 6,
+      "run_kind": "INSERTION",
+      "run": [
+       142,
+       180
+      ],
+      "n_build": 10,
+      "sweep_share": 0.0,
+      "observed_voxels": 5,
+      "persistent_nmin": 5,
+      "pass_": false,
+      "fail": "sweep"
+     },
+     "plastic_dish_rack<-blue_cup#1": {
+      "voxels": 9,
+      "run_kind": "SEAT",
+      "run": [
+       142,
+       180
+      ],
+      "n_build": 10,
+      "sweep_share": 0.0,
+      "observed_voxels": 8,
+      "persistent_nmin": 5,
+      "pass_": false,
+      "fail": "sweep"
+     }
+    },
+    "in_scope": false,
+    "why": "no persistent component passes the kept gates",
+    "deliver": "default"
+   }
+  },
+  "overlap_track": {
+   "blue_cup|plastic_dish_rack": {
+    "max_cm3": 0.232,
+    "median_cm3": 0.0
+   }
+  },
+  "floor": {
+   "pass_": false,
+   "fails": [
+    {
+     "kind": "share",
+     "obj": "blue_cup",
+     "share": 0.0497
+    },
+    {
+     "kind": "share",
+     "obj": "plastic_dish_rack",
+     "share": 0.0607
+    }
+   ],
+   "shares": {
+    "blue_cup": 0.0497,
+    "plastic_dish_rack": 0.0607
+   }
+  },
+  "contact_gate": {
+   "g1_pass": true,
+   "g2": {
+    "can_run": false,
+    "why": [
+     "no mujoco_warp in this environment",
+     "no warp in this environment",
+     "no newton in this environment",
+     "no FlashCHORD source tree (FLASHCHORD_DIR unset or missing)"
+    ],
+    "r0": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep12-fi5r2/r0",
+    "bound": 380,
+    "caveat": "zero-action rollouts; a grasping policy may add hand-object contacts",
+    "hand_off": "determined-wright (budget.py at 9c1d100, build/I/budget_py_usage.md)"
+   },
+   "pairs": {}
+  },
+  "records": {
+   "do_not_use": true,
+   "reasons": {
+    "floor": [
+     {
+      "kind": "share",
+      "obj": "blue_cup",
+      "share": 0.0497
+     },
+     {
+      "kind": "share",
+      "obj": "plastic_dish_rack",
+      "share": 0.0607
+     }
+    ]
+   },
+   "contact_gate_pending": true
+  },
+  "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep12-fi5r2/r0",
+  "do_not_use": {
+   "floor": [
+    {
+     "kind": "share",
+     "obj": "blue_cup",
+     "share": 0.0497
+    },
+    {
+     "kind": "share",
+     "obj": "plastic_dish_rack",
+     "share": 0.0607
+    }
+   ]
+  },
+  "push_list": [
+   {
+    "pair": [
+     "plastic_dish_rack",
+     "blue_cup"
+    ],
+    "frame": 176,
+    "check": "c_overlap",
+    "kind": "pose_impossible (floor)"
+   }
+  ],
+  "sec": 4994.9
+ },
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep12-fi5r2/r0",
+ "sec": 5236.0,
+ "log": [
+  "00:18:31 ep 12 objects ['blue_cup', 'plastic_dish_rack'] picks {'blue_cup': 'shell_t5p36', 'plastic_dish_rack': 'shell_t5p36'} cands {'blue_cup': ['hull', 'shell_t5p36'], 'plastic_dish_rack': ['hull', 'shell_t5p36']}",
+  "00:20:57 blue_cup <- plastic_dish_rack {\"contact_frames\": 91, \"runs\": [{\"frames\": [116, 180], \"n\": 33, \"kind\": \"INSERTION\", \"travel_mm\": 173.8, \"straightness\": 0.792, \"d\": [-0.9892, -0.076, 0.1256], \"assembled\": [170, 180], \"n_assembled\": 6, \"n_build\": 20, \"n_check\": 13, \"flags\": []}], \"components\": [{\"voxels\": 38, \"swept\": 0, \"cm3\": 2.43}, {\"voxels\": 6, \"swept\": 0, \"cm3\": 0.38}, {\"voxels\": 152, \"swept\": 16, \"cm3\": 9.73}, {\"voxels\": 8, \"swept\": 2, \"cm3\": 0.51}, {\"voxels\": 2, \"swept\": 1, \"cm3\": 0.13}, {\"voxels\": 22, \"swept\": 9, \"cm3\": 1.41}, {\"voxels\": 2, \"swept\": 1, \"cm3\": 0.13}, {\"voxels\": 3, \"swept\": 3, \"cm3\": 0.19}], \"good_share",
+  "00:21:05 plastic_dish_rack <- blue_cup {\"contact_frames\": 91, \"runs\": [{\"frames\": [116, 180], \"n\": 33, \"kind\": \"INSERTION\", \"travel_mm\": 58.5, \"straightness\": 0.848, \"d\": [-0.9398, -0.3265, 0.1011], \"assembled\": [164, 180], \"n_assembled\": 9, \"n_build\": 20, \"n_check\": 13, \"flags\": []}], \"components\": [{\"voxels\": 211, \"swept\": 192, \"cm3\": 13.5}, {\"voxels\": 6, \"swept\": 0, \"cm3\": 0.38}, {\"voxels\": 18, \"swept\": 2, \"cm3\": 1.15}, {\"voxels\": 2, \"swept\": 2, \"cm3\": 0.13}], \"good_share\": [1.0], \"track_ok\": true, \"gate\": {\"good_share\": [1.0], \"flags\": [], \"identity\": \"eval\", \"track_ok\": true}}",
+  "00:22:28 decision blue_cup <- plastic_dish_rack PUSH T0 ['interlock_push'] {'mix': {'U': 25, 'SIL': 0, 'GAP': 0, 'O': 13, 'O_testable_solid': 0}, 'iw': 7.0, 'push': None, 'split': False, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision blue_cup <- plastic_dish_rack PUSH T0 ['interlock_push'] {'mix': {'U': 2, 'SIL': 0, 'GAP': 0, 'O': 4, 'O_testable_solid': 0}, 'iw': 4.66, 'push': None, 'split': False, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision blue_cup <- plastic_dish_rack PUSH T0 ['interlock_push'] {'mix': {'U': 8, 'SIL': 0, 'GAP': 0, 'O': 144, 'O_testable_solid': 0}, 'iw': 13.28, 'push': None, 'split': False, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision blue_cup <- plastic_dish_rack PUSH T0 ['interlock_push'] {'mix': {'U': 2, 'SIL': 0, 'GAP': 0, 'O': 4, 'O_testable_solid': 0}, 'iw': 4.66, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision blue_cup <- plastic_dish_rack IGNORE T0 [] {'mix': None, 'iw': None, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision blue_cup <- plastic_dish_rack PUSH T0 ['interlock_push'] {'mix': {'U': 15, 'SIL': 0, 'GAP': 0, 'O': 7, 'O_testable_solid': 0}, 'iw': 9.0, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision blue_cup <- plastic_dish_rack IGNORE T0 [] {'mix': None, 'iw': None, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision blue_cup <- plastic_dish_rack PUSH T0 ['interlock_pair_fail', 'interlock_push'] {'mix': {'U': 1, 'SIL': 0, 'GAP': 2, 'O': 0, 'O_testable_solid': 0}, 'iw': 3.47, 'push': 2.0, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision plastic_dish_rack <- blue_cup PUSH T0 ['interlock_push'] {'mix': {'U': 47, 'SIL': 0, 'GAP': 0, 'O': 83, 'O_testable_solid': 0}, 'iw': 12.42, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision plastic_dish_rack <- blue_cup PUSH T0 ['interlock_push'] {'mix': {'U': 0, 'SIL': 0, 'GAP': 0, 'O': 3, 'O_testable_solid': 0}, 'iw': 3.0, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision plastic_dish_rack <- blue_cup PUSH T0 ['budget_iv_fail', 'interlock_push'] {'mix': {'U': 8, 'SIL': 0, 'GAP': 1, 'O': 0, 'O_testable_solid': 0}, 'iw': 5.32, 'push': 10.0, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:22:28 decision plastic_dish_rack <- blue_cup IGNORE T0 [] {'mix': None, 'iw': None, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "00:51:33 route 2 (rev 2) failed no_accepted_layout",
+  "01:03:19 F-I5 r2 pieces blue_cup 4_voxels n 29 [{\"route\": \"2_lathe\", \"report\": {\"profile\": {\"rows\": 186, \"azimuths\": 360, \"h_span_mm\": [-93.98, 91.05], \"wall_threshold_mm\": 2.975, \"runs\": [[\"wall\", -93.98, 74.02], [\"solid\", 74.02, 82.02], [\"wall\", 82.02, 91.05]]}, \"tried\": [{\"n_s\": 8, \"base\": \"b1\", \"B_w\": 2, \"n_r\": 17, \"ring_cm3\": 0.005, \"min_wall_mm\": -46.974, \"fail\": \"min_wall\"}, {\"n_s\": 8, \"base\": \"b2\", \"B_w\": 2, \"n_r\": 25, \"ring_cm3\": 0.116, \"min_wall_mm\": -46.857, \"fail\": \"min_wall\"}, {\"n_s\": 12, \"base\": \"b1\", \"B_w\": 2, \"n_r\": 25, \"ring_cm3\": 0.006, \"min_wall_mm\": -55.161, \"fail\": \"min_wall\"}, {\"n_s\": 8, \"base\": \"b1\", \"B_w\": 3, \"n_r\": 25, \"ring_cm3\": 0.005, \"min_wall_mm\": -46.974, \"fail\": \"min_wall\"}, {\"n_s\": 8, \"base\": \"b2\", \"B_w\": 3, \"n_r\": 33, \"ring_cm3\": 0.116, \"min_wall_mm\": -46.857, \"fail\": \"min_wall\"}, {\"n_s\": 16, \"base\": \"b1\", \"B_w\": 2, \"n_r\": 33, \"ring_cm3\": 0.006, \"min_wall_mm\": -37.197, \"fail\": \"min_wall\"}, {\"n_s\": 8, \"base\": \"b1\", \"B_w\": 4, \"n_r\": 33, \"ring_cm3\": 0.005, \"min_wall_mm\": -46.974, \"fail\": \"min_wall\"}, {\"n_s\": 12, \"base\": \"b2\", \"B_w\": 2, \"n_r\": 37, \"ring_cm3\": 0.177, \"min_wall_mm\": -54.925, \"fail\": \"min_wall\"}, {\"n_s\": 12, \"base\": \"b1\", \"B_w\": 3, \"n_r\": 37, \"ring_cm3\": 0.006, \"min_wall_mm\": -55.161, \"fail\": \"min_wall\"}, {\"n_s\": 8, \"base\": \"b2\", \"B_w\": 4, \"n_r\": 41, \"ring_cm3\": 0.116, \"min_wall_mm\": -46.857, \"fail\": \"min_wall\"}, {\"n_s\": 20, \"base\": \"b1\", \"B_w\": 2, \"n_r\": 41, \"ring_cm3\": 0.043, \"min_wall_mm\": -44.288, \"fail\": \"min_wall\"}, {\"n_s\": 8, \"base\": \"b1\", \"B_w\": 5, \"n_r\": 41, \"ring_cm3\": 2451s",
+  "01:37:42 F-I5 r2 pieces plastic_dish_rack 4_voxels n 45 [{\"route\": \"3_coacd\", \"report\": {\"steps\": 41, \"stuck\": 0, \"pieces\": 82, \"max_excess_cm3\": 0.848, \"cap\": 82, \"coacd_asked\": 41, \"coacd_pieces\": 41, \"sec\": 214.4}, \"gate\": {\"pass_\": false, \"n\": 82, \"max_cm3\": 0.976, \"sum_cm3\": 19.176, \"over_tol\": 22, \"keepout_points\": 2361, \"keepout_cm3\": 18.888}}, {\"route\": \"4_voxels\", \"report\": {\"pitch_mm\": 6.0, \"boxes\": 45, \"cells\": 108, \"cap\": 82}, \"gate\": {\"pass_\": true, \"n\": 45, \"max_cm3\": 0.0, \"sum_cm3\": 0.0, \"over_tol\": 0, \"keepout_points\": 0, \"keepout_cm3\": 0.0}}] 2063s"
+ ]
+}

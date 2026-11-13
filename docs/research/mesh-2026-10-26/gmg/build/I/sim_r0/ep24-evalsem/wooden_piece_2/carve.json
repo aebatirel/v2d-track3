@@ -1,0 +1,301 @@
+{
+ "delivered": "default",
+ "decisions": [
+  {
+   "target": "wooden_piece_2",
+   "partner": "wooden_piece_1",
+   "run": {
+    "frames": [
+     162,
+     274
+    ],
+    "n": 57,
+    "kind": "INSERTION",
+    "travel_mm": 127.7,
+    "straightness": 0.915,
+    "d": [
+     -0.038,
+     -0.9991,
+     0.0211
+    ],
+    "assembled": [
+     218,
+     274
+    ],
+    "n_assembled": 29,
+    "n_build": 30,
+    "n_check": 27,
+    "flags": []
+   },
+   "voxels": 222,
+   "region_voxels": 118,
+   "cm3": 7.55,
+   "nmin": 8,
+   "split": {
+    "through_column": true,
+    "exit_share_entry_end": 1.0,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 128.1,
+    "plane_point": [
+     0.00058,
+     0.00284,
+     0.00039
+    ],
+    "plane_normal": [
+     -0.0297,
+     0.999,
+     0.0338
+    ],
+    "carve_side": "entry of the partner pair (s > 0)",
+    "shared": true,
+    "kept_voxels": 104,
+    "carved_side_voxels": 118
+   },
+   "linked": true,
+   "flags": [
+    "interlock_pair_fail",
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "class_mix": {
+    "U": 41,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 77,
+    "O_testable_solid": 77
+   },
+   "class_o_share": 0.653,
+   "step": 2,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 14.55,
+    "entering_samples_mm": 12.55,
+    "partner_collider_mm": 7.46,
+    "w_sub_mm": 14.55,
+    "centre_n_mm": -1.59,
+    "axes_dnm": [
+     [
+      -0.038,
+      -0.9991,
+      0.0211
+     ],
+     [
+      -0.0174,
+      -0.0205,
+      -0.9996
+     ],
+     [
+      0.9991,
+      -0.0383,
+      -0.0166
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": true,
+     "agree": true,
+     "centroid_mm": 9.0,
+     "axis_deg": 2.2,
+     "share_in_Ca": 0.729,
+     "side_open": null,
+     "side_tested": false,
+     "voxels": 71
+    },
+    "b": {
+     "present": true,
+     "agree": false,
+     "sil_share": 0.008,
+     "testable": 118
+    },
+    "ab": {
+     "agree": false,
+     "share": 0.0
+    }
+   },
+   "offset": {
+    "t_mm": [
+     -0.0,
+     4.0,
+     8.0
+    ],
+    "t_norm_mm": 8.9,
+    "t_along_d_mm": -3.8,
+    "share_R_in_N_t": 0.992,
+    "holds": true,
+    "topology": {
+     "before": [
+      1,
+      -1
+     ],
+     "after": [
+      1,
+      -1
+     ]
+    },
+    "o_displaced": 67,
+    "pair": "the linked partner neither carves nor has an OFFSET: both PUSH"
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     162,
+     274
+    ],
+    "push_mm": null,
+    "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  }
+ ],
+ "pieces_report": {
+  "default": {
+   "n_pieces": 32,
+   "pitch_mm": 2.0,
+   "tol_cm3": 0.3,
+   "max": 32,
+   "max_piece_excess_cm3": 2.0,
+   "steps": 31,
+   "pieces": [
+    {
+     "verts": 64,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.56
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.896
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.36
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.28
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.384
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.0
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.184
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.952
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.808
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.76
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.92
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.288
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.048
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.36
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.608
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.208
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.08
+    },
+    {
+     "verts": 47,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 44,
+     "excess_cm3": 0.64
+    },
+    {
+     "verts": 62,
+     "excess_cm3": 0.672
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.2
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.288
+    },
+    {
+     "verts": 46,
+     "excess_cm3": 1.6
+    },
+    {
+     "verts": 29,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 61,
+     "excess_cm3": 0.88
+    },
+    {
+     "verts": 59,
+     "excess_cm3": 0.8
+    },
+    {
+     "verts": 34,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 38,
+     "excess_cm3": 0.24
+    },
+    {
+     "verts": 24,
+     "excess_cm3": 0.576
+    },
+    {
+     "verts": 44,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 32,
+     "excess_cm3": 0.08
+    }
+   ]
+  },
+  "solid_cm3": 156.76,
+  "keepout_points": 24886
+ },
+ "flags": [
+  "sim_pose_fallback"
+ ],
+ "physics": null
+}

@@ -1,0 +1,36 @@
+MOCK (stub perc2, stub hf, stub transformers): every AUC below is fake
+== G1: first Grounding DINO download fails (429), retried; ep12 perc2 logs 'grounding unavailable'. job rc 0 (expected 0)
+-- from_pretrained calls (MR/gdino_tries.txt):
+1 IDEA-Research/grounding-dino-tiny offline=None 429
+2 IDEA-Research/grounding-dino-tiny offline=None ok
+3 IDEA-Research/grounding-dino-tiny offline=None ok
+-- perc2 runs: 5, with HF_HUB_OFFLINE=1: 5
+-- job.log (Grounding DINO, bundles, RESULT):
+[2026-10-30T18:18:36Z] perc_leak: Grounding DINO download try 1 failed
+[2026-10-30T18:18:37Z] perc_leak: Grounding DINO cached (try 2); perc2 runs offline (HF_HUB_OFFLINE=1)
+[leak_p1] ep11 bundle OK: o rc 0 0 s library depth reused True poses True; s rc 0 1 s scan depth reused True poses True cam 0.0e+00; o2 rc 0 0 s library depth reused True poses True cam 0.0e+00
+[leak_p1] ep12 bundle NOT OK: o rc 0 1 s library NO-GDINO depth reused True poses True; s rc 0 0 s scan depth reused True poses True cam 0.0e+00
+[2026-10-30T18:18:42Z] perc_leak RESULT ep11: OK o ok rc 0 0 s library | s ok rc 0 1 s scan | o2 ok rc 0 0 s library | P_s vo AUC (scan frame, unregistered) 0.979
+[2026-10-30T18:18:42Z] perc_leak RESULT ep12: NOT OK o FAIL rc 0 1 s library NO-GDINO | s ok rc 0 0 s scan | P_s vo AUC (scan frame, unregistered) 0.872
+[2026-10-30T18:18:42Z] perc_leak RESULT all bundles ok: False (1/2); every arm ran (rc 0, tracks written): True
+-- summary.json per arm (ok, gdino):
+  ep11 ok True {'o': (True, True), 's': (True, True), 'o2': (True, True)}
+  ep12 ok False {'o': (False, False), 's': (True, True)}
+== G2: every Grounding DINO download fails. job rc 0 (expected 0; the bundles are NOT OK)
+-- from_pretrained calls:
+1 IDEA-Research/grounding-dino-tiny offline=None 429
+2 IDEA-Research/grounding-dino-tiny offline=None 429
+3 IDEA-Research/grounding-dino-tiny offline=None 429
+4 IDEA-Research/grounding-dino-tiny offline=None 429
+5 IDEA-Research/grounding-dino-tiny offline=None 429
+-- job.log (Grounding DINO, RESULT):
+[2026-10-30T18:18:44Z] perc_leak: Grounding DINO download try 1 failed
+[2026-10-30T18:18:46Z] perc_leak: Grounding DINO download try 2 failed
+[2026-10-30T18:18:48Z] perc_leak: Grounding DINO download try 3 failed
+[2026-10-30T18:18:51Z] perc_leak: Grounding DINO download try 4 failed
+[2026-10-30T18:18:56Z] perc_leak: Grounding DINO download try 5 failed
+[2026-10-30T18:18:56Z] perc_leak: Grounding DINO NOT available: perc2 runs without its grounding term; the bundles mark those arms NO-GDINO (not ok)
+[2026-10-30T18:18:58Z] perc_leak RESULT ep44: NOT OK o FAIL rc 0 1 s library NO-GDINO | s FAIL rc 0 0 s scan NO-GDINO | P_s vo AUC (scan frame, unregistered) 0.999
+[2026-10-30T18:18:58Z] perc_leak RESULT all bundles ok: False (0/1); every arm ran (rc 0, tracks written): True
+-- summary.json per arm (ok, gdino):
+  ep44 ok False {'o': (False, False), 's': (False, False)}

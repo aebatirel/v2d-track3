@@ -1,0 +1,137 @@
+{
+ "ok": true,
+ "failures": [],
+ "checks": {
+  "P1_ep3_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, '737c7b9eb8bc')"
+  },
+  "P1_ep5_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, 'cd7594a8c751')"
+  },
+  "P1_ep6_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, '020e75dd4447')"
+  },
+  "P1_ep14_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, '05b13510629e')"
+  },
+  "P1_ep16_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, 'df4d4473220a')"
+  },
+  "P1_ep19_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, 'fdc4c491e2d4')"
+  },
+  "P1_ep25_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, '7edd445b741f')"
+  },
+  "P1_ep28_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, '09b3ec5d5323')"
+  },
+  "P1_ep30_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, 'bc9fccad9310')"
+  },
+  "P1_ep32_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, '7bfea035010e')"
+  },
+  "P1_ep35_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, 'e0515c33783b')"
+  },
+  "P1_ep36_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, 'd1b402c80339')"
+  },
+  "P1_ep37_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, 'ec709d3d50fd')"
+  },
+  "P1_ep38_kept_byte_identical": {
+   "ok": true,
+   "detail": "(True, '6c0aa63e7a24')"
+  },
+  "P2_only_candidates_evaluated": {
+   "ok": true,
+   "detail": "{'draw1': ['1', '8', '10', '15', '20', '33'], 'r2': ['1', '8', '10', '15', '20', '33'], 'r3': ['1', '8', '10', '15', '20', '33']}"
+  },
+  "P3_ep1_evaluated_with_its_training_masses": {
+   "ok": true,
+   "detail": "3 evaluations, 0 wrong; loads {'white_pot': {'urdf': 'MS/box/content/assets/urdf/white_pot_rigid.urdf', 'mass': 0.2771, 'com': '0.004576 -0.006496 -0.004585'}, 'white_pot_lid': {'urdf': 'MS/box/content/assets/urdf/white_pot_lid_rigid.urdf', 'mass': 0.0882, 'com': '-0.003806 -0.003319 0.007932'}}"
+  },
+  "P3_ep8_evaluated_with_its_training_masses": {
+   "ok": true,
+   "detail": "3 evaluations, 0 wrong; loads {'beige_cup': {'urdf': 'MS/box/content/refs/mass1_sf/ep8/assets/urdf/beige_cup_rigid.urdf', 'mass': 0.1367, 'com': '-0.000556 0.002785 -0.017572'}, 'white_pot': {'urdf': 'MS/box/content/refs/mass1_sf/ep8/assets/urdf/white_pot_rigid.urdf', 'mass': 0.2771, 'com': '0.004576 -0.006496 -0.004585'}}"
+  },
+  "P3_ep10_evaluated_with_its_training_masses": {
+   "ok": true,
+   "detail": "3 evaluations, 0 wrong; loads {'blue_cup': {'urdf': 'MS/box/content/refs/mass1_sf/ep10/assets/urdf/blue_cup_rigid.urdf', 'mass': 0.128, 'com': '0.000728 0.001551 0.002992'}, 'beige_cup': {'urdf': 'MS/box/content/refs/mass1_sf/ep10/assets/urdf/beige_cup_rigid.urdf', 'mass': 0.1367, 'com': '0.001523 0.005527 -0.004172'}}"
+  },
+  "P3_ep15_evaluated_with_its_training_masses": {
+   "ok": true,
+   "detail": "3 evaluations, 0 wrong; loads {'plastic_dish_rack': {'urdf': 'MS/box/content/refs/mass1_sf/ep15/assets/urdf/plastic_dish_rack_rigid.urdf', 'mass': 0.3865, 'com': '0.006452 -0.005337 0.011530'}, 'wooden_spoon': {'urdf': 'MS/box/content/refs/mass1_sf/ep15/assets/urdf/wooden_spoon_rigid.urdf', 'mass': 0.05, 'com': '-0.000024 -0.000037 0.000681'}}"
+  },
+  "P3_ep20_evaluated_with_its_training_masses": {
+   "ok": true,
+   "detail": "3 evaluations, 0 wrong; loads {'blue_cup': {'urdf': 'MS/box/content/refs/mass1_sf/ep20/assets/urdf/blue_cup_rigid.urdf', 'mass': 0.128, 'com': '-0.000345 -0.000144 0.001723'}, 'water_pitcher': {'urdf': 'MS/box/content/refs/mass1_sf/ep20/assets/urdf/water_pitcher_rigid.urdf', 'mass': 0.5031, 'com': '-0.003263 0.013687 0.019474'}}"
+  },
+  "P3_ep33_evaluated_with_its_training_masses": {
+   "ok": true,
+   "detail": "3 evaluations, 0 wrong; loads {'blue_cup': {'urdf': 'MS/box/content/refs/mass1_sf/ep33/assets/urdf/blue_cup_rigid.urdf', 'mass': 0.128, 'com': '-0.000345 -0.000144 0.001723'}, 'wooden_spoon': {'urdf': 'MS/box/content/refs/mass1_sf/ep33/assets/urdf/wooden_spoon_rigid.urdf', 'mass': 0.05, 'com': '-0.000024 -0.000037 0.000681'}}"
+  },
+  "P3_eval1_pieces": {
+   "ok": true,
+   "detail": "{'white_pot': 53, 'white_pot_lid': 107}"
+  },
+  "P4_mass_pack_check_draw1_and_later": {
+   "ok": true,
+   "detail": "([], [])"
+  },
+  "P5_h5_summary": {
+   "ok": true,
+   "detail": "{'1': (3, 0.9196), '8': (3, 0.9783), '10': (3, 0.4563), '15': (3, 0.9465), '20': (3, 0.8948), '33': (3, 0.9401)}"
+  },
+  "P6_checkpoints": {
+   "ok": true,
+   "detail": "{'1': '20261101-mevS1s42-mocksha/runs/20261101-mevS1s42-mocksha/run', '10': '20261101-mevG4-mocksha/runs/20261101-mevG4-mocksha/results/m', '14': '20261025-evb1420-ee7ba8e/runs/20261025-evb1420-ee7ba8e/resul', '15': '20261101-mevG2-mocksha/runs/20261101-mevG2-mocksha/results/m', '16': '20261024-seed43-61101f5/runs/20261024-seed43-61101f5/results', '19': '20261025-std1928-ee7ba8e/runs/20261025-std1928-ee7ba8e/resul', '20': '20261101-mevG1-mocksha/runs/20261101-mevG1-mocksha/results/m', '25': '20261026-c25s42-feb0407/runs/20261026-c25s42-feb0407/runs/pe', '28': '20261025-std1928-ee7ba8e/runs/202"
+  },
+  "P7_merge_rule2_across_boxes": {
+   "ok": true,
+   "detail": "{'42': (0.9019, 0.0109), '43': (0.8925, 0.0117)}"
+  }
+ },
+ "draws": {
+  "draw1": [
+   "1",
+   "8",
+   "10",
+   "15",
+   "20",
+   "33"
+  ],
+  "r2": [
+   "1",
+   "8",
+   "10",
+   "15",
+   "20",
+   "33"
+  ],
+  "r3": [
+   "1",
+   "8",
+   "10",
+   "15",
+   "20",
+   "33"
+  ]
+ },
+ "note": "mock scores are synthetic (stub.py): plumbing, not masses"
+}

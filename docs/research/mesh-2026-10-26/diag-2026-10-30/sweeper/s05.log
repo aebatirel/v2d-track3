@@ -1,0 +1,13 @@
+P1v0_partprog_preleak cdo_eval 0.4132 add_med 3.62 add_all 3.61 flips 0/6 amb 1.89 mm (rot 180.0)
+    19 19000057 cdo 0.4128 add 3.55 rot 4.28 axis [0.967, -0.15, 0.204] anchor_off [-1.2, -1.4, 0.0]
+    30 30000090 cdo 0.4135 add 3.73 rot 1.52 axis [0.565, -0.817, 0.116] anchor_off [-0.9, -3.0, 1.8]
+    None 11 cdo 0.4181 add 3.58 rot 3.76 axis [0.976, 0.214, -0.044] anchor_off [-1.9, -1.2, 0.1]
+    None 22 cdo 0.4198 add 3.66 rot 2.99 axis [0.944, 0.293, 0.153] anchor_off [-2.1, -1.9, -1.0]
+    None 33 cdo 0.4166 add 3.75 rot 2.04 axis [-0.813, 0.573, 0.103] anchor_off [-2.0, -2.9, -1.0]
+    None 44 cdo 0.4199 add 3.38 rot 0.74 axis [0.388, 0.822, 0.417] anchor_off [-1.5, -2.4, -1.8]
+P1v0_partprog_preleak {'seed': 19000057, 'ok_mm': 4.555, 'flip_mm': 4.685, 'margin_mm': 0.13, 'other_mm': 7.809}
+P1v0_partprog_preleak {'seed': 30000090, 'ok_mm': 4.508, 'flip_mm': 4.63, 'margin_mm': 0.121, 'other_mm': 7.462}
+P1v0_partprog_preleak {'seed': 11, 'ok_mm': 4.543, 'flip_mm': 4.644, 'margin_mm': 0.101, 'other_mm': 7.632}
+P1v0_partprog_preleak {'seed': 22, 'ok_mm': 4.57, 'flip_mm': 4.683, 'margin_mm': 0.113, 'other_mm': 7.732}
+P1v0_partprog_preleak {'seed': 33, 'ok_mm': 4.503, 'flip_mm': 4.662, 'margin_mm': 0.159, 'other_mm': 7.369}
+P1v0_partprog_preleak {'seed': 44, 'ok_mm': 4.533, 'flip_mm': 4.658, 'margin_mm': 0.126, 'other_mm': 7.61}

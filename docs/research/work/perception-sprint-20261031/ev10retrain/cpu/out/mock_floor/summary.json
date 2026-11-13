@@ -1,0 +1,339 @@
+{
+ "label": "SWAP-ELIGIBLE",
+ "why": [
+  "every clause holds on both references"
+ ],
+ "clauses": {
+  "a_V": {
+   "new_mean": 0.4556,
+   "packed_mean": 0.4555,
+   "holds": true,
+   "margin": 0.0001
+  },
+  "b_V": {
+   "new_fail_rate": 1.0,
+   "packed_fail_rate": 1.0,
+   "holds": true,
+   "margin": 0.0
+  },
+  "c_V": {
+   "new_median_rpe": 15.8003,
+   "packed_median_rpe": 15.8355,
+   "holds": true,
+   "margin": 0.0352
+  },
+  "s_V": {
+   "new_draw1": 0.4552,
+   "old_packed_draw": 0.4715,
+   "bar": 0.4215,
+   "holds": true,
+   "margin": 0.0337
+  },
+  "a_P": {
+   "new_mean": 0.4477,
+   "packed_mean": 0.4474,
+   "holds": true,
+   "margin": 0.0003
+  },
+  "b_P": {
+   "new_fail_rate": 1.0,
+   "packed_fail_rate": 1.0,
+   "holds": true,
+   "margin": 0.0
+  },
+  "c_P": {
+   "new_median_rpe": 15.7745,
+   "packed_median_rpe": 15.799,
+   "holds": true,
+   "margin": 0.0245
+  },
+  "s_P": {
+   "new_draw1": 0.4474,
+   "old_packed_draw": 0.4563,
+   "bar": 0.4063,
+   "holds": true,
+   "margin": 0.0411
+  }
+ },
+ "sides": {
+  "V": {
+   "new": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4556,
+     "sd": 0.0017,
+     "min": 0.4536,
+     "max": 0.459,
+     "median": 0.4552
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.8001,
+     "sd": 0.0066,
+     "min": 15.7881,
+     "max": 15.8115,
+     "median": 15.8003
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4052,
+     "sd": 0.0095,
+     "min": 8.3918,
+     "max": 8.42,
+     "median": 8.4063
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4574,
+     "sd": 0.0013,
+     "min": 0.4563,
+     "max": 0.4602,
+     "median": 0.4569
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6781,
+     "beige_cup": 0.2368
+    }
+   },
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4555,
+     "sd": 0.0017,
+     "min": 0.4523,
+     "max": 0.4583,
+     "median": 0.4556
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.835,
+     "sd": 0.0055,
+     "min": 15.8278,
+     "max": 15.8466,
+     "median": 15.8355
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4258,
+     "sd": 0.0163,
+     "min": 8.4044,
+     "max": 8.4563,
+     "median": 8.4218
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4572,
+     "sd": 0.0012,
+     "min": 0.4554,
+     "max": 0.4598,
+     "median": 0.4569
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6779,
+     "beige_cup": 0.2365
+    }
+   }
+  },
+  "P": {
+   "new": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4477,
+     "sd": 0.002,
+     "min": 0.4458,
+     "max": 0.4513,
+     "median": 0.4474
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7744,
+     "sd": 0.0054,
+     "min": 15.7638,
+     "max": 15.7833,
+     "median": 15.7745
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4366,
+     "sd": 0.0095,
+     "min": 8.423,
+     "max": 8.4505,
+     "median": 8.4373
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4501,
+     "sd": 0.0014,
+     "min": 0.4478,
+     "max": 0.4526,
+     "median": 0.45
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6597,
+     "beige_cup": 0.2404
+    }
+   },
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4474,
+     "sd": 0.0025,
+     "min": 0.4431,
+     "max": 0.4523,
+     "median": 0.4471
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7978,
+     "sd": 0.0055,
+     "min": 15.7886,
+     "max": 15.8078,
+     "median": 15.799
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4511,
+     "sd": 0.0167,
+     "min": 8.4305,
+     "max": 8.4824,
+     "median": 8.4469
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.45,
+     "sd": 0.0016,
+     "min": 0.447,
+     "max": 0.4524,
+     "median": 0.4499
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6599,
+     "beige_cup": 0.24
+    }
+   }
+  }
+ },
+ "secondary_literal_own_reference": {
+  "new_draw1_vs_V": 0.4552,
+  "old_packed_draw_vs_P": 0.4563,
+  "holds": true
+ },
+ "equal_floor_note": "both policies fail >= 90 % of their draws on both references: the rule compares two floors; a SWAP-ELIGIBLE here has an expected leaderboard effect of about 0",
+ "gate_prereg_s5_crosscheck": {
+  "new_mean_vs_V": 0.4556,
+  "bar": 0.456,
+  "holds": false
+ },
+ "choice": {
+  "chosen": "43",
+  "checkpoint": "<MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+  "sha256": "ac57067546d6f45a889bd69ed987d37a5f4bcab8d8120cf69ff39b159c5df3e0",
+  "seeds": {
+   "42": {
+    "n": 10,
+    "results": "<MR>/content/results/perc2e10vs42_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10vs42_glock_public/ep10/best/policy.safetensors",
+    "sha256": "8427ddc6dddf3fe5ae4c955f96c9c40b7c01df527b1c10114fddf252d1bb4d2d",
+    "chosen_by_curve": "<MR>/content/runs/perc2e10vs42_glock/ep10-s42/policy_9998336.safetensors",
+    "mean": 0.4546,
+    "sd": 0.0014,
+    "min": 0.4519,
+    "max": 0.4567,
+    "values": [
+     0.4544,
+     0.454,
+     0.4552,
+     0.4519,
+     0.4567,
+     0.453,
+     0.4559,
+     0.4552,
+     0.4544,
+     0.4552
+    ]
+   },
+   "43": {
+    "n": 10,
+    "results": "<MR>/content/results/perc2e10vs43_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+    "sha256": "ac57067546d6f45a889bd69ed987d37a5f4bcab8d8120cf69ff39b159c5df3e0",
+    "chosen_by_curve": "<MR>/content/runs/perc2e10vs43_glock/ep10-s43/policy_49999872.safetensors",
+    "mean": 0.4561,
+    "sd": 0.0012,
+    "min": 0.454,
+    "max": 0.4579,
+    "values": [
+     0.4556,
+     0.4579,
+     0.4573,
+     0.455,
+     0.455,
+     0.4567,
+     0.454,
+     0.4556,
+     0.4567,
+     0.4571
+    ]
+   }
+  },
+  "incomplete_seeds": []
+ },
+ "verify": {
+  "ok": true,
+  "failures": [],
+  "confirmation": {
+   "draws": 10,
+   "checked": 10,
+   "chosen": "43",
+   "sha256": "ac57067546d6f45a889bd69ed987d37a5f4bcab8d8120cf69ff39b159c5df3e0",
+   "eval_rc": {
+    "0": 10
+   }
+  },
+  "b0_band": "IDENTICAL"
+ },
+ "counts": {
+  "conf": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "old": {
+   "own": "P",
+   "n_files": 1,
+   "n_scored": 1
+  },
+  "packed": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train42": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train43": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  }
+ },
+ "rule": "docs/research/work/perception-sprint-20261031/ev10retrain/PREREG.md section 5"
+}

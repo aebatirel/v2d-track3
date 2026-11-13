@@ -1,0 +1,336 @@
+{
+ "source": "docs/research/work/depth-audit-20261030/calib_gt/v2/per_frame.csv",
+ "rule": "bad = hidden | valid & (behind > 0.2 | front > 0.5)",
+ "objects": [
+  {
+   "ep": 0,
+   "obj": "white_pot",
+   "frames": 373,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 0,
+   "obj": "white_pot_lid",
+   "frames": 373,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 2,
+   "obj": "white_pot",
+   "frames": 343,
+   "gross_share_glob5": 0.003,
+   "gross_share_kit5": 0.003,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 2,
+   "obj": "white_pot_lid",
+   "frames": 343,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 11,
+   "obj": "beige_cup",
+   "frames": 137,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 11,
+   "obj": "blue_cup",
+   "frames": 137,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.015,
+   "depth_bad_share": 0.095,
+   "depth_bad_run": 7,
+   "hidden_share": 0.051
+  },
+  {
+   "ep": 12,
+   "obj": "blue_cup",
+   "frames": 181,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.017,
+   "depth_bad_run": 2,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 12,
+   "obj": "plastic_dish_rack",
+   "frames": 181,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.011,
+   "depth_bad_run": 2,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 13,
+   "obj": "blue_cup",
+   "frames": 190,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.137,
+   "depth_bad_run": 22,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 13,
+   "obj": "plastic_dish_rack",
+   "frames": 190,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 18,
+   "obj": "mini_dust_pan",
+   "frames": 353,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.008,
+   "depth_bad_run": 1,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 18,
+   "obj": "mini_sweeper",
+   "frames": 353,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.071,
+   "depth_bad_run": 7,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 21,
+   "obj": "blue_cup",
+   "frames": 186,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 21,
+   "obj": "water_pitcher",
+   "frames": 186,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.054,
+   "depth_bad_share": 0.005,
+   "depth_bad_run": 1,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 22,
+   "obj": "blue_cup",
+   "frames": 189,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.016,
+   "depth_bad_run": 3,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 22,
+   "obj": "water_pitcher",
+   "frames": 189,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.042,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 23,
+   "obj": "wooden_piece_1",
+   "frames": 325,
+   "gross_share_glob5": 1.0,
+   "gross_share_kit5": 0.923,
+   "depth_bad_share": 0.342,
+   "depth_bad_run": 73,
+   "hidden_share": 0.111
+  },
+  {
+   "ep": 23,
+   "obj": "wooden_piece_2",
+   "frames": 325,
+   "gross_share_glob5": 1.0,
+   "gross_share_kit5": 1.0,
+   "depth_bad_share": 0.132,
+   "depth_bad_run": 9,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 24,
+   "obj": "wooden_piece_1",
+   "frames": 275,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.007,
+   "depth_bad_run": 1,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 24,
+   "obj": "wooden_piece_2",
+   "frames": 275,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.131,
+   "depth_bad_run": 36,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 26,
+   "obj": "plastic_dish_rack",
+   "frames": 158,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.051,
+   "depth_bad_run": 8,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 26,
+   "obj": "white_pot",
+   "frames": 158,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.051,
+   "depth_bad_run": 4,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 27,
+   "obj": "plastic_dish_rack",
+   "frames": 246,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 27,
+   "obj": "white_pot",
+   "frames": 246,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.02,
+   "depth_bad_run": 2,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 31,
+   "obj": "mini_sweeper",
+   "frames": 290,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.145,
+   "depth_bad_run": 16,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 31,
+   "obj": "plastic_dish_rack",
+   "frames": 290,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.155,
+   "depth_bad_run": 13,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 39,
+   "obj": "mini_dust_pan",
+   "frames": 319,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.013,
+   "depth_bad_run": 2,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 40,
+   "obj": "mini_dust_pan",
+   "frames": 260,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.035,
+   "depth_bad_run": 9,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 41,
+   "obj": "white_pot",
+   "frames": 299,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.007,
+   "depth_bad_run": 1,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 42,
+   "obj": "white_pot",
+   "frames": 257,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.027,
+   "depth_bad_run": 4,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 43,
+   "obj": "white_pot",
+   "frames": 326,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.021,
+   "depth_bad_run": 4,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 44,
+   "obj": "white_pot",
+   "frames": 249,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.0,
+   "depth_bad_run": 0,
+   "hidden_share": 0.0
+  },
+  {
+   "ep": 45,
+   "obj": "white_pot",
+   "frames": 290,
+   "gross_share_glob5": 0.0,
+   "gross_share_kit5": 0.0,
+   "depth_bad_share": 0.076,
+   "depth_bad_run": 4,
+   "hidden_share": 0.0
+  }
+ ]
+}

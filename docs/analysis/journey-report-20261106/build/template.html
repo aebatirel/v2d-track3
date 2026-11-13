@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track 3 Journey Report</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f6f5f2; --surface:#fcfcfb; --surface-2:#f0efec; --border:#e2e0da;
+  --text:#0b0b0b; --text-2:#52514e; --muted:#7a7873;
+  --accent:#2a78d6; --pos:#2a78d6; --neg:#e34948; --grid:#e6e4de; --axis:#a9a7a0;
+  --code:#efeee9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#121211; --surface:#1a1a19; --surface-2:#232321; --border:#33332f;
+    --text:#f0efec; --text-2:#c3c2b7; --muted:#8f8d86;
+    --accent:#3987e5; --pos:#3987e5; --neg:#e66767; --grid:#2c2c29; --axis:#5c5b55;
+    --code:#262624;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#121211; --surface:#1a1a19; --surface-2:#232321; --border:#33332f;
+  --text:#f0efec; --text-2:#c3c2b7; --muted:#8f8d86;
+  --accent:#3987e5; --pos:#3987e5; --neg:#e66767; --grid:#2c2c29; --axis:#5c5b55;
+  --code:#262624;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:32px 16px 80px}
+header h1{font-size:2rem;line-height:1.2;margin:0 0 6px;letter-spacing:-.01em}
+header p.lede{color:var(--text-2);margin:0 0 20px;max-width:70ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:18px 0 26px}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.tile .k{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.tile .v{font-size:1.45rem;font-weight:650;font-variant-numeric:tabular-nums;margin:2px 0}
+.tile .s{font-size:.85rem;color:var(--text-2)}
+nav.toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 18px;margin-bottom:28px}
+nav.toc ol{margin:6px 0;padding-left:0;list-style:none;columns:2;column-gap:28px}
+nav.toc li{break-inside:avoid;margin:2px 0}
+@media (max-width:640px){nav.toc ol{columns:1}}
+a{color:var(--accent)}
+section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 22px 18px;margin:0 0 18px}
+section p,section li{overflow-wrap:anywhere}
+@media (max-width:640px){section{padding:6px 14px 14px}}
+h2{font-size:1.4rem;margin:18px 0 8px;line-height:1.3;scroll-margin-top:12px}
+h3{font-size:1.1rem;margin:20px 0 6px}
+h4{font-size:1rem;margin:16px 0 4px;color:var(--text-2)}
+p,li{max-width:78ch}
+li{margin:3px 0}
+blockquote{margin:10px 0;padding:6px 14px;border-left:3px solid var(--accent);background:var(--surface-2);border-radius:0 8px 8px 0;color:var(--text-2)}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.88em}
+.tw{overflow-x:auto;margin:10px 0 14px;border:1px solid var(--border);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{padding:6px 9px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:var(--surface-2);font-weight:600;position:sticky;top:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.subs td,table.subs th{white-space:nowrap}
+table.subs td.desc{white-space:normal;min-width:340px;color:var(--text-2)}
+td{overflow-wrap:normal}
+section table{display:table}
+section > .tw + p{margin-top:4px}
+.muted{color:var(--muted);font-weight:400}
+.grid6{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:12px 0}
+figure.sm{margin:0;background:var(--surface-2);border-radius:8px;padding:8px 10px 4px}
+figure.sm figcaption{font-size:.85rem;margin-bottom:2px}
+svg{width:100%;height:auto;display:block;overflow:visible}
+svg.wide{max-width:760px}
+.grid{stroke:var(--grid);stroke-width:1}
+.axis{stroke:var(--axis);stroke-width:1}
+.tick{fill:var(--muted);font-size:10px}
+.val{fill:var(--text-2);font-size:10.5px;font-variant-numeric:tabular-nums}
+.bestline{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round}
+.dot{fill:var(--accent);stroke:var(--surface-2);stroke-width:2;cursor:default}
+.dot:hover,.dot:focus{r:6;outline:none}
+.pos{fill:var(--pos)} .neg{fill:var(--neg)}
+.hit{fill:transparent}
+.bar:hover .hit,.bar:focus .hit{fill:var(--surface-2)}
+.bar:focus{outline:none}
+#tip{position:fixed;pointer-events:none;z-index:9;background:var(--surface);color:var(--text);border:1px solid var(--border);
+  border-radius:8px;padding:7px 10px;font-size:.8rem;white-space:pre-line;max-width:340px;box-shadow:0 4px 18px rgba(0,0,0,.18);display:none}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.85rem;color:var(--text-2);margin:4px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+footer{color:var(--muted);font-size:.85rem;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Track 3 Journey Report</h1>
+<p class="lede">NVIDIA V2D Challenge, Track 3 (team Imitation.Tech): everything tried from 20 Oct to 6 Nov 2026 in perception, references and grip, robot policies, meshes and the scorer. It covers what worked, what failed and by how much, where the points came from, and what we learned. Labels: [M] measured, [D] measured on public data against mocap, [E] estimate, [H] hypothesis, [I] inference.</p>
+{{TILES}}
+</header>
+<nav class="toc" aria-label="Contents"><b>Contents</b><ol>{{TOC}}</ol></nav>
+<main>{{BODY}}</main>
+<footer>The board charts, the AUC-change chart, the submissions table and the leaderboard gap table come directly from the Kaggle API (our 26 submissions; leaderboards read 6 Nov 2026, about 06:15 UTC). The narrative comes from the repository's work logs, analysis reports and research notes on all 20 branches, and from the chat sessions.</footer>
+</div>
+<div id="tip" role="tooltip"></div>
+<script>
+(function(){
+  var tip=document.getElementById('tip');
+  function show(e,el){tip.textContent=el.getAttribute('data-tip');tip.style.display='block';move(e,el)}
+  function move(e,el){var x,y;if(e&&e.clientX!=null&&e.type!=='focus'){x=e.clientX;y=e.clientY}else{var r=el.getBoundingClientRect();x=r.left+r.width/2;y=r.top}
+    var w=tip.offsetWidth,h=tip.offsetHeight,vw=window.innerWidth;var l=Math.min(Math.max(8,x+14),vw-w-8);var t=y-h-12;if(t<8)t=y+18;
+    tip.style.left=l+'px';tip.style.top=t+'px'}
+  function hide(){tip.style.display='none'}
+  document.querySelectorAll('[data-tip]').forEach(function(el){
+    el.addEventListener('mouseenter',function(e){show(e,el)});el.addEventListener('mousemove',function(e){move(e,el)});
+    el.addEventListener('mouseleave',hide);el.addEventListener('focus',function(e){show(e,el)});el.addEventListener('blur',hide);
+    el.addEventListener('touchstart',function(e){show(e.touches[0],el)},{passive:true});
+  });
+  document.addEventListener('touchstart',function(e){if(!e.target.closest('[data-tip]'))hide()},{passive:true});
+})();
+</script>
+</body>
+</html>

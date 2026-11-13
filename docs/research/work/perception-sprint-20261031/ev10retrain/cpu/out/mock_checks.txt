@@ -1,0 +1,11 @@
+pass (expect SWAP-ELIGIBLE): 28/28 checks pass
+floor (expect SWAP-ELIGIBLE): 28/28 checks pass
+worse (expect NO-SWAP): 28/28 checks pass
+invalid (expect INVALID): 24/24 checks pass
+incomplete (expect INCOMPLETE): 20/20 checks pass
+rerun (expect SWAP-ELIGIBLE): 19/19 checks pass
+topup (expect SWAP-ELIGIBLE): 28/28 checks pass
+nopacked (expect INCOMPLETE): 24/24 checks pass
+differs (expect SWAP-ELIGIBLE): 28/28 checks pass
+b0stop (expect STOP:B0 MISMATCH): 10/10 checks pass
+badinput (expect STOP:md5): 10/10 checks pass

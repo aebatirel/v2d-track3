@@ -1,0 +1,12 @@
+ok   label INVALID  [INVALID; ["job stopped: piece set check FAILED (PIECES FAILED: md5 differs from MD5SUMS: ['water_pitcher/piece_07.obj'] :: ev20b1 41 pieces, MD5SUMS fe9aeca079fdcc7524a06f46fcd0a7ae, FROZEN.md 4259a6cf8a4c28dcbc212ff0a77bad5b, md5 list b6ffc309)"]]
+ok   rc 1 (stopped)  [rc=1]
+ok   RESULT line in the job log
+ok   no store listing (single-file downloads only)  [0]
+ok   every download is the packed run's, the H5p7 draws or pack 6's eval-20 rollout  [[]]
+ok   exactly one store upload (the final push), into this run id, holding summary.json  [[{'kind': 'upload', 'src': '<MR>/content/push/20261101-e20b1-mocksha', 'dst': 'runs/20261101-e20b1-mocksha', 'msg': 'run 20261101-e20b1-mocksha: 2026-11-01T07:23:42Z'}]]
+ok   hands_mp / hand_refine / perc2 / score_registered never ran
+ok   stopped for: piece set check FAILED  [piece set check FAILED (PIECES FAILED: md5 differs from MD5SUMS: ['water_pitcher/piece_07.obj'] :: ev20b1 41 pieces, MD5SUMS fe9aeca079fdcc7524a06f46fcd0a7ae, FROZEN.md 4259a6cf8a4c28dcbc212ff0a77bad5b, md5 list b6ffc309)]
+ok   piece check reported the edited file  [["md5 differs from MD5SUMS: ['water_pitcher/piece_07.obj']"]]
+ok   nothing pulled, trained or evaluated after the STOP  [(0, 0, 0)]
+{"mr": "<MR>", "expect": "INVALID:piece set check FAILED", "checks": 10, "failed": []}
+10/10 checks pass

@@ -1,0 +1,27 @@
+ep2: static [] | refineP frozen [] OK S2 lib 0.9871 * 0.9823 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9911 * 0.9824 Δ lib +0.0000 * +0.0000 (20.4 s)
+ep0: static [] | refineP frozen [] OK S2 lib 0.9672 * 0.9657 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9669 * 0.9629 Δ lib +0.0000 * +0.0000 (22.0 s)
+ep18: static [] | refineP frozen [] OK S2 lib 0.9680 * 0.9718 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9162 * 0.9217 Δ lib +0.0000 * +0.0000 (20.3 s)
+ep12: static ['plastic_dish_rack'] | refineP frozen ['plastic_dish_rack'] OK S2 lib 0.9760 * 0.9739 Δ lib -0.0003 * +0.0073 | Po frozen ['plastic_dish_rack'] OK S2 lib 0.9763 * 0.9739 Δ lib -0.0006 * +0.0073 (284.6 s)
+ep13: static ['plastic_dish_rack'] | refineP frozen ['plastic_dish_rack'] OK S2 lib 0.9648 * 0.9038 Δ lib +0.0048 * +0.0003 | Po frozen ['plastic_dish_rack'] OK S2 lib 0.9623 * 0.9051 Δ lib +0.0073 * -0.0010 (300.1 s)
+ep23: static [] | refineP frozen [] OK S2 lib 0.0425 * 0.0429 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.0425 * 0.0429 Δ lib +0.0000 * +0.0000 (15.2 s)
+ep21: static [] | refineP frozen [] OK S2 lib 0.8389 * 0.8438 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.8389 * 0.8438 Δ lib +0.0000 * +0.0000 (295.7 s)
+ep24: static [] | refineP frozen [] OK S2 lib 0.8091 * 0.8069 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.8091 * 0.8069 Δ lib +0.0000 * +0.0000 (15.7 s)
+ep26: static ['plastic_dish_rack'] | refineP frozen ['plastic_dish_rack'] OK S2 lib 0.9678 * 0.9610 Δ lib +0.0053 * +0.0038 | Po frozen ['plastic_dish_rack'] OK S2 lib 0.9717 * 0.9652 Δ lib +0.0069 * +0.0032 (19.1 s)
+ep27: static ['plastic_dish_rack'] | refineP frozen ['plastic_dish_rack'] OK S2 lib 0.9627 * 0.9339 Δ lib -0.0008 * -0.0002 | Po frozen ['plastic_dish_rack'] OK S2 lib 0.9634 * 0.9362 Δ lib -0.0020 * -0.0023 (18.5 s)
+ep31: static ['plastic_dish_rack'] | refineP frozen ['plastic_dish_rack'] OK S2 lib 0.8550 * 0.8723 Δ lib +0.0012 * +0.0026 | Po frozen ['plastic_dish_rack'] OK S2 lib 0.8239 * 0.8673 Δ lib +0.0069 * +0.0057 (18.8 s)
+ep39: static [] | refineP frozen [] OK S2 lib 0.9759 * 0.9914 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9759 * 0.9914 Δ lib +0.0000 * +0.0000 (10.7 s)
+ep40: static [] | refineP frozen [] OK S2 lib 0.9584 * 0.9784 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9584 * 0.9784 Δ lib +0.0000 * +0.0000 (10.5 s)
+ep41: static [] | refineP frozen [] OK S2 lib 0.9927 * 0.9893 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9927 * 0.9893 Δ lib +0.0000 * +0.0000 (9.6 s)
+ep42: static [] | refineP frozen [] OK S2 lib 0.9993 * 0.9784 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9990 * 0.9708 Δ lib +0.0000 * +0.0000 (8.8 s)
+ep43: static [] | refineP frozen [] OK S2 lib 0.9479 * 0.9469 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9486 * 0.9465 Δ lib +0.0000 * +0.0000 (9.7 s)
+ep44: static [] | refineP frozen [] OK S2 lib 0.9970 * 0.9995 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9970 * 0.9995 Δ lib +0.0000 * +0.0000 (9.6 s)
+ep45: static [] | refineP frozen [] OK S2 lib 0.9823 * 0.9843 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.9823 * 0.9843 Δ lib +0.0000 * +0.0000 (8.8 s)
+ep11: static ['blue_cup'] | refineP frozen ['blue_cup'] OK S2 lib 0.9012 * 0.8814 Δ lib +0.0676 * +0.0709 | Po frozen ['blue_cup'] OK S2 lib 0.9012 * 0.8814 Δ lib +0.0676 * +0.0709 (414.8 s)
+ep22: static [] | refineP frozen [] OK S2 lib 0.8704 * 0.8598 Δ lib +0.0000 * +0.0000 | Po frozen [] OK S2 lib 0.8704 * 0.8618 Δ lib +0.0000 * +0.0000 (209.5 s)
+refineP {"frozen_equals_static": "20/20", "min_delta": {"lib": -0.0008, "star": -0.0002}, "mean_delta": {"lib": 0.00389, "star": 0.00424}, "better_worse": {"lib": [4, 2], "star": [5, 1]}, "mean_S2": {"lib": 0.8982, "star": 0.8934}, "mean_S6S2": {"lib": 0.9021, "star": 0.8976}, "mean_input": {"lib": 0.8921, "star": 0.8892}, "passed": true}
+Po {"frozen_equals_static": "20/20", "min_delta": {"lib": -0.002, "star": -0.0023}, "mean_delta": {"lib": 0.0043, "star": 0.00419}, "better_worse": {"lib": [4, 2], "star": [4, 2]}, "mean_S2": {"lib": 0.8944, "star": 0.8906}, "mean_S6S2": {"lib": 0.8987, "star": 0.8948}, "mean_input": {"lib": 0.8899, "star": 0.8854}, "passed": false}
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/score/t1_scores.json
+
+real	8m15.084s
+user	14m43.561s
+sys	0m2.504s

@@ -1,0 +1,359 @@
+[
+ {
+  "object": "white_pot",
+  "label": "pot/ep2/fit",
+  "episode": "2",
+  "variant": "fit",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep2_fit.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep2/nostem",
+  "episode": "2",
+  "variant": "nostem",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep2_nostem.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep2/nomk",
+  "episode": "2",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep2_nomk.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep2/thick",
+  "episode": "2",
+  "variant": "thick",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep2_thick.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep26/fit",
+  "episode": "26",
+  "variant": "fit",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep26_fit.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep26/nostem",
+  "episode": "26",
+  "variant": "nostem",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep26_nostem.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep26/nomk",
+  "episode": "26",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep26_nomk.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep26/thick",
+  "episode": "26",
+  "variant": "thick",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep26_thick.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep27/fit",
+  "episode": "27",
+  "variant": "fit",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep27_fit.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep27/nostem",
+  "episode": "27",
+  "variant": "nostem",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep27_nostem.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep27/nomk",
+  "episode": "27",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep27_nomk.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep27/thick",
+  "episode": "27",
+  "variant": "thick",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep27_thick.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep41/fit",
+  "episode": "41",
+  "variant": "fit",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep41_fit.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep41/nostem",
+  "episode": "41",
+  "variant": "nostem",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep41_nostem.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep41/nomk",
+  "episode": "41",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep41_nomk.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep41/thick",
+  "episode": "41",
+  "variant": "thick",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep41_thick.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep42/fit",
+  "episode": "42",
+  "variant": "fit",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep42_fit.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep42/nostem",
+  "episode": "42",
+  "variant": "nostem",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep42_nostem.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep42/nomk",
+  "episode": "42",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep42_nomk.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep42/thick",
+  "episode": "42",
+  "variant": "thick",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep42_thick.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep43/fit",
+  "episode": "43",
+  "variant": "fit",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep43_fit.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep43/nostem",
+  "episode": "43",
+  "variant": "nostem",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep43_nostem.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep43/nomk",
+  "episode": "43",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep43_nomk.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep43/thick",
+  "episode": "43",
+  "variant": "thick",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep43_thick.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep44/fit",
+  "episode": "44",
+  "variant": "fit",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep44_fit.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep44/nostem",
+  "episode": "44",
+  "variant": "nostem",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep44_nostem.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep44/nomk",
+  "episode": "44",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep44_nomk.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep44/thick",
+  "episode": "44",
+  "variant": "thick",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep44_thick.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep45/fit",
+  "episode": "45",
+  "variant": "fit",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep45_fit.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep45/nostem",
+  "episode": "45",
+  "variant": "nostem",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep45_nostem.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep45/nomk",
+  "episode": "45",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep45_nomk.glb"
+ },
+ {
+  "object": "white_pot",
+  "label": "pot/ep45/thick",
+  "episode": "45",
+  "variant": "thick",
+  "path": "/content/results/c0b/cand/white_pot/white_pot_ep45_thick.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep12/full",
+  "episode": "12",
+  "variant": "full",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep12_full.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep12/nomk",
+  "episode": "12",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep12_nomk.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep13/full",
+  "episode": "13",
+  "variant": "full",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep13_full.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep13/nomk",
+  "episode": "13",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep13_nomk.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep26/full",
+  "episode": "26",
+  "variant": "full",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep26_full.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep26/nomk",
+  "episode": "26",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep26_nomk.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep27/full",
+  "episode": "27",
+  "variant": "full",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep27_full.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep27/nomk",
+  "episode": "27",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep27_nomk.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep31/full",
+  "episode": "31",
+  "variant": "full",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep31_full.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/ep31/nomk",
+  "episode": "31",
+  "variant": "nomk",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/ep31_nomk.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/joint/joint",
+  "episode": "joint",
+  "variant": "joint",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/joint_joint.glb"
+ },
+ {
+  "object": "plastic_dish_rack",
+  "label": "rack/joint/joint_nomk",
+  "episode": "joint",
+  "variant": "joint_nomk",
+  "path": "/content/results/c0b/cand/rack/plastic_dish_rack/joint_joint_nomk.glb"
+ },
+ {
+  "object": "blue_cup",
+  "label": "cup/ep21/g1",
+  "episode": "21",
+  "variant": "g1",
+  "path": "/content/results/c0b/cand/blue_cup/ep21_blue_cup_g1.glb"
+ },
+ {
+  "object": "blue_cup",
+  "label": "cup/ep21/g0",
+  "episode": "21",
+  "variant": "g0",
+  "path": "/content/results/c0b/cand/blue_cup/ep21_blue_cup_g0.glb"
+ },
+ {
+  "object": "blue_cup",
+  "label": "cup/ep22/g1",
+  "episode": "22",
+  "variant": "g1",
+  "path": "/content/results/c0b/cand/blue_cup/ep22_blue_cup_g1.glb"
+ },
+ {
+  "object": "blue_cup",
+  "label": "cup/ep22/g0",
+  "episode": "22",
+  "variant": "g0",
+  "path": "/content/results/c0b/cand/blue_cup/ep22_blue_cup_g0.glb"
+ },
+ {
+  "object": "blue_cup",
+  "label": "cup/merged/g1",
+  "episode": "merged",
+  "variant": "g1",
+  "path": "/content/results/c0b/cand/blue_cup/merged_blue_cup_g1.glb"
+ },
+ {
+  "object": "beige_cup",
+  "label": "beige/ep11/g1",
+  "episode": "11",
+  "variant": "g1",
+  "path": "/content/results/c0b/cand/beige_cup/ep11_beige_cup_sep_g1.glb"
+ },
+ {
+  "object": "beige_cup",
+  "label": "beige/ep11/g0",
+  "episode": "11",
+  "variant": "g0",
+  "path": "/content/results/c0b/cand/beige_cup/ep11_beige_cup_sep_g0.glb"
+ }
+]

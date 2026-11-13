@@ -1,0 +1,28 @@
+{
+ "ep": 45,
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 290,
+ "auc_before": 0.9759,
+ "add_cm_before": {
+  "white_pot": 0.78
+ },
+ "auc_after": 0.9759,
+ "add_cm_after": {
+  "white_pot": 0.78
+ },
+ "auc_before_scorer": 0.9759,
+ "auc_after_scorer": 0.9759,
+ "direction": [],
+ "mesh_check": [],
+ "bottom_check": [
+  {
+   "obj": "white_pot",
+   "rest_frames_sampled": 21,
+   "ours_minus_scan_lowest_mm_median": -8.33,
+   "scan_lowest_z_mm_median": 601.47,
+   "scan_lowest_z_mm_iqr": 0.37
+  }
+ ]
+}

@@ -1,0 +1,157 @@
+{
+ "ep": 43,
+ "variant": "A",
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 326,
+ "changed_frames": {
+  "white_pot": 48
+ },
+ "rest_frames": {
+  "white_pot": 42
+ },
+ "segments": [
+  {
+   "obj": "white_pot",
+   "start": 0,
+   "end": 11,
+   "status": "shift_t",
+   "t_mm": [
+    -0.553,
+    -8.372,
+    -8.994
+   ],
+   "t_norm_mm": 12.3,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.016735,
+    0.052414,
+    0.583995
+   ],
+   "constraint_frames": 12,
+   "pair_frames": {},
+   "before": {
+    "ok": 0.0,
+    "max_mm": 15.86,
+    "median_mm": 13.1
+   },
+   "hand_min_mm": 32.9,
+   "lowest_above_table_mm_median": -13.1,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 15.86,
+    "median_mm": 13.1
+   },
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 15.86,
+    "median_mm": 13.1
+   },
+   "stage1": {
+    "it": 4,
+    "ok": 0.667,
+    "max_mm": 3.56,
+    "viol": 314,
+    "t_mm": [
+     -0.55,
+     -8.37,
+     -8.99
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.667,
+    "max_mm": 3.56,
+    "median_mm": 0.8
+   },
+   "after_all_rest_partners": {
+    "ok": 0.667,
+    "max_mm": 3.56,
+    "median_mm": 0.8
+   }
+  },
+  {
+   "obj": "white_pot",
+   "start": 296,
+   "end": 325,
+   "status": "shift_t",
+   "t_mm": [
+    -0.265,
+    -4.015,
+    -4.313
+   ],
+   "t_norm_mm": 5.899,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.050323,
+    0.086651,
+    0.557787
+   ],
+   "constraint_frames": 30,
+   "pair_frames": {},
+   "before": {
+    "ok": 0.0,
+    "max_mm": 8.43,
+    "median_mm": 6.11
+   },
+   "hand_min_mm": 58.1,
+   "lowest_above_table_mm_median": -6.11,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 0.0,
+    "max_mm": 8.43,
+    "median_mm": 6.11
+   },
+   "sweep1_start": {
+    "ok": 0.0,
+    "max_mm": 8.43,
+    "median_mm": 6.11
+   },
+   "stage1": {
+    "it": 3,
+    "ok": 0.7,
+    "max_mm": 2.53,
+    "viol": 4208,
+    "t_mm": [
+     -0.27,
+     -4.02,
+     -4.31
+    ],
+    "r_deg": 0.0
+   },
+   "after": {
+    "ok": 0.7,
+    "max_mm": 2.53,
+    "median_mm": 0.21
+   },
+   "after_all_rest_partners": {
+    "ok": 0.7,
+    "max_mm": 2.53,
+    "median_mm": 0.21
+   }
+  }
+ ],
+ "seconds": 2.8
+}

@@ -1,0 +1,22 @@
+test_x7_wander (__main__.Controls.test_x7_wander)
+T-I1 n5 control (a 30 mm box at random positions within +-60 mm, 3 mm deep): not persistent, no carve. ... 18:05:05 pieces A 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:05:05 pieces B 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:05:17 F-I5 A <- B [{"gates": {"voxels": 7, "run_kind": "SLIDE", "run": [0, 39], "n_build": 20, "sweep_share": 1.0, "observed_voxels": 7, "persistent_nmin": 5, "pass_": true}, "rest": {"static_frames": 0, "hands_off_static": 0, "assembled_hands_off": 0, "s_frames": [], "flags": ["hands_absent"], "rest_source": null}, "T_rest": null, "overshoot_frames": [], "carve_frames": 6, "build_frames_entered": 6, "clearance": {"surface_samples": 21600, "in_Rplus": 0, "sigma_sup": null, "flag_c_zero": "c_zero"}, "R_voxels": 7, "Rplus_voxels": 69}]
+18:05:19 F-I5 carve A {"route": "4_voxels", "K_pieces": 6, "cut_cm3": 3.309, "carved_body_cm3": 673.897, "ladder": [{"route": "4_voxels", "report": {"pitch_mm": 2.0, "boxes": 6, "cells": 84191, "cap": 82}, "gate": {"pass_": true, "n": 6, "max_cm3": 0.0, "sum_cm3": 0.0, "over_tol": 0, "keepout_points": 0, "keepout_cm3": 0.0}}], "carved_route": "4_voxels", "sec": 2.2}
+FAIL
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/fi5/t_ctl2.json
+
+======================================================================
+FAIL: test_x7_wander (__main__.Controls.test_x7_wander)
+T-I1 n5 control (a 30 mm box at random positions within +-60 mm, 3 mm deep): not persistent, no carve.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_collcarve.py", line 403, in test_x7_wander
+    self.assertFalse(W.get('in_scope'), W.get('gates'))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : {'A<-B#0': {'voxels': 7, 'run_kind': 'SLIDE', 'run': [0, 39], 'n_build': 20, 'sweep_share': 1.0, 'observed_voxels': 7, 'persistent_nmin': 5, 'pass_': True}, 'B<-A#1': {'voxels': 64, 'run_kind': 'SLIDE', 'run': [0, 39], 'n_build': 20, 'sweep_share': 1.0, 'observed_voxels': 63, 'persistent_nmin': 5, 'pass_': True}}
+
+----------------------------------------------------------------------
+Ran 1 test in 18.736s
+
+FAILED (failures=1)

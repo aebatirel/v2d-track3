@@ -1,0 +1,594 @@
+{
+ "1": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "white_pot": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 16.079,
+    "hmax_frame": 174,
+    "vmax_cm": 12.681,
+    "v_peak_cm": 12.681,
+    "v_peak_frame": 152,
+    "v_end_cm": -0.104,
+    "rmax_deg": 14.063,
+    "reason": "horizontal travel 16.08 cm >= 2; rotation 14.1 deg >= 10 (not axisymmetric)"
+   },
+   "white_pot_lid": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 21.954,
+    "hmax_frame": 62,
+    "vmax_cm": 9.343,
+    "v_peak_cm": -9.343,
+    "v_peak_frame": 144,
+    "v_end_cm": 0.102,
+    "rmax_deg": 37.579,
+    "reason": "horizontal travel 21.95 cm >= 2; rotation 37.6 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "3": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "white_pot": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 6.552,
+    "hmax_frame": 86,
+    "vmax_cm": 8.336,
+    "v_peak_cm": 8.336,
+    "v_peak_frame": 72,
+    "v_end_cm": -0.334,
+    "rmax_deg": 20.626,
+    "reason": "horizontal travel 6.55 cm >= 2; rotation 20.6 deg >= 10 (not axisymmetric)"
+   },
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 14.366,
+    "hmax_frame": 189,
+    "vmax_cm": 27.143,
+    "v_peak_cm": 27.143,
+    "v_peak_frame": 164,
+    "v_end_cm": -0.285,
+    "rmax_deg": 85.862,
+    "reason": "horizontal travel 14.37 cm >= 2; rotation 85.9 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "5": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "white_pot": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 10.148,
+    "hmax_frame": 105,
+    "vmax_cm": 24.142,
+    "v_peak_cm": 24.142,
+    "v_peak_frame": 91,
+    "v_end_cm": 0.138,
+    "rmax_deg": 36.846,
+    "reason": "horizontal travel 10.15 cm >= 2; rotation 36.8 deg >= 10 (not axisymmetric)"
+   },
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 16.18,
+    "hmax_frame": 168,
+    "vmax_cm": 30.221,
+    "v_peak_cm": 30.221,
+    "v_peak_frame": 78,
+    "v_end_cm": 0.132,
+    "rmax_deg": 92.263,
+    "reason": "horizontal travel 16.18 cm >= 2; rotation 92.3 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "6": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "white_pot": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 8.748,
+    "hmax_frame": 115,
+    "vmax_cm": 14.504,
+    "v_peak_cm": 14.504,
+    "v_peak_frame": 143,
+    "v_end_cm": -0.128,
+    "rmax_deg": 31.829,
+    "reason": "horizontal travel 8.75 cm >= 2; rotation 31.8 deg >= 10 (not axisymmetric)"
+   },
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 14.395,
+    "hmax_frame": 67,
+    "vmax_cm": 25.144,
+    "v_peak_cm": 25.144,
+    "v_peak_frame": 143,
+    "v_end_cm": -0.385,
+    "rmax_deg": 88.3,
+    "reason": "horizontal travel 14.40 cm >= 2; rotation 88.3 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "8": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "beige_cup": {
+    "frozen": false,
+    "axisymmetric": true,
+    "hmax_cm": 13.6,
+    "hmax_frame": 142,
+    "vmax_cm": 19.84,
+    "v_peak_cm": 19.84,
+    "v_peak_frame": 150,
+    "v_end_cm": 0.385,
+    "rmax_deg": 130.957,
+    "reason": "horizontal travel 13.60 cm >= 2"
+   },
+   "white_pot": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 7.695,
+    "hmax_frame": 119,
+    "vmax_cm": 7.739,
+    "v_peak_cm": 7.739,
+    "v_peak_frame": 102,
+    "v_end_cm": -0.064,
+    "rmax_deg": 21.47,
+    "reason": "horizontal travel 7.69 cm >= 2; rotation 21.5 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "10": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "blue_cup": {
+    "frozen": false,
+    "axisymmetric": true,
+    "hmax_cm": 4.909,
+    "hmax_frame": 52,
+    "vmax_cm": 3.694,
+    "v_peak_cm": 3.694,
+    "v_peak_frame": 117,
+    "v_end_cm": 1.775,
+    "rmax_deg": 34.16,
+    "reason": "horizontal travel 4.91 cm >= 2"
+   },
+   "beige_cup": {
+    "frozen": false,
+    "axisymmetric": true,
+    "hmax_cm": 15.39,
+    "hmax_frame": 92,
+    "vmax_cm": 23.048,
+    "v_peak_cm": 23.048,
+    "v_peak_frame": 46,
+    "v_end_cm": 2.899,
+    "rmax_deg": 36.421,
+    "reason": "horizontal travel 15.39 cm >= 2"
+   }
+  }
+ },
+ "14": {
+  "frozen": [
+   "plastic_dish_rack"
+  ],
+  "W0_dev": 0.0,
+  "objects": {
+   "blue_cup": {
+    "frozen": false,
+    "axisymmetric": true,
+    "hmax_cm": 26.595,
+    "hmax_frame": 109,
+    "vmax_cm": 14.377,
+    "v_peak_cm": 14.377,
+    "v_peak_frame": 54,
+    "v_end_cm": -0.57,
+    "rmax_deg": 179.997,
+    "reason": "horizontal travel 26.59 cm >= 2"
+   },
+   "plastic_dish_rack": {
+    "frozen": true,
+    "axisymmetric": false,
+    "hmax_cm": 0.586,
+    "hmax_frame": 120,
+    "vmax_cm": 0.551,
+    "v_peak_cm": -0.551,
+    "v_peak_frame": 79,
+    "v_end_cm": -0.018,
+    "rmax_deg": 2.319,
+    "reason": "static: horizontal travel 0.59 cm < 2, rotation 2.3 deg < 10",
+    "others_at_peak": {
+     "blue_cup": {
+      "horizontal_cm": 14.915,
+      "height_above_cm": 15.457
+     }
+    }
+   }
+  }
+ },
+ "15": {
+  "frozen": [
+   "plastic_dish_rack"
+  ],
+  "W0_dev": 0.0,
+  "objects": {
+   "plastic_dish_rack": {
+    "frozen": true,
+    "axisymmetric": false,
+    "hmax_cm": 0.504,
+    "hmax_frame": 55,
+    "vmax_cm": 0.577,
+    "v_peak_cm": 0.577,
+    "v_peak_frame": 139,
+    "v_end_cm": 0.324,
+    "rmax_deg": 1.741,
+    "reason": "static: horizontal travel 0.50 cm < 2, rotation 1.7 deg < 10",
+    "others_at_peak": {
+     "wooden_spoon": {
+      "horizontal_cm": 18.268,
+      "height_above_cm": 10.186
+     }
+    }
+   },
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 31.894,
+    "hmax_frame": 105,
+    "vmax_cm": 29.373,
+    "v_peak_cm": 29.373,
+    "v_peak_frame": 63,
+    "v_end_cm": 11.64,
+    "rmax_deg": 97.795,
+    "reason": "horizontal travel 31.89 cm >= 2; rotation 97.8 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "16": {
+  "frozen": [
+   "plastic_dish_rack"
+  ],
+  "W0_dev": 0.0,
+  "objects": {
+   "plastic_dish_rack": {
+    "frozen": true,
+    "axisymmetric": false,
+    "hmax_cm": 0.72,
+    "hmax_frame": 81,
+    "vmax_cm": 0.649,
+    "v_peak_cm": 0.649,
+    "v_peak_frame": 93,
+    "v_end_cm": 0.225,
+    "rmax_deg": 3.693,
+    "reason": "static: horizontal travel 0.72 cm < 2, rotation 3.7 deg < 10",
+    "others_at_peak": {
+     "wooden_spoon": {
+      "horizontal_cm": 16.589,
+      "height_above_cm": 13.436
+     }
+    }
+   },
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 30.338,
+    "hmax_frame": 166,
+    "vmax_cm": 27.973,
+    "v_peak_cm": 27.973,
+    "v_peak_frame": 73,
+    "v_end_cm": 12.664,
+    "rmax_deg": 121.581,
+    "reason": "horizontal travel 30.34 cm >= 2; rotation 121.6 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "19": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "mini_sweeper": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 10.719,
+    "hmax_frame": 84,
+    "vmax_cm": 9.744,
+    "v_peak_cm": 9.744,
+    "v_peak_frame": 179,
+    "v_end_cm": 4.283,
+    "rmax_deg": 69.999,
+    "reason": "horizontal travel 10.72 cm >= 2; rotation 70.0 deg >= 10 (not axisymmetric)"
+   },
+   "mini_dust_pan": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 8.532,
+    "hmax_frame": 133,
+    "vmax_cm": 14.203,
+    "v_peak_cm": 14.203,
+    "v_peak_frame": 140,
+    "v_end_cm": -0.033,
+    "rmax_deg": 87.382,
+    "reason": "horizontal travel 8.53 cm >= 2; rotation 87.4 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "20": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "blue_cup": {
+    "frozen": false,
+    "axisymmetric": true,
+    "hmax_cm": 6.962,
+    "hmax_frame": 56,
+    "vmax_cm": 5.232,
+    "v_peak_cm": -5.232,
+    "v_peak_frame": 156,
+    "v_end_cm": -5.066,
+    "rmax_deg": 21.148,
+    "reason": "horizontal travel 6.96 cm >= 2"
+   },
+   "water_pitcher": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 14.203,
+    "hmax_frame": 40,
+    "vmax_cm": 34.049,
+    "v_peak_cm": 34.049,
+    "v_peak_frame": 69,
+    "v_end_cm": 0.149,
+    "rmax_deg": 92.697,
+    "reason": "horizontal travel 14.20 cm >= 2; rotation 92.7 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "25": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "wooden_piece_1": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 12.49,
+    "hmax_frame": 332,
+    "vmax_cm": 18.314,
+    "v_peak_cm": 18.314,
+    "v_peak_frame": 66,
+    "v_end_cm": 5.807,
+    "rmax_deg": 99.031,
+    "reason": "horizontal travel 12.49 cm >= 2; rotation 99.0 deg >= 10 (not axisymmetric)"
+   },
+   "wooden_piece_2": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 16.653,
+    "hmax_frame": 261,
+    "vmax_cm": 21.028,
+    "v_peak_cm": 21.028,
+    "v_peak_frame": 191,
+    "v_end_cm": 6.606,
+    "rmax_deg": 108.855,
+    "reason": "horizontal travel 16.65 cm >= 2; rotation 108.9 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "28": {
+  "frozen": [
+   "plastic_dish_rack"
+  ],
+  "W0_dev": 0.0,
+  "objects": {
+   "plastic_dish_rack": {
+    "frozen": true,
+    "axisymmetric": false,
+    "hmax_cm": 0.754,
+    "hmax_frame": 173,
+    "vmax_cm": 0.691,
+    "v_peak_cm": 0.691,
+    "v_peak_frame": 51,
+    "v_end_cm": 0.455,
+    "rmax_deg": 2.964,
+    "reason": "static: horizontal travel 0.75 cm < 2, rotation 3.0 deg < 10",
+    "others_at_peak": {
+     "white_pot": {
+      "horizontal_cm": 23.758,
+      "height_above_cm": 28.144
+     }
+    }
+   },
+   "white_pot": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 25.869,
+    "hmax_frame": 90,
+    "vmax_cm": 34.981,
+    "v_peak_cm": 34.981,
+    "v_peak_frame": 112,
+    "v_end_cm": 2.965,
+    "rmax_deg": 179.908,
+    "reason": "horizontal travel 25.87 cm >= 2; rotation 179.9 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "30": {
+  "frozen": [
+   "plastic_dish_rack"
+  ],
+  "W0_dev": 0.0,
+  "objects": {
+   "mini_sweeper": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 24.939,
+    "hmax_frame": 127,
+    "vmax_cm": 11.729,
+    "v_peak_cm": 11.729,
+    "v_peak_frame": 177,
+    "v_end_cm": -0.058,
+    "rmax_deg": 32.989,
+    "reason": "horizontal travel 24.94 cm >= 2; rotation 33.0 deg >= 10 (not axisymmetric)"
+   },
+   "plastic_dish_rack": {
+    "frozen": true,
+    "axisymmetric": false,
+    "hmax_cm": 0.665,
+    "hmax_frame": 64,
+    "vmax_cm": 0.586,
+    "v_peak_cm": 0.586,
+    "v_peak_frame": 73,
+    "v_end_cm": 0.111,
+    "rmax_deg": 2.333,
+    "reason": "static: horizontal travel 0.67 cm < 2, rotation 2.3 deg < 10",
+    "others_at_peak": {
+     "mini_sweeper": {
+      "horizontal_cm": 18.438,
+      "height_above_cm": 5.427
+     }
+    }
+   }
+  }
+ },
+ "32": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "blue_cup": {
+    "frozen": false,
+    "axisymmetric": true,
+    "hmax_cm": 16.12,
+    "hmax_frame": 33,
+    "vmax_cm": 7.662,
+    "v_peak_cm": 7.662,
+    "v_peak_frame": 34,
+    "v_end_cm": -0.036,
+    "rmax_deg": 179.587,
+    "reason": "horizontal travel 16.12 cm >= 2"
+   },
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 16.026,
+    "hmax_frame": 108,
+    "vmax_cm": 25.548,
+    "v_peak_cm": 25.548,
+    "v_peak_frame": 143,
+    "v_end_cm": 0.135,
+    "rmax_deg": 129.933,
+    "reason": "horizontal travel 16.03 cm >= 2; rotation 129.9 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "33": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "blue_cup": {
+    "frozen": false,
+    "axisymmetric": true,
+    "hmax_cm": 6.869,
+    "hmax_frame": 59,
+    "vmax_cm": 9.436,
+    "v_peak_cm": 9.436,
+    "v_peak_frame": 249,
+    "v_end_cm": 0.054,
+    "rmax_deg": 128.012,
+    "reason": "horizontal travel 6.87 cm >= 2"
+   },
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 24.642,
+    "hmax_frame": 266,
+    "vmax_cm": 27.993,
+    "v_peak_cm": 27.993,
+    "v_peak_frame": 143,
+    "v_end_cm": 0.019,
+    "rmax_deg": 179.348,
+    "reason": "horizontal travel 24.64 cm >= 2; rotation 179.3 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "35": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 11.975,
+    "hmax_frame": 153,
+    "vmax_cm": 20.817,
+    "v_peak_cm": 20.817,
+    "v_peak_frame": 173,
+    "v_end_cm": -0.171,
+    "rmax_deg": 143.278,
+    "reason": "horizontal travel 11.97 cm >= 2; rotation 143.3 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "36": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 19.544,
+    "hmax_frame": 157,
+    "vmax_cm": 17.12,
+    "v_peak_cm": 17.12,
+    "v_peak_frame": 307,
+    "v_end_cm": 0.32,
+    "rmax_deg": 171.526,
+    "reason": "horizontal travel 19.54 cm >= 2; rotation 171.5 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "37": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "wooden_spoon": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 9.116,
+    "hmax_frame": 49,
+    "vmax_cm": 29.764,
+    "v_peak_cm": 29.764,
+    "v_peak_frame": 50,
+    "v_end_cm": 0.162,
+    "rmax_deg": 14.415,
+    "reason": "horizontal travel 9.12 cm >= 2; rotation 14.4 deg >= 10 (not axisymmetric)"
+   }
+  }
+ },
+ "38": {
+  "frozen": [],
+  "W0_dev": 0.0,
+  "objects": {
+   "mini_dust_pan": {
+    "frozen": false,
+    "axisymmetric": false,
+    "hmax_cm": 18.405,
+    "hmax_frame": 93,
+    "vmax_cm": 21.135,
+    "v_peak_cm": 21.135,
+    "v_peak_frame": 76,
+    "v_end_cm": -0.3,
+    "rmax_deg": 89.585,
+    "reason": "horizontal travel 18.41 cm >= 2; rotation 89.6 deg >= 10 (not axisymmetric)"
+   }
+  }
+ }
+}

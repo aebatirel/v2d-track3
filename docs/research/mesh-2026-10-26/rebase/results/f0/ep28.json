@@ -1,0 +1,151 @@
+{
+ "ep": 28,
+ "mode": "std",
+ "source_run": "20261024-pack-31ef267",
+ "lib": "library_v3",
+ "pieces": null,
+ "md5_listed": "6f57deb27e47abcd7ec2afe739354af1",
+ "ref": "20261024-pack-31ef267/refs/perc2mck/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet",
+ "ref_md5": "6f57deb27e47abcd7ec2afe739354af1",
+ "md5_match": true,
+ "names": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "2eb50d82b13262179328d086221966f2",
+  "radius": 0.288631
+ },
+ "shared_assets": {
+  "lib": "library_v3",
+  "pieces": null,
+  "make_assets": [
+   "plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm",
+   "white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm"
+  ]
+ },
+ "f0_hand_mm": {
+  "plastic_dish_rack": 72.1,
+  "white_pot": 76.2
+ },
+ "first_H30_rest_frame": null,
+ "objects": {
+  "plastic_dish_rack": {
+   "urdf_md5": "216eb08d51a9f8c29185e4fb9cf3f63c",
+   "pieces": 43,
+   "collision": [
+    "plastic_dish_rack.glb 99bc3983 -> CoACD 43"
+   ],
+   "mass": 0.3
+  },
+  "white_pot": {
+   "urdf_md5": "d25b8a41f67aecbbc025bf94979f62b6",
+   "pieces": 31,
+   "collision": [
+    "white_pot.glb b5541587 -> CoACD 31"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "plastic_dish_rack": {
+     "pen_mm": 1.06,
+     "com_height_mm": 30.8,
+     "hand_mm": 72.1,
+     "support": {
+      "band1mm": {
+       "points": 60,
+       "com_margin_mm": -156.5
+      },
+      "band3mm": {
+       "points": 214,
+       "com_margin_mm": -24.1
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 1.1,
+     "settle_mm": 1.2,
+     "settle_deg": 1.17,
+     "max_mm": 1.48,
+     "max_deg": 1.67,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.945,
+       "max": 2.46,
+       "min": 0.38,
+       "q90": 2.02
+      },
+      "deg": {
+       "n": 16,
+       "median": 1.3,
+       "max": 1.8,
+       "min": 0.84,
+       "q90": 1.71
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": [
+      "COM outside the footprint (1 mm band -156.5 mm, 3 mm band -24.1 mm)"
+     ]
+    },
+    "white_pot": {
+     "pen_mm": -0.18,
+     "com_height_mm": 47.7,
+     "hand_mm": 76.2,
+     "support": {
+      "band1mm": {
+       "points": 64,
+       "com_margin_mm": 44.1
+      },
+      "band3mm": {
+       "points": 354,
+       "com_margin_mm": 60.6
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 0.6,
+     "settle_mm": 0.86,
+     "settle_deg": 0.47,
+     "max_mm": 1.09,
+     "max_deg": 0.54,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 0.915,
+       "max": 2.62,
+       "min": 0.29,
+       "q90": 2.195
+      },
+      "deg": {
+       "n": 16,
+       "median": 0.5,
+       "max": 1.06,
+       "min": 0.14,
+       "q90": 0.73
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    }
+   },
+   "pairs": {
+    "plastic_dish_rack|white_pot": 0.46
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 34.9
+}

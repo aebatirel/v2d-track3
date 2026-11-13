@@ -1,0 +1,1 @@
+cases 11232; differing with EVAL_CS_REF unset/0: 0; changed with EVAL_CS_REF=1: 16 (all newly ALLOWED: 16; outside perc2e10css<seed> / eval / ep 10 / local / REQUIRE_REUSE=1: 0)

@@ -1,0 +1,184 @@
+{
+ "accept": {
+  "pack7": {
+   "1": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/vA_std0116/runs/20261025-std0116-ee7ba8e/results/final_eval/ep1/policy.safetensors",
+   "3": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261024-seed43-61101f5/results/glock_public/ep3/best/policy.safetensors",
+   "5": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261024-seed43-61101f5/results/glock_public/ep5/best/policy.safetensors",
+   "6": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261024-pack-31ef267/results/glock_public/ep6/best/policy.safetensors",
+   "8": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261025-evb0810-ee7ba8e/results/final_eval/ep8/policy.safetensors",
+   "10": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/best/policy.safetensors",
+   "14": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261025-evb1420-ee7ba8e/results/final_eval/ep14/policy.safetensors",
+   "15": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261024-seed43-61101f5/results/glock_public/ep15/best/policy.safetensors",
+   "16": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261024-seed43-61101f5/results/glock_public/ep16/best/policy.safetensors",
+   "19": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261025-std1928-ee7ba8e/results/final_eval/ep19/policy.safetensors",
+   "20": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261025-evb1420-ee7ba8e/results/final_eval/ep20/policy.safetensors",
+   "25": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261026-c25s42-feb0407/runs/perc2mcks/ep25-s42/policy_250003456.safetensors",
+   "28": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261025-std1928-ee7ba8e/results/final_eval/ep28/policy.safetensors",
+   "30": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261025-std30-ee7ba8e/results/final_eval/ep30/policy.safetensors",
+   "32": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261026-fr32s46b-5e0e100/results/glock_public/ep32/best/policy.safetensors",
+   "33": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261029-rcB-34bf6ae/results/glock_public/ep33/best/policy.safetensors",
+   "35": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261024-pack-31ef267/results/glock_public/ep35/best/policy.safetensors",
+   "36": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261024-pack-31ef267/results/glock_public/ep36/best/policy.safetensors",
+   "37": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261024-pack-31ef267/results/glock_public/ep37/best/policy.safetensors",
+   "38": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/e1conf/dl_ck/runs/20261024-pack-31ef267/results/glock_public/ep38/best/policy.safetensors"
+  },
+  "words": 38,
+  "look_alikes": {
+   "highThreshold": 0,
+   "rightThumb": 0,
+   "leaky_relu": 0,
+   "scan_path": 0,
+   "track3": 0,
+   "v2d-track3": 0,
+   "/content/t3/mesh/wooden_spoon/wooden_spoon.glb": 0,
+   "/content/t3/urdf/wooden_spoon_rigid.urdf": 0,
+   "/content/t3/calib.json": 0,
+   "robot_name=sharpa_wave": 0,
+   "hTx": 0,
+   "HT": 0,
+   "leakage": 0,
+   "/content/assets": 0,
+   "refs/glockt/ep11": 0,
+   "refs/perc2mcks/ep25": 0,
+   "/content/perc2/ep11": 0,
+   "perc2rep": 0,
+   "refs/sf/ep32": 0
+  }
+ },
+ "refuse": {
+  "old": {
+   "20261030-orcB-38234d1": 1,
+   "11:20261030-orcB-38234d1": 1,
+   "refs/oracle_glockt/ep11": 1,
+   "/content/oracle/ep11": 1,
+   "results/hard_ab/ep31/oracle_mcks-s42": 1,
+   "renamed oracle checkpoint (guardtest/ck.json)": 1
+  },
+  "names": {
+   "/content/scanlib": 1,
+   "/content/scanlib/blue_cup.glb": 1,
+   "/content/assets_scanlib": 1,
+   "8:/content/ScanLib": 1,
+   "runs/20261030-orcP1a-38234d1/results/leak_p1/ep11/perc2scan/poses.npz": 1,
+   "results/leak_p1/ep11/perc2scan/poses.npz": 1,
+   "results/leak_p1/ep11/perc2/poses.npz": 1,
+   "/content/perc2scan/ep11": 1,
+   "/content/perc2gf/ep18": 1,
+   "refs/perc2scanmck/ep11": 1,
+   "refs/glockt_hT/ep11": 1,
+   "/content/hands_hT/ep11/hands.npz": 1,
+   "refs/c7-hT/ep2": 1,
+   "hT": 1,
+   "results/leak_cells/ep11/c6/s42": 1,
+   "docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json": 1,
+   "20261031-orcL11s42-abc1234": 1,
+   "11:20261031-orcL11s42-abc1234": 1,
+   "20261031-orcP1b-abc1234@results/leak_p1": 1,
+   "/content/t3/mesh/blue_cup/blue_cup.glb": 1,
+   "/content/t3/mesh/mini_sweeper/mini_sweeper_collision.glb": 1,
+   "/content/t3/urdf/blue_cup_rigid.urdf": 1,
+   "track_3/public/mesh/white_pot/white_pot.glb": 1,
+   "20261022-r5ks-72ecb2f": 1,
+   "24:20261022-r5ks43-72ecb2f": 1
+  },
+  "content": {
+   "symlink farm onto the scans (dir)": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/farm (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-b"
+   ],
+   "one farm link": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/farm/blue_cup.glb (/tmp/claude-0/-home-user-v2d-track3/68c8887"
+   ],
+   "renamed byte copies (dir)": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/copies (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9"
+   ],
+   "renamed byte copies as EP:DIR": [
+    1,
+    "  8:/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/copies (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55"
+   ],
+   "one renamed byte copy": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/onefile/mesh_a.glb (/tmp/claude-0/-home-user-v2d-track3/68c888"
+   ],
+   "ASSET_PIECES-style dir holding a copy": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/onefile (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d"
+   ],
+   "neutral link onto a perc2scan folder": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/trk/tracks11 (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c"
+   ],
+   "checkpoint, config -> perc2scan": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/ck/policy_a.safetensors (checkpoint config: /workspace/refs/pe"
+   ],
+   "checkpoint, config -> hT": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/ck/policy_b.safetensors (checkpoint config: /workspace/refs/gl"
+   ],
+   "checkpoint, config -> scanlib": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/ck/policy_c.safetensors (checkpoint config: /content/scanlib_r"
+   ],
+   "kit JSON listing a renamed checkpoint": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/ck/checkpoints.json: /tmp/claude-0/-home-user-v2d-track3/68c88"
+   ],
+   "dir of renamed checkpoints": [
+    1,
+    "  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/guardfix_b8/ck (checkpoint config: /workspace/refs/perc2scan_glockt/ep3/pr"
+   ]
+  }
+ },
+ "store": {
+  "paths": 134909,
+  "old": 88,
+  "new": 789,
+  "newly_refused": [
+   "20261022-r5ks-72ecb2f",
+   "20261022-r5ks43-72ecb2f",
+   "access"
+  ],
+  "examples": [
+   "access/20261022-r5ks-72ecb2f.json",
+   "access/20261022-r5ks43-72ecb2f.json",
+   "runs/20261022-r5ks-72ecb2f/COMMIT",
+   "runs/20261022-r5ks-72ecb2f/cloudflared.log",
+   "runs/20261022-r5ks-72ecb2f/hard_ab_ep24ks-s42.log",
+   "runs/20261022-r5ks-72ecb2f/job.log",
+   "runs/20261022-r5ks-72ecb2f/perc2m/ep24/log.txt",
+   "runs/20261022-r5ks-72ecb2f/perc2m/ep24/masks_f0.jpg"
+  ],
+  "pack_runs_checked": [
+   "20261024-pack-31ef267",
+   "20261024-seed43-61101f5",
+   "20261025-evb0810-ee7ba8e",
+   "20261025-evb1420-ee7ba8e",
+   "20261025-fr3233-043275f",
+   "20261025-std0116-ee7ba8e",
+   "20261025-std1928-ee7ba8e",
+   "20261025-std30-ee7ba8e",
+   "20261026-c25s42-feb0407",
+   "20261026-fr3233s43-6a8a0e2",
+   "20261026-fr32s46b-5e0e100",
+   "20261026-gl10A2-5e0e100",
+   "20261026-pack6-5203d42",
+   "20261029-rcB-34bf6ae",
+   "20261030-c01s43-328139c"
+  ]
+ },
+ "phase1_mock": {
+  "check": [
+   "guard (/home/user/v2d-track3/tools/no_oracle.py): refuses 200/200 pushed files by store path runs/20261030-orcP1a-mocksha/...; bare paths (ep<N>/<arm>/..., tar names) refused: perc2scan 64/64, perc2 0/64, perc2rep 0/18, bundle tar 7/7",
+   "RESULT: ALL CHECKS PASS"
+  ],
+  "job_log": [
+   "perc_leak: guard refuses runs/20261030-orcP1a-mocksha/results/leak_p1/... (run id)",
+   "perc_leak: guard refuses the bare perc2scan folder name"
+  ],
+  "rc": 0
+ },
+ "fails": []
+}

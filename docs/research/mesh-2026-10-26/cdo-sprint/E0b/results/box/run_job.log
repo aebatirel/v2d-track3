@@ -1,0 +1,9 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[2026-10-31T21:34:50Z] run mesh-20261031-e0b-c8f1c33: job [bash docs/research/mesh-2026-10-26/cdo-sprint/E0b/jobs/e0b_box.sh] commit c8f1c33d2dae14e789617b2f5e2aa0c2690724d2 instance 58580656
+[2026-10-31T21:34:50Z] gpu: NVIDIA A40, 46068 MiB, 595.99.02  cpus: 255  ram: 1889 GB  disk free: 100G
+[2026-10-31T21:34:51Z] SETUP=none: skipping environment and data setup
+grep: /content/setup.log: No such file or directory
+[2026-10-31T21:34:51Z] setup took 0 min: 
+[2026-10-31T22:14:26Z] job exit 0 after 39 min total
+[2026-10-31T22:14:26Z] self-destroy: job finished rc=0
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m

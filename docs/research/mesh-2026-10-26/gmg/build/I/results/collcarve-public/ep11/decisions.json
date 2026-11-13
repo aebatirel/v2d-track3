@@ -1,0 +1,578 @@
+[
+ {
+  "target": "blue_cup",
+  "partner": "beige_cup",
+  "run": {
+   "frames": [
+    42,
+    136
+   ],
+   "n": 48,
+   "kind": "INSERTION",
+   "travel_mm": 190.3,
+   "straightness": 0.923,
+   "d": [
+    -0.0337,
+    -0.1166,
+    0.9926
+   ],
+   "assembled": [
+    116,
+    136
+   ],
+   "n_assembled": 11,
+   "n_build": 28,
+   "n_check": 20,
+   "flags": []
+  },
+  "voxels": 2165,
+  "region_voxels": 1212,
+  "cm3": 77.57,
+  "nmin": 7,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 0.952,
+   "extent_along_d_mm": 194.6,
+   "plane_point": [
+    0.00082,
+    0.00708,
+    -0.01735
+   ],
+   "plane_normal": [
+    -0.0337,
+    -0.1166,
+    0.9926
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": true,
+   "kept_voxels": 953,
+   "carved_side_voxels": 1212
+  },
+  "linked": true,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 61.0,
+  "image_width_info": {
+   "views": 68,
+   "p10_p90": [
+    58.4,
+    62.25
+   ]
+  },
+  "class_mix": {
+   "U": 583,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 629,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.519,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 94.68,
+   "entering_samples_mm": 87.12,
+   "partner_collider_mm": 92.68,
+   "w_sub_mm": 88.14,
+   "centre_n_mm": -1.63,
+   "axes_dnm": [
+    [
+     -0.0337,
+     -0.1166,
+     0.9926
+    ],
+    [
+     0.9315,
+     0.3562,
+     0.0734
+    ],
+    [
+     -0.3621,
+     0.9271,
+     0.0966
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "blue_cup": "PUSH",
+   "beige_cup": "IGNORE"
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    42,
+    136
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "blue_cup",
+  "partner": "beige_cup",
+  "run": {
+   "frames": [
+    42,
+    136
+   ],
+   "n": 48,
+   "kind": "INSERTION",
+   "travel_mm": 190.3,
+   "straightness": 0.923,
+   "d": [
+    -0.0337,
+    -0.1166,
+    0.9926
+   ],
+   "assembled": [
+    116,
+    136
+   ],
+   "n_assembled": 11,
+   "n_build": 28,
+   "n_check": 20,
+   "flags": []
+  },
+  "voxels": 5,
+  "region_voxels": 2,
+  "cm3": 0.13,
+  "nmin": 7,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 16.4,
+   "plane_point": [
+    0.0332,
+    -0.0092,
+    0.0004
+   ],
+   "plane_normal": [
+    -0.0337,
+    -0.1166,
+    0.9926
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": false,
+   "kept_voxels": 3,
+   "carved_side_voxels": 2
+  },
+  "linked": false,
+  "flags": [],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 94.68,
+   "entering_samples_mm": 3.63,
+   "partner_collider_mm": 92.68,
+   "w_sub_mm": 88.14,
+   "centre_n_mm": 27.96,
+   "axes_dnm": [
+    [
+     -0.0337,
+     -0.1166,
+     0.9926
+    ],
+    [
+     0.9315,
+     0.3562,
+     0.0734
+    ],
+    [
+     -0.3621,
+     0.9271,
+     0.0966
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "blue_cup",
+  "partner": "beige_cup",
+  "run": {
+   "frames": [
+    42,
+    136
+   ],
+   "n": 48,
+   "kind": "INSERTION",
+   "travel_mm": 190.3,
+   "straightness": 0.923,
+   "d": [
+    -0.0337,
+    -0.1166,
+    0.9926
+   ],
+   "assembled": [
+    116,
+    136
+   ],
+   "n_assembled": 11,
+   "n_build": 28,
+   "n_check": 20,
+   "flags": []
+  },
+  "voxels": 2,
+  "region_voxels": 2,
+  "cm3": 0.13,
+  "nmin": 7,
+  "split": {
+   "through_column": false,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 0.0,
+   "extent_along_d_mm": 8.0
+  },
+  "linked": false,
+  "flags": [],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 94.68,
+   "entering_samples_mm": 0.0,
+   "partner_collider_mm": 92.68,
+   "w_sub_mm": 88.14,
+   "centre_n_mm": 40.88,
+   "axes_dnm": [
+    [
+     -0.0337,
+     -0.1166,
+     0.9926
+    ],
+    [
+     0.9315,
+     0.3562,
+     0.0734
+    ],
+    [
+     -0.3621,
+     0.9271,
+     0.0966
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "beige_cup",
+  "partner": "blue_cup",
+  "run": {
+   "frames": [
+    42,
+    136
+   ],
+   "n": 48,
+   "kind": "INSERTION",
+   "travel_mm": 190.2,
+   "straightness": 0.909,
+   "d": [
+    0.0544,
+    -0.0033,
+    -0.9985
+   ],
+   "assembled": [
+    116,
+    136
+   ],
+   "n_assembled": 11,
+   "n_build": 28,
+   "n_check": 20,
+   "flags": []
+  },
+  "voxels": 1848,
+  "region_voxels": 777,
+  "cm3": 49.73,
+  "nmin": 7,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 207.3,
+   "plane_point": [
+    -0.00526,
+    0.00019,
+    -0.01701
+   ],
+   "plane_normal": [
+    0.1424,
+    -0.0157,
+    0.9897
+   ],
+   "carve_side": "entry of the partner pair (s > 0)",
+   "shared": true,
+   "kept_voxels": 1071,
+   "carved_side_voxels": 777
+  },
+  "linked": true,
+  "flags": [
+   "interlock_push"
+  ],
+  "image_width_px": 33.06,
+  "image_width_info": {
+   "views": 69,
+   "p10_p90": [
+    31.12,
+    37.25
+   ]
+  },
+  "class_mix": {
+   "U": 281,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 496,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.638,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "PUSH",
+  "widths": {
+   "w_sim_mm": 91.63,
+   "entering_samples_mm": 62.58,
+   "partner_collider_mm": 89.63,
+   "w_sub_mm": 85.2,
+   "centre_n_mm": -2.56,
+   "axes_dnm": [
+    [
+     0.0544,
+     -0.0033,
+     -0.9985
+    ],
+    [
+     0.2765,
+     -0.9609,
+     0.0182
+    ],
+    [
+     -0.9595,
+     -0.277,
+     -0.0514
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "push_list": {
+   "kind": "PUSH",
+   "frames": [
+    42,
+    136
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "beige_cup",
+  "partner": "blue_cup",
+  "run": {
+   "frames": [
+    42,
+    136
+   ],
+   "n": 48,
+   "kind": "INSERTION",
+   "travel_mm": 190.2,
+   "straightness": 0.909,
+   "d": [
+    0.0544,
+    -0.0033,
+    -0.9985
+   ],
+   "assembled": [
+    116,
+    136
+   ],
+   "n_assembled": 11,
+   "n_build": 28,
+   "n_check": 20,
+   "flags": []
+  },
+  "voxels": 1,
+  "region_voxels": 1,
+  "cm3": 0.06,
+  "nmin": 7,
+  "split": {
+   "through_column": false,
+   "exit_share_entry_end": 0.0,
+   "exit_share_far_end": 0.0,
+   "extent_along_d_mm": 4.0
+  },
+  "linked": true,
+  "flags": [],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 91.63,
+   "entering_samples_mm": 0.0,
+   "partner_collider_mm": 89.63,
+   "w_sub_mm": 85.2,
+   "centre_n_mm": 30.45,
+   "axes_dnm": [
+    [
+     0.0544,
+     -0.0033,
+     -0.9985
+    ],
+    [
+     0.2765,
+     -0.9609,
+     0.0182
+    ],
+    [
+     -0.9595,
+     -0.277,
+     -0.0514
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "beige_cup",
+  "partner": "blue_cup",
+  "run": {
+   "frames": [
+    42,
+    136
+   ],
+   "n": 48,
+   "kind": "INSERTION",
+   "travel_mm": 190.2,
+   "straightness": 0.909,
+   "d": [
+    0.0544,
+    -0.0033,
+    -0.9985
+   ],
+   "assembled": [
+    116,
+    136
+   ],
+   "n_assembled": 11,
+   "n_build": 28,
+   "n_check": 20,
+   "flags": []
+  },
+  "voxels": 1,
+  "region_voxels": 1,
+  "cm3": 0.06,
+  "nmin": 7,
+  "split": {
+   "through_column": false,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 0.0,
+   "extent_along_d_mm": 4.0
+  },
+  "linked": false,
+  "flags": [],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 91.63,
+   "entering_samples_mm": 0.0,
+   "partner_collider_mm": 89.63,
+   "w_sub_mm": 85.2,
+   "centre_n_mm": 26.0,
+   "axes_dnm": [
+    [
+     0.0544,
+     -0.0033,
+     -0.9985
+    ],
+    [
+     0.2765,
+     -0.9609,
+     0.0182
+    ],
+    [
+     -0.9595,
+     -0.277,
+     -0.0514
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   },
+   "ab": null
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ }
+]

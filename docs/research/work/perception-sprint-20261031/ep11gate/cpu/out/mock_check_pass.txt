@@ -1,0 +1,50 @@
+ok   no store listing (single-file downloads only)  [6]
+ok   every download succeeded
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e11g-mocksha', 'dst': 'runs/20261031-e11g-mocksha', 'msg': 'run 20261031-e11g-mocksha: 2026-10-31T15:33:40Z'}]]
+ok   hands_mp / hand_refine / perc2 never ran
+ok   rc 0  [rc=0]
+ok   verdict PASS  [PASS: ['delta +0.1201 >= +0.05 and no seed of T more than 0.05 below its C seed']]
+ok   verdict pushed to the store
+ok   no depth cache in the push
+ok   e11c/s42: trained once  [1]
+ok   e11c/s42: trained on its own copy  [/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ep11gate/mock/pass/content/refs/perc2e11cs42_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave]
+ok   e11c/s42: seed, steps  [('42', 70004736)]
+ok   e11c/s42: 0.3 kg URDFs under /content/assets
+ok   e11c/s42: reference holds the blue cup as its arm says  [2.42]
+ok   e11c/s42: 10 best + 21 curve evaluations, each on the checkpoint's own task  [31]
+ok   e11c/s42: mocap scoring only after its training finished  [10]
+ok   e11t/s42: trained once  [1]
+ok   e11t/s42: trained on its own copy  [/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ep11gate/mock/pass/content/refs/perc2e11ts42_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave]
+ok   e11t/s42: seed, steps  [('42', 70004736)]
+ok   e11t/s42: 0.3 kg URDFs under /content/assets
+ok   e11t/s42: reference holds the blue cup as its arm says
+ok   e11t/s42: 10 best + 21 curve evaluations, each on the checkpoint's own task  [31]
+ok   e11t/s42: mocap scoring only after its training finished  [10]
+ok   e11c/s43: trained once  [1]
+ok   e11c/s43: trained on its own copy  [/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ep11gate/mock/pass/content/refs/perc2e11cs43_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave]
+ok   e11c/s43: seed, steps  [('43', 70004736)]
+ok   e11c/s43: 0.3 kg URDFs under /content/assets
+ok   e11c/s43: reference holds the blue cup as its arm says  [2.42]
+ok   e11c/s43: 10 best + 21 curve evaluations, each on the checkpoint's own task  [31]
+ok   e11c/s43: mocap scoring only after its training finished  [10]
+ok   e11t/s43: trained once  [1]
+ok   e11t/s43: trained on its own copy  [/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ep11gate/mock/pass/content/refs/perc2e11ts43_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave]
+ok   e11t/s43: seed, steps  [('43', 70004736)]
+ok   e11t/s43: 0.3 kg URDFs under /content/assets
+ok   e11t/s43: reference holds the blue cup as its arm says
+ok   e11t/s43: 10 best + 21 curve evaluations, each on the checkpoint's own task  [31]
+ok   e11t/s43: mocap scoring only after its training finished  [10]
+ok   s42: both arms same args and URDF files
+ok   s43: both arms same args and URDF files
+ok   wave order: both s42 trainings done before any s43 training starts
+ok   mkref ran once per arm  [2]
+ok   mkref C: rebuilt track (md5), depth cache, stored hands, --wrist_cost 3.0, /content/assets, public  [b32ab808e560f8a3ebbec3658701066c]
+ok   mkref T: rebuilt track (md5), depth cache, stored hands, --wrist_cost 3.0, /content/assets, public  [25801979433d7265bfd5aef2ca868dcc]
+ok   contact retargeting --rest_settle 1, once per arm  [[['--rest_settle', '1'], ['--rest_settle', '1']]]
+ok   grasp lock: GL_ARGS exact, kp 400, only in the reference stages (2 arms x (plan + re-plan))  [4]
+ok   pinned venvs
+ok   B0 IDENTICAL on both arms  [{'e11c': 'IDENTICAL', 'e11t': 'IDENTICAL'}]
+ok   every re-run file is in the push  [34]
+ok   downloads: 5 inputs + the depth cache  [6]
+ok   verify identity: e2s own < other on both arms  [{'e11c': {'e11c': 0.038, 'e11t': 2.38}, 'e11t': {'e11c': 2.456, 'e11t': 0.038}}]
+{"mr": "pass", "expect": "PASS", "rc": "rc=0", "n_checks": 49, "failed": []}

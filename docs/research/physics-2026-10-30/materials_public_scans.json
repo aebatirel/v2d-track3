@@ -1,0 +1,13 @@
+{
+ "_note": "2026-10-30. Material model per object for NVIDIA's public scans (track_3/public/mesh). Materials from the public videos (ep0, ep12, ep18, ep21, ep24 frames): pot, lid, cups, pitcher, dish rack and dust pan are rigid plastic; the boards are light wood. Densities: polypropylene 900 kg/m3, pine/plywood 550 kg/m3. Wall thicknesses are estimates (2-2.5 mm moulded household plastic; boards 8.5 mm, docs/research/notes/15). area_factor 0.5 where the scan carries both faces of a plate or lattice (lid, dust pan, rack, boards); 1.0 for containers scanned from outside (scan area close to the outer area). Every mass is an ESTIMATE, plausibly within x0.6-x1.6. The sweeper (brush: block + bristles) has no geometric model: stated prior. No ground truth is used.",
+ "blue_cup":          {"model": "shell", "material": "plastic (PP) 900 kg/m3, wall 2.0 mm", "density": 900, "wall": 0.0020, "area_factor": 1.0},
+ "beige_cup":         {"model": "shell", "material": "plastic (PP) 900 kg/m3, wall 2.0 mm", "density": 900, "wall": 0.0020, "area_factor": 1.0},
+ "white_pot":         {"model": "shell", "material": "plastic (PP) 900 kg/m3, wall 2.5 mm", "density": 900, "wall": 0.0025, "area_factor": 1.0},
+ "white_pot_lid":     {"model": "shell", "material": "plastic (PP) 900 kg/m3, wall 2.5 mm, both faces scanned", "density": 900, "wall": 0.0025, "area_factor": 0.5},
+ "water_pitcher":     {"model": "shell", "material": "plastic (PP) 900 kg/m3, wall 2.5 mm, empty", "density": 900, "wall": 0.0025, "area_factor": 1.0},
+ "plastic_dish_rack": {"model": "shell", "material": "plastic (PP) 900 kg/m3, wall 2.5 mm, both faces scanned", "density": 900, "wall": 0.0025, "area_factor": 0.5},
+ "mini_dust_pan":     {"model": "shell", "material": "plastic (PP) 900 kg/m3, wall 2.0 mm, both faces scanned", "density": 900, "wall": 0.0020, "area_factor": 0.5},
+ "mini_sweeper":      {"model": "prior", "material": "small brush, wood/plastic block + bristles; stated prior 45 g", "mass_kg": 0.045},
+ "wooden_piece_1":    {"model": "shell", "material": "pine/plywood 550 kg/m3, plate 8.5 mm, both faces scanned", "density": 550, "wall": 0.0085, "area_factor": 0.5},
+ "wooden_piece_2":    {"model": "shell", "material": "pine/plywood 550 kg/m3, plate 8.5 mm, both faces scanned", "density": 550, "wall": 0.0085, "area_factor": 0.5}
+}

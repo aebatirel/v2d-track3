@@ -1,0 +1,200 @@
+{
+ "object": "beige_cup",
+ "candidate": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s42.ply",
+ "candidate_sha256": "4373364a569d17d16aa8bc5babe7757c50db61bf125b799793d172dea6f99e82",
+ "library": "/home/user/v2d-track3/meshes/library_v3/beige_cup.glb",
+ "library_sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+ "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t2/place/beige_cup_k6_s42_lib.glb",
+ "out_sha256": "8c6e063d7cf331246b3a4d813c7fc0bb192869d083b77f8d490f3eba52871fbf",
+ "n_samples": 8000,
+ "iters": 30,
+ "keep": 0.9,
+ "best_start": "identity",
+ "residual_mm": 5.3037,
+ "scale": 0.9799908016063895,
+ "R": [
+  [
+   0.99792248,
+   0.01038625,
+   -0.0635834
+  ],
+  [
+   -0.01271051,
+   0.99926156,
+   -0.03625976
+  ],
+  [
+   0.06315984,
+   0.03699261,
+   0.99731759
+  ]
+ ],
+ "t": [
+  -0.00053507,
+  -5.619e-05,
+  0.00670367
+ ],
+ "rot_from_probe_deg": 4.25,
+ "trans_from_probe_mm": 6.725,
+ "centroid_shift_mm": 7.072,
+ "identity_start_residual_mm": 5.3037,
+ "second_distinct_residual_mm": 9.968,
+ "second_distinct_start": "pca09",
+ "second_distinct_angle_deg": 63.3,
+ "all_starts": [
+  {
+   "start": "identity",
+   "j_mm": 5.3037,
+   "scale": 0.97999,
+   "rot_from_best_deg": 0.0
+  },
+  {
+   "start": "pca05",
+   "j_mm": 5.3733,
+   "scale": 0.97959,
+   "rot_from_best_deg": 162.2
+  },
+  {
+   "start": "pca01",
+   "j_mm": 5.3741,
+   "scale": 0.97869,
+   "rot_from_best_deg": 107.0
+  },
+  {
+   "start": "pca04",
+   "j_mm": 5.3799,
+   "scale": 0.97944,
+   "rot_from_best_deg": 16.6
+  },
+  {
+   "start": "pca00",
+   "j_mm": 5.3829,
+   "scale": 0.98008,
+   "rot_from_best_deg": 74.0
+  },
+  {
+   "start": "pca02",
+   "j_mm": 7.63,
+   "scale": 0.9953,
+   "rot_from_best_deg": 177.6
+  },
+  {
+   "start": "pca03",
+   "j_mm": 7.6603,
+   "scale": 0.99741,
+   "rot_from_best_deg": 173.2
+  },
+  {
+   "start": "pca06",
+   "j_mm": 7.7184,
+   "scale": 0.99704,
+   "rot_from_best_deg": 177.3
+  },
+  {
+   "start": "pca07",
+   "j_mm": 7.7635,
+   "scale": 0.99153,
+   "rot_from_best_deg": 173.9
+  },
+  {
+   "start": "pca09",
+   "j_mm": 9.968,
+   "scale": 0.8515,
+   "rot_from_best_deg": 132.3
+  },
+  {
+   "start": "pca11",
+   "j_mm": 10.0373,
+   "scale": 0.85193,
+   "rot_from_best_deg": 140.4
+  },
+  {
+   "start": "pca17",
+   "j_mm": 10.0599,
+   "scale": 0.85349,
+   "rot_from_best_deg": 117.6
+  },
+  {
+   "start": "pca19",
+   "j_mm": 10.1267,
+   "scale": 0.8497,
+   "rot_from_best_deg": 174.2
+  },
+  {
+   "start": "pca16",
+   "j_mm": 10.2067,
+   "scale": 0.83382,
+   "rot_from_best_deg": 164.4
+  },
+  {
+   "start": "pca10",
+   "j_mm": 10.2333,
+   "scale": 0.83043,
+   "rot_from_best_deg": 95.2
+  },
+  {
+   "start": "pca21",
+   "j_mm": 10.3484,
+   "scale": 0.95726,
+   "rot_from_best_deg": 151.4
+  },
+  {
+   "start": "pca18",
+   "j_mm": 10.3583,
+   "scale": 0.8317,
+   "rot_from_best_deg": 69.2
+  },
+  {
+   "start": "pca15",
+   "j_mm": 10.4216,
+   "scale": 0.95599,
+   "rot_from_best_deg": 179.7
+  },
+  {
+   "start": "pca08",
+   "j_mm": 10.4404,
+   "scale": 0.83246,
+   "rot_from_best_deg": 123.2
+  },
+  {
+   "start": "pca22",
+   "j_mm": 10.4767,
+   "scale": 0.95243,
+   "rot_from_best_deg": 149.0
+  },
+  {
+   "start": "pca12",
+   "j_mm": 10.6063,
+   "scale": 0.94986,
+   "rot_from_best_deg": 134.2
+  },
+  {
+   "start": "pca13",
+   "j_mm": 10.8297,
+   "scale": 0.92787,
+   "rot_from_best_deg": 153.1
+  },
+  {
+   "start": "pca20",
+   "j_mm": 10.9336,
+   "scale": 0.92698,
+   "rot_from_best_deg": 128.1
+  },
+  {
+   "start": "pca23",
+   "j_mm": 10.9346,
+   "scale": 0.92208,
+   "rot_from_best_deg": 170.7
+  },
+  {
+   "start": "pca14",
+   "j_mm": 11.0599,
+   "scale": 0.92356,
+   "rot_from_best_deg": 134.1
+  }
+ ],
+ "glb_roundtrip_max_err_m": 3.725274783095145e-09,
+ "n_vertices": 200007,
+ "n_faces": 399998,
+ "axis_angle_to_library_deg": 25.095
+}

@@ -1,0 +1,156 @@
+{
+ "set": "ev05",
+ "variant": "packed",
+ "target": "white_pot",
+ "names": [
+  "white_pot",
+  "wooden_spoon"
+ ],
+ "test_frames": [
+  276,
+  282
+ ],
+ "diagnostic_only": false,
+ "options": {
+  "timestep": 0.01,
+  "cone": "pyramidal",
+  "integrator": "implicitfast",
+  "iterations": 100,
+  "ls_iterations": 50,
+  "impratio": 20.0,
+  "njmax": 512,
+  "nconmax": 256
+ },
+ "mujoco": "3.17.0",
+ "secs": 2.0,
+ "pieces": [
+  31,
+  9
+ ],
+ "frames": [
+  {
+   "frame": 276,
+   "G3": {
+    "final_mm": [
+     0.39,
+     0.43
+    ],
+    "final_deg": [
+     0.24,
+     0.23
+    ],
+    "max_mm": [
+     0.39,
+     0.98
+    ],
+    "max_deg": [
+     0.24,
+     0.23
+    ],
+    "ncon0": 15,
+    "nefc0": 60,
+    "max_ncon": 35,
+    "max_nefc": 140,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 228,
+    "max_ncon": 57,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.535,
+     "max": 1.46,
+     "min": 0.13,
+     "q90": 1.155
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.285,
+     "max": 1.05,
+     "min": 0.09,
+     "q90": 0.82
+    },
+    "partner_final_mm": {
+     "wooden_spoon": {
+      "n": 16,
+      "median": 0.43,
+      "max": 0.43,
+      "min": 0.43,
+      "q90": 0.43
+     }
+    }
+   }
+  },
+  {
+   "frame": 282,
+   "G3": {
+    "final_mm": [
+     0.62,
+     0.53
+    ],
+    "final_deg": [
+     0.34,
+     0.22
+    ],
+    "max_mm": [
+     0.62,
+     0.53
+    ],
+    "max_deg": [
+     0.34,
+     0.22
+    ],
+    "ncon0": 44,
+    "nefc0": 176,
+    "max_ncon": 44,
+    "max_nefc": 176,
+    "warn": [
+     0,
+     0
+    ],
+    "nan": false,
+    "overflow": false
+   },
+   "G3_pass": true,
+   "G4": {
+    "max_nefc": 244,
+    "max_ncon": 61,
+    "overflow_copies": 0,
+    "nan_copies": 0,
+    "target_final_mm": {
+     "n": 16,
+     "median": 0.785,
+     "max": 1.65,
+     "min": 0.2,
+     "q90": 1.37
+    },
+    "target_final_deg": {
+     "n": 16,
+     "median": 0.415,
+     "max": 1.05,
+     "min": 0.11,
+     "q90": 0.64
+    },
+    "partner_final_mm": {
+     "wooden_spoon": {
+      "n": 16,
+      "median": 0.53,
+      "max": 0.53,
+      "min": 0.53,
+      "q90": 0.53
+     }
+    }
+   }
+  }
+ ],
+ "G3_pass": true,
+ "secs_run": 2.2
+}

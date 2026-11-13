@@ -1,0 +1,81 @@
+{
+ "rule": "PREREG F-I5.16 (1)",
+ "config": {
+  "path": "docs/research/work/15-verify/cfg_sim_rl.yaml",
+  "sha256": "695536b798ff5f7b1d391e3a6932288e23329c026f27cd364f77230d703f4b66",
+  "sha_matches_prereg": true,
+  "values": {
+   "fps": 20.0,
+   "substeps": 5,
+   "solver": "newton",
+   "integrator": "implicitfast",
+   "cone": "pyramidal",
+   "njmax": 512,
+   "nconmax": 256,
+   "impratio": 20.0,
+   "iterations": 100,
+   "ls_iterations": 50,
+   "use_mujoco_contacts": true
+  },
+  "mismatch": null
+ },
+ "options": {
+  "timestep": 0.01,
+  "solver": "Newton",
+  "cone": "pyramidal",
+  "integrator": "implicitfast",
+  "iterations": 100,
+  "ls_iterations": 50,
+  "impratio": 20.0,
+  "njmax": 512,
+  "nconmax": 256
+ },
+ "versions": {
+  "mujoco": "3.17.0",
+  "coacd_route3": "1.0.14",
+  "coacd_packed_target": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/coacd1011"
+ },
+ "packed": {
+  "blue_cup": {
+   "pieces": 103,
+   "info": {
+    "version": "1.0.11",
+    "file": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/coacd1011/coacd/__init__.py",
+    "n": 103,
+    "threshold": 0.05,
+    "max_convex_hull": -1,
+    "preprocess_mode": "auto",
+    "source": "FlashCHORD fc_mesh.py:62-90 call on the visual mesh (PREREG F-I5.16 (1d))"
+   }
+  },
+  "plastic_dish_rack": {
+   "pieces": 37,
+   "info": {
+    "version": "1.0.11",
+    "file": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/coacd1011/coacd/__init__.py",
+    "n": 37,
+    "threshold": 0.05,
+    "max_convex_hull": -1,
+    "preprocess_mode": "auto",
+    "source": "FlashCHORD fc_mesh.py:62-90 call on the visual mesh (PREREG F-I5.16 (1d))"
+   }
+  }
+ },
+ "pairs": {},
+ "flag": "contact_gate_pair_vacuous (no gated frame in any pair)",
+ "g1_pass": true,
+ "g2": {
+  "can_run": false,
+  "why": [
+   "no mujoco_warp in this environment",
+   "no warp in this environment",
+   "no newton in this environment",
+   "no FlashCHORD source tree (FLASHCHORD_DIR unset or missing)"
+  ],
+  "r0": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep12-fi5r2/r0",
+  "bound": 380,
+  "caveat": "zero-action rollouts; a grasping policy may add hand-object contacts",
+  "hand_off": "determined-wright (budget.py at 9c1d100, build/I/budget_py_usage.md)"
+ },
+ "caveat": "G2: zero-action rollouts; a grasping policy may add hand-object contacts"
+}

@@ -1,0 +1,8 @@
+test_k5_t8_s2_physics (__main__.W10.test_k5_t8_s2_physics)
+The physics cell: geometric checks, P2-P7 on 16 copies and contact-gate part 1. ... ok
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3b/tests/test_fi417_k5.json
+
+----------------------------------------------------------------------
+Ran 1 test in 392.635s
+
+OK

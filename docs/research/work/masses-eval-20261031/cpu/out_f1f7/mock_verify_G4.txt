@@ -1,0 +1,2 @@
+ep10 VERIFIED :: s42 n 10 mean 0.8979 sd 0.0106 min 0.8822 cut 0/0; s43 n 10 mean 0.8983 sd 0.009 min 0.8809 cut 0/0 :: candidate 43 :: loads s42 blue_cup 0.128,beige_cup 0.1367; s43 blue_cup 0.128,beige_cup 0.1367
+confirmation: {"RUNS_EXTRA": "20261101-mevG4-mocksha@refs/mass1_sf/ep10,refs/mass1s43_glockt/ep10", "PICK_EXTRA": "10:20261101-mevG4-mocksha:ck=results/mass1s43_glock_public/ep10/best/policy.safetensors", "MASS_EPS": "10", "EVAL_ONLY": "10", "EPS_ONLY": "10", "MA_ARGS": "", "ASSET_PIECES_EXTRA": ""}

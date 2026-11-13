@@ -1,0 +1,16 @@
+{
+ "left": {
+  "tip_err_cm_median": 0.192870921902785,
+  "tip_err_cm_p95": 0.3716893008372505,
+  "all_err_cm_median": 0.3947137071615848,
+  "joints": 22
+ },
+ "right": {
+  "tip_err_cm_median": 0.22479138919070785,
+  "tip_err_cm_p95": 0.5893728582839767,
+  "all_err_cm_median": 0.442525932854278,
+  "joints": 22
+ },
+ "seconds": 26.0,
+ "source": "/content/refs/sc/ep27_sharpa/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/2061130e6c6a4a03a00710d331762fe9-0.parquet"
+}

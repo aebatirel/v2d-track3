@@ -1,0 +1,25 @@
+Default (no MV2_TAB, --rule v1) unchanged: the first check's CPU mock and JOBS.txt string 'bash ops/jobs/mass_check.sh' (RUN_ID 20261031-mass-mocksha), OLD = mass_check.sh + mass_verdict.py of 2ed46ea (the commit the first check ran), NEW = working tree; same mock path, run one after the other (cpu/mock/equiv_default.sh, 2026-10-31T15:46:43Z).
+
+old rc rc=0
+ALL CHECKS PASS (38 checks)
+new rc rc=0
+ALL CHECKS PASS (38 checks)
+joblog: IDENTICAL (98 lines)
+joblog_sorted: IDENTICAL (98 lines)
+audit: IDENTICAL (268 lines)
+files: IDENTICAL (1719 lines)
+hf: IDENTICAL (6 lines)
+summary.json: IDENTICAL (564 lines)
+verify.json: IDENTICAL (425 lines)
+verdict.txt: IDENTICAL (1 lines)
+verify.txt: IDENTICAL (1 lines)
+scripts old vs new (they must differ, the outputs must not):
+MR/content/v2d-track3/ops/jobs/mass_check.sh 343e97f96965d3709286bc2e898125d0 -> b91e4c3d0f3aad2346383d57a7042976
+MR/content/v2d-track3/tools/mass_verdict.py 67e1246d6bd28a98c7d356f97acd45cc -> 5315a43be4af9b4dfc2d330949c6565e
+uploads: old 1, new 1; trainings: old 8, new 8; evaluations: old 248, new 248
+verdict old: ADOPT: every episode delta >= +0.03 and no seed drop > 0.05 | ep2 mass0 0.7968 mass1 0.8428 delta 0.0461 per seed {'42': 0.0479, '43': 0.0443}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}
+verdict new: ADOPT: every episode delta >= +0.03 and no seed drop > 0.05 | ep2 mass0 0.7968 mass1 0.8428 delta 0.0461 per seed {'42': 0.0479, '43': 0.0443}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}
+
+real	10m24.574s
+user	13m52.620s
+sys	1m41.061s

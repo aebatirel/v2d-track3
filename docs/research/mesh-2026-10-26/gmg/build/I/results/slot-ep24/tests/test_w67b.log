@@ -1,0 +1,42 @@
+test_w6b_camera_side_estimator (__main__.Waiver.test_w6b_camera_side_estimator)
+F-I4.14 step 2 estimator alone (added after the w6 miss; diagnostic of the measurement, not a rule): the ... FAIL
+test_w7_one_face (__main__.Waiver.test_w7_one_face)
+F-I4.14 w7 (post hoc): t = 10 mm, two-sided for A, B's -z face removed from its owned points (one face seen, ... ok
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/interlock/fi4/f414/test_w67b.json
+
+======================================================================
+FAIL: test_w6b_camera_side_estimator (__main__.Waiver.test_w6b_camera_side_estimator)
+F-I4.14 step 2 estimator alone (added after the w6 miss; diagnostic of the measurement, not a rule): the
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py", line 788, in test_w6b_camera_side_estimator
+    self.assertEqual(bad, [], bad)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [(18, 1.0, {'kind': 'two_sided', 'ok': Fal[172 chars]9]})] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+(18, 1.0, {'kind': 'two_sided', 'ok': False, 't_mm': 17.122, 'checks': {'antiparallel': True, 'material_between': True, 'window': True, 'overlap': True, 'rms': False, 'plate_extents': True}, 'step1_pairs': [18.1169]})
+
++ []
+- [(18,
+-   1.0,
+-   {'checks': {'antiparallel': True,
+-               'material_between': True,
+-               'overlap': True,
+-               'plate_extents': True,
+-               'rms': False,
+-               'window': True},
+-    'kind': 'two_sided',
+-    'ok': False,
+-    'step1_pairs': [18.1169],
+-    't_mm': 17.122})] : [(18, 1.0, {'kind': 'two_sided', 'ok': False, 't_mm': 17.122, 'checks': {'antiparallel': True, 'material_between': True, 'window': True, 'overlap': True, 'rms': False, 'plate_extents': True}, 'step1_pairs': [18.1169]})]
+
+----------------------------------------------------------------------
+Ran 2 tests in 151.372s
+
+FAILED (failures=1)
+
+real	2m34.525s
+user	1m9.752s
+sys	1m0.365s

@@ -1,0 +1,147 @@
+{
+ "schema": "gmg-b7-dev/1",
+ "run": "20261031-b7mk4-f56e920",
+ "tier": "DEV",
+ "anchors": [
+  [
+   27,
+   "white_pot"
+  ],
+  [
+   2,
+   "white_pot_lid"
+  ],
+  [
+   31,
+   "plastic_dish_rack"
+  ],
+  [
+   12,
+   "blue_cup"
+  ],
+  [
+   11,
+   "beige_cup"
+  ],
+  [
+   21,
+   "water_pitcher"
+  ],
+  [
+   40,
+   "mini_dust_pan"
+  ],
+  [
+   18,
+   "mini_sweeper"
+  ],
+  [
+   24,
+   "wooden_piece_1"
+  ],
+  [
+   23,
+   "wooden_piece_2"
+  ]
+ ],
+ "marker_settings_sha256": "488ac3b638aa7e68c12843a5b761ed8882106bc78d8307d9e3059932502aa128",
+ "code_at_start": {
+  "commit": "f56e920efdbf7a15bc362551e9a2a821d94374c7",
+  "dirty_files": [
+   "M docs/research/mesh-2026-10-26/gmg/interlock.py",
+   " M docs/research/mesh-2026-10-26/gmg/silhouette.py",
+   "?? docs/research/mesh-2026-10-26/gmg/gen_slot.py",
+   "?? docs/research/mesh-2026-10-26/gmg/physcheck.py",
+   "?? docs/research/mesh-2026-10-26/gmg/simphys.py",
+   "?? docs/research/mesh-2026-10-26/gmg/simpieces.py",
+   "?? docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py",
+   "?? docs/research/mesh-2026-10-26/gmg/tools/interlock_cands.py",
+   "?? docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py"
+  ]
+ },
+ "episodes": {
+  "12": {
+   "sigma_mm": {
+    "blue_cup": 0.964,
+    "plastic_dish_rack": 1.172
+   },
+   "sec": 1270.4,
+   "structure": {},
+   "markers": {
+    "r_consensus_mm": 10.2905,
+    "n_balls": {
+     "blue_cup": 11
+    },
+    "unimodal": {
+     "n": 11,
+     "median_mm": 10.476,
+     "share_within_15pct": 0.7273,
+     "unimodal_b4": false
+    },
+    "objects": [
+     "blue_cup"
+    ],
+    "radii_mm": {
+     "blue_cup": [
+      6.697,
+      10.105,
+      10.476,
+      11.186,
+      11.909,
+      7.227,
+      11.019,
+      8.684,
+      9.947,
+      11.721,
+      11.111
+     ]
+    },
+    "passes": {
+     "blue_cup": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2
+     ]
+    },
+    "normal_dev_deg": {
+     "blue_cup": [
+      48.346,
+      43.495,
+      39.015,
+      44.439,
+      47.499,
+      55.312,
+      43.338,
+      49.397,
+      41.025,
+      48.226,
+      46.065
+     ]
+    },
+    "outside_ratio": {
+     "blue_cup": [
+      0.207,
+      2.2005,
+      1.7238,
+      2.1647,
+      2.9621,
+      1.1878,
+      1.932,
+      1.7096,
+      2.1663,
+      2.5497,
+      1.8819
+     ]
+    }
+   }
+  }
+ }
+}

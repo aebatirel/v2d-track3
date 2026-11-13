@@ -1,0 +1,13 @@
+set -x
+export OMP_NUM_THREADS=1
+until [ $(wc -l < fits.jsonl) -ge 80 ]; do sleep 10; done
+kill 14729; sleep 1
+for p in $(pgrep -f "decomp.py --models pixal_mv,hy21"); do kill $p; done
+mv decomp_other.jsonl decomp_other_partial.jsonl 2>/dev/null
+../../venv/bin/python hyp.py > hyp.log 2>&1
+../../venv/bin/python analyze.py > analyze.log 2>&1
+../../venv/bin/python /home/user/v2d-track3/docs/research/mesh-2026-10-26/scripts/mesh_metric.py run --out metric_lib_vis.jsonl --workers 1  diag/sam3d_lib_vis/white_pot_s42=white_pot=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/white_pot_k279_s42.ply diag/sam3d_lib_vis/white_pot_lid_s42=white_pot_lid=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/white_pot_lid_k321_s42.ply diag/sam3d_lib_vis/blue_cup_s42=blue_cup=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/blue_cup_k156_s42.ply diag/sam3d_lib_vis/water_pitcher_s42=water_pitcher=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/water_pitcher_k174_s42.ply diag/sam3d_lib_vis/wooden_piece_1_s42=wooden_piece_1=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/wooden_piece_1_k27_s42.ply diag/sam3d_lib_vis/wooden_piece_2_s42=wooden_piece_2=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/wooden_piece_2_k6_s42.ply diag/sam3d_lib_vis/plastic_dish_rack_s42=plastic_dish_rack=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/plastic_dish_rack_k144_s42.ply diag/sam3d_lib_vis/mini_sweeper_s42=mini_sweeper=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/mini_sweeper_k270_s42.ply diag/sam3d_lib_vis/mini_dust_pan_s42=mini_dust_pan=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/mini_dust_pan_k297_s42.ply diag/sam3d_lib_vis/beige_cup_s42=beige_cup=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/diag/sam-placement/fits/sam3d_lib_vis/beige_cup_k6_s42.ply > metric_lib_vis.log 2>&1
+../../venv/bin/python decomp.py --models pixal_mv,hy21 --seeds 42 --out decomp_other.jsonl > decomp_other.log 2>&1
+../../venv/bin/python analyze.py > analyze.log 2>&1
+../../venv/bin/python render.py > render.log 2>&1
+echo CHAIN2-DONE

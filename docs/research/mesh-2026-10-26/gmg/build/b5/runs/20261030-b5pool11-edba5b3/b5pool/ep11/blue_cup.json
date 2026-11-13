@@ -1,0 +1,461 @@
+{
+ "kind": "axial",
+ "blocks": [
+  {
+   "frames": 23,
+   "kept": 23,
+   "points": 20000,
+   "L": 3
+  },
+  {
+   "frames": 23,
+   "kept": 23,
+   "points": 1585,
+   "L": 3
+  },
+  {
+   "frames": 22,
+   "kept": 22,
+   "points": 1783,
+   "L": 3
+  }
+ ],
+ "fold_status": {
+  "gmg.producers.shell": {
+   "producer": "gmg.producers.shell",
+   "K": 3,
+   "state": "rebuilt",
+   "missing": {},
+   "sec": 55.0
+  },
+  "gmg.producers.hull": {
+   "producer": "gmg.producers.hull",
+   "K": 3,
+   "state": "fixed",
+   "missing": {},
+   "reason": "HULL fold rebuilds (grids from training frames) come with B5",
+   "sec": 0.0
+  }
+ },
+ "fold_fsv_far": {
+  "shell_t5p36": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "rows": [
+  {
+   "cid": "shell_t5p36",
+   "cls": "SHELL",
+   "E": 7.718496118982922,
+   "E_blocks": [
+    8.90729,
+    5.80137,
+    8.44232
+   ],
+   "E_se": 0.33830690663166163,
+   "fold": "rebuilt",
+   "fsv_far": 0.00015,
+   "fsv_far_shell": 0.00015,
+   "ray": {
+    "n": 23368,
+    "miss_frac": 0.80105,
+    "extra_frac": 0.11024,
+    "mean_cost_sigma": 7.717,
+    "median_abs_delta_mm": 4.3407
+   },
+   "ray_blocks": [
+    {
+     "n": 20000,
+     "miss_frac": 0.87025,
+     "extra_frac": 0.05615,
+     "no_hit_frac": 0.7573,
+     "mean_cost_sigma": 8.90729
+    },
+    {
+     "n": 1585,
+     "miss_frac": 0.13249,
+     "extra_frac": 0.59243,
+     "no_hit_frac": 0.07382,
+     "mean_cost_sigma": 5.80137
+    },
+    {
+     "n": 1783,
+     "miss_frac": 0.61918,
+     "extra_frac": 0.28828,
+     "no_hit_frac": 0.55917,
+     "mean_cost_sigma": 8.44232
+    }
+   ],
+   "v3": {
+    "diff": 0.0,
+    "tau": null,
+    "veto": false,
+    "applied": false,
+    "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+   },
+   "trusted_markers": 0,
+   "flags": [
+    "no_support_closing_B8"
+   ],
+   "v1": {
+    "veto": false,
+    "watertight": true,
+    "faces": 4000
+   },
+   "v2": {
+    "veto": false,
+    "partners": {
+     "beige_cup": {
+      "veto": false,
+      "n_median": 8.0,
+      "threshold": 32.85
+     }
+    }
+   },
+   "v4": {
+    "applies": true,
+    "veto": false,
+    "share": 0.0
+   },
+   "amb": {
+    "amb_mm": 11.267059060225025,
+    "amb_floor_mm": 2.274431335996476,
+    "flip_risk": false,
+    "flip_units": 3,
+    "kind": "axial"
+   },
+   "amb_noball": {
+    "amb_mm": 11.267059060225025,
+    "amb_floor_mm": 2.274431335996476,
+    "flip_risk": false,
+    "flip_units": 3,
+    "kind": "axial"
+   },
+   "obs_flip_margin": {
+    "identity_mm": 2.691859385366273,
+    "flipped_mm": 6.755397892682822,
+    "margin_mm": 4.063538507316549,
+    "flipped_rot_deg": 170.6,
+    "n_starts": 25,
+    "points": 3000
+   }
+  },
+  {
+   "cid": "hull",
+   "cls": "HULL",
+   "E": 8.68234253309995,
+   "E_blocks": [
+    7.96825,
+    8.23802,
+    7.10926
+   ],
+   "E_se": 0.129200075432334,
+   "fold": "fixed",
+   "fsv_far": 0.09105,
+   "fsv_far_shell": 0.00015,
+   "ray": {
+    "n": 23368,
+    "miss_frac": 0.01511,
+    "extra_frac": 0.89768,
+    "mean_cost_sigma": 7.77184,
+    "median_abs_delta_mm": 7.7052
+   },
+   "ray_blocks": [
+    {
+     "n": 20000,
+     "miss_frac": 0.0055,
+     "extra_frac": 0.9134,
+     "no_hit_frac": 0.00065,
+     "mean_cost_sigma": 7.96825
+    },
+    {
+     "n": 1585,
+     "miss_frac": 0.02271,
+     "extra_frac": 0.89968,
+     "no_hit_frac": 0.00063,
+     "mean_cost_sigma": 8.23802
+    },
+    {
+     "n": 1783,
+     "miss_frac": 0.1161,
+     "extra_frac": 0.71957,
+     "no_hit_frac": 0.03533,
+     "mean_cost_sigma": 7.10926
+    }
+   ],
+   "v3": {
+    "diff": 0.09090000000000001,
+    "tau": null,
+    "veto": false,
+    "applied": false,
+    "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+   },
+   "trusted_markers": 0,
+   "flags": [],
+   "v1": {
+    "veto": false,
+    "watertight": true,
+    "faces": 3356
+   },
+   "v2": {
+    "veto": true,
+    "partners": {
+     "beige_cup": {
+      "veto": true,
+      "n_median": 77.0,
+      "threshold": 32.85
+     }
+    }
+   },
+   "v4": {
+    "applies": true,
+    "veto": false,
+    "share": 0.0
+   },
+   "amb": {
+    "amb_mm": 8.471062296896026,
+    "amb_floor_mm": 3.388562624437641,
+    "flip_risk": false,
+    "flip_units": 1,
+    "kind": "axial"
+   },
+   "amb_noball": {
+    "amb_mm": 8.471062296896026,
+    "amb_floor_mm": 3.388562624437641,
+    "flip_risk": false,
+    "flip_units": 1,
+    "kind": "axial"
+   },
+   "obs_flip_margin": {
+    "identity_mm": 5.579825671192982,
+    "flipped_mm": 5.419619402301698,
+    "margin_mm": -0.16020626889128378,
+    "flipped_rot_deg": 163.3,
+    "n_starts": 25,
+    "points": 3000
+   }
+  }
+ ],
+ "rows_all_frames": [
+  {
+   "cid": "shell_t5p36",
+   "cls": "SHELL",
+   "E": 3.9649605710104434,
+   "E_blocks": [
+    2.9708,
+    4.29863,
+    4.62096
+   ],
+   "E_se": 0.36143172890196984,
+   "fold": "fixed",
+   "fsv_far": 0.00015,
+   "fsv_far_shell": 0.00015,
+   "ray": {
+    "n": 23368,
+    "miss_frac": 0.12847,
+    "extra_frac": 0.29938,
+    "mean_cost_sigma": 3.96346,
+    "median_abs_delta_mm": 1.9451
+   },
+   "ray_blocks": [
+    {
+     "n": 20000,
+     "miss_frac": 0.1312,
+     "extra_frac": 0.2698,
+     "no_hit_frac": 0.00035,
+     "mean_cost_sigma": 2.9708
+    },
+    {
+     "n": 1585,
+     "miss_frac": 0.05363,
+     "extra_frac": 0.50789,
+     "no_hit_frac": 0.0,
+     "mean_cost_sigma": 4.29863
+    },
+    {
+     "n": 1783,
+     "miss_frac": 0.16433,
+     "extra_frac": 0.44588,
+     "no_hit_frac": 0.02804,
+     "mean_cost_sigma": 4.62096
+    }
+   ],
+   "v3": {
+    "diff": 0.0,
+    "tau": null,
+    "veto": false,
+    "applied": false,
+    "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+   },
+   "trusted_markers": 0,
+   "flags": [
+    "no_support_closing_B8"
+   ],
+   "v1": {
+    "veto": false,
+    "watertight": true,
+    "faces": 4000
+   },
+   "v2": {
+    "veto": false,
+    "partners": {
+     "beige_cup": {
+      "veto": false,
+      "n_median": 8.0,
+      "threshold": 32.85
+     }
+    }
+   },
+   "v4": {
+    "applies": true,
+    "veto": false,
+    "share": 0.0
+   }
+  },
+  {
+   "cid": "hull",
+   "cls": "HULL",
+   "E": 8.68234253309995,
+   "E_blocks": [
+    7.96825,
+    8.23802,
+    7.10926
+   ],
+   "E_se": 0.129200075432334,
+   "fold": "fixed",
+   "fsv_far": 0.09105,
+   "fsv_far_shell": 0.00015,
+   "ray": {
+    "n": 23368,
+    "miss_frac": 0.01511,
+    "extra_frac": 0.89768,
+    "mean_cost_sigma": 7.77184,
+    "median_abs_delta_mm": 7.7052
+   },
+   "ray_blocks": [
+    {
+     "n": 20000,
+     "miss_frac": 0.0055,
+     "extra_frac": 0.9134,
+     "no_hit_frac": 0.00065,
+     "mean_cost_sigma": 7.96825
+    },
+    {
+     "n": 1585,
+     "miss_frac": 0.02271,
+     "extra_frac": 0.89968,
+     "no_hit_frac": 0.00063,
+     "mean_cost_sigma": 8.23802
+    },
+    {
+     "n": 1783,
+     "miss_frac": 0.1161,
+     "extra_frac": 0.71957,
+     "no_hit_frac": 0.03533,
+     "mean_cost_sigma": 7.10926
+    }
+   ],
+   "v3": {
+    "diff": 0.09090000000000001,
+    "tau": null,
+    "veto": false,
+    "applied": false,
+    "note": "tau is fitted on the public clean CPU batch (PREREG A.3, build step B13); not applied"
+   },
+   "trusted_markers": 0,
+   "flags": [],
+   "v1": {
+    "veto": false,
+    "watertight": true,
+    "faces": 3356
+   },
+   "v2": {
+    "veto": true,
+    "partners": {
+     "beige_cup": {
+      "veto": true,
+      "n_median": 77.0,
+      "threshold": 32.85
+     }
+    }
+   },
+   "v4": {
+    "applies": true,
+    "veto": false,
+    "share": 0.0
+   }
+  }
+ ],
+ "pick": {
+  "cid": "shell_t5p36",
+  "best": "shell_t5p36",
+  "tie_set": [
+   [
+    "shell_t5p36",
+    0.0,
+    0.0
+   ]
+  ],
+  "order": [
+   "shell_t5p36"
+  ],
+  "flags": [],
+  "fallback": null,
+  "trace": [
+   {
+    "step": "vetoes V1-V4",
+    "removed": {
+     "hull": [
+      "V2"
+     ]
+    },
+    "not_applied": [
+     "V3 (tau not set)"
+    ]
+   },
+   {
+    "step": "V5",
+    "applied": false,
+    "reason": "kit-symmetric object (PREREG A.3)"
+   },
+   {
+    "step": "tie band",
+    "best": "shell_t5p36",
+    "E_best": 7.718496118982922,
+    "b_tie": 1,
+    "tie_set": [
+     [
+      "shell_t5p36",
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   {
+    "step": "priors",
+    "order": [
+     "shell_t5p36"
+    ],
+    "keys": "class (STRUCT > FUSE > GEN > SHELL > HULL); flip safety skipped (kit-symmetric); trusted markers first; fewer free parameters; lower E; cid"
+   }
+  ]
+ },
+ "pick_all_frames": {
+  "cid": "shell_t5p36",
+  "best": "shell_t5p36",
+  "tie_set": [
+   [
+    "shell_t5p36",
+    0.0,
+    0.0
+   ]
+  ],
+  "order": [
+   "shell_t5p36"
+  ],
+  "flags": [],
+  "fallback": null
+ }
+}

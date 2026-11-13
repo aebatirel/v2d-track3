@@ -1,0 +1,616 @@
+{
+ "label": "FALSIFIED",
+ "rule": "docs/research/work/eval10-njmax-20261101/PREREG.md section 4",
+ "diagnostic_only": true,
+ "never_packed": "tools/no_oracle.py refuses every name of this run (-e10nj-, perc2e10nj*, ev10_nj) and any checkpoint whose stored sim limits are not stock",
+ "invalid_reasons": [],
+ "notes": [
+  "512 copy: solver-level check not done on the box (config chain only); see solver_check.json"
+ ],
+ "clauses": {
+  "O": {
+   "value": 0,
+   "bar": 1000,
+   "holds": true,
+   "nefc": 0,
+   "broadphase": 0,
+   "narrowphase": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "baseline_e10v": "6,010,501 (s42) / 5,846,480 (s43) nefc lines; requested median 580, p95 752, max ~1,050 [M]"
+  },
+  "L": {
+   "value_cm": 0.2,
+   "any_repeat_cm": 0.2,
+   "bar_cm": 5.0,
+   "holds": false,
+   "object": "beige_cup",
+   "controls": {
+    "e10v_s42": 2.5,
+    "e10v_s43": 0.3
+   }
+  },
+  "A": {
+   "n": 10,
+   "mean": 0.456,
+   "bar": 0.4593,
+   "holds": false
+  }
+ },
+ "sets": {
+  "conf1024": {
+   "V": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.456,
+     "sd": 0.0016,
+     "min": 0.4538,
+     "max": 0.4594,
+     "median": 0.4557,
+     "mean_raw": 0.45602
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7995,
+     "sd": 0.005,
+     "min": 15.7916,
+     "max": 15.8062,
+     "median": 15.8007,
+     "mean_raw": 15.79955
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4575,
+     "sd": 0.0019,
+     "min": 0.4561,
+     "max": 0.4629,
+     "median": 0.457,
+     "mean_raw": 0.45752
+    },
+    "fail_rate": 1.0,
+    "objects": {
+     "blue_cup": {
+      "AUC": 0.6784,
+      "sim_travel_cm": 0.24,
+      "ref_travel_cm": 4.96
+     },
+     "beige_cup": {
+      "AUC": 0.2366,
+      "sim_travel_cm": 0.23,
+      "ref_travel_cm": 25.07
+     }
+    }
+   },
+   "P": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4481,
+     "sd": 0.0021,
+     "min": 0.4447,
+     "max": 0.4509,
+     "median": 0.4482,
+     "mean_raw": 0.44805
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7748,
+     "sd": 0.0033,
+     "min": 15.7684,
+     "max": 15.779,
+     "median": 15.7748,
+     "mean_raw": 15.774799999999999
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4503,
+     "sd": 0.0012,
+     "min": 0.4486,
+     "max": 0.4523,
+     "median": 0.4504,
+     "mean_raw": 0.45031999999999994
+    },
+    "fail_rate": 1.0,
+    "objects": {
+     "blue_cup": {
+      "AUC": 0.6604,
+      "sim_travel_cm": 0.24,
+      "ref_travel_cm": 5.65
+     },
+     "beige_cup": {
+      "AUC": 0.2402,
+      "sim_travel_cm": 0.23,
+      "ref_travel_cm": 25.13
+     }
+    }
+   }
+  },
+  "conf512": {
+   "V": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4556,
+     "sd": 0.0021,
+     "min": 0.453,
+     "max": 0.4602,
+     "median": 0.4551,
+     "mean_raw": 0.45565
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.8013,
+     "sd": 0.0054,
+     "min": 15.7921,
+     "max": 15.8093,
+     "median": 15.802,
+     "mean_raw": 15.80129
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4575,
+     "sd": 0.0019,
+     "min": 0.4563,
+     "max": 0.4625,
+     "median": 0.4569,
+     "mean_raw": 0.45754
+    },
+    "fail_rate": 1.0,
+    "objects": {
+     "blue_cup": {
+      "AUC": 0.6784,
+      "sim_travel_cm": 0.25,
+      "ref_travel_cm": 4.96
+     },
+     "beige_cup": {
+      "AUC": 0.2367,
+      "sim_travel_cm": 0.24,
+      "ref_travel_cm": 25.07
+     }
+    }
+   },
+   "P": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4472,
+     "sd": 0.0026,
+     "min": 0.4443,
+     "max": 0.4517,
+     "median": 0.4465,
+     "mean_raw": 0.44722
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7764,
+     "sd": 0.0062,
+     "min": 15.7676,
+     "max": 15.7847,
+     "median": 15.7779,
+     "mean_raw": 15.776419999999998
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4499,
+     "sd": 0.0017,
+     "min": 0.4474,
+     "max": 0.453,
+     "median": 0.4497,
+     "mean_raw": 0.44993
+    },
+    "fail_rate": 1.0,
+    "objects": {
+     "blue_cup": {
+      "AUC": 0.6594,
+      "sim_travel_cm": 0.25,
+      "ref_travel_cm": 5.65
+     },
+     "beige_cup": {
+      "AUC": 0.2405,
+      "sim_travel_cm": 0.24,
+      "ref_travel_cm": 25.13
+     }
+    }
+   }
+  },
+  "train1024": {
+   "V": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4561,
+     "sd": 0.002,
+     "min": 0.4542,
+     "max": 0.461,
+     "median": 0.4556,
+     "mean_raw": 0.45613000000000004
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.8039,
+     "sd": 0.0042,
+     "min": 15.7989,
+     "max": 15.8128,
+     "median": 15.8029,
+     "mean_raw": 15.803909999999998
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4575,
+     "sd": 0.0021,
+     "min": 0.4561,
+     "max": 0.4622,
+     "median": 0.4568,
+     "mean_raw": 0.45754
+    },
+    "fail_rate": 1.0,
+    "objects": {
+     "blue_cup": {
+      "AUC": 0.6785,
+      "sim_travel_cm": 0.24,
+      "ref_travel_cm": 4.96
+     },
+     "beige_cup": {
+      "AUC": 0.2366,
+      "sim_travel_cm": 0.24,
+      "ref_travel_cm": 25.07
+     }
+    }
+   },
+   "P": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4477,
+     "sd": 0.0024,
+     "min": 0.4435,
+     "max": 0.4517,
+     "median": 0.4478,
+     "mean_raw": 0.44767999999999997
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7783,
+     "sd": 0.0038,
+     "min": 15.7733,
+     "max": 15.7847,
+     "median": 15.7789,
+     "mean_raw": 15.77835
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4499,
+     "sd": 0.0015,
+     "min": 0.4482,
+     "max": 0.4526,
+     "median": 0.4498,
+     "mean_raw": 0.44992
+    },
+    "fail_rate": 1.0,
+    "objects": {
+     "blue_cup": {
+      "AUC": 0.6595,
+      "sim_travel_cm": 0.24,
+      "ref_travel_cm": 5.65
+     },
+     "beige_cup": {
+      "AUC": 0.2403,
+      "sim_travel_cm": 0.24,
+      "ref_travel_cm": 25.13
+     }
+    }
+   }
+  },
+  "e10v_conf_control": {
+   "V": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9998,
+     "sd": 0.0003,
+     "min": 0.9992,
+     "max": 1.0,
+     "median": 0.9999,
+     "mean_raw": 0.99976
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 0.3485,
+     "sd": 0.0132,
+     "min": 0.3229,
+     "max": 0.3719,
+     "median": 0.3461,
+     "mean_raw": 0.34849
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.9998,
+     "sd": 0.0003,
+     "min": 0.9992,
+     "max": 1.0,
+     "median": 1.0,
+     "mean_raw": 0.9997999999999999
+    },
+    "fail_rate": 0.0,
+    "objects": {
+     "blue_cup": {
+      "AUC": 0.9998,
+      "sim_travel_cm": 5.25,
+      "ref_travel_cm": 4.96
+     },
+     "beige_cup": {
+      "AUC": 0.9998,
+      "sim_travel_cm": 25.24,
+      "ref_travel_cm": 25.07
+     }
+    }
+   },
+   "P": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9605,
+     "sd": 0.0046,
+     "min": 0.9546,
+     "max": 0.9689,
+     "median": 0.9602,
+     "mean_raw": 0.96053
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 1.0831,
+     "sd": 0.0195,
+     "min": 1.0584,
+     "max": 1.1152,
+     "median": 1.082,
+     "mean_raw": 1.08314
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.9613,
+     "sd": 0.0051,
+     "min": 0.9552,
+     "max": 0.9709,
+     "median": 0.9612,
+     "mean_raw": 0.96126
+    },
+    "fail_rate": 0.0,
+    "objects": {
+     "blue_cup": {
+      "AUC": 0.9428,
+      "sim_travel_cm": 5.25,
+      "ref_travel_cm": 5.65
+     },
+     "beige_cup": {
+      "AUC": 0.9796,
+      "sim_travel_cm": 25.24,
+      "ref_travel_cm": 25.13
+     }
+    }
+   }
+  }
+ },
+ "readout_512": {
+  "status": "VALID",
+  "problems": [],
+  "n": 10,
+  "mean_V": 0.4556,
+  "delta_vs_1024_V": -0.0004,
+  "checkpoint_sha256": "f2b905499751161d8c43aee08c1e92506423c90321ca8e6cfbb853f5b242929d",
+  "solver": {
+   "path": "<MR>/content/results/ev10_nj/ck512/policy.safetensors",
+   "stored_sim": {
+    "sim": [
+     512,
+     256
+    ],
+    "env_sim": [
+     512,
+     256
+    ]
+   },
+   "env_config_sim": [
+    512,
+    256
+   ],
+   "solver": null,
+   "solver_error": "ValueError: unversioned reference does not match the ManoSharpaData format; declare a supported schema_version: <MR>/content/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_g"
+  },
+  "ck512": {
+   "src": "<MR>/content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors",
+   "dst": "<MR>/content/results/ev10_nj/ck512/policy.safetensors",
+   "src_sha256": "91819813b83f0f562e39ea26ff3dd43401c9c9a3f5e2546c2fda9680097d2b9b",
+   "dst_sha256": "f2b905499751161d8c43aee08c1e92506423c90321ca8e6cfbb853f5b242929d",
+   "src_sim": {
+    "sim.njmax": 1024,
+    "sim.nconmax": 512,
+    "env.sim.njmax": 1024,
+    "env.sim.nconmax": 512
+   },
+   "dst_sim": {
+    "sim.njmax": 512,
+    "sim.nconmax": 256,
+    "env.sim.njmax": 512,
+    "env.sim.nconmax": 256
+   },
+   "config_diff": [
+    "env.sim.nconmax",
+    "env.sim.njmax",
+    "sim.nconmax",
+    "sim.njmax"
+   ],
+   "header_bytes": [
+    26792,
+    26792
+   ],
+   "buffer_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "buffer_identical": true,
+   "other_header_entries_differ": [],
+   "other_metadata_differ": [],
+   "tensors": 0,
+   "ok": true,
+   "failures": []
+  }
+ },
+ "checkpoints": {
+  "ck1024": "<MR>/content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors",
+  "sha256_1024": "91819813b83f0f562e39ea26ff3dd43401c9c9a3f5e2546c2fda9680097d2b9b",
+  "ck512": "<MR>/content/results/ev10_nj/ck512/policy.safetensors",
+  "sha256_512": "f2b905499751161d8c43aee08c1e92506423c90321ca8e6cfbb853f5b242929d"
+ },
+ "official_draws": {
+  "conf1024": {
+   "calls": 10,
+   "eval_rc": {
+    "0": 10
+   },
+   "episode_jsons": 10,
+   "wrong_checkpoint": []
+  },
+  "conf512": {
+   "calls": 10,
+   "eval_rc": {
+    "0": 10
+   },
+   "episode_jsons": 10,
+   "wrong_checkpoint": []
+  }
+ },
+ "overflow_other": {
+  "train_oom_retries": {
+   "files": 0,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  },
+  "curve": {
+   "files": 21,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  },
+  "best": {
+   "files": 10,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  },
+  "conf1024": {
+   "files": 10,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  },
+  "conf512": {
+   "files": 10,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  }
+ },
+ "lift_curve": [
+  {
+   "ckpt_M": 10,
+   "sim_vs_ref": 0.4558,
+   "carried_r1": 0.0,
+   "carried_max": 0.2,
+   "resting_r1": 0.1
+  },
+  {
+   "ckpt_M": 20,
+   "sim_vs_ref": 0.4548,
+   "carried_r1": 0.1,
+   "carried_max": 0.1,
+   "resting_r1": 0.1
+  },
+  {
+   "ckpt_M": 30,
+   "sim_vs_ref": 0.4556,
+   "carried_r1": 0.2,
+   "carried_max": 0.2,
+   "resting_r1": 0.1
+  },
+  {
+   "ckpt_M": 40,
+   "sim_vs_ref": 0.4549,
+   "carried_r1": 0.2,
+   "carried_max": 0.2,
+   "resting_r1": 0.1
+  },
+  {
+   "ckpt_M": 50,
+   "sim_vs_ref": 0.4547,
+   "carried_r1": 0.1,
+   "carried_max": 0.2,
+   "resting_r1": 0.1
+  },
+  {
+   "ckpt_M": 60,
+   "sim_vs_ref": 0.4562,
+   "carried_r1": 0.0,
+   "carried_max": 0.2,
+   "resting_r1": 0.2
+  },
+  {
+   "ckpt_M": 70,
+   "sim_vs_ref": 0.4556,
+   "carried_r1": 0.0,
+   "carried_max": 0.1,
+   "resting_r1": 0.1
+  }
+ ],
+ "guard": {
+  "ok": true,
+  "refused": 6,
+  "cases": 6
+ },
+ "identity": {
+  "ok": true,
+  "config_diff": [
+   "env.sim.nconmax",
+   "env.sim.njmax",
+   "output_dir",
+   "reference.parquet",
+   "sim.nconmax",
+   "sim.njmax",
+   "task.parquet"
+  ]
+ }
+}

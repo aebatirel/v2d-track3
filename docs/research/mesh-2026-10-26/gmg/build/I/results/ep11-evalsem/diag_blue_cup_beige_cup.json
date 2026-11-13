@@ -1,0 +1,38 @@
+{
+ "blue_cup": {
+  "region_voxels": 1214,
+  "plane_point_mm": [
+   0.9,
+   7.0,
+   -17.4
+  ],
+  "sim_solid": {
+   "kind": "voxels",
+   "cm3": 87.59200000000001,
+   "width_mm": 95.11
+  },
+  "sub_solid": {
+   "kind": "voxels",
+   "cm3": 84.36,
+   "width_mm": 88.23
+  }
+ },
+ "beige_cup": {
+  "region_voxels": 766,
+  "plane_point_mm": [
+   -5.1,
+   0.2,
+   -17.0
+  ],
+  "sim_solid": {
+   "kind": "voxels",
+   "cm3": 60.912,
+   "width_mm": 92.33
+  },
+  "sub_solid": {
+   "kind": "voxels",
+   "cm3": 60.912,
+   "width_mm": 85.17
+  }
+ }
+}

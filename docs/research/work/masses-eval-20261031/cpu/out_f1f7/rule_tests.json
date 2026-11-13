@@ -1,0 +1,211 @@
+{
+ "ok": true,
+ "n": 41,
+ "results": [
+  {
+   "name": "L1_rule6_thresholds_as_written",
+   "ok": true,
+   "detail": "{'1': (0.8519, 0.2387), '3': (0.9339, 0.0717), '14': (0.6452, 0.1989), '16': (0.8429, 0.0767), '25': (0.8801, 0.0988), '30': (0.8284, 0.2552)}"
+  },
+  {
+   "name": "L2_spoon_thresholds",
+   "ok": true,
+   "detail": "(0.9144, 0.9397)"
+  },
+  {
+   "name": "L3_bars_pack7",
+   "ok": true,
+   "detail": "{'1': 0.9196, '3': 0.9418, '5': 0.9595, '6': 0.9713, '8': 0.9783, '10': 0.4563, '14': 0.9094, '15': 0.9465, '16': 0.9079, '19': 0.9278, '20': 0.8948, '25': 0.8937, '28': 0.929, '30': 0.9229, '32': 0.8656, '33': 0.9401, '35': 0.9829, '36': 0.9912, '37': 0.9979, '38': 0.9998}"
+  },
+  {
+   "name": "L4_pack8_eval1_level_and_bar",
+   "ok": true,
+   "detail": "({'mean': 0.9241, 'sd': 0.017, 'n': 20, 'src': 'runs/20261030-e1conf2-d41382e/results/h5/h5_summary.json (md5 1a2f7a1a...)'}, 0.9232, {'mean': 0.8219, 'sd': 0.2387, 'n': 10, 'src': 'docs/analysis/h5-20261029/h5_summary.json (H5, pack 6 policy)'})"
+  },
+  {
+   "name": "W1_board_swap_20",
+   "ok": true,
+   "detail": "{'stratum': 'masses', 'level': {'mean': 0.8884, 'sd': 0.0433, 'n': 10, 'src': 'docs/analysis/h5-20261029/h5_summary.json (H5, pack 6 policy)'}, 'packed': 0.8948, 'bar': 0.8948, 'insurance_needs': {'mean': 0.9184, 'sd': 0.0433}, 'training': {'42': {'n': 10, 'mean': 0.9, 'sd': 0.01, 'min': 0.88}, '43': {'n': 10, 'mean': 0.89, 'sd': 0.01, 'min': 0.87}}, 'seed': '42', 'run': '20261101-mevX-20', 'merge"
+  },
+  {
+   "name": "W1_keep_8",
+   "ok": true,
+   "detail": "mean 0.975 < bar 0.9783; insurance needs mean >= 0.9989 and sd <= 0.0239"
+  },
+  {
+   "name": "W1_board_swap_33_15",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "W1_eval1_between_0.9196_and_0.9241_is_insurance",
+   "ok": true,
+   "detail": "mean 0.921 < bar 0.9241, >= level + 0.03 = 0.8519, sd 0.02 <= 0.2387"
+  },
+  {
+   "name": "W1_spoon_propose_wave2",
+   "ok": true,
+   "detail": "PROPOSE wave 2 (5, 32, 6, 3) on a separate owner GO: neither pilot below level - 0.02"
+  },
+  {
+   "name": "W1_pack9_inputs",
+   "ok": true,
+   "detail": "{'board': 'pack7', 'swap': {'15': 'runs/C1RUN/results/submission/results/episode_000015.{json,parquet} (C1 draw 1, by position)', '20': 'runs/C1RUN/results/submission/results/episode_000020.{json,parquet} (C1 draw 1, by position)', '33': 'runs/C1RUN/results/submission/results/episode_000033.{json,parquet} (C1 draw 1, by position)'}, 'insurance_if_owner_accepts': {'1': 'runs/C1RUN/results/submissio"
+  },
+  {
+   "name": "W1_strata",
+   "ok": true,
+   "detail": "{'masses': {'episodes': 3, 'verdicts': {'BOARD SWAP': 1, 'INSURANCE (offered; the owner decides)': 1, 'KEEP': 1}, 'mean_delta_vs_level': 0.0423, 'expected_board_effect_of_swaps': 0.00058}, 'spoon': {'episodes': 2, 'verdicts': {'BOARD SWAP': 2}, 'mean_delta_vs_level': 0.0054, 'expected_board_effect_of_swaps': 0.0007}}"
+  },
+  {
+   "name": "B1_mean_equal_bar_swaps",
+   "ok": true,
+   "detail": "mean 0.8948 >= bar 0.8948"
+  },
+  {
+   "name": "B2_insurance_at_threshold",
+   "ok": true,
+   "detail": "mean 0.9339 < bar 0.9418, >= level + 0.03 = 0.9339, sd 0.0717 <= 0.0717"
+  },
+  {
+   "name": "B3_sd_above_level_sd_keeps",
+   "ok": true,
+   "detail": "mean 0.7 < bar 0.9094; insurance needs mean >= 0.6452 and sd <= 0.1989"
+  },
+  {
+   "name": "B4_insurance_16",
+   "ok": true,
+   "detail": "{'stratum': 'spoon', 'level': {'mean': 0.8129, 'sd': 0.0767, 'n': 10, 'src': 'docs/analysis/h5-20261029/h5_summary.json (H5, pack 6 policy)'}, 'packed': 0.9079, 'bar': 0.9079, 'insurance_needs': {'mean': 0.8429, 'sd': 0.0767}, 'training': {'42': {'n': 10, 'mean': 0.9, 'sd': 0.01, 'min': 0.88}, '43': {'n': 10, 'mean': 0.89, 'sd': 0.01, 'min': 0.87}}, 'seed': '42', 'run': '20261101-mevX-16', 'merge'"
+  },
+  {
+   "name": "B5_spoon_no_reading_without_pilots",
+   "ok": true,
+   "detail": "NO READING: pilot 33: not retrained in this batch; pilot 15: not retrained in this batch (pending the repeated confirmation or retrain; if a pilot cannot be read, rule 9 does not cover it: the owner decides)"
+  },
+  {
+   "name": "R4_n7_incomplete",
+   "ok": true,
+   "detail": "7 scored draws < 8: repeat only the confirmation"
+  },
+  {
+   "name": "R4_no_confirmation_incomplete",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R2_training_incomplete_passed_through",
+   "ok": true,
+   "detail": "{'stratum': 'spoon', 'level': {'mean': 0.9344, 'sd': 0.0076, 'n': 10, 'src': 'runs/20261030-c33B-0202139/results/h5/h5_summary.json (md5 39a2f7c7...)'}, 'packed': 0.9401, 'bar': 0.9401, 'insurance_needs': {'mean': 0.9644, 'sd': 0.0076}, 'training': None, 'seed': None, 'run': None, 'merge': \"INCOMPLETE (seeds ['43'] missing or n < 8: retrain only those seeds on a new box, same reference and commit;"
+  },
+  {
+   "name": "R3_out_keeps",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R9_pilot_without_reading",
+   "ok": true,
+   "detail": "NO READING: pilot 33: INCOMPLETE (training): INCOMPLETE (seeds ['43'] missing or n < 8: retrain only those seeds on a new box, same reference and commit; PLAN section 5 rule 2 as amended 31 Oct); pilot 15: KEEP: OUT (a box INVALID: packed policy stays) (pending the repeated confirmation or retrain; if a pilot cannot be read, rule 9 does not cover it: the owner decides)"
+  },
+  {
+   "name": "R9_both_below_closed",
+   "ok": true,
+   "detail": "({'33': {'reading': 'below', 'mean': 0.91, 'threshold': 0.9144, 'written': 0.914}, '15': {'reading': 'below', 'mean': 0.93, 'threshold': 0.9397, 'written': 0.9397}}, 'CLOSED: both pilots below level - 0.02; no more spoon retrains')"
+  },
+  {
+   "name": "R9_both_below_also_keep",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R9_one_below_owner",
+   "ok": true,
+   "detail": "OWNER DECIDES: one pilot below level - 0.02"
+  },
+  {
+   "name": "R9_rounding_window_ambiguous",
+   "ok": true,
+   "detail": "{'33': {'reading': 'AMBIGUOUS', 'mean': 0.9142, 'threshold': 0.9144, 'written': 0.914}, '15': {'reading': 'not below', 'mean': 0.95, 'threshold': 0.9397, 'written': 0.9397}}"
+  },
+  {
+   "name": "R9_at_threshold_not_below",
+   "ok": true,
+   "detail": "{'33': {'reading': 'not below', 'mean': 0.9397, 'threshold': 0.9144, 'written': 0.914}, '15': {'reading': 'not below', 'mean': 0.9397, 'threshold': 0.9397, 'written': 0.9397}}"
+  },
+  {
+   "name": "P8_eval1_0.9235_keep",
+   "ok": true,
+   "detail": "{'stratum': 'masses', 'level': {'mean': 0.9241, 'sd': 0.017, 'n': 20, 'src': 'runs/20261030-e1conf2-d41382e/results/h5/h5_summary.json (md5 1a2f7a1a...)'}, 'packed': 0.9232, 'bar': 0.9241, 'insurance_needs': {'mean': 0.9541, 'sd': 0.017}, 'training': {'42': {'n': 10, 'mean': 0.9, 'sd': 0.01, 'min': 0.88}, '43': {'n': 10, 'mean': 0.89, 'sd': 0.01, 'min': 0.87}}, 'seed': '42', 'run': '20261101-mevX-"
+  },
+  {
+   "name": "P8_eval1_0.9241_swap",
+   "ok": true,
+   "detail": "mean 0.9241 >= bar 0.9241 (packed 0.9232, eval 1 also >= 0.9241)"
+  },
+  {
+   "name": "X1_packed_column_mismatch_refused",
+   "ok": true,
+   "detail": "[\"ep33: h5 packed 0.9319 is not pack7's packed draw 0.9401 (PACKED_TXT or --board)\"]"
+  },
+  {
+   "name": "X2_non_candidate_in_h5_refused",
+   "ok": true,
+   "detail": "['ep19: in h5_summary.json but not a merge CANDIDATE (the confirmation evaluated another episode)']"
+  },
+  {
+   "name": "X3_board_flag_mismatch_refused",
+   "ok": true,
+   "detail": "[\"ep1: h5 packed 0.9232 is not pack7's packed draw 0.9196 (PACKED_TXT or --board)\"]"
+  },
+  {
+   "name": "C_cli_ok_exit_0",
+   "ok": true,
+   "detail": "(0, 'pack (B7, not built); the owner decides any upload\\nstrata: {\"masses\": {\"episodes\": 1, \"verdicts\": {\"BOARD SWAP\": 1}, \"mean_delta_vs_level\": 0.0216, \"expected_board_effect_of_swaps\": 0.00058}, \"spoon\": {\"episodes\": 0, \"verdicts\": {}, \"mean_delta_vs_level\": null, \"expected_board_effect_of_swaps\": 0}}\\n', '')"
+  },
+  {
+   "name": "C_cli_refused_exit_2",
+   "ok": true,
+   "detail": "(2, \"REFUSED (nothing applied): ep33: h5 packed 0.9319 is not pack7's packed draw 0.9401 (PACKED_TXT or --board)\\n\", '')"
+  },
+  {
+   "name": "F1_thin_seed_incomplete",
+   "ok": true,
+   "detail": "({'decision': \"INCOMPLETE (seeds ['43'] missing or n < 8: retrain only those seeds on a new box, same reference and commit; PLAN section 5 rule 2 as amended 31 Oct)\", 'todo': {'43': 'missing or n < 8 on mevA (n 6): retrain only this seed on a new box, same reference and commit'}, 'boxes': [['mevA', 'INCOMPLETE']], 'ignored_seeds': [], 'stats': {'42': {'n': 10, 'mean': 0.91, 'sd': 0.01, 'min': 0.89"
+  },
+  {
+   "name": "F1_missing_seed_incomplete",
+   "ok": true,
+   "detail": "{'decision': \"INCOMPLETE (seeds ['43'] missing or n < 8: retrain only those seeds on a new box, same reference and commit; PLAN section 5 rule 2 as amended 31 Oct)\", 'todo': {'43': 'missing or n < 8 on mevA (n 0): retrain only this seed on a new box, same reference and commit'}, 'boxes': [['mevA', 'INCOMPLETE']], 'ignored_seeds': [], 'stats': {'42': {'n': 10, 'mean': 0.91, 'sd': 0.01, 'min': 0.89}"
+  },
+  {
+   "name": "F1_after_retrain_candidate",
+   "ok": true,
+   "detail": "{'decision': 'CANDIDATE', 'seed': '43', 'run': 'mevB', 'mode': 'glock', 'ignored_seeds': [], 'checkpoint': '/content/x/43', 'boxes': [['mevA', 'INCOMPLETE'], ['mevB', 'VERIFIED']], 'stats': {'42': {'n': 10, 'mean': 0.91, 'sd': 0.01, 'min': 0.89}, '43': {'n': 10, 'mean': 0.93, 'sd': 0.01, 'min': 0.91}}}"
+  },
+  {
+   "name": "F1_single_seed_no_fallback",
+   "ok": true,
+   "detail": "{'decision': \"INCOMPLETE (seeds ['43'] missing or n < 8: retrain only those seeds on a new box, same reference and commit; PLAN section 5 rule 2 as amended 31 Oct)\", 'todo': {'43': 'not trained on any box: train it on a new box (same reference and commit)'}, 'boxes': [['mevS1a', 'VERIFIED']], 'ignored_seeds': [], 'stats': {'42': {'n': 10, 'mean': 0.91, 'sd': 0.01, 'min': 0.89}}}"
+  },
+  {
+   "name": "F1_unchecked_rerun_verify_not_retrain",
+   "ok": true,
+   "detail": "{'decision': \"INCOMPLETE (seeds ['42', '43'] missing or n < 8: retrain only those seeds on a new box, same reference and commit; PLAN section 5 rule 2 as amended 31 Oct)\", 'todo': {'42': 'trained, but mevA is INCOMPLETE only for unchecked files: re-run tools/mass_eval_verify.py on CPU once they are there (no retrain)', '43': 'trained, but mevA is INCOMPLETE only for unchecked files: re-run tools/m"
+  },
+  {
+   "name": "F1_rule2_within_0.005_lower_sd_then_first",
+   "ok": true,
+   "detail": "{'decision': 'CANDIDATE', 'seed': '42', 'run': 'mevA', 'mode': 'glock', 'ignored_seeds': [], 'checkpoint': '/content/x/42', 'boxes': [['mevA', 'VERIFIED']], 'stats': {'42': {'n': 10, 'mean': 0.91, 'sd': 0.01, 'min': 0.89}, '43': {'n': 10, 'mean': 0.913, 'sd': 0.01, 'min': 0.893}}}"
+  },
+  {
+   "name": "F1_invalid_out",
+   "ok": true,
+   "detail": "{'decision': 'OUT (a box INVALID: packed policy stays)', 'boxes': [['mevA', 'INVALID']]}"
+  },
+  {
+   "name": "F1_rule2_ignores_n_below_8",
+   "ok": true,
+   "detail": ""
+  }
+ ]
+}

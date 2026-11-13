@@ -1,0 +1,14 @@
+test_open_mesh_vote_close_to_gwn (__main__.VoteTests.test_open_mesh_vote_close_to_gwn) ... ok
+test_votes_match_exact_winding_closed (__main__.VoteTests.test_votes_match_exact_winding_closed) ... ok
+test_cup_keeps_cavity (__main__.WatertightTests.test_cup_keeps_cavity) ... ok
+test_floater_removed (__main__.WatertightTests.test_floater_removed) ... ok
+test_inverted_sphere (__main__.WatertightTests.test_inverted_sphere) ... ok
+test_open_sphere_closed (__main__.WatertightTests.test_open_sphere_closed) ... ok
+test_overlapping_bodies_union (__main__.WatertightTests.test_overlapping_bodies_union) ... ok
+test_sphere_volume (__main__.WatertightTests.test_sphere_volume) ... ok
+test_thin_sheet (__main__.WatertightTests.test_thin_sheet) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 116.747s
+
+OK

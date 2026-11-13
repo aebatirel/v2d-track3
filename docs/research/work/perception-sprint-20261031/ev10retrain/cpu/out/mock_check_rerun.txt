@@ -1,0 +1,20 @@
+ok   no store listing (single-file downloads only)  [81]
+ok   every download succeeded (files hidden by MOCK_HIDE excepted)
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e10v-mockrr', 'dst': 'runs/20261031-e10v-mockrr', 'msg': 'run 20261031-e10v-mockrr: 2026-10-31T18:50:42Z'}]]
+ok   hands_mp / hand_refine / perc2 / score_registered never ran
+ok   nothing written under the packed names refs/glockt/ep10, refs/perc2mck/ep10, results/glock_public/ep10
+ok   rc 0  [rc=0]
+ok   verdict SWAP-ELIGIBLE  [SWAP-ELIGIBLE: ['every clause holds on both references']]
+ok   verdict pushed to the store
+ok   no depth cache in the push
+ok   s43: trained once  [1]
+ok   s43: trained on its own copy of V  [<MR>/content/refs/perc2e10vs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave]
+ok   s43: seed, steps  [('43', 70004736)]
+ok   s43: 0.3 kg URDFs under /content/assets
+ok   s43: every CLI training key equals the packed gl10A2 config  [{} compared ['logging.mode', 'objective.contact_wrench_support.weight', 'objective.force_closure.enabled', 'objective.force_closure.weight', 'objective.unintended_contact.weight', 'output_dir', 'reset.seed', 'task.motion_speed', 'task.parquet', 'training.total_environment_steps']]
+ok   confirmation: >= 10 official draws of the chosen checkpoint on the pristine evaluator  [10]
+ok   10 scored confirmation draws, own-reference check ok on every scored rollout  [{'conf': {'own': 'V', 'n_files': 10, 'n_scored': 10}, 'old': {'own': 'P', 'n_files': 1, 'n_scored': 1}, 'packed': {'own': 'P', 'n_files': 10, 'n_scored': 10}, 'train42': {'own': 'V', 'n_files': 10, 'n_scored': 10}, 'train43': {'own': 'V', 'n_files': 10, 'n_scored': 10}}]
+ok   packed H5p7 draws (10) and the old packed draw scored on both references  [{'conf': {'own': 'V', 'n_files': 10, 'n_scored': 10}, 'old': {'own': 'P', 'n_files': 1, 'n_scored': 1}, 'packed': {'own': 'P', 'n_files': 10, 'n_scored': 10}, 'train42': {'own': 'V', 'n_files': 10, 'n_scored': 10}, 'train43': {'own': 'V', 'n_files': 10, 'n_scored': 10}}]
+ok   verify VERIFIED
+ok   verify / summary / score pushed
+19/19 checks pass

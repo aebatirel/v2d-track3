@@ -1,0 +1,69 @@
+{
+ "pick": {
+  "label": "K__ep12_nomk",
+  "set": "K",
+  "mesh": "ep12_nomk",
+  "fid_o2m": 1.949,
+  "fid_m2o": 3.534,
+  "fid_sum": 5.483,
+  "watertight_raw": true,
+  "budget_ok": true,
+  "faces_raw": 1836,
+  "sha256": "92d9fed04f938f1859f4bcbf488babee0dd4582ee71d8e08aa1c9ecb53703966",
+  "sha1_16": "7f4eab701769d264",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2r/runA1/cand/K/plastic_dish_rack/ep12_nomk.glb",
+  "budget_faces": 1836,
+  "fitted": {
+   "s1": 4.47689260529878e-16,
+   "s1e": null,
+   "kappa": [
+    0.95625,
+    1.60563
+   ],
+   "gx": null,
+   "gy": null,
+   "n_markers": 39
+  },
+  "eligible": true
+ },
+ "gate": "pass: the pick has a new part",
+ "best_base": {
+  "label": "base__ep12_nomk",
+  "set": "base",
+  "mesh": "ep12_nomk",
+  "fid_o2m": 1.979,
+  "fid_m2o": 3.554,
+  "fid_sum": 5.533,
+  "watertight_raw": true,
+  "budget_ok": true,
+  "faces_raw": 2028,
+  "sha256": "0d09795cb030ac4fd6e711df5a465f71ae780d8ea4bbf0ec363c8777e0c8ee6b",
+  "sha1_16": "ddd426c1964f24f0",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2r/runA1/cand/base/plastic_dish_rack/ep12_nomk.glb",
+  "budget_faces": 2028,
+  "fitted": {
+   "s1": 4.47689260529878e-16,
+   "s1e": null,
+   "kappa": [
+    1.0,
+    1.0
+   ],
+   "gx": null,
+   "gy": null,
+   "n_markers": 39
+  },
+  "eligible": true
+ },
+ "n_meshes": 96,
+ "n_eligible": 94,
+ "best_per_set": {
+  "E": "E__ep12_nomk",
+  "EK": "EK__ep12_nomk",
+  "EKQ": "EKQ__joint_joint_nomk",
+  "EQ": "EQ__joint_joint_nomk",
+  "K": "K__ep12_nomk",
+  "KQ": "KQ__joint_joint_nomk",
+  "Q": "Q__ep12_nomk",
+  "base": "base__ep12_nomk"
+ }
+}

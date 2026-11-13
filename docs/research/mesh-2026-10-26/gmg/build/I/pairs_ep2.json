@@ -1,0 +1,124 @@
+{
+ "white_pot<-white_pot_lid": {
+  "contact_frames": 79,
+  "band_mm": 5.99,
+  "hull": {
+   "frames_with_deep_entry": 54,
+   "travel_mm": 20.2,
+   "straightness": 0.61,
+   "first_last": [
+    0,
+    338
+   ],
+   "n8": {
+    "cm3": 1.6,
+    "unknown_free_observed": [
+     0,
+     0,
+     25
+    ],
+    "max_thickness_mm": 8.0,
+    "depth_mm_p50_max": [
+     6.1,
+     7.3
+    ]
+   },
+   "n20": {
+    "cm3": 0.9,
+    "unknown_free_observed": [
+     0,
+     0,
+     14
+    ],
+    "max_thickness_mm": 8.0,
+    "depth_mm_p50_max": [
+     6.1,
+     7.3
+    ]
+   },
+   "n40": {
+    "cm3": 0.45,
+    "unknown_free_observed": [
+     0,
+     0,
+     7
+    ],
+    "max_thickness_mm": 8.0,
+    "depth_mm_p50_max": [
+     6.3,
+     6.7
+    ]
+   }
+  },
+  "shell_t5p36": {
+   "frames_with_deep_entry": 0,
+   "n8": {
+    "cm3": 0.0
+   },
+   "n20": {
+    "cm3": 0.0
+   },
+   "n40": {
+    "cm3": 0.0
+   }
+  }
+ },
+ "white_pot_lid<-white_pot": {
+  "contact_frames": 79,
+  "band_mm": 6.08,
+  "hull": {
+   "frames_with_deep_entry": 0,
+   "n8": {
+    "cm3": 0.06,
+    "unknown_free_observed": [
+     0,
+     0,
+     1
+    ],
+    "max_thickness_mm": 8.0,
+    "depth_mm_p50_max": [
+     6.6,
+     6.6
+    ]
+   },
+   "n20": {
+    "cm3": 0.06,
+    "unknown_free_observed": [
+     0,
+     0,
+     1
+    ],
+    "max_thickness_mm": 8.0,
+    "depth_mm_p50_max": [
+     6.6,
+     6.6
+    ]
+   },
+   "n40": {
+    "cm3": 0.06,
+    "unknown_free_observed": [
+     0,
+     0,
+     1
+    ],
+    "max_thickness_mm": 8.0,
+    "depth_mm_p50_max": [
+     6.6,
+     6.6
+    ]
+   }
+  },
+  "shell_t5p36": {
+   "frames_with_deep_entry": 0,
+   "n8": {
+    "cm3": 0.0
+   },
+   "n20": {
+    "cm3": 0.0
+   },
+   "n40": {
+    "cm3": 0.0
+   }
+  }
+ }
+}

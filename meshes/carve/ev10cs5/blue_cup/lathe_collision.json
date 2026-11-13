@@ -1,0 +1,70 @@
+{
+ "tool": "lathe_cavsafe (lathe_collision.py blob 680cc2f9 + opt-in cavity-safe options)",
+ "profile": "PROF/blue_cup_profile.npz",
+ "name": "blue_cup",
+ "hollow": true,
+ "wall_t_mm": 3.0,
+ "shrink_mm": 0.0,
+ "segments": 8,
+ "band_cm": 8.0,
+ "pieces": 24,
+ "volume_cm3": 162.9,
+ "height_cm": 16.2,
+ "r_out_cm": [
+  3.15,
+  4.73
+ ],
+ "base_end": "hi",
+ "wall_fitted_mm": 4.89,
+ "base_extended_mm": 0.0,
+ "max_piece_vertices": 60,
+ "inner_circ": true,
+ "outer_insc": false,
+ "outer_circ": true,
+ "base_rim": null,
+ "plate_t_mm": 8.0,
+ "base": "one floor plate + meshes/carve/ev10/blue_cup piece_36.. clipped to h >= h_base",
+ "bands": [
+  {
+   "h_mm": [
+    -83.61,
+    -3.61
+   ],
+   "bins": 41,
+   "outer_circ": true,
+   "inner_raised_max_mm": 2.458,
+   "wall_mid_min_mm": 0.542,
+   "wall_mid_min_at_h_mm": -83.61,
+   "wall_edge_min_mm": 0.587
+  },
+  {
+   "h_mm": [
+    -3.61,
+    74.39
+   ],
+   "bins": 40,
+   "outer_circ": true,
+   "inner_raised_max_mm": 1.614,
+   "wall_mid_min_mm": 1.386,
+   "wall_mid_min_at_h_mm": 74.39,
+   "wall_edge_min_mm": 1.5
+  }
+ ],
+ "floor_plate": {
+  "plate_h_mm": [
+   70.39,
+   78.39
+  ],
+  "plate_ring_r_mm": [
+   38.46,
+   38.0,
+   37.27,
+   36.24,
+   34.15
+  ],
+  "plate_cm3": 30.933,
+  "base_hulls_in": 17,
+  "base_hulls_kept": 7,
+  "clip_plane_h_mm": 78.39
+ }
+}

@@ -1,0 +1,1696 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T14:02:47Z",
+ "commit": "841a5d3bab3532e48a64ab6fc836275e09868cff",
+ "code_dirty": false,
+ "code_dirty_files": [],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "gmg/tools/b10_remesh.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-b10-a1402f0"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 641,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-b10-a1402f0"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-b10-a1402f0",
+  "root": "runs-dev",
+  "pid": 641,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T12:43:06Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {},
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "x0_pool",
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/results/gen-probe/score_manifest.tsv",
+   "realpath": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/results/gen-probe/score_manifest.tsv",
+   "sha256": "517de3b334a37421e395d3c4414d1601c345d598a996ac15e7c83e111885d99e",
+   "bytes": 15522,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/beige_cup_k6_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/beige_cup_k6_s42.ply",
+   "sha256": "433bd27d8f1869b1e40d8dff5f069eb7d8feb7021425e48c754e9d8a6918a332",
+   "bytes": 7599741,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/beige_cup_k6_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/beige_cup_k6_s7.ply",
+   "sha256": "346e9107af34ef24ce80993381d624c69c9f692cbe25ec09d8d689798fced939",
+   "bytes": 7600185,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s42.ply",
+   "sha256": "b3b1aaf7abc7d5d442570dcc5709c7fd3de5a0659f463eb272dc505632267982",
+   "bytes": 7599921,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s7.ply",
+   "sha256": "d356c59edef1900f14106827248881c12b4c5f0c6e13339e6f8466e14a1109c9",
+   "bytes": 7599621,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_dust_pan_k297_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_dust_pan_k297_s42.ply",
+   "sha256": "bf51a8de943af9e79739d09d13438b9300051730b51e5b49ff1eb6b03e77ff0b",
+   "bytes": 7600197,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_dust_pan_k297_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_dust_pan_k297_s7.ply",
+   "sha256": "5a6e883c40461f8be18c3cd584d9b075ac9d50d0f6493f7ca499725060f3a09c",
+   "bytes": 7600197,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_sweeper_k270_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_sweeper_k270_s42.ply",
+   "sha256": "d1d3b37929388d780740d994f7971e46501df882f3ebe61b1dc06b9f8d3f2c07",
+   "bytes": 2336148,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_sweeper_k270_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_sweeper_k270_s7.ply",
+   "sha256": "c1ac8f36b29e306f3374185f61b949bc23f40e53b801893a3ea9ec1d33503e75",
+   "bytes": 2434356,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/plastic_dish_rack_k144_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/plastic_dish_rack_k144_s42.ply",
+   "sha256": "16a05d2d731a397d6cbffefc3df3cd3280c78db40395d4cd417b78d874a8801f",
+   "bytes": 7599789,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/plastic_dish_rack_k144_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/plastic_dish_rack_k144_s7.ply",
+   "sha256": "04717ef9d9acc42428d5d47b87d6a441a635ea1d59a851ead324a3843783e208",
+   "bytes": 7600029,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s42.ply",
+   "sha256": "3b8078ad069260586c8eeb381c2c389f97272eaaeeab51c197683134529fe149",
+   "bytes": 7599993,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s7.ply",
+   "sha256": "6c076a5371e5330cbc8be3dbb756eb0751639ab6e7948a001ad293ca9eac4b8f",
+   "bytes": 7600473,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_k279_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_k279_s42.ply",
+   "sha256": "7eab4bef4cfcbf2585cd9d67cdb0125aea1afa3abee103740d4ca36d370986d7",
+   "bytes": 7600065,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_k279_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_k279_s7.ply",
+   "sha256": "fa368f87a8ef722778b20b26f7f7fa8767926e7102f8936f9db0ad9797e416f1",
+   "bytes": 7600101,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_lid_k321_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_lid_k321_s42.ply",
+   "sha256": "24aa222a9e82e30545b36713bacbf485a21c3e02a670d72d32f905fd208383b3",
+   "bytes": 7600245,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_lid_k321_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_lid_k321_s7.ply",
+   "sha256": "4c80ef1b5e1026cd18cce9f6d387703d3734bacc7d2098fe040111fc7844d23b",
+   "bytes": 7600101,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_1_k27_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_1_k27_s42.ply",
+   "sha256": "2fa160b0a6f36e68418a6897ed6ee6ab57e37511293a5fefd5a177c806cd5482",
+   "bytes": 7600209,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_1_k27_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_1_k27_s7.ply",
+   "sha256": "e392f5722c6aa092a4fb72560b07c5fc5d5452bdf86be98b18111430614a3a1e",
+   "bytes": 6993769,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_2_k6_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_2_k6_s42.ply",
+   "sha256": "0f8e4f2fbafd4bb934afaf83de3f379c13439db10ea73de43f489550955d42e6",
+   "bytes": 7600197,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_2_k6_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_2_k6_s7.ply",
+   "sha256": "cc830f28c0405b90a4f4e0a1cf2f685a9f5df3a08bda3abd2187dcbe9a4baa24",
+   "bytes": 7600197,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s42.ply",
+   "sha256": "dad01c5abc932ff89e8e9ff3714441cdfa44cabe3a5f33cd1eb475953d3a9095",
+   "bytes": 7413114,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s7.ply",
+   "sha256": "d41a74807452cb6f9992956efd3468dba3cb073d1e021300b90de18bae1c8114",
+   "bytes": 7511035,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_blue_cup_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_blue_cup_s42.ply",
+   "sha256": "d2de438532e29eb8a77168ec012b85ec2aa093e04841b9ca54217607ab114f8d",
+   "bytes": 7432680,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_blue_cup_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_blue_cup_s7.ply",
+   "sha256": "95a814b681ac2e998d7765185d2f0fddec7b610920e2ad83be1a418a68362fc1",
+   "bytes": 7161568,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_water_pitcher_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_water_pitcher_s42.ply",
+   "sha256": "2ee839cbf3f539ca1e783a43aa203c2851925fc571cfc2d9bf60f235ffc6126b",
+   "bytes": 7595050,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_water_pitcher_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_water_pitcher_s7.ply",
+   "sha256": "54a4d12e1ce8e34bdf96cd7012e4911a2e046afa46e36aae4dc48ec9c7ae1e16",
+   "bytes": 7603078,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s42.ply",
+   "sha256": "bcd41e969491f44996f93d5365338c67eb78c457cf6a1f4a9e1726c12d759814",
+   "bytes": 7201042,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s7.ply",
+   "sha256": "7c80621d7ddf04993856f521b8b2596cd575a65ef618491e5f871143f1500a74",
+   "bytes": 7290379,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_2_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_2_s42.ply",
+   "sha256": "183f3d50c6ef84da12bda5cc857e5e03a837914a34d4150650ef278602ea6226",
+   "bytes": 7175679,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_2_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_2_s7.ply",
+   "sha256": "4658176955417139c21242cbe6ab7de5cbf6219d0ae8fdcbfd65aca69919e7a7",
+   "bytes": 7105404,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep26_plastic_dish_rack_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep26_plastic_dish_rack_s42.ply",
+   "sha256": "fd7e3e6928a6def51cdc5307b4ae2aec9a159c9cd913f02f36e5cd3e17725510",
+   "bytes": 7152374,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep26_plastic_dish_rack_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep26_plastic_dish_rack_s7.ply",
+   "sha256": "889377b27f3942b4f8f53b44723e8fff462456a6c3cae023471ab83de190019e",
+   "bytes": 7533852,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep2_white_pot_lid_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep2_white_pot_lid_s42.ply",
+   "sha256": "0e88708b685df329fe9a56c9eac99135e224003b7c2408d38798a6b7290a4f1d",
+   "bytes": 7587371,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep2_white_pot_lid_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep2_white_pot_lid_s7.ply",
+   "sha256": "5eaa445cdc3f904fa39604f2b669ca8dc6236ba03cc037fa3ad22d129184acb2",
+   "bytes": 7095636,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep31_mini_sweeper_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep31_mini_sweeper_s42.ply",
+   "sha256": "00bad2ea15e642f59093a905678e5ce48d9104cbb995591d0dbc2184e6399774",
+   "bytes": 7118650,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep31_mini_sweeper_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep31_mini_sweeper_s7.ply",
+   "sha256": "b9f46f3f682ef7dd5a8c65454e8a3f950d5c703de0395dcd4a301dcc8d5b72af",
+   "bytes": 7181488,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s42.ply",
+   "sha256": "75fea01f30d03cdc55851ce4f993e0b5283a3e711c74307cc134a5b66285bf98",
+   "bytes": 7601785,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s7.ply",
+   "sha256": "ca7f1b925236d7e091b1d59db2004fea4de2aa98f0d83cfb94610ffba3d511ee",
+   "bytes": 7557986,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep41_white_pot_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep41_white_pot_s42.ply",
+   "sha256": "d545935a4f7acbe71a26cb7188cf97302855d7221a78deb6559ac908dbf7b4af",
+   "bytes": 7180928,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep41_white_pot_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep41_white_pot_s7.ply",
+   "sha256": "a0f0ba0db9a6f8f27efa97f4c344916ffb0066e01089a69f2c71cd3c607015f9",
+   "bytes": 7482742,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep23_wooden_piece_2_v1_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep23_wooden_piece_2_v1_s42.ply",
+   "sha256": "baaac55b3647b3a02d7062b0ffcf79b5b924be2377e88237de55ebba42c2fc77",
+   "bytes": 7386287,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep23_wooden_piece_2_v1_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep23_wooden_piece_2_v1_s7.ply",
+   "sha256": "a4ce81bacafd7b46b4595423cd516b8b3a8703641b744f0392e00cdab0d93bb6",
+   "bytes": 7491520,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep39_mini_dust_pan_v1_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep39_mini_dust_pan_v1_s42.ply",
+   "sha256": "18d5a1b2293d1e73298abcf3ae5248e73138c763cf8839a62d7dd1e1943277d7",
+   "bytes": 7532477,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep39_mini_dust_pan_v1_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep39_mini_dust_pan_v1_s7.ply",
+   "sha256": "8e590585e58c459bc2993a49e98c64d0328de9ccf39be0d970f7749256ec3a74",
+   "bytes": 7611893,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s42.ply",
+   "sha256": "4373364a569d17d16aa8bc5babe7757c50db61bf125b799793d172dea6f99e82",
+   "bytes": 7600279,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s7.ply",
+   "sha256": "5d5772dc3f43d1062c3cdd091e9343d54c52fdf98cedb433aaccee40dc51a283",
+   "bytes": 7600485,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s42.ply",
+   "sha256": "ec320c34dd8d8d4350492c34efd0d8b255e09bdc4b928944afdd20a9c9cd1343",
+   "bytes": 7600461,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s7.ply",
+   "sha256": "2b83b07fceebf265b2af4f0dbaaa63a2272f040958caf186ebd0b3a1173f30e9",
+   "bytes": 7600425,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_dust_pan_k297_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_dust_pan_k297_s42.ply",
+   "sha256": "65f23d48c47a487a0c3481d8506ff3012278424ecdfbcda8f825833449a70fb0",
+   "bytes": 5895433,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_dust_pan_k297_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_dust_pan_k297_s7.ply",
+   "sha256": "0e57e127209c350b69f0e718bb94ad4417c122c2bfe4aa3a4f79bdf42efc91bf",
+   "bytes": 5617009,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_sweeper_k270_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_sweeper_k270_s42.ply",
+   "sha256": "8dead517814ca36b14001546aa35fa17bc7da0ed4b20c67602b13b1cafbb6d27",
+   "bytes": 3664734,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_sweeper_k270_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_sweeper_k270_s7.ply",
+   "sha256": "e6697a6acdafa5b9f33ef332def82ab2bf9e3e0a8eb945d9e35e1fb1211b2d48",
+   "bytes": 5597641,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/plastic_dish_rack_k144_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/plastic_dish_rack_k144_s42.ply",
+   "sha256": "c0e23a1162e2d93d64fdee9da45f6715c65d29c3453c9735a45e039c036aae4d",
+   "bytes": 5216201,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/plastic_dish_rack_k144_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/plastic_dish_rack_k144_s7.ply",
+   "sha256": "4b5f4518c22c2ac28c99493ce31b16121f2c037ac9266b025f8474f3178aeb7a",
+   "bytes": 4160133,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s42.ply",
+   "sha256": "9c0690fa2b2dd7002f8108e607e79b1d84ffba4e23d2904ab9a02cc740cd42cf",
+   "bytes": 4582805,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s7.ply",
+   "sha256": "356dad686b6b43b2571de0de70b077aad8eab1b0db45542abd0dc2b287fd9757",
+   "bytes": 4257833,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_k279_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_k279_s42.ply",
+   "sha256": "8229fe5a14d6b9564a754a27fb8fe41200629565506f43b1888adce7866f1e2e",
+   "bytes": 4113565,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_k279_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_k279_s7.ply",
+   "sha256": "24470905e07fa73ae2c22973ca6fbe2d0d0e3c3c5a9aaf0a47766ee8571e9d94",
+   "bytes": 3998169,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_lid_k321_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_lid_k321_s42.ply",
+   "sha256": "410fa157752847589b8e98c5f551cee2ef5effb58d13846cf5d1c03dc19dca52",
+   "bytes": 7600581,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_lid_k321_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_lid_k321_s7.ply",
+   "sha256": "8a91db51d2985f739045c15382d7f2d3ba2509e9660f73b98318ad17c1ad60a2",
+   "bytes": 7600653,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_1_k27_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_1_k27_s42.ply",
+   "sha256": "5db0c7b4ddb285d1478d7d26e27f2bb130f7a890ba2b4cd577e61d4dec2da37c",
+   "bytes": 5937721,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_1_k27_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_1_k27_s7.ply",
+   "sha256": "a2f4708a685697bb6d3f0ce41543ea0841982bd00009e7e8b1c18dca81ee5ecb",
+   "bytes": 6420165,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_2_k6_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_2_k6_s42.ply",
+   "sha256": "19b710ff65792984f0da1651a2953551f1d55758d981af5c65ba373e5f7d05d6",
+   "bytes": 7569457,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_2_k6_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_2_k6_s7.ply",
+   "sha256": "59c8f8c37c138513a8544885a4dca264a909b2b3c2c1512a089a0686bfe2b8fe",
+   "bytes": 6832973,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_1024_sim3/blue_cup_k156_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_1024_sim3/blue_cup_k156_s42.ply",
+   "sha256": "e12d1b8f98762c988c02617592231e5e72ff3fca75e6e7045b1bfe7c55147309",
+   "bytes": 7238973,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_1024_sim3/blue_cup_k156_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_1024_sim3/blue_cup_k156_s7.ply",
+   "sha256": "43783649953c5dab6f2d7e7f8cab664fe9a6549ad36f519fe5edfeb5a3da4010",
+   "bytes": 7638625,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/beige_cup_k6_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/beige_cup_k6_s42.ply",
+   "sha256": "6877f658df45689d05ea89e4ffee75cf93c5db0f90a3db63447f4f54b025e73f",
+   "bytes": 7486598,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/beige_cup_k6_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/beige_cup_k6_s7.ply",
+   "sha256": "dc36e007b2e3d669c5c37bc72e4f6e11e28d7169412bc80d3d0815099a0a0a10",
+   "bytes": 7517829,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_dust_pan_k297_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_dust_pan_k297_s42.ply",
+   "sha256": "a6e0e2b30a4be8250a9245863070f73908a007d0cc6bdd22db5361686ed1b529",
+   "bytes": 7147509,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_dust_pan_k297_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_dust_pan_k297_s7.ply",
+   "sha256": "4c0b48b8f45083b506ed6159f3c078995e979e0b5e2d70d9a8e857cbe4cc3f98",
+   "bytes": 7345938,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_sweeper_k270_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_sweeper_k270_s42.ply",
+   "sha256": "9dc6c7d9a8f6857581fd07e2dbe047db596f4ae395d9acb2e31a8d2baf194f69",
+   "bytes": 7321455,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_sweeper_k270_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_sweeper_k270_s7.ply",
+   "sha256": "12a6ab5be6c6d2b31472a1db10aaebf02c2274d6d8e7aac2f741594a4ff6af18",
+   "bytes": 7047817,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/plastic_dish_rack_k144_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/plastic_dish_rack_k144_s42.ply",
+   "sha256": "aa75fe2808a8fde7b6f74bed5c49aa6194523fa25f241b4a6d7ec710a57c4bab",
+   "bytes": 7148384,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/plastic_dish_rack_k144_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/plastic_dish_rack_k144_s7.ply",
+   "sha256": "35b17822d84511a347136902c51dd856e83a372855b2b39b84be79f2b02a2cb1",
+   "bytes": 7066940,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s42.ply",
+   "sha256": "4d84b9dfde3886dab09739657aef7aae749a6dff5233fd1b25096c52a6834d4c",
+   "bytes": 7168777,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s7.ply",
+   "sha256": "bfc54381426dbbee07d98649d833abb07160df7153de2b4a1c685f403d83b246",
+   "bytes": 7084259,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s42.ply",
+   "sha256": "6b0c92a20680813f6732b8a4a22f4e599584452a6722c876558145bc3e9a554b",
+   "bytes": 7426955,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s7.ply",
+   "sha256": "c2a0320e3f38a181b05381bcde82ed7de5607ffe5ac92ee74f1bc7cc85ea4709",
+   "bytes": 7163024,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_lid_k321_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_lid_k321_s42.ply",
+   "sha256": "b1ade5ffbd3769677553fe61e4cc12ba25dd4955b3322fb5171fcb539dc679c8",
+   "bytes": 7469397,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_lid_k321_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_lid_k321_s7.ply",
+   "sha256": "4f7246acf404b7fd37130962d5c0697d9f9aca696b19652edcb342ed139c45ae",
+   "bytes": 7556126,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_1_k27_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_1_k27_s42.ply",
+   "sha256": "9a8ae15aac0bad18584dd2bec5659b547f202eba3b7ebad98c9007c457c7028a",
+   "bytes": 7252901,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_1_k27_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_1_k27_s7.ply",
+   "sha256": "8152a30d7bb98a8171c4d05829e1354a449aef6809b2579d435e32fee7cb2244",
+   "bytes": 7263851,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_2_k6_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_2_k6_s42.ply",
+   "sha256": "6a6c709f04e589447538769396a653ce8d54c4f0f7c7c36975ed28e2da8f5a54",
+   "bytes": 7075887,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_2_k6_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_2_k6_s7.ply",
+   "sha256": "16b5da4e48ff93995abfb89c3329e4a5ef077bc13b792c9843098ba96df15c61",
+   "bytes": 7142183,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/beige_cup_k6_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/beige_cup_k6_s42.ply",
+   "sha256": "daa3e9afbfa261732474662924207eb215ee2caf84be5103a6a0990fc4a8b698",
+   "bytes": 7600317,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/beige_cup_k6_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/beige_cup_k6_s7.ply",
+   "sha256": "1a2fa750725ba6d9123b821e362c95926e71b376423cec4b0048e89300f8e49a",
+   "bytes": 7600317,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/blue_cup_k156_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/blue_cup_k156_s42.ply",
+   "sha256": "155e9e37474db53aa7ff15ee398390df8f68a49166030f8d67581a7ad2e8e651",
+   "bytes": 7598659,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/blue_cup_k156_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/blue_cup_k156_s7.ply",
+   "sha256": "3d629fc12d90bea954e6bd1017237e8ffa14921ada61ab72c8f4cfb4040d0d2d",
+   "bytes": 7598983,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_dust_pan_k297_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_dust_pan_k297_s42.ply",
+   "sha256": "e0908134aeeec86e0a927ca73076f6c41daccaeb98da73d7460ba44d6be9f425",
+   "bytes": 7600245,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_dust_pan_k297_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_dust_pan_k297_s7.ply",
+   "sha256": "eb05df41c5a21d0b4fa2c4270ce091ba19aa1fe8b5f1357fca091d5c444e1309",
+   "bytes": 7596427,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_sweeper_k270_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_sweeper_k270_s42.ply",
+   "sha256": "fb248e6f7d9cb9b15227a0a5652bece48b95fde159e9cfe6584f3cf691bf325f",
+   "bytes": 3151332,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_sweeper_k270_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_sweeper_k270_s7.ply",
+   "sha256": "20795c98e7e402b13395ae1f7df4f39a5b763d999ced24f6dcc7a5ed5c40d9e9",
+   "bytes": 4822121,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/plastic_dish_rack_k144_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/plastic_dish_rack_k144_s42.ply",
+   "sha256": "08db03a0524c5a2142c306097f07a1a093e6f523f84d6a17747708f7f82a72b8",
+   "bytes": 7600315,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/plastic_dish_rack_k144_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/plastic_dish_rack_k144_s7.ply",
+   "sha256": "a8ed945f2c6fae21e5e4d84ded30351b9c2d7759fe488158942fee7c5d14bf67",
+   "bytes": 7597941,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/water_pitcher_k174_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/water_pitcher_k174_s42.ply",
+   "sha256": "ee6835c0ba21c93f7eaf6ba32e12070d4b68b5430d3d9a16294cfd9b9832f13e",
+   "bytes": 7602535,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/water_pitcher_k174_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/water_pitcher_k174_s7.ply",
+   "sha256": "b3519075c21bb6cc3389469a3359a982e2580a56c879ac7119f758e39ab67b2a",
+   "bytes": 7608837,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_k279_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_k279_s42.ply",
+   "sha256": "2e1639c504ebbd7ef1a320e3653fc5ca49b7419f5ef408d707cf96d076faebcc",
+   "bytes": 7603149,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_k279_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_k279_s7.ply",
+   "sha256": "d385a1a1aecb3aeaff30552f98fd521a68bf4c21c7a3b7357675b6ae4fc3d711",
+   "bytes": 7600101,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_lid_k321_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_lid_k321_s42.ply",
+   "sha256": "da2e1c03ef35ee0439205b065ec88be1346b325c1f26eddea54a9d9cdb8827b7",
+   "bytes": 7600195,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_lid_k321_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_lid_k321_s7.ply",
+   "sha256": "55a3f57bc62963926ddd0f384a1213a98b4616c1e3a8bf6f12d529c6278a549b",
+   "bytes": 7596801,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_1_k27_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_1_k27_s42.ply",
+   "sha256": "f16aea93a6ff4509defdd75a393f7f98afebeb4da51d811ba88f9c2aa23c0454",
+   "bytes": 7600053,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_1_k27_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_1_k27_s7.ply",
+   "sha256": "f356f5943494eb11f02dcf68141a4e46603d27887919687ba133ff530b5d245f",
+   "bytes": 7599957,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_2_k6_s42.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_2_k6_s42.ply",
+   "sha256": "28ef16beda189c40ff50a07c1a23a4b39755420741131fece8458d6d2c6c6b00",
+   "bytes": 7600341,
+   "tier": "DEV"
+  },
+  {
+   "role": "x0_pool",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_2_k6_s7.ply",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_2_k6_s7.ply",
+   "sha256": "f7c47f300f94ab523b18aa0fc800d0a30dc7c171cf924ff5364b9d08663500b7",
+   "bytes": 7602141,
+   "tier": "DEV"
+  }
+ ],
+ "constants": [
+  {
+   "name": "remesh_pitch_m",
+   "value": 0.0015,
+   "origin": "generic:SPEC section 7 M10 remesh pitch 1.5 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/remesh.py:82"
+  },
+  {
+   "name": "remesh_budget_faces",
+   "value": 4000,
+   "origin": "kit:PREREG A.6 4000 faces (kit 4096)",
+   "where": "docs/research/mesh-2026-10-26/gmg/remesh.py:83"
+  },
+  {
+   "name": "pack_budget_faces",
+   "value": 4000,
+   "origin": "kit:PREREG A.6 4000 faces (kit 4096)",
+   "where": "docs/research/mesh-2026-10-26/gmg/pack.py:22"
+  },
+  {
+   "name": "kit_budget_faces",
+   "value": 4096,
+   "origin": "kit:mesh_budget 4096",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:70"
+  },
+  {
+   "name": "kit_budget_vertices",
+   "value": 4096,
+   "origin": "kit:mesh_budget 4096",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:71"
+  },
+  {
+   "name": "fsv_far_samples",
+   "value": 20000,
+   "origin": "generic:PREREG A.3 20,000 area-weighted samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:72"
+  },
+  {
+   "name": "fsv_far_band_vox",
+   "value": 2,
+   "origin": "generic:PREREG A.6 fsv_far band 2 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:73"
+  },
+  {
+   "name": "fsv_far_weight",
+   "value": 10.0,
+   "origin": "generic:PREREG A.6 fsv_far weight 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:74"
+  },
+  {
+   "name": "blocks_K",
+   "value": 3,
+   "origin": "generic:PREREG A.6 K = 3",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:75"
+  },
+  {
+   "name": "bootstrap_n",
+   "value": 200,
+   "origin": "generic:PREREG A.6 bootstrap 200",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:76"
+  },
+  {
+   "name": "seed",
+   "value": 0,
+   "origin": "generic:PREREG A.6 seed 0",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:77"
+  },
+  {
+   "name": "ray_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 ray band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:78"
+  },
+  {
+   "name": "ray_clip_sigma",
+   "value": 10.0,
+   "origin": "generic:PREREG A.6 ray clip 10 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:79"
+  },
+  {
+   "name": "heldout_max_points",
+   "value": 20000,
+   "origin": "generic:PREREG A.2 held-out subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:80"
+  },
+  {
+   "name": "v2_normal_cos",
+   "value": 0.5,
+   "origin": "generic:PREREG A.6 V2 normal cosine > 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:81"
+  },
+  {
+   "name": "v2_count_min",
+   "value": 3,
+   "origin": "generic:PREREG A.6 V2 count > max(3, 1 %)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:82"
+  },
+  {
+   "name": "v2_count_frac",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 V2 count > max(3, 1 %)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:83"
+  },
+  {
+   "name": "v4_share_max",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 V4 1 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:84"
+  },
+  {
+   "name": "v4_depth_floor_m",
+   "value": 0.002,
+   "origin": "generic:PREREG A.6 V4 max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:85"
+  },
+  {
+   "name": "v4_depth_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 V4 max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:86"
+  },
+  {
+   "name": "v4_volume_samples",
+   "value": 20000,
+   "origin": "generic:PREREG A.3 V4 20,000 volume samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:87"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "b10/hy21/gen_hy21_ep11_beige_cup_k6_s42.glb",
+   "sha256": "ada7eea1e97144061335f5a7af07aab83a81ee7e79a8c4a007f6bf8edff8906b",
+   "bytes": 69228,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep11_beige_cup_k6_s7.glb",
+   "sha256": "47cd06e71f0e7aa485a14d4bdd2170b076fa55a1d808d4b6a55c423cab4b1693",
+   "bytes": 70440,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep22_blue_cup_k156_s42.glb",
+   "sha256": "c65986a65fc015dcf6712fee5383d760c4413568abf4b2fa6866337f879253bd",
+   "bytes": 72804,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep22_blue_cup_k156_s7.glb",
+   "sha256": "d0e67ab94a3e554bd5265b5a7ab08cda63b8e032816875e732b0976684a80cfb",
+   "bytes": 69076,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep22_water_pitcher_k174_s42.glb",
+   "sha256": "70791f93f1986a0f56adc3fb90300aad72e248cc6d3a4d62d86ad8d06232ebdd",
+   "bytes": 69852,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep22_water_pitcher_k174_s7.glb",
+   "sha256": "632340136cbda242df1bd3ecda7ac51255dbee4996f9a4b1bd6c4e42cdedc8ad",
+   "bytes": 69108,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep23_wooden_piece_1_k27_s42.glb",
+   "sha256": "658a0d1cfd033b85a7a85c3ff47b0b105e48d7ec28020606e9cdd272a348a0fc",
+   "bytes": 70068,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep23_wooden_piece_1_k27_s7.glb",
+   "sha256": "b0a730aa3e5af499a3adb49722f16fa6b87d7421b22fb5c4199328771de80985",
+   "bytes": 72780,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep23_wooden_piece_2_k6_s42.glb",
+   "sha256": "3045ec7fb6822a493ca331d91c03b965ce9af409e9e0aab33a97c9a9cc9bc21e",
+   "bytes": 72732,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep23_wooden_piece_2_k6_s7.glb",
+   "sha256": "ce6e1282b7968e44c17ee5fc7dde85632c0720fe9c849f58e5a6a9c5dbefb574",
+   "bytes": 72764,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep26_plastic_dish_rack_k144_s42.glb",
+   "sha256": "0f424a26c39c5f4ccc4b34a07637f7ab708738519303eaa1a8f4ff5767116817",
+   "bytes": 69848,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep26_plastic_dish_rack_k144_s7.glb",
+   "sha256": "1eb2b4e48488c3de19013308e2b96cb85324283193e084f25833a65ab5d9a8ee",
+   "bytes": 70392,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep2_white_pot_lid_k321_s42.glb",
+   "sha256": "610ca35e42e4449d91fb9f3ef0acc3f66c5c879502d13f1e742a19054d577b23",
+   "bytes": 70296,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep2_white_pot_lid_k321_s7.glb",
+   "sha256": "6c1b50231e7b5a52d4f10c1111769b7ecdaa29fddd9235ed5da31b5541efd8ae",
+   "bytes": 72756,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep31_mini_sweeper_k270_s42.glb",
+   "sha256": "c4dd461034466e52ca22e34064bf159bf13df27077be180bd40ac44c837942ed",
+   "bytes": 70096,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep31_mini_sweeper_k270_s7.glb",
+   "sha256": "4cce9774f8585e5516a5c0ce86dad35312904a6cf898e3061bc4ac1be1b8ce13",
+   "bytes": 69636,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep39_mini_dust_pan_k297_s42.glb",
+   "sha256": "b1917c49ebeeb1285cfdd4c74c1e2612fe9eef5cdc49ce2eb4c249b24771ee07",
+   "bytes": 72780,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep39_mini_dust_pan_k297_s7.glb",
+   "sha256": "8ba001a1773d859931932138bf9e4a55723d1605196c85c5645d7ff373d89513",
+   "bytes": 72756,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep41_white_pot_k279_s42.glb",
+   "sha256": "444475fde6e1f73a93e9461399af7465bc379012c2d165f675d6ff7f980deffb",
+   "bytes": 72632,
+   "how": "python"
+  },
+  {
+   "path": "b10/hy21/gen_hy21_ep41_white_pot_k279_s7.glb",
+   "sha256": "cd400937110511bc3cd25914ea102a637e1307b61968f3df513187479972f903",
+   "bytes": 72708,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep11_beige_cup_s42.glb",
+   "sha256": "35f4b33e77ccb1076219ca8f9e41c35ba8d5a1daaa1e76a9498cd290950c69ee",
+   "bytes": 68232,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep11_beige_cup_s7.glb",
+   "sha256": "7662831bcf42a207eb81169663330c5efd0a2067ed9e9269cc9e1e7d3671b1c9",
+   "bytes": 63300,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep22_blue_cup_s42.glb",
+   "sha256": "58c18010c7d42e642c302aa0c448948eea9f6e0a1cfdf1a789a02faa68aae207",
+   "bytes": 69060,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep22_blue_cup_s7.glb",
+   "sha256": "96a4c87b381e1544f73666019b740bb97bed7a6fe006d708eb6ecc76b34f60c4",
+   "bytes": 68616,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep22_water_pitcher_s42.glb",
+   "sha256": "bae31d97b34dc2a17e29bfa2a9e480fb18d0b679ac1d7154807f8567036e0367",
+   "bytes": 67032,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep22_water_pitcher_s7.glb",
+   "sha256": "99b2a57dfc6340ed4638a973bf58994326b91a911d6971bdd505dfdf6b12c58e",
+   "bytes": 65928,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep23_wooden_piece_1_s42.glb",
+   "sha256": "f5754f50a5c2c5b5191e6fb30b434cf19e321d21e3597e20c73b6ad9635917a3",
+   "bytes": 70284,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep23_wooden_piece_1_s7.glb",
+   "sha256": "62b2761c624951dcfb82dfc92a6eacb3b2805d297c68c2595623764aac22d455",
+   "bytes": 70308,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep23_wooden_piece_2_s42.glb",
+   "sha256": "c4773c7acbb4ae6a344c5a287a6e05bd17ea83b91a7904242fa4b535361562f7",
+   "bytes": 72800,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep23_wooden_piece_2_s7.glb",
+   "sha256": "a717d27ab39d13b4fa6b0bb58bee204d266269e2c72de8b6f92da6f898ca8651",
+   "bytes": 70284,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep26_plastic_dish_rack_s42.glb",
+   "sha256": "c42680aa13a67bc89839e9b304ad7434b20e832a647054c2b8a20dc8c4003098",
+   "bytes": 68928,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep26_plastic_dish_rack_s7.glb",
+   "sha256": "d59988875a78f96a308c8d8e1477dc722959ad40e4edefd3444cbe31ab75650c",
+   "bytes": 70188,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep2_white_pot_lid_s42.glb",
+   "sha256": "b5954a7554f6cefeb7e441ad76a63f278eff5b85cd63189f3d856a6ffff0cecf",
+   "bytes": 70188,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep2_white_pot_lid_s7.glb",
+   "sha256": "9ad7df850111e95504b94dd77a9d4743d70dff782c4426e57d09a35a5820baa8",
+   "bytes": 70248,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep31_mini_sweeper_s42.glb",
+   "sha256": "bf01cd695be9656dfac3e840b97767c37fef808f31569a3c31b32b1e8ff88159",
+   "bytes": 72756,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep31_mini_sweeper_s7.glb",
+   "sha256": "18f5551b94f2039e42a67117029305946ed4f551a9391e92d9038f1f2f9567a5",
+   "bytes": 69756,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep39_mini_dust_pan_s42.glb",
+   "sha256": "b40785c98670f3e7b190237085cac23b6911a684416f36684d0ee6bb62968489",
+   "bytes": 69708,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep39_mini_dust_pan_s7.glb",
+   "sha256": "c74e53f40dacf9fcadc365d2c2d364ada4614cdf89d860785f76f1aeae5cecae",
+   "bytes": 68940,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep41_white_pot_s42.glb",
+   "sha256": "538d108d22a231d13e06dd1b633bd930b0ebae6a5bd987f3cb198777c216cbb5",
+   "bytes": 70524,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_mv/gen_pixal_mv_ep41_white_pot_s7.glb",
+   "sha256": "3626fae999a1335591377b3bf061761222817f2c4a051bfd2a4613acb76f560b",
+   "bytes": 61608,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_v1/gen_pixal_v1_ep23_wooden_piece_2_s42.glb",
+   "sha256": "7a360b6347636a14387f0f7fb32ec19fae02e0381b3b04aec1a0ada78843c4b4",
+   "bytes": 70572,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_v1/gen_pixal_v1_ep23_wooden_piece_2_s7.glb",
+   "sha256": "24a8270d6c4a9fb9c092346c00cbb5dc40bb98a38c9032926b5cbb1d10bd6056",
+   "bytes": 69876,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_v1/gen_pixal_v1_ep39_mini_dust_pan_s42.glb",
+   "sha256": "7c08e703ccd4c2ce3765e8d39b009cbbd94f7c4849ffb18b4fd28bcdd85e3f32",
+   "bytes": 69284,
+   "how": "python"
+  },
+  {
+   "path": "b10/pixal_v1/gen_pixal_v1_ep39_mini_dust_pan_s7.glb",
+   "sha256": "97e43ed938836faa16f0a87501e6f4217c15392f7c2f222ad979464baf02028e",
+   "bytes": 69960,
+   "how": "python"
+  },
+  {
+   "path": "b10/results.jsonl",
+   "sha256": "d3dcbef86e9e52088ef5e3ce7b81ed8fc47381dc7b7a509a06a8d53b78ab4fae",
+   "bytes": 199666,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep11_beige_cup_k6_s42.glb",
+   "sha256": "c50217d91a0e9e09f3df5126d58e2ef844512bb1da2fe5ec74532e8ef08fa923",
+   "bytes": 69528,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep11_beige_cup_k6_s7.glb",
+   "sha256": "2738f163f90dc3797c26f56e70d38b816b8a92dada1fcebace12c04caf28f306",
+   "bytes": 69552,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep22_blue_cup_k156_s42.glb",
+   "sha256": "5e193de02aff269ea858a021bb10cdc95523177c8fe202dfcaac33b30ef940eb",
+   "bytes": 72816,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep22_blue_cup_k156_s7.glb",
+   "sha256": "2188eb8f91882138e0d877f3e295bebd27e456bee93e70087fa93985b98ce6b5",
+   "bytes": 69864,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep22_water_pitcher_k174_s42.glb",
+   "sha256": "91738a870e28572eca3c218aa0bd3d8677275956cd9a842c3fca9026c3e0a0b2",
+   "bytes": 70488,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep22_water_pitcher_k174_s7.glb",
+   "sha256": "0831424652820954dc7e9225e9a382b424d598ddc3031041d048c8ca5bf6a5c8",
+   "bytes": 72804,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep23_wooden_piece_1_k27_s42.glb",
+   "sha256": "524480b9f975804c9cef6c4f1ff38e0e4fc6256e8904ea3c6225eb420d23f9c5",
+   "bytes": 70380,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep23_wooden_piece_1_k27_s7.glb",
+   "sha256": "ac3ddb40106dbc7fbc44956b4fb838082e9c56e59a63367f2b932ef9a6f1192f",
+   "bytes": 70308,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep23_wooden_piece_2_k6_s42.glb",
+   "sha256": "158adf511a3b4fd55f8589ac643196e0fe8dc17d7a0b2b3609b3e980321314ab",
+   "bytes": 72804,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep23_wooden_piece_2_k6_s7.glb",
+   "sha256": "f0c5a86b883983941c391d9141413907c0b6ec85ee2675b415a8fabf76ee6d48",
+   "bytes": 69348,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep26_plastic_dish_rack_k144_s42.glb",
+   "sha256": "a4eafc9028dae19a8f432cb517721bea3a1d6cf3fde9d70d91962a1b65cf403a",
+   "bytes": 68496,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep26_plastic_dish_rack_k144_s7.glb",
+   "sha256": "4e457c9bb589144d51f6d04454a7cfaefe440552435d7e8a64afe9dbb4bd2b9b",
+   "bytes": 70164,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep2_white_pot_lid_k321_s42.glb",
+   "sha256": "02ccff347cb770599c579b63ea0a332e593f93ca596a71aa3a1b6d1cd8ef55ff",
+   "bytes": 67740,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep2_white_pot_lid_k321_s7.glb",
+   "sha256": "2e26776167bbee0dad3ee2aa2af5f72c35d9b6eae32c28901acef12cc8d66921",
+   "bytes": 62848,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep31_mini_sweeper_k270_s42.glb",
+   "sha256": "858c356d6e0bb9f4db37a73e129c86d2b45aebeed681c19ee10aab1bfe06f6af",
+   "bytes": 64192,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep31_mini_sweeper_k270_s7.glb",
+   "sha256": "889481e4d5fed6c4c8f02ea9fe09b87ed258ef9e0c329ef0f9af35d92ed6be35",
+   "bytes": 70456,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep39_mini_dust_pan_k297_s42.glb",
+   "sha256": "eadc88a7c88d226896d272d3606fe7787f19591914f511c224eca09242060a9b",
+   "bytes": 69048,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep39_mini_dust_pan_k297_s7.glb",
+   "sha256": "e68a1321300a929debb1a7e0a07642bdd0756a2947fcb16fecbc9a459a90362e",
+   "bytes": 68448,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep41_white_pot_k279_s42.glb",
+   "sha256": "222e5273e61982896a59ee06469a6734d38305e1a65c8784e0dcf680d2b607ac",
+   "bytes": 70140,
+   "how": "python"
+  },
+  {
+   "path": "b10/sam3d/gen_sam3d_ep41_white_pot_k279_s7.glb",
+   "sha256": "75071c18b3691df7bc144bdca8ca09f13ea6102ad08d7f91a74ea961f9f8f550",
+   "bytes": 72728,
+   "how": "python"
+  },
+  {
+   "path": "b10/summary.json",
+   "sha256": "bac84156e5acb58ca2ffebe1a6fcbec5788a85954adf08a46afc28a2a47a89ce",
+   "bytes": 1144,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_1024_ep22_blue_cup_k156_s42.glb",
+   "sha256": "b9980fa44016d6a731bb65719ebb9721aef3ba89d6cb460a691c2b337829eb22",
+   "bytes": 50688,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_1024_ep22_blue_cup_k156_s7.glb",
+   "sha256": "32fb725a6d78029198f6a59e784fc6ad823d27a6d9e6d352a0e3054beedf0c93",
+   "bytes": 66504,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep11_beige_cup_k6_s42.glb",
+   "sha256": "f89fd8ca2905ac67cca9fa1165c6aaafec17b95f1bd018cbec37c81ae62d2136",
+   "bytes": 72784,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep11_beige_cup_k6_s7.glb",
+   "sha256": "2ce8254ff9c73ea97f3b06c64abc28cc2bad118174063189dbe2e6cb71c66992",
+   "bytes": 72804,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep22_water_pitcher_k174_s42.glb",
+   "sha256": "ebab857b02a55f0b7d690f37aa472195c29ef966a64919774eaf939f9d1bf188",
+   "bytes": 56456,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep22_water_pitcher_k174_s7.glb",
+   "sha256": "b5b3f1f2e3b2f51c87abb4b8813176b3f7f42cf752fde57ce47adec881e8201b",
+   "bytes": 65076,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep23_wooden_piece_1_k27_s42.glb",
+   "sha256": "b8c0382ca5a66cf674c8963a34ca3d17f4e1d71d9f308ea4227d21f1344ccb02",
+   "bytes": 72776,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep23_wooden_piece_1_k27_s7.glb",
+   "sha256": "8eaadbe4522e638a6eebc248af92d1815cca8618337fdea2c0fb84a306688bd9",
+   "bytes": 70044,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep23_wooden_piece_2_k6_s42.glb",
+   "sha256": "5001057c14f9811d80b8c49c907a531c6faaaddb91e1530674987ca87d2d3a53",
+   "bytes": 72804,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep23_wooden_piece_2_k6_s7.glb",
+   "sha256": "49c46ce278c982e472e45958b88fd0ac90cd6a8185bde61294ef3f109659b146",
+   "bytes": 72804,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep26_plastic_dish_rack_k144_s42.glb",
+   "sha256": "267171bdee1dd90abf7fb4d571a88224ca8bec834289c0df41e420c9219fc137",
+   "bytes": 68376,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep26_plastic_dish_rack_k144_s7.glb",
+   "sha256": "2f044cdd931ba9c501080d4d933c99bf787c0b1dbfd2c5eeb4109213394361da",
+   "bytes": 66656,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep2_white_pot_lid_k321_s42.glb",
+   "sha256": "b3ccf86b25eda15c8f03e7a6f287fca7eae71a43d8fe7b2abb2e377f332b52ec",
+   "bytes": 70308,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep2_white_pot_lid_k321_s7.glb",
+   "sha256": "069f5818c87f1cb696393775a7dc31f9345d008377ba3b19cda9f27ccbc8956e",
+   "bytes": 70284,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep31_mini_sweeper_k270_s42.glb",
+   "sha256": "0033486f680fd45311913bce3dbf9a4300756e88fa532bee22e590dec34c61c7",
+   "bytes": 69792,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep31_mini_sweeper_k270_s7.glb",
+   "sha256": "e1bccb1f5e6a23357504072b04845bfc1f0e0e55648be566339151c1f0c39fd9",
+   "bytes": 72784,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep39_mini_dust_pan_k297_s42.glb",
+   "sha256": "1aba848276f3bdd5f691f0ea65a15e5328d07c3aee4bb542090f2bff09d0d33f",
+   "bytes": 65136,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep39_mini_dust_pan_k297_s7.glb",
+   "sha256": "2776f001b2bc9d9a6a06d9e45f97a060b112bac6b2179534ee022b89cff7eed3",
+   "bytes": 61956,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep41_white_pot_k279_s42.glb",
+   "sha256": "0bbe8688d0d11d5a6a91ce25870fdc7568480b263d8b2b92aae8e73eee27614a",
+   "bytes": 68816,
+   "how": "python"
+  },
+  {
+   "path": "b10/trellis2/gen_trellis2_ep41_white_pot_k279_s7.glb",
+   "sha256": "6096a21f559a594b86174392d3ab3caa99380c1c1833d362544f578eee889d64",
+   "bytes": 63056,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep11_beige_cup_k6_s42.glb",
+   "sha256": "d12dcace43c803db20e30ecaf60d6c0713ef97cab6ac3ff4bfe5e70016cc7c46",
+   "bytes": 70520,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep11_beige_cup_k6_s7.glb",
+   "sha256": "86e8bee8be3503e29e55bde18db1f5d491f040d3a55417a5b8d98affe7bcd91d",
+   "bytes": 64680,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep22_blue_cup_k156_s42.glb",
+   "sha256": "c9333aa1391c28ceb6a5d33a745024ec082358058a5366b33c018d24382a4786",
+   "bytes": 69372,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep22_blue_cup_k156_s7.glb",
+   "sha256": "30da9c07150519f1d52a0a58f8e38152082191e9dd796a89923acf2bdc9bea76",
+   "bytes": 67692,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep22_water_pitcher_k174_s42.glb",
+   "sha256": "424c3142ef4127598594a695b3e815481b5031e4f831c8f6f6775b7012b8e0fb",
+   "bytes": 69372,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep22_water_pitcher_k174_s7.glb",
+   "sha256": "2663f232b33b3630427e935e03738b19da290420f38d0b6b13c252c1a4727b6b",
+   "bytes": 70032,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep23_wooden_piece_1_k27_s42.glb",
+   "sha256": "ea7b7e1efa8d4978c757bbfe33e54d69541a6c988e353f94deb3c74f25a122bf",
+   "bytes": 70548,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep23_wooden_piece_1_k27_s7.glb",
+   "sha256": "421b98f153c07175566ebef503f8754f29378d5ce44df0a0c5623cd25ebefa3a",
+   "bytes": 70368,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep23_wooden_piece_2_k6_s42.glb",
+   "sha256": "a2fc830a1ad2acf0df3f9fc2ca4cf38c9ee28bb661902e8f6d35ba430b7589f8",
+   "bytes": 69660,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep23_wooden_piece_2_k6_s7.glb",
+   "sha256": "80256a3e23c6f268dacca56332eeb097f24a3a77cd0f2723f6382fde3fdd117f",
+   "bytes": 69864,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep26_plastic_dish_rack_k144_s42.glb",
+   "sha256": "da2c094d019f9184f2fddc7c4b5f680a3b20d4ad8dddb965d719f4ba4a43e3bc",
+   "bytes": 72780,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep26_plastic_dish_rack_k144_s7.glb",
+   "sha256": "0f33767e8e5b2c13fbf8f50887ee8681193a7130a9551832049ceee98101b6fd",
+   "bytes": 68004,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep2_white_pot_lid_k321_s42.glb",
+   "sha256": "c418f35470beb65a764b1e058f533338b0ce2942f72d7da95b2e5927ee6603a7",
+   "bytes": 69884,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep2_white_pot_lid_k321_s7.glb",
+   "sha256": "dbfe6071ce09f8b47abb601e8f91cc42f166e5e6985c04eb6d5f6fca32ffa593",
+   "bytes": 66384,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep31_mini_sweeper_k270_s42.glb",
+   "sha256": "a7aabad453ea28ae5182cd16fe76b5f1a271c847e13d6c1adc5acdb1bc0ca942",
+   "bytes": 72780,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep31_mini_sweeper_k270_s7.glb",
+   "sha256": "203b404ec3f5cbe07ea44a4e6258379eefd6fdaf15105cbbcd5ebb123aba1149",
+   "bytes": 69876,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep39_mini_dust_pan_k297_s42.glb",
+   "sha256": "8691ed0209d52efc31337e42069bcb9550ceb196d1dbf3d034477f302c2634f1",
+   "bytes": 68268,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep39_mini_dust_pan_k297_s7.glb",
+   "sha256": "279b0b50382cddbbfdb7c39ac2c450f425a9bf29edf45ccaad6a90b3796b7d9b",
+   "bytes": 70392,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep41_white_pot_k279_s42.glb",
+   "sha256": "0212a52f6ccc5afb3eb4cc978c51649d16f2c45eefb6f9a600e7e116e71a44a5",
+   "bytes": 54752,
+   "how": "python"
+  },
+  {
+   "path": "b10/triposg/gen_triposg_ep41_white_pot_k279_s7.glb",
+   "sha256": "b0a2c548917f3940dca139cf081d75dfe9cb359ad1a9c916765cd78b85c6341c",
+   "bytes": 72656,
+   "how": "python"
+  }
+ ],
+ "extra": {
+  "step": "B3",
+  "prereg": "B.10",
+  "pass_": true,
+  "start_commit": "a1402f01b080451d187ad20dde6c3a0fed4ffc27"
+ }
+}

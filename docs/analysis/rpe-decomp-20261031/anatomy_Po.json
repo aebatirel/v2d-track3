@@ -1,0 +1,431 @@
+{
+ "0": {
+  "names": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "rpe": 1.3825,
+  "trans_only": 1.4155,
+  "lever_only": 0.3852,
+  "sep_cm": 14.61,
+  "phases": {
+   "both_still": {
+    "frac": 0.512,
+    "rpe": 1.203,
+    "share": 0.446,
+    "trans": 1.219,
+    "lever": 0.168
+   },
+   "slot0_moving": {
+    "frac": 0.279,
+    "rpe": 1.605,
+    "share": 0.324,
+    "trans": 1.705,
+    "lever": 0.764
+   },
+   "only_slot1_moving": {
+    "frac": 0.209,
+    "rpe": 1.525,
+    "share": 0.231,
+    "trans": 1.51,
+    "lever": 0.411
+   }
+  }
+ },
+ "2": {
+  "names": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "rpe": 1.4386,
+  "trans_only": 1.1318,
+  "lever_only": 0.628,
+  "sep_cm": 18.18,
+  "phases": {
+   "both_still": {
+    "frac": 0.417,
+    "rpe": 1.288,
+    "share": 0.373,
+    "trans": 1.089,
+    "lever": 0.414
+   },
+   "slot0_moving": {
+    "frac": 0.309,
+    "rpe": 1.579,
+    "share": 0.339,
+    "trans": 1.147,
+    "lever": 0.918
+   },
+   "only_slot1_moving": {
+    "frac": 0.274,
+    "rpe": 1.509,
+    "share": 0.288,
+    "trans": 1.18,
+    "lever": 0.626
+   }
+  }
+ },
+ "11": {
+  "names": [
+   "blue_cup",
+   "beige_cup"
+  ],
+  "rpe": 1.739,
+  "trans_only": 1.668,
+  "lever_only": 0.1958,
+  "sep_cm": 9.66,
+  "phases": {
+   "both_still": {
+    "frac": 0.467,
+    "rpe": 1.713,
+    "share": 0.46,
+    "trans": 1.663,
+    "lever": 0.08
+   },
+   "slot0_moving": {
+    "frac": 0.358,
+    "rpe": 2.018,
+    "share": 0.415,
+    "trans": 1.958,
+    "lever": 0.267
+   },
+   "only_slot1_moving": {
+    "frac": 0.175,
+    "rpe": 1.238,
+    "share": 0.125,
+    "trans": 1.089,
+    "lever": 0.359
+   }
+  }
+ },
+ "12": {
+  "names": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "rpe": 1.1393,
+  "trans_only": 1.1263,
+  "lever_only": 0.7219,
+  "sep_cm": 21.05,
+  "phases": {
+   "both_still": {
+    "frac": 0.414,
+    "rpe": 1.11,
+    "share": 0.404,
+    "trans": 0.848,
+    "lever": 0.602
+   },
+   "slot0_moving": {
+    "frac": 0.586,
+    "rpe": 1.16,
+    "share": 0.596,
+    "trans": 1.324,
+    "lever": 0.807
+   },
+   "only_slot1_moving": {
+    "frac": 0.0,
+    "rpe": null,
+    "share": 0.0,
+    "trans": null,
+    "lever": null
+   }
+  }
+ },
+ "13": {
+  "names": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "rpe": 1.3872,
+  "trans_only": 1.1453,
+  "lever_only": 0.7499,
+  "sep_cm": 14.74,
+  "phases": {
+   "both_still": {
+    "frac": 0.263,
+    "rpe": 0.865,
+    "share": 0.164,
+    "trans": 0.81,
+    "lever": 0.368
+   },
+   "slot0_moving": {
+    "frac": 0.737,
+    "rpe": 1.574,
+    "share": 0.836,
+    "trans": 1.265,
+    "lever": 0.886
+   },
+   "only_slot1_moving": {
+    "frac": 0.0,
+    "rpe": null,
+    "share": 0.0,
+    "trans": null,
+    "lever": null
+   }
+  }
+ },
+ "18": {
+  "names": [
+   "mini_sweeper",
+   "mini_dust_pan"
+  ],
+  "rpe": 4.0676,
+  "trans_only": 2.6181,
+  "lever_only": 2.8103,
+  "sep_cm": 22.07,
+  "phases": {
+   "both_still": {
+    "frac": 0.176,
+    "rpe": 1.338,
+    "share": 0.058,
+    "trans": 1.535,
+    "lever": 0.463
+   },
+   "slot0_moving": {
+    "frac": 0.762,
+    "rpe": 4.912,
+    "share": 0.92,
+    "trans": 2.951,
+    "lever": 3.525
+   },
+   "only_slot1_moving": {
+    "frac": 0.062,
+    "rpe": 1.434,
+    "share": 0.022,
+    "trans": 1.599,
+    "lever": 0.68
+   }
+  }
+ },
+ "21": {
+  "names": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "rpe": 1.2549,
+  "trans_only": 2.453,
+  "lever_only": 1.6859,
+  "sep_cm": 35.86,
+  "phases": {
+   "both_still": {
+    "frac": 0.333,
+    "rpe": 1.28,
+    "share": 0.34,
+    "trans": 2.836,
+    "lever": 1.868
+   },
+   "slot0_moving": {
+    "frac": 0.581,
+    "rpe": 1.272,
+    "share": 0.588,
+    "trans": 2.277,
+    "lever": 1.49
+   },
+   "only_slot1_moving": {
+    "frac": 0.086,
+    "rpe": 1.043,
+    "share": 0.072,
+    "trans": 2.155,
+    "lever": 2.302
+   }
+  }
+ },
+ "22": {
+  "names": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "rpe": 1.2229,
+  "trans_only": 2.2435,
+  "lever_only": 1.4812,
+  "sep_cm": 28.31,
+  "phases": {
+   "both_still": {
+    "frac": 0.407,
+    "rpe": 1.234,
+    "share": 0.411,
+    "trans": 2.464,
+    "lever": 1.481
+   },
+   "slot0_moving": {
+    "frac": 0.556,
+    "rpe": 1.248,
+    "share": 0.567,
+    "trans": 2.08,
+    "lever": 1.409
+   },
+   "only_slot1_moving": {
+    "frac": 0.037,
+    "rpe": 0.735,
+    "share": 0.022,
+    "trans": 2.28,
+    "lever": 2.565
+   }
+  }
+ },
+ "23": {
+  "names": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "rpe": 14.1797,
+  "trans_only": 6.3089,
+  "lever_only": 13.2849,
+  "sep_cm": 13.77,
+  "phases": {
+   "both_still": {
+    "frac": 0.283,
+    "rpe": 4.236,
+    "share": 0.085,
+    "trans": 0.876,
+    "lever": 3.877
+   },
+   "slot0_moving": {
+    "frac": 0.409,
+    "rpe": 22.744,
+    "share": 0.656,
+    "trans": 8.309,
+    "lever": 19.997
+   },
+   "only_slot1_moving": {
+    "frac": 0.308,
+    "rpe": 11.937,
+    "share": 0.259,
+    "trans": 8.647,
+    "lever": 13.013
+   }
+  }
+ },
+ "24": {
+  "names": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "rpe": 0.9832,
+  "trans_only": 0.7993,
+  "lever_only": 0.4774,
+  "sep_cm": 16.33,
+  "phases": {
+   "both_still": {
+    "frac": 0.265,
+    "rpe": 0.843,
+    "share": 0.228,
+    "trans": 0.799,
+    "lever": 0.101
+   },
+   "slot0_moving": {
+    "frac": 0.4,
+    "rpe": 1.226,
+    "share": 0.499,
+    "trans": 0.791,
+    "lever": 0.712
+   },
+   "only_slot1_moving": {
+    "frac": 0.335,
+    "rpe": 0.804,
+    "share": 0.274,
+    "trans": 0.809,
+    "lever": 0.496
+   }
+  }
+ },
+ "26": {
+  "names": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "rpe": 1.2928,
+  "trans_only": 1.0847,
+  "lever_only": 0.4701,
+  "sep_cm": 19.65,
+  "phases": {
+   "both_still": {
+    "frac": 0.646,
+    "rpe": 1.18,
+    "share": 0.589,
+    "trans": 0.912,
+    "lever": 0.418
+   },
+   "slot0_moving": {
+    "frac": 0.0,
+    "rpe": null,
+    "share": 0.0,
+    "trans": null,
+    "lever": null
+   },
+   "only_slot1_moving": {
+    "frac": 0.354,
+    "rpe": 1.498,
+    "share": 0.411,
+    "trans": 1.4,
+    "lever": 0.564
+   }
+  }
+ },
+ "27": {
+  "names": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "rpe": 1.155,
+  "trans_only": 1.322,
+  "lever_only": 0.3063,
+  "sep_cm": 25.29,
+  "phases": {
+   "both_still": {
+    "frac": 0.248,
+    "rpe": 0.756,
+    "share": 0.162,
+    "trans": 0.87,
+    "lever": 0.301
+   },
+   "slot0_moving": {
+    "frac": 0.0,
+    "rpe": null,
+    "share": 0.0,
+    "trans": null,
+    "lever": null
+   },
+   "only_slot1_moving": {
+    "frac": 0.752,
+    "rpe": 1.287,
+    "share": 0.838,
+    "trans": 1.471,
+    "lever": 0.308
+   }
+  }
+ },
+ "31": {
+  "names": [
+   "mini_sweeper",
+   "plastic_dish_rack"
+  ],
+  "rpe": 1.9084,
+  "trans_only": 2.8133,
+  "lever_only": 1.5916,
+  "sep_cm": 15.42,
+  "phases": {
+   "both_still": {
+    "frac": 0.166,
+    "rpe": 2.002,
+    "share": 0.174,
+    "trans": 1.762,
+    "lever": 0.465
+   },
+   "slot0_moving": {
+    "frac": 0.834,
+    "rpe": 1.89,
+    "share": 0.826,
+    "trans": 3.022,
+    "lever": 1.815
+   },
+   "only_slot1_moving": {
+    "frac": 0.0,
+    "rpe": null,
+    "share": 0.0,
+    "trans": null,
+    "lever": null
+   }
+  }
+ }
+}

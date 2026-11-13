@@ -1,0 +1,155 @@
+{
+ "episode": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "T": 137,
+ "run_id": "20261030-orcP1b-87fc869",
+ "commit": "87fc869c24cec3cd1b90864ef3924b8e373639f3",
+ "oracle": [
+  "perc2scan (scan templates = ground-truth geometry)"
+ ],
+ "inputs": {
+  "episode": 11,
+  "objects": [
+   "blue_cup",
+   "beige_cup"
+  ],
+  "T": 137,
+  "depth": {
+   "store": "cache/depth/public/ep11/depths_fs0.5.npy",
+   "path": "/workspace/hfstore/cache/depth/public/ep11/depths_fs0.5.npy",
+   "bytes": 876800128,
+   "bytes_expected": 876800128,
+   "shape": [
+    137,
+    1000,
+    1600
+   ],
+   "dtype": "float32",
+   "stat": "5434284744 876800128 1793386475",
+   "usable": true,
+   "frame0_sha256": "070547135e460052c1c2cf15862068feaf6225076b2bf614fef9a63494680588",
+   "frame0_sha256_expected": "070547135e460052c1c2cf15862068feaf6225076b2bf614fef9a63494680588",
+   "frame0_valid_frac": 0.6109,
+   "depth0_npy_md5": "5b9fb362bda1264854c5fdc0c9e4c502",
+   "matches_refine_inputs": true
+  },
+  "hands": {
+   "store_dir": "runs/20261025-g1-022fece/refs/perc2m/ep11",
+   "hands.npz": {
+    "store": "runs/20261025-g1-022fece/refs/perc2m/ep11/hands.npz",
+    "md5_expected": "0c7652fde628e502b6fd4836ced85f72",
+    "md5": "0c7652fde628e502b6fd4836ced85f72",
+    "md5_ok": true,
+    "frames": [
+     137,
+     137
+    ]
+   },
+   "hands_refined.npz": {
+    "store": "runs/20261025-g1-022fece/refs/perc2m/ep11/hands_refined.npz",
+    "md5_expected": "d9c391deaf73509b6c52e3b743580272",
+    "md5": "d9c391deaf73509b6c52e3b743580272",
+    "md5_ok": true,
+    "frames": [
+     137,
+     137
+    ]
+   }
+  },
+  "ok": true,
+  "problems": []
+ },
+ "arms": {
+  "perc2": {
+   "arm": "o",
+   "folder": "perc2",
+   "rc": 0,
+   "seconds": 49,
+   "mesh_dir": "/content/v2d-track3/meshes/library_v3",
+   "templates": {
+    "blue_cup": {
+     "path": "/content/v2d-track3/meshes/library_v3/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "scan": false
+    },
+    "beige_cup": {
+     "path": "/content/v2d-track3/meshes/library_v3/beige_cup.glb",
+     "md5": "6226281f120192c52bffec7680fa9d8f",
+     "scan": false
+    }
+   },
+   "template_kind": "library",
+   "gdino": true,
+   "depth_ready_s": 0.9,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true
+  },
+  "perc2scan": {
+   "arm": "s",
+   "folder": "perc2scan",
+   "rc": 0,
+   "seconds": 133,
+   "mesh_dir": "<unset>",
+   "templates": {
+    "blue_cup": {
+     "path": "/content/t3/mesh/blue_cup/blue_cup.glb",
+     "md5": "7a080a80ace57acc5655ea1385da3b31",
+     "scan": true
+    },
+    "beige_cup": {
+     "path": "/content/t3/mesh/beige_cup/beige_cup.glb",
+     "md5": "9c5d23d76742945aec3ffac93fb6019a",
+     "scan": true
+    }
+   },
+   "template_kind": "scan",
+   "gdino": true,
+   "depth_ready_s": 0.9,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true,
+   "camera_maxdiff_vs_perc2": 0.0
+  },
+  "perc2rep": {
+   "arm": "o2",
+   "folder": "perc2rep",
+   "rc": 0,
+   "seconds": 69,
+   "mesh_dir": "/content/v2d-track3/meshes/library_v3",
+   "templates": {
+    "blue_cup": {
+     "path": "/content/v2d-track3/meshes/library_v3/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "scan": false
+    },
+    "beige_cup": {
+     "path": "/content/v2d-track3/meshes/library_v3/beige_cup.glb",
+     "md5": "6226281f120192c52bffec7680fa9d8f",
+     "scan": false
+    }
+   },
+   "template_kind": "library",
+   "gdino": true,
+   "depth_ready_s": 8.5,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true,
+   "camera_maxdiff_vs_perc2": 0.0
+  }
+ },
+ "gt_files": "result.json and log.txt of every arm hold mocap scores (perc2 scoring block); poses.npz, poses_world_vo.npz, vo.json, perc_log_inference.txt do not; bundle_ep<N>_oracle.tar leaves both out (they stay in the folder push for diagnostics)",
+ "ok": true
+}

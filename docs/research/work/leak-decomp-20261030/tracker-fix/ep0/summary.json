@@ -1,0 +1,30 @@
+{
+ "ep": 0,
+ "names": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "N": 373,
+ "G_fit_median_cm_pot_Po": 0.309,
+ "Ps": {
+  "auc_kit": {
+   "white_pot": 0.1555,
+   "white_pot_lid": 0.001
+  },
+  "auc_scene": 0.0783
+ },
+ "Po": {
+  "auc_kit": {
+   "white_pot": 0.9928,
+   "white_pot_lid": 0.9025
+  },
+  "auc_scene": 0.9476
+ },
+ "Pr": {
+  "auc_kit": {
+   "white_pot": 0.9926,
+   "white_pot_lid": 0.9298
+  },
+  "auc_scene": 0.9612
+ }
+}

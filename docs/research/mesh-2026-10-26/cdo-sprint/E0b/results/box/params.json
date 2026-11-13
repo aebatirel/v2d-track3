@@ -1,0 +1,157 @@
+{
+ "t0_c0b_m": 0.004559400604354957,
+ "t0_fittable": true,
+ "clamp_m": [
+  0.0015,
+  0.008
+ ],
+ "targets": {
+  "pot/ep1": {
+   "obs": "/content/results/e0b/pts/B/ep1_white_pot.npz",
+   "sigma_m": 0.001302040512960521,
+   "bar_t0_m": 0.004559400604354957,
+   "bar_t0_src": "t0_C0b",
+   "t_fallback_m": 0.004559400604354957,
+   "t_src": "t0_C0b (n=48)"
+  },
+  "pot/ep3": {
+   "obs": "/content/results/e0b/pts/B/ep3_white_pot.npz",
+   "sigma_m": 0.0014152795690334035,
+   "bar_t0_m": 0.004559400604354957,
+   "bar_t0_src": "t0_C0b",
+   "t_fallback_m": 0.004559400604354957,
+   "t_src": "t0_C0b (n=11)"
+  },
+  "pot/ep5": {
+   "obs": "/content/results/e0b/pts/B/ep5_white_pot.npz",
+   "sigma_m": 0.0016352693765159833,
+   "bar_t0_m": 0.004559400604354957,
+   "bar_t0_src": "t0_C0b",
+   "t_fallback_m": 0.0023000389337539673,
+   "t_src": "thickness.py (n=4506)"
+  },
+  "pot/ep6": {
+   "obs": "/content/results/e0b/pts/B/ep6_white_pot.npz",
+   "sigma_m": 0.0015081959840690744,
+   "bar_t0_m": 0.004559400604354957,
+   "bar_t0_src": "t0_C0b",
+   "t_fallback_m": 0.001500000013038516,
+   "t_src": "thickness.py (n=908)"
+  },
+  "pot/ep8": {
+   "obs": "/content/results/e0b/pts/B/ep8_white_pot.npz",
+   "sigma_m": 0.0017316346414420637,
+   "bar_t0_m": 0.004559400604354957,
+   "bar_t0_src": "t0_C0b",
+   "t_fallback_m": 0.004559400604354957,
+   "t_src": "t0_C0b (n=14)"
+  },
+  "pot/ep28": {
+   "obs": "/content/results/e0b/pts/B/ep28_white_pot.npz",
+   "sigma_m": 0.0014617021885770685,
+   "bar_t0_m": 0.004559400604354957,
+   "bar_t0_src": "t0_C0b",
+   "t_fallback_m": 0.004155265167355537,
+   "t_src": "thickness.py (n=27081)"
+  },
+  "lid/ep1": {
+   "obs": "/content/results/e0b/pts/B/ep1_white_pot_lid.npz",
+   "sigma_m": 0.0008098823301563604,
+   "bar_t0_m": 0.004559400604354957,
+   "bar_t0_src": "t0_C0b",
+   "t_lid_m": 0.004559400604354957,
+   "t_src": "t0_C0b (n=0)"
+  },
+  "rack/run": {
+   "obs": [
+    "/content/results/e0b/pts/B/ep14_plastic_dish_rack.npz",
+    "/content/results/e0b/pts/B/ep15_plastic_dish_rack.npz",
+    "/content/results/e0b/pts/B/ep16_plastic_dish_rack.npz",
+    "/content/results/e0b/pts/B/ep28_plastic_dish_rack.npz",
+    "/content/results/e0b/pts/B/ep30_plastic_dish_rack.npz"
+   ],
+   "t_wall_m": 0.004559400604354957,
+   "t_src": "t0_C0b (n=3) pooled over the run episodes"
+  },
+  "cup/ep10": {
+   "obs": "/content/results/e0b/pts/B/ep10_blue_cup.npz",
+   "sigma_m": 0.0008043943282042346,
+   "app_d_m": 0.0024131829846127037,
+   "t_fallback_m": 0.004559400604354957,
+   "t_src": "t0_C0b (n=80)"
+  },
+  "cup/ep14": {
+   "obs": "/content/results/e0b/pts/B/ep14_blue_cup.npz",
+   "sigma_m": 0.0013607596694017086,
+   "app_d_m": 0.004082279008205125,
+   "t_fallback_m": 0.004402487073093653,
+   "t_src": "thickness.py (n=15614)"
+  },
+  "cup/ep20": {
+   "obs": "/content/results/e0b/pts/B/ep20_blue_cup.npz",
+   "sigma_m": 0.003,
+   "app_d_m": 0.009000000000000001,
+   "t_fallback_m": 0.004559400604354957,
+   "t_src": "t0_C0b (n=196)"
+  },
+  "cup/ep32": {
+   "obs": "/content/results/e0b/pts/B/ep32_blue_cup.npz",
+   "sigma_m": 0.001194268154592921,
+   "app_d_m": 0.003582804463778763,
+   "t_fallback_m": 0.001500000013038516,
+   "t_src": "thickness.py (n=3267)"
+  },
+  "cup/ep33": {
+   "obs": "/content/results/e0b/pts/B/ep33_blue_cup.npz",
+   "sigma_m": 0.0010588683457324187,
+   "app_d_m": 0.0031766050371972564,
+   "t_fallback_m": 0.003423417918384075,
+   "t_src": "thickness.py (n=3778)"
+  },
+  "cup/merged": {
+   "obs": "/content/results/e0b/pts/M/merged_blue_cup.npz",
+   "parts": [
+    "/content/results/e0b/pts/B/ep10_blue_cup.npz",
+    "/content/results/e0b/pts/B/ep14_blue_cup.npz",
+    "/content/results/e0b/pts/B/ep20_blue_cup.npz",
+    "/content/results/e0b/pts/B/ep32_blue_cup.npz",
+    "/content/results/e0b/pts/B/ep33_blue_cup.npz"
+   ],
+   "sigma_m": 0.001194268154592921,
+   "app_d_m": 0.003582804463778763,
+   "t_fallback_m": 0.0035907658748328686,
+   "t_src": "thickness.py (n=22935) pooled over the merged episodes",
+   "sigma_src": "median of the episodes sigma"
+  },
+  "beige/ep8": {
+   "obs": "/content/results/e0b/pts/B/ep8_beige_cup_sep.npz",
+   "qualifies": true,
+   "sigma_m": 0.0009358503145100942,
+   "app_d_m": 0.0028075509435302824,
+   "t_fallback_m": 0.0034892456606030464,
+   "t_src": "thickness.py (n=1582)"
+  },
+  "beige/ep10": {
+   "obs": "/content/results/e0b/pts/B/ep10_beige_cup_sep.npz",
+   "qualifies": true,
+   "sigma_m": 0.0011030923226963325,
+   "app_d_m": 0.0033092769680889977,
+   "t_fallback_m": 0.004559400604354957,
+   "t_src": "t0_C0b (n=59)"
+  },
+  "beige/merged": {
+   "obs": "/content/results/e0b/pts/M/merged_beige_cup_sep.npz",
+   "parts": [
+    "/content/results/e0b/pts/B/ep8_beige_cup_sep.npz",
+    "/content/results/e0b/pts/B/ep10_beige_cup_sep.npz"
+   ],
+   "qualifies": true,
+   "sigma_m": 0.0010194713186032133,
+   "app_d_m": 0.00305841395580964,
+   "t_fallback_m": 0.0033377257641404867,
+   "t_src": "thickness.py (n=1641) pooled over the merged episodes",
+   "sigma_src": "median of the episodes sigma"
+  }
+ },
+ "t0_note": "public t0_C0b, frozen (inputs/t0_c0b.json); not refitted on eval (PREREG 9 (b))"
+}

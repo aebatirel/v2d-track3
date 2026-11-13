@@ -1,0 +1,12 @@
+N1 PASS :: [2026-10-31T22:17:26Z] mass_eval ARM=dr: RUN_ID '20261101-mevN1-mocksha' must contain -dr
+N2 PASS :: [2026-10-31T22:17:26Z] mass_eval ARM=dr: ops/box/patch_flashchord_dr.py md5 is not 570a7f47793d02ba5b0bf3d5e6fd6eac (the 4e5c8a0 port the PREREG names)
+N3 PASS :: [2026-10-31T22:17:26Z] mass_eval: ARM 'bogus' unknown (unset = masses, dr = start-state randomisation)
+N4 PASS :: ep14 INVALID: ep14/s42: no "v2d FC_DR_RESET" line in MS/box/content/runs/drs42_glock
+N5 PASS :: ep16 INVALID: ep16/s43: D line seed 44 != the cell seed 43 (MS/box/content/runs/drs4
+N6 PASS :: ep30 INVALID: ep30/s42: D line without the skip-immediate tail (FC_DR_SKIP_IMMEDIATE=1 expected) in SCRATCH/s
+N7 PASS :: ep30 INVALID: training logs of non-D trainings on this D box: ['MS/box/content/runs/
+N8 PASS :: [2026-10-31T22:21:44Z] glock ep14: PERC drs42 (D arm) with SPLIT=eval needs RUN local, REQUIRE_REUSE=1 and FC_DR_PATCH=1
+C1 PASS :: kit evaluations 0; [2026-10-31T22:22:26Z] pack_eval: dr_pack_check: REFUSED (1): ep16: ValueError: 0 .parquet files (FlashCHORD needs exactly one) in the reference folder MS/box/content/refs/drs42_glockt/ep16/ :: evaluated ['14', '16', '25
+C2 PASS :: kit evaluations 0; REFUSED (1): ep14: in DR_EPS but not evaluated here (its D checkpoint matched a kept rollout?) 
+C3 PASS :: 5 of 5 INVALID: ep14 INVALID :: pack-side check files: 0 of 2 (before draw 1 and before draws 2..N; PREREG 3) :: new 0.8797 (n 10, RPE med 3.4779, fails 0) vs packed 0.8816 (n 10, RPE med 3.4022, fails 0)
+C4 PASS :: INVALID packed/r5: checkpoint cccccccccccc != 7edd445b741f 1

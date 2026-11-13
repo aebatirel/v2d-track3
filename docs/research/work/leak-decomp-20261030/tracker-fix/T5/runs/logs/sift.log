@@ -1,0 +1,34 @@
+[    0.0s] rectified focal 600.2 baseline 0.07547
+[    4.8s] frames c/b/poses 275 275 275 objects ['wooden_piece_1', 'wooden_piece_2']
+[   12.6s] masks: mean masked fraction 0.121 max 0.15
+[   13.2s] frame-0 plane [-0.1108, -0.7199, -0.6852] 0.5313 inliers 6549 rms mm 2.76
+[   15.3s] features 0 c kp 2216 stereo 3-D 524
+[   45.6s] features 50 c kp 2474 stereo 3-D 555
+[   78.2s] features 100 c kp 1615 stereo 3-D 294
+[  107.5s] features 150 c kp 1889 stereo 3-D 465
+[  132.5s] features 200 c kp 2162 stereo 3-D 571
+[  150.3s] features 250 c kp 2325 stereo 3-D 570
+[  164.3s] rvo 25 kf used 0 inliers 157 keyframes 1
+[  165.2s] rvo 50 kf used 31 inliers 174 keyframes 2
+[  166.3s] rvo 75 kf used 31 inliers 140 keyframes 3
+[  167.4s] rvo 100 kf used 96 inliers 161 keyframes 4
+[  169.0s] rvo 125 kf used 96 inliers 162 keyframes 4
+[  170.4s] rvo 150 kf used 96 inliers 147 keyframes 5
+[  171.6s] rvo 175 kf used 162 inliers 222 keyframes 6
+[  173.5s] rvo 200 kf used 162 inliers 236 keyframes 6
+[  175.4s] rvo 225 kf used 31 inliers 131 keyframes 6
+[  176.2s] rvo 250 kf used 31 inliers 122 keyframes 6
+[  177.0s] rvo keyframes [0, 31, 59, 96, 146, 162] fails 0 frames on kf0 33 median inliers 147
+[  177.3s] rvo_plane 25 kf used 0 inliers 157 keyframes 1
+[  178.5s] rvo_plane 50 kf used 31 inliers 174 keyframes 2
+[  179.7s] rvo_plane 75 kf used 31 inliers 140 keyframes 3
+[  180.6s] rvo_plane 100 kf used 96 inliers 161 keyframes 4
+[  181.8s] rvo_plane 125 kf used 96 inliers 162 keyframes 4
+[  183.0s] rvo_plane 150 kf used 96 inliers 147 keyframes 5
+[  184.2s] rvo_plane 175 kf used 162 inliers 222 keyframes 6
+[  185.6s] rvo_plane 200 kf used 162 inliers 236 keyframes 6
+[  186.8s] rvo_plane 225 kf used 31 inliers 131 keyframes 6
+[  187.3s] rvo_plane 250 kf used 31 inliers 122 keyframes 6
+[  187.8s] rvo_plane keyframes [0, 31, 59, 96, 146, 162] fails 0 frames on kf0 33 median inliers 147
+[  187.8s] rvo_plane plane corrections [(31, 0.568, -0.03, True), (59, 0.766, 0.125, True), (96, 0.331, 0.433, True), (146, 1.099, -0.139, True), (162, 0.581, -0.202, True)]
+[  187.8s] DONE

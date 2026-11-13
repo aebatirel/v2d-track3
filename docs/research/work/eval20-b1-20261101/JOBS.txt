@@ -1,0 +1,82 @@
+EVAL-20 RETRAIN ON THE b1 PITCHER PIECES: launch job string (prepared 1 Nov 2026 ~07:20 UTC; NOTHING LAUNCHED, nothing rented)
+PACKABLE if it passes (stock contact limits). The owner's go (relayed by the orchestrator) is conditional on determined-wright's
+32 x 60 contact budget of b1 vs packed showing 0 overflow: it read 0 / 0 (f59c897). The settle check is in PREREG section 13
+(85e8ef8). Pre-registration: PREREG.md (written before any result; commit it unchanged with the code; sha256 in BUILD.md
+section 9). Build notes and CPU evidence: BUILD.md, cpu/ (same folder).
+
+Before the launch (orchestrator):
+  1. merge this build's branch (worktree-agent-ad5ea562458c54efd) into the session branch, commit + push; SHA=<that commit>,
+     S7=${SHA:0:7}. Check on that commit: ops/jobs/ev20_b1.sh, tools/e20b1.py, the EVAL_E20B1 line in ops/jobs/glock_public.sh,
+     meshes/carve/ev20b1 (python3 tools/e20b1.py pieces --dir meshes/carve/ev20b1 --out /tmp/p.json; MD5SUMS md5
+     fe9aeca079fdcc7524a06f46fcd0a7ae), docs/research/work/eval20-b1-20261101/PREREG.md unchanged (sha256 in BUILD.md);
+  2. ledger line:
+       LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned <date>-e20b1-$S7 3.50 "eval-20 retrain on the b1 pitcher pieces (placement_carve.py assets on the packed refs/sf/ep20/assets; stock 512/256; packable): packed grasp-lock recipe on the packed reference 4d06d8d4, seeds 42 + 43; training-box gate > 0.8933 + 10 official draws if met; pack-9b swap rule on P + pack-10 inclusion bar +0.02; PREREG eval20-b1-20261101" owner
+  3. offer: ONE RTX PRO 6000 (96 GB) on demand, <= $1.50/h (`ops/vast.sh offers`); snapshot pt2.11-cu130-py313-20261020.
+     Not in the same minute as another box create. The box self-destroys when the job ends (run_job.sh); the stall watchdog
+     (30 min without new log lines / files or GPU use) protects the spend; there is no fixed time limit.
+
+Run id: <date>-e20b1-$S7   e.g. 20261101-e20b1-$S7   (ev20_b1.sh refuses a run id without "-e20b1-")
+Job string (everything else is fixed inside the script: episode 20, packed run 20261025-evb1420-ee7ba8e, its reference md5
+4d06d8d4 and checkpoint sha256 61dcd7a6, piece set ev20b1, prefix e20b1, seeds 42 and 43, the packed recipe lines, SF 0, stock
+limits, NREP 10, CURVE_REP 3, EVAL_TIMEOUT 1200, the training-box gate 0.8933, 10 official draws, H5P7 run 20261031-h5p7-1a7cdff,
+the old packed draw = pack 6's eval-20 rollout):
+
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-e20b1-$S7 'bash ops/jobs/ev20_b1.sh'
+
+What it runs on the box (in order; PREREG sections 2-5):
+  - tools/e20b1.py pieces (MD5SUMS fe9aeca0 / FROZEN.md 4259a6cf pinned; exactly water_pitcher/piece_00..40.obj); no_oracle on
+    the folder;
+  - single-file pulls (no listing) of packed_refs.json's eval-20 pull_files (refs/perc2mck/ep20, refs/sf/ep20, refs/glockt/ep20 of
+    20261025-evb1420-ee7ba8e), its result_files (rest_check.json, zero_score.txt, support_fill.json) and the packed checkpoint
+    results/final_eval/ep20/policy.safetensors; tools/e20b1.py inputs (P md5 4d06d8d4 / fingerprint c1e09fcc = the table; stage
+    1388703a; packed pitcher URDF 6772f954 with 9 collisions, blue cup URDF 31cd001d / glb d2be7e3d; sha256 61dcd7a6);
+  - the carve: pristine copy of refs/sf/ep20/assets -> /content/e20b1_in (not pushed); FlashCHORD-venv python
+    pipeline/placement_carve.py assets /content/refs/sf/ep20/assets meshes/carve/ev20b1 /content/sf20_b1, which then replaces
+    refs/sf/ep20/assets; tools/e20b1.py assets (only the pitcher URDF changes, -> 77b395a5 with 41 collisions; 41 col_NN byte copies;
+    visual and inertial unchanged; blue cup untouched);
+  - tools/e20b1.py arms: seed copies refs/e20b1s{42,43}_glockt/ep20 (byte copies of P), base links -> refs/perc2mck/ep20, REUSE_REF
+    records; no_oracle on every input;
+  - per seed: glock_public.sh REUSE_REF=1 REQUIRE_REUSE=1 EVAL_E20B1=1 SEED=<s> PAIRS="20:local:mck:e20b1s<s>": 70M steps, curve 7 x 3,
+    checkpoint by sim_vs_ref vs P, 10 training-box evaluations;
+  - FIRST check: tools/e10nj.py overflow per training log -> overflow.json (> 1000 lines = "pieces not clean in training");
+    reported: the b1 zero-action rest check (trace_rollout zero + rest_check.py) -> rest_check_b1.json;
+  - tools/e20b1.py cells (config = packed 61dcd7a6 but paths / seeds, stock limits, P md5, b1 URDF md5s, stage, rollouts' sha256)
+    -> cells.json; choose (pack 9b section 2) -> choice.json; gate (> 0.8933 vs P) -> gate.json;
+  - only with a chosen seed AND the gate met: no_oracle on the chosen checkpoint, 10 official draws of it (the kit's
+    run_policy_evaluation.py on /content/v2d_clean, one call per draw, 1200 s cap, <= 13 calls) -> results/ev20_b1/conf/r<i>;
+  - H5p7 eval-20 draws and pack 6's eval-20 rollout pulled (single files); tools/dr_score.py --ep 20 vs P (conf, old, packed, train42,
+    train43) -> score.json; tools/e20b1.py verify -> verify.json; verdict -> summary.json + "ev20_b1 RESULT: <label> :: pack 10: ..."
+    in job.log (and the instance label); ckpt_meta.txt; ONE store push.
+
+EXPECTED COST [estimates] (PREREG section 10; basis: e10v 139 min / $3.25 for the same two-seed structure; one grasp-lock cell
+alone c14s42: 42.4 + 3.0 + 1.7 min, $1.57; the orchestrator's basis: grasp lock ~$1-1.5 a cell):
+| stage                                                            | low (h) | central (h) | high (h) |
+|------------------------------------------------------------------|---------|-------------|----------|
+| boot, setup, ~40 single-file pulls, checks, carve, seed copies   | 0.15    | 0.22        | 0.60     |
+| 2 trainings (70M) + curves (7 x 3) + 10 evaluations each         | 1.55    | 1.85        | 2.40     |
+| b1 zero-action rest check (reported)                             | 0.02    | 0.03        | 0.10     |
+| 10 official draws (skipped if the gate is not met)               | 0.08    | 0.12        | 0.25     |
+| H5p7 / old pulls, scoring (~41 rollouts), verify, verdict, push  | 0.05    | 0.10        | 0.25     |
+| total wall                                                       | 1.85    | 2.32        | 3.60     |
+| $ at 1.27 / 1.375 / 1.50 per h                                   | $2.3    | $3.2        | $5.4     |
+  => central ~$3.2 (planned $3.50). Tail risks: a failed final push waits 60 min (+~$1.4); a STOP before training ends after setup
+     (~$0.5-1.2 incl. the 30-min FAIL_HOLD).
+
+After the box (CPU, $0):
+  - read results/ev20_b1/{summary.json, verdict.txt, overflow.json, cells.json, choice.json, gate.json, verify.json, pieces.json,
+    inputs.json, assets.json, arms.json, score.json, rest_check_b1.json, zero_score_b1.txt} and job.log from the store, ONE
+    hf_hub_download per file (HF 429), e.g. docs/research/work/perception-sprint-20261031/ev10retrain/cpu/scripts/dl.py <dir>
+    runs/<run id>/results/ev20_b1/summary.json ... (read overflow.json, not the train.logs, if the count is large);
+  - if the packed side or the old draw was not complete on the box (summary counts packed < 10 or old != 1): pull the H5p7 eval-20 draws /
+    pack 6's eval-20 rollout and re-run tools/dr_score.py + tools/e20b1.py verify / verdict on CPU with the same arguments (same code);
+  - copy the small result files into docs/research/work/eval20-b1-20261101/results/ (never the checkpoints);
+  - write the reading in the work log and STATUS.md: the PREREG section 5.5 label first, then the pack-10 inclusion reading (gain vs P
+    against +0.02), the overflow count per training log (label if > 1000), the gate (seed means vs 0.8933), the clauses with margins
+    (b: fails vs 0 / 10; c: median RPE vs 1.67 cm; s: draw 1 vs 0.8448), the chosen seed, the pitcher's per-object AUC next to K's,
+    the b1 rest check next to the packed 10.4 mm / 3.9 deg, the piece set (ev20b1, MD5SUMS fe9aeca0), training minutes, cost;
+  - ledger actual: LEDGER_SESSION=focused-pascal python3 ops/ledger.py add actual <run id> <usd> "<note>";
+  - ONLY if SWAP-ELIGIBLE AND included: build the pack-10 candidate on CPU (tools/pack_swap_rollouts.py with
+    --swap 20=<results/ev20_b1/conf/r<draw 1>/ep20/episode_000020.parquet> --expect-checkpoint 20=<choice.json sha256>, on the current
+    best pack as base; no_oracle; offline validation). A later re-run of this checkpoint must pull refs/sf/ep20 from THIS run (the b1
+    copy), never evb1420's into the same /content (store.sh pull-run copies with cp -n: the first copy wins). The upload stays with
+    the session where the owner gives the word. Otherwise eval 20 stays as packed.

@@ -1,0 +1,14 @@
+rtk run id, LIB_EP_DIR unset [20261031-rtkA-abc1234]: rc 1, perc2 runs 0, downloads 0:  perc_leak: RUN_ID '20261031-rtkA-abc1234' is not refused by tools/no_oracle.py (use <yyyymmdd>-orc<X>-<sha>)
+rtk run id with arm s [20261031-rtkA-abc1234]: rc 1, perc2 runs 0, downloads 0:  perc_leak: arm s (scan templates, oracle) needs an -orc run id, not '20261031-rtkA-abc1234'
+rtk run id with a non-hex sha [20261031-rtkA-mocksha]: rc 1, perc2 runs 0, downloads 0:  perc_leak: RUN_ID '20261031-rtkA-mocksha' is not refused by tools/no_oracle.py (use <yyyymmdd>-orc<X>-<sha>)
+LIB_EP_DIR missing [20261031-rtkA-abc1234]: rc 1, perc2 runs 0, downloads 0:  perc_leak: LIB_EP_DIR <MR>/content/v2d-track3/meshes/rtk_nonexistent is not a directory
+delivery without VALIDATION.json [20261031-rtkA-abc1234]: rc 1, perc2 runs 0, downloads 0:  perc_leak: LIB_EP_DIR <MR>/content/v2d-track3/meshes/rtk_bad_name fails tools/rtk_mesh_check.py verify 
+    rtk_mesh_check verify: <MR>/content/v2d-track3/meshes/rtk_bad_name/VALIDATION.json unreadable (FileNotFoundError(2, 'No such file or directory'))
+a mesh changed after validation [20261031-rtkA-abc1234]: rc 1, perc2 runs 0, downloads 0:  perc_leak: LIB_EP_DIR <MR>/content/v2d-track3/meshes/rtk_tamper fails tools/rtk_mesh_check.py verify (V
+    rtk_mesh_check verify <MR>/content/v2d-track3/meshes/rtk_tamper: FAILED (21 meshes, status flagged, validated 2026-10-31T18:49:40Z at e618f5c)
+      ep2/white_pot_lid.glb: missing or md5 changed since validation
+an unlisted mesh added after validation [20261031-rtkA-abc1234]: rc 1, perc2 runs 0, downloads 0:  perc_leak: LIB_EP_DIR <MR>/content/v2d-track3/meshes/rtk_extra fails tools/rtk_mesh_check.py verify (VA
+    rtk_mesh_check verify <MR>/content/v2d-track3/meshes/rtk_extra: FAILED (21 meshes, status flagged, validated 2026-10-31T18:49:40Z at e618f5c)
+      ep18/mini_sweeper.glb: not in VALIDATION.json
+-orc run id with LIB_EP_DIR (allowed) [20261031-orcRx-mocksha]: rc 0, perc2 runs 1, downloads 3:  perc_leak done (rc 0); run_job.sh pushes runs/20261031-orcRx-mocksha once and self-destroys
+    rtk_mesh_check verify <MR>/content/v2d-track3/meshes/rtk_v3copy: OK (33 meshes, status pass, validated 2026-10-31T18:52:11Z at e618f5c)

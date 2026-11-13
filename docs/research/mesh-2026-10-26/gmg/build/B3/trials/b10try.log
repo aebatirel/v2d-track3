@@ -1,0 +1,1 @@
+[  317.3s] 1/4 gen/pixal_mv/ep41_white_pot_s42: raw wt False -> decode wt False faces 3744 cov 0.9849 comp 191 flags ['refine_capped', 'budget_retry'] (317.3 s)

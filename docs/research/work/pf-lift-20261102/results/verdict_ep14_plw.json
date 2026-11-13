@@ -1,0 +1,129 @@
+{
+ "ep": 14,
+ "rule": "pack-9b PREREG section 4 + pf-hands / pf-bridge PREREG section 4",
+ "refs": [
+  "P"
+ ],
+ "choice": "CONFIRM",
+ "sides": {
+  "conf": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.8263,
+     "sd": 0.1177,
+     "min": 0.5706,
+     "max": 0.9448,
+     "median": 0.874
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 5.0539,
+     "sd": 6.6896,
+     "min": 2.3609,
+     "max": 24.0444,
+     "median": 3.0345
+    },
+    "fails": 1
+   }
+  },
+  "packed": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.875,
+     "sd": 0.0562,
+     "min": 0.752,
+     "max": 0.926,
+     "median": 0.8972
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 3.9433,
+     "sd": 3.4431,
+     "min": 2.357,
+     "max": 13.6292,
+     "median": 2.7047
+    },
+    "fails": 1
+   }
+  },
+  "old": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 1,
+     "mean": 0.8954,
+     "sd": 0.0,
+     "min": 0.8954,
+     "max": 0.8954,
+     "median": 0.8954
+    },
+    "RPE": {
+     "n": 1,
+     "mean": 2.357,
+     "sd": 0.0,
+     "min": 2.357,
+     "max": 2.357,
+     "median": 2.357
+    },
+    "fails": 0
+   }
+  },
+  "train42": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9226,
+     "sd": 0.035,
+     "min": 0.8368,
+     "max": 0.9474,
+     "median": 0.9377
+    }
+   }
+  },
+  "train43": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9079,
+     "sd": 0.0232,
+     "min": 0.8637,
+     "max": 0.9371,
+     "median": 0.9109
+    }
+   }
+  }
+ },
+ "clauses": {
+  "P": {
+   "a": {
+    "conf": 0.8263,
+    "packed": 0.875,
+    "holds": false
+   },
+   "b": {
+    "conf": 0.1,
+    "packed": 0.1,
+    "holds": true
+   },
+   "c": {
+    "conf": 3.034,
+    "packed": 2.705,
+    "holds": false
+   },
+   "s": {
+    "conf_draw1": 0.7569,
+    "old": 0.8954,
+    "holds": false
+   },
+   "gain": -0.0486
+  }
+ },
+ "label": "NO-SWAP",
+ "inclusion": {
+  "bar": 0.02,
+  "on": "P",
+  "gain": -0.0486,
+  "include": false
+ }
+}

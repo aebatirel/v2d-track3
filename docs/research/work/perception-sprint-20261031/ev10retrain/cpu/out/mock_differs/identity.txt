@@ -1,0 +1,1 @@
+IDENTITY OK: e2s blue vs tracks {'V4p_track': 0.007, 'stored_track': 1.751} cm; trained V vs packed P {'blue_cup': {'window': 0.717, 'hands_off': 1.201}, 'beige_cup': {'window': 0.328, 'hands_off': 1.225}}; blue height V - P {'window': -0.679}

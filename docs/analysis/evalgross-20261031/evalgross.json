@@ -1,0 +1,3235 @@
+{
+ "identity": [
+  {
+   "kind": "ref",
+   "ep": 25,
+   "rule": "knob d<-20 on >=5 consecutive sampled frames",
+   "longest_run": 10,
+   "flag": true
+  },
+  {
+   "kind": "perc",
+   "ep": 25,
+   "rule": "knob d<-20 on >=5 consecutive sampled frames",
+   "longest_run": 4,
+   "flag": false
+  },
+  {
+   "kind": "ref",
+   "ep": 10,
+   "rule": "median grey(blue)-grey(beige) over sampled frames < 38 (both cups within 2 cm of frame 0; amended window, see README)",
+   "median": -107.00000000000001,
+   "n": 8,
+   "flag": false
+  },
+  {
+   "kind": "perc",
+   "ep": 10,
+   "rule": "median grey(blue)-grey(beige) over sampled frames < 38 (both cups within 2 cm of frame 0; amended window, see README)",
+   "median": -105.50000000000001,
+   "n": 8,
+   "flag": false
+  }
+ ],
+ "ranked_reference": [
+  {
+   "ep": 32,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 259,
+   "flags": [
+    "J",
+    "D"
+   ],
+   "n_flags": 2,
+   "max_ratio": 1.8,
+   "magnitudes": {
+    "jump_cm": 9.02491950889627,
+    "jump_deg": 28.950903261448637,
+    "below_cm": -0.4902290426930467,
+    "pen_cm": 0.3724848453494341,
+    "depth_bad_share": 0.305,
+    "depth_longest_run": 25,
+    "depth_runs": [
+     [
+      83,
+      87
+     ],
+     [
+      91,
+      115
+     ],
+     [
+      133,
+      137
+     ],
+     [
+      149,
+      154
+     ],
+     [
+      199,
+      220
+     ]
+    ],
+    "refperc_cm_max": 3.2506014614270264,
+    "refperc_deg_max": 10.645055974780707
+   },
+   "jump_events": [
+    {
+     "frame": 93,
+     "step_cm": 7.5,
+     "rot_deg": 7.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 166,
+     "max_excursion_cm": 26.8,
+     "height_cm_pre": 15.0,
+     "height_cm_at": 9.3,
+     "ref_minus_perc_cm_max": 3.3
+    },
+    {
+     "frame": 94,
+     "step_cm": 6.5,
+     "rot_deg": 11.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 165,
+     "max_excursion_cm": 20.8,
+     "height_cm_pre": 9.3,
+     "height_cm_at": 4.7,
+     "ref_minus_perc_cm_max": 3.3
+    },
+    {
+     "frame": 115,
+     "step_cm": 9.0,
+     "rot_deg": 16.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 144,
+     "max_excursion_cm": 31.4,
+     "height_cm_pre": 2.9,
+     "height_cm_at": 8.4,
+     "ref_minus_perc_cm_max": 3.3
+    },
+    {
+     "frame": 116,
+     "step_cm": 5.2,
+     "rot_deg": 26.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 143,
+     "max_excursion_cm": 24.2,
+     "height_cm_pre": 8.4,
+     "height_cm_at": 11.4,
+     "ref_minus_perc_cm_max": 3.3
+    }
+   ]
+  },
+  {
+   "ep": 33,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 348,
+   "flags": [
+    "J",
+    "D"
+   ],
+   "n_flags": 2,
+   "max_ratio": 1.72,
+   "magnitudes": {
+    "jump_cm": 8.610314628818504,
+    "jump_deg": 28.306950892910255,
+    "below_cm": -1.3006014070459093,
+    "pen_cm": 1.2265966189210153,
+    "depth_bad_share": 0.348,
+    "depth_longest_run": 31,
+    "depth_runs": [
+     [
+      82,
+      89
+     ],
+     [
+      111,
+      120
+     ],
+     [
+      129,
+      134
+     ],
+     [
+      142,
+      156
+     ],
+     [
+      183,
+      190
+     ],
+     [
+      200,
+      216
+     ],
+     [
+      251,
+      281
+     ],
+     [
+      290,
+      296
+     ]
+    ],
+    "refperc_cm_max": 2.021501026439843,
+    "refperc_deg_max": 8.180246254167947
+   },
+   "jump_events": [
+    {
+     "frame": 190,
+     "step_cm": 7.1,
+     "rot_deg": 7.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 158,
+     "max_excursion_cm": 21.4,
+     "height_cm_pre": 18.5,
+     "height_cm_at": 22.0,
+     "ref_minus_perc_cm_max": 2.0
+    },
+    {
+     "frame": 252,
+     "step_cm": 6.2,
+     "rot_deg": 24.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 96,
+     "max_excursion_cm": 29.9,
+     "height_cm_pre": 21.7,
+     "height_cm_at": 17.9,
+     "ref_minus_perc_cm_max": 2.0
+    },
+    {
+     "frame": 262,
+     "step_cm": 5.1,
+     "rot_deg": 9.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 86,
+     "max_excursion_cm": 22.3,
+     "height_cm_pre": 16.1,
+     "height_cm_at": 12.7,
+     "ref_minus_perc_cm_max": 2.0
+    },
+    {
+     "frame": 263,
+     "step_cm": 8.1,
+     "rot_deg": 3.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 85,
+     "max_excursion_cm": 17.6,
+     "height_cm_pre": 12.7,
+     "height_cm_at": 8.6,
+     "ref_minus_perc_cm_max": 2.0
+    },
+    {
+     "frame": 282,
+     "step_cm": 8.6,
+     "rot_deg": 7.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 66,
+     "max_excursion_cm": 9.5,
+     "height_cm_pre": 3.3,
+     "height_cm_at": 8.6,
+     "ref_minus_perc_cm_max": 2.0
+    }
+   ]
+  },
+  {
+   "ep": 25,
+   "obj": "wooden_piece_1",
+   "kind": "ref",
+   "T": 356,
+   "flags": [
+    "D",
+    "I"
+   ],
+   "n_flags": 2,
+   "max_ratio": 1.66,
+   "magnitudes": {
+    "jump_cm": 2.460702876757336,
+    "jump_deg": 7.059210444400711,
+    "below_cm": -0.3161055803348356,
+    "pen_cm": 0.6253647627193903,
+    "depth_bad_share": 0.233,
+    "depth_longest_run": 83,
+    "depth_runs": [
+     [
+      36,
+      118
+     ]
+    ],
+    "refperc_cm_max": 1.2190300929888855,
+    "refperc_deg_max": 2.8714619592926796
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 32,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 259,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 3.93,
+   "magnitudes": {
+    "jump_cm": 19.670078161994425,
+    "jump_deg": 153.4274342416329,
+    "below_cm": -3.45269174866053,
+    "pen_cm": 0.3724848453494341,
+    "depth_bad_share": 0.112,
+    "depth_longest_run": 8,
+    "depth_runs": [
+     [
+      17,
+      24
+     ],
+     [
+      27,
+      33
+     ],
+     [
+      90,
+      94
+     ],
+     [
+      141,
+      146
+     ]
+    ],
+    "refperc_cm_max": 3.2742893251248724,
+    "refperc_deg_max": 5.724628487099361
+   },
+   "jump_events": [
+    {
+     "frame": 21,
+     "step_cm": 19.7,
+     "rot_deg": 153.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 238,
+     "max_excursion_cm": 25.9,
+     "height_cm_pre": 3.0,
+     "height_cm_at": 9.9,
+     "ref_minus_perc_cm_max": 3.3
+    },
+    {
+     "frame": 34,
+     "step_cm": 14.5,
+     "rot_deg": 148.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 225,
+     "max_excursion_cm": 18.2,
+     "height_cm_pre": 8.8,
+     "height_cm_at": 15.7,
+     "ref_minus_perc_cm_max": 3.3
+    }
+   ]
+  },
+  {
+   "ep": 14,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 158,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 3.76,
+   "magnitudes": {
+    "jump_cm": 18.784114018384226,
+    "jump_deg": 14.063084730773461,
+    "below_cm": -1.565192313818775,
+    "pen_cm": 1.1799761040629606,
+    "depth_bad_share": 0.082,
+    "depth_longest_run": 11,
+    "depth_runs": [
+     [
+      35,
+      45
+     ]
+    ],
+    "refperc_cm_max": 2.5153765229361555,
+    "refperc_deg_max": 1.4849925651257379
+   },
+   "jump_events": [
+    {
+     "frame": 46,
+     "step_cm": 18.8,
+     "rot_deg": 4.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 112,
+     "max_excursion_cm": 26.9,
+     "height_cm_pre": 4.9,
+     "height_cm_at": 20.0,
+     "ref_minus_perc_cm_max": 2.5
+    }
+   ]
+  },
+  {
+   "ep": 33,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 348,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 2.18,
+   "magnitudes": {
+    "jump_cm": 10.917087044519134,
+    "jump_deg": 55.80871652869637,
+    "below_cm": -2.2487203589928395,
+    "pen_cm": 1.2265966189210153,
+    "depth_bad_share": 0.17,
+    "depth_longest_run": 45,
+    "depth_runs": [
+     [
+      32,
+      36
+     ],
+     [
+      46,
+      90
+     ]
+    ],
+    "refperc_cm_max": 2.2400747779839487,
+    "refperc_deg_max": 5.595930438649061
+   },
+   "jump_events": [
+    {
+     "frame": 91,
+     "step_cm": 10.9,
+     "rot_deg": 56.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 257,
+     "max_excursion_cm": 12.9,
+     "height_cm_pre": 4.5,
+     "height_cm_at": 12.8,
+     "ref_minus_perc_cm_max": 1.3
+    }
+   ]
+  },
+  {
+   "ep": 36,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 407,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 1.26,
+   "magnitudes": {
+    "jump_cm": 6.27768182942953,
+    "jump_deg": 33.10049348058141,
+    "below_cm": -0.22082601373609734,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.118,
+    "depth_longest_run": 12,
+    "depth_runs": [
+     [
+      70,
+      74
+     ],
+     [
+      76,
+      87
+     ],
+     [
+      113,
+      123
+     ],
+     [
+      302,
+      307
+     ]
+    ],
+    "refperc_cm_max": 1.681033253583089,
+    "refperc_deg_max": 11.886034568784723
+   },
+   "jump_events": [
+    {
+     "frame": 151,
+     "step_cm": 6.3,
+     "rot_deg": 15.0,
+     "kind": "spike",
+     "frames_away": 183,
+     "max_excursion_cm": 30.3,
+     "height_cm_pre": 14.8,
+     "height_cm_at": 10.7,
+     "ref_minus_perc_cm_max": 1.2
+    }
+   ]
+  },
+  {
+   "ep": 30,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 263,
+   "flags": [
+    "D"
+   ],
+   "n_flags": 1,
+   "max_ratio": 1.19,
+   "magnitudes": {
+    "jump_cm": 0.4377201183239862,
+    "jump_deg": 1.9133029852591512,
+    "below_cm": -0.26663549878257475,
+    "pen_cm": 0.8640852034248618,
+    "depth_bad_share": 0.297,
+    "depth_longest_run": 33,
+    "depth_runs": [
+     [
+      74,
+      98
+     ],
+     [
+      110,
+      128
+     ],
+     [
+      137,
+      169
+     ]
+    ],
+    "refperc_cm_max": 0.8338050219542216,
+    "refperc_deg_max": 2.5289953658768805
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 19,
+   "obj": "mini_sweeper",
+   "kind": "ref",
+   "T": 235,
+   "flags": [
+    "D"
+   ],
+   "n_flags": 1,
+   "max_ratio": 1.12,
+   "magnitudes": {
+    "jump_cm": 3.3439060657190054,
+    "jump_deg": 15.474419941459555,
+    "below_cm": -1.137420790415311,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.281,
+    "depth_longest_run": 15,
+    "depth_runs": [
+     [
+      43,
+      57
+     ],
+     [
+      68,
+      80
+     ],
+     [
+      87,
+      98
+     ],
+     [
+      221,
+      234
+     ]
+    ],
+    "refperc_cm_max": 2.9994980570837027,
+    "refperc_deg_max": 3.23548040984357
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 25,
+   "obj": "wooden_piece_2",
+   "kind": "ref",
+   "T": 356,
+   "flags": [
+    "I"
+   ],
+   "n_flags": 1,
+   "max_ratio": 0.78,
+   "magnitudes": {
+    "jump_cm": 3.4084886587497545,
+    "jump_deg": 6.522442243651726,
+    "below_cm": -0.579540661079081,
+    "pen_cm": 0.6253647627193903,
+    "depth_bad_share": 0.183,
+    "depth_longest_run": 39,
+    "depth_runs": [
+     [
+      81,
+      119
+     ],
+     [
+      143,
+      166
+     ]
+    ],
+    "refperc_cm_max": 1.3389660088394193,
+    "refperc_deg_max": 3.366315346880314
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 10,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 161,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.9,
+   "magnitudes": {
+    "jump_cm": 1.200956400572346,
+    "jump_deg": 6.574577917340514,
+    "below_cm": -1.0566039000925675,
+    "pen_cm": 0.9111961085697201,
+    "depth_bad_share": 0.224,
+    "depth_longest_run": 15,
+    "depth_runs": [
+     [
+      53,
+      65
+     ],
+     [
+      82,
+      96
+     ]
+    ],
+    "refperc_cm_max": 1.825744963402649,
+    "refperc_deg_max": 7.375770857385887
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 5,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 288,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.87,
+   "magnitudes": {
+    "jump_cm": 4.365430504975624,
+    "jump_deg": 13.608797157719394,
+    "below_cm": -0.23872018390334038,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.8666412442775775,
+    "refperc_deg_max": 8.027476667872097
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 10,
+   "obj": "beige_cup",
+   "kind": "ref",
+   "T": 161,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.8,
+   "magnitudes": {
+    "jump_cm": 4.011686588878403,
+    "jump_deg": 5.995550905644019,
+    "below_cm": -0.17671852045296754,
+    "pen_cm": 0.9111961085697201,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.294737728015387,
+    "refperc_deg_max": 0.061226267888881934
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 19,
+   "obj": "mini_dust_pan",
+   "kind": "ref",
+   "T": 235,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.78,
+   "magnitudes": {
+    "jump_cm": 3.910031309938785,
+    "jump_deg": 9.15043663425823,
+    "below_cm": -0.2521533675030607,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.089,
+    "depth_longest_run": 5,
+    "depth_runs": [
+     [
+      140,
+      144
+     ]
+    ],
+    "refperc_cm_max": 1.3960913011384535,
+    "refperc_deg_max": 7.939783689070751
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 15,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 166,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.73,
+   "magnitudes": {
+    "jump_cm": 3.6615685415559236,
+    "jump_deg": 11.722516405074314,
+    "below_cm": -0.49319260304191426,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.054,
+    "depth_longest_run": 3,
+    "depth_runs": [],
+    "refperc_cm_max": 0.6344387034521528,
+    "refperc_deg_max": 11.344168247745163
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 20,
+   "obj": "water_pitcher",
+   "kind": "ref",
+   "T": 202,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.68,
+   "magnitudes": {
+    "jump_cm": 3.4151782778145003,
+    "jump_deg": 9.398771814490798,
+    "below_cm": -0.26718279090630626,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.074,
+    "depth_longest_run": 6,
+    "depth_runs": [
+     [
+      5,
+      10
+     ]
+    ],
+    "refperc_cm_max": 1.1521137074128402,
+    "refperc_deg_max": 0.6468228750620879
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 6,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 243,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.67,
+   "magnitudes": {
+    "jump_cm": 3.339421751153638,
+    "jump_deg": 11.387134399079022,
+    "below_cm": -0.19745506966351023,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.066,
+    "depth_longest_run": 6,
+    "depth_runs": [
+     [
+      52,
+      56
+     ],
+     [
+      128,
+      133
+     ]
+    ],
+    "refperc_cm_max": 3.9160086593217187,
+    "refperc_deg_max": 8.953505941931075
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 16,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 173,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.67,
+   "magnitudes": {
+    "jump_cm": 3.3575616781065674,
+    "jump_deg": 7.93134093632751,
+    "below_cm": -0.24403656826841313,
+    "pen_cm": 0.23365065317263967,
+    "depth_bad_share": 0.052,
+    "depth_longest_run": 3,
+    "depth_runs": [],
+    "refperc_cm_max": 1.7841361437969243,
+    "refperc_deg_max": 10.383757626842575
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 1,
+   "obj": "white_pot_lid",
+   "kind": "ref",
+   "T": 335,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.1793019498387034,
+    "jump_deg": 5.192594119514946,
+    "below_cm": -0.6720713473284401,
+    "pen_cm": 0.7205281019401578,
+    "depth_bad_share": 0.149,
+    "depth_longest_run": 26,
+    "depth_runs": [
+     [
+      94,
+      119
+     ],
+     [
+      126,
+      144
+     ]
+    ],
+    "refperc_cm_max": 1.238738747186469,
+    "refperc_deg_max": 2.760465498404603
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 3,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 313,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.196675268988393,
+    "jump_deg": 20.423726046231195,
+    "below_cm": -0.2587291849954765,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.032,
+    "depth_longest_run": 8,
+    "depth_runs": [
+     [
+      259,
+      266
+     ]
+    ],
+    "refperc_cm_max": 2.047570109488233,
+    "refperc_deg_max": 9.211547323808883
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 5,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 288,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.186114008090399,
+    "jump_deg": 18.78280346223136,
+    "below_cm": -0.17390990358803204,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.073,
+    "depth_longest_run": 10,
+    "depth_runs": [
+     [
+      229,
+      238
+     ],
+     [
+      245,
+      251
+     ]
+    ],
+    "refperc_cm_max": 2.4196256209748768,
+    "refperc_deg_max": 13.909764541159571
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 6,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 243,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.62,
+   "magnitudes": {
+    "jump_cm": 3.0822046593571404,
+    "jump_deg": 10.671787739187186,
+    "below_cm": -0.22448870798904563,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.049,
+    "depth_longest_run": 10,
+    "depth_runs": [
+     [
+      178,
+      187
+     ]
+    ],
+    "refperc_cm_max": 1.5342770537245376,
+    "refperc_deg_max": 13.35060847251745
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 28,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 220,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.62,
+   "magnitudes": {
+    "jump_cm": 3.1179381092030662,
+    "jump_deg": 11.863526766988354,
+    "below_cm": -0.0969824091003102,
+    "pen_cm": 0.8722793669718532,
+    "depth_bad_share": 0.123,
+    "depth_longest_run": 16,
+    "depth_runs": [
+     [
+      171,
+      181
+     ],
+     [
+      204,
+      219
+     ]
+    ],
+    "refperc_cm_max": 4.00008491872638,
+    "refperc_deg_max": 3.2085678594457296
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 8,
+   "obj": "beige_cup",
+   "kind": "ref",
+   "T": 219,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.57,
+   "magnitudes": {
+    "jump_cm": 2.826231067486788,
+    "jump_deg": 16.053918007680682,
+    "below_cm": -0.12959571668461622,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 4.221117741501714,
+    "refperc_deg_max": 0.061452255581218806
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 1,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 335,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.56,
+   "magnitudes": {
+    "jump_cm": 2.8013788354551665,
+    "jump_deg": 6.368353766939738,
+    "below_cm": -0.4083494823129974,
+    "pen_cm": 0.7205281019401578,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 2.593818563264625,
+    "refperc_deg_max": 4.6228096176618365
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 37,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 151,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.56,
+   "magnitudes": {
+    "jump_cm": 2.7980957343446167,
+    "jump_deg": 5.517951321327236,
+    "below_cm": -0.17813831790844947,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.7307209475427769,
+    "refperc_deg_max": 13.194417114522464
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 30,
+   "obj": "mini_sweeper",
+   "kind": "ref",
+   "T": 263,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.55,
+   "magnitudes": {
+    "jump_cm": 2.3048446526711555,
+    "jump_deg": 7.310842556808464,
+    "below_cm": -0.5686509191259792,
+    "pen_cm": 0.8640852034248618,
+    "depth_bad_share": 0.137,
+    "depth_longest_run": 23,
+    "depth_runs": [
+     [
+      212,
+      234
+     ]
+    ],
+    "refperc_cm_max": 0.48465018326063913,
+    "refperc_deg_max": 9.047759449559932
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 35,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 421,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.49,
+   "magnitudes": {
+    "jump_cm": 2.1434566377728235,
+    "jump_deg": 21.837162520786283,
+    "below_cm": -0.16573783210211968,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.031,
+    "depth_longest_run": 7,
+    "depth_runs": [
+     [
+      362,
+      368
+     ]
+    ],
+    "refperc_cm_max": 2.415316063719065,
+    "refperc_deg_max": 10.080498628311439
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 38,
+   "obj": "mini_dust_pan",
+   "kind": "ref",
+   "T": 263,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.48,
+   "magnitudes": {
+    "jump_cm": 2.383318954718249,
+    "jump_deg": 14.075245175839814,
+    "below_cm": -0.29915797477328976,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.8971350614432176,
+    "refperc_deg_max": 6.947808828719641
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 3,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 313,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.44,
+   "magnitudes": {
+    "jump_cm": 1.7983688006427845,
+    "jump_deg": 6.815572182151885,
+    "below_cm": -0.20937939405629713,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.109,
+    "depth_longest_run": 11,
+    "depth_runs": [
+     [
+      82,
+      86
+     ],
+     [
+      88,
+      98
+     ],
+     [
+      101,
+      108
+     ],
+     [
+      117,
+      124
+     ]
+    ],
+    "refperc_cm_max": 4.869466016492819,
+    "refperc_deg_max": 7.451809978778299
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 8,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 219,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.42,
+   "magnitudes": {
+    "jump_cm": 2.105786338016038,
+    "jump_deg": 4.2942292796818435,
+    "below_cm": -0.37831864554008776,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.47142694042103944,
+    "refperc_deg_max": 2.9735516183025696
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 20,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 202,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.32,
+   "magnitudes": {
+    "jump_cm": 1.5816594411066809,
+    "jump_deg": 2.565546021883954,
+    "below_cm": -0.1768124789538139,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.035,
+    "depth_longest_run": 5,
+    "depth_runs": [
+     [
+      109,
+      113
+     ]
+    ],
+    "refperc_cm_max": 4.151919743686684,
+    "refperc_deg_max": 4.354080210533701
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 14,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 158,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.11,
+   "magnitudes": {
+    "jump_cm": 0.5359786827922832,
+    "jump_deg": 1.4454562284215133,
+    "below_cm": -0.4167270515982202,
+    "pen_cm": 1.1799761040629606,
+    "depth_bad_share": 0.006,
+    "depth_longest_run": 1,
+    "depth_runs": [],
+    "refperc_cm_max": 1.0036288650050247,
+    "refperc_deg_max": 3.5614968629521506
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 16,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 173,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.1,
+   "magnitudes": {
+    "jump_cm": 0.4957442489567035,
+    "jump_deg": 1.2220843964260102,
+    "below_cm": -0.29134449396605033,
+    "pen_cm": 0.23365065317263967,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.3262781433336978,
+    "refperc_deg_max": 5.438869603279481
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 28,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 220,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.1,
+   "magnitudes": {
+    "jump_cm": 0.5103110194517134,
+    "jump_deg": 1.44137700090932,
+    "below_cm": -0.3530158039095177,
+    "pen_cm": 0.8722793669718532,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.4265053604845398,
+    "refperc_deg_max": 2.9433902767578273
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 15,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 166,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.09,
+   "magnitudes": {
+    "jump_cm": 0.4611700815253518,
+    "jump_deg": 0.9505421524555377,
+    "below_cm": -0.21258505737979938,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.36574780725987177,
+    "refperc_deg_max": 3.509787006370751
+   },
+   "jump_events": null
+  }
+ ],
+ "perception_only_flags": [
+  {
+   "ep": 14,
+   "obj": "blue_cup",
+   "flags_on_P_not_R": [
+    "U"
+   ]
+  },
+  {
+   "ep": 32,
+   "obj": "blue_cup",
+   "flags_on_P_not_R": [
+    "U"
+   ]
+  }
+ ],
+ "all_rows": [
+  {
+   "ep": 1,
+   "obj": "white_pot",
+   "kind": "perc",
+   "T": 335,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.56,
+   "magnitudes": {
+    "jump_cm": 2.8013791962115673,
+    "jump_deg": 6.3685748592381035,
+    "below_cm": -0.5350575107677336,
+    "pen_cm": 0.7493212735142428,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 1,
+   "obj": "white_pot_lid",
+   "kind": "perc",
+   "T": 335,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.196725222029953,
+    "jump_deg": 5.178118645933735,
+    "below_cm": -1.4348090915401013,
+    "pen_cm": 0.7493212735142428,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 1,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 335,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.56,
+   "magnitudes": {
+    "jump_cm": 2.8013788354551665,
+    "jump_deg": 6.368353766939738,
+    "below_cm": -0.4083494823129974,
+    "pen_cm": 0.7205281019401578,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 2.593818563264625,
+    "refperc_deg_max": 4.6228096176618365
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 1,
+   "obj": "white_pot_lid",
+   "kind": "ref",
+   "T": 335,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.1793019498387034,
+    "jump_deg": 5.192594119514946,
+    "below_cm": -0.6720713473284401,
+    "pen_cm": 0.7205281019401578,
+    "depth_bad_share": 0.149,
+    "depth_longest_run": 26,
+    "depth_runs": [
+     [
+      94,
+      119
+     ],
+     [
+      126,
+      144
+     ]
+    ],
+    "refperc_cm_max": 1.238738747186469,
+    "refperc_deg_max": 2.760465498404603
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 3,
+   "obj": "white_pot",
+   "kind": "perc",
+   "T": 313,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.3,
+   "magnitudes": {
+    "jump_cm": 1.5018719937604448,
+    "jump_deg": 6.8279770312762516,
+    "below_cm": -0.7558005459818551,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 3,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 313,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.196677013977478,
+    "jump_deg": 20.423606471680312,
+    "below_cm": -0.5632984002010732,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.006,
+    "depth_longest_run": 2,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 3,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 313,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.44,
+   "magnitudes": {
+    "jump_cm": 1.7983688006427845,
+    "jump_deg": 6.815572182151885,
+    "below_cm": -0.20937939405629713,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.109,
+    "depth_longest_run": 11,
+    "depth_runs": [
+     [
+      82,
+      86
+     ],
+     [
+      88,
+      98
+     ],
+     [
+      101,
+      108
+     ],
+     [
+      117,
+      124
+     ]
+    ],
+    "refperc_cm_max": 4.869466016492819,
+    "refperc_deg_max": 7.451809978778299
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 3,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 313,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.196675268988393,
+    "jump_deg": 20.423726046231195,
+    "below_cm": -0.2587291849954765,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.032,
+    "depth_longest_run": 8,
+    "depth_runs": [
+     [
+      259,
+      266
+     ]
+    ],
+    "refperc_cm_max": 2.047570109488233,
+    "refperc_deg_max": 9.211547323808883
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 5,
+   "obj": "white_pot",
+   "kind": "perc",
+   "T": 288,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.87,
+   "magnitudes": {
+    "jump_cm": 4.365433159543989,
+    "jump_deg": 13.608866526715293,
+    "below_cm": -0.38000355092260296,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 5,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 288,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.1861141413228897,
+    "jump_deg": 18.782874386428215,
+    "below_cm": -0.5098226015058716,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.007,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 5,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 288,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.87,
+   "magnitudes": {
+    "jump_cm": 4.365430504975624,
+    "jump_deg": 13.608797157719394,
+    "below_cm": -0.23872018390334038,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.8666412442775775,
+    "refperc_deg_max": 8.027476667872097
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 5,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 288,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.186114008090399,
+    "jump_deg": 18.78280346223136,
+    "below_cm": -0.17390990358803204,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.073,
+    "depth_longest_run": 10,
+    "depth_runs": [
+     [
+      229,
+      238
+     ],
+     [
+      245,
+      251
+     ]
+    ],
+    "refperc_cm_max": 2.4196256209748768,
+    "refperc_deg_max": 13.909764541159571
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 6,
+   "obj": "white_pot",
+   "kind": "perc",
+   "T": 243,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.64,
+   "magnitudes": {
+    "jump_cm": 3.216135705298285,
+    "jump_deg": 11.384210477827741,
+    "below_cm": -0.5849426324797902,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.008,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 6,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 243,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.62,
+   "magnitudes": {
+    "jump_cm": 3.0822068143811885,
+    "jump_deg": 10.671583740481111,
+    "below_cm": -0.26961381495650416,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.004,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 6,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 243,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.67,
+   "magnitudes": {
+    "jump_cm": 3.339421751153638,
+    "jump_deg": 11.387134399079022,
+    "below_cm": -0.19745506966351023,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.066,
+    "depth_longest_run": 6,
+    "depth_runs": [
+     [
+      52,
+      56
+     ],
+     [
+      128,
+      133
+     ]
+    ],
+    "refperc_cm_max": 3.9160086593217187,
+    "refperc_deg_max": 8.953505941931075
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 6,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 243,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.62,
+   "magnitudes": {
+    "jump_cm": 3.0822046593571404,
+    "jump_deg": 10.671787739187186,
+    "below_cm": -0.22448870798904563,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.049,
+    "depth_longest_run": 10,
+    "depth_runs": [
+     [
+      178,
+      187
+     ]
+    ],
+    "refperc_cm_max": 1.5342770537245376,
+    "refperc_deg_max": 13.35060847251745
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 8,
+   "obj": "beige_cup",
+   "kind": "perc",
+   "T": 219,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.57,
+   "magnitudes": {
+    "jump_cm": 2.8262205357775567,
+    "jump_deg": 16.054140628393032,
+    "below_cm": -0.157610009076381,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 8,
+   "obj": "white_pot",
+   "kind": "perc",
+   "T": 219,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.42,
+   "magnitudes": {
+    "jump_cm": 2.099517355410797,
+    "jump_deg": 4.28063643783113,
+    "below_cm": -0.6878958755327735,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 8,
+   "obj": "beige_cup",
+   "kind": "ref",
+   "T": 219,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.57,
+   "magnitudes": {
+    "jump_cm": 2.826231067486788,
+    "jump_deg": 16.053918007680682,
+    "below_cm": -0.12959571668461622,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 4.221117741501714,
+    "refperc_deg_max": 0.061452255581218806
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 8,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 219,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.42,
+   "magnitudes": {
+    "jump_cm": 2.105786338016038,
+    "jump_deg": 4.2942292796818435,
+    "below_cm": -0.37831864554008776,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.47142694042103944,
+    "refperc_deg_max": 2.9735516183025696
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 10,
+   "obj": "blue_cup",
+   "kind": "perc",
+   "T": 161,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.8,
+   "magnitudes": {
+    "jump_cm": 1.208418854166545,
+    "jump_deg": 6.589210011453546,
+    "below_cm": -0.9698759175136074,
+    "pen_cm": 0.8880065593999235,
+    "depth_bad_share": 0.199,
+    "depth_longest_run": 21,
+    "depth_runs": [
+     [
+      76,
+      96
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 10,
+   "obj": "beige_cup",
+   "kind": "perc",
+   "T": 161,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.8,
+   "magnitudes": {
+    "jump_cm": 4.011932891076002,
+    "jump_deg": 5.9957507078966765,
+    "below_cm": -0.4714547129588631,
+    "pen_cm": 0.8880065593999235,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 10,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 161,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.9,
+   "magnitudes": {
+    "jump_cm": 1.200956400572346,
+    "jump_deg": 6.574577917340514,
+    "below_cm": -1.0566039000925675,
+    "pen_cm": 0.9111961085697201,
+    "depth_bad_share": 0.224,
+    "depth_longest_run": 15,
+    "depth_runs": [
+     [
+      53,
+      65
+     ],
+     [
+      82,
+      96
+     ]
+    ],
+    "refperc_cm_max": 1.825744963402649,
+    "refperc_deg_max": 7.375770857385887
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 10,
+   "obj": "beige_cup",
+   "kind": "ref",
+   "T": 161,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.8,
+   "magnitudes": {
+    "jump_cm": 4.011686588878403,
+    "jump_deg": 5.995550905644019,
+    "below_cm": -0.17671852045296754,
+    "pen_cm": 0.9111961085697201,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.294737728015387,
+    "refperc_deg_max": 0.061226267888881934
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 14,
+   "obj": "blue_cup",
+   "kind": "perc",
+   "T": 158,
+   "flags": [
+    "J",
+    "U"
+   ],
+   "n_flags": 2,
+   "max_ratio": 3.87,
+   "magnitudes": {
+    "jump_cm": 19.361095672873958,
+    "jump_deg": 14.0642585856865,
+    "below_cm": -3.8709480206520985,
+    "pen_cm": 0.9536575854599988,
+    "depth_bad_share": 0.082,
+    "depth_longest_run": 11,
+    "depth_runs": [
+     [
+      35,
+      45
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 14,
+   "obj": "plastic_dish_rack",
+   "kind": "perc",
+   "T": 158,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.12,
+   "magnitudes": {
+    "jump_cm": 0.5796564043381082,
+    "jump_deg": 1.4453693966975627,
+    "below_cm": -2.194552290757268,
+    "pen_cm": 0.9536575854599988,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 14,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 158,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 3.76,
+   "magnitudes": {
+    "jump_cm": 18.784114018384226,
+    "jump_deg": 14.063084730773461,
+    "below_cm": -1.565192313818775,
+    "pen_cm": 1.1799761040629606,
+    "depth_bad_share": 0.082,
+    "depth_longest_run": 11,
+    "depth_runs": [
+     [
+      35,
+      45
+     ]
+    ],
+    "refperc_cm_max": 2.5153765229361555,
+    "refperc_deg_max": 1.4849925651257379
+   },
+   "jump_events": [
+    {
+     "frame": 46,
+     "step_cm": 18.8,
+     "rot_deg": 4.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 112,
+     "max_excursion_cm": 26.9,
+     "height_cm_pre": 4.9,
+     "height_cm_at": 20.0,
+     "ref_minus_perc_cm_max": 2.5
+    }
+   ]
+  },
+  {
+   "ep": 14,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 158,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.11,
+   "magnitudes": {
+    "jump_cm": 0.5359786827922832,
+    "jump_deg": 1.4454562284215133,
+    "below_cm": -0.4167270515982202,
+    "pen_cm": 1.1799761040629606,
+    "depth_bad_share": 0.006,
+    "depth_longest_run": 1,
+    "depth_runs": [],
+    "refperc_cm_max": 1.0036288650050247,
+    "refperc_deg_max": 3.5614968629521506
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 15,
+   "obj": "plastic_dish_rack",
+   "kind": "perc",
+   "T": 166,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.09,
+   "magnitudes": {
+    "jump_cm": 0.4667546835218352,
+    "jump_deg": 1.2634962838056751,
+    "below_cm": -1.5875745351081272,
+    "pen_cm": 0.46141906319340414,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 15,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 166,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.73,
+   "magnitudes": {
+    "jump_cm": 3.6615700952681505,
+    "jump_deg": 11.582259821742257,
+    "below_cm": -1.4067008333528364,
+    "pen_cm": 0.46141906319340414,
+    "depth_bad_share": 0.012,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 15,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 166,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.09,
+   "magnitudes": {
+    "jump_cm": 0.4611700815253518,
+    "jump_deg": 0.9505421524555377,
+    "below_cm": -0.21258505737979938,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.36574780725987177,
+    "refperc_deg_max": 3.509787006370751
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 15,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 166,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.73,
+   "magnitudes": {
+    "jump_cm": 3.6615685415559236,
+    "jump_deg": 11.722516405074314,
+    "below_cm": -0.49319260304191426,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.054,
+    "depth_longest_run": 3,
+    "depth_runs": [],
+    "refperc_cm_max": 0.6344387034521528,
+    "refperc_deg_max": 11.344168247745163
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 16,
+   "obj": "plastic_dish_rack",
+   "kind": "perc",
+   "T": 173,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.12,
+   "magnitudes": {
+    "jump_cm": 0.5819446066169015,
+    "jump_deg": 1.423303658643557,
+    "below_cm": -1.434132253729925,
+    "pen_cm": 0.04950993799345219,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 16,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 173,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.67,
+   "magnitudes": {
+    "jump_cm": 3.3575713061532384,
+    "jump_deg": 7.875746353826945,
+    "below_cm": -1.687179996770316,
+    "pen_cm": 0.04950993799345219,
+    "depth_bad_share": 0.006,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 16,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 173,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.1,
+   "magnitudes": {
+    "jump_cm": 0.4957442489567035,
+    "jump_deg": 1.2220843964260102,
+    "below_cm": -0.29134449396605033,
+    "pen_cm": 0.23365065317263967,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.3262781433336978,
+    "refperc_deg_max": 5.438869603279481
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 16,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 173,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.67,
+   "magnitudes": {
+    "jump_cm": 3.3575616781065674,
+    "jump_deg": 7.93134093632751,
+    "below_cm": -0.24403656826841313,
+    "pen_cm": 0.23365065317263967,
+    "depth_bad_share": 0.052,
+    "depth_longest_run": 3,
+    "depth_runs": [],
+    "refperc_cm_max": 1.7841361437969243,
+    "refperc_deg_max": 10.383757626842575
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 19,
+   "obj": "mini_sweeper",
+   "kind": "perc",
+   "T": 235,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.9,
+   "magnitudes": {
+    "jump_cm": 3.34390554863795,
+    "jump_deg": 15.474505184254014,
+    "below_cm": -1.7650319600350795,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.226,
+    "depth_longest_run": 13,
+    "depth_runs": [
+     [
+      43,
+      47
+     ],
+     [
+      49,
+      57
+     ],
+     [
+      68,
+      80
+     ],
+     [
+      88,
+      93
+     ],
+     [
+      226,
+      232
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 19,
+   "obj": "mini_dust_pan",
+   "kind": "perc",
+   "T": 235,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.78,
+   "magnitudes": {
+    "jump_cm": 3.9100283755719674,
+    "jump_deg": 9.150516046909722,
+    "below_cm": -0.779075926400663,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.004,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 19,
+   "obj": "mini_sweeper",
+   "kind": "ref",
+   "T": 235,
+   "flags": [
+    "D"
+   ],
+   "n_flags": 1,
+   "max_ratio": 1.12,
+   "magnitudes": {
+    "jump_cm": 3.3439060657190054,
+    "jump_deg": 15.474419941459555,
+    "below_cm": -1.137420790415311,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.281,
+    "depth_longest_run": 15,
+    "depth_runs": [
+     [
+      43,
+      57
+     ],
+     [
+      68,
+      80
+     ],
+     [
+      87,
+      98
+     ],
+     [
+      221,
+      234
+     ]
+    ],
+    "refperc_cm_max": 2.9994980570837027,
+    "refperc_deg_max": 3.23548040984357
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 19,
+   "obj": "mini_dust_pan",
+   "kind": "ref",
+   "T": 235,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.78,
+   "magnitudes": {
+    "jump_cm": 3.910031309938785,
+    "jump_deg": 9.15043663425823,
+    "below_cm": -0.2521533675030607,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.089,
+    "depth_longest_run": 5,
+    "depth_runs": [
+     [
+      140,
+      144
+     ]
+    ],
+    "refperc_cm_max": 1.3960913011384535,
+    "refperc_deg_max": 7.939783689070751
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 20,
+   "obj": "blue_cup",
+   "kind": "perc",
+   "T": 202,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.31,
+   "magnitudes": {
+    "jump_cm": 1.5466491481769935,
+    "jump_deg": 2.57603710420812,
+    "below_cm": -0.4025091027232919,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.005,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 20,
+   "obj": "water_pitcher",
+   "kind": "perc",
+   "T": 202,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.67,
+   "magnitudes": {
+    "jump_cm": 3.3621244079846395,
+    "jump_deg": 9.627982751633962,
+    "below_cm": -1.3288481823477527,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.02,
+    "depth_longest_run": 2,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 20,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 202,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.32,
+   "magnitudes": {
+    "jump_cm": 1.5816594411066809,
+    "jump_deg": 2.565546021883954,
+    "below_cm": -0.1768124789538139,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.035,
+    "depth_longest_run": 5,
+    "depth_runs": [
+     [
+      109,
+      113
+     ]
+    ],
+    "refperc_cm_max": 4.151919743686684,
+    "refperc_deg_max": 4.354080210533701
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 20,
+   "obj": "water_pitcher",
+   "kind": "ref",
+   "T": 202,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.68,
+   "magnitudes": {
+    "jump_cm": 3.4151782778145003,
+    "jump_deg": 9.398771814490798,
+    "below_cm": -0.26718279090630626,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.074,
+    "depth_longest_run": 6,
+    "depth_runs": [
+     [
+      5,
+      10
+     ]
+    ],
+    "refperc_cm_max": 1.1521137074128402,
+    "refperc_deg_max": 0.6468228750620879
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 25,
+   "obj": "wooden_piece_1",
+   "kind": "perc",
+   "T": 356,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.49,
+   "magnitudes": {
+    "jump_cm": 2.46069943323745,
+    "jump_deg": 7.059384522783325,
+    "below_cm": -1.31334440147034,
+    "pen_cm": 0.6105145135153034,
+    "depth_bad_share": 0.003,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 25,
+   "obj": "wooden_piece_2",
+   "kind": "perc",
+   "T": 356,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.82,
+   "magnitudes": {
+    "jump_cm": 3.408537551567924,
+    "jump_deg": 6.522049587296133,
+    "below_cm": -1.5273113614512668,
+    "pen_cm": 0.6105145135153034,
+    "depth_bad_share": 0.121,
+    "depth_longest_run": 41,
+    "depth_runs": [
+     [
+      81,
+      121
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 25,
+   "obj": "wooden_piece_1",
+   "kind": "ref",
+   "T": 356,
+   "flags": [
+    "D",
+    "I"
+   ],
+   "n_flags": 2,
+   "max_ratio": 1.66,
+   "magnitudes": {
+    "jump_cm": 2.460702876757336,
+    "jump_deg": 7.059210444400711,
+    "below_cm": -0.3161055803348356,
+    "pen_cm": 0.6253647627193903,
+    "depth_bad_share": 0.233,
+    "depth_longest_run": 83,
+    "depth_runs": [
+     [
+      36,
+      118
+     ]
+    ],
+    "refperc_cm_max": 1.2190300929888855,
+    "refperc_deg_max": 2.8714619592926796
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 25,
+   "obj": "wooden_piece_2",
+   "kind": "ref",
+   "T": 356,
+   "flags": [
+    "I"
+   ],
+   "n_flags": 1,
+   "max_ratio": 0.78,
+   "magnitudes": {
+    "jump_cm": 3.4084886587497545,
+    "jump_deg": 6.522442243651726,
+    "below_cm": -0.579540661079081,
+    "pen_cm": 0.6253647627193903,
+    "depth_bad_share": 0.183,
+    "depth_longest_run": 39,
+    "depth_runs": [
+     [
+      81,
+      119
+     ],
+     [
+      143,
+      166
+     ]
+    ],
+    "refperc_cm_max": 1.3389660088394193,
+    "refperc_deg_max": 3.366315346880314
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 28,
+   "obj": "plastic_dish_rack",
+   "kind": "perc",
+   "T": 220,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.11,
+   "magnitudes": {
+    "jump_cm": 0.558947223920186,
+    "jump_deg": 1.5478403728331827,
+    "below_cm": -1.0152035444479068,
+    "pen_cm": 0.47515457371639447,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 28,
+   "obj": "white_pot",
+   "kind": "perc",
+   "T": 220,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.62,
+   "magnitudes": {
+    "jump_cm": 3.116843973488231,
+    "jump_deg": 11.863506929036724,
+    "below_cm": -0.6189550031503788,
+    "pen_cm": 0.47515457371639447,
+    "depth_bad_share": 0.005,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 28,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 220,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.1,
+   "magnitudes": {
+    "jump_cm": 0.5103110194517134,
+    "jump_deg": 1.44137700090932,
+    "below_cm": -0.3530158039095177,
+    "pen_cm": 0.8722793669718532,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.4265053604845398,
+    "refperc_deg_max": 2.9433902767578273
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 28,
+   "obj": "white_pot",
+   "kind": "ref",
+   "T": 220,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.62,
+   "magnitudes": {
+    "jump_cm": 3.1179381092030662,
+    "jump_deg": 11.863526766988354,
+    "below_cm": -0.0969824091003102,
+    "pen_cm": 0.8722793669718532,
+    "depth_bad_share": 0.123,
+    "depth_longest_run": 16,
+    "depth_runs": [
+     [
+      171,
+      181
+     ],
+     [
+      204,
+      219
+     ]
+    ],
+    "refperc_cm_max": 4.00008491872638,
+    "refperc_deg_max": 3.2085678594457296
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 30,
+   "obj": "mini_sweeper",
+   "kind": "perc",
+   "T": 263,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.52,
+   "magnitudes": {
+    "jump_cm": 2.3048411998815648,
+    "jump_deg": 7.312825185699936,
+    "below_cm": -0.4002057558428418,
+    "pen_cm": 0.848850968714427,
+    "depth_bad_share": 0.129,
+    "depth_longest_run": 19,
+    "depth_runs": [
+     [
+      209,
+      227
+     ],
+     [
+      230,
+      234
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 30,
+   "obj": "plastic_dish_rack",
+   "kind": "perc",
+   "T": 263,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.1,
+   "magnitudes": {
+    "jump_cm": 0.49505024299432365,
+    "jump_deg": 2.0060491505795763,
+    "below_cm": -1.24134036100777,
+    "pen_cm": 0.848850968714427,
+    "depth_bad_share": 0.008,
+    "depth_longest_run": 1,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 30,
+   "obj": "mini_sweeper",
+   "kind": "ref",
+   "T": 263,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.55,
+   "magnitudes": {
+    "jump_cm": 2.3048446526711555,
+    "jump_deg": 7.310842556808464,
+    "below_cm": -0.5686509191259792,
+    "pen_cm": 0.8640852034248618,
+    "depth_bad_share": 0.137,
+    "depth_longest_run": 23,
+    "depth_runs": [
+     [
+      212,
+      234
+     ]
+    ],
+    "refperc_cm_max": 0.48465018326063913,
+    "refperc_deg_max": 9.047759449559932
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 30,
+   "obj": "plastic_dish_rack",
+   "kind": "ref",
+   "T": 263,
+   "flags": [
+    "D"
+   ],
+   "n_flags": 1,
+   "max_ratio": 1.19,
+   "magnitudes": {
+    "jump_cm": 0.4377201183239862,
+    "jump_deg": 1.9133029852591512,
+    "below_cm": -0.26663549878257475,
+    "pen_cm": 0.8640852034248618,
+    "depth_bad_share": 0.297,
+    "depth_longest_run": 33,
+    "depth_runs": [
+     [
+      74,
+      98
+     ],
+     [
+      110,
+      128
+     ],
+     [
+      137,
+      169
+     ]
+    ],
+    "refperc_cm_max": 0.8338050219542216,
+    "refperc_deg_max": 2.5289953658768805
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 32,
+   "obj": "blue_cup",
+   "kind": "perc",
+   "T": 259,
+   "flags": [
+    "J",
+    "U"
+   ],
+   "n_flags": 2,
+   "max_ratio": 3.93,
+   "magnitudes": {
+    "jump_cm": 19.644521665031817,
+    "jump_deg": 153.42759175094704,
+    "below_cm": -4.015522539458349,
+    "pen_cm": 0.2760895597896306,
+    "depth_bad_share": 0.069,
+    "depth_longest_run": 10,
+    "depth_runs": [
+     [
+      17,
+      26
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 32,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 259,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 1.81,
+   "magnitudes": {
+    "jump_cm": 9.032600443617394,
+    "jump_deg": 28.95077410993838,
+    "below_cm": -1.2258270658405457,
+    "pen_cm": 0.2760895597896306,
+    "depth_bad_share": 0.212,
+    "depth_longest_run": 25,
+    "depth_runs": [
+     [
+      83,
+      87
+     ],
+     [
+      91,
+      115
+     ],
+     [
+      133,
+      137
+     ],
+     [
+      149,
+      154
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 32,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 259,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 3.93,
+   "magnitudes": {
+    "jump_cm": 19.670078161994425,
+    "jump_deg": 153.4274342416329,
+    "below_cm": -3.45269174866053,
+    "pen_cm": 0.3724848453494341,
+    "depth_bad_share": 0.112,
+    "depth_longest_run": 8,
+    "depth_runs": [
+     [
+      17,
+      24
+     ],
+     [
+      27,
+      33
+     ],
+     [
+      90,
+      94
+     ],
+     [
+      141,
+      146
+     ]
+    ],
+    "refperc_cm_max": 3.2742893251248724,
+    "refperc_deg_max": 5.724628487099361
+   },
+   "jump_events": [
+    {
+     "frame": 21,
+     "step_cm": 19.7,
+     "rot_deg": 153.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 238,
+     "max_excursion_cm": 25.9,
+     "height_cm_pre": 3.0,
+     "height_cm_at": 9.9,
+     "ref_minus_perc_cm_max": 3.3
+    },
+    {
+     "frame": 34,
+     "step_cm": 14.5,
+     "rot_deg": 148.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 225,
+     "max_excursion_cm": 18.2,
+     "height_cm_pre": 8.8,
+     "height_cm_at": 15.7,
+     "ref_minus_perc_cm_max": 3.3
+    }
+   ]
+  },
+  {
+   "ep": 32,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 259,
+   "flags": [
+    "J",
+    "D"
+   ],
+   "n_flags": 2,
+   "max_ratio": 1.8,
+   "magnitudes": {
+    "jump_cm": 9.02491950889627,
+    "jump_deg": 28.950903261448637,
+    "below_cm": -0.4902290426930467,
+    "pen_cm": 0.3724848453494341,
+    "depth_bad_share": 0.305,
+    "depth_longest_run": 25,
+    "depth_runs": [
+     [
+      83,
+      87
+     ],
+     [
+      91,
+      115
+     ],
+     [
+      133,
+      137
+     ],
+     [
+      149,
+      154
+     ],
+     [
+      199,
+      220
+     ]
+    ],
+    "refperc_cm_max": 3.2506014614270264,
+    "refperc_deg_max": 10.645055974780707
+   },
+   "jump_events": [
+    {
+     "frame": 93,
+     "step_cm": 7.5,
+     "rot_deg": 7.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 166,
+     "max_excursion_cm": 26.8,
+     "height_cm_pre": 15.0,
+     "height_cm_at": 9.3,
+     "ref_minus_perc_cm_max": 3.3
+    },
+    {
+     "frame": 94,
+     "step_cm": 6.5,
+     "rot_deg": 11.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 165,
+     "max_excursion_cm": 20.8,
+     "height_cm_pre": 9.3,
+     "height_cm_at": 4.7,
+     "ref_minus_perc_cm_max": 3.3
+    },
+    {
+     "frame": 115,
+     "step_cm": 9.0,
+     "rot_deg": 16.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 144,
+     "max_excursion_cm": 31.4,
+     "height_cm_pre": 2.9,
+     "height_cm_at": 8.4,
+     "ref_minus_perc_cm_max": 3.3
+    },
+    {
+     "frame": 116,
+     "step_cm": 5.2,
+     "rot_deg": 26.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 143,
+     "max_excursion_cm": 24.2,
+     "height_cm_pre": 8.4,
+     "height_cm_at": 11.4,
+     "ref_minus_perc_cm_max": 3.3
+    }
+   ]
+  },
+  {
+   "ep": 33,
+   "obj": "blue_cup",
+   "kind": "perc",
+   "T": 348,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 2.26,
+   "magnitudes": {
+    "jump_cm": 11.301115933994518,
+    "jump_deg": 55.809086242065725,
+    "below_cm": -3.7599908162221807,
+    "pen_cm": 1.6427667612657701,
+    "depth_bad_share": 0.164,
+    "depth_longest_run": 45,
+    "depth_runs": [
+     [
+      32,
+      36
+     ],
+     [
+      46,
+      90
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 33,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 348,
+   "flags": [
+    "J",
+    "D"
+   ],
+   "n_flags": 2,
+   "max_ratio": 1.71,
+   "magnitudes": {
+    "jump_cm": 8.567476699139132,
+    "jump_deg": 28.30510228547227,
+    "below_cm": -1.2190058838258522,
+    "pen_cm": 1.6427667612657701,
+    "depth_bad_share": 0.293,
+    "depth_longest_run": 31,
+    "depth_runs": [
+     [
+      112,
+      118
+     ],
+     [
+      129,
+      134
+     ],
+     [
+      138,
+      145
+     ],
+     [
+      183,
+      190
+     ],
+     [
+      200,
+      217
+     ],
+     [
+      251,
+      281
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 33,
+   "obj": "blue_cup",
+   "kind": "ref",
+   "T": 348,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 2.18,
+   "magnitudes": {
+    "jump_cm": 10.917087044519134,
+    "jump_deg": 55.80871652869637,
+    "below_cm": -2.2487203589928395,
+    "pen_cm": 1.2265966189210153,
+    "depth_bad_share": 0.17,
+    "depth_longest_run": 45,
+    "depth_runs": [
+     [
+      32,
+      36
+     ],
+     [
+      46,
+      90
+     ]
+    ],
+    "refperc_cm_max": 2.2400747779839487,
+    "refperc_deg_max": 5.595930438649061
+   },
+   "jump_events": [
+    {
+     "frame": 91,
+     "step_cm": 10.9,
+     "rot_deg": 56.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 257,
+     "max_excursion_cm": 12.9,
+     "height_cm_pre": 4.5,
+     "height_cm_at": 12.8,
+     "ref_minus_perc_cm_max": 1.3
+    }
+   ]
+  },
+  {
+   "ep": 33,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 348,
+   "flags": [
+    "J",
+    "D"
+   ],
+   "n_flags": 2,
+   "max_ratio": 1.72,
+   "magnitudes": {
+    "jump_cm": 8.610314628818504,
+    "jump_deg": 28.306950892910255,
+    "below_cm": -1.3006014070459093,
+    "pen_cm": 1.2265966189210153,
+    "depth_bad_share": 0.348,
+    "depth_longest_run": 31,
+    "depth_runs": [
+     [
+      82,
+      89
+     ],
+     [
+      111,
+      120
+     ],
+     [
+      129,
+      134
+     ],
+     [
+      142,
+      156
+     ],
+     [
+      183,
+      190
+     ],
+     [
+      200,
+      216
+     ],
+     [
+      251,
+      281
+     ],
+     [
+      290,
+      296
+     ]
+    ],
+    "refperc_cm_max": 2.021501026439843,
+    "refperc_deg_max": 8.180246254167947
+   },
+   "jump_events": [
+    {
+     "frame": 190,
+     "step_cm": 7.1,
+     "rot_deg": 7.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 158,
+     "max_excursion_cm": 21.4,
+     "height_cm_pre": 18.5,
+     "height_cm_at": 22.0,
+     "ref_minus_perc_cm_max": 2.0
+    },
+    {
+     "frame": 252,
+     "step_cm": 6.2,
+     "rot_deg": 24.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 96,
+     "max_excursion_cm": 29.9,
+     "height_cm_pre": 21.7,
+     "height_cm_at": 17.9,
+     "ref_minus_perc_cm_max": 2.0
+    },
+    {
+     "frame": 262,
+     "step_cm": 5.1,
+     "rot_deg": 9.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 86,
+     "max_excursion_cm": 22.3,
+     "height_cm_pre": 16.1,
+     "height_cm_at": 12.7,
+     "ref_minus_perc_cm_max": 2.0
+    },
+    {
+     "frame": 263,
+     "step_cm": 8.1,
+     "rot_deg": 3.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 85,
+     "max_excursion_cm": 17.6,
+     "height_cm_pre": 12.7,
+     "height_cm_at": 8.6,
+     "ref_minus_perc_cm_max": 2.0
+    },
+    {
+     "frame": 282,
+     "step_cm": 8.6,
+     "rot_deg": 7.0,
+     "kind": "step (never returns within 3 cm)",
+     "frames_away": 66,
+     "max_excursion_cm": 9.5,
+     "height_cm_pre": 3.3,
+     "height_cm_at": 8.6,
+     "ref_minus_perc_cm_max": 2.0
+    }
+   ]
+  },
+  {
+   "ep": 35,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 421,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.49,
+   "magnitudes": {
+    "jump_cm": 2.143456102082778,
+    "jump_deg": 21.837256578748118,
+    "below_cm": -0.9276783439513325,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.012,
+    "depth_longest_run": 2,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 35,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 421,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.49,
+   "magnitudes": {
+    "jump_cm": 2.1434566377728235,
+    "jump_deg": 21.837162520786283,
+    "below_cm": -0.16573783210211968,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.031,
+    "depth_longest_run": 7,
+    "depth_runs": [
+     [
+      362,
+      368
+     ]
+    ],
+    "refperc_cm_max": 2.415316063719065,
+    "refperc_deg_max": 10.080498628311439
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 36,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 407,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 1.26,
+   "magnitudes": {
+    "jump_cm": 6.277688501676412,
+    "jump_deg": 33.10059245018881,
+    "below_cm": -0.6816701831538929,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.108,
+    "depth_longest_run": 15,
+    "depth_runs": [
+     [
+      70,
+      84
+     ],
+     [
+      112,
+      121
+     ],
+     [
+      149,
+      158
+     ],
+     [
+      302,
+      307
+     ]
+    ]
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 36,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 407,
+   "flags": [
+    "J"
+   ],
+   "n_flags": 1,
+   "max_ratio": 1.26,
+   "magnitudes": {
+    "jump_cm": 6.27768182942953,
+    "jump_deg": 33.10049348058141,
+    "below_cm": -0.22082601373609734,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.118,
+    "depth_longest_run": 12,
+    "depth_runs": [
+     [
+      70,
+      74
+     ],
+     [
+      76,
+      87
+     ],
+     [
+      113,
+      123
+     ],
+     [
+      302,
+      307
+     ]
+    ],
+    "refperc_cm_max": 1.681033253583089,
+    "refperc_deg_max": 11.886034568784723
+   },
+   "jump_events": [
+    {
+     "frame": 151,
+     "step_cm": 6.3,
+     "rot_deg": 15.0,
+     "kind": "spike",
+     "frames_away": 183,
+     "max_excursion_cm": 30.3,
+     "height_cm_pre": 14.8,
+     "height_cm_at": 10.7,
+     "ref_minus_perc_cm_max": 1.2
+    }
+   ]
+  },
+  {
+   "ep": 37,
+   "obj": "wooden_spoon",
+   "kind": "perc",
+   "T": 151,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.56,
+   "magnitudes": {
+    "jump_cm": 2.7972872158384283,
+    "jump_deg": 5.518366221161011,
+    "below_cm": -0.6599800708044778,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 37,
+   "obj": "wooden_spoon",
+   "kind": "ref",
+   "T": 151,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.56,
+   "magnitudes": {
+    "jump_cm": 2.7980957343446167,
+    "jump_deg": 5.517951321327236,
+    "below_cm": -0.17813831790844947,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.7307209475427769,
+    "refperc_deg_max": 13.194417114522464
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 38,
+   "obj": "mini_dust_pan",
+   "kind": "perc",
+   "T": 263,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.48,
+   "magnitudes": {
+    "jump_cm": 2.3769971903347327,
+    "jump_deg": 14.075356324961977,
+    "below_cm": -1.184472829077099,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": []
+   },
+   "jump_events": null
+  },
+  {
+   "ep": 38,
+   "obj": "mini_dust_pan",
+   "kind": "ref",
+   "T": 263,
+   "flags": [],
+   "n_flags": 0,
+   "max_ratio": 0.48,
+   "magnitudes": {
+    "jump_cm": 2.383318954718249,
+    "jump_deg": 14.075245175839814,
+    "below_cm": -0.29915797477328976,
+    "pen_cm": 0.0,
+    "depth_bad_share": 0.0,
+    "depth_longest_run": 0,
+    "depth_runs": [],
+    "refperc_cm_max": 0.8971350614432176,
+    "refperc_deg_max": 6.947808828719641
+   },
+   "jump_events": null
+  }
+ ]
+}

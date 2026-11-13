@@ -1,0 +1,362 @@
+[
+ {
+  "obj": "white_pot",
+  "seed": 42,
+  "s_ideal": 0.3638280535489128,
+  "s_fit": 0.36450194902478295,
+  "layout_scale": 1.0658999681472778,
+  "layout_over_ideal": 2.929680539337462,
+  "raw_axis_on_scan_LMS": [
+   "y(0.98)",
+   "x(1.00)",
+   "z(0.98)"
+  ],
+  "raw_extent": [
+   0.5603,
+   0.9998,
+   0.3042
+  ]
+ },
+ {
+  "obj": "white_pot",
+  "seed": 7,
+  "s_ideal": 0.366778526812871,
+  "s_fit": 0.36515066765831883,
+  "layout_scale": 1.0943000316619873,
+  "layout_over_ideal": 2.983544432578778,
+  "raw_axis_on_scan_LMS": [
+   "y(0.98)",
+   "x(1.00)",
+   "z(0.98)"
+  ],
+  "raw_extent": [
+   0.5231,
+   0.9999,
+   0.2984
+  ]
+ },
+ {
+  "obj": "white_pot_lid",
+  "seed": 42,
+  "s_ideal": 0.16222263224768324,
+  "s_fit": 0.1549176369642602,
+  "layout_scale": 1.0176000595092773,
+  "layout_over_ideal": 6.272861224169971,
+  "raw_axis_on_scan_LMS": [
+   "y(0.91)",
+   "x(0.91)",
+   "z(1.00)"
+  ],
+  "raw_extent": [
+   0.7972,
+   0.9981,
+   0.4325
+  ]
+ },
+ {
+  "obj": "white_pot_lid",
+  "seed": 7,
+  "s_ideal": 0.14536565096741855,
+  "s_fit": 0.13820194082182374,
+  "layout_scale": 0.9416000247001648,
+  "layout_over_ideal": 6.477458866202235,
+  "raw_axis_on_scan_LMS": [
+   "y(0.94)",
+   "x(0.94)",
+   "z(1.00)"
+  ],
+  "raw_extent": [
+   0.9165,
+   0.9983,
+   0.4616
+  ]
+ },
+ {
+  "obj": "blue_cup",
+  "seed": 42,
+  "s_ideal": 0.1715036911075436,
+  "s_fit": 0.17083537608567304,
+  "layout_scale": 0.8136000037193298,
+  "layout_over_ideal": 4.743921244290605,
+  "raw_axis_on_scan_LMS": [
+   "z(1.00)",
+   "y(0.96)",
+   "x(0.96)"
+  ],
+  "raw_extent": [
+   0.6357,
+   0.6071,
+   1.0
+  ]
+ },
+ {
+  "obj": "blue_cup",
+  "seed": 7,
+  "s_ideal": 0.18174725618404544,
+  "s_fit": 0.1776263493678988,
+  "layout_scale": 0.7870000004768372,
+  "layout_over_ideal": 4.330189170393227,
+  "raw_axis_on_scan_LMS": [
+   "z(1.00)",
+   "y(1.00)",
+   "x(1.00)"
+  ],
+  "raw_extent": [
+   0.6483,
+   0.587,
+   1.0004
+  ]
+ },
+ {
+  "obj": "water_pitcher",
+  "seed": 42,
+  "s_ideal": 0.4057088669753299,
+  "s_fit": 0.3935130231263472,
+  "layout_scale": 0.8744000196456909,
+  "layout_over_ideal": 2.155240101515605,
+  "raw_axis_on_scan_LMS": [
+   "y(0.79)",
+   "z(0.79)",
+   "x(1.00)"
+  ],
+  "raw_extent": [
+   0.34,
+   1.0001,
+   0.6483
+  ]
+ },
+ {
+  "obj": "water_pitcher",
+  "seed": 7,
+  "s_ideal": 0.4256098232059605,
+  "s_fit": 0.41050540635738747,
+  "layout_scale": 0.8831999897956848,
+  "layout_over_ideal": 2.075140049970811,
+  "raw_axis_on_scan_LMS": [
+   "y(0.77)",
+   "z(0.77)",
+   "x(1.00)"
+  ],
+  "raw_extent": [
+   0.3698,
+   0.999,
+   0.6298
+  ]
+ },
+ {
+  "obj": "wooden_piece_1",
+  "seed": 42,
+  "s_ideal": 0.22474023041728539,
+  "s_fit": 0.18988289190424745,
+  "layout_scale": 1.0614999532699585,
+  "layout_over_ideal": 4.723230688600005,
+  "raw_axis_on_scan_LMS": [
+   "x(1.00)",
+   "y(1.00)",
+   "z(1.00)"
+  ],
+  "raw_extent": [
+   1.0005,
+   0.6159,
+   0.1365
+  ]
+ },
+ {
+  "obj": "wooden_piece_1",
+  "seed": 7,
+  "s_ideal": 0.21812892824458135,
+  "s_fit": 0.18853387587144338,
+  "layout_scale": 1.02839994430542,
+  "layout_over_ideal": 4.714642631683892,
+  "raw_axis_on_scan_LMS": [
+   "x(1.00)",
+   "y(1.00)",
+   "z(1.00)"
+  ],
+  "raw_extent": [
+   0.9963,
+   0.6304,
+   0.1904
+  ]
+ },
+ {
+  "obj": "wooden_piece_2",
+  "seed": 42,
+  "s_ideal": 0.20328239942340204,
+  "s_fit": 0.20108792196639466,
+  "layout_scale": 0.8737999796867371,
+  "layout_over_ideal": 4.298453688884117,
+  "raw_axis_on_scan_LMS": [
+   "y(1.00)",
+   "x(1.00)",
+   "z(1.00)"
+  ],
+  "raw_extent": [
+   0.6696,
+   1.0003,
+   0.2334
+  ]
+ },
+ {
+  "obj": "wooden_piece_2",
+  "seed": 7,
+  "s_ideal": 0.21762417505057963,
+  "s_fit": 0.22749590911358117,
+  "layout_scale": 0.9065999984741211,
+  "layout_over_ideal": 4.165897461821103,
+  "raw_axis_on_scan_LMS": [
+   "x(1.00)",
+   "y(1.00)",
+   "z(1.00)"
+  ],
+  "raw_extent": [
+   1.0005,
+   0.6653,
+   0.1892
+  ]
+ },
+ {
+  "obj": "plastic_dish_rack",
+  "seed": 42,
+  "s_ideal": 0.43268978689046983,
+  "s_fit": 0.43512420211130376,
+  "layout_scale": 1.054900050163269,
+  "layout_over_ideal": 2.4380054305055836,
+  "raw_axis_on_scan_LMS": [
+   "y(1.00)",
+   "x(1.00)",
+   "z(1.00)"
+  ],
+  "raw_extent": [
+   0.4221,
+   0.998,
+   0.2929
+  ]
+ },
+ {
+  "obj": "plastic_dish_rack",
+  "seed": 7,
+  "s_ideal": 0.4583271781270715,
+  "s_fit": 0.45278421007084524,
+  "layout_scale": 1.0219999551773071,
+  "layout_over_ideal": 2.229848029858611,
+  "raw_axis_on_scan_LMS": [
+   "y(1.00)",
+   "x(1.00)",
+   "z(1.00)"
+  ],
+  "raw_extent": [
+   0.4521,
+   0.9997,
+   0.2301
+  ]
+ },
+ {
+  "obj": "mini_sweeper",
+  "seed": 42,
+  "s_ideal": 0.17610312558186514,
+  "s_fit": 0.16867705239433323,
+  "layout_scale": 0.953000009059906,
+  "layout_over_ideal": 5.411601900369931,
+  "raw_axis_on_scan_LMS": [
+   "y(1.00)",
+   "z(0.99)",
+   "x(0.99)"
+  ],
+  "raw_extent": [
+   0.2967,
+   0.9996,
+   0.3679
+  ]
+ },
+ {
+  "obj": "mini_sweeper",
+  "seed": 7,
+  "s_ideal": 0.1501150597538476,
+  "s_fit": 0.14537214901198312,
+  "layout_scale": 0.8640999794006348,
+  "layout_over_ideal": 5.75625111043189,
+  "raw_axis_on_scan_LMS": [
+   "z(1.00)",
+   "y(1.00)",
+   "x(1.00)"
+  ],
+  "raw_extent": [
+   0.4325,
+   0.5372,
+   0.9973
+  ]
+ },
+ {
+  "obj": "mini_dust_pan",
+  "seed": 42,
+  "s_ideal": 0.17518084148848523,
+  "s_fit": 0.1663914119300411,
+  "layout_scale": 1.118299961090088,
+  "layout_over_ideal": 6.383688716117936,
+  "raw_axis_on_scan_LMS": [
+   "y(0.99)",
+   "x(1.00)",
+   "z(0.99)"
+  ],
+  "raw_extent": [
+   0.998,
+   0.994,
+   0.242
+  ]
+ },
+ {
+  "obj": "mini_dust_pan",
+  "seed": 7,
+  "s_ideal": 0.18161535854011562,
+  "s_fit": 0.18280884833298763,
+  "layout_scale": 1.0892000198364258,
+  "layout_over_ideal": 5.997290254479446,
+  "raw_axis_on_scan_LMS": [
+   "y(0.99)",
+   "x(1.00)",
+   "z(1.00)"
+  ],
+  "raw_extent": [
+   1.001,
+   0.9628,
+   0.1706
+  ]
+ },
+ {
+  "obj": "beige_cup",
+  "seed": 42,
+  "s_ideal": 0.14922144717826433,
+  "s_fit": 0.1414743542881629,
+  "layout_scale": 0.6367999911308289,
+  "layout_over_ideal": 4.267483013819648,
+  "raw_axis_on_scan_LMS": [
+   "z(1.00)",
+   "y(0.99)",
+   "x(0.99)"
+  ],
+  "raw_extent": [
+   0.8152,
+   0.8043,
+   0.9916
+  ]
+ },
+ {
+  "obj": "beige_cup",
+  "seed": 7,
+  "s_ideal": 0.1560270467113515,
+  "s_fit": 0.1505207672241346,
+  "layout_scale": 0.6399000287055969,
+  "layout_over_ideal": 4.101212207710408,
+  "raw_axis_on_scan_LMS": [
+   "z(1.00)",
+   "x(1.00)",
+   "y(1.00)"
+  ],
+  "raw_extent": [
+   0.6978,
+   0.6136,
+   1.0005
+  ]
+ }
+]

@@ -1,0 +1,27 @@
+{
+ "alphas": [
+  100.0
+ ],
+ "beta": 0.0,
+ "cap_m": 0.006,
+ "close_hole_max": 200,
+ "cos_vis": 0.2,
+ "ds_vox": 0.002,
+ "eps": 0.0001,
+ "gamma": 1.0,
+ "holdout_block": 10,
+ "holdout_mod": 5,
+ "holdout_res": 2,
+ "knn": 32,
+ "max_it": 5,
+ "mesh_samples": 20000,
+ "nrm_k": 16,
+ "obs_per_it": 40000,
+ "out_faces": 4000,
+ "stop_stage": null,
+ "tol": 0.0002,
+ "trim_q": 0.8,
+ "w_s2t": 0.0,
+ "w_t2s": 1.0,
+ "work_faces": 12000
+}

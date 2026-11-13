@@ -1,0 +1,419 @@
+{
+ "schema": "c0b-public-plan/1",
+ "episodes": {
+  "0": {
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "slot": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "hands": true,
+   "frames_poses": 373,
+   "depth_bytes": 2387200128,
+   "depth_lfs_sha256": "c2932f8ba64e12773d34d45c73e10fb2daa16c5a439cc61fca0bbd8170a8c26d",
+   "poses_sha256": "35dd7c228959264c8b1a87939b3998c3b616ab5923b54005da48a4ceddaddfb5",
+   "hands_sha256": "a312fa28460c10824bd8a5c08753c676346ccff60617dd9494d181a152507a89"
+  },
+  "2": {
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "slot": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "hands": true,
+   "frames_poses": 343,
+   "depth_bytes": 2195200128,
+   "depth_lfs_sha256": "c8d71bfc3e85617267e04aaab91feda17fd174b6cfa11b08983e3b9332dd4d07",
+   "poses_sha256": "ae4c9b3c59ff927edbb814c91a905be769bf76c2f17fbca45daf6333ee28ba2c",
+   "hands_sha256": "8d14170425f0aeb45657bed53626d16d5926aeef2f74e61d0d6520a6be3ff38d"
+  },
+  "11": {
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "slot": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "hands": true,
+   "frames_poses": 137,
+   "depth_bytes": 876800128,
+   "depth_lfs_sha256": "bdc914ee1ae73846dbb2dc04ff669cfc8c35a9aaa2ec8223bce8245121ecb634",
+   "poses_sha256": "99d845e316714119623ff8df9f1368109aeb31ee5804281a72a00239a8568f75",
+   "hands_sha256": "04e8ed23fd97c4035db00a27bc535a2408d19ab42d715653b255b7c36036bff9"
+  },
+  "12": {
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "slot": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "hands": false,
+   "frames_poses": 181,
+   "depth_bytes": 1158400128,
+   "depth_lfs_sha256": "1d3fb3f369ec91479c173d871f8ec0f0855dd8ded18e862b47b639e414b4eba7",
+   "poses_sha256": "3e0411f7b388090fd6e94c825fd8c9f7d2ec72b724d2cb71132ca081ef30e4f6",
+   "hands_sha256": null
+  },
+  "13": {
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "slot": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "hands": true,
+   "frames_poses": 190,
+   "depth_bytes": 1216000128,
+   "depth_lfs_sha256": "000e5edc2f2cec2e9a88ecdfa3dc62035f78f7823dcef0076a688fabedab5e4b",
+   "poses_sha256": "db6d9e1c5654b0bceb7b287e095be71081dd91cd81520ff6d11380e43afe8a3d",
+   "hands_sha256": "71c9ed1e926d5a287f6416ae4a784a9879f59d016f7d08bcfa7423b87e957dd5"
+  },
+  "18": {
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "slot": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "hands": false,
+   "frames_poses": 353,
+   "depth_bytes": 2259200128,
+   "depth_lfs_sha256": "7c22faf52e2ded7690f76c13f18473ce55bb8c5c84575ab9b296d1a27d2fbb13",
+   "poses_sha256": "823772af6c7733b8d4625ec888e3c618ff5c4156b04a2db9fafde199d05cc899",
+   "hands_sha256": null
+  },
+  "21": {
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "slot": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "hands": true,
+   "frames_poses": 186,
+   "depth_bytes": 1190400128,
+   "depth_lfs_sha256": "f2aa07b7bbf6bd38054a45a31cabf1575da8cd3fd6756767f9f455da832a53e6",
+   "poses_sha256": "7e4dae9cc06e613f64ce3788736225a046c991ef359fd745d31225ebd8e18a8c",
+   "hands_sha256": "8143230bfd8229c553ae411bc4d508f39c84a0d2efe1ef9ffbb34b5af434946c"
+  },
+  "22": {
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "slot": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "hands": true,
+   "frames_poses": 189,
+   "depth_bytes": 1209600128,
+   "depth_lfs_sha256": "927c25851cce85f8fffc510e302f474590fa09ecca8467537ee7a9561c32030b",
+   "poses_sha256": "50acd616da0921046a3474b2cf108f4450b0ce25af3800985563fc972e444e4c",
+   "hands_sha256": "77b56f4307493b3fc4e6b18df59d2df21e38ce7f1f1589b34fd7b148162ace6f"
+  },
+  "23": {
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "slot": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "hands": true,
+   "frames_poses": 325,
+   "depth_bytes": 2080000128,
+   "depth_lfs_sha256": "d8f4da03bccf1ac30ee848490143b2193d73269635631cc853ea49d5b990f9c0",
+   "poses_sha256": "f827196a80698e9e0fe9126b7a6039ef01a5b3190403e95e20bb741c70808d73",
+   "hands_sha256": "4b2141f2f50e8b21b3faec487d70f1dac8fdb5f5f4ce9131f3bf19bfdba33790"
+  },
+  "24": {
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "slot": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "hands": false,
+   "frames_poses": 275,
+   "depth_bytes": 1760000128,
+   "depth_lfs_sha256": "cc4b2804f6a373e46dc1f03014c9b01010a96fef954117a2adbb596ed2fe01ca",
+   "poses_sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60",
+   "hands_sha256": null
+  },
+  "26": {
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "slot": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "hands": true,
+   "frames_poses": 158,
+   "depth_bytes": 1011200128,
+   "depth_lfs_sha256": "78713ce7cda56d738b2d53bd5ec45e5eacc85685b16d7f22bc2be297e73f7b86",
+   "poses_sha256": "18349d36fcefbf4e9f5c2d7294d205e1f6bf0b5598c7b756b9dd9193f7377c19",
+   "hands_sha256": "468182e8f1f3b6344cacbbe82018104341d35e82c2d173174e462f11d12d52f1"
+  },
+  "27": {
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "slot": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "hands": false,
+   "frames_poses": 246,
+   "depth_bytes": 1574400128,
+   "depth_lfs_sha256": "048869ff417e1b3a1411807c97f447c60c91d2ca66bea92e5a70633df6f75c2e",
+   "poses_sha256": "1dd8b00aa6c7eaa19a61eea76b26a3c3e265c48d47c4ea3070cb888f7b0c3ab9",
+   "hands_sha256": null
+  },
+  "31": {
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "slot": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "hands": true,
+   "frames_poses": 290,
+   "depth_bytes": 1856000128,
+   "depth_lfs_sha256": "ef2a5301ebfb368b89af7c18af028a7ba45c169b96bc074d43bc220bcfc212e5",
+   "poses_sha256": "997c6807837fd2adc602a0ee32de79926d9a304e4d2d9c4c603a56c517314a22",
+   "hands_sha256": "4dd02a6cf5a131606ca6ef721e022141f24b9c7926b79172406bcf0f660150af"
+  },
+  "39": {
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "slot": [
+    "mini_dust_pan"
+   ],
+   "hands": true,
+   "frames_poses": 319,
+   "depth_bytes": 2041600128,
+   "depth_lfs_sha256": "71d7257ca639b1105faecb64161d27eff4233995c7abf4a0d8ba6ce6504d51db",
+   "poses_sha256": "06c14b0e056950f720865ad16ae715c4cacd336fd0bd1848bb26714797a5a3b5",
+   "hands_sha256": "0e35d2317403ebe3721485b561267f049fd6785bbb2743ec0bdbdd1a750f2b85"
+  },
+  "40": {
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "slot": [
+    "mini_dust_pan"
+   ],
+   "hands": true,
+   "frames_poses": 260,
+   "depth_bytes": 1664000128,
+   "depth_lfs_sha256": "2c3e0546524414b98fe124f5256dd48051be80a4e3dc6144665c00aa593dfe7b",
+   "poses_sha256": "91fcf0ac22aa6632e02e1c49c2d9325ac8af3442c5708ef267f74c81c527cfa7",
+   "hands_sha256": "098879e1dd3c3ae214cf7259d564bd13d7acf2b3123a3bcad0e63e6e15e16d95"
+  },
+  "41": {
+   "objects": [
+    "white_pot"
+   ],
+   "slot": [
+    "white_pot"
+   ],
+   "hands": true,
+   "frames_poses": 299,
+   "depth_bytes": 1913600128,
+   "depth_lfs_sha256": "1cf64d149ad5a76a19c16c41c98bedfc8f58ba2112f0d0cb79063c51f6066dce",
+   "poses_sha256": "1b3ec73b16a0b5af9285cbb0bf7d530811a6f0696623c5751d8b5498877b59ee",
+   "hands_sha256": "bbf66d06412623919b2abb1d85cc03f52e876679a8724fc9ea25ff1880675131"
+  },
+  "42": {
+   "objects": [
+    "white_pot"
+   ],
+   "slot": [
+    "white_pot"
+   ],
+   "hands": true,
+   "frames_poses": 257,
+   "depth_bytes": 1644800128,
+   "depth_lfs_sha256": "43d0a0676a268b49f989549a944ec146c1cd82f3ae8aaf86e1bd8cd38b7358be",
+   "poses_sha256": "82cbf15eb46b6a3e3f3d9ae464d9d1383ba2fb33496816d5dc2da1d394fec22a",
+   "hands_sha256": "81b5216eadf6036ebec1b00b8ed69e2a2112f617347d80980cf05b4a7f566208"
+  },
+  "43": {
+   "objects": [
+    "white_pot"
+   ],
+   "slot": [
+    "white_pot"
+   ],
+   "hands": true,
+   "frames_poses": 326,
+   "depth_bytes": 2086400128,
+   "depth_lfs_sha256": "47043f9f1d05cf0e1d7a23df93245e120d41135e0f2a4b45bc313704c186be0b",
+   "poses_sha256": "f88c893a323a54334e0ddb0774dd2d34f7b20f16d43f67d43ca2e454046466fb",
+   "hands_sha256": "bb9ed00476084b3061bf09f00471efdcc92801ca1f03397eceb135b7589781cc"
+  },
+  "44": {
+   "objects": [
+    "white_pot"
+   ],
+   "slot": [
+    "white_pot"
+   ],
+   "hands": true,
+   "frames_poses": 249,
+   "depth_bytes": 1593600128,
+   "depth_lfs_sha256": "b0f3bb88480e593c0b29f5ebb9f218983b1c7fdcae55e14af39730e8547ac345",
+   "poses_sha256": "2f8ffd77a328db3cae6ed3b96a29a62be2d336d39f77831d7b8f61d453b1c043",
+   "hands_sha256": "7aa44f537e9605b78cba58a962be4bc29fec1cfbf09994c348c4b8f2a8f3d3d2"
+  },
+  "45": {
+   "objects": [
+    "white_pot"
+   ],
+   "slot": [
+    "white_pot"
+   ],
+   "hands": true,
+   "frames_poses": 290,
+   "depth_bytes": 1856000128,
+   "depth_lfs_sha256": "5bf6375c9edd7235c510fc61ea8c8a1fd7c7a2b088e4040177cd14f06d4117d7",
+   "poses_sha256": "d9f48118aa8618d9f74354514ab6a8540c8ec74c69aa897001e0467f7d20f9f0",
+   "hands_sha256": "864e31c36685c099b23daa9133ec40d3e6c46ad605eaf8883d9fac221c281cc7"
+  }
+ },
+ "candidate_eps": {
+  "white_pot": [
+   2,
+   26,
+   27,
+   41,
+   42,
+   43,
+   44,
+   45
+  ],
+  "white_pot_lid": [
+   0,
+   2
+  ],
+  "plastic_dish_rack": [
+   12,
+   13,
+   26,
+   27,
+   31
+  ],
+  "blue_cup": [
+   21,
+   22
+  ],
+  "beige_cup": [
+   11
+  ]
+ },
+ "all_set": {
+  "white_pot": [
+   0,
+   2,
+   26,
+   27,
+   41,
+   42,
+   43,
+   44,
+   45
+  ],
+  "white_pot_lid": [
+   0,
+   2
+  ],
+  "plastic_dish_rack": [
+   12,
+   13,
+   26,
+   27,
+   31
+  ],
+  "blue_cup": [
+   11,
+   12,
+   13,
+   21,
+   22
+  ],
+  "beige_cup": [
+   11
+  ]
+ },
+ "marker_objects": {
+  "2": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "26": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "27": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "41": [
+   "white_pot"
+  ],
+  "42": [
+   "white_pot"
+  ],
+  "43": [
+   "white_pot"
+  ],
+  "44": [
+   "white_pot"
+  ],
+  "45": [
+   "white_pot"
+  ],
+  "0": [
+   "white_pot_lid"
+  ],
+  "12": [
+   "plastic_dish_rack"
+  ],
+  "13": [
+   "plastic_dish_rack"
+  ],
+  "31": [
+   "plastic_dish_rack"
+  ]
+ },
+ "tracks_source": "store run 20261025-sweep-a894083 results/sweep/base/ep<N>/poses.npz",
+ "hands_source": "store run 20261025-g1-022fece refs/perc2m/ep<N>/hands.npz (where it exists)",
+ "depth_source": "store cache/depth/public/ep<N>/depths_fs0.5.npy"
+}

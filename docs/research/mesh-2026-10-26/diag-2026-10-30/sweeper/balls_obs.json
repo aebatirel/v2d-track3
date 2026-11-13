@@ -1,0 +1,35 @@
+{
+ "face_x_cm": 0.79,
+ "balls": [
+  {
+   "apex_x_cm": 2.26,
+   "centre_r7_cm": [
+    1.05,
+    -2.13,
+    0.17
+   ],
+   "free_fit_centre_cm": [
+    1.0,
+    -2.14,
+    0.17
+   ],
+   "free_radius_mm": 7.4,
+   "n": 15093
+  },
+  {
+   "apex_x_cm": 2.26,
+   "centre_r7_cm": [
+    1.83,
+    1.46,
+    0.44
+   ],
+   "free_fit_centre_cm": [
+    1.24,
+    1.15,
+    0.03
+   ],
+   "free_radius_mm": 5.9,
+   "n": 19347
+  }
+ ]
+}

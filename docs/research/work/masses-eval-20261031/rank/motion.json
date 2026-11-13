@@ -1,0 +1,490 @@
+{
+ "1": {
+  "reference": "refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+  "md5": "7f2304663b4e3c55a0a1ad12503174c1",
+  "traj_fingerprint": "c94d59eb700a2290b23fc453fbfdbeb5",
+  "frames": 335,
+  "urdf_paths": [
+   "/content/assets/urdf/white_pot_rigid.urdf",
+   "/content/assets/urdf/white_pot_lid_rigid.urdf"
+  ],
+  "objects": {
+   "white_pot": {
+    "mass_kg": 0.2771,
+    "ratio": 0.924,
+    "abs_ln_ratio": 0.08,
+    "max_disp_cm": 18.0,
+    "lift_cm": 12.8
+   },
+   "white_pot_lid": {
+    "mass_kg": 0.0882,
+    "ratio": 0.294,
+    "abs_ln_ratio": 1.22,
+    "max_disp_cm": 22.8,
+    "lift_cm": 5.6
+   }
+  }
+ },
+ "3": {
+  "reference": "refs/glockt/ep3/processed/sequence_id=t3_ep003/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "732e44ea7bab2ad29256ebb072996adc",
+  "traj_fingerprint": "641bba6a3a46a98a2a629a3e89e6ce43",
+  "frames": 313,
+  "urdf_paths": [
+   "/content/refs/sf/ep3/assets/urdf/white_pot_rigid.urdf",
+   "/content/refs/sf/ep3/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "white_pot": {
+    "mass_kg": 0.2771,
+    "ratio": 0.924,
+    "abs_ln_ratio": 0.08,
+    "max_disp_cm": 9.0,
+    "lift_cm": 8.4
+   },
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 29.0,
+    "lift_cm": 27.8
+   }
+  }
+ },
+ "5": {
+  "reference": "refs/glockt/ep5/processed/sequence_id=t3_ep005/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "aa2f4fc5b72c927ddb8affec95000309",
+  "traj_fingerprint": "01745091520c3f87b2307a18e4e22575",
+  "frames": 288,
+  "urdf_paths": [
+   "/content/refs/sf/ep5/assets/urdf/white_pot_rigid.urdf",
+   "/content/refs/sf/ep5/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "white_pot": {
+    "mass_kg": 0.2771,
+    "ratio": 0.924,
+    "abs_ln_ratio": 0.08,
+    "max_disp_cm": 24.3,
+    "lift_cm": 24.0
+   },
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 31.5,
+    "lift_cm": 30.6
+   }
+  }
+ },
+ "6": {
+  "reference": "refs/glockt/ep6/processed/sequence_id=t3_ep006/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "50445bc36436bab8b46c6d36cc267e02",
+  "traj_fingerprint": "49fa0741b39077237888894f086115df",
+  "frames": 243,
+  "urdf_paths": [
+   "/content/refs/sf/ep6/assets/urdf/white_pot_rigid.urdf",
+   "/content/refs/sf/ep6/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "white_pot": {
+    "mass_kg": 0.2771,
+    "ratio": 0.924,
+    "abs_ln_ratio": 0.08,
+    "max_disp_cm": 15.1,
+    "lift_cm": 14.6
+   },
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 27.6,
+    "lift_cm": 25.0
+   }
+  }
+ },
+ "8": {
+  "reference": "refs/glockt/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "9424b5a1a3f7257566c856a6cc34f745",
+  "traj_fingerprint": "89ef51dec3970829a44e55d0cb2bb2be",
+  "frames": 219,
+  "urdf_paths": [
+   "/content/refs/sf/ep8/assets/urdf/beige_cup_rigid.urdf",
+   "/content/refs/sf/ep8/assets/urdf/white_pot_rigid.urdf"
+  ],
+  "objects": {
+   "beige_cup": {
+    "mass_kg": 0.1367,
+    "ratio": 0.456,
+    "abs_ln_ratio": 0.79,
+    "max_disp_cm": 21.5,
+    "lift_cm": 20.8
+   },
+   "white_pot": {
+    "mass_kg": 0.2771,
+    "ratio": 0.924,
+    "abs_ln_ratio": 0.08,
+    "max_disp_cm": 9.7,
+    "lift_cm": 7.9
+   }
+  }
+ },
+ "10": {
+  "reference": "refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "1a5003d94852c275519066645a1b9869",
+  "traj_fingerprint": "cbcd56d0af6878d41e08f1750aeaaf80",
+  "frames": 161,
+  "urdf_paths": [
+   "/content/assets/urdf/blue_cup_rigid.urdf",
+   "/content/assets/urdf/beige_cup_rigid.urdf"
+  ],
+  "objects": {
+   "blue_cup": {
+    "mass_kg": 0.128,
+    "ratio": 0.427,
+    "abs_ln_ratio": 0.85,
+    "max_disp_cm": 5.6,
+    "lift_cm": 3.7
+   },
+   "beige_cup": {
+    "mass_kg": 0.1367,
+    "ratio": 0.456,
+    "abs_ln_ratio": 0.79,
+    "max_disp_cm": 25.4,
+    "lift_cm": 23.3
+   }
+  }
+ },
+ "14": {
+  "reference": "refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+  "traj_fingerprint": "71fa181ba92c320a47450c2e42561222",
+  "frames": 158,
+  "urdf_paths": [
+   "/content/refs/sf/ep14/assets/urdf/blue_cup_rigid.urdf",
+   "/content/refs/sf/ep14/assets/urdf/plastic_dish_rack_rigid.urdf"
+  ],
+  "objects": {
+   "blue_cup": {
+    "mass_kg": 0.128,
+    "ratio": 0.427,
+    "abs_ln_ratio": 0.85,
+    "max_disp_cm": 26.5,
+    "lift_cm": 14.4
+   },
+   "plastic_dish_rack": {
+    "mass_kg": 0.3865,
+    "ratio": 1.288,
+    "abs_ln_ratio": 0.25,
+    "max_disp_cm": 1.0,
+    "lift_cm": 0.9
+   }
+  }
+ },
+ "15": {
+  "reference": "refs/glockt/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "1d7f2d1c086f825c575d8845131222c9",
+  "traj_fingerprint": "5c7e694e79808aef1074518cc8ad976a",
+  "frames": 166,
+  "urdf_paths": [
+   "/content/refs/sf/ep15/assets/urdf/plastic_dish_rack_rigid.urdf",
+   "/content/refs/sf/ep15/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "plastic_dish_rack": {
+    "mass_kg": 0.3865,
+    "ratio": 1.288,
+    "abs_ln_ratio": 0.25,
+    "max_disp_cm": 0.5,
+    "lift_cm": 0.2
+   },
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 42.5,
+    "lift_cm": 31.7
+   }
+  }
+ },
+ "16": {
+  "reference": "refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "f7e2ea9260106425be6163553aac5af9",
+  "traj_fingerprint": "ade67fc96f0d73b16b4d5f36109f10ae",
+  "frames": 173,
+  "urdf_paths": [
+   "/content/refs/sf/ep16/assets/urdf/plastic_dish_rack_rigid.urdf",
+   "/content/refs/sf/ep16/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "plastic_dish_rack": {
+    "mass_kg": 0.3865,
+    "ratio": 1.288,
+    "abs_ln_ratio": 0.25,
+    "max_disp_cm": 0.8,
+    "lift_cm": 0.3
+   },
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 38.0,
+    "lift_cm": 29.6
+   }
+  }
+ },
+ "19": {
+  "reference": "refs/perc2mcks/ep19/processed/sequence_id=t3_ep019/robot_name=sharpa_wave/afc53914ae7542d7b565119fc4892688-0.parquet",
+  "md5": "201f338aba02911d7fc15998911219ea",
+  "traj_fingerprint": "0e94714f99089e80ee4cdef7534db816",
+  "frames": 235,
+  "urdf_paths": [
+   "/content/assets/urdf/mini_sweeper_rigid.urdf",
+   "/content/assets/urdf/mini_dust_pan_rigid.urdf"
+  ],
+  "objects": {
+   "mini_sweeper": {
+    "mass_kg": 0.045,
+    "ratio": 0.15,
+    "abs_ln_ratio": 1.9,
+    "max_disp_cm": 10.8,
+    "lift_cm": 9.9
+   },
+   "mini_dust_pan": {
+    "mass_kg": 0.0442,
+    "ratio": 0.147,
+    "abs_ln_ratio": 1.92,
+    "max_disp_cm": 14.6,
+    "lift_cm": 14.1
+   }
+  }
+ },
+ "20": {
+  "reference": "refs/glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "4d06d8d42d57d84b1d25a166e8a90adc",
+  "traj_fingerprint": "c1e09fcc24b9ace1c5aee25fa5027c6e",
+  "frames": 202,
+  "urdf_paths": [
+   "/content/refs/sf/ep20/assets/urdf/blue_cup_rigid.urdf",
+   "/content/refs/sf/ep20/assets/urdf/water_pitcher_rigid.urdf"
+  ],
+  "objects": {
+   "blue_cup": {
+    "mass_kg": 0.128,
+    "ratio": 0.427,
+    "abs_ln_ratio": 0.85,
+    "max_disp_cm": 7.8,
+    "lift_cm": 4.9
+   },
+   "water_pitcher": {
+    "mass_kg": 0.5031,
+    "ratio": 1.677,
+    "abs_ln_ratio": 0.52,
+    "max_disp_cm": 36.5,
+    "lift_cm": 36.4
+   }
+  }
+ },
+ "25": {
+  "reference": "refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+  "md5": "71ac95f3764170f29f02fa657e7c057c",
+  "traj_fingerprint": "6f70983787fdf07a26079508400e8fed",
+  "frames": 356,
+  "urdf_paths": [
+   "/content/assets/urdf/wooden_piece_1_rigid.urdf",
+   "/content/assets/urdf/wooden_piece_2_rigid.urdf"
+  ],
+  "objects": {
+   "wooden_piece_1": {
+    "mass_kg": 0.1389,
+    "ratio": 0.463,
+    "abs_ln_ratio": 0.77,
+    "max_disp_cm": 19.6,
+    "lift_cm": 18.9
+   },
+   "wooden_piece_2": {
+    "mass_kg": 0.1409,
+    "ratio": 0.47,
+    "abs_ln_ratio": 0.76,
+    "max_disp_cm": 24.8,
+    "lift_cm": 20.9
+   }
+  }
+ },
+ "28": {
+  "reference": "refs/perc2mcks/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet",
+  "md5": "6f57deb27e47abcd7ec2afe739354af1",
+  "traj_fingerprint": "6cb4ddb875f31661a1d1f0a9ba50996c",
+  "frames": 220,
+  "urdf_paths": [
+   "/content/assets/urdf/plastic_dish_rack_rigid.urdf",
+   "/content/assets/urdf/white_pot_rigid.urdf"
+  ],
+  "objects": {
+   "plastic_dish_rack": {
+    "mass_kg": 0.3865,
+    "ratio": 1.288,
+    "abs_ln_ratio": 0.25,
+    "max_disp_cm": 0.8,
+    "lift_cm": 0.2
+   },
+   "white_pot": {
+    "mass_kg": 0.2771,
+    "ratio": 0.924,
+    "abs_ln_ratio": 0.08,
+    "max_disp_cm": 42.4,
+    "lift_cm": 35.9
+   }
+  }
+ },
+ "30": {
+  "reference": "refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+  "md5": "dd464c96184e84400e62ffcfa17a6ac4",
+  "traj_fingerprint": "c3510178ff08a2743da889514bd21240",
+  "frames": 263,
+  "urdf_paths": [
+   "/content/assets/urdf/mini_sweeper_rigid.urdf",
+   "/content/assets/urdf/plastic_dish_rack_rigid.urdf"
+  ],
+  "objects": {
+   "mini_sweeper": {
+    "mass_kg": 0.045,
+    "ratio": 0.15,
+    "abs_ln_ratio": 1.9,
+    "max_disp_cm": 24.9,
+    "lift_cm": 11.7
+   },
+   "plastic_dish_rack": {
+    "mass_kg": 0.3865,
+    "ratio": 1.288,
+    "abs_ln_ratio": 0.25,
+    "max_disp_cm": 1.4,
+    "lift_cm": 1.3
+   }
+  }
+ },
+ "32": {
+  "reference": "refs/glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "36e600c8346f9d2bd89dc47447ea55fc",
+  "traj_fingerprint": "4ae3f296529cf71f399dc12bd5e237b9",
+  "frames": 259,
+  "urdf_paths": [
+   "/content/refs/sf/ep32/assets/urdf/blue_cup_rigid.urdf",
+   "/content/refs/sf/ep32/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "blue_cup": {
+    "mass_kg": 0.128,
+    "ratio": 0.427,
+    "abs_ln_ratio": 0.85,
+    "max_disp_cm": 16.2,
+    "lift_cm": 9.2
+   },
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 27.5,
+    "lift_cm": 25.3
+   }
+  }
+ },
+ "33": {
+  "reference": "refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "2a7173ab1d4248433bd049bc43f6878a",
+  "traj_fingerprint": "e45b81792154fa1e9987e56b6c41bbcc",
+  "frames": 348,
+  "urdf_paths": [
+   "/content/refs/sf/ep33/assets/urdf/blue_cup_rigid.urdf",
+   "/content/refs/sf/ep33/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "blue_cup": {
+    "mass_kg": 0.128,
+    "ratio": 0.427,
+    "abs_ln_ratio": 0.85,
+    "max_disp_cm": 9.8,
+    "lift_cm": 9.5
+   },
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 29.2,
+    "lift_cm": 28.0
+   }
+  }
+ },
+ "35": {
+  "reference": "refs/glockt/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "bc064b462f0e9791ec77f22dbb5a2344",
+  "traj_fingerprint": "42de7879082921b99274871bfa974032",
+  "frames": 421,
+  "urdf_paths": [
+   "/content/refs/sf/ep35/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 23.9,
+    "lift_cm": 22.1
+   }
+  }
+ },
+ "36": {
+  "reference": "refs/glockt/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "36e60e15163f47486e6bcf85b93fb22e",
+  "traj_fingerprint": "b007f114c671420a55e757f3c7515e19",
+  "frames": 407,
+  "urdf_paths": [
+   "/content/refs/sf/ep36/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 24.5,
+    "lift_cm": 17.9
+   }
+  }
+ },
+ "37": {
+  "reference": "refs/glockt/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "b78747bb1d941fa56121886cc15ec225",
+  "traj_fingerprint": "432ba6d9be0cacf26c73cbfa5a051b77",
+  "frames": 151,
+  "urdf_paths": [
+   "/content/refs/sf/ep37/assets/urdf/wooden_spoon_rigid.urdf"
+  ],
+  "objects": {
+   "wooden_spoon": {
+    "mass_kg": 0.05,
+    "ratio": 0.167,
+    "abs_ln_ratio": 1.79,
+    "max_disp_cm": 31.6,
+    "lift_cm": 30.3
+   }
+  }
+ },
+ "38": {
+  "reference": "refs/glockt/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "md5": "33d3f4e217426b797d0371849f9ee1fd",
+  "traj_fingerprint": "e13cda6da0c198b69c53455572ffa96f",
+  "frames": 263,
+  "urdf_paths": [
+   "/content/refs/sf/ep38/assets/urdf/mini_dust_pan_rigid.urdf"
+  ],
+  "objects": {
+   "mini_dust_pan": {
+    "mass_kg": 0.0442,
+    "ratio": 0.147,
+    "abs_ln_ratio": 1.92,
+    "max_disp_cm": 26.3,
+    "lift_cm": 21.1
+   }
+  }
+ }
+}

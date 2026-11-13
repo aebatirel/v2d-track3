@@ -1,0 +1,42 @@
+{
+ "ep": 39,
+ "objects": [
+  "mini_dust_pan"
+ ],
+ "frames": 319,
+ "auc_before": 0.9755,
+ "add_cm_before": {
+  "mini_dust_pan": 0.8672
+ },
+ "auc_after": 0.9773,
+ "add_cm_after": {
+  "mini_dust_pan": 0.8489
+ },
+ "auc_before_scorer": 0.9755,
+ "auc_after_scorer": 0.9773,
+ "direction": [
+  {
+   "obj": "mini_dust_pan",
+   "start": 295,
+   "end": 318,
+   "status": "shift_t",
+   "push_mm": 10.93,
+   "corr_mm": 9.31,
+   "corr_along_push_mm": 7.36,
+   "cos": 0.79,
+   "pos_err_mm_before": 9.35,
+   "pos_err_mm_after_same_alignment": 6.93,
+   "pos_err_mm_after_scored": 6.93
+  }
+ ],
+ "mesh_check": [],
+ "bottom_check": [
+  {
+   "obj": "mini_dust_pan",
+   "rest_frames_sampled": 43,
+   "ours_minus_scan_lowest_mm_median": -1.68,
+   "scan_lowest_z_mm_median": 601.77,
+   "scan_lowest_z_mm_iqr": 196.75
+  }
+ ]
+}

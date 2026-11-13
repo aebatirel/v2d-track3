@@ -1,0 +1,10 @@
+{
+ "inp": "meshes/library_v2/mini_sweeper.glb",
+ "up": [
+  0.0672,
+  0.0851,
+  0.9941
+ ],
+ "depth": 0.008,
+ "vertices_moved": 121
+}

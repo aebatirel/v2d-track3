@@ -1,0 +1,203 @@
+{
+ "lib": {
+  "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep11/lib_xkit.npz",
+  "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib",
+  "names": [
+   "blue_cup",
+   "beige_cup"
+  ],
+  "build_sec": 25.2,
+  "collide_shapes": {
+   "blue_cup": 75,
+   "beige_cup": 24
+  },
+  "sim": {
+   "fps": 20.0,
+   "substeps": 5,
+   "sim_dt": 0.01
+  },
+  "steps": 40,
+  "configs": {
+   "0": {
+    "nan_at_step": null,
+    "blue_cup": {
+     "jolt": [
+      0.12,
+      0.4
+     ],
+     "at_1s": [
+      0.29,
+      1.1
+     ],
+     "at_2s": [
+      0.37,
+      2.4
+     ],
+     "peak": [
+      0.46,
+      2.5
+     ]
+    },
+    "beige_cup": {
+     "jolt": [
+      0.27,
+      1.4
+     ],
+     "at_1s": [
+      10.41,
+      93.0
+     ],
+     "at_2s": [
+      10.29,
+      91.1
+     ],
+     "peak": [
+      10.5,
+      94.7
+     ]
+    }
+   },
+   "101": {
+    "nan_at_step": null,
+    "blue_cup": {
+     "jolt": [
+      0.1,
+      0.7
+     ],
+     "at_1s": [
+      0.48,
+      1.9
+     ],
+     "at_2s": [
+      0.67,
+      2.0
+     ],
+     "peak": [
+      0.7,
+      2.1
+     ]
+    },
+    "beige_cup": {
+     "jolt": [
+      0.19,
+      1.7
+     ],
+     "at_1s": [
+      0.86,
+      8.1
+     ],
+     "at_2s": [
+      1.92,
+      22.9
+     ],
+     "peak": [
+      1.92,
+      22.9
+     ]
+    }
+   }
+  },
+  "seconds": 29.5
+ },
+ "lib_carve": {
+  "npz": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/ep11/lib_carve_xkit.npz",
+  "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7/assets/lib_ev10",
+  "names": [
+   "blue_cup",
+   "beige_cup"
+  ],
+  "build_sec": 6.1,
+  "collide_shapes": {
+   "blue_cup": 53,
+   "beige_cup": 49
+  },
+  "sim": {
+   "fps": 20.0,
+   "substeps": 5,
+   "sim_dt": 0.01
+  },
+  "steps": 40,
+  "configs": {
+   "0": {
+    "nan_at_step": null,
+    "blue_cup": {
+     "jolt": [
+      0.22,
+      0.5
+     ],
+     "at_1s": [
+      0.55,
+      4.4
+     ],
+     "at_2s": [
+      0.47,
+      4.1
+     ],
+     "peak": [
+      0.85,
+      5.7
+     ]
+    },
+    "beige_cup": {
+     "jolt": [
+      0.56,
+      0.9
+     ],
+     "at_1s": [
+      0.79,
+      3.8
+     ],
+     "at_2s": [
+      0.86,
+      3.8
+     ],
+     "peak": [
+      0.87,
+      4.0
+     ]
+    }
+   },
+   "101": {
+    "nan_at_step": null,
+    "blue_cup": {
+     "jolt": [
+      0.1,
+      0.5
+     ],
+     "at_1s": [
+      0.28,
+      2.0
+     ],
+     "at_2s": [
+      0.22,
+      1.9
+     ],
+     "peak": [
+      0.31,
+      2.3
+     ]
+    },
+    "beige_cup": {
+     "jolt": [
+      0.12,
+      0.7
+     ],
+     "at_1s": [
+      0.73,
+      13.5
+     ],
+     "at_2s": [
+      1.5,
+      13.8
+     ],
+     "peak": [
+      1.51,
+      14.8
+     ]
+    }
+   }
+  },
+  "seconds": 10.6
+ },
+ "note": "ORACLE (public): ep11 A7 rest configurations with library_v3 at the kit registration X_kit (beige cup spin 145 deg) instead of X*_geom (90 deg); scripts/a7_ep11_xkit_prep.py + run_fc.sh settle"
+}

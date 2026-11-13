@@ -1,0 +1,9 @@
+[08:40:05] b4_extract ep23 objects ['wooden_piece_1', 'wooden_piece_2'] det True start {'commit': '06ccccafe60c839a2fc04ba5fd78a04d4f5872e7', 'dirty': '?? docs/research/mesh-2026-10-26/gmg/build/P.md'}
+[08:45:03] hands 298.1 s: frames with hand 324 / 325
+[08:47:54] ep23 pass 0: 163 frames, 9284773 samples, voxels [181675, 109857], 170.9 s
+[08:49:42] extract timing {"table_s": 0.6, "pass0_samples_s": 160.1, "pass0_votes_s": 10.8, "pass0_s": 170.9, "pass0_voxels": [181675, 109857], "pass1_s": 43.5, "pass2_s": 0.6, "pass3_s": 1.1, "pass4_grids_s": 18.4, "sigma_s": 39.5, "total_s": 275.4}
+[08:49:42] sanity wooden_piece_1: 72/73 good, flags [], below 0.0, resid {'median': 1.001, 'p90': 1.403, 'max': 5.189}
+[08:49:47] sanity wooden_piece_2: 127/163 good, flags [], below 0.0982, resid {'median': 1.044, 'p90': 8.157, 'max': 9.961}
+[08:50:20] split test wooden_piece_1: {"wooden_piece_2": [true, 5.523, 22.751, 18.06]}
+[08:50:54] split test wooden_piece_2: {"wooden_piece_1": [true, 5.679, 16.185, 19.495]}
+[08:50:54] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep23 total 649.9 s

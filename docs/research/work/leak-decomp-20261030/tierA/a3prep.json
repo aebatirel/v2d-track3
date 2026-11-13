@@ -1,0 +1,2364 @@
+{
+ "mode": "a3prep",
+ "note": "ORACLE DIAGNOSTIC (public mocap + scans), leak-decomp Tier A; never a default, never for eval inference",
+ "code": {
+  "commit": "20e34612130b3e5ef1d30e9116bb1cc8ecad7eea",
+  "tools_pipeline_dirty": false,
+  "leak_tierA_md5": "896e0cfb787a532ecc9f19c1bff95132"
+ },
+ "inputs": {
+  "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+  "xgeom": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "xgeom_md5": "919ea341f045d566404cf3951b0056cc",
+  "xtrk": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json",
+  "xtrk_md5": "bd8432f14b90dba6fa4169f1586dee99",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "t3": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit"
+ },
+ "argv": [
+  "tools/leak_tierA.py",
+  "a3prep",
+  "--perc",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+  "--xgeom",
+  "docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "--xtrk",
+  "docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json",
+  "--lib",
+  "meshes/library_v3",
+  "--t3",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3",
+  "--kit",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit",
+  "--oracle_t3",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/oracle/verify2/t3",
+  "--work",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a3prep.json",
+  "--episodes",
+  "0,2,11,12,13,18,21,22,23,24,26,27,31,39,40,41,42,43,44,45",
+  "--jobs",
+  "2"
+ ],
+ "episodes": {
+  "0": {
+   "episode": 0,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.673,
+     "plane_rms_mm": 0.38,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.17,
+      7.96
+     ],
+     "snap_cm": [
+      -0.17,
+      0.0
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.017,
+      -0.067,
+      0.242
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.672,
+     "plane_rms_mm": 0.38,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.16,
+      7.77
+     ],
+     "snap_cm": [
+      -0.16,
+      0.0
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.016,
+      -0.065,
+      0.241
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.653,
+     "plane_rms_mm": 0.36,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.38,
+      8.39
+     ],
+     "snap_cm": [
+      0.38,
+      0.0
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.017,
+      -0.067,
+      0.242
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.653,
+     "plane_rms_mm": 0.36,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.38,
+      8.39
+     ],
+     "snap_cm": [
+      0.38,
+      0.0
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.017,
+      -0.067,
+      0.242
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 6.7
+  },
+  "2": {
+   "episode": 2,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.652,
+     "plane_rms_mm": 0.78,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.18,
+      7.97
+     ],
+     "snap_cm": [
+      0.18,
+      0.0
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.028,
+      -0.068,
+      0.238
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.653,
+     "plane_rms_mm": 0.78,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.25,
+      7.97
+     ],
+     "snap_cm": [
+      0.25,
+      0.0
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.028,
+      -0.068,
+      0.238
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.625,
+     "plane_rms_mm": 0.75,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.43,
+      8.38
+     ],
+     "snap_cm": [
+      0.43,
+      0.0
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.028,
+      -0.068,
+      0.238
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.625,
+     "plane_rms_mm": 0.75,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.43,
+      8.38
+     ],
+     "snap_cm": [
+      0.43,
+      0.0
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.028,
+      -0.068,
+      0.238
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 7.4
+  },
+  "11": {
+   "episode": 11,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.576,
+     "plane_rms_mm": 0.47,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.04,
+      -0.04
+     ],
+     "snap_cm": [
+      -0.04,
+      0.04
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.025,
+      0.105,
+      0.328
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.575,
+     "plane_rms_mm": 0.49,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.04,
+      -0.03
+     ],
+     "snap_cm": [
+      -0.04,
+      0.03
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.025,
+      0.105,
+      0.328
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.563,
+     "plane_rms_mm": 0.49,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.75,
+      -1.05
+     ],
+     "snap_cm": [
+      -0.75,
+      1.05
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.025,
+      0.105,
+      0.328
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.563,
+     "plane_rms_mm": 0.49,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.74,
+      -1.05
+     ],
+     "snap_cm": [
+      -0.74,
+      1.05
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.025,
+      0.105,
+      0.328
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 5.8
+  },
+  "12": {
+   "episode": 12,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.389,
+     "plane_rms_mm": 0.7,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.34,
+      -1.34
+     ],
+     "snap_cm": [
+      0.34,
+      1.34
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.05,
+      0.0,
+      0.257
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.393,
+     "plane_rms_mm": 0.7,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.32,
+      -1.39
+     ],
+     "snap_cm": [
+      0.32,
+      1.39
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.05,
+      0.0,
+      0.257
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.388,
+     "plane_rms_mm": 0.75,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.17,
+      -0.62
+     ],
+     "snap_cm": [
+      0.17,
+      0.62
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.05,
+      0.0,
+      0.257
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.388,
+     "plane_rms_mm": 0.75,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.17,
+      -0.62
+     ],
+     "snap_cm": [
+      0.17,
+      0.62
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.05,
+      0.0,
+      0.257
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 161.2
+  },
+  "13": {
+   "episode": 13,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.394,
+     "plane_rms_mm": 0.8,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.0,
+      -1.27
+     ],
+     "snap_cm": [
+      -0.0,
+      1.27
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.034,
+      -0.08,
+      0.262
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.394,
+     "plane_rms_mm": 0.81,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.02,
+      -1.33
+     ],
+     "snap_cm": [
+      -0.02,
+      1.33
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.034,
+      -0.08,
+      0.262
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.401,
+     "plane_rms_mm": 0.84,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.06,
+      -0.37
+     ],
+     "snap_cm": [
+      0.06,
+      0.37
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.031,
+      -0.082,
+      0.261
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.401,
+     "plane_rms_mm": 0.84,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.06,
+      -0.37
+     ],
+     "snap_cm": [
+      0.06,
+      0.37
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.031,
+      -0.082,
+      0.261
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 167.6
+  },
+  "18": {
+   "episode": 18,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.733,
+     "plane_rms_mm": 0.45,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.57,
+      -0.65
+     ],
+     "snap_cm": [
+      0.57,
+      0.65
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.029,
+      0.115,
+      0.321
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.738,
+     "plane_rms_mm": 0.46,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.51,
+      -0.63
+     ],
+     "snap_cm": [
+      0.51,
+      0.63
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.029,
+      0.115,
+      0.321
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.742,
+     "plane_rms_mm": 0.46,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.73,
+      -0.63
+     ],
+     "snap_cm": [
+      0.73,
+      0.63
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.029,
+      0.115,
+      0.321
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.742,
+     "plane_rms_mm": 0.46,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.73,
+      -0.63
+     ],
+     "snap_cm": [
+      0.73,
+      0.63
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.029,
+      0.115,
+      0.321
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 23.9
+  },
+  "21": {
+   "episode": 21,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.359,
+     "plane_rms_mm": 0.36,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.0,
+      -0.93
+     ],
+     "snap_cm": [
+      -0.0,
+      0.93
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.009,
+      -0.006,
+      0.285
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.362,
+     "plane_rms_mm": 0.37,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.04,
+      -0.98
+     ],
+     "snap_cm": [
+      -0.04,
+      0.98
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.008,
+      -0.006,
+      0.286
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.364,
+     "plane_rms_mm": 0.42,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.64,
+      -1.8
+     ],
+     "snap_cm": [
+      -0.64,
+      1.8
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.009,
+      -0.006,
+      0.282
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.362,
+     "plane_rms_mm": 0.42,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.64,
+      -1.8
+     ],
+     "snap_cm": [
+      -0.64,
+      1.8
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.009,
+      -0.006,
+      0.282
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 120.8
+  },
+  "22": {
+   "episode": 22,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.399,
+     "plane_rms_mm": 0.45,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.35,
+      -0.79
+     ],
+     "snap_cm": [
+      0.35,
+      0.79
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.015,
+      -0.022,
+      0.264
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.398,
+     "plane_rms_mm": 0.46,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.43,
+      -0.83
+     ],
+     "snap_cm": [
+      0.43,
+      0.83
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.015,
+      -0.022,
+      0.264
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.4,
+     "plane_rms_mm": 0.47,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.59,
+      -1.89
+     ],
+     "snap_cm": [
+      -0.59,
+      1.89
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.015,
+      -0.022,
+      0.264
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.4,
+     "plane_rms_mm": 0.47,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.59,
+      -1.89
+     ],
+     "snap_cm": [
+      -0.59,
+      1.89
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.015,
+      -0.022,
+      0.264
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 120.2
+  },
+  "23": {
+   "episode": 23,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.495,
+     "plane_rms_mm": 0.69,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.15,
+      -1.59
+     ],
+     "snap_cm": [
+      1.15,
+      1.59
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.004,
+      -0.003,
+      0.24
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.494,
+     "plane_rms_mm": 0.69,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.34,
+      -1.6
+     ],
+     "snap_cm": [
+      1.34,
+      1.6
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.003,
+      -0.003,
+      0.239
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.487,
+     "plane_rms_mm": 0.65,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.48,
+      -0.79
+     ],
+     "snap_cm": [
+      1.48,
+      0.79
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.01,
+      -0.001,
+      0.24
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.491,
+     "plane_rms_mm": 0.66,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.47,
+      -0.79
+     ],
+     "snap_cm": [
+      1.47,
+      0.79
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.01,
+      -0.001,
+      0.24
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 17.4
+  },
+  "24": {
+   "episode": 24,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.489,
+     "plane_rms_mm": 0.38,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.29,
+      -1.1
+     ],
+     "snap_cm": [
+      1.29,
+      1.1
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.01,
+      0.05,
+      0.301
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.482,
+     "plane_rms_mm": 0.41,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.33,
+      -1.01
+     ],
+     "snap_cm": [
+      1.33,
+      1.01
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.01,
+      0.05,
+      0.301
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.487,
+     "plane_rms_mm": 0.42,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.51,
+      -0.81
+     ],
+     "snap_cm": [
+      1.51,
+      0.81
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.01,
+      0.05,
+      0.301
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.486,
+     "plane_rms_mm": 0.44,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.51,
+      -0.81
+     ],
+     "snap_cm": [
+      1.51,
+      0.81
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.01,
+      0.05,
+      0.301
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 15.5
+  },
+  "26": {
+   "episode": 26,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.305,
+     "plane_rms_mm": 0.28,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.39,
+      1.54
+     ],
+     "snap_cm": [
+      1.39,
+      -1.54
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.078,
+      -0.001,
+      0.247
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.31,
+     "plane_rms_mm": 0.25,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.2,
+      1.54
+     ],
+     "snap_cm": [
+      1.2,
+      -1.54
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.08,
+      -0.008,
+      0.245
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.303,
+     "plane_rms_mm": 0.3,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.13,
+      1.58
+     ],
+     "snap_cm": [
+      1.13,
+      -1.58
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.078,
+      -0.001,
+      0.247
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.303,
+     "plane_rms_mm": 0.3,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.13,
+      1.58
+     ],
+     "snap_cm": [
+      1.13,
+      -1.58
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.078,
+      -0.001,
+      0.247
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 17.9
+  },
+  "27": {
+   "episode": 27,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.215,
+     "plane_rms_mm": 0.59,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -1.03,
+      -0.89
+     ],
+     "snap_cm": [
+      1.03,
+      0.89
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.029,
+      0.002,
+      0.278
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.217,
+     "plane_rms_mm": 0.59,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.96,
+      -0.63
+     ],
+     "snap_cm": [
+      0.96,
+      0.63
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.022,
+      -0.013,
+      0.278
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.208,
+     "plane_rms_mm": 0.59,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.63,
+      -0.4
+     ],
+     "snap_cm": [
+      0.63,
+      0.4
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.025,
+      -0.012,
+      0.281
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.208,
+     "plane_rms_mm": 0.59,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.63,
+      -0.4
+     ],
+     "snap_cm": [
+      0.63,
+      0.4
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.025,
+      -0.012,
+      0.281
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 17.3
+  },
+  "31": {
+   "episode": 31,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.394,
+     "plane_rms_mm": 0.32,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.14,
+      -0.95
+     ],
+     "snap_cm": [
+      -0.14,
+      0.95
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.008,
+      0.022,
+      0.241
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.394,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.12,
+      -0.89
+     ],
+     "snap_cm": [
+      -0.12,
+      0.89
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.008,
+      0.022,
+      0.241
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.396,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.29,
+      -0.56
+     ],
+     "snap_cm": [
+      -0.29,
+      0.56
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.008,
+      0.022,
+      0.241
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.396,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0,
+      0.0
+     ],
+     "bottoms_cm": [
+      0.29,
+      -0.56
+     ],
+     "snap_cm": [
+      -0.29,
+      0.56
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      0.008,
+      0.022,
+      0.241
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 18.0
+  },
+  "39": {
+   "episode": 39,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.892,
+     "plane_rms_mm": 0.26,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.44
+     ],
+     "snap_cm": [
+      0.44
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.044,
+      -0.096,
+      0.27
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.89,
+     "plane_rms_mm": 0.26,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.45
+     ],
+     "snap_cm": [
+      0.45
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.055,
+      -0.081,
+      0.274
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.887,
+     "plane_rms_mm": 0.25,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.39
+     ],
+     "snap_cm": [
+      0.39
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.044,
+      -0.096,
+      0.27
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.888,
+     "plane_rms_mm": 0.25,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.41
+     ],
+     "snap_cm": [
+      0.41
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.044,
+      -0.096,
+      0.27
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 13.4
+  },
+  "40": {
+   "episode": 40,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.968,
+     "plane_rms_mm": 0.24,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.28
+     ],
+     "snap_cm": [
+      0.28
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.016,
+      0.006,
+      0.242
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.968,
+     "plane_rms_mm": 0.24,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.27
+     ],
+     "snap_cm": [
+      0.27
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.016,
+      0.006,
+      0.242
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.968,
+     "plane_rms_mm": 0.24,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.29
+     ],
+     "snap_cm": [
+      0.29
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.016,
+      0.006,
+      0.242
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.97,
+     "plane_rms_mm": 0.23,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.29
+     ],
+     "snap_cm": [
+      0.29
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.016,
+      0.006,
+      0.242
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 3.8
+  },
+  "41": {
+   "episode": 41,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.661,
+     "plane_rms_mm": 0.56,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      0.04
+     ],
+     "snap_cm": [
+      -0.04
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.037,
+      -0.0,
+      0.236
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.663,
+     "plane_rms_mm": 0.55,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.05
+     ],
+     "snap_cm": [
+      0.05
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.037,
+      -0.001,
+      0.236
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.657,
+     "plane_rms_mm": 0.56,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      0.1
+     ],
+     "snap_cm": [
+      -0.1
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.037,
+      -0.0,
+      0.236
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.657,
+     "plane_rms_mm": 0.56,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      0.1
+     ],
+     "snap_cm": [
+      -0.1
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.037,
+      -0.0,
+      0.236
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 15.5
+  },
+  "42": {
+   "episode": 42,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.452,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.15
+     ],
+     "snap_cm": [
+      0.15
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.029,
+      0.012,
+      0.237
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.449,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.13
+     ],
+     "snap_cm": [
+      0.13
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.029,
+      0.012,
+      0.237
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.452,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.1
+     ],
+     "snap_cm": [
+      0.1
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.029,
+      0.012,
+      0.237
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.452,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.1
+     ],
+     "snap_cm": [
+      0.1
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.029,
+      0.012,
+      0.237
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 11.4
+  },
+  "43": {
+   "episode": 43,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.532,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.62
+     ],
+     "snap_cm": [
+      0.62
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.035,
+      -0.037,
+      0.236
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.534,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.69
+     ],
+     "snap_cm": [
+      0.69
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.037,
+      -0.037,
+      0.236
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.535,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.41
+     ],
+     "snap_cm": [
+      0.41
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.035,
+      -0.037,
+      0.236
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.535,
+     "plane_rms_mm": 0.31,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.41
+     ],
+     "snap_cm": [
+      0.41
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.035,
+      -0.037,
+      0.236
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 13.9
+  },
+  "44": {
+   "episode": 44,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.604,
+     "plane_rms_mm": 1.04,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.19
+     ],
+     "snap_cm": [
+      0.19
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.026,
+      0.079,
+      0.314
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.602,
+     "plane_rms_mm": 1.04,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.14
+     ],
+     "snap_cm": [
+      0.14
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.026,
+      0.079,
+      0.314
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.599,
+     "plane_rms_mm": 1.04,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.09
+     ],
+     "snap_cm": [
+      0.09
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.026,
+      0.079,
+      0.314
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.601,
+     "plane_rms_mm": 1.04,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.09
+     ],
+     "snap_cm": [
+      0.09
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.026,
+      0.079,
+      0.314
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 13.3
+  },
+  "45": {
+   "episode": 45,
+   "KR_vs_hands_max": 0.0,
+   "hands_file": "hands_refined.npz",
+   "arms": {
+    "P_base": {
+     "plane_inlier_frac": 0.643,
+     "plane_rms_mm": 0.38,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.11
+     ],
+     "snap_cm": [
+      0.11
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.018,
+      0.006,
+      0.236
+     ],
+     "joint_depenetration": false
+    },
+    "P_S2": {
+     "plane_inlier_frac": 0.644,
+     "plane_rms_mm": 0.37,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.13
+     ],
+     "snap_cm": [
+      0.13
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.018,
+      0.008,
+      0.236
+     ],
+     "joint_depenetration": false
+    },
+    "O_base": {
+     "plane_inlier_frac": 0.642,
+     "plane_rms_mm": 0.37,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.01
+     ],
+     "snap_cm": [
+      0.01
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.018,
+      0.006,
+      0.236
+     ],
+     "joint_depenetration": false
+    },
+    "O_S2": {
+     "plane_inlier_frac": 0.641,
+     "plane_rms_mm": 0.38,
+     "support_ok": true,
+     "support_fallback": false,
+     "fallback_lift_cm": [
+      0.0
+     ],
+     "bottoms_cm": [
+      -0.01
+     ],
+     "snap_cm": [
+      0.01
+     ],
+     "hands": {
+      "right": "tracked",
+      "left": "tracked"
+     },
+     "disc": [
+      -0.018,
+      0.006,
+      0.236
+     ],
+     "joint_depenetration": false
+    }
+   },
+   "seconds": 11.4
+  }
+ },
+ "seconds": 395.7
+}

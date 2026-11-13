@@ -1,0 +1,190 @@
+# Overnight 31 Oct → 1 Nov 2026: results in one place
+
+Compiled by keen-heisenberg at 08:55 UTC 1 Nov from the lanes' records:
+- focused-pascal: `claude/focused-pascal-2nz9s1`;
+- bold-albattani: `claude/bold-albattani-6qmxsv`;
+- determined-wright: `claude/determined-wright-3joens`;
+- score-status: `claude/standings-20261031`.
+
+Evidence labels: [M] measured, [E] estimate, [D] measured on public data (development), [H] hypothesis.
+"Proxy" is sim_vs_ref against our own reference (ground-truth-free), over 10 official evaluator draws unless stated.
+
+## Kaggle uploads
+
+| Pack | When (UTC) | AUC | SP-SR | MP-SR | RPE cm | MPPE cm | CD-O cm |
+|---|---|---|---|---|---|---|---|
+| 9a+ (previous best, 31 Oct) | 18:18 | 0.81757 | **0.85** | 0.65 | 3.87853 | 2.89663 | 0.33234 |
+| 9b = 9a+ + eval 33 (D arm) | 05:02 | 0.81677 | 0.85 | 0.65 | 3.88283 | 2.90186 | 0.33234 |
+| **10 = 9a+ + eval 10 (ev10cs5)** | 08:43 | **0.81915** | 0.80 | 0.65 | **3.68275** | **2.84759** | 0.33234 |
+
+- Each board counts our best submission (or the selected Final Submission). Now pack 10 counts for AUC, RPE and
+  MPPE, and 9a+ for SP-SR.
+- Ranks at 08:50: AUC 8, SP-SR 10, MP-SR 8, RPE 10, MPPE 11, CD-O 14. Rank sum 61, **11th**; DSAIL is 10th on 59.
+- Receipts and records:
+  - `results/submissions/20261101-track3j-candidate/build_9b/UPLOAD.md` (this branch);
+  - `results/submissions/20261101-track3k-candidate/build_10/UPLOAD.md` (this branch).
+
+## Experiments, in order of value
+
+| # | Item | Result | Verdict | Cost |
+|---|---|---|---|---|
+| 1 | Eval 10 at njmax 1024 (diagnostic) | [M] proxy 0.913 vs 0.459. 0.903 when evaluated at the stock 512 limits; training overflow 0 vs ~6 M lines | SUPPORTED: training-time contact overflow caused eval 10's floor. Never packed; the organisers' OK is needed | $2.06 |
+| 2 | Eval 10 on cavity-safe pieces ev10cs5, stock limits | [M] proxy 0.532 vs 0.463 (+0.069) | PASS, in pack 10 (+0.0016 AUC on the board) | $2.85 |
+| 3 | D arm (start-state randomisation), evals 14 / 16 / 25 / 30 / 33 | [M] new vs packed: 14 0.686 / 0.727; 16 0.831 / 0.850; 25 0.858 / 0.878; 30 0.816 / 0.897; 33 0.936 / 0.923 | Only 33 passes; in 9b, which scored −0.0008 AUC (within noise) | $19.41 |
+| 4 | Eval-10 V4p retrain (e10v) | [M] 0.459 vs 0.463 | NO-SWAP | $3.25 |
+| 5 | Masses v1 (check) / v2 | [M] v1: ep2 +0.157, ep12 −0.013. v2: mean +0.0034 | NOT ADOPTED | ~$12 |
+| 6 | Arm V (actor sees object velocity) | [M] mean −0.024 | inconclusive, not used | $7.02 |
+| 7 | Arm S (solver re-test), recipe screen K / D | [M] no signal / inconclusive | not used | – |
+| 8 | Command smoothing (test A) | [M] fail | not used | – |
+| 9 | Zero-lag RTS smoother on tracks | [D] kit gate −0.00011 | FAIL | $0 |
+| 10 | Re-track | [M] fail | not used | $1.54 |
+| 11 | Eval-25 board slot pieces | [M] fails its contact clause | NO | $0 |
+| 12 | Collision carve round 2 (evals 10 / 14 / 30) | [M] ev10cs v1–v3 overflow; rack sets add overflow | only ev10cs4 / 5 usable | $0 |
+| 13 | Public pose fix (rest projection) | [D] ΔAUC −0.0107, 17 / 20 worse; pushes point toward the truth on only 22 / 50 segments | FALSIFIED. Rest overlaps are largely mesh shape | $0 |
+| 14 | Pot / pitcher re-base; eval-20 b1 retrain | [M] sim pot already rests correctly; eval-20 pitcher falls at f0 (195 mm) and the b1 clip fixes it (8.5 mm); retrain gate missed by 0.0004 (0.8929 vs > 0.8933) | NO-SWAP, no pack 10b | ~$3.5 |
+| 15 | f0 settle survey, rest probe, ep2 draw divergence, overflow counts | [M] diagnostics: eval 19 sweeper falls at f0; hands push objects on evals 5 / 8 / 33; ep2 lid fails first (lid inside the pot's hulls) | report-only | $0 |
+| 16 | H5p7 / H5e1 fresh-draw sets (for the swap rule) | [M] packed baselines | used by 3 | $12.80 |
+
+## Spend
+- [M] Credit $56.52 at 22:58 UTC, $23.67 at 08:54 UTC: $32.85 spent since 22:58.
+- Earlier evening runs, from the logged actuals before 22:58: e10v $3.25, h5p7 $5.85, h5e1 $6.95, mv2a2 $6.20,
+  rtkA/B $1.54. The night in total is about $56 [E].
+- 09:00 UTC: nothing running, ledger closed, credit $23.63 [M]. focused-pascal's cumulative project ledger: $200.12.
+
+## Lessons
+- A swap whose expected gain is below the noise of our own proxy is a coin flip on the board (9b). From pack 10 on,
+  a swap needs a proxy gain of at least +0.02 on its episode.
+- The biggest wins came from finding the failing moment and its physical cause (contact overflow on eval 10), not from
+  robot-side or learner tweaks. Every robot-side tweak tested tonight was negative or inconclusive.
+</content>
+</invoke>
+<invoke name="Bash">
+<parameter name="command">cd /home/user/v2d-track3 && git add docs/analysis/overnight-20261101/README.md && git commit -qm "Overnight 31 Oct-1 Nov results in one place (uploads, experiments, spend)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01D9UJC7JP3bbasvhFUrxyf7" && git push -q -u origin claude/keen-heisenberg-engcwz && git log --oneline -1
+## Where things stand (09:00 UTC, all four lanes reported; nothing running; every branch pushed)
+
+### Decisions for the owner
+1. **Organisers question on njmax 1024 training.** The policy evaluated at stock 512 limits scores 0.903 on eval 10,
+   against 0.532 in pack 10. [E] about +0.015 AUC, and it likely wins back the SP-SR episode. $0 if allowed. A
+   paste-ready question is in the work log (07:27 entry).
+2. **CD-O-only variant: 9a+ (or pack 10) plus the C0 blue cup.**
+   - [D] Public CD-O for the blue cup goes 0.523 → 0.291. [E] The board goes 0.332 → ~0.300, ~14th → ~11th, about +3
+     ranks. $0, no retrain, and it can't hurt the other boards (best per board).
+   - Compliance point: the mesh was chosen against public scans with a selector written after scoring. That is a
+     GT-informed public selection, not eval tuning.
+3. **Credit top-up.** $23.63 now. Each retrain costs ~$3–6 [E] plus ~$2 for confirmation.
+4. **Near the close:** choose a Final Submission per board, then run the PR #215 container on every counted file.
+   Keep every receipt and checkpoint.
+5. **Mesh-lane calls:** E0b compliance; the $1 grey-template re-track.
+
+### Half-done (what would finish each)
+- **Eval-10 nest completion, legal route.** 660–992 overflow lines remain at 512, and the beige base wobbles
+  6.5 mm / 4° at f0. [H] Clipping the beige low corner fixes both. CPU build + budget.py, then ~$3 per retrain.
+- **Eval-19 sweeper support_fill.** Certified on CPU (4fa6ec4). Needs budget.py, then a retrain gated at ≥ +0.02 over
+  the packed 0.921, so little headroom.
+- **store.sh interim/final push race.** The fix (flock or a staging folder) is described in focused-pascal's work log
+  at 00:50; not built.
+- **main is stale since 30 Oct.** Merge the session branches.
+
+### Room for improvement, by expected rank gain per cost
+| Item | Expected gain | Cost | Evidence |
+|---|---|---|---|
+| CD-O blue-cup variant | about +3 CD-O ranks, enough alone to pass DSAIL (rank sum 61 → ~58) | $0 | [D] / [E]; owner's compliance call |
+| Eval-10 nest completion (route A organisers / route B clip + retrain) | +0.015 AUC; SP-SR / MP-SR +1 episode each (+1 to +3 ranks) | $0 / ~$3 a try | [M] diagnostic 0.913 vs 0.532 |
+| Eval 14 (packed 0.727, 4 / 10 fails, largest spread) | +0.005–0.01 AUC | ~$3–4 | [E]. Needs its own public test of a pose rule; the general rest projection is falsified |
+| Evals 1 / 30 overlaps; eval 19 / 20 starts | small (already 0.89–0.92) | ~$3 each | [H] |
+
+Skip: robot-side tweaks (all negative tonight), the public ep2 / ep12 njmax-1024 test, solver v2, synergy B.
+
+### Added 11:45 UTC: GRASP (Harvard, 2026) as a next-block item
+- **What it is [L]:** gradient-guided sampling for physics-based retargeting (archive-fitted quadratic models,
+  guided proposals, Metropolis–Hastings acceptance). Sharpa bimanual OakInk2 success 94.2 % vs Do-as-I-Do 81.0 % vs
+  SPIDER 71.4 %. MIT, MuJoCo Warp; parts come from SPIDER, which is non-commercial.
+- **Best target [I]:** eval 14 / public ep13. Its hand-over fails even with the true object motion, so it is
+  control-limited, not perception-limited.
+- **Test [H]:** a CPU-first port of the algorithm into our FlashCHORD solver. Gate: zero-action sim_vs_ref ≥ +0.05
+  over our solver on ep13, then RL under the swap rule.
+- **Caveat [M]:** our references are noisy, and our solver's gain vanished under 0.5 mm target noise.
+
+### Added ~12:00 UTC: domain randomisation verdict, and distance to a unified recipe
+**Domain randomisation (D arm: start-state jitter in training only) did not help [M].**
+- Public screen (determined-wright): it did not steady unstable episodes (ep2 sd 0.10 → 0.25, ep18 0.008 → 0.056).
+  The recipe screen verdict was inconclusive (ep12 +0.33, ep2 −0.11).
+- Eval cells, D vs packed over 10 official draws:
+
+  | Eval | D | Packed | Fails, D vs packed |
+  |---|---|---|---|
+  | 14 | 0.686 | 0.727 | 8 vs 4 |
+  | 16 | 0.831 | 0.850 | 1 vs 0 |
+  | 25 | 0.858 | 0.878 | 1 vs 0 |
+  | 30 | 0.816 | 0.897 | — |
+  | 33 | 0.936 | 0.923 | — |
+
+- Only eval 33 passed, and on the board it cost −0.0008 AUC (pack 9b).
+- The pre-registered falsifier (a higher fail share than packed) fired on evals 14, 16 and 25.
+- Reading [I]: draws split within the first frames and are decided at contact events (drawdiv), or by overlapping
+  collision geometry. ±1.5 mm start jitter addresses neither. What worked tonight was fixing the contact physics
+  itself (eval 10's training overflow: +0.020 AUC).
+- Not tested: dynamics randomisation (friction, mass ranges) and observation noise.
+
+**Unified recipe: where we are [M, packed_refs.json a7ed39d6 + pack 11].**
+- **Two learners with an automatic, ground-truth-free choice between them:**
+  - grasp lock (70M steps) on 15 / 20 eval episodes;
+  - standard learner (250M) on 5 (evals 1, 19, 25, 28, 30).
+  - Where both were trained, the higher sim_vs_ref mean picks (e.g. eval 20: glock 0.892 vs std 0.146). This part is
+    already a unified procedure, at about 2× training cost.
+- **Five per-episode hand fixes:**
+  - eval 1: lid-in-pot carve (ev01);
+  - eval 10: cup pieces + njmax 1024 in training, saved at stock;
+  - eval 25: board pieces (ev25);
+  - eval 33: CURR_SCALE 0.4;
+  - eval 8: v5 beige-cup mesh.
+- **Automatable as rules (CPU tools exist):**
+  1. contact overflow: count "nefc overflow" lines in training; above a bar, retrain at njmax 1024 and save the
+     checkpoint at stock 512 / 256. Or always train at 1024 (cost ~+35 % time [E]; effect on clean episodes untested);
+  2. geometry preflight: f0 settle survey + overlap + budget.py. Run support_fill also in std mode (eval 19 skipped it)
+     and apply the hull-clip rule (eval 20 b1);
+  3. curriculum scale: a 2-arm sweep chosen by sim_vs_ref, as for the learner choice.
+- **Not automatable yet:** carving nested or slotted pairs (ev10cs4 / 5 needed hand iteration; rack sets failed) and
+  control-limited hand-overs (eval 14).
+- **Path [E]:** "pipeline v2" = learner choice + overflow rule + geometry preflight + curriculum sweep, validated on the
+  20 public episodes against the current per-episode results (develop on public only). CPU wiring first. A full public
+  validation run is roughly $40–60 [E: ~15 glock at ~$1.5–2 plus ~5 std at ~$3, ×2 for both learners].
+
+### Added ~12:30 UTC: what unlocks "pipeline v2" (one cheap recipe, grasp-lock first)
+- **Today's selection.** eval_both.sh builds the reference once, trains grasp lock, and trains the standard learner
+  only if grasp lock is below 0.9; the higher sim_vs_ref mean is packed.
+  - Grasp lock wins on 15 / 20 eval episodes.
+  - It loses where motion is non-prehensile or environment-driven: sweeping (19, 30), board insertion (25: std 0.712
+    vs glock 0.376 [M]), pot / lid placement and rack work (1, 28).
+- **Needed for one recipe:**
+  1. A GT-free episode-type gate from the reference, so only one learner is trained, not both: hold phases vs object
+     motion without a firm hold.
+  2. A non-prehensile contact mode in the grasp-lock reference and reward (slide / push / tool contact). Alternatively,
+     a GRASP-style physics retargeting step making every reference feasible before RL. Its paper reports refined
+     references improve PPO [L]; the next session tests it on ep13.
+  3. Automatic physics hygiene:
+     - njmax 1024 in training, saved at stock;
+     - an f0 settle + overlap + budget.py preflight;
+     - support_fill in every mode;
+     - cavity-safe pieces for nested containers (needs an automatic rule).
+  4. A fixed curriculum default or a 2-arm sweep (eval 33's CURR_SCALE 0.4).
+- **Validation (develop on public only), pre-registered.** Gate: mean ≥ current per-episode best − 0.01, no episode
+  < −0.05, ≤ 1 manual intervention. ~$3–4 per episode [E] (grasp lock 2 seeds + confirmation), so ~$60–80 for 20.
+- **Physics solver history [M]:**
+  - 30 Oct: zero-action tracking 0.76 / 0.83 vs 0.52 / 0.58 on 2 episodes; RL learned faster on 3 / 4; one ep2 seed
+    failed;
+  - its gain vanished under 0.5 mm target noise;
+  - arm S (2 seeds, 31 Oct): no signal, so it was closed for eval;
+  - the solver-RL loop barely acted;
+  - the GRASP-style sampler is the next attempt.
+- **Better meshes vs perception [M]:**
+  - In scoring, the 9a+ mesh swaps took CD-O 0.402 → 0.332 and AUC 0.81460 → 0.81757 (together with the eval-1
+    carve), through the kit's mesh registration. Public guard ΔAUC: pot +0.003, lid +0.0055, rack +0.016,
+    dust pan +0.012, beige +0.008.
+  - Tracking with the new templates (re-track, 31 Oct) was WORSE: mean ΔR −0.17; pot template failures, e.g. ep45
+    0.98 → 0.006; ep11 cups −0.70.
+  - Blue-cup-only episodes: +0.010–0.015 [post hoc].
+  - So far, better meshes improved the score, not the tracker.

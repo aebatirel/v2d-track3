@@ -1,0 +1,200 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+n 20261031-e10v-caf38fb (V), prefix perc2e10cs, seeds [42 43], LIB /content/v2d-track3/meshes/library_v3, NREP 10, NCONF 10, STEPS 70004736, stock sim limits, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15], H5P7_RUN 20261031-h5p7-1a7cdff
+[2026-11-01T06:25:35Z] ev10_cs pieces: PIECES OK :: set ev10cs5, MD5SUMS 045d8921d5fe548ffebbee3cc21e798b, CHECK OK :: ev10cs5 50 input files, MD5SUMS 045d8921d5fe; blue_cup 24 pieces (md5 list 8088c016, COM mm [0.464, 1.038, 19.052]), beige_cup 21 pieces (md5 list 7f8bff4c, COM mm [1.535, 5.508, -5.568]); floor plate blue_cup/piece_16.obj 8.0 mm, 30.933 cm3
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.56] cm, 21 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.05 0.1  1.91] cm, 24 collision pieces
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-11-01T06:26:08Z] ev10_cs assets (URDF inertials used): ASSETS OK :: ASSETS OK :: blue_cup URDF ac8d296b 24 collisions, 0.3 kg, COM mm [0.464, 1.038, 19.052], ixx/iyy/izz 1.0036e-03/1.0031e-03/4.4479e-04; beige_cup URDF 1a8cb9d8 21 collisions, 0.3 kg, COM mm [1.535, 5.508, -5.568], ixx/iyy/izz 9.0441e-04/9.0433e-04/2.6830e-04
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/rerun_files.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/hands.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/hands_refined.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/mkref_log.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/table_frame.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/loaded/sequence_id=t3_ep010/robot_name=sharpa_wave/3e578d09bdb1484f998e17bc8de2097f-0.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/reconstructed_stage/t3_ep010_support.usda
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/e2s_raw/sequence_id=t3_ep010/robot_name=sharpa_wave/442dbd4bc83e473a843fe5e1782e3e18-0.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/bc086246e792487e8b2e7b22c53c1070-0.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/ref_summary.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/qa_ref.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/contact_retarget_log.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/e2s_reference.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10vmck/ep10/contact_retarget.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10v_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/refs/perc2e10v_glockt/ep10/reconstructed_stage/t3_ep010_support.usda
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/perc2e10v_glock_public/ep10/rest_check.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/perc2e10v_glock_public/ep10/zero_score.txt
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/b0.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/build.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/arms.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/identity.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/packed_ref/ref_gl_ilc.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/packed_ck/policy.safetensors
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/old/r1/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/ev10_v4p/old/r1/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/perc2e10vs42_glock_public/ep10/curve/curve.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-e10v-caf38fb/results/perc2e10vs43_glock_public/ep10/curve/curve.json
+[2026-11-01T06:28:20Z] ev10_cs arms: ARMS OK :: V 5d22fc5782a919f2466988768d0708fa (fingerprint 8f408d5101f1), base ca4ae8dcbc290d66ce09d6ad69a09410, seeds ['42', '43'], blue_cup 0.3 kg URDF ac8d296b (e10v's: False), beige_cup 0.3 kg URDF 1a8cb9d8 (e10v's: False)
+[2026-11-01T06:28:20Z] ev10_cs: e10v inputs ok; curves [curve_s42.json curve_s43.json ]; no_oracle: no_oracle: 6 inputs checked, none oracle-derived
+[2026-11-01T06:28:23Z] ev10_cs: seed 42, PAIRS [10:local:mck:perc2e10css42]
+[2026-11-01T06:28:23Z] glock_public code 50c2d90d, pairs [10:local:mck:perc2e10css42], seed 42, steps 70004736, NREP 10, SPLIT eval, SETTLE 0, SF 0, REPLAN 1, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-11-01T06:28:23Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.56] cm, 21 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.05 0.1  1.91] cm, 24 collision pieces
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-11-01T06:28:26Z] glock_public: collision pieces from /content/v2d-track3/meshes/carve/ev10cs5 (FROZEN.md MD5SUMS PROVENANCE.md beige_cup blue_cup carve.json )
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-11-01T06:28:26Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-11-01T06:28:26Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-11-01T06:28:31Z] glock perc2e10css42 ep10: base mck (/content/refs/perc2e10css42mck/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/bc086246e792487e8b2e7b22c53c1070-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/perc2e10css42_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-11-01T07:06:29Z] glock perc2e10css42 ep10: trained 7 checkpoints
+[2026-11-01T07:12:34Z] glock perc2e10css42 ep10: curve  10M sim_vs_ref 0.465 | blue_cup: lift 1; 20M sim_vs_ref 0.316 | blue_cup: lift 0; 30M sim_vs_ref 0.389 | blue_cup: lift 8; 40M sim_vs_ref 0.460 | blue_cup: lift 5; 50M sim_vs_ref 0.347 | blue_cup: lift 3; 60M sim_vs_ref 0.510 | blue_cup: lift 2; 70M sim_vs_ref 0.460 | blue_cup: lift 4;; chosen by sim_vs_ref: policy_60002304.safetensors
+[2026-11-01T07:15:18Z] glock perc2e10css42 ep10 RESULT (policy_60002304.safetensors): n 10 sim_vs_ref {'mean': 0.4768, 'std': 0.0646, 'min': 0.3661, 'max': 0.5584} registered AUC vs mocap None
+[2026-11-01T07:15:18Z] glock_public summary: {}
+[2026-11-01T07:15:18Z] ev10_cs: seed 42 training + curve + 10 evaluations took 46 min
+[2026-11-01T07:15:19Z] ev10_cs: seed 43, PAIRS [10:local:mck:perc2e10css43]
+[2026-11-01T07:15:20Z] glock_public code 50c2d90d, pairs [10:local:mck:perc2e10css43], seed 43, steps 70004736, NREP 10, SPLIT eval, SETTLE 0, SF 0, REPLAN 1, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-11-01T07:15:20Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.56] cm, 21 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.05 0.1  1.91] cm, 24 collision pieces
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-11-01T07:15:23Z] glock_public: collision pieces from /content/v2d-track3/meshes/carve/ev10cs5 (FROZEN.md MD5SUMS PROVENANCE.md beige_cup blue_cup carve.json )
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-11-01T07:15:23Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-11-01T07:15:23Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-11-01T07:15:25Z] glock perc2e10css43 ep10: base mck (/content/refs/perc2e10css43mck/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/bc086246e792487e8b2e7b22c53c1070-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/perc2e10css43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-11-01T07:49:06Z] glock perc2e10css43 ep10: trained 7 checkpoints
+[2026-11-01T07:55:07Z] glock perc2e10css43 ep10: curve  10M sim_vs_ref 0.559 | blue_cup: lift 0; 20M sim_vs_ref 0.376 | blue_cup: lift 0; 30M sim_vs_ref 0.420 | blue_cup: lift 2; 40M sim_vs_ref 0.286 | blue_cup: lift 5; 50M sim_vs_ref 0.301 | blue_cup: lift 0; 60M sim_vs_ref 0.463 | blue_cup: lift 2; 70M sim_vs_ref 0.445 | blue_cup: lift 1;; chosen by sim_vs_ref: policy_10002432.safetensors
+[2026-11-01T07:57:50Z] glock perc2e10css43 ep10 RESULT (policy_10002432.safetensors): n 10 sim_vs_ref {'mean': 0.5096, 'std': 0.068, 'min': 0.382, 'max': 0.5903} registered AUC vs mocap None
+[2026-11-01T07:57:50Z] glock_public summary: {}
+[2026-11-01T07:57:50Z] ev10_cs: seed 43 training + curve + 10 evaluations took 42 min
+[2026-11-01T07:57:51Z] ev10_cs overflow (FIRST check; > 1000 lines in a training log = pieces not clean in training): overflow train_s42: 1 files, 1167 lines; nefc 992 (requested median 523.0 p95 552.45 max 599), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow train_oom_s42: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow curve_s42: 21 files, 1953 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow best_s42: 10 files, 930 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow train_s43: 1 files, 835 lines; nefc 660 (requested median 524.0 p95 554.0 max 570), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow train_oom_s43: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow curve_s43: 21 files, 1953 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow best_s43: 10 files, 930 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 overflow conf: 0 files, 0 lines; nefc 0 (requested median None p95 None max None), broadphase 0, narrowphase 0, njmax_nnz 0, ccd 0, newton 0 
+[2026-11-01T07:57:51Z] ev10_cs lift s42: lift: 7 checkpoints; 10M s_v_r 0.4646 beige_cup r1 12.4 (max of 3 12.4) blue_cup r1 1.1; 20M s_v_r 0.3162 beige_cup r1 5.6 (max of 3 75.4) blue_cup r1 0.5; 30M s_v_r 0.3894 beige_cup r1 17.6 (max of 3 17.6) blue_cup r1 8.8; 40M s_v_r 0.4596 beige_cup r1 6.9 (max of 3 22.8) blue_cup r1 5.1; 50M s_v_r 0.3473 beige_cup r1 239.8 (max of 3 239.8) blue_cup r1 3.2; 60M s_v_r 0.5102 beige_cup r1 10.4 (max of 3 12.4) blue_cup r1 2.4; 70M s_v_r 0.4604 beige_cup r1 23.9 (max of 3 23.9) blue_cup r1 4.7 :: L True (r1 max 239.8 cm, bar 5.0); controls e10v_s42 r1 max 2.5, e10v_s43 r1 max 0.3
+[2026-11-01T07:57:52Z] ev10_cs lift s43: lift: 7 checkpoints; 10M s_v_r 0.5587 beige_cup r1 10.5 (max of 3 10.5) blue_cup r1 0.6; 20M s_v_r 0.3764 beige_cup r1 1.8 (max of 3 12.5) blue_cup r1 0.9; 30M s_v_r 0.42 beige_cup r1 6.6 (max of 3 6.6) blue_cup r1 2.4; 40M s_v_r 0.2859 beige_cup r1 8.0 (max of 3 8.0) blue_cup r1 5.0; 50M s_v_r 0.3008 beige_cup r1 5.4 (max of 3 7.6) blue_cup r1 0.2; 60M s_v_r 0.4628 beige_cup r1 7.9 (max of 3 13.4) blue_cup r1 2.1; 70M s_v_r 0.4448 beige_cup r1 12.7 (max of 3 27.5) blue_cup r1 1.6 :: L True (r1 max 12.7 cm, bar 5.0); controls e10v_s42 r1 max 2.5, e10v_s43 r1 max 0.3
+[2026-11-01T07:57:53Z] ev10_cs cells: CELLS :: s42 VERIFIED n 10 mean 0.4768 sd 0.0681 min 0.3661 config diff ['output_dir', 'reference.parquet', 'task.parquet'] | s43 VERIFIED n 10 mean 0.5096 sd 0.0717 min 0.382 config diff ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']
+[2026-11-01T07:57:54Z] ev10_cs choice: CHOSEN seed 43 :: s42 VERIFIED n 10 mean 0.4768 sd 0.0681; s43 VERIFIED n 10 mean 0.5096 sd 0.0717
+[2026-11-01T07:57:54Z] ev10_cs gate: GATE MET (bar > 0.4632 vs V) :: s42 VERIFIED n 10 mean 0.4768 margin 0.0136; s43 VERIFIED n 10 mean 0.5096 margin 0.0464
+Preparing worktree (detached HEAD 8c778f9)
+Updating files:   4% (191/4224)Updating files:   5% (212/4224)Updating files:   6% (254/4224)Updating files:   7% (296/4224)Updating files:   8% (338/4224)Updating files:   9% (381/4224)Updating files:  10% (423/4224)Updating files:  11% (465/4224)Updating files:  12% (507/4224)Updating files:  13% (550/4224)Updating files:  14% (592/4224)Updating files:  15% (634/4224)Updating files:  16% (676/4224)Updating files:  17% (719/4224)Updating files:  18% (761/4224)Updating files:  19% (803/4224)Updating files:  20% (845/4224)Updating files:  21% (888/4224)Updating files:  22% (930/4224)Updating files:  23% (972/4224)Updating files:  24% (1014/4224)Updating files:  25% (1056/4224)Updating files:  26% (1099/4224)Updating files:  27% (1141/4224)Updating files:  28% (1183/4224)Updating files:  29% (1225/4224)Updating files:  30% (1268/4224)Updating files:  31% (1310/4224)Updating files:  32% (1352/4224)Updating files:  33% (1394/4224)Updating files:  34% (1437/4224)Updating files:  35% (1479/4224)Updating files:  36% (1521/4224)Updating files:  36% (1544/4224)Updating files:  37% (1563/4224)Updating files:  38% (1606/4224)Updating files:  39% (1648/4224)Updating files:  40% (1690/4224)Updating files:  41% (1732/4224)Updating files:  42% (1775/4224)Updating files:  43% (1817/4224)Updating files:  44% (1859/4224)Updating files:  45% (1901/4224)Updating files:  46% (1944/4224)Updating files:  47% (1986/4224)Updating files:  48% (2028/4224)Updating files:  49% (2070/4224)Updating files:  50% (2112/4224)Updating files:  51% (2155/4224)Updating files:  52% (2197/4224)Updating files:  53% (2239/4224)Updating files:  54% (2281/4224)Updating files:  55% (2324/4224)Updating files:  56% (2366/4224)Updating files:  57% (2408/4224)Updating files:  58% (2450/4224)Updating files:  59% (2493/4224)Updating files:  60% (2535/4224)Updating files:  61% (2577/4224)Updating files:  62% (2619/4224)Updating files:  63% (2662/4224)Updating files:  64% (2704/4224)Updating files:  64% (2736/4224)Updating files:  65% (2746/4224)Updating files:  66% (2788/4224)Updating files:  67% (2831/4224)Updating files:  68% (2873/4224)Updating files:  69% (2915/4224)Updating files:  70% (2957/4224)Updating files:  71% (3000/4224)Updating files:  72% (3042/4224)Updating files:  73% (3084/4224)Updating files:  74% (3126/4224)Updating files:  75% (3168/4224)Updating files:  76% (3211/4224)Updating files:  77% (3253/4224)Updating files:  78% (3295/4224)Updating files:  79% (3337/4224)Updating files:  80% (3380/4224)Updating files:  80% (3409/4224)Updating files:  81% (3422/4224)Updating files:  82% (3464/4224)Updating files:  83% (3506/4224)Updating files:  84% (3549/4224)Updating files:  85% (3591/4224)Updating files:  86% (3633/4224)Updating files:  87% (3675/4224)Updating files:  88% (3718/4224)Updating files:  89% (3760/4224)Updating files:  90% (3802/4224)Updating files:  91% (3844/4224)Updating files:  92% (3887/4224)Updating files:  93% (3929/4224)Updating files:  94% (3971/4224)Updating files:  95% (4013/4224)Updating files:  96% (4056/4224)Updating files:  97% (4098/4224)Updating files:  98% (4140/4224)Updating files:  99% (4182/4224)Updating files: 100% (4224/4224)Updating files: 100% (4224/4224), done.
+Filtering content:   0% (2/229)Filtering content:   1% (3/229), 20.31 MiB | 2.75 MiB/sFiltering content:   2% (5/229), 28.93 MiB | 4.10 MiB/sFiltering content:   3% (7/229), 64.49 MiB | 9.82 MiB/sFiltering content:   3% (9/229), 90.34 MiB | 12.62 MiB/sFiltering content:   4% (10/229), 116.08 MiB | 15.07 MiB/sFiltering content:   5% (12/229), 135.68 MiB | 16.32 MiB/sFiltering content:   5% (13/229), 135.68 MiB | 16.32 MiB/sFiltering content:   6% (14/229), 142.58 MiB | 15.87 MiB/sFiltering content:   7% (17/229), 142.58 MiB | 15.87 MiB/sFiltering content:   8% (19/229), 160.83 MiB | 16.42 MiB/sFiltering content:   9% (21/229), 188.76 MiB | 18.19 MiB/sFiltering content:  10% (23/229), 188.76 MiB | 18.19 MiB/sFiltering content:  10% (24/229), 188.76 MiB | 18.19 MiB/sFiltering content:  11% (26/229), 188.76 MiB | 18.19 MiB/sFiltering content:  12% (28/229), 188.76 MiB | 18.19 MiB/sFiltering content:  13% (30/229), 206.73 MiB | 28.83 MiB/sFiltering content:  14% (33/229), 206.73 MiB | 28.83 MiB/sFiltering content:  15% (35/229), 206.73 MiB | 28.83 MiB/sFiltering content:  16% (37/229), 206.73 MiB | 28.83 MiB/sFiltering content:  17% (39/229), 206.73 MiB | 28.83 MiB/sFiltering content:  18% (42/229), 214.19 MiB | 30.03 MiB/sFiltering content:  19% (44/229), 214.19 MiB | 30.03 MiB/sFiltering content:  20% (46/229), 214.19 MiB | 30.03 MiB/sFiltering content:  21% (49/229), 214.19 MiB | 30.03 MiB/sFiltering content:  22% (51/229), 214.19 MiB | 30.03 MiB/sFiltering content:  23% (53/229), 214.19 MiB | 30.03 MiB/sFiltering content:  24% (55/229), 217.12 MiB | 26.25 MiB/sFiltering content:  25% (58/229), 217.12 MiB | 26.25 MiB/sFiltering content:  26% (60/229), 217.12 MiB | 26.25 MiB/sFiltering content:  27% (62/229), 217.12 MiB | 26.25 MiB/sFiltering content:  28% (65/229), 217.12 MiB | 26.25 MiB/sFiltering content:  29% (67/229), 217.12 MiB | 26.25 MiB/sFiltering content:  29% (68/229), 217.80 MiB | 23.03 MiB/sFiltering content:  30% (69/229), 217.80 MiB | 23.03 MiB/sFiltering content:  31% (71/229), 217.80 MiB | 23.03 MiB/sFiltering content:  32% (74/229), 217.80 MiB | 23.03 MiB/sFiltering content:  33% (76/229), 217.80 MiB | 23.03 MiB/sFiltering content:  34% (78/229), 217.80 MiB | 23.03 MiB/sFiltering content:  35% (81/229), 217.80 MiB | 23.03 MiB/sFiltering content:  36% (83/229), 217.80 MiB | 23.03 MiB/sFiltering content:  37% (85/229), 217.89 MiB | 18.63 MiB/sFiltering content:  38% (88/229), 217.89 MiB | 18.63 MiB/sFiltering content:  39% (90/229), 217.89 MiB | 18.63 MiB/sFiltering content:  40% (92/229), 217.89 MiB | 18.63 MiB/sFiltering content:  41% (94/229), 217.89 MiB | 18.63 MiB/sFiltering content:  41% (96/229), 217.89 MiB | 18.63 MiB/sFiltering content:  42% (97/229), 217.89 MiB | 18.63 MiB/sFiltering content:  43% (99/229), 217.89 MiB | 18.63 MiB/sFiltering content:  44% (101/229), 217.89 MiB | 15.47 MiB/sFiltering content:  45% (104/229), 217.89 MiB | 15.47 MiB/sFiltering content:  46% (106/229), 217.89 MiB | 15.47 MiB/sFiltering content:  47% (108/229), 217.89 MiB | 15.47 MiB/sFiltering content:  47% (109/229), 219.56 MiB | 12.06 MiB/sFiltering content:  48% (110/229), 219.56 MiB | 12.06 MiB/sFiltering content:  49% (113/229), 219.56 MiB | 12.06 MiB/sFiltering content:  50% (115/229), 231.79 MiB | 10.75 MiB/sFiltering content:  51% (117/229), 231.79 MiB | 10.75 MiB/sFiltering content:  52% (120/229), 241.36 MiB | 8.02 MiB/s Filtering content:  53% (122/229), 241.36 MiB | 8.02 MiB/sFiltering content:  54% (124/229), 241.36 MiB | 8.02 MiB/sFiltering content:  55% (126/229), 241.36 MiB | 8.02 MiB/sFiltering content:  56% (129/229), 241.36 MiB | 8.02 MiB/sFiltering content:  56% (130/229), 250.71 MiB | 6.69 MiB/sFiltering content:  57% (131/229), 250.71 MiB | 6.69 MiB/sFiltering content:  58% (133/229), 250.71 MiB | 6.69 MiB/sFiltering content:  59% (136/229), 250.71 MiB | 6.69 MiB/sFiltering content:  60% (138/229), 250.71 MiB | 6.69 MiB/sFiltering content:  61% (140/229), 250.71 MiB | 6.69 MiB/sFiltering content:  62% (142/229), 253.88 MiB | 6.05 MiB/sFiltering content:  63% (145/229), 253.88 MiB | 6.05 MiB/sFiltering content:  64% (147/229), 253.88 MiB | 6.05 MiB/sFiltering content:  65% (149/229), 253.88 MiB | 6.05 MiB/sFiltering content:  65% (150/229), 253.88 MiB | 6.05 MiB/sFiltering content:  66% (152/229), 255.46 MiB | 5.82 MiB/sFiltering content:  67% (154/229), 255.46 MiB | 5.82 MiB/sFiltering content:  68% (156/229), 255.46 MiB | 5.82 MiB/sFiltering content:  69% (159/229), 255.46 MiB | 5.82 MiB/sFiltering content:  70% (161/229), 255.46 MiB | 5.82 MiB/sFiltering content:  71% (163/229), 256.32 MiB | 5.87 MiB/sFiltering content:  72% (165/229), 256.32 MiB | 5.87 MiB/sFiltering content:  73% (168/229), 256.32 MiB | 5.87 MiB/sFiltering content:  74% (170/229), 256.32 MiB | 5.87 MiB/sFiltering content:  75% (172/229), 256.32 MiB | 5.87 MiB/sFiltering content:  76% (175/229), 256.32 MiB | 5.87 MiB/sFiltering content:  77% (177/229), 267.38 MiB | 7.66 MiB/sFiltering content:  78% (179/229), 267.38 MiB | 7.66 MiB/sFiltering content:  79% (181/229), 267.38 MiB | 7.66 MiB/sFiltering content:  80% (184/229), 267.38 MiB | 7.66 MiB/sFiltering content:  81% (186/229), 267.59 MiB | 7.67 MiB/sFiltering content:  82% (188/229), 267.59 MiB | 7.67 MiB/sFiltering content:  83% (191/229), 267.59 MiB | 7.67 MiB/sFiltering content:  84% (193/229), 267.59 MiB | 7.67 MiB/sFiltering content:  85% (195/229), 267.59 MiB | 7.67 MiB/sFiltering content:  86% (197/229), 267.59 MiB | 7.67 MiB/sFiltering content:  86% (199/229), 267.59 MiB | 7.67 MiB/sFiltering content:  87% (200/229), 267.75 MiB | 9.07 MiB/sFiltering content:  88% (202/229), 267.75 MiB | 9.07 MiB/sFiltering content:  89% (204/229), 267.75 MiB | 9.07 MiB/sFiltering content:  90% (207/229), 267.75 MiB | 9.07 MiB/sFiltering content:  91% (209/229), 267.75 MiB | 9.07 MiB/sFiltering content:  92% (211/229), 268.92 MiB | 6.23 MiB/sFiltering content:  93% (213/229), 268.92 MiB | 6.23 MiB/sFiltering content:  94% (216/229), 275.14 MiB | 5.53 MiB/sFiltering content:  95% (218/229), 275.14 MiB | 5.53 MiB/sFiltering content:  96% (220/229), 275.14 MiB | 5.53 MiB/sFiltering content:  97% (223/229), 275.14 MiB | 5.53 MiB/sFiltering content:  98% (225/229), 279.63 MiB | 4.68 MiB/sFiltering content:  99% (227/229), 279.63 MiB | 4.68 MiB/sFiltering content:  99% (228/229), 324.61 MiB | 2.75 MiB/sFiltering content: 100% (229/229), 420.21 MiB | 3.39 MiB/sFiltering content: 100% (229/229), 961.15 MiB | 2.77 MiB/sFiltering content: 100% (229/229), 961.15 MiB | 3.48 MiB/s, done.
+HEAD is now at 8c778f9 Honor authored scale for Cube support geometry (#185)
+[2026-11-01T08:02:41Z] ev10_cs: confirmation of /content/results/perc2e10css43_glock_public/ep10/best/policy.safetensors (sha256 ca7c4e3a162a) on the clean evaluator 8c778f9, modified files 0
+[2026-11-01T08:03:25Z] ev10_cs: confirmation draw 1 rc 0 sim_vs_ref 0.512 overflow lines 0
+[2026-11-01T08:03:58Z] ev10_cs: confirmation draw 2 rc 0 sim_vs_ref 0.5623 overflow lines 0
+[2026-11-01T08:04:30Z] ev10_cs: confirmation draw 3 rc 0 sim_vs_ref 0.5807 overflow lines 0
+[2026-11-01T08:05:02Z] ev10_cs: confirmation draw 4 rc 0 sim_vs_ref 0.574 overflow lines 0
+[2026-11-01T08:05:35Z] ev10_cs: confirmation draw 5 rc 0 sim_vs_ref 0.6002 overflow lines 0
+[2026-11-01T08:06:07Z] ev10_cs: confirmation draw 6 rc 0 sim_vs_ref 0.461 overflow lines 0
+[2026-11-01T08:06:39Z] ev10_cs: confirmation draw 7 rc 0 sim_vs_ref 0.5019 overflow lines 0
+[2026-11-01T08:07:12Z] ev10_cs: confirmation draw 8 rc 0 sim_vs_ref 0.4226 overflow lines 0
+[2026-11-01T08:07:44Z] ev10_cs: confirmation draw 9 rc 0 sim_vs_ref 0.5033 overflow lines 0
+[2026-11-01T08:08:16Z] ev10_cs: confirmation draw 10 rc 0 sim_vs_ref 0.6044 overflow lines 0
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/h5_summary.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r1/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r1/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r2/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r2/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r3/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r3/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r4/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r4/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r5/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r5/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r6/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r6/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r7/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r7/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r8/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r8/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r9/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r9/ep10/episode_000010.json
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r10/ep10/episode_000010.parquet
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261031-h5p7-1a7cdff/results/h5/r10/ep10/episode_000010.json
+[2026-11-01T08:12:30Z] ev10_cs scores: conf (own V): 10 rollouts, 10 scored; r1 V s_v_r 0.5120 RPE 13.25 P s_v_r 0.4969 RPE 12.85; r2 V s_v_r 0.5623 RPE 14.10 P s_v_r 0.5359 RPE 13.94; r3 V s_v_r 0.5807 RPE 12.45 P s_v_r 0.5512 RPE 12.21; r4 V s_v_r 0.5740 RPE 12.63 P s_v_r 0.5509 RPE 12.25; r5 V s_v_r 0.6002 RPE 18.07 P s_v_r 0.5699 RPE 17.96; r6 V s_v_r 0.4610 RPE 21.42 P s_v_r 0.4433 RPE 21.12; r7 V s_v_r 0.5019 RPE 19.54 P s_v_r 0.4880 RPE 19.27; r8 V s_v_r 0.4226 RPE 76.91 P s_v_r 0.4142 RPE 76.49; r9 V s_v_r 0.5033 RPE 13.78 P s_v_r 0.4833 RPE 13.65; r10 V s_v_r 0.6044 RPE 9.03 P s_v_r 0.5827 RPE 8.97 old (own P): 1 rollouts, 1 scored; r1 V s_v_r 0.4717 RPE 15.96 P s_v_r 0.4563 RPE 15.76 packed (own P): 10 rollouts, 10 scored; r1 V s_v_r 0.4563 RPE 16.16 P s_v_r 0.4478 RPE 15.96; r2 V s_v_r 0.4724 RPE 15.95 P s_v_r 0.4590 RPE 15.76; r3 V s_v_r 0.4639 RPE 15.99 P s_v_r 0.4517 RPE 15.81; r4 V s_v_r 0.4639 RPE 16.03 P s_v_r 0.4513 RPE 15.84; r5 V s_v_r 0.4569 RPE 16.09 P s_v_r 0.4505 RPE 15.90; r6 V s_v_r 0.4717 RPE 16.01 P s_v_r 0.4575 RPE 15.81; r7 V s_v_r 0.4715 RPE 15.91 P s_v_r 0.4583 RPE 15.72; r8 V s_v_r 0.4569 RPE 16.05 P s_v_r 0.4513 RPE 15.86; r9 V s_v_r 0.4563 RPE 16.20 P s_v_r 0.4466 RPE 16.01; r10 V s_v_r 0.4623 RPE 16.08 P s_v_r 0.4513 RPE 15.89 train42 (own V): 10 rollouts, 10 scored; r1 V s_v_r 0.4612 RPE 22.50 P s_v_r 0.4589 RPE 22.17; r2 V s_v_r 0.5388 RPE 13.12 P s_v_r 0.5295 RPE 12.88; r3 V s_v_r 0.4606 RPE 17.73 P s_v_r 0.4550 RPE 17.40; r4 V s_v_r 0.5522 RPE 12.72 P s_v_r 0.5375 RPE 12.48; r5 V s_v_r 0.4948 RPE 14.85 P s_v_r 0.4825 RPE 14.66; r6 V s_v_r 0.3682 RPE 58.14 P s_v_r 0.3665 RPE 57.72; r7 V s_v_r 0.3661 RPE 18.78 P s_v_r 0.3692 RPE 18.39; r8 V s_v_r 0.5016 RPE 27.96 P s_v_r 0.4837 RPE 27.70; r9 V s_v_r 0.5584 RPE 19.45 P s_v_r 0.5448 RPE 19.16; r10 V s_v_r 0.4664 RPE 22.24 P s_v_r 0.4569 RPE 21.96 train43 (own V): 10 rollouts, 10 scored; r1 V s_v_r 0.3962 RPE 18.46 P s_v_r 0.3868 RPE 18.15; r2 V s_v_r 0.3820 RPE 25.44 P s_v_r 0.3713 RPE 25.25; r3 V s_v_r 0.5598 RPE 17.51 P s_v_r 0.5318 RPE 17.19; r4 V s_v_r 0.5903 RPE 27.10 P s_v_r 0.5642 RPE 27.00; r5 V s_v_r 0.5433 RPE 16.88 P s_v_r 0.5270 RPE 16.64; r6 V s_v_r 0.5351 RPE 20.70 P s_v_r 0.5184 RPE 20.44; r7 V s_v_r 0.4637 RPE 19.01 P s_v_r 0.4536 RPE 18.72; r8 V s_v_r 0.5526 RPE 7.76 P s_v_r 0.5359 RPE 7.53; r9 V s_v_r 0.5153 RPE 19.37 P s_v_r 0.4936 RPE 19.07; r10 V s_v_r 0.5578 RPE 19.68 P s_v_r 0.5345 RPE 19.41 
+[2026-11-01T08:12:30Z] ev10_cs verify: VERIFIED :: set ev10cs5 :: chosen 43 :: confirmation draws 10 (rc {'0': 10}) :: own-reference checks 41/41
+[2026-11-01T08:12:31Z] ev10_cs RESULT: SWAP-ELIGIBLE [EQUAL FLOOR] :: pack 10: INCLUDE in pack 10 (gain V 0.069, P 0.0591; bar 0.02) :: every clause holds on both references :: a_V ok margin 0.069 | b_V ok margin 0.0 | c_V ok margin 2.1039 | s_V ok margin 0.0903 | a_P ok margin 0.0591 | b_P ok margin 0.0 | c_P ok margin 2.0515 | s_P ok margin 0.0906 :: gate met {'42': 0.4768, '43': 0.5096} :: overflow lines per training log {s42: 992, s43: 660} (bar 1000) :: beige r1 lift max {s42: 239.8, s43: 12.7} cm (clause >= 5.0: True) :: chosen seed 43 :: set ev10cs5 (MD5SUMS 045d8921d5fe)

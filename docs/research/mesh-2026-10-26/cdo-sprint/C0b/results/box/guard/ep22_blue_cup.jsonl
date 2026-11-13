@@ -1,0 +1,3 @@
+{"file": "/content/results/c0b/pts/A/ep22_blue_cup.npz", "half_m": 0.3, "kept": 1434967, "near_face": 3161, "share": 0.002203, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/A/ep22_blue_cup.npz", "half_m": 0.45, "kept": 1791919, "near_face": 0, "share": 0.0, "max_abs_mm": 434.0, "rebuild": false}
+{"file": "/content/results/c0b/pts/B/ep22_blue_cup.npz", "half_m": 0.3, "kept": 1222465, "near_face": 0, "share": 0.0, "max_abs_mm": 286.0, "rebuild": false}

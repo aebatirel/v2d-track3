@@ -1,0 +1,6 @@
+ep2: R 0.9626  RPE 2.107 cm  MPPE 0.986 cm  white_pot episode 0.9911, white_pot_lid episode 0.9340
+ep11: R 0.8978  RPE 1.739 cm  MPPE 1.637 cm  blue_cup episode 0.8622, beige_cup library 0.9334
+ep13: R 0.9283  RPE 1.913 cm  MPPE 1.534 cm  blue_cup episode 0.9329, plastic_dish_rack episode 0.9237
+ep18: R 0.9144  RPE 4.068 cm  MPPE 1.632 cm  mini_sweeper library 0.8978, mini_dust_pan library 0.9309
+mean over 4: R 0.92578  RPE 2.4566 cm  MPPE 1.4474 cm
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/scores/Po_partial.json

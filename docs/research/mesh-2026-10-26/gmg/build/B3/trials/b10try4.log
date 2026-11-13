@@ -1,0 +1,2 @@
+[  177.4s] 1/1 gen/pixal_mv/ep41_white_pot_s42: raw wt False -> decode wt True faces 3876 cov 0.9499 comp 1 flags ['refine_capped', 'budget_retry', 'fallback_thin'] (177.4 s)
+[  177.4s] B.10: 1/1 watertight after decode -> None

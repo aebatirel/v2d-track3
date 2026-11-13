@@ -1,0 +1,329 @@
+{
+ "note": "ORACLE DIAGNOSTIC, post hoc (after the T1 reading); mechanism check only, adopts nothing.",
+ "episodes": {
+  "11": {
+   "names": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "kit_rotation_anchor": "blue_cup",
+   "kit_translation_anchor": "blue_cup",
+   "refineP": {
+    "frozen": [
+     "blue_cup"
+    ],
+    "lib": {
+     "S2": 0.901232,
+     "S6S2": 0.96875,
+     "S2_then_S6": 0.96875,
+     "delta_S6S2": 0.067518,
+     "delta_S2_then_S6": 0.067518
+    },
+    "star": {
+     "S2": 0.881387,
+     "S6S2": 0.952327,
+     "S2_then_S6": 0.949589,
+     "delta_S6S2": 0.07094,
+     "delta_S2_then_S6": 0.068203
+    },
+    "anchor_f0_shift": {
+     "cm": 0.0171,
+     "deg": 0.9955
+    }
+   },
+   "Po": {
+    "frozen": [
+     "blue_cup"
+    ],
+    "lib": {
+     "S2": 0.901232,
+     "S6S2": 0.96875,
+     "S2_then_S6": 0.96875,
+     "delta_S6S2": 0.067518,
+     "delta_S2_then_S6": 0.067518
+    },
+    "star": {
+     "S2": 0.881387,
+     "S6S2": 0.952327,
+     "S2_then_S6": 0.949589,
+     "delta_S6S2": 0.07094,
+     "delta_S2_then_S6": 0.068203
+    },
+    "anchor_f0_shift": {
+     "cm": 0.0171,
+     "deg": 0.9955
+    }
+   }
+  },
+  "12": {
+   "names": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "kit_rotation_anchor": "plastic_dish_rack",
+   "kit_translation_anchor": "blue_cup",
+   "refineP": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.976001,
+     "S6S2": 0.975656,
+     "S2_then_S6": 0.976001,
+     "delta_S6S2": -0.000345,
+     "delta_S2_then_S6": 0.0
+    },
+    "star": {
+     "S2": 0.97393,
+     "S6S2": 0.981181,
+     "S2_then_S6": 0.979972,
+     "delta_S6S2": 0.007251,
+     "delta_S2_then_S6": 0.006043
+    },
+    "anchor_f0_shift": {
+     "cm": 0.0341,
+     "deg": 0.2179
+    }
+   },
+   "Po": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.976347,
+     "S6S2": 0.975656,
+     "S2_then_S6": 0.976347,
+     "delta_S6S2": -0.000691,
+     "delta_S2_then_S6": 0.0
+    },
+    "star": {
+     "S2": 0.97393,
+     "S6S2": 0.981181,
+     "S2_then_S6": 0.979972,
+     "delta_S6S2": 0.007251,
+     "delta_S2_then_S6": 0.006043
+    },
+    "anchor_f0_shift": {
+     "cm": 0.0349,
+     "deg": 0.2377
+    }
+   }
+  },
+  "13": {
+   "names": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "kit_rotation_anchor": "plastic_dish_rack",
+   "kit_translation_anchor": "blue_cup",
+   "refineP": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.964803,
+     "S6S2": 0.969572,
+     "S2_then_S6": 0.969408,
+     "delta_S6S2": 0.00477,
+     "delta_S2_then_S6": 0.004605
+    },
+    "star": {
+     "S2": 0.903783,
+     "S6S2": 0.904112,
+     "S2_then_S6": 0.903783,
+     "delta_S6S2": 0.000329,
+     "delta_S2_then_S6": 0.0
+    },
+    "anchor_f0_shift": {
+     "cm": 0.1034,
+     "deg": 0.2204
+    }
+   },
+   "Po": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.962336,
+     "S6S2": 0.969572,
+     "S2_then_S6": 0.969243,
+     "delta_S6S2": 0.007237,
+     "delta_S2_then_S6": 0.006908
+    },
+    "star": {
+     "S2": 0.905099,
+     "S6S2": 0.904112,
+     "S2_then_S6": 0.905099,
+     "delta_S6S2": -0.000987,
+     "delta_S2_then_S6": 0.0
+    },
+    "anchor_f0_shift": {
+     "cm": 0.1168,
+     "deg": 0.2624
+    }
+   }
+  },
+  "26": {
+   "names": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "kit_rotation_anchor": "plastic_dish_rack",
+   "kit_translation_anchor": "plastic_dish_rack",
+   "refineP": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.967761,
+     "S6S2": 0.973101,
+     "S2_then_S6": 0.969937,
+     "delta_S6S2": 0.00534,
+     "delta_S2_then_S6": 0.002176
+    },
+    "star": {
+     "S2": 0.961036,
+     "S6S2": 0.964794,
+     "S2_then_S6": 0.962816,
+     "delta_S6S2": 0.003758,
+     "delta_S2_then_S6": 0.00178
+    },
+    "anchor_f0_shift": {
+     "cm": 0.1093,
+     "deg": 0.5652
+    }
+   },
+   "Po": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.971717,
+     "S6S2": 0.978639,
+     "S2_then_S6": 0.973299,
+     "delta_S6S2": 0.006922,
+     "delta_S2_then_S6": 0.001582
+    },
+    "star": {
+     "S2": 0.96519,
+     "S6S2": 0.968354,
+     "S2_then_S6": 0.966772,
+     "delta_S6S2": 0.003165,
+     "delta_S2_then_S6": 0.001582
+    },
+    "anchor_f0_shift": {
+     "cm": 0.1169,
+     "deg": 0.4808
+    }
+   }
+  },
+  "27": {
+   "names": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "kit_rotation_anchor": "plastic_dish_rack",
+   "kit_translation_anchor": "plastic_dish_rack",
+   "refineP": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.962652,
+     "S6S2": 0.96189,
+     "S2_then_S6": 0.962652,
+     "delta_S6S2": -0.000762,
+     "delta_S2_then_S6": 0.0
+    },
+    "star": {
+     "S2": 0.933943,
+     "S6S2": 0.933689,
+     "S2_then_S6": 0.933943,
+     "delta_S6S2": -0.000254,
+     "delta_S2_then_S6": 0.0
+    },
+    "anchor_f0_shift": {
+     "cm": 0.0906,
+     "deg": 0.1251
+    }
+   },
+   "Po": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.963415,
+     "S6S2": 0.961382,
+     "S2_then_S6": 0.963415,
+     "delta_S6S2": -0.002033,
+     "delta_S2_then_S6": 0.0
+    },
+    "star": {
+     "S2": 0.93623,
+     "S6S2": 0.933943,
+     "S2_then_S6": 0.93623,
+     "delta_S6S2": -0.002287,
+     "delta_S2_then_S6": 0.0
+    },
+    "anchor_f0_shift": {
+     "cm": 0.0931,
+     "deg": 0.1764
+    }
+   }
+  },
+  "31": {
+   "names": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "kit_rotation_anchor": "mini_sweeper",
+   "kit_translation_anchor": "mini_sweeper",
+   "refineP": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.854957,
+     "S6S2": 0.85625,
+     "S2_then_S6": 0.852802,
+     "delta_S6S2": 0.001293,
+     "delta_S2_then_S6": -0.002155
+    },
+    "star": {
+     "S2": 0.872306,
+     "S6S2": 0.874892,
+     "S2_then_S6": 0.874892,
+     "delta_S6S2": 0.002586,
+     "delta_S2_then_S6": 0.002586
+    },
+    "anchor_f0_shift": {
+     "cm": 0.0,
+     "deg": 0.0
+    }
+   },
+   "Po": {
+    "frozen": [
+     "plastic_dish_rack"
+    ],
+    "lib": {
+     "S2": 0.823922,
+     "S6S2": 0.830819,
+     "S2_then_S6": 0.82931,
+     "delta_S6S2": 0.006897,
+     "delta_S2_then_S6": 0.005388
+    },
+    "star": {
+     "S2": 0.867349,
+     "S6S2": 0.872953,
+     "S2_then_S6": 0.872953,
+     "delta_S6S2": 0.005603,
+     "delta_S2_then_S6": 0.005603
+    },
+    "anchor_f0_shift": {
+     "cm": 0.0,
+     "deg": 0.0
+    }
+   }
+  }
+ }
+}

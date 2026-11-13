@@ -1,0 +1,9 @@
+[09:54:45] b4_extract ep12 objects ['blue_cup', 'plastic_dish_rack'] det False start {'commit': '626ce130e6eaafc2a88e73e0c9b30bf479a6b405', 'dirty': ''}
+[09:58:57] hands 251.0 s: frames with hand 180 / 181
+[10:01:11] ep12 pass 0: 91 frames, 7005160 samples, voxels [218441, 94856], 133.6 s
+[10:13:12] extract timing {"table_s": 0.8, "pass0_samples_s": 123.5, "pass0_votes_s": 10.0, "pass0_s": 133.6, "pass0_voxels": [218441, 94856], "pass1_s": 372.9, "pass2_s": 4.3, "pass3_s": 1.7, "pass4_grids_s": 161.7, "sigma_s": 172.4, "total_s": 851.4}
+[10:13:22] sanity blue_cup: 77/91 good, flags [], below 0.1538, resid {'median': 1.035, 'p90': 2.028, 'max': 3.345}
+[10:13:43] sanity plastic_dish_rack: 91/91 good, flags [], below 0.0, resid {'median': 0.967, 'p90': 1.021, 'max': 1.104}
+[10:16:34] split test blue_cup: {"plastic_dish_rack": [true, 9.979, 43.091, 41.0]}
+[10:18:40] split test plastic_dish_rack: {"blue_cup": [true, 5.986, 49.921, 43.499]}
+[10:18:44] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep12 total 1438.5 s

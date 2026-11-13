@@ -1,0 +1,62 @@
+{
+ "inp": "/content/pf_in/ep14/base_unbridged.parquet",
+ "out": "/content/refs/perc2mck/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/f29e0a6542874341a5c3503ed1d63fff-0.parquet",
+ "events": "blue_cup:46",
+ "params": {
+  "DRIFT_CM": 3.0,
+  "PAIR": 20,
+  "MAX_BACK": 30,
+  "JUMP_CM": 4.0,
+  "JUMP_DEG": 30.0,
+  "RAMP": 6
+ },
+ "changed": {
+  "blue_cup": {
+   "frames": 9,
+   "max_cm": 18.8
+  }
+ },
+ "report": [
+  {
+   "object": "blue_cup",
+   "events": [
+    46
+   ],
+   "spans": [
+    {
+     "events": [
+      46
+     ],
+     "span": [
+      37,
+      45
+     ],
+     "why": "drift out of the hand before the re-acquisition",
+     "max_shift_cm": 18.8,
+     "jump_after_bridge": [
+      0.4,
+      9.6
+     ],
+     "d_cm_around": {
+      "34": 0.6,
+      "35": 0.6,
+      "36": 2.4,
+      "37": 3.1,
+      "38": 5.2,
+      "39": 8.3,
+      "40": 10.8,
+      "41": 13.8,
+      "42": 13.9,
+      "43": 13.3,
+      "44": 12.7,
+      "45": 11.9,
+      "46": 0.3,
+      "47": 0.1,
+      "48": 0.3,
+      "49": 0.6
+     }
+    }
+   ]
+  }
+ ]
+}

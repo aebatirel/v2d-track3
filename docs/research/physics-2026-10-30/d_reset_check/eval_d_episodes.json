@@ -1,0 +1,282 @@
+{
+ "14": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   2,
+   10,
+   12,
+   16,
+   23
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 0.63,
+   "p90": 1.569,
+   "max": 3.15,
+   "share_gt_1cm": 0.312
+  },
+  "after_hold_diff_cm": {
+   "median": 2.449,
+   "max": 96.83,
+   "share_gt_1cm": 0.875
+  },
+  "nodr_hold_motion_cm": {
+   "median": 2.197,
+   "max": 5.29,
+   "share_gt_1cm": 0.75
+  },
+  "worst_worlds": [
+   {
+    "world": 13,
+    "frame": 118,
+    "hold_end_diff_cm": 3.15,
+    "nodr_hold_motion_cm": 3.53
+   },
+   {
+    "world": 24,
+    "frame": 75,
+    "hold_end_diff_cm": 2.76,
+    "nodr_hold_motion_cm": 2.85
+   },
+   {
+    "world": 26,
+    "frame": 61,
+    "hold_end_diff_cm": 2.15,
+    "nodr_hold_motion_cm": 2.03
+   }
+  ],
+  "ref_md5": "10d5f3ba6b7368ed30dad9d0c9c30df1",
+  "objects": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "embodiment": "sharpa_hands_mid"
+ },
+ "16": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   2,
+   11,
+   13,
+   17,
+   18
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 0.158,
+   "p90": 2.075,
+   "max": 4.0,
+   "share_gt_1cm": 0.25
+  },
+  "after_hold_diff_cm": {
+   "median": 1.478,
+   "max": 14.82,
+   "share_gt_1cm": 0.594
+  },
+  "nodr_hold_motion_cm": {
+   "median": 0.494,
+   "max": 6.16,
+   "share_gt_1cm": 0.281
+  },
+  "worst_worlds": [
+   {
+    "world": 12,
+    "frame": 98,
+    "hold_end_diff_cm": 4.0,
+    "nodr_hold_motion_cm": 6.16
+   },
+   {
+    "world": 8,
+    "frame": 96,
+    "hold_end_diff_cm": 2.61,
+    "nodr_hold_motion_cm": 1.98
+   },
+   {
+    "world": 16,
+    "frame": 38,
+    "hold_end_diff_cm": 2.24,
+    "nodr_hold_motion_cm": 0.84
+   }
+  ],
+  "ref_md5": "f7e2ea9260106425be6163553aac5af9",
+  "objects": [
+   "plastic_dish_rack",
+   "wooden_spoon"
+  ],
+  "embodiment": "sharpa_hands_mid"
+ },
+ "33": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   4,
+   23,
+   27,
+   35,
+   37
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 0.566,
+   "p90": 1.512,
+   "max": 2.6,
+   "share_gt_1cm": 0.281
+  },
+  "after_hold_diff_cm": {
+   "median": 2.258,
+   "max": 60.63,
+   "share_gt_1cm": 0.781
+  },
+  "nodr_hold_motion_cm": {
+   "median": 1.417,
+   "max": 5.25,
+   "share_gt_1cm": 0.781
+  },
+  "worst_worlds": [
+   {
+    "world": 23,
+    "frame": 91,
+    "hold_end_diff_cm": 2.6,
+    "nodr_hold_motion_cm": 0.54
+   },
+   {
+    "world": 30,
+    "frame": 23,
+    "hold_end_diff_cm": 2.1,
+    "nodr_hold_motion_cm": 2.53
+   },
+   {
+    "world": 9,
+    "frame": 27,
+    "hold_end_diff_cm": 2.01,
+    "nodr_hold_motion_cm": 4.13
+   }
+  ],
+  "ref_md5": "2a7173ab1d4248433bd049bc43f6878a",
+  "objects": [
+   "blue_cup",
+   "wooden_spoon"
+  ],
+  "embodiment": "sharpa_hands_mid"
+ },
+ "25": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   4,
+   24,
+   27,
+   36,
+   38
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 0.6,
+   "p90": 2.115,
+   "max": 6.7,
+   "share_gt_1cm": 0.344
+  },
+  "after_hold_diff_cm": {
+   "median": 2.278,
+   "max": 19.04,
+   "share_gt_1cm": 0.625
+  },
+  "nodr_hold_motion_cm": {
+   "median": 0.588,
+   "max": 7.48,
+   "share_gt_1cm": 0.219
+  },
+  "worst_worlds": [
+   {
+    "world": 24,
+    "frame": 170,
+    "hold_end_diff_cm": 6.7,
+    "nodr_hold_motion_cm": 4.14
+   },
+   {
+    "world": 2,
+    "frame": 156,
+    "hold_end_diff_cm": 2.85,
+    "nodr_hold_motion_cm": 7.48
+   },
+   {
+    "world": 7,
+    "frame": 175,
+    "hold_end_diff_cm": 2.52,
+    "nodr_hold_motion_cm": 6.6
+   }
+  ],
+  "ref_md5": "71ac95f3764170f29f02fa657e7c057c",
+  "objects": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "embodiment": "default"
+ },
+ "30": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   3,
+   17,
+   20,
+   26,
+   27
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 1.045,
+   "p90": 1.944,
+   "max": 3.28,
+   "share_gt_1cm": 0.562
+  },
+  "after_hold_diff_cm": {
+   "median": 2.461,
+   "max": 13.74,
+   "share_gt_1cm": 0.906
+  },
+  "nodr_hold_motion_cm": {
+   "median": 1.276,
+   "max": 2.84,
+   "share_gt_1cm": 0.688
+  },
+  "worst_worlds": [
+   {
+    "world": 27,
+    "frame": 166,
+    "hold_end_diff_cm": 3.28,
+    "nodr_hold_motion_cm": 1.9
+   },
+   {
+    "world": 8,
+    "frame": 146,
+    "hold_end_diff_cm": 2.32,
+    "nodr_hold_motion_cm": 0.99
+   },
+   {
+    "world": 28,
+    "frame": 252,
+    "hold_end_diff_cm": 2.17,
+    "nodr_hold_motion_cm": 2.84
+   }
+  ],
+  "ref_md5": "dd464c96184e84400e62ffcfa17a6ac4",
+  "objects": [
+   "mini_sweeper",
+   "plastic_dish_rack"
+  ],
+  "embodiment": "default"
+ }
+}

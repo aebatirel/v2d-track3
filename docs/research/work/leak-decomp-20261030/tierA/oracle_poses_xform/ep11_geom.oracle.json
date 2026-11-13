@@ -1,0 +1,122 @@
+{
+ "episode": 11,
+ "align": "gravity",
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 137,
+ "note": "EVALUATION-ONLY oracle built from mocap; never use for eval-episode inference",
+ "perceived_table": {
+  "normal": [
+   -0.09551,
+   -0.76936,
+   -0.63164
+  ],
+  "inlier_frac": 0.576,
+  "rms_mm": 0.47,
+  "yaw_deg": -100.745
+ },
+ "G": [
+  [
+   0.014181,
+   0.995327,
+   -0.095515,
+   0.089788
+  ],
+  [
+   0.633425,
+   -0.082855,
+   -0.769356,
+   0.691161
+  ],
+  [
+   -0.773674,
+   -0.049591,
+   -0.63164,
+   0.925921
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "mesh_frame_offset": {
+  "blue_cup": {
+   "rot_deg": 0.54,
+   "off_cm": 0.18
+  },
+  "beige_cup": {
+   "rot_deg": 90.1,
+   "off_cm": 1.82
+  }
+ },
+ "mocap_f0_bottom_z_cm": {
+  "blue_cup": 60.06,
+  "beige_cup": 60.22
+ },
+ "up_vs_table_normal_deg": 0.006,
+ "f0_bottom_above_table_cm": {
+  "blue_cup": 0.75,
+  "beige_cup": -1.05
+ },
+ "expected_snap_cm": {
+  "blue_cup": -0.75,
+  "beige_cup": 1.05
+ },
+ "support_check_ok": true,
+ "f0_centre_vs_perception_cm": {
+  "blue_cup": 0.81,
+  "beige_cup": 1.02
+ },
+ "perception_vs_mocap": {
+  "AUC": 0.8978,
+  "per_obj_AUC": {
+   "blue_cup": 0.8622,
+   "beige_cup": 0.9334
+  }
+ },
+ "raw_vs_mocap": {
+  "AUC": 0.9973,
+  "per_obj_AUC": {
+   "blue_cup": 1.0,
+   "beige_cup": 0.9945
+  }
+ },
+ "after_snap_vs_mocap": {
+  "AUC": 0.9688,
+  "per_obj_AUC": {
+   "blue_cup": 1.0,
+   "beige_cup": 0.9375
+  }
+ },
+ "xform": {
+  "file": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "kind": "geom",
+  "note": "X from tools/xstar_fit.py, not the kit registration; the *_star scores take the tracks to scan frames by the same X"
+ },
+ "perception_vs_mocap_star": {
+  "AUC": 0.8739,
+  "per_obj_AUC": {
+   "blue_cup": 0.8618,
+   "beige_cup": 0.8859
+  }
+ },
+ "raw_vs_mocap_star": {
+  "AUC": 1.0,
+  "per_obj_AUC": {
+   "blue_cup": 1.0,
+   "beige_cup": 1.0
+  }
+ },
+ "after_snap_vs_mocap_star": {
+  "AUC": 0.9688,
+  "per_obj_AUC": {
+   "blue_cup": 1.0,
+   "beige_cup": 0.9375
+  }
+ }
+}

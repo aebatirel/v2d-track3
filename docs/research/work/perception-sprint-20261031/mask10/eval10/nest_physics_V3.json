@@ -1,0 +1,130 @@
+{
+ "tool": "tools/nest_physics.py",
+ "argv": [
+  "/home/user/v2d-track3/tools/nest_physics.py",
+  "--in",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/pre",
+  "--popt",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/pre/pose_opt.json",
+  "--pieces",
+  "/home/user/v2d-track3/meshes/carve/ev10",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/screen/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep10/hands_refined.npz",
+  "--mode",
+  "inner",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/pre_phys"
+ ],
+ "mode": "inner",
+ "pieces": "/home/user/v2d-track3/meshes/carve/ev10",
+ "dt": 0.002,
+ "settle_s": 1.0,
+ "hand_cm": 5.0,
+ "inputs": {
+  "poses.npz": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/pre/poses.npz",
+   "sha256": "d27b338364c7942beb9976efe787907319ba5b8f53cfa6da58ace85ed156331b"
+  },
+  "pose_opt.json": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/pre/pose_opt.json",
+   "sha256": "2c67fbbff1abd4be4c9c2c486e8a3c775278e9fb790ef34384ceb004f42f0f7e"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/screen/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep10/hands_refined.npz",
+   "sha256": "cdd523863bc43654da8967c68d9fdbf356077d2a24a8efc7d6beeaf9fe272bd1"
+  }
+ },
+ "code": {
+  "nest_physics_sha256": "e95000361ca4beccdb7fffcc0ad7769963a03c3a03161d55fa6d5a90956fde26",
+  "refine": {
+   "refine_sha256": "8661c47695821a269c1fbc57e24b0318d594502656749fbbc72c4818b6806bee",
+   "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+   "commit": "3e1bdd0d8acfe795485dcfcd0390c6af2b6e8a5b"
+  }
+ },
+ "mujoco": "3.8.1",
+ "windows": [
+  {
+   "outer": "blue_cup",
+   "inner": "beige_cup",
+   "outer_snapped_to_frame": 53,
+   "window": [
+    53,
+    161
+   ],
+   "frames_settled": 39,
+   "runs": [
+    [
+     122,
+     161
+    ]
+   ],
+   "dz_cm": {
+    "beige_cup": {
+     "median": 0.344,
+     "min": 0.159,
+     "max": 0.447
+    }
+   },
+   "frames": {
+    "122": {
+     "start_min_contact_dist_mm": -9.72,
+     "end_speed_cm_s": 0.342,
+     "ncon_end": 66,
+     "beige_cup_dz_cm": 0.274,
+     "beige_cup_dxy_cm": 0.4
+    },
+    "127": {
+     "start_min_contact_dist_mm": -10.87,
+     "end_speed_cm_s": 0.126,
+     "ncon_end": 14,
+     "beige_cup_dz_cm": 0.228,
+     "beige_cup_dxy_cm": 0.448
+    },
+    "132": {
+     "start_min_contact_dist_mm": -10.64,
+     "end_speed_cm_s": 0.144,
+     "ncon_end": 16,
+     "beige_cup_dz_cm": 0.353,
+     "beige_cup_dxy_cm": 0.32
+    },
+    "137": {
+     "start_min_contact_dist_mm": -11.13,
+     "end_speed_cm_s": 0.589,
+     "ncon_end": 15,
+     "beige_cup_dz_cm": 0.22,
+     "beige_cup_dxy_cm": 0.272
+    },
+    "142": {
+     "start_min_contact_dist_mm": -10.01,
+     "end_speed_cm_s": 0.16,
+     "ncon_end": 20,
+     "beige_cup_dz_cm": 0.421,
+     "beige_cup_dxy_cm": 0.418
+    },
+    "147": {
+     "start_min_contact_dist_mm": -9.99,
+     "end_speed_cm_s": 0.532,
+     "ncon_end": 15,
+     "beige_cup_dz_cm": 0.426,
+     "beige_cup_dxy_cm": 0.441
+    },
+    "152": {
+     "start_min_contact_dist_mm": -10.25,
+     "end_speed_cm_s": 0.139,
+     "ncon_end": 18,
+     "beige_cup_dz_cm": 0.357,
+     "beige_cup_dxy_cm": 0.406
+    },
+    "157": {
+     "start_min_contact_dist_mm": -10.04,
+     "end_speed_cm_s": 0.415,
+     "ncon_end": 14,
+     "beige_cup_dz_cm": 0.363,
+     "beige_cup_dxy_cm": 0.499
+    }
+   }
+  }
+ ],
+ "seconds": 6.8
+}

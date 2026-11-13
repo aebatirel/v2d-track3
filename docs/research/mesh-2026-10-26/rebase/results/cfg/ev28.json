@@ -1,0 +1,23 @@
+{
+ "set": "ev28",
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261024-pack-31ef267/refs/perc2mck/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet",
+ "usda": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/dl/runs/20261024-pack-31ef267/refs/perc2mck/ep28/reconstructed_stage/t3_ep028_support.usda",
+ "target": "white_pot",
+ "packed_count": 31,
+ "objects": {
+  "white_pot": {
+   "visual": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/assets_v3/mesh/white_pot/white_pot.glb",
+   "urdf": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/assets_v3/urdf/white_pot_rigid.urdf",
+   "packed": {
+    "npz": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/packed_coacd/white_pot.npz"
+   }
+  },
+  "plastic_dish_rack": {
+   "visual": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/assets_v3/mesh/plastic_dish_rack/plastic_dish_rack.glb",
+   "urdf": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/assets_v3/urdf/plastic_dish_rack_rigid.urdf",
+   "packed": {
+    "npz": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/packed_coacd2/plastic_dish_rack.npz"
+   }
+  }
+ }
+}

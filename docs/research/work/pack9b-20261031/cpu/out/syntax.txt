@@ -1,0 +1,22 @@
+bash -n OK ops/jobs/mass_eval.sh
+bash -n OK ops/jobs/glock_public.sh
+bash -n OK ops/jobs/hard_ab.sh
+bash -n OK ops/jobs/pack_eval.sh
+bash -n OK ops/jobs/h5_reeval.sh
+bash -n OK docs/research/work/pack9b-20261031/cpu/mock/equiv.sh
+bash -n OK docs/research/work/pack9b-20261031/cpu/mock/neg.sh
+bash -n OK docs/research/work/pack9b-20261031/cpu/mock/run_all.sh
+bash -n OK docs/research/work/pack9b-20261031/cpu/mock/run_box.sh
+bash -n OK docs/research/work/pack9b-20261031/cpu/mock/setup.sh
+py_compile OK tools/dr_arm.py
+py_compile OK tools/dr_eval_merge.py
+py_compile OK tools/dr_eval_verify.py
+py_compile OK tools/dr_pack_check.py
+py_compile OK tools/dr_score.py
+py_compile OK tools/dr_verdict.py
+py_compile OK ops/box/patch_flashchord_dr.py
+py_compile OK docs/research/work/pack9b-20261031/cpu/mock/check_pack.py
+py_compile OK docs/research/work/pack9b-20261031/cpu/mock/check_train.py
+py_compile OK docs/research/work/pack9b-20261031/cpu/mock/hfstub.py
+py_compile OK docs/research/work/pack9b-20261031/cpu/mock/stub.py
+py_compile OK docs/research/work/pack9b-20261031/cpu/rule_tests/test_verdict.py

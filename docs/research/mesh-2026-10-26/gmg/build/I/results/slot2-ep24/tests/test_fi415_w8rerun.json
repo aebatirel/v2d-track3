@@ -1,0 +1,408 @@
+{
+ "fi4_rev": 15,
+ "fi415": {
+  "w8": {
+   "summary": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4",
+      "waiver_gate_fail:plate_body_over_cap"
+     ],
+     "submitted": false,
+     "old": null,
+     "in_scope": true,
+     "gate_fail": "plate_body_over_cap",
+     "plate_t_mm": 6.81,
+     "crosslap": {
+      "W_x_mm": 126.07,
+      "grid_points": 647,
+      "D_sum_mm": 134.55,
+      "diff_mm": 8.48,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "fi4_rev": 15,
+     "t_down_mm": 7.86,
+     "t_all_mm": 6.811,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 116,
+      "vertices": 112,
+      "reflex_vertices": 54,
+      "area_cm2": 310.96,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       238.0,
+       142.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 130.0,
+      "ends_outer_10": 142.0,
+      "end_lo": 142.0,
+      "end_hi": 141.0,
+      "end_minus_waist": 12.0,
+      "max": 142.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 23322,
+       "free": 0.0364,
+       "unknown": 0.0,
+       "observed": 0.9636,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 25347,
+       "free": 0.1118,
+       "unknown": 0.0,
+       "observed": 0.8882,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 6.79,
+      "rectangle_free_cm3": 22.67,
+      "ratio_polygon_to_rectangle": 0.326
+     },
+     "default_pieces": {
+      "n": 68,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 12,
+      "all_convex": true,
+      "ring_area_mm2": 31096.0,
+      "parts_area_mm2": 31096.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 72,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 30509.619,
+      "parts_area_mm2": 30509.619,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 72.69,
+     "u_e_poly_mm": 66.71,
+     "u_rect_mm": 71.29,
+     "entry_edge_shift_mm": 4.59,
+     "body_why": null
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4",
+      "waiver_gate_fail:plate_body_over_cap"
+     ],
+     "submitted": false,
+     "old": null,
+     "in_scope": true,
+     "gate_fail": "plate_body_over_cap",
+     "plate_t_mm": 6.81,
+     "crosslap": {
+      "W_x_mm": 126.07,
+      "grid_points": 647,
+      "D_sum_mm": 134.55,
+      "diff_mm": 8.48,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "plane_pair",
+     "plate_why": null,
+     "fi4_rev": 15,
+     "t_down_mm": 5.107,
+     "t_all_mm": 6.81,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 122,
+      "vertices": 116,
+      "reflex_vertices": 56,
+      "area_cm2": 309.72,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       238.0,
+       142.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 130.0,
+      "ends_outer_10": 140.0,
+      "end_lo": 140.0,
+      "end_hi": 142.0,
+      "end_minus_waist": 10.0,
+      "max": 142.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 23229,
+       "free": 0.218,
+       "unknown": 0.0,
+       "observed": 0.782,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 25347,
+       "free": 0.2819,
+       "unknown": 0.0,
+       "observed": 0.7181,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 40.51,
+      "rectangle_free_cm3": 57.16,
+      "ratio_polygon_to_rectangle": 0.773
+     },
+     "default_pieces": {
+      "n": 70,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 30972.0,
+      "parts_area_mm2": 30972.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 83,
+      "cap": 82,
+      "over_cap": true,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 30414.365,
+      "parts_area_mm2": 30414.365,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 72.44,
+     "u_e_poly_mm": -65.1,
+     "u_rect_mm": -71.1,
+     "entry_edge_shift_mm": 6.0,
+     "body_why": null
+    }
+   },
+   "misses": [
+    "A CARVE not from the waiver route: gate plate_body_over_cap body None",
+    "B CARVE not from the waiver route: gate plate_body_over_cap body None"
+   ]
+  },
+  "w8b": {
+   "summary": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4",
+      "plate_pair_camera_side",
+      "waiver_gate_fail:plate_body_over_cap"
+     ],
+     "submitted": false,
+     "old": null,
+     "in_scope": true,
+     "gate_fail": "plate_body_over_cap",
+     "plate_t_mm": 6.82,
+     "crosslap": {
+      "W_x_mm": 130.0,
+      "grid_points": 577,
+      "D_sum_mm": 134.59,
+      "diff_mm": 4.59,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "camera_side_pair",
+     "plate_why": null,
+     "fi4_rev": 15,
+     "t_down_mm": 6.837,
+     "t_all_mm": 6.818,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 146,
+      "vertices": 138,
+      "reflex_vertices": 67,
+      "area_cm2": 311.0,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       238.0,
+       144.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 130.0,
+      "ends_outer_10": 140.0,
+      "end_lo": 142.0,
+      "end_hi": 140.0,
+      "end_minus_waist": 10.0,
+      "max": 142.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 23325,
+       "free": 0.0369,
+       "unknown": 0.0,
+       "observed": 0.9631,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 25704,
+       "free": 0.1242,
+       "unknown": 0.0,
+       "observed": 0.8758,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 6.89,
+      "rectangle_free_cm3": 25.54,
+      "ratio_polygon_to_rectangle": 0.297
+     },
+     "default_pieces": {
+      "n": 75,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 12,
+      "all_convex": true,
+      "ring_area_mm2": 31100.0,
+      "parts_area_mm2": 31100.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 90,
+      "cap": 82,
+      "over_cap": true,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 30509.526,
+      "parts_area_mm2": 30509.526,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 73.35,
+     "u_e_poly_mm": 65.85,
+     "u_rect_mm": 72.15,
+     "entry_edge_shift_mm": 6.31,
+     "body_why": null
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "owner_waiver_fi4",
+      "plate_pair_camera_side",
+      "waiver_gate_fail:plate_body_over_cap"
+     ],
+     "submitted": false,
+     "old": null,
+     "in_scope": true,
+     "gate_fail": "plate_body_over_cap",
+     "plate_t_mm": 6.81,
+     "crosslap": {
+      "W_x_mm": 130.0,
+      "grid_points": 577,
+      "D_sum_mm": 134.59,
+      "diff_mm": 4.59,
+      "window_mm": 10.0,
+      "ok": true
+     },
+     "t_source": "camera_side_pair",
+     "plate_why": null,
+     "fi4_rev": 15,
+     "t_down_mm": 6.813,
+     "t_all_mm": 6.808,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 142,
+      "vertices": 134,
+      "reflex_vertices": 65,
+      "area_cm2": 311.64,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       238.0,
+       144.0
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 130.5,
+      "ends_outer_10": 140.0,
+      "end_lo": 140.0,
+      "end_hi": 140.0,
+      "end_minus_waist": 9.5,
+      "max": 144.0
+     },
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 23373,
+       "free": 0.0389,
+       "unknown": 0.0,
+       "observed": 0.9611,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 25704,
+       "free": 0.1242,
+       "unknown": 0.0,
+       "observed": 0.8758,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 7.27,
+      "rectangle_free_cm3": 25.54,
+      "ratio_polygon_to_rectangle": 0.313
+     },
+     "default_pieces": {
+      "n": 75,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 12,
+      "all_convex": true,
+      "ring_area_mm2": 31164.0,
+      "parts_area_mm2": 31164.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 84,
+      "cap": 82,
+      "over_cap": true,
+      "max_vertices_per_prism": 12,
+      "all_convex": true,
+      "ring_area_mm2": 30593.02,
+      "parts_area_mm2": 30593.02,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "D_rect_mm": 73.69,
+     "u_e_poly_mm": 65.93,
+     "u_rect_mm": 72.07,
+     "entry_edge_shift_mm": 6.14,
+     "body_why": null
+    }
+   },
+   "misses": [
+    "A CARVE not from the waiver route: gate plate_body_over_cap body None",
+    "B CARVE not from the waiver route: gate plate_body_over_cap body None"
+   ]
+  }
+ },
+ "test_interlock_results": {}
+}

@@ -1,0 +1,5 @@
+pack_swap_rollouts: status 0 (checks pass)
+swapped episodes: [10]
+  ep10: checkpoint ca7c4e3a162a… -> aaa077ebae86… | rows 322 pose rows changed 322 | rollout md5 2548c3f07fda1683724afd8bfb1fb9c7
+parquet: 1315317 B sha256 3c428350ec8a3558ec39d8f2072236704e4c52d0538c80ebef125fcb26c055ec | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'pos_x': 322, 'pos_y': 322, 'pos_z': 322, 'quat_x': 322, 'quat_y': 322, 'quat_z': 322, 'quat_w': 322, 'checkpoint_sha256': 322, 'code_commit_url': 9120}
+uploader: pass (offline validate_submission; CD-O file derived and validated) | CD-O 294912 rows sha256 ca3c2875dcfef0db... | rows changed vs base: 0

@@ -1,0 +1,14 @@
+{
+ "obj": "white_pot_lid",
+ "ep": 2,
+ "file": "/content/results/c0b/pts/B/ep2_white_pot_lid.npz",
+ "n": 0,
+ "median_m": null,
+ "info": {
+  "points": 1545311,
+  "samples": 18020,
+  "measured": 0,
+  "median_mm": null
+ },
+ "sec": 32.1
+}

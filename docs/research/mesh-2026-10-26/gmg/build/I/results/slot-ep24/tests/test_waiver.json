@@ -1,0 +1,1452 @@
+{
+ "w1": {
+  "6": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 7.24,
+    "crosslap": {
+     "W_x_mm": 134.02,
+     "grid_points": 804,
+     "D_sum_mm": 137.52,
+     "diff_mm": 3.5,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 9.3,
+    "D_mm": 69.13,
+    "centre_mm": -0.07,
+    "centre_component_mm": -1.0,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 4.653,
+     "body_cm3": 229.91,
+     "vol_share": 0.0202,
+     "reach": 0.515,
+     "D_lt_W": true,
+     "prong_mm": [
+      114.5,
+      114.3
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.1,
+     133.4,
+     7.24
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 7.3,
+    "crosslap": {
+     "W_x_mm": 134.02,
+     "grid_points": 804,
+     "D_sum_mm": 137.52,
+     "diff_mm": 3.5,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 9.24,
+    "D_mm": 68.4,
+    "centre_mm": -0.01,
+    "centre_component_mm": 1.0,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 4.612,
+     "body_cm3": 232.49,
+     "vol_share": 0.0198,
+     "reach": 0.512,
+     "D_lt_W": true,
+     "prong_mm": [
+      114.7,
+      115.1
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     239.1,
+     133.2,
+     7.3
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   }
+  },
+  "10": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 10.17,
+    "crosslap": {
+     "W_x_mm": 134.02,
+     "grid_points": 1675,
+     "D_sum_mm": 137.75,
+     "diff_mm": 3.73,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 12.12,
+    "D_mm": 69.16,
+    "centre_mm": 0.05,
+    "centre_component_mm": 2.76,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 8.527,
+     "body_cm3": 323.32,
+     "vol_share": 0.0264,
+     "reach": 0.518,
+     "D_lt_W": true,
+     "prong_mm": [
+      113.2,
+      113.0
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.4,
+     133.4,
+     10.17
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 10.12,
+    "crosslap": {
+     "W_x_mm": 134.02,
+     "grid_points": 1675,
+     "D_sum_mm": 137.75,
+     "diff_mm": 3.73,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 12.17,
+    "D_mm": 68.58,
+    "centre_mm": -0.09,
+    "centre_component_mm": -2.81,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 8.449,
+     "body_cm3": 322.73,
+     "vol_share": 0.0262,
+     "reach": 0.512,
+     "D_lt_W": true,
+     "prong_mm": [
+      112.8,
+      113.4
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.4,
+     133.7,
+     10.12
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   }
+  },
+  "18": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "PUSH",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 18.12,
+    "crosslap": {
+     "W_x_mm": 134.04,
+     "grid_points": 5427,
+     "D_sum_mm": 138.35,
+     "diff_mm": 4.31,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 20.12,
+    "D_mm": 69.8,
+    "centre_mm": 0.05,
+    "centre_component_mm": -1.0,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 25.44,
+     "body_cm3": 580.82,
+     "vol_share": 0.0438,
+     "reach": 0.519,
+     "D_lt_W": true,
+     "prong_mm": [
+      109.5,
+      109.3
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.9,
+     134.2,
+     18.12
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "PUSH",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 18.12,
+    "crosslap": {
+     "W_x_mm": 134.04,
+     "grid_points": 5427,
+     "D_sum_mm": 138.35,
+     "diff_mm": 4.31,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 20.12,
+    "D_mm": 68.55,
+    "centre_mm": 0.1,
+    "centre_component_mm": 1.0,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 24.986,
+     "body_cm3": 581.81,
+     "vol_share": 0.0429,
+     "reach": 0.506,
+     "D_lt_W": true,
+     "prong_mm": [
+      109.3,
+      109.6
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.9,
+     134.4,
+     18.12
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   }
+  },
+  "13": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 13.43,
+    "crosslap": {
+     "W_x_mm": 134.07,
+     "grid_points": 3283,
+     "D_sum_mm": 136.66,
+     "diff_mm": 2.59,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 15.34,
+    "D_mm": 70.66,
+    "centre_mm": -0.03,
+    "centre_component_mm": 1.0,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 14.554,
+     "body_cm3": 429.57,
+     "vol_share": 0.0339,
+     "reach": 0.524,
+     "D_lt_W": true,
+     "prong_mm": [
+      111.7,
+      111.9
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.9,
+     133.9,
+     13.43
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 13.34,
+    "crosslap": {
+     "W_x_mm": 134.07,
+     "grid_points": 3283,
+     "D_sum_mm": 136.66,
+     "diff_mm": 2.59,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 15.43,
+    "D_mm": 66.0,
+    "centre_mm": -0.03,
+    "centre_component_mm": -0.76,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 13.581,
+     "body_cm3": 426.55,
+     "vol_share": 0.0318,
+     "reach": 0.491,
+     "D_lt_W": true,
+     "prong_mm": [
+      110.9,
+      112.0
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.3,
+     134.2,
+     13.34
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   }
+  },
+  "25": {
+   "A": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "submitted": false,
+    "old": null,
+    "in_scope": false,
+    "gate_fail": null,
+    "plate_t_mm": null,
+    "crosslap": null,
+    "t_source": null,
+    "plate_why": "camera_side_two_sided_fail"
+   },
+   "B": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "submitted": false,
+    "old": null,
+    "in_scope": false,
+    "gate_fail": null,
+    "plate_t_mm": null,
+    "crosslap": null,
+    "t_source": null,
+    "plate_why": "camera_side_two_sided_fail"
+   }
+  }
+ },
+ "w1_misses": {
+  "other": {},
+  "width": {
+   "6": [
+    "A width 9.3 (t measured 7.24)",
+    "B width 9.24 (t measured 7.3)"
+   ]
+  }
+ },
+ "w2": {
+  "10": {
+   "plain": {
+    "A": [
+     "CARVE",
+     "T1",
+     []
+    ],
+    "B": [
+     "CARVE",
+     "T1",
+     []
+    ]
+   },
+   "two_sided_waiver_off": {
+    "A": [
+     "CARVE",
+     "T1",
+     []
+    ],
+    "B": [
+     "CARVE",
+     "T1",
+     []
+    ]
+   }
+  },
+  "18": {
+   "plain": {
+    "A": [
+     "PUSH",
+     "T0",
+     [
+      "interlock_push"
+     ]
+    ],
+    "B": [
+     "PUSH",
+     "T0",
+     [
+      "interlock_push"
+     ]
+    ]
+   },
+   "two_sided_waiver_off": {
+    "A": [
+     "PUSH",
+     "T0",
+     [
+      "interlock_push"
+     ]
+    ],
+    "B": [
+     "PUSH",
+     "T0",
+     [
+      "interlock_push"
+     ]
+    ]
+   }
+  }
+ },
+ "n2": {
+  "A": "PUSH",
+  "B": "PUSH"
+ },
+ "n4": {
+  "runs": {
+   "A": [
+    "TRANSIENT"
+   ],
+   "B": [
+    "TRANSIENT"
+   ]
+  },
+  "entered": {
+   "A": [
+    954,
+    954,
+    954
+   ],
+   "B": [
+    1200,
+    1200,
+    1200
+   ]
+  },
+  "decisions": {}
+ },
+ "n9": {
+  "A": {
+   "decision": "CARVE",
+   "tier": "T1",
+   "flags": [
+    "one_sided_region"
+   ],
+   "mix": {
+    "U": 2808,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": false,
+   "w_sim": 69.88,
+   "w_sub": 67.88,
+   "off": null,
+   "submitted": false,
+   "budget": {
+    "carve_cm3": 414.4,
+    "vol_share": 0.7281,
+    "reach": 0.87,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": false,
+    "ok": true,
+    "base_cm3": 569.16,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   }
+  }
+ },
+ "w3": {
+  "n2": {
+   "false": {
+    "A": "PUSH",
+    "B": "PUSH"
+   },
+   "true": {
+    "A": "PUSH",
+    "B": "PUSH"
+   }
+  },
+  "n4": {
+   "false": {
+    "runs": {
+     "A": [
+      "TRANSIENT"
+     ],
+     "B": [
+      "TRANSIENT"
+     ]
+    },
+    "entered": {
+     "A": [
+      954,
+      954,
+      954
+     ],
+     "B": [
+      1200,
+      1200,
+      1200
+     ]
+    },
+    "decisions": {}
+   },
+   "true": {
+    "runs": {
+     "A": [
+      "TRANSIENT"
+     ],
+     "B": [
+      "TRANSIENT"
+     ]
+    },
+    "entered": {
+     "A": [
+      954,
+      954,
+      954
+     ],
+     "B": [
+      1200,
+      1200,
+      1200
+     ]
+    },
+    "decisions": {}
+   }
+  },
+  "n9": {
+   "false": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "one_sided_region"
+     ],
+     "mix": {
+      "U": 2808,
+      "SIL": 0,
+      "GAP": 0,
+      "O": 0,
+      "O_testable_solid": 0
+     },
+     "iw": null,
+     "split": false,
+     "w_sim": 69.88,
+     "w_sub": 67.88,
+     "off": null,
+     "submitted": false,
+     "budget": {
+      "carve_cm3": 414.4,
+      "vol_share": 0.7281,
+      "reach": 0.87,
+      "topology": {
+       "before": [
+        1,
+        1
+       ],
+       "after": [
+        1,
+        1
+       ]
+      },
+      "applies": false,
+      "ok": true,
+      "base_cm3": 569.16,
+      "carved_before_cm3": 0.0,
+      "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+     },
+     "a": {
+      "present": false
+     },
+     "b": {
+      "present": false
+     }
+    }
+   },
+   "true": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "flags": [
+      "one_sided_region"
+     ],
+     "mix": {
+      "U": 2808,
+      "SIL": 0,
+      "GAP": 0,
+      "O": 0,
+      "O_testable_solid": 0
+     },
+     "iw": null,
+     "split": false,
+     "w_sim": 69.88,
+     "w_sub": 67.88,
+     "off": null,
+     "submitted": false,
+     "budget": {
+      "carve_cm3": 414.4,
+      "vol_share": 0.7281,
+      "reach": 0.87,
+      "topology": {
+       "before": [
+        1,
+        1
+       ],
+       "after": [
+        1,
+        1
+       ]
+      },
+      "applies": false,
+      "ok": true,
+      "base_cm3": 569.16,
+      "carved_before_cm3": 0.0,
+      "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+     },
+     "a": {
+      "present": false
+     },
+     "b": {
+      "present": false
+     }
+    }
+   }
+  },
+  "plate_cylinder": {
+   "15": {
+    "off": {
+     "A": [
+      "PUSH",
+      "T0",
+      [
+       "interlock_push"
+      ]
+     ],
+     "B": [
+      "PUSH",
+      "T0",
+      [
+       "budget_iv_fail",
+       "interlock_push"
+      ]
+     ]
+    },
+    "on": {
+     "A": {
+      "decision": "PUSH",
+      "tier": "T0",
+      "flags": [
+       "interlock_push"
+      ],
+      "submitted": false,
+      "old": null,
+      "in_scope": false,
+      "gate_fail": null,
+      "plate_t_mm": 10.17,
+      "crosslap": null,
+      "t_source": "plane_pair",
+      "plate_why": null
+     },
+     "B": {
+      "decision": "PUSH",
+      "tier": "T0",
+      "flags": [
+       "budget_iv_fail",
+       "interlock_push"
+      ],
+      "submitted": false,
+      "old": null,
+      "in_scope": false,
+      "gate_fail": null,
+      "plate_t_mm": null,
+      "crosslap": null,
+      "t_source": null,
+      "plate_why": "camera_side_two_sided_fail"
+     }
+    },
+    "decisions_equal": true
+   },
+   "8": {
+    "off": {
+     "A": [
+      "PUSH",
+      "T0",
+      [
+       "interlock_pair_fail",
+       "interlock_push",
+       "interlock_unresolved"
+      ]
+     ],
+     "B": [
+      "PUSH",
+      "T0",
+      [
+       "budget_iv_fail",
+       "interlock_push"
+      ]
+     ]
+    },
+    "on": {
+     "A": {
+      "decision": "PUSH",
+      "tier": "T0",
+      "flags": [
+       "interlock_unresolved",
+       "interlock_pair_fail",
+       "interlock_push"
+      ],
+      "submitted": false,
+      "old": null,
+      "in_scope": false,
+      "gate_fail": null,
+      "plate_t_mm": 10.17,
+      "crosslap": null,
+      "t_source": "plane_pair",
+      "plate_why": null
+     },
+     "B": {
+      "decision": "PUSH",
+      "tier": "T0",
+      "flags": [
+       "budget_iv_fail",
+       "interlock_push"
+      ],
+      "submitted": false,
+      "old": null,
+      "in_scope": false,
+      "gate_fail": null,
+      "plate_t_mm": null,
+      "crosslap": null,
+      "t_source": null,
+      "plate_why": "camera_side_two_sided_fail"
+     }
+    },
+    "decisions_equal": true
+   }
+  }
+ },
+ "w4": {
+  "o2a": {
+   "A": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_disagree",
+     "interlock_push",
+     "owner_waiver_fi4",
+     "waiver_gate_fail:interlock_slot_inconsistent",
+     "interlock_slot_inconsistent"
+    ],
+    "submitted": false,
+    "old": null,
+    "in_scope": true,
+    "gate_fail": "interlock_slot_inconsistent",
+    "plate_t_mm": 10.17,
+    "crosslap": {
+     "W_x_mm": 122.02,
+     "grid_points": 1525,
+     "D_sum_mm": 144.04,
+     "diff_mm": 22.02,
+     "window_mm": 10.0,
+     "ok": false
+    },
+    "t_source": "plane_pair",
+    "plate_why": null
+   },
+   "B": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_disagree",
+     "interlock_push",
+     "owner_waiver_fi4",
+     "waiver_gate_fail:interlock_slot_inconsistent",
+     "interlock_slot_inconsistent"
+    ],
+    "submitted": false,
+    "old": null,
+    "in_scope": true,
+    "gate_fail": "interlock_slot_inconsistent",
+    "plate_t_mm": 10.12,
+    "crosslap": {
+     "W_x_mm": 122.02,
+     "grid_points": 1525,
+     "D_sum_mm": 144.04,
+     "diff_mm": 22.02,
+     "window_mm": 10.0,
+     "ok": false
+    },
+    "t_source": "plane_pair",
+    "plate_why": null
+   }
+  },
+  "o2b": {
+   "A": {
+    "decision": "PUSH",
+    "tier": "T2",
+    "flags": [
+     "o_residual_push",
+     "owner_waiver_fi4",
+     "waiver_gate_fail:interlock_slot_inconsistent",
+     "interlock_slot_inconsistent",
+     "interlock_push"
+    ],
+    "submitted": true,
+    "old": null,
+    "in_scope": true,
+    "gate_fail": "interlock_slot_inconsistent",
+    "plate_t_mm": 10.17,
+    "crosslap": {
+     "W_x_mm": 122.02,
+     "grid_points": 1525,
+     "D_sum_mm": 144.04,
+     "diff_mm": 22.02,
+     "window_mm": 10.0,
+     "ok": false
+    },
+    "t_source": "plane_pair",
+    "plate_why": null
+   },
+   "B": {
+    "decision": "PUSH",
+    "tier": "T2",
+    "flags": [
+     "owner_waiver_fi4",
+     "waiver_gate_fail:interlock_slot_inconsistent",
+     "interlock_slot_inconsistent",
+     "interlock_push"
+    ],
+    "submitted": true,
+    "old": null,
+    "in_scope": true,
+    "gate_fail": "interlock_slot_inconsistent",
+    "plate_t_mm": 10.12,
+    "crosslap": {
+     "W_x_mm": 122.02,
+     "grid_points": 1525,
+     "D_sum_mm": 144.04,
+     "diff_mm": 22.02,
+     "window_mm": 10.0,
+     "ok": false
+    },
+    "t_source": "plane_pair",
+    "plate_why": null
+   }
+  }
+ },
+ "w5": {
+  "P3": {
+   "default": {
+    "lag_cm_asm": 6.074,
+    "lag_cm_asm_sd": 1.935,
+    "lag_deg_asm": 90.95,
+    "lag_cm_after_max": 6.477,
+    "copies": 16,
+    "nan": 0
+   },
+   "carved": {
+    "lag_cm_asm": 0.033,
+    "lag_cm_asm_sd": 0.002,
+    "lag_deg_asm": 0.16,
+    "lag_cm_after_max": 0.072,
+    "copies": 16,
+    "nan": 0
+   },
+   "nocollide": {
+    "lag_cm_asm": 0.031,
+    "lag_cm_asm_sd": 0.0,
+    "lag_deg_asm": 0.12,
+    "lag_cm_after_max": 0.066,
+    "copies": 16,
+    "nan": 0
+   },
+   "sec": 6.9,
+   "frames": [
+    0,
+    99
+   ],
+   "judge": {
+    "pass_": true,
+    "slot_not_limiting": false,
+    "overlap_asm_cm3": 0.0,
+    "overlap_ok": true
+   }
+  },
+  "P2": {
+   "frame": 91,
+   "carved_mm": {
+    "+d": 3.5,
+    "+n": 1.0,
+    "-n": 1.0
+   },
+   "default_mm": {
+    "+d": 60.0,
+    "+n": 20.5,
+    "-n": 60.0
+   },
+   "overlap_at_pose_cm3": [
+    14.218,
+    0.0
+   ],
+   "pass_": true
+  },
+  "P6": {
+   "frames": 39,
+   "worse_frames": [],
+   "n_worse": 0,
+   "pass_": true,
+   "default_asm_median": 14.233,
+   "carved_asm_median": 0.0
+  },
+  "P7": {
+   "check_frames": 40,
+   "default_sum_cm3": 412.66,
+   "carved_sum_cm3": 0.57,
+   "default_median": 10.911,
+   "carved_median": 0.0,
+   "pass_": true
+  },
+  "P4": {
+   "A": {
+    "removed_cm3": 8.6,
+    "carve_cm3": 8.53,
+    "default_cm3": 338.31,
+    "carved_cm3": 329.71,
+    "kept_share": 0.975,
+    "pass_": true
+   },
+   "B": {
+    "removed_cm3": 8.48,
+    "carve_cm3": 8.45,
+    "default_cm3": 338.43,
+    "carved_cm3": 329.95,
+    "kept_share": 0.975,
+    "pass_": true
+   }
+  },
+  "acceptance": {
+   "tests": {
+    "P2": true,
+    "P3": true,
+    "P4_A": true,
+    "P4_B": true,
+    "P5": true,
+    "P6": true,
+    "P7": true
+   },
+   "P5": {
+    "shapes": 6,
+    "cap": 165,
+    "pass_": true
+   },
+   "failing": [],
+   "pass_all_but_P1": true,
+   "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I2.12, F-I4.8)"
+  }
+ },
+ "w6": {
+  "10": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 8.07,
+    "crosslap": {
+     "W_x_mm": 134.1,
+     "grid_points": 1122,
+     "D_sum_mm": 137.56,
+     "diff_mm": 3.47,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 10.39,
+    "D_mm": 69.28,
+    "centre_mm": 1.11,
+    "centre_component_mm": 2.76,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 5.808,
+     "body_cm3": 258.01,
+     "vol_share": 0.0225,
+     "reach": 0.516,
+     "D_lt_W": true,
+     "prong_mm": [
+      112.9,
+      115.0
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.2,
+     134.2,
+     8.07
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 8.39,
+    "crosslap": {
+     "W_x_mm": 134.1,
+     "grid_points": 1122,
+     "D_sum_mm": 137.56,
+     "diff_mm": 3.47,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 10.07,
+    "D_mm": 68.28,
+    "centre_mm": -1.41,
+    "centre_component_mm": -2.81,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 5.768,
+     "body_cm3": 267.88,
+     "vol_share": 0.0215,
+     "reach": 0.51,
+     "D_lt_W": true,
+     "prong_mm": [
+      112.8,
+      115.6
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.4,
+     133.9,
+     8.39
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   }
+  }
+ },
+ "w6_misses": {
+  "other": {},
+  "width": {
+   "10": [
+    "A width 10.39 (t measured 8.07)",
+    "B width 10.07 (t measured 8.39)"
+   ]
+  }
+ },
+ "w6_sources": {
+  "A": "plane_pair",
+  "B": "plane_pair"
+ },
+ "w6b": {
+  "t6_s1.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 5.813,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    7.2381
+   ]
+  },
+  "t6_s3.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 5.823,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": []
+  },
+  "t10_s1.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 9.569,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    10.1689
+   ]
+  },
+  "t10_s3.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 9.663,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    8.0684,
+    5.4679
+   ]
+  },
+  "t18_s1.0": {
+   "kind": "two_sided",
+   "ok": false,
+   "t_mm": 17.122,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": false,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    18.1169
+   ]
+  },
+  "t18_s3.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 17.12,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    18.0411
+   ]
+  }
+ },
+ "w7": {
+  "10": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 10.17,
+    "crosslap": {
+     "W_x_mm": 132.02,
+     "grid_points": 1650,
+     "D_sum_mm": 136.69,
+     "diff_mm": 4.67,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 12.17,
+    "D_mm": 69.16,
+    "centre_mm": 0.15,
+    "centre_component_mm": 2.76,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 8.558,
+     "body_cm3": 323.32,
+     "vol_share": 0.0265,
+     "reach": 0.518,
+     "D_lt_W": true,
+     "prong_mm": [
+      113.1,
+      113.1
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.4,
+     133.4,
+     10.17
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4",
+     "plate_t_partner_prior"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 10.17,
+    "crosslap": {
+     "W_x_mm": 132.02,
+     "grid_points": 1650,
+     "D_sum_mm": 136.69,
+     "diff_mm": 4.67,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "partner_prior",
+    "plate_why": null,
+    "w_mm": 12.17,
+    "D_mm": 67.53,
+    "centre_mm": 0.21,
+    "centre_component_mm": -2.81,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 8.356,
+     "body_cm3": 316.78,
+     "vol_share": 0.0264,
+     "reach": 0.503,
+     "D_lt_W": true,
+     "prong_mm": [
+      111.7,
+      112.1
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     236.0,
+     132.0,
+     10.17
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   }
+  }
+ },
+ "w7_misses": {
+  "other": {},
+  "width": {}
+ },
+ "w7_sources": {
+  "A": "plane_pair",
+  "B": "partner_prior"
+ },
+ "n3": {
+  "A": {
+   "decision": "PUSH",
+   "mix": {
+    "U": 0,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 40,
+    "O_testable_solid": 40
+   },
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ]
+  },
+  "B": {
+   "decision": "PUSH",
+   "mix": {
+    "U": 274,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 80,
+    "O_testable_solid": 0
+   },
+   "flags": [
+    "interlock_unresolved",
+    "interlock_push"
+   ]
+  }
+ },
+ "n5": {
+  "A": "PUSH",
+  "B": "PUSH"
+ }
+}

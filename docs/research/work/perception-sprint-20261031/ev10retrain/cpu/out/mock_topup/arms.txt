@@ -1,0 +1,1 @@
+ARMS OK :: V 617746b74f834dc4b94155085b73ce9b (fingerprint a9bcfef01803), base 617746b74f834dc4b94155085b73ce9b, seeds ['42', '43'], blue_cup 0.3 kg, beige_cup 0.3 kg

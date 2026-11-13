@@ -1,0 +1,12 @@
+# review_gapw.py re-run 2026-10-31 09:32-09:40 UTC, this container (4 shared cores), code base 7cd51b7, dev tier, no scan
+# GMG_MODE=dev GMG_RUN=<scratch>/gmg/runs-dev/20261030-b5pool24-edba5b3 <scratch>/venv/bin/python -I review_gapw.py
+K fx 600.1995485633427 cx 756.7832183837891
+wooden_piece_1 hull Nrun 57 nmin 15 cm3 16.64 components 1 largest 260 inscribed width mm 11.3 region PCA 1-99 extents mm [121.7  26.9   8.6] observed share 1.0
+wooden_piece_1 shell_t5p36 Nrun 55 nmin 14 cm3 9.34 components 1 largest 146 inscribed width mm 11.3 region PCA 1-99 extents mm [118.2  16.9   8.9] observed share 0.959
+  target median camera range m 0.514
+wooden_piece_2 hull Nrun 57 nmin 15 cm3 19.01 components 2 largest 296 inscribed width mm 16.0 region PCA 1-99 extents mm [122.9  41.5  23.8] observed share 1.0
+wooden_piece_2 shell_t5p36 Nrun 56 nmin 14 cm3 6.53 components 2 largest 99 inscribed width mm 8.0 region PCA 1-99 extents mm [116.6  32.8   4. ] observed share 0.98
+  target median camera range m 0.504
+# review_extent.py re-run (same run, same environment): observed-point PCA 1-99 % extents
+wooden_piece_1 pca 1-99% extent mm [233.9 128.2  41.8] n_obs_vox 6557 obs cm3 419.6 own [0]
+wooden_piece_2 pca 1-99% extent mm [233.3 122.   18.7] n_obs_vox 4231 obs cm3 270.8 own [0]

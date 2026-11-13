@@ -1,0 +1,214 @@
+{
+ "w6b": {
+  "t6_s1.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 5.813,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    7.2381
+   ]
+  },
+  "t6_s3.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 5.823,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": []
+  },
+  "t10_s1.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 9.569,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    10.1689
+   ]
+  },
+  "t10_s3.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 9.663,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    8.0684,
+    5.4679
+   ]
+  },
+  "t18_s1.0": {
+   "kind": "two_sided",
+   "ok": false,
+   "t_mm": 17.122,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": false,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    18.1169
+   ]
+  },
+  "t18_s3.0": {
+   "kind": "two_sided",
+   "ok": true,
+   "t_mm": 17.12,
+   "checks": {
+    "antiparallel": true,
+    "material_between": true,
+    "window": true,
+    "overlap": true,
+    "rms": true,
+    "plate_extents": true
+   },
+   "step1_pairs": [
+    18.0411
+   ]
+  }
+ },
+ "w7": {
+  "10": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 10.17,
+    "crosslap": {
+     "W_x_mm": 132.02,
+     "grid_points": 1650,
+     "D_sum_mm": 136.69,
+     "diff_mm": 4.67,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "plane_pair",
+    "plate_why": null,
+    "w_mm": 12.17,
+    "D_mm": 69.16,
+    "centre_mm": 0.15,
+    "centre_component_mm": 2.76,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 8.558,
+     "body_cm3": 323.32,
+     "vol_share": 0.0265,
+     "reach": 0.518,
+     "D_lt_W": true,
+     "prong_mm": [
+      113.1,
+      113.1
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     238.4,
+     133.4,
+     10.17
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [
+     "owner_waiver_fi4",
+     "plate_t_partner_prior"
+    ],
+    "submitted": false,
+    "old": "CARVE",
+    "in_scope": true,
+    "gate_fail": null,
+    "plate_t_mm": 10.17,
+    "crosslap": {
+     "W_x_mm": 132.02,
+     "grid_points": 1650,
+     "D_sum_mm": 136.69,
+     "diff_mm": 4.67,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "t_source": "partner_prior",
+    "plate_why": null,
+    "w_mm": 12.17,
+    "D_mm": 67.53,
+    "centre_mm": 0.21,
+    "centre_component_mm": -2.81,
+    "n_pieces": 3,
+    "budget": {
+     "slot_cm3": 8.356,
+     "body_cm3": 316.78,
+     "vol_share": 0.0264,
+     "reach": 0.503,
+     "D_lt_W": true,
+     "prong_mm": [
+      111.7,
+      112.1
+     ],
+     "topology": true,
+     "ok": true
+    },
+    "body": [
+     236.0,
+     132.0,
+     10.17
+    ],
+    "keepout": {
+     "n": 3,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0
+    }
+   }
+  }
+ },
+ "w7_misses": {
+  "other": {},
+  "width": {}
+ },
+ "w7_sources": {
+  "A": "plane_pair",
+  "B": "partner_prior"
+ }
+}

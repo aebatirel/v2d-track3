@@ -1,0 +1,10 @@
+test_prereg_a6_values (__main__.Frozen.test_prereg_a6_values) ... ok
+test_settings_file_matches (__main__.Frozen.test_settings_file_matches) ... ok
+test_attach_watertight (__main__.Units.test_attach_watertight) ... ok
+test_batched_fit_equals_parts (__main__.Units.test_batched_fit_equals_parts) ... ok
+test_json_round_trip (__main__.Units.test_json_round_trip) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.271s
+
+OK

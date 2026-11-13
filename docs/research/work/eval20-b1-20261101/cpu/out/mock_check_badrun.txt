@@ -1,0 +1,6 @@
+ok   rc 1 (refused at the start)  [rc=1]
+ok   the refusal names the run id rule  [[2026-11-01T07:23:45Z] ev20_b1: RUN_ID '20261101-e20x-mocksha' must contain -e20b1-
+]
+ok   nothing pulled, trained, evaluated or pushed  [(0, 0, 0, 0)]
+{"mr": "<MR>", "expect": "REFUSED", "checks": 3, "failed": []}
+3/3 checks pass

@@ -1,0 +1,181 @@
+{
+ "schema": "gmg-sim/1",
+ "episode": 24,
+ "split": "public",
+ "round": 0,
+ "p_sim": {
+  "source": "P_sel",
+  "flag": "sim_pose_fallback",
+  "tracks": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60"
+  }
+ },
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "files": {
+  "props_gmg.json": "9c114948a8365361f048df5444e77725af57b673be5ad4de042c0d64fc5b7d16",
+  "wooden_piece_1/wooden_piece_1.glb": "3a949482d5dad09688825b14aa42443101e5eb622f30fac8396bb8e0e0bb604b",
+  "wooden_piece_1/piece_06.obj": "b27e55e0dcbf4d97d01651baa671e918901de9a8a3fd881fbf4becf19fa6ce7a",
+  "wooden_piece_1/piece_13.obj": "4a7dadddb46ebeb43e6a33da3c280370bc3ebd1d6853823c44991ed6d90efa1e",
+  "wooden_piece_1/piece_15.obj": "73e07d9e84ec035f1f4da82dd9fd9ac38039f8f92cecf0555b00db4a87ec30e6",
+  "wooden_piece_1/piece_18.obj": "5affa8930118fba4273d60a4d32dab507611fb1451dddc0d990a77ee3e3b9625",
+  "wooden_piece_1/piece_05.obj": "4b3638d2b00b1342310e8ca782f7853204d5ed7da9ee0b92db54732db9cbb3f2",
+  "wooden_piece_1/piece_07.obj": "8ea7730da2a82823247a192e818cf296aa757ce52dce39d1c011ebda41bec16d",
+  "wooden_piece_1/piece_20.obj": "602d34419af04a6da7e89dae38f44c36a3501404ef3f9446f9cc22bb0396e504",
+  "wooden_piece_1/carve.json": "69da7f2d91b2dfa54d60b2183492ebac49e6576dfdc0aa3899fc3555784287bb",
+  "wooden_piece_1/piece_29.obj": "37098ada295d5d78a0acd7038c10bdc040f629a6e97197f9c5ebd1ca6dbd4920",
+  "wooden_piece_1/piece_08.obj": "ad21cb44dfb2a01745502816e5fb946113961bfa7ee9304da0a8b2526ef727b8",
+  "wooden_piece_1/piece_00.obj": "6939ec433ebb1ef324d36e8eab6f8b4a7f7c1e84e536e7c849f7507cf9893609",
+  "wooden_piece_1/piece_11.obj": "3733a26c07eec2369d696e201ce66c82392d149b508b89af3a3cf2b89dfff3c9",
+  "wooden_piece_1/piece_19.obj": "1c4d940f76ae34613799d2ee4f2fb27289c31e2141354ce0cbc44ffb2e7fd7fe",
+  "wooden_piece_1/piece_23.obj": "5ce6bb1175e914053e6fce988960da7f656a3f1337f4b7564e4c7e3c7a9f7170",
+  "wooden_piece_1/piece_01.obj": "60825346fedae8b124ae6c4cad87d5c1329d651406908278237cc2f6805f1c89",
+  "wooden_piece_1/piece_21.obj": "b8d2ee9d2cacbfdf063598361dd09ce818dd14312aa348ac4bd59280e97950e4",
+  "wooden_piece_1/piece_31.obj": "9527f489c93edbfe770c8cd576d6b1fcead879ef5082a5db9ad906588d48d86a",
+  "wooden_piece_1/piece_02.obj": "ce8d8300bb4d0484b0a9a519f193516d3a0fabe2acea3c7cc85b475cd7d64c1f",
+  "wooden_piece_1/piece_28.obj": "66098bda3ddb75b50cffde77c021e99492e0a4541182bad7ca019de74445feb2",
+  "wooden_piece_1/piece_04.obj": "02094169b2a1060ad70066060b5821a049508a43cfb3fb54c85633a4213da10b",
+  "wooden_piece_1/inertia.json": "d184ef5971fdb63e84944d997e694bb1c4258576ff915debf80bc8fad52aa72c",
+  "wooden_piece_1/piece_10.obj": "abdb37649c7d6d2b6defff7ea178cc0fdc004cacb7dcbdf61554d9da3838634c",
+  "wooden_piece_1/piece_24.obj": "5e14c0a05245ab26449b2196a2c159decf8265c7a46a47c5eda817c90bc02868",
+  "wooden_piece_1/piece_30.obj": "169581ea24081cb078b8c92db5d53c02e8d81a0e2f2edb07f11fe712b36a6296",
+  "wooden_piece_1/piece_03.obj": "df3f90b91e7e7b0d71cca9616279dd27f24c0d1f335504ab317d4358e8cbd70e",
+  "wooden_piece_1/piece_12.obj": "3044d16feae390ae15a815dd83249c77897aa5efa7bb77a2854de41770d57e32",
+  "wooden_piece_1/piece_14.obj": "a172b4047f0dd6397035f07ba81d6b0ab67e285433c7508ed08170312dd63570",
+  "wooden_piece_1/piece_22.obj": "6db796270bdea3b0ac3c2993cd86eff59bc821cd23406cee412844b789aa3caf",
+  "wooden_piece_1/piece_17.obj": "3bdc10d51994bb2cba4b0742deb9373c0fd75d89db91a659e4a12e96878f01e6",
+  "wooden_piece_1/piece_25.obj": "aa99d95b63429626ba5a220a97e0e7a59c3fb5b1e17591660982839ac986a642",
+  "wooden_piece_1/piece_09.obj": "1dbe4248f3fe8d8966dca2c6198737fef8ed17069324449b20387f85515ff124",
+  "wooden_piece_1/piece_26.obj": "3f04e643d0bfc4db6aea8457cfce98cab52178ba6c4de666c49096f3459e0019",
+  "wooden_piece_1/piece_27.obj": "c9ee03ee3963c9b9848f49f905c431043ce9298754a5a2f3bcca75ecabcf72ac",
+  "wooden_piece_1/piece_16.obj": "a2cf609b41baa3fb6f5469fcc7c2b177e0fde9dcc2700a4be39f5b607a916fd0",
+  "wooden_piece_2/piece_06.obj": "69ae6fb13a61e584959e630456d4a40dfb9cb9bb1e4a2cb74d3eb7adf39d0c7d",
+  "wooden_piece_2/piece_13.obj": "9de7ce1d7c733caaf83d90e0cc89e7ea4b12757b6960a42e815f9ea213d3d86e",
+  "wooden_piece_2/piece_15.obj": "9d6965fbc3275f6d2b89f52810e46b3a92db1165fde26d69e1801e737ef6f3c9",
+  "wooden_piece_2/piece_18.obj": "308bc94f204e7fe51422cbfbab7ee3128a2755755225e81d7b13615d67da668c",
+  "wooden_piece_2/piece_05.obj": "b3d42e2b72d8a2a7c791b7c23094e6a652f1954ba3075540d2f63f21eab654ec",
+  "wooden_piece_2/piece_07.obj": "71f1282c9b839e87fd1df6a188aac543d2977645200c2a600495f4935ab57143",
+  "wooden_piece_2/piece_20.obj": "810d35aa050f5fd6d32792ba6f158419500beccfde76f2d5e69843da8b26ee6f",
+  "wooden_piece_2/carve.json": "a93aaef4eb450ebbbb61595e281cede9e9aa88da8ff76977216052ec24d1f575",
+  "wooden_piece_2/piece_29.obj": "1f0c044780fb12afcc433add9852079db2431288d5e0b8c0d40d1546c248f651",
+  "wooden_piece_2/piece_08.obj": "8ce7636daaba770429506a517354dfccaaa3987c258b1a37c159b6bbde41fc68",
+  "wooden_piece_2/piece_00.obj": "6a0b3749f560ab4f9d02e1372548962ac5309da0fea5ed50c5ec5259b7450940",
+  "wooden_piece_2/piece_11.obj": "0a46ab493e27252a1c4d96ee906e42daf601fcf8371adcea5237e3eafafb064d",
+  "wooden_piece_2/piece_19.obj": "f08ee206348f2e3d4f5642d133919b486806602ff453f544ba985f41049e93ab",
+  "wooden_piece_2/wooden_piece_2.glb": "60b5fc1f58e548aa1bfeb3ba7bdd9f07d8443ea2db2464c2ada1ec8e079ab198",
+  "wooden_piece_2/piece_23.obj": "7b395503f9b902b606c1076d46c0b02b7499cbeb0f60d40b09e961cb6c695e4d",
+  "wooden_piece_2/piece_01.obj": "76a242046f1922d2896da42b14dd79a396812f2db74ac5ec3b5e5e9289f043b9",
+  "wooden_piece_2/piece_21.obj": "f74d6006602cbc870a66ac7f7174f2d641dd68ac2c164ec195648ca22a5548d1",
+  "wooden_piece_2/piece_31.obj": "000295dedf1b219e256df7a1fd83a3ceeeb360eb9b4f9327523f2bc660c6418e",
+  "wooden_piece_2/piece_02.obj": "a76d81f4304b828a3ad8507c58ef081dd1da58a741e811056d7aee8d6d444d27",
+  "wooden_piece_2/piece_28.obj": "830408c4587e096ecb718745c4c99b5345bab718659737d658fb32f7834ee3d9",
+  "wooden_piece_2/piece_04.obj": "e5a9010ee2da73b0b1b8ea0599d83f40c772484a9d2c56ce96baf3cff6b474d9",
+  "wooden_piece_2/inertia.json": "4483aec42796498aa06de6fa2abc0824e94863c12329241e9c6a2603c4300135",
+  "wooden_piece_2/piece_10.obj": "a056a818fcf7f453869021910d67e5659f7d63d7a38205aceb37585c27084229",
+  "wooden_piece_2/piece_24.obj": "e424cc22b0094c4061463ade1d88fce65ccb10a9923d3c88b0c49f6b35e914de",
+  "wooden_piece_2/piece_30.obj": "30fdeef04831dbe5ac612a9a0e8dc64b79b8cfb17746f2a55a554b1c47306e4e",
+  "wooden_piece_2/piece_03.obj": "db929635d1b65f60cb4da1a5263f1b08d149fbb19c550cc4692d0de8181515bd",
+  "wooden_piece_2/piece_12.obj": "ab29ab56ddab974c05d7d7be28d9638d97cc1823bd627397ea84ef9a3bf74208",
+  "wooden_piece_2/piece_14.obj": "ba7a54d625d9abf5f064686e69b814c081bcbcdd49f924135a14a7a1c588895d",
+  "wooden_piece_2/piece_22.obj": "019d21b4942b3122ff3c23f883c80ad19e0aa3e76e9c3af1804b5f6a576820a6",
+  "wooden_piece_2/piece_17.obj": "d8e0a8b8e3ac5ccfc34b4fbbbea8a4b61413e616fd72a92e9e2b3bd4face8a83",
+  "wooden_piece_2/piece_25.obj": "e660de4aac3a6f867d3f4b277311eac0db0e5ae3c5cd331da9ec078e38431b14",
+  "wooden_piece_2/piece_09.obj": "5d3217dece55266c462adf70ccca992792fd324b0d24724c379cd63467eb963e",
+  "wooden_piece_2/piece_26.obj": "34e2f999ab3ed407014ee564c75be124dd3589c7e101f749ac5b1bac55a9ed79",
+  "wooden_piece_2/piece_27.obj": "d02c8307549959ba110e77f85545d2f26909a0726e06d5fb5e0734334909eebe",
+  "wooden_piece_2/piece_16.obj": "8eda255f56fe87ffbe08c7ced6ebe180176d58755a15f31edd59bbdf63bce039",
+  "_fit/wooden_piece_1.glb": "2aa6ce90b5e967673ecaa8ba4d84021d33e8eb503beac4c73eba4b328d393e9e",
+  "_fit/wooden_piece_2.glb": "29baaebf502c7321cef18acad63e7d3d23e148e544a4c9611ccf6218e8be7e63"
+ },
+ "fiducials": {
+  "wooden_piece_1": [
+   [
+    -0.015666519314633427,
+    -0.07055080442123704,
+    0.12568108360447125
+   ],
+   [
+    0.02286611842826513,
+    -0.07075530401625778,
+    0.12559302330162975
+   ],
+   [
+    -0.014873888048783413,
+    0.08376637306553412,
+    0.11414777248331154
+   ],
+   [
+    0.023658749694115144,
+    0.08356187347051339,
+    0.11405971218047004
+   ],
+   [
+    -0.016303085987615578,
+    -0.088286912781005,
+    -0.11167406233487341
+   ],
+   [
+    0.02222955175528298,
+    -0.08849141237602574,
+    -0.11176212263771491
+   ],
+   [
+    -0.01551045472176556,
+    0.06603026470576617,
+    -0.12320737345603312
+   ],
+   [
+    0.023022183021132993,
+    0.06582576511074544,
+    -0.12329543375887463
+   ]
+  ],
+  "wooden_piece_2": [
+   [
+    0.01952015833440938,
+    0.07649798992232702,
+    0.11546963249841016
+   ],
+   [
+    -0.014223779797651912,
+    0.07551636393555261,
+    0.11641482886835039
+   ],
+   [
+    0.02391137042161184,
+    -0.06949414275645747,
+    0.12061895156902297
+   ],
+   [
+    -0.00983256771044945,
+    -0.07047576874323189,
+    0.1215641479389632
+   ],
+   [
+    0.013245844220895246,
+    0.06810107978730252,
+    -0.11724676322642227
+   ],
+   [
+    -0.020498093911166044,
+    0.06711945380052811,
+    -0.11630156685648203
+   ],
+   [
+    0.01763705630809771,
+    -0.07789105289148199,
+    -0.11209744415580945
+   ],
+   [
+    -0.01610688182396358,
+    -0.0788726788782564,
+    -0.11115224778586921
+   ]
+  ]
+ },
+ "commit": "7ec8889ad23a5c94d387b90b1780e8da06f3ead4",
+ "note": "visual <obj>.glb = submitted mesh (geometry only); collisions = piece_XX.obj (make_assets.py --pieces); _fit/<obj>.glb = union of the pieces for phys_fit --meshes"
+}

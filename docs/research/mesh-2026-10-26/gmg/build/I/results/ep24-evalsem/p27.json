@@ -1,0 +1,30 @@
+{
+ "wooden_piece_1": {
+  "component_voxels": 127,
+  "carve_side_voxels": 67,
+  "P27a_entry_share": 0.646,
+  "P27c_observed_share": 0.929,
+  "P27b_along_long_axis_mm": -3.6,
+  "a_c_centroid_mm": 10.1,
+  "a_component_voxels": 600,
+  "a_extent_long_mm": 71.0,
+  "c_extent_long_mm": 25.1
+ },
+ "wooden_piece_2": {
+  "component_voxels": 222,
+  "carve_side_voxels": 118,
+  "P27a_entry_share": 0.58,
+  "P27c_observed_share": 0.613,
+  "P27b_along_long_axis_mm": 7.1,
+  "a_c_centroid_mm": 13.7,
+  "a_component_voxels": 105,
+  "a_extent_long_mm": 56.1,
+  "c_extent_long_mm": 19.1
+ },
+ "P27a_pass": false,
+ "P27b_pass": true,
+ "P27c": {
+  "wooden_piece_1": "pass",
+  "wooden_piece_2": "pass"
+ }
+}

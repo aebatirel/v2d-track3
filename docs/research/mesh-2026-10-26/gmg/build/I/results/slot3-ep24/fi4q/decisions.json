@@ -1,0 +1,3961 @@
+[
+ {
+  "target": "wooden_piece_1",
+  "partner": "wooden_piece_2",
+  "run": {
+   "frames": [
+    164,
+    274
+   ],
+   "n": 56,
+   "kind": "INSERTION",
+   "travel_mm": 122.3,
+   "straightness": 0.908,
+   "d": [
+    0.0419,
+    -0.9979,
+    -0.0496
+   ],
+   "assembled": [
+    218,
+    274
+   ],
+   "n_assembled": 29,
+   "n_build": 30,
+   "n_check": 26,
+   "flags": []
+  },
+  "voxels": 127,
+  "region_voxels": 67,
+  "cm3": 4.29,
+  "nmin": 8,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 132.2,
+   "plane_point": [
+    0.00063,
+    -0.00655,
+    0.00205
+   ],
+   "plane_normal": [
+    0.0419,
+    -0.9979,
+    -0.0496
+   ],
+   "carve_side": "entry (s < 0)",
+   "shared": true,
+   "kept_voxels": 60,
+   "carved_side_voxels": 67
+  },
+  "linked": true,
+  "flags": [
+   "owner_waiver_fi4",
+   "plate_pair_camera_side"
+  ],
+  "image_width_px": 9.0,
+  "image_width_info": {
+   "views": 102,
+   "p10_p90": [
+    7.94,
+    9.0
+   ]
+  },
+  "class_mix": {
+   "U": 2,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 65,
+   "O_testable_solid": 0
+  },
+  "class_o_share": 0.97,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "CARVE",
+  "widths": {
+   "w_sim_mm": 21.72,
+   "entering_samples_mm": 10.78,
+   "partner_collider_mm": 19.72,
+   "w_sub_mm": 12.55,
+   "centre_n_mm": 0.49,
+   "axes_dnm": [
+    [
+     0.0419,
+     -0.9979,
+     -0.0496
+    ],
+    [
+     -0.046,
+     0.0477,
+     -0.9978
+    ],
+    [
+     0.9981,
+     0.0441,
+     -0.0439
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false,
+    "reason": "silhouette gate failed"
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "wooden_piece_1": "PUSH",
+   "wooden_piece_2": "PUSH"
+  },
+  "tier": "T1",
+  "submitted": false,
+  "sim_carve": true,
+  "round": 0,
+  "decision_f_i3": "PUSH",
+  "tier_f_i3": "T0",
+  "push_list_f_i3": {
+   "kind": "PUSH",
+   "frames": [
+    164,
+    274
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "waiver_fi4": {
+   "rule": "PREREG F-I4 (c13f53c); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct ~16:00 UTC: \"Okay I waive that camera rule\"",
+   "fi4_rev": 17,
+   "plate": {
+    "wooden_piece_1": {
+     "obj": "wooden_piece_1",
+     "sigma_mm": 3.0,
+     "points": {
+      "owned": 2535338,
+      "in_box": 1759879,
+      "within_6mm": 1759844
+     },
+     "plate": true,
+     "n_down": 36675,
+     "planes": [
+      {
+       "n": [
+        1.0,
+        -0.0035,
+        0.0014
+       ],
+       "n_pts": 26022,
+       "rms_mm": 3.7109,
+       "two_sided_share": 0.4874
+      }
+     ],
+     "pairs": [],
+     "why_f_i4_1": "no_plane_pair",
+     "camera_side": {
+      "method": "camera_side (F-I4.14)",
+      "slab_points": 36675,
+      "plus": 19431,
+      "minus": 17244,
+      "plus_frames": 38,
+      "minus_frames": 101,
+      "inplane_extents_mm": [
+       215.9,
+       121.2
+      ],
+      "kind": "two_sided",
+      "ok": true,
+      "checks": {
+       "antiparallel": true,
+       "material_between": true,
+       "window": true,
+       "overlap": true,
+       "rms": true,
+       "plate_extents": true
+      },
+      "t_mm": 6.212,
+      "t_m": 0.006211937893189805,
+      "overlap": 0.968,
+      "angle_deg": 1.3,
+      "faces": [
+       {
+        "n_pts": 19431,
+        "frames": 38,
+        "m": 4.19,
+        "rms_m": 2.491
+       },
+       {
+        "n_pts": 17244,
+        "frames": 101,
+        "m": -2.022,
+        "rms_m": 1.662
+       }
+      ],
+      "mid_n": [
+       0.9999930953921593,
+       -0.0034612896346606766,
+       0.001352272928458704
+      ],
+      "mid_d": 0.0010838013548156492
+     },
+     "t_m": 0.007401156747395555,
+     "mid_n": [
+      0.9999930953921593,
+      -0.0034612896346606766,
+      0.001352272928458704
+     ],
+     "mid_d": 0.0013632083788159013,
+     "t_source": "camera_side_pair",
+     "flags": [
+      "plate_pair_camera_side"
+     ],
+     "pair": {
+      "method": "camera_side (F-I4.14)",
+      "thickness_mm": 6.212,
+      "overlap": 0.968
+     },
+     "sec": 230.6,
+     "t_down_mm": 6.212,
+     "t_all": {
+      "method": "camera_side_all_points (F-I4.15.1)",
+      "slab_points": 1759844,
+      "plus": 736196,
+      "minus": 1023648,
+      "plus_frames": 38,
+      "minus_frames": 101,
+      "ok": true,
+      "t_m": 0.007401156747395555,
+      "t_mm": 7.401,
+      "mid_n": [
+       0.9999930953921593,
+       -0.0034612896346606766,
+       0.001352272928458704
+      ],
+      "mid_d": 0.0013632083788159013,
+      "faces": [
+       {
+        "n_pts": 736196,
+        "frames": 38,
+        "frame_range": [
+         0,
+         74
+        ],
+        "median_offset_mm": 3.701,
+        "per_frame_median_offset_mm_5_50_95": [
+         2.41,
+         3.55,
+         4.695
+        ]
+       },
+       {
+        "n_pts": 1023648,
+        "frames": 101,
+        "frame_range": [
+         74,
+         274
+        ],
+        "median_offset_mm": -3.701,
+        "per_frame_median_offset_mm_5_50_95": [
+         -4.612,
+         -3.748,
+         -3.063
+        ]
+       }
+      ],
+      "checks": {
+       "sides": true,
+       "material_between": true,
+       "window": true
+      }
+     },
+     "fi4_rev": 15,
+     "t_estimator": "all near points (F-I4.15.1)"
+    },
+    "wooden_piece_2": {
+     "obj": "wooden_piece_2",
+     "sigma_mm": 0.74,
+     "points": {
+      "owned": 1460641,
+      "in_box": 1408262,
+      "within_6mm": 1408169
+     },
+     "plate": true,
+     "n_down": 22304,
+     "planes": [
+      {
+       "n": [
+        -0.9999,
+        -0.0074,
+        0.0141
+       ],
+       "n_pts": 13795,
+       "rms_mm": 1.1232,
+       "two_sided_share": 0.0
+      },
+      {
+       "n": [
+        -0.9999,
+        0.0073,
+        0.0098
+       ],
+       "n_pts": 1319,
+       "rms_mm": 0.5591,
+       "two_sided_share": 0.0
+      },
+      {
+       "n": [
+        -0.9995,
+        0.0281,
+        0.0107
+       ],
+       "n_pts": 429,
+       "rms_mm": 0.6362,
+       "two_sided_share": 0.0
+      },
+      {
+       "n": [
+        -0.9996,
+        0.0259,
+        0.0079
+       ],
+       "n_pts": 342,
+       "rms_mm": 0.6544,
+       "two_sided_share": 0.0
+      }
+     ],
+     "pairs": [],
+     "why_f_i4_1": "no_plane_pair",
+     "camera_side": {
+      "method": "camera_side (F-I4.14)",
+      "slab_points": 22304,
+      "plus": 22304,
+      "minus": 0,
+      "plus_frames": 119,
+      "minus_frames": 0,
+      "inplane_extents_mm": [
+       214.9,
+       121.8
+      ],
+      "kind": "one_face",
+      "ok": true,
+      "seen_sign": 1,
+      "m_seen": 0.003612763632559454,
+      "extent_n_1_99_mm": 14.77,
+      "checks": {
+       "thin_extent": true,
+       "plate_extents": true
+      },
+      "mid_n": [
+       -0.9998733082150176,
+       -0.007434809933588312,
+       0.014074484729743014
+      ],
+      "m_seen_all_points": 1408169
+     },
+     "sec": 85.4,
+     "t_m": 0.007401156747395555,
+     "mid_n": [
+      -0.9998733082150176,
+      -0.007434809933588312,
+      0.014074484729743014
+     ],
+     "mid_d": -0.0004650417293824041,
+     "t_source": "partner_prior",
+     "flags": [
+      "plate_t_partner_prior"
+     ],
+     "pair": {
+      "method": "one_face (F-I4.14 step 3)",
+      "thickness_mm": 7.401,
+      "t_from": "wooden_piece_1",
+      "seen_sign": 1
+     }
+    }
+   },
+   "in_scope": true,
+   "gates": {
+    "wooden_piece_1": {
+     "region_voxels": 67,
+     "run_kind": "INSERTION",
+     "sweep_share": 1.0,
+     "sweep": true,
+     "not_pushable": true,
+     "push_mm": 19.0,
+     "push_frames": 30,
+     "reused": false
+    },
+    "wooden_piece_2": {
+     "region_voxels": 118,
+     "run_kind": "INSERTION",
+     "sweep_share": 1.0,
+     "sweep": true,
+     "not_pushable": true,
+     "push_mm": 22.0,
+     "push_frames": 30,
+     "reused": false
+    }
+   },
+   "body": {
+    "wooden_piece_1": {
+     "obj": "wooden_piece_1",
+     "fi4_rev": 17,
+     "flags": [
+      "plate_body_no_markers"
+     ],
+     "balls": [],
+     "source": "low-piece body: <= 3 frame-aligned rectangles fitted to the outline raster (F-I4.17.2)",
+     "frame": {
+      "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+      "L_mm": 234.5,
+      "W_mm": 142.3,
+      "fill": 0.895,
+      "component_cells": 7470,
+      "cells": 7470,
+      "points_in_slab": 1746819
+     },
+     "raster": {
+      "axes": "rectangle (a_L, a_W)",
+      "cells": 7449,
+      "cell_area_cm2": 297.96,
+      "pinch_vertices": 0,
+      "loops": 1
+     },
+     "ok": true,
+     "box": {
+      "axes": [
+       [
+        -0.0013373188670015859,
+        0.004319047131644944,
+        0.9999897786528233
+       ],
+       [
+        -0.0034670947861305023,
+        -0.9999846825356576,
+        0.004314388462385666
+       ],
+       [
+        0.9999930953921593,
+        -0.0034612896346606766,
+        0.001352272928458704
+       ]
+      ],
+      "centre": [
+       0.0013557255783757914,
+       -0.002030244191874287,
+       0.0003437900786298852
+      ],
+      "half": [
+       0.11723255788877159,
+       0.07116699333702547,
+       0.0037005783736977775
+      ],
+      "poly": [
+       [
+        -0.11723255788877159,
+        -0.07116699333702547
+       ],
+       [
+        -0.08523255788877158,
+        -0.07116699333702547
+       ],
+       [
+        -0.08523255788877158,
+        -0.06116699333702547
+       ],
+       [
+        0.08876744211122843,
+        -0.06116699333702547
+       ],
+       [
+        0.08876744211122843,
+        -0.06716699333702547
+       ],
+       [
+        0.11676744211122844,
+        -0.06716699333702547
+       ],
+       [
+        0.11676744211122844,
+        0.06683300666297454
+       ],
+       [
+        -0.11723255788877159,
+        0.06683300666297454
+       ]
+      ],
+      "t": 0.007401156747395555,
+      "frame": "rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre",
+      "kind": "low_piece",
+      "rects_mm": [
+       {
+        "name": "waist",
+        "u_mm": [
+         -117.233,
+         116.767
+        ],
+        "v_mm": [
+         -61.167,
+         66.833
+        ]
+       },
+       {
+        "name": "end_left",
+        "u_mm": [
+         -117.233,
+         -85.233
+        ],
+        "v_mm": [
+         -71.167,
+         66.833
+        ]
+       },
+       {
+        "name": "end_right",
+        "u_mm": [
+         88.767,
+         116.767
+        ],
+        "v_mm": [
+         -67.167,
+         66.833
+        ]
+       }
+      ]
+     },
+     "L_mm": 234.5,
+     "W_mm": 142.3,
+     "t_mm": 7.401,
+     "polygon": {
+      "used": "low_piece",
+      "tolerance_mm": 0.0,
+      "vertices_raw": 92,
+      "vertices": 8,
+      "reflex_vertices": 2,
+      "area_cm2": 304.4,
+      "area_vs_cells": 1.0216,
+      "extent_mm": [
+       234.0,
+       138.0
+      ],
+      "poly_mm": [
+       [
+        -117.233,
+        -71.167
+       ],
+       [
+        -85.233,
+        -71.167
+       ],
+       [
+        -85.233,
+        -61.167
+       ],
+       [
+        88.767,
+        -61.167
+       ],
+       [
+        88.767,
+        -67.167
+       ],
+       [
+        116.767,
+        -67.167
+       ],
+       [
+        116.767,
+        66.833
+       ],
+       [
+        -117.233,
+        66.833
+       ]
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 128.0,
+      "ends_outer_10": 136.0,
+      "end_lo": 138.0,
+      "end_hi": 134.0,
+      "end_minus_waist": 8.0,
+      "max": 138.0
+     },
+     "volume_cm3": 225.29,
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 30440,
+       "free": 0.0592,
+       "unknown": 0.0611,
+       "observed": 0.8797,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 33228,
+       "free": 0.1292,
+       "unknown": 0.0606,
+       "observed": 0.8102,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 14.42,
+      "rectangle_free_cm3": 34.34,
+      "ratio_polygon_to_rectangle": 0.458
+     },
+     "body_kind": "low_piece",
+     "low_piece": {
+      "rule": "F-I4.17.2 <= 3 frame-aligned rectangles (waist + ends), max IoU with the outline raster; exhaustive stages, <= 10 passes",
+      "raster_cells": [
+       117,
+       71
+      ],
+      "crop_offset_cells": [
+       0,
+       0
+      ],
+      "raster_cm2": 297.96,
+      "theta_cells": [
+       5,
+       69,
+       16,
+       0,
+       69,
+       14,
+       2,
+       69
+      ],
+      "rectangles": [
+       {
+        "name": "waist",
+        "cells": [
+         0,
+         117,
+         5,
+         69
+        ],
+        "u_mm": [
+         -117.233,
+         116.767
+        ],
+        "v_mm": [
+         -61.167,
+         66.833
+        ]
+       },
+       {
+        "name": "end_left",
+        "cells": [
+         0,
+         16,
+         0,
+         69
+        ],
+        "u_mm": [
+         -117.233,
+         -85.233
+        ],
+        "v_mm": [
+         -71.167,
+         66.833
+        ]
+       },
+       {
+        "name": "end_right",
+        "cells": [
+         103,
+         117,
+         2,
+         69
+        ],
+        "u_mm": [
+         88.767,
+         116.767
+        ],
+        "v_mm": [
+         -67.167,
+         66.833
+        ]
+       }
+      ],
+      "n_rect": 3,
+      "iou": 0.958257,
+      "passes": 2,
+      "converged": true,
+      "fn_cells": 80,
+      "fp_cells": 241,
+      "fn_cm2": 3.2,
+      "fp_cm2": 9.64,
+      "end_max_cells": 39,
+      "end_minus_waist_mm": {
+       "end_left": 10.0,
+       "end_right": 6.0
+      },
+      "iou_min": 0.9,
+      "iou_pass": true,
+      "ring_ok": true
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -0.728,
+       8.673,
+       -74.167,
+       6.383
+      ],
+      "vertices_raw": 92,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 86,
+        "reflex_vertices": 41,
+        "area_cm2": 297.96,
+        "d_max_mm": 0.894,
+        "waist_mm": 130.0,
+        "ends_mm": 137.0,
+        "end_minus_waist_mm": 7.0,
+        "default_prisms": 50,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 57
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 64,
+        "reflex_vertices": 31,
+        "area_cm2": 298.2,
+        "d_max_mm": 1.455,
+        "waist_mm": 130.2,
+        "ends_mm": 137.4,
+        "end_minus_waist_mm": 7.3,
+        "default_prisms": 38,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 41
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 31,
+        "reflex_vertices": 14,
+        "area_cm2": 297.14,
+        "d_max_mm": 2.0,
+        "waist_mm": 128.3,
+        "ends_mm": 137.4,
+        "end_minus_waist_mm": 9.1,
+        "default_prisms": 17,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 17
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 21,
+        "reflex_vertices": 8,
+        "area_cm2": 296.96,
+        "d_max_mm": 2.896,
+        "waist_mm": 125.7,
+        "ends_mm": 137.8,
+        "end_minus_waist_mm": 12.2,
+        "default_prisms": 10,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 11
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 12,
+        "reflex_vertices": 4,
+        "area_cm2": 297.36,
+        "d_max_mm": 3.986,
+        "waist_mm": 125.9,
+        "ends_mm": 135.7,
+        "end_minus_waist_mm": 9.8,
+        "default_prisms": 5,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 6
+       }
+      ],
+      "chosen_eps_mm": 1.0,
+      "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+     },
+     "f_i416_polygon": {
+      "ok": true,
+      "why": null,
+      "chosen_eps_mm": 1.0,
+      "polygon": {
+       "used": "simplified",
+       "tolerance_mm": 1.0,
+       "vertices_raw": 92,
+       "vertices": 86,
+       "reflex_vertices": 41,
+       "area_cm2": 297.96,
+       "area_vs_cells": 1.0,
+       "extent_mm": [
+        234.0,
+        142.0
+       ]
+      },
+      "free_share_polygon": {
+       "points": 29796,
+       "free": 0.0408,
+       "unknown": 0.0581,
+       "observed": 0.9011,
+       "outside_grid": 0.0
+      },
+      "coverage": {
+       "frame": 0.8928,
+       "polygon_cm2": 297.96,
+       "frame_cm2": 333.72,
+       "rule": "F-I4.16.5 (report only, no gate)"
+      },
+      "widths_mm": {
+       "waist_30_70": 130.0,
+       "ends_outer_10": 137.0,
+       "end_lo": 142.0,
+       "end_hi": 136.0,
+       "end_minus_waist": 7.0,
+       "max": 142.0
+      }
+     },
+     "coverage": {
+      "frame": 0.9121,
+      "polygon_cm2": 304.4,
+      "frame_cm2": 333.72,
+      "body": "U (low-piece)",
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "free_share_reports": {
+      "low_piece": {
+       "points": 30440,
+       "free": 0.0592,
+       "unknown": 0.0611,
+       "observed": 0.8797,
+       "outside_grid": 0.0
+      },
+      "f_i416_polygon": {
+       "points": 29796,
+       "free": 0.0408,
+       "unknown": 0.0581,
+       "observed": 0.9011,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 33228,
+       "free": 0.1292,
+       "unknown": 0.0606,
+       "observed": 0.8102,
+       "outside_grid": 0.0
+      }
+     },
+     "default_pieces": {
+      "n": 3,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 30440.0,
+      "parts_area_mm2": 30440.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+      "direction": "A (cuts along a_W)",
+      "n_A": 3,
+      "n_B": 3,
+      "ring_vertices": 8,
+      "ring_reflex": 2,
+      "smallest_side_mm": 28.0,
+      "boxes_mm": [
+       [
+        -117.233,
+        -85.233,
+        -71.167,
+        66.833
+       ],
+       [
+        -85.233,
+        88.767,
+        -61.167,
+        66.833
+       ],
+       [
+        88.767,
+        116.767,
+        -67.167,
+        66.833
+       ]
+      ]
+     },
+     "coverage_report": {
+      "coverage_frame": 0.9121,
+      "same_stock": true,
+      "same_stock_by": "partner_prior",
+      "polygon_cm2": 304.4,
+      "partner_polygon_cm2": 288.88,
+      "coverage_partner": 1.0537,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slotted_pieces": {
+      "n": 5,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 29804.952,
+      "parts_area_mm2": 29804.952,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+      "direction": "A (cuts along a_W)",
+      "n_A": 5,
+      "n_B": 5,
+      "ring_vertices": 12,
+      "ring_reflex": 4,
+      "smallest_side_mm": 9.401,
+      "boxes_mm": [
+       [
+        -117.233,
+        -85.233,
+        -71.167,
+        66.833
+       ],
+       [
+        -85.233,
+        -0.728,
+        -61.167,
+        66.833
+       ],
+       [
+        -0.728,
+        8.673,
+        6.383,
+        66.833
+       ],
+       [
+        8.673,
+        88.767,
+        -61.167,
+        66.833
+       ],
+       [
+        88.767,
+        116.767,
+        -67.167,
+        66.833
+       ]
+      ]
+     }
+    },
+    "wooden_piece_2": {
+     "obj": "wooden_piece_2",
+     "fi4_rev": 17,
+     "flags": [
+      "plate_body_no_markers"
+     ],
+     "balls": [],
+     "source": "low-piece body: <= 3 frame-aligned rectangles fitted to the outline raster (F-I4.17.2)",
+     "frame": {
+      "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+      "L_mm": 231.1,
+      "W_mm": 142.0,
+      "fill": 0.868,
+      "component_cells": 7122,
+      "cells": 7122,
+      "points_in_slab": 1310948
+     },
+     "raster": {
+      "axes": "rectangle (a_L, a_W)",
+      "cells": 7179,
+      "cell_area_cm2": 287.16,
+      "pinch_vertices": 0,
+      "loops": 1
+     },
+     "ok": true,
+     "box": {
+      "axes": [
+       [
+        -0.014118025234927112,
+        0.0058366455741488375,
+        -0.9998833006565856
+       ],
+       [
+        0.007351794517144372,
+        -0.9999553275870344,
+        -0.005940870953362026
+       ],
+       [
+        -0.9998733082150176,
+        -0.007434809933588312,
+        0.014074484729743014
+       ]
+      ],
+      "centre": [
+       0.0005061640979071448,
+       -0.001979878711740028,
+       0.0018713452239340947
+      ],
+      "half": [
+       0.11555477012293908,
+       0.0709970122246289,
+       0.0037005783736977775
+      ],
+      "poly": [
+       [
+        -0.11555477012293908,
+        -0.0669970122246289
+       ],
+       [
+        -0.07155477012293908,
+        -0.0669970122246289
+       ],
+       [
+        -0.07155477012293908,
+        -0.05899701222462891
+       ],
+       [
+        0.03844522987706093,
+        -0.05899701222462891
+       ],
+       [
+        0.03844522987706093,
+        -0.0669970122246289
+       ],
+       [
+        0.11444522987706095,
+        -0.0669970122246289
+       ],
+       [
+        0.11444522987706095,
+        0.06300298777537111
+       ],
+       [
+        0.03844522987706093,
+        0.06300298777537111
+       ],
+       [
+        0.03844522987706093,
+        0.06100298777537111
+       ],
+       [
+        -0.07155477012293908,
+        0.06100298777537111
+       ],
+       [
+        -0.07155477012293908,
+        0.06500298777537111
+       ],
+       [
+        -0.11555477012293908,
+        0.06500298777537111
+       ]
+      ],
+      "t": 0.007401156747395555,
+      "frame": "rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre",
+      "kind": "low_piece",
+      "rects_mm": [
+       {
+        "name": "waist",
+        "u_mm": [
+         -115.555,
+         114.445
+        ],
+        "v_mm": [
+         -58.997,
+         61.003
+        ]
+       },
+       {
+        "name": "end_left",
+        "u_mm": [
+         -115.555,
+         -71.555
+        ],
+        "v_mm": [
+         -66.997,
+         65.003
+        ]
+       },
+       {
+        "name": "end_right",
+        "u_mm": [
+         38.445,
+         114.445
+        ],
+        "v_mm": [
+         -66.997,
+         63.003
+        ]
+       }
+      ]
+     },
+     "L_mm": 231.1,
+     "W_mm": 142.0,
+     "t_mm": 7.401,
+     "polygon": {
+      "used": "low_piece",
+      "tolerance_mm": 0.0,
+      "vertices_raw": 138,
+      "vertices": 12,
+      "reflex_vertices": 4,
+      "area_cm2": 288.88,
+      "area_vs_cells": 1.006,
+      "extent_mm": [
+       230.0,
+       132.0
+      ],
+      "poly_mm": [
+       [
+        -115.555,
+        -66.997
+       ],
+       [
+        -71.555,
+        -66.997
+       ],
+       [
+        -71.555,
+        -58.997
+       ],
+       [
+        38.445,
+        -58.997
+       ],
+       [
+        38.445,
+        -66.997
+       ],
+       [
+        114.445,
+        -66.997
+       ],
+       [
+        114.445,
+        63.003
+       ],
+       [
+        38.445,
+        63.003
+       ],
+       [
+        38.445,
+        61.003
+       ],
+       [
+        -71.555,
+        61.003
+       ],
+       [
+        -71.555,
+        65.003
+       ],
+       [
+        -115.555,
+        65.003
+       ]
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 120.0,
+      "ends_outer_10": 131.0,
+      "end_lo": 132.0,
+      "end_hi": 130.0,
+      "end_minus_waist": 11.0,
+      "max": 132.0
+     },
+     "volume_cm3": 213.8,
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 28888,
+       "free": 0.0218,
+       "unknown": 0.4996,
+       "observed": 0.4786,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 32944,
+       "free": 0.1033,
+       "unknown": 0.4671,
+       "observed": 0.4296,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 5.04,
+      "rectangle_free_cm3": 27.22,
+      "ratio_polygon_to_rectangle": 0.211
+     },
+     "body_kind": "low_piece",
+     "low_piece": {
+      "rule": "F-I4.17.2 <= 3 frame-aligned rectangles (waist + ends), max IoU with the outline raster; exhaustive stages, <= 10 passes",
+      "raster_cells": [
+       115,
+       71
+      ],
+      "crop_offset_cells": [
+       0,
+       0
+      ],
+      "raster_cm2": 287.16,
+      "theta_cells": [
+       6,
+       66,
+       22,
+       2,
+       68,
+       38,
+       2,
+       67
+      ],
+      "rectangles": [
+       {
+        "name": "waist",
+        "cells": [
+         0,
+         115,
+         6,
+         66
+        ],
+        "u_mm": [
+         -115.555,
+         114.445
+        ],
+        "v_mm": [
+         -58.997,
+         61.003
+        ]
+       },
+       {
+        "name": "end_left",
+        "cells": [
+         0,
+         22,
+         2,
+         68
+        ],
+        "u_mm": [
+         -115.555,
+         -71.555
+        ],
+        "v_mm": [
+         -66.997,
+         65.003
+        ]
+       },
+       {
+        "name": "end_right",
+        "cells": [
+         77,
+         115,
+         2,
+         67
+        ],
+        "u_mm": [
+         38.445,
+         114.445
+        ],
+        "v_mm": [
+         -66.997,
+         63.003
+        ]
+       }
+      ],
+      "n_rect": 3,
+      "iou": 0.952413,
+      "passes": 5,
+      "converged": true,
+      "fn_cells": 154,
+      "fp_cells": 197,
+      "fn_cm2": 6.16,
+      "fp_cm2": 7.88,
+      "end_max_cells": 38,
+      "end_minus_waist_mm": {
+       "end_left": 12.0,
+       "end_right": 10.0
+      },
+      "iou_min": 0.9,
+      "iou_pass": true,
+      "ring_ok": true
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -3.342,
+       6.059,
+       -73.997,
+       -4.436
+      ],
+      "vertices_raw": 138,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 126,
+        "reflex_vertices": 61,
+        "area_cm2": 287.16,
+        "d_max_mm": 0.97,
+        "waist_mm": 126.0,
+        "ends_mm": 135.9,
+        "end_minus_waist_mm": 9.9,
+        "default_prisms": 71,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 77
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 91,
+        "reflex_vertices": 45,
+        "area_cm2": 287.16,
+        "d_max_mm": 1.455,
+        "waist_mm": 124.8,
+        "ends_mm": 136.1,
+        "end_minus_waist_mm": 11.3,
+        "default_prisms": 49,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 53
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 39,
+        "reflex_vertices": 20,
+        "area_cm2": 283.64,
+        "d_max_mm": 2.0,
+        "waist_mm": 123.5,
+        "ends_mm": 134.8,
+        "end_minus_waist_mm": 11.3,
+        "default_prisms": 21,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 22
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 31,
+        "reflex_vertices": 14,
+        "area_cm2": 287.14,
+        "d_max_mm": 2.915,
+        "waist_mm": 124.9,
+        "ends_mm": 134.8,
+        "end_minus_waist_mm": 10.0,
+        "default_prisms": 15,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 16
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 20,
+        "reflex_vertices": 9,
+        "area_cm2": 284.66,
+        "d_max_mm": 3.767,
+        "waist_mm": 124.9,
+        "ends_mm": 135.6,
+        "end_minus_waist_mm": 10.8,
+        "default_prisms": 9,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 10
+       }
+      ],
+      "chosen_eps_mm": 1.0,
+      "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+     },
+     "f_i416_polygon": {
+      "ok": true,
+      "why": null,
+      "chosen_eps_mm": 1.0,
+      "polygon": {
+       "used": "simplified",
+       "tolerance_mm": 1.0,
+       "vertices_raw": 138,
+       "vertices": 126,
+       "reflex_vertices": 61,
+       "area_cm2": 287.16,
+       "area_vs_cells": 1.0,
+       "extent_mm": [
+        230.0,
+        142.0
+       ]
+      },
+      "free_share_polygon": {
+       "points": 28716,
+       "free": 0.0189,
+       "unknown": 0.4941,
+       "observed": 0.487,
+       "outside_grid": 0.0
+      },
+      "coverage": {
+       "frame": 0.8751,
+       "polygon_cm2": 287.16,
+       "frame_cm2": 328.16,
+       "rule": "F-I4.16.5 (report only, no gate)"
+      },
+      "widths_mm": {
+       "waist_30_70": 126.0,
+       "ends_outer_10": 135.9,
+       "end_lo": 134.0,
+       "end_hi": 138.0,
+       "end_minus_waist": 9.9,
+       "max": 140.0
+      }
+     },
+     "coverage": {
+      "frame": 0.8803,
+      "polygon_cm2": 288.88,
+      "frame_cm2": 328.16,
+      "body": "U (low-piece)",
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "free_share_reports": {
+      "low_piece": {
+       "points": 28888,
+       "free": 0.0218,
+       "unknown": 0.4996,
+       "observed": 0.4786,
+       "outside_grid": 0.0
+      },
+      "f_i416_polygon": {
+       "points": 28716,
+       "free": 0.0189,
+       "unknown": 0.4941,
+       "observed": 0.487,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 32944,
+       "free": 0.1033,
+       "unknown": 0.4671,
+       "observed": 0.4296,
+       "outside_grid": 0.0
+      }
+     },
+     "default_pieces": {
+      "n": 3,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 28888.0,
+      "parts_area_mm2": 28888.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+      "direction": "A (cuts along a_W)",
+      "n_A": 3,
+      "n_B": 5,
+      "ring_vertices": 12,
+      "ring_reflex": 4,
+      "smallest_side_mm": 44.0,
+      "boxes_mm": [
+       [
+        -115.555,
+        -71.555,
+        -66.997,
+        65.003
+       ],
+       [
+        -71.555,
+        38.445,
+        -58.997,
+        61.003
+       ],
+       [
+        38.445,
+        114.445,
+        -66.997,
+        63.003
+       ]
+      ]
+     },
+     "coverage_report": {
+      "coverage_frame": 0.8803,
+      "same_stock": true,
+      "same_stock_by": "partner_prior",
+      "polygon_cm2": 288.88,
+      "partner_polygon_cm2": 304.4,
+      "coverage_partner": 0.949,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slotted_pieces": {
+      "n": 5,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 28375.059,
+      "parts_area_mm2": 28375.059,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+      "direction": "A (cuts along a_W)",
+      "n_A": 5,
+      "n_B": 7,
+      "ring_vertices": 16,
+      "ring_reflex": 6,
+      "smallest_side_mm": 9.401,
+      "boxes_mm": [
+       [
+        -115.555,
+        -71.555,
+        -66.997,
+        65.003
+       ],
+       [
+        -71.555,
+        -3.342,
+        -58.997,
+        61.003
+       ],
+       [
+        -3.342,
+        6.059,
+        -4.436,
+        61.003
+       ],
+       [
+        6.059,
+        38.445,
+        -58.997,
+        61.003
+       ],
+       [
+        38.445,
+        114.445,
+        -66.997,
+        63.003
+       ]
+      ]
+     }
+    }
+   },
+   "slot": {
+    "wooden_piece_1": {
+     "w_mm": 9.4,
+     "t_partner_mm": 7.4,
+     "c_L_mm": 3.97,
+     "entry_sign_aW": -1,
+     "d_dot_aW": 0.9975,
+     "angle_d_aW_deg": 4.04,
+     "samples": 6146,
+     "assembled_build_frames": 13,
+     "c_L_component_mm": -0.43,
+     "centre_from": "partner's plate mid plane at the median assembled pose (F-I4.12)",
+     "c_L_shift_mm": 4.4,
+     "ok": true,
+     "P99_mm": 75.9,
+     "cap_mm": 75.55,
+     "split": {
+      "applied": true,
+      "shared": true,
+      "carve_sign": 1,
+      "entry_edge_on_carve_side": true,
+      "plane_vs_aW_cos": 0.9975,
+      "raw_depth_mm": 75.55
+     },
+     "P_mm": 65.55,
+     "D_mm": 67.55,
+     "box": {
+      "axes": [
+       [
+        -0.0013373188670015859,
+        0.004319047131644944,
+        0.9999897786528233
+       ],
+       [
+        -0.0034670947861305023,
+        -0.9999846825356576,
+        0.004314388462385666
+       ],
+       [
+        0.9999930953921593,
+        -0.0034612896346606766,
+        0.001352272928458704
+       ]
+      ],
+      "centre": [
+       0.0014679204743650316,
+       0.03187841567019748,
+       0.004169623953924949
+      ],
+      "half": [
+       0.004700578373697778,
+       0.04027497001283372,
+       0.006700578373697778
+      ]
+     },
+     "depth_is": "prior [E] (split share of the constrained depth sum)",
+     "D_rect_mm": 77.55,
+     "P_rect_mm": 75.55,
+     "u_rect_mm": -71.17,
+     "bottom_mm": 6.38,
+     "u_e_poly_mm": -61.17,
+     "entry_edge_shift_mm": 10.0,
+     "depth_from": "the polygon edge at the slot mouth (F-I4.15.3)",
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "angle_partner_normal_aL_deg": 2.06
+    },
+    "wooden_piece_2": {
+     "w_mm": 9.4,
+     "t_partner_mm": 7.4,
+     "c_L_mm": 1.36,
+     "entry_sign_aW": -1,
+     "d_dot_aW": 0.9986,
+     "angle_d_aW_deg": 3.03,
+     "samples": 7070,
+     "assembled_build_frames": 12,
+     "c_L_component_mm": 1.5,
+     "centre_from": "partner's plate mid plane at the median assembled pose (F-I4.12)",
+     "c_L_shift_mm": -0.14,
+     "ok": true,
+     "P99_mm": 64.56,
+     "cap_mm": 66.19,
+     "split": {
+      "applied": true,
+      "shared": true,
+      "carve_sign": -1,
+      "entry_edge_on_carve_side": true,
+      "plane_vs_aW_cos": 0.9994,
+      "raw_depth_mm": 66.19
+     },
+     "P_mm": 52.56,
+     "D_mm": 54.56,
+     "box": {
+      "axes": [
+       [
+        -0.014118025234927112,
+        0.0058366455741488375,
+        -0.9998833006565856
+       ],
+       [
+        0.007351794517144372,
+        -0.9999553275870344,
+        -0.005940870953362026
+       ],
+       [
+        -0.9998733082150176,
+        -0.007434809933588312,
+        0.014074484729743014
+       ]
+      ],
+      "centre": [
+       0.00019867624188875323,
+       0.0372425542953613,
+       0.0007460773653613223
+      ],
+      "half": [
+       0.004700578373697778,
+       0.03478075586185417,
+       0.006700578373697778
+      ]
+     },
+     "depth_is": "prior [E] (split share of the constrained depth sum)",
+     "D_rect_mm": 66.56,
+     "P_rect_mm": 64.56,
+     "u_rect_mm": -71.0,
+     "bottom_mm": -4.44,
+     "u_e_poly_mm": -59.0,
+     "entry_edge_shift_mm": 12.0,
+     "depth_from": "the polygon edge at the slot mouth (F-I4.15.3)",
+     "slot_centre": {
+      "applicable": true,
+      "method": "F-I4.16.4 below-face half-peak run (verify_slot2_1 vobs2 (b))",
+      "frames_before": 164,
+      "v_band_mm": [
+       -51.0,
+       -12.44
+      ],
+      "window_mm": 30.0,
+      "points_in_band_window": 51282,
+      "c_L_mm": 1.358,
+      "w_mm": 9.401,
+      "seen_sign": 1.0,
+      "n_points": 361,
+      "face_points": 50615,
+      "peak_u_mm": -4.14,
+      "run_mm": [
+       -5.64,
+       -1.64
+      ],
+      "run_width_mm": 4.0,
+      "run_touches_window_end": false,
+      "u_obs_mm": -3.642,
+      "delta_mm": -5.0,
+      "observable": true,
+      "below_w_mm_p5_50_95": [
+       -3.43,
+       -1.87,
+       -0.16
+      ],
+      "below_per_mm": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       13,
+       67,
+       73,
+       58,
+       54,
+       34,
+       27,
+       22,
+       13,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "face_per_mm": [
+       785,
+       769,
+       781,
+       774,
+       794,
+       787,
+       804,
+       789,
+       795,
+       804,
+       795,
+       803,
+       817,
+       806,
+       820,
+       799,
+       803,
+       839,
+       806,
+       820,
+       830,
+       793,
+       805,
+       763,
+       741,
+       779,
+       701,
+       680,
+       679,
+       657,
+       746,
+       751,
+       853,
+       867,
+       871,
+       911,
+       878,
+       928,
+       902,
+       901,
+       918,
+       903,
+       899,
+       924,
+       900,
+       926,
+       927,
+       919,
+       908,
+       938,
+       927,
+       920,
+       947,
+       941,
+       940,
+       935,
+       941,
+       958,
+       956,
+       962
+      ],
+      "bins_from_mm": -28.642,
+      "slot_centre_disagrees": {
+       "delta_mm": -5.0,
+       "n_points": 361,
+       "u_obs_mm": -3.642,
+       "c_L_mm": 1.358
+      }
+     },
+     "slot_centre_disagrees": {
+      "delta_mm": -5.0,
+      "n_points": 361,
+      "u_obs_mm": -3.642,
+      "c_L_mm": 1.358
+     },
+     "angle_partner_normal_aL_deg": 1.51
+    }
+   },
+   "crosslap": {
+    "W_x_mm": 120.52,
+    "grid_points": 883,
+    "D_sum_mm": 122.11,
+    "diff_mm": 1.59,
+    "window_mm": 10.0,
+    "ok": true
+   },
+   "budget": {
+    "wooden_piece_1": {
+     "slot_cm3": 4.7,
+     "body_cm3": 225.29,
+     "vol_share": 0.0209,
+     "reach": 0.465,
+     "footprint_mm": [
+      -0.73,
+      8.67,
+      -74.17,
+      6.38
+     ],
+     "one_simple_polygon": true,
+     "area_consistent": true,
+     "bottom_inside": true,
+     "D_lt_W": true,
+     "prong_area_mm2": [
+      7869.8,
+      7301.8
+     ],
+     "topology": true,
+     "rings": 1,
+     "hole": false,
+     "nudge_mm": 0.0,
+     "ok": true
+    },
+    "wooden_piece_2": {
+     "slot_cm3": 3.796,
+     "body_cm3": 213.8,
+     "vol_share": 0.0178,
+     "reach": 0.398,
+     "footprint_mm": [
+      -3.34,
+      6.06,
+      -74.0,
+      -4.44
+     ],
+     "one_simple_polygon": true,
+     "area_consistent": true,
+     "bottom_inside": true,
+     "D_lt_W": true,
+     "prong_area_mm2": [
+      6122.5,
+      5913.7
+     ],
+     "topology": true,
+     "rings": 1,
+     "hole": false,
+     "nudge_mm": 0.0,
+     "ok": true
+    }
+   },
+   "decision": "CARVE (simulator copy only, T1)"
+  }
+ },
+ {
+  "target": "wooden_piece_1",
+  "partner": "wooden_piece_2",
+  "run": {
+   "frames": [
+    164,
+    274
+   ],
+   "n": 56,
+   "kind": "INSERTION",
+   "travel_mm": 122.3,
+   "straightness": 0.908,
+   "d": [
+    0.0419,
+    -0.9979,
+    -0.0496
+   ],
+   "assembled": [
+    218,
+    274
+   ],
+   "n_assembled": 29,
+   "n_build": 30,
+   "n_check": 26,
+   "flags": []
+  },
+  "voxels": 1,
+  "region_voxels": 1,
+  "cm3": 0.06,
+  "nmin": 8,
+  "split": {
+   "through_column": false,
+   "exit_share_entry_end": 0.0,
+   "exit_share_far_end": 0.0,
+   "extent_along_d_mm": 4.0
+  },
+  "linked": true,
+  "flags": [],
+  "step": 1,
+  "decision": "IGNORE",
+  "widths": {
+   "w_sim_mm": 21.72,
+   "entering_samples_mm": 3.72,
+   "partner_collider_mm": 19.72,
+   "w_sub_mm": 12.55,
+   "centre_n_mm": -11.63,
+   "axes_dnm": [
+    [
+     0.0419,
+     -0.9979,
+     -0.0496
+    ],
+    [
+     -0.046,
+     0.0477,
+     -0.9978
+    ],
+    [
+     0.9981,
+     0.0441,
+     -0.0439
+    ]
+   ]
+  },
+  "own_decision": "IGNORE",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false,
+    "reason": "silhouette gate failed"
+   },
+   "ab": null
+  },
+  "pair_status": {
+   "wooden_piece_1": "IGNORE",
+   "wooden_piece_2": "PUSH"
+  },
+  "tier": "T0",
+  "submitted": false,
+  "sim_carve": false,
+  "round": 0
+ },
+ {
+  "target": "wooden_piece_2",
+  "partner": "wooden_piece_1",
+  "run": {
+   "frames": [
+    162,
+    274
+   ],
+   "n": 57,
+   "kind": "INSERTION",
+   "travel_mm": 127.7,
+   "straightness": 0.915,
+   "d": [
+    -0.038,
+    -0.9991,
+    0.0211
+   ],
+   "assembled": [
+    218,
+    274
+   ],
+   "n_assembled": 29,
+   "n_build": 30,
+   "n_check": 27,
+   "flags": []
+  },
+  "voxels": 222,
+  "region_voxels": 118,
+  "cm3": 7.55,
+  "nmin": 8,
+  "split": {
+   "through_column": true,
+   "exit_share_entry_end": 1.0,
+   "exit_share_far_end": 1.0,
+   "extent_along_d_mm": 128.1,
+   "plane_point": [
+    0.00058,
+    0.00284,
+    0.00039
+   ],
+   "plane_normal": [
+    -0.0297,
+    0.999,
+    0.0338
+   ],
+   "carve_side": "entry of the partner pair (s > 0)",
+   "shared": true,
+   "kept_voxels": 104,
+   "carved_side_voxels": 118
+  },
+  "linked": true,
+  "flags": [
+   "interlock_disagree",
+   "owner_waiver_fi4",
+   "plate_t_partner_prior"
+  ],
+  "class_mix": {
+   "U": 41,
+   "SIL": 0,
+   "GAP": 0,
+   "O": 77,
+   "O_testable_solid": 77
+  },
+  "class_o_share": 0.653,
+  "step": 2,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+  "decision": "CARVE",
+  "widths": {
+   "w_sim_mm": 14.55,
+   "entering_samples_mm": 12.55,
+   "partner_collider_mm": 7.46,
+   "w_sub_mm": 14.55,
+   "centre_n_mm": -1.59,
+   "axes_dnm": [
+    [
+     -0.038,
+     -0.9991,
+     0.0211
+    ],
+    [
+     -0.0174,
+     -0.0205,
+     -0.9996
+    ],
+    [
+     0.9991,
+     -0.0383,
+     -0.0166
+    ]
+   ]
+  },
+  "own_decision": "PUSH",
+  "sources": {
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": false,
+    "sil_share": 0.008,
+    "testable": 118
+   },
+   "ab": null
+  },
+  "tier": "T1",
+  "submitted": false,
+  "sim_carve": true,
+  "round": 0,
+  "decision_f_i3": "PUSH",
+  "tier_f_i3": "T0",
+  "push_list_f_i3": {
+   "kind": "PUSH",
+   "frames": [
+    162,
+    274
+   ],
+   "push_mm": null,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+  },
+  "waiver_fi4": {
+   "rule": "PREREG F-I4 (c13f53c); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct ~16:00 UTC: \"Okay I waive that camera rule\"",
+   "fi4_rev": 17,
+   "plate": {
+    "wooden_piece_1": {
+     "obj": "wooden_piece_1",
+     "sigma_mm": 3.0,
+     "points": {
+      "owned": 2535338,
+      "in_box": 1759879,
+      "within_6mm": 1759844
+     },
+     "plate": true,
+     "n_down": 36675,
+     "planes": [
+      {
+       "n": [
+        1.0,
+        -0.0035,
+        0.0014
+       ],
+       "n_pts": 26022,
+       "rms_mm": 3.7109,
+       "two_sided_share": 0.4874
+      }
+     ],
+     "pairs": [],
+     "why_f_i4_1": "no_plane_pair",
+     "camera_side": {
+      "method": "camera_side (F-I4.14)",
+      "slab_points": 36675,
+      "plus": 19431,
+      "minus": 17244,
+      "plus_frames": 38,
+      "minus_frames": 101,
+      "inplane_extents_mm": [
+       215.9,
+       121.2
+      ],
+      "kind": "two_sided",
+      "ok": true,
+      "checks": {
+       "antiparallel": true,
+       "material_between": true,
+       "window": true,
+       "overlap": true,
+       "rms": true,
+       "plate_extents": true
+      },
+      "t_mm": 6.212,
+      "t_m": 0.006211937893189805,
+      "overlap": 0.968,
+      "angle_deg": 1.3,
+      "faces": [
+       {
+        "n_pts": 19431,
+        "frames": 38,
+        "m": 4.19,
+        "rms_m": 2.491
+       },
+       {
+        "n_pts": 17244,
+        "frames": 101,
+        "m": -2.022,
+        "rms_m": 1.662
+       }
+      ],
+      "mid_n": [
+       0.9999930953921593,
+       -0.0034612896346606766,
+       0.001352272928458704
+      ],
+      "mid_d": 0.0010838013548156492
+     },
+     "t_m": 0.007401156747395555,
+     "mid_n": [
+      0.9999930953921593,
+      -0.0034612896346606766,
+      0.001352272928458704
+     ],
+     "mid_d": 0.0013632083788159013,
+     "t_source": "camera_side_pair",
+     "flags": [
+      "plate_pair_camera_side"
+     ],
+     "pair": {
+      "method": "camera_side (F-I4.14)",
+      "thickness_mm": 6.212,
+      "overlap": 0.968
+     },
+     "sec": 230.6,
+     "t_down_mm": 6.212,
+     "t_all": {
+      "method": "camera_side_all_points (F-I4.15.1)",
+      "slab_points": 1759844,
+      "plus": 736196,
+      "minus": 1023648,
+      "plus_frames": 38,
+      "minus_frames": 101,
+      "ok": true,
+      "t_m": 0.007401156747395555,
+      "t_mm": 7.401,
+      "mid_n": [
+       0.9999930953921593,
+       -0.0034612896346606766,
+       0.001352272928458704
+      ],
+      "mid_d": 0.0013632083788159013,
+      "faces": [
+       {
+        "n_pts": 736196,
+        "frames": 38,
+        "frame_range": [
+         0,
+         74
+        ],
+        "median_offset_mm": 3.701,
+        "per_frame_median_offset_mm_5_50_95": [
+         2.41,
+         3.55,
+         4.695
+        ]
+       },
+       {
+        "n_pts": 1023648,
+        "frames": 101,
+        "frame_range": [
+         74,
+         274
+        ],
+        "median_offset_mm": -3.701,
+        "per_frame_median_offset_mm_5_50_95": [
+         -4.612,
+         -3.748,
+         -3.063
+        ]
+       }
+      ],
+      "checks": {
+       "sides": true,
+       "material_between": true,
+       "window": true
+      }
+     },
+     "fi4_rev": 15,
+     "t_estimator": "all near points (F-I4.15.1)"
+    },
+    "wooden_piece_2": {
+     "obj": "wooden_piece_2",
+     "sigma_mm": 0.74,
+     "points": {
+      "owned": 1460641,
+      "in_box": 1408262,
+      "within_6mm": 1408169
+     },
+     "plate": true,
+     "n_down": 22304,
+     "planes": [
+      {
+       "n": [
+        -0.9999,
+        -0.0074,
+        0.0141
+       ],
+       "n_pts": 13795,
+       "rms_mm": 1.1232,
+       "two_sided_share": 0.0
+      },
+      {
+       "n": [
+        -0.9999,
+        0.0073,
+        0.0098
+       ],
+       "n_pts": 1319,
+       "rms_mm": 0.5591,
+       "two_sided_share": 0.0
+      },
+      {
+       "n": [
+        -0.9995,
+        0.0281,
+        0.0107
+       ],
+       "n_pts": 429,
+       "rms_mm": 0.6362,
+       "two_sided_share": 0.0
+      },
+      {
+       "n": [
+        -0.9996,
+        0.0259,
+        0.0079
+       ],
+       "n_pts": 342,
+       "rms_mm": 0.6544,
+       "two_sided_share": 0.0
+      }
+     ],
+     "pairs": [],
+     "why_f_i4_1": "no_plane_pair",
+     "camera_side": {
+      "method": "camera_side (F-I4.14)",
+      "slab_points": 22304,
+      "plus": 22304,
+      "minus": 0,
+      "plus_frames": 119,
+      "minus_frames": 0,
+      "inplane_extents_mm": [
+       214.9,
+       121.8
+      ],
+      "kind": "one_face",
+      "ok": true,
+      "seen_sign": 1,
+      "m_seen": 0.003612763632559454,
+      "extent_n_1_99_mm": 14.77,
+      "checks": {
+       "thin_extent": true,
+       "plate_extents": true
+      },
+      "mid_n": [
+       -0.9998733082150176,
+       -0.007434809933588312,
+       0.014074484729743014
+      ],
+      "m_seen_all_points": 1408169
+     },
+     "sec": 85.4,
+     "t_m": 0.007401156747395555,
+     "mid_n": [
+      -0.9998733082150176,
+      -0.007434809933588312,
+      0.014074484729743014
+     ],
+     "mid_d": -0.0004650417293824041,
+     "t_source": "partner_prior",
+     "flags": [
+      "plate_t_partner_prior"
+     ],
+     "pair": {
+      "method": "one_face (F-I4.14 step 3)",
+      "thickness_mm": 7.401,
+      "t_from": "wooden_piece_1",
+      "seen_sign": 1
+     }
+    }
+   },
+   "in_scope": true,
+   "gates": {
+    "wooden_piece_1": {
+     "region_voxels": 67,
+     "run_kind": "INSERTION",
+     "sweep_share": 1.0,
+     "sweep": true,
+     "not_pushable": true,
+     "push_mm": 19.0,
+     "push_frames": 30,
+     "reused": false
+    },
+    "wooden_piece_2": {
+     "region_voxels": 118,
+     "run_kind": "INSERTION",
+     "sweep_share": 1.0,
+     "sweep": true,
+     "not_pushable": true,
+     "push_mm": 22.0,
+     "push_frames": 30,
+     "reused": false
+    }
+   },
+   "body": {
+    "wooden_piece_1": {
+     "obj": "wooden_piece_1",
+     "fi4_rev": 17,
+     "flags": [
+      "plate_body_no_markers"
+     ],
+     "balls": [],
+     "source": "low-piece body: <= 3 frame-aligned rectangles fitted to the outline raster (F-I4.17.2)",
+     "frame": {
+      "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+      "L_mm": 234.5,
+      "W_mm": 142.3,
+      "fill": 0.895,
+      "component_cells": 7470,
+      "cells": 7470,
+      "points_in_slab": 1746819
+     },
+     "raster": {
+      "axes": "rectangle (a_L, a_W)",
+      "cells": 7449,
+      "cell_area_cm2": 297.96,
+      "pinch_vertices": 0,
+      "loops": 1
+     },
+     "ok": true,
+     "box": {
+      "axes": [
+       [
+        -0.0013373188670015859,
+        0.004319047131644944,
+        0.9999897786528233
+       ],
+       [
+        -0.0034670947861305023,
+        -0.9999846825356576,
+        0.004314388462385666
+       ],
+       [
+        0.9999930953921593,
+        -0.0034612896346606766,
+        0.001352272928458704
+       ]
+      ],
+      "centre": [
+       0.0013557255783757914,
+       -0.002030244191874287,
+       0.0003437900786298852
+      ],
+      "half": [
+       0.11723255788877159,
+       0.07116699333702547,
+       0.0037005783736977775
+      ],
+      "poly": [
+       [
+        -0.11723255788877159,
+        -0.07116699333702547
+       ],
+       [
+        -0.08523255788877158,
+        -0.07116699333702547
+       ],
+       [
+        -0.08523255788877158,
+        -0.06116699333702547
+       ],
+       [
+        0.08876744211122843,
+        -0.06116699333702547
+       ],
+       [
+        0.08876744211122843,
+        -0.06716699333702547
+       ],
+       [
+        0.11676744211122844,
+        -0.06716699333702547
+       ],
+       [
+        0.11676744211122844,
+        0.06683300666297454
+       ],
+       [
+        -0.11723255788877159,
+        0.06683300666297454
+       ]
+      ],
+      "t": 0.007401156747395555,
+      "frame": "rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre",
+      "kind": "low_piece",
+      "rects_mm": [
+       {
+        "name": "waist",
+        "u_mm": [
+         -117.233,
+         116.767
+        ],
+        "v_mm": [
+         -61.167,
+         66.833
+        ]
+       },
+       {
+        "name": "end_left",
+        "u_mm": [
+         -117.233,
+         -85.233
+        ],
+        "v_mm": [
+         -71.167,
+         66.833
+        ]
+       },
+       {
+        "name": "end_right",
+        "u_mm": [
+         88.767,
+         116.767
+        ],
+        "v_mm": [
+         -67.167,
+         66.833
+        ]
+       }
+      ]
+     },
+     "L_mm": 234.5,
+     "W_mm": 142.3,
+     "t_mm": 7.401,
+     "polygon": {
+      "used": "low_piece",
+      "tolerance_mm": 0.0,
+      "vertices_raw": 92,
+      "vertices": 8,
+      "reflex_vertices": 2,
+      "area_cm2": 304.4,
+      "area_vs_cells": 1.0216,
+      "extent_mm": [
+       234.0,
+       138.0
+      ],
+      "poly_mm": [
+       [
+        -117.233,
+        -71.167
+       ],
+       [
+        -85.233,
+        -71.167
+       ],
+       [
+        -85.233,
+        -61.167
+       ],
+       [
+        88.767,
+        -61.167
+       ],
+       [
+        88.767,
+        -67.167
+       ],
+       [
+        116.767,
+        -67.167
+       ],
+       [
+        116.767,
+        66.833
+       ],
+       [
+        -117.233,
+        66.833
+       ]
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 128.0,
+      "ends_outer_10": 136.0,
+      "end_lo": 138.0,
+      "end_hi": 134.0,
+      "end_minus_waist": 8.0,
+      "max": 138.0
+     },
+     "volume_cm3": 225.29,
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 30440,
+       "free": 0.0592,
+       "unknown": 0.0611,
+       "observed": 0.8797,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 33228,
+       "free": 0.1292,
+       "unknown": 0.0606,
+       "observed": 0.8102,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 14.42,
+      "rectangle_free_cm3": 34.34,
+      "ratio_polygon_to_rectangle": 0.458
+     },
+     "body_kind": "low_piece",
+     "low_piece": {
+      "rule": "F-I4.17.2 <= 3 frame-aligned rectangles (waist + ends), max IoU with the outline raster; exhaustive stages, <= 10 passes",
+      "raster_cells": [
+       117,
+       71
+      ],
+      "crop_offset_cells": [
+       0,
+       0
+      ],
+      "raster_cm2": 297.96,
+      "theta_cells": [
+       5,
+       69,
+       16,
+       0,
+       69,
+       14,
+       2,
+       69
+      ],
+      "rectangles": [
+       {
+        "name": "waist",
+        "cells": [
+         0,
+         117,
+         5,
+         69
+        ],
+        "u_mm": [
+         -117.233,
+         116.767
+        ],
+        "v_mm": [
+         -61.167,
+         66.833
+        ]
+       },
+       {
+        "name": "end_left",
+        "cells": [
+         0,
+         16,
+         0,
+         69
+        ],
+        "u_mm": [
+         -117.233,
+         -85.233
+        ],
+        "v_mm": [
+         -71.167,
+         66.833
+        ]
+       },
+       {
+        "name": "end_right",
+        "cells": [
+         103,
+         117,
+         2,
+         69
+        ],
+        "u_mm": [
+         88.767,
+         116.767
+        ],
+        "v_mm": [
+         -67.167,
+         66.833
+        ]
+       }
+      ],
+      "n_rect": 3,
+      "iou": 0.958257,
+      "passes": 2,
+      "converged": true,
+      "fn_cells": 80,
+      "fp_cells": 241,
+      "fn_cm2": 3.2,
+      "fp_cm2": 9.64,
+      "end_max_cells": 39,
+      "end_minus_waist_mm": {
+       "end_left": 10.0,
+       "end_right": 6.0
+      },
+      "iou_min": 0.9,
+      "iou_pass": true,
+      "ring_ok": true
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -0.728,
+       8.673,
+       -74.167,
+       6.383
+      ],
+      "vertices_raw": 92,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 86,
+        "reflex_vertices": 41,
+        "area_cm2": 297.96,
+        "d_max_mm": 0.894,
+        "waist_mm": 130.0,
+        "ends_mm": 137.0,
+        "end_minus_waist_mm": 7.0,
+        "default_prisms": 50,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 57
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 64,
+        "reflex_vertices": 31,
+        "area_cm2": 298.2,
+        "d_max_mm": 1.455,
+        "waist_mm": 130.2,
+        "ends_mm": 137.4,
+        "end_minus_waist_mm": 7.3,
+        "default_prisms": 38,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 41
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 31,
+        "reflex_vertices": 14,
+        "area_cm2": 297.14,
+        "d_max_mm": 2.0,
+        "waist_mm": 128.3,
+        "ends_mm": 137.4,
+        "end_minus_waist_mm": 9.1,
+        "default_prisms": 17,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 17
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 21,
+        "reflex_vertices": 8,
+        "area_cm2": 296.96,
+        "d_max_mm": 2.896,
+        "waist_mm": 125.7,
+        "ends_mm": 137.8,
+        "end_minus_waist_mm": 12.2,
+        "default_prisms": 10,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 11
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 12,
+        "reflex_vertices": 4,
+        "area_cm2": 297.36,
+        "d_max_mm": 3.986,
+        "waist_mm": 125.9,
+        "ends_mm": 135.7,
+        "end_minus_waist_mm": 9.8,
+        "default_prisms": 5,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 6
+       }
+      ],
+      "chosen_eps_mm": 1.0,
+      "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+     },
+     "f_i416_polygon": {
+      "ok": true,
+      "why": null,
+      "chosen_eps_mm": 1.0,
+      "polygon": {
+       "used": "simplified",
+       "tolerance_mm": 1.0,
+       "vertices_raw": 92,
+       "vertices": 86,
+       "reflex_vertices": 41,
+       "area_cm2": 297.96,
+       "area_vs_cells": 1.0,
+       "extent_mm": [
+        234.0,
+        142.0
+       ]
+      },
+      "free_share_polygon": {
+       "points": 29796,
+       "free": 0.0408,
+       "unknown": 0.0581,
+       "observed": 0.9011,
+       "outside_grid": 0.0
+      },
+      "coverage": {
+       "frame": 0.8928,
+       "polygon_cm2": 297.96,
+       "frame_cm2": 333.72,
+       "rule": "F-I4.16.5 (report only, no gate)"
+      },
+      "widths_mm": {
+       "waist_30_70": 130.0,
+       "ends_outer_10": 137.0,
+       "end_lo": 142.0,
+       "end_hi": 136.0,
+       "end_minus_waist": 7.0,
+       "max": 142.0
+      }
+     },
+     "coverage": {
+      "frame": 0.9121,
+      "polygon_cm2": 304.4,
+      "frame_cm2": 333.72,
+      "body": "U (low-piece)",
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "free_share_reports": {
+      "low_piece": {
+       "points": 30440,
+       "free": 0.0592,
+       "unknown": 0.0611,
+       "observed": 0.8797,
+       "outside_grid": 0.0
+      },
+      "f_i416_polygon": {
+       "points": 29796,
+       "free": 0.0408,
+       "unknown": 0.0581,
+       "observed": 0.9011,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 33228,
+       "free": 0.1292,
+       "unknown": 0.0606,
+       "observed": 0.8102,
+       "outside_grid": 0.0
+      }
+     },
+     "default_pieces": {
+      "n": 3,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 30440.0,
+      "parts_area_mm2": 30440.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+      "direction": "A (cuts along a_W)",
+      "n_A": 3,
+      "n_B": 3,
+      "ring_vertices": 8,
+      "ring_reflex": 2,
+      "smallest_side_mm": 28.0,
+      "boxes_mm": [
+       [
+        -117.233,
+        -85.233,
+        -71.167,
+        66.833
+       ],
+       [
+        -85.233,
+        88.767,
+        -61.167,
+        66.833
+       ],
+       [
+        88.767,
+        116.767,
+        -67.167,
+        66.833
+       ]
+      ]
+     },
+     "coverage_report": {
+      "coverage_frame": 0.9121,
+      "same_stock": true,
+      "same_stock_by": "partner_prior",
+      "polygon_cm2": 304.4,
+      "partner_polygon_cm2": 288.88,
+      "coverage_partner": 1.0537,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slotted_pieces": {
+      "n": 5,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 29804.952,
+      "parts_area_mm2": 29804.952,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+      "direction": "A (cuts along a_W)",
+      "n_A": 5,
+      "n_B": 5,
+      "ring_vertices": 12,
+      "ring_reflex": 4,
+      "smallest_side_mm": 9.401,
+      "boxes_mm": [
+       [
+        -117.233,
+        -85.233,
+        -71.167,
+        66.833
+       ],
+       [
+        -85.233,
+        -0.728,
+        -61.167,
+        66.833
+       ],
+       [
+        -0.728,
+        8.673,
+        6.383,
+        66.833
+       ],
+       [
+        8.673,
+        88.767,
+        -61.167,
+        66.833
+       ],
+       [
+        88.767,
+        116.767,
+        -67.167,
+        66.833
+       ]
+      ]
+     }
+    },
+    "wooden_piece_2": {
+     "obj": "wooden_piece_2",
+     "fi4_rev": 17,
+     "flags": [
+      "plate_body_no_markers"
+     ],
+     "balls": [],
+     "source": "low-piece body: <= 3 frame-aligned rectangles fitted to the outline raster (F-I4.17.2)",
+     "frame": {
+      "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+      "L_mm": 231.1,
+      "W_mm": 142.0,
+      "fill": 0.868,
+      "component_cells": 7122,
+      "cells": 7122,
+      "points_in_slab": 1310948
+     },
+     "raster": {
+      "axes": "rectangle (a_L, a_W)",
+      "cells": 7179,
+      "cell_area_cm2": 287.16,
+      "pinch_vertices": 0,
+      "loops": 1
+     },
+     "ok": true,
+     "box": {
+      "axes": [
+       [
+        -0.014118025234927112,
+        0.0058366455741488375,
+        -0.9998833006565856
+       ],
+       [
+        0.007351794517144372,
+        -0.9999553275870344,
+        -0.005940870953362026
+       ],
+       [
+        -0.9998733082150176,
+        -0.007434809933588312,
+        0.014074484729743014
+       ]
+      ],
+      "centre": [
+       0.0005061640979071448,
+       -0.001979878711740028,
+       0.0018713452239340947
+      ],
+      "half": [
+       0.11555477012293908,
+       0.0709970122246289,
+       0.0037005783736977775
+      ],
+      "poly": [
+       [
+        -0.11555477012293908,
+        -0.0669970122246289
+       ],
+       [
+        -0.07155477012293908,
+        -0.0669970122246289
+       ],
+       [
+        -0.07155477012293908,
+        -0.05899701222462891
+       ],
+       [
+        0.03844522987706093,
+        -0.05899701222462891
+       ],
+       [
+        0.03844522987706093,
+        -0.0669970122246289
+       ],
+       [
+        0.11444522987706095,
+        -0.0669970122246289
+       ],
+       [
+        0.11444522987706095,
+        0.06300298777537111
+       ],
+       [
+        0.03844522987706093,
+        0.06300298777537111
+       ],
+       [
+        0.03844522987706093,
+        0.06100298777537111
+       ],
+       [
+        -0.07155477012293908,
+        0.06100298777537111
+       ],
+       [
+        -0.07155477012293908,
+        0.06500298777537111
+       ],
+       [
+        -0.11555477012293908,
+        0.06500298777537111
+       ]
+      ],
+      "t": 0.007401156747395555,
+      "frame": "rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre",
+      "kind": "low_piece",
+      "rects_mm": [
+       {
+        "name": "waist",
+        "u_mm": [
+         -115.555,
+         114.445
+        ],
+        "v_mm": [
+         -58.997,
+         61.003
+        ]
+       },
+       {
+        "name": "end_left",
+        "u_mm": [
+         -115.555,
+         -71.555
+        ],
+        "v_mm": [
+         -66.997,
+         65.003
+        ]
+       },
+       {
+        "name": "end_right",
+        "u_mm": [
+         38.445,
+         114.445
+        ],
+        "v_mm": [
+         -66.997,
+         63.003
+        ]
+       }
+      ]
+     },
+     "L_mm": 231.1,
+     "W_mm": 142.0,
+     "t_mm": 7.401,
+     "polygon": {
+      "used": "low_piece",
+      "tolerance_mm": 0.0,
+      "vertices_raw": 138,
+      "vertices": 12,
+      "reflex_vertices": 4,
+      "area_cm2": 288.88,
+      "area_vs_cells": 1.006,
+      "extent_mm": [
+       230.0,
+       132.0
+      ],
+      "poly_mm": [
+       [
+        -115.555,
+        -66.997
+       ],
+       [
+        -71.555,
+        -66.997
+       ],
+       [
+        -71.555,
+        -58.997
+       ],
+       [
+        38.445,
+        -58.997
+       ],
+       [
+        38.445,
+        -66.997
+       ],
+       [
+        114.445,
+        -66.997
+       ],
+       [
+        114.445,
+        63.003
+       ],
+       [
+        38.445,
+        63.003
+       ],
+       [
+        38.445,
+        61.003
+       ],
+       [
+        -71.555,
+        61.003
+       ],
+       [
+        -71.555,
+        65.003
+       ],
+       [
+        -115.555,
+        65.003
+       ]
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 120.0,
+      "ends_outer_10": 131.0,
+      "end_lo": 132.0,
+      "end_hi": 130.0,
+      "end_minus_waist": 11.0,
+      "max": 132.0
+     },
+     "volume_cm3": 213.8,
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 28888,
+       "free": 0.0218,
+       "unknown": 0.4996,
+       "observed": 0.4786,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 32944,
+       "free": 0.1033,
+       "unknown": 0.4671,
+       "observed": 0.4296,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 5.04,
+      "rectangle_free_cm3": 27.22,
+      "ratio_polygon_to_rectangle": 0.211
+     },
+     "body_kind": "low_piece",
+     "low_piece": {
+      "rule": "F-I4.17.2 <= 3 frame-aligned rectangles (waist + ends), max IoU with the outline raster; exhaustive stages, <= 10 passes",
+      "raster_cells": [
+       115,
+       71
+      ],
+      "crop_offset_cells": [
+       0,
+       0
+      ],
+      "raster_cm2": 287.16,
+      "theta_cells": [
+       6,
+       66,
+       22,
+       2,
+       68,
+       38,
+       2,
+       67
+      ],
+      "rectangles": [
+       {
+        "name": "waist",
+        "cells": [
+         0,
+         115,
+         6,
+         66
+        ],
+        "u_mm": [
+         -115.555,
+         114.445
+        ],
+        "v_mm": [
+         -58.997,
+         61.003
+        ]
+       },
+       {
+        "name": "end_left",
+        "cells": [
+         0,
+         22,
+         2,
+         68
+        ],
+        "u_mm": [
+         -115.555,
+         -71.555
+        ],
+        "v_mm": [
+         -66.997,
+         65.003
+        ]
+       },
+       {
+        "name": "end_right",
+        "cells": [
+         77,
+         115,
+         2,
+         67
+        ],
+        "u_mm": [
+         38.445,
+         114.445
+        ],
+        "v_mm": [
+         -66.997,
+         63.003
+        ]
+       }
+      ],
+      "n_rect": 3,
+      "iou": 0.952413,
+      "passes": 5,
+      "converged": true,
+      "fn_cells": 154,
+      "fp_cells": 197,
+      "fn_cm2": 6.16,
+      "fp_cm2": 7.88,
+      "end_max_cells": 38,
+      "end_minus_waist_mm": {
+       "end_left": 12.0,
+       "end_right": 10.0
+      },
+      "iou_min": 0.9,
+      "iou_pass": true,
+      "ring_ok": true
+     },
+     "ladder": {
+      "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+      "rungs_mm": [
+       1.0,
+       1.5,
+       2.0,
+       3.0,
+       4.0
+      ],
+      "cap": 82,
+      "slotted": true,
+      "footprint_mm": [
+       -3.342,
+       6.059,
+       -73.997,
+       -4.436
+      ],
+      "vertices_raw": 138,
+      "rows": [
+       {
+        "eps_mm": 1.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 126,
+        "reflex_vertices": 61,
+        "area_cm2": 287.16,
+        "d_max_mm": 0.97,
+        "waist_mm": 126.0,
+        "ends_mm": 135.9,
+        "end_minus_waist_mm": 9.9,
+        "default_prisms": 71,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 77
+       },
+       {
+        "eps_mm": 1.5,
+        "simple": true,
+        "fits": true,
+        "vertices": 91,
+        "reflex_vertices": 45,
+        "area_cm2": 287.16,
+        "d_max_mm": 1.455,
+        "waist_mm": 124.8,
+        "ends_mm": 136.1,
+        "end_minus_waist_mm": 11.3,
+        "default_prisms": 49,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 53
+       },
+       {
+        "eps_mm": 2.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 39,
+        "reflex_vertices": 20,
+        "area_cm2": 283.64,
+        "d_max_mm": 2.0,
+        "waist_mm": 123.5,
+        "ends_mm": 134.8,
+        "end_minus_waist_mm": 11.3,
+        "default_prisms": 21,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 22
+       },
+       {
+        "eps_mm": 3.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 31,
+        "reflex_vertices": 14,
+        "area_cm2": 287.14,
+        "d_max_mm": 2.915,
+        "waist_mm": 124.9,
+        "ends_mm": 134.8,
+        "end_minus_waist_mm": 10.0,
+        "default_prisms": 15,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 16
+       },
+       {
+        "eps_mm": 4.0,
+        "simple": true,
+        "fits": true,
+        "vertices": 20,
+        "reflex_vertices": 9,
+        "area_cm2": 284.66,
+        "d_max_mm": 3.767,
+        "waist_mm": 124.9,
+        "ends_mm": 135.6,
+        "end_minus_waist_mm": 10.8,
+        "default_prisms": 9,
+        "slotted_rings": 1,
+        "slotted_hole": false,
+        "slotted_rings_simple": true,
+        "slotted_prisms": 10
+       }
+      ],
+      "chosen_eps_mm": 1.0,
+      "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+     },
+     "f_i416_polygon": {
+      "ok": true,
+      "why": null,
+      "chosen_eps_mm": 1.0,
+      "polygon": {
+       "used": "simplified",
+       "tolerance_mm": 1.0,
+       "vertices_raw": 138,
+       "vertices": 126,
+       "reflex_vertices": 61,
+       "area_cm2": 287.16,
+       "area_vs_cells": 1.0,
+       "extent_mm": [
+        230.0,
+        142.0
+       ]
+      },
+      "free_share_polygon": {
+       "points": 28716,
+       "free": 0.0189,
+       "unknown": 0.4941,
+       "observed": 0.487,
+       "outside_grid": 0.0
+      },
+      "coverage": {
+       "frame": 0.8751,
+       "polygon_cm2": 287.16,
+       "frame_cm2": 328.16,
+       "rule": "F-I4.16.5 (report only, no gate)"
+      },
+      "widths_mm": {
+       "waist_30_70": 126.0,
+       "ends_outer_10": 135.9,
+       "end_lo": 134.0,
+       "end_hi": 138.0,
+       "end_minus_waist": 9.9,
+       "max": 140.0
+      }
+     },
+     "coverage": {
+      "frame": 0.8803,
+      "polygon_cm2": 288.88,
+      "frame_cm2": 328.16,
+      "body": "U (low-piece)",
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "free_share_reports": {
+      "low_piece": {
+       "points": 28888,
+       "free": 0.0218,
+       "unknown": 0.4996,
+       "observed": 0.4786,
+       "outside_grid": 0.0
+      },
+      "f_i416_polygon": {
+       "points": 28716,
+       "free": 0.0189,
+       "unknown": 0.4941,
+       "observed": 0.487,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 32944,
+       "free": 0.1033,
+       "unknown": 0.4671,
+       "observed": 0.4296,
+       "outside_grid": 0.0
+      }
+     },
+     "default_pieces": {
+      "n": 3,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 28888.0,
+      "parts_area_mm2": 28888.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+      "direction": "A (cuts along a_W)",
+      "n_A": 3,
+      "n_B": 5,
+      "ring_vertices": 12,
+      "ring_reflex": 4,
+      "smallest_side_mm": 44.0,
+      "boxes_mm": [
+       [
+        -115.555,
+        -71.555,
+        -66.997,
+        65.003
+       ],
+       [
+        -71.555,
+        38.445,
+        -58.997,
+        61.003
+       ],
+       [
+        38.445,
+        114.445,
+        -66.997,
+        63.003
+       ]
+      ]
+     },
+     "coverage_report": {
+      "coverage_frame": 0.8803,
+      "same_stock": true,
+      "same_stock_by": "partner_prior",
+      "polygon_cm2": 288.88,
+      "partner_polygon_cm2": 304.4,
+      "coverage_partner": 0.949,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "slotted_pieces": {
+      "n": 5,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 8,
+      "all_convex": true,
+      "ring_area_mm2": 28375.059,
+      "parts_area_mm2": 28375.059,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+      "direction": "A (cuts along a_W)",
+      "n_A": 5,
+      "n_B": 7,
+      "ring_vertices": 16,
+      "ring_reflex": 6,
+      "smallest_side_mm": 9.401,
+      "boxes_mm": [
+       [
+        -115.555,
+        -71.555,
+        -66.997,
+        65.003
+       ],
+       [
+        -71.555,
+        -3.342,
+        -58.997,
+        61.003
+       ],
+       [
+        -3.342,
+        6.059,
+        -4.436,
+        61.003
+       ],
+       [
+        6.059,
+        38.445,
+        -58.997,
+        61.003
+       ],
+       [
+        38.445,
+        114.445,
+        -66.997,
+        63.003
+       ]
+      ]
+     }
+    }
+   },
+   "slot": {
+    "wooden_piece_1": {
+     "w_mm": 9.4,
+     "t_partner_mm": 7.4,
+     "c_L_mm": 3.97,
+     "entry_sign_aW": -1,
+     "d_dot_aW": 0.9975,
+     "angle_d_aW_deg": 4.04,
+     "samples": 6146,
+     "assembled_build_frames": 13,
+     "c_L_component_mm": -0.43,
+     "centre_from": "partner's plate mid plane at the median assembled pose (F-I4.12)",
+     "c_L_shift_mm": 4.4,
+     "ok": true,
+     "P99_mm": 75.9,
+     "cap_mm": 75.55,
+     "split": {
+      "applied": true,
+      "shared": true,
+      "carve_sign": 1,
+      "entry_edge_on_carve_side": true,
+      "plane_vs_aW_cos": 0.9975,
+      "raw_depth_mm": 75.55
+     },
+     "P_mm": 65.55,
+     "D_mm": 67.55,
+     "box": {
+      "axes": [
+       [
+        -0.0013373188670015859,
+        0.004319047131644944,
+        0.9999897786528233
+       ],
+       [
+        -0.0034670947861305023,
+        -0.9999846825356576,
+        0.004314388462385666
+       ],
+       [
+        0.9999930953921593,
+        -0.0034612896346606766,
+        0.001352272928458704
+       ]
+      ],
+      "centre": [
+       0.0014679204743650316,
+       0.03187841567019748,
+       0.004169623953924949
+      ],
+      "half": [
+       0.004700578373697778,
+       0.04027497001283372,
+       0.006700578373697778
+      ]
+     },
+     "depth_is": "prior [E] (split share of the constrained depth sum)",
+     "D_rect_mm": 77.55,
+     "P_rect_mm": 75.55,
+     "u_rect_mm": -71.17,
+     "bottom_mm": 6.38,
+     "u_e_poly_mm": -61.17,
+     "entry_edge_shift_mm": 10.0,
+     "depth_from": "the polygon edge at the slot mouth (F-I4.15.3)",
+     "slot_centre": {
+      "applicable": false,
+      "why": "two-sided board: the far face is seen directly (F-I4.16.4)"
+     },
+     "angle_partner_normal_aL_deg": 2.06
+    },
+    "wooden_piece_2": {
+     "w_mm": 9.4,
+     "t_partner_mm": 7.4,
+     "c_L_mm": 1.36,
+     "entry_sign_aW": -1,
+     "d_dot_aW": 0.9986,
+     "angle_d_aW_deg": 3.03,
+     "samples": 7070,
+     "assembled_build_frames": 12,
+     "c_L_component_mm": 1.5,
+     "centre_from": "partner's plate mid plane at the median assembled pose (F-I4.12)",
+     "c_L_shift_mm": -0.14,
+     "ok": true,
+     "P99_mm": 64.56,
+     "cap_mm": 66.19,
+     "split": {
+      "applied": true,
+      "shared": true,
+      "carve_sign": -1,
+      "entry_edge_on_carve_side": true,
+      "plane_vs_aW_cos": 0.9994,
+      "raw_depth_mm": 66.19
+     },
+     "P_mm": 52.56,
+     "D_mm": 54.56,
+     "box": {
+      "axes": [
+       [
+        -0.014118025234927112,
+        0.0058366455741488375,
+        -0.9998833006565856
+       ],
+       [
+        0.007351794517144372,
+        -0.9999553275870344,
+        -0.005940870953362026
+       ],
+       [
+        -0.9998733082150176,
+        -0.007434809933588312,
+        0.014074484729743014
+       ]
+      ],
+      "centre": [
+       0.00019867624188875323,
+       0.0372425542953613,
+       0.0007460773653613223
+      ],
+      "half": [
+       0.004700578373697778,
+       0.03478075586185417,
+       0.006700578373697778
+      ]
+     },
+     "depth_is": "prior [E] (split share of the constrained depth sum)",
+     "D_rect_mm": 66.56,
+     "P_rect_mm": 64.56,
+     "u_rect_mm": -71.0,
+     "bottom_mm": -4.44,
+     "u_e_poly_mm": -59.0,
+     "entry_edge_shift_mm": 12.0,
+     "depth_from": "the polygon edge at the slot mouth (F-I4.15.3)",
+     "slot_centre": {
+      "applicable": true,
+      "method": "F-I4.16.4 below-face half-peak run (verify_slot2_1 vobs2 (b))",
+      "frames_before": 164,
+      "v_band_mm": [
+       -51.0,
+       -12.44
+      ],
+      "window_mm": 30.0,
+      "points_in_band_window": 51282,
+      "c_L_mm": 1.358,
+      "w_mm": 9.401,
+      "seen_sign": 1.0,
+      "n_points": 361,
+      "face_points": 50615,
+      "peak_u_mm": -4.14,
+      "run_mm": [
+       -5.64,
+       -1.64
+      ],
+      "run_width_mm": 4.0,
+      "run_touches_window_end": false,
+      "u_obs_mm": -3.642,
+      "delta_mm": -5.0,
+      "observable": true,
+      "below_w_mm_p5_50_95": [
+       -3.43,
+       -1.87,
+       -0.16
+      ],
+      "below_per_mm": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       13,
+       67,
+       73,
+       58,
+       54,
+       34,
+       27,
+       22,
+       13,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "face_per_mm": [
+       785,
+       769,
+       781,
+       774,
+       794,
+       787,
+       804,
+       789,
+       795,
+       804,
+       795,
+       803,
+       817,
+       806,
+       820,
+       799,
+       803,
+       839,
+       806,
+       820,
+       830,
+       793,
+       805,
+       763,
+       741,
+       779,
+       701,
+       680,
+       679,
+       657,
+       746,
+       751,
+       853,
+       867,
+       871,
+       911,
+       878,
+       928,
+       902,
+       901,
+       918,
+       903,
+       899,
+       924,
+       900,
+       926,
+       927,
+       919,
+       908,
+       938,
+       927,
+       920,
+       947,
+       941,
+       940,
+       935,
+       941,
+       958,
+       956,
+       962
+      ],
+      "bins_from_mm": -28.642,
+      "slot_centre_disagrees": {
+       "delta_mm": -5.0,
+       "n_points": 361,
+       "u_obs_mm": -3.642,
+       "c_L_mm": 1.358
+      }
+     },
+     "slot_centre_disagrees": {
+      "delta_mm": -5.0,
+      "n_points": 361,
+      "u_obs_mm": -3.642,
+      "c_L_mm": 1.358
+     },
+     "angle_partner_normal_aL_deg": 1.51
+    }
+   },
+   "crosslap": {
+    "W_x_mm": 120.52,
+    "grid_points": 883,
+    "D_sum_mm": 122.11,
+    "diff_mm": 1.59,
+    "window_mm": 10.0,
+    "ok": true
+   },
+   "budget": {
+    "wooden_piece_1": {
+     "slot_cm3": 4.7,
+     "body_cm3": 225.29,
+     "vol_share": 0.0209,
+     "reach": 0.465,
+     "footprint_mm": [
+      -0.73,
+      8.67,
+      -74.17,
+      6.38
+     ],
+     "one_simple_polygon": true,
+     "area_consistent": true,
+     "bottom_inside": true,
+     "D_lt_W": true,
+     "prong_area_mm2": [
+      7869.8,
+      7301.8
+     ],
+     "topology": true,
+     "rings": 1,
+     "hole": false,
+     "nudge_mm": 0.0,
+     "ok": true
+    },
+    "wooden_piece_2": {
+     "slot_cm3": 3.796,
+     "body_cm3": 213.8,
+     "vol_share": 0.0178,
+     "reach": 0.398,
+     "footprint_mm": [
+      -3.34,
+      6.06,
+      -74.0,
+      -4.44
+     ],
+     "one_simple_polygon": true,
+     "area_consistent": true,
+     "bottom_inside": true,
+     "D_lt_W": true,
+     "prong_area_mm2": [
+      6122.5,
+      5913.7
+     ],
+     "topology": true,
+     "rings": 1,
+     "hole": false,
+     "nudge_mm": 0.0,
+     "ok": true
+    }
+   },
+   "decision": "CARVE (simulator copy only, T1)"
+  }
+ }
+]

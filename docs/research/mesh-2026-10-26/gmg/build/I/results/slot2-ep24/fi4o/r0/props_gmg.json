@@ -1,0 +1,69 @@
+{
+ "_note": "gmg simulator copy (INTERLOCK 6.1, PREREG F-I1.8, F-I3.9): mass = the 0.3 kg placeholder (owner decision D-I1 open; props_masses_only.json is scan-derived), com_m and inertia_kgm2 (about the COM, file axes) of the uniform solid of the pieces. Layout as props_masses_only.json, read by pipeline/phys_fit.py (props[name][\"physics\"]).",
+ "wooden_piece_1": {
+  "physics": {
+   "model": "gmg pieces (uniform solid)",
+   "mass_kg": 0.3,
+   "com_m": [
+    0.0017517617183672668,
+    -0.003860120613057415,
+    -0.0009560185715920567
+   ],
+   "inertia_kgm2": [
+    [
+     0.0017788058918855078,
+     -3.4015830380031403e-07,
+     5.836214464425472e-07
+    ],
+    [
+     -3.4015830380031403e-07,
+     0.0013558279278121374,
+     -1.9349510138897234e-05
+    ],
+    [
+     5.836214464425472e-07,
+     -1.9349510138897234e-05,
+     0.0004256589024957599
+    ]
+   ],
+   "volume_cm3": 217.39,
+   "provenance": {
+    "pieces": "wooden_piece_1/piece_*.obj",
+    "mass": "placeholder 0.3 kg (D-I1 open)"
+   }
+  }
+ },
+ "wooden_piece_2": {
+  "physics": {
+   "model": "gmg pieces (uniform solid)",
+   "mass_kg": 0.3,
+   "com_m": [
+    0.0004770326756229532,
+    -0.0015954934017588388,
+    0.00012897397987360101
+   ],
+   "inertia_kgm2": [
+    [
+     0.0017436873262346396,
+     2.9452563811530394e-06,
+     -1.9337168644293603e-05
+    ],
+    [
+     2.9452563811530394e-06,
+     0.001336039984825584,
+     -2.91781852461092e-07
+    ],
+    [
+     -1.9337168644293603e-05,
+     -2.91781852461092e-07,
+     0.00041098920695824216
+    ]
+   ],
+   "volume_cm3": 207.67,
+   "provenance": {
+    "pieces": "wooden_piece_2/piece_*.obj",
+    "mass": "placeholder 0.3 kg (D-I1 open)"
+   }
+  }
+ }
+}

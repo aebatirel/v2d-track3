@@ -1,0 +1,19 @@
+{
+ "x6_x10_r2": {
+  "n": 2,
+  "decisions": [
+   "CARVE",
+   "CARVE"
+  ],
+  "same_off": true,
+  "same_plate_r2": true,
+  "same_plate_r1": true,
+  "scope": "plate pair: F-I4 decides (F-I5.0); nothing changed here",
+  "rev_default": 1
+ },
+ "rev1_reachable": {
+  "rev_default": 1,
+  "x9_builder": true,
+  "x9_forced_ring": false
+ }
+}

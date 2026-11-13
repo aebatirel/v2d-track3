@@ -1,0 +1,27 @@
+tools/pack_swap_rollouts.py CPU tests, 1 Nov 2026 ~00:55 UTC (packing venv: pandas 3.0.6 / pyarrow 26.0.0 / numpy 2.5.4 / trimesh 5.2.0 / fast_simplification 0.2.0)
+Base = pack 9a+ build_9aplus/track3_submission.parquet (sha256 e02736ea…); inputs = the 9a+ packer inputs (scratchpad pack9ap/pack9ap2/{results,meshes}).
+Fixtures are synthetic (ep14 rollout with achieved_position_x + 1 mm, fake checkpoints); they are not results.
+--- T0b_repack
+pack_swap_rollouts: status 0 (checks pass)
+swapped episodes: none (pure repack)
+parquet: 1312390 B sha256 e02736ea3c7e33ffcee5ada4a6a1dbc8ad4e72cd2889abdaa9968b8d3af6a7d8 | byte-identical to base: True | rows [9120, 9120] | columns differing from base: {}
+uploader: pass (offline validate_submission; CD-O file derived and validated) | CD-O 294912 rows sha256 94168d80731c0603... | rows changed vs base: 0
+--- U1_ok14
+pack_swap_rollouts: status 0 (checks pass)
+swapped episodes: [14]
+  ep14: checkpoint 05b13510629e… -> abababababab… | rows 316 pose rows changed 316 | rollout md5 e2f679af931ef9ffda91d348ecd610b7
+parquet: 1312340 B sha256 094d650fa306246fa3baa4f2e6754c7aa9cd1ac8358de3e130e5c42566d04c8d | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'pos_x': 316, 'checkpoint_sha256': 316, 'code_commit_url': 9120}
+uploader: pass (offline validate_submission; CD-O file derived and validated) | CD-O 294912 rows sha256 5a025383af7f14e5... | rows changed vs base: 0
+--- T6_newcommit_noswap
+pack_swap_rollouts: status 0 (checks pass)
+swapped episodes: none (pure repack)
+parquet: 1312390 B sha256 e7f272a776e222542be780ca455e27bb9dd50bbb88679dd916e65e051630ca7b | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120}
+uploader: pass (offline validate_submission; CD-O file derived and validated) | CD-O 294912 rows sha256 5a025383af7f14e5... | rows changed vs base: 0
+--- refusals (exit 1, nothing built):
+T2 swap names the base checkpoint -> refused
+T3 --expect-checkpoint mismatch -> refused
+T4 swap parquet without its .json -> refused
+T5 file name not episode_<N>.parquet -> refused
+U2 parquet without flash_chord metadata -> refused (packer would otherwise fall back to the .json and blank evaluator hashes)
+U3 eval_code_sha256 differs from the base rollout's -> refused
+U4 metadata checkpoint differs from the .json's -> refused

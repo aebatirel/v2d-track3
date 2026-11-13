@@ -1,0 +1,1 @@
+{"rule": "M_sep(own) PREREG C0b 10", "obj": "beige_cup", "others": ["white_pot"], "T": 219, "stride": 2, "frames_evaluated": 110, "frames_kept": 110, "frames_kept_with_points": 95, "pts_in": 1098440, "pts_out": 1098440, "qualifies": true, "out": "/content/results/e0b/pts/B/ep8_beige_cup_sep.npz"}

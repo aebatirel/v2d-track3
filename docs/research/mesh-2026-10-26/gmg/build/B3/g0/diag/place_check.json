@@ -1,0 +1,306 @@
+{
+ "ep2_white_pot_control_k24_s0": {
+  "pointmap_to_owned_mm": [
+   5.6,
+   47.5
+  ],
+  "pointmap_to_mesh_mm": [
+   20.5,
+   37.3
+  ],
+  "mesh_to_owned_mm": [
+   32.0,
+   60.3
+  ],
+  "owned_to_mesh_mm": [
+   28.5,
+   50.9
+  ],
+  "centroid_pointmap": [
+   -0.0185,
+   0.122,
+   0.5053
+  ],
+  "centroid_mesh_cam": [
+   -0.013,
+   0.1023,
+   0.4945
+  ],
+  "extent_pointmap": [
+   0.167,
+   0.208,
+   0.229
+  ],
+  "extent_mesh": [
+   0.169,
+   0.257,
+   0.319
+  ]
+ },
+ "ep2_white_pot_control_k24_s1": {
+  "pointmap_to_owned_mm": [
+   5.6,
+   47.5
+  ],
+  "pointmap_to_mesh_mm": [
+   26.5,
+   35.1
+  ],
+  "mesh_to_owned_mm": [
+   28.9,
+   61.2
+  ],
+  "owned_to_mesh_mm": [
+   19.5,
+   44.8
+  ],
+  "centroid_pointmap": [
+   -0.0185,
+   0.122,
+   0.5053
+  ],
+  "centroid_mesh_cam": [
+   -0.011,
+   0.0898,
+   0.5104
+  ],
+  "extent_pointmap": [
+   0.167,
+   0.208,
+   0.229
+  ],
+  "extent_mesh": [
+   0.202,
+   0.322,
+   0.429
+  ]
+ },
+ "ep2_white_pot_lid_control_k318_s0": {
+  "pointmap_to_owned_mm": [
+   0.2,
+   0.4
+  ],
+  "pointmap_to_mesh_mm": [
+   10.9,
+   27.0
+  ],
+  "mesh_to_owned_mm": [
+   17.9,
+   34.2
+  ],
+  "owned_to_mesh_mm": [
+   10.2,
+   28.2
+  ],
+  "centroid_pointmap": [
+   -0.0262,
+   0.0548,
+   0.5243
+  ],
+  "centroid_mesh_cam": [
+   -0.0229,
+   0.0424,
+   0.5325
+  ],
+  "extent_pointmap": [
+   0.17,
+   0.141,
+   0.119
+  ],
+  "extent_mesh": [
+   0.151,
+   0.159,
+   0.177
+  ]
+ },
+ "ep2_white_pot_lid_control_k318_s1": {
+  "pointmap_to_owned_mm": [
+   0.2,
+   0.4
+  ],
+  "pointmap_to_mesh_mm": [
+   12.8,
+   29.4
+  ],
+  "mesh_to_owned_mm": [
+   20.4,
+   31.6
+  ],
+  "owned_to_mesh_mm": [
+   11.9,
+   30.6
+  ],
+  "centroid_pointmap": [
+   -0.0262,
+   0.0548,
+   0.5243
+  ],
+  "centroid_mesh_cam": [
+   -0.0318,
+   0.0451,
+   0.5175
+  ],
+  "extent_pointmap": [
+   0.17,
+   0.141,
+   0.119
+  ],
+  "extent_mesh": [
+   0.146,
+   0.152,
+   0.167
+  ]
+ },
+ "ep2_white_pot_lid_primary_k132_s0": {
+  "pointmap_to_owned_mm": [
+   0.3,
+   0.8
+  ],
+  "pointmap_to_mesh_mm": [
+   24.7,
+   46.3
+  ],
+  "mesh_to_owned_mm": [
+   17.8,
+   27.7
+  ],
+  "owned_to_mesh_mm": [
+   24.3,
+   47.0
+  ],
+  "centroid_pointmap": [
+   0.2368,
+   0.1195,
+   0.5646
+  ],
+  "centroid_mesh_cam": [
+   0.2363,
+   0.1232,
+   0.5242
+  ],
+  "extent_pointmap": [
+   0.173,
+   0.127,
+   0.118
+  ],
+  "extent_mesh": [
+   0.143,
+   0.113,
+   0.096
+  ]
+ },
+ "ep2_white_pot_lid_primary_k132_s1": {
+  "pointmap_to_owned_mm": [
+   0.3,
+   0.8
+  ],
+  "pointmap_to_mesh_mm": [
+   17.4,
+   37.9
+  ],
+  "mesh_to_owned_mm": [
+   12.5,
+   20.9
+  ],
+  "owned_to_mesh_mm": [
+   17.0,
+   38.5
+  ],
+  "centroid_pointmap": [
+   0.2368,
+   0.1195,
+   0.5646
+  ],
+  "centroid_mesh_cam": [
+   0.2387,
+   0.1202,
+   0.5351
+  ],
+  "extent_pointmap": [
+   0.173,
+   0.127,
+   0.118
+  ],
+  "extent_mesh": [
+   0.141,
+   0.115,
+   0.092
+  ]
+ },
+ "ep2_white_pot_primary_k246_s0": {
+  "pointmap_to_owned_mm": [
+   0.2,
+   0.5
+  ],
+  "pointmap_to_mesh_mm": [
+   31.6,
+   49.2
+  ],
+  "mesh_to_owned_mm": [
+   21.0,
+   46.3
+  ],
+  "owned_to_mesh_mm": [
+   26.3,
+   49.3
+  ],
+  "centroid_pointmap": [
+   -0.0715,
+   0.1111,
+   0.5548
+  ],
+  "centroid_mesh_cam": [
+   -0.0747,
+   0.0901,
+   0.5044
+  ],
+  "extent_pointmap": [
+   0.167,
+   0.226,
+   0.271
+  ],
+  "extent_mesh": [
+   0.175,
+   0.271,
+   0.307
+  ]
+ },
+ "ep2_white_pot_primary_k246_s1": {
+  "pointmap_to_owned_mm": [
+   0.2,
+   0.5
+  ],
+  "pointmap_to_mesh_mm": [
+   31.9,
+   61.5
+  ],
+  "mesh_to_owned_mm": [
+   24.6,
+   50.3
+  ],
+  "owned_to_mesh_mm": [
+   28.9,
+   62.4
+  ],
+  "centroid_pointmap": [
+   -0.0715,
+   0.1111,
+   0.5548
+  ],
+  "centroid_mesh_cam": [
+   -0.0688,
+   0.0955,
+   0.4927
+  ],
+  "extent_pointmap": [
+   0.167,
+   0.226,
+   0.271
+  ],
+  "extent_mesh": [
+   0.158,
+   0.27,
+   0.285
+  ]
+ }
+}

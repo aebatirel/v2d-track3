@@ -1,0 +1,967 @@
+{
+ "ep": 30,
+ "names": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "refs": {
+  "P": {
+   "path": "<SCRATCH>/d9b_dl/runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+   "md5": "dd464c96184e84400e62ffcfa17a6ac4",
+   "frames": 263
+  }
+ },
+ "rule": "docs/research/work/pack9b-20261031/PREREG.md section 4",
+ "rpe_fail_cm": 5.0,
+ "scorer": "tools/e10v_score.py via tools/dr_score.py",
+ "sets": {
+  "conf": {
+   "own": "P",
+   "glob": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r*/ep30/episode_000030.parquet",
+   "n_files": 10,
+   "n_scored": 10,
+   "rollouts": [
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r1/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9259,
+       "RPE": 2.6621,
+       "MPPE": 1.4201,
+       "AUC": 0.9033,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8691,
+         "MPPE": 2.047,
+         "frac_kp_over_5cm": 0.011,
+         "end_kp_cm": 2.2,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 24.78
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.793,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.49,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 0.74
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9259,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 1
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r2/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.2823,
+       "RPE": 9.781,
+       "MPPE": 10.0235,
+       "AUC": 0.2736,
+       "audit_fail": true,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.3481,
+         "MPPE": 7.673,
+         "frac_kp_over_5cm": 0.616,
+         "end_kp_cm": 9.98,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 21.15
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.1991,
+         "MPPE": 12.374,
+         "frac_kp_over_5cm": 0.776,
+         "end_kp_cm": 14.51,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 17.24
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.2823,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 2
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r3/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.932,
+       "RPE": 3.3388,
+       "MPPE": 1.4225,
+       "AUC": 0.9155,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8988,
+         "MPPE": 1.795,
+         "frac_kp_over_5cm": 0.004,
+         "end_kp_cm": 1.94,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 23.95
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9323,
+         "MPPE": 1.05,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.69,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.02
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.932,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 3
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r4/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.7587,
+       "RPE": 3.7461,
+       "MPPE": 2.8968,
+       "AUC": 0.7395,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.769,
+         "MPPE": 2.819,
+         "frac_kp_over_5cm": 0.046,
+         "end_kp_cm": 5.36,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 24.08
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.7101,
+         "MPPE": 2.975,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 3.18,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 4.23
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.7587,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 4
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r5/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.8863,
+       "RPE": 3.4765,
+       "MPPE": 1.8242,
+       "AUC": 0.8691,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8149,
+         "MPPE": 2.392,
+         "frac_kp_over_5cm": 0.011,
+         "end_kp_cm": 2.76,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 25.26
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9232,
+         "MPPE": 1.257,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.73,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.98
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8863,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 5
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r6/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.8014,
+       "RPE": 4.7231,
+       "MPPE": 2.6363,
+       "AUC": 0.7683,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.7032,
+         "MPPE": 3.539,
+         "frac_kp_over_5cm": 0.11,
+         "end_kp_cm": 2.65,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 25.95
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.8334,
+         "MPPE": 1.734,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 1.76,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 2.99
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8014,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 6
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r7/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9171,
+       "RPE": 3.192,
+       "MPPE": 1.5261,
+       "AUC": 0.9005,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8688,
+         "MPPE": 2.011,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 2.87,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 24.01
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9323,
+         "MPPE": 1.041,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.62,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.55
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9171,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 7
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r8/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.8748,
+       "RPE": 3.4681,
+       "MPPE": 1.9598,
+       "AUC": 0.8483,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8042,
+         "MPPE": 2.528,
+         "frac_kp_over_5cm": 0.023,
+         "end_kp_cm": 5.44,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 23.8
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.8923,
+         "MPPE": 1.392,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 2.02,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.87
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8748,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 8
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r9/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.8525,
+       "RPE": 3.8463,
+       "MPPE": 2.0962,
+       "AUC": 0.7664,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.7935,
+         "MPPE": 2.652,
+         "frac_kp_over_5cm": 0.065,
+         "end_kp_cm": 2.4,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 25.63
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.7393,
+         "MPPE": 1.54,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 1.96,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.77
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.8525,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 9
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261101-drC-a1a7e25/results/h5/r10/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "d1bcdaec6af0c1b0d2b2e2e7bb4bf88dda86a3c446d45b0713acbfc5bcdbae01",
+     "reference_parquet": "/workspace/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9326,
+       "RPE": 2.9741,
+       "MPPE": 1.3368,
+       "AUC": 0.9148,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8926,
+         "MPPE": 1.809,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 1.64,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 23.36
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.937,
+         "MPPE": 0.865,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.46,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.85
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9326,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 10
+    }
+   ]
+  },
+  "packed": {
+   "own": "P",
+   "glob": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r*/ep30/episode_000030.parquet",
+   "n_files": 10,
+   "n_scored": 10,
+   "rollouts": [
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r1/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9348,
+       "RPE": 2.8748,
+       "MPPE": 1.3277,
+       "AUC": 0.9131,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8888,
+         "MPPE": 1.877,
+         "frac_kp_over_5cm": 0.004,
+         "end_kp_cm": 1.64,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 23.34
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.778,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.46,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 0.63
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9348,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 1
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r2/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9193,
+       "RPE": 3.0824,
+       "MPPE": 1.4526,
+       "AUC": 0.8962,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8548,
+         "MPPE": 2.1,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 3.74,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 24.1
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.805,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.77,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 0.62
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9193,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 2
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r3/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.913,
+       "RPE": 2.8567,
+       "MPPE": 1.5887,
+       "AUC": 0.8922,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8707,
+         "MPPE": 1.995,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 2.18,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 24.12
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9137,
+         "MPPE": 1.183,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 1.35,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.31
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.913,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 3
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r4/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9255,
+       "RPE": 2.8733,
+       "MPPE": 1.4132,
+       "AUC": 0.9035,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8695,
+         "MPPE": 2.056,
+         "frac_kp_over_5cm": 0.004,
+         "end_kp_cm": 2.67,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 24.28
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.77,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.45,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 0.48
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9255,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 4
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r5/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9351,
+       "RPE": 2.9898,
+       "MPPE": 1.3147,
+       "AUC": 0.9146,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8916,
+         "MPPE": 1.832,
+         "frac_kp_over_5cm": 0.008,
+         "end_kp_cm": 1.84,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 24.41
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.798,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.41,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 0.5
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9351,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 5
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r6/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9273,
+       "RPE": 2.8586,
+       "MPPE": 1.3972,
+       "AUC": 0.9061,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8748,
+         "MPPE": 1.981,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 2.63,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 23.22
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.814,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.77,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 0.83
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9273,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 6
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r7/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.692,
+       "RPE": 9.5248,
+       "MPPE": 5.9958,
+       "AUC": 0.6713,
+       "audit_fail": true,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.4052,
+         "MPPE": 11.135,
+         "frac_kp_over_5cm": 0.525,
+         "end_kp_cm": 2.36,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 1.8
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.857,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.84,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 0.81
+        }
+       },
+       "fail": true
+      }
+     },
+     "sim_vs_ref_stored": 0.692,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 7
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r8/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9049,
+       "RPE": 3.1948,
+       "MPPE": 1.6691,
+       "AUC": 0.8856,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8626,
+         "MPPE": 2.095,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 2.64,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 23.83
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9085,
+         "MPPE": 1.243,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 1.28,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.26
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9049,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 8
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r9/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9196,
+       "RPE": 2.7747,
+       "MPPE": 1.449,
+       "AUC": 0.9013,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.865,
+         "MPPE": 2.076,
+         "frac_kp_over_5cm": 0.008,
+         "end_kp_cm": 2.08,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 23.58
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.822,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.58,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 0.69
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9196,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 9
+    },
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261031-h5p7-1a7cdff/results/h5/r10/ep30/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9009,
+       "RPE": 3.0131,
+       "MPPE": 1.6342,
+       "AUC": 0.8827,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8279,
+         "MPPE": 2.347,
+         "frac_kp_over_5cm": 0.008,
+         "end_kp_cm": 2.31,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 22.89
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.922,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.74,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.28
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9009,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 10
+    }
+   ]
+  },
+  "old": {
+   "own": "P",
+   "glob": "<SCRATCH>/d9b_dl/runs/20261026-pack6-5203d42/results/submission/results/episode_000030.parquet",
+   "n_files": 1,
+   "n_scored": 1,
+   "rollouts": [
+    {
+     "path": "<SCRATCH>/d9b_dl/runs/20261026-pack6-5203d42/results/submission/results/episode_000030.parquet",
+     "frames": 263,
+     "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+     "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+     "own": "P",
+     "vs": {
+      "P": {
+       "sim_vs_ref": 0.9229,
+       "RPE": 2.7902,
+       "MPPE": 1.4574,
+       "AUC": 0.9078,
+       "audit_fail": false,
+       "objects": {
+        "mini_sweeper": {
+         "AUC": 0.8781,
+         "MPPE": 1.954,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 2.75,
+         "ref_travel_cm": 24.87,
+         "sim_travel_cm": 23.28
+        },
+        "plastic_dish_rack": {
+         "AUC": 0.9375,
+         "MPPE": 0.961,
+         "frac_kp_over_5cm": 0.0,
+         "end_kp_cm": 0.89,
+         "ref_travel_cm": 1.39,
+         "sim_travel_cm": 1.14
+        }
+       },
+       "fail": false
+      }
+     },
+     "sim_vs_ref_stored": 0.9229,
+     "own_ref_check": {
+      "ref": "P",
+      "max_dpos_m": 0.0,
+      "max_dq": 2.9802322387695312e-08,
+      "ok": true
+     },
+     "scored": true,
+     "draw": 0
+    }
+   ]
+  }
+ }
+}

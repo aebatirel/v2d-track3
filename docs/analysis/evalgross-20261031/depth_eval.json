@@ -1,0 +1,1443 @@
+[
+ {
+  "mode": "perc",
+  "ep": 1,
+  "obj": "white_pot",
+  "T": 335,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.05,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 1,
+  "obj": "white_pot_lid",
+  "T": 335,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.03,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 3,
+  "obj": "white_pot",
+  "T": 313,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.08,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 3,
+  "obj": "wooden_spoon",
+  "T": 313,
+  "bad_share": 0.006,
+  "longest_run": 2,
+  "longest_run_start": 88,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.006,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.06,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 5,
+  "obj": "white_pot",
+  "T": 288,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.02,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 5,
+  "obj": "wooden_spoon",
+  "T": 288,
+  "bad_share": 0.007,
+  "longest_run": 1,
+  "longest_run_start": 86,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.003,
+  "front_gt05_share": 0.003,
+  "med_r_cm_p50": 0.01,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 6,
+  "obj": "white_pot",
+  "T": 243,
+  "bad_share": 0.008,
+  "longest_run": 1,
+  "longest_run_start": 50,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.008,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.06,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 6,
+  "obj": "wooden_spoon",
+  "T": 243,
+  "bad_share": 0.004,
+  "longest_run": 1,
+  "longest_run_start": 148,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.004,
+  "med_r_cm_p50": 0.11,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 8,
+  "obj": "beige_cup",
+  "T": 219,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": -0.0,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 8,
+  "obj": "white_pot",
+  "T": 219,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.02,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 10,
+  "obj": "blue_cup",
+  "T": 161,
+  "bad_share": 0.199,
+  "longest_run": 21,
+  "longest_run_start": 76,
+  "runs_ge5": [
+   [
+    76,
+    96
+   ]
+  ],
+  "hidden_share": 0.13,
+  "behind_gt02_share": 0.068,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.27,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 10,
+  "obj": "beige_cup",
+  "T": 161,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.23,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 14,
+  "obj": "blue_cup",
+  "T": 158,
+  "bad_share": 0.082,
+  "longest_run": 11,
+  "longest_run_start": 35,
+  "runs_ge5": [
+   [
+    35,
+    45
+   ]
+  ],
+  "hidden_share": 0.07,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.013,
+  "med_r_cm_p50": 0.04,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 14,
+  "obj": "plastic_dish_rack",
+  "T": 158,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.22,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 15,
+  "obj": "plastic_dish_rack",
+  "T": 166,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.1,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 15,
+  "obj": "wooden_spoon",
+  "T": 166,
+  "bad_share": 0.012,
+  "longest_run": 1,
+  "longest_run_start": 121,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.012,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.08,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 16,
+  "obj": "plastic_dish_rack",
+  "T": 173,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": -0.11,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 16,
+  "obj": "wooden_spoon",
+  "T": 173,
+  "bad_share": 0.006,
+  "longest_run": 1,
+  "longest_run_start": 123,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.006,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.14,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 19,
+  "obj": "mini_sweeper",
+  "T": 235,
+  "bad_share": 0.226,
+  "longest_run": 13,
+  "longest_run_start": 68,
+  "runs_ge5": [
+   [
+    43,
+    47
+   ],
+   [
+    49,
+    57
+   ],
+   [
+    68,
+    80
+   ],
+   [
+    88,
+    93
+   ],
+   [
+    226,
+    232
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.213,
+  "front_gt05_share": 0.013,
+  "med_r_cm_p50": -0.03,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 19,
+  "obj": "mini_dust_pan",
+  "T": 235,
+  "bad_share": 0.004,
+  "longest_run": 1,
+  "longest_run_start": 152,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.004,
+  "med_r_cm_p50": 0.14,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 20,
+  "obj": "blue_cup",
+  "T": 202,
+  "bad_share": 0.005,
+  "longest_run": 1,
+  "longest_run_start": 156,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.005,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.23,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 20,
+  "obj": "water_pitcher",
+  "T": 202,
+  "bad_share": 0.02,
+  "longest_run": 2,
+  "longest_run_start": 97,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.02,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": -0.02,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 25,
+  "obj": "wooden_piece_1",
+  "T": 356,
+  "bad_share": 0.003,
+  "longest_run": 1,
+  "longest_run_start": 118,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.003,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.14,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 25,
+  "obj": "wooden_piece_2",
+  "T": 356,
+  "bad_share": 0.121,
+  "longest_run": 41,
+  "longest_run_start": 81,
+  "runs_ge5": [
+   [
+    81,
+    121
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.121,
+  "med_r_cm_p50": 0.0,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 28,
+  "obj": "plastic_dish_rack",
+  "T": 220,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.11,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 28,
+  "obj": "white_pot",
+  "T": 220,
+  "bad_share": 0.005,
+  "longest_run": 1,
+  "longest_run_start": 93,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.005,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": -0.05,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 30,
+  "obj": "mini_sweeper",
+  "T": 263,
+  "bad_share": 0.129,
+  "longest_run": 19,
+  "longest_run_start": 209,
+  "runs_ge5": [
+   [
+    209,
+    227
+   ],
+   [
+    230,
+    234
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.129,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.01,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 30,
+  "obj": "plastic_dish_rack",
+  "T": 263,
+  "bad_share": 0.008,
+  "longest_run": 1,
+  "longest_run_start": 112,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.008,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.18,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 32,
+  "obj": "blue_cup",
+  "T": 259,
+  "bad_share": 0.069,
+  "longest_run": 10,
+  "longest_run_start": 17,
+  "runs_ge5": [
+   [
+    17,
+    26
+   ]
+  ],
+  "hidden_share": 0.027,
+  "behind_gt02_share": 0.015,
+  "front_gt05_share": 0.027,
+  "med_r_cm_p50": 0.07,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 32,
+  "obj": "wooden_spoon",
+  "T": 259,
+  "bad_share": 0.212,
+  "longest_run": 25,
+  "longest_run_start": 91,
+  "runs_ge5": [
+   [
+    83,
+    87
+   ],
+   [
+    91,
+    115
+   ],
+   [
+    133,
+    137
+   ],
+   [
+    149,
+    154
+   ]
+  ],
+  "hidden_share": 0.062,
+  "behind_gt02_share": 0.139,
+  "front_gt05_share": 0.039,
+  "med_r_cm_p50": 0.09,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 33,
+  "obj": "blue_cup",
+  "T": 348,
+  "bad_share": 0.164,
+  "longest_run": 45,
+  "longest_run_start": 46,
+  "runs_ge5": [
+   [
+    32,
+    36
+   ],
+   [
+    46,
+    90
+   ]
+  ],
+  "hidden_share": 0.135,
+  "behind_gt02_share": 0.014,
+  "front_gt05_share": 0.014,
+  "med_r_cm_p50": 0.05,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 33,
+  "obj": "wooden_spoon",
+  "T": 348,
+  "bad_share": 0.293,
+  "longest_run": 31,
+  "longest_run_start": 251,
+  "runs_ge5": [
+   [
+    112,
+    118
+   ],
+   [
+    129,
+    134
+   ],
+   [
+    138,
+    145
+   ],
+   [
+    183,
+    190
+   ],
+   [
+    200,
+    217
+   ],
+   [
+    251,
+    281
+   ]
+  ],
+  "hidden_share": 0.069,
+  "behind_gt02_share": 0.158,
+  "front_gt05_share": 0.089,
+  "med_r_cm_p50": 0.01,
+  "flag_D": true
+ },
+ {
+  "mode": "perc",
+  "ep": 35,
+  "obj": "wooden_spoon",
+  "T": 421,
+  "bad_share": 0.012,
+  "longest_run": 2,
+  "longest_run_start": 90,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.012,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.0,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 36,
+  "obj": "wooden_spoon",
+  "T": 407,
+  "bad_share": 0.108,
+  "longest_run": 15,
+  "longest_run_start": 70,
+  "runs_ge5": [
+   [
+    70,
+    84
+   ],
+   [
+    112,
+    121
+   ],
+   [
+    149,
+    158
+   ],
+   [
+    302,
+    307
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.101,
+  "front_gt05_share": 0.015,
+  "med_r_cm_p50": -0.05,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 37,
+  "obj": "wooden_spoon",
+  "T": 151,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": -0.06,
+  "flag_D": false
+ },
+ {
+  "mode": "perc",
+  "ep": 38,
+  "obj": "mini_dust_pan",
+  "T": 263,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.07,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 1,
+  "obj": "white_pot",
+  "T": 335,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": -0.06,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 1,
+  "obj": "white_pot_lid",
+  "T": 335,
+  "bad_share": 0.149,
+  "longest_run": 26,
+  "longest_run_start": 94,
+  "runs_ge5": [
+   [
+    94,
+    119
+   ],
+   [
+    126,
+    144
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.149,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.53,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 3,
+  "obj": "white_pot",
+  "T": 313,
+  "bad_share": 0.109,
+  "longest_run": 11,
+  "longest_run_start": 88,
+  "runs_ge5": [
+   [
+    82,
+    86
+   ],
+   [
+    88,
+    98
+   ],
+   [
+    101,
+    108
+   ],
+   [
+    117,
+    124
+   ]
+  ],
+  "hidden_share": 0.006,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.102,
+  "med_r_cm_p50": 0.1,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 3,
+  "obj": "wooden_spoon",
+  "T": 313,
+  "bad_share": 0.032,
+  "longest_run": 8,
+  "longest_run_start": 259,
+  "runs_ge5": [
+   [
+    259,
+    266
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.032,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.02,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 5,
+  "obj": "white_pot",
+  "T": 288,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.09,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 5,
+  "obj": "wooden_spoon",
+  "T": 288,
+  "bad_share": 0.073,
+  "longest_run": 10,
+  "longest_run_start": 229,
+  "runs_ge5": [
+   [
+    229,
+    238
+   ],
+   [
+    245,
+    251
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.052,
+  "front_gt05_share": 0.042,
+  "med_r_cm_p50": -0.17,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 6,
+  "obj": "white_pot",
+  "T": 243,
+  "bad_share": 0.066,
+  "longest_run": 6,
+  "longest_run_start": 128,
+  "runs_ge5": [
+   [
+    52,
+    56
+   ],
+   [
+    128,
+    133
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.008,
+  "front_gt05_share": 0.058,
+  "med_r_cm_p50": 0.05,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 6,
+  "obj": "wooden_spoon",
+  "T": 243,
+  "bad_share": 0.049,
+  "longest_run": 10,
+  "longest_run_start": 178,
+  "runs_ge5": [
+   [
+    178,
+    187
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.045,
+  "front_gt05_share": 0.004,
+  "med_r_cm_p50": -0.03,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 8,
+  "obj": "beige_cup",
+  "T": 219,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": -0.01,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 8,
+  "obj": "white_pot",
+  "T": 219,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.1,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 10,
+  "obj": "blue_cup",
+  "T": 161,
+  "bad_share": 0.224,
+  "longest_run": 15,
+  "longest_run_start": 82,
+  "runs_ge5": [
+   [
+    53,
+    65
+   ],
+   [
+    82,
+    96
+   ]
+  ],
+  "hidden_share": 0.106,
+  "behind_gt02_share": 0.031,
+  "front_gt05_share": 0.087,
+  "med_r_cm_p50": 0.34,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 10,
+  "obj": "beige_cup",
+  "T": 161,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.24,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 14,
+  "obj": "blue_cup",
+  "T": 158,
+  "bad_share": 0.082,
+  "longest_run": 11,
+  "longest_run_start": 35,
+  "runs_ge5": [
+   [
+    35,
+    45
+   ]
+  ],
+  "hidden_share": 0.07,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.013,
+  "med_r_cm_p50": 0.12,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 14,
+  "obj": "plastic_dish_rack",
+  "T": 158,
+  "bad_share": 0.006,
+  "longest_run": 1,
+  "longest_run_start": 121,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.006,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.39,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 15,
+  "obj": "plastic_dish_rack",
+  "T": 166,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.4,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 15,
+  "obj": "wooden_spoon",
+  "T": 166,
+  "bad_share": 0.054,
+  "longest_run": 3,
+  "longest_run_start": 155,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.054,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.3,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 16,
+  "obj": "plastic_dish_rack",
+  "T": 173,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.18,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 16,
+  "obj": "wooden_spoon",
+  "T": 173,
+  "bad_share": 0.052,
+  "longest_run": 3,
+  "longest_run_start": 123,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.052,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.27,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 19,
+  "obj": "mini_sweeper",
+  "T": 235,
+  "bad_share": 0.281,
+  "longest_run": 15,
+  "longest_run_start": 43,
+  "runs_ge5": [
+   [
+    43,
+    57
+   ],
+   [
+    68,
+    80
+   ],
+   [
+    87,
+    98
+   ],
+   [
+    221,
+    234
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.272,
+  "front_gt05_share": 0.013,
+  "med_r_cm_p50": 0.3,
+  "flag_D": true
+ },
+ {
+  "mode": "ref",
+  "ep": 19,
+  "obj": "mini_dust_pan",
+  "T": 235,
+  "bad_share": 0.089,
+  "longest_run": 5,
+  "longest_run_start": 140,
+  "runs_ge5": [
+   [
+    140,
+    144
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.085,
+  "front_gt05_share": 0.004,
+  "med_r_cm_p50": 0.63,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 20,
+  "obj": "blue_cup",
+  "T": 202,
+  "bad_share": 0.035,
+  "longest_run": 5,
+  "longest_run_start": 109,
+  "runs_ge5": [
+   [
+    109,
+    113
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.035,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.24,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 20,
+  "obj": "water_pitcher",
+  "T": 202,
+  "bad_share": 0.074,
+  "longest_run": 6,
+  "longest_run_start": 5,
+  "runs_ge5": [
+   [
+    5,
+    10
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.074,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.03,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 25,
+  "obj": "wooden_piece_1",
+  "T": 356,
+  "bad_share": 0.233,
+  "longest_run": 83,
+  "longest_run_start": 36,
+  "runs_ge5": [
+   [
+    36,
+    118
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.233,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.29,
+  "flag_D": true
+ },
+ {
+  "mode": "ref",
+  "ep": 25,
+  "obj": "wooden_piece_2",
+  "T": 356,
+  "bad_share": 0.183,
+  "longest_run": 39,
+  "longest_run_start": 81,
+  "runs_ge5": [
+   [
+    81,
+    119
+   ],
+   [
+    143,
+    166
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.07,
+  "front_gt05_share": 0.115,
+  "med_r_cm_p50": 0.25,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 28,
+  "obj": "plastic_dish_rack",
+  "T": 220,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.16,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 28,
+  "obj": "white_pot",
+  "T": 220,
+  "bad_share": 0.123,
+  "longest_run": 16,
+  "longest_run_start": 204,
+  "runs_ge5": [
+   [
+    171,
+    181
+   ],
+   [
+    204,
+    219
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.123,
+  "med_r_cm_p50": 0.11,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 30,
+  "obj": "mini_sweeper",
+  "T": 263,
+  "bad_share": 0.137,
+  "longest_run": 23,
+  "longest_run_start": 212,
+  "runs_ge5": [
+   [
+    212,
+    234
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.137,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": -0.11,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 30,
+  "obj": "plastic_dish_rack",
+  "T": 263,
+  "bad_share": 0.297,
+  "longest_run": 33,
+  "longest_run_start": 137,
+  "runs_ge5": [
+   [
+    74,
+    98
+   ],
+   [
+    110,
+    128
+   ],
+   [
+    137,
+    169
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.297,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.34,
+  "flag_D": true
+ },
+ {
+  "mode": "ref",
+  "ep": 32,
+  "obj": "blue_cup",
+  "T": 259,
+  "bad_share": 0.112,
+  "longest_run": 8,
+  "longest_run_start": 17,
+  "runs_ge5": [
+   [
+    17,
+    24
+   ],
+   [
+    27,
+    33
+   ],
+   [
+    90,
+    94
+   ],
+   [
+    141,
+    146
+   ]
+  ],
+  "hidden_share": 0.027,
+  "behind_gt02_share": 0.031,
+  "front_gt05_share": 0.054,
+  "med_r_cm_p50": -0.01,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 32,
+  "obj": "wooden_spoon",
+  "T": 259,
+  "bad_share": 0.305,
+  "longest_run": 25,
+  "longest_run_start": 91,
+  "runs_ge5": [
+   [
+    83,
+    87
+   ],
+   [
+    91,
+    115
+   ],
+   [
+    133,
+    137
+   ],
+   [
+    149,
+    154
+   ],
+   [
+    199,
+    220
+   ]
+  ],
+  "hidden_share": 0.058,
+  "behind_gt02_share": 0.208,
+  "front_gt05_share": 0.097,
+  "med_r_cm_p50": -0.16,
+  "flag_D": true
+ },
+ {
+  "mode": "ref",
+  "ep": 33,
+  "obj": "blue_cup",
+  "T": 348,
+  "bad_share": 0.17,
+  "longest_run": 45,
+  "longest_run_start": 46,
+  "runs_ge5": [
+   [
+    32,
+    36
+   ],
+   [
+    46,
+    90
+   ]
+  ],
+  "hidden_share": 0.135,
+  "behind_gt02_share": 0.014,
+  "front_gt05_share": 0.023,
+  "med_r_cm_p50": 0.03,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 33,
+  "obj": "wooden_spoon",
+  "T": 348,
+  "bad_share": 0.348,
+  "longest_run": 31,
+  "longest_run_start": 251,
+  "runs_ge5": [
+   [
+    82,
+    89
+   ],
+   [
+    111,
+    120
+   ],
+   [
+    129,
+    134
+   ],
+   [
+    142,
+    156
+   ],
+   [
+    183,
+    190
+   ],
+   [
+    200,
+    216
+   ],
+   [
+    251,
+    281
+   ],
+   [
+    290,
+    296
+   ]
+  ],
+  "hidden_share": 0.055,
+  "behind_gt02_share": 0.218,
+  "front_gt05_share": 0.109,
+  "med_r_cm_p50": -0.02,
+  "flag_D": true
+ },
+ {
+  "mode": "ref",
+  "ep": 35,
+  "obj": "wooden_spoon",
+  "T": 421,
+  "bad_share": 0.031,
+  "longest_run": 7,
+  "longest_run_start": 362,
+  "runs_ge5": [
+   [
+    362,
+    368
+   ]
+  ],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.029,
+  "front_gt05_share": 0.002,
+  "med_r_cm_p50": 0.16,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 36,
+  "obj": "wooden_spoon",
+  "T": 407,
+  "bad_share": 0.118,
+  "longest_run": 12,
+  "longest_run_start": 76,
+  "runs_ge5": [
+   [
+    70,
+    74
+   ],
+   [
+    76,
+    87
+   ],
+   [
+    113,
+    123
+   ],
+   [
+    302,
+    307
+   ]
+  ],
+  "hidden_share": 0.002,
+  "behind_gt02_share": 0.101,
+  "front_gt05_share": 0.017,
+  "med_r_cm_p50": 0.09,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 37,
+  "obj": "wooden_spoon",
+  "T": 151,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": -0.24,
+  "flag_D": false
+ },
+ {
+  "mode": "ref",
+  "ep": 38,
+  "obj": "mini_dust_pan",
+  "T": 263,
+  "bad_share": 0.0,
+  "longest_run": 0,
+  "longest_run_start": -1,
+  "runs_ge5": [],
+  "hidden_share": 0.0,
+  "behind_gt02_share": 0.0,
+  "front_gt05_share": 0.0,
+  "med_r_cm_p50": 0.38,
+  "flag_D": false
+ }
+]

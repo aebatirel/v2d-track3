@@ -81,7 +81,10 @@ def main():
     p.add_argument('--blend', type=int, default=8); p.add_argument('--preopen', type=float, default=0.3)
     p.add_argument('--wrap', type=int, default=1); p.add_argument('--wrap_ratio', type=float, default=3.0)
     p.add_argument('--back', type=float, default=0.04); p.add_argument('--wrap_squeeze', type=float, default=0.4)
-    p.add_argument('--single_hand', type=int, default=0)
+    p.add_argument('--single_hand', type=int, default=0, help='1: one carrier per object = the hand with the most hold '
+                   'frames; 2 (2026-11-01): the FIRST PICKER = the hand whose first hold starts earliest (eval 14\'s packed '
+                   'lock happened to keep its first picker; on public ep13 mode 1 kept the right hand, which holds only after '
+                   'the left hand has lifted the cup)')
     p.add_argument('--force_design', type=int, default=0, help='1: squeeze from a per-frame contact-force LP (grasp_force.py)')
     p.add_argument('--sf', type=float, default=gf.SF); p.add_argument('--f_min', type=float, default=gf.F_MIN)
     p.add_argument('--lead', type=int, default=2); p.add_argument('--oblique_deg', type=float, default=0.0)
@@ -122,8 +125,14 @@ def main():
                    'frame-0 position in OUR reference stays below this is not held (it rests); a hand left with no hold '
                    'stays parked at its frame-0 pose (2026-10-26, eval 10: the left hand steadying the blue cup, which '
                    'moves 5.6 cm, collides with the right hand and the carried beige cup during the stack)')
+    p.add_argument('--hold_to_end', default='', help='comma-separated objects whose LAST hold phase is extended to the end '
+                   'of the reference (the carrier never releases them; 2026-11-02, perfect-following lane: eval 16\'s '
+                   'spoon falls in simulation after the release at f107 while our reference keeps it still; hand tracks '
+                   'are not scored, object tracks are)')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
-    st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
+    # GL_EMB (2026-10-30): embodiment config for the geometry / FK model (default: FlashCHORD's default Sharpa, as before);
+    # the physics study's human capsule hand needs its own (three human-hand runs had locked grasps on the Sharpa)
+    st, env = cr.build_scene(os.path.abspath(a.inp), fc, os.environ.get('GL_EMB') or None); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
     names = t.column('object_body_names')[0].as_py()
     OP = np.array(t.column('object_body_position')[0].as_py(), float).reshape(T, len(names), 3)
@@ -155,6 +164,8 @@ def main():
             xs = [x for x in ph if x['object'] == o_]
             frames = {sd: sum(x['frames'] for x in xs if x['hand'] == sd) for sd in ('left', 'right')}
             hand = max(frames, key=frames.get); s1_ = max(x['end'] for x in xs)
+            if a.single_hand == 2:                                 # first picker: the earliest hold start
+                hand = min(xs, key=lambda x: (x['start'], x['hand']))['hand']
             if o_ in TPL and frames.get(TPL[o_]['side'], 0) > 0:     # the hand that has a proven grasp for this object
                 hand = TPL[o_]['side']
             first = min((x for x in xs if x['hand'] == hand), key=lambda x: x['start'])
@@ -162,6 +173,11 @@ def main():
         held_by = {x['hand'] for x in merged}; parked = [sd for sd in ('left', 'right') if sd not in held_by]
         ph = merged
         print(f'single-hand carry: {[(x["hand"], x["object"], x["start"], x["end"]) for x in ph]}; parked {parked}', flush=True)
+    for o_ in [x for x in a.hold_to_end.split(',') if x]:          # (--hold_to_end) the last hold runs to the end
+        xs = [x for x in ph if x['object'] == o_]
+        if not xs: print(f'hold_to_end: no hold on {o_}', flush=True); continue
+        last = max(xs, key=lambda x: x['end']); old_end = last['end']; last['end'] = T; last['frames'] = T - last['start']
+        print(f'hold_to_end: {last["hand"]} {o_} {last["start"]}-{old_end} -> {last["start"]}-{T}', flush=True)
     obj_body = [next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/')) for n in names]
     SIM = {}                                                       # simulated object poses of the previous version
     if a.sim_trace:

@@ -1,0 +1,702 @@
+{
+ "prereg": "B.2a",
+ "pairs": [
+  {
+   "ep": 2,
+   "pair": "white_pot|white_pot_lid",
+   "included": true,
+   "directions": [
+    {
+     "target": "white_pot",
+     "partner": "white_pot_lid",
+     "sep3d_frames": 95,
+     "contact_frames": 79,
+     "testable": true,
+     "sheet_points": 600000,
+     "sheet_faces": 263646,
+     "owned_in_contact": 821274,
+     "far_from_sheet": 90722,
+     "leaked": 3509,
+     "leakage": 0.00427,
+     "sigma_mm": 1.367,
+     "worst_frames": [
+      [
+       60,
+       6086,
+       359
+      ],
+      [
+       286,
+       6111,
+       182
+      ],
+      [
+       54,
+       5291,
+       176
+      ],
+      [
+       288,
+       6623,
+       155
+      ],
+      [
+       56,
+       5217,
+       141
+      ]
+     ]
+    },
+    {
+     "target": "white_pot_lid",
+     "partner": "white_pot",
+     "sep3d_frames": 95,
+     "contact_frames": 79,
+     "testable": true,
+     "sheet_points": 401374,
+     "sheet_faces": 102957,
+     "owned_in_contact": 1622273,
+     "far_from_sheet": 418320,
+     "leaked": 31566,
+     "leakage": 0.01946,
+     "sigma_mm": 0.763,
+     "worst_frames": [
+      [
+       336,
+       22263,
+       980
+      ],
+      [
+       338,
+       22152,
+       938
+      ],
+      [
+       2,
+       23458,
+       890
+      ],
+      [
+       334,
+       21972,
+       825
+      ],
+      [
+       34,
+       23835,
+       818
+      ]
+     ]
+    }
+   ],
+   "testable": true,
+   "pair_fail": true
+  },
+  {
+   "ep": 11,
+   "pair": "blue_cup|beige_cup",
+   "included": true,
+   "directions": [
+    {
+     "target": "blue_cup",
+     "partner": "beige_cup",
+     "sep3d_frames": 18,
+     "contact_frames": 51,
+     "testable": true,
+     "sheet_points": 204017,
+     "sheet_faces": 105071,
+     "owned_in_contact": 164707,
+     "far_from_sheet": 35644,
+     "leaked": 12270,
+     "leakage": 0.0745,
+     "sigma_mm": 0.817,
+     "worst_frames": [
+      [
+       76,
+       5653,
+       450
+      ],
+      [
+       106,
+       2275,
+       441
+      ],
+      [
+       114,
+       2605,
+       433
+      ],
+      [
+       98,
+       1357,
+       426
+      ],
+      [
+       112,
+       3225,
+       411
+      ]
+     ]
+    },
+    {
+     "target": "beige_cup",
+     "partner": "blue_cup",
+     "sep3d_frames": 18,
+     "contact_frames": 51,
+     "testable": true,
+     "sheet_points": 271062,
+     "sheet_faces": 109925,
+     "owned_in_contact": 501059,
+     "far_from_sheet": 73406,
+     "leaked": 15454,
+     "leakage": 0.03084,
+     "sigma_mm": 0.892,
+     "worst_frames": [
+      [
+       106,
+       12970,
+       698
+      ],
+      [
+       110,
+       13577,
+       687
+      ],
+      [
+       112,
+       9641,
+       634
+      ],
+      [
+       126,
+       5006,
+       628
+      ],
+      [
+       124,
+       8711,
+       612
+      ]
+     ]
+    }
+   ],
+   "testable": true,
+   "pair_fail": true
+  },
+  {
+   "ep": 24,
+   "pair": "wooden_piece_1|wooden_piece_2",
+   "included": true,
+   "directions": [
+    {
+     "target": "wooden_piece_1",
+     "partner": "wooden_piece_2",
+     "sep3d_frames": 77,
+     "contact_frames": 76,
+     "testable": true,
+     "sheet_points": 600000,
+     "sheet_faces": 108965,
+     "owned_in_contact": 1372396,
+     "far_from_sheet": 680403,
+     "leaked": 1207,
+     "leakage": 0.00088,
+     "sigma_mm": 3.0,
+     "worst_frames": [
+      [
+       264,
+       10783,
+       74
+      ],
+      [
+       266,
+       11119,
+       71
+      ],
+      [
+       234,
+       12111,
+       64
+      ],
+      [
+       256,
+       11118,
+       59
+      ],
+      [
+       262,
+       10876,
+       59
+      ]
+     ]
+    },
+    {
+     "target": "wooden_piece_2",
+     "partner": "wooden_piece_1",
+     "sep3d_frames": 69,
+     "contact_frames": 76,
+     "testable": true,
+     "sheet_points": 439190,
+     "sheet_faces": 91679,
+     "owned_in_contact": 1261043,
+     "far_from_sheet": 137557,
+     "leaked": 3581,
+     "leakage": 0.00284,
+     "sigma_mm": 0.74,
+     "worst_frames": [
+      [
+       264,
+       13363,
+       181
+      ],
+      [
+       266,
+       13234,
+       168
+      ],
+      [
+       262,
+       12915,
+       156
+      ],
+      [
+       258,
+       12993,
+       154
+      ],
+      [
+       216,
+       12009,
+       144
+      ]
+     ]
+    }
+   ],
+   "testable": true,
+   "pair_fail": false
+  },
+  {
+   "ep": 26,
+   "pair": "plastic_dish_rack|white_pot",
+   "included": true,
+   "directions": [
+    {
+     "target": "plastic_dish_rack",
+     "partner": "white_pot",
+     "sep3d_frames": 0,
+     "contact_frames": 79,
+     "testable": false
+    },
+    {
+     "target": "white_pot",
+     "partner": "plastic_dish_rack",
+     "sep3d_frames": 0,
+     "contact_frames": 79,
+     "testable": false
+    }
+   ],
+   "testable": false,
+   "pair_fail": false
+  },
+  {
+   "ep": 27,
+   "pair": "plastic_dish_rack|white_pot",
+   "included": true,
+   "directions": [
+    {
+     "target": "plastic_dish_rack",
+     "partner": "white_pot",
+     "sep3d_frames": 0,
+     "contact_frames": 123,
+     "testable": false
+    },
+    {
+     "target": "white_pot",
+     "partner": "plastic_dish_rack",
+     "sep3d_frames": 0,
+     "contact_frames": 123,
+     "testable": false
+    }
+   ],
+   "testable": false,
+   "pair_fail": false
+  },
+  {
+   "ep": 12,
+   "pair": "blue_cup|plastic_dish_rack",
+   "included": true,
+   "directions": [
+    {
+     "target": "blue_cup",
+     "partner": "plastic_dish_rack",
+     "sep3d_frames": 53,
+     "contact_frames": 91,
+     "testable": true,
+     "sheet_points": 600000,
+     "sheet_faces": 186430,
+     "owned_in_contact": 1498868,
+     "far_from_sheet": 270385,
+     "leaked": 12677,
+     "leakage": 0.00846,
+     "sigma_mm": 0.992,
+     "worst_frames": [
+      [
+       144,
+       16162,
+       565
+      ],
+      [
+       174,
+       16365,
+       562
+      ],
+      [
+       172,
+       15939,
+       542
+      ],
+      [
+       166,
+       16584,
+       538
+      ],
+      [
+       164,
+       16602,
+       529
+      ]
+     ]
+    },
+    {
+     "target": "plastic_dish_rack",
+     "partner": "blue_cup",
+     "sep3d_frames": 53,
+     "contact_frames": 91,
+     "testable": true,
+     "sheet_points": 600000,
+     "sheet_faces": 263180,
+     "owned_in_contact": 2711484,
+     "far_from_sheet": 387483,
+     "leaked": 8746,
+     "leakage": 0.00323,
+     "sigma_mm": 1.153,
+     "worst_frames": [
+      [
+       146,
+       34884,
+       444
+      ],
+      [
+       144,
+       35851,
+       440
+      ],
+      [
+       160,
+       33379,
+       410
+      ],
+      [
+       168,
+       34481,
+       398
+      ],
+      [
+       142,
+       35610,
+       397
+      ]
+     ]
+    }
+   ],
+   "testable": true,
+   "pair_fail": false
+  },
+  {
+   "ep": 13,
+   "pair": "blue_cup|plastic_dish_rack",
+   "included": true,
+   "directions": [
+    {
+     "target": "blue_cup",
+     "partner": "plastic_dish_rack",
+     "sep3d_frames": 47,
+     "contact_frames": 95,
+     "testable": true,
+     "sheet_points": 600000,
+     "sheet_faces": 164556,
+     "owned_in_contact": 915264,
+     "far_from_sheet": 93316,
+     "leaked": 97,
+     "leakage": 0.00011,
+     "sigma_mm": 1.114,
+     "worst_frames": [
+      [
+       188,
+       8970,
+       13
+      ],
+      [
+       182,
+       9093,
+       12
+      ],
+      [
+       174,
+       6861,
+       9
+      ],
+      [
+       150,
+       3801,
+       7
+      ],
+      [
+       176,
+       9368,
+       6
+      ]
+     ]
+    },
+    {
+     "target": "plastic_dish_rack",
+     "partner": "blue_cup",
+     "sep3d_frames": 47,
+     "contact_frames": 95,
+     "testable": true,
+     "sheet_points": 600000,
+     "sheet_faces": 181412,
+     "owned_in_contact": 2315327,
+     "far_from_sheet": 499629,
+     "leaked": 746,
+     "leakage": 0.00032,
+     "sigma_mm": 1.29,
+     "worst_frames": [
+      [
+       180,
+       27749,
+       69
+      ],
+      [
+       178,
+       27528,
+       61
+      ],
+      [
+       172,
+       26773,
+       58
+      ],
+      [
+       182,
+       26805,
+       55
+      ],
+      [
+       188,
+       27677,
+       55
+      ]
+     ]
+    }
+   ],
+   "testable": true,
+   "pair_fail": false
+  },
+  {
+   "ep": 31,
+   "pair": "mini_sweeper|plastic_dish_rack",
+   "included": true,
+   "directions": [
+    {
+     "target": "mini_sweeper",
+     "partner": "plastic_dish_rack",
+     "sep3d_frames": 75,
+     "contact_frames": 145,
+     "testable": true,
+     "sheet_points": 224669,
+     "sheet_faces": 28699,
+     "owned_in_contact": 335386,
+     "far_from_sheet": 37285,
+     "leaked": 448,
+     "leakage": 0.00134,
+     "sigma_mm": 1.071,
+     "worst_frames": [
+      [
+       268,
+       2499,
+       37
+      ],
+      [
+       284,
+       2184,
+       31
+      ],
+      [
+       274,
+       2441,
+       29
+      ],
+      [
+       12,
+       2686,
+       27
+      ],
+      [
+       278,
+       2379,
+       23
+      ]
+     ]
+    },
+    {
+     "target": "plastic_dish_rack",
+     "partner": "mini_sweeper",
+     "sep3d_frames": 75,
+     "contact_frames": 145,
+     "testable": true,
+     "sheet_points": 600000,
+     "sheet_faces": 255374,
+     "owned_in_contact": 4068144,
+     "far_from_sheet": 685327,
+     "leaked": 427,
+     "leakage": 0.0001,
+     "sigma_mm": 1.548,
+     "worst_frames": [
+      [
+       16,
+       24307,
+       31
+      ],
+      [
+       286,
+       30366,
+       30
+      ],
+      [
+       240,
+       22966,
+       27
+      ],
+      [
+       242,
+       24243,
+       27
+      ],
+      [
+       266,
+       23392,
+       27
+      ]
+     ]
+    }
+   ],
+   "testable": true,
+   "pair_fail": false
+  },
+  {
+   "ep": 18,
+   "pair": "mini_sweeper|mini_dust_pan",
+   "included": true,
+   "directions": [
+    {
+     "target": "mini_sweeper",
+     "partner": "mini_dust_pan",
+     "sep3d_frames": 167,
+     "contact_frames": 11,
+     "testable": true,
+     "sheet_points": 600000,
+     "sheet_faces": 59417,
+     "owned_in_contact": 49984,
+     "far_from_sheet": 23444,
+     "leaked": 15,
+     "leakage": 0.0003,
+     "sigma_mm": 2.124,
+     "worst_frames": [
+      [
+       112,
+       1737,
+       13
+      ],
+      [
+       90,
+       6283,
+       2
+      ],
+      [
+       60,
+       305,
+       0
+      ],
+      [
+       62,
+       1878,
+       0
+      ],
+      [
+       64,
+       6377,
+       0
+      ]
+     ]
+    },
+    {
+     "target": "mini_dust_pan",
+     "partner": "mini_sweeper",
+     "sep3d_frames": 167,
+     "contact_frames": 11,
+     "testable": true,
+     "sheet_points": 600000,
+     "sheet_faces": 99085,
+     "owned_in_contact": 114827,
+     "far_from_sheet": 19811,
+     "leaked": 237,
+     "leakage": 0.00206,
+     "sigma_mm": 0.97,
+     "worst_frames": [
+      [
+       90,
+       11411,
+       107
+      ],
+      [
+       114,
+       11597,
+       56
+      ],
+      [
+       88,
+       11325,
+       52
+      ],
+      [
+       112,
+       10716,
+       19
+      ],
+      [
+       64,
+       11189,
+       3
+      ]
+     ]
+    }
+   ],
+   "testable": true,
+   "pair_fail": false
+  },
+  {
+   "ep": 23,
+   "pair": "wooden_piece_1|wooden_piece_2",
+   "included": false,
+   "reason": "ep23 only if both boards pass the identity tests",
+   "flags": [
+    "IDENTITY_SWAP",
+    "IDENTITY_SWAP"
+   ]
+  }
+ ],
+ "testable_pairs": 7,
+ "failing_pairs": 2,
+ "verdict": "FAIL",
+ "sec": 1093.3
+}

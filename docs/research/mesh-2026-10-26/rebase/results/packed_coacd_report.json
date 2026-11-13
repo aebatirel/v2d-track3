@@ -1,0 +1,32 @@
+{
+ "white_pot": {
+  "mesh": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/assets_v3/mesh/white_pot/white_pot.glb",
+  "geom_sha1_12": "716d456aba7f",
+  "n": 31,
+  "hull_vol_cm3": 890.63,
+  "mesh_vol_cm3": 624.62,
+  "secs": 26.1,
+  "coacd": "1.0.11",
+  "coacd_file": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/coacd1011/coacd/__init__.py"
+ },
+ "white_pot_lid": {
+  "mesh": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/assets_v3/mesh/white_pot_lid/white_pot_lid.glb",
+  "geom_sha1_12": "5bc6e1134e8d",
+  "n": 41,
+  "hull_vol_cm3": 325.71,
+  "mesh_vol_cm3": 287.97,
+  "secs": 23.9,
+  "coacd": "1.0.11",
+  "coacd_file": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/coacd1011/coacd/__init__.py"
+ },
+ "water_pitcher": {
+  "mesh": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/rebase/assets_v3/mesh/water_pitcher/water_pitcher.glb",
+  "geom_sha1_12": "994cf92180e2",
+  "n": 33,
+  "hull_vol_cm3": 1554.84,
+  "mesh_vol_cm3": 1221.41,
+  "secs": 25.9,
+  "coacd": "1.0.11",
+  "coacd_file": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/coacd1011/coacd/__init__.py"
+ }
+}

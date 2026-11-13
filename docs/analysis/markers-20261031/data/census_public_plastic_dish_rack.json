@@ -1,0 +1,156 @@
+{
+ "obj": "plastic_dish_rack",
+ "split": "public",
+ "eps": [
+  12,
+  13,
+  26,
+  27,
+  31
+ ],
+ "seed": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/mk/census/public_plastic_dish_rack_p1.json",
+ "seed_body_mm": [
+  [
+   -12.5,
+   -33.9,
+   -102.9
+  ],
+  [
+   -3.9,
+   79.7,
+   1.7
+  ]
+ ],
+ "layout_refine": {
+  "n_sets": 804,
+  "n_full": 804,
+  "body_pts": [
+   804,
+   804
+  ],
+  "dists_mm": {
+   "0-1": [
+    153.5,
+    804,
+    5.2
+   ]
+  },
+  "place_resid_mm": [
+   0.8,
+   0.8
+  ],
+  "shift_from_seed_mm": [
+   1.6,
+   1.0
+  ]
+ },
+ "layout_body_m": [
+  [
+   -0.013514181962836748,
+   -0.035180346527809374,
+   -0.1028833525659815
+  ],
+  [
+   -0.004146763689932155,
+   0.07904044078240155,
+   0.0010278910966882437
+  ]
+ ],
+ "census": {
+  "12": {
+   "all": {
+    "frames": 181,
+    "ge1": 1.0,
+    "ge2": 0.663,
+    "ge3": 0.0
+   },
+   "rest": {
+    "frames": 177,
+    "ge1": 1.0,
+    "ge2": 0.678,
+    "ge3": 0.0
+   },
+   "fit_rms_mm_med": null,
+   "per_marker_in_sets": [
+    120,
+    120
+   ]
+  },
+  "13": {
+   "all": {
+    "frames": 190,
+    "ge1": 0.863,
+    "ge2": 0.605,
+    "ge3": 0.0
+   },
+   "rest": {
+    "frames": 190,
+    "ge1": 0.863,
+    "ge2": 0.605,
+    "ge3": 0.0
+   },
+   "fit_rms_mm_med": null,
+   "per_marker_in_sets": [
+    115,
+    115
+   ]
+  },
+  "26": {
+   "all": {
+    "frames": 158,
+    "ge1": 1.0,
+    "ge2": 0.544,
+    "ge3": 0.0
+   },
+   "rest": {
+    "frames": 158,
+    "ge1": 1.0,
+    "ge2": 0.544,
+    "ge3": 0.0
+   },
+   "fit_rms_mm_med": null,
+   "per_marker_in_sets": [
+    86,
+    86
+   ]
+  },
+  "27": {
+   "all": {
+    "frames": 246,
+    "ge1": 1.0,
+    "ge2": 0.874,
+    "ge3": 0.0
+   },
+   "rest": {
+    "frames": 246,
+    "ge1": 1.0,
+    "ge2": 0.874,
+    "ge3": 0.0
+   },
+   "fit_rms_mm_med": null,
+   "per_marker_in_sets": [
+    215,
+    215
+   ]
+  },
+  "31": {
+   "all": {
+    "frames": 290,
+    "ge1": 1.0,
+    "ge2": 0.924,
+    "ge3": 0.0
+   },
+   "rest": {
+    "frames": 290,
+    "ge1": 1.0,
+    "ge2": 0.924,
+    "ge3": 0.0
+   },
+   "fit_rms_mm_med": null,
+   "per_marker_in_sets": [
+    268,
+    268
+   ]
+  }
+ }
+}

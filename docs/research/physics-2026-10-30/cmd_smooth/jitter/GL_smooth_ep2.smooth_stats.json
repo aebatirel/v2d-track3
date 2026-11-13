@@ -1,0 +1,48 @@
+{
+ "fps": 20.0,
+ "sig": 0.005,
+ "q": 4.0,
+ "ratio": 160000.0,
+ "robot_left_wrist_position": {
+  "change_rms": 0.0011722517931385531,
+  "change_max": 0.005156565120883638,
+  "d2_rms_before": 0.007808630819818641,
+  "d2_rms_after": 0.004523626733193158,
+  "frame0_equal": true
+ },
+ "robot_left_wrist_wxyz": {
+  "change_rms": 0.0038912040335263355,
+  "change_max": 0.02882818769073675,
+  "d2_rms_before": 0.030831221060048427,
+  "d2_rms_after": 0.022345247275973822,
+  "frame0_equal": true
+ },
+ "robot_left_finger_joints": {
+  "change_rms": 0.044156107194058006,
+  "change_max": 0.2218635096696564,
+  "d2_rms_before": 0.3128979408731882,
+  "d2_rms_after": 0.200317764519527,
+  "frame0_equal": true
+ },
+ "robot_right_wrist_position": {
+  "change_rms": 0.0011046243038573239,
+  "change_max": 0.0068625694882919475,
+  "d2_rms_before": 0.008228355861624402,
+  "d2_rms_after": 0.0056101203868332864,
+  "frame0_equal": true
+ },
+ "robot_right_wrist_wxyz": {
+  "change_rms": 0.0035727868310894318,
+  "change_max": 0.02090073723382113,
+  "d2_rms_before": 0.02926480827165631,
+  "d2_rms_after": 0.021951510020146284,
+  "frame0_equal": true
+ },
+ "robot_right_finger_joints": {
+  "change_rms": 0.03950926071965423,
+  "change_max": 0.2289202282176246,
+  "d2_rms_before": 0.27425851349421304,
+  "d2_rms_after": 0.17120963762897318,
+  "frame0_equal": true
+ }
+}

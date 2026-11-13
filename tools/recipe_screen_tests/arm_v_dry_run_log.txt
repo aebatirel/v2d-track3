@@ -1,0 +1,40 @@
+# dry_run_v.sh output, 2026-10-31T21:18:27Z (FAKE numbers). Command: bash tools/recipe_screen_tests/dry_run_v.sh S/rs/dryV1 S/src/video_to_data/robotic_grounding/flash_chord S/venv/bin/python S/fcvenv/bin/python S/box2/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet <real stored C/ep24-s43 best/policy.safetensors from runs/20261031-rscr43-865dfbb> S/rs/old4_cell.json  (S = session scratchpad)
+vboxC43 job exit 0
+vboxV42 job exit 0
+vboxV43 job exit 0
+vboxC42 job exit 0
+merge V exit 0
+PASS all 4 jobs exit 0  [vboxC43 job exit 0 | vboxV42 job exit 0 | vboxV43 job exit 0 | vboxC42 job exit 0]
+PASS V/ep2-s42: train command has the override once; no DR env; config records actor velocity True  [override x1, DR None, cfg True]
+PASS V/ep12-s42: train command has the override once; no DR env; config records actor velocity True  [override x1, DR None, cfg True]
+PASS V/ep18-s42: train command has the override once; no DR env; config records actor velocity True  [override x1, DR None, cfg True]
+PASS V/ep24-s42: train command has the override once; no DR env; config records actor velocity True  [override x1, DR None, cfg True]
+PASS V/ep2-s43: train command has the override once; no DR env; config records actor velocity True  [override x1, DR None, cfg True]
+PASS V/ep12-s43: train command has the override once; no DR env; config records actor velocity True  [override x1, DR None, cfg True]
+PASS V/ep18-s43: train command has the override once; no DR env; config records actor velocity True  [override x1, DR None, cfg True]
+PASS V/ep24-s43: train command has the override once; no DR env; config records actor velocity True  [override x1, DR None, cfg True]
+PASS C/ep2-s42: no override; config actor velocity False
+PASS C/ep12-s42: no override; config actor velocity False
+PASS C/ep18-s42: no override; config actor velocity False
+PASS C/ep24-s42: no override; config actor velocity False
+PASS C/ep2-s43: no override; config actor velocity False
+PASS C/ep12-s43: no override; config actor velocity False
+PASS C/ep18-s43: no override; config actor velocity False
+PASS vC43 never trained C/ep24-s43
+PASS rescore cell scored, 10 draws, present  [scored n=10]
+PASS rescore cell: checkpoint policy_20000768 from the real stored file; steps 20000768  [policy_20000768.safetensors 20000768 20000768]
+PASS rescore cell: real config is C seed 43, actor velocity False, no config problem  [seed 43 vel False problems []]
+PASS rescore cell notes say rescore + selection not redone
+PASS rescore cell ref md5 = this box ep24 record
+PASS no C training on vV43
+PASS rescore finished before the first training started  [rescore at 2767, first training at 3037]
+PASS 10 official evaluations of the re-scored checkpoint, none with FC_DR_RESET  [10]
+PASS vV43 summary lists the rescore cell
+PASS merge: C/ep24-s43 taken from the rescore box (old 4-draw record first, not present)  [/tmp/claude-0/-home-user-v2d-track3/9bee9e08-a3b0-5c25-ae4f-3db987cc25f2/scratchpad/rs/dryV1/vboxV43/results/recipe_screen/summary.json]
+PASS V_vs_C on the fake design = signal (mean +0.03 at the bound, lowest -0.02)  [signal 0.03 -0.02 {}]
+PASS negative: a V checkpoint without the override -> INVALID  [INVALID]
+PASS negative: a C checkpoint with actor velocity -> INVALID  [INVALID]
+PASS negative: a V cell on another reference -> INVALID  [INVALID]
+PASS negative: a missing V cell -> INCOMPLETE  [INCOMPLETE]
+PASS negative: ep2 -0.10 -> harm  [harm -0.1]
+ALL PASS

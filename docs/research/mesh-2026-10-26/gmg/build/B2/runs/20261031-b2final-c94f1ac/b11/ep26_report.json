@@ -1,0 +1,1194 @@
+{
+ "ep": 26,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "a_offset": 1,
+ "video_frames": 158,
+ "depth_frames": 158,
+ "partner_dilate_px_cam_a": 19,
+ "refine": "sam2.1-hiera-tiny",
+ "census": {
+  "plastic_dish_rack|white_pot": {
+   "frames": 79,
+   "contact": 79,
+   "separated": 0,
+   "sep3d": 9,
+   "overlap2d": 79
+  },
+  "white_pot|plastic_dish_rack": {
+   "frames": 79,
+   "contact": 79,
+   "separated": 0,
+   "sep3d": 9,
+   "overlap2d": 79
+  }
+ },
+ "targets": {
+  "plastic_dish_rack": {
+   "obj": "plastic_dish_rack",
+   "partners": [
+    "white_pot"
+   ],
+   "mode": "contact",
+   "flags": [
+    "contact_mode",
+    "one_view",
+    "mv_skipped"
+   ],
+   "frames": 79,
+   "separated": 0,
+   "separated_in_table": 0,
+   "area_max": 179280,
+   "qualifying": 39,
+   "fail_counts": {
+    "hands": 33,
+    "area": 32,
+    "depth": 0
+   },
+   "pool_span_deg": 4.29,
+   "pool_p90_deg": 1.92,
+   "views": [
+    {
+     "obj": "plastic_dish_rack",
+     "k": 100,
+     "j": 101,
+     "mode": "contact",
+     "dir": [
+      0.823526,
+      0.567271,
+      0.002936
+     ],
+     "area": 148997,
+     "hand_share": 0.1786,
+     "depth_share": 0.8301,
+     "partner_share": 0.1344,
+     "rank": 0,
+     "min_angle_deg": null
+    }
+   ],
+   "n_views": 1,
+   "views_span_deg": 0.0,
+   "view_angles_deg": [
+    [
+     0.0
+    ]
+   ],
+   "view_results": [
+    {
+     "view": {
+      "k": 100,
+      "j": 101,
+      "mode": "contact",
+      "rank": 0,
+      "min_angle_deg": null,
+      "area": 148997,
+      "hand_share": 0.1786,
+      "depth_share": 0.8301,
+      "partner_share": 0.1344
+     },
+     "masks": {
+      "k": 100,
+      "j": 101,
+      "projected_area": 148997,
+      "refined": true,
+      "flags": [
+       "refine_cut_back"
+      ],
+      "pos": [
+       [
+        972,
+        830
+       ],
+       [
+        461,
+        841
+       ],
+       [
+        1400,
+        817
+       ],
+       [
+        717,
+        991
+       ],
+       [
+        1182,
+        716
+       ]
+      ],
+      "neg": [
+       [
+        1159,
+        1137
+       ],
+       [
+        1685,
+        1519
+       ],
+       [
+        1361,
+        1413
+       ],
+       [
+        954,
+        940
+       ],
+       [
+        1202,
+        891
+       ],
+       [
+        572,
+        876
+       ],
+       [
+        519,
+        742
+       ],
+       [
+        623,
+        1005
+       ],
+       [
+        663,
+        830
+       ],
+       [
+        534,
+        966
+       ]
+      ],
+      "refine": {
+       "box": [
+        213,
+        133,
+        1649,
+        1520
+       ],
+       "ious": [
+        0.5245,
+        0.6804,
+        0.7863
+       ],
+       "pick": 2,
+       "sam_scores": [
+        0.0031,
+        0.0012,
+        0.0029
+       ],
+       "n_pos": 5,
+       "n_neg": 9
+      },
+      "refined_area": 140504,
+      "refined_gain_partner": 7647,
+      "refined_iou_projected": 0.8255,
+      "refined_gain_outside": 9588,
+      "fragments_dropped_px": 1,
+      "final_area": 148996
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 2437975,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 2437975,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": false,
+     "separated_ok": true,
+     "pass_": true
+    }
+   ],
+   "pass": true,
+   "montage": {
+    "path": "ep26_plastic_dish_rack.png",
+    "bytes": 108657
+   }
+  },
+  "white_pot": {
+   "obj": "white_pot",
+   "partners": [
+    "plastic_dish_rack"
+   ],
+   "mode": "contact",
+   "flags": [
+    "contact_mode"
+   ],
+   "frames": 79,
+   "separated": 0,
+   "separated_in_table": 0,
+   "area_max": 200741,
+   "qualifying": 45,
+   "fail_counts": {
+    "hands": 16,
+    "area": 34,
+    "depth": 0
+   },
+   "pool_span_deg": 134.33,
+   "pool_p90_deg": 16.24,
+   "views": [
+    {
+     "obj": "white_pot",
+     "k": 64,
+     "j": 65,
+     "mode": "contact",
+     "dir": [
+      0.846687,
+      -0.41888,
+      0.328118
+     ],
+     "area": 200741,
+     "hand_share": 0.0919,
+     "depth_share": 0.8546,
+     "partner_share": 0.1125,
+     "rank": 0,
+     "min_angle_deg": null
+    },
+    {
+     "obj": "white_pot",
+     "k": 66,
+     "j": 67,
+     "mode": "contact",
+     "dir": [
+      0.905087,
+      -0.030845,
+      0.424106
+     ],
+     "area": 196741,
+     "hand_share": 0.1225,
+     "depth_share": 0.8917,
+     "partner_share": 0.1148,
+     "rank": 1,
+     "min_angle_deg": 23.31
+    },
+    {
+     "obj": "white_pot",
+     "k": 100,
+     "j": 101,
+     "mode": "contact",
+     "dir": [
+      0.773986,
+      0.37767,
+      0.508244
+     ],
+     "area": 146925,
+     "hand_share": 0.1593,
+     "depth_share": 0.88,
+     "partner_share": 0.1332,
+     "rank": 2,
+     "min_angle_deg": 25.25
+    },
+    {
+     "obj": "white_pot",
+     "k": 62,
+     "j": 63,
+     "mode": "contact",
+     "dir": [
+      0.470446,
+      -0.834431,
+      0.287063
+     ],
+     "area": 182552,
+     "hand_share": 0.079,
+     "depth_share": 0.838,
+     "partner_share": 0.1365,
+     "rank": 3,
+     "min_angle_deg": 32.64
+    },
+    {
+     "obj": "white_pot",
+     "k": 60,
+     "j": 61,
+     "mode": "contact",
+     "dir": [
+      -0.075376,
+      -0.982912,
+      0.167938
+     ],
+     "area": 137435,
+     "hand_share": 0.0857,
+     "depth_share": 0.8085,
+     "partner_share": 0.1875,
+     "rank": 4,
+     "min_angle_deg": 33.6
+    },
+    {
+     "obj": "white_pot",
+     "k": 70,
+     "j": 71,
+     "mode": "contact",
+     "dir": [
+      0.864951,
+      0.248867,
+      0.435804
+     ],
+     "area": 171411,
+     "hand_share": 0.1504,
+     "depth_share": 0.8482,
+     "partner_share": 0.1889,
+     "rank": 5,
+     "min_angle_deg": 9.95
+    }
+   ],
+   "n_views": 6,
+   "views_span_deg": 110.13,
+   "view_angles_deg": [
+    [
+     0.0,
+     23.31,
+     48.4,
+     32.64,
+     66.23,
+     39.55
+    ],
+    [
+     23.31,
+     0.04,
+     25.25,
+     55.02,
+     88.09,
+     16.26
+    ],
+    [
+     48.4,
+     25.25,
+     0.0,
+     78.76,
+     110.13,
+     9.95
+    ],
+    [
+     32.64,
+     55.02,
+     78.76,
+     0.04,
+     33.6,
+     71.07
+    ],
+    [
+     66.23,
+     88.09,
+     110.13,
+     33.6,
+     0.0,
+     103.69
+    ],
+    [
+     39.55,
+     16.26,
+     9.95,
+     71.07,
+     103.69,
+     0.0
+    ]
+   ],
+   "view_results": [
+    {
+     "view": {
+      "k": 64,
+      "j": 65,
+      "mode": "contact",
+      "rank": 0,
+      "min_angle_deg": null,
+      "area": 200741,
+      "hand_share": 0.0919,
+      "depth_share": 0.8546,
+      "partner_share": 0.1125
+     },
+     "masks": {
+      "k": 64,
+      "j": 65,
+      "projected_area": 200741,
+      "refined": true,
+      "flags": [
+       "refine_cut_back"
+      ],
+      "pos": [
+       [
+        1148,
+        552
+       ],
+       [
+        1112,
+        269
+       ],
+       [
+        1018,
+        792
+       ],
+       [
+        1409,
+        577
+       ],
+       [
+        905,
+        471
+       ]
+      ],
+      "neg": [
+       [
+        952,
+        937
+       ],
+       [
+        1428,
+        902
+       ],
+       [
+        513,
+        916
+       ],
+       [
+        725,
+        1075
+       ],
+       [
+        1182,
+        811
+       ],
+       [
+        1367,
+        1051
+       ],
+       [
+        1068,
+        318
+       ],
+       [
+        1000,
+        775
+       ],
+       [
+        1087,
+        554
+       ],
+       [
+        1560,
+        1181
+       ]
+      ],
+      "refine": {
+       "box": [
+        740,
+        121,
+        1561,
+        941
+       ],
+       "ious": [
+        0.8,
+        0.1961,
+        0.7378
+       ],
+       "pick": 0,
+       "sam_scores": [
+        0.0087,
+        0.0006,
+        0.0087
+       ],
+       "n_pos": 5,
+       "n_neg": 6
+      },
+      "refined_area": 206783,
+      "refined_gain_partner": 5993,
+      "refined_iou_projected": 0.8209,
+      "refined_gain_outside": 23062,
+      "fragments_dropped_px": 1,
+      "final_area": 200740
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": false,
+     "separated_ok": true,
+     "pass_": true
+    },
+    {
+     "view": {
+      "k": 66,
+      "j": 67,
+      "mode": "contact",
+      "rank": 1,
+      "min_angle_deg": 23.31,
+      "area": 196741,
+      "hand_share": 0.1225,
+      "depth_share": 0.8917,
+      "partner_share": 0.1148
+     },
+     "masks": {
+      "k": 66,
+      "j": 67,
+      "projected_area": 196741,
+      "refined": true,
+      "flags": [
+       "refine_cut_back"
+      ],
+      "pos": [
+       [
+        1177,
+        540
+       ],
+       [
+        1042,
+        786
+       ],
+       [
+        1362,
+        727
+       ],
+       [
+        1191,
+        285
+       ],
+       [
+        1417,
+        466
+       ]
+      ],
+      "neg": [
+       [
+        948,
+        926
+       ],
+       [
+        1424,
+        890
+       ],
+       [
+        508,
+        908
+       ],
+       [
+        722,
+        1071
+       ],
+       [
+        1178,
+        802
+       ],
+       [
+        1404,
+        1036
+       ],
+       [
+        1173,
+        301
+       ],
+       [
+        1029,
+        750
+       ],
+       [
+        1302,
+        726
+       ],
+       [
+        1643,
+        1157
+       ]
+      ],
+      "refine": {
+       "box": [
+        785,
+        142,
+        1569,
+        926
+       ],
+       "ious": [
+        0.0217,
+        0.01,
+        0.0168
+       ],
+       "pick": 0,
+       "sam_scores": [
+        0.0006,
+        0.0001,
+        0.0006
+       ],
+       "n_pos": 5,
+       "n_neg": 5
+      },
+      "refined_area": 116520,
+      "refined_gain_partner": 10399,
+      "refined_iou_projected": 0.0216,
+      "refined_gain_outside": 109887,
+      "fragments_dropped_px": 0,
+      "final_area": 196741
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 19.2,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 19.2,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": false,
+     "separated_ok": true,
+     "pass_": true
+    },
+    {
+     "view": {
+      "k": 100,
+      "j": 101,
+      "mode": "contact",
+      "rank": 2,
+      "min_angle_deg": 25.25,
+      "area": 146925,
+      "hand_share": 0.1593,
+      "depth_share": 0.88,
+      "partner_share": 0.1332
+     },
+     "masks": {
+      "k": 100,
+      "j": 101,
+      "projected_area": 146925,
+      "refined": true,
+      "flags": [
+       "refine_cut_back"
+      ],
+      "pos": [
+       [
+        1134,
+        1134
+       ],
+       [
+        909,
+        1024
+       ],
+       [
+        1334,
+        988
+       ],
+       [
+        976,
+        1295
+       ],
+       [
+        1308,
+        1251
+       ]
+      ],
+      "neg": [
+       [
+        917,
+        849
+       ],
+       [
+        1397,
+        822
+       ],
+       [
+        462,
+        843
+       ],
+       [
+        688,
+        993
+       ],
+       [
+        1150,
+        720
+       ],
+       [
+        1398,
+        1403
+       ],
+       [
+        1693,
+        1519
+       ],
+       [
+        1523,
+        1519
+       ],
+       [
+        1302,
+        1269
+       ],
+       [
+        1515,
+        1390
+       ]
+      ],
+      "refine": {
+       "box": [
+        766,
+        774,
+        1484,
+        1492
+       ],
+       "ious": [
+        0.6716,
+        0.7767,
+        0.7007
+       ],
+       "pick": 1,
+       "sam_scores": [
+        0.0057,
+        0.0004,
+        0.0088
+       ],
+       "n_pos": 5,
+       "n_neg": 4
+      },
+      "refined_area": 165444,
+      "refined_gain_partner": 4323,
+      "refined_iou_projected": 0.7959,
+      "refined_gain_outside": 27014,
+      "fragments_dropped_px": 0,
+      "final_area": 146925
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": false,
+     "separated_ok": true,
+     "pass_": true
+    },
+    {
+     "view": {
+      "k": 62,
+      "j": 63,
+      "mode": "contact",
+      "rank": 3,
+      "min_angle_deg": 32.64,
+      "area": 182552,
+      "hand_share": 0.079,
+      "depth_share": 0.838,
+      "partner_share": 0.1365
+     },
+     "masks": {
+      "k": 62,
+      "j": 63,
+      "projected_area": 182552,
+      "refined": true,
+      "flags": [
+       "refine_cut_back"
+      ],
+      "pos": [
+       [
+        1111,
+        569
+       ],
+       [
+        930,
+        351
+       ],
+       [
+        1353,
+        667
+       ],
+       [
+        868,
+        595
+       ],
+       [
+        1032,
+        795
+       ]
+      ],
+      "neg": [
+       [
+        953,
+        935
+       ],
+       [
+        1430,
+        901
+       ],
+       [
+        519,
+        922
+       ],
+       [
+        730,
+        1079
+       ],
+       [
+        1184,
+        811
+       ],
+       [
+        1391,
+        1099
+       ],
+       [
+        981,
+        398
+       ],
+       [
+        1512,
+        1232
+       ],
+       [
+        1303,
+        1025
+       ],
+       [
+        1427,
+        1188
+       ]
+      ],
+      "refine": {
+       "box": [
+        712,
+        178,
+        1501,
+        967
+       ],
+       "ious": [
+        0.0415,
+        0.0028,
+        0.0397
+       ],
+       "pick": 0,
+       "sam_scores": [
+        0.0251,
+        0.0007,
+        0.022
+       ],
+       "n_pos": 5,
+       "n_neg": 4
+      },
+      "refined_area": 177418,
+      "refined_gain_partner": 8958,
+      "refined_iou_projected": 0.0413,
+      "refined_gain_outside": 163136,
+      "fragments_dropped_px": 0,
+      "final_area": 182552
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": false,
+     "separated_ok": true,
+     "pass_": true
+    },
+    {
+     "view": {
+      "k": 60,
+      "j": 61,
+      "mode": "contact",
+      "rank": 4,
+      "min_angle_deg": 33.6,
+      "area": 137435,
+      "hand_share": 0.0857,
+      "depth_share": 0.8085,
+      "partner_share": 0.1875
+     },
+     "masks": {
+      "k": 60,
+      "j": 61,
+      "projected_area": 137435,
+      "refined": true,
+      "flags": [
+       "refine_cut_back"
+      ],
+      "pos": [
+       [
+        1047,
+        617
+       ],
+       [
+        806,
+        493
+       ],
+       [
+        1309,
+        657
+       ],
+       [
+        1013,
+        399
+       ],
+       [
+        866,
+        692
+       ]
+      ],
+      "neg": [
+       [
+        955,
+        934
+       ],
+       [
+        1430,
+        896
+       ],
+       [
+        517,
+        928
+       ],
+       [
+        734,
+        1079
+       ],
+       [
+        1184,
+        804
+       ],
+       [
+        1401,
+        1067
+       ],
+       [
+        951,
+        436
+       ],
+       [
+        1460,
+        1210
+       ],
+       [
+        1298,
+        1079
+       ],
+       [
+        1342,
+        1006
+       ]
+      ],
+      "refine": {
+       "box": [
+        664,
+        208,
+        1446,
+        989
+       ],
+       "ious": [
+        0.0311,
+        0.0118,
+        0.0254
+       ],
+       "pick": 0,
+       "sam_scores": [
+        0.7713,
+        0.075,
+        0.72
+       ],
+       "n_pos": 5,
+       "n_neg": 4
+      },
+      "refined_area": 207888,
+      "refined_gain_partner": 8281,
+      "refined_iou_projected": 0.031,
+      "refined_gain_outside": 197491,
+      "fragments_dropped_px": 0,
+      "final_area": 137435
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": false,
+     "separated_ok": true,
+     "pass_": true
+    },
+    {
+     "view": {
+      "k": 70,
+      "j": 71,
+      "mode": "contact",
+      "rank": 5,
+      "min_angle_deg": 9.95,
+      "area": 171411,
+      "hand_share": 0.1504,
+      "depth_share": 0.8482,
+      "partner_share": 0.1889
+     },
+     "masks": {
+      "k": 70,
+      "j": 71,
+      "projected_area": 171411,
+      "refined": true,
+      "flags": [
+       "refine_cut_back"
+      ],
+      "pos": [
+       [
+        1223,
+        581
+       ],
+       [
+        1369,
+        994
+       ],
+       [
+        1017,
+        769
+       ],
+       [
+        1444,
+        731
+       ],
+       [
+        987,
+        531
+       ]
+      ],
+      "neg": [
+       [
+        936,
+        909
+       ],
+       [
+        1414,
+        875
+       ],
+       [
+        499,
+        896
+       ],
+       [
+        714,
+        1055
+       ],
+       [
+        1165,
+        783
+       ],
+       [
+        1466,
+        1099
+       ],
+       [
+        1013,
+        722
+       ],
+       [
+        1690,
+        1212
+       ],
+       [
+        1427,
+        934
+       ],
+       [
+        1524,
+        1257
+       ]
+      ],
+      "refine": {
+       "box": [
+        736,
+        201,
+        1701,
+        1165
+       ],
+       "ious": [
+        0.6708,
+        0.387,
+        0.8185
+       ],
+       "pick": 2,
+       "sam_scores": [
+        0.001,
+        0.0001,
+        0.0012
+       ],
+       "n_pos": 5,
+       "n_neg": 6
+      },
+      "refined_area": 187626,
+      "refined_gain_partner": 29086,
+      "refined_iou_projected": 0.7743,
+      "refined_gain_outside": 30940,
+      "fragments_dropped_px": 613,
+      "final_area": 170798
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 984187,
+      "footprint_inside": 0,
+      "min_dist_px": 18.98,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": false,
+     "separated_ok": true,
+     "pass_": true
+    }
+   ],
+   "pass": true,
+   "montage": {
+    "path": "ep26_white_pot.png",
+    "bytes": 493676
+   }
+  }
+ },
+ "sigma_mm": {
+  "plastic_dish_rack": 1.6648,
+  "white_pot": 1.2687
+ },
+ "pass": true
+}

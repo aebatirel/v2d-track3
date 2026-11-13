@@ -1,0 +1,146 @@
+{
+ "ep": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "auc_before": 0.9628,
+ "add_cm_before": {
+  "mini_sweeper": 0.4591,
+  "mini_dust_pan": 1.642
+ },
+ "auc_after": 0.9689,
+ "add_cm_after": {
+  "mini_sweeper": 0.5765,
+  "mini_dust_pan": 1.5019
+ },
+ "auc_before_scorer": 0.9628,
+ "auc_after_scorer": 0.9689,
+ "direction": [
+  {
+   "obj": "mini_sweeper",
+   "start": 0,
+   "end": 26,
+   "status": "shift_t",
+   "push_mm": 5.07,
+   "corr_mm": 0.59,
+   "corr_along_push_mm": -0.46,
+   "cos": -0.778,
+   "pos_err_mm_before": 0.88,
+   "pos_err_mm_after_same_alignment": 5.56,
+   "pos_err_mm_after_scored": 0.88
+  },
+  {
+   "obj": "mini_dust_pan",
+   "start": 0,
+   "end": 9,
+   "status": "shift_t",
+   "push_mm": 6.66,
+   "corr_mm": 16.37,
+   "corr_along_push_mm": -13.31,
+   "cos": -0.813,
+   "pos_err_mm_before": 16.37,
+   "pos_err_mm_after_same_alignment": 22.13,
+   "pos_err_mm_after_scored": 17.69
+  },
+  {
+   "obj": "mini_dust_pan",
+   "start": 190,
+   "end": 352,
+   "status": "shift_t",
+   "push_mm": 6.15,
+   "corr_mm": 16.47,
+   "corr_along_push_mm": -13.66,
+   "cos": -0.829,
+   "pos_err_mm_before": 16.52,
+   "pos_err_mm_after_same_alignment": 21.88,
+   "pos_err_mm_after_scored": 17.42
+  }
+ ],
+ "mesh_check": [
+  {
+   "pair": "mini_sweeper|mini_dust_pan",
+   "rest_frames": 10,
+   "sampled": 5,
+   "ours_at_ours": {
+    "median_cm3": 0.0,
+    "max_cm3": 0.0,
+    "median_depth_mm": 0.0
+   },
+   "ours_at_mocap": {
+    "median_cm3": 0.0,
+    "max_cm3": 0.0,
+    "median_depth_mm": 0.0
+   },
+   "scans_at_mocap": {
+    "median_cm3": 0.0,
+    "max_cm3": 0.0,
+    "median_depth_mm": 0.0
+   },
+   "frames": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     2.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     4.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     6.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     8.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   ]
+  }
+ ],
+ "bottom_check": [
+  {
+   "obj": "mini_sweeper",
+   "rest_frames_sampled": 25,
+   "ours_minus_scan_lowest_mm_median": -1.02,
+   "scan_lowest_z_mm_median": 602.48,
+   "scan_lowest_z_mm_iqr": 57.1
+  },
+  {
+   "obj": "mini_dust_pan",
+   "rest_frames_sampled": 87,
+   "ours_minus_scan_lowest_mm_median": -2.43,
+   "scan_lowest_z_mm_median": 601.42,
+   "scan_lowest_z_mm_iqr": 0.17
+  }
+ ]
+}

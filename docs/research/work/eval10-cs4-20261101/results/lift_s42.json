@@ -1,0 +1,602 @@
+{
+ "rule": "PREREG section 4 clause L: beige_cup r1 lift >= 5.0 cm at >= 1 curve checkpoint",
+ "carried": "beige_cup",
+ "reference_lift_cm": {
+  "beige_cup": 23.5,
+  "blue_cup": 1.5
+ },
+ "checkpoints": [
+  {
+   "checkpoint": "policy_10002432",
+   "steps": 10002432,
+   "ckpt_M": 10,
+   "repeats": {
+    "r1": {
+     "sim_vs_ref": 0.5629,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 1.1,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.99,
+       "lost_at": null,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 12.4,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 43,
+       "frames": 161
+      }
+     }
+    },
+    "r2": {
+     "sim_vs_ref": 0.3527,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 0.8,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.35,
+       "lost_at": 107,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 2.1,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.24,
+       "lost_at": 40,
+       "frames": 161
+      }
+     }
+    },
+    "r3": {
+     "sim_vs_ref": 0.4781,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 0.6,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.73,
+       "lost_at": 142,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 1.6,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.24,
+       "lost_at": 40,
+       "frames": 161
+      }
+     }
+    }
+   },
+   "sim_vs_ref": 0.4646,
+   "carried_lift_r1_cm": 12.4,
+   "carried_lift_max_cm": 12.4,
+   "resting_lift_r1_cm": 1.1
+  },
+  {
+   "checkpoint": "policy_20000768",
+   "steps": 20000768,
+   "ckpt_M": 20,
+   "repeats": {
+    "r1": {
+     "sim_vs_ref": 0.3414,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 0.5,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.29,
+       "lost_at": 105,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 5.6,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 41,
+       "frames": 161
+      }
+     }
+    },
+    "r2": {
+     "sim_vs_ref": 0.309,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 0.5,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.27,
+       "lost_at": 64,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 75.4,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 40,
+       "frames": 161
+      }
+     }
+    },
+    "r3": {
+     "sim_vs_ref": 0.2983,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 0.2,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.32,
+       "lost_at": 73,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 3.7,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 40,
+       "frames": 161
+      }
+     }
+    }
+   },
+   "sim_vs_ref": 0.3162,
+   "carried_lift_r1_cm": 5.6,
+   "carried_lift_max_cm": 75.4,
+   "resting_lift_r1_cm": 0.5
+  },
+  {
+   "checkpoint": "policy_30003200",
+   "steps": 30003200,
+   "ckpt_M": 30,
+   "repeats": {
+    "r1": {
+     "sim_vs_ref": 0.4633,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 8.8,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.61,
+       "lost_at": 142,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 17.6,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 48,
+       "frames": 161
+      }
+     }
+    },
+    "r2": {
+     "sim_vs_ref": 0.3678,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 1.5,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.28,
+       "lost_at": 126,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 10.6,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 42,
+       "frames": 161
+      }
+     }
+    },
+    "r3": {
+     "sim_vs_ref": 0.337,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 0.9,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.27,
+       "lost_at": 46,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 5.8,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.24,
+       "lost_at": 41,
+       "frames": 161
+      }
+     }
+    }
+   },
+   "sim_vs_ref": 0.3894,
+   "carried_lift_r1_cm": 17.6,
+   "carried_lift_max_cm": 17.6,
+   "resting_lift_r1_cm": 8.8
+  },
+  {
+   "checkpoint": "policy_40001536",
+   "steps": 40001536,
+   "ckpt_M": 40,
+   "repeats": {
+    "r1": {
+     "sim_vs_ref": 0.4596,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 5.1,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.63,
+       "lost_at": 143,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 6.9,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.24,
+       "lost_at": 39,
+       "frames": 161
+      }
+     }
+    },
+    "r2": {
+     "sim_vs_ref": 0.4418,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 0.4,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.6,
+       "lost_at": null,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 22.8,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.24,
+       "lost_at": 50,
+       "frames": 161
+      }
+     }
+    },
+    "r3": {
+     "sim_vs_ref": 0.4773,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 1.2,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.52,
+       "lost_at": 142,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 2.8,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 40,
+       "frames": 161
+      }
+     }
+    }
+   },
+   "sim_vs_ref": 0.4596,
+   "carried_lift_r1_cm": 6.9,
+   "carried_lift_max_cm": 22.8,
+   "resting_lift_r1_cm": 5.1
+  },
+  {
+   "checkpoint": "policy_50003968",
+   "steps": 50003968,
+   "ckpt_M": 50,
+   "repeats": {
+    "r1": {
+     "sim_vs_ref": 0.3207,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 3.2,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.25,
+       "lost_at": 122,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 239.8,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 39,
+       "frames": 161
+      }
+     }
+    },
+    "r2": {
+     "sim_vs_ref": 0.3622,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 3.5,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.36,
+       "lost_at": 137,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 11.4,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 42,
+       "frames": 161
+      }
+     }
+    },
+    "r3": {
+     "sim_vs_ref": 0.3589,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 0.8,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.26,
+       "lost_at": 125,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 4.6,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 40,
+       "frames": 161
+      }
+     }
+    }
+   },
+   "sim_vs_ref": 0.3473,
+   "carried_lift_r1_cm": 239.8,
+   "carried_lift_max_cm": 239.8,
+   "resting_lift_r1_cm": 3.2
+  },
+  {
+   "checkpoint": "policy_60002304",
+   "steps": 60002304,
+   "ckpt_M": 60,
+   "repeats": {
+    "r1": {
+     "sim_vs_ref": 0.5186,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 2.4,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.69,
+       "lost_at": null,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 10.4,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 42,
+       "frames": 161
+      }
+     }
+    },
+    "r2": {
+     "sim_vs_ref": 0.5179,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 1.5,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.64,
+       "lost_at": null,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 1.3,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 40,
+       "frames": 161
+      }
+     }
+    },
+    "r3": {
+     "sim_vs_ref": 0.4942,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 1.3,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.74,
+       "lost_at": 142,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 12.4,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 43,
+       "frames": 161
+      }
+     }
+    }
+   },
+   "sim_vs_ref": 0.5102,
+   "carried_lift_r1_cm": 10.4,
+   "carried_lift_max_cm": 12.4,
+   "resting_lift_r1_cm": 2.4
+  },
+  {
+   "checkpoint": "policy_70004736",
+   "steps": 70004736,
+   "ckpt_M": 70,
+   "repeats": {
+    "r1": {
+     "sim_vs_ref": 0.5149,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 4.7,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.66,
+       "lost_at": 144,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 23.9,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.24,
+       "lost_at": 76,
+       "frames": 161
+      }
+     }
+    },
+    "r2": {
+     "sim_vs_ref": 0.4414,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 0.8,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.4,
+       "lost_at": null,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 22.1,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 46,
+       "frames": 161
+      }
+     }
+    },
+    "r3": {
+     "sim_vs_ref": 0.4249,
+     "objects": {
+      "blue_cup": {
+       "lift_cm": 5.6,
+       "ref_lift_cm": 1.5,
+       "within3cm": 0.42,
+       "lost_at": 143,
+       "frames": 161
+      },
+      "beige_cup": {
+       "lift_cm": 15.6,
+       "ref_lift_cm": 23.5,
+       "within3cm": 0.23,
+       "lost_at": 41,
+       "frames": 161
+      }
+     }
+    }
+   },
+   "sim_vs_ref": 0.4604,
+   "carried_lift_r1_cm": 23.9,
+   "carried_lift_max_cm": 23.9,
+   "resting_lift_r1_cm": 4.7
+  }
+ ],
+ "n_checkpoints": 7,
+ "carried_lift_r1_max_cm": 239.8,
+ "carried_lift_any_repeat_max_cm": 239.8,
+ "L": true,
+ "controls": {
+  "e10v_s42": {
+   "path": "/content/e10v_in/curve_s42.json",
+   "rows": [
+    {
+     "ckpt_M": 10,
+     "sim_vs_ref": 0.458,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 20,
+     "sim_vs_ref": 0.4636,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 30,
+     "sim_vs_ref": 0.4413,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 40,
+     "sim_vs_ref": 0.4479,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 50,
+     "sim_vs_ref": 0.4644,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 60,
+     "sim_vs_ref": 0.4604,
+     "carried_lift_r1_cm": 2.5,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 70,
+     "sim_vs_ref": 0.4623,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    }
+   ],
+   "carried_lift_r1_max_cm": 2.5
+  },
+  "e10v_s43": {
+   "path": "/content/e10v_in/curve_s43.json",
+   "rows": [
+    {
+     "ckpt_M": 10,
+     "sim_vs_ref": 0.4629,
+     "carried_lift_r1_cm": 0.1,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 20,
+     "sim_vs_ref": 0.4632,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 30,
+     "sim_vs_ref": 0.441,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 40,
+     "sim_vs_ref": 0.46,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 50,
+     "sim_vs_ref": 0.4541,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 60,
+     "sim_vs_ref": 0.4656,
+     "carried_lift_r1_cm": 0.3,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    },
+    {
+     "ckpt_M": 70,
+     "sim_vs_ref": 0.4548,
+     "carried_lift_r1_cm": 0.0,
+     "resting_lift_r1_cm": 0.1,
+     "carried_ref_lift_cm": 23.5
+    }
+   ],
+   "carried_lift_r1_max_cm": 0.3
+  }
+ }
+}

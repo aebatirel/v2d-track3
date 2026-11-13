@@ -1,0 +1,9 @@
+[10:34:14] b4_extract ep26 objects ['plastic_dish_rack', 'white_pot'] det True start {'commit': '3a24ee40c63d29fd625af14dc2a884cc6d555912', 'dirty': 'M  docs/research/mesh-2026-10-26/gmg/build/B7.md\nA  docs/research/mesh-2026-10-26/gmg/build/b7/crops/ep40_dustpan.jpg\nA  docs/research/mesh-2026-10-26/gmg/build/b7/crops/ep40_dustpan.json\n M docs/research/mesh-2026-10-26/gmg/interlock.py\n M docs/research/mesh-2026-10-26/gmg/silhouette.py\n?? docs/research/mesh-2026-10-26/gmg/gen_slot.py\n?? docs/research/mesh-2026-10-26/gmg/physcheck.py\n?? docs/research/mesh-2026-10-26/gmg/simphys.py\n?? docs/research/mesh-2026-10-26/gmg/simpieces.py\n?? docs/research/mesh-2026-10-26/gmg/tests/test_interlock.py\n?? docs/research/mesh-2026-10-26/gmg/tools/interlock_cands.py\n?? docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py'}
+[10:36:47] hands 153.1 s: frames with hand 157 / 158
+[10:37:48] ep26 pass 0: 79 frames, 7203814 samples, voxels [124520, 146038], 61.1 s
+[10:43:51] extract timing {"table_s": 0.4, "pass0_samples_s": 53.9, "pass0_votes_s": 7.3, "pass0_s": 61.1, "pass0_voxels": [124520, 146038], "pass1_s": 74.1, "pass2_s": 1.0, "pass3_s": 1.1, "pass4_grids_s": 80.1, "sigma_s": 197.4, "total_s": 420.3}
+[10:44:01] sanity plastic_dish_rack: 79/79 good, flags [], below 0.0, resid {'median': 1.021, 'p90': 1.155, 'max': 1.188}
+[10:44:15] sanity white_pot: 48/79 good, flags [], below 0.3924, resid {'median': 1.057, 'p90': 1.336, 'max': 1.813}
+[10:49:45] split test plastic_dish_rack: {"white_pot": [true, 8.018, 36.51, 36.729]}
+[10:51:21] split test white_pot: {"plastic_dish_rack": [true, 11.375, 35.886, 34.067]}
+[10:51:25] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep26 total 1031.0 s

@@ -1,0 +1,1 @@
+ARMS OK :: e11c: reference eeff81cf215e820db636f0563027f479 (fingerprint 38e5876f771c), base eeff81cf215e820db636f0563027f479, blue_cup 0.3 kg, beige_cup 0.3 kg; e11t: reference 51100bd7bd36868bf63807c764137462 (fingerprint 7bbd78dc669a), base 51100bd7bd36868bf63807c764137462, blue_cup 0.3 kg, beige_cup 0.3 kg

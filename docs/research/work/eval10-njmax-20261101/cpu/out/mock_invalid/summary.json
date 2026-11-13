@@ -1,0 +1,235 @@
+{
+ "label": "INVALID",
+ "rule": "docs/research/work/eval10-njmax-20261101/PREREG.md section 4",
+ "diagnostic_only": true,
+ "never_packed": "tools/no_oracle.py refuses every name of this run (-e10nj-, perc2e10nj*, ev10_nj) and any checkpoint whose stored sim limits are not stock",
+ "invalid_reasons": [
+  "job stopped: identity FAILED: the diagnostic checkpoint is not e10v's seed-43 recipe at njmax 1024 (identity.json)",
+  "identity not ok: [\"stored config differs from the control in ['training.mock_extra_setting'] (only ['output_dir', 'task.parquet', 'reference.parquet'] and the sim limits may)\"]"
+ ],
+ "notes": [
+  "512 copy: solver-level check not done on the box (config chain only); see solver_check.json"
+ ],
+ "clauses": {
+  "O": {
+   "value": 40,
+   "bar": 1000,
+   "holds": true,
+   "nefc": 40,
+   "broadphase": 0,
+   "narrowphase": 0,
+   "njmax_requested": {
+    "n": 40,
+    "median": 1057.0,
+    "p95": 1080.0,
+    "p99": 1080.0,
+    "max": 1080,
+    "min": 1025
+   },
+   "baseline_e10v": "6,010,501 (s42) / 5,846,480 (s43) nefc lines; requested median 580, p95 752, max ~1,050 [M]"
+  },
+  "L": {
+   "value_cm": 23.6,
+   "any_repeat_cm": 24.0,
+   "bar_cm": 5.0,
+   "holds": true,
+   "object": "beige_cup",
+   "controls": {
+    "e10v_s42": 2.5,
+    "e10v_s43": 0.3
+   }
+  },
+  "A": {
+   "n": 0,
+   "mean": null,
+   "bar": 0.4593,
+   "holds": false
+  }
+ },
+ "sets": {
+  "conf1024": {
+   "V": null,
+   "P": null
+  },
+  "conf512": {
+   "V": null,
+   "P": null
+  },
+  "train1024": {
+   "V": null,
+   "P": null
+  },
+  "e10v_conf_control": {
+   "V": null,
+   "P": null
+  }
+ },
+ "readout_512": {
+  "status": "INVALID",
+  "problems": [
+   "ck512 copy check not ok",
+   "evaluator config chain of the copy reads None (want [512, 256])",
+   "no scored 512 draw"
+  ],
+  "n": 0,
+  "mean_V": null,
+  "delta_vs_1024_V": null,
+  "checkpoint_sha256": null,
+  "solver": {
+   "solver": null,
+   "solver_error": null
+  },
+  "ck512": null
+ },
+ "checkpoints": {
+  "ck1024": "<MR>/content/results/perc2e10njs43_glock_public/ep10/best/policy.safetensors",
+  "sha256_1024": "e3ec343b269b24b28ab24c4555f124c806c5ed5788110d635c1dc96ab8092646",
+  "ck512": "<MR>/content/results/ev10_nj/ck512/policy.safetensors",
+  "sha256_512": null
+ },
+ "official_draws": {
+  "conf1024": {
+   "calls": 0,
+   "eval_rc": {},
+   "episode_jsons": 0,
+   "wrong_checkpoint": []
+  },
+  "conf512": {
+   "calls": 0,
+   "eval_rc": {},
+   "episode_jsons": 0,
+   "wrong_checkpoint": []
+  }
+ },
+ "overflow_other": {
+  "train_oom_retries": {
+   "files": 0,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  },
+  "curve": {
+   "files": 21,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  },
+  "best": {
+   "files": 10,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  },
+  "conf1024": {
+   "files": 0,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  },
+  "conf512": {
+   "files": 0,
+   "dropped": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   }
+  }
+ },
+ "lift_curve": [
+  {
+   "ckpt_M": 10,
+   "sim_vs_ref": 0.999,
+   "carried_r1": 23.5,
+   "carried_max": 23.6,
+   "resting_r1": 1.4
+  },
+  {
+   "ckpt_M": 20,
+   "sim_vs_ref": 0.9999,
+   "carried_r1": 23.6,
+   "carried_max": 23.6,
+   "resting_r1": 2.3
+  },
+  {
+   "ckpt_M": 30,
+   "sim_vs_ref": 0.9999,
+   "carried_r1": 23.2,
+   "carried_max": 23.5,
+   "resting_r1": 2.2
+  },
+  {
+   "ckpt_M": 40,
+   "sim_vs_ref": 0.9997,
+   "carried_r1": 23.4,
+   "carried_max": 23.4,
+   "resting_r1": 2.0
+  },
+  {
+   "ckpt_M": 50,
+   "sim_vs_ref": 0.9999,
+   "carried_r1": 23.3,
+   "carried_max": 23.6,
+   "resting_r1": 1.9
+  },
+  {
+   "ckpt_M": 60,
+   "sim_vs_ref": 0.9999,
+   "carried_r1": 23.1,
+   "carried_max": 24.0,
+   "resting_r1": 1.8
+  },
+  {
+   "ckpt_M": 70,
+   "sim_vs_ref": 1.0,
+   "carried_r1": 23.4,
+   "carried_max": 23.7,
+   "resting_r1": 1.6
+  }
+ ],
+ "guard": {
+  "ok": null,
+  "refused": 0,
+  "cases": 0
+ },
+ "identity": {
+  "ok": false,
+  "config_diff": [
+   "env.sim.nconmax",
+   "env.sim.njmax",
+   "output_dir",
+   "reference.parquet",
+   "sim.nconmax",
+   "sim.njmax",
+   "task.parquet",
+   "training.mock_extra_setting"
+  ]
+ }
+}

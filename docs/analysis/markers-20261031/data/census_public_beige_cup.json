@@ -1,0 +1,76 @@
+{
+ "obj": "beige_cup",
+ "split": "public",
+ "eps": [
+  11
+ ],
+ "seed": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/mk/census/public_beige_cup_p1.json",
+ "seed_body_mm": [
+  [
+   -34.7,
+   -44.7,
+   -71.7
+  ],
+  [
+   -36.2,
+   -23.7,
+   96.6
+  ]
+ ],
+ "layout_refine": {
+  "n_sets": 23,
+  "n_full": 23,
+  "body_pts": [
+   23,
+   23
+  ],
+  "dists_mm": {
+   "0-1": [
+    170.4,
+    23,
+    6.0
+   ]
+  },
+  "place_resid_mm": [
+   1.2,
+   1.2
+  ],
+  "shift_from_seed_mm": [
+   1.0,
+   0.5
+  ]
+ },
+ "layout_body_m": [
+  [
+   -0.033839978785687834,
+   -0.04451933667185511,
+   -0.0711543662102083
+  ],
+  [
+   -0.03616080830278783,
+   -0.023724816789996335,
+   0.09612165994367634
+  ]
+ ],
+ "census": {
+  "11": {
+   "all": {
+    "frames": 137,
+    "ge1": 0.898,
+    "ge2": 0.197,
+    "ge3": 0.0
+   },
+   "rest": {
+    "frames": 74,
+    "ge1": 0.932,
+    "ge2": 0.284,
+    "ge3": 0.0
+   },
+   "fit_rms_mm_med": null,
+   "per_marker_in_sets": [
+    27,
+    27
+   ]
+  }
+ }
+}

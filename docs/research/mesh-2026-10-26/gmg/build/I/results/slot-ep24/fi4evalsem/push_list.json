@@ -1,0 +1,24 @@
+[
+ {
+  "target": "wooden_piece_1",
+  "partner": "wooden_piece_2",
+  "kind": "PUSH",
+  "frames": [
+   164,
+   274
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "wooden_piece_2",
+  "partner": "wooden_piece_1",
+  "kind": "PUSH",
+  "frames": [
+   162,
+   274
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ }
+]

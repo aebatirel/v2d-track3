@@ -1,0 +1,1 @@
+{"all_ok": false, "mm": 5.0, "deg": 2.0, "objects": {"blue_cup": {"until_frame": 1, "max_mm": 0.0, "max_deg": 0.0, "worst_frame": 0, "ok": true}, "water_pitcher": {"until_frame": 14, "max_mm": 10.4, "max_deg": 3.9, "worst_frame": 8, "ok": false}}}

@@ -1,0 +1,10 @@
+04:09:49 scope 14: c1 62 pieces, F' 4.30 cm3, F' in c1 0.295 cm3 (66 s)
+04:13:50 merge 1: +9 F' cells (spent 0.009 cm3), new fill 0, -> 61 pieces
+04:14:05 merge 2: +23 F' cells (spent 0.032 cm3), new fill 0, -> 60 pieces
+04:14:31 merge 3: +49 F' cells (spent 0.081 cm3), new fill 0, -> 59 pieces
+04:14:34 merge 4: +50 F' cells (spent 0.131 cm3), new fill 0, -> 58 pieces
+04:14:58 merge 5: +55 F' cells (spent 0.186 cm3), new fill 0, -> 57 pieces
+04:15:04 merge 6: +59 F' cells (spent 0.245 cm3), new fill 0, -> 56 pieces
+04:15:05 merge 7: +67 F' cells (spent 0.312 cm3), new fill 0, -> 55 pieces
+04:15:08 merge 8: +96 F' cells (spent 0.408 cm3), new fill 0, -> 54 pieces
+04:15:11 done: 54 pieces, F' spent 0.408 cm3, non-convex flags 0, 388 s

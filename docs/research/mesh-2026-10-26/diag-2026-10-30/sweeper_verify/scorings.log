@@ -1,0 +1,9 @@
+V-S1 07:36 library_v3 vs budgeted scan: 30-seed basin analysis (registration only, own ICP + kit _register_object_body)
+V-S2 07:40 library_v3 vs RAW (unbudgeted) scan: 30-seed basin analysis (registration only; sensitivity to hidden-scan decimation)
+V-S3 07:45 M2 vs budgeted scan: 30-seed basin analysis (registration only)
+V-S4 07:49 P1 vs budgeted scan: 30-seed basin analysis (registration only)
+V-S5 07:53 C0_noballs vs budgeted scan: 30-seed basin analysis (registration only)
+V-S6 07:58 C1_lib_plus_balls vs budgeted scan: 30-seed basin analysis (registration only)
+V-S7 08:02 P1 kit CD-O at 6 seeds (re-check of the other agent's number; not a selection)
+V-S8 08:03 P1v0 kit CD-O at 6 seeds (re-check of the other agent's number; not a selection)
+TOTAL: 8 scan-touching evaluations (6 registration-only basin runs over 30 seeds, 2 kit CD-O runs). No mesh selected by these numbers. Other scan use: v1_scan_sym.py (scan self-symmetry and extents, not a candidate scoring).

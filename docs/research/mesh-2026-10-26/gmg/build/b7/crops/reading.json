@@ -1,0 +1,18 @@
+{
+ "what": "B7 visual reading of the ball crop montages (tools/b7_ball_crops.py) by the build agent, 2026-10-31. Index = rank of the ball by votes (stable sort, as the crop tool). Classes: real = the projected centre sits on a marker ball in the crops; partial = on a ball in only 1 of 3 frames; next = within about one ball diameter of a visible ball or on its dark mount; hand = on the hand or fingers; geometry = rim, edge, corner, notch, peg tip, knob, handle, bristles or smooth body. Dev diagnostic only, GT-free; never used to choose a setting.",
+ "episodes": {
+  "2":  {"obj": "white_pot_lid", "run": "20261031-b7mkchk-a1bc5f7", "checked": 10, "real": [0, 1, 2, 4], "partial": [], "next": [5, 6, 7, 9], "hand": [], "geometry": [3, 8]},
+  "11": {"obj": "beige_cup", "run": "20261031-b7mk3-c56d473", "checked": 5, "real": [0, 2, 4], "partial": [], "next": [], "hand": [], "geometry": [1, 3]},
+  "12": {"obj": "blue_cup", "run": "20261031-b7mk4-f56e920", "checked": 11, "real": [], "partial": [], "next": [0, 6, 8], "hand": [1, 7, 9, 10], "geometry": [2, 3, 4, 5]},
+  "18": {"obj": "mini_sweeper", "run": "20261031-b7mk2-c56d473", "checked": 11, "real": [7, 10], "partial": [], "next": [], "hand": [0, 1, 4, 9], "geometry": [2, 3, 5, 6, 8]},
+  "21": {"obj": "water_pitcher", "run": "20261031-b7mk2-c56d473", "checked": 12, "real": [], "partial": [], "next": [1, 10], "hand": [7], "geometry": [0, 2, 3, 4, 5, 6, 8, 9, 11]},
+  "23": {"obj": "wooden_piece_2", "run": "20261031-b7mk3-c56d473", "checked": 14, "real": [0, 10], "partial": [1], "next": [12], "hand": [2, 8], "geometry": [3, 4, 5, 6, 7, 9, 11, 13]},
+  "24": {"obj": "wooden_piece_1", "run": "20261031-b7mk3-c56d473", "checked": 12, "real": [4, 8, 9, 10], "partial": [], "next": [7, 11], "hand": [0, 1, 2, 3, 5, 6], "geometry": []},
+  "27": {"obj": "white_pot", "run": "20261031-b7mk1-c56d473", "checked": 12, "real": [0], "partial": [], "next": [9], "hand": [1, 2, 3, 5, 6, 11], "geometry": [4, 7, 8, 10]},
+  "31": {"obj": "plastic_dish_rack", "run": "20261031-b7mk1-c56d473", "checked": 12, "real": [4], "partial": [], "next": [10], "hand": [2], "geometry": [0, 1, 3, 5, 6, 7, 8, 9, 11]},
+  "40": {"obj": "mini_dust_pan", "run": "20261031-b7mk2-c56d473", "checked": 12, "real": [], "partial": [], "next": [], "hand": [], "geometry": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+ },
+ "non_anchor": {
+  "2": {"obj": "white_pot", "run": "20261031-b7mkchk-a1bc5f7", "checked": 10, "real": [], "partial": [], "next": [3], "hand": [], "geometry": [0, 1, 2, 4, 5, 6, 7, 8, 9]}
+ }
+}

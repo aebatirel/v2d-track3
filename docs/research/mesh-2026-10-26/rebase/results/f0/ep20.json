@@ -1,0 +1,351 @@
+{
+ "ep": 20,
+ "mode": "glock",
+ "source_run": "20261025-evb1420-ee7ba8e",
+ "lib": "library_v3",
+ "pieces": null,
+ "md5_listed": "4d06d8d42d57d84b1d25a166e8a90adc",
+ "ref": "20261025-evb1420-ee7ba8e/refs/glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "ref_md5": "4d06d8d42d57d84b1d25a166e8a90adc",
+ "md5_match": true,
+ "names": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "1388703af76a393ff75a4d34fc614f7d",
+  "radius": 0.280436
+ },
+ "first_H30_rest_frame_per_object": {
+  "blue_cup": 180
+ },
+ "f0_hand_mm": {
+  "blue_cup": 5.8,
+  "water_pitcher": 31.2
+ },
+ "first_H30_rest_frame": 181,
+ "objects": {
+  "blue_cup": {
+   "urdf_md5": "31cd001d2618ee2972dc922b77109b9f",
+   "pieces": 70,
+   "collision": [
+    "blue_cup.glb d2be7e3d -> CoACD 70"
+   ],
+   "mass": 0.3
+  },
+  "water_pitcher": {
+   "urdf_md5": "6772f95462e0554cfac39de97bdf2253",
+   "pieces": 41,
+   "collision": [
+    "water_pitcher.glb adb315f3 -> CoACD 33",
+    "8 piece files"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "blue_cup": {
+     "pen_mm": -47.7,
+     "com_height_mm": 135.4,
+     "hand_mm": 5.8,
+     "support": {
+      "band1mm": {
+       "points": 83,
+       "com_margin_mm": -0.8
+      },
+      "band3mm": {
+       "points": 139,
+       "com_margin_mm": 29.7
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 104.6,
+     "settle_mm": 48.68,
+     "settle_deg": 1.61,
+     "max_mm": 53.95,
+     "max_deg": 1.61,
+     "falls_over": false,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 48.685,
+       "max": 49.17,
+       "min": 47.7,
+       "q90": 49.105
+      },
+      "deg": {
+       "n": 16,
+       "median": 1.67,
+       "max": 2.07,
+       "min": 0.88,
+       "q90": 2.015
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [
+      "held at f0 (hand 5.8 mm)",
+      "floating 47.7 mm above the table"
+     ],
+     "flags": [
+      "held at f0 (hand 5.8 mm)",
+      "floating 47.7 mm above the table"
+     ]
+    },
+    "water_pitcher": {
+     "pen_mm": -0.13,
+     "com_height_mm": 163.7,
+     "hand_mm": 31.2,
+     "support": {
+      "band1mm": {
+       "points": 4,
+       "com_margin_mm": -33.0
+      },
+      "band3mm": {
+       "points": 42,
+       "com_margin_mm": -0.8
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 107.7,
+     "settle_mm": 195.22,
+     "settle_deg": 94.63,
+     "max_mm": 209.55,
+     "max_deg": 99.99,
+     "falls_over": true,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 193.63,
+       "max": 200.13,
+       "min": 181.77,
+       "q90": 199.835
+      },
+      "deg": {
+       "n": 16,
+       "median": 91.54,
+       "max": 96.44,
+       "min": 87.5,
+       "q90": 95.055
+      },
+      "falls": 16,
+      "nan": 0
+     },
+     "likely_cause": [
+      "COM outside the footprint (1 mm band -33.0 mm, 3 mm band -0.8 mm)"
+     ],
+     "flags": [
+      "COM outside the footprint (1 mm band -33.0 mm, 3 mm band -0.8 mm)"
+     ]
+    }
+   },
+   "pairs": {
+    "blue_cup|water_pitcher": 0.0
+   }
+  },
+  {
+   "frame": 181,
+   "kind": "first H30 rest (all objects)",
+   "hand_mm": {},
+   "objects": {
+    "blue_cup": {
+     "pen_mm": -0.14,
+     "com_height_mm": 87.1,
+     "hand_mm": 117.5,
+     "support": {
+      "band1mm": {
+       "points": 139,
+       "com_margin_mm": 29.5
+      },
+      "band3mm": {
+       "points": 139,
+       "com_margin_mm": 29.5
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 238.5,
+     "settle_mm": 0.6,
+     "settle_deg": 0.34,
+     "max_mm": 0.98,
+     "max_deg": 0.34,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 1.09,
+       "max": 1.87,
+       "min": 0.35,
+       "q90": 1.605
+      },
+      "deg": {
+       "n": 16,
+       "median": 0.685,
+       "max": 1.17,
+       "min": 0.17,
+       "q90": 0.965
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    },
+    "water_pitcher": {
+     "pen_mm": -0.44,
+     "com_height_mm": 162.5,
+     "hand_mm": 155.9,
+     "support": {
+      "band1mm": {
+       "points": 4,
+       "com_margin_mm": -38.6
+      },
+      "band3mm": {
+       "points": 62,
+       "com_margin_mm": 22.8
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 238.6,
+     "settle_mm": 2.93,
+     "settle_deg": 8.02,
+     "max_mm": 16.09,
+     "max_deg": 8.23,
+     "falls_over": false,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 4.16,
+       "max": 202.55,
+       "min": 3.21,
+       "q90": 191.045
+      },
+      "deg": {
+       "n": 16,
+       "median": 6.555,
+       "max": 105.36,
+       "min": 1.18,
+       "q90": 93.395
+      },
+      "falls": 3,
+      "nan": 0
+     },
+     "likely_cause": [
+      "hull corner below the support (4 pts within 1 mm, COM -38.6 mm; within 3 mm COM 22.8 mm inside)"
+     ],
+     "flags": [
+      "hull corner below the support (4 pts within 1 mm, COM -38.6 mm; within 3 mm COM 22.8 mm inside)"
+     ]
+    }
+   },
+   "pairs": {
+    "blue_cup|water_pitcher": 0.0
+   }
+  },
+  {
+   "frame": 180,
+   "kind": "first H30 rest of blue_cup",
+   "hand_mm": {},
+   "objects": {
+    "blue_cup": {
+     "pen_mm": -0.54,
+     "com_height_mm": 87.4,
+     "hand_mm": 106.8,
+     "support": {
+      "band1mm": {
+       "points": 139,
+       "com_margin_mm": 29.7
+      },
+      "band3mm": {
+       "points": 139,
+       "com_margin_mm": 29.7
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 239.2,
+     "settle_mm": 0.75,
+     "settle_deg": 0.27,
+     "max_mm": 0.98,
+     "max_deg": 0.27,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 1.17,
+       "max": 1.77,
+       "min": 0.61,
+       "q90": 1.54
+      },
+      "deg": {
+       "n": 16,
+       "median": 0.605,
+       "max": 1.01,
+       "min": 0.11,
+       "q90": 0.9
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": []
+    },
+    "water_pitcher": {
+     "pen_mm": 0.07,
+     "com_height_mm": 161.9,
+     "hand_mm": 155.6,
+     "support": {
+      "band1mm": {
+       "points": 4,
+       "com_margin_mm": -39.0
+      },
+      "band3mm": {
+       "points": 62,
+       "com_margin_mm": 22.4
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 239.3,
+     "settle_mm": 3.3,
+     "settle_deg": 5.89,
+     "max_mm": 9.8,
+     "max_deg": 5.89,
+     "falls_over": false,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 3.625,
+       "max": 5.03,
+       "min": 2.58,
+       "q90": 4.11
+      },
+      "deg": {
+       "n": 16,
+       "median": 4.805,
+       "max": 8.95,
+       "min": 1.71,
+       "q90": 7.56
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [
+      "hull corner below the support (4 pts within 1 mm, COM -39.0 mm; within 3 mm COM 22.4 mm inside)"
+     ],
+     "flags": [
+      "hull corner below the support (4 pts within 1 mm, COM -39.0 mm; within 3 mm COM 22.4 mm inside)"
+     ]
+    }
+   },
+   "pairs": {
+    "blue_cup|water_pitcher": 0.0
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 25.1
+}

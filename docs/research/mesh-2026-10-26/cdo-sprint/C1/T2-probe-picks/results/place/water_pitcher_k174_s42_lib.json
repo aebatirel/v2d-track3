@@ -1,0 +1,199 @@
+{
+ "object": "water_pitcher",
+ "candidate": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s42.ply",
+ "candidate_sha256": "9c0690fa2b2dd7002f8108e607e79b1d84ffba4e23d2904ab9a02cc740cd42cf",
+ "library": "/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb",
+ "library_sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+ "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t2/place/water_pitcher_k174_s42_lib.glb",
+ "out_sha256": "ba38d40931c5fcdba0535101deeabf70672588375b2ede50b9da5b697a71a253",
+ "n_samples": 8000,
+ "iters": 30,
+ "keep": 0.9,
+ "best_start": "identity",
+ "residual_mm": 6.1304,
+ "scale": 1.0000747510652004,
+ "R": [
+  [
+   0.99908108,
+   -0.04015027,
+   0.01499847
+  ],
+  [
+   0.03972243,
+   0.99882366,
+   0.0278107
+  ],
+  [
+   -0.01609743,
+   -0.02718937,
+   0.99950068
+  ]
+ ],
+ "t": [
+  -0.00452423,
+  -0.00420113,
+  -0.00618502
+ ],
+ "rot_from_probe_deg": 2.919,
+ "trans_from_probe_mm": 8.739,
+ "centroid_shift_mm": 9.033,
+ "identity_start_residual_mm": 6.1304,
+ "second_distinct_residual_mm": 8.573,
+ "second_distinct_start": "pca08",
+ "second_distinct_angle_deg": 176.2,
+ "all_starts": [
+  {
+   "start": "identity",
+   "j_mm": 6.1304,
+   "scale": 1.00007,
+   "rot_from_best_deg": 0.0
+  },
+  {
+   "start": "pca00",
+   "j_mm": 6.1381,
+   "scale": 0.99264,
+   "rot_from_best_deg": 0.9
+  },
+  {
+   "start": "pca04",
+   "j_mm": 6.7903,
+   "scale": 1.00162,
+   "rot_from_best_deg": 7.4
+  },
+  {
+   "start": "pca22",
+   "j_mm": 6.882,
+   "scale": 0.9818,
+   "rot_from_best_deg": 7.1
+  },
+  {
+   "start": "pca08",
+   "j_mm": 8.573,
+   "scale": 0.98585,
+   "rot_from_best_deg": 176.2
+  },
+  {
+   "start": "pca02",
+   "j_mm": 8.6649,
+   "scale": 0.99646,
+   "rot_from_best_deg": 176.3
+  },
+  {
+   "start": "pca13",
+   "j_mm": 8.7824,
+   "scale": 0.98682,
+   "rot_from_best_deg": 170.6
+  },
+  {
+   "start": "pca20",
+   "j_mm": 9.4225,
+   "scale": 0.98033,
+   "rot_from_best_deg": 19.7
+  },
+  {
+   "start": "pca01",
+   "j_mm": 9.507,
+   "scale": 0.98537,
+   "rot_from_best_deg": 178.8
+  },
+  {
+   "start": "pca21",
+   "j_mm": 9.7727,
+   "scale": 0.96467,
+   "rot_from_best_deg": 177.2
+  },
+  {
+   "start": "pca03",
+   "j_mm": 11.141,
+   "scale": 0.97918,
+   "rot_from_best_deg": 129.9
+  },
+  {
+   "start": "pca09",
+   "j_mm": 11.2498,
+   "scale": 0.99211,
+   "rot_from_best_deg": 124.0
+  },
+  {
+   "start": "pca11",
+   "j_mm": 11.6969,
+   "scale": 0.96748,
+   "rot_from_best_deg": 179.4
+  },
+  {
+   "start": "pca10",
+   "j_mm": 12.375,
+   "scale": 0.95887,
+   "rot_from_best_deg": 111.8
+  },
+  {
+   "start": "pca18",
+   "j_mm": 12.8523,
+   "scale": 0.9376,
+   "rot_from_best_deg": 117.2
+  },
+  {
+   "start": "pca15",
+   "j_mm": 13.0078,
+   "scale": 0.98648,
+   "rot_from_best_deg": 167.9
+  },
+  {
+   "start": "pca17",
+   "j_mm": 13.488,
+   "scale": 0.94499,
+   "rot_from_best_deg": 160.9
+  },
+  {
+   "start": "pca12",
+   "j_mm": 13.6053,
+   "scale": 0.99942,
+   "rot_from_best_deg": 119.9
+  },
+  {
+   "start": "pca05",
+   "j_mm": 18.1501,
+   "scale": 0.90568,
+   "rot_from_best_deg": 89.3
+  },
+  {
+   "start": "pca07",
+   "j_mm": 18.8827,
+   "scale": 0.9076,
+   "rot_from_best_deg": 179.0
+  },
+  {
+   "start": "pca06",
+   "j_mm": 18.8915,
+   "scale": 0.90811,
+   "rot_from_best_deg": 179.9
+  },
+  {
+   "start": "pca14",
+   "j_mm": 19.3449,
+   "scale": 0.95483,
+   "rot_from_best_deg": 99.6
+  },
+  {
+   "start": "pca16",
+   "j_mm": 19.3682,
+   "scale": 0.90071,
+   "rot_from_best_deg": 130.5
+  },
+  {
+   "start": "pca23",
+   "j_mm": 19.8279,
+   "scale": 0.91452,
+   "rot_from_best_deg": 162.3
+  },
+  {
+   "start": "pca19",
+   "j_mm": 20.8347,
+   "scale": 0.9336,
+   "rot_from_best_deg": 132.1
+  }
+ ],
+ "glb_roundtrip_max_err_m": 1.4897506617206346e-08,
+ "n_vertices": 120608,
+ "n_faces": 241176
+}

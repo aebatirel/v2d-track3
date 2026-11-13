@@ -1,0 +1,8 @@
+> split=eval perc=perc2e10njs42 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=unset FC_DR_PATCH=unset EVAL_NJ_DIAG=1 :: ALLOWED pre=perc2e10njs42_ rc=0
+> split=eval perc=perc2e10njs42 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=unset FC_DR_PATCH=1 EVAL_NJ_DIAG=1 :: ALLOWED pre=perc2e10njs42_ rc=0
+> split=eval perc=perc2e10njs42 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=1 FC_DR_PATCH=unset EVAL_NJ_DIAG=1 :: ALLOWED pre=perc2e10njs42_ rc=0
+> split=eval perc=perc2e10njs42 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=1 FC_DR_PATCH=1 EVAL_NJ_DIAG=1 :: ALLOWED pre=perc2e10njs42_ rc=0
+> split=eval perc=perc2e10njs43 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=unset FC_DR_PATCH=unset EVAL_NJ_DIAG=1 :: ALLOWED pre=perc2e10njs43_ rc=0
+> split=eval perc=perc2e10njs43 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=unset FC_DR_PATCH=1 EVAL_NJ_DIAG=1 :: ALLOWED pre=perc2e10njs43_ rc=0
+> split=eval perc=perc2e10njs43 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=1 FC_DR_PATCH=unset EVAL_NJ_DIAG=1 :: ALLOWED pre=perc2e10njs43_ rc=0
+> split=eval perc=perc2e10njs43 run=local REQUIRE_REUSE=1 ep=10 EVAL_LOCAL_REF=1 FC_DR_PATCH=1 EVAL_NJ_DIAG=1 :: ALLOWED pre=perc2e10njs43_ rc=0

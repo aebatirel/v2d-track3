@@ -1,0 +1,273 @@
+{
+ "0": {
+  "white_pot": {
+   "slot": 0,
+   "mask_px": 12934,
+   "pred_px": 6032,
+   "coverage": 0.96,
+   "iou": 0.439
+  },
+  "white_pot_lid": {
+   "slot": 1,
+   "mask_px": 3349,
+   "pred_px": 6746,
+   "coverage": 0.0,
+   "iou": 0.0
+  }
+ },
+ "2": {
+  "white_pot": {
+   "slot": 0,
+   "mask_px": 11521,
+   "pred_px": 5543,
+   "coverage": 0.897,
+   "iou": 0.411
+  },
+  "white_pot_lid": {
+   "slot": 1,
+   "mask_px": 8601,
+   "pred_px": 6304,
+   "coverage": 0.999,
+   "iou": 0.731
+  }
+ },
+ "11": {
+  "blue_cup": {
+   "slot": 0,
+   "mask_px": 4629,
+   "pred_px": 4690,
+   "coverage": 0.941,
+   "iou": 0.9
+  },
+  "beige_cup": {
+   "slot": 1,
+   "mask_px": 5243,
+   "pred_px": 4913,
+   "coverage": 0.965,
+   "iou": 0.876
+  }
+ },
+ "12": {
+  "blue_cup": {
+   "slot": 0,
+   "mask_px": 8089,
+   "pred_px": 7814,
+   "coverage": 0.972,
+   "iou": 0.914
+  },
+  "plastic_dish_rack": {
+   "slot": 1,
+   "mask_px": 20330,
+   "pred_px": 16820,
+   "coverage": 0.972,
+   "iou": 0.786
+  }
+ },
+ "13": {
+  "blue_cup": {
+   "slot": 0,
+   "mask_px": 6107,
+   "pred_px": 5919,
+   "coverage": 0.941,
+   "iou": 0.862
+  },
+  "plastic_dish_rack": {
+   "slot": 1,
+   "mask_px": 17332,
+   "pred_px": 15245,
+   "coverage": 0.956,
+   "iou": 0.81
+  }
+ },
+ "18": {
+  "mini_sweeper": {
+   "slot": 0,
+   "mask_px": 1177,
+   "pred_px": 2220,
+   "coverage": 0.505,
+   "iou": 0.493
+  },
+  "mini_dust_pan": {
+   "slot": 1,
+   "mask_px": 4026,
+   "pred_px": 3656,
+   "coverage": 0.962,
+   "iou": 0.845
+  }
+ },
+ "21": {
+  "blue_cup": {
+   "slot": 0,
+   "mask_px": 4784,
+   "pred_px": 4670,
+   "coverage": 0.936,
+   "iou": 0.86
+  },
+  "water_pitcher": {
+   "slot": 1,
+   "mask_px": 17548,
+   "pred_px": 18714,
+   "coverage": 0.927,
+   "iou": 0.917
+  }
+ },
+ "22": {
+  "blue_cup": {
+   "slot": 0,
+   "mask_px": 4249,
+   "pred_px": 4305,
+   "coverage": 0.92,
+   "iou": 0.863
+  },
+  "water_pitcher": {
+   "slot": 1,
+   "mask_px": 18112,
+   "pred_px": 19432,
+   "coverage": 0.921,
+   "iou": 0.911
+  }
+ },
+ "23": {
+  "wooden_piece_1": {
+   "slot": 0,
+   "mask_px": 7028,
+   "pred_px": 6354,
+   "coverage": 0.941,
+   "iou": 0.808
+  },
+  "wooden_piece_2": {
+   "slot": 1,
+   "mask_px": 6804,
+   "pred_px": 6937,
+   "coverage": 0.948,
+   "iou": 0.917
+  }
+ },
+ "24": {
+  "wooden_piece_1": {
+   "slot": 0,
+   "mask_px": 6888,
+   "pred_px": 6418,
+   "coverage": 0.985,
+   "iou": 0.905
+  },
+  "wooden_piece_2": {
+   "slot": 1,
+   "mask_px": 8357,
+   "pred_px": 7987,
+   "coverage": 0.987,
+   "iou": 0.931
+  }
+ },
+ "26": {
+  "plastic_dish_rack": {
+   "slot": 0,
+   "mask_px": 28674,
+   "pred_px": 8924,
+   "coverage": 0.001,
+   "iou": 0.0
+  },
+  "white_pot": {
+   "slot": 1,
+   "mask_px": 6937,
+   "pred_px": 9234,
+   "coverage": 0.746,
+   "iou": 0.742
+  }
+ },
+ "27": {
+  "plastic_dish_rack": {
+   "slot": 0,
+   "mask_px": 14541,
+   "pred_px": 12501,
+   "coverage": 0.971,
+   "iou": 0.814
+  },
+  "white_pot": {
+   "slot": 1,
+   "mask_px": 13345,
+   "pred_px": 13721,
+   "coverage": 0.826,
+   "iou": 0.72
+  }
+ },
+ "31": {
+  "mini_sweeper": {
+   "slot": 0,
+   "mask_px": 714,
+   "pred_px": 1274,
+   "coverage": 0.516,
+   "iou": 0.495
+  },
+  "plastic_dish_rack": {
+   "slot": 1,
+   "mask_px": 21527,
+   "pred_px": 17408,
+   "coverage": 0.973,
+   "iou": 0.77
+  }
+ },
+ "39": {
+  "mini_dust_pan": {
+   "slot": 0,
+   "mask_px": 3659,
+   "pred_px": 3349,
+   "coverage": 0.956,
+   "iou": 0.84
+  }
+ },
+ "40": {
+  "mini_dust_pan": {
+   "slot": 0,
+   "mask_px": 3363,
+   "pred_px": 3228,
+   "coverage": 0.956,
+   "iou": 0.881
+  }
+ },
+ "41": {
+  "white_pot": {
+   "slot": 0,
+   "mask_px": 10017,
+   "pred_px": 9301,
+   "coverage": 0.967,
+   "iou": 0.872
+  }
+ },
+ "42": {
+  "white_pot": {
+   "slot": 0,
+   "mask_px": 10154,
+   "pred_px": 9783,
+   "coverage": 0.937,
+   "iou": 0.852
+  }
+ },
+ "43": {
+  "white_pot": {
+   "slot": 0,
+   "mask_px": 9393,
+   "pred_px": 9570,
+   "coverage": 0.941,
+   "iou": 0.904
+  }
+ },
+ "44": {
+  "white_pot": {
+   "slot": 0,
+   "mask_px": 11348,
+   "pred_px": 10416,
+   "coverage": 0.97,
+   "iou": 0.866
+  }
+ },
+ "45": {
+  "white_pot": {
+   "slot": 0,
+   "mask_px": 10817,
+   "pred_px": 9952,
+   "coverage": 0.976,
+   "iou": 0.879
+  }
+ }
+}

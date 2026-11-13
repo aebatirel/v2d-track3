@@ -1,0 +1,3 @@
+hf download mock/store --repo-type dataset --include runs/20261024-pack-31ef267/refs/perc2mck/ep1/* --local-dir MS/box/content/hfstore
+hf download mock/store --repo-type dataset --include runs/20261024-pack-31ef267/perc2/ep1/* --local-dir MS/box/content/hfstore
+hf upload mock/store MS/box/content/push/20261101-eqE2-mocksha runs/20261101-eqE2-mocksha --repo-type dataset --commit-message run 20261101-eqE2-mocksha: T

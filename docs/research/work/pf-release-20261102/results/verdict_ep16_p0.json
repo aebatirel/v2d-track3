@@ -1,0 +1,90 @@
+{
+ "ep": 16,
+ "rule": "pack-9b PREREG section 4 + pf-hands / pf-bridge PREREG section 4",
+ "refs": [
+  "P"
+ ],
+ "choice": "NO-SWAP",
+ "sides": {
+  "conf": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 0
+    },
+    "RPE": {
+     "n": 0
+    },
+    "fails": 0
+   }
+  },
+  "packed": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.8498,
+     "sd": 0.0526,
+     "min": 0.7892,
+     "max": 0.916,
+     "median": 0.8322
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 2.4605,
+     "sd": 1.167,
+     "min": 1.4469,
+     "max": 4.7087,
+     "median": 1.7925
+    },
+    "fails": 0
+   }
+  },
+  "old": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 1,
+     "mean": 0.9079,
+     "sd": 0.0,
+     "min": 0.9079,
+     "max": 0.9079,
+     "median": 0.9079
+    },
+    "RPE": {
+     "n": 1,
+     "mean": 1.5763,
+     "sd": 0.0,
+     "min": 1.5763,
+     "max": 1.5763,
+     "median": 1.5763
+    },
+    "fails": 0
+   }
+  },
+  "train42": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.7693,
+     "sd": 0.0599,
+     "min": 0.7057,
+     "max": 0.8822,
+     "median": 0.7493
+    }
+   }
+  },
+  "train43": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.7867,
+     "sd": 0.072,
+     "min": 0.6776,
+     "max": 0.8949,
+     "median": 0.8026
+    }
+   }
+  }
+ },
+ "clauses": {},
+ "label": "NO-SWAP",
+ "why": "choice NO-SWAP: no confirmation"
+}

@@ -1,0 +1,17 @@
+{
+ "rule_fi5r2": "PREREG F-I5.15 (4d) floor / F-I5.16 (1g) contact gate",
+ "reasons_fi5r2": {
+  "floor": [
+   {
+    "kind": "share",
+    "obj": "mini_sweeper",
+    "share": 0.0185
+   },
+   {
+    "kind": "share",
+    "obj": "plastic_dish_rack",
+    "share": 0.0468
+   }
+  ]
+ }
+}

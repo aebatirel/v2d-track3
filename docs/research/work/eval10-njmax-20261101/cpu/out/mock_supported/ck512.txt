@@ -1,0 +1,1 @@
+CKSIM OK :: {'sim.njmax': 1024, 'sim.nconmax': 512, 'env.sim.njmax': 1024, 'env.sim.nconmax': 512} -> {'sim.njmax': 512, 'sim.nconmax': 256, 'env.sim.njmax': 512, 'env.sim.nconmax': 256}; config diff ['env.sim.nconmax', 'env.sim.njmax', 'sim.nconmax', 'sim.njmax']; buffer identical True (0 tensors); sha256 b0ba965ab477 -> 6c30dde455d4

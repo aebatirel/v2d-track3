@@ -1,0 +1,8 @@
+Pre-registration, 2026-10-30T07:07:51Z, written before any fix variant result was seen (fits.jsonl empty).
+mesh_metric.py budget for this diagnosis: <= 12 scorings.
+Primary: variant lib_vis (Sim(3) of the raw SAM 3D mesh to our library_v3 mesh, then visibility-aware R,t refinement on
+our observed points, scale from the library fit), seed 42, all 10 objects = 10 scorings. Purpose: confirm with the kit's
+own ADD / flips that the placement error measured by analyze.py [D] matches the kit. CD-O is unchanged by placement
+(similarity-invariant), so these scorings carry no shape selection.
+Spares (2): variant vis on wooden_piece_2 s42 and blue_cup s42 (the two placement failure modes: flip, axial offset).
+No submission mesh is selected from any of these numbers.

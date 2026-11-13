@@ -1,0 +1,1805 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-11-01T01:45:43Z",
+ "commit": "e213dd39b8b1983000523575292282243ce735d2",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/build/I.md",
+  " M docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/scripts/evalcheck.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/README.md",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/eval_contact_precheck.json",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/evalcheck_summary.json",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/inputs/",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/logs/",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/per_frame/",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/scripts/dl.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/scripts/packed_coacd.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/collcarve2-evalcheck/scripts/tables.py"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df",
+  "--ep",
+  "12",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12",
+  "--cands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/cand/public/ep12",
+  "--pick",
+  "blue_cup=shell_t5p36,plastic_dish_rack=shell_t5p36",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands12/hands.npz",
+  "--proxy-copies",
+  "16",
+  "--identity",
+  "eval",
+  "--waiver-fi5",
+  "--no-physcheck",
+  "--tag",
+  "fi5r2"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 17742,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261101-fi5r2pub-88f49df",
+  "root": "runs-dev",
+  "pid": 17578,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-11-01T00:18:01Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep12/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands12/hands.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12/blue_cup.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12/plastic_dish_rack.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep12/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep12/poses.npz",
+   "sha256": "3e0411f7b388090fd6e94c825fd8c9f7d2ec72b724d2cb71132ca081ef30e4f6",
+   "bytes": 47150,
+   "tier": "P1",
+   "keys": [
+    "cam_T_blue_cup",
+    "cam_T_plastic_dish_rack",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands12/hands.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/in/hands12/hands.npz",
+   "sha256": "0bdc4ab72ed787f0588c2a2a4a6b7c259de4369ddba44187f891eb41f1e4198f",
+   "bytes": 133332,
+   "tier": "DEV",
+   "keys": [
+    "Da",
+    "KR",
+    "Ka",
+    "T",
+    "T_rect_a",
+    "a_offset",
+    "chir_left",
+    "chir_right",
+    "depth_ok_left",
+    "depth_ok_right",
+    "dz_med_left",
+    "dz_med_right",
+    "filled_left",
+    "filled_right",
+    "joints_left",
+    "joints_right",
+    "measured_left",
+    "measured_right",
+    "n_depth_inl_left",
+    "n_depth_inl_right",
+    "n_depth_left",
+    "n_depth_right",
+    "n_det",
+    "rms_px_left",
+    "rms_px_right",
+    "scale_left",
+    "scale_right",
+    "score_left",
+    "score_right",
+    "size_a",
+    "swap",
+    "uv_a_left",
+    "uv_a_right",
+    "valid_left",
+    "valid_right",
+    "wl_mirror",
+    "world_frame"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12/blue_cup.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12/blue_cup.npz",
+   "sha256": "5a55610b9bdef4f94b682a3dc934d8d0faba64ce722d4a719ce0741e75481bf0",
+   "bytes": 16571273,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12/episode.json",
+   "sha256": "eefc92c223b95a7ad259f2042914ee857dd4a8dafc896d9344e9b7e809d8484c",
+   "bytes": 36746,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12/plastic_dish_rack.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12/plastic_dish_rack.npz",
+   "sha256": "609d6ef2d7fea6a6c615751dcd001a507e691c0f31c17068035e70f7fc8cab55",
+   "bytes": 30233777,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "il.engaged_min_vox",
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.gap_bridge_frames",
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.transient_frames",
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_speed_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_min_frames",
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.block_frames",
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.holdout_min_frames",
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_min",
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_share",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_min_m",
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_k_j",
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.max_rounds",
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.link_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 linking share 50 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.through_beyond_vox",
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.depth_scale",
+   "value": 0.5,
+   "origin": "sensor:depth input at half the 1600 x 1000 rectified resolution (depths_fs0.5)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.w_bridge_px",
+   "value": 8.0,
+   "origin": "generic:F-I1.14 w_bridge 8 depth pixels [H]",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.class_o_max",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 25 % class O",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.swept_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_step_m",
+   "value": 0.002,
+   "origin": "generic:numerical 2 mm (one sub-voxel)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_cap_m",
+   "value": 0.06,
+   "origin": "generic:numerical cap of the push search (6 x the prior)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_frames_max",
+   "value": 12,
+   "origin": "generic:numerical subsample of the build frames for the push proxy",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_prior_m",
+   "value": 0.01,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 10 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.silgap_share",
+   "value": 0.75,
+   "origin": "generic:F-I1.3 (iii) 75 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.budget_vol",
+   "value": 0.1,
+   "origin": "generic:F-I1.14 budget 10 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.budget_reach",
+   "value": 0.6,
+   "origin": "generic:F-I1.14 reach 0.6",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "struct_vox_m",
+   "value": 0.002,
+   "origin": "generic:obs-first sym_probe / rot_probe voxel downsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:58"
+  },
+  {
+   "name": "struct_max_points",
+   "value": 60000,
+   "origin": "generic:obs-first probe cap (numerical)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:59"
+  },
+  {
+   "name": "rot_consistency_trim",
+   "value": 0.8,
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:60"
+  },
+  {
+   "name": "rot_consistency_angles_deg",
+   "value": [
+    45,
+    90,
+    135
+   ],
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:61"
+  },
+  {
+   "name": "rot_consistency_subsample",
+   "value": 20000,
+   "origin": "generic:lathe_obs.fit_axis subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:62"
+  },
+  {
+   "name": "sym_accept_rotc_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (rotational consistency)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:63"
+  },
+  {
+   "name": "sym_accept_resid_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (mirror residual)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:64"
+  },
+  {
+   "name": "sym_accept_observed_share",
+   "value": 0.7,
+   "origin": "generic:PREREG A.6 symmetry acceptance (observed share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:65"
+  },
+  {
+   "name": "sym_accept_free_share",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6 symmetry acceptance (free share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:66"
+  },
+  {
+   "name": "noise_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 / SPEC section 8 noise band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:67"
+  },
+  {
+   "name": "sym_moved_min_share",
+   "value": 0.5,
+   "origin": "generic:a symmetry must move at least half the points",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:68"
+  },
+  {
+   "name": "sym_resid_trim",
+   "value": 0.8,
+   "origin": "generic:obs-first sym_probe trimmed mean",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:69"
+  },
+  {
+   "name": "mirror_search_normals",
+   "value": 400,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:70"
+  },
+  {
+   "name": "sym_search_subsample",
+   "value": 6000,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:71"
+  },
+  {
+   "name": "sym_eval_subsample",
+   "value": 20000,
+   "origin": "generic:obs-first sym_probe evaluation",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:72"
+  },
+  {
+   "name": "mirror_distinct_deg",
+   "value": 20.0,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:73"
+  },
+  {
+   "name": "mirror_top",
+   "value": 3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:74"
+  },
+  {
+   "name": "mirror_search_min_observed",
+   "value": 0.3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:75"
+  },
+  {
+   "name": "mirror_search_free_weight_m",
+   "value": 0.02,
+   "origin": "generic:obs-first sym_probe ranking weight",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:76"
+  },
+  {
+   "name": "sym_perturb_deg",
+   "value": [
+    4.0,
+    1.5
+   ],
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:77"
+  },
+  {
+   "name": "sym_perturb_n",
+   "value": 12,
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:78"
+  },
+  {
+   "name": "sym_nm_step",
+   "value": 2.0,
+   "origin": "generic:numerical refinement (initial simplex 2 deg / 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:79"
+  },
+  {
+   "name": "sym_nm_xatol",
+   "value": 0.02,
+   "origin": "generic:numerical refinement (deg / mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:80"
+  },
+  {
+   "name": "sym_nm_maxfev",
+   "value": 400,
+   "origin": "generic:numerical refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:81"
+  },
+  {
+   "name": "sym_pairing_iters",
+   "value": 4,
+   "origin": "generic:numerical refinement (sym_probe refine_offset passes)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:82"
+  },
+  {
+   "name": "axis_search_rim_w_s",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6b E1 (lathe.rim_w) = 0.05 s",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:83"
+  },
+  {
+   "name": "plane_min_pts",
+   "value": 300,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:84"
+  },
+  {
+   "name": "plane_max",
+   "value": 4,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:85"
+  },
+  {
+   "name": "plane_seeds",
+   "value": 200,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:86"
+  },
+  {
+   "name": "plane_deg",
+   "value": 30.0,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:87"
+  },
+  {
+   "name": "plane_conn_vox_m",
+   "value": 0.003,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:88"
+  },
+  {
+   "name": "slab_two_face_thickness_m",
+   "value": [
+    0.003,
+    0.025
+   ],
+   "origin": "informed:slab two-face thickness (PREREG A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:89"
+  },
+  {
+   "name": "plane_pair_overlap_min",
+   "value": 0.5,
+   "origin": "generic:footprints of a plate's two faces overlap",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:90"
+  },
+  {
+   "name": "repeat_orders",
+   "value": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "origin": "generic:discrete rotations C2..C6",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:91"
+  },
+  {
+   "name": "pb.near_m",
+   "value": 0.006,
+   "origin": "generic:F-I2.10 owned points within 6 mm of the pick",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "pb.frames_min",
+   "value": 3,
+   "origin": "generic:F-I4.11 >= 3 frames per outline cell (= OBSERVED hits >= 3, A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:135"
+  },
+  {
+   "name": "cp2.ray_dh_m",
+   "value": 0.001,
+   "origin": "generic:F-I5.15 (10) construction rays every 1 mm (the topology pitch)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.eps_h_m",
+   "value": 1.3e-07,
+   "origin": "generic:numerical ray heights offset 1.3e-7 m off the mesh vertex levels",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.ray_dphi_deg",
+   "value": 1.0,
+   "origin": "generic:F-I5.15 (10) construction rays every 1 deg",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.hit_dedup_m",
+   "value": 1e-07,
+   "origin": "generic:numerical duplicate ray hits within 1e-7 m",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp.wall_k_sigma",
+   "value": 3.0,
+   "origin": "generic:F-I5.10 wall if inner radius > max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.wall_min_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.10 wall if inner radius > max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp2.sectors",
+   "value": [
+    8,
+    12,
+    16,
+    20,
+    24,
+    32
+   ],
+   "origin": "generic:F-I5.15 (10) sector set {8, 12, 16, 20, 24, 32}",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.axial_dr_m",
+   "value": 0.001,
+   "origin": "generic:F-I5.15 (10) axial rays every 1 mm in radius",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.base_band_m",
+   "value": 0.03,
+   "origin": "generic:F-I5.15 (10) base bands <= 30 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp2.w_min_m",
+   "value": 0.0015,
+   "origin": "generic:F-I5.15 (10) w_min 1.5 mm (one 1 mm cell plus half a cell; Andres et al. 1997)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:977"
+  },
+  {
+   "name": "cp.coacd_thr",
+   "value": 0.02,
+   "origin": "generic:F-I5.10 CoACD 0.02 (finer than its 0.05 default)",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.pitch_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.10 2 mm keep-out / topology grid",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cp.vox_pitches",
+   "value": [
+    0.002,
+    0.004,
+    0.006,
+    0.008
+   ],
+   "origin": "generic:F-I5.10 voxel grids 2 / 4 / 6 / 8 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/cavpieces.py:79"
+  },
+  {
+   "name": "cc.sample_m",
+   "value": 0.002,
+   "origin": "generic:F-I5.1 2 mm grid inside the partner pieces (the Embodiment export definition)",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc.hand_m",
+   "value": 0.03,
+   "origin": "generic:F-I5.10 hands distance 30 mm (F-I1.9 rest distance)",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc2.floor_frames",
+   "value": 3,
+   "origin": "generic:F-I5.15 (4c) up to 3 floor S frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cc2.sup_samples",
+   "value": 4000,
+   "origin": "generic:numerical 4,000 guest surface samples for the exact-mesh support distance",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cc2.s_rm",
+   "value": 0.5,
+   "origin": "generic:F-I5.15 (10) removed share s_rm 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cc.surf_m",
+   "value": 0.0005,
+   "origin": "generic:F-I5.3 (d) guest surface samples at 0.5 mm spacing",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:75"
+  },
+  {
+   "name": "cc2.wall_rays_max",
+   "value": 20000,
+   "origin": "generic:numerical precheck (c) mesh rays: a seeded subset of 20,000 samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/collcarve.py:1026"
+  },
+  {
+   "name": "cg5.coacd_thr",
+   "value": 0.05,
+   "origin": "kit:FlashCHORD fc_mesh.py threshold 0.05 (the evaluator code)",
+   "where": "docs/research/mesh-2026-10-26/gmg/contactgate5.py:66"
+  },
+  {
+   "name": "sp.mass_kg",
+   "value": 0.3,
+   "origin": "generic:F-I1.14 placeholder mass 0.3 kg (make_assets default; owner decision D-I1 open)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "interlock/public/ep12-fi5r2/T_asm.npy",
+   "sha256": "c5cc0a727c39d3169d806496deb1958c0bc6ecdd9b14c3163b902ccaec0738e0",
+   "bytes": 256,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep12-fi5r2/decisions.json",
+   "sha256": "fd0b7aea706077ccc4d57d5d47702fba805a00795a40497acdac2c84265ffa72",
+   "bytes": 23195,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep12-fi5r2/fi5.json",
+   "sha256": "6ad188e131f790b98536dc34553e3ece45fbaf1e6fdea2e5e950e0e99bece209",
+   "bytes": 19355,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep12-fi5r2/physcheck.json",
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep12-fi5r2/push_list.json",
+   "sha256": "5afc1a68db2d3b7dcd88f86be19149eea30e5ad04a5f01b9ecc5afe264df8417",
+   "bytes": 1976,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep12-fi5r2/report.json",
+   "sha256": "6f3e07d85eb00c77c5351067b38127237bcb1f2310520635b33878b9b8e56606",
+   "bytes": 29068,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep12-fi5r2/structure_blue_cup.json",
+   "sha256": "762a0159dc821006516a326af44c870c9b5d3b5bebee250873c47aa486534bfd",
+   "bytes": 7399,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep12-fi5r2/structure_plastic_dish_rack.json",
+   "sha256": "e05fb30612c6e072e28ec79f8770129b86e9c77bcdd331060ad4e3eab9ddb295",
+   "bytes": 7387,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep12-fi5r2/voxels_blue_cup.npz",
+   "sha256": "aa13be03997248025f2d35e161c8bfd6e636f910e50f01dd76c3bcf416185eff",
+   "bytes": 8158,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep12-fi5r2/voxels_plastic_dish_rack.npz",
+   "sha256": "9217d491902aa9b988a0e7145597bc4d5c307311850c45459f27db871bb0ea9a",
+   "bytes": 8297,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/CONTACT_GATE_PENDING.json",
+   "sha256": "d50efc54926cb568753faa3b6e4264b8337de605e33bb5f9a3075aca88502172",
+   "bytes": 701,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/DO_NOT_USE.json",
+   "sha256": "3772ea513a01600b6ac460b70483ac8a23c45d1765bfb4175573585fcccf968d",
+   "bytes": 273,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_00.obj",
+   "sha256": "02d96807b8f8a06c62f038b210bc00ccd0e8f1ce4b4440dfc83ed0334647d0c9",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_01.obj",
+   "sha256": "9869d1a43f3d66cc08b6431832ecc0edd22adee1c41a12ad1b0ddf6562253132",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_02.obj",
+   "sha256": "26bac014e194586d1b9338edca871e1ee92f6b8c98dcb7f409512a16cd34a3b8",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_03.obj",
+   "sha256": "07c0dd38ef17bf00535f0a1ccecb20709a18b3bb7c196db1d167338344766bff",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_04.obj",
+   "sha256": "714537e353b635c90d3c82b985c80562e09212607c32e4b0ed0f84452a954d76",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_05.obj",
+   "sha256": "fd10f499d9e6e16366ae5cb91ef2ededc1c037184bd872f4c0b3f01972a16c22",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_06.obj",
+   "sha256": "d58b4b5f590a6f6c6f39a730c2143d38cdfcf033238843cd561c85953e9c2414",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_07.obj",
+   "sha256": "9f5859ff2331dc6fb746c43f9937047ff5872e8c6af7f787465eff693a06718e",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_08.obj",
+   "sha256": "c7cfbbf90a800b603f019ea5867950803d8b09e19b96b3c3717daf047eea1626",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_09.obj",
+   "sha256": "8a5cde42fa46cf1e28bbe43bd9198493e801da9c8206ba05c3261395ce25ea2f",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_10.obj",
+   "sha256": "666bd313dd435f4efa03a1b5f4ef68e8c86d332865ed59a09bcc15a902c74cf9",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_11.obj",
+   "sha256": "b4396d09f3d2760eaefd31efe3e00e47b04723efdec99daf1d86f7365bc23f62",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_12.obj",
+   "sha256": "744eb0faaf979a0309d5eea6b5c7eda74335f03ccac3d0d8dda5fb311ac39d5d",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_13.obj",
+   "sha256": "47f1c0f1d160cad510305a4435826897b1c4bf8e54b4b32f5d83faea01e558b8",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_14.obj",
+   "sha256": "de7874a86c0ff34356be016d0494b960cc8482ae8e9db8779101491a4c3f62fa",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_15.obj",
+   "sha256": "ea901350274869403008c3bf55a1207df0cc04ffa0fd8b0d9174b991aa996059",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_16.obj",
+   "sha256": "a2db590b6810e3c23ca347682dca853d74e352da8316b1eb9c972a608c59023c",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_17.obj",
+   "sha256": "ddb3b68d6c16f3ba2e9a6c8507790a2bbdb1fdf6a0825889133eca5ae2f0439e",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_18.obj",
+   "sha256": "e1f403c50846ab665eb3d1bdc5b68ecd1ca60eb8c2574a8da6202fc654548665",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_19.obj",
+   "sha256": "c4914540aed4aa9c43351ed1740f6e48c5965dd2564f568d193b0ad7f9a4fafb",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_20.obj",
+   "sha256": "45277152cbc7a335d08970b6bc5e1fd0c81a5ba71e091d2c3670cbbb2101e5e7",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_21.obj",
+   "sha256": "92ee7632ed94c1f7c992244beed9d27487c0652d70886b1d663c59b928f24492",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_22.obj",
+   "sha256": "33e16df961ba653d6d6d60a378e7862557c122e0764cb54c92b3a10a7d60280c",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_23.obj",
+   "sha256": "2d5c7d4b9be3b7c0763ca22dc349bd9f158010396f0b03047b0435e801ba8f2d",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_24.obj",
+   "sha256": "9fa3253b980292a4dd2ccdbf67b28e9bd9caeac8d54c8bbea95a4b632c22b1ca",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_25.obj",
+   "sha256": "857ea004fd1e05e96473fc8236fe140ec9f5702e1a132102acf39172578ea6eb",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_26.obj",
+   "sha256": "0fe7111c3b5a76bccbc3e61f910cf1b8afde8e70445581a101fdb0bf5a4e166e",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_27.obj",
+   "sha256": "0f9455afa24bfe60f18881c1d1d56a3c93e1ac3180475c50d44559ea7419b9ab",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/blue_cup/piece_28.obj",
+   "sha256": "b7760ca40bd664932707dc82fe0056f6767de34a7e149bf0d4121923ae0bc8b0",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_00.obj",
+   "sha256": "2cafbf306ec419078bca728233d58b8d3506ac1b4d791a587e406cfb3cd6ae63",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_01.obj",
+   "sha256": "fcc8f7ef4f807a6150fddca7d55816086e8bbb939e4b1e041f2f03f83fedc4fb",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_02.obj",
+   "sha256": "c54e8c195f7c5907756cbdd3a76e837473cc21c0beb954d7777763a94d50a3e6",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_03.obj",
+   "sha256": "f6a4497ae153efd42f78a31f4c53d70cf418453347226a812d3bc6b137d87c69",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_04.obj",
+   "sha256": "6bf2e77124450cb01e4e065e44f5751faacf477ca9bedf06934b5340450507d7",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_05.obj",
+   "sha256": "2d070df7197ec27bab89abb84147cf0d5074154392f85dae3bb874cf83e07277",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_06.obj",
+   "sha256": "828f1655b5da59c13854eb3643add91b2b3b716651f413fd1bb762594e456fda",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_07.obj",
+   "sha256": "7a2f6c6b6c45e0b7663812ae028f37aa4477655153f11f2335a44aa2159362ff",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_08.obj",
+   "sha256": "5f29bdbb96615f59fb12fa32358ea0c0f0b235d78a9098f999dfa5e0807f268b",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_09.obj",
+   "sha256": "2f509421878afc1cf8d19cfbaafcc4afcbb0be84d2b2b51e2790b24a409be068",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_10.obj",
+   "sha256": "c44a1b615aa94ced1e22ae823a907c9cf22a9b8c7d9cc9f7989fa18d82cb0c7b",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_11.obj",
+   "sha256": "51d2b4d4577eeccea8452e34042f94a550525c93a8f3ed539ff0f2729f533c4b",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_12.obj",
+   "sha256": "a6ed95ea1e799ec6f5ce857a007cde7b6851f65c8e61250ab9fb356488b4634a",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_13.obj",
+   "sha256": "a1763759d5982a6b189ef4c3ebd5c6dc2170c70b3cf0e7c48553885a1172bc30",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_14.obj",
+   "sha256": "9f1b69613f174cb17dab15287e7b2d54a8655938adb61e60737feef657d1b323",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_15.obj",
+   "sha256": "dda698b6c5e7961067a1e60a7c47d5aaad36ebb704a86efdcb06e707ec7a2c12",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_16.obj",
+   "sha256": "96bd9288f2c8fd7d126c3dcdc97aefeb7f6ec32bc3328780da3c491bbbed7d43",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_17.obj",
+   "sha256": "ef74e201eb8baa8ed66826c3e4881c76d0bca9eca093661db01aa9f27c50385d",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_18.obj",
+   "sha256": "29e3cc25a968c5c57f7aec46653d9f05a0ec83cee0772254046a61a9a672e68b",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_19.obj",
+   "sha256": "bea5d673039f5b48496f59bcb89c1ddd4dd58ca9196f307708d1c5c64de38b11",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_20.obj",
+   "sha256": "3ceb89cb9516dfbed9e4e521a9f7630115b9ba251da6e5da3c53052b923d87b3",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_21.obj",
+   "sha256": "72508f2aec7f08a0aec346adfae5b30ff6026795adac16a3e062ad8b71063e5a",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_22.obj",
+   "sha256": "0a7b9e23c5c932255ccd1e42c9c4c8193021a2614b08b1f8c896817fe74a33c1",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_23.obj",
+   "sha256": "ada04079da1485d9ef7fe31afe46a624d5e33e76c4dae3d2e8a61e3a803b86c3",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_24.obj",
+   "sha256": "d6e3e0c203a8c075cb44cc7b134c1cf0c124f8e008ef81f67a3209953bf6677a",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_25.obj",
+   "sha256": "ca7fcbb067d1b3980752c46399c99303e24d046ac94e260033ec7c9f7ddc592d",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_26.obj",
+   "sha256": "28c0d9a4535f1f0cd6c8214e30bd13884dedd03630edc25d68fbb694195916a7",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_27.obj",
+   "sha256": "cc95f0d51ac036351fefa560404e618b12a896554b1be6d65d69425c8f5b590e",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_28.obj",
+   "sha256": "3df886cb7280397a2757c9b10c1e93202a69158c17c8215e9805b55257663ed3",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_29.obj",
+   "sha256": "e77bc91723dfd70452bd0c358ed73ad5b8f599780b7517aede1e0f85867b6ad3",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_30.obj",
+   "sha256": "4b23c6c544b9fc2d9c6a046652c8bead305245fbbcc6ee0fed1f4c8232fe72d3",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_31.obj",
+   "sha256": "b8fdabf56c6c260540dc5c080c4b464bcdee30325b83effdfd86ee0b1d91b0fa",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_32.obj",
+   "sha256": "188cb8ee2b179721b95593daac97497e2944a1dd5fd329f7f73f161eac88bd42",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_33.obj",
+   "sha256": "2fec45c34bbdcf498e7bcfd9a6c87671821a165612d813d91ecbcc131536c5c7",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_34.obj",
+   "sha256": "5708a37b7d837b4f0ad34b398cd25adda2ffb88d10138bbf73e61e6e6c1db75b",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_35.obj",
+   "sha256": "dc924e9e9095a13303de38064e657f3c74291e9d9d3986cb84a1229c12456d26",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_36.obj",
+   "sha256": "3026740d97f1800fe2ea14223058cff8ab57995867e49cbf7af52e480b4dd268",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_37.obj",
+   "sha256": "6be5cbc8d8916bb9bf2ac4b7c23030a0a40c5518f8ab11ca1434115d85765907",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_38.obj",
+   "sha256": "95519909f642e3d84327ed1475aa9c5b4805bb735d6f62efb378b6eb36507187",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_39.obj",
+   "sha256": "f7ce0ef7c3f4dda08223b84661a0798906b232c3572a6ae17042766cb878e990",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_40.obj",
+   "sha256": "125b42bbc2ce9abe949d2e6d20ac5983c61eae7830a3ff6e3dc3ffa684bc83a2",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_41.obj",
+   "sha256": "150b5a96e914bc2351728c6551c6690def50e99eeecf825d3161049390b87e6a",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_42.obj",
+   "sha256": "e9a3ad3e4e246fa1c27627f002478d281bbe978d7f6be6559044243ecc0ad106",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_43.obj",
+   "sha256": "335188627be6bd1f5913f1f259af151047d01380dd8c3fbcd66da134fac815db",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_default/plastic_dish_rack/piece_44.obj",
+   "sha256": "66ddf57090269f6fdc55848ed8429535ca3bfa0943908836392f620ba67e7021",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_fit/blue_cup.glb",
+   "sha256": "97c8d9ea3a5ea87abdf5369674f43bcec40ddb9b142eb59adc0fd433cebdaf46",
+   "bytes": 7716,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/_fit/plastic_dish_rack.glb",
+   "sha256": "6112ba8ceca7a7861fc24d536bba39f323054cd6c44c52bff04ebd14bcd25ca1",
+   "bytes": 11484,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/blue_cup.glb",
+   "sha256": "810fe1c82c02873147f503e635fc24d4d1a8f6319fe70cec0adc7ebe80a8c693",
+   "bytes": 71388,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/carve.json",
+   "sha256": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+   "bytes": 109,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/inertia.json",
+   "sha256": "68b39fa35edfbf8a80f8e2d3addc1f6c01562bc18d0495d8a766ede11eda5ba4",
+   "bytes": 403,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_00.obj",
+   "sha256": "02d96807b8f8a06c62f038b210bc00ccd0e8f1ce4b4440dfc83ed0334647d0c9",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_01.obj",
+   "sha256": "9869d1a43f3d66cc08b6431832ecc0edd22adee1c41a12ad1b0ddf6562253132",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_02.obj",
+   "sha256": "26bac014e194586d1b9338edca871e1ee92f6b8c98dcb7f409512a16cd34a3b8",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_03.obj",
+   "sha256": "07c0dd38ef17bf00535f0a1ccecb20709a18b3bb7c196db1d167338344766bff",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_04.obj",
+   "sha256": "714537e353b635c90d3c82b985c80562e09212607c32e4b0ed0f84452a954d76",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_05.obj",
+   "sha256": "fd10f499d9e6e16366ae5cb91ef2ededc1c037184bd872f4c0b3f01972a16c22",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_06.obj",
+   "sha256": "d58b4b5f590a6f6c6f39a730c2143d38cdfcf033238843cd561c85953e9c2414",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_07.obj",
+   "sha256": "9f5859ff2331dc6fb746c43f9937047ff5872e8c6af7f787465eff693a06718e",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_08.obj",
+   "sha256": "c7cfbbf90a800b603f019ea5867950803d8b09e19b96b3c3717daf047eea1626",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_09.obj",
+   "sha256": "8a5cde42fa46cf1e28bbe43bd9198493e801da9c8206ba05c3261395ce25ea2f",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_10.obj",
+   "sha256": "666bd313dd435f4efa03a1b5f4ef68e8c86d332865ed59a09bcc15a902c74cf9",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_11.obj",
+   "sha256": "b4396d09f3d2760eaefd31efe3e00e47b04723efdec99daf1d86f7365bc23f62",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_12.obj",
+   "sha256": "744eb0faaf979a0309d5eea6b5c7eda74335f03ccac3d0d8dda5fb311ac39d5d",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_13.obj",
+   "sha256": "47f1c0f1d160cad510305a4435826897b1c4bf8e54b4b32f5d83faea01e558b8",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_14.obj",
+   "sha256": "de7874a86c0ff34356be016d0494b960cc8482ae8e9db8779101491a4c3f62fa",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_15.obj",
+   "sha256": "ea901350274869403008c3bf55a1207df0cc04ffa0fd8b0d9174b991aa996059",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_16.obj",
+   "sha256": "a2db590b6810e3c23ca347682dca853d74e352da8316b1eb9c972a608c59023c",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_17.obj",
+   "sha256": "ddb3b68d6c16f3ba2e9a6c8507790a2bbdb1fdf6a0825889133eca5ae2f0439e",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_18.obj",
+   "sha256": "e1f403c50846ab665eb3d1bdc5b68ecd1ca60eb8c2574a8da6202fc654548665",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_19.obj",
+   "sha256": "c4914540aed4aa9c43351ed1740f6e48c5965dd2564f568d193b0ad7f9a4fafb",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_20.obj",
+   "sha256": "45277152cbc7a335d08970b6bc5e1fd0c81a5ba71e091d2c3670cbbb2101e5e7",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_21.obj",
+   "sha256": "92ee7632ed94c1f7c992244beed9d27487c0652d70886b1d663c59b928f24492",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_22.obj",
+   "sha256": "33e16df961ba653d6d6d60a378e7862557c122e0764cb54c92b3a10a7d60280c",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_23.obj",
+   "sha256": "2d5c7d4b9be3b7c0763ca22dc349bd9f158010396f0b03047b0435e801ba8f2d",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_24.obj",
+   "sha256": "9fa3253b980292a4dd2ccdbf67b28e9bd9caeac8d54c8bbea95a4b632c22b1ca",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_25.obj",
+   "sha256": "857ea004fd1e05e96473fc8236fe140ec9f5702e1a132102acf39172578ea6eb",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_26.obj",
+   "sha256": "0fe7111c3b5a76bccbc3e61f910cf1b8afde8e70445581a101fdb0bf5a4e166e",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_27.obj",
+   "sha256": "0f9455afa24bfe60f18881c1d1d56a3c93e1ac3180475c50d44559ea7419b9ab",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/blue_cup/piece_28.obj",
+   "sha256": "b7760ca40bd664932707dc82fe0056f6767de34a7e149bf0d4121923ae0bc8b0",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/contact_gate.json",
+   "sha256": "f6c916359a7909a1d0375af448672d8e3e3e79a1f07674f0159cd88e27ab68b8",
+   "bytes": 2472,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/floor.json",
+   "sha256": "c74a1fba46cbc25d7c9b52384bc38c1ee6153b17ce374e877bb6d2633882ced2",
+   "bytes": 2058,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/manifest.json",
+   "sha256": "068e6cfaa46038807fa4fae956d27139438a9f274315fc5a8897bf6029fbd8e8",
+   "bytes": 30976,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/carve.json",
+   "sha256": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+   "bytes": 109,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/inertia.json",
+   "sha256": "1ab128318a5ef4d567ea509a3ca4da83824e929828289068d68bd2ef84da3402",
+   "bytes": 401,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_00.obj",
+   "sha256": "2cafbf306ec419078bca728233d58b8d3506ac1b4d791a587e406cfb3cd6ae63",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_01.obj",
+   "sha256": "fcc8f7ef4f807a6150fddca7d55816086e8bbb939e4b1e041f2f03f83fedc4fb",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_02.obj",
+   "sha256": "c54e8c195f7c5907756cbdd3a76e837473cc21c0beb954d7777763a94d50a3e6",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_03.obj",
+   "sha256": "f6a4497ae153efd42f78a31f4c53d70cf418453347226a812d3bc6b137d87c69",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_04.obj",
+   "sha256": "6bf2e77124450cb01e4e065e44f5751faacf477ca9bedf06934b5340450507d7",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_05.obj",
+   "sha256": "2d070df7197ec27bab89abb84147cf0d5074154392f85dae3bb874cf83e07277",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_06.obj",
+   "sha256": "828f1655b5da59c13854eb3643add91b2b3b716651f413fd1bb762594e456fda",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_07.obj",
+   "sha256": "7a2f6c6b6c45e0b7663812ae028f37aa4477655153f11f2335a44aa2159362ff",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_08.obj",
+   "sha256": "5f29bdbb96615f59fb12fa32358ea0c0f0b235d78a9098f999dfa5e0807f268b",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_09.obj",
+   "sha256": "2f509421878afc1cf8d19cfbaafcc4afcbb0be84d2b2b51e2790b24a409be068",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_10.obj",
+   "sha256": "c44a1b615aa94ced1e22ae823a907c9cf22a9b8c7d9cc9f7989fa18d82cb0c7b",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_11.obj",
+   "sha256": "51d2b4d4577eeccea8452e34042f94a550525c93a8f3ed539ff0f2729f533c4b",
+   "bytes": 437,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_12.obj",
+   "sha256": "a6ed95ea1e799ec6f5ce857a007cde7b6851f65c8e61250ab9fb356488b4634a",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_13.obj",
+   "sha256": "a1763759d5982a6b189ef4c3ebd5c6dc2170c70b3cf0e7c48553885a1172bc30",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_14.obj",
+   "sha256": "9f1b69613f174cb17dab15287e7b2d54a8655938adb61e60737feef657d1b323",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_15.obj",
+   "sha256": "dda698b6c5e7961067a1e60a7c47d5aaad36ebb704a86efdcb06e707ec7a2c12",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_16.obj",
+   "sha256": "96bd9288f2c8fd7d126c3dcdc97aefeb7f6ec32bc3328780da3c491bbbed7d43",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_17.obj",
+   "sha256": "ef74e201eb8baa8ed66826c3e4881c76d0bca9eca093661db01aa9f27c50385d",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_18.obj",
+   "sha256": "29e3cc25a968c5c57f7aec46653d9f05a0ec83cee0772254046a61a9a672e68b",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_19.obj",
+   "sha256": "bea5d673039f5b48496f59bcb89c1ddd4dd58ca9196f307708d1c5c64de38b11",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_20.obj",
+   "sha256": "3ceb89cb9516dfbed9e4e521a9f7630115b9ba251da6e5da3c53052b923d87b3",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_21.obj",
+   "sha256": "72508f2aec7f08a0aec346adfae5b30ff6026795adac16a3e062ad8b71063e5a",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_22.obj",
+   "sha256": "0a7b9e23c5c932255ccd1e42c9c4c8193021a2614b08b1f8c896817fe74a33c1",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_23.obj",
+   "sha256": "ada04079da1485d9ef7fe31afe46a624d5e33e76c4dae3d2e8a61e3a803b86c3",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_24.obj",
+   "sha256": "d6e3e0c203a8c075cb44cc7b134c1cf0c124f8e008ef81f67a3209953bf6677a",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_25.obj",
+   "sha256": "ca7fcbb067d1b3980752c46399c99303e24d046ac94e260033ec7c9f7ddc592d",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_26.obj",
+   "sha256": "28c0d9a4535f1f0cd6c8214e30bd13884dedd03630edc25d68fbb694195916a7",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_27.obj",
+   "sha256": "cc95f0d51ac036351fefa560404e618b12a896554b1be6d65d69425c8f5b590e",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_28.obj",
+   "sha256": "3df886cb7280397a2757c9b10c1e93202a69158c17c8215e9805b55257663ed3",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_29.obj",
+   "sha256": "e77bc91723dfd70452bd0c358ed73ad5b8f599780b7517aede1e0f85867b6ad3",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_30.obj",
+   "sha256": "4b23c6c544b9fc2d9c6a046652c8bead305245fbbcc6ee0fed1f4c8232fe72d3",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_31.obj",
+   "sha256": "b8fdabf56c6c260540dc5c080c4b464bcdee30325b83effdfd86ee0b1d91b0fa",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_32.obj",
+   "sha256": "188cb8ee2b179721b95593daac97497e2944a1dd5fd329f7f73f161eac88bd42",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_33.obj",
+   "sha256": "2fec45c34bbdcf498e7bcfd9a6c87671821a165612d813d91ecbcc131536c5c7",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_34.obj",
+   "sha256": "5708a37b7d837b4f0ad34b398cd25adda2ffb88d10138bbf73e61e6e6c1db75b",
+   "bytes": 413,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_35.obj",
+   "sha256": "dc924e9e9095a13303de38064e657f3c74291e9d9d3986cb84a1229c12456d26",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_36.obj",
+   "sha256": "3026740d97f1800fe2ea14223058cff8ab57995867e49cbf7af52e480b4dd268",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_37.obj",
+   "sha256": "6be5cbc8d8916bb9bf2ac4b7c23030a0a40c5518f8ab11ca1434115d85765907",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_38.obj",
+   "sha256": "95519909f642e3d84327ed1475aa9c5b4805bb735d6f62efb378b6eb36507187",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_39.obj",
+   "sha256": "f7ce0ef7c3f4dda08223b84661a0798906b232c3572a6ae17042766cb878e990",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_40.obj",
+   "sha256": "125b42bbc2ce9abe949d2e6d20ac5983c61eae7830a3ff6e3dc3ffa684bc83a2",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_41.obj",
+   "sha256": "150b5a96e914bc2351728c6551c6690def50e99eeecf825d3161049390b87e6a",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_42.obj",
+   "sha256": "e9a3ad3e4e246fa1c27627f002478d281bbe978d7f6be6559044243ecc0ad106",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_43.obj",
+   "sha256": "335188627be6bd1f5913f1f259af151047d01380dd8c3fbcd66da134fac815db",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/piece_44.obj",
+   "sha256": "66ddf57090269f6fdc55848ed8429535ca3bfa0943908836392f620ba67e7021",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/plastic_dish_rack/plastic_dish_rack.glb",
+   "sha256": "9716e4e22aa9dfead9f920f268fae5ef1802d970e75eab61a2ec392f4b3ffd60",
+   "bytes": 71436,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/props_gmg.json",
+   "sha256": "0d92cccb41926b683a2b0ff0ec497009b43f4b042acb1b97d1025073bfde721f",
+   "bytes": 1657,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep12-fi5r2/r0/push_list_fi5r2.json",
+   "sha256": "7cf211b0a1ff2da7f51c84db2e1410eb107f8fe656c211f3b7719224c26d5ddd",
+   "bytes": 239,
+   "how": "python"
+  }
+ ]
+}

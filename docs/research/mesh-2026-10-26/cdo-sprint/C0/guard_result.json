@@ -1,0 +1,2622 @@
+{
+ "rule": {
+  "mean_dAUC_min": -0.005,
+  "min_dAUC_min": -0.02,
+  "mean_dMPPE_cm_max": 0.2,
+  "mean_dRPE_cm_max": 0.2
+ },
+ "objects": {
+  "white_pot": {
+   "twins": [
+    0,
+    2,
+    26,
+    27,
+    41,
+    42,
+    43,
+    44,
+    45
+   ],
+   "missing": [],
+   "adopted": true,
+   "checks": {
+    "mean_dAUC": true,
+    "min_dAUC": true,
+    "mean_dMPPE": true,
+    "mean_dRPE": true,
+    "complete": true
+   },
+   "mean_dAUC": 0.002988888888888899,
+   "min_dAUC": -0.015899999999999914,
+   "max_dAUC": 0.02959999999999996,
+   "mean_dSP_SR": 0.0,
+   "min_dSP_SR": 0.0,
+   "max_dSP_SR": 0.0,
+   "mean_dMP_SR": 0.0,
+   "min_dMP_SR": 0.0,
+   "max_dMP_SR": 0.0,
+   "mean_dMPPE_cm": -0.05663333333333333,
+   "min_dMPPE_cm": -0.29710000000000003,
+   "max_dMPPE_cm": 0.1654,
+   "mean_dRPE_cm": -0.10785555555555582,
+   "min_dRPE_cm": -0.48230000000000217,
+   "max_dRPE_cm": 0.0,
+   "per_twin": [
+    {
+     "ep": 0,
+     "dAUC": 0.0001000000000000445,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.22719999999999985,
+     "dRPE_cm": -0.48230000000000217,
+     "base": {
+      "AUC": 0.4962,
+      "SP_SR": 0.0,
+      "MP_SR": 0.0,
+      "MPPE_cm": 12.3477,
+      "RPE_cm": 23.2706
+     },
+     "swap": {
+      "AUC": 0.4963,
+      "SP_SR": 0.0,
+      "MP_SR": 0.0,
+      "MPPE_cm": 12.1205,
+      "RPE_cm": 22.7883
+     },
+     "per_obj_AUC_base": {
+      "white_pot": 0.9925,
+      "white_pot_lid": 0.0
+     },
+     "per_obj_AUC_swap": {
+      "white_pot": 0.9926,
+      "white_pot_lid": 0.0
+     },
+     "registration_base": {
+      "white_pot": {
+       "rot_deg": 1.69,
+       "anchor_shift_cm": 0.68,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 1.74,
+       "anchor_shift_cm": 0.71,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     },
+     "registration_swap": {
+      "white_pot": {
+       "rot_deg": 0.94,
+       "anchor_shift_cm": 0.26,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 1.74,
+       "anchor_shift_cm": 0.71,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     }
+    },
+    {
+     "ep": 2,
+     "dAUC": -0.015899999999999914,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": 0.1654,
+     "dRPE_cm": -0.1282000000000001,
+     "base": {
+      "AUC": 0.9823,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.7324,
+      "RPE_cm": 1.435
+     },
+     "swap": {
+      "AUC": 0.9664,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.8978,
+      "RPE_cm": 1.3068
+     },
+     "per_obj_AUC_base": {
+      "white_pot": 0.9923,
+      "white_pot_lid": 0.9723
+     },
+     "per_obj_AUC_swap": {
+      "white_pot": 0.9931,
+      "white_pot_lid": 0.9397
+     },
+     "registration_base": {
+      "white_pot": {
+       "rot_deg": 1.83,
+       "anchor_shift_cm": 0.63,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 1.05,
+       "anchor_shift_cm": 0.79,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     },
+     "registration_swap": {
+      "white_pot": {
+       "rot_deg": 1.33,
+       "anchor_shift_cm": 0.25,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 1.05,
+       "anchor_shift_cm": 0.79,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     }
+    },
+    {
+     "ep": 26,
+     "dAUC": 0.006500000000000061,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.0736,
+     "dRPE_cm": -0.22840000000000016,
+     "base": {
+      "AUC": 0.9652,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.888,
+      "RPE_cm": 1.3039
+     },
+     "swap": {
+      "AUC": 0.9717,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.8144,
+      "RPE_cm": 1.0755
+     },
+     "per_obj_AUC_base": {
+      "plastic_dish_rack": 0.9937,
+      "white_pot": 0.9367
+     },
+     "per_obj_AUC_swap": {
+      "plastic_dish_rack": 0.9937,
+      "white_pot": 0.9498
+     },
+     "registration_base": {
+      "plastic_dish_rack": {
+       "rot_deg": 1.82,
+       "anchor_shift_cm": 0.57,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 1.77,
+       "anchor_shift_cm": 0.68,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "plastic_dish_rack": {
+       "rot_deg": 1.82,
+       "anchor_shift_cm": 0.57,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 0.84,
+       "anchor_shift_cm": 0.25,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 27,
+     "dAUC": 0.010600000000000054,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.08460000000000001,
+     "dRPE_cm": -0.13179999999999992,
+     "base": {
+      "AUC": 0.9611,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.7868,
+      "RPE_cm": 1.1844
+     },
+     "swap": {
+      "AUC": 0.9717,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.7022,
+      "RPE_cm": 1.0526
+     },
+     "per_obj_AUC_base": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9223
+     },
+     "per_obj_AUC_swap": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9433
+     },
+     "registration_base": {
+      "plastic_dish_rack": {
+       "rot_deg": 1.24,
+       "anchor_shift_cm": 0.55,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 1.57,
+       "anchor_shift_cm": 0.62,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "plastic_dish_rack": {
+       "rot_deg": 1.24,
+       "anchor_shift_cm": 0.55,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 0.99,
+       "anchor_shift_cm": 0.29,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 41,
+     "dAUC": -0.0017000000000000348,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.0027000000000000357,
+     "dRPE_cm": 0.0,
+     "base": {
+      "AUC": 0.991,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.6034,
+      "RPE_cm": 0.0
+     },
+     "swap": {
+      "AUC": 0.9893,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.6007,
+      "RPE_cm": 0.0
+     },
+     "per_obj_AUC_base": {
+      "white_pot": 0.991
+     },
+     "per_obj_AUC_swap": {
+      "white_pot": 0.9893
+     },
+     "registration_base": {
+      "white_pot": {
+       "rot_deg": 1.71,
+       "anchor_shift_cm": 0.7,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "white_pot": {
+       "rot_deg": 1.06,
+       "anchor_shift_cm": 0.27,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 42,
+     "dAUC": 0.0004999999999999449,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": 0.03520000000000001,
+     "dRPE_cm": 0.0,
+     "base": {
+      "AUC": 0.9915,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.5631,
+      "RPE_cm": 0.0
+     },
+     "swap": {
+      "AUC": 0.992,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.5983,
+      "RPE_cm": 0.0
+     },
+     "per_obj_AUC_base": {
+      "white_pot": 0.9915
+     },
+     "per_obj_AUC_swap": {
+      "white_pot": 0.992
+     },
+     "registration_base": {
+      "white_pot": {
+       "rot_deg": 1.66,
+       "anchor_shift_cm": 0.66,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "white_pot": {
+       "rot_deg": 0.81,
+       "anchor_shift_cm": 0.25,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 43,
+     "dAUC": 0.02959999999999996,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.29710000000000003,
+     "dRPE_cm": 0.0,
+     "base": {
+      "AUC": 0.9482,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.0438,
+      "RPE_cm": 0.0
+     },
+     "swap": {
+      "AUC": 0.9778,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.7467,
+      "RPE_cm": 0.0
+     },
+     "per_obj_AUC_base": {
+      "white_pot": 0.9482
+     },
+     "per_obj_AUC_swap": {
+      "white_pot": 0.9778
+     },
+     "registration_base": {
+      "white_pot": {
+       "rot_deg": 1.88,
+       "anchor_shift_cm": 0.7,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "white_pot": {
+       "rot_deg": 1.13,
+       "anchor_shift_cm": 0.3,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 44,
+     "dAUC": 0.0008000000000000229,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.027900000000000036,
+     "dRPE_cm": 0.0,
+     "base": {
+      "AUC": 0.9967,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.4736,
+      "RPE_cm": 0.0
+     },
+     "swap": {
+      "AUC": 0.9975,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.4457,
+      "RPE_cm": 0.0
+     },
+     "per_obj_AUC_base": {
+      "white_pot": 0.9967
+     },
+     "per_obj_AUC_swap": {
+      "white_pot": 0.9975
+     },
+     "registration_base": {
+      "white_pot": {
+       "rot_deg": 1.8,
+       "anchor_shift_cm": 0.65,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "white_pot": {
+       "rot_deg": 1.12,
+       "anchor_shift_cm": 0.21,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 45,
+     "dAUC": -0.0036000000000000476,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": 0.0028000000000000247,
+     "dRPE_cm": 0.0,
+     "base": {
+      "AUC": 0.9795,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.7206,
+      "RPE_cm": 0.0
+     },
+     "swap": {
+      "AUC": 0.9759,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.7234,
+      "RPE_cm": 0.0
+     },
+     "per_obj_AUC_base": {
+      "white_pot": 0.9795
+     },
+     "per_obj_AUC_swap": {
+      "white_pot": 0.9759
+     },
+     "registration_base": {
+      "white_pot": {
+       "rot_deg": 2.05,
+       "anchor_shift_cm": 0.71,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "white_pot": {
+       "rot_deg": 0.91,
+       "anchor_shift_cm": 0.25,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    }
+   ]
+  },
+  "white_pot_lid": {
+   "twins": [
+    0,
+    2
+   ],
+   "missing": [],
+   "adopted": true,
+   "checks": {
+    "mean_dAUC": true,
+    "min_dAUC": true,
+    "mean_dMPPE": true,
+    "mean_dRPE": true,
+    "complete": true
+   },
+   "mean_dAUC": 0.005549999999999999,
+   "min_dAUC": 0.0,
+   "max_dAUC": 0.011099999999999999,
+   "mean_dSP_SR": 0.0,
+   "min_dSP_SR": 0.0,
+   "max_dSP_SR": 0.0,
+   "mean_dMP_SR": 0.0,
+   "min_dMP_SR": 0.0,
+   "max_dMP_SR": 0.0,
+   "mean_dMPPE_cm": -0.07939999999999947,
+   "min_dMPPE_cm": -0.20330000000000004,
+   "max_dMPPE_cm": 0.044500000000001094,
+   "mean_dRPE_cm": -0.12050000000000083,
+   "min_dRPE_cm": -0.33620000000000005,
+   "max_dRPE_cm": 0.0951999999999984,
+   "per_twin": [
+    {
+     "ep": 0,
+     "dAUC": 0.0,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": 0.044500000000001094,
+     "dRPE_cm": 0.0951999999999984,
+     "base": {
+      "AUC": 0.4962,
+      "SP_SR": 0.0,
+      "MP_SR": 0.0,
+      "MPPE_cm": 12.3477,
+      "RPE_cm": 23.2706
+     },
+     "swap": {
+      "AUC": 0.4962,
+      "SP_SR": 0.0,
+      "MP_SR": 0.0,
+      "MPPE_cm": 12.3922,
+      "RPE_cm": 23.3658
+     },
+     "per_obj_AUC_base": {
+      "white_pot": 0.9925,
+      "white_pot_lid": 0.0
+     },
+     "per_obj_AUC_swap": {
+      "white_pot": 0.9925,
+      "white_pot_lid": 0.0
+     },
+     "registration_base": {
+      "white_pot": {
+       "rot_deg": 1.69,
+       "anchor_shift_cm": 0.68,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 1.74,
+       "anchor_shift_cm": 0.71,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     },
+     "registration_swap": {
+      "white_pot": {
+       "rot_deg": 1.69,
+       "anchor_shift_cm": 0.68,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 1.81,
+       "anchor_shift_cm": 0.4,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     }
+    },
+    {
+     "ep": 2,
+     "dAUC": 0.011099999999999999,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.20330000000000004,
+     "dRPE_cm": -0.33620000000000005,
+     "base": {
+      "AUC": 0.9823,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.7324,
+      "RPE_cm": 1.435
+     },
+     "swap": {
+      "AUC": 0.9934,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.5291,
+      "RPE_cm": 1.0988
+     },
+     "per_obj_AUC_base": {
+      "white_pot": 0.9923,
+      "white_pot_lid": 0.9723
+     },
+     "per_obj_AUC_swap": {
+      "white_pot": 0.9923,
+      "white_pot_lid": 0.9945
+     },
+     "registration_base": {
+      "white_pot": {
+       "rot_deg": 1.83,
+       "anchor_shift_cm": 0.63,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 1.05,
+       "anchor_shift_cm": 0.79,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     },
+     "registration_swap": {
+      "white_pot": {
+       "rot_deg": 1.83,
+       "anchor_shift_cm": 0.63,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 1.45,
+       "anchor_shift_cm": 0.47,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     }
+    }
+   ]
+  },
+  "plastic_dish_rack": {
+   "twins": [
+    12,
+    13,
+    26,
+    27,
+    31
+   ],
+   "missing": [],
+   "adopted": true,
+   "checks": {
+    "mean_dAUC": true,
+    "min_dAUC": true,
+    "mean_dMPPE": true,
+    "mean_dRPE": true,
+    "complete": true
+   },
+   "mean_dAUC": 0.01581999999999999,
+   "min_dAUC": -0.009199999999999986,
+   "max_dAUC": 0.06119999999999992,
+   "mean_dSP_SR": 0.0,
+   "min_dSP_SR": 0.0,
+   "max_dSP_SR": 0.0,
+   "mean_dMP_SR": 0.0,
+   "min_dMP_SR": 0.0,
+   "max_dMP_SR": 0.0,
+   "mean_dMPPE_cm": -0.043259999999999986,
+   "min_dMPPE_cm": -0.1835000000000001,
+   "max_dMPPE_cm": 0.18040000000000012,
+   "mean_dRPE_cm": -0.09695999999999998,
+   "min_dRPE_cm": -0.2750999999999999,
+   "max_dRPE_cm": 0.09640000000000004,
+   "per_twin": [
+    {
+     "ep": 12,
+     "dAUC": -0.009199999999999986,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": 0.18040000000000012,
+     "dRPE_cm": 0.09640000000000004,
+     "base": {
+      "AUC": 0.9672,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.9459,
+      "RPE_cm": 1.1389
+     },
+     "swap": {
+      "AUC": 0.958,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.1263,
+      "RPE_cm": 1.2353
+     },
+     "per_obj_AUC_base": {
+      "blue_cup": 0.9347,
+      "plastic_dish_rack": 0.9997
+     },
+     "per_obj_AUC_swap": {
+      "blue_cup": 0.9399,
+      "plastic_dish_rack": 0.9762
+     },
+     "registration_base": {
+      "blue_cup": {
+       "rot_deg": 0.82,
+       "anchor_shift_cm": 0.91,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 1.32,
+       "anchor_shift_cm": 0.57,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "blue_cup": {
+       "rot_deg": 0.82,
+       "anchor_shift_cm": 0.91,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 3.04,
+       "anchor_shift_cm": 0.43,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 13,
+     "dAUC": 0.005599999999999938,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.04499999999999993,
+     "dRPE_cm": -0.16379999999999995,
+     "base": {
+      "AUC": 0.9605,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.0632,
+      "RPE_cm": 1.3815
+     },
+     "swap": {
+      "AUC": 0.9661,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.0182,
+      "RPE_cm": 1.2177
+     },
+     "per_obj_AUC_base": {
+      "blue_cup": 0.9329,
+      "plastic_dish_rack": 0.9882
+     },
+     "per_obj_AUC_swap": {
+      "blue_cup": 0.9395,
+      "plastic_dish_rack": 0.9928
+     },
+     "registration_base": {
+      "blue_cup": {
+       "rot_deg": 1.47,
+       "anchor_shift_cm": 1.04,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 1.77,
+       "anchor_shift_cm": 0.54,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "blue_cup": {
+       "rot_deg": 1.47,
+       "anchor_shift_cm": 1.04,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 2.62,
+       "anchor_shift_cm": 0.38,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 26,
+     "dAUC": 0.0034000000000000696,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": 0.008900000000000019,
+     "dRPE_cm": 0.03479999999999994,
+     "base": {
+      "AUC": 0.9652,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.888,
+      "RPE_cm": 1.3039
+     },
+     "swap": {
+      "AUC": 0.9686,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.8969,
+      "RPE_cm": 1.3387
+     },
+     "per_obj_AUC_base": {
+      "plastic_dish_rack": 0.9937,
+      "white_pot": 0.9367
+     },
+     "per_obj_AUC_swap": {
+      "plastic_dish_rack": 0.9937,
+      "white_pot": 0.9434
+     },
+     "registration_base": {
+      "plastic_dish_rack": {
+       "rot_deg": 1.82,
+       "anchor_shift_cm": 0.57,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 1.77,
+       "anchor_shift_cm": 0.68,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "plastic_dish_rack": {
+       "rot_deg": 2.52,
+       "anchor_shift_cm": 0.28,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 1.77,
+       "anchor_shift_cm": 0.68,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 27,
+     "dAUC": 0.018100000000000005,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.1835000000000001,
+     "dRPE_cm": -0.2750999999999999,
+     "base": {
+      "AUC": 0.9611,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.7868,
+      "RPE_cm": 1.1844
+     },
+     "swap": {
+      "AUC": 0.9792,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.6033,
+      "RPE_cm": 0.9093
+     },
+     "per_obj_AUC_base": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9223
+     },
+     "per_obj_AUC_swap": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9583
+     },
+     "registration_base": {
+      "plastic_dish_rack": {
+       "rot_deg": 1.24,
+       "anchor_shift_cm": 0.55,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 1.57,
+       "anchor_shift_cm": 0.62,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "plastic_dish_rack": {
+       "rot_deg": 3.23,
+       "anchor_shift_cm": 0.2,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 1.57,
+       "anchor_shift_cm": 0.62,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 31,
+     "dAUC": 0.06119999999999992,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.17710000000000004,
+     "dRPE_cm": -0.17710000000000004,
+     "base": {
+      "AUC": 0.7999,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 2.0312,
+      "RPE_cm": 1.8826
+     },
+     "swap": {
+      "AUC": 0.8611,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.8541,
+      "RPE_cm": 1.7055
+     },
+     "per_obj_AUC_base": {
+      "mini_sweeper": 0.9119,
+      "plastic_dish_rack": 0.6879
+     },
+     "per_obj_AUC_swap": {
+      "mini_sweeper": 0.9119,
+      "plastic_dish_rack": 0.8103
+     },
+     "registration_base": {
+      "mini_sweeper": {
+       "rot_deg": 3.04,
+       "anchor_shift_cm": 0.43,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 1.56,
+       "anchor_shift_cm": 0.67,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "mini_sweeper": {
+       "rot_deg": 3.04,
+       "anchor_shift_cm": 0.43,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 2.1,
+       "anchor_shift_cm": 0.63,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    }
+   ]
+  },
+  "blue_cup": {
+   "twins": [
+    11,
+    12,
+    13,
+    21,
+    22
+   ],
+   "missing": [],
+   "adopted": true,
+   "checks": {
+    "mean_dAUC": true,
+    "min_dAUC": true,
+    "mean_dMPPE": true,
+    "mean_dRPE": true,
+    "complete": true
+   },
+   "mean_dAUC": 0.02405999999999999,
+   "min_dAUC": -0.0049000000000000155,
+   "max_dAUC": 0.05020000000000002,
+   "mean_dSP_SR": 0.0,
+   "min_dSP_SR": 0.0,
+   "max_dSP_SR": 0.0,
+   "mean_dMP_SR": 0.2,
+   "min_dMP_SR": 0.0,
+   "max_dMP_SR": 1.0,
+   "mean_dMPPE_cm": -0.24937999999999994,
+   "min_dMPPE_cm": -0.36409999999999987,
+   "max_dMPPE_cm": -0.07809999999999995,
+   "mean_dRPE_cm": 0.16250000000000003,
+   "min_dRPE_cm": -0.27790000000000004,
+   "max_dRPE_cm": 0.7472000000000001,
+   "per_twin": [
+    {
+     "ep": 11,
+     "dAUC": 0.0006999999999999229,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.1089,
+     "dRPE_cm": 0.21389999999999998,
+     "base": {
+      "AUC": 0.8978,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.6375,
+      "RPE_cm": 1.739
+     },
+     "swap": {
+      "AUC": 0.8985,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.5286,
+      "RPE_cm": 1.9529
+     },
+     "per_obj_AUC_base": {
+      "blue_cup": 0.8622,
+      "beige_cup": 0.9334
+     },
+     "per_obj_AUC_swap": {
+      "blue_cup": 0.8609,
+      "beige_cup": 0.9361
+     },
+     "registration_base": {
+      "blue_cup": {
+       "rot_deg": 1.86,
+       "anchor_shift_cm": 0.98,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "beige_cup": {
+       "rot_deg": 145.26,
+       "anchor_shift_cm": 0.59,
+       "axis": [
+        0.011,
+        0.03,
+        0.999
+       ],
+       "order": 360
+      }
+     },
+     "registration_swap": {
+      "blue_cup": {
+       "rot_deg": 5.79,
+       "anchor_shift_cm": 0.35,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "beige_cup": {
+       "rot_deg": 145.26,
+       "anchor_shift_cm": 0.59,
+       "axis": [
+        0.011,
+        0.03,
+        0.999
+       ],
+       "order": 360
+      }
+     }
+    },
+    {
+     "ep": 12,
+     "dAUC": 0.025000000000000022,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.3544999999999999,
+     "dRPE_cm": -0.27790000000000004,
+     "base": {
+      "AUC": 0.9672,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.9459,
+      "RPE_cm": 1.1389
+     },
+     "swap": {
+      "AUC": 0.9922,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.5914,
+      "RPE_cm": 0.861
+     },
+     "per_obj_AUC_base": {
+      "blue_cup": 0.9347,
+      "plastic_dish_rack": 0.9997
+     },
+     "per_obj_AUC_swap": {
+      "blue_cup": 0.9855,
+      "plastic_dish_rack": 0.999
+     },
+     "registration_base": {
+      "blue_cup": {
+       "rot_deg": 0.82,
+       "anchor_shift_cm": 0.91,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 1.32,
+       "anchor_shift_cm": 0.57,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "blue_cup": {
+       "rot_deg": 2.56,
+       "anchor_shift_cm": 0.23,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 1.32,
+       "anchor_shift_cm": 0.57,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 13,
+     "dAUC": -0.0049000000000000155,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.07809999999999995,
+     "dRPE_cm": 0.10850000000000004,
+     "base": {
+      "AUC": 0.9605,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.0632,
+      "RPE_cm": 1.3815
+     },
+     "swap": {
+      "AUC": 0.9556,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.9851,
+      "RPE_cm": 1.49
+     },
+     "per_obj_AUC_base": {
+      "blue_cup": 0.9329,
+      "plastic_dish_rack": 0.9882
+     },
+     "per_obj_AUC_swap": {
+      "blue_cup": 0.9112,
+      "plastic_dish_rack": 1.0
+     },
+     "registration_base": {
+      "blue_cup": {
+       "rot_deg": 1.47,
+       "anchor_shift_cm": 1.04,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 1.77,
+       "anchor_shift_cm": 0.54,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "blue_cup": {
+       "rot_deg": 2.76,
+       "anchor_shift_cm": 0.29,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 1.77,
+       "anchor_shift_cm": 0.54,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 21,
+     "dAUC": 0.05020000000000002,
+     "dSP_SR": 0.0,
+     "dMP_SR": 1.0,
+     "dMPPE_cm": -0.36409999999999987,
+     "dRPE_cm": 0.7472000000000001,
+     "base": {
+      "AUC": 0.8325,
+      "SP_SR": 1.0,
+      "MP_SR": 0.0,
+      "MPPE_cm": 2.1483,
+      "RPE_cm": 1.2549
+     },
+     "swap": {
+      "AUC": 0.8827,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.7842,
+      "RPE_cm": 2.0021
+     },
+     "per_obj_AUC_base": {
+      "blue_cup": 0.9815,
+      "water_pitcher": 0.6835
+     },
+     "per_obj_AUC_swap": {
+      "blue_cup": 0.9852,
+      "water_pitcher": 0.7802
+     },
+     "registration_base": {
+      "blue_cup": {
+       "rot_deg": 1.36,
+       "anchor_shift_cm": 1.05,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "water_pitcher": {
+       "rot_deg": 2.65,
+       "anchor_shift_cm": 0.65,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "blue_cup": {
+       "rot_deg": 146.9,
+       "anchor_shift_cm": 0.46,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "water_pitcher": {
+       "rot_deg": 2.65,
+       "anchor_shift_cm": 0.65,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    {
+     "ep": 22,
+     "dAUC": 0.04930000000000001,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.34129999999999994,
+     "dRPE_cm": 0.02080000000000015,
+     "base": {
+      "AUC": 0.871,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.8003,
+      "RPE_cm": 1.2222
+     },
+     "swap": {
+      "AUC": 0.9203,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.459,
+      "RPE_cm": 1.243
+     },
+     "per_obj_AUC_base": {
+      "blue_cup": 0.9924,
+      "water_pitcher": 0.7497
+     },
+     "per_obj_AUC_swap": {
+      "blue_cup": 0.9964,
+      "water_pitcher": 0.8442
+     },
+     "registration_base": {
+      "blue_cup": {
+       "rot_deg": 1.64,
+       "anchor_shift_cm": 1.01,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "water_pitcher": {
+       "rot_deg": 3.19,
+       "anchor_shift_cm": 0.66,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     },
+     "registration_swap": {
+      "blue_cup": {
+       "rot_deg": 2.46,
+       "anchor_shift_cm": 0.25,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "water_pitcher": {
+       "rot_deg": 3.19,
+       "anchor_shift_cm": 0.66,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    }
+   ]
+  }
+ },
+ "joint_c0": {
+  "note": "reported, not used to select",
+  "missing": [],
+  "mean_dAUC": 0.014813333333333326,
+  "min_dAUC": -0.02400000000000002,
+  "max_dAUC": 0.06119999999999992,
+  "mean_dSP_SR": 0.0,
+  "min_dSP_SR": 0.0,
+  "max_dSP_SR": 0.0,
+  "mean_dMP_SR": 0.06666666666666667,
+  "min_dMP_SR": 0.0,
+  "max_dMP_SR": 1.0,
+  "mean_dMPPE_cm": -0.12781333333333336,
+  "min_dMPPE_cm": -0.36409999999999987,
+  "max_dMPPE_cm": 0.15910000000000002,
+  "mean_dRPE_cm": -0.05842000000000006,
+  "min_dRPE_cm": -0.5711,
+  "max_dRPE_cm": 0.7472000000000001,
+  "per_twin": [
+   {
+    "ep": 0,
+    "dAUC": 0.0001000000000000445,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.18660000000000032,
+    "dRPE_cm": -0.3943000000000012,
+    "base": {
+     "AUC": 0.4962,
+     "SP_SR": 0.0,
+     "MP_SR": 0.0,
+     "MPPE_cm": 12.3477,
+     "RPE_cm": 23.2706
+    },
+    "swap": {
+     "AUC": 0.4963,
+     "SP_SR": 0.0,
+     "MP_SR": 0.0,
+     "MPPE_cm": 12.1611,
+     "RPE_cm": 22.8763
+    },
+    "per_obj_AUC_base": {
+     "white_pot": 0.9925,
+     "white_pot_lid": 0.0
+    },
+    "per_obj_AUC_swap": {
+     "white_pot": 0.9926,
+     "white_pot_lid": 0.0
+    },
+    "registration_base": {
+     "white_pot": {
+      "rot_deg": 1.69,
+      "anchor_shift_cm": 0.68,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "white_pot_lid": {
+      "rot_deg": 1.74,
+      "anchor_shift_cm": 0.71,
+      "axis": [
+       1.0,
+       -0.003,
+       0.005
+      ],
+      "order": 2
+     }
+    },
+    "registration_swap": {
+     "white_pot": {
+      "rot_deg": 0.94,
+      "anchor_shift_cm": 0.26,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "white_pot_lid": {
+      "rot_deg": 1.81,
+      "anchor_shift_cm": 0.4,
+      "axis": [
+       1.0,
+       -0.003,
+       0.005
+      ],
+      "order": 2
+     }
+    }
+   },
+   {
+    "ep": 2,
+    "dAUC": -0.0040000000000000036,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.006100000000000105,
+    "dRPE_cm": -0.5711,
+    "base": {
+     "AUC": 0.9823,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.7324,
+     "RPE_cm": 1.435
+    },
+    "swap": {
+     "AUC": 0.9783,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.7263,
+     "RPE_cm": 0.8639
+    },
+    "per_obj_AUC_base": {
+     "white_pot": 0.9923,
+     "white_pot_lid": 0.9723
+    },
+    "per_obj_AUC_swap": {
+     "white_pot": 0.9931,
+     "white_pot_lid": 0.9636
+    },
+    "registration_base": {
+     "white_pot": {
+      "rot_deg": 1.83,
+      "anchor_shift_cm": 0.63,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "white_pot_lid": {
+      "rot_deg": 1.05,
+      "anchor_shift_cm": 0.79,
+      "axis": [
+       1.0,
+       -0.003,
+       0.005
+      ],
+      "order": 2
+     }
+    },
+    "registration_swap": {
+     "white_pot": {
+      "rot_deg": 1.33,
+      "anchor_shift_cm": 0.25,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "white_pot_lid": {
+      "rot_deg": 1.45,
+      "anchor_shift_cm": 0.47,
+      "axis": [
+       1.0,
+       -0.003,
+       0.005
+      ],
+      "order": 2
+     }
+    }
+   },
+   {
+    "ep": 11,
+    "dAUC": 0.0006999999999999229,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.1089,
+    "dRPE_cm": 0.21389999999999998,
+    "base": {
+     "AUC": 0.8978,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 1.6375,
+     "RPE_cm": 1.739
+    },
+    "swap": {
+     "AUC": 0.8985,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 1.5286,
+     "RPE_cm": 1.9529
+    },
+    "per_obj_AUC_base": {
+     "blue_cup": 0.8622,
+     "beige_cup": 0.9334
+    },
+    "per_obj_AUC_swap": {
+     "blue_cup": 0.8609,
+     "beige_cup": 0.9361
+    },
+    "registration_base": {
+     "blue_cup": {
+      "rot_deg": 1.86,
+      "anchor_shift_cm": 0.98,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "beige_cup": {
+      "rot_deg": 145.26,
+      "anchor_shift_cm": 0.59,
+      "axis": [
+       0.011,
+       0.03,
+       0.999
+      ],
+      "order": 360
+     }
+    },
+    "registration_swap": {
+     "blue_cup": {
+      "rot_deg": 5.79,
+      "anchor_shift_cm": 0.35,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "beige_cup": {
+      "rot_deg": 145.26,
+      "anchor_shift_cm": 0.59,
+      "axis": [
+       0.011,
+       0.03,
+       0.999
+      ],
+      "order": 360
+     }
+    }
+   },
+   {
+    "ep": 12,
+    "dAUC": 0.02400000000000002,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.24519999999999997,
+    "dRPE_cm": -0.19140000000000001,
+    "base": {
+     "AUC": 0.9672,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.9459,
+     "RPE_cm": 1.1389
+    },
+    "swap": {
+     "AUC": 0.9912,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.7007,
+     "RPE_cm": 0.9475
+    },
+    "per_obj_AUC_base": {
+     "blue_cup": 0.9347,
+     "plastic_dish_rack": 0.9997
+    },
+    "per_obj_AUC_swap": {
+     "blue_cup": 0.9924,
+     "plastic_dish_rack": 0.99
+    },
+    "registration_base": {
+     "blue_cup": {
+      "rot_deg": 0.82,
+      "anchor_shift_cm": 0.91,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "plastic_dish_rack": {
+      "rot_deg": 1.32,
+      "anchor_shift_cm": 0.57,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "blue_cup": {
+      "rot_deg": 2.56,
+      "anchor_shift_cm": 0.23,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "plastic_dish_rack": {
+      "rot_deg": 3.04,
+      "anchor_shift_cm": 0.43,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 13,
+    "dAUC": -0.02400000000000002,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": 0.15910000000000002,
+    "dRPE_cm": 0.0726,
+    "base": {
+     "AUC": 0.9605,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 1.0632,
+     "RPE_cm": 1.3815
+    },
+    "swap": {
+     "AUC": 0.9365,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 1.2223,
+     "RPE_cm": 1.4541
+    },
+    "per_obj_AUC_base": {
+     "blue_cup": 0.9329,
+     "plastic_dish_rack": 0.9882
+    },
+    "per_obj_AUC_swap": {
+     "blue_cup": 0.9007,
+     "plastic_dish_rack": 0.9724
+    },
+    "registration_base": {
+     "blue_cup": {
+      "rot_deg": 1.47,
+      "anchor_shift_cm": 1.04,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "plastic_dish_rack": {
+      "rot_deg": 1.77,
+      "anchor_shift_cm": 0.54,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "blue_cup": {
+      "rot_deg": 2.76,
+      "anchor_shift_cm": 0.29,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "plastic_dish_rack": {
+      "rot_deg": 2.62,
+      "anchor_shift_cm": 0.38,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 21,
+    "dAUC": 0.05020000000000002,
+    "dSP_SR": 0.0,
+    "dMP_SR": 1.0,
+    "dMPPE_cm": -0.36409999999999987,
+    "dRPE_cm": 0.7472000000000001,
+    "base": {
+     "AUC": 0.8325,
+     "SP_SR": 1.0,
+     "MP_SR": 0.0,
+     "MPPE_cm": 2.1483,
+     "RPE_cm": 1.2549
+    },
+    "swap": {
+     "AUC": 0.8827,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 1.7842,
+     "RPE_cm": 2.0021
+    },
+    "per_obj_AUC_base": {
+     "blue_cup": 0.9815,
+     "water_pitcher": 0.6835
+    },
+    "per_obj_AUC_swap": {
+     "blue_cup": 0.9852,
+     "water_pitcher": 0.7802
+    },
+    "registration_base": {
+     "blue_cup": {
+      "rot_deg": 1.36,
+      "anchor_shift_cm": 1.05,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "water_pitcher": {
+      "rot_deg": 2.65,
+      "anchor_shift_cm": 0.65,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "blue_cup": {
+      "rot_deg": 146.9,
+      "anchor_shift_cm": 0.46,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "water_pitcher": {
+      "rot_deg": 2.65,
+      "anchor_shift_cm": 0.65,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 22,
+    "dAUC": 0.04930000000000001,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.34129999999999994,
+    "dRPE_cm": 0.02080000000000015,
+    "base": {
+     "AUC": 0.871,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 1.8003,
+     "RPE_cm": 1.2222
+    },
+    "swap": {
+     "AUC": 0.9203,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 1.459,
+     "RPE_cm": 1.243
+    },
+    "per_obj_AUC_base": {
+     "blue_cup": 0.9924,
+     "water_pitcher": 0.7497
+    },
+    "per_obj_AUC_swap": {
+     "blue_cup": 0.9964,
+     "water_pitcher": 0.8442
+    },
+    "registration_base": {
+     "blue_cup": {
+      "rot_deg": 1.64,
+      "anchor_shift_cm": 1.01,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "water_pitcher": {
+      "rot_deg": 3.19,
+      "anchor_shift_cm": 0.66,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "blue_cup": {
+      "rot_deg": 2.46,
+      "anchor_shift_cm": 0.25,
+      "axis": [
+       -0.026,
+       0.004,
+       1.0
+      ],
+      "order": 360
+     },
+     "water_pitcher": {
+      "rot_deg": 3.19,
+      "anchor_shift_cm": 0.66,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 26,
+    "dAUC": 0.012300000000000089,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.10660000000000003,
+    "dRPE_cm": -0.2522,
+    "base": {
+     "AUC": 0.9652,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.888,
+     "RPE_cm": 1.3039
+    },
+    "swap": {
+     "AUC": 0.9775,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.7814,
+     "RPE_cm": 1.0517
+    },
+    "per_obj_AUC_base": {
+     "plastic_dish_rack": 0.9937,
+     "white_pot": 0.9367
+    },
+    "per_obj_AUC_swap": {
+     "plastic_dish_rack": 0.9937,
+     "white_pot": 0.9612
+    },
+    "registration_base": {
+     "plastic_dish_rack": {
+      "rot_deg": 1.82,
+      "anchor_shift_cm": 0.57,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "white_pot": {
+      "rot_deg": 1.77,
+      "anchor_shift_cm": 0.68,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "plastic_dish_rack": {
+      "rot_deg": 2.52,
+      "anchor_shift_cm": 0.28,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "white_pot": {
+      "rot_deg": 0.84,
+      "anchor_shift_cm": 0.25,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 27,
+    "dAUC": 0.026800000000000046,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.25070000000000003,
+    "dRPE_cm": -0.3446999999999999,
+    "base": {
+     "AUC": 0.9611,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.7868,
+     "RPE_cm": 1.1844
+    },
+    "swap": {
+     "AUC": 0.9879,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.5361,
+     "RPE_cm": 0.8397
+    },
+    "per_obj_AUC_base": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9223
+    },
+    "per_obj_AUC_swap": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9759
+    },
+    "registration_base": {
+     "plastic_dish_rack": {
+      "rot_deg": 1.24,
+      "anchor_shift_cm": 0.55,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "white_pot": {
+      "rot_deg": 1.57,
+      "anchor_shift_cm": 0.62,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "plastic_dish_rack": {
+      "rot_deg": 3.23,
+      "anchor_shift_cm": 0.2,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "white_pot": {
+      "rot_deg": 0.99,
+      "anchor_shift_cm": 0.29,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 31,
+    "dAUC": 0.06119999999999992,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.17710000000000004,
+    "dRPE_cm": -0.17710000000000004,
+    "base": {
+     "AUC": 0.7999,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 2.0312,
+     "RPE_cm": 1.8826
+    },
+    "swap": {
+     "AUC": 0.8611,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 1.8541,
+     "RPE_cm": 1.7055
+    },
+    "per_obj_AUC_base": {
+     "mini_sweeper": 0.9119,
+     "plastic_dish_rack": 0.6879
+    },
+    "per_obj_AUC_swap": {
+     "mini_sweeper": 0.9119,
+     "plastic_dish_rack": 0.8103
+    },
+    "registration_base": {
+     "mini_sweeper": {
+      "rot_deg": 3.04,
+      "anchor_shift_cm": 0.43,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "plastic_dish_rack": {
+      "rot_deg": 1.56,
+      "anchor_shift_cm": 0.67,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "mini_sweeper": {
+      "rot_deg": 3.04,
+      "anchor_shift_cm": 0.43,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "plastic_dish_rack": {
+      "rot_deg": 2.1,
+      "anchor_shift_cm": 0.63,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 41,
+    "dAUC": -0.0017000000000000348,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.0027000000000000357,
+    "dRPE_cm": 0.0,
+    "base": {
+     "AUC": 0.991,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.6034,
+     "RPE_cm": 0.0
+    },
+    "swap": {
+     "AUC": 0.9893,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.6007,
+     "RPE_cm": 0.0
+    },
+    "per_obj_AUC_base": {
+     "white_pot": 0.991
+    },
+    "per_obj_AUC_swap": {
+     "white_pot": 0.9893
+    },
+    "registration_base": {
+     "white_pot": {
+      "rot_deg": 1.71,
+      "anchor_shift_cm": 0.7,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "white_pot": {
+      "rot_deg": 1.06,
+      "anchor_shift_cm": 0.27,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 42,
+    "dAUC": 0.0004999999999999449,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": 0.03520000000000001,
+    "dRPE_cm": 0.0,
+    "base": {
+     "AUC": 0.9915,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.5631,
+     "RPE_cm": 0.0
+    },
+    "swap": {
+     "AUC": 0.992,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.5983,
+     "RPE_cm": 0.0
+    },
+    "per_obj_AUC_base": {
+     "white_pot": 0.9915
+    },
+    "per_obj_AUC_swap": {
+     "white_pot": 0.992
+    },
+    "registration_base": {
+     "white_pot": {
+      "rot_deg": 1.66,
+      "anchor_shift_cm": 0.66,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "white_pot": {
+      "rot_deg": 0.81,
+      "anchor_shift_cm": 0.25,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 43,
+    "dAUC": 0.02959999999999996,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.29710000000000003,
+    "dRPE_cm": 0.0,
+    "base": {
+     "AUC": 0.9482,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 1.0438,
+     "RPE_cm": 0.0
+    },
+    "swap": {
+     "AUC": 0.9778,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.7467,
+     "RPE_cm": 0.0
+    },
+    "per_obj_AUC_base": {
+     "white_pot": 0.9482
+    },
+    "per_obj_AUC_swap": {
+     "white_pot": 0.9778
+    },
+    "registration_base": {
+     "white_pot": {
+      "rot_deg": 1.88,
+      "anchor_shift_cm": 0.7,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "white_pot": {
+      "rot_deg": 1.13,
+      "anchor_shift_cm": 0.3,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 44,
+    "dAUC": 0.0008000000000000229,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": -0.027900000000000036,
+    "dRPE_cm": 0.0,
+    "base": {
+     "AUC": 0.9967,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.4736,
+     "RPE_cm": 0.0
+    },
+    "swap": {
+     "AUC": 0.9975,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.4457,
+     "RPE_cm": 0.0
+    },
+    "per_obj_AUC_base": {
+     "white_pot": 0.9967
+    },
+    "per_obj_AUC_swap": {
+     "white_pot": 0.9975
+    },
+    "registration_base": {
+     "white_pot": {
+      "rot_deg": 1.8,
+      "anchor_shift_cm": 0.65,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "white_pot": {
+      "rot_deg": 1.12,
+      "anchor_shift_cm": 0.21,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   },
+   {
+    "ep": 45,
+    "dAUC": -0.0036000000000000476,
+    "dSP_SR": 0.0,
+    "dMP_SR": 0.0,
+    "dMPPE_cm": 0.0028000000000000247,
+    "dRPE_cm": 0.0,
+    "base": {
+     "AUC": 0.9795,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.7206,
+     "RPE_cm": 0.0
+    },
+    "swap": {
+     "AUC": 0.9759,
+     "SP_SR": 1.0,
+     "MP_SR": 1.0,
+     "MPPE_cm": 0.7234,
+     "RPE_cm": 0.0
+    },
+    "per_obj_AUC_base": {
+     "white_pot": 0.9795
+    },
+    "per_obj_AUC_swap": {
+     "white_pot": 0.9759
+    },
+    "registration_base": {
+     "white_pot": {
+      "rot_deg": 2.05,
+      "anchor_shift_cm": 0.71,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    "registration_swap": {
+     "white_pot": {
+      "rot_deg": 0.91,
+      "anchor_shift_cm": 0.25,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   }
+  ]
+ },
+ "c0_final": [
+  "white_pot",
+  "white_pot_lid",
+  "plastic_dish_rack",
+  "blue_cup"
+ ]
+}

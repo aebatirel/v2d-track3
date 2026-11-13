@@ -1,0 +1,7 @@
+[    3.2s] ep2: clean bundle (tier P1, run 20261031-b4ext4-b61e8aa) 3 s, objects ['white_pot', 'white_pot_lid']
+[  504.5s] frame table 487 s ({'white_pot': 171, 'white_pot_lid': 164} rows)
+[transformers] You are using a model of type `sam2_video` to instantiate a model of type `sam2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[  523.2s] SAM2 sam2.1-hiera-tiny loaded in 19 s
+[  590.9s] white_pot: views [('primary', 246), ('control', 24)] B.11 primary [True]
+[  674.9s] white_pot_lid: views [('primary', 132), ('control', 276)] B.11 primary [True]
+[  709.0s] B.11 on the clean ep2 bundle: PASS; jobs ['ep2_white_pot_primary_k246', 'ep2_white_pot_control_k24', 'ep2_white_pot_lid_primary_k132', 'ep2_white_pot_lid_control_k276']

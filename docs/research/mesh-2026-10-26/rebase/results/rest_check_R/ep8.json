@@ -1,0 +1,1 @@
+{"all_ok": false, "mm": 5.0, "deg": 2.0, "objects": {"beige_cup": {"until_frame": 33, "max_mm": 8.1, "max_deg": 5.5, "worst_frame": 19, "ok": false}, "white_pot": {"until_frame": 83, "max_mm": 38.6, "max_deg": 14.3, "worst_frame": 22, "ok": false}}}

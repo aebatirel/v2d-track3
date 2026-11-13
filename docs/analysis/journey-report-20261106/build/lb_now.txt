@@ -1,0 +1,25 @@
+Authentication required to call the Kaggle API.
+
+First, you will need a Kaggle account. You can sign up at
+  https://www.kaggle.com/account/login
+
+Recommended: log in with OAuth via a web-based authorization flow.
+No token to manage; credentials are cached locally for you.
+    kaggle auth login
+
+If you'd rather not use OAuth, generate an API token at
+  https://www.kaggle.com/settings/api  (click "Generate New Token" under "API")
+and supply it to the CLI in one of these ways:
+
+  Option A: Environment variable
+    export KAGGLE_API_TOKEN=xxxxxxxxxxxxxx  # token copied from the settings UI
+
+  Option B: API token file
+    Save the token to ~/.kaggle/access_token
+Next Page Token = CfDJ8FwkkMkekkBCtzoFDl4Vj7jAn68Zo1ObT1YjHPWo6FrtI3OWEAKZg9cHaxzg48HX1dy0xznGi79BI5NgIYw-HSM
+Next Page Token = CfDJ8FwkkMkekkBCtzoFDl4Vj7j4gkaKEykLMVBjMPY52g6XwyXybDdlRQ_nHOdmEGHmyvp3DlwVkK_MZiNylzoA9U8
+Next Page Token = CfDJ8FwkkMkekkBCtzoFDl4Vj7hyi31OJe9EHVRqoY5kChnarZbH1YWqKsTQiwi0a2vLxpe5s3XNw9QXutNw3eCiFYo
+Next Page Token = CfDJ8FwkkMkekkBCtzoFDl4Vj7jtFY_gNccXWepMlNC5iVkiJfsAnBAyvshrLc85pbtcPVVk8wJjhMHJfYEFCCzYAkw
+Next Page Token = CfDJ8FwkkMkekkBCtzoFDl4Vj7gKlOHVFCvhckEhKK5W7JKMy9XdQWrmA6whxkCxPEqBougiddyMHDOz87tBBqAoZkU
+Next Page Token = CfDJ8FwkkMkekkBCtzoFDl4Vj7gBv9hSgcStqzDMllzxnAskBzpQ1F2nwNKsWE53zBYQHLGsF3Nf9380mS-RKzjHwow
+{"auc": [[1, "richchentw", "0.98502"], [2, "DDD", "0.95341"], [3, "Zihao Guo", "0.93486"], [4, "rlwrld", "0.93367"], [5, "Barry Allen", "0.93288"], [6, "Purple", "0.93288"], [7, "egocube", "0.92816"], [8, "SRL", "0.92323"], [9, "Imitation.Tech", "0.88571"], [10, "DSAIL", "0.87834"], [11, "SoySauceChicken", "0.82797"], [12, "Gravity Aligned", "0.77970"], [13, "Samith Rajapasksha", "0.75762"], [14, "EIG", "0.73341"], [15, "SNU Robotics Lab 1", "0.69216"], [16, "ASAP_Team", "0.65156"], [17, "The Simsons", "0.65069"], [18, "SNU Robotics Lab 2", "0.64043"], [19, "BiggestMomo", "0.63037"], [20, "Kiarash_Ghasemzadeh8", "0.58420"]], "sp-sr": [[1, "richchentw", "1.00000"], [2, "Zihao Guo", "1.00000"], [3, "rlwrld", "1.00000"], [4, "DDD", "1.00000"], [5, "SRL", "1.00000"], [6, "Purple", "1.00000"], [7, "Samith Rajapasksha", "1.00000"], [8, "egocube", "1.00000"], [9, "Barry Allen", "1.00000"], [10, "EIG", "0.95000"], [11, "Gravity Aligned", "0.95000"], [12, "Imitation.Tech", "0.90000"], [13, "DSAIL", "0.90000"], [14, "SoySauceChicken", "0.85000"], [15, "The Simsons", "0.80000"], [16, "SNU Robotics Lab 1", "0.75000"], [17, "ASAP_Team", "0.75000"], [18, "SNU Robotics Lab 2", "0.75000"], [19, "BiggestMomo", "0.70000"], [20, "Kiarash_Ghasemzadeh8", "0.65000"]], "mp-sr": [[1, "richchentw", "1.00000"], [2, "DDD", "1.00000"], [3, "rlwrld", "1.00000"], [4, "Zihao Guo", "1.00000"], [5, "egocube", "1.00000"], [6, "Barry Allen", "1.00000"], [7, "SRL", "1.00000"], [8, "Purple", "1.00000"], [9, "DSAIL", "0.85000"], [10, "Imitation.Tech", "0.80000"], [11, "SoySauceChicken", "0.75000"], [12, "Gravity Aligned", "0.65000"], [13, "Samith Rajapasksha", "0.60000"], [14, "EIG", "0.60000"], [15, "SNU Robotics Lab 1", "0.55000"], [16, "ASAP_Team", "0.50000"], [17, "BiggestMomo", "0.35000"], [18, "zampino123", "0.30000"], [19, "Brendan Tidd", "0.25000"], [20, "Chivatam", "0.25000"]], "rpe": [[1, "richchentw", "0.62990"], [2, "DDD", "0.92530"], [3, "rlwrld", "1.05155"], [4, "eogcube", "1.23978"], [5, "Zihao Guo", "1.25942"], [6, "Purple", "1.39393"], [7, "Barry Allen", "1.42387"], [8, "SRL", "1.50325"], [9, "DSAIL", "1.98593"], [10, "Imitation.Tech", "2.21325"], [11, "SoySauceChicken", "2.33923"], [12, "Samith Rajapasksha", "2.39577"], [13, "EIG", "2.69385"], [14, "Gravity Aligned", "3.86589"], [15, "SNU Robotics Lab 1", "4.13670"], [16, "BiggestMomo", "4.41039"], [17, "ASAP_Team", "4.79378"], [18, "SNU Robotics Lab 2", "5.00076"], [19, "Chivatam", "5.74489"], [20, "The Simsons", "5.77741"]], "mppe": [[1, "richchentw", "0.60314"], [2, "DDD", "0.92823"], [3, "Zihao Guo", "1.16684"], [4, "rlwrld", "1.23376"], [5, "egocube", "1.24414"], [6, "Barry Allen", "1.25414"], [7, "Purple", "1.25414"], [8, "SRL", "1.38958"], [9, "SoySauceChicken", "1.64486"], [10, "Imitation.Tech", "1.79779"], [11, "DSAIL", "1.85895"], [12, "Samith Rajapasksha", "2.78967"], [13, "EIG", "2.95886"], [14, "Gravity Aligned", "3.28089"], [15, "The Simsons", "4.57123"], [16, "SNU Robotics Lab 1", "4.79235"], [17, "BiggestMomo", "5.69432"], [18, "zampino123", "5.85621"], [19, "Kiarash_Ghasemzadeh8", "6.06298"], [20, "venkata prasad setty", "6.59822"]], "cd-o": [[1, "SRL", "0.20694"], [2, "richchentw", "0.21238"], [3, "DDD", "0.23213"], [4, "egocube", "0.23574"], [5, "Imitation.Tech", "0.23856"], [6, "rlwrld", "0.24578"], [7, "Zihao Guo", "0.24669"], [8, "SoySauceChicken", "0.25339"], [9, "DSAIL", "0.26729"], [10, "Chivatam", "0.28219"], [11, "The Simsons", "0.28970"], [12, "BiggestMomo", "0.29408"], [13, "Barry Allen", "0.29540"], [14, "Purple", "0.29540"], [15, "ASAP_Team", "0.31160"], [16, "Tony", "0.31715"], [17, "SNU Robotics Lab 1", "0.31969"], [18, "Gravity Aligned", "0.32243"], [19, "Panav Raaj", "0.33816"], [20, "EIG", "0.34479"]]}

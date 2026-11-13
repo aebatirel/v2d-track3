@@ -1,0 +1,365 @@
+{
+ "ep": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "a_offset": 1,
+ "video_frames": 343,
+ "depth_frames": 343,
+ "partner_dilate_px_cam_a": 19,
+ "refine": "sam2.1-hiera-tiny",
+ "census": {
+  "white_pot|white_pot_lid": {
+   "frames": 172,
+   "contact": 79,
+   "separated": 93,
+   "sep3d": 98,
+   "overlap2d": 77
+  },
+  "white_pot_lid|white_pot": {
+   "frames": 172,
+   "contact": 79,
+   "separated": 93,
+   "sep3d": 98,
+   "overlap2d": 77
+  }
+ },
+ "targets": {
+  "white_pot": {
+   "obj": "white_pot",
+   "partners": [
+    "white_pot_lid"
+   ],
+   "mode": "separated",
+   "flags": [
+    "one_view",
+    "mv_skipped"
+   ],
+   "frames": 171,
+   "separated": 93,
+   "separated_in_table": 93,
+   "area_max": 155476,
+   "qualifying": 93,
+   "fail_counts": {
+    "hands": 46,
+    "area": 72,
+    "depth": 0
+   },
+   "pool_span_deg": 11.17,
+   "pool_p90_deg": 4.37,
+   "views": [
+    {
+     "obj": "white_pot",
+     "k": 246,
+     "j": 247,
+     "mode": "separated",
+     "dir": [
+      0.692671,
+      -0.082215,
+      0.716553
+     ],
+     "area": 150679,
+     "hand_share": 0.0,
+     "depth_share": 0.9036,
+     "partner_share": 0.0,
+     "rank": 0,
+     "min_angle_deg": null
+    }
+   ],
+   "n_views": 1,
+   "views_span_deg": 0.0,
+   "view_angles_deg": [
+    [
+     0.0
+    ]
+   ],
+   "view_results": [
+    {
+     "view": {
+      "k": 246,
+      "j": 247,
+      "mode": "separated",
+      "rank": 0,
+      "min_angle_deg": null,
+      "area": 150679,
+      "hand_share": 0.0,
+      "depth_share": 0.9036,
+      "partner_share": 0.0
+     },
+     "masks": {
+      "k": 246,
+      "j": 247,
+      "projected_area": 150679,
+      "refined": true,
+      "flags": [],
+      "pos": [
+       [
+        847,
+        1011
+       ],
+       [
+        868,
+        1478
+       ],
+       [
+        948,
+        783
+       ],
+       [
+        886,
+        1243
+       ],
+       [
+        710,
+        823
+       ]
+      ],
+      "neg": [
+       [
+        1397,
+        1004
+       ],
+       [
+        1548,
+        1093
+       ],
+       [
+        1237,
+        958
+       ],
+       [
+        1534,
+        934
+       ],
+       [
+        1409,
+        1156
+       ]
+      ],
+      "refine": {
+       "box": [
+        289,
+        573,
+        1385,
+        1520
+       ],
+       "ious": [
+        0.9546,
+        0.8366,
+        0.939
+       ],
+       "pick": 0,
+       "sam_scores": [
+        0.9242,
+        0.7401,
+        0.9472
+       ],
+       "n_pos": 5,
+       "n_neg": 1
+      },
+      "refined_area": 152603,
+      "refined_gain_partner": 0,
+      "refined_iou_projected": 0.9561,
+      "refined_gain_outside": 4369,
+      "fragments_dropped_px": 0,
+      "final_area": 148234
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 1489411,
+      "footprint_inside": 0,
+      "min_dist_px": 189.0,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 1489411,
+      "footprint_inside": 0,
+      "min_dist_px": 189.0,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": true,
+     "separated_ok": true,
+     "pass_": true
+    }
+   ],
+   "pass": true,
+   "montage": {
+    "path": "ep2_white_pot.png",
+    "bytes": 67609
+   }
+  },
+  "white_pot_lid": {
+   "obj": "white_pot_lid",
+   "partners": [
+    "white_pot"
+   ],
+   "mode": "separated",
+   "flags": [
+    "one_view",
+    "mv_skipped"
+   ],
+   "frames": 119,
+   "separated": 93,
+   "separated_in_table": 93,
+   "area_max": 85863,
+   "qualifying": 77,
+   "fail_counts": {
+    "hands": 29,
+    "area": 37,
+    "depth": 4
+   },
+   "pool_span_deg": 3.65,
+   "pool_p90_deg": 1.12,
+   "views": [
+    {
+     "obj": "white_pot_lid",
+     "k": 118,
+     "j": 119,
+     "mode": "separated",
+     "dir": [
+      0.835209,
+      -0.234291,
+      -0.497527
+     ],
+     "area": 85863,
+     "hand_share": 0.0,
+     "depth_share": 0.9351,
+     "partner_share": 0.0,
+     "rank": 0,
+     "min_angle_deg": null
+    }
+   ],
+   "n_views": 1,
+   "views_span_deg": 0.0,
+   "view_angles_deg": [
+    [
+     0.06
+    ]
+   ],
+   "view_results": [
+    {
+     "view": {
+      "k": 118,
+      "j": 119,
+      "mode": "separated",
+      "rank": 0,
+      "min_angle_deg": null,
+      "area": 85863,
+      "hand_share": 0.0,
+      "depth_share": 0.9351,
+      "partner_share": 0.0
+     },
+     "masks": {
+      "k": 118,
+      "j": 119,
+      "projected_area": 85863,
+      "refined": true,
+      "flags": [],
+      "pos": [
+       [
+        1448,
+        1019
+       ],
+       [
+        1603,
+        1105
+       ],
+       [
+        1284,
+        974
+       ],
+       [
+        1463,
+        1176
+       ],
+       [
+        1587,
+        947
+       ]
+      ],
+      "neg": [
+       [
+        894,
+        1022
+       ],
+       [
+        859,
+        1519
+       ],
+       [
+        957,
+        767
+       ],
+       [
+        921,
+        1274
+       ],
+       [
+        716,
+        860
+       ]
+      ],
+      "refine": {
+       "box": [
+        1183,
+        754,
+        1723,
+        1294
+       ],
+       "ious": [
+        0.9495,
+        0.3739,
+        0.9121
+       ],
+       "pick": 0,
+       "sam_scores": [
+        0.9552,
+        0.7433,
+        0.9641
+       ],
+       "n_pos": 5,
+       "n_neg": 0
+      },
+      "refined_area": 85220,
+      "refined_gain_partner": 0,
+      "refined_iou_projected": 0.9495,
+      "refined_gain_outside": 1895,
+      "fragments_dropped_px": 525,
+      "final_area": 82800
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 3173449,
+      "footprint_inside": 0,
+      "min_dist_px": 182.0,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 3173449,
+      "footprint_inside": 0,
+      "min_dist_px": 185.0,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": true,
+     "separated_ok": true,
+     "pass_": true
+    }
+   ],
+   "pass": true,
+   "montage": {
+    "path": "ep2_white_pot_lid.png",
+    "bytes": 73202
+   }
+  }
+ },
+ "sigma_mm": {
+  "white_pot": 1.3612,
+  "white_pot_lid": 0.7366
+ },
+ "pass": true
+}

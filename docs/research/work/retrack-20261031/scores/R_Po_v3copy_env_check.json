@@ -1,0 +1,71 @@
+{
+ "kind": "score",
+ "rule": "R = registered ADD-AUC vs mocap, lib convention (kit registration of the mesh the arm tracked with onto the public scan); RPE / MPPE (cm) on the same chain. ORACLE scoring (reads mocap), public episodes, after inference.",
+ "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po",
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "lib_ep_dir": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy",
+ "episodes": {
+  "2": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep2/poses_world_vo.npz",
+   "track_md5": "1ac3c32a5d6ad9c7c31896f05c5d0c23",
+   "frames": 343,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "AUC": 0.9866,
+   "per_obj_AUC": {
+    "white_pot": 0.9925,
+    "white_pot_lid": 0.9807
+   },
+   "RPE_cm": 1.4386,
+   "MPPE_cm": 0.709,
+   "meshes": {
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep2/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    },
+    "white_pot_lid": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep2/white_pot_lid.glb",
+     "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+     "source": "episode"
+    }
+   }
+  },
+  "13": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep13/poses_world_vo.npz",
+   "track_md5": "75eb0008b7ce02e47f97ee1fd21330f6",
+   "frames": 190,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "AUC": 0.9595,
+   "per_obj_AUC": {
+    "blue_cup": 0.9329,
+    "plastic_dish_rack": 0.9862
+   },
+   "RPE_cm": 1.3872,
+   "MPPE_cm": 1.0683,
+   "meshes": {
+    "blue_cup": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep13/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "episode"
+    },
+    "plastic_dish_rack": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep13/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "episode"
+    }
+   }
+  }
+ },
+ "mean": {
+  "AUC": 0.97305,
+  "RPE_cm": 1.4129,
+  "MPPE_cm": 0.88865,
+  "n": 2
+ }
+}

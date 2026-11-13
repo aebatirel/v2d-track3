@@ -1,0 +1,42 @@
+{
+ "episode": 26,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "frames": 158,
+ "meshes": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/posefix/mesh9a",
+ "registration": {
+  "plastic_dish_rack": {
+   "rot_deg": 2.52,
+   "anchor_shift_cm": 0.28,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "white_pot": {
+   "rot_deg": 0.84,
+   "anchor_shift_cm": 0.25,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.9775,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.7814,
+  "RPE_cm": 1.0517,
+  "per_obj_AUC": {
+   "plastic_dish_rack": 0.9937,
+   "white_pot": 0.9612
+  }
+ }
+}

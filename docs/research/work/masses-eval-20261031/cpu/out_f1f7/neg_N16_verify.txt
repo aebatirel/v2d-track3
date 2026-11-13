@@ -1,0 +1,2 @@
+ep1 INCOMPLETE missing ['ep1/s42'] main evaluation cut ['ep1/s42'] retrain seeds ['42'] :: s42 n 0 mean None sd None min None cut 0/1 :: candidate None :: loads s42 
+confirmation: {"RUNS_EXTRA": "", "PICK_EXTRA": "", "MASS_EPS": "", "EVAL_ONLY": "", "EPS_ONLY": "", "MA_ARGS": "", "ASSET_PIECES_EXTRA": ""}

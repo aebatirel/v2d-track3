@@ -1,0 +1,23 @@
+# dr_skip_test.py / dr_skip_compare.py, 2026-10-31T21:25:45Z, CPU, FlashCHORD at the evaluator pin (8c778f9), scratchpad fcvenv.
+# Copies: fc_imm0 = patch_flashchord.py only (FC_IMMEDIATE_FIRST_FRAME); fc_imm = patch_flashchord.py + patch_flashchord_dr.py (applied twice: idempotent).
+# Reference: ep12 S1 grasp-lock (our perception). W=16, FC_IMMEDIATE_FIRST_FRAME=0.5, EMB=sharpa_hands_mid.
+# R0 fc_imm0 | R1 fc_imm FC_DR_SKIP_IMMEDIATE=1 | R2 fc_imm FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42 | R3 = R2 + FC_DR_SKIP_IMMEDIATE=1 | R0e/R4e = R0/R3 with MODE=evalseq
+v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 16 worlds, seed 42; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)
+PASS copies: R0 immediate-patched without DR code; R1-R3 with both  [R1 dr_installed 0 (DR unset: hook imports nothing)]
+PASS reset 1: immediate starts occur (some, not all)  [6 of 16 worlds]
+PASS reset 1: upstream draws (frame, finger factor, steps_since_reset) identical in R0-R3
+PASS reset 1: DR unset + SKIP=1 is bit-identical to no DR code
+PASS reset 1: without SKIP every world is perturbed, immediate ones included  [min offset 0.934 mm]
+PASS reset 1: with SKIP the immediate worlds are bit-identical to no DR
+PASS reset 1: with SKIP the other worlds are perturbed (<= 1.5 mm)  [0.934-1.447 mm]
+PASS reset 1: unskipped worlds get the same noise with and without SKIP
+PASS reset 2: immediate starts occur (some, not all)  [11 of 16 worlds]
+PASS reset 2: upstream draws (frame, finger factor, steps_since_reset) identical in R0-R3
+PASS reset 2: DR unset + SKIP=1 is bit-identical to no DR code
+PASS reset 2: without SKIP every world is perturbed, immediate ones included  [min offset 0.876 mm]
+PASS reset 2: with SKIP the immediate worlds are bit-identical to no DR
+PASS reset 2: with SKIP the other worlds are perturbed (<= 1.5 mm)  [1.265-1.424 mm]
+PASS skip counter = immediate starts per world over both resets  [17 skipped]
+PASS perturbation counter = the other starts; no skips without the flag
+PASS evaluator's sequence with DR + SKIP in the process: bit-identical to no DR code
+ALL PASS

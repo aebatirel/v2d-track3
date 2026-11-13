@@ -1,0 +1,2 @@
+library_v3 centroid offset mm 8.8 axis angle deg 33.07
+library_v3x centroid offset mm 9.6 axis angle deg 26.16

@@ -1,0 +1,2330 @@
+{
+ "s0_sweep": {
+  "6": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 0,
+     "SIL": 0,
+     "GAP": 96,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 6.0,
+    "split": true,
+    "w_sim": 9.68,
+    "w_sub": 6.25,
+    "off": null,
+    "submitted": false,
+    "budget": {
+     "carve_cm3": 3.07,
+     "vol_share": 0.018,
+     "reach": 0.514,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 171.12,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 0,
+     "SIL": 0,
+     "GAP": 64,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 5.0,
+    "split": true,
+    "w_sim": 9.25,
+    "w_sub": 6.08,
+    "off": null,
+    "submitted": false,
+    "budget": {
+     "carve_cm3": 3.07,
+     "vol_share": 0.018,
+     "reach": 0.516,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 171.12,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   }
+  },
+  "10": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 15,
+     "SIL": 0,
+     "GAP": 19,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 5.0,
+    "split": true,
+    "w_sim": 11.75,
+    "w_sub": 6.26,
+    "off": null,
+    "submitted": false,
+    "budget": {
+     "carve_cm3": 7.68,
+     "vol_share": 0.0269,
+     "reach": 0.514,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 30,
+     "SIL": 0,
+     "GAP": 36,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 5.0,
+    "split": true,
+    "w_sim": 11.77,
+    "w_sub": 6.08,
+    "off": null,
+    "submitted": false,
+    "budget": {
+     "carve_cm3": 7.68,
+     "vol_share": 0.0269,
+     "reach": 0.516,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   }
+  },
+  "13": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 60,
+     "SIL": 0,
+     "GAP": 132,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 8.0,
+    "split": true,
+    "w_sim": 14.71,
+    "w_sub": 10.25,
+    "off": null,
+    "submitted": false,
+    "budget": {
+     "carve_cm3": 10.75,
+     "vol_share": 0.0314,
+     "reach": 0.514,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 342.24,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 32,
+     "SIL": 0,
+     "GAP": 74,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 7.0,
+    "split": true,
+    "w_sim": 14.71,
+    "w_sub": 10.08,
+    "off": null,
+    "submitted": false,
+    "budget": {
+     "carve_cm3": 10.08,
+     "vol_share": 0.0295,
+     "reach": 0.483,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 342.24,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   }
+  },
+  "18": {
+   "A": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "mix": {
+     "U": 90,
+     "SIL": 0,
+     "GAP": 0,
+     "O": 85,
+     "O_testable_solid": 0
+    },
+    "iw": 11.0,
+    "split": true,
+    "w_sim": 21.68,
+    "w_sub": 18.25,
+    "off": null,
+    "submitted": false,
+    "budget": null,
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   },
+   "B": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "mix": {
+     "U": 180,
+     "SIL": 0,
+     "GAP": 0,
+     "O": 150,
+     "O_testable_solid": 0
+    },
+    "iw": 13.0,
+    "split": true,
+    "w_sim": 21.22,
+    "w_sub": 18.08,
+    "off": null,
+    "submitted": false,
+    "budget": null,
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   }
+  },
+  "25": {
+   "A": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "mix": {
+     "U": 120,
+     "SIL": 0,
+     "GAP": 0,
+     "O": 96,
+     "O_testable_solid": 0
+    },
+    "iw": 15.0,
+    "split": true,
+    "w_sim": 26.46,
+    "w_sub": 22.24,
+    "off": null,
+    "submitted": false,
+    "budget": null,
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   },
+   "B": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "mix": {
+     "U": 240,
+     "SIL": 0,
+     "GAP": 0,
+     "O": 162,
+     "O_testable_solid": 0
+    },
+    "iw": 15.0,
+    "split": true,
+    "w_sim": 26.46,
+    "w_sub": 22.08,
+    "off": null,
+    "submitted": false,
+    "budget": null,
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    }
+   }
+  }
+ },
+ "n8": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_pair_fail",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 120,
+    "SIL": 96,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 26.46,
+   "w_sub": 22.24,
+   "off": null,
+   "submitted": false,
+   "budget": {
+    "carve_cm3": 43.62,
+    "vol_share": 0.0588,
+    "reach": 0.514,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 741.52,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": true,
+    "sil_share": 1.0,
+    "testable": 216
+   }
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 240,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 162,
+    "O_testable_solid": 162
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 26.46,
+   "w_sub": 22.08,
+   "off": null,
+   "submitted": false,
+   "budget": null,
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": false,
+    "sil_share": 0.0,
+    "testable": 402
+   }
+  }
+ },
+ "s1": {
+  "10": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 15,
+     "SIL": 19,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 11.75,
+    "w_sub": 6.26,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 7.68,
+     "vol_share": 0.0269,
+     "reach": 0.514,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 34
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 30,
+     "SIL": 36,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 11.77,
+    "w_sub": 6.08,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 7.68,
+     "vol_share": 0.0269,
+     "reach": 0.516,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 66
+    }
+   }
+  },
+  "13": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 60,
+     "SIL": 132,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 14.71,
+    "w_sub": 10.25,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 10.75,
+     "vol_share": 0.0314,
+     "reach": 0.514,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 342.24,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 192
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 32,
+     "SIL": 74,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 14.71,
+    "w_sub": 10.08,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 10.08,
+     "vol_share": 0.0295,
+     "reach": 0.483,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 342.24,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 106
+    }
+   }
+  },
+  "18": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 90,
+     "SIL": 85,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 21.68,
+    "w_sub": 18.25,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 23.04,
+     "vol_share": 0.0449,
+     "reach": 0.514,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 513.36,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 175
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [
+     "o_residual_push"
+    ],
+    "mix": {
+     "U": 180,
+     "SIL": 115,
+     "GAP": 0,
+     "O": 35,
+     "O_testable_solid": 35
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 21.22,
+    "w_sub": 18.08,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 21.46,
+     "vol_share": 0.0418,
+     "reach": 0.532,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 513.36,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 0.758,
+     "testable": 330
+    }
+   }
+  },
+  "25": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 120,
+     "SIL": 96,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 26.46,
+    "w_sub": 22.24,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 43.62,
+     "vol_share": 0.0588,
+     "reach": 0.514,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 741.52,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 216
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 240,
+     "SIL": 162,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 26.46,
+    "w_sub": 22.08,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 43.26,
+     "vol_share": 0.0583,
+     "reach": 0.516,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 741.52,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 402
+    }
+   }
+  }
+ },
+ "s1_t6": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 0,
+    "SIL": 64,
+    "GAP": 0,
+    "O": 32,
+    "O_testable_solid": 32
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 9.68,
+   "w_sub": 6.25,
+   "off": null,
+   "submitted": false,
+   "budget": null,
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": true,
+    "sil_share": 0.667,
+    "testable": 96
+   }
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_pair_fail",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 0,
+    "SIL": 64,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 9.25,
+   "w_sub": 6.08,
+   "off": null,
+   "submitted": false,
+   "budget": {
+    "carve_cm3": 3.07,
+    "vol_share": 0.018,
+    "reach": 0.516,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 171.12,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": true,
+    "sil_share": 1.0,
+    "testable": 64
+   }
+  }
+ },
+ "o1": {
+  "A": {
+   "decision": "OFFSET",
+   "tier": "T1",
+   "flags": [
+    "o_displaced",
+    "interlock_disagree"
+   ],
+   "mix": {
+    "U": 28,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 32,
+    "O_testable_solid": 32
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.75,
+   "w_sub": 6.26,
+   "off": {
+    "t_mm": [
+     12.0,
+     -0.0,
+     -0.0
+    ],
+    "t_norm_mm": 12.0,
+    "t_along_d_mm": 0.0,
+    "share_R_in_N_t": 1.0,
+    "share_N_t_in_R": 1.0,
+    "holds": true,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "o_displaced": 32,
+    "budget": {
+     "carve_cm3": 7.44,
+     "vol_share": 0.0261,
+     "reach": 0.498,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    }
+   },
+   "submitted": false,
+   "budget": {
+    "carve_cm3": 7.44,
+    "vol_share": 0.0261,
+    "reach": 0.498,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 285.2,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": false,
+    "sil_share": 0.0,
+    "testable": 60
+   }
+  },
+  "B": {
+   "decision": "CARVE",
+   "tier": "T2",
+   "flags": [],
+   "mix": {
+    "U": 30,
+    "SIL": 36,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.8,
+   "w_sub": 6.08,
+   "off": null,
+   "submitted": true,
+   "budget": {
+    "carve_cm3": 7.68,
+    "vol_share": 0.0269,
+    "reach": 0.516,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 285.2,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": true,
+    "sil_share": 1.0,
+    "testable": 66
+   }
+  }
+ },
+ "o2": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 17,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 19,
+    "O_testable_solid": 19
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.76,
+   "w_sub": 6.0,
+   "off": null,
+   "submitted": false,
+   "budget": null,
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": false,
+    "sil_share": 0.0,
+    "testable": 36
+   }
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 31,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 35,
+    "O_testable_solid": 35
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.77,
+   "w_sub": 6.0,
+   "off": null,
+   "submitted": false,
+   "budget": null,
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": false,
+    "sil_share": 0.0,
+    "testable": 66
+   }
+  }
+ },
+ "o2b": {
+  "summary": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [
+     "o_residual_push"
+    ],
+    "mix": {
+     "U": 17,
+     "SIL": 18,
+     "GAP": 0,
+     "O": 1,
+     "O_testable_solid": 1
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 11.76,
+    "w_sub": 6.0,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 7.68,
+     "vol_share": 0.0269,
+     "reach": 0.514,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 0.944,
+     "testable": 36
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 31,
+     "SIL": 35,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 11.77,
+    "w_sub": 6.0,
+    "off": null,
+    "submitted": true,
+    "budget": {
+     "carve_cm3": 7.68,
+     "vol_share": 0.0269,
+     "reach": 0.516,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 66
+    }
+   }
+  },
+  "y_extent_mm": {
+   "A_sim_solid": [
+    -1.5,
+    60.5
+   ],
+   "A_sub_solid": [
+    -1.5,
+    60.5
+   ],
+   "B_sim_solid": [
+    -61.5,
+    0.5
+   ],
+   "B_sub_solid": [
+    -61.5,
+    0.5
+   ]
+  }
+ },
+ "g": {
+  "A": {
+   "decision": "CARVE",
+   "tier": "T3",
+   "flags": [],
+   "mix": {
+    "U": 15,
+    "SIL": 19,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.75,
+   "w_sub": 6.26,
+   "off": null,
+   "submitted": true,
+   "budget": {
+    "carve_cm3": 7.68,
+    "vol_share": 0.0269,
+    "reach": 0.514,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 285.2,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": true,
+    "agree": true,
+    "centroid_mm": 1.5,
+    "axis_deg": 4.2,
+    "share_in_Ca": 1.0,
+    "share_Ca_in_R": 0.95,
+    "side_open": true,
+    "side_tested": true,
+    "voxels": 80,
+    "cm3": 5.12,
+    "R_cm3": 2.18
+   },
+   "b": {
+    "present": true,
+    "agree": true,
+    "sil_share": 1.0,
+    "testable": 34
+   },
+   "sources": {
+    "a": {
+     "present": true,
+     "agree": true,
+     "centroid_mm": 1.5,
+     "axis_deg": 4.2,
+     "share_in_Ca": 1.0,
+     "share_Ca_in_R": 0.95,
+     "side_open": true,
+     "side_tested": true,
+     "voxels": 80,
+     "cm3": 5.12,
+     "R_cm3": 2.18
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 34
+    },
+    "ab": null
+   }
+  },
+  "B": {
+   "decision": "CARVE",
+   "tier": "T1",
+   "flags": [
+    "interlock_disagree"
+   ],
+   "mix": {
+    "U": 30,
+    "SIL": 36,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.77,
+   "w_sub": 6.08,
+   "off": null,
+   "submitted": false,
+   "budget": {
+    "carve_cm3": 7.68,
+    "vol_share": 0.0269,
+    "reach": 0.516,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 285.2,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": true,
+    "agree": false,
+    "centroid_mm": 9.6,
+    "axis_deg": 3.7,
+    "share_in_Ca": 0.424,
+    "share_Ca_in_R": 0.368,
+    "side_open": true,
+    "side_tested": true,
+    "voxels": 76,
+    "cm3": 4.86,
+    "R_cm3": 4.22
+   },
+   "b": {
+    "present": true,
+    "agree": true,
+    "sil_share": 1.0,
+    "testable": 66
+   },
+   "sources": {
+    "a": {
+     "present": true,
+     "agree": false,
+     "centroid_mm": 9.6,
+     "axis_deg": 3.7,
+     "share_in_Ca": 0.424,
+     "share_Ca_in_R": 0.368,
+     "side_open": true,
+     "side_tested": true,
+     "voxels": 76,
+     "cm3": 4.86,
+     "R_cm3": 4.22
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 66
+    },
+    "ab": null
+   }
+  }
+ },
+ "g_B_known_miss": "T1",
+ "n6": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 15,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 19,
+    "O_testable_solid": 19
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.75,
+   "w_sub": 6.26,
+   "off": null,
+   "submitted": false,
+   "budget": null,
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": false,
+    "sil_share": 0.0,
+    "testable": 34
+   }
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 30,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 36,
+    "O_testable_solid": 36
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.77,
+   "w_sub": 6.08,
+   "off": null,
+   "submitted": false,
+   "budget": null,
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": true,
+    "agree": false,
+    "sil_share": 0.0,
+    "testable": 66
+   }
+  }
+ },
+ "w": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_partner_too_thick",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 15,
+    "SIL": 0,
+    "GAP": 19,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": 5.0,
+   "split": true,
+   "w_sim": 60.37,
+   "w_sub": 6.26,
+   "off": null,
+   "submitted": false,
+   "budget": {
+    "carve_cm3": 39.12,
+    "vol_share": 0.1372,
+    "reach": 0.531,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": false,
+    "base_cm3": 285.2,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   }
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_partner_too_thick",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 30,
+    "SIL": 0,
+    "GAP": 36,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": 5.0,
+   "split": true,
+   "w_sim": 60.58,
+   "w_sub": 6.08,
+   "off": null,
+   "submitted": false,
+   "budget": {
+    "carve_cm3": 39.6,
+    "vol_share": 0.1388,
+    "reach": 0.532,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": false,
+    "base_cm3": 285.2,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   }
+  }
+ },
+ "n2": {
+  "A": "PUSH",
+  "B": "PUSH"
+ },
+ "n3": {
+  "A": {
+   "decision": "PUSH",
+   "mix": {
+    "U": 0,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 40,
+    "O_testable_solid": 40
+   },
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ]
+  },
+  "B": {
+   "decision": "PUSH",
+   "mix": {
+    "U": 274,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 80,
+    "O_testable_solid": 0
+   },
+   "flags": [
+    "interlock_unresolved",
+    "interlock_push"
+   ]
+  }
+ },
+ "n4": {
+  "runs": {
+   "A": [
+    "TRANSIENT"
+   ],
+   "B": [
+    "TRANSIENT"
+   ]
+  },
+  "entered": {
+   "A": [
+    954,
+    954,
+    954
+   ],
+   "B": [
+    1200,
+    1200,
+    1200
+   ]
+  },
+  "decisions": {}
+ },
+ "n5": {
+  "A": "PUSH",
+  "B": "PUSH"
+ },
+ "n9": {
+  "A": {
+   "decision": "CARVE",
+   "tier": "T1",
+   "flags": [
+    "one_sided_region"
+   ],
+   "mix": {
+    "U": 2808,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": false,
+   "w_sim": 69.88,
+   "w_sub": 67.88,
+   "off": null,
+   "submitted": false,
+   "budget": {
+    "carve_cm3": 414.4,
+    "vol_share": 0.7281,
+    "reach": 0.87,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": false,
+    "ok": true,
+    "base_cm3": 569.16,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "a": {
+    "present": false
+   },
+   "b": {
+    "present": false
+   }
+  }
+ },
+ "n7": {
+  "slot_travel_mm": 0.5,
+  "through_travel_mm": 60.0
+ },
+ "blob_gen": {
+  "A": {
+   "decision": "CARVE",
+   "tier": "T1",
+   "submitted": false,
+   "a": {
+    "present": true,
+    "agree": false,
+    "centroid_mm": 31.8,
+    "axis_deg": 89.0,
+    "share_in_Ca": 1.0,
+    "share_Ca_in_R": 0.029,
+    "side_open": null,
+    "side_tested": false,
+    "voxels": 3596,
+    "cm3": 230.14,
+    "R_cm3": 2.18
+   }
+  },
+  "B": {
+   "decision": "CARVE",
+   "tier": "T1",
+   "submitted": false,
+   "a": {
+    "present": true,
+    "agree": false,
+    "centroid_mm": 31.1,
+    "axis_deg": 89.1,
+    "share_in_Ca": 1.0,
+    "share_Ca_in_R": 0.039,
+    "side_open": null,
+    "side_tested": false,
+    "voxels": 3596,
+    "cm3": 230.14,
+    "R_cm3": 4.22
+   }
+  }
+ },
+ "offset_budget": {
+  "A": {
+   "decision": "OFFSET",
+   "off": {
+    "t_mm": [
+     12.0,
+     -0.0,
+     -0.0
+    ],
+    "t_norm_mm": 12.0,
+    "t_along_d_mm": 1.0,
+    "share_R_in_N_t": 0.674,
+    "share_N_t_in_R": 1.0,
+    "holds": true,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "o_displaced": 32,
+    "budget": {
+     "carve_cm3": 9.77,
+     "vol_share": 0.0342,
+     "reach": 0.446,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    }
+   },
+   "budget": {
+    "carve_cm3": 9.77,
+    "vol_share": 0.0342,
+    "reach": 0.446,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 285.2,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   }
+  },
+  "B": {
+   "decision": "CARVE",
+   "off": null,
+   "budget": {
+    "carve_cm3": 7.68,
+    "vol_share": 0.0269,
+    "reach": 0.519,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 285.2,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   }
+  }
+ },
+ "contract_chain_tracks": {
+  "ok": true,
+  "pose": {
+   "status": "pass",
+   "mode": "chain tracks (frame-free: common rigid frame + per-object vertical shift)",
+   "residual_mm": {
+    "A": 0.0,
+    "B": 0.0
+   },
+   "vertical_shift_mm": {
+    "A": 2.5,
+    "B": -2.5
+   },
+   "rel_T_f_star_mm": {
+    "A<-B": 0.0,
+    "B<-A": 0.0
+   },
+   "rel_T_all_rows_report_only": {
+    "n": 180,
+    "median_mm": 0.0,
+    "p90_mm": 0.0,
+    "max_mm": 0.0
+   }
+  },
+  "refused": [],
+  "other_tracks": {
+   "ok": false,
+   "refused": [
+    "no independent reference pose for the fiducial check (F-I1.13 (1), F-I3.10): our tracks are not the chain's perception poses.npz (sha256 differs)"
+   ]
+  },
+  "recentred_3mm": {
+   "ok": false,
+   "pose": {
+    "status": "fail",
+    "mode": "chain tracks (frame-free: common rigid frame + per-object vertical shift)",
+    "residual_mm": {
+     "A": 1.487,
+     "B": 1.513
+    },
+    "vertical_shift_mm": {
+     "A": 2.23,
+     "B": -2.23
+    },
+    "rel_T_f_star_mm": {
+     "A<-B": 2.953,
+     "B<-A": 2.953
+    },
+    "rel_T_all_rows_report_only": {
+     "n": 180,
+     "median_mm": 2.953,
+     "p90_mm": 2.956,
+     "max_mm": 2.957
+    }
+   }
+  }
+ },
+ "contract_same_rule": {
+  "t10_sil": {
+   "tracks": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T2",
+     "mix": {
+      "U": 15,
+      "SIL": 19,
+      "GAP": 0,
+      "O": 0,
+      "O_testable_solid": 0
+     },
+     "w_sim": 11.75,
+     "iw": null
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T2",
+     "mix": {
+      "U": 30,
+      "SIL": 36,
+      "GAP": 0,
+      "O": 0,
+      "O_testable_solid": 0
+     },
+     "w_sim": 11.77,
+     "iw": null
+    }
+   },
+   "export": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T2",
+     "mix": {
+      "U": 60,
+      "SIL": 51,
+      "GAP": 0,
+      "O": 17,
+      "O_testable_solid": 17
+     },
+     "w_sim": 13.66,
+     "iw": null
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T2",
+     "mix": {
+      "U": 60,
+      "SIL": 51,
+      "GAP": 0,
+      "O": 17,
+      "O_testable_solid": 17
+     },
+     "w_sim": 13.12,
+     "iw": null
+    }
+   },
+   "refused": []
+  },
+  "t18_sil": {
+   "tracks": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T2",
+     "mix": {
+      "U": 90,
+      "SIL": 85,
+      "GAP": 0,
+      "O": 0,
+      "O_testable_solid": 0
+     },
+     "w_sim": 21.68,
+     "iw": null
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T2",
+     "mix": {
+      "U": 180,
+      "SIL": 115,
+      "GAP": 0,
+      "O": 35,
+      "O_testable_solid": 35
+     },
+     "w_sim": 21.22,
+     "iw": null
+    }
+   },
+   "export": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T2",
+     "mix": {
+      "U": 270,
+      "SIL": 95,
+      "GAP": 0,
+      "O": 19,
+      "O_testable_solid": 19
+     },
+     "w_sim": 21.17,
+     "iw": null
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T2",
+     "mix": {
+      "U": 270,
+      "SIL": 95,
+      "GAP": 0,
+      "O": 19,
+      "O_testable_solid": 19
+     },
+     "w_sim": 20.75,
+     "iw": null
+    }
+   },
+   "refused": []
+  }
+ },
+ "contract_same_rule_nosil": {
+  "t10_nosil": {
+   "tracks": {
+    "A": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "mix": {
+      "U": 15,
+      "SIL": 0,
+      "GAP": 19,
+      "O": 0,
+      "O_testable_solid": 0
+     },
+     "w_sim": 11.75,
+     "iw": 5.0
+    },
+    "B": {
+     "decision": "CARVE",
+     "tier": "T1",
+     "mix": {
+      "U": 30,
+      "SIL": 0,
+      "GAP": 36,
+      "O": 0,
+      "O_testable_solid": 0
+     },
+     "w_sim": 11.77,
+     "iw": 5.0
+    }
+   },
+   "export": {
+    "A": {
+     "decision": "PUSH",
+     "tier": "T0",
+     "mix": {
+      "U": 60,
+      "SIL": 0,
+      "GAP": 68,
+      "O": 0,
+      "O_testable_solid": 0
+     },
+     "w_sim": 13.66,
+     "iw": 7.0
+    },
+    "B": {
+     "decision": "PUSH",
+     "tier": "T0",
+     "mix": {
+      "U": 60,
+      "SIL": 0,
+      "GAP": 0,
+      "O": 68,
+      "O_testable_solid": 0
+     },
+     "w_sim": 13.12,
+     "iw": 9.0
+    }
+   },
+   "refused": []
+  }
+ },
+ "contract_validator": {
+  "their_format": {
+   "ok": true,
+   "refused": [],
+   "flags": [
+    "prov_reconstructed",
+    "ref_sim_assets_library"
+   ],
+   "pose": {
+    "status": "pass",
+    "mode": "independent reader",
+    "err_mm": {
+     "A": 0.0,
+     "B": 0.0
+    },
+    "rel_T_f_star_mm": {
+     "A<-B": 0.0,
+     "B<-A": 0.0
+    }
+   }
+  },
+  "no_independent_pose": {
+   "ok": false,
+   "refused": [
+    "no independent reference pose for the fiducial check (F-I1.13 (1), F-I3.10): no independent reference pose (no reader, no tracks)"
+   ]
+  },
+  "meshes_with_folder_prefix": {
+   "ok": true,
+   "refused": []
+  },
+  "no_frame_count": {
+   "ok": false,
+   "refused": [
+    "no frame count in the header (T or frames)"
+   ]
+  },
+  "frames_out_of_range": {
+   "ok": false,
+   "refused": [
+    "frames out of range [0, 100)"
+   ]
+  },
+  "pts_local_shift_15mm": {
+   "ok": false,
+   "refused": [
+    "containment {'target': 1.0, 'partner': 0.0, 'n': 10000} < 99 %"
+   ]
+  },
+  "fiducials_world_shift_3mm": {
+   "ok": false,
+   "refused": [
+    "fiducials_world off the independent reference pose at f_star by > 0.5 mm: {'mode': 'independent reader', 'err_mm': {'A': 5.196, 'B': 5.196}, 'rel_T_f_star_mm': {'A<-B': 0.0, 'B<-A': 0.0}}"
+   ]
+  },
+  "chain_mocap": {
+   "ok": false,
+   "refused": [
+    "reference chain input /x/mocap/ep24/poses.npz: path contains 'mocap'"
+   ]
+  },
+  "chain_dataset_parquet": {
+   "ok": false,
+   "refused": [
+    "reference chain input /data/hfds/track_3/public/data/chunk-000/episode_000024.parquet: a dataset episode parquet (ground-truth pose field)"
+   ]
+  },
+  "chain_library_poses": {
+   "ok": false,
+   "refused": [
+    "reference chain input /home/user/v2d-track3/meshes/library_v3/poses.npz: library_v1..v4 file that is not a simulator mesh asset (object-motion source?)"
+   ]
+  },
+  "chain_scan": {
+   "ok": false,
+   "refused": [
+    "reference chain input /x/scan/wooden_piece_1.ply: path contains '/scan'"
+   ]
+  },
+  "chain_without_poses": {
+   "ok": false,
+   "refused": [
+    "reference provenance names no perception poses.npz with a sha256"
+   ]
+  }
+ },
+ "iteration": {
+  "r1": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "budget": {
+     "carve_cm3": 8.22,
+     "vol_share": 0.0288,
+     "reach": 0.53,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    }
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "budget": {
+     "carve_cm3": 8.22,
+     "vol_share": 0.0288,
+     "reach": 0.532,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 0.0,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    }
+   }
+  },
+  "state1": {
+   "carved_cm3": {
+    "A": 8.216,
+    "B": 8.216
+   },
+   "n_check": {
+    "A<-B": 40,
+    "B<-A": 40
+   }
+  },
+  "accept_no_settle": {
+   "valid": [
+    true,
+    true
+   ],
+   "A1": false,
+   "A1_detail": {
+    "persistent_prev_cm3": 435.336,
+    "persistent_new_cm3": 403.48,
+    "gains": []
+   },
+   "A2": null,
+   "A3": null,
+   "A4": true,
+   "A4_detail": {
+    "cum_share": {
+     "A": 0.028807854137447405,
+     "B": 0.028807854137447405
+    },
+    "collider_kept": {
+     "A": 0.9672,
+     "B": 0.9672
+    },
+    "shapes": 2,
+    "topology": true
+   },
+   "accept": false
+  },
+  "accept_with_settle": {
+   "A1": false,
+   "A3": true,
+   "A4": true,
+   "accept": false
+  },
+  "accept_invalid": {
+   "valid": [
+    true,
+    false
+   ],
+   "A1": null,
+   "accept": false
+  },
+  "r2": {
+   "decisions": {
+    "A": "CARVE",
+    "B": "CARVE"
+   },
+   "budgets": [
+    {
+     "carve_cm3": 6.9,
+     "vol_share": 0.053,
+     "reach": 0.53,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 8.22,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    },
+    {
+     "carve_cm3": 8.04,
+     "vol_share": 0.057,
+     "reach": 0.5,
+     "topology": {
+      "before": [
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1
+      ]
+     },
+     "applies": true,
+     "ok": true,
+     "base_cm3": 285.2,
+     "carved_before_cm3": 8.22,
+     "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+    }
+   ]
+  }
+ },
+ "pieces_gate": {
+  "filled": {
+   "choice": "gmg",
+   "report": {
+    "gmg": {
+     "n": 1,
+     "max_cm3": 144.936,
+     "sum_cm3": 144.936,
+     "over_tol": 1
+    }
+   },
+   "do_not_use": "no piece set holds <= 0.3 cm3 of keep-out per hull (F-I1.8): gmg max 144.936 cm3"
+  },
+  "ours": {
+   "choice": "gmg",
+   "report": {
+    "gmg": {
+     "n": 1,
+     "max_cm3": 143.784,
+     "sum_cm3": 143.784,
+     "over_tol": 1
+    }
+   },
+   "do_not_use": "no piece set holds <= 0.3 cm3 of keep-out per hull (F-I1.8): gmg max 143.784 cm3"
+  }
+ }
+}

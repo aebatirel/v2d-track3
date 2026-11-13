@@ -1,0 +1,30 @@
+{
+ "failing": [
+  "S",
+  "P3",
+  "P4"
+ ],
+ "caps": {
+  "removed_cm3": 0.678,
+  "carve_in_body_cm3": 0.414,
+  "cumulative_share": 0.0997,
+  "vol0_cm3": 6.8,
+  "reach": null,
+  "topology": {
+   "default": [
+    14,
+    14
+   ],
+   "carved": [
+    14,
+    14
+   ]
+  },
+  "ok_vol": true,
+  "ok_reach": true,
+  "ok_topology": true,
+  "pass_": true,
+  "fail": null
+ },
+ "diagnostic": null
+}

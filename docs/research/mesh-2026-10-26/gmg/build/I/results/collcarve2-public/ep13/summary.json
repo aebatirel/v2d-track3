@@ -1,0 +1,893 @@
+{
+ "ep": 13,
+ "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df",
+ "fi5_rev": 2,
+ "sec": 4802.5,
+ "pieces": {
+  "blue_cup": {
+   "route": "4_voxels",
+   "n": 25,
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 1.7651
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 25,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "tried": [
+    {
+     "route": "2_lathe",
+     "why": "no_accepted_layout",
+     "profile": {
+      "runs": [
+       [
+        "wall",
+        -106.11,
+        -92.11
+       ],
+       [
+        "solid",
+        -92.11,
+        -86.11
+       ],
+       [
+        "wall",
+        -86.11,
+        86.21
+       ]
+      ]
+     },
+     "candidates": [
+      {
+       "n_s": 8,
+       "base": "b1",
+       "B_w": 2,
+       "n_r": 17,
+       "n_h": null,
+       "ring_cm3": 0.127,
+       "min_wall_mm": -51.519,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b2",
+       "B_w": 2,
+       "n_r": 25,
+       "n_h": null,
+       "ring_cm3": 1.767,
+       "min_wall_mm": -51.59,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b1",
+       "B_w": 3,
+       "n_r": 25,
+       "n_h": null,
+       "ring_cm3": 0.127,
+       "min_wall_mm": -56.348,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 12,
+       "base": "b1",
+       "B_w": 2,
+       "n_r": 25,
+       "n_h": null,
+       "ring_cm3": 0.123,
+       "min_wall_mm": -31.804,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b2",
+       "B_w": 3,
+       "n_r": 33,
+       "n_h": null,
+       "ring_cm3": 1.767,
+       "min_wall_mm": -56.525,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 16,
+       "base": "b1",
+       "B_w": 2,
+       "n_r": 33,
+       "n_h": null,
+       "ring_cm3": 0.129,
+       "min_wall_mm": -50.02,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b1",
+       "B_w": 4,
+       "n_r": 33,
+       "n_h": null,
+       "ring_cm3": 0.127,
+       "min_wall_mm": -74.117,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 12,
+       "base": "b2",
+       "B_w": 2,
+       "n_r": 37,
+       "n_h": null,
+       "ring_cm3": 1.812,
+       "min_wall_mm": -31.793,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 12,
+       "base": "b1",
+       "B_w": 3,
+       "n_r": 37,
+       "n_h": null,
+       "ring_cm3": 0.123,
+       "min_wall_mm": -36.87,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b2",
+       "B_w": 4,
+       "n_r": 41,
+       "n_h": null,
+       "ring_cm3": 1.767,
+       "min_wall_mm": -74.674,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b1",
+       "B_w": 5,
+       "n_r": 41,
+       "n_h": null,
+       "ring_cm3": 0.127,
+       "min_wall_mm": -74.117,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 20,
+       "base": "b1",
+       "B_w": 2,
+       "n_r": 41,
+       "n_h": null,
+       "ring_cm3": 0.126,
+       "min_wall_mm": -34.91,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 12,
+       "base": "b1",
+       "B_w": 4,
+       "n_r": 49,
+       "n_h": null,
+       "ring_cm3": 9.398,
+       "min_wall_mm": -49.719,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b1",
+       "B_w": 6,
+       "n_r": 49,
+       "n_h": null,
+       "ring_cm3": 2.691,
+       "min_wall_mm": -57.862,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 16,
+       "base": "b2",
+       "B_w": 2,
+       "n_r": 49,
+       "n_h": null,
+       "ring_cm3": 2.674,
+       "min_wall_mm": -50.087,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 12,
+       "base": "b2",
+       "B_w": 3,
+       "n_r": 49,
+       "n_h": null,
+       "ring_cm3": 1.812,
+       "min_wall_mm": -37.107,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b2",
+       "B_w": 5,
+       "n_r": 49,
+       "n_h": null,
+       "ring_cm3": 1.767,
+       "min_wall_mm": -74.674,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 16,
+       "base": "b1",
+       "B_w": 3,
+       "n_r": 49,
+       "n_h": null,
+       "ring_cm3": 0.129,
+       "min_wall_mm": -55.734,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 24,
+       "base": "b1",
+       "B_w": 2,
+       "n_r": 49,
+       "n_h": null,
+       "ring_cm3": 0.127,
+       "min_wall_mm": -46.499,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b2",
+       "B_w": 6,
+       "n_r": 57,
+       "n_h": null,
+       "ring_cm3": 4.331,
+       "min_wall_mm": -57.862,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b1",
+       "B_w": 7,
+       "n_r": 57,
+       "n_h": null,
+       "ring_cm3": 3.436,
+       "min_wall_mm": -57.862,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 12,
+       "base": "b1",
+       "B_w": 5,
+       "n_r": 61,
+       "n_h": null,
+       "ring_cm3": 12.67,
+       "min_wall_mm": -49.719,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 12,
+       "base": "b2",
+       "B_w": 4,
+       "n_r": 61,
+       "n_h": null,
+       "ring_cm3": 11.087,
+       "min_wall_mm": -50.239,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 20,
+       "base": "b2",
+       "B_w": 2,
+       "n_r": 61,
+       "n_h": null,
+       "ring_cm3": 2.737,
+       "min_wall_mm": -34.954,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 20,
+       "base": "b1",
+       "B_w": 3,
+       "n_r": 61,
+       "n_h": null,
+       "ring_cm3": 0.126,
+       "min_wall_mm": -39.472,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 16,
+       "base": "b1",
+       "B_w": 4,
+       "n_r": 65,
+       "n_h": null,
+       "ring_cm3": 10.848,
+       "min_wall_mm": -87.476,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b2",
+       "B_w": 7,
+       "n_r": 65,
+       "n_h": null,
+       "ring_cm3": 5.075,
+       "min_wall_mm": -57.862,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b1",
+       "B_w": 8,
+       "n_r": 65,
+       "n_h": null,
+       "ring_cm3": 4.611,
+       "min_wall_mm": -62.515,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 16,
+       "base": "b2",
+       "B_w": 3,
+       "n_r": 65,
+       "n_h": null,
+       "ring_cm3": 2.674,
+       "min_wall_mm": -55.934,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 32,
+       "base": "b1",
+       "B_w": 2,
+       "n_r": 65,
+       "n_h": null,
+       "ring_cm3": 0.179,
+       "min_wall_mm": -45.408,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 12,
+       "base": "b1",
+       "B_w": 6,
+       "n_r": 73,
+       "n_h": null,
+       "ring_cm3": 20.6,
+       "min_wall_mm": -49.624,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 12,
+       "base": "b2",
+       "B_w": 5,
+       "n_r": 73,
+       "n_h": null,
+       "ring_cm3": 14.359,
+       "min_wall_mm": -50.239,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b1",
+       "B_w": 9,
+       "n_r": 73,
+       "n_h": null,
+       "ring_cm3": 7.371,
+       "min_wall_mm": -62.515,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b2",
+       "B_w": 8,
+       "n_r": 73,
+       "n_h": null,
+       "ring_cm3": 6.251,
+       "min_wall_mm": -62.515,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 24,
+       "base": "b2",
+       "B_w": 2,
+       "n_r": 73,
+       "n_h": null,
+       "ring_cm3": 2.717,
+       "min_wall_mm": -46.557,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 24,
+       "base": "b1",
+       "B_w": 3,
+       "n_r": 73,
+       "n_h": null,
+       "ring_cm3": 1.105,
+       "min_wall_mm": -50.46,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 16,
+       "base": "b1",
+       "B_w": 5,
+       "n_r": 81,
+       "n_h": null,
+       "ring_cm3": 16.358,
+       "min_wall_mm": -87.476,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 16,
+       "base": "b2",
+       "B_w": 4,
+       "n_r": 81,
+       "n_h": null,
+       "ring_cm3": 13.393,
+       "min_wall_mm": -88.434,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 20,
+       "base": "b1",
+       "B_w": 4,
+       "n_r": 81,
+       "n_h": null,
+       "ring_cm3": 12.032,
+       "min_wall_mm": -65.646,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b2",
+       "B_w": 9,
+       "n_r": 81,
+       "n_h": null,
+       "ring_cm3": 9.01,
+       "min_wall_mm": -62.515,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 8,
+       "base": "b1",
+       "B_w": 10,
+       "n_r": 81,
+       "n_h": null,
+       "ring_cm3": 7.371,
+       "min_wall_mm": -62.515,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      },
+      {
+       "n_s": 20,
+       "base": "b2",
+       "B_w": 3,
+       "n_r": 81,
+       "n_h": null,
+       "ring_cm3": 2.737,
+       "min_wall_mm": -39.618,
+       "intrusion_construction_mm": null,
+       "share": null,
+       "fail": "min_wall",
+       "accepted": null
+      }
+     ]
+    },
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 34,
+      "stuck": 0,
+      "pieces": 75,
+      "max_excess_cm3": 0.272,
+      "cap": 82,
+      "coacd_pieces": 41,
+      "sec": 615.1
+     },
+     "gate": {
+      "pass_": false,
+      "n": 75,
+      "max_cm3": 0.704,
+      "sum_cm3": 9.408,
+      "over_tol": 7
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 25,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 25,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     }
+    }
+   ],
+   "share": 0.0485,
+   "share_detail": {
+    "share": 0.048,
+    "shell_cm3": 221.266,
+    "inside_cm3": 10.73,
+    "outside_cm3": 0.07,
+    "union_cm3": 10.8
+   },
+   "delivered": "default"
+  },
+  "plastic_dish_rack": {
+   "route": "4_voxels",
+   "n": 24,
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 12.8035
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 24,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "tried": [
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 41,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 0.736,
+      "cap": 82,
+      "coacd_pieces": 41,
+      "sec": 254.2
+     },
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 0.776,
+      "sum_cm3": 10.016,
+      "over_tol": 11
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 24,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 24,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     }
+    }
+   ],
+   "share": 0.0361,
+   "share_detail": {
+    "share": 0.036,
+    "shell_cm3": 285.33,
+    "inside_cm3": 10.297,
+    "outside_cm3": 0.719,
+    "union_cm3": 11.016
+   },
+   "delivered": "default"
+  }
+ },
+ "pairs": {
+  "blue_cup|plastic_dish_rack": {
+   "pair": "blue_cup|plastic_dish_rack",
+   "in_scope": false,
+   "why": "no persistent component passes the kept gates",
+   "scope": null,
+   "receiver": null,
+   "guest": null,
+   "deliver": "default",
+   "gates": {},
+   "overlap": {
+    "max_cm3": 0.0,
+    "median_cm3": 0.0
+   },
+   "components": [],
+   "floor": {
+    "receiver": "plastic_dish_rack",
+    "guest": "blue_cup",
+    "frames": [
+     181
+    ],
+    "flag": null,
+    "info": {
+     "static_stretches": 1,
+     "containment": {
+      "blue_cup": 0.0621,
+      "plastic_dish_rack": 0.459
+     },
+     "hands_off_segments": 1,
+     "segment_gaps": [
+      {
+       "frame": 181,
+       "gap_mm": 0.0,
+       "seg": [
+        179,
+        183
+       ]
+      }
+     ],
+     "flags": []
+    },
+    "rows": [
+     {
+      "frame": 181,
+      "precheck_fails": [
+       "a_table",
+       "c_overlap"
+      ],
+      "precheck": {
+       "a_table": {
+        "lowest_mm": -5.73,
+        "lowest_mesh_mm": -5.62,
+        "pass_": false
+       },
+       "b_support": {
+        "table_mm": 0.0,
+        "receiver_mm": 0.0,
+        "receiver_mesh_mm": 0.0,
+        "pass_": true
+       }
+      },
+      "c_overlap": {
+       "V_ov_cm3": 2.656,
+       "removed_share": 0.0103,
+       "topology": {
+        "default": [
+         13,
+         85
+        ],
+        "cut": [
+         17,
+         80
+        ]
+       },
+       "min_wall_left_mm": 0.05,
+       "pass_": false
+      },
+      "S": null,
+      "S_ref": null,
+      "floor_fail": null
+     }
+    ]
+   }
+  }
+ },
+ "floor": {
+  "pass_": false,
+  "fails": [
+   {
+    "kind": "share",
+    "obj": "blue_cup",
+    "share": 0.0485
+   },
+   {
+    "kind": "share",
+    "obj": "plastic_dish_rack",
+    "share": 0.0361
+   }
+  ]
+ },
+ "gate": {
+  "g1_pass": true,
+  "packed": {
+   "blue_cup": {
+    "pieces": 66,
+    "info": {
+     "version": "1.0.11",
+     "file": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/coacd1011/coacd/__init__.py",
+     "n": 66,
+     "threshold": 0.05,
+     "max_convex_hull": -1,
+     "preprocess_mode": "auto",
+     "source": "FlashCHORD fc_mesh.py:62-90 call on the visual mesh (PREREG F-I5.16 (1d))"
+    }
+   },
+   "plastic_dish_rack": {
+    "pieces": 24,
+    "info": {
+     "version": "1.0.11",
+     "file": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/coacd1011/coacd/__init__.py",
+     "n": 24,
+     "threshold": 0.05,
+     "max_convex_hull": -1,
+     "preprocess_mode": "auto",
+     "source": "FlashCHORD fc_mesh.py:62-90 call on the visual mesh (PREREG F-I5.16 (1d))"
+    }
+   }
+  },
+  "g2": {
+   "can_run": false,
+   "why": [
+    "no mujoco_warp in this environment",
+    "no warp in this environment",
+    "no newton in this environment",
+    "no FlashCHORD source tree (FLASHCHORD_DIR unset or missing)"
+   ],
+   "r0": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261101-fi5r2pub-88f49df/sim/public/ep13-fi5r2/r0",
+   "bound": 380,
+   "caveat": "zero-action rollouts; a grasping policy may add hand-object contacts",
+   "hand_off": "determined-wright (budget.py at 9c1d100, build/I/budget_py_usage.md)"
+  },
+  "flag": "contact_gate_pair_vacuous (no gated frame in any pair)"
+ },
+ "push_list": [
+  {
+   "pair": [
+    "plastic_dish_rack",
+    "blue_cup"
+   ],
+   "frame": 181,
+   "check": "a_table",
+   "kind": "pose_impossible (floor)"
+  }
+ ],
+ "do_not_use": {
+  "rule_fi5r2": "PREREG F-I5.15 (4d) floor / F-I5.16 (1g) contact gate",
+  "reasons_fi5r2": {
+   "floor": [
+    {
+     "kind": "share",
+     "obj": "blue_cup",
+     "share": 0.0485
+    },
+    {
+     "kind": "share",
+     "obj": "plastic_dish_rack",
+     "share": 0.0361
+    }
+   ]
+  }
+ },
+ "contact_gate_pending": true,
+ "manifest_do_not_use": null,
+ "delivered": null,
+ "report_do_not_use": {
+  "floor": [
+   {
+    "kind": "share",
+    "obj": "blue_cup",
+    "share": 0.0485
+   },
+   {
+    "kind": "share",
+    "obj": "plastic_dish_rack",
+    "share": 0.0361
+   }
+  ]
+ }
+}

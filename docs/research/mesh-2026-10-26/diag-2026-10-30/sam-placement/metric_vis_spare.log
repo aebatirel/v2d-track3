@@ -1,0 +1,3 @@
+2 items, 0 already done, 2 to run, workers 1
+[1/2] diag/sam3d_vis/wooden_piece_2_s42                            cdo_eval 0.321 add_eval 22.3 flips 4/6 amb 2.37 (40.3 s)
+[2/2] diag/sam3d_vis/blue_cup_s42                                  cdo_eval 0.300 add_eval 29.5 flips 0/7 amb 4.92 (67.0 s)

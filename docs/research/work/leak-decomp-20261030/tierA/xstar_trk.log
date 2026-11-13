@@ -1,0 +1,25 @@
+ep0: lib 0.9641  * 0.9612  trk 0.9959 (opt_from_geom; ls 0.9951)  white_pot 2.54 cm, white_pot_lid 3.30 cm  (58 s)
+ep2: lib 0.9823  * 0.9792  trk 0.9955 (opt_from_ls; ls 0.9941)  white_pot 1.75 cm, white_pot_lid 2.58 cm  (83 s)
+ep11: lib 0.8978  * 0.8739  trk 0.9302 (opt_from_geom; ls 0.8891)  blue_cup 1.69 cm, beige_cup 0.85 cm  (123 s)
+ep12: lib 0.9662  * 0.9738  trk 0.9991 (opt_from_geom; ls 0.9974)  blue_cup 0.54 cm, plastic_dish_rack 1.48 cm  (105 s)
+ep18: lib 0.9642  * 0.9680  trk 0.9971 (opt_from_ls; ls 0.9944)  mini_sweeper 0.87 cm, mini_dust_pan 0.43 cm  (64 s)
+ep13: lib 0.9605  * 0.9036  trk 0.9748 (opt_from_ls; ls 0.9722)  blue_cup 1.10 cm, plastic_dish_rack 1.35 cm  (108 s)
+ep23: lib 0.0414  * 0.0418  trk 0.0418 (geom; ls 0.0428)  wooden_piece_1 0.00 cm, wooden_piece_2 0.00 cm  (67 s)
+ep21: lib 0.8325  * 0.8313  trk 0.9945 (opt_from_ls; ls 0.9677)  blue_cup 0.52 cm, water_pitcher 1.87 cm  (112 s)
+ep24: lib 0.8117  * 0.8105  trk 0.9859 (opt_from_ls; ls 0.9659)  wooden_piece_1 1.81 cm, wooden_piece_2 1.32 cm  (37 s)
+ep22: lib 0.8710  * 0.8710  trk 0.9950 (opt_from_ls; ls 0.9940)  blue_cup 1.01 cm, water_pitcher 2.21 cm  (117 s)
+ep26: lib 0.9652  * 0.9565  trk 0.9947 (opt_from_ls; ls 0.9933)  plastic_dish_rack 1.23 cm, white_pot 0.96 cm  (39 s)
+ep39: lib 0.9602  * 0.9804  trk 0.9961 (opt_from_ls; ls 0.9931)  mini_dust_pan 0.41 cm  (13 s)
+ep27: lib 0.9611  * 0.9376  trk 0.9971 (opt_from_ls; ls 0.9964)  plastic_dish_rack 1.01 cm, white_pot 0.60 cm  (32 s)
+ep41: lib 0.9910  * 0.9881  trk 0.9941 (opt_from_ls; ls 0.9933)  white_pot 0.99 cm  (12 s)
+ep40: lib 0.9570  * 0.9740  trk 0.9853 (ls; ls 0.9853)  mini_dust_pan 1.07 cm  (12 s)
+ep42: lib 0.9915  * 0.9740  trk 0.9966 (opt_from_ls; ls 0.9912)  white_pot 1.11 cm  (11 s)
+ep43: lib 0.9482  * 0.9429  trk 0.9952 (opt_from_ls; ls 0.9881)  white_pot 0.91 cm  (14 s)
+ep31: lib 0.7999  * 0.8391  trk 0.9976 (opt_from_geom; ls 0.9579)  mini_sweeper 0.84 cm, plastic_dish_rack 1.41 cm  (51 s)
+ep44: lib 0.9967  * 0.9982  trk 0.9987 (opt_from_ls; ls 0.9982)  white_pot 1.77 cm  (10 s)
+ep45: lib 0.9795  * 0.9789  trk 0.9903 (opt_from_ls; ls 0.9897)  white_pot 0.74 cm  (12 s)
+wrote /home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json
+
+real	6m5.859s
+user	17m58.266s
+sys	0m8.941s

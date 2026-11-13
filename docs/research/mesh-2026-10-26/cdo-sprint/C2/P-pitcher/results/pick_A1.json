@@ -1,0 +1,253 @@
+{
+ "rule": "lowest obs_fidelity sum_mm on ALL (ep21+ep22 C0b pass-B points); ties: fewer faces, label",
+ "candidates": [
+  {
+   "label": "ep21_g1",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/ep21_water_pitcher_g1.glb",
+   "exists": true,
+   "faces": 156572,
+   "watertight": true,
+   "budget": {
+    "v": 2046,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "ep21_water_pitcher_g1.glb",
+     "obs_to_mesh_mm": 4.501,
+     "mesh_to_obs_mm": 2.947,
+     "sum_mm": 7.448
+    }
+   }
+  },
+  {
+   "label": "ep21_g0",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/ep21_water_pitcher_g0.glb",
+   "exists": true,
+   "faces": 16896,
+   "watertight": true,
+   "budget": {
+    "v": 2050,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "ep21_water_pitcher_g0.glb",
+     "obs_to_mesh_mm": 38.233,
+     "mesh_to_obs_mm": 9.183,
+     "sum_mm": 47.416
+    }
+   }
+  },
+  {
+   "label": "ep22_g1",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/ep22_water_pitcher_g1.glb",
+   "exists": true,
+   "faces": 151440,
+   "watertight": true,
+   "budget": {
+    "v": 2050,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "ep22_water_pitcher_g1.glb",
+     "obs_to_mesh_mm": 3.828,
+     "mesh_to_obs_mm": 2.795,
+     "sum_mm": 6.624
+    }
+   }
+  },
+  {
+   "label": "ep22_g0",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/ep22_water_pitcher_g0.glb",
+   "exists": true,
+   "faces": 17472,
+   "watertight": true,
+   "budget": {
+    "v": 2050,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "ep22_water_pitcher_g0.glb",
+     "obs_to_mesh_mm": 29.413,
+     "mesh_to_obs_mm": 8.262,
+     "sum_mm": 37.675
+    }
+   }
+  },
+  {
+   "label": "merged_g1",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/merged_water_pitcher_g1.glb",
+   "exists": true,
+   "faces": 168694,
+   "watertight": false,
+   "budget": {
+    "v": 2044,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "merged_water_pitcher_g1.glb",
+     "obs_to_mesh_mm": 4.776,
+     "mesh_to_obs_mm": 3.196,
+     "sum_mm": 7.972
+    }
+   },
+   "excluded": "not watertight"
+  },
+  {
+   "label": "merged_g0",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/merged_water_pitcher_g0.glb",
+   "exists": true,
+   "faces": 17280,
+   "watertight": true,
+   "budget": {
+    "v": 2050,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "merged_water_pitcher_g0.glb",
+     "obs_to_mesh_mm": 33.44,
+     "mesh_to_obs_mm": 8.107,
+     "sum_mm": 41.548
+    }
+   }
+  },
+  {
+   "label": "ep21r_g1",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/ep21r_water_pitcher_g1.glb",
+   "exists": true,
+   "faces": 114276,
+   "watertight": false,
+   "budget": {
+    "v": 2049,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "ep21r_water_pitcher_g1.glb",
+     "obs_to_mesh_mm": 3.267,
+     "mesh_to_obs_mm": 5.373,
+     "sum_mm": 8.64
+    }
+   },
+   "excluded": "not watertight"
+  },
+  {
+   "label": "ep21r_g0",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/ep21r_water_pitcher_g0.glb",
+   "exists": true,
+   "faces": 29760,
+   "watertight": true,
+   "budget": {
+    "v": 2050,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "ep21r_water_pitcher_g0.glb",
+     "obs_to_mesh_mm": 6.036,
+     "mesh_to_obs_mm": 8.622,
+     "sum_mm": 14.658
+    }
+   }
+  },
+  {
+   "label": "ep22r_g1",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/ep22r_water_pitcher_g1.glb",
+   "exists": true,
+   "faces": 110502,
+   "watertight": true,
+   "budget": {
+    "v": 2060,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "ep22r_water_pitcher_g1.glb",
+     "obs_to_mesh_mm": 3.431,
+     "mesh_to_obs_mm": 5.335,
+     "sum_mm": 8.766
+    }
+   }
+  },
+  {
+   "label": "ep22r_g0",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/ep22r_water_pitcher_g0.glb",
+   "exists": true,
+   "faces": 28992,
+   "watertight": true,
+   "budget": {
+    "v": 2050,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "ep22r_water_pitcher_g0.glb",
+     "obs_to_mesh_mm": 7.648,
+     "mesh_to_obs_mm": 9.109,
+     "sum_mm": 16.757
+    }
+   }
+  },
+  {
+   "label": "mergedr_g1",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/mergedr_water_pitcher_g1.glb",
+   "exists": true,
+   "faces": 125874,
+   "watertight": true,
+   "budget": {
+    "v": 2056,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "mergedr_water_pitcher_g1.glb",
+     "obs_to_mesh_mm": 3.599,
+     "mesh_to_obs_mm": 5.519,
+     "sum_mm": 9.118
+    }
+   }
+  },
+  {
+   "label": "mergedr_g0",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/mergedr_water_pitcher_g0.glb",
+   "exists": true,
+   "faces": 30528,
+   "watertight": true,
+   "budget": {
+    "v": 2050,
+    "f": 4096
+   },
+   "fid": {
+    "ALL": {
+     "mesh": "mergedr_water_pitcher_g0.glb",
+     "obs_to_mesh_mm": 6.361,
+     "mesh_to_obs_mm": 9.053,
+     "sum_mm": 15.414
+    }
+   }
+  }
+ ],
+ "pick": {
+  "label": "ep22_g1",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2/P/cand/ep22_water_pitcher_g1.glb",
+  "sum_mm": 6.624
+ },
+ "reported_only": [
+  {
+   "path": "/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb",
+   "fid": {
+    "ALL": {
+     "mesh": "water_pitcher.glb",
+     "obs_to_mesh_mm": 2.645,
+     "mesh_to_obs_mm": 3.521,
+     "sum_mm": 6.166
+    }
+   }
+  }
+ ]
+}

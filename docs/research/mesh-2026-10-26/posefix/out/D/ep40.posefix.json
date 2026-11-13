@@ -1,0 +1,133 @@
+{
+ "ep": 40,
+ "variant": "D",
+ "objects": [
+  "mini_dust_pan"
+ ],
+ "frames": 260,
+ "changed_frames": {
+  "mini_dust_pan": 0
+ },
+ "rest_frames": {
+  "mini_dust_pan": 49
+ },
+ "segments": [
+  {
+   "obj": "mini_dust_pan",
+   "start": 0,
+   "end": 17,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.07715,
+    0.085476,
+    0.583009
+   ],
+   "constraint_frames": 18,
+   "pair_frames": {},
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": 41.3,
+   "lowest_above_table_mm_median": -5.64,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 0.0,
+    "max_mm": 6.7,
+    "median_mm": 5.64
+   }
+  },
+  {
+   "obj": "mini_dust_pan",
+   "start": 229,
+   "end": 259,
+   "status": "clean",
+   "t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "t_norm_mm": 0.0,
+   "r_deg": 0.0,
+   "rotvec": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "centre": [
+    0.077696,
+    0.07325,
+    0.593798
+   ],
+   "constraint_frames": 31,
+   "pair_frames": {},
+   "before": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "hand_min_mm": 34.6,
+   "lowest_above_table_mm_median": -4.95,
+   "inherited_from": null,
+   "inherited_t_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "sweep0_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "sweep1_start": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after": {
+    "ok": 1.0,
+    "max_mm": 0.0,
+    "median_mm": 0.0
+   },
+   "after_all_rest_partners": {
+    "ok": 0.0,
+    "max_mm": 6.5,
+    "median_mm": 4.95
+   }
+  }
+ ],
+ "seconds": 0.8
+}

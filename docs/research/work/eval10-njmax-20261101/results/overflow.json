@@ -1,0 +1,720 @@
+{
+ "rule": "docs/research/work/eval10-njmax-20261101/PREREG.md section 4 (O = nefc + broadphase + narrowphase lines of the 1024 training train.log)",
+ "groups": {
+  "train": {
+   "glob": "/content/runs/perc2e10njs43_glock/ep10-s43/train.log",
+   "files": 1,
+   "lines_total": 175,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {
+    "/content/runs/perc2e10njs43_glock/ep10-s43/train.log": {
+     "lines_total": 175,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    }
+   }
+  },
+  "train_oom_retries": {
+   "glob": "/content/runs/perc2e10njs43_glock/ep10-s43.oom*/train.log",
+   "files": 0,
+   "lines_total": 0,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {}
+  },
+  "curve": {
+   "glob": "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_*/r*/eval.log,/content/results/perc2e10njs43_glock_public/ep10/curve/policy_*/eval.log",
+   "files": 21,
+   "lines_total": 1953,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_10002432/r1/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_10002432/r2/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_10002432/r3/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_20000768/r1/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_20000768/r2/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_20000768/r3/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_30003200/r1/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_30003200/r2/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_30003200/r3/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_40001536/r1/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_40001536/r2/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_40001536/r3/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_50003968/r1/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_50003968/r2/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_50003968/r3/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_60002304/r1/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_60002304/r2/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_60002304/r3/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_70004736/r1/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_70004736/r2/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/curve/policy_70004736/r3/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    }
+   }
+  },
+  "best": {
+   "glob": "/content/results/perc2e10njs43_glock_public/ep10/best/r*/eval.log",
+   "files": 10,
+   "lines_total": 930,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r1/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r10/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r2/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r3/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r4/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r5/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r6/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r7/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r8/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/perc2e10njs43_glock_public/ep10/best/r9/eval.log": {
+     "lines_total": 93,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    }
+   }
+  },
+  "conf1024": {
+   "glob": "/content/results/ev10_nj/conf1024/r*/eval.log",
+   "files": 10,
+   "lines_total": 920,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {
+    "/content/results/ev10_nj/conf1024/r1/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf1024/r10/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf1024/r2/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf1024/r3/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf1024/r4/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf1024/r5/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf1024/r6/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf1024/r7/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf1024/r8/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf1024/r9/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    }
+   }
+  },
+  "conf512": {
+   "glob": "/content/results/ev10_nj/conf512/r*/eval.log",
+   "files": 10,
+   "lines_total": 920,
+   "counts": {
+    "nefc": 0,
+    "broadphase": 0,
+    "narrowphase": 0,
+    "njmax_nnz": 0,
+    "ccd": 0,
+    "newton_contacts": 0
+   },
+   "dropped": 0,
+   "njmax_requested": {
+    "n": 0,
+    "median": null,
+    "p95": null,
+    "p99": null,
+    "max": null,
+    "min": null
+   },
+   "per_file": {
+    "/content/results/ev10_nj/conf512/r1/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf512/r10/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf512/r2/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf512/r3/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf512/r4/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf512/r5/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf512/r6/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf512/r7/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf512/r8/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    },
+    "/content/results/ev10_nj/conf512/r9/eval.log": {
+     "lines_total": 92,
+     "nefc": 0,
+     "broadphase": 0,
+     "narrowphase": 0,
+     "njmax_nnz": 0,
+     "ccd": 0,
+     "newton_contacts": 0,
+     "first_line": {},
+     "last_line": {}
+    }
+   }
+  }
+ }
+}

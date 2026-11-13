@@ -1,0 +1,28 @@
+ep0: refineP S2 lib 0.9672 Δlib g/r/t +0.0004/-0.1994/-0.0315 | Po S2 lib 0.9669 Δlib g/r/t +0.0003/-0.2004/-0.0334 (22.9 s)
+ep2: refineP S2 lib 0.9871 Δlib g/r/t -0.0013/-0.1484/-0.0158 | Po S2 lib 0.9911 Δlib g/r/t -0.0013/-0.1481/-0.0159 (23.1 s)
+ep18: refineP S2 lib 0.9680 Δlib g/r/t -0.0133/-0.2616/-0.1300 | Po S2 lib 0.9162 Δlib g/r/t -0.0123/-0.2538/-0.1238 (13.9 s)
+ep12: refineP S2 lib 0.9760 Δlib g/r/t -0.0017/-0.1896/-0.1657 | Po S2 lib 0.9763 Δlib g/r/t -0.0017/-0.1899/-0.1660 (606.2 s)
+ep13: refineP S2 lib 0.9648 Δlib g/r/t -0.0002/-0.0684/-0.0558 | Po S2 lib 0.9623 Δlib g/r/t -0.0001/-0.0685/-0.0557 (658.3 s)
+ep21: refineP S2 lib 0.8389 Δlib g/r/t -0.0002/-0.1205/-0.0111 | Po S2 lib 0.8389 Δlib g/r/t -0.0002/-0.1205/-0.0111 (671.2 s)
+ep23: refineP S2 lib 0.0425 Δlib g/r/t +0.0000/+0.0000/+0.0000 | Po S2 lib 0.0425 Δlib g/r/t +0.0000/+0.0000/+0.0000 (30.2 s)
+ep24: refineP S2 lib 0.8091 Δlib g/r/t +0.0002/-0.2240/-0.1040 | Po S2 lib 0.8091 Δlib g/r/t +0.0002/-0.2240/-0.1040 (29.6 s)
+ep26: refineP S2 lib 0.9678 Δlib g/r/t +0.0000/-0.1225/-0.0263 | Po S2 lib 0.9717 Δlib g/r/t +0.0000/-0.1216/-0.0253 (28.7 s)
+ep27: refineP S2 lib 0.9627 Δlib g/r/t +0.0000/-0.1549/-0.0684 | Po S2 lib 0.9634 Δlib g/r/t +0.0000/-0.1541/-0.0688 (31.7 s)
+ep31: refineP S2 lib 0.8550 Δlib g/r/t -0.0007/-0.0236/-0.0152 | Po S2 lib 0.8239 Δlib g/r/t -0.0006/-0.0223/-0.0122 (36.4 s)
+ep39: refineP S2 lib 0.9759 Δlib g/r/t -0.0537/-0.2921/-0.0821 | Po S2 lib 0.9759 Δlib g/r/t -0.0537/-0.2921/-0.0821 (22.8 s)
+ep40: refineP S2 lib 0.9584 Δlib g/r/t -0.0048/-0.3678/-0.1471 | Po S2 lib 0.9584 Δlib g/r/t -0.0048/-0.3678/-0.1471 (20.8 s)
+ep41: refineP S2 lib 0.9927 Δlib g/r/t -0.0080/-0.4083/-0.1066 | Po S2 lib 0.9927 Δlib g/r/t -0.0080/-0.4083/-0.1066 (16.9 s)
+ep42: refineP S2 lib 0.9993 Δlib g/r/t +0.0000/-0.7150/-0.4200 | Po S2 lib 0.9990 Δlib g/r/t +0.0000/-0.7162/-0.4209 (16.5 s)
+ep43: refineP S2 lib 0.9479 Δlib g/r/t +0.0000/-0.5367/-0.2121 | Po S2 lib 0.9486 Δlib g/r/t +0.0000/-0.5370/-0.2113 (19.9 s)
+ep44: refineP S2 lib 0.9970 Δlib g/r/t -0.0229/-0.5517/-0.2227 | Po S2 lib 0.9970 Δlib g/r/t -0.0229/-0.5517/-0.2227 (17.5 s)
+ep45: refineP S2 lib 0.9823 Δlib g/r/t -0.0185/-0.3995/-0.0478 | Po S2 lib 0.9823 Δlib g/r/t -0.0185/-0.3995/-0.0478 (13.6 s)
+ep11: refineP S2 lib 0.9012 Δlib g/r/t +0.0185/+0.0349/-0.0513 | Po S2 lib 0.9012 Δlib g/r/t +0.0185/+0.0349/-0.0513 (919.4 s)
+ep22: refineP S2 lib 0.8704 Δlib g/r/t -0.0230/-0.2165/-0.0415 | Po S2 lib 0.8704 Δlib g/r/t -0.0228/-0.2165/-0.0412 (459.3 s)
+refineP S10g proxy mean {'lib': -0.01812, 'star': -0.01875} min {'lib': -0.0537, 'star': -0.0568} {'lib': 39, 'star': 39} pass False
+refineP S10r proxy mean {'lib': -0.23628, 'star': -0.24283} min {'lib': -0.715, 'star': -0.6982} {'lib': 42, 'star': 42} pass False
+refineP S10t proxy mean {'lib': -0.0936, 'star': -0.09632} min {'lib': -0.42, 'star': -0.4499} {'lib': 42, 'star': 42} pass False
+Po S10g proxy mean {'lib': -0.01785, 'star': -0.0185} min {'lib': -0.0537, 'star': -0.0568} {'lib': 39, 'star': 39} pass False
+Po S10r proxy mean {'lib': -0.234, 'star': -0.24112} min {'lib': -0.7162, 'star': -0.6933} {'lib': 42, 'star': 42} pass False
+Po S10t proxy mean {'lib': -0.0913, 'star': -0.0954} min {'lib': -0.4209, 'star': -0.447} {'lib': 42, 'star': 42} pass False
+ADOPT S10g: False
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/heldpose/hp_scores.json

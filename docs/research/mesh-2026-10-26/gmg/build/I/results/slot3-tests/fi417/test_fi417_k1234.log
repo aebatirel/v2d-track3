@@ -1,0 +1,10 @@
+test_k1_t6_s1 (__main__.W10.test_k1_t6_s1) ... ok
+test_k2_t6_s2 (__main__.W10.test_k2_t6_s2) ... ok
+test_k3_t6_s3 (__main__.W10.test_k3_t6_s3) ... ok
+test_k4_t8_s1 (__main__.W10.test_k4_t8_s1) ... ok
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3b/tests/test_fi417_k1234.json
+
+----------------------------------------------------------------------
+Ran 4 tests in 664.723s
+
+OK

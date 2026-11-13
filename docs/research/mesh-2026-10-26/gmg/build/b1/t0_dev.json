@@ -1,0 +1,525 @@
+{
+ "rule": "PREREG A.1",
+ "objects": {
+  "beige_cup": {
+   "episodes": [
+    11
+   ],
+   "n": 95,
+   "median_m": 0.0015
+  },
+  "blue_cup": {
+   "episodes": [
+    11,
+    12,
+    13,
+    21,
+    22
+   ],
+   "n": 25411,
+   "median_m": 0.0016208232175316663
+  },
+  "mini_dust_pan": {
+   "episodes": [
+    18,
+    39,
+    40
+   ],
+   "n": 5382,
+   "median_m": 0.006869574629367112
+  },
+  "mini_sweeper": {
+   "episodes": [
+    18,
+    31
+   ],
+   "n": 73,
+   "median_m": 0.004167619143927625
+  },
+  "water_pitcher": {
+   "episodes": [
+    21
+   ],
+   "n": 991,
+   "median_m": 0.006211650631947637
+  },
+  "white_pot": {
+   "episodes": [
+    0,
+    2,
+    26,
+    27,
+    41,
+    42,
+    43,
+    44,
+    45
+   ],
+   "n": 292940,
+   "median_m": 0.004505908624371642
+  },
+  "wooden_piece_1": {
+   "episodes": [
+    24
+   ],
+   "n": 18748,
+   "median_m": 0.006901355795424487
+  },
+  "wooden_piece_2": {
+   "episodes": [
+    23
+   ],
+   "n": 7315,
+   "median_m": 0.009792555815184453
+  }
+ },
+ "objects_with_200": [
+  "blue_cup",
+  "mini_dust_pan",
+  "water_pitcher",
+  "white_pot",
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "fittable": true,
+ "t0_raw_m": 0.00535877962815964,
+ "clamp_m": [
+  0.0015,
+  0.008
+ ],
+ "t0_m": 0.00535877962815964,
+ "origin": "fitted:own",
+ "per_episode": [
+  {
+   "obj": "white_pot",
+   "ep": 0,
+   "n": 36,
+   "median_m": 0.0015,
+   "info": {
+    "points": 4237195,
+    "samples": 73982,
+    "measured": 36,
+    "median_mm": 1.5
+   },
+   "sec": 55.1
+  },
+  {
+   "obj": "white_pot_lid",
+   "ep": 0,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 2104,
+    "samples": 146,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 0.1
+  },
+  {
+   "obj": "white_pot",
+   "ep": 2,
+   "n": 57,
+   "median_m": 0.0023709868979548696,
+   "info": {
+    "points": 3185259,
+    "samples": 58434,
+    "measured": 57,
+    "median_mm": 2.371
+   },
+   "sec": 35.3
+  },
+  {
+   "obj": "white_pot_lid",
+   "ep": 2,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 1489411,
+    "samples": 18355,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 15.4
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 11,
+   "n": 178,
+   "median_m": 0.0015,
+   "info": {
+    "points": 259754,
+    "samples": 16594,
+    "measured": 178,
+    "median_mm": 1.5
+   },
+   "sec": 5.5
+  },
+  {
+   "obj": "beige_cup",
+   "ep": 11,
+   "n": 95,
+   "median_m": 0.0015,
+   "info": {
+    "points": 534088,
+    "samples": 18321,
+    "measured": 95,
+    "median_mm": 1.5
+   },
+   "sec": 7.5
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 12,
+   "n": 16028,
+   "median_m": 0.003574117462859255,
+   "info": {
+    "points": 1928583,
+    "samples": 37094,
+    "measured": 16028,
+    "median_mm": 3.5741
+   },
+   "sec": 21.1
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 12,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 2646862,
+    "samples": 53805,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 36.9
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 13,
+   "n": 8709,
+   "median_m": 0.004241116496311791,
+   "info": {
+    "points": 911180,
+    "samples": 26844,
+    "measured": 8709,
+    "median_mm": 4.2411
+   },
+   "sec": 15.2
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 13,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 2408530,
+    "samples": 55838,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 34.9
+  },
+  {
+   "obj": "mini_sweeper",
+   "ep": 18,
+   "n": 60,
+   "median_m": 0.00304030196835082,
+   "info": {
+    "points": 1103179,
+    "samples": 18389,
+    "measured": 60,
+    "median_mm": 3.0403
+   },
+   "sec": 16.6
+  },
+  {
+   "obj": "mini_dust_pan",
+   "ep": 18,
+   "n": 92,
+   "median_m": 0.008564713560039976,
+   "info": {
+    "points": 1600650,
+    "samples": 23794,
+    "measured": 92,
+    "median_mm": 8.5647
+   },
+   "sec": 20.4
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 21,
+   "n": 375,
+   "median_m": 0.0015,
+   "info": {
+    "points": 1200530,
+    "samples": 22305,
+    "measured": 375,
+    "median_mm": 1.5
+   },
+   "sec": 15.6
+  },
+  {
+   "obj": "water_pitcher",
+   "ep": 21,
+   "n": 991,
+   "median_m": 0.006211650631947637,
+   "info": {
+    "points": 4283292,
+    "samples": 109237,
+    "measured": 991,
+    "median_mm": 6.2117
+   },
+   "sec": 53.9
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 22,
+   "n": 121,
+   "median_m": 0.0016208232175316663,
+   "info": {
+    "points": 1111771,
+    "samples": 19620,
+    "measured": 121,
+    "median_mm": 1.6208
+   },
+   "sec": 14.4
+  },
+  {
+   "obj": "water_pitcher",
+   "ep": 22,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 5634891,
+    "samples": 96431,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 60.9
+  },
+  {
+   "obj": "wooden_piece_1",
+   "ep": 23,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 44501,
+    "samples": 2796,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 1.1
+  },
+  {
+   "obj": "wooden_piece_2",
+   "ep": 23,
+   "n": 7315,
+   "median_m": 0.009792555815184453,
+   "info": {
+    "points": 773003,
+    "samples": 25939,
+    "measured": 7315,
+    "median_mm": 9.7926
+   },
+   "sec": 14.7
+  },
+  {
+   "obj": "wooden_piece_1",
+   "ep": 24,
+   "n": 18748,
+   "median_m": 0.006901355795424487,
+   "info": {
+    "points": 2041722,
+    "samples": 26511,
+    "measured": 18748,
+    "median_mm": 6.9014
+   },
+   "sec": 24.4
+  },
+  {
+   "obj": "wooden_piece_2",
+   "ep": 24,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 1562018,
+    "samples": 12807,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 15.6
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 26,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 984187,
+    "samples": 53493,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 24.3
+  },
+  {
+   "obj": "white_pot",
+   "ep": 26,
+   "n": 43411,
+   "median_m": 0.004919745399861926,
+   "info": {
+    "points": 2466713,
+    "samples": 91185,
+    "measured": 43411,
+    "median_mm": 4.9197
+   },
+   "sec": 39.0
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 27,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 2906116,
+    "samples": 54192,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 42.2
+  },
+  {
+   "obj": "white_pot",
+   "ep": 27,
+   "n": 69440,
+   "median_m": 0.004505908624371642,
+   "info": {
+    "points": 5586505,
+    "samples": 132781,
+    "measured": 69440,
+    "median_mm": 4.5059
+   },
+   "sec": 81.5
+  },
+  {
+   "obj": "mini_sweeper",
+   "ep": 31,
+   "n": 13,
+   "median_m": 0.00529493631950443,
+   "info": {
+    "points": 500650,
+    "samples": 9178,
+    "measured": 13,
+    "median_mm": 5.2949
+   },
+   "sec": 7.2
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 31,
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 3887863,
+    "samples": 61157,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 56.2
+  },
+  {
+   "obj": "mini_dust_pan",
+   "ep": 39,
+   "n": 1304,
+   "median_m": 0.006869574629367112,
+   "info": {
+    "points": 1963984,
+    "samples": 22494,
+    "measured": 1304,
+    "median_mm": 6.8696
+   },
+   "sec": 20.7
+  },
+  {
+   "obj": "mini_dust_pan",
+   "ep": 40,
+   "n": 3986,
+   "median_m": 0.0030787281323763696,
+   "info": {
+    "points": 1444107,
+    "samples": 22590,
+    "measured": 3986,
+    "median_mm": 3.0787
+   },
+   "sec": 18.3
+  },
+  {
+   "obj": "white_pot",
+   "ep": 41,
+   "n": 35684,
+   "median_m": 0.0043953910904758284,
+   "info": {
+    "points": 4558655,
+    "samples": 122444,
+    "measured": 35684,
+    "median_mm": 4.3954
+   },
+   "sec": 66.3
+  },
+  {
+   "obj": "white_pot",
+   "ep": 42,
+   "n": 22263,
+   "median_m": 0.004537514974079893,
+   "info": {
+    "points": 3287128,
+    "samples": 102573,
+    "measured": 22263,
+    "median_mm": 4.5375
+   },
+   "sec": 53.1
+  },
+  {
+   "obj": "white_pot",
+   "ep": 43,
+   "n": 83100,
+   "median_m": 0.0049342257731812625,
+   "info": {
+    "points": 4448143,
+    "samples": 140902,
+    "measured": 83100,
+    "median_mm": 4.9342
+   },
+   "sec": 70.2
+  },
+  {
+   "obj": "white_pot",
+   "ep": 44,
+   "n": 10,
+   "median_m": 0.0015,
+   "info": {
+    "points": 3623195,
+    "samples": 67794,
+    "measured": 10,
+    "median_mm": 1.5
+   },
+   "sec": 42.9
+  },
+  {
+   "obj": "white_pot",
+   "ep": 45,
+   "n": 38939,
+   "median_m": 0.007543856119403213,
+   "info": {
+    "points": 3687127,
+    "samples": 133249,
+    "measured": 38939,
+    "median_mm": 7.5439
+   },
+   "sec": 61.4
+  }
+ ],
+ "statistic": "t0_dev (PREREG A.1 on obs_all; dev only)",
+ "run": "20261030-t0dev-e207a14"
+}

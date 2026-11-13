@@ -1,0 +1,26 @@
+{
+ "do_not_use": {
+  "blue_cup": "delivered pieces keep 0.036 < f_keep 0.5 of the SHELL volume",
+  "beige_cup": "delivered pieces keep 0.041 < f_keep 0.5 of the SHELL volume"
+ },
+ "rule": "PREREG F-I5.15 (4e) (applying the F-I5.15 (4c)(i) floor to the round-1 delivery)",
+ "post_hoc": true,
+ "labelled_post_hoc": "this rule was written after the round-1 results (verify_cc_0 N1, verify_cc_1 B2, diagnostic F-I5.14 (7))",
+ "shares": {
+  "blue_cup": {
+   "pieces": 17,
+   "delivered_cm3": 6.48,
+   "shell_cm3": 178.0,
+   "share": 0.036
+  },
+  "beige_cup": {
+   "pieces": 20,
+   "delivered_cm3": 6.91,
+   "shell_cm3": 170.4,
+   "share": 0.041
+  }
+ },
+ "also": "S fails at every round-1 S frame on faithful SHELL boxes (verify_cc_1 B2)",
+ "written_utc": "2026-10-31T23:19:18Z",
+ "episode": 11
+}

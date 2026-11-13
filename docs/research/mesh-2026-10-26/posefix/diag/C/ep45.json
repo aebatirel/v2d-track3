@@ -1,0 +1,42 @@
+{
+ "ep": 45,
+ "objects": [
+  "white_pot"
+ ],
+ "frames": 290,
+ "auc_before": 0.9759,
+ "add_cm_before": {
+  "white_pot": 0.78
+ },
+ "auc_after": 0.9759,
+ "add_cm_after": {
+  "white_pot": 0.8095
+ },
+ "auc_before_scorer": 0.9759,
+ "auc_after_scorer": 0.9759,
+ "direction": [
+  {
+   "obj": "white_pot",
+   "start": 265,
+   "end": 289,
+   "status": "shift_t",
+   "push_mm": 3.37,
+   "corr_mm": 4.58,
+   "corr_along_push_mm": -4.4,
+   "cos": -0.962,
+   "pos_err_mm_before": 4.67,
+   "pos_err_mm_after_same_alignment": 7.93,
+   "pos_err_mm_after_scored": 7.93
+  }
+ ],
+ "mesh_check": [],
+ "bottom_check": [
+  {
+   "obj": "white_pot",
+   "rest_frames_sampled": 21,
+   "ours_minus_scan_lowest_mm_median": -8.33,
+   "scan_lowest_z_mm_median": 601.47,
+   "scan_lowest_z_mm_iqr": 0.37
+  }
+ ]
+}

@@ -1,0 +1,149 @@
+{
+ "ok": true,
+ "failures": [],
+ "checks": {
+  "E1_three_hangs": {
+   "ok": true,
+   "detail": [
+    [
+     "MR/content/results/mass1s42_glock_public/ep2/best/r3",
+     false
+    ],
+    [
+     "MR/content/results/mass1s43_glock_public/ep2/curve/policy_9998336/r2",
+     false
+    ],
+    [
+     "MR/content/results/mass0s43_glock_public/ep12/best/r7",
+     true
+    ]
+   ]
+  },
+  "E2_exit_codes": {
+   "ok": true,
+   "detail": {
+    "n": 248,
+    "injected": {
+     "MR/content/results/mass1s42_glock_public/ep2/best/r3": "124",
+     "MR/content/results/mass1s43_glock_public/ep2/curve/policy_9998336/r2": "124",
+     "MR/content/results/mass0s43_glock_public/ep12/best/r7": "137"
+    },
+    "others": [
+     "0"
+    ]
+   }
+  },
+  "E3_timing": {
+   "ok": true,
+   "detail": {
+    "seconds_from_hang_start_to_exit": {
+     "MR/content/results/mass1s42_glock_public/ep2/best/r3": 3.8,
+     "MR/content/results/mass1s43_glock_public/ep2/curve/policy_9998336/r2": 3.8,
+     "MR/content/results/mass0s43_glock_public/ep12/best/r7": 63.8
+    }
+   }
+  },
+  "E4_verify_counts": {
+   "ok": true,
+   "detail": {
+    "ok": true,
+    "eval_timeouts": {
+     "ep2/mass1/s42": {
+      "best": 1,
+      "best_rc": {
+       "0": 9,
+       "124": 1
+      },
+      "curve": 0,
+      "curve_rc": {
+       "0": 21
+      }
+     },
+     "ep2/mass1/s43": {
+      "best": 0,
+      "best_rc": {
+       "0": 10
+      },
+      "curve": 1,
+      "curve_rc": {
+       "0": 20,
+       "124": 1
+      }
+     },
+     "ep12/mass0/s43": {
+      "best": 1,
+      "best_rc": {
+       "0": 9,
+       "137": 1
+      },
+      "curve": 0,
+      "curve_rc": {
+       "0": 21
+      }
+     }
+    }
+   }
+  },
+  "E5_reported_after_label": {
+   "ok": true,
+   "detail": {
+    "verdict_line": "ADOPT [EVAL TIMEOUTS in 3 cell(s): ep2/mass1/s42 best 1/10 curve 0/21, ep2/mass1/s43 best 0/10 curve 1/21, ep12/mass0/s43 best 1/10 curve 0/21; per arm best/curve mass0 1/0, mass1 1/1]: every episode delta >= +0.03 and no seed drop > 0.05 | ep2 mass0 0.7968 mass1 0.8435 delta 0.0468 per seed {'42': 0.0492, '43': 0.0443}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}",
+    "per_arm": {
+     "mass0": {
+      "best": 1,
+      "curve": 0
+     },
+     "mass1": {
+      "best": 1,
+      "curve": 1
+     }
+    }
+   }
+  },
+  "E6_cut_rollouts_unscored": {
+   "ok": true,
+   "detail": {
+    "scored_of_rollouts": {
+     "ep2/mass0/s42": [
+      10,
+      10
+     ],
+     "ep2/mass0/s43": [
+      10,
+      10
+     ],
+     "ep2/mass1/s42": [
+      9,
+      10
+     ],
+     "ep2/mass1/s43": [
+      10,
+      10
+     ],
+     "ep12/mass0/s42": [
+      10,
+      10
+     ],
+     "ep12/mass0/s43": [
+      9,
+      10
+     ],
+     "ep12/mass1/s42": [
+      10,
+      10
+     ],
+     "ep12/mass1/s43": [
+      10,
+      10
+     ]
+    },
+    "verdict": "ADOPT"
+   }
+  },
+  "E7_rc0_one_push": {
+   "ok": true,
+   "detail": "rc=0"
+  }
+ },
+ "note": "mock scores are synthetic; this tests the timeout plumbing only"
+}

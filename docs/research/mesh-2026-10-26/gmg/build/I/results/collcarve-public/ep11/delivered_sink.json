@@ -1,0 +1,45 @@
+{
+ "ep": 11,
+ "note": "post hoc, report only (PREREG F-I5.14 (7)); decides nothing",
+ "pairs": {
+  "blue_cup|beige_cup": {
+   "contact_frames": 51,
+   "static_runs": [
+    [
+     68,
+     100
+    ],
+    [
+     118,
+     134
+    ]
+   ],
+   "receiver": "beige_cup",
+   "guest": "blue_cup",
+   "containment": {
+    "blue_cup": 0.4028,
+    "beige_cup": 0.4926
+   },
+   "hands_off_static": 9,
+   "s_frames": [
+    126
+   ],
+   "flags": [],
+   "S": [
+    {
+     "frame": 126,
+     "default": {
+      "disp_mm": 80.472,
+      "dz_mm": 67.717,
+      "lateral_mm": 32.743,
+      "tilt_deg": 67.904,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": false
+     }
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,50 @@
+{
+ "ep0": {
+  "before": {
+   "AUC": 0.0783,
+   "per_obj_AUC": {
+    "white_pot": 0.1555,
+    "white_pot_lid": 0.001
+   }
+  },
+  "white_pot": {
+   "k": 64,
+   "jump_cm": 5.19,
+   "jump_deg": 176.1,
+   "pre_motion_cm": 3.23,
+   "pre_motion_deg": 20.8,
+   "fires": true
+  },
+  "after": {
+   "AUC": 0.9948,
+   "per_obj_AUC": {
+    "white_pot": 0.9938,
+    "white_pot_lid": 0.9958
+   }
+  }
+ },
+ "ep23": {
+  "before": {
+   "AUC": 0.0418,
+   "per_obj_AUC": {
+    "wooden_piece_1": 0.0837,
+    "wooden_piece_2": 0.0
+   }
+  },
+  "wooden_piece_1": {
+   "k": 155,
+   "jump_cm": 20.77,
+   "jump_deg": 68.6,
+   "pre_motion_cm": 16.38,
+   "pre_motion_deg": 39.0,
+   "fires": false
+  },
+  "after": {
+   "AUC": 0.0418,
+   "per_obj_AUC": {
+    "wooden_piece_1": 0.0837,
+    "wooden_piece_2": 0.0
+   }
+  }
+ }
+}

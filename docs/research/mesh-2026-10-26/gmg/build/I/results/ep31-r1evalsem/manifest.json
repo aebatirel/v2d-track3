@@ -1,0 +1,452 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T14:51:34Z",
+ "commit": "3eb3524e6a6859736d502de0e71e51254b215176",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/interlock.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/b5/test_score-r3-9823703.log",
+  "?? docs/research/mesh-2026-10-26/gmg/build/b5/test_select-r3-9823703.log"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13",
+  "--ep",
+  "31",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31",
+  "--cands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/cand/public/ep31",
+  "--pick",
+  "mini_sweeper=shell_t5p36,plastic_dish_rack=shell_t5p36",
+  "--video",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep31_a.mp4",
+  "--calib",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands31/hands.npz",
+  "--identity",
+  "eval",
+  "--no-physics",
+  "--tag",
+  "r1evalsem"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 7821,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-i2probe-626ce13",
+  "root": "runs-dev",
+  "pid": 26444,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T10:23:17Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands31/hands.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31/mini_sweeper.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31/plastic_dish_rack.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "calib",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "sha256": "23e2d9c46369292cdda492a777e7a6083815369a25d1af4bb82560669fde5d52",
+   "bytes": 16640,
+   "tier": "P0"
+  },
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz",
+   "sha256": "997c6807837fd2adc602a0ee32de79926d9a304e4d2d9c4c603a56c517314a22",
+   "bytes": 75062,
+   "tier": "P1",
+   "keys": [
+    "cam_T_mini_sweeper",
+    "cam_T_plastic_dish_rack",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands31/hands.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands31/hands.npz",
+   "sha256": "7978b4b9458a7215a679db3c8a33f6cfec9b59c2acab1d37c05d6dd176d3a2b5",
+   "bytes": 228282,
+   "tier": "DEV",
+   "keys": [
+    "Da",
+    "KR",
+    "Ka",
+    "T",
+    "T_rect_a",
+    "a_offset",
+    "chir_left",
+    "chir_right",
+    "depth_ok_left",
+    "depth_ok_right",
+    "dz_med_left",
+    "dz_med_right",
+    "filled_left",
+    "filled_right",
+    "joints_left",
+    "joints_right",
+    "measured_left",
+    "measured_right",
+    "n_depth_inl_left",
+    "n_depth_inl_right",
+    "n_depth_left",
+    "n_depth_right",
+    "n_det",
+    "rms_px_left",
+    "rms_px_right",
+    "scale_left",
+    "scale_right",
+    "score_left",
+    "score_right",
+    "size_a",
+    "swap",
+    "uv_a_left",
+    "uv_a_right",
+    "valid_left",
+    "valid_right",
+    "wl_mirror",
+    "world_frame"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31/episode.json",
+   "sha256": "9fd7095802cc76376c4c179075e55661efefb3c2015717af0623d3adcb2912d6",
+   "bytes": 47353,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31/mini_sweeper.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31/mini_sweeper.npz",
+   "sha256": "f445e899980b49f575dae096d2db7ca321c875d0799a343ecbf97e809c556706",
+   "bytes": 3725627,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31/plastic_dish_rack.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31/plastic_dish_rack.npz",
+   "sha256": "2ddae77bae5fdcf2d7feb903b798dba35ac17a2bcca27176e94a98562e4f3c4e",
+   "bytes": 45165339,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "sil.max_frames",
+   "value": 24,
+   "origin": "generic:numerical cap of qualifying frames used (evenly spaced)",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "il.engaged_min_vox",
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.gap_bridge_frames",
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.transient_frames",
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.static_speed_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.static_min_frames",
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.block_frames",
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.holdout_min_frames",
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.persist_min",
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.persist_share",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.sweep_min_m",
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.sweep_k_j",
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.max_rounds",
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "il.through_beyond_vox",
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:104"
+  },
+  {
+   "name": "pc.pts_per_frame",
+   "value": 1500,
+   "origin": "generic:numerical points per frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.gn_steps",
+   "value": 5,
+   "origin": "generic:F-I1.9 at most 5 Gauss-Newton steps",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.trim",
+   "value": 0.8,
+   "origin": "generic:numerical trimmed point-to-plane share",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.eig_floor",
+   "value": 0.01,
+   "origin": "generic:F-I1.9 directions below 1 % of the largest information eigenvalue excluded",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.drift_block",
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame drift blocks",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.off_sigma",
+   "value": 3.0,
+   "origin": "generic:F-I1.14 offset flags 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.off_mm",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 2 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.drift_mm",
+   "value": 0.005,
+   "origin": "generic:F-I1.14 5 mm block deviation",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.sample_cm3",
+   "value": 0.008,
+   "origin": "generic:one 2 mm partner sub-sample = 0.008 cm3",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.table_n",
+   "value": 20000,
+   "origin": "generic:F-I1.6 20,000 volume samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.table_share",
+   "value": 0.01,
+   "origin": "generic:F-I1.6 V4t > 1 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.table_frames",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 V4t persistence 25 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.rest_frames",
+   "value": 15,
+   "origin": "generic:F-I1.14 rest 15 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  },
+  {
+   "name": "pc.off_deg",
+   "value": 2.0,
+   "origin": "generic:F-I1.14 2 deg",
+   "where": "docs/research/mesh-2026-10-26/gmg/physcheck.py:48"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "interlock/public/ep31-r1evalsem/T_asm.npy",
+   "sha256": "11c4fc9cf63b3620239e5df734576666be9ed44ed173f3d5ec52ed8364c8e0f0",
+   "bytes": 256,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-r1evalsem/decisions.json",
+   "sha256": "1e97e6c3ed0a566669fc4994b5d1d9bb5f926255c65f35e23432320e8becda00",
+   "bytes": 1468,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-r1evalsem/physcheck.json",
+   "sha256": "1c19844c1947d4c52b0385a26098e65489c1a4544e31b61aa94a8c88046f4e1b",
+   "bytes": 14655,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-r1evalsem/push_list.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-r1evalsem/report.json",
+   "sha256": "1ea8551c512bf613e059e2b729e701f91e9d835859859ae0a388928a0a209439",
+   "bytes": 11152,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-r1evalsem/voxels_mini_sweeper.npz",
+   "sha256": "cc3c65ffd50a0473f5d43257a7de87c34cac6c7ee48cbda4e9c861296ae091c6",
+   "bytes": 1729,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep31-r1evalsem/voxels_plastic_dish_rack.npz",
+   "sha256": "3895bc2ec3f8ebc9779283dae9c1f888c64f4a369e044d9c9a34823c9788f7b4",
+   "bytes": 4719,
+   "how": "python"
+  }
+ ]
+}

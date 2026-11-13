@@ -1,0 +1,663 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-30T22:23:07Z",
+ "commit": "a7d4d64bed5702f9562da50989dac76b7520edd1",
+ "code_dirty": false,
+ "code_dirty_files": [],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/run_episode.py",
+  "--split",
+  "public",
+  "--ep",
+  "2",
+  "--mode",
+  "dev",
+  "--producers",
+  "cpu",
+  "--variant",
+  "deploy",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 4651,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261030-b1ep2-a7d4d64",
+  "root": "runs-dev",
+  "pid": 4651,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-30T22:14:24Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz": 2,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz": 5,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/bundle/public/ep2/white_pot.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/bundle/public/ep2/white_pot_lid.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot_lid.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "dev_frozen",
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/dev_constants.json",
+   "realpath": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/dev_constants.json",
+   "sha256": "6dd16e2e6a7d00354c61177c9be0b48053c840fa49ea6f9f88c81ff8367b0182",
+   "bytes": 8783,
+   "tier": "DEV"
+  },
+  {
+   "role": "roster",
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/roster_public.json",
+   "realpath": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/roster_public.json",
+   "sha256": "796639b037fc6b95f70a281678ae4e25afbc562dcdbb03d1126d6b3e6f8c8983",
+   "bytes": 10097,
+   "tier": "P0"
+  },
+  {
+   "role": "calib",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "sha256": "23e2d9c46369292cdda492a777e7a6083815369a25d1af4bb82560669fde5d52",
+   "bytes": 16640,
+   "tier": "P0"
+  },
+  {
+   "role": "det",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep2/det_f0.npz",
+   "sha256": "fd45153d963477966b94767975732a8dc6d7eee7fe3ca0ada1f37f462107bdea",
+   "bytes": 416345,
+   "tier": "P0",
+   "det_identity": "det file name 'det_f0.npz'",
+   "keys": [
+    "K",
+    "depth"
+   ],
+   "keys_not_read": [
+    "area",
+    "centroid",
+    "chosen",
+    "extent",
+    "extent_eroded",
+    "frame",
+    "gdino",
+    "image",
+    "intensity",
+    "mask_shape",
+    "masks",
+    "names",
+    "params",
+    "reprop",
+    "rules",
+    "score",
+    "score_rules",
+    "sim",
+    "template_extent",
+    "template_intensity",
+    "verify",
+    "verify_matched"
+   ],
+   "key_filter": "det"
+  },
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep2/poses.npz",
+   "sha256": "ae4c9b3c59ff927edbb814c91a905be769bf76c2f17fbca45daf6333ee28ba2c",
+   "bytes": 88616,
+   "tier": "P1",
+   "keys": [
+    "cam_T_white_pot",
+    "cam_T_white_pot_lid",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/bundle/public/ep2/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/bundle/public/ep2/episode.json",
+   "sha256": "90b5015ed015eec32f8448bd0c298c377827e90c3c1590c31f18435f177229bb",
+   "bytes": 20875,
+   "tier": "DEV"
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/bundle/public/ep2/white_pot.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/bundle/public/ep2/white_pot.npz",
+   "sha256": "238c199c34b0e3ec596d33a059f9c7d7c3ca53eb3721c22533d8eeed78e2de9e",
+   "bytes": 35023170,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/bundle/public/ep2/white_pot_lid.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/bundle/public/ep2/white_pot_lid.npz",
+   "sha256": "63eb8718bf29f971747bae3d632f7fa35529c8cd629402762fb5134e060089c0",
+   "bytes": 16725096,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "obs_all",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot.npz",
+   "sha256": "c7880faf2e781abec956cd42930534c4e7d1be6ee9dc200a1b588d5533864263",
+   "bytes": 35034728,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "pts",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "obs_all",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot_lid.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep2_white_pot_lid.npz",
+   "sha256": "d608aeb9e30357d3abe4c25e5154cd4b636468bd212ee5af5eab45fc7ec82881",
+   "bytes": 16719096,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "pts",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "t0_m",
+   "value": 0.00535877962815964,
+   "origin": "fitted:own t0_dev (PREREG A.1 statistic on obs_all)",
+   "where": "docs/research/mesh-2026-10-26/gmg/run_episode.py:50"
+  },
+  {
+   "name": "vote_voxel_m",
+   "value": 0.004,
+   "origin": "generic:PREREG A.6 vote voxel 4 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:241"
+  },
+  {
+   "name": "observed_min_hits",
+   "value": 3,
+   "origin": "generic:PREREG A.6 keep / OBSERVED (obs_points.py default)",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:57"
+  },
+  {
+   "name": "observed_min_ratio",
+   "value": 0.5,
+   "origin": "generic:PREREG A.6 keep / OBSERVED",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:58"
+  },
+  {
+   "name": "free_min_count",
+   "value": 3,
+   "origin": "generic:PREREG A.6 FREE",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:59"
+  },
+  {
+   "name": "free_max_ratio",
+   "value": 0.2,
+   "origin": "generic:PREREG A.6 FREE",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:60"
+  },
+  {
+   "name": "extraction_stride",
+   "value": 2,
+   "origin": "generic:SPEC section 7 M2 stride 2",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:262"
+  },
+  {
+   "name": "table_band_m",
+   "value": 0.008,
+   "origin": "generic:PREREG A.6 crop / SPEC M2 table band 8 mm (obs_points.py)",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:263"
+  },
+  {
+   "name": "contact_frame_gap3d_m",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 contact frame, > 10 sigma of depth noise and 2.5 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:32"
+  },
+  {
+   "name": "contact_frame_gap2d_px",
+   "value": 10,
+   "origin": "generic:PREREG A.6 contact frame, 10 px ~ 10 mm at 0.5-0.6 m",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:34"
+  },
+  {
+   "name": "separated_gap3d_m",
+   "value": 0.02,
+   "origin": "generic:PREREG A.6 separated frame, twice the contact gap",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:36"
+  },
+  {
+   "name": "separated_gap2d_px",
+   "value": 16,
+   "origin": "generic:PREREG A.6 separated frame, two 8-px cells",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:37"
+  },
+  {
+   "name": "sigma_clamp_lo_m",
+   "value": 0.0005,
+   "origin": "sensor:PREREG A.6 sigma clamp",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:140"
+  },
+  {
+   "name": "sigma_clamp_hi_m",
+   "value": 0.003,
+   "origin": "sensor:PREREG A.6 sigma clamp",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:141"
+  },
+  {
+   "name": "sigma_odd_sample_n",
+   "value": 50000,
+   "origin": "generic:numerical estimate of the A.2 median",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:142"
+  },
+  {
+   "name": "v2_band_cap_m",
+   "value": 0.008,
+   "origin": "generic:PREREG A.6 V2 cap 8 mm = two voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:109"
+  },
+  {
+   "name": "v2_band_k",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 V2 band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:110"
+  },
+  {
+   "name": "rest_speed_max_m_per_frame",
+   "value": 0.002,
+   "origin": "generic:PREREG A.6 V4 rest < 2 mm/frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:190"
+  },
+  {
+   "name": "rest_near_table_m",
+   "value": 0.005,
+   "origin": "generic:PREREG A.6 V4 rest within 5 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:191"
+  },
+  {
+   "name": "rest_share_min",
+   "value": 0.1,
+   "origin": "generic:PREREG A.6 V4 rest >= 10 % of good frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:192"
+  },
+  {
+   "name": "pack_budget_faces",
+   "value": 4000,
+   "origin": "kit:PREREG A.6 4000 faces (kit 4096)",
+   "where": "docs/research/mesh-2026-10-26/gmg/pack.py:22"
+  },
+  {
+   "name": "kit_budget_faces",
+   "value": 4096,
+   "origin": "kit:mesh_budget 4096",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:40"
+  },
+  {
+   "name": "kit_budget_vertices",
+   "value": 4096,
+   "origin": "kit:mesh_budget 4096",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:41"
+  },
+  {
+   "name": "fsv_far_samples",
+   "value": 20000,
+   "origin": "generic:PREREG A.3 20,000 area-weighted samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:42"
+  },
+  {
+   "name": "fsv_far_band_vox",
+   "value": 2,
+   "origin": "generic:PREREG A.6 fsv_far band 2 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:43"
+  },
+  {
+   "name": "fsv_far_weight",
+   "value": 10.0,
+   "origin": "generic:PREREG A.6 fsv_far weight 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:44"
+  },
+  {
+   "name": "blocks_K",
+   "value": 3,
+   "origin": "generic:PREREG A.6 K = 3",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:45"
+  },
+  {
+   "name": "bootstrap_n",
+   "value": 200,
+   "origin": "generic:PREREG A.6 bootstrap 200",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:46"
+  },
+  {
+   "name": "seed",
+   "value": 0,
+   "origin": "generic:PREREG A.6 seed 0",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:47"
+  },
+  {
+   "name": "ray_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 ray band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:48"
+  },
+  {
+   "name": "ray_clip_sigma",
+   "value": 10.0,
+   "origin": "generic:PREREG A.6 ray clip 10 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:49"
+  },
+  {
+   "name": "heldout_max_points",
+   "value": 20000,
+   "origin": "generic:PREREG A.2 held-out subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:50"
+  },
+  {
+   "name": "v2_normal_cos",
+   "value": 0.5,
+   "origin": "generic:PREREG A.6 V2 normal cosine > 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:51"
+  },
+  {
+   "name": "v2_count_min",
+   "value": 3,
+   "origin": "generic:PREREG A.6 V2 count > max(3, 1 %)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:52"
+  },
+  {
+   "name": "v2_count_frac",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 V2 count > max(3, 1 %)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:53"
+  },
+  {
+   "name": "v4_share_max",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 V4 1 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:54"
+  },
+  {
+   "name": "v4_depth_floor_m",
+   "value": 0.002,
+   "origin": "generic:PREREG A.6 V4 max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:55"
+  },
+  {
+   "name": "v4_depth_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 V4 max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:56"
+  },
+  {
+   "name": "v4_volume_samples",
+   "value": 20000,
+   "origin": "generic:PREREG A.3 V4 20,000 volume samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:57"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "bundle/public/ep2/episode.json",
+   "sha256": "90b5015ed015eec32f8448bd0c298c377827e90c3c1590c31f18435f177229bb",
+   "bytes": 20875,
+   "how": "python"
+  },
+  {
+   "path": "bundle/public/ep2/white_pot.npz",
+   "sha256": "238c199c34b0e3ec596d33a059f9c7d7c3ca53eb3721c22533d8eeed78e2de9e",
+   "bytes": 35023170,
+   "how": "python"
+  },
+  {
+   "path": "bundle/public/ep2/white_pot_lid.npz",
+   "sha256": "63eb8718bf29f971747bae3d632f7fa35529c8cd629402762fb5134e060089c0",
+   "bytes": 16725096,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep2/white_pot/hull.glb",
+   "sha256": "27ab1427e5f8b4793cd480d2ab76a0b7a99456c421a093aa75bbeba48e9f6cfd",
+   "bytes": 68904,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep2/white_pot/hull.json",
+   "sha256": "6b07037301650c5124a29c60670102ba350bfbd3260e9bd815601af5c8a6f103",
+   "bytes": 1070,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep2/white_pot/shell_t5p36.glb",
+   "sha256": "9625e06671ce59e27dc99e049b83441f823db3f100c5375a698732692949b509",
+   "bytes": 71148,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep2/white_pot/shell_t5p36.json",
+   "sha256": "2c0a227d611d92f8144baa797a90753716a038ef08496bf12016dd9e48870830",
+   "bytes": 938,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep2/white_pot_lid/hull.glb",
+   "sha256": "8884b9ab18c812e09de932ebf8da209d1be5f31257a9c5cdfeedcf88fe142b2e",
+   "bytes": 72780,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep2/white_pot_lid/hull.json",
+   "sha256": "1c7235f38a55a302317b610643d6fe14f8abeff2e380d369ed14664109712fdb",
+   "bytes": 1054,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep2/white_pot_lid/shell_t5p36.glb",
+   "sha256": "e6d4f1fe3f9141572a24dde1a59f6d5a48be8ac366ecb8417ee7ff03fa5605f0",
+   "bytes": 72156,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep2/white_pot_lid/shell_t5p36.json",
+   "sha256": "d6f79c722278ee64d89f7bd69098e24b96afe98fdf3ed1296c7d51fa96d02603",
+   "bytes": 868,
+   "how": "python"
+  },
+  {
+   "path": "feat/public/ep2/white_pot.jsonl",
+   "sha256": "8dab8b0fbfcba032225c60de4867e6cf13b5c74657cc5a1d22193dbab659b0d9",
+   "bytes": 2913,
+   "how": "python"
+  },
+  {
+   "path": "feat/public/ep2/white_pot_lid.jsonl",
+   "sha256": "aad4f29e926bc3489f881ea550a583b50bbeb6c916808e65dc0a25af16671280",
+   "bytes": 2892,
+   "how": "python"
+  },
+  {
+   "path": "out/public/ep2/white_pot.glb",
+   "sha256": "9625e06671ce59e27dc99e049b83441f823db3f100c5375a698732692949b509",
+   "bytes": 71148,
+   "how": "python"
+  },
+  {
+   "path": "out/public/ep2/white_pot.report.json",
+   "sha256": "532aba33c8d80337c103fe97f2b236420651a8b54096af19b89582370900b4a9",
+   "bytes": 6658,
+   "how": "python"
+  },
+  {
+   "path": "out/public/ep2/white_pot_lid.glb",
+   "sha256": "8884b9ab18c812e09de932ebf8da209d1be5f31257a9c5cdfeedcf88fe142b2e",
+   "bytes": 72780,
+   "how": "python"
+  },
+  {
+   "path": "out/public/ep2/white_pot_lid.report.json",
+   "sha256": "82c5572154273d101207ef9211e4f5f072561a8b0365e4e61cc293623c4f9e72",
+   "bytes": 6912,
+   "how": "python"
+  },
+  {
+   "path": "pick/public/ep2/white_pot.json",
+   "sha256": "707cc8b6faf5eb809440df8cbba59af473f9ac3c043b0895d6a0c4309c45711d",
+   "bytes": 692,
+   "how": "python"
+  },
+  {
+   "path": "pick/public/ep2/white_pot_lid.json",
+   "sha256": "9e0875b1efee9ed135c167d38060b7e00c3516397f39f11b05c6b1c23799cbf7",
+   "bytes": 698,
+   "how": "python"
+  }
+ ],
+ "extra": {
+  "step": "B1 skeleton",
+  "split": "public",
+  "ep": 2,
+  "targets": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "variant": {
+   "K": 3,
+   "b_tie": 1,
+   "prior": true
+  },
+  "variant_flags": [
+   "deploy_variant_absent_V0"
+  ],
+  "t0": {
+   "source": "dev_constants.json",
+   "run": "20261030-t0dev-e207a14"
+  },
+  "summary": {
+   "white_pot": {
+    "pick": "shell_t5p36",
+    "fallback": null,
+    "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/out/public/ep2/white_pot.glb",
+    "watertight_after_decode": true,
+    "faces": 3876
+   },
+   "white_pot_lid": {
+    "pick": "hull",
+    "fallback": null,
+    "out": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b1ep2-a7d4d64/out/public/ep2/white_pot_lid.glb",
+    "watertight_after_decode": true,
+    "faces": 4000
+   }
+  },
+  "sec": 522.7
+ }
+}

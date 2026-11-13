@@ -1,0 +1,15 @@
+ep12: Po S2 lib 0.9763 V1 +0.0000 V2 +0.0000 V3 +0.0000 | refineP S2 lib 0.9760 V1 +0.0000 V2 +0.0000 V3 +0.0000 (95.6 s)
+ep11: Po S2 lib 0.9012 V1 +0.0676 V2 +0.0676 V3 +0.0764 | refineP S2 lib 0.9012 V1 +0.0676 V2 +0.0676 V3 +0.0764 (454.9 s)
+mask10 11 Po V1 rerun 0.0676 stored 0.0676 MATCH
+mask10 11 Po V2 rerun 0.0676 stored 0.0676 MATCH
+mask10 11 Po V3 rerun 0.0764 stored 0.0764 MATCH
+mask10 11 refineP V1 rerun 0.0676 stored 0.0676 MATCH
+mask10 11 refineP V2 rerun 0.0676 stored 0.0676 MATCH
+mask10 11 refineP V3 rerun 0.0764 stored 0.0764 MATCH
+mask10 12 Po V1 rerun 0.0 stored 0.0 MATCH
+mask10 12 Po V2 rerun 0.0 stored 0.0 MATCH
+mask10 12 Po V3 rerun 0.0 stored 0.0 MATCH
+mask10 12 refineP V1 rerun 0.0 stored 0.0 MATCH
+mask10 12 refineP V2 rerun 0.0 stored 0.0 MATCH
+mask10 12 refineP V3 rerun 0.0 stored 0.0 MATCH
+all match: True

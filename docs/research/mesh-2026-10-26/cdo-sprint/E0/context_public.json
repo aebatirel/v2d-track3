@@ -1,0 +1,608 @@
+{
+ "metric": "cdo_eval (cm): kit CD-O of the mesh against the PUBLIC scan, mean over the eval-pair seeds of that object (scripts/mesh_metric.py, 22 Oct metric); no eval ground truth exists",
+ "objects": {
+  "white_pot": {
+   "eval_pairs": 6,
+   "public_episodes": [
+    2,
+    26,
+    27,
+    41,
+    42,
+    43,
+    44,
+    45
+   ],
+   "family": "prim_potlid.py pot, variants fit/nostem/thick/tsdf, one build per public episode (first round; the pot has no scan-informed parameter, wall measured from our points)",
+   "pooled": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+    "labels": "potlid/{fit,nostem,thick,tsdf}/ep{2,26,27,41,42,43,44,45}, object white_pot",
+    "n_records": 32
+   },
+   "distribution_all_variants": {
+    "unique_meshes": {
+     "n": 26,
+     "median": 0.4158,
+     "min": 0.3087,
+     "max": 0.6526,
+     "mean": 0.4251
+    },
+    "records": {
+     "n": 32,
+     "median": 0.3879,
+     "min": 0.3087,
+     "max": 0.6526,
+     "mean": 0.4251
+    }
+   },
+   "distribution_fit_only": {
+    "unique_meshes": {
+     "n": 8,
+     "median": 0.3571,
+     "min": 0.3251,
+     "max": 0.5969,
+     "mean": 0.4153
+    },
+    "records": {
+     "n": 8,
+     "median": 0.3571,
+     "min": 0.3251,
+     "max": 0.5969,
+     "mean": 0.4153
+    }
+   },
+   "picked": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+    "label": "potlid/fit/ep41",
+    "sha1_16": "4bf2135570c1da26",
+    "cdo_eval_cm": 0.34167,
+    "add_eval_mm": 3.047,
+    "flips_all": 0,
+    "eval_pairs": 6,
+    "rule": "lowest obs_fidelity sum over all 32 candidates, points of all 8 public episodes (results/prim/potlid/selection.json), pre-registered 27 Oct",
+    "fid_sum_mm": 3.035
+   },
+   "own_episode": {
+    "shipped_variant_fit": {
+     "per_episode": {
+      "ep2": 0.35397,
+      "ep26": 0.41563,
+      "ep27": 0.5762,
+      "ep41": 0.34167,
+      "ep42": 0.35238,
+      "ep43": 0.36015,
+      "ep44": 0.32513,
+      "ep45": 0.59692
+     },
+     "mean": 0.4153
+    },
+    "per_episode_fidelity_pick": {
+     "per_episode": {
+      "ep2": {
+       "variant": "nostem",
+       "fid_sum_mm": 3.522,
+       "cdo": 0.35352
+      },
+      "ep26": {
+       "variant": "tsdf",
+       "fid_sum_mm": 3.284,
+       "cdo": 0.34493
+      },
+      "ep27": {
+       "variant": "tsdf",
+       "fid_sum_mm": 4.151,
+       "cdo": 0.43533
+      },
+      "ep41": {
+       "variant": "fit",
+       "fid_sum_mm": 3.035,
+       "cdo": 0.34167
+      },
+      "ep42": {
+       "variant": "thick",
+       "fid_sum_mm": 3.478,
+       "cdo": 0.41597
+      },
+      "ep43": {
+       "variant": "tsdf",
+       "fid_sum_mm": 3.172,
+       "cdo": 0.3087
+      },
+      "ep44": {
+       "variant": "fit",
+       "fid_sum_mm": 3.252,
+       "cdo": 0.32513
+      },
+      "ep45": {
+       "variant": "thick",
+       "fid_sum_mm": 4.595,
+       "cdo": 0.65262
+      }
+     },
+     "mean": 0.3972,
+     "note": "variant chosen within each episode by the recorded obs_fidelity (pooled over all 8 episodes' points), GT-free"
+    },
+    "per_episode_oracle_best_variant": {
+     "per_episode": {
+      "ep2": 0.34195,
+      "ep26": 0.34493,
+      "ep27": 0.43533,
+      "ep41": 0.33267,
+      "ep42": 0.32692,
+      "ep43": 0.3087,
+      "ep44": 0.31187,
+      "ep45": 0.52665
+     },
+     "mean": 0.3661,
+     "note": "oracle (uses the scan score): never used to decide"
+    }
+   },
+   "library_v3": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/white_pot",
+    "sha1_16": "69c8aa6b527a921c",
+    "cdo_eval_cm": 0.43712,
+    "add_eval_mm": 6.67,
+    "flips_all": 0,
+    "eval_pairs": 6
+   },
+   "excluded": [
+    {
+     "labels": [
+      "lathe_obs_g/a0/white_pot",
+      "lathe_obs_g/a1/white_pot",
+      "lathe_hyb_v3app/white_pot"
+     ],
+     "file": "docs/research/mesh-2026-10-26/results/lathe_obs.jsonl",
+     "why": "lathe method, not the C0 prim_potlid family"
+    }
+   ]
+  },
+  "white_pot_lid": {
+   "eval_pairs": 1,
+   "public_episodes": [
+    2
+   ],
+   "public_episodes_note": "lid public episodes 0 and 2; ep0 cannot be fitted",
+   "family": "prim_potlid.py lid, clean-up round code, PRIM_T_LID=0.0025 (grid midpoint, flagged), variants fit/tsdf",
+   "pooled": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/lid_scores.jsonl",
+    "labels": [
+     "clean/lid/t2.5_fit",
+     "clean/lid/t2.5_tsdf"
+    ],
+    "n_records": 2
+   },
+   "distribution_shipped_thickness": {
+    "unique_meshes": {
+     "n": 2,
+     "median": 0.2182,
+     "min": 0.2164,
+     "max": 0.2199,
+     "mean": 0.2182
+    },
+    "records": {
+     "n": 2,
+     "median": 0.2182,
+     "min": 0.2164,
+     "max": 0.2199,
+     "mean": 0.2182
+    }
+   },
+   "context_full_grid_marked": {
+    "labels": [
+     "clean/lid/t1.5_fit",
+     "clean/lid/t1.5_tsdf",
+     "clean/lid/t2.5_fit",
+     "clean/lid/t2.5_tsdf",
+     "clean/lid/t4.0_fit",
+     "clean/lid/t4.0_tsdf"
+    ],
+    "stats": {
+     "unique_meshes": {
+      "n": 6,
+      "median": 0.2205,
+      "min": 0.2162,
+      "max": 0.2251,
+      "mean": 0.2204
+     },
+     "records": {
+      "n": 6,
+      "median": 0.2205,
+      "min": 0.2162,
+      "max": 0.2251,
+      "mean": 0.2204
+     }
+    },
+    "note": "T_LID 1.5/2.5/4.0 mm, all ep2; only 2.5 is the shipped value"
+   },
+   "picked": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/lid_scores.jsonl",
+    "label": "clean/lid/t2.5_fit",
+    "sha1_16": "67632273f5723dc9",
+    "cdo_eval_cm": 0.2199,
+    "add_eval_mm": 4.46,
+    "flips_all": 0,
+    "eval_pairs": 1,
+    "rule": "clean-up round (pre-registered 27 Oct): fidelity picks fit vs tsdf at each thickness (fit at all three); T_LID 2.5 = grid midpoint, not chosen by fidelity",
+    "fidelity_rows": [
+     {
+      "mesh": "t1.5_fit.glb",
+      "obs_to_mesh_mm": 0.788,
+      "mesh_to_obs_mm": 0.648,
+      "sum_mm": 1.436
+     },
+     {
+      "mesh": "t1.5_tsdf.glb",
+      "obs_to_mesh_mm": 0.93,
+      "mesh_to_obs_mm": 0.72,
+      "sum_mm": 1.65
+     },
+     {
+      "mesh": "t2.5_fit.glb",
+      "obs_to_mesh_mm": 0.87,
+      "mesh_to_obs_mm": 0.815,
+      "sum_mm": 1.686
+     },
+     {
+      "mesh": "t2.5_tsdf.glb",
+      "obs_to_mesh_mm": 1.01,
+      "mesh_to_obs_mm": 0.903,
+      "sum_mm": 1.913
+     },
+     {
+      "mesh": "t4.0_fit.glb",
+      "obs_to_mesh_mm": 1.019,
+      "mesh_to_obs_mm": 1.24,
+      "sum_mm": 2.259
+     },
+     {
+      "mesh": "t4.0_tsdf.glb",
+      "obs_to_mesh_mm": 1.158,
+      "mesh_to_obs_mm": 1.352,
+      "sum_mm": 2.51
+     }
+    ]
+   },
+   "own_episode": {
+    "shipped_variant_fit": {
+     "per_episode": {
+      "ep2": 0.2199
+     },
+     "mean": 0.2199,
+     "n": 1
+    }
+   },
+   "library_v3": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/white_pot_lid",
+    "sha1_16": "0beb9d4b7b051730",
+    "cdo_eval_cm": 0.4211,
+    "add_eval_mm": 8.12,
+    "flips_all": 0,
+    "eval_pairs": 1
+   },
+   "excluded": [
+    {
+     "labels": [
+      "potlid/fit/ep2",
+      "potlid/nostem/ep2",
+      "potlid/thick/ep2",
+      "potlid/tsdf/ep2"
+     ],
+     "values": {
+      "potlid/fit/ep2": 0.2186,
+      "potlid/nostem/ep2": 0.2186,
+      "potlid/thick/ep2": 0.2299,
+      "potlid/tsdf/ep2": 0.2164
+     },
+     "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+     "why": "first-round lid builds: superseded code (arch strap floating, fixed in the clean-up round) and T_LID default 2.5 mm taken from the leaked brief; potlid/tsdf/ep2 is byte-identical to clean/lid/t2.5_tsdf (sha1 e0d5830221bf1aeb) and is counted once there"
+    }
+   ]
+  },
+  "plastic_dish_rack": {
+   "eval_pairs": 5,
+   "public_episodes": [
+    12,
+    13,
+    26,
+    27,
+    31
+   ],
+   "family": "prim_rack.py run, one build per public episode (variants full / nomk = without marker balls)",
+   "allowed_config": "T_WALL 2.5 mm (grid midpoint, flagged), CUP_LEAN=1 (lean, pre-scan design): its 10 single-episode candidates (results/prim/clean/rack_t2.5_lean1_candidates.jsonl) have GT-free fidelity only; none was ever scored against the scan, so n = 0 in the allowed configuration",
+   "distribution_allowed_config": {
+    "n": 0
+   },
+   "pooled_MARKED_leaked_config": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/rack/scores.jsonl",
+    "labels": [
+     "rack/ep12_full",
+     "rack/ep12_nomk",
+     "rack/ep13_full",
+     "rack/ep13_nomk",
+     "rack/ep26_full",
+     "rack/ep26_nomk",
+     "rack/ep27_full",
+     "rack/ep27_nomk",
+     "rack/ep31_full",
+     "rack/ep31_nomk"
+    ],
+    "n_records": 10,
+    "config": "first round = T_WALL 2.5 mm, CUP_LEAN=0 (upright cup holder adopted after a scan diagnostic: the LEAKED configuration). Used here only as a marked proxy for the per-episode spread.",
+    "identity_check": {
+     "ep12_full": {
+      "round1": "1f3a14dcaa2cb380",
+      "clean_t2.5_lean0": "1f3a14dcaa2cb380"
+     },
+     "ep12_nomk": {
+      "round1": "60130f2edfd73439",
+      "clean_t2.5_lean0": "60130f2edfd73439"
+     },
+     "ep13_full": {
+      "round1": "7db06beca329d20a",
+      "clean_t2.5_lean0": "7db06beca329d20a"
+     },
+     "ep13_nomk": {
+      "round1": "e8da7c46ccdc4ed9",
+      "clean_t2.5_lean0": "e8da7c46ccdc4ed9"
+     },
+     "ep26_full": {
+      "round1": "727b1b6532cb425b",
+      "clean_t2.5_lean0": "727b1b6532cb425b"
+     },
+     "ep26_nomk": {
+      "round1": "727b1b6532cb425b",
+      "clean_t2.5_lean0": "727b1b6532cb425b"
+     },
+     "ep27_full": {
+      "round1": "74efc0cab6055985",
+      "clean_t2.5_lean0": "74efc0cab6055985"
+     },
+     "ep27_nomk": {
+      "round1": "74efc0cab6055985",
+      "clean_t2.5_lean0": "74efc0cab6055985"
+     },
+     "ep31_full": {
+      "round1": "7a47167cfeb631de",
+      "clean_t2.5_lean0": "7a47167cfeb631de"
+     },
+     "ep31_nomk": {
+      "round1": "2a0755d13b00f499",
+      "clean_t2.5_lean0": "2a0755d13b00f499"
+     }
+    }
+   },
+   "distribution_MARKED_leaked_config": {
+    "unique_meshes": {
+     "n": 8,
+     "median": 0.4431,
+     "min": 0.4221,
+     "max": 0.5091,
+     "mean": 0.45
+    },
+    "records": {
+     "n": 10,
+     "median": 0.4441,
+     "min": 0.4221,
+     "max": 0.5091,
+     "mean": 0.458
+    }
+   },
+   "picked": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/rack_scores.jsonl",
+    "label": "clean/rack/t2.5_lean1/all_joint",
+    "sha1_16": "b855279b68ecb432",
+    "cdo_eval_cm": 0.45604,
+    "add_eval_mm": 5.368,
+    "flips_all": 0,
+    "eval_pairs": 5,
+    "rule": "clean-up round (pre-registered 27 Oct): prim_rack GT-free selection inside each config (the joint fit of the consistent episodes 12/13/27 wins every config), fidelity picks lean at each thickness; T_WALL 2.5 = grid midpoint",
+    "note": "NOT a single-episode build: joint fit over public episodes 12, 13, 27"
+   },
+   "joint_lean_effect": {
+    "1.5": {
+     "lean0": 0.45392,
+     "lean1": 0.45822,
+     "lean1_minus_lean0": 0.0043
+    },
+    "2.5": {
+     "lean0": 0.45352,
+     "lean1": 0.45604,
+     "lean1_minus_lean0": 0.00252
+    },
+    "4.0": {
+     "lean0": 0.46092,
+     "lean1": 0.44864,
+     "lean1_minus_lean0": -0.01228
+    }
+   },
+   "own_episode": {
+    "MARKED_leaked_config_full": {
+     "per_episode": {
+      "ep12": 0.44362,
+      "ep13": 0.44264,
+      "ep26": 0.50914,
+      "ep27": 0.4705,
+      "ep31": 0.4221
+     },
+     "mean": 0.4576
+    },
+    "MARKED_leaked_config_per_episode_fidelity_pick": {
+     "per_episode": {
+      "ep12": {
+       "variant": "full",
+       "fid_sum_mm": 6.207,
+       "cdo": 0.44362
+      },
+      "ep13": {
+       "variant": "full",
+       "fid_sum_mm": 6.333,
+       "cdo": 0.44264
+      },
+      "ep26": {
+       "variant": "full",
+       "fid_sum_mm": 7.802,
+       "cdo": 0.50914
+      },
+      "ep27": {
+       "variant": "full",
+       "fid_sum_mm": 7.241,
+       "cdo": 0.4705
+      },
+      "ep31": {
+       "variant": "full",
+       "fid_sum_mm": 8.173,
+       "cdo": 0.4221
+      }
+     },
+     "mean": 0.4576
+    }
+   },
+   "library_v3": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/plastic_dish_rack",
+    "sha1_16": "c737056fcb749935",
+    "cdo_eval_cm": 0.55506,
+    "add_eval_mm": 5.994,
+    "flips_all": 0,
+    "eval_pairs": 5
+   },
+   "excluded": [
+    {
+     "labels": [
+      "rack/epall_joint",
+      "rack/epall_joint_nomk"
+     ],
+     "why": "joint (multi-episode) builds"
+    },
+    {
+     "labels": [
+      "clean/rack/t1.5_lean0/all_joint",
+      "clean/rack/t1.5_lean1/all_joint",
+      "clean/rack/t2.5_lean0/all_joint",
+      "clean/rack/t2.5_lean1/all_joint",
+      "clean/rack/t4.0_lean0/all_joint",
+      "clean/rack/t4.0_lean1/all_joint"
+     ],
+     "why": "clean-up round scored only each config's joint selection; multi-episode builds (listed in joint_lean_effect)"
+    }
+   ]
+  },
+  "blue_cup": {
+   "eval_pairs": 5,
+   "public_episodes": [
+    21,
+    22
+   ],
+   "family": "lathe_obs.py \"g\" code, appendages=1 (g1 = hollow lathe + observed appendages by voxel splat), default settings, one public episode's observed points",
+   "pooled": {
+    "file": "docs/research/mesh-2026-10-26/results/lathe_obs.jsonl",
+    "labels": {
+     "lathe_obs_g/a1/ep21/blue_cup": "scratchpad lathe/ep21_blue_cup_g1.glb (built 16:27 UTC 26 Oct)",
+     "lathe_obs_g/a1/blue_cup": "scratchpad lathe/ep22_blue_cup_g1.glb (built 16:12 UTC 26 Oct)"
+    },
+    "n_records": 2,
+    "code_note": "ep22 g1 predates commit 15b860d (16:21), ep21 g1 follows it; the diff 15b860d..8cb7994 only exposes --dh/--min_pts/--knn as flags with the old values as defaults (read, not re-run)"
+   },
+   "distribution": {
+    "unique_meshes": {
+     "n": 2,
+     "median": 0.3271,
+     "min": 0.2906,
+     "max": 0.3637,
+     "mean": 0.3271
+    },
+    "records": {
+     "n": 2,
+     "median": 0.3271,
+     "min": 0.2906,
+     "max": 0.3637,
+     "mean": 0.3271
+    }
+   },
+   "picked": {
+    "file": "docs/research/mesh-2026-10-26/results/lathe_obs.jsonl",
+    "label": "lathe_obs_g/a1/ep21/blue_cup",
+    "sha1_16": "1bd4c8f5f475596f",
+    "cdo_eval_cm": 0.29056,
+    "add_eval_mm": 4.088,
+    "flips_all": 0,
+    "eval_pairs": 5,
+    "rule": "obs_fidelity over both episodes' points (ep21 4.08 < merged 4.23 < ep22 5.79 < library 5.86 mm)",
+    "flag": "selector written AFTER the five blue-cup lathes were scored (work log 26 Oct ~16:40 UTC); not pre-registered"
+   },
+   "own_episode": {
+    "per_episode": {
+     "ep21": 0.29056,
+     "ep22": 0.36374
+    },
+    "mean": 0.3271
+   },
+   "library_v3": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/blue_cup",
+    "sha1_16": "2fba7aceef409479",
+    "cdo_eval_cm": 0.52332,
+    "add_eval_mm": 9.97,
+    "flips_all": 0,
+    "eval_pairs": 5
+   },
+   "excluded": [
+    {
+     "labels": [
+      "lathe_obs_g/a1/ep21+22/blue_cup"
+     ],
+     "value": 0.396,
+     "why": "two-episode (merged) build"
+    },
+    {
+     "labels": [
+      "lathe_obs_g/a0/blue_cup"
+     ],
+     "value": 0.3922,
+     "why": "appendages=0, not the C0 setting"
+    },
+    {
+     "labels": [
+      "lathe_obs/a0/blue_cup",
+      "lathe_obs/a1/blue_cup",
+      "lathe_obs/b1/blue_cup",
+      "lathe_obs/b0/blue_cup",
+      "lathe_obs/solid1/blue_cup"
+     ],
+     "values": {
+      "lathe_obs/a0/blue_cup": 0.4803,
+      "lathe_obs/a1/blue_cup": 0.4878,
+      "lathe_obs/b1/blue_cup": 0.3937,
+      "lathe_obs/b0/blue_cup": 0.3724,
+      "lathe_obs/solid1/blue_cup": 0.4935
+     },
+     "why": "earlier lathe code/settings (before the \"g\" axis selection), ep22"
+    },
+    {
+     "labels": [
+      "lathe_hyb_v3app/blue_cup"
+     ],
+     "why": "uses library_v3 appendages (different method)"
+    },
+    {
+     "labels": [
+      "lathe_f0/ep21/blue_cup",
+      "lathe_f0/ep22/blue_cup"
+     ],
+     "why": "frame-0 points only (rejected method)"
+    }
+   ]
+  }
+ },
+ "board_delta_vs_library_v3_E": {
+  "note": "[E] pair-weighted change of the 36-pair CD-O board if the hidden eval scans equal the public scans and eval builds behave like public builds; 17 of 36 pairs (pot 6, lid 1, rack 5, blue cup 5); rack values use the MARKED leaked-config proxy for own_episode_mean and family_median",
+  "cm": {
+   "picked": -0.0676,
+   "own_episode_mean": -0.05,
+   "family_median": -0.052
+  }
+ }
+}

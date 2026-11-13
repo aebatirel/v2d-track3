@@ -1,0 +1,9 @@
+[08:40:22] b4_extract ep31 objects ['mini_sweeper', 'plastic_dish_rack'] det True start {'commit': '06ccccafe60c839a2fc04ba5fd78a04d4f5872e7', 'dirty': '?? docs/research/mesh-2026-10-26/gmg/build/P.md'}
+[08:44:49] hands 267.5 s: frames with hand 289 / 290
+[08:48:32] ep31 pass 0: 145 frames, 13007825 samples, voxels [231151, 101848], 221.9 s
+[08:56:04] extract timing {"table_s": 0.4, "pass0_samples_s": 207.7, "pass0_votes_s": 14.2, "pass0_s": 221.9, "pass0_voxels": [231151, 101848], "pass1_s": 259.6, "pass2_s": 1.1, "pass3_s": 1.7, "pass4_grids_s": 82.1, "sigma_s": 97.9, "total_s": 668.8}
+[08:56:06] sanity mini_sweeper: 144/144 good, flags [], below 0.0, resid {'median': 0.964, 'p90': 1.061, 'max': 1.491}
+[08:56:33] sanity plastic_dish_rack: 145/145 good, flags [], below 0.0, resid {'median': 0.979, 'p90': 1.014, 'max': 1.036}
+[08:58:16] split test mini_sweeper: {"plastic_dish_rack": [true, 1.898, 48.78, 48.178]}
+[09:00:28] split test plastic_dish_rack: {"mini_sweeper": [true, 4.343, 55.814, 56.591]}
+[09:00:31] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep31 total 1209.5 s

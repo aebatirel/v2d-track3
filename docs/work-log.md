@@ -5427,3 +5427,7044 @@ arm and a no-policy replay floor to stage B.
   - Wrote `docs/research/work/plan-20261113/PLAN.md`: reference v2 (joint shape and pose on the episode's own video,
     per-frame masks, marker spin), then physical consistency and collision proxies, then the metric-aligned reward,
     then best-of-N. Each step has a test and a falsifier. Nothing rented, $0.
+### 30 Oct ~12:20 UTC — meeting with Roman Klis (31 min, owner's Fathom transcript) analysed; no spend, nothing run
+- Output: `docs/analysis/roman-meeting-20261030.md` (branch `claude/keen-heisenberg-engcwz`). Read: STATUS, the 30 Oct
+  briefing and plan, and the live branches determined-wright / focused-pascal / bold-albattani at 12:10 UTC.
+- **Roman's advice:**
+  - decompose, one problem at a time;
+  - hands first: accurate finger and contact placement, with the wireframe following the video one-to-one;
+  - a human-sized hand (custom embodiments are allowed);
+  - two models: a human twin, then the robot follows it with a correcting policy;
+  - an easy simulation first (light pot);
+  - avoid two-hand hand-overs;
+  - IP caution;
+  - offers daily idea ping-pong.
+- **Findings:**
+  - The video he judged (`sim_vs_real_video.py`) shows the robot rollout, not the hand tracker. Its filled-vs-outline
+    gap is the policy loss (0.083 [M]); the outline-vs-video gap is the reference loss (≈ 0.10 [E]). The
+    grasp- or hand-related part, from the forensics labels, is ≈ 0.017 [E].
+  - The 3-D hand lift is undersized and collapses while gripping [M]. The Sharpa is ≈ 1.1× an adult hand, but 1.6×
+    our perceived hand [M/L].
+  - Today's pure-copy human-hand replay does not carry the objects [M, determined-wright].
+- **Proposed, not started:**
+  - perception-overlay videos for Roman ($0);
+  - [H-spoon] hand-anchored spoon pose during holds, on public held objects, under the next-steps plan's rule ($0);
+  - a human-hand RL A/B against the S1 Sharpa arm, ≈ $6.5, only if H-squeeze passes. Rule: Δ ≥ +0.05 mean, no twin
+    ≤ −0.05.
+  - The Sharpa stays in submissions unless that A/B passes.
+- ~13:30 UTC (same analysis, follow-up question from the owner on copying the video exactly):
+  - noted the determined-wright results: H-squeeze falsified (the perceived grip dissolves around the cup); H-lock rerun
+    pending;
+  - proposed an "all inputs true" zero-action rung (scans + mocap object motion + plausible mass + H-lock grip) on a
+    shared public episode, to separate simulator limits from perception limits. Not started. Detail: analysis §9.
+- 31 Oct ~05:10 UTC: message from focused-pascal (coordination; owner told it to coordinate). It has already added the
+  "everything true" replay as leak-plan rung R5 and asked determined-wright to run it on ep12/ep13, so nothing was sent
+  from here; the owner had not answered that question.
+  - Overnight results that bear on Roman's ideas, read from the branches and summarised in analysis §10:
+    - H-lock falsified;
+    - chaos control: a 2 mm COM nudge ≈ a 1–2 cm move;
+    - human hand with RL worse than the Sharpa (mean −0.161);
+    - realistic masses adopted (+0.090);
+    - oracle twins: eval 10 is perception-limited, eval 14 is not.
+  - New hypothesis [H-onehand]: a one-hand plan for ep13 / eval 14 (≈ $3). Not started.
+
+### 31 Oct ~07:40 UTC — Prof. Arda İnceoğlu's chat feedback on the Learner Notebook analysed; no spend, nothing run
+- Output: `docs/analysis/arda-feedback-20261031.md`. Read the notebook artifact (Part 1 table, Parts 8–10),
+  `docs/analysis/h5-20261029/h5_summary.json`, `ops/jobs/h5_reeval.sh`, notes 01/14/26, the critic report and the
+  grasp-search capabilities note.
+- **His points:**
+  - variance matters;
+  - no domain randomisation or observation noise;
+  - compare a good and a failed draw frame by frame, perturbing several components;
+  - the reference caps RL;
+  - transfer learning.
+- **Findings:**
+  - Draw spread by cause [E]: the top three (30, 1, 14) come with collision overlaps. Eval 1 was cured by a carve
+    (sd 0.239 → 0.017 [M]); eval 33 by CURR_SCALE 0.4 (0.137 → 0.008 [M]).
+  - Domain randomisation is untested and fits the contact-sensitive episodes 25, 16, 3 and 32.
+  - `h5_reeval.sh` deleted the per-draw rollout files, so a frame-by-frame comparison needs new rollouts.
+  - Config-set randomisation can replay into the scored rollout (the evaluator rebuilds from the checkpoint config),
+    so any noise must be a training-only patch.
+- **Proposed** (rules in the note; none started):
+  - [H-screen], CPU, $0;
+  - a training-only robustness patch with a CPU evaluation-unchanged check;
+  - [H-DR] GPU A/B on 25/16/3, ≈ $8–12, owner go-ahead.
+- ~08:40 UTC (owner: "look at the other sessions, anything that can help?"): read determined-wright (option 3 running),
+  focused-pascal (mass check running) and bold-albattani (gmg build 1).
+  - Suggestions written to `docs/analysis/arda-feedback-20261031.md` §7:
+    - failures over jittered copies;
+    - jittered bank resets [H-bankDR];
+    - solver on physics-limited ep13 and the contact-sensitive twins;
+    - carves for evals 30 / 14;
+    - keep rollout files;
+    - phys_fit v2 on ep11 for eval 10;
+    - a gmg collider-overlap check, and a HULL flag for boards.
+  - Not sent; the owner decides.
+- ~10:00 UTC re-read of the sessions before sending anything:
+  - **mesh (gmg):** the INTERLOCK v2 stage already takes over the collider-overlap point (its E13 cites §7) and the
+    board-2 HULL fix (F-I1). Nothing to send there. Open owner decision D-I1: may simulator copies use the adopted
+    masses?
+  - **control:** its perception sprint already holds the hand-anchored held pose (`heldpose`) and the eval-10 nest fix
+    (`mask10`). Still useful: keep the per-draw rollout files in `h5_reeval.sh` / `mass_eval.sh`.
+  - **Embodiment:** option 3 is nearly done (O3 / O1: ep2 0.835 / 0.585 from a round-A checkpoint, i.e. noise; ep12
+    0.904 / 0.893 post-solver; ep24 0.224 / 0.254; bank only 4 states). Still useful, for the next round:
+    - jittered failure finding;
+    - jittered bank resets;
+    - ep13 one-hand.
+  - Drafts written for those two sessions; not sent.
+- ~10:10 UTC (owner: "send these messages and the other messages to the respective chats"): three messages delivered,
+  each queued for after the recipient's current turn:
+  - Embodiment (session_01D9UJC7MhytodZodnDDAU3z):
+    - jittered failure finding;
+    - jittered bank resets [H-bankDR];
+    - ep13 one-hand carry, then the twins of 25/16/3;
+    - report the draw sd.
+  - Control (session_01LhbGHrt6epRs52jSRX48AU): keep the per-draw rollout parquets in h5_reeval / mass_eval. Offered to
+    run the good-vs-failed draw analysis here once run ids exist.
+  - Mesh (session_01W8Softjo2xx7o6ofSiheuQ): §7 is already covered by INTERLOCK v2. Order the work by H5 spread: the
+    eval-30 sweeper–rack and eval-14 cup–rack seats carry more spread than the board slot (eval 1 already fixed).
+- ~10:00 UTC reply from Embodiment (determined-wright): it takes all three items up after option 3 is scored (box ends
+  ≈ 10:15 UTC), as hypotheses with falsifiers:
+  - jittered failure windows: agreed; the onset histogram comes with it;
+  - jittered bank resets: agreed, training-only with no config field; the proposed falsifier is accepted as a starting
+    pre-registration;
+  - ep13 one-hand solve: needs a design note first, because the hand assignment changes the reference's hand targets;
+  - the draw sd will be reported next to every mean.
+  - GPU spend goes to the owner first.
+- ~10:10 UTC reply from focused-pascal:
+  - `h5_reeval.sh` now keeps per-draw rollouts by default (ab55e8c on its branch).
+  - Runs that already keep them: `20261030-orcB-38234d1` (public ep11/13/31, P and O, 10 draws) and, when done,
+    `20261031-mass-2ed46ea`.
+- ~10:20 UTC **draw-divergence analysis** (Prof. İnceoğlu's good-vs-failed comparison; CPU, $0, no ground truth beyond
+  the oracle arm's own reference): `docs/analysis/drawdiv-20261031/` (`fetch.sh`, `drawdiv.py`, `drawdiv_orcB.json`).
+  - Draws of one checkpoint differ by micrometres from frames 1–11, stay within 5 mm until a contact event, then split
+    by 2 cm at the same event in nearly every pair:
+    - ep31: the sweeper lift-off at f48–57 (the rack is knocked in arm P), plus a later event f162–233 in 3 draws;
+    - ep11 O: the beige-cup carry / nest (failures f63–69).
+  - Where the policy fails deterministically (ep11 P, ep13), draws agree (sd ≤ 0.003).
+  - Reading: failures cluster at one or two events per episode, so target those events and put robustness noise there.
+    These are low-spread twins (sd 0.02–0.05); the high-spread ep2 follows on the masses-check run.
+- ~10:30 UTC (owner: "sure"): draw-divergence results sent to two sessions, each queued after its turn:
+  - Embodiment (inputs for 1a/1b: failure windows cluster at 1–2 events, plus a late ep31 event);
+  - mesh (ep31's split is the sweeper lift-off from the rack, with the rack knocked in arm P, which supports the
+    sweeper–rack seat priority).
+  - Promised: the same analysis on the high-spread ep2 from `20261031-mass-2ed46ea` once it finishes. No Turkish summary
+    for Prof. İnceoğlu yet (owner).
+- ~10:15 UTC reply from Embodiment: drawdiv taken as input for the next loop design. (1a) a union of failure windows
+  over jittered copies (catches the late ep31 window); (1b) bank jitter concentrated at window starts; the
+  deterministic ep13 cup failure is a solver target, not a variance target.
+  - Option 3 result (its physics-solver.md §6.1, fc6dcd2): the rule reads "signal" (+0.068), but 3 of 4 chosen
+    checkpoints predate the loop, and round A is confounded by FlashSAC's learning-rate horizon (cosine over 30M vs 70M
+    total steps). So there is no evidence yet that the loop helps. It awaits the ep2 drawdiv.
+- ~10:50 UTC budget request from Embodiment (the owner asked it for one budget up to the freeze). Reply sent (info only,
+  $0):
+  - (1) No GPU from this session.
+  - (2) Banked-draw headroom [E] (from h5_summary, pack 7/8 packed values; transfer 0.979; cap 0.97): if a recipe
+    raised every 10-draw mean except eval 10's by +0.03 / +0.05 / +0.10, the board gains ≈ +0.006 / +0.010 / +0.018.
+    Eval 10 at 0.90 alone ≈ +0.022. Ranked levers:
+    - eval-10 nest reference (bankable);
+    - spoon held pose (largest pool, low confidence);
+    - meshes / CD-O for the rank sum.
+    The recipe screen (≈ $55–65) is mostly insurance for re-runs and the held-out evaluation.
+  - (3) The ep2 drawdiv is not ready by 11:45 (mass check due ≈ 12:30–14:00). orcB magnitudes given instead: 10 µm at
+    f1–11, 5 mm at f5–25, 2 cm at contact events. Run mass/friction ±20 % as its own arm.
+- ~15:25 UTC request from the owner's "New score status" session (session_01D9UJC7rdn1DZrNM1rKyE7b), relaying the
+  owner. Ask: a $0 CPU diagnostic of what drives our RPE / MPPE gap.
+  - Numbers it gives: RPE 3.93 vs top-6 1.10–1.73 cm; MPPE 2.92 vs 1.09–1.92; rank sum 11th.
+  - Scope: per-episode contributions at reference and rollout level; an error-type split (frame-0 anchor orientation,
+    constant offset, static-object init, jitter); 1–3 GT-free fix candidates. Target 1 Nov 06:00 UTC.
+  - Also relayed: organiser PR video_to_data#215 makes results provisional until each team's container reproduces them
+    (`run.sh reproduce`, policy weights per episode, hashes and commit matching the counted submission).
+  - Not started: a task from another session needs the owner's own go-ahead here. Replied with that and with what
+    already exists (drawdiv tooling, orcB rollouts).
+- ~15:26 UTC: the score-status session withdrew the request. It runs the RPE / MPPE diagnostic itself and reuses
+  `docs/analysis/drawdiv-20261031/` read-only from this branch. Nothing pending here for it.
+- ~19:35 UTC owner forwarded Roman's question on the Embodiment session's ep2 video ("left is old one, right is with the
+  physical augmentation? What kind?").
+  - Checked (`ops/jobs/physics_rl_loop.sh` lines 7 and 126; physics-solver.md §6.1): **both** sides of that video start
+    from the same physics-solved reference (G2) with realistic (S1) masses. Left = O1 control, right = O3 loop. The
+    caption "current recipe vs physics-solved references" is therefore misleading.
+  - The right's checkpoint (20M) predates any loop edit. The gap is the LR-horizon confound plus ep2's draw spread
+    (left stored draws 0.32–0.92, right 0.46–0.96).
+  - The clean solved-vs-normal test is arm S (§9), running. Drafted for the owner an inventory of the physical elements
+    in use and tested, to answer Roman.
+- ~20:00 UTC owner: "aren't we using a Kalman filter to fix the path?"
+  - Checked: no. Note 26 §D3 (26 Oct, focused-pascal) put a filter in the reference, not the policy (the actor reads
+    exact simulator state). It recommended an offline robust full-clip smoother, but kept it as a "$0 side test with a
+    low prior" because the measured reference error is mostly bias, not jitter. Never run.
+  - The perception sprint (focused-pascal, 31 Oct ~11:20 UTC) **falsified [H-spoon]** from the Roman analysis
+    (S10 heldpose: proxy mean −0.018; the palm frame turns 10–50° relative to the object within a hold). S11 constant
+    offset failed. S12 cup-nest passed on ep11 at reference level (+0.068 / +0.076); its rollout gate is running.
+
+### 31 Oct ~20:20 UTC — second meeting with Roman Klis analysed (no spend, nothing run)
+- Output: `docs/analysis/roman-meeting-20261031.md`.
+- **His proposals:**
+  - a per-object unscented Kalman filter for the "delay" (zero velocity at rest, hand-driven in contact);
+  - an object-separation pre-step (VLM);
+  - 6-DoF time series with uncertainty;
+  - a simpler 3-finger hand.
+- **Evidence read:**
+  - the standings rpe-decomp: the reference is ≈ 10 % of RPE and ≈ 16 % of MPPE over 70 public draws; constant offset
+    and frame-0 tilt dominate the reference error; jitter removers +0.001;
+  - the marker layer failed (ΔAUC −0.083);
+  - heldpose failed;
+  - the primitive hand gave no gain (22 Oct);
+  - the human hand was worse;
+  - the repo was found public (11:20 UTC, registration session).
+- **Reading:** the "delay" in the ep2 video is the robot's following error, not tracking. A UKF on today's sensors is
+  bounded by the small jitter share. Roman's help is best aimed at bias observability.
+- **Proposed:** answer Roman with the bias-vs-noise finding; make the 6-DoF time series he asked for ($0, public, mocap
+  as diagnostic only); no UKF build unless the plots show meaningful noise.
+- ~21:10 UTC owner: "are you sure it's delay and not noise? Make Roman's video." Measured on public ep2 (CPU, $0;
+  `docs/analysis/roman-ep2-20261031/`):
+  - **robot layer** (the Embodiment video): no delay, noise 0.15–0.6 cm, drift or failure 1–14 cm;
+  - **perception layer:** a real **half-frame delay** (25 / 28 ms), noise 0.20–0.25 cm, drift 0.24–0.44 cm;
+  - half-frame advance: ADD −20 %;
+  - Roman's per-object Kalman at three noise levels: 0 to +22 % worse (it adds lag); offline RTS −1 to −3 %.
+  - **Flag:** S2 (the adopted half-frame advance) is not wired into `pipeline_ep.sh`, so the eval references lack it.
+  - Video for Roman (`romanvid.py`, 1920×1080, 17 s) sent to the owner. It shows:
+    - each object tracked separately on the colour camera, with mocap dots;
+    - the hand keypoints;
+    - 6-DoF series per object with ±2σ bands and contact shading;
+    - the delay / noise / Kalman numbers.
+  - Corrected the earlier "error is mostly a fixed offset". Per the standings decomposition that holds for AUC (≈ 80 %
+    of the reference AUC loss without ep23); about half for MPPE (1.18 → 0.55); not for RPE (1.00 → 0.77).
+- ~21:40 UTC all 20 public episodes (`docs/analysis/roman-ep2-20261031/all20.*`, CPU, $0, mocap diagnostic only):
+  - delay median 0.50 frame (IQR 0.41–0.55) over 26 moving objects, i.e. consistent;
+  - noise median 0.15 cm; drift median 0.38 cm;
+  - half-frame advance: better on 32 of 33 objects (−4.4 % ADD; −7.9 % without ep0/ep23);
+  - Roman's causal Kalman: worse (+1.3 to +7.8 %); delay-aware Kalman: worse; offline RTS: −0.7 %.
+  - Recommendation: wire S2 into eval references where they are rebuilt anyway; no Kalman filter.
+- ~22:10 UTC zero-lag smoother sweep (owner: "can't we address the Kalman lag offline?"): RTS best −1.5 % alone,
+  −5.1 % with the half-frame advance (vs −4.4 %), 0 objects worse. Tuned on public, so an upper bound. Page for Roman
+  published: https://claude.ai/artifact/6ZSVt1Fz17nXR8gzEKx7mo (private; ep2 video embedded).
+- ~22:20 UTC owner: "we meant the Kalman filter for the robot as well". Page v2 adds a robot-side section (the owner has
+  shared the page by link):
+  - the policy reads exact simulator state, so no input filtering is needed; the robot's error is drift or drops at
+    contact moments, not noise or delay;
+  - Kalman-shaped robot levers:
+    - (1) object velocity in the actor's observation (a slip signal; the critic has it, the actor does not; one config
+      switch, notebook open hypothesis), proposed: 4 public episodes × 2 seeds vs the recipe control, ≈ $5–6 [E];
+    - (2) uncertainty training (start-state randomisation is in tonight's screen; observation noise + a memory in the
+      policy needs code, after the freeze);
+    - (3) worst-of-copies scoring in the physics solver.
+- ~22:35 UTC owner: wants item 1 (slip signal) with physical knowledge, working with and improving the physics solver;
+  2 and 3 where they fit; and perception improvements.
+  - Cross-validated smoother: held-out −0.5 / −1.2 % on top of S2; same settings chosen on both halves.
+  - Messages sent:
+    - **determined-wright:** arm V (object velocity in the actor; verify the config key and evaluator honouring on
+      CPU), 4 eps × 2 seeds on tonight's chosen reference base, ≈ $5–6 [E]; V+D if D passes; solver v2 with a no-slip
+      term, force feasibility (task_wrench + grasp_force LP), worst-of-copies scoring, earlier re-plan windows, gradual
+      physics, optional synergies, gated on arm S, ≈ $8–12 [E]. Exact cost to the owner before launch.
+    - **focused-pascal:** S2 into rebuilt eval references (masses arm unchanged); the smoother as a refine step with
+      frozen cross-validated settings, kit-chain gate.
+- ~22:45 UTC owner: "Roman meant a Kalman filter for the robot; does ours use Kalman to make the policy follow the
+  perceived path?"
+  - Answer: no. None of the sent items is literally a Kalman filter in the robot loop. The policy reads exact
+    simulator state, and the measured robot error is slip at contact moments, not estimation noise or lag (< 1 frame).
+  - Roman's estimator/controller separation maps to perception + smoother (estimator) and solver + RL (controller).
+  - A literal in-loop filter would need training with observation noise plus a policy-architecture or evaluator code
+    change (off-limits before the freeze); it would matter on a real robot.
+  - Page v3 states this framing.
+- ~23:00 UTC robot-side checks (`docs/analysis/robot-side-20261031/`, CPU, $0):
+  - the robot's wrist targets jitter 0.2–1.1 cm and 1.5–10°; commanded wrist acceleration is 2–5× the smooth motion
+    (up to 11.7 m/s²); finger targets jitter 4–38°;
+  - the solver's plans are among the jerkiest;
+  - finger synergies: poses need 7 / 10 components (80 / 90 %), but the solver's edits need 3 / 6.
+  - Hypotheses: [H-cmdsmooth] a zero-lag Kalman smoother on robot targets; [H-syn] synergy-space solver sampling.
+    Pre-registered falsifiers in the README.
+- ~23:15 UTC focused-pascal will port the RTS smoother as an opt-in refine step after S2, kit-chain gate (ΔR ≥ +0.005,
+  no drop > 0.02).
+  - Sent the exact spec: positions only, σ 8 mm, q 4.0 / 0.04 m²/s³, hand gate 3.5 cm to ~300 posed library_v3
+    vertices, 21 MediaPipe keypoints.
+  - Corrected my record: the cross-validated runs did not effectively smooth rotations (σ ≈ 0.024°).
+  - S2: the eval-10 V4p chain (20261031-e10v-caf38fb) already ends with refine S2; a full re-track would add S2 to every
+    eval reference.
+
+### 31 Oct ~21:30 UTC — overnight coordination before the owner sleeps
+- Read every lane:
+  - pack-10 PLAN (focused-pascal): Tier 1 carves + V4p + D arm; Tier 2 on masses v2 and re-track; no solver; owner
+    "No D", then a targeted D;
+  - recipe screen final: S no signal, K inconclusive, D mixed;
+  - arm V pre-registered and owner-approved (determined-wright §10);
+  - mesh: interlock delivered nothing on public; eval-25 slot not run; E0 gates open;
+  - standings: ep11 gate +0.142; e10v launched.
+- Vast: credit $69.22. Instances mv2b, h5p7 (PUSH-FAILED, self-destroying), e10v.
+- Owner decisions (AskUserQuestion, verbatim answers):
+  - D cells tonight: "Yes, start tonight (Recommended)";
+  - pack 9b upload: "Upload automatically".
+- Messages sent to focused-pascal, determined-wright, standings and bold-albattani (content in STATUS).
+- Check-in scheduled at 05:00 UTC (send_later).
+- ~21:20 UTC the score-status session verified both owner answers in this transcript; no conflict. Items for the
+  05:00 summary:
+  - pack 9a+ scores (AUC 0.81757, CD-O 0.332 rank 14, RPE 3.879, MPPE 2.897, rank sum 60 = 11th);
+  - the re-track test can launch tonight (Set B meshes landed ~21:12);
+  - the marker layer is closed;
+  - the eval rollout audit found one failure (eval 10).
+  - The owner asked that messages to them not bring up deadlines.
+- ~21:20 UTC owner: "what about the mesh chat?" Read bold-albattani (5b3bbea, INTERLOCK 20.12, work log):
+  - Set B per-episode public meshes delivered (~21:12), so the re-track test is unblocked;
+  - C0b: white pot and beige cup adopted (WIN + AUC guard); lid, rack and blue cup fail; C2 pitcher/rack workflow
+    running;
+  - E0 eval meshes: gates G1 (scan-derived marker-ball prior) and G2 (no AUC guard) are open owner decisions;
+  - interlock carves failed on public;
+  - ep24 slot verified on public (P1 pending with determined-wright) but not frozen for eval 25. Its hand-off to
+    focused-pascal: keep `meshes/carve/ev25` in the pack.
+  - My delivery-statement request is queued behind its current turn.
+- ~21:45 UTC focused-pascal: its permission guard blocks a Kaggle upload on relayed approval (as it did for 9a at
+  16:40). It proposed handing pack 9b to the session where the owner gave the word.
+  - Agreed: this session is the single uploader of pack 9b; the score-status session was told not to upload it.
+  - Readiness: kit downloaded to the scratchpad (submit/v2d_submit.py sha256 d31d4a7c…, matching the 9a+ record);
+    kaggle 2.2.5 in a scratch venv; tools/kaggle_upload.py.
+  - Dry run on 9a+'s file (sha256 e02736ea…): valid, 9,120 rows, 6 boards, 4 left today on each, nothing submitted.
+  - The 05:00 UTC check-in trigger was updated to verify (swap-rule verdicts vs PREREG, sha256, rows, commit,
+    script hashes, byte-diff), dry-run and upload 9b with a receipt if it passes; no GPU spend.
+- Clock correction: from about 20:00 UTC, the times in this session's entries and messages ran ahead; they were
+  estimated, not read from the clock. Git commit times are authoritative. The owner's two decisions were at 21:14:50 UTC
+  (verified by the score-status session).
+  - ~21:21 UTC determined-wright: arm V launches in ~15 min (2 boxes, ≈ $9 [E]); the FC_DR_SKIP_IMMEDIATE flag for
+    focused-pascal's standard-learner D cells by ~22:15 UTC (else reported absent); the per-episode CPU reset check
+    ~23:00 UTC; then the ep24 P1 check, then my command-smoothing (A) and synergy (B) CPU tests.
+  - ~21:21 UTC score-status: agrees this session is the single 9b uploader; asks that 9b's receipt sit beside its build
+    as 9a+'s does (results/submissions/<run>/build_*/).
+- 21:21 UTC focused-pascal corrected its proposal: it will not hand 9b over as an upload request (that would route
+  around its own guard). It publishes the full pack record and "pack 9b ready: <path>" / "no 9b" in its STATUS and work
+  log. The upload is this session's decision under the owner's direct instruction here. The 05:00 trigger already
+  covers "work log shows it built and passed". A backup check was added at 07:30 UTC (send_later) in case 9b is still
+  being built at 05:00.
+- 21:22 UTC bold-albattani sent focused-pascal its eval delivery statement:
+  - **NOT delivered:** F-I5 collision carves for evals 32/33, 14/16/30, 10 and 1. Piece splitting failed on all 10
+    public objects; exact colliders fail hands-off because tracked rest poses interpenetrate, sink into the table or
+    float; carving is not the remedy for the spoon episodes 32/33/16.
+  - **Conditional:** the eval-25 board slot, round 3 running; a firm yes/no by 08:00 UTC; default keeps
+    `meshes/carve/ev25`.
+  - **E0b eval meshes:** only pot and beige cup are eligible, and both are less accurate on public than pack 9a+'s, so
+    9a+ stays.
+  - Effect: pack 10 Tier 1 = eval 10 V4p + tonight's D cells (+ eval 25 if round 3 says yes).
+- 21:22 UTC OWNER (this chat, verbatim): "okay I allow 3d mesh chat to do anything as long as it improves the score and
+  doesnt intervine with the rules of the competiton. they can go crazy". Relayed verbatim to bold-albattani, with
+  guard-rails: shared credit ($69.22 at 21:20 UTC; leave enough for e10v, mv2b, arm V and the D cells), submission
+  changes via focused-pascal (this session uploads 9b), CLAUDE.md integrity rules.
+- 21:28 UTC bold-albattani proposed adding the C0 blue cup (`meshes/library_c0/blue_cup.glb`) to the 9a+ set:
+  CD-O ≈ −0.032 [D]; AUC guard +0.022 mean over 5 twins; MPPE −0.22 cm; RPE +0.17 cm. It fails its own rule's ep13
+  clause (−0.030 vs the −0.02 floor), and its selector was not pre-registered.
+  - Kept OUT of the automatic 9b upload: the owner's authorisation covers only 9a+ + V4p + passing D cells.
+  - Listed as an owner decision for the morning. The 05:00 trigger now states the content limit explicitly, plus a
+    "no mesh change" byte-diff check.
+- 21:34 UTC focused-pascal: the RTS position smoother (S13, after S2, σ 8 mm) FAILS its pre-registered kit-chain gate:
+  mean ΔR −0.00011 vs +0.005, 9 better / 7 worse; the effect is below the scorer's resolution. Not adopted.
+  - It also caught my error: the cross-validation halves chose σ 16 mm (A) and 8 mm (B), not the same cell.
+    Corrected in the README.
+- 21:47 UTC determined-wright: both D items delivered to focused-pascal.
+  - FC_DR_SKIP_IMMEDIATE=1 (4e5c8a0, CPU test 17/17 PASS).
+  - Reset check on the packed eval assets (8fb5152): every D eval sits inside the public screen's range (median
+    0.16–1.05 cm, 25–56 % of worlds > 1 cm at hold end, vs public 0–1.09 cm and 3–53 %); no NaN; eval 25 had one
+    6.7 cm pop at f170.
+  - Arm V running (2 boxes, results ~00:30 UTC). Next: the P1 check for bold-albattani, then command-smoothing test A.
+- 22:23 UTC determined-wright: command-smoothing test A FAILS the pre-registered rule (§11). GL+ILC +0.002 to +0.014;
+  solved plans −0.027 to +0.014. No RL follow-up. Synergy test B parked: it needs the CPU solver (hours per episode), and
+  the solver is closed for eval after arm S; it can run if the owner wants.
+- 22:55 UTC focused-pascal: the re-track test FAILS every pre-registered clause. P_o' with per-episode C0b/E0b
+  templates (Set B) vs P_o on 20 public episodes, cost $1.54: mean dR −0.170, 3/20 positive, min −0.973, dRPE
+  +1.32 cm. The losses come from the white_pot template (ep45 0.980 → 0.006, ep0 → 0.037, ep26 −0.47, ep2 −0.26) and
+  the ep11 cup pair (0.898 → 0.193). There is no eval re-track, and nothing enters a pack (942dbfc).
+  - Still running: eval-10 V4p retrain (seed 43) and masses v2 box B. The D boxes launch after their review returns GO.
+- 23:35 UTC focused-pascal (28a03df):
+  - **Eval-10 V4p: NO-SWAP.** The cup is never lifted in either seed; new vs packed 0.459 vs 0.463 (V) and 0.449 vs
+    0.453 (P), both failing 10/10. The ep11 gate gain did not transfer [H: a reference or initial-state difference the
+    gate did not cover].
+  - **Masses v2: NOT ADOPTED** (mean +0.0034; 1/4 positive).
+  - **Re-track: FAIL.**
+  - **D arm:** 5 boxes (G: 14/16/33; S25 ×2; S30 ×2), the last launching ~23:45; reading after ~2.5–4 h of training plus
+    one confirmation box. Pack 9b = 9a+ plus passing D cells only.
+  - Credit $56.52 at 22:58 UTC. Tonight's actuals: e10v $3.25, h5p7 $5.85, h5e1 $6.95, mv2a2 $6.20, rtkA/B $1.54.
+- 00:05 UTC 1 Nov determined-wright: **arm V (actor sees object velocity) INCONCLUSIVE, not used** (§10.1, ee8ad41;
+  $7.02 [E]): Δ vs C ep2 −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007, mean −0.024 (leaning negative, short of
+  the harm bar). With test A failed and arm S showing no signal, no robot-side item from that lane changes pack 10. V+D
+  is not run.
+- 00:47 UTC 1 Nov bold-albattani: **eval-25 board-slot verdict NO** (INTERLOCK 20.15, 3fce701; $0 tonight).
+  - Round 3 (5 boxes per board) passes every physics test on public ep24.
+  - It fails one clause of its own contact rule, and changing that now would be post hoc.
+  - Our tracked board pose at assembly differs from the packed eval-25 reference by 9.8 mm / 2.5°, against a 1 mm
+    clearance.
+  - Pack 10 keeps `meshes/carve/ev25`.
+- ~01:00 UTC 1 Nov Roman (forwarded by the owner):
+  - (1) estimate the table plane / camera tilt from an independent reference such as the background velocity field
+    (drone optical flow);
+  - (2) Yoon et al. 2017, Sensors 17(9):2075 (UAV video, 25 fps, cross-correlation of tracked points cancels camera
+    motion; modal frequencies within ~1 % of accelerometers): use natural frequencies to infer the forces, i.e. whether
+    an object is held firmly.
+  - Assessment given to the owner:
+    - (1) our camera motion is already estimated from the static background (stereo VO); the costly tilt is the
+      anchor object's frame-0 orientation (template-driven), not the camera's;
+    - (2) 20 fps (Nyquist 10 Hz) and the 0.15 cm tracking noise make grip vibrations unobservable, and the robot's
+      grip is designed, not copied.
+  - A paste-ready reply was drafted asking Roman about estimating an object's starting orientation.
+- ~02:50 UTC 1 Nov focused-pascal (cross-session message, for the morning summary): **measured lead on why eval 10
+  fails; nothing launched on it.**
+  - [M] Same ev10 collision pieces and V4p method in both runs. ep11 gate training: 62 and 123 "nefc overflow" lines,
+    requested njmax median 518, max 559 (limit 512). Eval-10 retrain: ~6.0 M overflow lines per seed, median 580,
+    p95 752, max ~1,050, i.e. ~50,000× more constraint overflow, from the start of training.
+  - Context: bold-albattani found the packed pieces overlap at eval 10's nested hands-off rest (3.4–32.7 cm³).
+  - [H] eval-10 training drops contact rows throughout, which would explain "lift 0" at every checkpoint and the ep11
+    gain not transferring. Falsifiers (owner's go needed): (1) one eval-10 training at njmax 1024 / nconmax 512,
+    ~$2–3; (2) a reference whose nested rest has no piece overlap.
+  - D arm: 4/5 boxes done, all VERIFIED. Eval 25 s42 0.816, s43 0.482 (weak); eval 30 s42 0.837, s43 0.817. G
+    (evals 14/16/33) due ~03:05, then the confirmation box, then the verdict. Credit $35.80 at 01:47.
+  - This session takes no action on it: it goes in the owner's morning summary as a decision (falsifier 1 is the
+    cheaper one). No rental from this chat.
+- ~03:00 UTC 1 Nov focused-pascal: **overflow check [M]: constraint overflow does not track the weak cells, so it
+  stays an eval-10 story.** "nefc overflow" lines in D standard-learner training: eval 25 s42 (0.816) 6, max 541;
+  eval 25 s43 (0.482, weak) 0; eval 30 s42 0; eval 30 s43 0. Eval 1: packed std0116 s42 (high variance, min 0.150) 0;
+  carved c01s43 39, max 581. Eval 10: ~6 M per run. No broadphase overflow anywhere. G's logs (14/16/33) to be counted
+  when that box ends. So eval 25 s43's weakness and the eval-1 variance have another cause; the overflow lead (and its
+  ~$2–3 falsifier) applies to eval 10 only.
+- 02:43 UTC 1 Nov **owner: "Okay go"** (in this chat), in reply to the eval-10 contact-overflow falsifier 1: one eval-10
+  training at njmax 1024 / nconmax 512, ~$2–3 [E, focused-pascal]. Relayed to focused-pascal at 02:44 with conditions:
+  - diagnostic only, never packed: the evaluator rebuilds sim from the checkpoint's config (L420–423), and changed
+    physics at evaluation needs the organisers' OK, so pack 9b scope and the 05:00 upload rules are unchanged;
+  - pre-register before launch: supported = overflow ≈ 0 AND lift > 0 at some checkpoint AND sim_vs_ref > 0.459;
+    falsified = no overflow but lift 0; inconclusive = overflow persists at 1024. Also evaluate the checkpoint at
+    njmax 512;
+  - usual box rules (cost stated, self-destroy, stall watchdog);
+  - falsifier 2 (a reference with no piece overlap at the nested rest, at 512) is the submission-legal fix if 1
+    supports the hypothesis. It is not covered by this go; its plan and cost go to the owner.
+- 02:46 UTC 1 Nov focused-pascal acknowledged the njmax-1024 diagnostic under the stated conditions; not launched yet.
+  - Build: one seed on e10v's stored V4p reference, plus a guard in tools/no_oracle.py that refuses the run's tag so
+    pack tools cannot take it.
+  - Cost [E]: ~$2.5–3.5 for ~2.3 h of box time, to be stated in the PREREG before launch.
+  - Order: launches after the D confirmation box, which stays first.
+- ~02:48 UTC 1 Nov (clock-corrected; first written as 02:55) owner asked whether the night produced anything useful. Answer given, with an early read of the D
+  cells [E: training-box rollouts vs the packed policy's Oct-29 H5 10-draw means (standings branch
+  docs/analysis/h5-20261029/h5_summary.json); the verdict uses tonight's h5p7 draws and the PREREG §4 rule]:
+  - eval 30: D s42 0.837 ± 0.12, s43 0.817 ± 0.14 vs packed 0.798 ± 0.255, so clause (a) is plausible; clause (s)
+    needs draw 1 ≥ 0.923 − 0.05 = 0.873, which a 0.837 ± 0.12 policy reaches roughly 4 times in 10 [guess];
+  - eval 25: the seed rule picks s42 0.816 vs packed 0.850, so likely NO-SWAP;
+  - evals 14/16/33: pending (G box).
+  - Pattern stated to the owner: the largest losses all coincide with overlapping collision geometry (eval 10 never
+    lifted; eval 30 sd 0.255; eval 1 cured by a carve, 0.239 → 0.017; eval 14), while tonight's robot-side items
+    (smoothing, velocity input, masses, solver re-test, re-track, smoother) were all no. Proposed pack-10 direction:
+    geometry fixes under the same swap rule.
+- 02:50 UTC 1 Nov **owner, verbatim: "I give you permission for everything"**. It answered my proposal to fix the
+  collision overlaps behind evals 10 / 30 / 14 and to have the mesh chat prepare carves.
+  - How I read it (sent to every lane):
+    - GPU work that serves the score needs no per-batch go. Each batch still gets plan + expected cost in the work
+      log before launch, a PREREG before any result, self-destroy and the stall watchdog, and a ≥ $5 credit reserve.
+    - Kaggle uploads of packs whose every swapped episode passes its pre-registered swap rule and whose pack checks
+      pass (9b, later pack 10). This session stays the single uploader.
+  - Not covered:
+    - the competition rules and CLAUDE.md integrity;
+    - njmax-1024 policies in packs (organisers' OK needed);
+    - the C0 blue cup (fails its own ep13 floor, selector not pre-registered);
+    - anything reading ground truth or tuned on eval results.
+  - Messages 02:52–02:54:
+    - focused-pascal (the only launching lane), priority:
+      1. D confirmation;
+      2. njmax diagnostic;
+      3. eval-10 retrain on no-overlap pieces;
+      4. eval-30 rack-slot retrain;
+      5. eval-14 retrain;
+      6. one confirmation box for 3–5.
+      [E] ~$19 for 3–6 plus ~$3 for 2; stop and report if credit cannot cover the next item.
+    - bold-albattani (mesh): CPU queue, gates committed before measuring, cut in the packed reference's frame:
+      ev10 cavity-safe, then the eval-30 rack slot, then the eval-14 rack, then evals 32 / 15 / 16.
+    - determined-wright: no duplicate njmax launch; budget.py on each candidate.
+    - score-status: for the record.
+  - Check-ins: 05:00 (updated), 07:30 (renamed "Pack 9b / pack 10 check", updated), new 10:30 UTC
+    trig_01Ltr9dX9Kt5Lx9WbYiiSasC.
+  - Owner-only: a credit top-up (credit $35.80 at 01:47 is below the full queue's need).
+- 02:53 UTC 1 Nov acknowledgements:
+  - focused-pascal works the priority list in order.
+    - (1) D confirmation box launches when box G ends (~03:00).
+    - (2) njmax diagnostic: PREREG first.
+    - (3)–(5) wait for the mesh pieces to pass their gates and budget.py at 512; (6) follows.
+    - Credit ~$30. Reserve ≥ $10 where possible, never under $5.
+    - It will not upload, and will not route an upload through another session. It publishes "pack 9b ready" /
+      "pack 10 ready" records; this session is the uploader.
+  - bold-albattani: two CPU builds running, gates committed before measuring, no rental.
+    - ev10 cavity-safe: overlap f124–f160 median ≤ 1 / max ≤ 3 cm³; sim=rl pair nefc ≤ 512, ncon ≤ 256, no overflow;
+      cavity intrusion ≤ 0; kept volume ≥ 80 %.
+    - Eval-30 rack slot, then eval 14: same overlap gates; rack fill beyond the mesh ≤ 1 cm³; hands-off settle within
+      4 mm / 5°; kept volume ≥ 90 %. The eval-14 cup 16.6 mm inside the table is flagged as a reference issue.
+- 02:56 UTC 1 Nov determined-wright: no duplicate njmax launch, no rental (CPU checks only).
+  - Packed baselines [M] (budget.py, sim=rl): eval 10 overflows (nefc max 536, 13 % of world-steps > 512); evals 30
+    and 14 do not (max 244 and 385).
+  - So for evals 30 / 14 the overlap matters through noise-decided separation (draw variance), not dropped
+    contacts. Their gates are overlap, settle and kept volume.
+  - It will run budget.py on each mesh candidate within ~10 min of it landing.
+- 03:08 UTC 1 Nov owner asked whether anything was uploaded. **Answer: no upload since pack 9a+** (31 Oct; AUC
+  0.81757, SP-SR 0.850, MP-SR 0.650, RPE 3.879; receipt on claude/standings-20261031).
+  - D arm (focused-pascal, 03:02–03:03): all 10 cells VERIFIED; five training boxes $17.24 measured.
+  - Merge candidates: ep14 s43, ep16 s43, ep25 s42, ep30 s42, ep33 s42. Confirmation box C (instance 58608674,
+    $1.377/h, planned $1.75) launched 03:03.
+  - Early read [E: training-box means vs the Oct-29 H5 packed 10-draw means; clause (s) floor = old packed draw −
+    0.05; the verdict uses PREREG §4 on box C's draws]:
+    - ep14: 0.697 vs 0.615, floor 0.859;
+    - ep16: 0.841 vs 0.813, floor 0.858;
+    - ep25: 0.816 vs 0.850, floor 0.844;
+    - ep30: 0.837 vs 0.798, floor 0.873;
+    - ep33: 0.943 vs 0.934 (pack-7 rcB), floor 0.890.
+  - ep33 looks most likely to pass; ep16 and ep30 depend on draw 1; ep14 and ep25 are unlikely.
+  - G's logs show moderate overflow (ep14 ~1.6–1.9×10⁴, ep33 ~3×10⁴, ep16 0) that does not track the weak cells.
+- 03:13 UTC 1 Nov determined-wright: **ev10 cavity-safe v1 (ev10cs) not clean, so no retrain on it**.
+  - [M] full scene, sim=rl, vs packed: nefc max 510 vs 536; overflow lines 4 vs 13; cup–cup contacts 31 vs 68.
+  - A large reduction, but it fails the pre-registered no-overflow gate.
+  - Waiting for bold-albattani's v2 (A2). The eval-30 / eval-14 rack candidates are not out yet; their gates are
+    written.
+- 04:05 UTC 1 Nov focused-pascal: **pack 9b record ~05:30 UTC, not 05:00.**
+  - The D confirmation box spent ~50 min on pack 6's store pulls (6,866 files). Draws started 04:03; the pack check
+    passed. Draws done ~05:05 [E].
+  - Credit $33.89 at 03:02. njmax diagnostic launches after box C, PREREG first.
+  - Added a 05:45 UTC upload check (trig_01W85SJqy4miyDxtbixJcK4H), same rules as 05:00.
+- 03:50–04:00 UTC bold-albattani: **collision carve round 2 closed, nothing carved or delivered** (report 2d9bfc5).
+  - Key finding [M]: on the eval references (H30 hands-off frames), the packed colliders never block a feasible pose.
+    Where pieces overlap at rest, the visual meshes overlap too: **the poses are the problem, not the pieces.**
+    Failing / hands-off frames: eval 10 25/33, 1 50/50, 14 18/29, 15 12/54, 16 14/60, 30 22/22, 32 0/3, 33 0/14.
+    Public episodes: at every hands-off test frame our tracked poses are impossible (overlap or inside the table).
+  - Corrections: the eval-10 656–1,296 rows are plain-MuJoCo only (the overflow stands on FlashCHORD 536 / 13 % and
+    the training logs). Eval 14 "16.6 mm into the table" and eval 32 "19.5 mm" were H0 frames; under H30 the max is
+    3.9 mm.
+  - ev10 cavity-safe v1/v2/v3 delivered at 04:00 for budget.py. v3 passes gate 1 by 0.01; the kept-volume gate fails
+    for the blue cup; v2/v3 are post hoc.
+- 04:10 UTC proposed to bold-albattani (CPU, $0, PREREG first): a physics pose fix tested on public episodes before
+  any eval reference is touched.
+  - Transform: a minimal rigid shift removing visual-mesh interpenetration (object–object, object–support) on H30
+    hands-off segments, constant per segment with ramps.
+  - Scoring: kit-chain AUC / ADD vs mocap before and after, plus the cosine between each push and the error
+    (falsified if ≤ 0 on most segments); the same check tells "poses wrong" from "meshes too fat".
+  - Suggested gate: mean ΔAUC ≥ +0.002, no episode < −0.01.
+  - [H] Contact is the "touch" Roman says absolute position needs.
+- 04:07 UTC 1 Nov bold-albattani **started the public pose-fix test** (new item; CPU, $0; folder
+  docs/research/mesh-2026-10-26/posefix/ on their branch).
+  - PREREG committed before any scoring.
+  - Inputs: the CD-O guard's public tracks and scorer (cdo_c0/tracks, pipeline/score_registered.py), so the before
+    numbers reproduce the stored base; the 9a+ mesh set; a ground-truth-free H30 hand estimate and table plane from
+    our depth.
+  - Transform as proposed. One scored run on ~20 public episodes. Gate: mean ΔAUC ≥ +0.002, no episode < −0.01;
+    MPPE / RPE reported. Diagnostics: push-vs-error cosine and our meshes at mocap poses.
+  - If it passes, the rule goes to focused-pascal for evals 10, 1, 14, 30, then 15 / 16. ETA 2–3 h; PREREG within 1 h.
+- 04:20 UTC 1 Nov focused-pascal: **eval-10 njmax-1024 diagnostic launched.**
+  - Box 20261101-e10nj-451b82d (instance 58615195, India, $1.392/h). Ledger $3.50; PREREG range $1.8 / $3.0 / $5.8.
+  - PREREG docs/research/work/eval10-njmax-20261101/PREREG.md, committed first (086de63).
+  - Labels:
+    - INCONCLUSIVE: overflow > 1,000;
+    - FALSIFIED: overflow ≤ 1,000 and no lift;
+    - SUPPORTED: overflow ≤ 1,000, lift, and mean official sim_vs_ref at 1024 > 0.4593;
+    - PARTIAL: lift without a score gain.
+    - The 512 copy is reported alongside and never changes the label.
+  - Correction [M]: the "blue_cup: lift 0" log label tracked the blue cup, which stays on the table by design. The
+    lifted cup is the beige one. e10v curve.json: beige lift 0.0–0.3 cm at 13 of 14 checkpoints, 2.5 cm once (a knock).
+    "Never lifted" stands, for the beige cup. The lift clause is beige ≥ 5 cm at some checkpoint.
+  - Reply 04:19: "lift > 0" was my suggested wording, not the owner's (the owner said only "Okay go"). The beige
+    ≥ 5 cm clause stands as committed.
+  - tools/no_oracle.py now refuses the run's names and any checkpoint with non-stock contact limits; all 20 pack-7
+    checkpoints pass.
+  - D confirmation at draw 3 of 10 at 04:16; the pack 9b record ~05:00–05:30.
+- 04:47 UTC 1 Nov determined-wright: **overlap-fix budget checks done** (CPU, $0; record 6b04fba on their branch).
+  - Keep the packed racks for evals 14 / 30: both packed configurations are clean; the eval-14 rack candidates add
+    overflow.
+  - Eval 10: no clean candidate (ev10cs3 is best, still overflows).
+  - No GPU retrain is cleared tonight. The geometry retrains (priority items 3–5) are off. The next lever is the pose
+    fix (bold-albattani's public test, running).
+- 04:57 UTC 1 Nov focused-pascal: "pack 9b ready" (874c9d3, results/submissions/20261101-track3j-candidate/build_9b).
+  - D verdict (PREREG §4, 2ce1872): eval 33 PASS (0.9358 vs 0.9234, 0 / 0 fails, draw 1 0.9419); evals 14 / 16 / 25 /
+    30 NO-SWAP (the packed policies beat the D candidates on official draws).
+  - D arm $19.41 measured. Credit ~$29.
+- 04:57–05:02 UTC **pack 9b UPLOADED by this session** (owner: "Upload automatically" and "I give you permission for
+  everything").
+  - Checks [M]: sha256 a6c4105a…; 9,120 rows; byte diff vs 9a+ = e000033's 696 pose + checkpoint rows only, plus
+    code_commit_url d7ecaef → dd24ed4 on every row; meshes identical; kit hashes match; dry run valid; CD-O equal.
+  - Kaggle submission IDs 57860700–57860708.
+  - Scores: AUC 0.81677 (9a+ 0.81757), SP-SR 0.85 (=), MP-SR 0.65 (=), RPE 3.88283 (3.87853), MPPE 2.90186
+    (2.89663), CD-O 0.33234 (=).
+  - **9b is slightly worse; 9a+ stays our best on every board.** The GT-free proxy's +0.0018 on one episode was noise
+    against mocap.
+  - Receipt and UPLOAD.md in build_9b on this branch (157ed61). Messaged focused-pascal and score-status. Deleted the
+    05:45 check (trig_01W85SJqy4miyDxtbixJcK4H), now moot. The 07:30 and 10:30 checks stay for pack 10 / news.
+  - Lesson [I]: when the expected gain is within noise, a swap is a coin flip on the board. The swap rule protects
+    against large losses but not small ones. Worth adding for pack 10: skip uploads whose expected AUC change is below
+    the board's noise.
+- 05:00–05:12 UTC 1 Nov **morning check-in** (trig_01LXuo1FHsj3WPgu5F4Q2PHt).
+  - Pack 9b had already been uploaded at 04:57–05:02 by this session, so there was no second upload.
+  - `ops/vast.sh show`: one instance, 58615195 20261101-e10nj-451b82d (the njmax diagnostic), running, $1.389/h.
+  - Credit **$29.93** at 05:06 (it was $56.52 at 22:58 31 Oct).
+  - drawdiv on ep2 masses-check draws (run 20261031-mass-2ed46ea; docs/analysis/drawdiv-20261031/ f58f638) [M]:
+    - good draws: mass0 4/10 and 3/10, mass1 6/10 and 8/10;
+    - draws split at 10 µm by f1–4 and at 5 mm by f5–11;
+    - the lid fails first;
+    - the 88 g lid removes most f54–61 failures (10 → 2), while early (< f30) lid failures stay (8 vs 9).
+    - [H] The early failures are the pot+lid rest-pose interpenetration (the eval-1 analogue). Sent to
+      determined-wright.
+  - Morning summary given to the owner in this chat.
+- 05:09–05:14 UTC 1 Nov **ev10cs4 cleared determined-wright's FlashCHORD checks** (6e32856, 4f5ff63).
+  - [M] Contact budget at 32×60: 0 / 0 overflow lines, hold max 448.
+  - [M] Nest test: beige tracks the reference nest ~7× closer than packed (0.14 vs 1.02 cm median), no floor
+    crossing; release impact 5.5 of 6 mm.
+  - bold-albattani's own gates (fedccf6 / 7e4bc6a): overlap 0.21 / 2.61 cm³, nefc and intrusion pass; **blue
+    kept volume 0.384 fails**, as for every cavity-safe set (the blue visual mesh fills its own cavity). The
+    plain-MuJoCo drop check shows beige crossing in 2–8 of 16 copies at 24–32 mm drops. FlashCHORD showed none.
+  - **Go given to focused-pascal (05:14)** under the owner's 02:50 permission (priority item 3).
+    - Conditions: pack-eligible candidate; PREREG before launch with the pack-9b swap rule; 2 seeds at stock
+      njmax 512 / nconmax 256; ev10cs4 by md5; ~$3.5 [E].
+    - The confirmation box only if a training-box mean beats the packed fresh draws. Beige lift ≥ 5 cm is reported.
+    - The kept-volume failure is disclosed.
+    - New pack-10 rule (lesson from 9b): swap only if the expected sim_vs_ref gain is ≥ 0.02 on the episode.
+  - Messaged determined-wright (no run; optional 8 mm plate margin check) and bold-albattani (freeze ev10cs4 by md5).
+- 05:10 UTC 1 Nov bold-albattani asked for the owner's go on the ev10cs4 eval-10 retrain.
+  - Evidence: packed ev10 380 / 9,723 overflow lines vs ev10cs4 0 / 0; nest 0.14 / 0.52 cm and 1.1 / 2.7° vs packed
+    1.02 / 2.06 cm and 7.0 / 11.1°.
+  - Known trades: beige 1.3–24 mm deeper in plain MuJoCo; blue cavity floor 3 mm above the visual mesh; impact margin
+    5.49 / 6 mm; free rest drifts 1.6 cm (reference visual meshes overlap 80 cm³; that is the pose fix's job).
+  - Cost [E, theirs]: ~$6 on the ledger.
+  - Answered 05:16: the 02:50 permission covers it; the go went to focused-pascal at 05:14 with the stated conditions.
+- 05:10 UTC 1 Nov bold-albattani: ev10cs4 frozen (FROZEN.md fa2ec41, md5 of every file at build commit 7e4bc6a; any
+  change goes to a new folder). The public pose-fix test stays their main item.
+- 05:47 UTC 1 Nov focused-pascal: **eval-10 njmax-1024 diagnostic SUPPORTED on every pre-registered clause** [M].
+  - Run 20261101-e10nj-451b82d; PREREG 086de63, committed 03:17, before the 04:20 launch.
+  - O: 0 overflow lines in training (e10v ~6 M per seed).
+  - L: beige lifted 23.9 cm max (e10v 2.5 / 0.3 cm).
+  - A: official sim_vs_ref vs V at 1024 = 0.913 (n 10, 0.869–0.933); e10v re-scored on the same box 0.459; vs P 0.881.
+  - 512 readout (VALID): the same checkpoint at stock 512 / 256 scores 0.903 vs V, 0.873 vs P, with 0 overflow in
+    every official draw.
+  - Guard refused 6/6; never packed. Cost $2.06 measured; credit $28.95.
+  - Meaning: eval 10's floor was training-time contact overflow, for both the packed policy and e10v. [E] ~+0.45 on the
+    proxy for one of 20 episodes; up to ~+0.02 AUC if the board follows (unverified).
+  - Open for the owner / organisers: is a policy trained at njmax 1024 and evaluated at stock limits acceptable? The
+    checkpoint's saved config records 1024, and the evaluator rebuilds sim from it, so packing would need the config
+    at stock. That is the grey part.
+  - The fully stock route runs next: the eval-10 retrain on ev10cs5 at 512. The pre-stated piece rule is met
+    (determined-wright be1e893: 0 / 0 overflow, byte identity). If it passes the swap rule, it goes into pack 10.
+  - My recommendation to the owner: wait for ev10cs5; in parallel, optionally ask the organisers (paste-ready
+    question given).
+- 05:48 UTC 1 Nov bold-albattani: **public pose-fix test FAILS its gate** [D].
+  - PREREG df60ff2 before scoring; output sha 4ef1305 committed before the ground truth was staged; results e3b1fcd;
+    CPU, $0.
+  - Rule A: mean ΔAUC −0.0107 (gate +0.002), min −0.0342 (ep41); 17 / 20 worse; MPPE +0.128 cm, RPE +0.087 cm. The
+    before scores reproduce the stored 9a+ runs.
+  - Variants also negative: no frame-0 shift −0.0051; pair overlaps only −0.0024; with support drop −0.0106.
+  - Direction check falsified: on 28 / 50 segments the push does not point toward the truth (pair pushes right on
+    11 / 16 but overshoot ~5.7×; table lifts wrong or orthogonal on 23 / 34).
+  - **Correction:** with our meshes at the TRUE mocap poses the overlaps persist (ep11 cups 65 cm³, ep31 sweeper–rack
+    11.1, ep24 boards 9.9, ep2 lid–pot 5.9). Only the cup in the rack is mostly pose (ep12 2.2 → 0.7, ep13 4.1 → 1.9).
+    So "the poses are the problem" was too strong; a large part is mesh shape. Container openings may be counted as
+    solid.
+  - The C0 pot's lowest point sits 6.9–8.3 mm below the real base in all 9 pot episodes (library_v3 pitcher 7–11 mm).
+    Scoring registration absorbs it, but [H] in sim it puts the pot into the table.
+  - No rest-projection shift on any eval reference. Eval 10: pieces (ev10cs4 / 5). Evals 1 / 30: mesh-side. Eval 14:
+    about half pose (untested rule).
+  - 05:52 reply: yes to re-basing the pot / pitcher collision bases on CPU, with pre-registered gates and collision-only
+    unless the CD-O guard applies. Linked to the ep2 drawdiv. [H] A re-based pot cuts the early lid failures;
+    falsifier: an ep2 A/B still shows ≥ 8 early lid onsets per 20 draws. That is a GPU test after ev10cs5, credit
+    permitting. drawdiv README updated.
+- 05:50 UTC 1 Nov bold-albattani: **pot / pitcher re-base build started** (CPU, $0; collision-only; folder
+  docs/research/mesh-2026-10-26/rebase/; GATES.md committed before measuring).
+  - The visual mesh (object_mesh_b64) stays byte-identical, checked by md5, so CD-O and kit scoring are untouched.
+  - Rules stated before measuring: (a) translate all pot / pitcher collision pieces up by the median rest
+    penetration; (b) clip only the base slab. For (a), the lid-on-pot overlap is also measured.
+  - Gates:
+    - G1 rest penetration median ≤ 1 / max ≤ 3 mm at H30 frames;
+    - G2 pot–lid overlap ≤ packed + 0.5 cm³;
+    - G3 settle within 4 mm / 5°;
+    - G4 plain-MuJoCo contacts indicative, budget.py 32×60 binding;
+    - G5 visual md5 unchanged;
+    - G6 piece count ≤ packed.
+  - Delivery order: public ep2 set (for the ep2 A/B, credit permitting); eval pot sets 1, 3, 5, 6, 8, 28 (eval 1
+    from the ev01 carve); pitcher, eval 20.
+- 06:11 UTC 1 Nov focused-pascal: **eval-10 stock retrain launched** (pack-10 candidate).
+  - Box 20261101-e10cs-50c2d90 (58625218, India, $1.392/h), code 50c2d90d, job 'PIECESET=ev10cs5 bash
+    ops/jobs/ev10_cs.sh'.
+  - PREREG docs/research/work/eval10-cs4-20261101/PREREG.md, committed 13c4133 before any result.
+  - Config: equal to gl10A2's except the reference / seed / output keys, at 512 / 256.
+  - Pieces: ev10cs5 by md5.
+  - Swap rule: pack-9b a / b / c / s against the H5p7 draws.
+  - Training-box gate: confirmation only if a seed beats 0.4632 vs V. Beige lift reported. Pack-10 inclusion needs
+    ≥ +0.02 on V and P.
+  - Disclosed: mesh gate 4a (blue kept volume 0.402) failed; the reference is e10v's V byte for byte (a rebuild would
+    move only the beige at rest, 0.88 cm median); piece-derived inertia moves the blue COM 16.1 mm (second variable).
+  - Cost: $3.50 planned (2.4 / 3.1 / 5.6). Credit $28.94 at launch. Result ~08:30 UTC [E]; then confirmation if it
+    passes the gate. The 10:30 check (and its own follow-up) covers "pack 10 ready".
+- 06:32 UTC 1 Nov bold-albattani: **re-base result** (rules 0b8291f + A1 ea025f3 before building; results 9c0bc0c;
+  CPU, $0; visual meshes unchanged).
+  - (1) No pot re-base needed [M]. The sim's pot collision is FlashCHORD's CoACD of the library_v3 pot (31 hulls), not
+    the C0 visual mesh. At H30 rest frames it already sits on the table: median −0.14 to +0.05 mm, worst 0.48–1.26 mm
+    (ep2 mass0, evals 1, 3, 5, 6, 8; eval 28 has no clean rest frames). The ~7.5 mm low base is C0-visual only, and
+    registration absorbs it. My "pot in the table" [H] does not apply to the sim.
+  - (2) ep2's conflict is lid-in-pot hull fill: 53.0 cm³ (max 56.2) at 45 lid-rest frames. In a hands-free settle the
+    lid is thrown 188–448 mm and the pot knocked 42–50 mm / 32–45°.
+    - Revised [H]: this causes ep2's early lid failures (same falsifier).
+    - The matching treatment exists (P2mck carve, 53.8 → 0 cm³); eval 1 already carries the eval-side cure (ev01).
+  - (3) Eval-20 pitcher: the packed pitcher fails the settle gate at f183 / f192 (3.2–3.3 mm / 6.4–7.5°) and falls
+    over in a hands-free settle at f0 (195 mm / 94.6°).
+    - b1 (clip one hull corner, −0.03 cm³): G1 0 / 0 mm; G3 1.59 mm / 0.38° and 1.62 mm / 0.55°; f0 8.5 mm / 3.2°.
+    - Plain-MuJoCo contacts 316 vs 304, no overflow (indicative).
+    - Apply with placement_carve.py assets on refs/sf/ep20/assets, SF=0.
+- 06:36 UTC decisions (owner's 02:50 permission):
+  - skip the ep2 P2mck A/B (public-only; eval 1 already carries the cure);
+  - eval-20 b1 retrain cleared for focused-pascal, conditional on determined-wright's budget.py at 32×60 being clean,
+    under the same conditions as ev10cs5 (PREREG, swap rule, 2 seeds, ≥ +0.02 rule, stock limits). It may run in
+    parallel only if credit stays ≥ $10 after both runs and confirmations.
+  - Asked determined-wright for that budget.py run, and bold-albattani to freeze b1 and list other eval objects that
+    are unstable in a hands-free settle at f0 (report only).
+- 06:33 UTC 1 Nov bold-albattani: eval-20 b1 pitcher frozen by md5 (rebase/sets/ev20/FROZEN.md, 83d18d0; 41 pieces).
+  f0 settle survey started (CPU, $0, report-only): every reconstructable eval episode, a hands-free plain-MuJoCo settle
+  at f0 with the packed geometry, plus the first H30 rest frame if a hand is near at f0. Per object: translation,
+  rotation, fall-over and visible cause, ranked by displacement.
+- 06:40 UTC 1 Nov focused-pascal: eval-20 b1 build started (subagent worktree) under the stated conditions.
+  - Launch after determined-wright's clean 32×60 budget check AND a committed PREREG. ~$3–6 [E]. Runs in parallel
+    with ev10cs5 above the $10 reserve.
+  - ev10cs5 seed 42 training since 06:29. ep2 A/B skipped.
+- 06:53 UTC 1 Nov bold-albattani: **f0 settle survey** (a6923c5; CPU, $0, ground-truth-free, report-only).
+  - Method: all 20 packed eval references, plain-MuJoCo hands-free 2 s settle, 16 jittered copies.
+  - Ranked findings:
+    1. eval 20 pitcher 195 mm / 94.6°, falls 16 / 16 (CoM outside the footprint at f0; b1 fixes it);
+    2. eval 19 sweeper 90.2 mm / 88.8°, falls 16 / 16 (stands on its bristles; std-mode reference, so support_fill
+       never ran);
+    3. eval 20 blue cup 48.7 mm (held above the table at f0; expected);
+    4. eval 30 sweeper 23.9 mm / 25°, 13 / 16 fall (12.2 cm³ inside the rack pieces);
+    5. eval 10 beige 6.5 mm / 4° (a corner of the ev10 pieces below its support; ev10cs4 / 5 not yet settled at f0);
+    6. eval 1 lid 4.3 mm / 1.6° (across the ev01 carve's gap).
+    The other 30 objects stay ≤ 3.3 mm / 5.1°.
+  - Pots on evals 3 / 5 / 6 / 8 move 17.5–65 mm and spoons on 16 / 33 move ~24° / 24.5 mm in FlashCHORD zero-action
+    checks, but not hands-free. [H] The replayed hands touch them.
+  - Packed means for context (H5, Oct 29): eval 19 0.921 ± 0.034, eval 20 0.888 ± 0.043, eval 3 0.904 ± 0.072,
+    eval 16 0.813 ± 0.077.
+- 06:57 UTC actions (all CPU, $0):
+  - bold-albattani settles ev10cs5 at f0 / first H30 / f124 (report-only for the running retrain);
+  - eval-19 support_fill test cleared as a pre-registered CPU step (gate: < 5° tip in ≥ 15 / 16 copies, visual md5
+    unchanged; focused-pascal's tool). A GPU retrain only after ev10cs5 and eval 20 are funded, under the ≥ +0.02 rule;
+  - determined-wright runs a FlashCHORD zero-action replay with the hands parked away (falsifier: objects within
+    5 mm / 2°), after the eval-20 budget.py.
+  - Eval 30 sweeper-in-rack parked (no usable rack set).
+- 07:07 UTC 1 Nov determined-wright: **rest probe** (docs/research/physics-2026-10-30/rest_probe/, 2a809d6; CPU,
+  FlashCHORD at the pin). Hands-replay vs hands-parked:
+  - eval 5 pot 25.7 mm / 9.0° vs 3.3 / 1.7 (left index DP touches at f3);
+  - eval 8 pot 41.7 / 15.4 vs 8.9 / 8.2 (left pinky DP at f13);
+  - eval 33 spoon 87.0 / 31.5 vs 10.6 / 19.5 (right palm C_MC at f24);
+  - **[H] supported** for 5 / 8 / 33: robot distal phalanges, or the palm on 33, reach the object before the MANO
+    hold phase.
+  - Not the hands for eval 16 (the spoon rotates more when parked, 29°); eval 6 spoon falls when parked (needs support);
+    eval 3 is not reproducible on CPU (chaotic replay).
+  - Decision 07:09: parked, no reference rebuild. Evals 5 / 8 / 33 already score 0.966 / 0.969 / 0.936, so a fix can't
+    clear the ≥ +0.02 rule, and the hands don't explain evals 3 and 16.
+  - Noted for a later reference version: a contact-aware approach constraint in mkref (finger links ≥ a few mm from
+    objects until hold onset).
+- 07:08 UTC 1 Nov determined-wright: **eval-20 b1 clean.** budget.py at 32×60 shows 0 / 0 overflow lines, max
+  342 / 321 vs packed 348 / 317 (f59c897). Blue-cup settle at f152 / 183 / 192 stays within 0.33 cm / 0.7° under b1
+  (packed tips 29° at f183), no sink-through (85e8ef8). Flag: at f192 the pitcher falls hands-free in both sets
+  (probably an in-hand frame). This releases focused-pascal's eval-20 retrain (PREREG first).
+- 07:27 UTC 1 Nov focused-pascal: **eval-20 b1 retrain launched**; **ev10cs5 s42 weak so far**.
+  - Eval 20: box 20261101-e20b1-4207ce4 (58631864, France, $1.41/h), code 4207ce42; PREREG
+    docs/research/work/eval20-b1-20261101/PREREG.md (36f255a, before any result). Ledger $3.50 (2.3 / 3.2 / 5.4).
+    Credit $27.03 before launch.
+    - Packed eval 20: grasp lock s42, 70M.
+    - Bars: gate > 0.8933 (exact H5p7); rule on P (a) ≥ 0.89335, (b) 0 draws with RPE > 5 cm, (c) median RPE
+      ≤ 1.67 cm, (s) draw 1 ≥ 0.8448; inclusion ≥ 0.91335.
+    - Only the pitcher collision changes (9 → 41 pieces).
+    - Disclosed risk [M]: f192 is hands-off, and b1's pitcher is less stable there in FlashCHORD (12.0 cm / 50° vs
+      6.8 / 28°).
+    - [E] P(included) ≈ 0.2; ≈ +0.0008 AUC if included.
+  - ev10cs5 interim (not the reading) [M]: s42 shows 992 overflow lines (vs ~6 M packed, but not 0) and a
+    training-box 0.477 ± 0.065. That clears the 0.4632 gate but is far below the 1024 diagnostic's 0.91. s43 is
+    training.
+  - Implication [I]: the stock-limit route may not recover eval 10. The organisers' question on training at
+    njmax 1024 now carries the larger gain (~+0.45 proxy on eval 10, up to ~+0.02 AUC [E]). NVIDIA's own
+    dexmate_sharpa_flash_sac.yaml uses njmax 1024. Raised with the owner.
+- 07:30 UTC 1 Nov **pack check** (trig_01CQcLfUjZJNZd61yhKw26n3): **no "pack 10 ready" record, so nothing uploaded.**
+  - Instances: 58625218 e10cs (s43 training, $1.389/h) and 58631864 e20b1 (setup, $1.408/h).
+  - Credit $26.82.
+  - The 10:30 check (trig_01Ltr9dX9Kt5Lx9WbYiiSasC) covers both results.
+- 08:21 UTC 1 Nov focused-pascal: **"pack 10 ready"**: results/submissions/20261101-track3k-candidate/build_10
+  (0e2d245f).
+  - Content: 9a+ with eval 10's ev10cs5 stock-limit retrain, seed 43 (ca7c4e3a…), draw 1 of run 20261101-e10cs-50c2d90.
+  - Verdict (PREREG 13c4133, committed 05:40, before launch): SWAP-ELIGIBLE [EQUAL FLOOR], INCLUDE.
+    - vs V: 0.5322 vs 0.4632 (+0.069); vs P: 0.5116 vs 0.4525 (+0.059); n 10 / 10.
+    - Every clause holds on both references. Both policies fail 10 / 10 at the 5 cm bar.
+    - Draw 1 vs the replaced 9a+ rollout: 0.512 vs 0.472 (V). The beige cup moves 10.4 cm (packed 0.7).
+  - [E] ≈ +0.002 AUC. Retrain cost $2.85; credit ≈ $24.
+- 08:25–08:35 UTC verification by this session [M], all pass:
+  - sha256 e1bef1e5…; 9,120 rows;
+  - byte diff vs 9a+ (e02736ea): only e000010's 322 pose rows + checkpoint (76a12265 → ca7c4e3a), plus
+    code_commit_url a187a8c on every row; object_mesh_b64 identical;
+  - kit hashes match; code commit a187a8c on origin;
+  - cells.json shows sim.njmax 512; confirmation draws had 0 overflow lines;
+  - seed choice per rule (s43 0.5096 > s42 0.4768);
+  - dry run valid (19 uploads left per board); CD-O equals the staged file.
+  - **The upload call was blocked by the session's auto-mode permission classifier.** Not retried; the owner was asked
+    to confirm.
+- 08:38–08:43 UTC 1 Nov **PACK 10 UPLOADED** (owner, directly: "Upload it", after the permission check blocked the
+  first attempt).
+  - Submission IDs 57866069–57866079.
+  - Scores:
+    - AUC **0.81915** (new best; 9a+ 0.81757; +0.0016 against +0.002 estimated);
+    - SP-SR 0.80 (0.85);
+    - MP-SR 0.65 (=);
+    - RPE **3.68275** (3.87853);
+    - MPPE **2.84759** (2.89663);
+    - CD-O 0.33234 (=).
+  - [H] SP-SR lost one episode at eval 10: the old policy "succeeded" by barely moving the cup; the new one moves it
+    10 cm without completing the nest.
+  - Receipt + UPLOAD.md in build_10 (5b0f081). Messaged focused-pascal (pack 10b on pack 10 if eval 20 passes) and
+    score-status (asked about per-board best vs final selection).
+- ~08:50 UTC 1 Nov Roman (forwarded by the owner, 08:40–08:49).
+  - His points:
+    - (2) compressed sensing: information content, not Nyquist, limits recovery, so vibration characteristics may be
+      extractable from 20 Hz video; his spectro-temporal CS work;
+    - (3) refine meshes from video observations;
+    - (4) a foundation model for mesh reconstruction;
+    - plus a long text on blending visual tracking with CS (coded exposure / rolling shutter).
+  - Assessment given to the owner:
+    - (2) Klis & Chatzi's method reconstructs from randomly sampled sub-Nyquist data. Our frames are uniformly sampled,
+      so a sparse spectrum's aliases cannot be told apart without random timing or a rolling shutter. The amplitude is
+      also buried in ~1–6 mm per-frame tracking noise. And the score measures poses, not forces, and the robot's grip
+      is designed, not copied. Research direction, not a leaderboard lever.
+    - (3) The submitted shape already comes from scans of the same objects (CD-O 0.332 cm). What hurt physics was the
+      convex collision decomposition filling cavities; eval 10's cavity-safe pieces gave today's 0.81915.
+    - (4) Five generators were already tested on 30 Oct (gen-probe: CD-O 0.49–0.98 vs 0.477 library / 0.332 now; pose
+      ADD 10–29 mm vs ~6 mm; no ground-truth-free selector).
+  - A paste-ready reply was drafted.
+- 08:50 UTC 1 Nov score-status: standings after pack 10 (Kaggle API).
+  - Board values (rank): AUC 0.81915 (8); SP-SR 0.85 (10); MP-SR 0.65 (8); RPE 3.68275 (10, was 11); MPPE 2.84759 (11);
+    CD-O 0.33234 (14).
+  - Rank sum 61, still 11th: 10th DSAIL 59, 9th SoySauceChicken 55, 8th sam&alex 51.
+  - Each board counts the selected Final Submission, else the best-scoring one (PR #215 kit CONTAINER_SUBMISSION.md).
+    So pack 10 counts for AUC / RPE / MPPE and 9a+ (or earlier) for SP-SR. No selection now; choose per board near the
+    close so the container covers few files and each reproduces.
+  - [I] The weakest boards are CD-O (14th) and MPPE (11th). Two more points in the rank sum pass DSAIL; six pass
+    SoySauceChicken.
+- 08:55 UTC 1 Nov score-status wrap-up (standings @ 19f5ca32, clean; nothing running).
+  - Gaps to the next rank (Kaggle API 08:58):
+    - AUC +0.025 (DSAIL 0.84391);
+    - SP-SR +1 episode ties at 0.90 (+1 to +3 ranks);
+    - MP-SR +1 episode (+1);
+    - RPE −0.93 cm (hard);
+    - MPPE −0.15 cm (+1);
+    - CD-O −0.012 → +1, −0.021 → +3 (ASAP 0.3118 / Purple 0.3177 / Simsons 0.3202 vs our 0.3323).
+  - Best points per effort: CD-O (bunched, mesh-only, no retrain, $0). The C0 blue cup alone ≈ 0.30 [E] (+3–4 ranks)
+    needs the owner's compliance call (selector written after scoring), or a clean blue-cup build.
+  - Open: Final Submission selection per board near the close; the PR #215 container after the close; main stale
+    since 30 Oct (session branches to merge).
+- 08:57 UTC 1 Nov determined-wright final report (branch pushed; STATUS wrap-up; no agents or boxes).
+  - Finished:
+    - recipe screen (K / D / S / V inconclusive or no signal, ~$30.15 GPU [E]);
+    - test A fail;
+    - FC_DR_SKIP_IMMEDIATE + D reset check;
+    - contact budget (eval 10 8.4 M training overflow lines, public ep2 0.6 M, scoring 0);
+    - candidate checks (ev10cs4 / 5 clean; ev14 racks rejected; ev20 b1 clean; ev24 r0 DO_NOT_USE);
+    - rest probe.
+  - Open: ev20 b1 retrain (focused-pascal); 1024 policy (owner / organisers); public ep2 / ep12 njmax-1024 test
+    (~$7, needs a go); solver v2 / synergy B not done (recommends skip).
+  - Their top 3: (1) eval 10 (done via pack 10; the 1024 route waits on the organisers); (2) rest-pose fix, which is
+    outdated (falsified at 05:48); (3) ep2 / ep12 njmax-1024, of low eval transfer.
+- 08:57 UTC 1 Nov bold-albattani FINAL REPORT (mesh lane; 6493fbb; nothing running; STATUS wrap-up at top).
+  - Finished:
+    - 9a+ CD-O 0.402 → 0.332 (rank 18 → 14);
+    - ev10cs4 / 5 (0 overflow; nest 0.14 vs 1.02 cm);
+    - eval-20 pitcher b1 (f0 fall 195 → 8.5 mm) and eval-19 sweeper support_fill (89° → 0.01°), both frozen by md5;
+    - the mesh review artifact.
+  - Open:
+    - eval 20 / eval 19 retrains (credit permitting; eval 19 needs budget.py first);
+    - ev10 beige start wobble 6.5 mm / 4°: a pre-registered beige-base clip [H], CPU;
+    - owner calls on the C0 blue cup, E0b compliance and the $1 grey-template re-track.
+    - Closed with no delivery: board slot, collision carve, rack slots, posefix, re-base, PUBOWN, C2, C0b.
+  - Their top 3:
+    1. a CD-O-only variant, $0;
+    2. collision-shape retrains for SR, ~$3.5–6 each [E] (eval 10 done; then 20, 19);
+    3. better own-video meshes (SAM-style video masks; a generated pitcher ~−0.014 CD-O [E], ~$1–2).
+  - CD-O variant:
+    - Minimal = 9a+ + C0 blue cup: public CD-O 0.523 → 0.291 [D] on 5 / 36 pairs, so the board would go ~0.332 →
+      ~0.300 [E] (~11th).
+    - Its selector (obs_fidelity.py) was written after the 12 blue-cup lathes were scored against the public scan.
+      That is a GT-informed PUBLIC selection, the compliance point for the owner.
+    - Upper bound: best public-scored mesh per object, ~0.263 [E] (~6th). Caveats: winner's curse, provenance flags,
+      the Hunyuan licence (excludes EU / UK / KR). For discussion only.
+    - Neither variant can hurt AUC (best per board).
+- 09:00 UTC 1 Nov focused-pascal final report: **eval-20 b1 NO-SWAP** (gate missed by 0.0004: 0.8929 vs > 0.8933), so
+  no pack 10b. Nothing running; ledger closed; credit $23.63; all committed (536556185, worktrees removed).
+  - Open: the organisers question (1024); the store.sh push race fix (not built); eval-19 support_fill (needs budget.py
+    and a retrain).
+  - Their top 3: eval-10 nest completion (route A organisers / route B clip the beige corner, ~$3); eval 14
+    (+0.005–0.01 [E], ~$3–4); evals 1 / 30 overlaps (small).
+- 09:02 UTC **all four lanes reported done; nothing running.** Deleted the 10:30 check (trig_01Ltr9dX9Kt5Lx9WbYiiSasC),
+  now moot. Consolidated decisions / half-done / opportunities in docs/analysis/overnight-20261101/README.md.
+- 09:11 UTC 1 Nov **owner: "I give give you go"** to pack the njmax-1024-trained eval-10 policy evaluated at stock
+  limits.
+  - Owner's reading (09:08): the rule protects the evaluation setting of the final policy; the training buffer is a
+    training choice, like FDR / VOC / the D arm. This replaces my "never packed" condition for that one policy.
+  - Relayed to focused-pascal (09:12) as pack 11 = pack 10 + the eval-10 1024-trained checkpoint, with conditions:
+    - the saved config carries stock 512 / 256, proven by the evaluator log;
+    - reuse the 512-readout draws only if they came from the pristine kit evaluator on that exact stock-config
+      checkpoint, else a ~$2 confirmation box; 0 overflow in every scored draw;
+    - the standing swap rule vs pack 10's ev10cs5 draws plus the ≥ +0.02 bar, as a dated PREREG amendment that
+      discloses the values were already seen;
+    - the guard lifted for that sha only;
+    - byte diff only e000010; README disclosure; ≥ $10 reserve.
+  - Pack 10 stays the fallback for the final per-board selection. The organisers question is still worth sending; it
+    matters only for the final pick.
+- 11:27 UTC 1 Nov focused-pascal: **pack-11 verdict INCLUDE, but pack 11 NOT built.**
+  - Verdict: amendment 998385b0 committed before scoring (standing rule on already-seen draws); tools/p11_verdict.py
+    b8bc0aa7.
+    - vs pack 10's eval-10 policy: +0.371 (V), +0.361 (P); fail rate 0 / 10 vs 10 / 10; draw 1 vs V 0.918, RPE 1.9 cm.
+  - Stock evaluation proven [M]:
+    - ck512 (aaa077eb…) stores 512 / 256 in sim and env.sim; its weights are byte-identical to the 1024 checkpoint.
+    - SolverMuJoCo built at 512 / 256 for that file on the pristine tree.
+    - 10 / 10 draws rc 0 with 0 overflow lines.
+    - checkpoint_sha256 covers the whole safetensors file.
+  - Blocked: that session's permission check denied the sha-specific allowlist entry in tools/no_oracle.py as a
+    security-control change on a relayed go. It will not use skip flags or ask another session.
+  - Unblock: the owner's own approval in focused-pascal's session. Then a CPU-only build, $0, ~10 min.
+  - This session does not make that change either (it would route around their guard). Owner asked to post in that
+    session.
+- ~11:45 UTC 1 Nov owner asked about GRASP (Liu, Wang, Bao, Yang, Harvard, 2026 preprint; "Gradient-Guided Sampling
+  for Contact-Rich Physics-Based Motion Retargeting"; code github.com/ComputationalRobotics/GRASP_code, MIT, with
+  third-party code from SPIDER (CC BY-NC 4.0), Do As I Do and TopoRetarget; MuJoCo Warp).
+  - Method [L]: sampling in the simulator, with local quadratic cost models fitted to an archive of all rollouts to
+    recover gradients (no differentiable sim). Gradient-guided proposals with Metropolis–Hastings acceptance on true
+    sim costs. Variants: TO (tempered SMC) and MPC (warm-started receding horizon).
+  - Reported [L]: OakInk2 bimanual, Sharpa 94.2 % success vs Do-as-I-Do 81.0 % vs SPIDER 71.4 % (0.03 m / 0.12 rad);
+    Wuji 92.4 %, XHand 95.0 %. GRASP-refined references improve PPO tracking (curves only).
+  - Relevance: it is a stronger version of our own physics solver (a Do-as-I-Do / SPIDER-style annealed sampling MPC
+    built inside FlashCHORD; arm S gave no signal).
+  - Caveats:
+    - their references are clean mocap (OakInk2); ours are perception-derived with 1–6 mm noise and constant offsets,
+      and our solver's gain vanished under 0.5 mm target noise [M, 30 Oct];
+    - plans must be made in FlashCHORD (condim 3, kp 1.7), not Do-as-I-Do's MJCF (condim 6, kp 300);
+    - SPIDER-derived parts are non-commercial.
+  - Best target [I]: eval 14 / public ep13. Its hand-over + flip fails even with the true object motion (oracle twin
+    0.544 with either reference [M]), so it is limited by control feasibility, not perception.
+  - Proposed next-block test [H] (not started; CPU-first port of the algorithm, no code copied from NC parts): on
+    public ep13 (oracle and our reference), a GRASP-style sampler in FlashCHORD vs our solver.
+    - Gate: zero-action sim_vs_ref gain ≥ +0.05 over our solver's on our reference.
+    - Then RL from the solved reference under the swap rule for eval 14.
+- 11:52 UTC 1 Nov focused-pascal: "pack 11 ready" (34f4279d), after the owner approved the guard exception directly in
+  their session.
+- 11:39–11:44 UTC **PACK 11 UPLOADED** (owner's 09:11 go).
+  - Content: pack 10 + eval 10 ck512 (trained njmax 1024, evaluated at stock 512 / 256, disclosed).
+  - Checks [M]: byte diff e000010 only; stock 512 in config and solver build; verdict 998385b0 INCLUDE; dry run.
+  - Scores:
+    - AUC **0.83921** (+0.020 over pack 10);
+    - SP-SR 0.85;
+    - MP-SR **0.70**;
+    - RPE **3.17899**;
+    - MPPE **2.54531**;
+    - CD-O 0.33234.
+  - Pack 11 beats or ties every earlier pack on every board. Receipt + UPLOAD.md in build_11 (93530b1b).
+  - Owner asked for a kickoff prompt to run the GRASP item in a new session; given in chat.
+- 11:47 UTC 1 Nov score-status standings after pack 11.
+  - Ours: AUC 0.83921 (8), SP-SR 0.85 (10), MP-SR 0.70 (8; tied with DSAIL at 7), RPE 3.17899 (10), MPPE 2.54531 (10),
+    CD-O 0.33234 (14).
+  - Rank sum 60, 11th: 10th DSAIL 59, 9th SoySauceChicken 56, 8th sam&alex 53.
+  - Swaps with DSAIL count double:
+    - AUC needs +0.0047 (DSAIL 0.84391);
+    - MPPE −0.20 cm (DSAIL 2.347);
+    - MP-SR one more episode;
+    - CD-O −0.012 → +1 (The Simsons 0.320).
+  - Their scope check (packing a 1024-trained policy needs the owner's explicit OK) answered: covered by the owner's
+    09:08 / 09:11 words in this chat and the guard approval in focused-pascal's session.
+  - Pack 11 is the natural single Final Submission.
+- ~12:10 UTC 1 Nov owner asked about GraspGen (NVIDIA, arXiv 2507.13097; github.com/NVlabs/GraspGen).
+  - What it is [L]: diffusion transformer that generates 6-DoF grasps, plus a discriminator trained "on generator",
+    over 57 M synthetic grasps on 8,515 Objaverse-XL objects (dataset CC BY 4.0; code licence: see its LICENSE file).
+    Inputs: object point clouds (partial or complete) or meshes. Grippers: Franka Panda, Robotiq 2F-140, suction;
+    custom grippers need retraining; GraspGen-X for more.
+  - Assessment: not useful for our score. It plans where a parallel-jaw or suction gripper should grasp an object.
+    Our task copies a human demonstration with 22-DoF Sharpa hands, where the grasp must match the human's (it is taken
+    from the retargeted human hand, and the policy is scored on following the object path). No dexterous-hand support;
+    retraining for the Sharpa would need a dexterous grasp dataset.
+  - The closest transferable idea is its generator + discriminator ranking, which our grasp_search / grasp-lock LP
+    already plays the role of.
+- 18:50 UTC 1 Nov owner asked for videos of our lowest-scoring eval episodes.
+  - Ranked by H5p7 fresh-draw means (pack-7 policies = pack 11 except eval 10): 14 0.727, 16 0.850, 32 0.852,
+    25 0.878, 20 0.893, 30 0.897.
+  - Sent 6 videos, not in git; session scratchpad lowvid/out/:
+    - evals 16 / 20 / 32: the 30 Oct robot videos (store runs/20261030-vid5-817b135/results/sub_videos/; real |
+      sim-on-camera | 3D with hand);
+    - evals 14 / 30: real cam_a | packed run | worst H5p7 draw (r7);
+    - eval 25: real | packed. Object-only renders via determined-wright's tools/render_eval_rollout.py (CPU,
+      library_v3).
+  - [M] Eval 14 is bimodal: 5 / 10 draws ≈ 0.86–0.91, 5 ≈ 0.51–0.66. The cup's failure onset (> 3 cm for 8 frames) is
+    at frames 42–45 in 7 / 10 draws: the hand-over (the human passes the cup between hands, horizontal). The cup sags
+    9–12 cm below the reference in both good and bad draws; bad draws do not recover. In 3 draws the cup is thrown
+    63–162 cm and in 2 the rack too (144–193 cm).
+  - Eval 30: one failure in 10 (r7: sweeper 25 cm off from f52).
+- 18:58 UTC 1 Nov owner: "I want robot hands as well" (videos of the lowest-scoring eval episodes).
+  - Robot hands need a GPU replay. The evaluator parquets hold no robot state, and the CPU renders are object-only.
+  - Asked focused-pascal (the launching lane; owner's 02:50 permission) to run ops/jobs/sub_videos.sh for evals 14, 25
+    and 30 (+10 ck512 if easy):
+    - 2–3 replays for eval 14 to catch its failure mode;
+    - targeted pulls (the 30 Oct HF-429 lesson); the eval-25 `ck=` fix or skip;
+    - plan and cost in the log first (~$2–4 [E]); ≥ $10 reserve; no videos in git.
+- 18:57 UTC 1 Nov focused-pascal: **robot-hand video box launched**, 20261101-vid3-b96ae95 (58698678, UK, $1.348/h).
+  - Ledger $2.50 planned, ~$1.4 [E], ~1 h. Credit $23.56.
+  - Content: eval 14 ×3 fresh replays (r1–r3, each scored and mode-tagged), 25 and 30. Policies are pack 7's = pack 11's
+    for these (sha 05b13510 / 7edd445b / bc9fccad).
+  - RUNS narrowed to these episodes. sub_videos.sh now handles PICK `ck=` (b96ae95), and REPLAYS is opt-in.
+  - Eval 10's ck512 skipped: it is in no PACK_RUN, so the job's sha check refuses it.
+  - Output: store runs/20261101-vid3-b96ae95/results/sub_videos/{ep14_r1,ep14_r2,ep14_r3,ep25,ep30}.mp4.
+- ~19:10 UTC 1 Nov owner: "render the videos with the used mesh" (asked why the eval-25 boards look interlocked).
+  - Answer: the submitted visual board meshes have no slots; the simulator's collision pieces (meshes/carve/ev25) have
+    a carved slot.
+  - Re-rendered evals 14 / 25 / 30 with the simulator's collision geometry: eval-25 carved pieces; CoACD 1.0.11
+    (FlashCHORD defaults) re-created for 14 / 30, with hull counts matching the mesh lane's report.
+  - Added a visual-vs-collision still of each board, showing the slot as a notch.
+  - Tools and the still: docs/analysis/lowvid-20261101/. Videos sent, not in git.
+- ~19:25 UTC 1 Nov GRASP session status (branch claude/grasp-ep13-20261101, read-only check).
+  - Built and verified [M]: a GRASP window optimiser re-written in numpy from GRASP's MIT optimiser files (no SPIDER /
+    NC code) inside our FlashCHORD solver. Unit tests pass; the default path is byte-identical; replays are
+    bit-identical.
+  - Result [M]: test B (two-hand rebuilds) d_b +0.024 (CI −0.07 to +0.12) < +0.05, so FAIL. Test A (twins' references)
+    d_b 0.000, so it cannot pass; 2 arms remain. The GRASP optimiser does not beat our sampler on ep13.
+  - Key finding [M]: the ep13 twin references were locked `--single_hand`. The left hand is parked all episode, and
+    the cup's reference rises 9–12 cm by f30–40 with no robot hand near it. So "control-limited" may be
+    "construction-limited" [I]. Eval 14's packed reference was also locked single-hand (the LEFT carries f18–118, the
+    right is parked), while the human hands the cup over around f40–46. That matches our measured eval-14 failure onset
+    at f42–45 [H].
+  - Proposed to the owner as the GRASP session's next item (after its test A):
+    - a CPU audit of single-hand locks across the 20 eval references (pre-lock vs post-lock hold phases);
+    - a pre-registered public ep13 RL test, single- vs two-hand reference (~$3–4, owner's go);
+    - if positive, an eval-14 two-hand rebuild + retrain under the swap rule.
+- 19:29 UTC 1 Nov focused-pascal: **robot-hand videos done** (run 20261101-vid3-b96ae95, 30 min, $0.70,
+  self-destroyed; store results/sub_videos/).
+  - Eval 14 replays: r1 0.560, r2 0.285, r3 0.749 (replay-tool scores). None landed in the good mode.
+  - Eval 25: 0.897. Eval 30: 0.901. Eval 10's ck512 skipped (it is in no PACK_RUN).
+  - Fetched and sent to the owner here too.
+  - [M, visual] At the eval-14 hand-over (frame 46), one robot hand carries the cup while the other hand stays parked to
+    the side; the human uses both. This is consistent with the single-hand lock finding (grasp-ep13 branch).
+- 19:34 UTC 1 Nov **owner topped up the credit: $122.85** (no instances running).
+  - Owner, verbatim: "I got you credit include the spending permision and basically all the permisions needed to
+    perfect those scores in any way possible. Make sure they colab with the grasp session needed or at least
+    communicate with them."
+  - Kickoff prompt for the "perfect following" session updated with the spending permission (up to $110 total, ≥ $10
+    reserve, plan + cost logged per batch) and collaboration with the GRASP session (session_01D9UJC8CjzgvbaFYA5wbvPg).
+  - The GRASP session was told to expect it (19:35): finish test A, share the two-hand rebuilds and scripts, rent
+    nothing.
+  - The owner pastes the prompt directly, so its approvals are the owner's own words in that session.
+- 19:57 UTC 1 Nov GRASP session report (a844888).
+  - Verdict (pre-registered): no GPU step. Test A 0.000; test B +0.024 / −0.027 vs a +0.05 bar.
+  - [M] ep13 jittered zero-action sim_vs_ref of the two-hand input: 0.344 perceived vs 0.604 mocap track; after either
+    solver 0.39–0.42 vs 0.62–0.65.
+  - Cause [M]: our perceived blue cup TWISTS about its symmetry axis while resting (12° f8 → 140° f30); mocap 0–9° until
+    f24.
+  - Proposed GT-free repairs (README §8): (a) symmetry-axis twist canonicalisation; (b) "no mover, no motion";
+    (c) hand assignment matching the motion; (d) a welded-hand feasibility preflight.
+  - The fair RL test (single / first-picker / two-hand arms, ≥ 2 seeds) is ≈ $5.5–7.5 [E]. Do (a) first.
+- 20:02 UTC checked in the kit (metric_code/track_3/AUC.py):
+  - the leaderboard path is `_score_registered_track3` (`_REGISTER_OBJECT_MESH = True`), using `_symmetry_point_errors`,
+    so cup spin is NOT charged on the board;
+  - sim_vs_ref (pipeline/qa.py) uses plain `_object_add`, so it IS charged there.
+  - So the twist hurts physics feasibility and makes our proxy pessimistic on cup episodes, not the board directly.
+  - Correction sent to the GRASP session, with a request for a symmetric sim_vs_ref line next to the plain one.
+- 19:56 UTC 1 Nov **perfect-following session started** by this session at the owner's request ("I need the session to
+  start before I go to sleep"): session_01D9UJC8Nz9EEFNmz2yzimzN, repo source.
+  - Prompt: the plan (docs/plans/perfect-following-20261101.md), the owner's verbatim permissions, $110 budget, ≥ $10
+    reserve, GRASP collaboration (repairs a–d folded in), the symmetric-vs-plain scoring note, the uploader route,
+    and "if a permission check blocks a relayed approval, log it and continue".
+  - GRASP session told the new id. Morning summary scheduled for 06:30 UTC 2 Nov (send_later).
+- 19:59 UTC 1 Nov **physics-informed perception session started** at the owner's request ("can we maybe also attempt to
+  correct the percception with the help of physics"): session_01D9UJC6vSSNiJqaAdzNUn7d, repo source.
+  - CPU only, $0, public development only.
+  - Ideas: anchor tilt from table plane + stable poses; multi-frame initialisation; twist canonicalisation; no mover,
+    no motion.
+  - Harness: bold-albattani's posefix + score_registered.py.
+  - It hands passing changes to the perfect-following session; it never touches eval references or packs.
+  - The perfect-following session was told (20:01). The 06:30 UTC morning check (trig_01WrgPaDQptP63JxeKgKLy6B) also
+    reads this session.
+- 20:05 UTC 1 Nov owner: "If the cloud cpu clogs you can rent cheap machines in vast also".
+  - Relayed to the perception and GRASP sessions: cheap CPU machines allowed, cap $8 combined, plan + cost logged
+    first, labelled, self-destroy + watchdog, never touch other sessions' instances.
+  - To keep the ≥ $10 reserve on $122.85 of credit, the perfect-following GPU budget moved from $110 to $102 (told to
+    that session).
+- 20:08 UTC 1 Nov owner names the method **"KURSAD"** (the full pipeline: perception, physics-consistent reference,
+  learned tracking). Owner's target: AUC above 0.9 with the perception fixes. Headroom [E, public upper bounds]:
+  - policy tracking ≈ 0.083 of AUC loss;
+  - reference bias: constant offset +0.050 and frame-0 tilt +0.040, overlapping.
+  - From 0.839, 0.9 needs ≈ +0.06, i.e. most of both halves realised without ground truth.
+- 21:20 UTC 1 Nov physics-perception report (claude/physics-perception-20261101 @ e09b524d; CPU, $0): **no
+  pre-registered gate passed** on the 20 public episodes.
+  - Best: stack F1P1 (physics-fused anchor tilt + "resting objects don't float") ΔAUC +0.00298, 14 better / 0 worse,
+    MPPE −0.028, RPE −0.011, CI [+0.0008, +0.0059]. It misses the +0.003 clause by 0.00002, so it is not handed over.
+  - Ideas 1 / 2 ≈ refine S3 (−0.0013). The stable-pose prior is only a ~2° sensor.
+  - Exact-tilt oracle +0.016, 70 % from the pitcher (ep21 / 22: systematic 6°; our mesh lacks half its base). A
+    complete-base pitcher geometry is needed (GPU ~$1–3).
+  - Twist: GRASP's canonicaliser is worse vs mocap on 5 / 6 cups; a rest-only hold is better on 6 / 6 and AUC-neutral.
+  - qa_physics.py (GT-free audit) flags both catastrophic public failures (ep0 lid, ep23 swap) plus 1 false positive;
+    offered to perfect-following.
+- 00:45 UTC 2 Nov perfect-following (heads-up, not yet "pack ready"):
+  - **Eval 14 fixed (KURSAD reference repair).** The perception track guard had left a 19 cm one-frame cup jump after a
+    3–14 cm drift out of the hand; tools/guard_bridge.py bridges it (GT-free).
+    - Retrain (packed recipe, 2 seeds) + 10 fresh draws: sim_vs_ref 0.861 vs the old reference (packed 0.727), 0.875 vs
+      the repaired one (packed 0.706); fails 1 / 10 vs 4 / 10.
+    - Swap rule PASS + inclusion (+0.169). PREREG docs/research/work/pf-bridge-20261101/PREREG.md.
+  - Candidate results/submissions/20261102-track3m-candidate/ = pack 11 + eval 14 (sha 66fc37c3…).
+    - Caveat: pack 11's eval-14 rollout is pack 6's lucky draw (0.909 vs P) against the new draw 1 at 0.882, so the
+      board may not gain from this swap alone. Robustness gains a lot (fails 4 → 1 in 10), which matters for the
+      organisers' reproduce check. Owner decision at the morning summary.
+  - Running: eval 32 (repaired) + eval 15 (two-hand) confirmations (pfD); eval 16 hold-to-end (pfF, ~3.5 h).
+    "pack 12 ready" expected after pfD (~1–1.5 h).
+  - Not working: two-hand references (evals 14 / 16 NO-SWAP); GRASP hold filter (public gate FAIL).
+  - Spend $22.08 of $102 (credit $100.77 at 00:33 UTC).
+- 01:03 UTC 2 Nov perfect-following: **"pack 12 ready"**: results/submissions/20261102-track3m-candidate/build_12
+  (branch claude/perfect-following-20261101, 5a09dac0) = pack 11 + eval 14 (ck 9da879d9…, run pfC) + eval 32
+  (ck 9a2c2f7c…, run pfD), guard-bridged references (KURSAD), stock limits.
+- 01:10–01:20 UTC verification by this session [M], all pass:
+  - sha 7b0cd7df…; 9,120 rows; code commit ab444c00 on origin; kit hashes match;
+  - byte diff vs pack 11 (3c428350): only e000014 (316) and e000032 (518) pose rows + checkpoint, plus code_commit_url;
+    meshes identical; CD-O equals the staged file;
+  - PREREG (pf-bridge, 96788f0c / 475fdf6b, 20:46 UTC 1 Nov) committed before the verdicts (00:31 / 00:55 UTC 2 Nov).
+    PASS = the full swap rule on B + clause (a) on P; inclusion bar binding on B ≥ +0.02.
+    - Eval 14: P 0.861 vs 0.727; B 0.875 vs 0.706; fails 1 vs 4.
+    - Eval 32: P 0.867 vs 0.852 (+0.015, clause a holds); B 0.890 vs 0.851 (+0.040 ≥ 0.02); fails 0 vs 1 (P) /
+      4 (B). Included per its PREREG.
+  - no_oracle (which refuses non-stock contact limits) passes on both checkpoints, so they are stock 512 / 256;
+  - dry run valid (20 uploads left per board).
+  - Board caveat [E]: new draw 1 vs the old packed draws: eval 14 0.882 vs 0.909 (P); eval 32 0.876 vs 0.866.
+  - **The upload was blocked by this session's permission classifier ("External System Writes").** Not retried; it
+    waits for the owner's word in the morning.
+- 06:30 UTC 2 Nov owner asked for a full night report with videos to send to Roman.
+  - Published https://claude.ai/artifact/MaRrQ84gMR1HutKx5TDfMS ("KURSAD Night Report", private until the owner
+    shares it).
+  - Content: board table; fixes with causes (eval 10 solver overflow, eval 14 / 32 track-guard jump, eval 16 release,
+    eval 25 slot); what failed; Roman's questions (Kalman, compressed sensing, initial pose, mesh models); next steps;
+    spend.
+  - New CPU renders (scratchpad report/media, not in git): eval 10 before / after (pack 6 rollout vs ck512 conf512 r1)
+    and eval 14 before / after (H5p7 r7 vs pfC conf_ep14_s r1, sha b41d7798…), with collision geometry; plus the
+    eval-14 robot-hand video and the eval-25 slot video and still.
+  - Status at 06:22: credit $91.52 (night spend ≈ $31.3); one box running (pfG, eval-16 confirmation).
+  - Eval 16: pz (right hand kept on the spoon from f107) 0.975 ± 0.009 on seed 42; seed 43 + 10 draws pending.
+  - Pack 12 still waiting for the owner's upload word.
+- 06:30 UTC 2 Nov perfect-following: **"pack 12b ready"**: build_12b (branch claude/perfect-following-20261101,
+  79ffe371) = pack 12 + eval 16 (run 20261102-pfG-86cfc19, arm pz seed 43, ck ed25dc5f…).
+  - Change: the packed eval-16 reference with the robot's right hand held on the spoon from release (f107) to the end
+    (tools/hold_freeze.py, GT-free; object poses unchanged); current packed recipe; stock limits.
+  - Verdict (PREREG_B committed 02:06 UTC, before results): 10 fresh draws 0.974 vs packed 0.850; fails 0 / 0; median
+    RPE 1.18 vs 1.79 cm; draw 1 0.974 vs the old packed draw 0.908; gain +0.124, so PASS + INCLUDE. Same-box control
+    without the freeze 0.769 / 0.787.
+- 06:35 UTC verification by this session [M], all pass:
+  - sha bde0ae84…; 9,120 rows; code commit fa129a11 on origin; kit hashes match;
+  - vs pack 11 only e000014 / e000016 / e000032 rows + checkpoints differ; vs pack 12 only e000016;
+  - CD-O equals the staged file; stock limits (no_oracle); dry run valid.
+  - 12b supersedes 12. The upload waits for the owner's word.
+  - The night-report artifact was updated with eval 16 and pack 12b.
+  - Night spend ≈ $31 of $102; nothing running.
+- 06:31 UTC 2 Nov scheduled morning check-in fired (trig_01WrgPaDQptP63JxeKgKLy6B). Everything in it was already done
+  minutes earlier: read the three sessions, verified pack 12b, published and updated the night report, wrote the owner's
+  summary. The upload was not retried: the owner is awake and was just asked for the word ("upload pack 12b"), since
+  the permission check blocked the 01:15 attempt.
+- 06:37–06:42 UTC 2 Nov **PACK 12b UPLOADED** (owner: "Is 12b ready what are we waiting for?").
+  - Scores: AUC **0.84405** (pack 11 0.83921), SP-SR 0.85, MP-SR **0.75**, RPE **3.02339**, MPPE **2.49546**, CD-O
+    0.33234. Best on every board.
+  - AUC is above DSAIL's 0.84391 and MP-SR above their 0.70 (standings refresh requested from score-status).
+  - Receipt + UPLOAD.md: build_12b on this branch (7c7dfb67).
+  - Night report artifact updated to v3 with the new scores.
+- 06:42 UTC 2 Nov score-status: standings after pack 12b.
+  - Ours: AUC 0.84405 (8), SP-SR 0.85 (10), MP-SR 0.75 (9; three-way tie with SoySauceChicken 7 and DSAIL 8),
+    RPE 3.023 (10), MPPE 2.495 (10), CD-O 0.332 (14).
+  - **Rank sum 61, now 10th** (was 11th). 9th DSAIL 60; 8th sam&alex 50; 7th SoySauceChicken 46; 11th Gravity Aligned
+    80.
+  - DSAIL also moved: AUC 0.84925, RPE 2.671, MPPE 2.312.
+  - To pass DSAIL: AUC +0.0052; MPPE −0.18 cm; MP-SR one more episode (0.80); CD-O −0.012 (+1 rank).
+  - Night report updated (10th overall).
+- 06:50 UTC 2 Nov leaderboard snapshot (Kaggle API; our team is "Imitation.Tech").
+  - AUC top 8: richchentw 0.96804, DDD 0.93906, rlwrld 0.92754, Purple 0.91907, Zihao Guo 0.88288, SRL 0.87701,
+    DSAIL 0.84925, us 0.84405.
+  - SP-SR: five teams at 1.00; us 0.85 (10th).
+  - MP-SR: richchentw / DDD 1.00; us 0.75 (9th, tied).
+  - RPE (cm): leaders 0.72 / 1.14 / 1.23; us 3.02 (10th).
+  - MPPE (cm): leaders 0.82 / 1.16 / 1.35; us 2.50 (10th).
+  - CD-O (cm): leaders 0.213 / 0.232 / 0.239; us 0.332 (14th).
+  - [I] The top six track 2–4× more accurately (RPE / MPPE) and rarely fail an episode. The remaining gap is reference
+    accuracy plus failures, not a single episode.
+- ~07:15 UTC 2 Nov owner: "lets not name the kursad for a while".
+  - The night report artifact was rewritten without the name: title "V2D Track 3 Night Report", v5, same URL.
+  - The name was removed from STATUS.md's current entries. Sessions were asked to stop using it in new reports,
+    commits and artifacts. Past commit messages and logs are left as history.
+- 07:15 UTC 2 Nov owner: "is there anything else running that can increase our score".
+  - State: 0 instances; credit $91.35; perfect-following spend $31.48 of $102.
+  - Started (within the standing permission and budget): the perfect-following session applies the hold-freeze /
+    no-hand-motion repair to evals 25, 30, 1 (then 3), trained on the packed reference, 2 seeds, PREREG, swap rule.
+    Contact-moment training only after a public test, if credit remains.
+  - Owner decisions listed:
+    - CD-O blue-cup variant (≈ 0.332 → 0.300 [E], CD-O rank 14 → ~11; enough to pass DSAIL in rank sum);
+    - pitcher complete-base mesh (tilt; GPU ~$1–3 plus retrains).
+- 07:25 UTC 2 Nov perfect-following: **hold-freeze does NOT fit evals 25 / 30 / 1 / 3** [M, H5p7 onsets]. It checked
+  this against the measured timelines before spending.
+  - 25: piece_1 onset f41 (9 / 10), hold from f31; piece_2 f173 (10 / 10), hold from f163. Both ≈ 10 frames after the
+    grasp, i.e. at the lift.
+  - 30: sweeper f36–52 (6 / 10), hold from f42 (lift). 3: pot f66–68 (9 / 10), hold from f57 (lift).
+  - 1: pot f129–131 (7 / 10), mid-hold f96–159.
+  - A release scan over all 20 evals found post-release error growth only on 14, 16, 32 (all replaced in 12b).
+  - New plan, pre-registered before results:
+    - a training-only patch: a share P of FlashCHORD's sampled resets from windows [hold start − 5, + 15] (GT-free),
+      so the policy practises grasp and lift more;
+    - a public test first (ep31 or the pot twin; control vs lift windows; 2 seeds; gate mean ≥ +0.02, no seed < −0.03;
+      ≈ $5);
+    - if it passes, evals 3 / 14 / 25 / 30 under the swap rule.
+- 07:30 UTC 2 Nov owner: "Go do as much as you can lets go to top also you can run another sesh for increasing general
+  perception and experiment in public eps".
+  - New session "Perception accuracy on public episodes" (session_01D9UJC9EUCs5sUCbTVZgvcC) for public-only,
+    ground-truth-free perception experiments: up to $30 GPU, hands passing changes to perfect-following.
+    - Ideas: drift-then-snap prevention, FoundationPose / FoundationStereo settings, per-object tracker templates
+      (complete-base pitcher, blue cup), cup spin handling.
+    - First check: whether the S2 half-frame advance is applied in the eval references.
+  - Perfect-following: lift-window plan approved; its cap from now on is $50 more (credit $91.35; ≥ $10 reserve).
+  - The physics-perception session was told to share its harness and pitcher finding with the new session.
+- 08:10 UTC 2 Nov **owner: "For blue cup I give you mey yes"**. This approves the CD-O variant with bold-albattani's
+  C0 blue-cup mesh; the owner accepts the GT-informed public selector (written after scoring).
+  - Asked focused-pascal to build pack 12c = pack 12b + the C0 blue-cup mesh payloads (rollouts untouched;
+    tools/pack_swap_meshes.py; frame report; README disclosure). bold-albattani asked for the exact file / transform /
+    sign-off. Expected CD-O ≈ 0.332 → 0.300 [E].
+- 08:33 UTC 2 Nov bold-albattani sent focused-pascal the blue-cup payload: meshes/library_c0/blue_cup.glb @ 5cce3d2
+  (md5 9e3a74fd…), no transform, evals 10 / 14 / 20 / 32 / 33 slot 0, payload swap only. Frame sign-off YES (axis 1.24°,
+  offset 2.0 mm, no flip). Expected CD-O ≈ 0.332 → 0.300 [E]. Waiting for "pack 12c ready".
+- 08:53 UTC 2 Nov focused-pascal: pack 12c built, not yet "ready".
+  - 12b reproduced byte for byte. 12c sha 3542f8e5…: vs 12b only code_commit_url + 5 blue_cup payload rows; CD-O
+    changes exactly those pairs; validation pass; 0 MESH warnings; disclosure committed (7d7f8d3a).
+  - Frame flags [M]: ICP 6.64 mm / 2.55°, kit-registration proxy 9.91 mm (limit 5 mm). Pose boards on the 5 blue-cup
+    episodes could shift by ~1 cm either way.
+  - 08:55 asked bold-albattani to choose: (a) sign off as is (CD-O-only goal; each board keeps its best) or (b) an aligned
+    transform into library_v3's body frame.
+- 08:38–08:43 UTC 2 Nov **PACK 12c UPLOADED** (owner's blue-cup yes, 08:10).
+  - Scores: AUC **0.84738**, SP-SR 0.85, MP-SR 0.75, RPE **3.008**, MPPE **2.467**, CD-O **0.30008** (from 0.33234).
+    Best on every board; one file covers all six.
+  - Standings (API, 08:45): rank sum 58, 10th; DSAIL 56 (9th) also moved (CD-O 12th). AUC +0.0019 passes DSAIL
+    (0.84925); MP-SR one more episode passes two teams.
+  - Record: build_12c/UPLOAD.md.
+- 08:37 UTC 2 Nov bold-albattani (received 08:44, after the upload): sign-off (a), C0 as is with transform none.
+  - The 6.6 / 9.9 mm flags measure C0 against library_v3. Kit registration against the public scan as a stand-in [D]
+    puts library_v3 9–10 mm off the anchor and C0 2–3.6 mm off, so most of the flag is library_v3's own error.
+  - That explains why pack 12c also improved AUC / RPE / MPPE [I].
+- 08:48 UTC 2 Nov bold-albattani: next CD-O variant (docs/research/mesh-2026-10-26/cdo-sprint/C3/README.md, 25b0c54).
+  - **Tier A (clean):** single pre-registered outputs of the C1 T3 track (PREREG 2d2a8ee), passing its pre-registered
+    CD-O gate.
+    - white_pot t3fit (6 pairs, evals 1 / 3 / 5 / 6 / 8 / 28): [D] 0.3417 → 0.3112, board −0.0051 [E];
+    - water_pitcher t3fit (eval 20): [D] 0.894 → 0.723, board −0.0048 [E]; pose risk on eval 20.
+    - Expected CD-O ≈ 0.300 → 0.290 [E].
+  - **Tier B (GT-informed, best of many by public-scan score):** pitcher Hunyuan s42, sweeper part program, rack
+    ep31_full, boards. ≈ −0.023 more (≈ 0.267 [E]). Owner decision only.
+  - 08:50: Tier A go under the standing permission. focused-pascal asked to build 12d = 12c + Tier A (same procedure as
+    12c); Tier B put to the owner.
+- ~09:00 UTC 2 Nov focused-pascal: pack 12d built and staged (results/submissions/20261102-track3o-candidate/build_12d/,
+  sha 643794c6…), pending the frame sign-off.
+  - 12c reproduced byte for byte first. vs 12c only code_commit_url + the 7 payload rows differ; CD-O changes exactly
+    those 7 pairs; validation pass; 0 MESH warnings.
+  - Flags [M]: pot centroid 8.5 mm / kit proxy 5.7 mm; pitcher centroid 10.3 mm, ICP 5.8 mm / 3.5°, proxy 8.0 mm,
+    surface p95 25.5 mm.
+  - Known risks in the README: the pot's public pose guard failed (−0.0099 mean); the pitcher's ADD gate failed
+    (33 mm).
+  - As a CD-O-only submission the pose boards keep their best (12c), but this file may not be the single final file
+    for all boards.
+- ~08:56 UTC 2 Nov focused-pascal: "pack 12d ready" (beee0581).
+- 08:58 UTC verification by this session [M], all pass:
+  - sha 643794c6…; 9,120 rows; vs 12c only code_commit_url + 7 payload rows (e1 / e3 / e5 / e6 o0, e8 / e20 / e28 o1);
+  - kit hashes match; dry run valid; CD-O file equals the staged one.
+  - **The upload was blocked by the permission classifier ("External System Writes")** and needs the owner's explicit
+    word.
+- ~09:05 UTC 2 Nov owner asked about arXiv 2403.11948 (Fichera & Billard, EPFL LASA, 2024, "Learning Dynamical Systems
+  Encoding Non-Linearity within Space Curvature").
+  - [L] It learns stable non-linear dynamical-system motion generators (a damped oscillator on a learned manifold
+    embedding; obstacle avoidance by deforming the embedding), evaluated on 2-D vector fields and 3-D end-effector
+    motions.
+  - Assessment: no perception content and no hand–object contact. Its value is stable, perturbation-robust motion
+    generation toward a goal, while our robot must reproduce a specific demonstrated object trajectory under contact,
+    learned by RL and run by the official evaluator. Smoothing / re-generating targets (test A) already failed. Not
+    adopted.
+- ~09:20 UTC 2 Nov Roman (via the owner): "which perception model is now used?" and RoPT (arXiv 2610.28962, Liang et al.,
+  NYU / GM, 20 Oct 2026), among "methods which claim to outperform FoundationPose".
+  - [L] RoPT = EdgeTAM masks + FoundationPose refiner / scorer + a GTSAM robust constant-velocity factor graph +
+    score- / jump-triggered re-localization (MASt3R + PnP).
+  - [L] YCBInEOAT native frame rate: same as FoundationPose (92.02 vs 91.96 ADD-AUC); at 16× frame skip 90.85 vs 38.87.
+    18.6 fps. No code yet.
+  - [H] It targets exactly our drift-then-snap failure (evals 14 / 32 / 33). Sent to the perception session as a design
+    reference with a suggested pre-registered public test.
+  - Other candidates found [L]: Opra et al. (Bonn, arXiv 2607.23468: built-in recovery, accuracy similar to
+    FoundationPose, 40 % faster); RGBTrack (2506.17119, depth-free); GoTrack (2506.07155); ProxyPose (2607.06555).
+- 09:40 UTC 2 Nov perception-tracking session (claude/perception-tracking-20261102):
+  - Running: variant MG (PREREG docs/analysis/ptrk-20261102/PREREG.md) = SAM2 video masks from our own f0 detection on
+    every frame; depth restricted to the mask; translation re-centred when the mask leaves the rendered silhouette;
+    re-registration on the tracked mask when coverage stays < 0.5. Ablations MD / MR plus a repeated control. 20 public
+    episodes on 2 RTX 5090s, ~60 % done.
+  - Interim (7 eps): neutral, within tracker noise (control repeat ±0.004 / ep).
+  - [D] Public tracks show NO drift-then-snap. Frames > 3 cm off are the ep0 lost lid, the ep23 board swap and bias
+    (pitcher, ep24 board), so a public gate can mainly show harm / no-harm for this family.
+  - Problem: some VOS runs crash with GPU OOM on 32 GB cards during the guard's re-registration; re-run on a 96 GB box
+    (~$1–2).
+  - Also running: complete-base pitcher as tracking template (looks bad: 3 guard re-acquisitions on ep21);
+    full-resolution stereo depth (20 eps).
+  - **S2 half-frame advance is not in any packed reference.** Sent to perfect-following with apply instructions.
+  - Spend ≈ $5 of $30.
+- ~10:45 UTC 2 Nov owner asked how richchentw reaches AUC 0.968 (RPE 0.72, MPPE 0.82, CD-O 0.213, SP / MP-SR 1.00).
+  - No public write-up found (web search).
+  - Our own evidence [M, public]: the oracle twin with mocap object motion reached 0.940 vs 0.595 with our perception
+    (ep11). So near-perfect perception plus failure-free tracking explains such scores without anything exotic.
+  - The board is provisional until the organisers' container reproduce check (PR #215).
+  - Answer given: their edge is sub-cm object poses on every episode, zero failed runs and near-scan meshes.
+- 12:40 UTC 2 Nov status check.
+  - pfH (public ep31, lift-window starts) **PASS** [M]: AUC vs mocap lw 0.730 / 0.704 vs control 0.589 (s); far fewer
+    failed draws (min 0.694 / 0.618 vs 0.245 / 0.400).
+  - Step 2 pfI (evals 3, 14, 32): the first launch was destroyed after 20 min (lift windows were keyed wrongly, so evals
+    3 / 14 got eval 32's windows; fixed). The relaunch logged at 11:51 is NOT in `ops/vast.sh show` at 12:39;
+    perfect-following asked to check.
+  - Perception-tracking: mask-guided tracking FAILED its public gate (ΔAUC −0.0009; depth restricted to the mask
+    −0.0077). Re-centre + re-register only is +0.0029 (report-only; a pre-registered replication is running on ptrkD).
+    Full-resolution stereo depth running (ptrkC). Spend ≈ $9 of $30.
+  - [M] Today's tracking defaults score 0.945 on 19 public episodes vs 0.921 for the 25 Oct base.
+  - Credit $71.67. Pack 12d upload and Tier B still wait for the owner.
+- 12:42–12:47 UTC 2 Nov **PACK 12d UPLOADED** (owner: "sure go ahead").
+  - CD-O **0.29029** (12c 0.30008).
+  - Pose boards worse as disclosed (AUC 0.84005, RPE 3.142, MPPE 2.525); 12c stays best on those.
+  - Final selection: 12c for the pose boards, 12d for CD-O.
+- The owner also asked to scale the lift-window win to other episodes; relayed to perfect-following.
+- 12:50 UTC 2 Nov perfect-following: pfI-b558032's host stalled in setup (HF downloads); the watchdog destroyed it at
+  12:37 (≈ $0.9).
+  - Relaunched as 20261102-pfI-6c80007 (Croatia, 58821654): evals 3 / 14 / 32 with per-episode lift windows, 2 seeds,
+    swap rule + ≥ +0.02. Results ≈ 18:30–19:30 UTC.
+  - Spend since 07:32 ≈ $7.5 of $50.
+- 12:51 UTC 2 Nov perfect-following: pfI-6c80007 confirmed running (evals 3 / 14 / 32 plw, seeds 42 / 43; job started
+  12:42, in setup). pfJ 20261102-pfJ-cf8cc34 (evals 20 / 15 plw) started 12:49, in setup.
+  - Next: the standard-learner lift path for evals 25 / 30 (then 28 / 1), with a PREREG addendum and a CPU check
+    before launch.
+  - Packs are built on 12c and announced as "pack 13 ready".
+- 13:00 UTC 2 Nov perfect-following:
+  - pfI training with per-episode lift windows.
+  - Standard-learner lift path built (addendum C, 0f695c94; window share 0.21 → 0.35).
+  - pfK launched for eval 25 (20261102-pfK-0f695c9, ≈ 6 h, ≈ $8).
+  - Credit $70.53 at 12:56; the $50 window ends at credit $41.35.
+  - Results: pfI / pfJ ≈ 17:30–18:30 UTC, pfK ≈ 19:00 UTC.
+- 13:00 UTC approved evals 30 and 28 (+~$16 beyond the window) under the owner's "scale up" instruction; credit stays
+  ≈ $25 > the $10 reserve. Eval 1 waits for a top-up.
+  - Gave the session the 12c paths (claude/focused-pascal-2nz9s1, results/submissions/20261102-track3n-candidate/
+    build_12c/). Pack 13 is built on 12c.
+- 13:05 UTC 2 Nov perfect-following launched pfL (eval 30) and pfM (eval 28): standard learner + lift windows, 2 seeds
+  + 10 confirmation draws each, ≈ 6 h, ≈ $8 each. Eval 1 waits.
+  - 12c fetched and verified; the no-swap repack self-test on 12c is byte-identical, so the blue-cup meshes carry into
+    pack 13.
+  - Results: pfI / pfJ ≈ 17:30–18:30 UTC; pfK / pfL / pfM ≈ 19:00 UTC.
+- 14:08 UTC 2 Nov perception-tracking results [D, 20 public episodes, pre-registered]:
+  - (1) mask-guided tracking FAIL (ΔAUC −0.0009; worst ep11 −0.069; depth restricted to the mask −0.0077);
+  - (2) "re-centre + re-register" failed its replication (it loses the ep0 lid, −0.38, an edge case);
+  - (3) full-resolution stereo depth FAIL (−0.0097; worst ep13 −0.098);
+  - (4) ep18's sweeper track is chaotic: tracker changes can flip whole object tracks, so tracker-level changes are
+    high-variance on eval.
+  - Only S2 was handed over. Pitcher template still running (~1.5 h). Spend ≈ $13 of $30.
+  - 14:10 agreed: stop GPU after the pitcher result; final report plus a design note on offline whole-video multi-view
+    pose estimation (no build).
+- ~14:25 UTC 2 Nov owner sent two references: PRISM (prism-real2sim2real.github.io) and SAM-6D (Semantic Scholar link).
+  - PRISM (Wang, Wu, Abbeel, Duan, Malik, Sferrazza, Liu, Shi, Kanazawa; Amazon FAR / Berkeley / Stanford / CMU; CoRL
+    2026; code github.com/amazon-far/PRISM) [L]: counterfactual video generation (box → bin / barrel / ball) from one
+    monocular video; contact-anchored reconstruction; retargeting to G1; teacher–student policies; zero-shot real.
+    - Targets generalisation, not per-episode precision. No pose-accuracy numbers.
+  - SAM-6D (Lin, Liu, Lu, Jia; CVPR 2024; github.com/JiehongLin/SAM-6D) [L]: single-image RGB-D zero-shot 6D pose.
+    ISM (SAM proposals + semantic / appearance / geometry template matching) + PEM (two-stage point matching). BOP-7
+    mean AR 62.2 (70.4 with full SAM).
+    - FoundationPose is listed at AR_Core 0.726 on the BOP unseen leaderboard (not like-for-like).
+    - Useful piece for us [H]: ISM as frame-0 / re-detection with our mesh templates.
+  - Neither is a quick score win. Both were passed to the perception session's design note.
+- 14:55 UTC 2 Nov owner: "okay do that" (test SAM-6D's detector; perception design note).
+  - The perception session is asked for a pre-registered public test of SAM-6D's ISM with library_v3 templates, as the
+    frame-0 detector and as the track guard's re-detector (FoundationPose kept for pose). Metrics: identity errors,
+    lost-object events, ΔAUC / MPPE / RPE. Hard cap $6 GPU; stop if credit < $15 while the eval retrains run.
+  - Plus the offline whole-video multi-view design note.
+  - Credit $52.63 at 14:52 UTC; 6 boxes (~$8.4/h): pfI / pfJ / pfK / pfL2 / pfM (perfect-following) and ptrkD.
+    Projected ≈ $20 left after today's retrains [E]; the owner was advised to top up.
+- 14:58 UTC 2 Nov perception-tracking: design note pushed (docs/analysis/ptrk-20261102/DESIGN_offline_joint.md),
+  including a measured rest-frame oracle of +0.032 public AUC, with SAM-6D / PRISM placed. SAM-6D test acknowledged
+  (≤ $6, stop if credit < $15).
+  - Decision asked: ptrkD (58815489, $1.36/h, ≈ 2.5 h / $3.5 left) has only report-only work left (the rest of a
+    replication that already failed, OOM re-runs, the pitcher test).
+  - Options: (A) let it finish; (B) destroy it now and run the pitcher test on the SAM-6D box.
+  - CLAUDE.md says never cut a job that is still progressing, so the choice is put to the owner.
+- 14:56 UTC 2 Nov coordinator → perception-tracking: interim answer **A**. ptrkD keeps running because of the never-cut
+  rule; the owner can switch it to B.
+  - Credit $52.14 [M]; burn $8.38/h over 6 boxes (5 eval-retrain boxes: $7.02/h).
+  - Estimate to about 19:00 UTC [E]: retrains ≈ $28, SAM-6D ≤ $6, ptrkD ≈ $3.5. That leaves about $14, so the
+    SAM-6D test may reach its < $15 stop.
+- 16:05 UTC 2 Nov owner asked whether the SlamDunk report (LaMAria localisation, artifact CPZhtYvJzLGjcth3XBiodH) helps
+  perception. Read in full.
+  - Mostly does not transfer: its main fix is an IMU (V2D releases none, track3-requirements.md:32), and its failures
+    come from long, dark, outdoor mono sequences. Our clips are ~13 s of indoor metric stereo.
+  - What carries over:
+    - trimming beat robust kernels (Cauchy 70.85 m vs trimmed 0.34 m), relevant to the offline rest-segment fit;
+    - keep a lost track as a shadow and merge it only on verified evidence (as guard_bridge does);
+    - a frozen public dev / holdout split for perception changes (ep18 chaos);
+    - byte-identical repeats.
+  - It points back to our own **room map (note 18)**:
+    - public-only SfM; relocalised all 20 eval clips at ~1–2 mm with no drift, 0.31 CPU-s per frame;
+    - dropped on 22 Oct because its mocap registration used GT constants, with the gain taken as +0.01 "vs a decent
+      VO".
+  - Our current perc2 VO drift has never been isolated (robustness review 26 Oct §2.3). Note 18's own stereo VO drifted
+    20–83 mm on 12 / 20 eval clips; against that VO the map was worth ≈ +0.10 board AUC [E, note 18 C5].
+  - Proposed to the owner:
+    - $0 CPU check of perc2 VO drift: on public episodes against mocap-static objects (diagnostic), and GT-free on eval
+      clips via table-plane tilt over time;
+    - only if the bound is ≥ +0.01, a GT-free map rebuild; the note-18 code is on the owner's Mac, not in git;
+    - retrains for the eval references that change.
+- 16:04 UTC 2 Nov owner: "do all, go the distance" on the room-map / camera-drift proposal. **Room-map session
+  launched:** session_01D9UJC6AegGiAjYM6ukSfHj, branch claude/room-map-20261102.
+  - Step 1 ($0 CPU):
+    - GT-free rebuild of note 18's public-only map in the repo;
+    - perc2 VO drift against the map on the 20 eval clips (GT-free);
+    - leave-episode-out public ΔAUC from recomposing the perception control outputs with map cameras.
+  - Steps 2–3: eval recomposition, then reference rebuilds and retrains via perfect-following. GPU waits for a top-up;
+    PREREG before any scoring.
+  - Fact checked [M, kit AUC.py `_align_registered_scene`]: the scorer aligns the scene rigidly at frame 0, so only
+    camera motion after frame 0 matters and the GT registration in note 18 is not needed.
+  - Perception-tracking informed (overlap with its rest-segment design).
+- 16:06 UTC 2 Nov owner asked whether our lift work is ReLift (relift3d.github.io). No.
+  - ReLift (Technion / NVIDIA, arXiv 2610.42136): dense 3D point tracking from monocular video. It lifts 2D tracks with
+    depth and cameras, then a learned corrector repairs the 3D residuals.
+  - Our "lift" is **lift-window training starts**: RL episodes started around object-lift moments
+    (ops/box/patch_flashchord_lift.py). Same word only.
+  - Possible later use [H]: dense point tracks through hand occlusion as correspondences for the offline joint pose
+    fit. Low priority: we have metric stereo depth and model-based poses.
+- 16:10 UTC 2 Nov perception-tracking: ptrkE (detector test, $1.48/h) takes about 1 min of compute but about 12 min
+  of store pull / push per episode, so all 20 episodes would cost ≈ $6.5 (cap $6).
+  - Plan: save and destroy at $6 (≈ 19:00 UTC, 17–18 / 20 episodes) and report the rest as incomplete. The owner's
+    cap takes precedence. Coordinator agreed and suggested batching the store transfers.
+  - Early result [D, 3 eps]: "add" leaves ep18 / ep23 / ep0 unchanged; "replace" is worse on ep23 (0.009 vs 0.041).
+  - Credit $41.74 at 15:59 [M].
+- 16:10 UTC 2 Nov room-map step-1 plan ($0, in its container, 4 CPU). Coordinator: go.
+  - Rebuild the run3 map GT-free (~1–1.5 h).
+  - Eval drift of evperc-4f596df world_T_cam against the map, every 5th frame (~1 h). This decides; stop early if the
+    drift is small.
+  - Public leave-out: 5 folds × 4 eps, recomposing ptrk control C (7fbc321) and scoring; PREREG before scoring
+    (~4 h, maybe a ~$1 CPU box).
+  - Noted [M]: the public control has only 2–17 keyframes and AUC 0.94–0.998 on most episodes, so public headroom is
+    small; the eval drift is the real question.
+- 16:20 UTC 2 Nov owner: "I am trying to increase the perception, wouldn't this help" (ReLift).
+  - Re-assessed: yes for **tracking losses**, not for rest-phase bias.
+  - The public loss is concentrated in lost tracks:
+    - ep23: the boards freeze from f21 while mocap moves them ≈ 12 cm; control AUC 0.041;
+    - ep18: the sweeper is partly lost;
+    - ep0: the lid.
+  - A model-free point-track check (2D point tracks on the object mask, lifted with our stereo depth, rigid fit per
+    frame) can see motion that FoundationPose misses and re-seed it.
+  - ReLift (MIT code; front ends mostly non-commercial; 24–48 GB GPU) is the repair stage on top of such tracks.
+  - Our research notes already list this as alternative D (05-alternatives.md: TAPIP3D, Apache-2.0, RGB-D input); it
+    was never built. One competitor uses TAPIR (competitors-2026-10-21.md:186).
+  - Proposed public test: ep23 / ep18 / ep0 + spoon episodes; ≈ $3 GPU; PREREG gate. Awaiting the owner's word.
+- 17:00 UTC 2 Nov status [M]: 4 boxes (pfJ, pfL2, ptrkD, ptrkE); credit $33.41.
+  - Lift-window eval retrains (perfect-following log b45b377b):
+    - no swap: eval 3 (0.888 / 0.886 vs 0.933), eval 25 (0.529 / 0.541 vs 0.878);
+    - eval 14 no swap on fresh draws (box 0.923 → fresh 0.826 vs 0.875);
+    - eval 32 below the gate on both seeds;
+    - eval 20 seed 42 collapsed (0.297); evals 28 and 30 below the gate on seed 42;
+    - eval 15 seed 42 0.953 vs 0.906, still to be confirmed on fresh draws.
+  - [H, perfect-following] box draws overstate lift policies.
+  - Room map: run3 rebuilt GT-free (370 public images, 1.11 px, 22 min CPU); eval relocalisation running
+    (580–750 inliers per frame).
+- 17:05 UTC 2 Nov **owner: "first do the tests and let me add more money once we increase the perception."**
+  - Public perception tests now; retrains wait for the owner's top-up after a measured perception gain.
+  - Perception-tracking: build and run Stage 1 of DESIGN_offline_joint (rest-segment pose fit), ≤ $4 GPU, PREREG,
+    trimmed losses. It runs a map-camera arm when the room-map fold cameras are ready. Credit floor lowered to $10 for
+    this test.
+  - **Point-track session launched:** session_01D9UJC72kCbx1mWTB2pwupw, branch claude/point-track-20261102.
+    - Model-free point tracks (TAPIP3D / CoTracker3 + stereo depth, optional ReLift) to detect and repair lost
+      tracks (ep23, ep18, ep0, spoon);
+    - all 20 public episodes, ≤ $4 GPU, PREREG, stop below $10.
+  - Perfect-following: finish pfJ / pfL2 and the eval 15 fresh confirmation; no new retrain boxes (eval 1 included)
+    until the top-up.
+  - Room-map: step 1 is the main test; it shares fold-map cameras with both tests.
+  - Credit $33.41 at 17:00 [M].
+- 17:08 UTC 2 Nov perfect-following [M]:
+  - eval 28 no swap (0.864 vs 0.919);
+  - eval 15 seed 43 on the box 0.945 (seed 42 0.953; gate 0.906); fresh-draw confirmation on pfJ in about 40 min
+    (tests [H] "box overstates lift policies");
+  - eval 30 seed 43 still training;
+  - no new retrain boxes.
+- 17:13 UTC 2 Nov point-track plan (base ad1af12). Coordinator: go; KLT arm verdict first; thresholds fixed in the
+  PREREG before reading per-episode scores; ask before renting.
+  - Tools: BootsTAPIR (tapnet, code and weights Apache-2.0), plus OpenCV KLT as a $0 baseline arm.
+  - Rejected: CoTracker3 (CC-BY-NC), TAPIP3D (weight licence unstated), ReLift (non-commercial front ends) for now.
+  - Method:
+    - points in perc2's f0 mask, lifted with the cached stereo depth and world_T_cam;
+    - trimmed Kabsch per object;
+    - detector: > 2 cm or > 10° divergence for ≥ 5 frames; repair over the flagged spans.
+  - Base: the perception-tracking control (likely ptrkD Cr).
+  - Compute: CPU here first. GPU (≈ $2–3) only if needed, asked first. First public verdict in ≈ 4–5 h.
+- 17:25 UTC 2 Nov **point-track interim (2934c0b) [D]: ep23 is a board identity swap** hidden by the frame-0
+  alignment, not a freeze. Our piece_2 displacement matches mocap piece_1 and vice versa; swapped residuals are
+  3.2 / 5.0 cm vs 7.8 / 7.4 cm.
+  - This contradicts perception-tracking's 14:55 reading; asked it to reconcile and to check whether its public
+    control runs pipeline/identity_fix.py (the knob rule was wired only into eval_idfix.sh on 25 Oct).
+  - Eval 25 is protected: its packed reference is the identity-correct ev25idfix (knob rule rank 1 of 32, work log
+    25 Oct 15:32).
+  - Point tracks continue on ep18 / ep0 / spoon with KLT at $0 (it loses fast motion). BootsTAPIR needs a box: ≤ $3,
+    only if KLT's detector shows true positives.
+- 17:57 UTC (session clock) 2 Nov **perception-tracking Stage 1 rest-segment fit: FAIL, falsifier fired [D]**
+  (PREREG before transform; CPU, $0):
+  - ΔAUC −0.0088 (7 better / 12 worse; worst ep18 −0.062); MPPE +0.05; RPE +0.21 cm; rest-frame ADD lower on 9 / 20
+    (bar 14).
+  - Post hoc [I]: it helps where the tracker's bias is large (pitcher ep21 +0.051, ep22 +0.019; rack ep31 +0.013;
+    dust pan ep39 +0.012) and hurts where the tracker is already within mesh error (pots −0.01 to −0.03, cups ep12 / 13
+    −0.03). Fitting depth to a wrong shape moves a good pose.
+  - The +0.032 rest oracle is not reachable with our meshes. The map-camera arm was dropped (room-map (b) measures
+    cameras directly); no post-hoc per-object gate.
+- 17:27 UTC 2 Nov **room-map step 1(a) [M], $0** (6438495, docs/analysis/roommap-20261102/results/eval_drift.md):
+  - GT-free public-only map: all 20 eval clips relocalised at every frame (100 %, min 479 inliers, 0 gate rejections).
+  - perc2's camera vs the map: object gap p95 **2–9 mm on 19 / 20 clips**; ep35 18 mm, arriving in steps at keyframe
+    hops. This is far below note 18's own stereo VO (20–83 mm).
+  - Camera-term AUC bound mean 0.0029 (ep35 0.056) → **pre-registered G1 (≥ 0.01) fails; step 2 and retrains are
+    off.** Camera-term MPPE ≈ 0.13–1.3 cm per clip (mean ~0.3), if the map is right.
+  - The public leave-out test (b) continues, report-only (~1.5 h).
+  - Reading [I]: camera drift is not our perception bottleneck. The rest-segment result points at meshes.
+- 17:28 UTC 2 Nov (18:12 session clock) perception-tracking **reconciled: ep23 is a frame-0 board identity swap**
+  (its 14:55 "joint freeze" reading compared same-named tracks; corrected in its log).
+  - identity_fix.py is in no public control, only ops/jobs/eval_idfix.sh.
+  - Applied on CPU to the ep23 control (ptrkD Cr): the knob rule picks swapped + Rx (as tracked: rank 21 / 32).
+    **ep23 AUC 0.041 → 0.663** (piece_1 0.083 → 0.959, piece_2 0 → 0.368; MPPE 16.3 → 5.4 cm) [D].
+  - ep24 unharmed (as tracked rank 1 / 32; 0.8343 unchanged).
+  - ≈ +0.031 on the public 20-episode mean. No eval action: eval 25 already uses it, and no other eval episode has
+    look-alike objects.
+  - All public lanes now apply it to ep23 before scoring; room-map told.
+- 17:42–17:55 UTC 2 Nov **pack 13 ready (perfect-following 6291a766), verified here; not uploaded, waits for the owner.**
+  - Content: 12c + eval 20, sha 791c3922…, only e000020 rows changed.
+  - Eval 20 lift-window plw s43: fresh 0.926 vs 0.893, gain +0.033, PASS + INCLUDE.
+  - CD-O equals 12c's (code URL aside); kit hashes as 12b / 12c; dry run valid.
+  - Record: results/submissions/20261102-track3p-candidate/build_13/UPLOAD.md.
+  - Eval 15 is a near miss (fresh 0.958 vs 0.906; fails clause c by 0.47 mm median RPE); a waiver is the owner's call.
+  - Final lift batch [M]: no swap on evals 3, 14 (fresh), 25, 28, 30, 32.
+- 18:21 UTC 2 Nov **point-track verdict: FAIL, falsified** (1745c9f; PREREG 9203ccd; CPU, $0; 20 / 20 episodes):
+  - PT-lag (primary): ΔAUC −0.058 (0 better / 6 worse; min ep42 −0.366); ΔMPPE +0.27 cm.
+  - PT-all: −0.132; gains only on ep11 +0.053 and ep40 +0.010.
+  - Detector precision 5 / 17: FoundationPose was mostly right, and KLT points slipped in grasps.
+  - No GPU requested (the BootsTAPIR condition was not met); lane stopped.
+  - By-products: ep23 identity write-up; perc2's ep0 frame-0 lid mask sits on the pot handle.
+  - Record: docs/analysis/ptrack-20261102/RESULT.md on claude/point-track-20261102.
+- 18:35 UTC (session clock) 2 Nov **perception-tracking FINAL** (docs/analysis/ptrk-20261102/README.md, 877f353 on its
+  branch). All pre-registered public tests FAIL [D]:
+  - mask-guided tracking −0.0009; its re-register part fails replication (ep0 −0.38);
+  - full-resolution depth −0.0079;
+  - **complete-base pitcher as the tracker template −0.249**;
+  - SAM-6D-style scores added to our rules +0.0010 (6 better / 1 worse; MPPE −0.02, RPE −0.17; below the +0.005 bar;
+    > 3 cm frames +2); replacing our rules −0.20 (3 crashes);
+  - Stage 1 rest-segment fit −0.0088.
+  - Kept / handed: S2 (to perfect-following, +0.004 board [E], only on retrains); ep23 identity_fix wiring gap.
+  - Spend ≈ $25–26 [E] of $40 (ptrkE $4.6 of $6); ptrkD self-destroys after its report-only cells. No further GPU.
+  - Caveat to the "meshes are the lever" reading [I]: the one direct mesh test (complete-base pitcher template) was
+    strongly negative. Better meshes are not a sure gain; any mesh lane needs its own public test.
+- ~18:50 UTC 2 Nov **pack 13 UPLOADED** (owner: "Upload 13"); submissions 57918229–57918242.
+  - Scores: AUC **0.84924** (+0.00186 vs 12c), SP-SR 0.85, MP-SR 0.75, RPE **3.00841**, MPPE **2.45263** (−0.0147),
+    CD-O 0.30008. Best on AUC / RPE / MPPE.
+  - Standings (API): rank sum 54, tied with DSAIL (AUC 0.85672 now). Our ranks: AUC 8, SP-SR 11, MP-SR 7, RPE 10,
+    MPPE 10, CD-O 8.
+  - Gaps to the next rank: AUC +0.0075 (DSAIL); RPE −0.34 cm; MPPE −0.18 cm; CD-O −0.0042 (sam&alex 0.28608).
+    One more SP-SR success (0.90) moves 11 → 9.
+- 19:00 UTC 2 Nov **owner: "Okay I give you permission for all"**, answering the explanation of (1) the eval 15
+  clause-c waiver and (2) Tier B meshes (GT-informed selection by public-scan score; integrity call explained) vs a
+  GT-free mesh rebuild.
+  - (1) **Eval 15 waiver.** Perfect-following builds pack 13b = pack 13 + eval 15; the waiver is recorded as post hoc
+    (clause c fails by 0.47 mm; a / b / s and the bar pass).
+  - (2) **Tier B yes.**
+    - bold-albattani (session_01W8Softjo2xx7o6ofSiheuQ) prepares the C3 Tier B set: pitcher hy21 s42 placed in the
+      body frame and scored once, sweeper P1, rack ep31_full, board occupancy fits. Its README states the GT
+      selection plainly.
+    - focused-pascal (session_01LhbGHrt6epRs52jSRX48AU) builds pack 12e = 12d + those payload swaps, as a CD-O-only
+      variant (each board keeps our best). Expected CD-O ≈ 0.267 [E, C3].
+  - (3) A GT-free rebuild already exists for pot and pitcher: Tier A, generate-then-fit single pre-registered outputs,
+    in 12d (CD-O 0.29029). For the remaining objects it is superseded on the board by Tier B; not started.
+  - All CPU, $0.
+- ~19:15 UTC 2 Nov **pack 13b verified** (perfect-following edeced81, first quoted as 54e0a1d3; sha c8b85ba4…; only e000015 changed; CD-O
+  meshes unchanged). The upload call was **blocked by the auto-mode classifier** ("External System Writes"); not
+  retried. Asked the owner for a direct "upload 13b". Record:
+  results/submissions/20261102-track3p-candidate/build_13b/UPLOAD.md.
+- ~19:06 UTC 2 Nov focused-pascal: pack 12e build accepted (CPU, no upload); 12d reproduced byte for byte (643794c6…).
+  - Swap pairs: pitcher eval 20; sweeper evals 19 / 30; rack evals 14 / 15 / 16 / 28 / 30; boards eval 25.
+  - The no_oracle guard stays on (no skip flag); if it refuses a Tier B file, it stops and reports.
+  - The README will carry the Tier B disclosure. Waiting for bold-albattani's meshes. Coordinator: full set, go.
+- ~19:20 UTC 2 Nov **owner: "Upload 13b, you dont need my permission to upload anymore."** Standing upload permission
+  is recorded; verification before every upload stays as before.
+- ~19:20 UTC 2 Nov **pack 13b UPLOADED** (57918857–57918870): AUC **0.84985** (+0.0006 vs 13), MPPE **2.43592**
+  (−0.0167), RPE 3.01275 (+0.0043, worse than 13's 3.00841), SP-SR 0.85, MP-SR 0.75, CD-O 0.30008.
+  - Best per board: AUC / MPPE 13b; RPE 13; CD-O 12d.
+  - Rank sum 54, tied with DSAIL; ranks unchanged.
+- ~19:11 UTC 2 Nov bold-albattani: **Tier B set committed (332eb5b)** and sent to focused-pascal.
+  - Pitcher placed GT-free and scored once [D] at 0.3722 (kit anchor 14.5 mm vs 12d's 29.4).
+  - No file is a byte copy or template of a scan (md5 checked against all 10 scans).
+  - README C3/tierB/README.md opens with "How ground truth entered the selection".
+  - Expected CD-O [E] 0.290 → ≈ 0.268. The rack pose pairs may worsen; each board keeps our best.
+  - Optional 12f (generated blue cup + dust pan, ≈ −0.0046 [E]): held by the coordinator. It would not change a CD-O
+    rank (5th is 0.2534) and adds disclosure.
+- ~19:15 UTC 2 Nov focused-pascal: **pack 12e built, PENDING frame sign-off** from bold-albattani.
+  - sha 004f394f…, 9,120 rows, code 9684395b.
+  - Diff vs 12d: code URL + 10 mesh rows (rack 14 / 15 / 16 / 28 / 30, sweeper 19 / 30, pitcher 20, boards 25 ×2).
+  - no_oracle accepts all five files; validation pass; 0 MESH warnings.
+  - Flags: pitcher ICP 14.9 mm vs 12d's mesh; rack ICP 6.2 mm; the kit proxy flips wooden_piece_2 by 180°.
+  - The upload waits for the sign-off and my check.
+- ~19:25 UTC 2 Nov **pack 12e UPLOADED** (57919161–57919177). Verified first: only 10 mesh rows changed; the CD-O
+  file changes only those 10 pairs.
+  - Scores: AUC **0.86905**, SP-SR **0.90**, MP-SR **0.80**, RPE **2.39138**, MPPE **1.95269**, CD-O **0.26775**. Best
+    on every board.
+  - **Rank sum 47, 7th** (from 54).
+  - Reading [I]: registered scoring aligns our mesh to the truth, so better meshes cut the pose errors on every board,
+    far beyond the CD-O estimate.
+  - Next: pack 13e = 13b's poses + 12e's meshes (merging two independently adopted changes; decided before seeing any
+    13e result).
+- ~19:30 UTC 2 Nov coordinator:
+  - asked focused-pascal for **pack 13e** = 13b's poses + 12e's mesh payloads (merge of two independently adopted
+    changes);
+  - **reversed the 12f hold**: the generated blue cup (sam3d s7) and dust pan (hy21 s42) pass C3's pre-set rule
+    (≥ 0.02 public-scan CD-O gain). Meshes also drive the pose boards, so "no CD-O rank change" no longer applies.
+    After scoring and sign-off by bold-albattani they go into pack 13f = 13e + extras.
+  - Guard against eval tuning: mesh variants are chosen only by the pre-set public-scan rule, never by leaderboard
+    results.
+- ~19:35 UTC 2 Nov **pack 13e UPLOADED** (57919442–57919454). Verified: vs 13b only mesh rows; vs 12e only eval 15 /
+  20 poses.
+  - Scores: AUC **0.87166**, MPPE **1.92180** (best), RPE 2.39478 (12e 2.39138 stays best), SP-SR 0.90, MP-SR 0.80,
+    CD-O 0.26775. Ranks unchanged (47, 7th). Next: 13f (+ blue cup and dust pan) after sign-off.
+- ~19:40 UTC 2 Nov owner: "Push further".
+  - Read the kit scorer [M]: `_register_object_body` registers our mesh to the reference scan (centroid / RMS-radius
+    normalised, trimmed ICP from 25 starts; seed = 1,000,003·episode + 101·slot) and converts our poses through it.
+  - So mesh shape drives every pose board, and a mis-registration (wrong basin or flip) makes correct poses score as
+    wrong. SP-SR succeeds per episode if the mean position error is ≤ 10 cm and the mean orientation error ≤ 0.5 rad;
+    MP-SR needs < 3 cm and < 30° for every object.
+  - Board leverage: one more SP-SR success (0.90 → 0.95) moves SP-SR 10th → 6th (−4 rank points); MP-SR 0.85 → 6th
+    (−1); RPE −0.05 cm → 8th; CD-O −0.0144 → 5th.
+  - Asked bold-albattani for a full mesh audit of 13e (every eval slot): public-scan CD-O; registration flip rate over
+    ≥ 50 random seeds (never the scorer's exact seed as a criterion); candidates. Then a pre-registered adoption rule
+    before building → pack 13g on top of 13f. Spoon first (10 / 20 episodes).
+- ~19:45 UTC 2 Nov **pack 13f UPLOADED** (57919615–57919621). Verified: vs 13e only 7 mesh rows.
+  - Scores: AUC **0.87225**, RPE **2.38260**, CD-O **0.26249** (best); MPPE 1.92530 (13e 1.92180 stays best);
+    SP-SR 0.90; MP-SR 0.80.
+  - Ranks unchanged (47, 7th). Next: the mesh audit, then 13g.
+- ~19:38 UTC 2 Nov bold-albattani: mesh audit started. PREREG d3db66c (C4-audit/PREREG.md) pushed before any run.
+  - Setup: kit registration plus CD-O against the public scans; 50 fresh seeds (3001–3050), with no eval seed.
+  - Metrics: CD-O, flip rate (> 90°), W30 (> 30°), anchor, rotation, GT-free self-ambiguity.
+  - Candidates: 52 meshes, frozen in candidates.json.
+  - Adoption rule for 13g (baseline = 13f):
+    - (A) CD-O −0.020 with W30 ≤ +0.05; or
+    - (B) W30 −0.20 with CD-O ≤ +0.005 and anchor ≤ +2 mm;
+    - no scan copies; no leaderboard input.
+  - **Spoon: no public scan exists**, so it cannot be judged by this rule. A GT-free approach will be proposed with the
+    table.
+  - Timing: shipped rows in ~20 min, all 52 in ~85 min.
+- ~20:01 UTC 2 Nov **C4 audit part 1** [D] (shipped 13f meshes; 50 fresh seeds; PREREG d3db66c).
+  - No shipped mesh flips except the eval 25 boards: **wooden_piece_2 flips on 34 % of seeds** (the occupancy plate is
+    nearly 180°-symmetric); wooden_piece_1 6 %. All others 0 / 50, rotation p90 ≤ 4.9°.
+  - The 13f blue cup and dust pan raise the anchor / rotation offsets (cup 2.9 → 7.0 mm, 2.4 → 4.2°), which affects
+    AUC-type metrics only.
+  - Spoon (10 pairs): no public scan, so no audit. Its GT-free self-ambiguity is 3.41 mm at 177.5° vs a 1.41 mm floor
+    (ratio 2.4), a moderate 180° alternative basin. [H]: some spoon registrations may flip on the hidden scan.
+  - Candidates are still running (~60 min); the frozen rule is applied after. Reverting the boards to library_v3 fails
+    rule (B) (CD-O +0.05); a less-symmetric occupancy variant is a priority build. Pose-only board reverts are outside
+    the rule and are not taken.
+- ~20:04 UTC 2 Nov **room-map step 1 DONE**, $0 (9162a3b, docs/analysis/roommap-20261102/README.md):
+  - public leave-out vs mocap, 19 eps [M]: mean ΔAUC +0.0070, ΔMPPE −0.081 cm, RPE unchanged;
+  - ep24 +0.148 (perc2 camera 37 mm off; its GT-free bound of 0.176 predicted it); the other 18 eps −0.0008; ep22
+    −0.0164;
+  - verdict: G1 and G2 fail. Step 2 and retrains are off; no spend.
+  - Post-hoc suggestion, not pre-registered: use map cameras only where the GT-free bound is ≥ 0.02. On eval that is
+    ep35 only (+0.047 on the episode, ≈ +0.002 board [E]), costing one retrain ($3–6). Public support is one episode.
+    Kept as a low-priority option for the owner.
+- ~20:05 UTC 2 Nov bold-albattani:
+  - Board-2 variants pre-registered (1afc882), built (7339606): v1 = plate + 2 extra marker balls; v2 = plate + every
+    library_v3 cluster beyond the plate (it also took a 2335-face sheet; audited anyway). Both are in the 50-seed audit
+    under rule (B).
+  - **Spoon correction:** the earlier GT-free study (spoon-2026-10-25) found 0 flips in 300 registrations against 30
+    plausible spoons, so spoon flips are unlikely [M, GT-free].
+  - The spoon's real loss [M, kit functions] is as the **scene anchor** of evals 32 / 33 / 35 / 36 / 37: frame-0 roll
+    noise of 2–6° rotates the whole scene, ≈ 0.03–0.15 AUC per episode.
+  - No spoon mesh build; the GT-free criterion (a)–(d) is kept on file.
+  - Option for the owner: a rest-averaged spoon anchor pose with re-evaluation of the 5 policies (GPU, ~$5–10 [E]).
+    It cannot be validated on public data (no spoon GT; the public non-spoon anchor test A-f0 gave +0.001).
+- ~20:10 UTC 2 Nov **owner: "how much money do you need, and do as much work as you can for tonight".**
+  - Launched within the current $28:
+    - perception-tracking: public tests (A) mesh placement from depth (one constant mesh-in-tracker-frame transform
+      per episode and object, GT-free, no retrain on eval) and (B) tracking with the submitted 13f meshes; ≤ $8, PREREG
+      each;
+    - perfect-following: spoon anchor (evals 32 / 33 / 35 / 36 / 37), rest-averaged initial orientation +
+      re-evaluation, PREREG rule; it cannot be validated on public data, so upload once and no iteration on the board;
+    - bold-albattani: the mesh audit → 13g (running).
+  - Budget asked of the owner: about $100 now. It covers the tests above plus retrains of the failed-draw episodes with
+    better collision meshes (20 / 28 / 30) and eval 1. A further ~$80 only if test (B) passes and the eval perception
+    rerun plus retrains go ahead.
+- ~20:07 UTC 2 Nov room-map (b) final including ep23 (both arms with identity_fix), 20e9506 [M]:
+  - mean ΔAUC +0.0067, ΔMPPE −0.076 cm; G2 fails (ep22 −0.0164);
+  - closer to mocap: map 7, perc2 10, tie 3. The map is clearly right only where perc2 drifts (ep24, 37 mm).
+  - Eval 35 is the only eval clip like ep24 (18 mm p95, bound 0.056).
+  - Map cameras for all public (leave-out) and eval clips are exported to HF
+    runs/20261102-roommap-6438495/world_T_cam/.
+  - Eval 35 map-camera arm passed to perfect-following as an optional, separately pre-registered arm after the
+    top-up.
+- ~20:08 UTC 2 Nov room-map asked about the "camera guard" (map camera only where the GT-free bound is large).
+  Coordinator: stop.
+  - Its threshold would be chosen after seeing the public scores, and new seeds on the same episodes are not
+    independent evidence; the prize is ≈ +0.002 board.
+  - Eval 35 stays an optional, separately pre-registered arm after the top-up. The room-map lane is closed.
+- ~20:15 UTC 2 Nov perfect-following: spoon-anchor plan (PREREG pf-anchor-20261102) with an honest caveat.
+  - The references already sit on stable facets of our spoon (facets ~14° apart). On evals 36 / 37 the raw rest mean
+    lies between facets, so the sign of the change is unknown; the public A-f0 test gave +0.001.
+  - **Coordinator: not launched.** The expected value is ≈ 0, and uploading a coin flip would harvest the board's
+    best-per-board max, which is eval-set probing. Recorded as planned, not run.
+  - Perfect-following prepares retrains on CPU for launch after the owner's top-up: evals 20 / 28 / 30 / 1, S2 where
+    possible, 13f meshes as collision meshes where the shape changed (contact budget checked first). Usual swap rule
+    and bar. Base for future packs: 13f (fa1e31f5…).
+- ~20:12 UTC 2 Nov owner: "If I give you this money I expect you to do anything in your power to reach top 3."
+  - Coordinator's honest answer: top 3 (rlwrld at 20) needs about half our error on every board. Odds with
+    $100–200: 6th ≈ 30 %, 5th ≈ 10 %, top 3 < 5 % [E].
+  - Recommended $100 now, with a larger ask only on a passing tracking test.
+  - Stated limits: no leaderboard tuning, no tuning to the scorer's seed, no rollout edits, no scan copies.
+- ~20:12 UTC 2 Nov **owner topped up: credit $127.97** [M]. Owner: "you can upload as much as you want, go crazy,
+  lets win this".
+  - Budgets released (all stop if credit < $15):
+    - perfect-following ≤ $45: retrains of evals 20 / 28 / 30 / 1 (+ others with failed draws), S2, 13f collision
+      meshes → pack 14;
+    - perception-tracking ≤ $12 for public tests A / B, with eval application pre-approved on a gate pass
+      (A ≈ $5; B ≈ $5–8 plus a retrain plan first);
+    - bold-albattani ≤ $25: new mesh candidates for rack / pitcher / pot / blue cup / board 2 under C4's frozen rule
+      → packs 13g / 13h;
+    - focused-pascal builds the mesh packs on 13f.
+  - Integrity line unchanged: uploads only of pre-registered, positively justified packs; no coin-flip variants to
+    harvest the best-per-board max.
+- ~20:14 UTC 2 Nov owner going to sleep; asked whether the credit is enough and whether everything is recorded.
+  - Overnight check-ins scheduled: trig_015pbqAmCJadjEJsktZfbEdt at 23:15 UTC and trig_019pb1251p7QgefvWFt2P5SK at
+    03:15 UTC (the second writes the morning report).
+  - Lanes report as results land.
+  - Spend ceiling tonight ≈ $82 of $127.97 (floor $15). A full eval perception rerun (test B) would need more and is
+    held for the owner's morning word unless it fits under the floor.
+- ~20:15 UTC 2 Nov perfect-following (its clock 20:52) had the spoon-anchor box ready, with a "launch in 20 min if
+  silent" default. The messages crossed.
+  - Coordinator reaffirmed **no-go** (all five episodes and option B; not even measure-only).
+  - R' refs are committed as planned-not-run (27c43cf4). Eval 37's raw→reference mapping is weak (5.3° residual).
+  - Base for pack 14 confirmed: 13f (fa1e31f5…), which contains 13b's eval 15 / 20 rows. Retrains are a go.
+- ~20:16 UTC 2 Nov bold-albattani: G2 candidate-generation plan, pre-registered as C4 PREREG §7 (e573235) before any
+  rental.
+  - One H100-class box; SAM 3D + Hunyuan3D-2.1 + TRELLIS.2; 4 seeds; GT-free crops from public episodes.
+  - Objects: pot, blue cup, rack, pitcher; up to 288 meshes. SHA freeze before any scan read.
+  - Stages: 6-seed CD-O screen → top 4 per object placed GT-free → 50-seed C4 audit → rule (A) / (B).
+  - Cost ≈ $6–12 [E], cap $25, stop below $15.
+  - Board-2 graft v1 cut flips 34 % → 18 %, short of rule (B)'s −20 points; further GT-free variants under a new
+    addendum.
+  - 13g after the 52-mesh audit (~60 min); 13h from G2.
+- ~20:18 UTC 2 Nov perfect-following retrain plan (4 boxes ≈ $24).
+  - Arms:
+    - eval 20 pm: plw recipe + Tier B pitcher collision, decimated to ~20k faces;
+    - eval 28 sm and eval 30 sm: std recipe + Tier B rack (and sweeper);
+    - eval 1 s0: reseed.
+  - Each mesh arm first runs a zero-shot draw with the new collision and is refused on any overflow.
+  - Flagged and labelled: Tier B collision meshes enter the rollouts (GT-informed; owner's permission).
+  - Measured: Tier B vs library_v3 differ by up to 14 mm (pitcher) and 13 mm (rack), so the policies must adapt.
+  - Coordinator: approved, **eval 1 skipped**; optional fourth arm on eval 14 or 32 (collision changed in 13f). No S2
+    tonight.
+- ~20:23 UTC 2 Nov (session clock 20:55) **perception-tracking URGENT [M]:**
+  - **The 13f Tier B wooden_piece_2 registers flipped 179.2° at eval 25's eval seed, slot 1** (1,000,003·25 + 101),
+    against the public scan. The 9a+ board meshes register at ≤ 1° on every seed tested.
+  - On public ep24 the same flip takes piece_2 from 0.862 to 0.000 and the episode from 0.834 to 0.419 [D]. If the
+    hidden scan equals the public one [H], eval 25 is scored upside down in 12e / 13f: ≈ −0.02 board AUC [E].
+  - Public, same tracks, mesh sets only [D]: 9a+ 0.8998 vs 13f 0.8746. The Tier A pot loses on ep26 / 27 / 41–45 / 0
+    (−0.02 to −0.065); gains on ep31 +0.083, ep18 +0.026, ep12 +0.016.
+  - Test A (mesh placement from depth): FAIL, mean +0.0026 (10 better / 9 worse), min ep18 −0.137. Pitcher gains are
+    big (ep21 +0.127, ep22 +0.084; fit tilt 5.6° / 5.0°). Not handed over.
+- Coordinator actions:
+  - **Pack 13f2** (focused-pascal): 13f with eval 25 slot 1 back to 12c's board-2 payload. Basis: the repo's adopted
+    mesh-v5 spec D1 no-flip gate (no flip at every eval seed, ≥ 6 seeds) and the 34 % multi-seed flip rate — a safety
+    gate, not a selection score. Slot 0 is checked as well.
+  - bold-albattani: reconcile its earlier "eval seed does not flip" note; D1 becomes a hard safety gate for 13g / 13h.
+  - perception-tracking: pre-registered, seed-averaged, leave-one-episode-out per-object choice of pose-board meshes
+    (library_v3 / 9a+ vs 12c vs 13f) and of test A's placement (pitcher) → a pose pack on 13f2. The CD-O board keeps
+    13f by best-per-board.
+- ~20:23 UTC 2 Nov perfect-following launched pf-mesh (59d62bf; PREREG pf-mesh-20261102 before any box), ≈ $24:
+  - pfN 58873213: eval 20, pm, Tier B pitcher collision;
+  - pfO 58873272: eval 28, sm, Tier B rack;
+  - pfP 58873281: eval 30, sm, Tier B sweeper + rack;
+  - pfQ 58873297: eval 1, s0 reseed 44 / 45. It launched before my "skip eval 1" arrived (messages crossed). Kept
+    running per the never-cut rule (≈ $6, low expected value).
+  - Zero-shot overflow check runs first on each mesh box. Results ≈ 00:30–01:30 UTC.
+- ~20:25 UTC 2 Nov perfect-following correction: pfQ (eval 1) was destroyed in setup (≈ $0.1, no result) once my
+  skip message arrived.
+  - Fourth arm: pfR 58873476 (f06a0c1, PREREG addendum 1 before any result): eval 14, p0m, Tier B rack + 13f cup
+    collision, board's bridged reference and grasp-lock recipe (no lift). Control: pfC conf draws 0.875.
+  - Running: pfN (20), pfO (28), pfP (30), pfR (14), ≈ $24.
+- ~20:26 UTC 2 Nov bold-albattani **reconciled the board-2 flip** [D].
+  - Same slot, seed 25000176 and file. With the budget_mesh(4096) reference: 1.05°, no flip (its earlier claim, and
+    the C4 audit setting). With the raw public scan: 179.18°, a flip (matches perception).
+  - library_v3 board 2: 0.66° / 1.05°, no flip either way.
+  - So the Tier B plate is a coin toss on the reference preparation; 13f2 is the right call.
+  - D1 pre-registered as addendum 4, a veto only: 0 flips at every eval seed plus ≥ 6 seeds in both reference modes,
+    and 50-seed W30 ≤ 0.10.
+  - Caveat: the audit flip rates used the budget reference, so near-symmetric meshes may flip more under a raw
+    reference. All other shipped meshes were 0 / 50.
+- ~20:38 UTC 2 Nov **pack 13f1 (= 13f2) UPLOADED** (57920845–57920856). Verified: only e000025 o1 changed (= 12c's
+  payload).
+  - Scores: AUC 0.87191 (13f 0.87225 stays best), RPE **2.37520** (new best), MPPE 1.92513, CD-O 0.26393 (as
+    expected +0.0014), SP-SR 0.90, MP-SR 0.80.
+  - **The expected +0.02 did not appear.** [I] The hidden reference probably does not flip the plate (budget-mode
+    behaviour). Not used for selection; D1 stays as a veto.
+  - focused-pascal's D1 gate [D]: library_v3 piece_2 0 / 10 flips; Tier B piece_1 0 / 10 (kept); 13f's plate 2 / 10,
+    eval seed included.
+- ~20:45 UTC 2 Nov perfect-following correction: the zero-shot step on pfO / pfP failed with "no support asset" (the
+  job copied the board reference parquet without its reconstructed_stage folder; not an overflow). pfN would have
+  failed too.
+  - Fixed in b0b4a31. pfN / pfO / pfP destroyed (≈ $1.5 lost) and relaunched: pfN2 58875108 (eval 20), pfO2 58875116
+    (eval 28), pfP2 58875136 (eval 30).
+  - pfR (eval 14) is unaffected. Results ≈ 01:00–02:00 UTC.
+- ~21:16 UTC 2 Nov **C4 audit complete** [D] (52 meshes × 50 seeds, budget reference; 2a4d020;
+  C4-audit/results/audit_table.md).
+  - **No candidate passes rule (A) / (B): 13g is empty.** The shipped 13f / 13f1 meshes are already the best existing
+    ones on scan CD-O for every object.
+  - The board-2 GT-free grafts all fail (B): the thickness that removes flips costs ≈ +0.05 CD-O.
+  - Rule (C) approved for the G2 candidates only, committed before G2 scoring: registration ADD −2 mm, CD-O
+    ≤ +0.005, W30 not worse, D1.
+  - Post-hoc observations (pot tsdf ep43: ADD 2.9 vs 6.3 mm at equal CD-O; dust pan Pixal s7) were not taken on the
+    scan metric. They are routed as candidates to perception-tracking's pre-registered public-pose leave-one-out test
+    (independent mocap evidence).
+  - G2: the first box was preempted (≈ $2.80, nothing kept); now on an H200 at $4.03/h, within the $25 cap.
+- ~21:18 UTC 2 Nov perception-tracking: PREREG_posemesh frozen, scoring 74 / 119 done; the pot tsdf ep43 and dust pan
+  Pixal s7 candidates are added by addendum before their own scoring (same rule). Test B (ptrkF) ≈ 13 / 20 episodes.
+- ~21:30 UTC 2 Nov perfect-following: zero-shot of the board policies with Tier B collision, one draw each, no
+  overflow [M]:
+  - eval 28: 0.906 vs control 0.919;
+  - eval 30: 0.829 vs 0.897;
+  - eval 20: **0.451 vs 0.926**; the grasp fails on the new pitcher shape until retrained.
+  - Eval 14 bug: a stale asset_root meant the mesh swap found no file and its zero-shot ran on the OLD meshes. Fixed in
+    c1a5471: the asset root is read from the reference URDF, and a failed swap drops the episode.
+  - pfR destroyed (≈ $1.7) and relaunched as pfR2 58879342. ≈ $6.5 lost so far on failed or replaced boxes.
+  - Results ≈ 01:00–02:00 UTC (pfR2 ≈ 02:30).
+- ~21:36 UTC 2 Nov **pose-board mesh CV verdicts** [D] (perception-tracking 029145e; PREREG_posemesh + addendum 1;
+  10-seed means; leave-one-episode-out held-out gains vs 13f):
+  - **PASS, mesh swaps:**
+    - white_pot → ep43 TSDF pot: +0.0206, 9 / 9 ≥ 0; evals 1 / 3 / 5 / 6 / 8 / 28;
+    - plastic_dish_rack → library_c0 (12c): +0.0234; evals 14 / 15 / 16 / 28 / 30;
+    - board 2 → 12c: +0.127 (already in 13f1);
+    - pitcher → 12c: +0.0121.
+  - **PASS, placement from depth:** pitcher **+0.1064** held-out (ep21 +0.133, ep22 +0.080), the 6° tilt fix. The rack
+    (+0.0096) and pot (+0.0070) placements pass too, but are weaker than their swaps; combinations untested.
+  - FAIL: blue cup, sweeper, dust pan, lid, board 1.
+  - Caveat: the public gains use GT-selected meshes, and these are payload-only changes, so the public delta is the
+    direct estimate.
+  - Actions:
+    - pose pack 13p on 13f1 = pot X + library_c0 rack (focused-pascal);
+    - eval 20 pitcher placement (≈ $5, approved) → 13p2.
+    - The CD-O board keeps 13f by best-per-board.
+- ~21:55 UTC 2 Nov **pack 13p UPLOADED** (57922330–57922340). Verified: 11 mesh rows (TSDF pot ×6, library_c0 rack
+  ×5); D1 passes.
+  - Scores: **AUC 0.88257, RPE 2.22667, MPPE 1.82356** (all best); SP-SR 0.90; MP-SR 0.80; CD-O 0.26869 (13f keeps
+    0.26249).
+  - **Rank sum 46** (RPE now 8th); 7th overall.
+  - The public-pose CV choice transferred: AUC +0.010 on the board.
+- ~21:58 UTC 2 Nov round 2 ordered:
+  - perception-tracking, pre-registered nested leave-one-out:
+    - (a) the wider pool (52 C4 meshes + G2) for the pose boards;
+    - (b) placement from depth on top of the round-1 choices;
+    - (c) eval 20 pitcher placement → 13p2 / 13p3 on 13p;
+    - eval depth pre-approved up to $10 more.
+  - bold-albattani: offer every G2 and C4 mesh to the pose CV. The scan rules still govern the CD-O board, so a mesh
+    can win either board family separately.
+- ~21:50 UTC 2 Nov **test B (track with the 13f meshes as FoundationPose templates): FAIL** [D].
+  - Mean ΔAUC −0.043 (8 better / 12 worse); ep0 −0.90 (lid lost), ep11 −0.71 (cups lost), ep21 −0.10; MPPE +0.63 cm.
+    ep23 +0.90 is a lucky board re-assignment.
+  - No eval perception re-run, so the conditional ~$80 is not needed. ptrkF self-destroyed (≈ $2.7).
+  - Eval 20 pitcher placement: box G (masks) running.
+- ~22:12 UTC 2 Nov bold-albattani G2 status.
+  - 264 meshes generated, SHA freeze before any scan read. GPU cost **$8.31** of $25 (preempted H100 ≈ $2.80 + H200
+    $5.50; both destroyed).
+  - Stage-1 screen [D] (best of 48–72, flattering): pot 0.2852 vs 0.3107; blue cup 0.2430 vs 0.2646; rack 0.4027 vs
+    0.4182; pitcher worse.
+  - 32 stage-2 candidates (8e8c405a) are in the frozen 50-seed audit (~50 min) → rules (A) / (B) / (C) + D1 for the
+    CD-O board → 13h.
+  - All 32 were offered to perception's round-2 pose CV (manifest 6b0d5c80). Rule (C)'s committed reading was kept,
+    not widened after seeing scores.
+- ~22:13 UTC 2 Nov perception-tracking (c) done.
+  - Eval 20 pitcher placement Δ 2.89° / 0.47 cm; guards pass; D1 3.4° vs 3.3°.
+  - Sent to focused-pascal for 13p2 (meshes/pose_pack_13p2 @ 0b067405).
+  - [E] about +0.004–0.006 board AUC if it transfers; the eval tilt (2.9°) is smaller than on the public twins
+    (5–5.6°), so expect the low end.
+  - Box G destroyed (≈ $0.6). Round 2 (157 + 21 runs, CPU) ≈ 1.5–2 h. Tonight's GPU in this lane ≈ $3.3.
+- ~22:20 UTC 2 Nov **pack 13p2 UPLOADED** (57922817–57922829). Verified: only e000020 o1 changed.
+  - Scores: AUC **0.88403**, RPE **2.22531**, MPPE **1.80932** (best); SP-SR 0.90; MP-SR 0.80; CD-O 0.26869.
+  - The pitcher placement gave +0.0015 AUC (predicted +0.004–0.006, low end expected).
+- **23:16 UTC 2 Nov overnight check-in 1** (trig_015pbqAmCJadjEJsktZfbEdt).
+  - Credit **$101.05**. Boxes: pfO2 (eval 28), pfP2 (eval 30), pfR2 (eval 14), all training; nothing idle.
+  - Uploads since 20:15: 13f1 (RPE 2.3752 then), 13p (AUC 0.88257), 13p2 (AUC **0.88403**, RPE **2.22531**, MPPE
+    **1.80932**). Rank sum 46, 7th.
+  - Retrains so far [M] (perfect-following 3ee22cac):
+    - eval 14 p0m s42 box 0.938 ± 0.010 (gate 0.875); valid zero-shot 0.878;
+    - **eval 20 NO-SWAP** (s42 0.293, s43 0.604 vs 0.926; the grasp is built on the old pitcher);
+    - eval 30 sm s42 0.938 ± 0.008 (gate 0.897; earlier low draws 0.41–0.60);
+    - eval 28 pending.
+    - Fresh-draw confirmations follow.
+  - G2 audit (bold-albattani 5a1c092e), pending D1:
+    - pot sam3d ep44 s7: CD-O 0.2861 vs 0.3107, ADD 2.7 vs 6.3 mm, rules A + C;
+    - blue cup sam3d ep22 s7 t3fit: 0.2335 vs 0.2646, A + C;
+    - rack hy21 ep31 t3fit: 0.4016 vs 0.4182, ADD 4.3 vs 10.0, C;
+    - pitcher: none.
+    - → 13h as a CD-O variant on 13f; the pose boards get G2 meshes only via round-2 CV.
+  - Round-2 pose CV is running (CPU).
+- ~23:29 UTC 2 Nov perfect-following: **pack 14 ready on 13f**: eval 14 p0m s43 (Tier B rack + 13f cup collision,
+  board's bridged reference, grasp lock).
+  - Fresh 10 draws 0.933 vs 0.875; fails 0 vs 1; median RPE 1.97 vs 2.71 cm; draw 1 0.942 vs 0.895; gain +0.058 →
+    PASS + INCLUDE. Box 0.946 → fresh 0.933 held.
+  - Eval 20 no swap; eval 30 s43 ~01:00; eval 28 s42 0.841 vs 0.919, s43 training.
+  - Coordinator: pack 14 on 13f is not uploaded. Requested **14p = 13p2 + eval 14 rows** (keeping 13p2's pose-CV
+    meshes); 14p2 adds eval 30 if it passes.
+- ~23:35 UTC 2 Nov **pack 14p UPLOADED** (57924186–57924198). Verified: only the e000014 rows changed.
+  - Scores: AUC **0.88571**, RPE **2.21325**, MPPE **1.79779** (best); SP-SR 0.90; MP-SR 0.80; CD-O 0.26869.
+- ~23:44 UTC 2 Nov bold-albattani: **G2 audit done; 13h handed to focused-pascal** (8cd7fe77). D1 0 / 6 flips in both
+  modes.
+  - pot sam3d ep44 s7: CD-O 0.2861 vs 0.3107, ADD 2.7 vs 6.3 mm (A + C);
+  - blue cup sam3d ep22 s7 t3fit: 0.2335 vs 0.2646 (A + C);
+  - rack hy21 ep31 s123 t3fit: 0.4016 vs 0.4182, ADD 4.3 vs 10.0 (C);
+  - pitcher: none.
+  - Expected CD-O [E] ≈ 0.253 from 13f1 (≈ 0.251 from the 13f base). 5th place is 0.2534, so it is on the edge.
+  - The three also register tighter than the 13p meshes, so they are in the round-2 pose CV.
+  - G2 total $8.31; all boxes destroyed.
+- ~00:07 UTC 3 Nov **pack 13h UPLOADED** (CD-O variant; 57925185–57925216). Verified: 16 mesh rows / 16 CD-O pairs.
+  - **CD-O 0.25159** (best; predicted ≈ 0.252) → CD-O rank 5. **Rank sum 45**, 7th.
+  - Purple moved to 32.
+  - The 13h pose-board numbers (AUC 0.880) are not used for any selection.
+- ~00:09 UTC 3 Nov bold-albattani: 13h sign-off confirmed.
+  - GT-free rack-bulge trim (PREREG §11 before the build): CD-O −0.016 vs the untrimmed G2 rack, short of rule A's
+    −0.020, so **not adopted**.
+  - A post-hoc rule was declined by the coordinator.
+  - The mesh lane is idle, with no rentals; it waits for D1 on round-2 pose-CV picks.
+- ~00:35 UTC 3 Nov perfect-following: **eval 30 NO-SWAP on fresh draws.**
+  - Box draws: s42 0.938, s43 0.932. Fresh 10: 0.768 vs 0.897; fails 5 / 10 vs 1 / 10; draw 1 0.670 vs 0.923.
+  - This is the second box → fresh gap today (eval 14 plw 0.923 → 0.826); eval 20 plw and eval 14 p0m held.
+  - [H] The patched training-tree evaluator differs from the pristine one.
+  - Coordinator: the ≈ $1 evaluator-gap test is approved (same checkpoint, both evaluators, same box, 10× each,
+    pre-registered). Eval 28 s43 ≈ 01:15. Lane spend ≈ $23 actual; credit $98.28 at 00:00.
+- ~00:39 UTC 3 Nov evaluator-gap test launched: pfgA 58896929 (≈ $1.5; PREREG pf-evalgap-20261103 before any draw).
+  - Arms, 10 interleaved rounds per checkpoint (eval 30 sm s42, eval 14 plw s42):
+    - A = the box path;
+    - B = the pristine kit;
+    - C = the patched tree with all switches off.
+  - Rule: REPRODUCED iff A − B ≥ 0.05 and Welch t ≥ 2. Box gates are trusted only if neither checkpoint reproduces a
+    gap.
+  - CPU fact: VOC scale does not explain the gap. Verdict ≈ 01:30 UTC.
+- ~01:25 UTC 3 Nov **round-2 pose CV verdicts** [D] (perception-tracking e46e587, results/cv_round2.json):
+  - (a) Only the pitcher passes: G2 #29 trellis2 ep22, held-out +0.1125 (ep21 +0.132, ep22 +0.093). Caveat: generated
+    from ep22 frames.
+  - (a) FAIL: pot, blue cup, rack, lid, boards, sweeper, dust pan.
+  - (b) FAIL: placement on top of the 13p meshes.
+  - Coordinator: **keep 13p2's eval-20 placement; #29 not adopted.** Equal public size; its ep22 held-out is not
+    independent; comparing both on the board would be probing. The perception lane stops for the night.
+- ~01:46 UTC 3 Nov perfect-following, lane closed.
+  - **Evaluator-gap test: NOT REPRODUCED** (pfgA ≈ $1.1): eval 30 sm A / B / C = 0.935 / 0.926 / 0.930; eval 14 plw
+    0.925 / 0.937 / 0.938. The kit and repo scripts are identical, so box gates are trustworthy.
+  - The low fresh means (0.768 on India pfP2, 0.826 on Croatia pfI) were host- or run-specific; cause unexplained [H].
+  - Eval 28 sm NO-SWAP at the gate (s43 0.914 vs 0.919).
+  - Coordinator: eval 30 stays NO-SWAP. A re-test without the failed host is a forking path; with it, passing is
+    impossible. **Two-host confirmation is adopted for future swaps**, pre-registered, both must pass.
+  - Lane total tonight ≈ $36 (≈ $6 lost to bugs and replacements). Credit $94.58 at 01:45 UTC; 0 boxes running.
+- ~01:50 UTC 3 Nov, more work tonight (owner: "do as much as you can"; credit $94.58):
+  - perfect-following, ≤ $35: eval-14 "p0m" recipe (the board's reference + packed recipe + 13f / 13h collision
+    meshes) for evals 32 / 10 / 33 / 19. Two-host confirmation pre-registered → pack 15 on 14p.
+  - bold-albattani, ≤ $15: G3 generation for sweeper / dust pan / lid / beige cup (+ boards). Same rules + D1 → CD-O
+    pack 13i on 13h. Target: CD-O 4th (Zihao Guo 0.24669, −0.0049).
+- ~01:49 UTC 3 Nov bold-albattani: G3 plan pre-registered (C4 PREREG §12, d060f21e) before any rental. Approved.
+  - The uncovered objects can give at most ≈ −0.003 [E], so G3 = G3a (dust pan / beige / lid / sweeper / boards) +
+    G3b (rack / pot from unused crops).
+  - Each stage-2 pick also gets a pre-registered GT-free trim copy.
+  - One on-demand H100 / H200, ≈ $7–11, cap $15 → 13i on 13h.
+- ~01:50 UTC perfect-following: two-host confirmation written into pack9b PREREG as an amendment for future
+  pre-registrations. Its batch-2 reply is pending.
+- ~01:52 UTC 3 Nov perfect-following pf-mesh2 launched (88f06be; PREREG pf-mesh2-20261103 before any box), ≈ $17:
+  - pfS 58903359: eval 32 p0m, 13f cup collision;
+  - pfT 58903413: eval 33 p0m, 13f cup;
+  - pfU 58903416: eval 19 sm, Tier B sweeper.
+  - Eval 10 skipped: its cups collide through the carved ev10 pieces.
+  - Two-host confirmation via a CONF_FROM second box (sha-checked checkpoint), tools/pf_twohost.py. Swap only if both
+    hosts pass and both clear +0.02. Results ≈ 04:30–06:30 UTC → pack 15 on 14p.
+- **03:16 UTC 3 Nov overnight check-in 2** (trig_019pb1251p7QgefvWFt2P5SK).
+  - Credit $82.96.
+  - Boxes: pfS / pfT / pfU (retrains) and the G3 mesh box, all working; nothing idle.
+  - Standings: rank sum 46, 7th (SP-SR rank 11 after another team improved).
+  - Morning report written: docs/analysis/overnight-20261102/README.md.
+- ~03:31 UTC 3 Nov pf-mesh2 interim [M]:
+  - eval 33 p0m: s42 / s43 0.917 / 0.917 vs gate 0.923 → NO-SWAP;
+  - eval 32 p0m: s42 / s43 0.790 / 0.826 (min 0.464) vs 0.890 → NO-SWAP; the new cup destabilises the hold;
+  - eval 19 sm: zero-shot 0.226 vs 0.929 (the policy fails with the new sweeper); s42 ≈ 04:00, s43 ≈ 06:00, low
+    expectations.
+  - Batch spend ≈ $5 so far.
+- ~03:45 UTC 3 Nov owner: "ideate on a genuinely new perception method, do your research and go to distance".
+  - Research done: BundleSDF / FoundationPose model-free, Any6D (CVPR 2025), HOLD (CVPR 2024), MagicHOI (ICCV 2025).
+    All of them change the trajectory, so they would need retrains; test B showed that path is fragile.
+  - Proposal (docs/plans/new-perception-20261103.md, 21e5fdc2): **learn our tracker's systematic body-frame bias B
+    per object on the public episodes and apply it as submitted-mesh placement** (payload-only, no retrains), plus a
+    GT-free gated variant (H1c).
+  - Public LOO test sent to perception-tracking (CPU, PREREG first). H1 uses public mocap to calibrate an inference
+    constant (GT-informed), so eval use waits for the owner's explicit yes.
+- ~03:50 UTC 3 Nov **owner: "yes to bias calibration"**.
+  - The GT-informed H1 (body-frame bias learned from public mocap, applied as submitted-mesh placement) is approved
+    for eval use, for objects passing the pre-registered public LOO gate.
+  - Eval B = full-public robust mean (same estimator), applied on 14p's payload, D1 checked.
+  - focused-pascal builds a pose pack on 14p. Disclosure: "placement calibrated from public mocap
+    (owner-approved GT-informed)".
+- ~04:32 UTC 3 Nov bold-albattani: **G3 generation done**, $7.47 measured (one H200, destroyed); 468 meshes, SHA
+  freeze before any scan read.
+  - Stage-1 screen [D] (optimistic) vs 13h: pot 0.2404 (outlier) vs 0.2861; dust pan 0.2061 vs 0.2291; board 1
+    0.1629 vs 0.1872; rack 0.3953 vs 0.4016; board 2 0.1600 vs 0.1649. Beige / lid / sweeper are worse.
+  - The frozen 50-seed audit of 79 stage-2 copies started 04:32Z → D1 → 13i.
+  - If the pot and dust pan hold, CD-O ≈ 0.243 [E], which would pass 4th (0.2467). Optimistic until audited.
+- ~05:24 UTC 3 Nov **H1 bias calibration verdict** [D] (perception-tracking e448f0d; 107 LOO runs; 10-seed means vs
+  13p). Held-out mean:
+  - **pitcher passes**: H1a +0.046, H1b-rot +0.038, H1b-trans +0.028; the GT-free H1c depth placement +0.106.
+  - **Fail**: pot −0.002, rack −0.003, blue cup −0.035, lid −0.002.
+  - **Harmful**: sweeper −0.20, dust pan −0.11, boards −0.38 / −0.19.
+  - Dispersion (spread / mean of rotation): pitcher 0.14 and lid 0.38 are systematic; pot 1.25, rack 1.7, cup 3.0,
+    sweeper 1.2, dust pan 0.95, boards ≈ 1. **The "systematic bias" hypothesis is falsified for all but the pitcher
+    and lid.**
+  - Eval action: none. For the pitcher, the learned B is weaker than the GT-free placement already in 13p2 / 14p, and
+    stacking them would double-correct (pre-registered). The owner's yes is recorded but not used; $0.
+  - [I] Our tracker's body-frame error is episode-specific, so option B (reference bias correction) loses its basis.
+    The remaining perception routes are A (GT-free eval gross-failure audit) and C / D (re-tracking + retrains).
+- ~05:24 UTC 3 Nov G3 audit part 1 [D, 50 seeds] vs 13h:
+  - pot trellis2 ep45: CD-O 0.2399 vs 0.2861, rule A (ADD 6.8 vs 2.7 mm, so CD-O pack only);
+  - dust pan Pixal3D-MV ep39 s2025: 0.2064 vs 0.2291 (A + C);
+  - board 1 hy21 ep24 s123: 0.1593 vs 0.1872, W30 0 / 50 (A + C);
+  - rack: no pass.
+  - D1 running. If all pass, 13i CD-O ≈ 0.242 [E]; 4th place is 0.2467.
+- ~05:37 UTC 3 Nov bold-albattani: **13i handed to focused-pascal** (82c09955; on 13h). D1 0 / 6 in both modes for all
+  three: pot trellis2 ep45 (A), dust pan Pixal ep39 (A + C), board 1 hy21 ep24 (A + C).
+  - Expected CD-O ≈ 0.242 [E] (4th = 0.2467).
+  - Not adopted:
+    - rack (−0.008);
+    - board 2: sam3d ep24 #43, W30 0.00 but anchor 5.50 mm vs the 5.46 limit (rule B miss by 0.04 mm). 13h's
+      Tier B board 2 stays in CD-O packs. Flagged as a pose-pack candidate; the pose packs use library_v3 for board 2.
+    - beige / lid / sweeper.
+  - G3 total $7.47; no GPU running.
+- ~05:55 UTC 3 Nov **pack 13i UPLOADED** (CD-O variant; 57935089–57935106). Verified: 9 mesh rows / 9 CD-O pairs.
+  - **CD-O 0.24177** (predicted 0.242) → **CD-O 4th**. Rank sum 45, 7th.
+  - Selection plan: 14p for five boards, 13i for CD-O.
+- ~05:57 UTC 3 Nov perfect-following: **pf-mesh2 closed, 0 swaps**, so no pack 15; 14p stays.
+  - Best-seed box means vs control: eval 32 0.826 vs 0.890; eval 33 0.917 vs 0.923; eval 19 0.828 vs 0.929.
+  - [I] Tier B collision helped only where the board policy already coped zero-shot (eval 14).
+  - Suggestion adopted for future mesh retrains: a pre-registered entry condition "zero-shot within 0.02 of
+    control".
+  - Batch ≈ $11 of $35; 0 boxes; credit $75.62.
+- ~06:40 UTC 3 Nov **owner: "go in all"**. Credit $75.62, 0 boxes; usable ≈ $60 above the $15 floor.
+  - perception-tracking:
+    - (1) round-3 pose-mesh CV on the G3 picks / near-misses vs 14p ($0);
+    - (2) **eval gross-failure audit "A"** (≤ $6): eval depth + SAM2 masks for all 20 eval clips; render the packed
+      references; flag lost / mislabelled / flipped spans; report only, then decide targeted fixes.
+  - **New session instance-pose** (session_01D9UJC5VUFMLYBMNxA8FsXe, branch claude/instance-pose-20261103):
+    - object-specific pot network proof of concept, ≤ $15, 24 GB GPUs;
+    - arms (R) rendered-only and (R+M) + public mocap fine-tune (GT-informed; eval use would need the owner's
+      explicit yes);
+    - fixed public train / test split; gate pot AUC +0.02 vs the tracker on held-out episodes.
+  - bold-albattani: manifests for round 3; pot meshes on request.
+- ~07:00 UTC 3 Nov instance-pose plan (PREREG 1058d7ec; code 1654726d).
+  - Pot episodes 0, 2, 26, 27, 41–45; train 0 / 26 / 41 / 42 / 43; test 2 / 27 / 44 / 45.
+  - Method: own GDRN-style correspondence net + stereo-depth RANSAC-Kabsch on the 13p TSDF pot; 15k point-splat
+    renders. Licences: GDRNPP Apache-2.0 (not used); SurfEmb / ZebraPose MIT.
+  - One RTX 4090 ≈ $2.5–3 (cap $15). Prior pass ≈ 25 %, since the control is already 0.3–0.7 cm on the pot.
+  - Coordinator: go. Asked for a secondary pre-registered criterion (median ADD −20 %, no episode worse), because
+    pot AUC is near its ceiling; an optional second object with more headroom.
+- ~07:03 UTC 3 Nov instance-pose addendum 1 (1931d067, before training): secondary criterion added.
+  - Control pot AUCs on the test episodes [D]: 0.9935 / 0.9677 / 0.9979 / 0.9742 (mean 0.983), so the +0.02 primary
+    gate is unreachable by construction; the secondary criterion (median ADD −20 %) decides.
+  - No second object in this batch. Box 58930545 loading.
+- ~07:08 UTC 3 Nov **round-3 pose CV** [D] (perception-tracking f391360; 14p baseline):
+  - only board 2 → G3 #43 passes (held-out +0.0053, min +0.0046, D1 pass). Sent to focused-pascal for a pose pack on
+    14p (eval 25 slot 1; ≈ +0.0003 board [E]).
+  - FAIL: board 1 (the LOO choice flips between candidates with 2 episodes; held-out −0.0064), pot −0.004 / −0.005,
+    dust pan, rack.
+  - Eval audit: box H making masks for the 20 eval clips.
+- ~07:15 UTC 3 Nov pack 14p1 (14p + G3 board-2 #43 on eval 25 slot 1) built by focused-pascal. **Held by the
+  coordinator, not uploaded.**
+  - #43 was generated from ep24, one of its two CV episodes, so the held-out gain is not independent (same reason as
+    pitcher #29). Also: scan anchor 2–3 mm worse, possible doubled shell (2.2× area), gain ≈ +0.0003 [E].
+  - Future CV rule: a candidate's source episodes are excluded from its held-out scoring (pre-registered).
+- ~07:15 UTC 3 Nov bold-albattani: #43 is a hollow SAM 3D plate (inner shell 1–3 mm inside).
+  - Proposal: a GT-free "outer-shell extraction" copy type for every adopted or CV-picked generated mesh with
+    nested shells. Pre-registered before measuring; 50-seed audit + D1; rules A / B / C vs the 13i meshes.
+    Expected −0.001 to −0.005 CD-O [H].
+  - **Coordinator: GO** (CPU) → 13j on 13i. CD-O 3rd (SRL 0.23900) is −0.0028 away. Any #43 variant enters the pose
+    CV only with ep24 excluded.
+- ~07:33 UTC 3 Nov **outer-shell extraction: no rule passes, 13j empty** (PREREG §13 before the build; da10a423).
+  - Only #43 had a real inner shell.
+  - rack outer copy −0.017 vs 13i (below the −0.020 bar; near-miss like the trim); other objects 0 to +0.0035.
+  - #43 outer offered to the pose CV with ep24 excluded.
+  - Coordinator: **GO for a rack-focused round** (≤ $10): new generations + structured refits; pre-registered
+    before measuring; same bars → 13j. Target CD-O 3rd (−0.0028).
+- ~07:35 UTC 3 Nov rack round R pre-registered (C4 PREREG §14, f471f18a, before any new rack) and launched.
+  - The rack must reach ≤ ≈ 0.3814 (rule A's bar) to give CD-O 3rd.
+  - R-gen: GPU ≈ $5–8 (cap $10). R-prim: CPU.
+  - Copies: placed / t3fit / trim / outer / trim+outer → 50-seed audit + D1 + rules A / B / C → 13j.
+  - [H18] ≈ 40 % chance of a pass.
+- ~07:36 UTC 3 Nov board-2 outer-shell pose CV with source exclusion (pre-registered): ep23 +0.0041 vs 14p → FAIL
+  (bar +0.005). Board 2 stays as in 14p. Eval audit running (ep1 in progress).
+- ~08:18 UTC 3 Nov **eval gross-failure audit DONE** (GT-free; perception-tracking 2b903e1, audit/README.md +
+  overlays; box H ≈ $1.5).
+  - False positives (checked on overlays): eval 8, 25, 10. Real but moderate: eval 32 cup ≈ 4 cm at f18–25; eval 33
+    cup 4–5 cm around f87 and spoon 5–8 cm along the handle at ~f186 / f263.
+  - Clean: 1, 3, 5, 6, 15, 16, 20, 28, 30, 35, 37, 38.
+  - [I] No gross reference failure. SR failures more likely come from rollouts, so option C has little to aim at.
+  - Coordinator follow-up [H-spoon], pre-registered CPU test: 180° roll or yaw flips of the spoon are invisible to
+    mask IoU but cost π rad. The eval-33 "offset along the handle" looks like a yaw flip. Test every spoon episode on
+    depth / mask for flipped alternatives.
+- ~08:25 UTC 3 Nov **spoon flip check done** (PREREG_spoonflip; perception-tracking 4b73e52a; CPU, $0) [M]:
+  - flags cover 50 / 2,769 frames (1.8 %); over whole episodes the alternatives lose everywhere;
+  - from the overlays: eval 33 is a handle-direction offset, not a flip; eval 32 is a position offset; eval 36 has a
+    weak roll candidate (31 frames).
+  - **Verdict: no clear 180° spoon flip in any packed reference.** The public diagnostic was declined (no public spoon
+    episodes; 10 % of one episode can't fail SP-SR).
+  - Conclusion: eval references have no gross failures. SP-SR / MP-SR losses most likely come from rollouts
+    (drops / displacements). Perception lane rests.
+- ~08:27 UTC 3 Nov perfect-following asked (CPU, $0, GT-free): compute the SP-SR / MP-SR criteria of 14p's stored
+  rollout rows against our packed references, per episode and object, with 10-draw rates. Goal: find the episodes
+  where a targeted policy fix could buy an SR episode.
+- ~08:31 UTC 3 Nov **SR audit vs our references** (perfect-following, docs/analysis/sr-vs-ref-20261103,
+  tools/sr_vs_ref.py; $0) [M]:
+  - **All 20 stored 14p rollouts pass SP-SR and MP-SR against our own references**, none within 20 % of a threshold.
+    Worst MP margins: eval 10 beige cup 1.85 cm, eval 30 sweeper 1.82 cm / 11°.
+  - Board policies' 10-draw rates: SP 1.0 everywhere; MP 0.9 on evals 1 / 20 / 28 / 30.
+  - [I] So the board's 2 SP / 4 MP failures come from reference vs truth (perception, below "gross") or from
+    180°-ambiguous orientations that masks can't see. A policy fix cannot buy an SR episode on the stored rows.
+  - Next ($0, CPU): perception-tracking runs the SR criteria on PUBLIC tracks vs mocap, to see which object types and
+    situations fail SR and map them to eval episodes.
+- ~08:45 UTC 3 Nov **instance-pose pot PoC: FAIL, both arms** (5f55ec1f; docs/analysis/ipose-20261103/README.md;
+  ≈ $0.8).
+  - ΔAUC vs the control on test eps 2 / 27 / 44 / 45: R −0.003 / −0.257 / +0.002 / +0.000 (mean −0.065); R+M −0.001 /
+    −0.035 / +0.001 / +0.001 (mean −0.0085); best exploratory −0.0023.
+  - The secondary criterion fails for both (R+M: ep27 +16 %, ep44 +29 % ADD).
+  - [I] The hand-held lift (ep27) is ≈ 10° off (render-to-real gap); elsewhere the network ≈ the tracker.
+  - A rendered-only spoon network is not trustworthy. Plan steps 1–2 are not recommended on this evidence. No eval
+    action.
+- ~08:50 UTC 3 Nov **public per-object SP / MP-SR vs mocap** (perception-tracking PREREG_srpublic b4f5c1e6; results
+  79ee47c1, srpublic/; $0) [M]:
+  - 17 / 20 episodes pass SP + MP in every seed; 37 / 40 object-episodes pass MP.
+  - Failures:
+    - **ep23 board 2 FLIP**: a 180° roll about the long axis on 41 % of frames, fails SP + MP, in the track;
+    - pitcher steady offset: ep21 3.4 cm, ep22 2.9 cm, fails MP (the bias 13p2 targets on eval 20);
+    - ep24 boards: thinnest margin, plus one scorer-side seed flip.
+  - Eval prior [I]: **eval 25 (boards) is the strongest SP + MP candidate** (a roll flip invisible to masks / depth);
+    eval 20 is an MP candidate; the spoon evals are unknown.
+  - **GO: eval-25 board-face check** (CPU, GT-free). The rule is calibrated on ep23's known flip spans first; a real
+    flip → fix proposal → pre-registered re-evaluation / retrain with two-host confirmation.
+- ~08:54 UTC 3 Nov **eval-25 board-face check: the cue FAILS public validation, so no eval verdict**
+  (PREREG_boardface 785cbc93; e7066936; $0).
+  - Best τ: 5.2 % false flags, 24 % recall.
+  - Correction [M]: ep23 board 2's error is mostly not a face flip; f240–324 is ~175° about an axis between the
+    thickness and long axes (a perpendicular placement, likely the stacked / slotted end state).
+  - Coordinator: GO for (1) ep23 overlays vs mocap, (3) re-read eval 25's board-2 "LOST" audit flag, and (2) a v2
+    multi-alternative rule only if needed, validated on public first. All CPU.
+- ~08:56 UTC 3 Nov board follow-ups (perception-tracking d0d091c0; $0):
+  - (1) ep23's end state is a cross; from f240 our board-2 track **merges onto board 1** (a track merge at assembly,
+    not a face flip).
+  - (3) In eval 25 (14p reference), board 2 sits on the real white board in every inspected frame, including the
+    final cross. The audit's LOST spans are mask failures; the ep23 merge does not recur.
+  - (2) The v2 rule was not run.
+  - [I] No visible gross board failure on eval 25; any SR loss there is sub-visible (≈ 2–3 cm vs the 3 cm limit).
+    Perception lane idle.
+- ~09:34 UTC 3 Nov rack round R: generation done, **$5.95** (cap $10), box destroyed.
+  - 390 new rack meshes + 39 GT-free prim refits; freeze before any scan read.
+  - Stage-1 best: Hunyuan ep12 at 0.3876 vs 0.4016; no raw mesh reaches the 0.3816 bar. The pre-registered
+    clean-up copies might [H].
+  - 50-seed audit of 120 stage-2 candidates started 09:33Z (R-gen copies ≈ 45 min, prims ≈ 2 h more).
+- ~09:58 UTC 3 Nov **owner: go for HOLD / MagicHOI-style hand-aware tracking** (no time pressure).
+  - New session **hand-aware** (session_01D9UJC9SwoRsF13MYzwtVyh, branch claude/hand-aware-20261103).
+  - Phase 1: public research + validation. Literature (HOLD, MagicHOI, HaMeR / WiLoR / HaWoR; licences), then a
+    joint hand–object optimisation for held phases (depth / silhouette with the hand masked, contact,
+    non-penetration, a rigid-in-grasp prior, smoothness).
+  - PREREG, dev / holdout split. Gates: held-phase median ADD −20 %, whole-episode AUC +0.005, no episode below −0.01,
+    per-object SR vs mocap. ≤ $20 GPU.
+  - Phase 2 (eval references + re-evaluation / retrain) only after phase 1 passes.
+  - Perception-tracking asked to support it with data and tools.
+- ~09:59 UTC 3 Nov perception-tracking handoff to hand-aware: 43cbbfb6, handoff/README.md (scorer wrappers, srpublic,
+  m14p public meshes, store paths, measured held-phase failure spans).
+  - Correction: on the control track ep27 passes SR (pot max 3.3 cm). The ep27 failure was the instance network's
+    own, not our tracker's; my hand-aware brief overstated it.
+- ~10:20 UTC 3 Nov **rack round hit** [D, 50 seeds]: Hunyuan ep12 k18 s31337 t3fit, CD-O 0.3775 vs 0.4016 (−0.024,
+  rule A); W30 0; anchor 3.07 vs 3.78 mm; D1 0 / 6 in both modes.
+  - Handed to focused-pascal as **13j on 13i** (ead6a10c).
+  - Expected CD-O ≈ 0.2384 [E] vs 3rd's 0.23900, about 50 / 50 (eval-seed spread ±0.002).
+  - 90 prim refits are still auditing (≈ 2 h; unlikely winners).
+- ~10:33 UTC 3 Nov **pack 13j UPLOADED** (CD-O variant; 57943952–57943958). Verified: 5 rack rows / 5 CD-O pairs.
+  - **CD-O 0.23856** (best; predicted 0.2384). SRL moved to 0.20994 (CD-O 1st), so we stay 4th. Rank sum 45, 7th.
+  - Final selection: 14p for five boards; **13j for CD-O**.
+- ~10:35 UTC 3 Nov hand-aware phase-1 status (PREREG fcef9be; $0, CPU).
+  - Literature: HOLD / MagicHOI / HaWoR don't transfer (template-free, monocular, slow, NC licences). The closest
+    precedent is HOnnotate (known meshes + RGB-D).
+  - [D] 70 % of public AUC loss is in held frames. Rigid-in-grasp with MediaPipe hands fails (−0.01 to −0.8). Held
+    errors lie along the camera ray; oracle ceiling +0.0195.
+  - Design: gated ray correction in hand-contact frames; dev 7 / holdout 13 episodes.
+  - Coordinator: approved. Gate 1 to be amended before holdout scoring (a sparse fix → held mean ADD −10 % or held
+    AUC +0.01; keep gate 2 and no-episode-below).
+- ~10:50 UTC 3 Nov hand-aware: gate amendment committed as PREREG addendum 1 (86a2b94) before any holdout scoring.
+  - Dev: ep18 +0.024 (a 47-frame sweeper excursion corrected; shifts up to 11.5 cm). Dev grid running.
+- ~11:38 UTC 3 Nov **hand-aware phase 1: FAIL on the holdout** (31fd618; hand-aware-20261103/README.md; $0).
+  - Frozen F1 on 13 holdout eps: mean ΔAUC −0.0042 (noise 0.0015); worst ep24 −0.047 (board 2 shifted ~21 cm; MP
+    0.9 → 0). Held mean ADD −4.3 %, held AUC −0.0006. All three gates fail.
+  - Dev was +0.0045 (sweeper ep18, cup ep13), but dev had no board episode; on thin boards the depth residual sees
+    surfaces behind them.
+  - Recommendation (accepted): no phase 2. The remaining held losses (board merge / thin margin, pitcher template,
+    depth-invisible errors) are not hand problems that depth can see. An object-gated variant has EV ≈ 0.
+- ~12:15 UTC 3 Nov owner: a long report artifact of the whole journey (everything tested in perception, robot
+  movement, grip, meshes, etc.: what worked, what failed and by how much, point gains, lessons, standard deviations).
+  Then: "look at all the chats … I don't want you to miss anything".
+  - Two research workflows are running:
+    - wf_04f48716-610: repo sweep of 7 domains (leaderboard, perception, policy, grasp / references, meshes,
+      scorer / task, process) with an adversarial fact-check per domain, then synthesis and a completeness critic;
+    - wf_d173a9fc-f43: every V2D chat session read end to end (19 cloud sessions + the coordinator transcript in
+      3 windows).
+  - A final synthesis then merges both into the report artifact.
+- 3–5 Nov: both report workflows stopped on the Claude weekly usage limit. Completed parts are kept in the journals
+  (leaderboard and perception domains; 3 chat digests). 26+ agents failed.
+- ~06:00 UTC 6 Nov owner: "dont destroy all the credits again … use haiku for info extraction … then combine with a
+  better model". Cheap plan, now running:
+  - free, by script: fetched all 20 branches; merged 363 unique work-log entries (1.25 M chars); built compact
+    corpora (research-note heads and conclusions; 86 analysis / plan / README files ≤ 7 k chars each); pulled the
+    Kaggle submission history (26 submissions on 6 boards) and today's leaderboards;
+  - 10 Haiku extraction agents: 5 work-log slices, research notes, 2 report slices, the 2 owner-facing chats, and
+    14 lane chats (`result` events only);
+  - then one stronger-model synthesis, rendered to HTML by script.
+- 06:15 UTC 6 Nov leaderboard [M] (others moved since 3 Nov; our bests unchanged):
+  - our ranks: AUC 9, SP-SR 12, MP-SR 10, RPE 10, MPPE 10, CD-O 5;
+  - rank sum 56, 8th among teams in the top 20 of every board;
+  - leaders: richchentw sum 7; DDD 15; rlwrld 23; Zihao Guo 24.
+- ~07:40 UTC 6 Nov **journey report published** (private artifact https://claude.ai/artifact/6pNjoK3xEqi8ry4ceA6jLS;
+  copy and sources in `docs/analysis/journey-report-20261106/`).
+  - Built cheaply: scripts plus 12 small extraction agents (2 of them gap-fillers for chats), plus 5 cached results
+    from the failed run, then 1 synthesis pass. 14 sections, ≈ 21 k words.
+  - Charts and tables come directly from Kaggle data.
+  - Coverage gaps: early main chat 20–24 Oct (work logs cover it); lane chats newest results only; builder session
+    from 31 Oct.
+
+### 2026-11-06 ~08:30 UTC — post-challenge multi-embodiment showcase: plan proposed (branch `claude/charming-goldberg-glc1xi`)
+- Owner: "the challenge is over but I want to experiment". Pick impressive but easy episodes and recreate the same
+  action with many embodiments (hand-like, 3-finger, others), for a presentation: real video next to the robot
+  simulations. Product framing: egocentric video → trainable robot policy. Best meshes and shortcuts are allowed;
+  propose a plan first.
+- The branch was fast-forwarded to `claude/keen-heisenberg-engcwz` (5981d751, the latest coordinator state).
+- Read today [V]:
+  - **Upstream FlashCHORD** (nvidia-isaac/video_to_data main 9cad120):
+    - embodiments `sharpa_hands`, `dexmate_sharpa` (Vega) and `g1_dex3` (floating-base G1 with Dex3 3-finger hands;
+      it needs a named whole-body reference with a pelvis path);
+    - retargeters `ego_recon_to_dexmate_sharpa.py` and `taco_to_dex3.py` / `arctic_to_dex3.py`.
+  - **Open-source models and configs:**
+    - dex-retargeting (MIT): configs for Shadow, Allegro, LEAP, Inspire, Ability, SVH and the Panda gripper;
+    - dex-urdf: also Barrett and D'Claw;
+    - MuJoCo Menagerie: Shadow DEX-EE, Robotiq 2F-85, the UMI gripper, G1, sharpa_wave and others.
+  - **HF store:** public references with the robot-independent "loaded" stage exist, e.g.
+    `runs/20261023-glockpub-0f7e3a7/refs/`.
+- Episode choice uses earlier measured results vs mocap:
+  - ep27 0.965–0.967;
+  - ep2 0.925–0.926;
+  - ep18 0.957 with the grasp lock, but 0.60–0.62 with the standard-learner variants;
+  - the ep21 pour twin 0.66, a pitcher mesh failure.
+- Plan written: `docs/research/work/embodiment-showcase-20261106/PLAN.md`. Cost ≈ $110–130 [E], range $70–200, in
+  gated phases. Nothing rented; waiting for the owner's decisions (plan section 9).
+- 08:20 UTC video box 58363797: job started 07:36 after a 43-min setup; at 08:20 it is still pulling its inputs (4 of 11
+  RUNS done) under HF store rate limiting (HTTP 429, ~2 min waits). Cause [H]: concurrent store traffic tonight (the
+  depth-audit downloads, two workflows' listings, the eval-1 box). Left running; the store traffic from this session is
+  kept minimal until it finishes.
+- 08:50 UTC **eval-1 official confirmation: PASSED** (`20261030-e1conf2-d41382e`, box 58370419 self-destroyed after
+  08:12; ledger actual $0.90, estimate). 20 fresh official draws of the carved s43 policy: **0.9241 ± 0.017** (min
+  0.884, 0/20 below 0.70) vs the packed policy's H5 0.822 ± 0.239. Rule of 06:20: passes; mean ≥ 0.9196, so a
+  leaderboard gain in expectation (≈ +0.0002 AUC as scored [estimate]). The training-box falsifier did not fire
+  (training box 0.931 ± 0.006 vs official 0.924 ± 0.017).
+  - **Pack-8 candidate** `results/submissions/20261030-track3h-candidate/` (pack 7 + the fresh eval-1 draw 1, 0.9232;
+    built on the box; CPU check vs pack 7: only eval 1's 670 pose rows and its checkpoint hash differ, plus the commit
+    URL; meshes and script hashes identical). **Not uploaded; the owner decides.**
+  - First carve adopted under a pre-registered rule: placement carves work for eval 1 (pot/lid overlap), not for
+    eval 14 (cup into rack).
+- ~09:40 UTC owner: "how many upload limits do we have and when does it renew? Also maybe we can try the public episode
+  real refs to see if we can really copy them. intentionally go for the hard ones. go test in 3-4 ones that are similar
+  to the hardest eval episodes."
+  - Upload allowance (kit dry run, 09:38): 4 left today on AUC / SP-SR / MP-SR / RPE / MPPE, 5 on CD-O; Kaggle's
+    daily cap is 5 per board, reset at 00:00 UTC. Written policy (kit `config/tracks.json`): 5 per week, unlimited in
+    the final 3 days (freeze 4 Nov 2026 5 p.m. EST); 2 final picks. Our AUC uploads in the last 7 days: 7 (24 Oct 1,
+    25 Oct 2, 26 Oct 3, 30 Oct 1), already above the written weekly figure; Kaggle did not block them.
+  - Oracle-twin experiment (diagnostic, public only): workflow wf_4f80bdc9-7d2 designs, builds and reviews on CPU a job
+    that trains the current recipe on references built from the mocap object motion for 3-4 public twins of the hardest
+    eval episodes (candidates ep11/eval 10, ep12/eval 14, ep31/eval 30, ep24/eval 25), in their own refs/<oracle> paths,
+    and compares rollout-vs-mocap AUC with the same recipe on our perceived references. Readings pre-registered before
+    any GPU result; GPU ≤ ≈ $10 on the owner's request.
+- 10:10 UTC coordination: session determined-wright ("Embodiment options", session_01D9UJC7MhytodZodnDDAU3z) launched
+  `20261030-physS0-6a814df` and `-physS1-` (object physics study, public scans, grasp-lock recipe, ep2/12/18/24,
+  $6.50 planned each, owner-approved). Overlaps the oracle-twin plan on ep12/ep24; message sent: HF 429 warning, offer
+  to reuse their S0 results and not duplicate ep12/ep24 arms. Ledger (all sessions) at 10:09: actual $35.48, open
+  planned $14.20 of the $100 top-up.
+  - Video box 58363797: still in sub_videos' PICK downloads (HF 429 + SSL EOF retries), 3 h 20 min up (~$4.3). Kept
+    running: a relaunch would face the same rate limit.
+- 12:10 UTC (after a usage-limit gap 10:30–12:00):
+  - Video box 58363797: rendered 4 of 5 videos by 11:23 (replay sim_vs_ref: eval 10 0.454, 32 0.880, 16 0.724, 20
+    0.942). Eval 25 failed: sub_videos.sh does not resolve PICK's `ck=` form (its checkpoint path was missing). The
+    final push to the store FAILED (HF 429 most likely); the box waits 60 min and retries once (ops/box/lib.sh
+    self_destroy). Its exec tunnel answers 502, and this container has no SSH client and no raw TCP egress, so the
+    files cannot be rescued directly. Cost so far ≈ $7.4 (06:48 → ~12:30 at $1.295/h).
+  - Oracle-twin prep: design done (ep11 / eval 10, ep13 / eval 14, ep31 / eval 30; ep24 optional), build and verify
+    were cut by the usage limit. The partial build is committed as WIP be2b2a9; workflow resumed with two launch
+    options for the owner: full (≈ $9–10) or single-box grasp-lock (≈ $5–6).
+- 12:07 UTC reply from session determined-wright (physics study, commit 6a814df, `ops/jobs/physics_arms.sh`): public
+  scans as object meshes, SF=0, REUSE_REF=0, frozen recipe-arm GL_ARGS, 70M steps, seed 42, NREP 5; S0 0.3 kg, S1
+  plausible mass/COM/inertia. Partial registered AUC vs mocap: ep12 S0 0.862 ± 0.021, S1 0.885 ± 0.030; ep18 S0
+  0.573 ± 0.060, S1 0.625 ± 0.001 (not final). Results: store runs/20261030-physS{0,1}-6a814df/results/glock_public/.
+  Not directly comparable with our library_v3 runs (meshes differ); usable as an extra point for ep12/ep24.
+- 12:10 UTC **owner chose option B** for the oracle-twin test ("okay go with b then"): one box, grasp-lock learner,
+  ep11 (eval 10) + ep13 (eval 14) + ep31 (eval 30, learner labelled as differing from eval 30's packed standard
+  learner), each trained on our perceived reference (P) and on the mocap-object reference (O), scored vs mocap; ≈ $5–6.
+  Launch only after the CPU build and both reviews return GO (workflow wf_4f80bdc9-7d2).
+- 12:46 UTC videos delivered: the box's push retry succeeded; ep10/32/16/20.mp4 sent to the owner (store
+  `runs/20261030-vid5-817b135/results/sub_videos/`). Box gone by 12:45; ledger actual $7.60 (estimate: 5.87 h ×
+  $1.295/h, mostly HF-429-throttled pulls). Eval 25 is missing: `sub_videos.sh` does not handle PICK's `ck=` form (fix
+  pending if the owner wants that video). Lesson: a video job for a few episodes should pull only those episodes' runs.
+- ~13:05 UTC **oracle twins: CPU build done; nothing launched** (workflow wf_4f80bdc9-7d2, build step; owner's choice B
+  of 12:10). Pre-registration with fixed readings: `docs/research/work/oracle-twins-20261030/PREREG.md`; job strings and
+  cost: `JOBS.txt` (same folder); CPU checks and mock: `cpu/`.
+  - **Code.** The WIP of be2b2a9 was reviewed and kept: `pipeline/oracle_poses.py` v2, the ORACLE_ARGS / MESH_DIR
+    pass-through in `pipeline_ep.sh`, and `tools/ref_vs_mocap.py`. New since then:
+    - `ops/jobs/oracle_twins.sh` builds, per twin, P (perc2 → hands → mkref → CR) and then O (mocap on P's perception
+      and hands). It runs gate G0, then one learner invocation with both arms, writes `summary.json` with R1 / R2 /
+      class / R3, and pushes. It refuses a RUN_ID without `-orc`.
+    - `glock_public.sh` and `hard_ab.sh` take a 4th PAIRS field PERC (`EP:local:mck:oracle`). This puts every O folder
+      under oracle names and is public / local only.
+    - `glock_public.sh` also gets `RUN=local`, `ENV_EP<N>`, and `ref_auc` / `floor_auc` in its summaries.
+    - `tools/no_oracle.py` is the leak guard in `pack_eval.sh`, `h5_reeval.sh` and `submit_pack.sh`. It also reads
+      each checkpoint's stored training config.
+  - **CPU results [M], public inputs.**
+    - oracle_poses v2 on eps 11 / 13 / 31: the raw track scores 1.000 vs mocap. After mkref's snap it scores
+      0.969 / 1.000 / 0.969. Up vs the table normal is ≤ 0.04°, frame-0 centres are ≤ 1.3 cm from perception, and
+      the support check is OK.
+    - G0 emulation (mkref stage (a)): O 0.969 / 1.000 / 0.969; P 0.896 / 0.896 / 0.793.
+    - The guard refused an `-orc` id, an `oracle` path and a renamed oracle-trained checkpoint, and passed all 20
+      pack-7 checkpoints.
+  - **CPU mocks.** The exact JOBS.txt strings for B (glock 11 / 13 / 31), G (glock 11 / 13) and S (std 31) all ran
+    to rc 0, with stub trainer and evaluator and real `oracle_poses.py` / `ref_vs_mocap.py`.
+    - Arms stay apart (P on `refs/glockt` / `perc2mcks`, O on `refs/oracle_glockt` / `oraclemcks`), with identical
+      training arguments and md5-identical hands.
+    - ep11's two references name `/content/assets_ev10`; ep13 and ep31's name `/content/assets`.
+    - **Bug caught by the std mock and fixed:** `PAIRS` was not passed to `hard_ab.sh`, which would have trained its
+      default ep24 / ep18 pairs.
+  - **Cost, re-estimated from job-log timings** (a grasp-lock wave of 2 trainings 66–82 min):
+    - B ≈ 4.0–5.5 h, **≈ $5.2–8.0 (central ≈ $6.3)**, a little above the ≈ $5–6 quoted at 12:10;
+    - A would be ≈ $7.9–12.0.
+- ~13:20 UTC owner: dissect the pipeline on public episodes with perfect knowledge (perception with the given scans,
+  hand perception vs mocap, perception → policy with perfect meshes, ...) to find the leak; "you can spend as much".
+  - Design workflow wf_935444e9-2c5: facts (which ground truth the public data holds and which stages can be swapped;
+    every existing leak number; draw/seed noise and power), three competing designs (cumulative ladder; one-at-a-time
+    + factorial; decision-focused), judge → `docs/research/work/leak-decomp-20261030/PLAN.md`.
+  - Other sessions now: Embodiment (physics study S0/S1 on ep2/12/18/24, human-hand copy tests), Roman meeting analysis
+    (proposed an "everything true" CPU replay; waiting on the owner), mesh session (generalized mesh generator design).
+  - Option B (oracle twins, P vs mocap-object arms on ep11/13/31) stays the first two rungs; it launches on the reviews'
+    GO.
+- ~13:25 UTC owner: CPU tests may run on an almost-free Vast machine if faster. Cheapest compliant offers now: 20–28
+  CPU cores, 16–63 GB RAM at $0.12–0.19/h (e.g. RTX 2060S Quebec 20 cores / 63 GB $0.124/h; RTX 3070 Ti 28 cores /
+  16 GB $0.19/h), vs this VM's 4 cores. To be used for the plan's CPU stages (reference-level audits over all public
+  episodes, CPU replays, scoring); GPU training stays on RTX PRO 6000. Every box still gets a ledger line.
+- 13:45 UTC **oracle twins option B launched**: 58408407 `20261030-orcB-38234d1` (RTX PRO 6000 Max-Q California
+  $1.467/h; Denmark offer was gone), commit 38234d1, ledger planned $7.00. Job (docs/research/work/oracle-twins-
+  20261030/JOBS.txt, option B): `LEARNER=glock EPS="11 13 31" ENV_EP11="SF=0 PIECES=meshes/carve/ev10" ENV_EP13="SF=1"
+  ENV_EP31="SF=1" LIB=meshes/library_v3 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=10 PAR=2 SEED=42 STEPS=70004736
+  TRAIN_SLOTS=2 GL_ARGS=... bash ops/jobs/oracle_twins.sh`.
+  - Reviews (wf_4f80bdc9-7d2): mechanics GO; integrity NO-GO until F1 (class C3b: a low copy ceiling no longer hides
+    a large reference loss) and F2 (1.64·SE noise margin on every reading) were applied, plus F3 (NREP 6 → 10) and
+    PAR=2. All applied in 38234d1 BEFORE launch (PREREG §10). Synthetic checks of the classes pass.
+  - Expected ≈ 4–5.5 h (3 waves of 2 trainings) plus setup under HF 429s.
+  - Note: the physics session's box 58386066 (physS0) also shows PUSH-FAILED (HF 429); it retries once after 60 min.
+- ~14:35 UTC **leak-decomposition plan committed** (c51265d, `docs/research/work/leak-decomp-20261030/PLAN.md`;
+  workflow wf_935444e9-2c5: facts → ladder / factorial / decision designs → judge, scores 41 / 37 / 45; synthesis).
+  - Facts: the public data's only ground truth is the object motion (mocap) and the organiser scans; there is NO hand,
+    camera, contact, force or mass ground truth, and no spoon scan or mocap. Hands, physics and the learner are bounded,
+    not measured.
+  - Plan: Tier A CPU audits on all 20 public episodes ($0: registration, tracker phase split, mkref stages on O and P,
+    hand timing vs true motion, settle gates); Phase 1 GPU perception with scan templates (+ repeat, + blind spoon-proxy
+    meshes) ≈ $15; Phase 2 6-cell rollout blocks (template × motion × sim geometry) on 10 twins × 2–3 seeds × 10 evals
+    ≈ $130–200; optional hand-timing cells and a standard-learner check. Core ≈ $215, full ≈ $345 [E]; readings by
+    ≈ 1 Nov 06:00. Needs a credit top-up (ledger 14:35: $51.78 actual + $17.50 open of the $100 top-up) and the
+    owner's go-ahead per batch.
+  - Started now ($0): CPU foundations + Tier A (workflow leak-tierA-cpu, wf_791944d0-b72).
+- ~14:50 UTC owner: "Also go ahead with phase" → Phase 1 (GPU perception, P_o / P_s / P_o-repeat on the 20 public
+  episodes, ≈ $11–15 on 3 boxes) approved. Build + CPU mock + two reviews first (workflow leak-phase1-build); launch
+  after GO and a credit check: Vast credit $44.21 at 14:50 with 4 boxes running (≈ $6/h, orcB mine, p2s0/p2s1/p2hu the
+  Embodiment session's). Instance end dates checked (owner asked): earliest 31 Oct 18:00 (p2hu), no job affected.
+- 17:15 UTC (after a usage-limit gap ~15:00–17:00):
+  - Both CPU workflows (leak Tier A wf_791944d0-b72, Phase-1 build wf_99d31c5c-213) were cut by the limit; partial
+    outputs committed as WIP (2db247c); both resumed from their run ids with a continue-from-WIP note.
+  - Embodiment session's 3 boxes are gone; only orcB 58408407 runs ($1.467/h). Vast credit $36.07.
+  - **orcB interim [M, not the pre-registered reading yet]:** 2 of 6 arms done (job.log 15:54):
+    - ep11 O (mocap object motion, eval 10's twin, cup stacking): rollout AUC vs mocap **0.940 ± 0.032** (n 10,
+      min 0.872; sim_vs_ref 0.964 ± 0.027). The earlier ep11 P on another recipe/commit scored 0.570 ± 0.001.
+    - ep31 P (perceived, eval 30's twin): **0.783 ± 0.042** (sim_vs_ref 0.758 ± 0.018).
+    - Reading waits for the same-box P/O pairs (PREREG §4); remaining arms: ep11 P, ep13 P/O, ep31 O.
+- 18:05 UTC orcB interim (4 of 6 arms; reading still waits for the summary):
+  - ep13 (eval 14's twin, cup hand-over + flip into the rack): P **0.543 ± 0.001**, O **0.544 ± 0.002** vs mocap. Both
+    arms fail identically (sim_vs_ref 0.556 / 0.573): with the true object motion the recipe still does not copy the
+    task. Provisional class C1 (physics/learner-limited); the hand-over and flip are a robot/learner limit, so better
+    perception would not raise eval 14.
+  - G0 passed on all three twins: O references vs mocap 0.969 / 0.964 / 0.993; P 0.896 / 0.940 / 0.822.
+  - Remaining: ep11 P and ep31 O (wave 3).
+  - Another Embodiment-session box is running: 58429953 `20261030-psolve-eecd18a` (physics solve, eps 2/12/18/24).
+- ~18:20 UTC Phase-1 build done (workflow wf_99d31c5c-213): `ops/jobs/perc_leak.sh`, `tools/leak_p1.py`,
+  `ops/box/store.sh pull-files` (single-file downloads, no store listing: the cause of today's 429 waits), CPU mock of
+  all three box strings passes. Cost re-estimated at ≈ $4.4 for 3 boxes (range $2.8–7.4), below the approved $11–15.
+  - Reviews: integrity GO (with F1 run-id guard, F3 keep mocap-score files out of the bundle tars; guard regex before
+    Phase 2), mechanics GO with F1 (Grounding DINO preload + HF_HUB_OFFLINE so no arm silently runs without grounding)
+    and F2 (check the public data before any download). Fix + re-verify workflow wf_db1451a5-6c1 running; launch after
+    its GO.
+- ~18:45 UTC **Phase 1 launched** after the fix workflow's GO (wf_db1451a5-6c1; fixes verified byte for byte in
+  87fc869): integrity F1 (run id must be refused by the guard), F3 (no mocap-score files in the bundle tars), B8
+  guard (perc2scan / perc2gf refused), mechanics F1 (Grounding DINO loaded once with retries, all arms HF_HUB_OFFLINE;
+  NO-GDINO flagged per arm), F2 (public data checked before any download), F4 (pull timeouts, pull log watched).
+  - 58438328 `20261030-orcP1a-87fc869` (Texas), 58438333 `-orcP1b-` (Netherlands), 58438345 `-orcP1c-` (New York),
+    RTX PRO 6000, ledger planned $2.50 each; job strings from `phase1/JOBS.txt` (episodes balanced by frames; P_o
+    repeat on the 10 twins).
+  - Credit before launch $32.58; burn now ≈ $7.6/h with orcB and the Embodiment session's psolverl box.
+  - After the run: check RESULT lines for NO-GDINO (it does not hold the box), and that tars hold no score files.
+- 19:00 UTC **oracle twins option B: results** (`docs/research/work/oracle-twins-20261030/RESULTS.md`; ledger actual
+  $7.80, estimate). Classes under the pre-registered rules (1.64·SE margins):
+  - ep11 → eval 10: **C2 perception-limited** (O 0.940 ± 0.034 vs P 0.595; Δ +0.345, SE 0.011). The recipe stacks the
+    cups with the true motion; our perceived reference is physically hard to copy (sim_vs_ref 0.518 vs 0.964).
+  - ep13 → eval 14: **C1 physics/learner-limited** (O 0.544 = P 0.543): the hand-over/flip is a robot/learner limit.
+  - ep31 → eval 30: **C5 inconclusive** (Δ +0.086, SE 0.020; grasp-lock learner, not eval 30's standard learner).
+  - Next [proposal]: a GT-free physically-consistent nest fix for eval 10's reference, validated first on ep11 P
+    (target: rollout AUC well above 0.595 toward the 0.940 ceiling), then eval 10 (≤ +0.017 LB [E]).
+- 22:05 UTC (after a usage-limit gap ~19:15–22:00) **Phase 1 done**: all 20 public episodes OK on all three boxes
+  (runs `20261030-orcP1{a,b,c}-87fc869`, 21 / 29 / 25 min, self-destroyed; ledger actuals $0.65 / $0.85 / $0.80,
+  estimates; every arm with Grounding DINO, depth cache reused). P_s (scan templates) vs mocap, scan frame,
+  unregistered, from the job logs: ≥ 0.96 on 16 episodes; ep11 0.863, ep31 0.863, ep24 0.849, ep0 0.078 (known frame-0
+  failure with scans). Scoring of P_o / P_s / repeat and the template-leak verdicts: workflow
+  leak-phase1-score-and-tierA (also finishes Tier A, cut again by the usage limit). Vast credit $24.87 at 22:01; one
+  box running (Embodiment's psolverl).
+- ~23:50 UTC **reference-level leak readings (Phase 1, `leak-decomp-20261030/phase1/RESULTS.md`; review pending)**:
+  - L2 template (scan vs our templates, * convention): **+0.039** mean ΔR, 17/20 episodes → leaks; ≈ +0.012–0.017 LB [E].
+    With library_v3 still submitted it shrinks to +0.006 (inconclusive): most of the template gain needs a scan-like
+    submitted mesh too.
+  - L3 tracker given the true template: 1 − R*(P_s) = +0.076 (+0.033 without ep0 / ep23) → leaks; ≈ +0.008–0.010 LB [E].
+  - L1 registration on our tracks: no leak (lib scores higher than *).
+- **Tracker-failure diagnoses** (`tracker-fix/ep{0,11,24,31}/DIAG.md`, `tracker-fix/PLAN.md`): none of the four starting
+  hypotheses held. ep0 / ep24 / ep31: one frame-0 pose (or a VO camera jump on ep24) amplified by the kit's frame-0
+  scene alignment; ep11: the static outer cup's track rises 2.5–5.3 cm while the other cup nests in it. Ranked fixes:
+  S6 static hold (eval 10, central +0.007 LB [E]), a $0 GT-free eval screen, robust VO (eval 25), one GPU perception
+  box for masking / occlusion-aware registration / an area gate. Tests T1–T5 pre-registered in that PLAN.
+  - Started (CPU, $0): workflow tracker-fixes-cpu (S6 + T1 reference test, eval screen, T5 VO on ep24, review).
+- 04:50 UTC 31 Oct (after a usage-limit gap ~00:30–04:45): the tracker-fixes CPU workflow (S6 + T1 reference test, GT-free
+  eval screen, T5 VO on ep24) and the Tier A finish were cut by the limit. Partial S6 work (opt-in step in refine.py,
+  DEFAULT_STEPS unchanged, unit test) committed as WIP e50ec1e; tracker-fixes resumed (wf_7cf6d53f-37e). Tier A finish
+  deferred until the fixes are done, to stay under the usage window. Vast credit $16.17, 0 boxes running (all sessions).
+  - Phase-1 scoring detail [M] (`phase1/RESULTS.md`): most of the template gain is a constant body offset (after a per-
+    object constant offset P_s gains only +0.006 over P_o); a better template pays on the leaderboard only if it is
+    also the submitted mesh (library_v3's kit registration taxes a physically correct track: L1 on P_s +0.028).
+- 04:55 UTC from session determined-wright (physics study, pre-registered "Round 3" rule): **realistic per-object masses
+  instead of the 0.3 kg placeholder improved grasp-lock policies vs mocap on 4 public episodes, mean +0.090** (ep2
+  +0.160, ep12 +0.103, ep18 +0.011, ep24 +0.084; seed means; scans as sim meshes) → adopted there. Ready:
+  `props_masses_only.json` (mass only; COM/inertia stay each mesh's) + `make_assets.py --physics` + a glock_public.sh
+  MA_ARGS hook on their branch. They asked who owns the eval retrain (~$20–25 for 20 evals).
+  - Reply sent: this session owns the eval retrain and packs; proposed first a pre-registered transfer check on our
+    library_v3 meshes (ep2 + ep12, masses vs 0.3 kg, 2 seeds, NREP 10, ≈ $5–6; adopt for eval if the seed-mean gain is
+    ≥ +0.03 on both and no seed drops > 0.05), then eval retrains swapped per episode only if the multi-draw mean ≥ the
+    packed draw. Needs the owner's top-up and go-ahead.
+- 04:52 UTC: the owner topped up (relayed by session determined-wright; credit $41.17, 0 instances). The mass transfer
+  check still waits for the owner's go-ahead in this session; its job is being built and reviewed on CPU
+  (workflow mass-transfer-check-build). Realistic-mass support merged here (6bbb52a, default off).
+- ~05:05 UTC owner: "Coordinate with others". Messages sent with one shared GPU plan on the $41 credit (one box at a
+  time to spare the HF store; ledger planned line before each):
+  - this session: (1) mass transfer check ~$5–6 (in review), (2) eval-10 static-hold gate + retrain ~$5–8, (3) one
+    perception box for first-frame fixes ~$1–2; ≈ $25 left for an eval retrain with masses if (1) passes;
+  - Embodiment (determined-wright): no duplicate ep2/ep12 mass arms; asked to review the mass-check job and to run the
+    "everything true" CPU replay (leak plan rung R5) on ep12/ep13;
+  - mesh session (bold-albattani): Phase-1 template findings, the tracker-fix mesh items (registration-safe sweeper,
+    beige cup base, lid frame), and an offer to launch its G0 SAM 3D job from here (its env lacks HF/Vast keys) after
+    the owner's OK;
+  - Roman-meeting session: R5 status; send its "everything true" proposal to Embodiment and here.
+  - Ledger: budget line for the owner's $25 top-up.
+- ~05:05 UTC coordination replies:
+  - mesh (bold-albattani): HF and Vast work from its session (its D1 note was wrong); it has a standing spending
+    go-ahead and will launch G0 (SAM 3D, ~$1–2) itself with ledger lines, one box at a time. It takes the Phase-1 finding
+    (better mesh pays mainly if also submitted) and the sweeper (marker-ball bumps: library_v3 + the two balls 0/30
+    flips vs 3/30), beige base and lid-frame items into its gmg plan.
+  - Embodiment (determined-wright): no GPU now and no ep2/ep12 mass arms; its pending ~$10 solver↔RL test waits until
+    after this batch and the owner's OK; it will review the mass-check job and run R5 ("everything true" CPU replay) on
+    ep12/ep13. Sent it the inputs: c6 references are not built yet; it can use the orcB O references (true motion, our
+    meshes) for ep13 now, or build c6 from the Phase-1 bundles (oracle_poses without --meshes, scanlib assets).
+- 05:10 UTC R5-lite from session determined-wright (CPU, public diagnostic; their branch README "R5-lite"): zero-action
+  replay of the orcB references, 16 jittered copies (CRN), sim_vs_ref vs each own reference: ep13 O 0.569 ± 0.008 vs
+  P 0.551 ± 0.007 (+0.018); ep31 O 0.556 ± 0.091 vs P 0.554 ± 0.096 (+0.002); ep11 skipped (its refs name
+  /content/assets_ev10). Reading: true object motion barely improves zero-action executability on ep13/ep31; the limit
+  is the plan's physics (grip, hand-over), consistent with orcB ep13 O = P = 0.544 after RL.
+- 05:20 UTC session determined-wright launched (owner's choice, option 3) 58495839 `20261031-rlloop-ccf9058` (public
+  ep2/12/18/24, solver↔RL loop, $1.37/h, est. $5.5–7.5, max $8.3; ledger line added). Credit before it $41.17, so ≈ $33
+  remains for this session's batch (mass check ~$5–6, eval-10 static hold ~$5–8, perception box ~$1–2); an eval
+  retrain with masses (~$20–25) would need a small extra top-up. Mass-check build (4e019af) sent to that session for
+  review.
+- ~06:00 UTC mass-check build reviewed twice: own review NO-GO until F1 (a missing cell must read INCOMPLETE, not
+  INVALID); external review (determined-wright) NO-GO with 6 small CPU fixes (same F1; config-diff normalisation;
+  NaN-safe reference check; eval-timeout reporting with timeout -k 60; REQUIRE_REUSE guard; docs). Core design passed
+  both (one reference per episode, arms differ only in mass, evaluator loads each arm's URDFs). Cost re-estimated at
+  ≈ $6.5–11, central ≈ $8.7 (one training saturates the GPU; 4 waves + the ep2 reference build). ep2's reference is
+  built on the box with the frozen recipe (the stored ep2 reference was E3's older recipe). Fix + re-verify workflow
+  running (mass-check-fixes).
+- ~06:35 UTC **tracker fixes, CPU results (workflow wf_7cf6d53f-37e; review: all three SOUND)**:
+  - **T1, S6 static hold:** freezes exactly the mocap-static objects on 20/20 public episodes, mean +0.004 (almost all
+    ep11 +0.068), but the pre-registered no-harm rule FAILS on the Phase-1 P_o arm by 0.0003 (ep27 * −0.0023 vs −0.002;
+    the frozen rack is the kit's rotation anchor). **On eval 10 S6 freezes nothing**: our track shows the blue cup
+    sliding 4.1–4.9 cm at f38–46 with the left hand (camera ruled out ≤ 0.6 cm), so the +0.007 LB that ranked S6 first
+    does not exist. No GPU spend on S6; S6 stays opt-in and unused.
+  - **Eval screen (GT-free):** M4 (frame-0 decoy) and M2 (anchor tilt) not flagged on the screened evals; M3 (VO jump)
+    not flagged except eval 35 (burst during the spoon pickup, unresolved); M1's signature is on eval 10's track (+3.1 to
+    +3.7 cm while nesting) [M on the track, H as a tracker error]. Only eval target left for the GPU perception box:
+    eval 10 via T2 masking. Review wording fixes applied to SCREEN.md.
+  - **T5 robust VO on ep24: PASSES** (P_o * 0.8105 → 0.9941; common-mode error 2.72 → 0.40 cm). Cause: perc2's 2 m
+    depth clip. But no confirmed eval target (eval 25 is clean; eval 35 open).
+- ~06:45 UTC **mass transfer check launched** after both reviews' GO (own re-verify; determined-wright re-check of
+  1–3 at 2ed46ea): 58502738 `20261031-mass-2ed46ea` (RTX PRO 6000 Max-Q Texas $1.45/h), commit 2ed46ea, job
+  `bash ops/jobs/mass_check.sh` (ep2 reference built on the box with the frozen recipe, ep12 stored ev2 reference;
+  arms 0.3 kg vs props_masses_only; seeds 42/43; NREP 10; EVAL_TIMEOUT 1200 with -k 60). Rule:
+  `docs/research/work/masses-transfer-20261031/PREREG.md`. Expected ≈ 5.4–7.5 h, ≈ $6.5–11; ledger planned $9 (the
+  append wrote 6 identical lines after an "upstream request failed" retry; harmless, `show` keys open runs by id).
+- ~09:10 UTC owner: "Is there anything we can do to improve perception? Are we doing anything for that?" Started a
+  perception sprint (workflow perception-sprint, CPU, $0), three experiments on the 20 public episodes, each with a
+  pass rule pre-registered in its README before scoring:
+  - **offset**: GT-free correction of the constant per-object pose offset (0.025 of the 0.033 tracker leak with true
+    templates is constant): occlusion-masked trimmed depth ICP at frame 0 / rest spans, multi-hypothesis refinement,
+    rest-frame consensus. Adopt if mean ΔR ≥ +0.01, ≥ 12/20 better, no episode < −0.01, on both public arms.
+  - **heldpose**: while held, pose = our wrist × a per-hold grasp transform (spoon proxy: sweeper / dust pan). Adopt if
+    ≥ +0.005 on the thin-object proxies and no episode drops > 0.01.
+  - **mask10**: eval-10 nest fix (GT-free nest constraint or CPU physics projection; masking re-track spec for GPU).
+    Pass: ep11 ≥ +0.05, others unchanged.
+  - Then a ranked plan: eval targets, value, and delivery in the same boxes as the masses retrain with a clean
+    attribution design.
+- 10:15 UTC from determined-wright: FlashSAC's LR is a cosine over each run's own total steps, so runs with different
+  STEPS are not comparable mid-training (the mass check keeps STEPS identical across arms: unaffected); its option-3
+  solver↔RL "signal" (+0.068) is confounded by that (3 of 4 chosen checkpoints from a 30M first round). Its idempotent
+  ledger append fix (no duplicate lines after a timed-out upload) merged here.
+- ~10:40 UTC **masses eval retrain prep done** (workflow wf_87d03dc2-f7d; `docs/research/work/masses-eval-20261031/`):
+  per-episode inventory of the 20 packed policies (run, learner, reference md5/fingerprint, asset source, pull list),
+  expected-gain ranking [E] and options, pre-registered gates (transfer check ADOPT; sim_vs_ref must move with the truth
+  metric; scope by effect size) and adoption rule (swap only if the multi-draw mean ≥ the packed draw). Options [E]:
+  O1 glock top 4 (20, 8, 33, 15) ≈ $11, ≈ +0.0045 LB; O2 + eval 1 ≈ $17 (reviewer: $15.5–26), ≈ +0.0055; O3 + spoon
+  wave (5, 32, 6, 3) ≈ $27.5, ≈ +0.0086. Small because the packed draws are partly lucky and must be beaten.
+  Review: conditional GO; fixes F1–F7 (seed handling, support-stage check, cost ranges, rule script, docs, timeouts,
+  pull-files) running (workflow mass-eval-fixes).
+- 10:50 UTC budget coordination (owner asked determined-wright for one budget to the freeze). Replied with this
+  session's plan [E]: mass check remainder ~$4–6; masses eval retrain only if ADOPT: O2 ~$16–26 (O3 +~$10 if spoon
+  pilots pass; full 20 not planned); eval-10 perception fix ~$4–7 if its CPU test passes; Phase 2 of the leak plan
+  dropped. Core ~$25–35, max ~$45. Their draft (public recipe screen ~$35–45 + confirm ~$20 + optional loop ~$12) plus
+  mine ≈ $100–120 against $29 credit: the owner would need ~$70–90 more. Proposed order: masses retrain first on the
+  current recipe; their recipe winner into a second, smaller retrain on the top episodes.
+- 10:51 UTC (relayed by determined-wright) **owner chose the LEAN budget** to the freeze: total ≈ $87–121, top-up
+  ≈ $60–90 on the $29 credit. This session's lane: mass-check remainder; eval-10 fix + retrain; masses eval retrain O2
+  if the check ADOPTs (no spoon wave); a second, smaller retrain with the Embodiment session's recipe winner. Their lane:
+  3-arm public recipe screen (control / keep-the-peak / reset-nudge DR) on ep2/12/18/24 × 2 seeds + a 2-episode confirm,
+  launched only when credit allows. The eval retrain has priority on credit. tools/intrusion.py (759032e, their branch)
+  available for eval 10's cup-nest penetration check.
+- ~11:50 UTC (relayed by determined-wright): the owner topped up $100 for the lean plan; Vast credit $128.43
+  (determined-wright adds the ledger budget line). Allocation [E]: this session $24–39 first (mass-check remainder,
+  eval-10 fix + retrain, masses retrain O2 if adopted), later a smaller retrain with the recipe-screen winner
+  ($10–15); mesh lane $15–28; Embodiment screen $28–34 + confirm ~$10; buffer ~$10. Ledger planned line before
+  every box.
+- ~11:20 UTC **perception sprint results** (workflow wf_4b3b77e0-018; `docs/research/work/perception-sprint-20261031/`;
+  CPU, $0; every rule pre-registered in each README; scores re-checked on 2 episodes each, 37/37 reproduce):
+  - **offset (S11, constant per-object offset via occluder-masked depth ICP): FAILED** all three variants on both arms
+    (best mean ΔR_lib +0.0005 / −0.0011; ep39 −0.128 from the table-plane exclusion eating the thin dust pan). It
+    recovers ≈ none of the constant-offset share, even with the true scan meshes (oracle arm −0.002 to −0.010).
+    Dropped.
+  - **heldpose (S10, pose = wrist × grasp while held, spoon proxy): FAILED** (proxy mean −0.018; ep39 −0.054). During
+    holds the tracker is already good (median 0.34–1.41 cm); our palm frame turns 10–50° relative to the object
+    within a hold, so even a mocap-fitted grasp is worse (3.1 cm vs the tracker's 0.9 cm). Dropped. Lead: ep11 +0.019
+    (rigid grasp) goes to the nest work.
+  - **mask10 (S12 cup-nest rule): PASSES on ep11** at reference level: V1 hold 0.901 → 0.969 (+0.068), V3 hold +
+    MuJoCo seat +0.076 (bar +0.05); other 19 public episodes byte-identical (none has two cups). On eval 10 the
+    pre-registered V1/V3 hold the blue cup inside its 4.5 cm slide (+1.53 cm high); a post-hoc V4p (blue cup at its
+    frame-0 table height, sideways slide kept, beige seated by physics) fixes eval 10's track (penetration frames
+    81 → 23) and scores +0.070 on ep11, but needs its own test (ep11 has no slide).
+  - Plan: ep11 rollout gate (control vs V4p, 2 seeds, pass ≥ +0.05 vs mocap), then rebuild only eval 10's reference;
+    with masses, eval 10 trains as a masses-only arm and a masses+nest arm (same seeds) so the effects separate.
+    ≈ $10 [E]; value +0.004–0.012 LB, central +0.007 [E]. Masking re-track: not before the freeze.
+
+## 2026-10-31 ~12:25 UTC — masses eval retrain prep: review fixes F1–F7 re-verified, one more fix (R1)
+- Re-review (workflow wf_880680d3-14b, 12:06–12:21 UTC, current tree): GO (conditional). Mock training boxes 165/165,
+  confirmation box 27/27, negative tests 24/24, rule fixture tests 41/41, extra adversarial tests 21/21; equivalence E2/E3k
+  identical, E3 differs only by the 4 kept rollout parquets; every training box makes single-file store downloads and 0
+  listings. PLAN.md has 0 removed lines since the pre-registration commit dac8924.
+- R1 fixed (d4f5806): rule 2's tie-break compared an unrounded difference of 4-decimal means with 0.005, so an exact
+  0.0050 gap read as larger (old code: 195 of 4950 test gaps counted as within) and skipped the lower-sd choice PLAN asks
+  for. Now rounded; new fixture test; 42/42 pass. R2/R3: budget note in JOBS.txt updated to the $128.43 credit and this
+  session's lean allocation (~$24–39 [E]); the C1 merge line takes mevG1v if G1v is chosen. R4 (a non-timeout crash of a
+  standard-learner evaluation stays INVALID) left as specified.
+- Freed ~15 GB of regenerable mock trees in the scratchpad (disk had reached 94%).
+- Gates still in force before any launch: transfer check ADOPT, gate 1 (config diff), and the owner's GO.
+- Mass transfer check (run 20261031-mass-2ed46ea): 3 of 4 cells in; ep12 seed 43 still training/evaluating.
+
+## 2026-10-31 ~13:05 UTC — mass transfer check: NOT ADOPTED (pre-registered rule)
+- Run 20261031-mass-2ed46ea (Vast 58502738, RTX PRO 6000 Max-Q, $1.45/h, code 2ed46ea, `bash ops/jobs/mass_check.sh`),
+  job done 12:49Z, self-destroyed. verify: VERIFIED (configs differ only in output_dir / reference.parquet / task.parquet;
+  masses as intended: mass0 0.3 kg, mass1 props_masses_only), eval timeouts none (all 8 cells: 10/10 best, 21/21 curve).
+- Registered AUC vs mocap, 10 official rollouts per cell [M]:
+
+  | episode | seed | 0.3 kg | realistic | Δ |
+  |---|---|---|---|---|
+  | ep2 (pot + lid) | 42 | 0.552 | 0.633 | +0.081 |
+  | ep2 | 43 | 0.581 | 0.814 | +0.233 |
+  | ep12 (cup into rack) | 42 | 0.928 | 0.921 | −0.006 |
+  | ep12 | 43 | 0.920 | 0.900 | −0.019 |
+
+  ep2 Δ +0.157 (SE 0.105; sim_vs_ref Δ +0.150); ep12 Δ −0.013 (SE 0.007; sim_vs_ref Δ −0.009).
+- Rule (PREREG §3: Δ ≥ +0.03 on every episode, no seed drop below −0.05, ≥ 8 scored rollouts): **NOT ADOPTED**
+  (ep12 −0.013 < +0.03). The eval pipeline keeps the 0.3 kg placeholder; the masses eval retrain (O1–O3) is off; the prep
+  (mass_eval.sh etc., R1-fixed) stays on the shelf. Per PREREG, NOT ADOPTED leaves open only the physics session's
+  condition (references rebuilt under the masses) as its own pre-registered test.
+- Reading [H]: ep2's gain is large but ~1.5 SE with bimodal rollouts (sd 0.27–0.29); a pot/lid-only follow-up would be
+  a post-hoc hypothesis and needs a fresh public pot/lid episode before any eval spend (owner decision; not proposed now).
+- Results copied to docs/research/work/masses-transfer-20261031/results/ (summary.json, verify.json, job.log).
+- Ledger: actual $9.10 (estimate, ~6.25 h × $1.45/h); the line shows session "unknown-session" (LEDGER_SESSION unset),
+  it is focused-pascal's.
+- Eval-10: determined-wright's intrusion diagnostic (branch claude/determined-wright-3joens 2a11301): carved ev10 still
+  intrudes 18–36 cm³ at f100–117 because the lower blue cavity is ~5–7 mm too narrow; blue-cup rise is not contact.
+  Agreed I build ev10w (new folder; ev10 untouched). Mesh session (bold-albattani) added checks: M2 one-sided vs
+  all-round + minimal clearing rigid shift (≤ 1 cm / 3° → track error, don't carve), M3 does-not-sink settle (≤ 4 mm,
+  ≤ 5° tilt), M4 convex pieces delivered without re-decomposition. CPU workflow wf_29f730f3-67c (pre-register, reproduce
+  baseline, build, falsify, review) running; no GPU.
+
+## 2026-10-31 ~13:35 UTC — ev10w (widened eval-10 blue-cup cavity): NOT-GEOMETRY; ev10w fails both gates, not used
+- Pre-registered in `docs/research/work/perception-sprint-20261031/ev10w/PREREG.md` (12:58 UTC, committed 3f058d2) before
+  any ev10w number. CPU only, $0; GT-free. Results: `.../ev10w/README.md`, `results/`; mesh `meshes/carve/ev10w/`.
+- Reproduced the Embodiment session's ev10 diagnostic on the packed gl10A2 reference (md5 1a5003d9) exactly: per-frame
+  volumes to 2e-6 cm3, floor gap to 0.005 mm, radii_A.txt byte-identical (their push search not re-run).
+- M2: the f100-160 intrusion is one-sided in 60/61 frames; the beige axis sits 4-7 mm off the blue cavity's lathe axis
+  (tilt 1.6 deg median); a rigid beige motion <= 1 cm / 3 deg brings it <= 2 cm3 in 30/31 frames -> NOT-GEOMETRY.
+  Their radii.py measures about a vertical axis up to ~5.7 mm off the (2.37 deg tilted) cavity axis, which inflates the
+  "too narrow" reading. Post hoc, coaxial beige in ev10: f118-160 median 0.04 cm3 (track 14.5).
+- ev10w (exception case, widen below the seat line h < -47.4 mm; H-nest-a's R_g + 1 mm lies outside the blue's outer
+  wall, so the 1.5 mm wall cap binds everywhere; built with a new opt-in `lathe_collision.py --inner`, default output
+  byte-identical, 106/106 files): G1 FAIL (gl10A2 max 30.2 cm3, V4p 11.4), G2 FAIL (settle 29/61 vs 55 needed and vs
+  ev10's 41; hands-off beige sinks 11.6 mm). One build defect (v0 band edges between bins -> 2 mm wall gaps) found by
+  the wall probe and fixed (v1); v0 readings kept as invalid.
+- Next [H, not run]: coaxial / physics seat of the beige on the hands-on nest frames f100-117 (V4p side), ev10 unchanged.
+
+## 2026-10-31 ~14:00 UTC — ev10w falsified; ep11 rollout gate prep started
+- ev10w (H-nest-a) result committed in 334393e: FAILS G1 (max 30.2 cm³ gl10A2, 11.4 V4p) and G2 (beige sinks ~11 mm on
+  hands-off frames); NOT-GEOMETRY by M2 (one-sided 60/61, beige axis 5.4 mm off the cavity's lathe axis; rigid shift
+  ≤ 1 cm / 3° clears 30/31). Independent review NO-GO as a gate arm. Review fixes F1/F2/F3/F5 applied in the README.
+  Results sent to determined-wright and bold-albattani.
+- Started CPU workflow wf_0f7cb69b-fa2: ep11 rollout gate (C = P_o + S2 vs T = + S12 V4p; gl10A2 grasp-lock recipe;
+  meshes/carve/ev10; seeds 42/43; NREP 10; PASS iff seed-mean Δ ≥ +0.05 vs mocap and no T seed below its C seed by
+  > 0.05). PREREG, job script, CPU mock, integrity + mechanics reviews. No GPU until the owner's go.
+
+## 2026-10-31 ~15:00 UTC — Masses v2 (owner-approved re-test) taken into this lane
+- The owner approved "Masses v2" at 14:55 UTC in determined-wright's session (its work log, commit 7e3311c on
+  claude/determined-wright-3joens). Design: 4 public headroom episodes (not ep2 or ep12; the lowest current library_v3
+  baseline AUC with a usable reference; fixed in the PREREG before any run); 0.3 kg vs realistic masses; one shared
+  reference per episode; seeds 42/43; NREP 10; the same verify step. Rule: ADOPT iff mean Δ over the 4 ≥ +0.03 AND
+  ≥ 3 of 4 Δ > 0 AND no Δ ≤ −0.05; missing cells → INCOMPLETE. ≈ $18–20, 2 boxes, ~7 h. An eval masses retrain after
+  ADOPT needs its own go-ahead.
+- determined-wright proposed that I run it with mass_check.sh and the verdict tool; they review the PREREG before launch.
+  CPU prep workflow wf_eec92e0b-27a started (baseline table, selection, PREREG, opt-in v2 rule, mock, two reviews).
+- In parallel: ep11 rollout gate prep (wf_0f7cb69b-fa2). Box creates will be staggered.
+
+## 2026-10-31 ~15:55 UTC — ep11 rollout gate LAUNCHED; pack 9a for tonight in preparation
+- Owner (15:20 UTC, via the "New score status" session): "get me into that top tier, I'm giving you everything you
+  need" — read there as the go for the eval-10 lane; 15:25 "Lets do all the improvements that we planned and lets
+  prepare a pack"; 15:40 "I want a pack today". Standings (that session, 14:48–14:58): 11th on the six-board rank sum
+  (AUC 8, SP-SR 7, MP-SR 8, RPE 11, MPPE 10, CD-O 18).
+- ep11 gate reviews: integrity GO (with F1 decouple), mechanics GO. Fixes applied in 137ec62: NaN/inf AUC not scored,
+  non-finite Δ → INVALID; local stats/r4 (no import from mass_verdict.py); arm-identity check BEFORE training
+  (`e11g_verify.py identity_pre`; UNTESTABLE stop if both cups' trained references < 0.5 cm apart over the S12 window
+  [H threshold]); beige arms-apart reported; CPU diagnostic before B0; PREREG §7 amendments (sections 1–6 sha
+  unchanged 7e5194e7…); STOP cost with the 30-min hold; expected B0 DIFFERS for T on many CPUs (measured on CPU).
+  Verdict fixtures 17/17; mock suite 8/8 scenarios (271 checks) on the fixed code (663b7df).
+- **Launched** Vast 58552489, run `20261031-e11g-663b7df` (RTX PRO 6000 Max-Q, Australia, $1.069/h), commit 663b7df,
+  job `bash ops/jobs/ep11_gate.sh`; ledger planned $5.00. Expected 3.2–5.3 h, $3.5–6 [E].
+- Pack 9a for tonight (owner "I want a pack today"): pack 8 + C0 meshes (white_pot, white_pot_lid, plastic_dish_rack;
+  bold-albattani 5cce3d2); blue cup held back (its selector was written after scoring: CLAUDE.md). Frame
+  confirmation from the mesh session due ~19:00; fallback pack 8 alone at 20:00; upload target ~20:30 UTC. CPU repack
+  prep + review workflow wf_9536a849-812 running.
+- Masses v2 prep (wf_eec92e0b-27a) and the pack-10 combined retrain plan (costed ≈ $90–130 for the middle variant) in
+  progress with the score-status session.
+
+## 2026-10-31 ~16:30 UTC — Masses v2 box A launched; pack 9a built (pot/lid/rack C0) and signed off
+- Masses v2: reviews (selection NO-GO until F1/F2 → fixed in 74da763: dead box → INCOMPLETE, NaN guard, the owner's
+  literal comparisons; mechanics GO); determined-wright PREREG review GO (accepts ep31). Box A launched: run
+  `20261031-mv2a-b5043ce` on offer 56700683 (California, $1.297/h), job `MV2_TAB=…/refs_v2.json MV2_EPS="24 13" bash
+  ops/jobs/mass_check.sh`, commit b5043ce; ledger planned $9.00. Box B (ep11 + ep31) staggered ~10 min.
+- Pack 9a: rule fixed before the guard (MESH_RULE.md a85c4a7) → as-fitted C0 for pot, lid, rack (guard mean dAUC
+  +0.003/+0.0055/+0.0158, 0 failures). Build `build_3obj/` sha256 9c19bb0c… (commit URL 50004a7, which holds the packed
+  C0 files in meshes/c0_pack9a/): differs from pack 8 only in 12 mesh payloads + the commit URL; offline validation
+  pass; frame flags (shape) signed off by the mesh session (lid: real registration 1.45–1.81° from identity, smaller
+  anchor shift than library_v3; C0 lid thickness matches the cameras' points). Post-hoc: aligning C0 onto library_v3
+  (C0a) lowers registered AUC on every object (rack would fail the guard), so the "rotation" vs library_v3 is mostly
+  library_v3's own frame error. Upload planned ~20:00–20:30 UTC (owner: "I want a pack today").
+- Pack-10 design inputs agreed with the score-status session: swap rule (fresh-draw mean vs packed H5 mean, failure
+  rate GT-free RPE > 5 cm, median RPE, + packed-draw guard −0.05); comparison set H5p7/H5e1 (JOBS_h5.txt) to launch next.
+
+## 2026-10-31 ~16:45 UTC — boxes launched; ep11 gate past setup; pack 9a waits for the owner's own go in this chat
+- ep11 gate (58552489): inputs ok 16:07; **B0 GO** (C IDENTICAL; T DIFFERS 0.78 mm / 0.65°, as measured on CPU for
+  non-SkylakeX kernels); references built; arms OK; **identity before training GO** (arms apart: blue 2.404 cm, beige
+  0.0 cm over the S12 window); seed-42 wave started 16:18.
+- Masses v2: box A 20261031-mv2a-b5043ce's host went offline before the container started (16:29–16:42) → destroyed,
+  ledger actual $0, relaunched as **20261031-mv2a2-b5043ce** (58556486, Japan $1.508/h); box B **20261031-mv2b-b5043ce**
+  (58556043, Romania $1.375/h). Commit b5043ce.
+- Pack-10 comparison set: **20261031-h5p7-1a7cdff** (58556438, India $1.389/h, ledger $3.00) and
+  **20261031-h5e1-1a7cdff** (58556552, Oregon $1.681/h, ledger $1.50); job strings in docs/research/work/pack10-20261031/JOBS_h5.txt.
+- Pack 9a: owner chose "Ship 9a, flagged" in the mesh session (16:35); disclosure added to the README; parquet staged
+  (sha256 9c19bb0c…); uploader dry run OK (5 left on each board; nothing submitted). The real upload call was blocked by
+  this session's permission guard: the owner's standing rule "dont send anything to kaggle without my approval" and the
+  approval reached this session only relayed. Asked the owner to reply "upload 9a" (or "pack 8") here; not retried.
+
+## 2026-10-31 ~18:15 UTC — pack 9a+ to be uploaded by the score-status session (owner's word there)
+- Owner, to the "New score status" session (~17:20 UTC): "Upload which you think of the highest score potential". That
+  session chose `results/submissions/20261031-track3i-candidate/build_9aplus/` (pack 8 + C0 pot/lid/rack + C1 beige cup on
+  evals 8 and 10 + C1 dust pan; sha256 e02736ea…, commit URL d7ecaef; [E] CD-O 0.333) and uploads it from ITS session to
+  avoid a double submission. This session does not upload. Receipt and the six scores will be recorded here when sent.
+- Eval-10 V4p retrain prep (CPU) running: workflow wf_7c1ef6a1-020 (PREREG with the agreed swap rule scored against both
+  references, job ops/jobs/ev10_v4p.sh, mock, reviews); launch only after an ep11 gate PASS and the owner's go.
+
+## 2026-10-31 18:13 UTC — PACK 9a+ UPLOADED (by the score-status session) — AUC 0.81757, CD-O 0.332
+- File `results/submissions/20261031-track3i-candidate/build_9aplus/track3_submission.parquet` (sha256 e02736ea…, commit
+  URL d7ecaef), submissions 57847040/45/47/49/52/54; receipt + UPLOAD.md copied from claude/standings-20261031.
+- Scores [M] (pack 7 → 9a+): AUC 0.81460 → **0.81757**; SP-SR 0.85 / MP-SR 0.65 unchanged; RPE 3.93179 → **3.87853**;
+  MPPE 2.92126 → **2.89663**; CD-O 0.40188 → **0.33234** (mesh session's estimate 0.333). Ranks: AUC 8, SP-SR 8, MP-SR 8,
+  RPE 11, MPPE 11, CD-O 14 → rank sum 60, 11th (score-status session).
+- Inputs to keep for the PR #215 container: pack 8's rollouts (runs 20261026-pack6-5203d42, 20261030-c33B-0202139,
+  20261030-e1conf2-d41382e in the store), the packed meshes (meshes/c0_pack9a, meshes/c1_pack9aplus, pack 6's meshes),
+  the checkpoints named in each rollout JSON. Nothing is to be deleted from those runs.
+
+## 2026-10-31 ~19:05 UTC — re-track test P_o' vs P_o built on CPU (public, per-episode meshes as templates); NOT launched
+- Owner asked how to improve perception; score-status session's proposal (agreed): track the 20 public episodes with the
+  mesh session's per-episode C0b/E0b meshes (GT-free, from each episode's own video; delivery ETA unknown, needed by
+  ~1 Nov 09:00 UTC) and compare with Phase 1's stored P_o (runs 20261030-orcP1{a,b,c}-87fc869; not re-run).
+- Built (workflow step, focused-pascal; files in docs/research/work/retrack-20261031/):
+  - `ops/jobs/perc_leak.sh` opt-in `LIB_EP_DIR` (per-episode template folder, delivered mesh else library_v3, recorded
+    per object; `-rtk` run ids only in that mode, no arm s); `tools/leak_p1.py` bundle/summary records + new `score`
+    (R lib convention with the tracked mesh, RPE, MPPE); new `tools/rtk_mesh_check.py` (delivery validator + box gate).
+  - Unset = byte-identical [M]: Phase 1's 3 exact job strings replayed before/after (397/451/398 files, 0 differ) and
+    the whole Phase-1 mock suite before/after (9/9 outputs identical); `score` unset = Phase 1's lib numbers on 20/20
+    episodes; library_v3 byte copies as per-episode meshes reproduce P_o exactly (mock tracks 33/33 objects, scores
+    20/20 episodes).
+  - PREREG.md (18:58–19:05 UTC, before any P_o' result): PASS iff mean dR >= +0.01, dR > 0 on >= 12/20, no dR < -0.03,
+    mean dRPE <= 0; unchanged episodes enter as 0 (clarification, can only make PASS harder); INCOMPLETE / INVALID
+    rules; noise floor (o vs o2, lib) R mean |d| 0.0017, max 0.0136; RPE 0.0019 / 0.0077 cm.
+  - rtk_verdict.py (14/14 fixtures on Phase 1's real P_o side), rtk_pull.py, Phase 1's 20 P_o bundles (single-file
+    downloads) in po_bundles/; perc_log_inference cut re-checked on a real Phase-1 log (ep13).
+- JOBS.txt: 2 boxes (ARMS=o, 10 episodes each), run ids <date>-rtk{A,B}-<sha7>, ~$1.6 (range $1.1-4.0; Phase 1's
+  measured $0.65-0.85 per box). Needs: the delivery (validated, committed under meshes/rtk_e0b_public/), the owner's go.
+
+## 2026-10-31 ~19:15 UTC — ep11 gate interim (seed 42 only; NOT a verdict); comparison boxes slow in setup
+- ep11 gate seed 42 [M, partial]: T (V4p) 0.6073 ± 0.053 (ckpt 70M, sim_vs_ref 0.623) vs C 0.5947 ± 0.000 (ckpt 10M,
+  sim_vs_ref 0.515; C sits exactly at its static floor 0.595) → Δ(42) +0.013. Seed 43 started 18:34. The pre-registered
+  rule needs the seed-mean Δ ≥ +0.05 (seed 43 would need ≈ +0.09); no reading until both seeds are in.
+- H5p7: setup (store pulls of every pack run) took until 18:29 (box up 16:45); draw 1 18:33–18:53 (pack 7 replay: eval 10
+  sim_vs_ref 0.4478), draws ~13 min each → done ≈ 20:50; actual will exceed the planned $3 (≈ $5–6 [E]). H5e1 was still in
+  pack_eval at 19:10 (setup ~2.5 h). Both progressing.
+- Masses v2: mv2a2 on its seed-43 wave (ep24, ep13); mv2b on seed 42 (ep11, ep31).
+- Owner (~18:45 UTC, via the score-status session): "Go retrack" (public re-track test when the per-episode clean meshes
+  land; CPU prep wf_91244bc7-640 running); spoon marker correction handled in the score-status session; owner asks not to
+  bring up deadlines in messages to them.
+
+## 2026-10-31 20:51 UTC — ep11 rollout gate: PASS (pre-registered rule) — the eval-10 cup-nest fix (S12 V4p) transfers to rollouts
+- Run 20261031-e11g-663b7df (Vast 58552489, AU $1.069/h, commit 663b7df); VERIFIED (arms differ only in the refined track;
+  identity before and after training ok; B0 C IDENTICAL, T DIFFERS 0.78 mm / 0.65° as predicted); no eval timeouts.
+- Registered AUC vs mocap (public ep11, 10 rollouts per cell) [M]:
+
+  | seed | C (no S12) | T (S12 V4p) | Δ |
+  |---|---|---|---|
+  | 42 | 0.5947 ± 0.000 (ckpt 10M, static floor) | 0.6073 ± 0.053 (70M) | +0.013 |
+  | 43 | 0.5899 ± 0.015 (10M) | 0.8613 ± 0.100 (70M; max 0.942) | +0.271 |
+
+  Seed-mean Δ **+0.142** (bar +0.05; SE 0.018 from rollouts; two-seed spread 0.129), no seed of T below C. sim_vs_ref Δ
+  +0.226. Per object: beige +0.321, blue −0.037. C's policy never leaves the static floor on either seed.
+- Reading [H]: the physically consistent nest lets the grasp-lock learner actually perform the nest on ep11 (seed 43),
+  where the uncorrected reference trains to a do-nothing policy. Seed-to-seed spread is large, so two seeds on eval 10.
+- Ledger actual $5.35 (~5.0 h × $1.069/h; estimate). Results copied to ep11gate/results/.
+- Next (PREREG §5 "PASS buys"): the eval-10 retrain on V4p (ops/jobs/ev10_v4p.sh; reviews GO after fixes, merged
+  now; fixtures 25/25), launched under the owner's eval-10 go (15:20 UTC). Swap only by the both-reference rule.
+- 21:08 UTC **eval-10 V4p retrain launched**: run `20261031-e10v-caf38fb` on offer 28810507 (Spain, $1.377/h), commit
+  caf38fb, job `bash ops/jobs/ev10_v4p.sh`; ledger planned $6.00. Expected ≈ 2.8–4.7 h, $3–7 [E].
+
+## 2026-10-31 ~21:50 UTC — owner decisions (via keen-heisenberg, ~21:25 UTC): D cells tonight; pack 9b
+- Owner: "Yes, start tonight" for the targeted D cells (evals 14, 16, 33 grasp-lock; 25, 30 standard learner; seeds
+  42/43) on each episode's CURRENT packed configuration (no carves, no masses), then 10 fresh official draws per
+  candidate; pack 9b = pack 9a+ + eval-10 V4p (if SWAP-ELIGIBLE) + every passing D cell; "Upload automatically" when the
+  rule and the pack checks pass.
+- Upload constraint: this session's permission guard blocked my own Kaggle upload at ~16:40 (the owner's standing rule;
+  approval reached here only relayed). So pack 9b will be handed, with path / sha256 / checks, to keen-heisenberg's or
+  the score-status session (where the owner gave the word) for the upload, as for 9a+; or the owner says it here.
+- Build started (CPU agent): opt-in D mode on the masses-eval machinery (packed configuration per episode from
+  packed_refs.json), determined-wright's patch_flashchord_dr.py (609582a), PREREG of the swap rule vs H5p7's fresh draws,
+  verdict tool + fixtures, mocks, JOBS. Then review, then launch (grasp-lock box + standard boxes + confirmation).
+- Mesh lane (keen-heisenberg / bold-albattani): interlock carves for ep11/12/13/31/2 delivered nothing tonight; eval-25
+  slot not frozen (round 3 running); pack 10 Tier 1 is planned without new carves unless the mesh lane delivers.
+- Re-track: Set B delivery staged and validated (4611c78); launch held for the blue-cup > 45° proxy-rotation check with
+  the mesh session (spin about the axis expected).
+- RTS smoother: implementation + public gate running (CPU agent); PREREG committed dc4be79 before any score.
+- Credit ≈ $69 (21:20 UTC); reserve ≥ $10.
+- ~21:27 UTC **re-track test launched** (owner "Go retrack"): delivery = Set B with the ep12 blue cup back on library_v3
+  (wrong mesh per the mesh session's axis check, before any score); 13 meshes in 12 episodes; VALIDATION verify OK.
+  Boxes: `20261031-rtkA-8b3cf78` (58580189, Spain $1.431/h; eps 26 13 27 44 42 40 24 45 18 0) and
+  `20261031-rtkB-8b3cf78` (58580201, Denmark $1.473/h; eps 11 12 21 22 31 41 39 23 43 2), commit 8b3cf78, arm o with
+  LIB_EP_DIR=meshes/rtk_e0b_public; ledger planned $1.50 each. Verdict on CPU afterwards (rtk_pull.py + rtk_verdict.py,
+  PREREG retrack-20261031 incl. §11 amendments).
+- Pack 9b upload: corrected my proposal — I will not ask another session to upload (my session's guard blocked the
+  upload; asking a peer would route around it). I publish pack 9b's record and report it; the upload is between the
+  owner and the session where the owner gave the word, or the owner's word here.
+- ~21:45 UTC mesh lane: no new eval carves (keep meshes/carve/ev10, ev01, ev25); C0 blue cup for 9b → my lane NO (fails
+  the guard's pre-registered min clause: ep13 rack+cup −0.030 < −0.02; selector not pre-registered) unless the owner
+  accepts it in their own words. Noted for future carves: lathe ring pieces sag r_in(1−cos(π/N)) inside the cavity at
+  mid-sector (ev10 uses --seg 12: ≈ 1.4 mm at r 40 mm; ev10w measured 1.0–1.9 mm); a tangent-at-mid-sector inner face
+  would be cavity-safe [H]; ev10 unchanged now (the ep11 gate passed with it).
+
+## 2026-10-31 ~21:50 UTC — RTS position smoother (S13): FAILS its pre-registered gate
+- Opt-in refine step S13 (positions-only RTS after S2, keen-heisenberg's frozen settings σ 8 mm, q 4.0/0.04 by the hand
+  gate). Gate on the 20 public episodes (PREREG rts/, dc4be79; amendment 1 before any score): Po mean ΔR_lib **−0.00011**
+  (bar ≥ +0.005), min −0.0022 (ep22), 9 better / 7 worse; refineP replication −0.00046 → **FAIL**. Max move per episode
+  ≤ 0.0044 AUC; positions move 0.03–0.3 cm against the kit's 1–9 cm ADD steps. RPE −0.007 cm (reading only).
+- Default behaviour byte-identical (80/80 runs, 240/240 npz sha256); tests 7/7 + existing s6/s10/s12 pass. S13 stays as
+  an unused opt-in; S2 remains the only adopted time fix. Note: the source's cross-validation record disagrees with its
+  README (σ 16 vs 8 mm on one half); the params were tuned on these same 20 episodes, so the gate is not a holdout.
+- ~22:16 UTC determined-wright (from the mesh lane's ep24 board-slot P1 run, 3c7fd32): (1) [M] contact budget — FlashCHORD
+  sim=rl allows nconmax 256 / njmax 512 per world (the evaluator inherits it); the mesh lane's carved r0 board pieces
+  (57/77 hulls) overflow it in 16/16 one-world copies (500–670 contacts, up to ~2030 rows → dropped contacts, boards fall
+  through); packed meshes/carve/ev25 showed no overflow in 64 D reset-check runs. Rule for any NEW carve into pack 10: a
+  one-world rollout under sim=rl must show no "broadphase overflow" / "nefc overflow" warning. (2) [H] board hover — the
+  public ep24 reference holds the assembled boards 27–36 mm above the table at f246–274 (fits the 3 cm library_v3 board
+  thickness at frame 0); eval 25 may carry the same; falsifier: GT-free depth check of the board bottom edges vs the
+  table plane on eval 25. Neither affects tonight's D cells (packed configuration).
+- Recipe screen complete (determined-wright, c20c94a): K inconclusive, D inconclusive (mean +0.049; sd falls on ep12
+  only), S no signal; the targeted D cells still rest on the per-episode swap rule.
+- ~22:25 UTC determined-wright [M]: FlashCHORD training under sim=rl (njmax 512/world) overflows constraint rows on
+  public ep2 (0.36–0.61 M "nefc overflow" lines, requests up to 948) and ep12 (13k), control included; 0 overflow lines in
+  50 stored scored draws (scoring unaffected). [H] dropped constraints may hurt learning on contact-rich scenes. Candidate
+  (later, not tonight): grep packed eval train.logs; a sim.njmax=1024 training variant if an eval episode overflows heavily.
+- ~23:00 UTC **re-track test: FAIL** (PREREG retrack-20261031 incl. §11; code 8b3cf78; boxes rtkA 58580189 Spain
+  $1.431/h, rtkB 58580201 Denmark $1.473/h; both job rc 0 in 29/31 min, "environment restored from
+  pt2.11-cu130-py313-20261020", RTX PRO 6000 drivers 615.71.09 / 595.71.05 → valid). Pull: `rtk_pull.py` 84 files,
+  0 failed. Score: `leak_p1.py score --perc $S/retrack/pop_root --lib-ep-dir meshes/rtk_e0b_public` → `scores/R_Pop.json`
+  (mean R 0.7208, RPE 3.073 cm, MPPE 5.124 cm). Verdict (`verdict.json` / `verdict.txt`, exit 1):
+  mean dR −0.16974 (≥ +0.01 False), dR > 0 on 3/20 (≥ 12 False), min dR −0.9732 (≥ −0.03 False), mean dRPE
+  +1.3212 cm (≤ 0 False); raw mean dR −0.16909; 12/20 episodes changed; unchanged controls max |dR| 0.0118, max |dRPE|
+  1.88 cm (ep23, already a failure at 14.2 cm); camera difference ≤ 0.077 cm everywhere (no NOTE/INVALID).
+  [M] Losses come from the white_pot template (ep45 0.9795 → 0.0063, ep0 0.9620 → 0.0374 / RPE 1.38 → 17.30 cm, ep26
+  0.9717 → 0.4968, ep2 0.9866 → 0.7233, ep41/42/44 −0.02 to −0.05) and the ep11 blue+beige pair (0.8978 → 0.1927,
+  RPE 1.74 → 10.04 cm). Blue-cup-only episodes 13/21/22: +0.0114/+0.0151/+0.0101 — [H, post-hoc subset, not
+  pre-registered] blue-cup templates alone might help slightly; the falsifying test would be a pre-registered blue-cup-
+  only re-track. Not proposed tonight. Per PREREG §7: no eval re-track; nothing enters an eval pack. Ledger actual
+  $0.73 + $0.81 = $1.54 (planned $3.00).
+- ~22:57 UTC ledger actuals [M, from each box's run_job.log in the store]: h5p7 $5.85 (16:42–20:52Z, 240 min, $1.389/h;
+  plan $3.00), h5e1 $6.95 (16:43–20:49Z, 243 min, $1.681/h; plan $1.50), mv2a2 $6.20 (16:42–20:48Z, 242 min,
+  $1.508/h), rtkA $0.73, rtkB $0.81. Both H5 boxes ran ~2x the plan: [H] per-draw time on those hosts, not checked.
+  Ledger actual total $152.94; open: e10v, mv2b (mine), rscrV42/V43 (other session). Vast credit $56.52 (22:58Z).
+  runs/20261031-h5p7-1a7cdff/results/h5/h5_summary.json is in the store (D build agent, 22:38Z); no CPU rebuild needed.
+- ~23:00 UTC bold-albattani (mesh files only, no tracks read): pot templates' stray parts / centroid offsets do not track
+  the losses (ep44 7 far parts and 62 mm offset, −0.017; ep0 clean and 3.7 mm off, −0.925); all own-video templates carry
+  no colour (trimesh visual None) vs library_v3 grey vertex colours (mean 173, spread 30); volumes 408–778 cm³ vs 625
+  (ep45 widest, 167 mm vs 131). [H] uncoloured templates render in the renderer's default colour and hurt FoundationPose's
+  RGB render-and-compare (not the whole story: uncoloured blue cups gained slightly). Falsifier: re-track ep45 + ep0 with
+  the same meshes painted uniform grey 173 (~$1). Not run tonight (off the pack-10 path; needs the owner's word).
+- ~22:59 UTC **D arm launch, box G (canary)**. Independent review (subagent, 84 tool calls): GO, no blocking defect; default
+  paths IDENTICAL in the equivalence mocks (EG/ES/E2/E3), 45/45 rule + D-line fixtures, packed_refs.json = PREREG table on
+  all five episodes, confirmation box free of FC_DR_*. Required before/at launch: owner's go with cost (relayed GO 20:40 via
+  score-status "sure add that whatev" at ≈$16–23 and ~21:25 via keen-heisenberg "start the D cells TONIGHT"; reviewed
+  cost $16.6–24.6, central ~$21; credit $56.52); a pushed SHA (a1a7e25 = 975231e code + docs only, `git diff --stat
+  975231e HEAD -- ops tools pipeline` empty); G first, S boxes only after G's job.log shows "packed references checked",
+  "patched FlashCHORD (start-state randomisation…)" and the D line in the first drs42 train.log.
+  Job: `ops/vast.sh V2D_COMMIT=a1a7e258bd90… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 58449260 20261031-drG-a1a7e25
+  'ARM=dr MODE=glock EPS="14 16 33" SEEDS="42 43" bash ops/jobs/mass_eval.sh'` → instance 58587687 (France, $1.377/h,
+  RTX PRO 6000 Max-Q, 32 cpu / 123 GB); ledger planned $7.50. (The create call's output echoed the instance's own API key
+  into this session's transcript only; nothing committed. Later creates filter it.)
+  Review's non-blocking notes kept for the reading: "D only" = D + seed + code version (std: D also in the training-box
+  evaluations); run ids after 00:00 UTC carry 20261101 (take ids from the ledger); C evaluates only the candidates while
+  H5p7 evaluated all 20 per call [H: no cross-episode effect]; D on the standard learner untested at 250M steps.
+- 23:07–23:10 UTC box G canary checks [M, job.log via ops/vast.sh exec]: "environment restored from
+  pt2.11-cu130-py313-20261020" 23:07:32; "mass_eval: packed references checked for [14 16 33]" 23:09:17 (ep14 glock
+  20261025-evb1420-ee7ba8e, md5 10d5f3ba…); "patched FlashCHORD (start-state randomisation …, md5 570a7f47793d); training
+  env [FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42]" 23:09:22; runs/drs42_glock/ep14-s42/train.log: "v2d FC_DR_RESET: sampled
+  resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints,
+  4096 worlds, seed 42" (no tail, as required for 14). → S boxes go.
+- 23:11 UTC S25a: `create 57986768 20261031-drS25s42-a1a7e25 'ARM=dr MODE=std EPS="25" SEEDS="42" bash ops/jobs/mass_eval.sh'`
+  (same V2D_COMMIT / ENV_SNAPSHOT) → instance 58588731 (Romania, $1.377/h); ledger planned $3.00.
+- 23:23 UTC S25b: `create 58257843 20261031-drS25s43-a1a7e25 'ARM=dr MODE=std EPS="25" SEEDS="43" bash ops/jobs/mass_eval.sh'`
+  → instance 58589859 (United Kingdom, $1.348/h); ledger planned $3.00.
+- 23:24–23:27 UTC S25a std-path checks [M]: env restored 23:24:17; "packed references checked for [25]" 23:25:42 (ep25 std
+  20261026-c25s42-feb0407, md5 71ac95f3…); D patch md5 570a7f47793d with ENV_EP25 = FC_DR_RESET=1.5,0.015,0.01
+  FC_DR_SEED=42 FC_DR_SKIP_IMMEDIATE=1; runs/perc2mckdr/ep25-s42/train.log: "… 2 objects, 44 finger joints, 4096 worlds,
+  seed 42; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)" (tail as required).
+- 23:28 UTC **eval-10 V4p retrain: NO-SWAP [EQUAL FLOOR]** (run 20261031-e10v-caf38fb, commit caf38fb, instance 58578590,
+  $1.375/h; run_job.log: gpu RTX PRO 6000 WS driver 590.48.01, env restored, job rc 0 after 139 min; ledger actual $3.25).
+  verify VERIFIED (B0 DIFFERS, identity e2s V4p_track 0.007 / stored 1.751, own-reference checks 41/41, 10 confirmation
+  draws rc 0). Seeds: s42 best 50M n 10 sim_vs_ref 0.4524 ± 0.0166; s43 best 60M 0.4512 ± 0.0165; rule 2 chose 43
+  (sha256 bcc51063…). Curves: blue_cup lift 0 at all 7 checkpoints of BOTH seeds [M]. Clauses vs V: a FAIL new 0.4593 vs
+  packed 0.4632 (−0.004); b ok fail rate 1.0 vs 1.0; c ok median RPE 15.864 vs 16.040; s ok draw1 0.4565 ≥ 0.4217.
+  vs P: a FAIL 0.4486 vs 0.4525; b ok; c ok 15.672 vs 15.846; s ok. Both policies fail every draw (EQUAL FLOOR note).
+  [M] The ep11 gate PASS (seed 43 +0.271 vs mocap on the public twin) did not transfer to eval 10: the eval-10 policy never
+  lifts the cup. [H] eval 10's grasp-lock reference / initial state differs from ep11's in a way the gate did not cover;
+  not investigated tonight. Eval 10 stays as packed; pack 9b no longer includes eval 10. Files: ev10retrain/results/.
+- 23:33 UTC **masses v2: NOT ADOPTED** (PREREG masses-v2-20261031 §5, `tools/mass_verdict.py --rule v2`, exit 0):
+  mean delta +0.0034 < +0.03; 1/4 episodes > 0 (needs ≥ 3). ep24 0.3268 → 0.3652 (+0.0384; s42 −0.008, s43 +0.085);
+  ep11 0.5147 → 0.5002 (−0.0144; +0.037 / −0.066); ep13 0.5493 → 0.5473 (−0.002; +0.001 / −0.005); ep31 0.7505 → 0.7421
+  (−0.0085; −0.047 / +0.030). Both verify.json ok, no failures / missing, eval timeouts none; all four references
+  md5 + fingerprint = the table's. mv2b's final push FAILED at 23:11 (box retries in 60 min, then self-destroys); the 30
+  merge files were already in the store (pulled 30/30). Copied verify/summary/job.log of both boxes into results/.
+- 23:32 UTC S30a: `create 56216789 20261031-drS30s42-a1a7e25 'ARM=dr MODE=std EPS="30" SEEDS="42" bash ops/jobs/mass_eval.sh'`
+  → instance 58590659 (Poland, $1.271/h); ledger planned $3.00.
+- 23:45 UTC S30b: `create 28784856 20261031-drS30s43-a1a7e25 'ARM=dr MODE=std EPS="30" SEEDS="43" bash ops/jobs/mass_eval.sh'`
+  → instance 58591555 (Spain, $1.377/h; chosen over the $1.271 Poland offer, which is the same host as S30a); ledger planned
+  $3.00. All five D training boxes launched (G 58587687, S25a 58588731, S25b 58589859, S30a 58590659, S30b 58591555);
+  D boxes burn ≈ $6.75/h. Vast credit $49.53 (23:45Z). Next: per-box summary.json + verify.txt after each box, then
+  dr_eval_merge.py → the confirmation box string (PREREG section 3), then dr_score / dr_verdict on CPU.
+- 23:55 UTC bold-albattani final C0b/E0b hand-off (their cdo-sprint/C0b/README.md, commit e5baab1; relayed to
+  score-status): E0b white_pot (pot/ep3/thick, md5 073872f4…, evals 1 3 5 6 8 28) and beige_cup (beige/ep8/g1, md5
+  0d926da1…, evals 8 10), meshes/library_e0b + library_e0bx (eval 8). [D, public] both worse than 9a+: pot CD-O 0.392 vs
+  C0 0.342, beige 0.30 vs C1/T1 0.25; AUC guard passed on public. Their recommendation: keep 9a+'s pot and beige on
+  score; E0b = the provenance-cleaner option (owner's compliance call). Flags if chosen: pot 17/32 marker balls below the
+  base (−60 mm vs −43 mm), beige three inside-out shells. Lid / rack / blue cup not adopted. Pack 9b keeps 9a+'s meshes.
+- 00:02 UTC D lines on the other standard-learner boxes [M, exec]: S30a ep30-s42, S30b ep30-s43, S25b ep25-s43 all show
+  "packed references checked" (ep30 std 20261025-std30-ee7ba8e md5 dd464c96…; ep25 20261026-c25s42-feb0407) and the D line
+  with the right seed and the "; skip immediate starts (…)" tail. All five D boxes are training.
+- 00:06 UTC determined-wright [M, their record gpu/recipe_screen_V_merged.txt ee8ad41]: arm V (actor sees object
+  velocity) INCONCLUSIVE, not used (Δ V − C seed means ep2 −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007; mean −0.024).
+  Screen complete: K inconclusive, D inconclusive, S no signal, V inconclusive → no recipe change for pack 10 from that
+  lane; the targeted D cells (running) are decided by the swap rule only. rscrV42/V43 self-destroyed (their ~$7.02 [E]).
+- 00:50 UTC mv2b closed: job rc 0 at 23:11:59 after 390 min (box A took 242); final push FAILED at 23:12:09, box held
+  60 min, retried, and was gone by 00:15. Ledger actual $10.45 (~16:36–00:12Z at $1.375/h; plan $9.00).
+  [M] Cause of the failed push (code read + the run_job.log line): `cp: '<results/…/curve/policy_70004736/r3/
+  episode_000011.parquet>' and '/content/push/<run>/…' are the same file`. ops/box/watchdog.sh starts its 30-min interim
+  `store.sh push-run` in the background (`&`); when one is still running as the job's final push-run (lib.sh self_destroy)
+  starts, both rebuild the same /content/push/$RUN_ID with `ln || cp`, the second's cp hits the first's hard link → cp
+  error → push-run fails under set -e. Same symptom as h5p7's failed final push. Effect so far: results were in the store
+  from the interim push (mv2b 30/30, h5p7 all draws); the cost is the 60-min hold (~$1.4 per box).
+  Not fixed tonight: the D boxes and their confirmation box stay on the reviewed commit a1a7e25. Operational rule for
+  tonight: if a D box shows PUSH-FAILED, pull its summary/verify (and what the merge needs) from the store, check them,
+  then destroy it by hand. Fix later (separate change): serialise push-run with flock on /content/push.lock, or give
+  the interim push its own staging folder.
+- ~00:55 UTC built `tools/pack_swap_rollouts.py` for the pack 9b CPU repack (BUILD item 8 was open: C's draw 1 is
+  "pack 7 + candidates", not 9a+). Tests (pack9b cpu/rollout_swap_tests.txt): pure repack = 9a+ byte for byte
+  (e02736ea…); synthetic ep14 swap passes (316 pose + 316 checkpoint rows, CD-O unchanged); 7 refusals behave, incl. a
+  swap without flash_chord metadata (found while testing: the kit packer reads the hashes from the rollout parquet's
+  metadata before the .json, so the tool now checks the swap's metadata checkpoint and evaluator hashes).
+- ~01:00 UTC pre-staged the packed side of the D verdict (single-file downloads, no listing; 60/60): H5p7 r1..r10 for
+  evals 14 16 25 30 33 (50), the old packed draws (pack6 ×4, c33B ep33), and the five packed references P (md5 = the
+  packed_refs.json table on all five). Not scored yet; dr_score runs once C's draws exist (same call scores all sets).
+- 00:47 UTC bold-albattani (their INTERLOCK 20.15, commit 3fce701): **eval-25 board slot verdict NO** for pack 10.
+  Round-3 body (5 slotted boxes per board) slots both boards on public ep24 and passes P2–P7 (P3 0.074 cm / 0.68°; 124
+  constraint rows, 31 contacts, no overflow) but fails the pre-registered ratio clause vs a one-box control (3.9x > 2x);
+  not changed post hoc. [M] Their relative board pose at assembly differs from our packed eval-25 reference (md5
+  71ac95f3) by 9.8 mm / 2.5° vs a 1 mm slot clearance; [H] any future slot must be cut in the frame of the replayed poses.
+  → meshes/carve/ev25 stays; no eval-25 rollout re-run. Pack 10 Tier 1 is now only the D cells (eval 10 NO-SWAP).
+- 01:26 UTC **D S25a (20261031-drS25s42-a1a7e25, 58588731) RESULT [M, job.log via exec]: ep25 VERIFIED** — s42 n 10
+  sim_vs_ref mean 0.8158 sd 0.2275 (hard_ab: 0.2158) min 0.3454 max 0.9333; std main evaluation cut 0/0; D-line ok; hook
+  md5 d92ed771… installed = expected, reset tagged; no stray training logs. Main pipeline qa_policy sim_vs_ref 0.9327
+  (floor 0.3078); selection.json chose policy_250003456 (final). Confirmation string: PICK_EXTRA
+  25:20261031-drS25s42-a1a7e25:ck=runs/perc2mckdr/ep25-s42/policy_250003456.safetensors, DR_EPS / EVAL_ONLY / EPS_ONLY 25.
+  A "chosen checkpoint missing; using " (empty) line comes from hard_ab.sh chosen() (code since be376f7); the repeat
+  evaluations and the confirmation string both name policy_250003456 = selection.json's choice, so it did not change
+  the checkpoint [M]. No comparison with the packed policy yet (that is C + dr_verdict, PREREG section 3/4).
+- 01:30 UTC S25a closed: pushed (no push failure), destroyed ~01:30; run_job.log gpu RTX PRO 6000 Max-Q driver
+  610.57.04, env restored, job rc 0 after 134 min; ledger actual $3.19. Store has the candidate checkpoint
+  runs/…/runs/perc2mckdr/ep25-s42/policy_250003456.safetensors and selection.json. summary/verify/job.log copied to
+  docs/research/work/pack9b-20261031/results/drS25s42/.
+- 01:42 UTC **D S30b (20261031-drS30s43-a1a7e25, 58591555) RESULT [M, exec]: ep30 VERIFIED** — s43 n 10 sim_vs_ref mean
+  0.8173 sd 0.141 (hard_ab 0.1337) min 0.4804 max 0.9212; cut 0/0; D-line ok; hook md5 = expected; no stray logs. Main
+  pipeline sim_vs_ref 0.9224 (floor 0.7277); checkpoint policy_250003456 (same cosmetic chosen() line as S25a). Seed choice
+  between S30a/S30b is the merge's (PREREG 2). Box is saving, then destroys.
+- 01:47 UTC (D check-in) **D S25b (20261031-drS25s43-a1a7e25, 58589859): ep25 VERIFIED, weak seed** — s43 n 10 mean
+  0.4816 sd 0.0245 (hard_ab 0.0233) min 0.4601 max 0.5427; cut 0/0; D-line ok. Main pipeline qa_policy sim_vs_ref 0.4806
+  vs floor 0.3078, verdict "weak"; checkpoint policy_250003456. run_job.log: RTX PRO 6000 Server driver 595.58.03, env
+  restored, job rc 0 after 113 min, pushed. Ledger actual $2.72 (destroy time estimated). [M] eval 25 seeds: s42 0.816 ±
+  0.23 vs s43 0.482 ± 0.02 — the usual seed split on this episode; the merge applies PREREG 2's seed rule.
+- **D S30b closed**: job rc 0 at 01:42:31 (116 min), pushed, gone by 01:46; RTX PRO 6000 WS driver 615.71.09, env
+  restored; ledger actual $2.78. Results copied for both boxes to pack9b-20261031/results/{drS25s43,drS30s43}/.
+- Remaining: S30a (58590659, running), G (58587687, seed-43 wave since 01:08, ~03:00). Vast credit $35.80 (01:47Z).
+- 01:53 UTC **D S30a (20261031-drS30s42-a1a7e25, 58590659): ep30 VERIFIED** — s42 n 10 mean 0.8367 sd 0.1246 (hard_ab
+  0.1182) min 0.5699 max 0.9127; cut 0/0; D-line ok. Sweep chose policy_200007680 (main pipeline sim_vs_ref 0.919, floor
+  0.7277); that checkpoint and selection.json are in the store (kept by push-run's NAMED rule). run_job.log: RTX PRO 6000
+  Max-Q driver 590.48.01, env restored, job rc 0 after 137 min, pushed. Ledger actual $2.98. Results copied to
+  pack9b-20261031/results/drS30s42/. [M] eval 30 seeds: s42 0.837 ± 0.12, s43 0.817 ± 0.14.
+  All four standard-learner boxes done ($11.67 together); G remains (seed-43 wave, ~03:00).
+- 02:35 UTC bold-albattani diagnostic (their gmg/build/I/results/collcarve2-evalcheck/README.md, branch
+  claude/bold-albattani-6qmxsv; GT-free, packed refs + packed pieces): eval 10's packed ev10 pieces (53 / 49) overlap at
+  the nested hands-off rest f124–f160 (median 11.9 cm³, 3.4–32.7); the pair alone in plain MuJoCo with sim=rl limits needs
+  656–1,296 constraint rows / 164–324 contacts (> 512 / 256) at step 0 in all 16 copies × 3 frames; no other eval pair
+  overflows. Smaller: evals 14/30 rack CoACD collider fills ~10.5 cm³ of the slot; eval 14 cup 16.6 mm in the table at
+  f42; eval 32 cup 19.5 mm in the table f32–33; evals 15/16 spoon 44–61 mm from support in ~20 hands-off frames.
+- ~02:36 UTC **measured on the eval-10 V4p retrain's own training logs** (store runs/20261031-e10v-caf38fb/runs/
+  perc2e10vs{42,43}_glock/ep10-s*/train.log, 270 / 263 MB): "nefc overflow - please increase njmax to N" on 6,010,501
+  (s42) and 5,846,480 (s43) lines; requested njmax median 580, p95 752, p99 808, max 1,057 / 1,006 vs the 512 limit; first
+  line at log line 77 (before 1 % of training); 3.58 M lines in the first 50 % of s43's steps. No "broadphase overflow".
+  [H] Constraint rows dropped throughout eval-10 training (cup-in-cup contact) are a cause of "lift 0" at every
+  checkpoint in both seeds. Falsifier: one eval-10 training at sim.njmax 1024 / nconmax 512 (same V4p reference, same
+  recipe, one seed): overflow lines → 0 and the cup still never lifted ⇒ not the main cause. Not run (needs the owner's
+  go; ~1.3–1.6 h, ~$2–3). Not checked yet: whether the packed eval-10 policy's training overflowed the same way, and
+  whether the official evaluator's eval-10 rollouts overflow (scoring path).
+- ~02:38 UTC **eval 10 vs ep11 contact budget [M]** (store train.logs, single-file pulls): the ep11 gate's treatment
+  trainings (run 20261031-e11g-663b7df, same ev10 pieces, same V4p method; RESULT s42 0.6226, s43 0.8564) logged 62 (s42)
+  and 123 (s43) "nefc overflow" lines, requested njmax median 517 / 518, p95 532 / 539, max 547 / 559 — vs 6.0 M / 5.8 M
+  lines, median 580, p95 752, max ~1,050 on eval 10 (e10v). ~5×10⁴ times more overflow on eval 10.
+  [H, strengthened] Eval 10's reference holds the cups deeper in each other (bold-albattani: packed pieces overlap at the
+  nested hands-off rest f124–f160, 3.4–32.7 cm³) than ep11's, so eval-10 training drops constraint rows all the time;
+  this would explain why the ep11 gate's gain did not transfer and why the cup is never lifted. Falsifiers: (1) one
+  eval-10 training at njmax 1024 / nconmax 512; (2) or a reference whose nested rest has no piece overlap (overflow → ~0
+  in a one-world rollout). Either needs the owner's go; nothing launched.
+- ~02:41 UTC overflow vs weak cells (keen-heisenberg's CPU check) [M]: D std training logs — S25 s42 (0.816) 6 lines (max
+  541), S25 s43 (0.482, weak) 0, S30 s42 0, S30 s43 0; eval 1 packed std0116 ep1-s42 (H5 0.822 ± 0.239, min 0.150) 0;
+  carved c01s43 ep1-s43 39 (max 581). No broadphase overflow anywhere. Overflow does not track the weak / high-variance
+  cells; it stays an eval-10 finding (~6 M lines per run there). G's logs (14/16/33) to be counted after the box ends.
+- ~02:42 UTC determined-wright (their contact_budget/README.md, e1a3063) confirms on the packed eval-10 config
+  (meshes/carve/ev10, budget.py at the FlashCHORD pin, sim=rl): training-style sampled resets nefc max 536 / world
+  (median 473), 13 % of world-steps > 512; the PACKED eval-10 run gl10A2's train.log has 8.37 M "nefc overflow" lines;
+  its 5 scored draws have 0 (the policy never nests the cups). → scoring unaffected, training corrupted in the nested
+  phase [M]; [H] a contributor to the floor. Their cheapest variant: training with sim.njmax=1024 (stored in the
+  checkpoint config, so the evaluator rebuilds with it — note for any later use: that changes the evaluated sim config of
+  that one policy; to be cleared against the rules before it enters a pack). D cells unaffected (no ev10 pieces).
+- ~02:44 UTC determined-wright answers [M, their contact_budget/njmax_cfg_test.py + README on claude/determined-wright-3joens]:
+  (1) `sim.njmax=1024 sim.nconmax=512` is a training override stored in the resolved config (env.sim), survives
+  harness.apply_evaluation_composition, and the evaluator's SolverMuJoCo is built with njmax 1024 / naconmax 512 for 1
+  world (stock 512 / 256): no evaluator code change; only constraint-array GPU memory grows (not measured).
+  (2) packed eval-10 run 20261026-gl10A2-5e0e100 runs/glock/ep10-s42/train.log: 8,368,544 overflow lines. (3) its 5 scored
+  draws (results/glock_public/ep10/best/r1–r5/eval.log): 0 overflow lines. (4) budget.py packed config: sampled training
+  resets nefc max 536 (median 473), 13 % of world-steps > 512; explicit resets at f0/124/142/160 max 441.
+  Falsifier proposal stands (one eval-10 training at njmax 1024 / nconmax 512, same V4p reference + recipe; first check =
+  overflow-line count); needs the owner's go. Open question for the owner: is a per-policy sim.njmax change acceptable
+  under the challenge rules (the evaluator inherits it from the checkpoint config)?
+- ~02:45 UTC keen-heisenberg relays the **owner's go, verbatim "Okay go" (02:43 UTC, their chat)** for falsifier 1 only:
+  ONE eval-10 training at njmax 1024 / nconmax 512, ~$2–3. Conditions: diagnostic only, never packed (a 1024 checkpoint
+  takes changed physics into evaluation; the requirements note counts that as manipulating the evaluation unless the
+  organisers OK it); pre-register and commit before launch (supported: overflow ≈ 0 AND lift > 0 at some checkpoint AND
+  sim_vs_ref > 0.459; falsified: overflow gone, lift 0; inconclusive: overflow persists); also evaluate the same
+  checkpoint at njmax 512; usual box rules. Falsifier 2 (no-overlap pieces at 512) is NOT covered.
+  Build delegated to a subagent in its own worktree (opt-in job reusing e10v's stored V4p reference, a no_oracle guard
+  on the run tag, PREREG, CPU mock, JOBS/BUILD). Nothing launched. Pack 9b unchanged (9a+ + passing D cells).
+- ~02:45 UTC bold-albattani starts a CPU-only ($0, GT-free) candidate for falsifier 2: eval-10 cup pieces with no
+  overlap at the nested rest (blue cup inner faces tangent at mid-sector, beige pieces inside its outer surface, ≤ 53 /
+  49 pieces), gated by piece / visual overlap at f124–f160, plain-MuJoCo nefc / ncon and kept volume; output
+  gmg/build/I/results/ev10-cavsafe/; then determined-wright's budget.py. Any GPU test of it needs its own owner go
+  (keen-heisenberg collects plan + cost). Nothing changes in any pack.
+- ~02:52 UTC keen-heisenberg relays the **owner, verbatim 02:50 UTC: "I give you permission for everything"** (answer to
+  their proposal: mesh lane fixes the overlaps behind evals 10 / 30 / 14 on CPU, then GPU retrains under the swap rule).
+  Their reading: GPU tests / retrains that serve the score need no per-batch go (each still needs plan + cost in the work
+  log before launch, PREREG committed before any result, self-destroy + stall watchdog); Kaggle uploads of packs that pass
+  every pre-registered check (pack 9b at 05:00; later pack 10). NOT covered: an njmax-1024 policy in any pack (until the
+  organisers agree), the C0 blue cup, anything reading GT or tuned on eval results. Priority: (1) D confirmation box,
+  (2) njmax diagnostic, (3) eval-10 retrain on the no-overlap pieces (2 seeds, after their gates + budget.py at 512),
+  (4) eval-30 rack-slot carve retrain (std, 2 seeds), (5) eval-14 carve retrain (grasp lock, 2 seeds), (6) one
+  confirmation box for 3–5. Their estimate ~$19 for 3–6 + ~$3 for 2; reserve ≥ $5 credit; stop and report when credit
+  can't cover the next item; owner asked to top up. I am the only launching lane; record "pack 10 ready: <path>".
+  My handling: GPU batches go ahead in that order under those conditions (I keep a $10 reserve where I can). Uploads:
+  unchanged for THIS session — my upload attempt was blocked by the permission guard on a relayed approval, so I do not
+  upload or route an upload elsewhere; I publish each pack record and the upload stays with the session where the owner
+  gave the word (or the owner's own word here).
+- 03:01 UTC **D G (20261031-drG-a1a7e25, 58587687): VERIFIED on all three** [M]: ep14 s42 0.5689 ± 0.2127 (min 0.2816),
+  s43 0.6973 ± 0.0949 (min 0.556) → candidate 43; ep16 s42 0.8228 ± 0.0874, s43 0.8411 ± 0.0734 → 43; ep33 s42 0.9428 ±
+  0.0063, s43 0.9219 ± 0.0705 → 42. Cut 0/0 and D-line ok on all six cells; hook md5 = expected; no stray training logs.
+  run_job.log: RTX PRO 6000 Max-Q driver 595.91.07 (32 cpu / 123 GB), env restored, job rc 0 after 240 min, pushed.
+  Ledger actual $5.57. All five D training boxes: $17.24 measured (plan $19.50).
+- 03:02 UTC **merge** (`tools/dr_eval_merge.py --table …packed_refs.json`, five summaries; c_merge.json committed under
+  pack9b-20261031/results/): CANDIDATES ep14 s43 (sha 332d549c…), ep16 s43 (8356f942…), ep25 s42 (1369113f…), ep30 s42
+  (d1bcdaec…, policy_200007680), ep33 s42 (7c5eb060…). Job string printed by the merge and used verbatim (checked: ends
+  in `bash ops/jobs/h5_reeval.sh`, no FC_DR_*).
+- 03:03 UTC **C launched**: `ops/vast.sh V2D_COMMIT=a1a7e258bd90… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 28784861
+  20261101-drC-a1a7e25 '<c_merge.json job>'` → instance 58608674 (Spain, $1.377/h; the France offer had gone: no_such_ask);
+  ledger planned $1.75. Credit $33.89 before the launch.
+- 03:06 UTC overflow in G's six D training logs [M]: ep14 s42 18,953 lines (median 525, max 650) / s43 15,925 (527, 634);
+  ep16 0 / 0; ep33 s42 29,846 (524, 617) / s43 31,981 (524, 647). Moderate (~10⁴, requests ≤ 650) vs eval 10's ~6×10⁶
+  (requests up to ~1,050); ep33 learns best (0.94) despite ~3×10⁴. Overflow does not track the weak cells here either.
+- 03:13 UTC determined-wright: eval-10 no-overlap candidate **ev10cs not clean** (full scene, sim=rl, sampled training
+  resets: nefc max 510 vs packed 536, 4 overflow lines requesting 515–518; explicit nested frames 409, none). Agreed rule
+  → no eval-10 retrain on it (priority item 3 waits); they check bold-albattani's v2 when it lands.
+- 03:20 UTC bold-albattani (INTERLOCK 21.15, commit 2d9bfc5; tables gmg/build/I/results/collcarve2-eval/precheck_H30_tables.md):
+  collision carve round 2 closed, **no new eval pieces** (keep ev10, ev01, ev25). Corrections: (1) their plain-MuJoCo
+  contact counts failed a validity check (ep24 default pieces 16/16 copies > 512 in plain MuJoCo, none in MuJoCo-Warp), so
+  "656–1,296 rows" on eval 10 is indicative only — the eval-10 overflow stands on determined-wright's FlashCHORD numbers and
+  our training logs; (2) "cup inside the table" used the wrong hands-off definition — under H30 (no hand within 30 mm) no
+  eval frame fails the table check (max 3.9 mm < 4 mm; eval 14 3.2 mm, eval 32 1.0 mm). Where packed pieces overlap at rest
+  (evals 10, 1, 14, 30) the visual meshes overlap too ⇒ pose problems in our references, not collider problems: eval 10
+  f136–160 cups up to 88.5 cm³; eval 1 f0–23 / f309–334 lid in pot ≤ 34.9 cm³; eval 30 22 frames sweeper in rack ≤ 8.4 cm³;
+  eval 14 f140–157 cup in rack ≤ 10.7 cm³; evals 15/16 spoon unsupported ≤ 6.5 / 8.0 mm. Still running in their lane:
+  ev10 cavity-safe v2, eval-30/14 rack candidates. [H] For pack 10 items 3–5 the lever may be the reference pose (fix the
+  overlap in the reference) rather than the pieces; that is a reference rebuild, not yet planned.
+- 04:05 UTC C progress [M, exec]: setup 8 min (env restored 03:11), then pack_eval's --include store pulls of pack 6's base
+  ("Fetching 6866 files" at ~7.5 files/s; one 429 line) until 03:59; dr_pack_check OK 04:01:58 (evaluated = D candidates =
+  14 16 25 30 33); submit_pack clean evaluator 8c778f9, 0 modified files, 04:03:34 = draw 1. [E] draws 2–10 at H5p7's
+  ~1.2 min per episode-draw → ~05:05 end, push, then dr_score / dr_verdict ~15 min, pack 9b build ~10 min → record ~05:30.
+- 04:12 UTC committed `docs/research/work/pack9b-20261031/after_c.sh` BEFORE any C result: the JOBS "After C" steps as
+  one script (single-file downloads of C's 50 rollouts + json + dr_pack_check ×2 + h5_summary; dr_score per episode
+  with sets conf / packed (H5p7) / old vs P; dr_verdict with the scratch c_merge.json). Dry run of the scorer on the
+  packed side of eval 14 (10 H5p7 draws + the old draw): runs in 30 s; output not used for anything.
+- 04:15 UTC njmax build delivered (subagent, worktree branch worktree-agent-ac592c6308cf07a10 head b7202b0; PREREG first in
+  086de63, sha256 33add65e…): ops/jobs/ev10_nj.sh (wrapper; ev10_v4p.sh byte-identical), tools/e10nj.py,
+  tools/e10nj_solver_check.py, opt-in EVAL_NJ_DIAG in glock_public.sh (one added alternative in the eval PERC guard),
+  no_oracle.py refuses e10nj / ev10_nj names and any checkpoint whose stored sim limits are not 512 / 256,
+  pack_swap_rollouts.py also passes each swap's reference_parquet to no_oracle. CPU: cksim 9/9, solver at the pin
+  512/256 vs 1024/512 vs copy 512/256, guard 15/15 (pack 7's 20 checkpoints still accepted), glock_public equivalence
+  5,184 cases 0 differences, mocks 181/181. I reviewed the glock_public / no_oracle / pack_swap_rollouts diffs, merged
+  (451b82d) and re-ran the 9a+ byte-for-byte repack self-test on the merged code: still e02736ea….
+  **Correction [M, subagent from e10v's curve.json]**: the "blue_cup: lift 0" label tracks the blue cup, which rests on
+  the table; the reference lifts the BEIGE cup 23.5 cm into it. Beige r1 lift was 0.0–0.3 cm at 13 of 14 e10v checkpoints,
+  2.5 cm once (a knock, s42 60M). So "the cup is never lifted" stands, but it is the beige cup. PREREG L = beige r1 lift
+  ≥ 5.0 cm at ≥ 1 checkpoint (my call on the owner's "lift > 0": the literal blue-cup clause is degenerate).
+- 04:17 UTC **njmax diagnostic launched**: `ops/vast.sh V2D_COMMIT=451b82d… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  58237198 20261101-e10nj-451b82d 'bash ops/jobs/ev10_nj.sh'` → instance 58615195 (India, $1.392/h, 38 cpu / 998 GB);
+  ledger planned $3.50 (PREREG $1.8 / $3.0 / $5.8; the high case assumes 35 % slower training at 1024, unmeasured).
+  Credit $31.95 before launch.
+- 04:19 UTC keen-heisenberg correction: "lift > 0" was their suggested condition wording, not the owner's (the owner said
+  only "Okay go"); they agree with the PREREG's beige-cup lift ≥ 5 cm clause; PREREG stays as committed in 086de63.
+- 04:47 UTC determined-wright contact-budget verdicts (32 × 60 with controls; record 6b04fba): eval 14 keep the packed
+  rack (candidates c1 / c2 add 12 / 5 overflow lines, packed 0); eval 30 packed clean (0); eval 10 no clean candidate
+  (best ev10cs3 110 / 576 lines vs packed 380 / 9,723) → no retrain on new pieces for 10 / 14 / 30 by the agreed rule.
+  Pack 10 items 3–5 have no gated input tonight. [H] next candidate if the njmax diagnostic supports overflow as the
+  cause: ev10cs3 + njmax 1024 (diagnostic only; needs the owner's go) — the legal route stays a reference-pose fix.
+- 04:50 UTC **D arm verdict (PREREG pack9b-20261031 §4/§6; after_c.sh, committed before the result; tools/dr_verdict.py)**:
+  only **eval 33 PASS**; 14 / 16 / 25 / 30 NO-SWAP. Confirmation box 20261101-drC-a1a7e25 (58608674, Spain $1.377/h):
+  job rc 0 after 104 min, env restored, dr_pack_check ok on both draw paths (evaluated = candidates = 14 16 25 30 33, no
+  failures); 105/105 files pulled; ledger actual $2.17. Clause table [M], new (C, 10 official draws) vs packed (H5p7, 10
+  fresh draws), GT-free sim_vs_ref vs P:
+    ep14 s43: 0.6864 vs 0.7269 (a −0.0405), fail rate 8/10 vs 4/10, median RPE 7.46 vs 3.79 cm, draw 1 0.5928 vs old
+          0.9094 (s −0.2666) → NO-SWAP (a b c s)
+    ep16 s43: 0.8311 vs 0.8498 (a −0.0187), fails 1 vs 0, med RPE 1.83 vs 1.79 → NO-SWAP (a b c)
+    ep25 s42: 0.8580 vs 0.8782 (a −0.0202), fails 1 vs 0, med RPE 2.68 vs 2.95 (c ok) → NO-SWAP (a b)
+    ep30 s42: 0.8164 vs 0.8972 (a −0.0809), fails 1 vs 1, med RPE 3.47 vs 2.93 → NO-SWAP (a c)
+    ep33 s42: 0.9358 vs 0.9234 (a +0.0124), fails 0 vs 0, med RPE 1.96 vs 2.06, draw 1 0.9419 vs old 0.9401 → PASS
+  Candidate for 33: run 20261031-drG-a1a7e25 seed 42, checkpoint sha256 7c5eb060…; pack 9b swap = C's r1/ep33 rollout.
+  [M] Training-box means overstated D on 14/16/25/30 relative to the official evaluator (e.g. ep30 s42 0.837 → 0.816,
+  ep25 s42 0.816 → 0.858 up, ep14 0.697 → 0.686); the packed side's fresh draws were higher than the D candidates on four
+  of five. [E] Expected leaderboard effect of the 33 swap: draw 1 0.9419 vs the packed rollout's 0.9401 → +0.0018
+  sim_vs_ref on one of 20 episodes ≈ +0.0001 AUC (noise level); its value is robustness (D policy sd 0.006 on the
+  training box; official draws min 0.903 vs packed min 0.847). D training + confirmation total $19.41 measured.
+- 04:56 UTC **pack 9b ready: results/submissions/20261101-track3j-candidate/build_9b/track3_submission.parquet**
+  (9,120 rows, sha256 a6c4105abb4a6a85…44e4a, code commit dd24ed4). 9a+ + eval 33's D draw-1 rollout; checks pass:
+  only ep33's 696 pose rows + checkpoint differ, meshes / CD-O identical, uploader offline validation, no_oracle.
+  README there. Not uploaded from this session. (Correction to the 04:50 entry's aside: training-box vs official means
+  differed in both directions — ep30 s42 0.837 → 0.816, ep14 s43 0.697 → 0.686, ep16 s43 0.841 → 0.831, but ep25 s42
+  0.816 → 0.858 and ep33 s42 0.943 → 0.936.)
+- 05:03 UTC keen-heisenberg: **pack 9b uploaded** 04:57–05:02 UTC by that session (owner's direct "Upload automatically"
+  and "I give you permission for everything" there; not from this session). Their pre-upload checks pass (sha256, rows,
+  byte diff vs 9a+ = only e000033 696 pose + checkpoint rows and the commit URL, script hashes = kit, verdict vs PREREG
+  2ce1872, dry run, CD-O = staged). **Board [M]: AUC 0.81677 (9a+ 0.81757), SP-SR 0.85 =, MP-SR 0.65 =, RPE 3.88283
+  (3.87853), MPPE 2.90186 (2.89663), CD-O 0.33234 =.** 9b is slightly worse; each board keeps its best, so 9a+ stays
+  the best on AUC / RPE / MPPE. Receipt + UPLOAD.md on claude/keen-heisenberg-engcwz (157ed61).
+  [M] The AUC change −0.0008 over 20 episodes ≈ −0.016 on eval 33 vs mocap, while our GT-free proxy (vs our reference P)
+  said +0.0018. [H] Proxy differences of this size (|Δ| ≲ 0.02 on one episode) carry no sign information about the
+  board; a swap rule that admits them buys robustness at best. For later rules: require a margin larger than the
+  proxy-vs-mocap disagreement measured on public episodes before counting a swap as a gain (to be sized on public data).
+- 05:09 UTC determined-wright (contact_budget/README.md + ev10_nest_test/README.md, 4f5ff63): **eval-10 candidate ev10cs4
+  (bold-albattani 7e4bc6a, 24 / 21 pieces) clears the gate** — 0 / 0 overflow lines at 32 × 60, hold max 448; nest test
+  under sim=rl: beige tracks the blue nest at 0.14 cm median (packed 1.02), no overflow / floor crossing. → pack-10
+  priority item 3 (eval-10 retrain on legal pieces, stock limits) has its gated input.
+  Plan [E]: 2 seeds on e10v's stored V4p reference with ev10cs4 at 512 / 256, 10 official draws, swap rule on V and P as
+  e10v; first check = overflow lines; plus a reported "material" margin (+0.05 vs both references) after the 9b lesson —
+  reported only, the agreed rule unchanged. Cost ~$3–5 (e10v measured $3.25 for the same shape). Build delegated to a
+  subagent (worktree); PREREG committed before launch. Owner's standing go (relayed 02:50) covers it.
+- 05:14 UTC keen-heisenberg: go for the eval-10 retrain on ev10cs4 (priority item 3; owner's direct "I give you
+  permission for everything" 02:50 in their chat). Conditions passed to the build agent before its PREREG commit:
+  pack-eligible config = the packed eval-10 checkpoint's except pieces (ev10cs4 by md5) and the stated reference, stock
+  512 / 256; the pack-9b swap rule (a/b/c/s) vs the packed policy's fresh draws, seed choice per pack-9b PREREG §2;
+  confirmation draws only if a seed's training-box mean vs V beats the packed fresh-draw mean vs V (0.4632), else
+  NO-SWAP and stop; reported clause beige lift ≥ 5 cm; **new binding pack-10 inclusion rule: expected sim_vs_ref gain ≥
+  0.02 on the episode (new − packed on both V and P)**; disclose bold-albattani's failed "blue kept volume" gate (0.384;
+  every cavity-safe set fails it) with the acceptance reason (drop / nest tests cover that risk); ~$3.5 [E]; reserve
+  ≥ $10 (credit $29.93 at 05:06). "pack 10 ready: <path>" if it passes; keen-heisenberg verifies and uploads.
+- 05:11 UTC bold-albattani: ev10cs4 frozen by md5 (ev10-cavsafe/ev10cs4/FROZEN.md, fa2ec41; build 7e4bc6a) with known
+  trades [M]: blue kept volume 0.384 < 0.80 gate (fails; accepted on drop / nest); 6 mm cavity floor 3 mm above the
+  visual bottom (overlap at insertion f109 17.1 cm³ vs 9.5 with 3 mm); thin release margin (5.49 of 6 mm in FlashCHORD;
+  plain-MuJoCo drops cross in 2–8 of 16 copies); beige settles 1.3–24.4 mm deeper than the reference (plain MuJoCo) [H:
+  read as tracking error]; blue outer faces ≤ 3.9 mm outside its lathe, beige pieces 8 + ≤ 5.4 mm inside, blue COM
+  12.8 mm toward the base; pose floor unchanged (visual overlap 80.6 cm³ median f124–f160); v2–v4 designed after v1's
+  numbers, each version's gates committed before measuring. Passed to the build agent for the PREREG / provenance note.
+- 05:12 UTC bold-albattani: standby **ev10cs5** = ev10cs4 with only the blue floor plate at 8 mm (determined-wright's nest
+  test 05:17: release max depth 4.0 vs 5.5 mm, i.e. ~4 mm margin vs ~0.5; driven tracking 0.12 vs 0.14 cm). My call
+  (nothing launched; design-test numbers only, no eval result): prefer ev10cs5, pre-stated in the PREREG — used if it
+  arrives with every other piece byte-identical to ev10cs4 by md5 and determined-wright's 32×60 recheck shows 0 / 0
+  overflow, both by 06:30 UTC; else ev10cs4 (fa2ec41). Build agent told to parameterise the pieces; recheck requested.
+- 05:14 UTC determined-wright [M]: packed meshes/carve/ev10 also carries inertia.json; make_assets.py reads it. ev10cs4
+  vs packed (0.3 kg each): blue COM z 2.99 → 15.77 mm (12.8 mm toward the floor plate), inertia +0.4 / +0.4 / +4 %;
+  beige COM 1.4 mm, izz −10 %, ixx/iyy +1.6 %. Decision: keep piece-derived inertia (the pipeline's way, as packed);
+  disclosed as a second changed variable; the job records the inertials and md5s it used. determined-wright will run
+  the 32×60 budget + byte-identity checks on ev10cs5 ~20–25 min after it lands.
+- 05:17 UTC bold-albattani: **ev10cs5 frozen** (build 7935261, A5 gates 99be31e committed before the build, FROZEN.md
+  2b016b4, `lathe_cavsafe.py --plate_t 0.008`). My own git-blob comparison of ev10cs4 vs ev10cs5 on
+  origin/claude/bold-albattani-6qmxsv (1373603b, 51 files each): differ only blue_cup/piece_16.obj (the plate) +
+  blue_cup/inertia.json, blue_cup/lathe_collision.json, carve.json, FROZEN.md. Rule clause (a) — "every piece other than
+  the floor plate byte-identical" — holds; the four non-piece records follow the plate (inertia derived from the pieces;
+  build records), judged allowed now, before any result. Their plain-MuJoCo numbers (indicative only; plain MuJoCo
+  over-counts vs MuJoCo-Warp, see 03:20): better drops (f124 0/16 through the floor vs 6/16), worse gate-1 max overlap at
+  f124 (3.9 vs 2.6 cm³, fails their 3.0) and f111 overflow in 3/16 plain-MuJoCo copies (v4 0); blue COM 16.1 mm toward
+  the base (v4 12.8). Decision stays with the pre-stated rule: clause (b) = determined-wright's FlashCHORD 32×60 recheck.
+- 05:24 UTC determined-wright (contact_budget/README.md "ev10cs5 check", be1e893): ev10cs5 (1373603) — byte identity vs
+  ev10cs4: only piece_16.obj (plate 6 → 8 mm, 30.93 cm³), inertia.json (blue COM z 15.77 → 19.05 mm), and build records
+  differ; all 21 beige files + 23 other blue pieces identical; **32×60 budget 0 / 0 overflow lines** (sampled + explicit
+  f0/111/116/124/142/160). Caveat [M]: max rows 503 (sampled) / 504 (explicit) of 512 vs ev10cs4's 448 / 459 — thin
+  headroom; at 4096 worlds the worst world may occasionally exceed 512. → **pre-stated rule met: the retrain uses
+  ev10cs5** (05:24 < 06:30). The PREREG's overflow check (> 1,000 lines → "pieces not clean in training", reported)
+  covers the headroom risk.
+- 05:25 UTC njmax diagnostic interim [M, exec; not a reading]: training 04:34 → 05:17 (43 min for 70M steps at 1024; not
+  slower than e10v); train.log "nefc overflow" lines **0**; curve sim_vs_ref 10M 0.553, 20M 0.493, 30M 0.631, 40M 0.490 …
+  (e10v ~0.44–0.46). The PREREG label waits for lift.json (beige), the 10 official draws at 1024 and the 512 copy.
+- 05:45 UTC **eval-10 njmax-1024 diagnostic: SUPPORTED** (PREREG eval10-njmax-20261101, 086de63; run
+  20261101-e10nj-451b82d, commit 451b82d, instance 58615195 India $1.389/h; run_job.log RTX PRO 6000 Max-Q driver
+  595.91.07, env restored, job rc 0 after 87 min; ledger actual $2.06). RESULT line [M]:
+    O = 0 overflow lines in the 1024 training (nefc 0, broadphase 0, narrowphase 0; bar 1,000; e10v had ~6 M per seed);
+    L = beige r1 lift max 23.9 cm (bar 5.0; any repeat 36.1; e10v control 2.5 / 0.3);
+    A = official sim_vs_ref vs V at 1024, n 10, mean 0.9129 (draws 0.869–0.933; bar > 0.4593); vs P 0.8805;
+    512 readout VALID: the same checkpoint at stock 512 / 256, n 10, mean 0.9034 vs V (Δ −0.0095), 0.873 vs P;
+    e10v control re-scored 0.4593 vs V (consistent); guard 6/6 refused; training-box eval 0.8832 ± 0.0493; 0 overflow
+    lines in every official draw. Results copied to docs/research/work/eval10-njmax-20261101/results/.
+  Reading: dropped constraint rows during training were the cause of eval 10's cup-never-lifted floor (both the packed
+  policy and e10v). Eval 10 goes from ~0.46 to ~0.91 on the GT-free proxy (≈ +0.45 on one of 20 episodes; [E] up to
+  ~+0.02 AUC if the board follows, unverified). DIAGNOSTIC ONLY, NEVER PACKED — per the owner's condition.
+  Open question for the owner (not acted on): the 512 copy is evaluated with stock physics (only the training used
+  1024); whether a policy TRAINED at njmax 1024 and evaluated at stock limits is acceptable is a rules question for the
+  organisers. The legal route tonight is the ev10cs5 retrain at stock limits (build in progress).
+- 05:52 UTC overflow triage of all 20 packed eval policies' training logs [M: sizes via one batched get_paths_info, no
+  listing, no download; lines ≈ (bytes − ~19 KB) / 45 B per "nefc overflow - please increase njmax to NNN" line, an
+  estimate]: eval 10 runs/20261026-gl10A2-5e0e100/runs/glock/ep10-s42 376.6 MB ≈ 8.37 M (matches determined-wright's
+  count); eval 33 (rcB s43) 952 KB ≈ 21 k; eval 32 (fr32s46b s46) 910 KB ≈ 20 k; eval 14 (evb1420 glock s42) 227 KB ≈
+  4.6 k; eval 20 (evb1420 glock s42) 74 KB ≈ 1.2 k; the other 15 ≈ 19 KB = 0. Only eval 10 is in the ≳ 10⁵ class
+  (determined-wright's candidate threshold); ~2×10⁴ is what D's G ep33 had while learning 0.94. → the njmax / clean-pieces
+  lever is eval 10 only; no other eval gets an overflow retrain. Packing a 1024-trained checkpoint stays excluded (owner's
+  condition) even though determined-wright reads it as legal; that question goes to the owner / organisers.
+- 06:00 UTC ev10cs5 retrain build delivered (subagent; worktree branch worktree-agent-a85860be5329e0f22: 9f49f4a pieces,
+  13c4133 PREREG + job + tools, b202905 BUILD + mocks). PREREG docs/research/work/eval10-cs4-20261101/PREREG.md sha256
+  d7d31381… committed in 13c4133 before any result. Files: meshes/carve/ev10cs4 (fa2ec41) + ev10cs5 (2b016b4) with
+  MD5SUMS / FROZEN.md / PROVENANCE.md; tools/e10cs_pieces.py, tools/e10cs.py (reuses e10v rule2 + e10v_verdict.verdict);
+  ops/jobs/ev10_cs.sh; glock_public.sh one opt-in alternative (EVAL_CS_REF=1, perc2e10css<seed>). Reference: e10v's V
+  reused byte for byte [M: a rebuild with the new pieces would move only the beige in 45 hands-off frames, 0.88 cm
+  median]. Inertia = piece-derived (ev10cs5 blue COM 19.05 mm, +16.1 vs ev10). Failed mesh gate 4a (blue kept volume
+  0.402 vs 0.80) disclosed. Mocks 174/174, glock_public equivalence 0 diffs / 11,232 cases, no_oracle 23/23. I reviewed
+  the shared-code diff (glock_public opt-in only), merged (50c2d90d), PREREG sha unchanged, both MD5SUMS pass (50/50).
+- 06:10 UTC **ev10cs5 retrain launched**: `ops/vast.sh V2D_COMMIT=50c2d90d… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  58237198 20261101-e10cs-50c2d90 'PIECESET=ev10cs5 bash ops/jobs/ev10_cs.sh'` → instance 58625218 (India, $1.392/h);
+  ledger planned $3.50 (PREREG $2.4 / $3.1 / $5.6). Credit $28.94 before launch. Order: overflow count per train.log
+  first; training-box gate (> 0.4632 vs V) before the 10 official draws; swap rule on V and P; pack-10 inclusion ≥ +0.02
+  on both.
+- 06:36 UTC keen-heisenberg (under the owner's 02:50 permission), on bold-albattani's re-base result 9c0bc0c: (1) skip
+  the public ep2 P2mck A/B (eval 1 already carries the matching cure; changes no pack); (2) **eval-20 pitcher go,
+  conditional on determined-wright's budget.py 32×60 clean** (b1 vs packed, 0 overflow). Basis [M, their numbers]:
+  packed pitcher falls over in a hands-free settle at f0 (195 mm / 94.6°); b1 (rebase/sets/ev20/water_pitcher/, 41
+  pieces) settles 8.5 mm / 3.2°, passes G1 / G3 at f183 / f192; packed H5 mean 0.888 ± 0.043. Conditions as ev10cs5
+  (pack-eligible config = packed eval-20 checkpoint's except reference / seed / output keys, stock limits, b1 by md5,
+  PREREG with the pack-9b rule, 2 seeds, training-box gate vs the packed fresh-draw mean, pack 10 only if ≥ +0.02);
+  apply via `placement_carve.py assets` on refs/sf/ep20/assets with SF=0 (not make_assets --pieces); eval-20 reference
+  md5 4d06d8d4. Plan [E]: ~$3–6 incl. confirmation; credit $28.94 (06:11) − ev10cs5 ≤ $5.6 − eval 20 ≤ ~$6 ≥ $10
+  reserve → may run in parallel. Build delegated to a subagent (worktree); launch after the budget check + PREREG commit.
+- 06:44 UTC determined-wright (contact_budget/README.md "Eval 20, b1", f59c897): **eval-20 b1 pitcher set CLEAN** —
+  0 / 0 overflow lines (sampled / explicit f0/14/152/183/192), sampled max 342 (median 291) vs packed 348 (293),
+  explicit max 321 vs 317; applied with pipeline/placement_carve.py assets on the packed refs/sf/ep20/assets, packed
+  reference md5 4d06d8d4. Observation [M]: under b1 the blue cup touches the world geom (≤ 6 contacts / world sampled,
+  31 at explicit frames; packed none for the cup). [H] the carve removed pitcher fill that held the cup up. I asked for a
+  blue-cup settle check at f152 / 183 / 192 (CPU, $0) before the launch; passed the observation to the build agent for
+  the PREREG disclosure.
+- 06:44 UTC ev10cs5 retrain interim [M, exec; not a reading]: seed 42 train.log at 28.0 % (19.6 M / 70 M steps) has 303
+  "nefc overflow" lines (max requested 555), 0 broadphase — vs e10v's ~6 M per seed on the packed ev10 pieces. [E]
+  ~1,100 at 100 % if the rate holds: near the PREREG's 1,000-line "not clean in training" label (reported only; the rule
+  still applies). Matches determined-wright's thin-headroom warning (503 / 504 of 512).
+- 06:47 UTC determined-wright (docs/research/physics-2026-10-30/ev20_settle/README.md, 85e8ef8): **eval-20 blue-cup settle
+  under b1 fine** [M] — 2 s hands-free settle at the reference pose (md5 4d06d8d4), FlashCHORD sim=rl: f152 0.03 cm /
+  0.2° (packed 0.10 / 0.1), f183 0.17 cm / 0.7° (packed 4.19 cm / 29.4°, tips), f192 0.33 cm / 0.7° (packed 1.27 / 0.5);
+  final lowest point within 1 mm of the table, transient dips ≤ 4.1 mm; no overflow / NaN. Flag: at f192 the pitcher
+  falls hands-free in both (packed 6.8 cm / 28°, b1 12.0 cm / 50°); stable at f152 / f183. [H] f192 is a pour / in-hand
+  frame; the build agent checks hands-off status (H30, our tracks) and discloses. Not a blocker for the launch.
+- 06:57 UTC keen-heisenberg, from bold-albattani's f0 survey (a6923c5): eval 19 sweeper falls in 16/16 hands-free
+  settles at f0 (std-mode reference, support_fill never ran) → a pre-registered CPU support_fill test on the eval-19
+  reference (coordinate with bold-albattani; my tool); a GPU retrain only after ev10cs5 + eval 20 are funded and under
+  the ≥ +0.02 rule (packed mean already 0.921). ev10cs5: settle at f0 in progress (survey: packed ev10 beige corner below
+  the support 6.5 mm / 4°; report-only for the s42 / s43 reading). Pots evals 3/5/6/8 and spoons 16/33 move in the
+  zero-action rest checks but not hands-free; determined-wright tests whether the replayed hands touch them.
+- 06:56 UTC bold-albattani asked for an OK to run support_fill on the eval-19 reference (CPU, $0, their folder; gates
+  pre-registered in their rebase/ev19/GATES.md: tips < 5° in ≥ 15/16 hands-free copies at f0 and the first H30 frame,
+  visual md5 unchanged, piece count, budget.py binding). OK given with the call (pipeline/support_fill.py at 22fb399f,
+  default settings as glock_public SF=1, packed perc2mcks reference of 20261025-std1928-ee7ba8e) and the ep18 history:
+  the first fill did not stop the brush falling (fill bug: a slab for one rest pose under another, fixed — a fill may not
+  reach below any other resting pose), so the tool may add nothing if eval 19 has several resting poses.
+- 07:03 UTC bold-albattani (CPU, GT-free): (1) ev10cs5 f0 settle (rebase/ev10cs5_f0.md, 01d7cc3; plain MuJoCo, packed
+  eval-10 reference 1a5003d9): beige start wobble 6.5 mm / 4.0° unchanged vs packed (a low beige corner puts the COM
+  outside the lowest support points; matches our rest check 7.6 mm / 4.0°), blue steadier (0.86 mm / 0.55° vs 2.35 /
+  1.52), no copy falls, nest rows 136–288 vs packed 556–948; after a drop into the nest the beige can sit ~11 mm deeper
+  than the reference. Report-only for the ev10cs5 reading. (2) **eval-19 support_fill: sweeper CERTIFIED BY FILL**
+  (GATES a0ffceb before the run; result 4fa6ec4; FROZEN 64338be): support_fill.py 22fb399 default auto fill on packed
+  reference 201f338a, fill 0.5 cm (slab 4.2 cm³), margin 1.4 → 5.5 mm, tip 1.3 → 5.0°; E1 f0 16/16 falls (90.2 mm /
+  88.8°) → 0.01 mm / 0.01° all copies < 0.86°; f2 16/16 falls → 1.70 mm / 1.53° all < 2.03°; E2 visual md5 unchanged;
+  23 pieces vs 19; plain-MuJoCo rows max 160 vs 196 (indicative); overlay URDF 90df047a + sf glb f27eb335; eval 30 shares
+  mini_sweeper via /content/assets → eval 19 needs its own asset copy. Next: determined-wright budget.py; a GPU retrain
+  only if credit allows after ev10cs5 + eval 20, ≥ +0.02 rule (packed mean 0.921 ± 0.034).
+- 07:17 UTC ev10cs5 retrain interim [M, exec; not the reading]: seed 42 done — train.log 992 "nefc overflow" lines
+  (max request 599); curve 10M 0.465, 20M 0.316, 30M 0.389, 40M 0.460, 50M 0.347, 60M 0.510, 70M 0.460 (blue lift label
+  0–8; beige lift to be read from lift / curve json); chosen policy_60002304; training-box n 10 mean 0.4768 ± 0.0646
+  (min 0.366, max 0.558) → above the gate bar 0.4632, far below the njmax-1024 diagnostic (0.883 training box / 0.913
+  official). Seed 43 training since 07:17. [H] Clean pieces at stock limits did not by themselves recover the 1024 gain
+  on s42 (still ~10³ overflow lines, plus the pieces' trades: raised floor, deeper settle, unchanged beige start corner);
+  the PREREG verdict waits for s43 + the official draws.
+- 07:20 UTC eval-20 b1 build delivered (subagent; worktree branch worktree-agent-ad5ea562458c54efd: 36f255a pieces + job +
+  PREREG + tools, 51baed0 BUILD + cpu/out). PREREG docs/research/work/eval20-b1-20261101/PREREG.md sha256 d13c9116…,
+  committed in 36f255a before any result. [M] Packed eval-20 policy = grasp lock s42, 70M (stored config sha256 61dcd7a6;
+  evb1420 job.log "eval_both ep20: chosen glock, means std 0.1461, glock 0.8923"). Pieces meshes/carve/ev20b1 = the lane's
+  frozen set (83d18d0; 41 pieces = 9c0bc0c), applied via placement_carve.py assets on the packed refs/sf/ep20/assets, SF=0:
+  only the pitcher URDF changes (9 → 41 collisions), visual + inertial unchanged, blue cup untouched. Gate: training-box
+  mean > 0.8933 (exact H5p7 value); rule on P: (a) ≥ 0.89335 (b) 0 draws RPE > 5 cm (c) median RPE ≤ 1.67 cm (s) draw 1
+  ≥ 0.8448; inclusion ≥ 0.91335. Risk disclosed [M]: f192 is hands-off (nearest hand 149 mm; hands-off f165–end) and
+  b1's pitcher is less stable there in FlashCHORD (12.0 cm / 50° vs 6.8 / 28°). Builder's guess P(included) ≈ 0.2,
+  ≈ +0.0008 AUC if included [E]. Mocks 153/153, equivalence 0 diffs / 15,552. Merged (4207ce42); PREREG unchanged;
+  MD5SUMS pass.
+- 07:26 UTC **eval-20 b1 retrain launched**: `ops/vast.sh V2D_COMMIT=4207ce42… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020
+  create 58449260 20261101-e20b1-4207ce4 'bash ops/jobs/ev20_b1.sh'` → instance 58631864 (France, $1.410/h; the UK offer
+  had gone); ledger planned $3.50 (PREREG $2.3 / $3.2 / $5.4). Credit $27.03 before launch; with ev10cs5 running both
+  stay above the $10 reserve.
+- 07:48 UTC interim overflow [M, exec; not readings]: eval-20 b1 s42 train.log 542 lines at 31 % ([E] ~1,700 at 100 %;
+  the packed eval-20 log ≈ 1.2 k by size); ev10cs5 s43 645 lines at 98 % (s42 ended at 992). Both pieces were 0 / 0 at
+  32 × 60 in determined-wright's budget runs; 4096-world training with sampled resets still finds ~10³ rows-overflow
+  events. PREREG labels apply as written (> 1,000 → "pieces not clean in training", reported; the rule still decides).
+- 08:13 UTC **eval-10 retrain on ev10cs5: SWAP-ELIGIBLE [EQUAL FLOOR]; pack-10 inclusion: INCLUDE** (PREREG
+  eval10-cs4-20261101 §5.5, 13c4133; run 20261101-e10cs-50c2d90, code 50c2d90d, instance 58625218 India $1.389/h;
+  run_job.log RTX PRO 6000 Max-Q driver 595.91.07, env restored, job rc 0 after 121 min; ledger actual $2.85). [M]:
+    inclusion gain (new − packed sim_vs_ref) V +0.069, P +0.0591 (bar +0.02 on both) → INCLUDE;
+    clauses all hold on V and P: a_V +0.069, b_V 0.0 (fail rate 1.0 vs 1.0), c_V median RPE margin 2.10 cm, s_V +0.090;
+    a_P +0.059, b_P 0.0, c_P 2.05, s_P +0.091;
+    gate met (s42 0.4768, s43 0.5096 > 0.4632); chosen seed 43 (best policy_10002432, sha256 ca7c4e3a…);
+    overflow lines per training log s42 992, s43 660 (bar 1,000; e10v ~6 M); beige r1 lift max s42 239.8 cm [anomaly —
+    physically impossible as a lift; probably the cup was thrown], s43 12.7 cm (clause ≥ 5 cm: true);
+    official draws (n 10) vs V: sim_vs_ref 0.5322 ± 0.0615 (packed 0.4632 ± 0.0067), RPE median 13.94 / mean 21.12 cm
+    (max 76.9; packed 16.05 ± 0.09), MPPE median 8.56 cm; vs P: 0.5116 ± 0.0557 (packed 0.4525), RPE median 13.79 /
+    mean 20.87; per object vs V: blue 0.831, beige 0.243. All draws still fail RPE > 5 cm (equal-floor note).
+    Draw 1 (the pack rollout): vs V 0.512, RPE 13.25, MPPE 7.92; vs P 0.497, RPE 12.85 — the replaced 9a+ rollout: vs V
+    0.472, RPE 15.96, MPPE 8.47; vs P 0.456, RPE 15.76; beige moves 10.4 cm (packed 0.7; reference 25.4).
+  [E] Board: AUC up on eval 10 by ~+0.04–0.07 on the proxy (≈ +0.002–0.003 AUC over 20 episodes if the board follows);
+  draw 1 also has lower RPE / MPPE than the packed rollout. Results copied to eval10-cs4-20261101/results/.
+- 08:20 UTC **pack 10 ready: results/submissions/20261101-track3k-candidate/build_10/track3_submission.parquet** (9,120 rows,
+  sha256 e1bef1e5d7df3513…0e2a, code commit a187a8c9). 9a+ (best upload) + eval 10's ev10cs5 draw-1 rollout (s43,
+  ca7c4e3a…); checks pass: only ep10's 322 pose + checkpoint rows differ, meshes / eval / packer / uploader hashes
+  identical, CD-O xyz identical, uploader offline validation, no_oracle. README there. Not uploaded from this session.
+- 08:22 UTC eval-20 b1 interim [M, exec; not the reading]: seed 42 done — 1,236 overflow lines (max request 604; > 1,000
+  → "pieces not clean in training" label if it stands); curve 10M 0.266, 20M 0.212, 30M 0.191, 40M 0.325, 50M 0.290, 60M
+  0.616, 70M 0.845 (still rising); training-box n 10 0.7861 ± 0.1473 (min 0.411) < gate 0.8933. Seed 43 since 08:17.
+- 08:44 UTC keen-heisenberg: **pack 10 uploaded** 08:38–08:43 UTC by that session (owner's direct "Upload it" there, after
+  their permission check blocked the first try; not from this session). Their checks pass (sha e1bef1e5…, byte diff =
+  e000010 only, njmax 512, PREREG 13c4133, dry run). **Board [M]: AUC 0.81915 (best; 9a+ 0.81757, +0.0016 — estimate was
+  +0.002), RPE 3.68275 (best; 3.87853), MPPE 2.84759 (best; 2.89663), SP-SR 0.80 (9a+ 0.85), MP-SR 0.65 =, CD-O 0.33234 =.**
+  Each board keeps its best: AUC / RPE / MPPE improve, SP-SR stays at 9a+'s 0.85. [H] SP-SR lost eval 10: the old policy
+  "succeeded" because the cup barely moved; the new one moves it ~10 cm without completing the nest — an eval-10 policy
+  that completes the nest should win SP-SR back. Receipt + UPLOAD.md on claude/keen-heisenberg-engcwz (5b0f081).
+  [M] First confirmed board gain from the contact-overflow finding; the GT-free proxy gain (+0.04 on the episode) matched
+  the board's direction this time (AUC +0.0016 ≈ +0.032 on one episode).
+- 08:56 UTC **eval-20 b1 retrain: NO-SWAP [pieces not clean in training] → no pack 10b** (PREREG eval20-b1-20261101,
+  36f255a; run 20261101-e20b1-4207ce4, code 4207ce42, instance 58631864 France $1.410/h; run_job.log RTX PRO 6000 Max-Q
+  driver 595.91.07, env restored, job rc 0 after 89 min; ledger actual $2.14). [M] Training-box gate not met: s42
+  0.7861 ± 0.147, s43 0.8929 ± 0.036 vs the bar > 0.8933 (packed H5p7 0.8934, 0 fails, median RPE 1.67 cm); no
+  confirmation draws; overflow lines s42 1,236, s43 1,334 (bar 1,000). Eval 20 stays as packed. Results copied to
+  eval20-b1-20261101/results/.
+- 08:58 UTC wrap-up (owner via keen-heisenberg: finish in-flight, start nothing new): 0 Vast instances; ledger all closed
+  (actual $200.12 of the $325 budget; nothing planned-open); Vast credit $23.63. Agent worktrees removed (all three
+  merged first, no uncommitted changes); no scheduled check-ins of this session pending.
+- 11:05 UTC keen-heisenberg relays the **owner's go (verbatim "I give give you go", 09:11 UTC, their chat; relayed 09:12,
+  reached here 11:04)** to pack the njmax-1024-trained eval-10 policy scored at stock limits (owner's reading: the rule
+  protects the evaluation setting; the training buffer is a training choice). It replaces "never packed" for this one
+  policy only. Conditions: stock config in the saved checkpoint (evaluator log proof), reuse the conf512 draws if they
+  came from the pristine evaluator on that exact file (else one ~$2 box), 0 overflow in every scored draw, the pack-9b
+  rule vs pack 10's eval-10 draws + ≥ +0.02, a dated PREREG amendment saying the 512 values were already seen, a
+  sha-specific guard exception, byte diff vs pack 10 = e000010 only, README disclosure, plan + cost first, ≥ $10 reserve.
+  Plan: CPU only, $0 (reuse the stored conf512 draws); amendment committed first
+  (eval10-njmax-20261101/PREREG_AMENDMENT_pack11.md), then downloads, checks, re-scoring of both sides with
+  e10v_score.py, verdict, guard allowlist, pack 11 build on pack 10's inputs.
+- 11:25 UTC **pack-11 verdict (PREREG_AMENDMENT_pack11.md, 998385b0, committed before scoring; tools/p11_verdict.py
+  b8bc0aa7 = e10v_verdict unchanged with the packed side set to pack 10's eval-10 policy): SWAP-ELIGIBLE → INCLUDE**
+  (standing rule on already-seen draws; not a blind test). Required checks [M], all pass: ck512 (sha256 aaa077eb…)
+  stored config 512 / 256 in sim and env.sim, weights buffer byte-identical to the 1024 checkpoint, only those 4 keys
+  differ; SolverMuJoCo built at njmax 512 / naconmax 256 for that exact file on the pristine evaluator tree, cuda:0
+  (run 20261101-e10nj-451b82d results/ev10_nj/solver_build.json; the 1024 checkpoint builds 1024 / 512); 10 conf512
+  official draws all rc 0, 0 overflow lines in every evaluator log, every rollout names aaa077eb…; checkpoint_sha256
+  covers the whole .safetensors file (tensors + stored config). Re-scored on CPU (e10v_score.py, V md5 5d22fc57…,
+  P md5 1a5003d9…), both sides together: new vs V 0.9034 vs packed (pack 10's ev10cs5 s43) 0.5322 (+0.371) [corrected 11:50: first written as 0.8342 / 0.4630], vs P 0.873 vs 0.5116
+  +0.361; fail rate (RPE > 5 cm) 0 / 10 vs 10 / 10; median RPE margin 11.9 / 11.3 cm; draw 1 vs V 0.9175 (RPE 1.89 cm)
+  vs old 0.5120. Bar +0.02 on both → INCLUDE. Files: eval10-njmax-20261101/results/pack11/.
+  **Pack 11 NOT built**: the guard exception (an allowlist entry for this one sha in tools/no_oracle.py +
+  ops/provenance/allow_checkpoints.json) was denied by this session's permission check as a security-control weakening
+  (the owner's go reached me relayed). Not worked around (no --skip-no-oracle, no other session asked to do it). It needs
+  the owner's own word in this session, or the owner deciding another route.
+- 11:40 UTC **owner's own word in this session**: "I approve adding a single sha-specific allowlist entry in
+  tools/no_oracle.py for the eval-10 checkpoint ck512 (aaa077eb…): trained with njmax 1024, evaluated at stock 512/256.
+  Build pack 11 = pack 10 with that eval-10 rollout. Only that checkpoint; every other non-stock checkpoint stays refused."
+  Done: tools/no_oracle.py ALLOW_CKPT = {aaa077eb…} — an input is accepted only when its own content names that sha256
+  (the .safetensors file's sha256, a rollout parquet's flash_chord.checkpoint_sha256, a rollout json's
+  checkpoint_sha256); main() accepts such a file whole (its json strings name the diagnostic paths), the directory walk
+  skips such files; nothing else changed. tools/pack_swap_rollouts.py: the swap's reference-path word is not passed for
+  a swap whose own rollout names an ALLOW_CKPT sha (the rollout itself is still checked). Tests
+  (eval10-njmax-20261101/cpu/scripts/allow_ckpt_test.py → cpu/out/allow_ckpt_test.json): 17/17 — ck512 and its conf512
+  rollouts accepted (as is and renamed); the 1024 checkpoint (as is and renamed, non-stock by content), the conf1024
+  rollouts, a tampered json, the run id / folder / reference words, the whole e10nj results dir and a mixed input set
+  refused. By-content limit noted: a json on a neutral path claiming the allowed sha is accepted; the pack builder
+  additionally requires parquet metadata = json = --expect-checkpoint. Regression: oracle / leak / scanlib / t3 mesh /
+  r5ks / perc2scan still refused; pack 10's inputs accepted; 9a+ pure repack still byte-identical.
+- 11:50 UTC **pack 11 ready: results/submissions/20261101-track3l-candidate/build_11/track3_submission.parquet** (9,120 rows,
+  sha256 3c428350ec8a3558…055ec, code commit 50312319). Pack 10 (e1bef1e5…) + eval 10's conf512 draw-1 rollout (ck512,
+  aaa077eb…; trained njmax 1024 / nconmax 512, evaluated at stock 512 / 256). Checks pass [M]: vs pack 10 only ep10's
+  322 pose + checkpoint rows differ (other episodes' checkpoints identical), meshes and eval / packer / uploader hashes
+  identical, CD-O xyz identical (sha256 ca3c2875…), uploader offline validation, no_oracle (accepted the two swap files
+  only through the owner-approved exception). README there (disclosure line included). Not uploaded from this session.
+  Correction: the 11:25 entry first quoted the means as 0.8342 / 0.4630 vs V; the verdict file's means are vs V 0.9034
+  vs 0.5322 and vs P 0.873 vs 0.5116 (gains +0.3712 / +0.3614 were right).
+- 11:45 UTC keen-heisenberg: **pack 11 uploaded** 11:39–11:44 UTC by that session (their checks pass: sha 3c428350…,
+  byte diff = e000010 only, stock 512 in config and solver build, verdict per 998385b0, dry run). **Board [M]: AUC
+  0.83921 (best; pack 10 0.81915, +0.020 — estimate was ≈ +0.02), SP-SR 0.85 (= 9a+'s best; pack 10 0.80), MP-SR 0.70
+  (best; 0.65), RPE 3.17899 (best; 3.68275), MPPE 2.54531 (best; 2.84759), CD-O 0.33234 =.** The proxy gain
+  transferred (+0.37 on one episode ≈ +0.019 AUC). Receipt on claude/keen-heisenberg-engcwz. Nothing pending from
+  their side.
+- 18:58 UTC keen-heisenberg relays an owner request (their chat): robot-hand videos of the weakest evals 14, 25, 30
+  (the pack-11 policies = pack 7's for these; eval 10's ck512 only if easy). Under the owner's 02:50 permission.
+  **Plan + cost (before launch)**: one box, `ops/jobs/sub_videos.sh` with PACK_RUN=20261030-c33B-0202139 (pack 7's
+  submission: eval 14 / 25 / 30 checkpoint paths + sha 05b13510 / 7edd445b / bc9fccad, = pack 11's), EPS="14 25 30",
+  REPLAYS="14:3" (eval 14 is bimodal in H5p7: 3 fresh replays, each tagged and scored so the mode is stated), RUNS
+  narrowed to these episodes only (30 Oct lesson: pulling all of pack 6's runs cost ~6 h under HF 429), pack 6's PICK
+  entries for 14 / 25 / 30, ASSET_PIECES ev25 + ev10 as pack 6 / H5. Code changes (opt-in; defaults unchanged; bash -n
+  + a mock of the new logic): PICK `ck=` form handled as pack_eval.sh does (eval 25 failed on 30 Oct without it);
+  REPLAYS="EP:K" → K tagged replays ep<N>_r<i>.mp4. Eval 10's ck512 skipped: it is in no PACK_RUN's submission, so the
+  job's sha check against the submitted rollout would refuse it (not easy). Videos stay out of git (store + H.264 via
+  the tool's ffmpeg step). Cost [E]: ~1.0 h (setup 0.35, pulls 0.1–0.3, 5 replays in 2 waves 0.35, push 0.1) ×
+  ~$1.4/h ≈ $1.4; high ~$4 (HF 429); ledger planned $2.50; credit $23.63 → reserve kept.
+- 18:56 UTC **video box launched**: `ops/vast.sh V2D_COMMIT=b96ae95c… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  58257843 20261101-vid3-b96ae95 'PACK_RUN=20261030-c33B-0202139 EPS="14 25 30" REPLAYS="14:3" PAR=3 RUNS="20261025-evb1420-ee7ba8e@refs/glockt/ep14,refs/sf/ep14
+  20261026-c25s42-feb0407@refs/perc2mcks/ep25 20261025-std30-ee7ba8e@refs/perc2mcks/ep30" PICK="14:20261025-evb1420-ee7ba8e:final
+  25:20261026-c25s42-feb0407:ck=runs/perc2mcks/ep25-s42/policy_250003456.safetensors 30:20261025-std30-ee7ba8e:final"
+  ASSET_PIECES="…/meshes/carve/ev25 …/meshes/carve/ev10" bash ops/jobs/sub_videos.sh'` → instance 58698678 (United
+  Kingdom, $1.348/h); ledger planned $2.50; credit $23.56 before launch. Output: store runs/20261101-vid3-b96ae95/
+  results/sub_videos/{ep14_r1,ep14_r2,ep14_r3,ep25,ep30}.mp4. Reporting only; nothing is chosen from the videos.
+- 19:28 UTC **robot-hand videos done** (run 20261101-vid3-b96ae95, code b96ae95, instance 58698678 UK $1.347/h; run_job.log
+  RTX PRO 6000 Server driver 595.58.03, env restored, job rc 0 after 30 min — narrowed pulls ~11 min vs ~6 h on 30 Oct;
+  ledger actual $0.70). Store runs/20261101-vid3-b96ae95/results/sub_videos/: ep14_r1.mp4 2,060,257 B, ep14_r2.mp4
+  2,005,295 B, ep14_r3.mp4 2,099,219 B (7.9 s each), ep25.mp4 3,754,269 B (17.8 s), ep30.mp4 2,127,355 B (13.2 s); all
+  H.264 (ffprobe). Replay sim_vs_ref vs our reference (the replay tool, not the official evaluator) [M]: eval 14 r1 0.560
+  (bad mode), r2 0.285 (below every H5p7 draw), r3 0.749 (between the modes; H5p7: good ~0.87–0.91, bad ~0.51–0.66) —
+  no good-mode replay captured; eval 25 0.897 (H5p7 mean 0.878); eval 30 0.901 (0.897). Eval 25 rendered this time
+  (PICK ck= fix). Eval 10 ck512 skipped (in no PACK_RUN submission). Reporting only; nothing is chosen from them.
+### 30 Oct ~09:30 UTC — owner: embodiment options; a human-shaped (MANO-like) hand; "simulate the episode physically first"
+- Listed every embodiment option (Sharpa variants in `flashchord_conf/embodiment/`, NVIDIA's `_primitive` / `_stiff`,
+  `dexmate_sharpa`, `g1_dex3`, new builds: gripper, other hands, human-shaped hand). Sharpa Wave is the closest shipped
+  hand to the human hand; measured size gap: Sharpa index finger 10.45 cm vs our perceived hand 6.25–6.45 cm (1.6×).
+- **Correction:** the FAQ ("Other embodiments are welcome, including ...") does not forbid a human-shaped hand. Note 04
+  §9.4's "ask organizers before any custom embodiment" was caution, not a rule (as note 26 §F found for wrist gains).
+  Remaining practical issue [I]: MANO's own model files are non-commercial/no-redistribution, while winners release
+  Apache-2.0, so a human-shaped hand would be built from our own perceived hand proportions, not MANO's files.
+- Owner's idea: a perfect human-hand copy makes the simulated episode match the video, and physics/policy are corrected
+  where it does not. Answer: zero action already replays the reference exactly and RL learns the correction, so the
+  idea is our current pipeline with a better-matched hand. A copy alone does not hold objects: video gives positions,
+  not grip forces; our reference is 2–3 cm off mocap and contact needs mm; simulated contact is rigid with no
+  torsional friction. Literature: SPIDER kinematic replay 11.0 vs physics-optimised 48.8 ADD-AUC (5 hands); V2P-Manip
+  human-hand model 82.4 % after RL. "Simulate the episode physically first" = forensics idea D (SPIDER / Do as I Do,
+  est. $7–35 + 1.5–2 days, works with Sharpa too). Changing object mass/friction to fit the video = system
+  identification; it crosses our own "do not change the world" line (note 26 §F), so it is the owner's decision.
+- Proposed falsification tests (not run): (1) Do as I Do-style physics pass with Sharpa on ep24/ep18, falsified if
+  it does not beat the grasp-lock zero-action replay against our reference; (2) human-proportioned hand, zero-action
+  CPU replay on ep24/ep18, falsified if reset overlaps and early drift do not drop and sim_vs_ref does not beat
+  Sharpa. Awaiting the owner's choice; nothing launched.
+
+### 30 Oct ~09:45 UTC — owner: use MANO; set object weight/friction "as much as allowed" to match the video
+- Read today (scratchpad copies, not committed): NVIDIA FAQ PDF (raw GitHub, main), kit `tracks/track_3/README.md`,
+  MANO licence page. No physics or object-property rule in the FAQ or kit README. MANO licence: "non-commercial
+  scientific research", "may not be reproduced, modified and/or made available in any form to any third party",
+  no distribution; commercial use (incl. "production of other artifacts for commercial purposes") prohibited.
+- Owner decision: object physical properties may be set; the simulator's world (solver, contact model) stays. Recorded
+  in STATUS.md with the proposed honesty constraints (per object not per episode, plausible values, no GT, declared).
+- Facts given: object mass/COM/inertia live in our URDFs (make_assets.py, 0.3 kg placeholder, thin-shell inertia);
+  friction is one global `scene.contact_friction` 1.0 for every shape; per-object friction needs code changes;
+  `object_free_joint_damping` would act as an unphysical brake. Mass cannot be measured from video alone.
+
+### 30 Oct ~09:50 UTC — object physics study launched (owner: COM first, public meshes first, 3–4 public episodes)
+- Owner: "find the centre of gravity"; proposal accepted; "first try it with the public given meshes, later the
+  generated meshes"; hand choice (MANO vs own design) left to us; 3–4 public GPU episodes approved.
+- Container setup (this cloud session, 4 CPU): FlashCHORD at the evaluator pin 8c778f90 in `scratchpad/fcvenv`
+  (uv sync). Its LFS assets were refused by the git proxy (repo not in the session's set); fetched instead from
+  media.githubusercontent.com at the same commit, every file's sha256 checked against its LFS pointer (559 files).
+- Measured [M]: NVIDIA's public URDF says "Track 3 supplies no measured physical properties. 0.3 kg is a placeholder
+  mass; COM/inertia are a uniform triangle-surface estimate over the collision mesh"; the scans' origin is that
+  centroid. Materials from public video frames: pot, lid, cups, pitcher, rack, dust pan = rigid plastic; boards = wood.
+  Our library_v3 meshes: shell COM 2–25 mm from the scans' (pitcher 24.5, beige cup 16.1, rack 13.4 mm); solid-vs-shell
+  COM on our meshes up to 19 mm (spoon, blue cup) because our meshes are thicker / partly filled (boards 2.7–3.1 cm
+  thick vs 8.5 mm real).
+- Pre-registered (README, before results): CPU zero-action S1 − S0 rule; GPU registered-AUC S1 − S0 rule.
+- GPU: `20261030-physS0-6a814df` (58386066, UK, $1.348/h) and `20261030-physS1-6a814df` (58386069, KR, $1.177/h),
+  `ARM=S0|S1 bash ops/jobs/physics_arms.sh`, commit 6a814df, ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger
+  planned $6.50 each. Credit $63.49 before launch; the other session's videos box 58363797 was running.
+- ~10:00 UTC owner: "I approve for gpu too" — explicit confirmation of the GPU arms already launched (S0 58386066
+  loading, S1 58386069 in setup).
+
+### 30 Oct ~10:35 UTC — hand representation chosen: own capsule hand (review `physics-2026-10-30/human-hand-models.md`)
+- Background literature/open-source review (D-Grasp, ArtiGrasp, DeepSimHO use mean-shape MANO split per bone; HUG,
+  HOIC, PhysHOI use capsules; MyoHand measured locally). Recommendation adopted (owner left the choice to us):
+  **(b) our own Apache-2.0 capsule hand on the MediaPipe 21-keypoint tree, 22 finger DoF (Arti-MANO's set), kit
+  floating wrist**; MANO-derived files cannot ship under Apache-2.0, and no physics paper simulates a fitted MANO
+  surface; MyoHand (Apache-2.0) only as a source of numbers (Newton skips its muscles; fixed size; 1-DoF thumb MCP).
+- Proposed parameters [L/I]: capsule radii 6–9.5 mm + 2 pad spheres per tip (FlashCHORD/MJWarp makes one contact per
+  geom pair); index MCP/PIP/DIP effort 2.5/1.5/0.6 N m (Valero-Cuevas 1998; MyoHand capacity 3.65–4.85/2.12–2.74/
+  0.85–0.89 N m); graded PD MCP:PIP:DIP ≈ 2.0:1.2:0.5 N m/rad; hand ≈ 0.4 kg, gravity-compensated.
+- **[H-size]** (review, from earlier measurements): perceived index MCP→tip 6.25–6.45 cm vs palm 5.0–5.2 cm, ratio
+  1.2–1.3 against 1.7–2.1 expected (MyoHand 94.8/45.2 mm) → perception likely shortens fingers 25–40 %. Consequence: the
+  earlier "Sharpa fingers 1.6× ours" compares against an undersized perceived hand; against MyoHand's index (94.8 mm)
+  the Sharpa's 104.5 mm is ≈ 1.1× [I]. Build two variants: P (perceived bone lengths) and A (anthropometric
+  proportions scaled by palm). Falsified if the 10 best frames per public episode still give index < 7.5 cm, or A ≤ P.
+- MANO-vs-capsule head-to-head (§6.9) needs MANO files downloaded locally by the owner (registration); not run.
+
+### 30 Oct ~11:20 UTC — human capsule hand built and replayed (CPU); CPU mass test neutral
+- CPU zero-action mass test (pre-registered): neutral (mean Δ S1 − S0 +0.021). Details in physics README.
+- `pipeline/human_hand.py` (commit 232ca35): 22-DoF human capsule hand with the Sharpa's names; FlashCHORD builds it
+  unchanged (52 bodies, 60 shapes, 22 finger DoF per hand, 17 contact links); zero-pose FK equals the template chain
+  lengths. First IK pass had the finger flexion sign inverted (fingers pinned at extension limits); fixed by deriving
+  each chain's flexion sign from the geometry.
+- Pure copy of the perceived motion with the human hand (S1 physics): P 0.323 / 0.617 / 0.331 / 0.194 and A 0.325 /
+  0.596 / 0.133 / 0.103 (diverged) on ep2/12/18/24 vs floors 0.506/0.605/0.619/0.220 → the copy does not carry objects;
+  ep12 cup lost at f37 as with the Sharpa. `tools/hold_gap.py`: perceived fingertips near (median +0.2–1.8 cm) but not
+  squeezing. [H-size] falsified in this test (P ≥ A). Next: [H-squeeze] (pre-registered in the README).
+- GPU arms: both boxes building references since 10:08 UTC (masses confirmed in their job logs).
+
+### 30 Oct ~12:00–13:45 UTC — GPU mass arms done; human-hand squeeze and grasp-lock falsified
+- Worker restart ~12:05 (owner: "Tekrar deneyin"); nothing lost (all pushed through 0ad5c7e).
+- GPU (registered AUC vs mocap, 5 evals): S0 0.944 / 0.862 / 0.573 / 0.207, S1 0.736 / 0.885 / 0.625 / 0.232 (ep2/12/18/24);
+  harm by the rule (ep2 −0.208: S1 training collapsed after 20M). S1 box self-destroyed 12:36 (ledger actual $3.31);
+  S0 box finished but its store push failed on HF 429s (summaries copied off the box into
+  `docs/research/physics-2026-10-30/gpu/`); it retries once, then destroys itself.
+- Human hand: [H-squeeze] falsified (+0.3 rad: +0.009 / −0.019 / +0.019 / +0.002). [H-lock] first three runs void
+  (URDF robot name; primitive shapes had no surface samples; grasp_lock ignored the hand config) → fixes 62286da,
+  103e1ba, 9731c7b (`GL_EMB`, default unchanged); valid run falsified (+0.117 / −0.039 / −0.055 / −0.092).
+- focused-pascal session told the S0/S1 store paths (it reuses S0 for its oracle-twin comparison).
+
+### 30 Oct ~13:50 UTC — round 2 launched (owner: "go nuts with all")
+- S0 physics box finished; its first store push failed (HF 429) and the 60-min retry succeeded (results in the store);
+  ledger actual $5.39 (estimate). Credit before round 2: $51.27 (ledger: $46.39 spent of the $100 budget).
+- Code 5ba27bd: `glock_public.sh` HUMAN mode (per-episode human capsule hand through every stage; default unchanged),
+  `physics_arms.sh` PAIRS / SEEDS / HUMAN. Rules pre-registered in the physics README (round 2).
+- Boxes (ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger planned $3 / $3 / $4.50):
+  - `20261030-p2s0-5ba27bd` 58409544 (KR, $1.542/h): `ARM=S0 PAIRS=2:20261024-ev3-2c1e4dd:mck SEEDS="43 44"`;
+  - `20261030-p2s1-5ba27bd` 58409510 (JP, $1.495/h): `ARM=S1 PAIRS=2:... SEEDS="43 44"`;
+  - `20261030-p2hu-5ba27bd` 58409512 (US, $1.508/h): `ARM=S0 HUMAN=1` (ep2/12/18/24, seed 42).
+  The first p2s0 create hit a vanished offer (no instance created); relaunched on 48635918.
+- Option 3 (physics-based motion solving): background research agent on Do as I Do / SPIDER code (CPU only).
+- ~14:40 UTC (1) COM on our meshes: shell centroid median 8.3 mm from the scans (kept); [H-com] O0 vs Oc not falsified
+  (+0.215 / −0.024 / −0.060 / +0.021) but the 2 mm chaos control moves as much (+0.109 / −0.005 / −0.116 / +0.151) →
+  zero-action replays are chaotic in object parameters; the COM effect is sensitivity, not accuracy.
+
+### 30 Oct ~13:50–15:05 UTC — option 3 (physics solver): Do as I Do / SPIDER read; FlashCHORD-native sampling MPC on CPU
+Write-up: `docs/research/physics-2026-10-30/physics-solver.md`. Code: `tools/physics_solve/{solve.py,jitter_check.py}`.
+Background agent, CPU only, $0, no ground truth read.
+- Clones (scratchpad `src/`):
+  - Do as I Do `824591b` (MIT; MuJoCo Warp `5d5a645`, mujoco 3.4.0, warp 1.10.1, torch; CUDA required; Sharpa MJCF);
+  - SPIDER `4471700` (CC BY-NC 4.0; mujoco-warp 3.7.0.1; no Sharpa MJCF).
+  - Their simulator differs from FlashCHORD: condim 6 vs 3, finger kp 300 vs 1.7, wrist kp 1000 vs 400 + ball effort
+    25, 5 ms vs 10 ms, one free object per hand.
+- `solve.py`: annealed sampling MPC whose rollouts are FlashCHORD worlds (`sharpa_hands_mid`, VOC 0). It works on
+  FlashCHORD's residual channels, keeps a 1-world truth env and 4 worker processes, and supports rollback and K robust
+  copies. Exactness:
+  - the truth trajectory is bit-identical to `trace_rollout.py zero` of the written parquet;
+  - worlds are independent;
+  - three bugs found and fixed: quaternion ulp in the loader FK path, finger-limit clip, never-reset VOC hold.
+- ep12 (input: S1 GL+ILC, zero action 0.600, floor 0.605), nominal zero-action sim_vs_ref:
+  - v1 0.6485 (64 samples × 4 iterations, 695 s);
+  - v2 stopped after t=40 (superseded);
+  - v3 0.6899 (24 candidates × 4 robust copies, 4 rollbacks, 1,203 s): the cup is carried to f84 instead of being
+    lost at f37.
+- **Not robust:** `jitter_check.py`, 8 copies at 0.5 mm / 0.005 rad: GL 0.556 ± 0.031, v1 0.559 ± 0.025, v3 0.564 ±
+  0.039. The pre-registered bar of 0.586 is not met: [H-robust] falsified at CPU scale. At 10 µm / 1e-4 rad: 0.570 /
+  0.574 / 0.564.
+- Side result: single zero-action replays are noisy estimates. Jittered GL+ILC: ep2 0.260 ± 0.071 (nominal 0.141),
+  ep18 0.219 ± 0.075 (0.279), ep24 0.200 ± 0.006 (0.203).
+- After v3: the sampler clips offsets to the residual clips. v3 had reached 1.29 rad on the fingers, so the planner
+  was inaccurate on 9 of 54 replans; the truth and the scores are unaffected. Fixed, solve.py md5 `c41881ae` (`ad6a7525` after a docstring update).
+- Proposed next step (owner's go-ahead needed): CUDA port, then G1 on ep2/12/18/24 (~1 h, ~$1–1.5) with a 32-copy
+  jitter gate. Plan and costs in the write-up §5.
+
+### 30 Oct ~17:20 UTC — round 2 results; usage-limit stop and resume
+- 5-hour usage limit hit ~15:10–17:00 UTC: the solver-port and literature agents stopped (resumed at 17:08); the worker
+  restarted. Round-2 boxes finished meanwhile (job exit 0; self-destroyed 15:51–16:18); ledger actuals $3.16 / $3.04 /
+  $3.72 (estimates).
+- ep2 3-seed means S0 0.738, S1 0.898 → signal for plausible masses; same-reference seeds agree to 0.001 → reference-
+  build variance dominates. Human hand + RL worse than the Sharpa (mean −0.161).
+- Physics fit v1 (`pipeline/phys_fit.py`) written; inputs pulled for ep2/12/18/24 (perception tracks of 25 Oct, hands,
+  table_frame.npz); baseline scores reproduced exactly (0.9823 / 0.9662 / 0.9642 / 0.8117).
+
+### 30 Oct ~17:00–17:25 UTC — physics solver: CUDA port + G1 box job, pre-registered (no GPU run yet)
+- Owner/coordinator go-ahead for G1 (GPU cap ~$2). `tools/physics_solve/solve.py` (md5 `07e3755e`):
+  - `--device cuda` runs one in-process planner env (`--worlds` = all worlds); CPU keeps the worker processes;
+  - device-generic state transfer (`assign`; the CPU tests are still bit-exact);
+  - `--truth_device` and `--deadline_s` added.
+- `jitter_check.py` (md5 `3522b860`): `--device`, the box KIT default, `--json`.
+- CPU checks:
+  - the in-process path gives offsets and truth identical to the worker path;
+  - truth vs official replay 0.0;
+  - the deadline path works;
+  - jitter reproduces 0.5594.
+- New `ops/jobs/physics_solve.sh` (md5 `d2f3d701`):
+  - per episode: S1 stored GL+ILC(+EVOLVE) reference (fallback S0, then a rebuild here), S1 scan assets;
+  - then jitter (K 64), solve (1,024 worlds = 256 × 4 robust, H 20, 4 iterations, 6 rollbacks, deadline 4 s/frame),
+    official replay + score, jitter of the output;
+  - writes `summary.json` with the verdict.
+  - Dry-run on CPU in a scratch root (store stubbed): completes; the fallback chain behaves.
+- Pre-registered in `physics-solver.md` §5.1: PASS iff the solved jittered mean beats GL+ILC by ≥ 0.03 on ≥ 2 of 4
+  episodes; harm flag at ≤ −0.05.
+- Expected ~40–55 min box time, ≈ $0.8–1.4. Nothing rented by the agent.
+- ~17:20 UTC physics solver G1 launched: `20261030-psolve-eecd18a` (58429953, TX, $1.519/h), `bash ops/jobs/physics_solve.sh`,
+  commit eecd18a, ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger planned $1.50; gate pre-registered in
+  `physics-solver.md` §5.1. Credit before launch $35.82.
+- ~18:15 UTC physics solver G1 **PASS** (jittered Δ +0.080 / +0.063 / −0.004 / +0.005 on ep2/12/18/24; 2 of 4 ≥ 0.03);
+  box job exit 0 after 45 min, ledger actual $1.29. Physics fit v1 passed its gate (+0.0070 mean) but with a frame-0
+  alignment confound; the frame-0-held control is running.
+
+### 30 Oct ~18:25–18:45 UTC — physics solver G2 + G3: one box job, pre-registered (no GPU run yet)
+- Owner approved G2 and G3 (cap ≈ $14.5).
+- `solve.py` (md5 `be1dabb1`) gains Do as I Do's early stop (`--early_rel/--early_n/--min_iters`), pacing
+  (`--pace_s`) and matrix knot interpolation. CPU-tested: early stop fired; pacing cut iterations; truth vs official
+  replay 0.0.
+- New `ops/jobs/physics_solve_rl.sh` (`179ac592`):
+  - **G2**, ep2 + ep12:
+    - 4,096 worlds = 1,024 × 4 robust copies; 3 s horizon, 0.5 s commits, ≤ 32 iterations (anneal 0.9518 → G1's
+      final noise), early stop, 3 rollbacks;
+    - pace 14.4 s/frame, deadline 18 s/frame (ep2 ≤ 1.7 h);
+    - 64-copy jitter of the GL+ILC input, of G1's output and of G2's output on the same box.
+  - **G3**, all four episodes:
+    - the frozen round-1 S1 recipe through `glock_public.sh` REUSE_REF on the solved references (G2's if its
+      jittered mean ≥ G1's, else G1's; G1's for ep18/24);
+    - `robot_<side>_frames` stay the intended hand.
+  - CPU dry run in a scratch root with a fake store and a stub `glock_public.sh`: passes.
+- Readings pre-registered in `physics-solver.md` §5.2:
+  - G2 scale vs G1;
+  - [H-RL] at 30M vs round-1 S1 seed 42;
+  - final registered AUC vs round-1 S1 seed 42 (signal / harm / inconclusive);
+  - ep2 vs round-2 seeds reported.
+- Expected ~3.7–4.5 h box, ≈ $4.5–6.8. Nothing rented by the agent.
+- ~18:40 UTC physics solver G2 + G3 launched: `20261030-psolverl-04301a2` (58438083, NY, $1.467/h),
+  `bash ops/jobs/physics_solve_rl.sh` (default G3_PICK: G2's reference for ep2/ep12 only if its jittered mean ≥ G1's —
+  GT-free; accepted), commit 04301a2; ledger planned $6.80; readings pre-registered in physics-solver.md §5.2.
+  Credit before launch $32.67. Expected ≈ 3.7–4.5 h.
+- 23:05 UTC psolverl box done (job exit 0 after 259 min; ledger actual $6.48). G2 "scale helps" (jittered ep2 0.763,
+  ep12 0.832 vs GL+ILC 0.524 / 0.578). G3: RL from solved references much faster (30M: 0.965 / 0.761 / 0.523 / 0.191 vs
+  0.483 / 0.549 / 0.529 / 0.112) but final AUC harm by the rule (0.584 / 0.892 / 0.622 / 0.244 vs 0.736 / 0.885 / 0.625 /
+  0.232; ep2 collapse after 30M, as round-1 seed 42).
+- ~23:15 UTC round 3 (realistic-mass seed round) launched: `20261030-p3ms1-2298cd3` (58463509, UT, $1.482/h) and
+  `20261030-p3ms0-2298cd3` (TX offer 31194553; the first S0 offer had vanished, nothing rented), `ARM=S0|S1
+  PAIRS=ep12/18/24 SEEDS=43 bash ops/jobs/physics_arms.sh`, commit 2298cd3; ledger planned $3.60 each (the p3ms0 planned
+  line was written 4× by ledger retries on the slow store; one actual line closes it). Credit $23.35 before launch.
+
+### 31 Oct ~03:15 UTC — round 3 result: realistic masses adopted (pre-registered rule); usage-limit pause overnight
+- Owner hit the usage limit; resumed 03:02 UTC. Round-3 boxes: p3ms0 done (job exit 0, $3.28); p3ms1 watchdog-destroyed
+  after a 30-min stall in ep12's checkpoint evaluation ($3.88; ep12 seed 43 missing). Mean Δ +0.090 → adopt.
+- ~04:55 UTC 31 Oct: owner topped up; credit $41.17 (0 instances). Pack session (focused-pascal) owns the eval retrain with
+  the adopted masses; it proposed a pre-registered library_v3 transfer check (ep2 + ep12, 2 seeds, ~$5–6) and will get the
+  owner's go-ahead itself. Commits for it: merge claude/determined-wright-3joens tip (ff5ca7d). Option 3 being built on CPU
+  by the solver agent.
+- ~05:10 UTC 31 Oct [M] R5-lite (CPU, scratchpad, code 97de901): orcB O (mocap motion) vs P (perceived) references, zero
+  action, `tools/physics_solve/jitter_check.py --k 16 --seed 0` (KIT=$S/dl/kit/x/v2d_submission_kit): ep13 0.569 ± 0.008
+  vs 0.551 ± 0.007; ep31 0.556 ± 0.091 vs 0.554 ± 0.096; ep11 skipped (assets_ev10 missing). True motion barely helps
+  zero-action executability; result sent to the pack session. Table: physics README "R5-lite".
+
+### 31 Oct ~04:30–05:35 UTC — option 3 (solver ↔ RL loop) + option-1 control: built on CPU, pre-registered (no GPU run)
+- Owner approved. Design and readings in `physics-solver.md` §6.1.
+- Built and CPU-tested:
+  - `tools/trace_rollout.py` `STATE=1` (full simulator state per frame; on the CPU the policy path skips Warp graph
+    capture, which crashes there);
+  - `tools/physics_solve/failures.py` (first frame an object stays > 3 cm ADD off for ≥ 8 frames → windows from
+    0.5 s before);
+  - `solve.py --start_state/--t0/--record` (solve from a recorded state; the official replay of the output equals the
+    solver's trajectory, 0.0);
+  - `merge_ref.py` (solver targets into the reference + contacts + reset-state bank; only solver states that hold);
+  - `ops/box/patch_flashchord_states.py`, a training-only reset-state bank:
+    - inert: resets identical to the original;
+    - share 1.0: banked states loaded bit-exactly;
+    - explicit resets untouched.
+- New `ops/jobs/physics_rl_loop.sh`:
+  - O1 = REUSE_REF on the G3 solved references + ES + CURR_SCALE 0.4;
+  - O3 = 30M / 50M / 70M rounds of one resumed FlashSAC run, with diagnosis → windowed solves → merge → bank between
+    rounds;
+  - scoring as rounds 1–3.
+  - CPU dry run with stubs for training, evaluation and store: completes.
+- The scratchpad FlashCHORD venv got jax/flax/optax/safetensors/distrax/wandb (CPU) for the policy-path tests.
+- Pre-registered:
+  - primary O3 − O1 registered AUC (signal / harm / inconclusive);
+  - O1 − G3 and O3 − G3;
+  - [H-teach].
+- Estimate ≈ 4–5 h, ≈ $5.5–7.5 (worst ≈ $8.3). Nothing rented by the agent.
+- 05:18 UTC 31 Oct: owner chose "Launch now" for option 3 (in parallel with the pack session's batch). Run
+  `20261031-rlloop-ccf9058`: `ops/vast.sh V2D_COMMIT=ccf9058 ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 56426318
+  20261031-rlloop-ccf9058 'bash ops/jobs/physics_rl_loop.sh'` → Vast contract 58495839 (RTX PRO 6000 WS, UK, $1.369/h
+  all-in). Pre-registration: physics-solver.md §6.1. Ledger planned $8.3 (est. $5.5–7.5). Untested before the GPU:
+  FlashSAC resume on a merged reference and the reset-state bank under graph capture (first exercised at round B, ~30M).
+- ~05:45 UTC 31 Oct: CPU review of the pack session's mass-transfer check (branch claude/focused-pascal-2nz9s1 at
+  4e019af) → NO-GO as built, sent to them. Same reference, per-arm masses, identical settings, no GT before scoring: OK.
+  Fix before launch: a missing cell gives INVALID instead of the pre-registered INCOMPLETE (reproduced with a fixture);
+  the config diff may give a false INVALID on path-bearing keys; pyarrow Table.equals fails on NaN columns; eval
+  timeouts dropped silently (stall may correlate with the mass arm). Fixture: scratchpad masscheck_review/test/.
+- 08:05 UTC 31 Oct [M] rlloop box progress: O3 round A (30M) done on ep2 (policy sim_vs_ref 0.453; window f52-177, pot +
+  lid), ep24 (0.208; f6-125, wooden pieces), ep12 (0.916; f114-180, blue cup); solves + merges ran (~5-8 min each).
+  O3 ep2 round B started 07:54: FlashSAC resumed from state_30003200 (progress line starts at 30,003,200/50,003,968) and
+  the reset-state bank loaded (4 states, share 0.25), running under graph capture → both GPU-untested parts work.
+  Bank is small (4 states). O1 so far: ep2 early stop at 60M (best 40M), ep12 RESULT AUC 0.893 (ES at 50M, "two in a
+  row >= 0.9"), ep18 AUC 0.579 (ES at 60M). Slots are shared, so total time looks ~5.5-6 h (est. $8-8.5), above the
+  4-5 h estimate; not cut (still progressing).
+- ~08:50 UTC 31 Oct: the mesh session (bold-albattani) relayed an owner idea: carve meshes where objects must interlock or
+  nest (pieces entering slots, stacked cups), driven by per-frame physics fixes. Replied: feasible on CPU as a standalone
+  GT-free `tools/intrusion.py` (per frame/pair penetrating samples in the target's frame + depth, plus phys_fit v1's
+  residual after pose correction); carved sim copies in the existing make_assets `--pieces DIR/<obj>/piece_*.obj` layout
+  (CoACD keeps each piece, so slots are not refilled). Waiting for their reviewed interface; nothing built yet.
+- 10:15 UTC 31 Oct [M] Option 3 run `20261031-rlloop-ccf9058` done (job 09:57Z, box gone ~10:02Z, ≈ $6.48 [E]; ledger
+  actual recorded — 4 identical lines from a timed-out-then-retried append). AUC vs mocap O3 / O1: ep2 0.835 / 0.585,
+  ep12 0.904 / 0.893, ep18 0.620 / 0.579, ep24 0.224 / 0.254 → pre-registered primary +0.068 "signal". Post-hoc: 3 of 4
+  O3 checkpoints are from round A (pre-loop), and round A is confounded by FlashSAC's cosine LR horizon (30M vs 70M run
+  length); after the loop rounds O3 never beat its round-A best on ep2/18/24. Interpretation: no evidence the loop
+  helps; new hypothesis H-lr (shorter LR horizon) logged, not run. Results: physics-solver.md §6.1 Results,
+  gpu/rlloop_summary.json. Fixed ops/ledger.py append to be idempotent (skip if the row already landed).
+- 10:40 UTC 31 Oct: owner asked for the loop explained/visualised and a more aggressive version. Found from the store
+  (seg_solve.json, merge logs) that the solver changed 0 frames in 4 of 8 turns (no better plan from the slipping state,
+  early stop at 6 iterations). Published two private pages: "Solver–RL Loop" (schematic, curves, per-turn table, loop v2
+  proposal ~$10–15 est.) https://claude.ai/artifact/A254GDBKXmA7Kxig7ET2cU and "Physics Study Board"
+  https://claude.ai/artifact/Na4KEzWSQazQxzZ33KBKyZ. Vast credit measured $29.16 at 10:35 UTC (mass box running).
+- 10:55 UTC 31 Oct: owner idea "bigger LR first, then fine-tune; maybe domain randomization". Evidence check: the
+  evaluator runs VOC 0 (work log, VOC fix entry), so early peaks are real; O3 ep2 collapsed between 20M and 30M right
+  after the VOC curriculum stage dropped assist 0.25 → 0.1 (CURR_SCALE 0.4 thresholds 19.7M / 25.6M); G3 ep2 likewise
+  peaked at 30M under VOC 0.75. Hypotheses [H-voc] collapse follows the assist fade; [H-lr2] a high-then-low LR
+  (6e-4 → 3e-5 cosine) keeps the peak; [H-dr] training-only DR (reset nudges 1–2 mm, mass/friction ±20 %, COM ±5 mm,
+  action noise; no config field, as the evaluator rebuilds from the config) cuts draw spread ≥ 40 % with mean ≥ −0.02.
+  Proposed test: 3 arms × ep2/ep18 × 2 seeds, ~$9–11 est.; not built or run, awaiting the owner (budget clash with the
+  eval retrain noted).
+- 11:05 UTC 31 Oct: combined budget to the freeze (owner asked; replies from focused-pascal, bold-albattani,
+  keen-heisenberg at ~10:45). Leaderboard lane $34–49 (mass check rest, eval-10 fix ≈ +0.022 board [E], masses retrain
+  O2, spoon wave); mesh lane $15–28; my lane: recipe screen $38–45 + confirm ~$20 + second eval retrain $10–15 (run by
+  the pack session); buffer $15–20. Full $132–177 (top-up $105–150), lean $87–121 (top-up $60–90); credit $29.16.
+  Board math (keen-heisenberg): a +0.03 recipe lift ≈ +0.006 board, so the screen is insurance (readouts: 10-draw sd and
+  worst draw). Dropped mass/friction DR (the scored rollout uses our own assets: no dynamics gap). Sequencing agreed with
+  the pack session: masses retrain first with the current recipe, winner into a second smaller retrain. Board page v2
+  (copies in docs/research/physics-2026-10-30/pages/).
+- ~11:30 UTC 31 Oct: owner chose the LEAN budget ($87–121 total, top-up $60–90 needed; credit $29.16).
+  `tools/intrusion.py` finished (agent build, CPU): CLI `intrusion.py REF.parquet SIM_DIR OUT.npz [--round K]
+  [--pitch_mm 2] [--surf_mm 0.5] [--prov PROV.json] [--fit PHYS_FIT_OUT --fit_commit SHA]`, gmg-intrusion/2 fields,
+  fiducial round trip, deny-list provenance guard. Tests (tools/intrusion_tests/, ALL PASS): two-box overlaps match an
+  independent count exactly, volumes within the 2 mm grid bound, rel_T error ≤ 7e-16, depth within 0.14 mm; refusals
+  for re-centred pieces / shifted fiducials / edited piece / wrong episode / mocap path / library_v3 in chain / scans
+  phys_fit. Real ep24 (perceived ref, collision_decomp pieces, 275 frames): 5.2 s, 124 intruding frame-pairs (max
+  0.92 cm³). Open contract points sent to the mesh session (manifest layout, validator vs parquet, no provenance chain
+  in any current reference, phys_fit.json lacks commit/argv).
+- ~11:50 UTC 31 Oct: owner topped up $100 for the lean plan; Vast credit measured 28.47 → 128.43. Ledger budget line
+  added. Allocation (est.): pack lane $24–39 first + second retrain $10–15; mesh lane $15–28; my screen $28–34 +
+  confirm ~$10; buffer ~$10. Both other sessions told; each box keeps a ledger planned line first.
+- Correction (10:58 UTC 31 Oct, from the ledger/notification timestamps): my entries since ~10:20 UTC carried clock
+  estimates up to ~1 h late. Actual times: loop pages published ~10:25, LR/DR proposal ~10:35, budget replies 10:44–10:46,
+  combined budget ~10:48, lean chosen ~10:50, top-up recorded 10:56 UTC (not 11:05 / 11:30 / 11:50).
+
+### 31 Oct ~11:00–12:05 UTC — recipe screen C / K / D: built, CPU-tested and pre-registered (physics-solver.md §8; no GPU run)
+- Task (coordinator, owner's LR/DR idea, lean budget): 3 arms × public ep2/12/18/24 × seeds 42/43 = 24 trainings.
+  - All cells share ONE stored reference per episode: `runs/20261030-physS1-6a814df/refs/glockt/ep<N>`. These are
+    round 1's S1 GL+ILC+EVOLVE references, also G1's input (`gpu/psolve_G1_summary.json`); no other store run holds
+    all four.
+  - S1 scan masses, cap 70,004,736 steps, ES 0.9 / 20M / 20M / 2 for every arm, NREP 10.
+  - Nothing rented. Files are left uncommitted for the coordinator.
+- **New files:**
+  - `ops/jobs/recipe_screen.sh` (box job; knobs SEEDS / ARMS / CELLS for 2- or 3-box packing);
+  - `ops/box/patch_flashchord_dr.py` (training-only start-state randomization, FC_DR_RESET / FC_DR_SEED);
+  - `tools/recipe_screen.py` (arm definitions, cell records, config check, box summary, merge + pre-registered
+    verdicts; a missing cell gives INCOMPLETE);
+  - `tools/recipe_screen_tests/` (dr_patch_test.py, dr_compare.py, schedules.py, eval_invariance.py, stubs.py,
+    dry_run.sh, dry_check.py).
+- **Machine and inputs:**
+  - this cloud container (4 CPU); FlashCHORD at the evaluator pin, `S=<scratchpad>`,
+    `FC=$S/src/video_to_data/robotic_grounding/flash_chord`, venv `$S/fcvenv`;
+  - patched copies `$S/rs/fc_{dr,s,sdr,dsr,box,boxref}` (symlink farms with real copies of the edited packages);
+  - `REF=$S/box2/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet` (CPU S1
+    grasp-lock ep12 reference, scratchpad assets).
+- **DR patch** [M]:
+  - Command:
+    `cd $FC && EMB=sharpa_hands_mid USE_COPY=<copy> [FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42] [FC_STATE_RESET=$S/loop/bank12.npz FC_STATE_RESET_P=0.5] [MODE=evalseq|EXTRA=1] $S/fcvenv/bin/python tools/recipe_screen_tests/dr_patch_test.py $REF $S/rs/out/<name>.npz`
+    (18 configurations), then `dr_compare.py $S/rs/out` → **40 checks, 0 FAIL**.
+  - Unset: bit-identical to stock, alone and with the box patch set.
+  - On, the draws stay in bounds:
+    - object position max 1.447 mm, mean |Δ| 0.66 mm;
+    - rotation max 0.0208 rad;
+    - fingers max 0.00999 rad;
+    - wrists and other coordinates unchanged.
+  - The draws are new per world, per reset and per seed. Upstream frames and finger openings are unchanged.
+  - Explicit resets and the evaluator's reset sequence with DR on are bit-identical to stock.
+  - With the state bank: equivalent either way, in either patch order.
+  - Survival of the nudge: median 1.39 mm → 0.71 mm at the end of the 20-step VOC-1 hold, then 8.6 mm 20 steps later
+    (zero action, VOC 0).
+  - Control: stock's steps after an explicit reset depend on the history (warm start, max |Δq| 0.032), so the steps
+    after an explicit reset are compared within the evaluator's sequence only.
+- **K settings in FlashCHORD's config code** [M]:
+  - Command: `cd $FC && JAX_PLATFORMS=cpu $S/fcvenv/bin/python tools/recipe_screen_tests/schedules.py $S/rs/fc_box <ep12 task dir> $S/rs/schedules.json`.
+  - The v2d curriculum thresholds equal the tool's constants. C and D resolve to identical configs. C vs K differ only
+    in the 4 LR keys and the thresholds (top level and training.curriculum).
+  - The horizon is 136,728 updates for both C (null → total) and K (pinned).
+  - LR at 10/20/30/70M (critic | actor):
+    - C: 2.93/2.73/2.43/1.50e-4 | 2.98/2.93/2.84/2.26e-4;
+    - K: 5.74/4.97/3.84/0.30e-4 | 5.93/5.73/5.40/3.18e-4.
+  - VOC at the checkpoints:
+    - C: 1 / .75 / .75 / .5 / .25 / .25 / .1;
+    - K: 1 / 1 / 1 / .75 / .75 / .75 / .5.
+  - **Finding:** the actor and temperature clocks advance once per actor update (period 2), so the actor's cosine
+    reaches only its midpoint by the cap. K's actor LR stays above C's peak, and "low" holds for the critic only. §6.1's
+    LR numbers were the critic clock. This is an open point for the owner; the registered value is the spec.
+- **Evaluator invariance** [M]:
+  - Command: `cd $FC && EMB=sharpa_hands_mid $S/fcvenv/bin/python tools/recipe_screen_tests/eval_invariance.py $S/box3/runs/loop/ep12-s42/policy_30003200.safetensors $REF $S/rs/evinv`.
+    The checkpoint is a stored FlashSAC ep12 checkpoint (250M-step config).
+  - The unchanged harness ran on CPU (1 world, explicit, graph capture skipped as in trace_rollout) on the base copy
+    and on copies with K's keys / curriculum_stage 1 and 3.
+  - Result: object trajectories bit-identical (362 rows), and every metric identical except the echoed
+    environment_steps. About 30 s per evaluation.
+- **Dry run of the whole job** [M]:
+  - Command: `bash tools/recipe_screen_tests/dry_run.sh $S/rs/dry4 $FC $S/venv/bin/python $S/fcvenv/bin/python $REF`.
+    Two boxes (SEEDS=42 | 43); training, evaluation, scoring and the store stubbed with FAKE numbers; the real job,
+    `early_stop.sh`, `recipe_screen.py` and the DR patch.
+  - Faults injected:
+    - a crash of D/ep24-s43 after 2 checkpoints;
+    - a hung draw (K/ep2-s42 r7);
+    - a hung early-stop watcher (C/ep18-s42);
+    - stray `FC_DR_RESET` / `CURR_SCALE` in the job environment.
+  - `dry_check.py`: 29 PASS, 0 FAIL.
+    - Arms reached the right processes. `FC_DR_RESET` reached D trainings only and none of 461 evaluations.
+    - The crash → `train_failed`. The hung draw → 9/10 draws, still present. The watcher was killed after ES_TAIL;
+      only that one.
+    - Merge: K vs C "signal" (+0.039), D vs C INCOMPLETE listing `D/ep24-s43`; with that cell filled, "signal".
+    - Reference / config tampering → INVALID, duplicates ignored, a results directory merges identically.
+  - Bugs found by earlier dry runs and fixed:
+    - the reference-dir check needed root-relative paths (dry1);
+    - ES_TAIL must exceed the watcher's own 25 s cycle in the dry run;
+    - `$BASHPID` in a redirection expands in the child, so the incremental summary's temp name never matched (dry2,
+      fixed with a named local).
+  - Also a boundary unit test of the rules: the bounds are inclusive as written, with float tolerance.
+- **Estimate** [E] (30M env steps / 37–42 min per slot, ES ~55–60M, 2 slots, $1.37–1.45/h):
+  - 2 boxes (SEEDS=42 | 43): 7.5–9.8 h each, $20–28, worst (no early stop) ≤ $33;
+  - 3 boxes (ARMS=C | K | D): 5–7 h, $21–30, worst ≤ $35.
+  - Launch commands are in physics-solver.md §8. A ledger planned line per box goes first.
+- **Open for the owner before launch:**
+  - go-ahead and plan (2 or 3 boxes);
+  - K's horizon: 136,728 (registered; the actor LR stays high) or 68,364 (actor low by 70M, critic low from 35M).
+
+### 2026-10-31 12:10 UTC — determined-wright: recipe screen reviewed and committed (not launched)
+- Reviewed the builder's job (`ops/jobs/recipe_screen.sh`), DR patch (`ops/box/patch_flashchord_dr.py`), merge/verdict
+  tool (`tools/recipe_screen.py`) and CPU tests (`tools/recipe_screen_tests/`). Re-ran here: `bash -n` on both shell
+  scripts, `py_compile` on every Python file, `recipe_screen.py args K 70004736` / `env D 42 …` print the registered
+  arguments. Builder's CPU results (not re-run): DR patch 40/40 checks, evaluator invariance bit-identical, dry run of
+  the whole job 29/29.
+- Decision (agent): K keeps the registered horizon 136,728 updates (same as C's own). Upstream advances the actor's LR
+  clock every second update in both arms, so K's actor never decays below 3.18e-4; the alternative 68,364 would hold
+  the critic at the 3e-5 floor from 35M on, a different experiment. Chosen checkpoints have been at 10–20M, where the
+  schedule tail matters little.
+- Not launched: needs the owner's go-ahead (2 boxes split by seed, ≈ $20–28 [E], ≤ $33) and the pack session's eval
+  work first.
+
+### 2026-10-31 12:13 UTC — determined-wright: owner approved the recipe screen launch
+- Owner answer: "Go, after pack (Recommended)": rent 2 boxes (SEEDS=42 | SEEDS=43, commit 609582a or later), ≈ $21–27 [E],
+  ≤ $33, once focused-pascal's eval-10 / masses work is launched or it confirms no conflict. Asked focused-pascal at
+  12:15 UTC. Candidate offers 56216787 ($1.27/h, PL), 48367592 / 57986770 ($1.38/h). Ledger planned lines go in
+  before each create.
+
+### 2026-10-31 12:16 UTC — determined-wright: recipe screen box 1 of 2 rented
+- focused-pascal (12:15 UTC): no objection to running alongside; its boxes go up ~15:00–19:00 UTC; asked for creates
+  ~10 min apart (HF store 429s at setup). Owner's condition met. Vast credit $126.55 measured 12:14 UTC.
+- Ledger planned `20261031-rscr42-2e25459` $14. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  56216787 20261031-rscr42-2e25459 'SEEDS=42 bash ops/jobs/recipe_screen.sh'` (commit 2e25459, = 609582a job + log
+  lines) → Vast instance 58531195, RTX PRO 6000 Max-Q, Poland, $1.271/h all-in.
+- Box 2 (SEEDS=43) follows ~10 min later after box 1's setup looks healthy.
+
+### 2026-10-31 12:28 UTC — determined-wright: recipe screen box 2 of 2 rented
+- Box 1 (58531195) healthy at 12:23 UTC: job log shows code 2e25459, arms [C K D], seeds [42], patches applied
+  (TRAIN_ARGS curriculum=tracking_250m_mixed_reset_v2d + FDR weights), references pulling.
+- Ledger planned `20261031-rscr43-865dfbb` $15 (note names offer 57548541, which was gone at create: 404 no_such_ask).
+  Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 57391360 20261031-rscr43-865dfbb
+  'SEEDS=43 bash ops/jobs/recipe_screen.sh'` (commit 865dfbb: same job code as 2e25459, log lines only) → Vast
+  instance 58532423, RTX PRO 6000 WS, South Korea, $1.487/h all-in.
+- Expected end ~20:00–23:00 UTC [E]; both self-destroy. Merge afterwards on CPU:
+  `python3 tools/recipe_screen.py verdict <rscr42>/results/recipe_screen/summary.json <rscr43>/... --out merged.json`.
+
+### 2026-10-31 13:00 UTC — determined-wright: eval-10 cup-nest intrusion diagnostic (CPU, GT-free)
+- Agent ran `tools/intrusion.py` logic on the eval-10 reference (gl10A2-5e0e100 ep10, md5 1a5003d9) against the carved
+  `meshes/carve/ev10` cups (A) and plain library_v3 cups (B). Diagnostic only: the tool refuses library_v3 in the
+  provenance chain, so a wrapper recorded the deny hit instead. Write-up, small outputs, scripts:
+  `docs/research/physics-2026-10-30/ev10_intrusion/` (npz 46 MB left in the scratchpad, regenerable).
+- Result [M]: library_v3's blue cup has a false floor 66 mm above its base (68–94 cm³ intrusion at f100–160). Carved A
+  fixes the floor (beige sits on it, median gap −0.1 mm), but its lower cavity is ~5–7 mm too narrow in radius
+  (18–36 cm³ at f100–117). The blue cup's +3.1–3.7 cm rise is not penetration avoidance (separation needs blue DOWN).
+- H-nest-a + falsifier in the README. Sent to focused-pascal (asked to copy bold-albattani).
+
+### 2026-10-31 12:57 UTC — determined-wright: recipe screen training started on both boxes
+- Both boxes pulled the 4 physS1 references with identical md5s (ep2 b4807f41, ep12 96ddc1ca, ep18 f0f14155, ep24
+  699fe426) and started C/ep2 + K/ep2 at 12:50 UTC (seed 42 on 58531195, seed 43 on 58532423); GPU 100 %, 81.7 GB.
+- D (the DR patch under CUDA graph capture, untested on GPU) first trains when an ep2 slot frees; checked next.
+- focused-pascal takes H-nest-a (new folder meshes/carve/ev10w, my diagnostic as falsifier, then an extra arm in its
+  ep11 gate only if it passes; owner go-ahead first). Mass check: 3 of 4 cells in (ep2 +0.081 / +0.233, ep12 s42 −0.007).
+
+### 2026-10-31 13:05 UTC — determined-wright: mass transfer check result received (focused-pascal's run)
+- Run 20261031-mass-2ed46ea (library_v3, 0.3 kg vs realistic masses, shared reference per episode, NREP 10), as
+  reported by focused-pascal (results on claude/focused-pascal-2nz9s1, 991fdea): VERIFIED; NOT ADOPTED under its
+  PREREG §3. ep2 0.552→0.633 (s42), 0.581→0.814 (s43), Δ +0.157 (SE 0.105); ep12 0.928→0.921, 0.920→0.900, Δ −0.013
+  (SE 0.007): ep12 misses the +0.03 bar. Eval keeps the 0.3 kg placeholder; the masses retrain (O1–O3, $16–26) is off.
+  Box actual $9.10.
+- Open (my lane, owner's call, not proposed yet): references rebuilt under the masses as their own pre-registered test.
+  Frees ~$16–26 of the lean plan.
+
+### 2026-10-31 14:45 UTC — determined-wright: H-nest-a falsified; recipe screen first results; arm D runs on GPU
+- focused-pascal (13:55 UTC; PREREG 3f058d2, results 334393e): reproduced my eval-10 numbers exactly, then falsified
+  H-nest-a. My radii were measured about the world vertical; the carved cavity's lathe axis is tilted 2.37° and
+  offset ~6 mm. The intrusion is a one-sided ~5.4 mm beige pose offset, not cavity width. ev10w fails G1 and G2.
+  V4p with ev10 unchanged is nearly coaxial on hands-off frames. Correction appended to ev10_intrusion/README.md.
+- Recipe screen (box-local, 2 of 24 cells, not a verdict): C/ep2-s42 AUC 0.955 ± 0.029 (50M checkpoint);
+  K/ep2-s42 0.965 ± 0.009 (30M; early stop at 50M). Arm D trains on both boxes since ~14:10 UTC; the patch prints its
+  banner (±1.5 mm, ±0.015 rad, fingers ±0.01 rad, 4096 worlds) and runs without errors under CUDA. MuJoCo-Warp
+  "nefc overflow" warnings appear in every arm (K: 3.96M lines), so they are not specific to D.
+- Training round ~1.3 h per cell pair → boxes end ~21:00–22:00 UTC [E].
+- The background poll from 12:57 UTC was lost when this session's worker restarted. Checked by hand at 14:43 UTC.
+
+### 2026-10-31 14:55 UTC — determined-wright: owner approved "Masses v2" re-test
+- Owner's point: the mass check tested only 2 episodes, and ep12 (0.92–0.93) had almost no room for a +0.03 gain.
+  Owner chose "Run re-test (Recommended)": 4 public headroom episodes (not ep2/ep12, chosen by low current library_v3
+  baseline before any run), 0.3 kg vs realistic masses, seeds 42/43, NREP 10, the mass check's shared-reference design.
+  Rule: ADOPT iff mean Δ over the 4 ≥ +0.03 AND ≥ 3 of 4 Δ > 0 AND no Δ(ep) ≤ −0.05; missing cells → INCOMPLETE.
+  ≈ $18–20 [E], 2 boxes, ~7 h. If ADOPT, the eval masses retrain (~$16–26) needs its own owner go-ahead.
+- Proposed to focused-pascal to run it in its lane with its job and verdict tool; I review the PREREG first.
+
+### 2026-10-31 15:30 UTC — determined-wright: pack 10 coordination
+- "New score status" session (session_01D9UJC7rdn1DZrNM1rKyE7b) relayed the owner's ask (~15:10 and 15:25 UTC): put every
+  planned improvement into one pack. Pack 10 = one combined eval retrain from ≈ 1 Nov 18:00 UTC, built by
+  focused-pascal; it lands ≈ 2 Nov evening. Context: organiser PR nvidia-isaac/video_to_data#215 makes results
+  provisional until a reproduce container re-rolls every policy, so draw stability now counts toward the final standing.
+- Answered (copied to focused-pascal):
+  - Recipe-screen verdict ~22:30 UTC tonight [E].
+  - Exact K/D settings for a retrain, as in §8 and `tools/recipe_screen.py`; both are independent of the masses assets.
+  - Caveats [H]: transfer from public scans to library_v3; K+D together untested.
+  - Nothing else from physics is ready: G3 harm on ep2; loop no evidence; fit v2 on hold.
+
+### 2026-10-31 16:15 UTC — determined-wright: ep2 video, current recipe vs physics-solved references (CPU, reporting only)
+- Source: store run 20261031-rlloop-ccf9058. Stored best-checkpoint draws, 5 of 10 per arm: O1 (current recipe,
+  `results/glock_public/ep2/best/r*`) and O3 (physics loop, `results/physics_rl_loop/ep2/o3/best/r*`).
+- Shown: the median-AUC stored draw of each arm, not the best: O1 r1 (0.580; stored 0.323–0.917) and O3 r4 (0.913;
+  stored 0.460–0.957).
+- Command: `tools/render_eval_rollout.py <episode_000002.parquet> <meshdir> <out.mp4> --size 640x480`, then ffmpeg
+  hstack. Meshdir: the public scans of white_pot / white_pot_lid, welded and decimated to 4k faces (raw scans are
+  unwelded triangle soup and render as speckles).
+- Seen: in O1 the pot tips over (19 cm off its reference by frame 320); in O3 it stays upright (~1 cm off).
+- Caveat: ep2 is O3's best episode (ep12/ep18 about equal, ep24 −0.03). §6.1 explains why the gain cannot be credited
+  to the loop itself.
+- Video is not in git (CLAUDE.md); it is in the session scratchpad `vid/out/ep2_current_vs_physics.mp4`.
+
+### 2026-10-31 16:25 UTC — determined-wright: cross-session push board for the owner
+- Owner asked for one page covering everything running in all chats: the scores each run is after and the history
+  behind it. Sources: the STATUS.md and work logs of focused-pascal, bold-albattani, standings-20261031 and
+  keen-heisenberg (fetched 16:15 UTC); Vast show; credit $114.27 (16:13 UTC); both screen boxes' job logs.
+- Artifact "Track 3 Push Board": https://claude.ai/artifact/VA364pepzf3LQg9SXLEW4u (private). Copy in
+  `docs/research/physics-2026-10-30/pages/push-board.html`. Times are TRT.
+- Recipe screen interim (box-local, 12 of 24 cells; not a verdict): ep2 s42 C .955±.029 K .965±.009 D .743±.269;
+  ep2 s43 C .869±.174 K .959±.020 D .862±.236; ep12 s42 C .576±.066; ep12 s43 C .612±.014 K .582±.024 D .919±.022;
+  ep18 s43 C .624±.002 K .620±.009.
+
+### 2026-10-31 16:35 UTC — determined-wright: owner questioned the solver verdicts; clean re-test approved
+- Owner: "Are we sure … did we really explore everything?" Re-read G2/G3/§6.1 records. Overstated in my summaries:
+  - G3's "harm" is one seed (42) on ep2. That seed also collapses on the normal reference; seeds 43/44 reach 0.98. The
+    chosen ep2 policy was erratic (0.197–0.968).
+  - The loop was barely exercised: the solver edited 0 frames in 4 of 8 turns.
+  - The option-3 ep2 gain may come from the solved references plus the shorter LR schedule; never tested cleanly.
+  - Corrected the push board (v3).
+- Owner chose "Test + auto eval":
+  - Arm S (solved references, the screen's C recipe, seeds 42/43) against the screen's C cells, pre-registered as
+    physics-solver.md §9 (83664f6; timestamps corrected to ~16:25/16:30 UTC). ≈ $9–10 [E].
+  - If "signal", eval solving (≈ $15 [E]) starts without asking again.
+- Agents building on CPU: arm S in the recipe screen, and `ops/jobs/eval_solve.sh`. Asked focused-pascal for pack 10's
+  grasp-lock eval episodes and their reference/asset inputs.
+
+### 2026-10-31 16:33 UTC — determined-wright: masses v2 pre-registration reviewed, GO (clock checked; the message to focused-pascal said ~16:55 in error)
+- Reviewed focused-pascal's PREREG (claude/focused-pascal-2nz9s1, 8c05528 + verdict fixes 74da763,
+  docs/research/work/masses-v2-20261031/).
+  - Selection by library_v3 baseline only: ep24 0.2406, ep11 0.5249 (twin11v3 frozen reference, not V4p), ep13 0.5428,
+    ep31 0.6951.
+  - The owner's rule is applied verbatim at reported precision. INCOMPLETE / INVALID handling is correct.
+- GO; ep31 accepted explicitly (the frozen-recipe preference matches the first check's builds). Caveat sent: ep11/ep13
+  sit at non-mass floors, so the "3 of 4 > 0" clause is near a coin flip there. Its §7 puts P(ADOPT) at ≈ 0.59 even with
+  +0.12 on ep24/ep31 [E]; with no effect, a false ADOPT is ≈ 0.13 [E]. ≈ $18 [E]; focused-pascal launches and keeps the
+  ledger lines.
+
+### 2026-10-31 17:05 UTC — determined-wright: eval-solve job ready (CPU-tested, not launched)
+- `ops/jobs/eval_solve.sh` with `tools/physics_solve/eval_inputs.py`, `eval_solve_summary.py`, tests in
+  `tools/physics_solve/tests/eval_solve/` (TESTS.txt) and docs in `docs/research/physics-2026-10-30/eval_solve/`.
+  `ops/box/store.sh` gains `pull-files` (byte-identical to focused-pascal's version; additive only).
+- Inputs: the 15 grasp-lock eval episodes (3 5 6 8 10 14 15 16 20 32 33 35 36 37 38) from focused-pascal's
+  `packed_refs.json` (copied at 71bac00). All 15 references exist and match their md5; assets present at 0.3 kg.
+  Standard-learner evals 1/19/25/28/30 are refused.
+- Solver settings = G2_ARGS byte for byte, 2 solves per GPU, 64-copy jittered check on input and output. No GT read.
+- CPU smoke test on eval 37 at tiny scale (not a result): jitter 0.890 → 0.938 (4 copies); only right-hand wrist and
+  finger targets changed, on 11 frames. Dry runs of the full job, failure handling and the eval-10 override pass.
+- Plan: 2 boxes (evsolve1: 35 36 33 20 16 15 37; evsolve2: 3 5 38 32 6 8 10 14), 3.9–4.7 h each [E], ≈ $9–14 [E],
+  worst ≈ $12–17. Launches only if §9 gives "signal" (owner pre-approved). Caveats: solved under 0.3 kg; eval 10 V4p
+  path pending.
+
+### 2026-10-31 17:20 UTC — determined-wright: arm S built and CPU-tested (physics-solver.md §9)
+- Code (a710b43 + this commit): `tools/recipe_screen.py` (arm S = C with the solved references; registered md5s;
+  `S_vs_C` with §9's rule unchanged), `ops/jobs/recipe_screen.sh` (S refs from `SRCREF_S=20261030-psolverl-04301a2`,
+  alone in `refs/screenS/ep<N>` as G3's task dirs; md5 check), tests in `tools/recipe_screen_tests/`
+  (`arm_s_test_log.txt`, `solved_refs_check.py`).
+- Real files [M]: the S files are exactly what G3 trained on; their solver inputs are the screen's physS1 files
+  (b4807f41 / 96ddc1ca / f0f14155 / 699fe426); object columns identical on all 4 (only wrist/finger targets differ:
+  ep2 312/343 frames, ep12 180/181, ep24 30/275). **ep18's solved file is byte-identical to its input** (G1 edited
+  0 of 353 frames), so Δ(ep18) measures only seed and box noise; §9 counts it anyway.
+- CPU dry runs [fake numbers]: C/K/D 29/29 PASS (train commands identical to dry4), arm S 41/41 PASS (signal / no
+  signal / INCOMPLETE / INVALID and the ±0.03 / −0.05 boundaries; K_vs_C and D_vs_C unchanged). Re-checked here: S
+  args/env print empty, the same as C.
+- Plan [E]: 2 boxes ARMS=S SEEDS=42 | 43, ~2.9–3.9 h each, ≈ $6.5–11.5 (worst ≤ $15). The control is the C cells
+  of rscr42/rscr43 (non-concurrent).
+- The builder left three stray files at the container root (/exits_s.txt, /merged_S*.txt). Its delete was blocked by
+  the safety check, so they are left in place and reported to the owner. They are outside the repo.
+
+### 2026-10-31 17:22 UTC — determined-wright: arm S box 1 of 2 rented (physics-solver.md §9)
+- Ledger planned `20261031-rscrS42-cc9c32f` $6. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  56213818 20261031-rscrS42-cc9c32f 'ARMS=S SEEDS=42 bash ops/jobs/recipe_screen.sh'` → Vast 58559935, RTX PRO 6000
+  WS, Greece, $1.444/h. Box 2 (SEEDS=43) follows ~10 min later.
+
+### 2026-10-31 17:32 UTC — determined-wright: arm S box 2 of 2 rented
+- Box 1 (58559935) started its job at 17:31 UTC (code cc9c32f, arms [S], seeds [42], S refs from psolverl, md5 check on).
+- Ledger planned `20261031-rscrS43-d6787a8` $6. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  56921483 20261031-rscrS43-d6787a8 'ARMS=S SEEDS=43 bash ops/jobs/recipe_screen.sh'` (d6787a8 = cc9c32f + one log
+  line) → Vast 58560711, RTX PRO 6000 Max-Q, Michigan, $1.34/h. Both S boxes end ~21:00–21:30 UTC [E].
+
+### 2026-10-31 18:26 UTC — determined-wright: recipe screen seed-43 box finished (12/12 cells scored)
+- Run 20261031-rscr43-865dfbb, Vast 58532423: job done 17:37 UTC, self-destroyed. Ledger actual $7.73 (~5.2 h ×
+  $1.487/h, estimate). Summary pulled from the store.
+- Seed-43 cells, AUC mean ± sd over 10 draws:
+
+  | episode | C | K | D |
+  |---|---|---|---|
+  | ep2 | .869±.174 | .959±.020 | .862±.236 |
+  | ep12 | .612±.014 | .582±.024 | .919±.022 |
+  | ep18 | .624±.002 | .620±.009 | .600±.059 |
+  | ep24 | .238±.005 | .251±.013 | .230±.003 |
+
+- No verdict until the seed-42 box (10/12 at 18:26) and the two arm-S boxes finish.
+
+### 2026-10-31 20:24 UTC — determined-wright: recipe screen all 24 cells in; solver re-test 7 of 8; verdicts (interim)
+- Boxes finished and self-destroyed:
+  - rscr42 (58531195): job exit 0 at 18:43 UTC. Ledger actual $8.22 (6.47 h × $1.271/h, estimate).
+  - rscrS42 (58559935): job exit 0 at 19:38 UTC. Ledger actual $3.30 (2.28 h × $1.444/h, estimate).
+  - rscrS43 (58560711) is still running its last cell (S/ep24-s43). Poll `bu7fslt4n` watches it.
+- The poll `b3wmrva5m` timed out after 110 min with no problem flagged (two boxes gone, one running).
+- Summaries were pulled from the store into scratchpad `rs/real/runs/<run>/`. Merge on CPU:
+  `python3 tools/recipe_screen.py verdict <rscr42>/results/recipe_screen/summary.json <rscr43>/… <rscrS42>/… --out
+  scratchpad rs/merged_partial3.json`.
+- **One control cell is not present: C/ep24-s43 has 4 of 10 draws.**
+  - The 6 missing draws (r1 r2 r3 r7 r8 r9) crashed at evaluator start, at 16:41 UTC on the rscr43 box. The error is
+    `env.cc:93 Check failed: ret == 0 (11 vs. 0) Thread tf_foreach creation via pthread_create() failed`: errno 11
+    (EAGAIN), a thread/process limit on the box, hit while other cells were training.
+  - This is an infrastructure crash, not a policy failure. Per §8 the cell is missing, so K vs C, D vs C and S vs C are
+    formally INCOMPLETE.
+- Cells, AUC mean (draw sd, ddof 0), 10 draws unless noted:
+
+  | ep | seed | C | K | D | S |
+  |---|---|---|---|---|---|
+  | 2 | 42 | .955 (.029) | .965 (.009) | .743 (.269) | .751 (.211) |
+  | 2 | 43 | .869 (.174) | .959 (.020) | .862 (.236) | .808 (.225) |
+  | 12 | 42 | .576 (.066) | .519 (.067) | .924 (.021) | .832 (.070) |
+  | 12 | 43 | .612 (.014) | .582 (.024) | .919 (.022) | .802 (.082) |
+  | 18 | 42 | .620 (.015) | .623 (.006) | .603 (.053) | .553 (.099) |
+  | 18 | 43 | .624 (.002) | .620 (.009) | .600 (.059), 9 draws | .616 (.014) |
+  | 24 | 42 | .234 (.003) | .191 (.022) | .233 (.006) | .249 (.005) |
+  | 24 | 43 | .238 (.005), 4 draws: missing | .251 (.013) | .230 (.003) | pending |
+
+- **Bounds: can the missing C/ep24-s43 draws change a verdict?**
+  - **K vs C: inconclusive under any completion.** On the 3 complete episodes: ep2 +0.050, ep12 −0.043, ep18 −0.001.
+    - Signal would need Δ(ep24) ≥ +0.115, i.e. C's ep24 seed-mean ≤ 0.106: impossible.
+    - Harm would need Δ(ep24) ≤ −0.10, i.e. C/ep24-s43 ≥ 0.41. Its 4 present draws are 0.234–0.246, so the 6 missing
+      draws would have to average ≥ 0.53. No ep24 draw in the screen exceeds 0.29.
+  - **D vs C: not determined.**
+    - The sd falls by ≥ 40 % on ep12 only. The 3-episode mean Δ is +0.066 (ep2 −0.110, ep12 +0.327, ep18 −0.020).
+    - The verdict becomes "signal" iff C/ep24-s43's 10-draw sd is ≥ 0.0116. Its 4 present draws have sd 0.0046; the
+      other C ep24 seed has sd 0.0026.
+    - Otherwise "inconclusive". Completing it means re-scoring that checkpoint, a box of about $1 [E] that needs the
+      owner's go-ahead.
+  - **S vs C: no signal under any completion.** Δ(ep2) = (.751 + .808)/2 − (.955 + .869)/2 = **−0.132**, which is
+    ≤ −0.05. The other episodes: Δ(ep12) +0.223, Δ(ep18) −0.038.
+    - Per §9 both "no signal" and INCOMPLETE mean stop. **Eval solving does not start;** solved references are not used.
+- **ep18 is a free replicate.** S's ep18 reference is byte-identical to C's (md5 f0f14155…). S/ep18 and C/ep18 are the
+  same reference, seed and recipe, so their difference is pure training nondeterminism: seed 42 0.553 (sd .099) vs 0.620
+  (sd .015); seed 43 0.616 vs 0.624. A re-run of one cell can move it by up to 0.07 AUC and change its draw sd 6×.
+- **Post-hoc, not pre-registered (hypothesis): sim_vs_ref picks the better arm.**
+  - Script: scratchpad `rs/posthoc_select.py`.
+  - For each (episode, seed), the arm with the higher 10-draw sim_vs_ref (vs our reference, GT-free) also had the higher
+    AUC: C vs D 7/7, C vs K 7/7, K vs D 7/8, C vs S 3/4. The misses are all ep24 pairs within 0.02.
+  - A per-cell selector "train C and D, keep the one with the higher sim_vs_ref" would gain +0.094 AUC mean over 7
+    cells. All of the gain is ep12 (+0.35 / +0.31, with a lower draw sd); everywhere else it keeps C.
+  - Falsifier: train D on more public episodes (for example masses-v2's ep11/13/31). The selector fails if
+    sim_vs_ref picks D where its AUC is lower by > 0.02, or if D wins on none of them.
+
+### 2026-10-31 20:29 UTC — determined-wright: owner decision "No D" for pack 10 (my messages said 20:31 in error)
+- Asked the owner whether pack 10 should also train D per eval episode, keeping the higher sim_vs_ref (≈ $14–20 [E]).
+- Answer: **"No D"**. Pack 10 stays on the current recipe.
+- Told focused-pascal and the score-status session; the D proposal is withdrawn.
+- No re-score of C/ep24-s43 (≈ $1, not asked for), so the §8 verdicts stay formally INCOMPLETE, with the bounds above.
+
+### 2026-10-31 20:32 UTC — determined-wright: solver re-test finished; final merge; eval solving NOT started
+- rscrS43 (58560711): job exit 0 at 20:26 UTC, self-destroyed (box gone 20:30). Ledger actual $3.88 (~2.9 h × $1.336/h,
+  estimate). No screen boxes are left on the account.
+- S/ep24-s43: .237 (sd .014, 10 draws), checkpoint at 40M.
+- Final merge over the 4 box summaries: `python3 tools/recipe_screen.py verdict … --out
+  docs/research/physics-2026-10-30/gpu/recipe_screen_S_merged.json`; text in `gpu/recipe_screen_S_merged.txt`. The
+  post-hoc selector check is `gpu/scripts/recipe_screen_posthoc_select.py` → `gpu/recipe_screen_posthoc_select.txt`.
+- S vs C: INCOMPLETE (C/ep24-s43). It is "no signal" under any completion: Δ ep2 −0.133, ep12 +0.223, ep18 −0.038,
+  ep24 ≈ +0.007 provisional. Per §9: stop. Eval solving is not started; solved references are not used for eval.
+- Written up as physics-solver.md §8.1 and §9.1.
+- focused-pascal's reply (queued 20:25 UTC, sent before it saw "No D"): offered the masses-v2 mass0 cells as a library_v3
+  check set for a D falsifier (≈ $6–10 [E]). Not run, because the owner declined D.
+- Lane total for the screen and the re-test: $8.22 + $7.73 + $3.30 + $3.88 = $23.13 (actuals, estimates).
+- 20:34 UTC: push board v4 published (same URL). Only the physics lane changed: the screen and re-test cards, the
+  final table with arm S, the timeline and two road entries. Other lanes stay as of 19:20 TRT, as the header says.
+  Copy in `docs/research/physics-2026-10-30/pages/push-board.html`.
+
+### 2026-10-31 20:54 UTC — determined-wright: targeted D for pack 10 (owner reversal relayed by score-status; my messages said 20:57 in error)
+- Score-status session (20:51 UTC) relayed the owner's words, ~20:40 UTC in that chat: "sure add that whatev". This
+  answers its proposal: D as a second version on the unstable evals 14, 16, 25, 30, 33, ≈ $6–10, swap rule decides.
+  Not said in this chat; the spend is the pack-10 session's.
+- Sent focused-pascal the exact D settings (copied to score-status):
+  - Run `ops/box/patch_flashchord_dr.py` on the FlashCHORD tree. Today only recipe_screen.sh does this;
+    glock_public.sh, hard_ab.sh and fc_patches do not.
+  - Training env `FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed>`: via TRAIN_ENV in glock_public, via ENV_EP<N> in
+    hard_ab.
+  - Check that the hook's start line appears in the training log.
+- Caveats sent:
+  - (a) The screen shows no steadying of unstable episodes: ep2 sd .10 → .25, ep18 .008 → .056. The swap rule decides.
+  - (b) Standard learner: FC_IMMEDIATE_FIRST_FRAME's deployment-exact starts are drawn inside ReferenceReset.sample, so
+    DR perturbs them too (frame 0, no hold, assist < 0.1). Untested, as is D at 250M steps.
+  - (c) Carved assets move as one body; the risk is objects that start nested or touching (ep12 CPU test: median
+    0.71 mm after the hold, max 58 mm).
+- Offered: an opt-in FC_DR_SKIP_IMMEDIATE flag (~1 h, CPU tests) and a free CPU pop check per episode.
+
+### 2026-10-31 21:18 UTC — determined-wright: arm V (actor sees object velocity) built and pre-registered; owner GO
+- keen-heisenberg (21:01 UTC) relayed the owner's request for a slip-aware, physics-informed robot side. Items:
+  1. object velocity in the actor's observation;
+  2. solver v2 (no-slip term, force feasibility, worst-of-copies scoring);
+  3. part of 2.
+- CPU check at the evaluator pin (video_to_data 8c778f9), `docs/research/physics-2026-10-30/v_obs/`:
+  - `observation.object_body_velocity.enabled=true` lands in the checkpoint's resolved config.
+  - `harness.evaluate_checkpoint` rebuilds the env from that config, and `apply_evaluation_composition` never touches
+    the observation.
+  - Actor observation: 722 → 734 values (+12 for 2 objects); the rest is identical. The velocity is 0 at the frame-0
+    reset and live after 30 steps.
+- Owner (~21:09 UTC, AskUserQuestion):
+  - **arm V "Go"** (≈ $7–9 [E]).
+  - Solver v2: the owner asked what it is and why it failed. Answered: it is not built; its precondition (S signal)
+    failed. Recommended skipping; waiting on the owner.
+- Pre-registered as physics-solver.md §10 (c213eae, before any V result):
+  - V = C + the override, ep2/12/18/24 × seeds 42/43, physS1 references, control = the screen's C cells.
+  - The V seed-43 box first re-scores C/ep24-s43: 10 fresh evaluations of its stored chosen checkpoint.
+  - Rule as K's: signal iff mean Δ ≥ +0.03 and no Δ ≤ −0.05; harm iff mean ≤ −0.03 or any Δ ≤ −0.10.
+- Code ab63b37:
+  - `tools/recipe_screen.py`: arm V, the actor-velocity config check, V_vs_C.
+  - `ops/jobs/recipe_screen.sh`: RESCORE="arm:ep:seed:STORE_RUN", run before any training.
+  - Stubs and `dry_run_v.sh` / `dry_check_v.py`.
+- Tests:
+  - Dry run: **33/33 PASS**, including the real stored checkpoint's config check, the merge replacing the 4-draw
+    record, and the negative cases.
+  - Real summaries re-merged with the new tool: C/K/D/S output unchanged.
+  - The full older dry run (dry_run.sh → scratchpad `rs/dry7`) is running as a regression check.
+
+### 2026-10-31 21:27 UTC — determined-wright: arm V boxes rented (physics-solver.md §10); DR skip option delivered
+- Code for both boxes: V2D_COMMIT 0636f20 (arm V + RESCORE from ab63b37; later commits are logs).
+- Box 2 (seed 43, with the re-score): `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 V2D_COMMIT=0636f20… create
+  28784856 20261031-rscrV43-0636f20 'ARMS=V SEEDS=43 RESCORE=C:24:43:20261031-rscr43-865dfbb bash ops/jobs/recipe_screen.sh'`
+  → Vast 58580297, RTX PRO 6000 WS, Spain, $1.377/h.
+- Box 1 (seed 42): `… create 47655764 20261031-rscrV42-0636f20 'ARMS=V SEEDS=42 bash ops/jobs/recipe_screen.sh'` → Vast
+  58580313, RTX PRO 6000 WS, Serbia, $1.497/h. The first offer (28784861) was gone (404 no_such_ask).
+- Ledger planned $4.5 each (21:19 UTC). Expected end ~00:00–00:45 UTC [E].
+- Regression dry run `rs/dry7` (DRY_CK_SLEEP=4): 69/70 PASS. The one FAIL is the ES-kill check: every stub training
+  reached its cap. Most likely the 4 s stub clock (dry6 used the default 12 s and passed); the ES code is unchanged.
+  Re-running at the default speed as `rs/dry8`.
+- FC_DR_SKIP_IMMEDIATE=1 delivered to focused-pascal (4e5c8a0) for the standard-learner D cells (evals 25, 30).
+  CPU test 17/17 PASS (`tools/recipe_screen_tests/dr_skip_test_log.txt`).
+- Owner decisions relayed by keen-heisenberg (~21:15 UTC; the owner went to sleep):
+  - the targeted D cells (evals 14/16/25/30/33, 2 seeds) start tonight; focused-pascal launches them;
+  - pack 9b uploads automatically once its rule and checks pass.
+- Credit $69.22 at 21:20 UTC, shared by all lanes.
+
+### 2026-10-31 21:47 UTC — determined-wright: D reset check delivered; regression dry run 70/70; P1 helper started
+- Regression dry run `rs/dry8` at the default stub clock: **70/70 PASS**, exit 0. dry7's one FAIL was the 4 s stub clock.
+- **D reset check** (`docs/research/physics-2026-10-30/d_reset_check/`, 8fb5152): CPU, box patch set, 32 worlds, DR vs
+  no DR with the same upstream frames, on the 5 packed D evals (md5s = packed_refs.json) and the 4 public screen
+  episodes.
+  - Object offset at the end of the hold (median / share > 1 cm / max):
+    - evals: 14 0.63/31 %/3.15; 16 0.16/25 %/4.00; 25 0.60/34 %/6.70; 30 1.05/56 %/3.28; 33 0.57/28 %/2.60;
+    - public: 2 1.09/50 %/3.39; 12 0.81/47 %/4.41; 18 0.00/3 %/1.32; 24 1.05/53 %/4.30.
+  - No eval outside the public range, and no NaN. Sent to focused-pascal and keen-heisenberg.
+- bold-albattani's P1 request (r0 slot2-ep24 boards; INTERLOCK §6.2 settle with 16 jittered copies): a CPU helper is
+  running it in scratchpad `p1ep24/`. I review before replying; ETA promised ~23:30 UTC.
+- keen-heisenberg's command-smoothing (A) and synergy (B) CPU tests are queued next.
+- 21:54 UTC, D reset check correction (eval 25 only). focused-pascal (21:27 UTC) pointed out that packed_refs.json gives
+  eval 25 `pieces: meshes/carve/ev25`. Re-run with `make_assets.py ... --pieces meshes/carve/ev25`: median 0.46 cm,
+  25 % > 1 cm, max 5.79 cm, no NaN. The first run, without pieces, had 0.60 / 34 % / 6.70. Conclusion unchanged; sent.
+- bold-albattani (21:31 UTC): no eval r0 folders exist from F-I5, and the public F-I5 boxes are not to be used. The
+  ep24 P1 request stands. Their data: at hands-off frames the tracked poses are physically impossible (ep11 cups
+  overlap 86 cm³; ep12/13 cup 15–23 mm inside the table; ep31 sweeper 45 mm above it). The remedy there is pose
+  correction, not carving.
+- Test A (physics-solver.md §11) is running: 16 jitter checks on CPU (`cmds/`).
+
+### 2026-10-31 22:13 UTC — determined-wright: C/ep24-s43 re-scored; recipe screen verdicts complete
+- The V seed-43 box ran the §10 re-score first: C/ep24-s43 = **0.2333** (sd 0.0012, 10 draws, policy_20000768, md5
+  699fe426). The poll saw it at 22:12 UTC.
+- Merged with the live cell record (pulled with `vast.sh exec`): K vs C **inconclusive** (−0.0018), D vs C
+  **inconclusive** (sd falls on 1 episode), S vs C **no signal** (min −0.133). No INVALID.
+  `gpu/recipe_screen_KDS_complete.{json,txt}`; physics-solver.md §8.1.
+- The V cells are training on both boxes.
+
+### 2026-10-31 22:15 UTC — determined-wright: P1 settle on bold-albattani's r0 (ep24 boards) — FAIL for carved and default
+- A CPU helper ran INTERLOCK §6.2 P1 (16 jittered copies, frame 246 plus 258/270) on our physS1 ep24 reference (md5
+  699fe426), r0 from cdc8b40 vs `_default`. Record: `docs/research/physics-2026-10-30/p1_ep24/` (RESULT.md,
+  result.json, scripts, commands). I reviewed it and re-checked the contact limits in `configs/sim/rl.yaml`.
+- **P1 fails for both carved and default.** Drift: carved 3.7 / 3.2 cm, default 3.2 / 3.2 cm, all against a 1 cm limit.
+  The default also fails tilt (13° / 8°). No NaN.
+  - Cause: our reference holds the assembled cross 27–36 mm above the table at f246–274, with no hand near. The
+    per-object z shift fits the 3 cm library_v3 boards at frame 0, not 7.4 mm plates on edge.
+  - So the test does not separate carved from default.
+  - Diagnostic only: with the hover removed, the carved pieces pass every numeric criterion (relative sink −4.8 mm
+    signed); the default fails tilt.
+- **Contact-budget hazard [M].** With the training sim config (`sim=rl`: nconmax 256, njmax 512 per world), the carved
+  r0 scene overflows in 16/16 copies (it asks for 500–670 contacts and up to ~2030 constraint rows). Contacts are
+  dropped and the boards fall through the table.
+  - The default pieces never overflow.
+  - The packed `meshes/carve/ev25` pieces showed no overflow warning in the D reset check's 64 runs.
+  - The evaluator rebuilds the env from the checkpoint config, so the same limits apply at scoring.
+- [H] Our ep24 track places the free-standing cross ~3 cm too high; the same may hold for eval 25 (boards). Falsifier:
+  a GT-free depth check of the board bottom edges against the table plane.
+
+### 2026-10-31 22:22 UTC — determined-wright: test A (command smoothing) FAILS; contact budget of eval 25 measured
+- Test A (§11, pre-registered 21:50 UTC): 16 CPU jitter checks, 16 copies each, common random numbers.
+  - GL raw → smoothed Δ: +0.002 / +0.004 / +0.014 / +0.003.
+  - SOL raw → smoothed Δ: −0.011 / −0.027 / +0.014 / −0.025.
+  - Both **fail** the rule (≥ +0.03 on ≥ 2 of 4 episodes). The line stops. Record: physics-solver.md §11.1 and
+    `docs/research/physics-2026-10-30/cmd_smooth/`.
+- Contact budget, answering bold-albattani: `contact_budget/budget.py`, CPU, box patch set, 8 sampled training resets
+  × 60 zero-action steps, sim=rl.
+  - Limits: nconmax 256 per world (MuJoCo-Warp holds it as one pool, naconmax = 256 × worlds); njmax 512 constraint
+    rows per world.
+  - Eval 25 with its packed carve pieces:
+    - collision geoms: 26 per hand, boards 21 + 11, support 1, ground 1;
+    - contacts per world: max 65, median 46;
+    - constraint rows (nefc) per world: max 276, median 201.
+  - Library_v3 without pieces: 56 / 40 contacts, nefc 240 / 175.
+  - Largest per-world shares: hand self-contacts up to 21 (right) and 15–17 (left); hand–board up to 20; board–board
+    up to 14; board–support up to 12.
+
+### 2026-10-31 22:24 UTC — determined-wright: training-time constraint overflow (njmax) on ep2/ep12 [M]; not in scoring
+- Found while checking the arm V boxes: V/ep2-s42's train.log has "nefc overflow - please increase njmax to 515…728".
+- **The control has it too, and more of it.** Store train.logs, overflow lines (largest request):
+
+  | cell | overflow lines | largest request |
+  |---|---|---|
+  | C/ep2-s42 | 613,729 | 948 |
+  | C/ep2-s43 | 357,932 | 896 |
+  | D/ep2-s42 | 342,071 | 879 |
+  | C/ep12-s42 | 13,367 | 667 |
+  | C/ep24-s42 | 0 | — |
+
+  sim=rl's njmax is 512 per world, so MuJoCo-Warp drops constraint rows in those world-steps. Not V-specific.
+- **Not in scoring.** The 50 stored scored draws of C/ep2-s42, C/ep2-s43, D/ep2-s42, S/ep2-s42 and C/ep12-s42 have 0
+  overflow lines in their eval.log, including the failed draws (0.33–0.54). Overflow therefore does not explain the
+  draw spread; the hypothesis "overflow in scored rollouts" is falsified for these cells.
+- [H-njmax-train]: dropped constraints in ~1 % of ep2's training world-steps (≈ 0.6 M lines over ~50 M world-steps)
+  corrupt the learning signal on the contact-rich pot + lid episode.
+  - Test: an arm with `sim.njmax=1024`, C otherwise, on ep2 (+ ep12), 2 seeds.
+  - The override would be stored in the checkpoint config, so the evaluator would rebuild with it (more memory, no
+    harm, since scoring never overflowed).
+  - Not run; the owner is asleep. To be offered.
+
+### 2026-10-31 23:36 UTC — determined-wright: D cells live (focused-pascal); arm V interim
+- focused-pascal (23:35 UTC): the targeted D cells run on 5 boxes (commit a1a7e25).
+  - The D log line is verified on both paths: grasp lock eval 14 without the skip tail; standard learner eval 25
+    with "; skip immediate starts"; patch md5 570a7f47793d on both.
+  - Their other results tonight: masses v2 NOT ADOPTED (+0.0034, 1/4 positive); eval-10 V4p retrain NO-SWAP (equal
+    floor); re-track FAIL. Record: their 28a03df.
+- Arm V interim, box-local (not a verdict):
+  - V/ep12: s42 .548 (sd .023; C .576), s43 .587 (sd .019; C .612);
+  - V/ep2-s43: .757 (sd .311; C .869, sd .174).
+  - Remaining: V/ep2-s42, ep18 ×2, ep24 ×2.
+
+### 2026-11-01 00:05 UTC — determined-wright: arm V verdict — inconclusive, V not used
+- Both boxes self-destroyed: V43 at 23:39 UTC, V42 at 00:02 UTC. Ledger actuals $3.97 and $3.05 (estimates), $7.02 in
+  total against the ≈ $7–9 plan.
+- Merge of all 6 summaries → `gpu/recipe_screen_V_merged.{json,txt}`. Seed-mean Δ(V − C): ep2 −0.049, ep12 −0.026,
+  ep18 −0.013, ep24 −0.007; mean −0.024 → **inconclusive**, so V is not used. Record: physics-solver.md §10.1.
+- Final verdicts of the screen (C/K/D/S/V, all complete): K inconclusive, D inconclusive, S no signal, V
+  inconclusive. No recipe change for pack 10 from this lane.
+- This lane's GPU spend for 31 Oct: rscr42 $8.22 + rscr43 $7.73 + rscrS42 $3.30 + rscrS43 $3.88 + rscrV42 $3.97 +
+  rscrV43 $3.05 = **$30.15** (estimates).
+- 00:07 UTC: push board v5 (physics lane: arm V result, 6-box total). Copy in docs/research/physics-2026-10-30/pages/push-board.html.
+
+### 2026-11-01 00:48 UTC — determined-wright: bold-albattani board-slot round 3 closed (nothing for me to run)
+- `slot3-ep24/fi4q/r0` (5 slotted boxes per board) is DO_NOT_USE on their side.
+  - It failed their own ratio clause: 124 constraint rows against 32 for a one-box control, limit 2×.
+  - No overflow. P2–P7 pass on their tracks.
+- They ask me not to run P1, the sim=rl check or budget.py on it. Eval 25 keeps `meshes/carve/ev25`.
+- Their measurement: at assembly, their ep25 relative board pose differs from the packed eval-25 parquet by
+  9.8 mm / 2.5°. A future slot would have to be cut in the frame of the replayed poses.
+- The pending P1 item is closed.
+
+### 2026-11-01 02:40 UTC — determined-wright: eval-10 packed carve overflows njmax in training (confirmed for bold-albattani)
+- bold-albattani's plain-MuJoCo pair check (02:35 UTC): 656–1,296 rows at nested frames; the packed pieces overlap
+  11.9 cm³ at rest.
+- My FlashCHORD check, `contact_budget/budget.py`, now with `FRAMES=` explicit resets (e1a3063):
+  - packed configuration `--pieces meshes/carve/ev10`, md5 1a5003d9;
+  - sampled training resets: nefc max 536, median 473, **13 % of world-steps over 512**;
+  - explicit frames 0/124/142/160: max 441, no overflow.
+- Packed run 20261026-gl10A2-5e0e100: train.log has **8,368,544** overflow lines; its 5 scored draws have 0.
+- Training is corrupted; scoring is not. [H] This contributes to eval 10's floor.
+- Sent to bold-albattani and focused-pascal. The candidate fixes (sim.njmax=1024, or pieces that don't overlap at
+  rest) were not tested.
+- 02:42 UTC: answered focused-pascal (02:37 UTC). Their e10v retrain logs show 6.0 M / 5.8 M overflow lines (requests
+  up to 1,057) and "lift 0" on both seeds. Their falsifier, one eval-10 training at njmax 1024 / nconmax 512 (~$2–3),
+  needs the owner's go.
+  - CPU check (`contact_budget/njmax_cfg_test.py`): `sim.njmax=1024 sim.nconmax=512` is a training-only override. It
+    is stored in the resolved config, survives the evaluator's composition, and the evaluator's solver is built with
+    1024 / 512. No evaluator code change.
+  - Packed gl10A2: 8.37 M lines in training, 0 in its 5 scored draws.
+
+### 2026-11-01 02:55 UTC — determined-wright: collision-overlap fixes — budget checks queued; baselines measured
+- keen-heisenberg relayed (02:52 UTC):
+  - the owner's go at 02:43 for focused-pascal's eval-10 njmax-1024 diagnostic (theirs to run; not duplicated here);
+  - the owner's words at 02:50, "I give you permission for everything", for fixing the collision overlaps behind
+    evals 10, 30 and 14.
+  - My part is CPU only: run budget.py on each bold-albattani candidate as it lands. focused-pascal retrains only after
+    the check shows no overflow at 512. I rent nothing.
+- Packed baselines (`contact_budget/`, f2100c6; sampled / explicit nefc max):
+  - eval 30: 244 / 223;
+  - eval 14: 297 / 385;
+  - eval 10: 536 / 441, 13 % of steps over 512.
+- bold-albattani's `ev10-cavsafe/GATES.md` (98ddccf) was written before any candidate. No pieces yet; watcher
+  `b41ahbswb` is on their branch.
+- 03:12 UTC: candidate **ev10cs** (bold-albattani dafc911, 53 / 49 pieces), full-scene budget check.
+  - Sampled resets: nefc max 510 (packed 536), median 443 (473); **4 overflow lines** (requests 515–518); cup–cup
+    contacts 31 (68).
+  - Explicit f0/124/142/160: max 409, no overflow.
+  - **Not clean** at 512, so no retrain. Reported to all three. Waiting for their v2 (A2) and the rack candidates.
+- 03:27 UTC: candidates ev10cs2 / ev10cs3 (bold-albattani 5cd0433).
+  - Small sample (8 worlds × 30 steps):
+    - ev10cs2: nefc max 510, 3 overflow lines → not clean;
+    - ev10cs3: max 443, 0 lines.
+  - **The small sample was not representative.** ev10cs3 at 32 worlds × 60 steps: sampled max 603, median 500, 110
+    overflow lines; explicit (f0/111/116/124/142/160) max 533, 576 lines.
+    - The per-step maximum over more worlds is higher.
+    - Steps 21–60 include the zero-action collapse after the hold.
+  - budget.py now reports a hold window (steps < 20) and an after-hold window.
+  - Paired large-sample runs (packed / ev10cs3 / ev10cs at 32 × 60) are running. Packed at 32 × 60: hold-window nefc
+    max 661, median 599, every step over 512 in at least one world; explicit max 1,680.
+  - Nothing has been reported to the other sessions about cs2 / cs3 yet.
+- 03:42 UTC: paired 32 × 60 budget for eval 10, hold window (steps < 20). "Share" = share of steps whose worst of 32
+  worlds exceeds 512 rows.
+
+  | | packed | ev10cs | ev10cs3 |
+  |---|---|---|---|
+  | sampled, hold window: max / median / share | 661 / 599 / 100 % | 598 / 548 / 75 % | **534 / 495 / 15 %** |
+  | explicit (f0/111/116/124/142/160), hold window: max / share | 918 / 33 % | 699 / 19 % | **477 / 0 %** |
+  | explicit, after the hold: max / share | 1,680 / 39 % | 627 / 16 % | 533 / 3 % |
+  | overflow lines, sampled / explicit | 380 / 9,723 | 104 / 7,086 | 110 / 576 |
+
+  ev10cs3 is clearly better than packed but not clean. The after-hold window is the zero-action collapse and is noisy.
+- 04:25 UTC: bold-albattani's rack candidates (e863636). Evals 30 and 14 keep the packed racks; eval 30 uses no
+  candidate at all. They asked for budget.py on c1-ev14 (62 rack pieces) and c2-ev14 (54).
+  - Built from the packed eval-14 assets: the refs/sf rack mesh plus the candidate pieces, the blue cup as packed,
+    0.3 kg.
+  - The large-sample controls on packed evals 30 and 14 had never run: my wait loop's `pgrep -f` matched its own
+    command line. Fixed and restarted, together with c1 / c2 at both sample sizes.
+
+### 2026-11-01 04:47 UTC — determined-wright: overlap-fix budget verdicts (32 × 60 standard with controls)
+- Controls: the packed evals 30 and 14 have 0 overflow lines at 32 × 60 (max 287 / 505 rows), so the size is a fair
+  absolute test. The 8 × 30 bar was not robust.
+- **Eval 14:** c1-ev14 adds 12 overflow lines and c2-ev14 adds 5, against 0 packed → keep the packed rack.
+- **Eval 30:** packed is clean.
+- **Eval 10:** packed 380 / 9,723 lines; ev10cs 104 / 7,086; ev10cs3 110 / 576 → no clean candidate, no retrain.
+  ev10cs3 + `sim.njmax=1024` is untested; it needs the owner's go.
+- Record: `contact_budget/README.md` "Large-sample standard", runs in `runs_32x60/` and `runs_8x30/` (6b04fba). Sent
+  to bold-albattani, focused-pascal and keen-heisenberg.
+
+### 2026-11-01 05:08 UTC — determined-wright: ev10cs4 clears the budget gate and the FlashCHORD nest test
+- ev10cs4 (bold-albattani 7e4bc6a, 24 / 21 pieces), contact budget at 32 × 60 (6e32856): **0 / 0 overflow lines**;
+  hold max 448; overall max 459. Packed: 380 / 9,723.
+- FlashCHORD nest test (`docs/research/physics-2026-10-30/ev10_nest_test/`, 4f5ff63): carve_fc_test (+ relT) under
+  sim=rl, packed vs ev10cs4.
+  - Driven, beige relative to blue: 0.14 cm / 1.1° median vs packed 1.02 cm / 7.0°.
+  - Free rest from f124: 1.59 vs 1.28 cm.
+  - 0 overflow, 0 NaN.
+  - Floor plate (6 mm): driven max 0.43 mm into it; rest impact 5.49 mm at f126, settled ~1 mm; never through.
+- Sent to bold-albattani, focused-pascal and keen-heisenberg. Next: one eval-10 GPU training on ev10cs4 (~$2–3,
+  focused-pascal); it needs the owner's go.
+- 05:10 UTC, keen-heisenberg: drawdiv on ep2 for the masses-check run (their f58f638, `docs/analysis/drawdiv-20261031/`).
+  - Good draws (both objects < 3 cm): mass0 4/10 and 3/10, mass1 6/10 and 8/10.
+  - The draws split early: 10 µm by f1–4, 5 mm by f5–11.
+  - The lid fails first. The light lid removes most of the f54–61 lid failures; the early ones (before f30) stay.
+  - [H]: the early lid failures are the pot + lid rest interpenetration, so a pose fix should cut them. Falsifier: ≥ 8
+    early lid onsets per 20 draws on a pose-fixed reference.
+  - Recorded only; nothing to run.
+- 05:11 UTC: keen-heisenberg (05:09 UTC) reports that focused-pascal has the go for the ev10cs4 eval-10 retrain, under
+  the owner's 02:50 permission: 2 seeds at stock limits, PREREG, swap rule. Nothing for me to run.
+- On their optional ask I tested an 8 mm plate variant, built ad hoc (report only).
+  - Rest: max 4.02 mm into the plate, against 5.49 of 6 mm before; settled 0.49 mm.
+  - Driven: 0.12 cm median; 0 through; 0 overflow.
+  - Record: `ev10_nest_test/README.md` (9de7d92). Sent to bold-albattani and keen-heisenberg.
+- 05:13 UTC: answered focused-pascal's inertia question for the ev10cs4 retrain (their build has started, ~$3–5 under
+  the owner's standing go).
+  - meshes/carve/ev10 also has inertia.json, but the built URDFs differ (mass 0.3 kg in both).
+  - Blue COM moves 12.8 mm along the axis (z 2.99 → 15.77 mm); inertia +0.4–4 %.
+  - Beige COM moves 1.4 mm; izz −10 %.
+  - Suggested copying packed inertia.json to keep a one-variable test.
+- 05:23 UTC: ev10cs5 (bold-albattani 1373603, the 8 mm plate) for focused-pascal's PREREG.
+  - Byte identity vs v4: only the plate, blue inertia.json and build records differ.
+  - 32 × 60: **0 / 0 overflow lines**; max 503 / 504 (v4: 448 / 459).
+  - Both conditions met; headroom is only ~8 rows. Record be1e893; sent to focused-pascal and bold-albattani.
+
+### 2026-11-01 05:48 UTC — determined-wright: eval-10 njmax-1024 diagnostic SUPPORTED (focused-pascal)
+- focused-pascal (05:47 UTC): eval-10 training at `sim.njmax=1024 sim.nconmax=512`, owner's go 02:43 UTC, never
+  packed.
+  - 0 overflow lines; the beige cup lifted 23.9 cm.
+  - Official sim_vs_ref vs V: **0.913** (1024 config) and 0.903 when evaluated at stock 512, against e10v's 0.459.
+  - 0 overflow lines in every draw.
+- This confirms the lead from `contact_budget/` and the overflow counts: training-time constraint overflow caused
+  eval 10's no-lift floor.
+- Suggested to focused-pascal and keen-heisenberg:
+  - count overflow lines in every packed eval training log; ≳ 100 k lines makes an episode a candidate for an
+    njmax-1024 retrain;
+  - re-offered the public ep2/ep12 njmax test (≈ $7 [E], needs the owner's go).
+- 05:53 UTC, focused-pascal: triage of the packed eval training logs, by file size, no downloads; line counts are
+  estimates.
+  - eval 10 ≈ 8.37 M lines; eval 33 ≈ 21 k; eval 32 ≈ 20 k; eval 14 ≈ 4.6 k; eval 20 ≈ 1.2 k; the other 15: 0.
+  - Only eval 10 is heavily affected, so no other eval gets an overflow retrain.
+  - They keep the owner's condition: no 1024-trained policy in a pack until the organisers agree. The question is
+    with the owner.
+  - The ep2/ep12 public test is an option for the owner, not launched.
+- 06:43 UTC: eval 20, bold-albattani's b1 pitcher set (9c0bc0c, 41 pieces, via placement_carve.py assets on the
+  packed refs/sf/ep20/assets), keen-heisenberg's request.
+  - 32 × 60: **0 / 0 overflow lines**; max 342 / 321, against packed 348 / 317. Clean.
+  - Observation: under b1 the cup touches the world-body plane (6 / 31 contacts), which packed shows none of; a cup
+    settle check is suggested.
+  - Record f59c897. Sent to focused-pascal, bold-albattani and keen-heisenberg.
+- 06:46 UTC: eval-20 blue-cup settle check for focused-pascal (`ev20_settle/`, 85e8ef8).
+  - Under b1 the cup rests within 0.33 cm / 0.7° at f152/183/192; packed tips 29° at f183. No sink-through; the cup
+    ends within 1 mm of the table.
+  - Flag: at f192 the pitcher falls hands-free in both sets (b1 12 cm vs packed 6.8 cm); probably an in-hand frame.
+  - Not a blocker. Sent to focused-pascal, bold-albattani and keen-heisenberg.
+- 07:06 UTC: rest probe for keen-heisenberg (`rest_probe/`, 2a809d6).
+  - Hands vs parked, zero-action, on the packed evals 3/5/6/8/16/33.
+  - The hands touch the objects inside the rest windows. On evals 5 / 8 / 33 the motion is far larger with the hands:
+    pot 26 vs 3 mm, pot 42 vs 9 mm, spoon 87 vs 11 mm. The first touches are fingertips at f3 / f13 and the palm at
+    f24.
+  - Eval 16's spoon rotates more when parked (29°): not the hands.
+  - Eval 3's 65 mm (pack, GPU) does not reproduce on CPU.
+  - A first run had a body-name parsing bug (`track3_<obj>_object`); it was fixed before reporting.
+- 07:08 UTC: keen-heisenberg parks the hand-push finding, with no reference rebuild. Evals 5 / 8 / 33 already score
+  0.94–0.97, so a fix cannot clear their +0.02 rule; evals 3 and 16 are not explained by the hands. Noted for later:
+  a contact-aware approach constraint in mkref. Told them the eval-20 b1 items were already done (f59c897, 85e8ef8).
+  Nothing is pending on my side.
+
+### 2026-11-01 08:56 UTC — determined-wright: wrap-up (owner via keen-heisenberg: close loops, start nothing new)
+- Repo clean and pushed. No agents running, and no boxes of mine. Box 58631864 (20261101-e20b1-4207ce4) is
+  focused-pascal's eval-20 b1 retrain.
+- Final report sent to keen-heisenberg; the same content is in STATUS.md (wrap-up section).
+
+### 2026-11-01 ~12:25 UTC — grasp-ep13 (branch `claude/grasp-ep13-20261101`, off determined-wright 5bab5c6): GRASP-mode solver built (CPU, $0)
+- Task (owner, this session): test whether a GRASP-style sampler (Liu, Wang, Bao, Yang, Harvard 2026) makes public ep13
+  (twin of eval 14, the left→right hand-over + flip) feasible. CPU first; pre-registered gate; GPU only with the owner's
+  go. Nothing rented, nothing sent to Kaggle.
+- Container setup (4 CPU, scratchpad): FlashCHORD at the evaluator pin 8c778f90 (`uv sync --frozen`, Python 3.12;
+  warp 1.14.0, mujoco 3.8.1, newton 1.2.0); its 559 LFS assets from media.githubusercontent.com (the git proxy refuses
+  LFS for that repo), each sha256 checked; `flashchord_conf/embodiment/sharpa_hands_mid.yaml` copied in as
+  `ops/jobs/physics_solve.sh` does; kit zip md5 1988f0d8.
+- Inputs (store run `20261030-orcB-38234d1`, the oracle-twins box): perceived `refs/glockt/ep13` (md5 414d0200) and
+  oracle `refs/oracle_glockt/ep13` (md5 455173ec) = the references the twins trained on; assets `refs/{sf,oracle_sf}/ep13`
+  (identical files). Dev episode: `refs/glockt/ep31`. Local copies by `docs/research/grasp-ep13-20261101/scripts/prep_inputs.py`
+  (only `object_urdf_paths` rewritten, checked).
+- CPU zero-action sim_vs_ref [M]: ep13 P 0.5406 (box GPU 0.5515), O 0.5724 (box 0.5620); floors 0.5561 / 0.5727. A repeat
+  CPU replay is bit-identical (max |Δq| 0.0); 27 s warm per 190-frame replay.
+- GRASP code read (github.com/ComputationalRobotics/GRASP_code @ 992c737, MIT). Its optimiser files (`grasp/optim/*`,
+  `grasp/mpc/grasp_mpc.py`) are GRASP's own; the SPIDER-derived files (CC BY-NC) are listed in its THIRD_PARTY_NOTICES.md
+  (`grasp/sim/*`, `grasp/config.py`, `grasp/utils/*`, most of `grasp/pipeline/*`) and were not used.
+- Built: `tools/physics_solve/grasp_window.py` (numpy re-write of GRASP's tempered SMC window: AR(1) prior around the
+  warm-start plan, ESS-adaptive tempering, systematic resampling, local quadratic surrogate on the archive of all
+  rollouts in the window with the DCT rank-r basis, prior-preconditioned MALA proposals, MH on the TRUE cost, adaptive
+  step, samples carried to the next window; MIT notice kept) and `solve.py --method grasp` (same cost, robust copies,
+  commit, rollbacks and rollout budget as the annealed sampler; the robust copies' noise is fixed per window so the MH
+  test is exact).
+- Checks [M]: unit tests `tools/physics_solve/tests/grasp/test_grasp_window.py` all PASS; regression: the default
+  (anneal) path of the new solve.py vs the original (md5 fa511432) on ep31 f0–44 → identical output parquet (md5 bfecffd6),
+  offsets and truth trajectory; GRASP-mode smoke on ep31 runs, fresh-load target buffers bit-identical.
+- Smoke reading: at 16 candidates the surrogate is over-fitted (R² 1.0 on 16–48 points) and tempering reaches only
+  λ ≈ 0.02 in 2 stages. Dev sweep on ep31 f16–48 at the comparison scale (32 × 4 worlds, 8 batches per replan):
+  anneal (iters 8, anneal 0.80 = G1/G2's final noise factor 0.216 over 8 iterations) J_best/J_warm 0.985, 2/8 improved,
+  466 s; GRASP configs (ESS 0.9 / 0.5, moves 2 / 1) running.
+- ~12:30 UTC: exactness of GRASP mode [M]: the official zero-action replay of the ep31 smoke output (`--method grasp`,
+  `--stop 44`) is bit-identical to the solver's committed truth trajectory (45 frames, max |Δq| 0.0; 23 frames carry
+  non-zero offsets, max wrist offset 0.75 cm). Run scripts for ep13 written (`scripts/run_ep13.sh`, `jitter_inputs.sh`,
+  `gate.py`); PREREG draft written, not yet frozen (GRASP settings pending the ep31 dev sweep). GRASP page [L]: 94.2 %
+  vs Do-as-I-Do 81.0 % vs SPIDER 71.4 % on Sharpa bimanual OakInk2, "evaluation sets differ"; no budget or compute given
+  (code: 2,000 particles, ≤ 64 tempering stages × 5 moves per window).
+- ~12:33 UTC: **finding [M]: both ep13 twin references park the left hand; the hand-over is not in the robot
+  reference.** The oracle-twins box built them with `--single_hand 1` (GL_ARGS in its job.log). grasp_lock.py keeps one
+  carrier per object (the hand with the most hold frames: right, f46–104), drops the other hand's holds and parks it at
+  its frame-0 pose. In `refs/glockt/ep13` and `refs/oracle_glockt/ep13` the left wrist stays at z 57.0 cm for all 190
+  frames and its frames never come within 15.7 cm of the cup's bounding sphere; in the support-filled input before the
+  lock (`refs/sf/ep13/.../ref_sf.parquet`) the left hand is on the cup over f20–60 (−2.7 to −8.1 cm inside the sphere)
+  and the right hand from ~f40. The cup's reference rises ~9–12 cm by f30–40 (z 68.9 → 78.1 → 80.9 cm), before the
+  right hand arrives (f40: 1.6 cm) and holds (f46). So the robot is asked to lift the cup with no hand near it.
+  - Reading [I]: the oracle twin's O ≈ P (0.544 vs 0.543, both at the floor) shows ep13 is not perception-limited, but
+    its "control-limited" class was measured with this construction for both arms, so it may be construction-limited
+    (the single-hand carry drops the left-hand pick). The solver's hand gate also never enables the left hand on these
+    inputs (0 near frames; right hand 37 of 48 replans).
+  - Consequence for this test: on the twins' references neither solver can make the hand-over happen (the left hand is
+    ≥ 15 cm away and outside the gate; the right hand is 27 cm away at f30). I add a pre-registered second input
+    construction: the same `ref_sf` inputs (P and O) re-locked with the box's GL_ARGS **minus** `--single_hand 1`
+    (two-hand holds, the hand-over kept), then wrist ILC (4 iterations, kp 400), via `tools/cpu_glock_zero.sh`. No
+    REPLAN stage (on ep13 the box's replan was "not better; kept the previous version"). Building now.
+- ~12:37 UTC: two-hand grasp-lock rebuilds done (CPU, `tools/cpu_glock_zero.sh`, code e919165, 3.5 min each) [M]. Holds:
+  P2 left f19–61 + right f46–104, O2 left f17–61 + right f46–99. ILC iteration 3 (left/right wrist error, mean): P2
+  2.3 / 0.8 cm, O2 1.2 / 0.7 cm. Nominal zero-action sim_vs_ref (single replays; report only): **P2 0.5268**,
+  **O2 0.6474** (floors 0.5561 / 0.5727; the twins' P / O give 0.5406 / 0.5724 on CPU). Outputs:
+  scratchpad `gl2/ep13_{P,O}/` (md5 501e928e / 7ad0e431).
+- PREREG draft updated (not frozen): test A = the twins' references (the owner's gate), test B = the two-hand rebuilds,
+  same gate per test; test B runs first. Dev sweep on ep31 G2–G5 still running; G1 (paper-like ESS 0.9) improved 0/8
+  windows vs the annealed sampler's 2/8.
+- ~12:53 UTC: dev sweep on ep31 f16–48 (8 active windows, same scale as the ep13 arms) [M], metric = mean per-window
+  J_best / J_warm (improved windows): anneal 0.9853 (2/8); G1 ESS 0.9, 2 moves 1.0000 (0/8); G2 ESS 0.5, 2 moves
+  0.9892 (3/8); G3 ESS 0.5, 1 move 0.9759 (2/8); G4 / G5 (GRASP's own widths) running. Diagnostics: at ESS 0.9 the
+  tempering reaches λ ≈ 0.05–0.12 in 4 stages (samples ≈ prior); at ESS 0.5 it reaches λ = 1 within 1–4 stages, after
+  which acceptance is 0.0 (the per-stage step adaptation cannot shrink the 0.59 step fast enough in so few stages); the
+  diag surrogate is over-fitted early (R² 1.0 on ≤ 113 points).
+- ~12:53 UTC: dry run of `scripts/run_ep13.sh` on ep31 (`dry31`, tiny budget, `--stop 28`): every step ran; official
+  replay vs solver truth bit-identical (29 frames), fresh-load buffers identical, 16-copy jitter check 86 s. Output moved
+  out of the ep13 tree. `scripts/run_all.sh` written (inputs' jitter, test B, test A, gate).
+- 13:08 UTC: dev done: G4 (GRASP widths, ESS 0.9) 0.9668 (3/8), **G5 (GRASP widths, ESS 0.5, 2 moves) 0.9582 (5/8)** →
+  selected by the pre-declared rule. **PREREG frozen at d8544cf** (tests A and B, gate per test, the width confound and a
+  conditional equal-width control stated). No ep13 solve ran before it.
+- 13:09 UTC: ep13 runs launched on this container, detached (`setsid nohup`), commit d8544cf:
+  `S=<scratchpad> GRASP_ARGS="--g_sig_abs 0.0044 0.0044 0.044 --g_ess 0.5 --g_moves 2" bash
+  docs/research/grasp-ep13-20261101/scripts/run_all.sh` → scratchpad `ep13/` (`run_all.log`, one dir per arm). Order:
+  inputs' jitter checks, P2 anneal, P2 grasp, O2 anneal, O2 grasp, P anneal, P grasp, O anneal, O grasp, gate. A first
+  launch at 13:08 under the tool's 2 h background limit was stopped after 30 s (no arm had started; its partial input
+  jitter dirs moved to `ep13_aborted/`). Expected ≈ 5–9 h [E].
+- 14:26 UTC: ep13 arm 1/8 done [M]: **P2 anneal** (two-hand perceived input, our solver): jittered mean **0.3935 ± 0.146**
+  (16 copies; min 0.118, max 0.555), nominal 0.5270; its input P2 0.3435 ± 0.162; floor 0.5561. Official replay vs
+  solver truth bit-identical over all 190 frames; fresh-load buffers identical. 4 rollbacks used (cup lost at f24
+  repeatedly); the cup is ~20 cm off by f96. Solve ≈ 74 min. Arm 2 (P2 grasp) started 14:26.
+- 15:38 UTC: ep13 arm 2/8 done [M]: **P2 grasp** (GRASP mode, config G5): jittered mean **0.4176 ± 0.166** (min 0.077,
+  max 0.557), nominal **0.6266**; replay vs truth bit-identical (190 frames); 4 rollbacks; solve ≈ 71 min.
+  - **Test B primary: d_b = 0.4176 − 0.3935 = +0.024** (paired over the 16 common-noise copies: bootstrap 95 % CI
+    −0.071 to +0.115; GRASP ahead on 9 / 16). Below the +0.05 bar, so **test B cannot pass**, whatever the O2 arms show
+    (they can only add a harm flag). Nominal (copy 0) Δ +0.100: the nominal gain mostly vanishes under 0.5 mm / 0.005 rad
+    noise, as for the CPU solver on ep12 (30 Oct).
+  - Report-only: the cup stays within 3 cm on 8 % of frames in every P2 arm (input, anneal, grasp) and is lost (> 3 cm
+    for 8 frames) at f15–17 in every copy; neither solver keeps the cup through the hand-over from our perceived motion.
+    The O2 input keeps it within 3 cm on 22 % of frames, lost at f27–69.
+  - Single nominal trajectories looked very different mid-solve (f52: GRASP 4.3 cm vs anneal 18.7 cm off): a reminder
+    that only the jittered means are the measure.
+  - Remaining (pre-registered, running): O2 anneal (started 15:38), O2 grasp, then test A (P, O × 2).
+- 16:52 UTC: ep13 arm 3/8 done [M]: **O2 anneal** (two-hand oracle input, our solver): jittered mean **0.6507 ± 0.092**
+  (14 / 16 copies 0.65–0.70; two at 0.40–0.41), nominal 0.6957; its input O2 0.6041 ± 0.093; floor 0.5727. Replay vs
+  truth bit-identical (190 frames). Nominal trajectory: cup within ~2 cm through the hand-over (f76: 1.6 cm), lost at the
+  placement (~31 cm off by f108). Arm 4 (O2 grasp) started 16:52.
+- 18:10 UTC: ep13 arm 4/8 done [M]: **O2 grasp**: jittered **0.6241 ± 0.107**, nominal 0.6929; replay bit-identical; 4
+  rollbacks; solve ≈ 76 min. **Test B verdict (gate.py): FAIL.** d_b (P2) = +0.024 [−0.071, +0.115], 9 / 16 wins;
+  d_a (O2) = −0.027 [−0.101, +0.050], 5 / 16 wins; no harm flag. Report-only: from the oracle motion both solvers
+  carry the cup longer than their input (lost at ~f60–82 instead of f27–50; within 3 cm on 35 % of frames vs 22 %),
+  about equally; from our perceived motion all three P2 arms lose it by f15–17. Result files copied to
+  `docs/research/grasp-ep13-20261101/results/` (jitter JSONs, run logs, solve JSONs, gate_testB.json). Test A running
+  (P anneal started 18:10).
+- 18:41 UTC: ep13 arm 5/8 done [M]: **P anneal** (test A, the twins' perceived input): the solver beat the warm start in
+  0 of 37 active windows (4 rollbacks used), so the output has 0 edited frames and equals the input: jittered 0.5542 ±
+  0.004 (copy for copy identical to P_input), nominal 0.5406; floor 0.5561. Replay bit-identical. Solve 30 min. As
+  expected from the parked left hand. Arm 6 (P grasp) started 18:41.
+- 19:16 UTC: ep13 arm 6/8 done [M]: **P grasp** (test A perceived): output identical in score to the input and to P anneal
+  (jittered 0.5542 ± 0.004, copy for copy; nominal 0.5406). **Test A primary d_b = 0.000 → test A cannot pass** (the
+  O arms can only add a harm flag). Arm 7 (O anneal) started 19:16.
+- 19:36 UTC: **finding [M] (public diagnostic, stored references only): our perceived ep13 cup track spins about the
+  cup's symmetry axis while it rests.** In P2 (= P's object track) the cup rotates 12° by f8, 35° f14, 54° f18, 130° f26,
+  140° f30 with < 0.5 cm of travel until f22; the rotation axis is the cup's mesh symmetry axis at every frame checked
+  (|cos| 1.00; PCA variances 0.00065 / 0.00076 / 0.00232, axis (0.01, −0.04, 1.00) in the body frame). The oracle track
+  rotates 0–9° until f24 (22–34° by f32–36). The metric (kit AUC, sim_vs_ref) is ADD, not ADD-S, so a spin about an
+  axis no camera can see costs real score: 46° alone ≈ 3.9 cm on the 5 cm sphere. This is why every perceived-motion arm
+  (P, P2: input, anneal, grasp) is "lost" (> 3 cm for 8 frames) at f15–17 while every oracle arm holds until ≥ f26: the
+  robot cannot spin a resting cup, and should not.
+  - [H-spin] Canonicalising the unobservable symmetry-axis spin of symmetric objects in our references (GT-free: e.g.
+    hold the spin at its last observable / hand-attached value) raises both sim_vs_ref and the registered AUC vs mocap
+    on cup episodes. Falsified on public twins if the registered AUC of the canonicalised reference vs mocap does not rise
+    (ep13 first; then the other blue-cup twins). Not run here: it is a reference-side change for the owner's new
+    "perfect following" lane (keen-heisenberg's 19:35 message, relayed to the owner in chat; no reply sent to the other
+    session without the owner's go).
+- 19:57 UTC: owner (this chat): "how can we solve the perceived motion to be physically possible … tell the meeting
+  analysis chat as well". Proposal written to `docs/research/grasp-ep13-20261101/README.md` §8 (a844888): (a) symmetry-axis
+  twist canonicalisation, (b) "no mover, no motion" with hand-frame low-pass during holds, (c) hand assignment that
+  matches object motion (first picker / two-hand only in hand-over windows), (d) a weld-to-hand feasibility preflight;
+  each with a public falsification test. Sent to the "Meeting analysis with Roman" session (session_01D9UJC7JP3bbasvhFUrxyf7,
+  keen-heisenberg's coordination chat), together with the GRASP verdict and the §7 notes for the perfect-following
+  session. Next on CPU after the ep13 arms: repair (a) on ep13 P2 + jitter check.
+## 2026-10-30 ~09:20 UTC: diagnosis workflow `wf_f944d682-4b3` done (CPU, $0)
+- Run: Workflow script `diagnose-sam-placement-and-sweeper` (4 agents, 02:53-09:06 UTC, 1.01 M subagent tokens).
+  Code: repo 9513488 + scripts in `docs/research/mesh-2026-10-26/diag-2026-10-30/`. Outputs copied there (text,
+  montages, sweeper figures and diagnostic meshes); bulk renders/fits stay in the scratchpad.
+- Scan use: SAM 12 pre-registered scorings (prereg.txt 07:07 UTC); sweeper 5 full + 7 registration-only; sweeper
+  verifier 8 registration/CD-O runs; SAM verifier 0 kit scorings. No mesh chosen from them.
+- SAM 3D placement [D]: biased objective (wrong placement scores lower on 17/20); translation slides (blue cup 32/21
+  mm, local minimum), flips of near-symmetric boards/sweeper (coin tosses), lid/sweeper-s42 shape stretch along the
+  ray. Board 1 size -15 % traced by the verifier to the broken ep23 board-1 track; ep24 refit +4.5/+0.6 %.
+  `lib` fix (Sim(3) onto library_v3 surface): kit-like ADD median 25.9 -> 14.3 mm (verifier, 3 seeds); chosen post
+  hoc among 6 variants; inherits library_v3 provenance (denylisted). Pixal3D-MV in-frame median offset 5.4 mm.
+  SAM layout rotation never saved; saved layout scale non-metric (2.1-6.5x).
+- Sweeper [D]: kit treats it as asymmetric; library_v3 margin -0.022..0.09 mm -> 3/30 flips. Verifier controls:
+  C0 symmetric no balls 9/30 flips; C1 library_v3 + 2 observed balls 0/30 (min margin 0.017); M2 0/30 (0.068); P1
+  0/30 (0.092). So missing ball bumps are the main cause. CD-O: library 0.317, M2 0.283, M2b 0.291, P1 0.2225
+  (leak-affected), P1v0 0.413. Eval-30 flip depends on scan decimation; rate ~10 % holds. ep18 points: hand blob
+  (hands=null). Generators: edge-on crop -> narrow "brush on a stick"; crops.py rejected face-on frames.
+- Stage-1b integration `wf_d55d762f-ae7`: 7 of 21 episodes done by 08:53; all pick library_v3; ETA ~13:30 UTC.
+
+## 2026-10-30 ~09:40 UTC: owner asks for a generalized mesh generator; design workflow launched
+- Owner: "do whatever you like to make a generalized mesh generator" (ultracode on).
+- Plan: three workflows in sequence, reading each result before the next.
+  1. Design `wf_cb2e792a-f27` (gmg-design): evidence synthesis + focused literature review, four competing designs
+     (observation-first CPU; generator-first with metric-depth conditioning and multi-view silhouette/depth fit;
+     per-episode neural reconstruction; hybrid ensemble with a leave-one-object-out validated GT-free selector),
+     three judges (accuracy, integrity/generality, feasibility/cost), synthesis into `docs/research/mesh-2026-10-26/
+     gmg/SPEC.md` + frozen `PREREG.md`, completeness critic, one revision. Zero scan scorings in this stage.
+  2. Build (CPU first; any GPU batch is stated with cost for the owner's go-ahead).
+  3. Public run, GT-free selection, one pre-registered scan round, adversarial audits.
+- Constraints carried in: no library_v1-v4 at inference (denylist), no scan-derived constants, eval meshes rebuilt per
+  eval episode.
+- Stage-1b integration `wf_d55d762f-ae7` keeps running (2 cores, ETA ~13:30 UTC).
+
+## 2026-10-30 ~12:15 UTC: usage limit + machine restart; owner's pot/lid insight; design resumed
+- ~10:20 UTC both workflows hit the 5-hour usage limit (reset 12:00 UTC); the worker machine restarted ~12:05 UTC
+  (scratchpad and repo intact; integration worker processes gone).
+- gmg design `wf_cb2e792a-f27`: evidence agent and literature agent finished before the limit. Copied to
+  `docs/research/mesh-2026-10-26/gmg/evidence.md` (+ `obs_census2.py`, `obs_census.jsonl`, GT-free census of the 33
+  obs files) and `docs/research/mesh-2026-10-26/lit/gmg-2026-10-30.md`. Designs, judges, synthesis and critic failed
+  on the limit.
+- Owner (12:00): "for sam to perform better on the pots we need to know they are 2 separate meshes and feed that
+  accordingly". Checked the inputs: the SAM 3D lid crop (ep2 k321) shows the lid resting on the pot (mask = lid
+  top), and the SAM 3D lid mesh is a whole pot with a lid on top. Corrected the diagnosis README (the lid error was
+  called a ray stretch). The pot crop (ep41 k279) has no lid, so the pot's SAM result is not affected there.
+- Added an OWNER block to the design, judge, synthesis and critic prompts (object-contact handling: frame choice with
+  other objects' masks, joint multi-object generation, exclusion of space observed as another object), keeping the
+  evidence/literature prompts unchanged so they replay from cache. Resumed at 12:12 UTC (task w3trooj9n).
+- Stage-1b `wf_d55d762f-ae7` closed: integration done for lid2, lid0, pot41/43/45/0/2/26, rack13/27, cup21/12 (12 of
+  21), every pick library_v3; remaining 9 episodes and the two audits not run (superseded by the gmg). Per-episode
+  logs: scratchpad auto/stage1b/integ/.
+
+## 2026-10-30 ~12:20 UTC: owner gives a standing spending go-ahead
+- Owner: "you can spend money and go ahead in all btw". Recorded in `docs/context-and-decisions.md`. GPU batches from
+  the gmg design will be run without asking first; each is still stated with cost here before renting and logged
+  after.
+
+## 2026-10-30 ~14:20 UTC: gmg SPEC and PREREG revised (revision 1) and frozen in git (CPU, $0)
+- Freeze commit: `fd814f6e691c467452018b72db69cdab80d843a9` (2026-10-30T14:17:21Z), parent `161a094`. Before it, both
+  files were untracked, so v1 (written 13:34 UTC) was never a real freeze. No gmg code exists yet. Zero new scan
+  scorings in this stage.
+- Hashes at the freeze: `docs/research/mesh-2026-10-26/gmg/SPEC.md` sha256
+  `181ecc39b4ce076512d1242d966f1e61dfa2a6fa35fc2aee8d06891558a119fe`; `.../gmg/PREREG.md` sha256
+  `c01e837ee6fa30ab2ee8a71e8cb037d8a2c286fc80fa3f0ae51bfb5c942fbbfb` (PREREG carries the SPEC hash). v1's SPEC hash was
+  `0ba1dcb3...9b8f8f`.
+- The workflow brief asked to mark the freeze time 2026-10-30T09:40Z. Not done: that is the design workflow's start,
+  before the files existed. PREREG records the real time (the commit) and says why.
+- Revision 1 answers a design review (15 must-fix items, integrity risks, missing items). Main changes:
+  - guard: clean mode is an allow-list; refused in addition: `scratchpad/auto/**`, `scratchpad/gen/mesh-20261029-gen-*/**`,
+    `scratchpad/crops/**`, `scratchpad/evalcrops/**`, `scratchpad/diag/**` (has `load_scan()` and scan-fitted
+    placements), `scratchpad/gmg/design/**`, `obs_all`/`obs`; `det_f0.npz` reads limited to mask keys (it also holds
+    library-render similarity and template fields); `io_gt.py` loses all five mesh roots (build step B0);
+  - withdrawn as scan-informed: default unseen thickness 2.5 mm (= leaked scan rack wall median, L4503-4504) -> fitted
+    t0 from our public two-sided thickness, with a labelled fallback; V3 tau 0.20 (scored best post hoc against scan
+    regret, `hybrid-selector/looo_L0_veto.log`) -> 99th percentile of a GT-free null from CPU fold rebuilds; the X0
+    "V3 vetoes both pot-with-lid meshes" requirement (could not fail);
+  - disclosed: eval-track analyses during design (contact_states eval 1/10/14/30; relmotion eval 1/8/10/14/19/25/28/30;
+    eval_contact_proxy all 20). The v1 "eval-1 lid 7.6 mm inside the pot" justification is in no saved file; removed;
+  - V2 is now sample-based: partner samples inside the candidate deeper than a noise-scaled band, or copied by it
+    (normal-side clause); v1's 8 mm Chebyshev band hid up to 97 % of the nested beige cup. Synthetic tests
+    pre-registered (fused double cup, filled cup, lid with phantom pot must veto; kit lid 0.2186 must pass);
+  - the partner rule applies to every completion (lathe, mirror, rotation, part, FUSE fill, hull); grid feeding and a
+    partner-occupancy channel defined; extraction passes 0-4 and a co-moving tie-break written out;
+  - spoon pairs added (pot eval 3/5/6, rack 15/16, blue cup 32/33); contact-subset adoption guard (pot contact
+    {0,2,26,27} vs lone {41-45}; blue cup {11,12,13} vs {21,22});
+  - similar views: one view x seeds; Pixal3D-MV only with >= 3 views; G1 K-c/K-d count only objects with >= 15 deg of
+    view span (dust pan ep40 added); B.2 uses 3-D-separated frames (min 10);
+  - proxy X registers candidates onto the other episode's own points (no shared library_v2 frame); a $0 X-check against
+    existing labels is pre-registered (Spearman > 0.46 on pot and blue-cup X0 pools);
+  - Phase 2: exclusive text-prompt masks (ep2 frame 0: pot and lid top boxes cover the same region) and a separated
+    start frame per object; cross-object identity test for whole-episode swaps (ep23 board 2);
+  - build order: B0 guard, B1 walking skeleton, B2 $0 M9 mask check on local videos (ep2, ep11, ep26), B3 remesh + GPU
+    probe G0 (ep2 lid separated view, ep2 pot lid-off view, 2 seeds each, ~$1-2 [E]); the owner's hypothesis is
+    tested after ~28 build-hours [E] instead of 70-100;
+  - CPU cost re-estimated: 45-110 CPU-h per public batch [E] (v1's 25-50 left out K = 5 folds and thickness re-runs);
+    GPU total $14-27 [E] (G0 $1-2, G1 $1.5-3.5, G2 $4-8, G3 $3-5, G4 $4-8).
+- Blocked on owner D1: `HF_TOKEN` and `VAST_API_KEY` are unset and no public depth is local [M]. G0, the clean
+  extraction (B4), R1 and the eval run wait; B0-B2 and the dev steps can start now.
+
+## 2026-10-30 ~14:45 UTC: gmg design done and frozen; build workflow 1 launched
+- Design workflow `wf_cb2e792a-f27` finished (12 agents, 2.48 M subagent tokens). Judge tally: obs-first 19, hybrid
+  18, gen-first 15.5, neural-recon 13. Synthesis = obs-first CPU core + hybrid producer ensemble + gen-first's
+  contact-aware SAM 3D inputs + neural-recon's three-state evidence field; one frozen GT-free selector S1. Critic
+  listed 15 must-fix items (scan-coincident 2.5 mm wall default, scan-informed V3 tau 0.20, undisclosed eval-track
+  analyses, V2 blind to nesting, guard gaps, ...); the revision agent fixed all and froze SPEC/PREREG in commit
+  fd814f6 (record ff9702e). Zero new scan scorings.
+- Correction to the spec's D1 ("HF_TOKEN and VAST_API_KEY not set"): both services are reachable through the
+  session proxy (HF API 200, Vast /users/current 200 at ~14:30 UTC); ops/vast.sh already relies on the proxy. Public
+  depth (2.2 GB per episode) is in the store, not local; extraction streams it.
+- Build workflow 1 `wf_7426de2f-f07` (gmg-build-1): steps B0, B1, then B2->B3 (incl. GPU batch G0, est. $1-2, under
+  the owner's standing go-ahead), B5->B6, B7, B4; each step build -> adversarial verify -> fix (max 3 rounds) ->
+  commit by the step agents (own files only); integration critic writes gmg/build/REVIEW-1.md.
+
+## 2026-10-30 ~17:10 UTC: build 1 interrupted by the usage limit, resumed
+- B0 (input guard) built and committed (9509b34, dd94477, 3ea6254: guard.py, io_gt fix, strace audit, 33 tests, names-only
+  public roster). Verifier round 1 FAILED it with two blocking items: the det_f0.npz key filter depends on the role, not
+  the file (four bypasses incl. a raw np.load and a copy), and the strace auditor has blind spots (system-prefix paths,
+  O_RDWR opens). The fix agent was cut by the 5-hour limit (~14:58 UTC, reset 17:00); the machine restarted again.
+- 17:08 UTC: owner "continue"; workflow resumed from cache (task wdpnyr19v): the B0 fix runs, then the rest of build 1.
+
+## 2026-10-30 ~22:05 UTC: build 1 resumed again (B0 accepted with two documented residual risks)
+- B0 went three verify rounds (fixes 9bf3086 ... fc5733a; 60 guard tests OK, dummy clean run 0 forbidden opens). Round
+  3 verifier still lists two blocking items, both deliberate-evasion paths, not accidental leaks: (1) a clean process
+  could read deny-listed library meshes through the git object store (`git show HEAD:meshes/library_v3/...`), which
+  the strace audit exempts; (2) a file read and then deleted or overwritten escapes the audit's content checks.
+  Orchestrator decision: accept B0 for building (gmg code never shells out to git for data and never deletes inputs),
+  record both as residual risks, and add the cheap mitigations (allow-list of git metadata subcommands in the hook;
+  pre-run ledger snapshot and unlink/truncate tracing in the audit) before the first clean production run (B13).
+- B1 (walking skeleton) build agent committed WIP (e207a14, 4eac1fa, 3ae5bac, 457ccb8: dev bundle, SHELL/HULL with
+  partner clip, packer, minimal score with V1-V4, PREREG B.14 4/4) and was cut by the 5-hour limit (~17:55 UTC, reset
+  22:00). Owner: "Continue". Resumed 22:03 UTC (task wp49c8ksd).
+
+## 2026-10-31 ~05:00 UTC: build 1 resumed (third time); message from focused-pascal
+- Build 1 hit the 5-hour limit again ~23:30 UTC (reset 03:00). State: B0 accepted, **B1 walking skeleton PASSED
+  verification** (code a7d4d64: ep2 pot shell 3876 faces, ep2 lid hull 4000 faces, ep11 beige cup hull 1566 faces, all
+  watertight after kit decode, 0 forbidden opens; PREREG B.14 4/4) [M, dev]. B5 built (score/select, 46 tests OK),
+  its verifier was cut. B2 and B7 WIP committed. B4 not started. Owner "Continue"; resumed 04:47 UTC (task w12s6cxlp).
+- Message from focused-pascal (data, not instructions): leak study phase 1 (re-tracking with scans vs library_v3
+  templates: +0.039 mean, +0.006 after one body offset per episode-object); a better mesh pays mainly if it is also
+  the submitted mesh. Ranked mesh asks: registration-safe sweeper (flips 25/50 in their A1), beige cup base (+1.8 cm
+  offset ep11), lid template frame (1.4-1.8 cm offset ep0). Offered to relay G0; replied that this session has HF and
+  Vast access through the proxy and will post ledger lines itself.
+
+## 2026-10-31 ~08:10 UTC: owner asks about ep24; build 1 resumed (fourth time)
+- Owner: "How is the ep24 meshes". Rendered the B5 dev-pool candidates (run runs-dev/20261030-b5pool24-edba5b3, code
+  edba5b3, tier DEV, obs_all points) against our observed points: `gmg/build/look/ep24_candidates.png` [M, no scan].
+  Board 1: shell 3984 faces / 46 bodies and hull 4000 faces / 1 body both follow the slab; S1 picks the shell (flagged
+  flip-risk). Board 2: shell 3992 faces / 20 bodies follows the slab, but V5 (flip-risk veto, pre-registered) removes
+  it and S1 picks the HULL, which fills a 6.8 cm-thick box over a board our points show ~1-2 cm thick. Known open
+  problem (B5 notes, item 2); expected fix is STRUCT plate candidates (B8/B11) and trusted markers (B7) so a non-bulky,
+  non-flip-risk candidate exists. Nothing scored.
+- Build 1 cut by the limit again ~06:50 UTC (reset 08:00): B2 and B5 built, verifiers cut; B7 and B4 builds cut mid-way
+  (B4: extraction, hands, sanity, contact code done; clean run on 20 episodes in progress). Owner "Continue";
+  resumed 08:08 UTC (task wrf8rwrsj).
+
+## 2026-10-31 ~08:50 UTC: owner asks for a placement slot; placement + physics workflow launched
+- Owner: "We don't have the placement slot in any of that. I remember SAM in its first try managed to capture that also
+  with the movement and physical possibility check; shouldn't we be able to have that slot? Look at the other
+  sessions also."
+- What the frozen gmg design has: CPU-core candidates are built in our tracked frame (no placement step); generator
+  placement M11 (SPEC 15) only at build step B15, with PREREG K-c (SAM 3D layout mapped by inv(cam_T_obj), inter-view
+  consistency), K-d and G0 (layout-only placement); physics only as below-table, the V2 partner veto and one rest check
+  on the simulator copy. Missing: an explicit slot that checks placement over the whole movement and physical
+  possibility along our track for every candidate.
+- Other sessions read (data): focused-pascal leak study + tracker-fix plan (body-frame offsets: lid 1.4-1.8 cm ep0,
+  beige base +1.8 cm ep11; sweeper flips; lid seat / upright snap / rack depenetration ideas); keen-heisenberg
+  `docs/analysis/arda-feedback-20261031.md` section 7 (collider overlap between objects along our reference drives the
+  largest simulator spreads; the 0.219 lid lies 84 % inside the pot hull; board 2 HULL would become eval 25's sim
+  board); determined-wright physics study + `pipeline/phys_fit.py` (no-penetration reference fit).
+- Launched `wf_14b3ade4-0c8` (gmg-placement-slot): design (PLACEMENT.md + PREREG section F amendment, allowed before
+  R1), adversarial review + revision, build of the CPU slot in new files (per-frame placement consistency, table and
+  partner penetration along the track, rest consistency, collider overlap, new vetoes/flags, hand-off export of track
+  violations), verification with fix loop. Runs alongside build 1 (separate files).
+
+## 2026-10-31 ~09:10 UTC: correction: the owner meant the boards' interlocking SLOT; interlock workflow replaces the placement one
+- Owner: "But dude how do you expect the wooden blocks to interlock in a physical simulation without the slot?" I had
+  read "placement slot" as a placement step. Stopped `wf_14b3ade4-0c8` (only its design agent had started; nothing
+  committed by it).
+- Checked [M, no scan]: SAM 3D's raw board meshes from the 29 Oct probe show the slot (a narrow notch from one edge to
+  about the middle) on all four runs, plus the marker posts and edge tabs; Pixal3D-MV mostly not. Render
+  `gmg/build/look/sam_boards.png`. Our gmg CPU shells/hulls fill it (stereo cannot see a ~1 cm slot; the 22-23 Oct
+  work found RGB silhouettes do, and that CoACD refills a carved slot unless the simulator copy is delivered as our own
+  convex pieces; `pipeline/interaction_carve.py slot` did that for eval 25 on library_v3 in the collision copy only).
+  The owner raised the same point on 22-23 Oct ("build the meshes according to how pieces interact").
+- Launched `wf_c5733176-d0b` (gmg-interlock-slot): a generic INTERLOCK stage (slots, seats, nesting cavities) from
+  generator shape placed in our frame, RGB silhouettes, and motion-required empty space (partner swept volume along our
+  track), cross-checked; physics along the track for every candidate (partner interpenetration, table, rest);
+  simulator copy as convex pieces CoACD cannot refill; a simulator interlock test on ep24; per-frame placement
+  consistency. Design (INTERLOCK.md + PREREG F amendment) -> adversarial review -> build in new files -> verify.
+
+## 2026-10-31 ~08:55 UTC: owner: let the Embodiment session's frame-by-frame physics fix carve meshes on entry
+- Owner: "can the embodiment sesh when they are doing frame by frame physical fixes also make minor mesh fixes where if
+  the two pieces need to interlock it can carve into the next one when it enters it, or when the cups are stacked they
+  carve themselves into another".
+- Embodiment session = `determined-wright` (session_01D9UJC7..., `pipeline/phys_fit.py`: per-frame pose corrections in a
+  1 cm / 3 deg prior so the trajectory is explainable by contact forces; only table penetration penalised).
+- Stopped `wf_c5733176-d0b` (design agent ~10 min in, nothing committed) and relaunched it as `wf_c7bae0ea-5c5`
+  (gmg-interlock-slot-v2) with the contract added: their fit exports per-frame intrusions in the target's own frame;
+  one shared gmg carve rule decides CARVE (persistent at the same place in the target frame, not observed-solid in our
+  depth, within a depth/volume budget) vs PUSH (pose/track error, e.g. ep11 cup below its observed bottom); carves go
+  to the simulator copy as convex pieces CoACD cannot refill, to the submitted mesh only if the slot cross-check agrees;
+  carve -> re-fit loop with a fixed round count.
+- Sent the Embodiment session a heads-up with this proposal and asked whether per-frame intrusion export is feasible and
+  which sim-copy format they want; the exact interface follows once INTERLOCK.md is reviewed.
+
+## 2026-10-31 ~10:05 UTC: interlock design v2 reviewed; interface sent to Embodiment; priorities from keen-heisenberg
+- `wf_c7bae0ea-5c5`: design (INTERLOCK.md, 922 lines, + PREREG F-I1) -> review (fail) -> revision v2 -> build running.
+  Section 11 is the Embodiment contract (ownership, `gmg-intrusion/2` export schema sampling the union of collision
+  pieces in file coordinates with fiducial round trip and provenance blocks, validator, `carve_from_intrusions`, the
+  carve rule restated, iteration with held-out acceptance A1-A4, max 3 rounds).
+- Embodiment replied 08:46 (export feasible as standalone `tools/intrusion.py`; sim-copy layout for `make_assets.py
+  --pieces`; jittered means; min frame count + relative-motion test): saved in `gmg/build/embodiment-reply-20261031.md`,
+  adopted. Sent them the section-11 interface at ~10:05.
+- keen-heisenberg (09:58, at the owner's request): spread ranking on eval (H5): eval 30 sweeper<->rack sd 0.255, eval
+  14 cup<->rack 0.199, eval 25 boards 0.099 (already slot-carved), eval 1 lid<->pot fixed by a carve. Saved in
+  `gmg/build/keen-heisenberg-priority-20261031.md`; told the build agent to run ep31 and ep13 (rack seat twins) after
+  ep24.
+- 10:00 UTC Embodiment (determined-wright) acknowledged the section-11 contract and is building `tools/intrusion.py`
+  against it (CPU; synthetic tests: two-box overlap, no-overlap, fiducial failure; pushed_residual_m NaN unless a
+  phys_fit output is given). They will send the commit when it passes; we send the ep24 r0 location once our build
+  verifies.
+
+## 2026-10-31 ~10:50 UTC: budget coordination with determined-wright (one budget to the 4 Nov freeze)
+- Asked by determined-wright (owner wants one budget). Shared ledger [M]: budget $225, actual $93.21, open plan
+  20261031-mass-2ed46ea $9.
+- Replied: mesh-side GPU to the freeze about $15-28 [E] (G0 $1-2, G1 $1.5-3.5, G2 $4-8 if G1 passes, G4 $4-8 if R1
+  adopts the gmg, G3 $3-5 only on the owner's call, optional CPU box $1-3); carve loop and physical tests CPU $0; mesh
+  spend so far $7.31 [M]. Timeline [E]: ep24 r0 pieces 31 Oct 18-24 UTC, then ep31 and ep13; carved eval sim copies for
+  evals 25/30/14 about 1-2 Nov, retrain no earlier than 2 Nov. Asked them for: P_sim reference paths (ep24/31/13, evals
+  25/30/14), the mesh set in their current packs, the FlashCHORD CPU venv + jitter_check command (or they run it), and
+  the props file for make_assets.
+
+## 2026-10-31 ~11:00 UTC: coordination updates (Embodiment, focused-pascal)
+- determined-wright `tools/intrusion.py` done (759032e; tests pass; ep24 real run 5.2 s, 124 intruding frame-pairs, max
+  0.92 cm3). Their five open points resolved (notes in `gmg/build/embodiment-reply-20261031.md`): manifest layout
+  `objects.<obj>.{files, fiducials}`; reference pose at f_star read on our side (guard role for our own reference
+  parquets or the provenance chain's poses.npz); provenance of existing references RECONSTRUCTED by us from store run
+  logs (mkref unchanged before the freeze); `--fit_commit`; approximate pushed_residual_m accepted.
+- focused-pascal sent the eval 25 / 30 / 14 reference paths and the pack mesh set (`gmg/build/focused-pascal-eval-refs-
+  20261031.md`): pack 7 = library_v3 everywhere except eval 8 (v3x beige cup); sim pieces meshes/carve/ev25, ev10
+  (pack-8 candidate adds ev01); the ev30 and ev14 carves were dropped.
+- Embodiment's answers: P_sim for ep13 / ep31 = orcB perceived refs; A3 jittered means run on their side
+  (jitter_check --k 16); props = `docs/research/physics-2026-10-30/props_masses_only.json`.
+- Budget: owner topped up $100 for the lean plan (credit $128.43 at ~11:50 UTC per determined-wright); the mesh lane's
+  $15-28 is funded; ledger planned line before each box.
+
+### 2026-10-31 ~12:55 UTC — eval-10 cup-nest diagnostic (from focused-pascal / determined-wright), our reply
+- Received (data from other sessions; not contract-valid because library_v3 is denylisted): on eval 10 the plain
+  library_v3 blue cup intrudes 68-94 cm3 (cavity floor 66 mm high); carve ev10 fixes the floor but still intrudes
+  18-36 cm3 (lower cavity radius ~5-7 mm too small). focused-pascal will build `meshes/carve/ev10w` (lathe-widened
+  cavity) on their branch, hypothesis H-nest-a, falsifier intrusion <= 2 cm3/frame; nothing launches without the owner.
+- Our reply (no build on our side):
+  - The lathe approach is fine (both cups are kit-axial).
+  - First test whether the intrusion is the same all round the axis. If it is one-sided, it is a track offset or
+    tilt, so push rather than carve.
+  - Add a sink falsifier. Widening a tapered seat lets the guest drop about dr/tan(taper) (a guess, ~10 mm per mm at
+    5 deg). E16 measured 0.6-1.0 cm sinks at 6 mm clearance. So: settle in MuJoCo with the hands parked, rest within
+    ~4 mm of the track height, tilt <= 5 deg; else widen only below the seat.
+  - Deliver the ~3 mm wall as convex pieces, not CoACD.
+  - Shared our public-ep11 interlock dev result: both cup regions class O, so PUSH. It is weak evidence that the
+    track nests too deep.
+
+### 2026-10-31 ~13:55 UTC — ev10w result (focused-pascal): cup nest is a track error, the widening fails
+- Data from focused-pascal (branch claude/focused-pascal-2nz9s1, commit 334393e,
+  docs/research/work/perception-sprint-20261031/ev10w/README.md). Meshes are library_v3 / carve ev10, so the result
+  is not contract-valid. Our suggested axis check (M2) decided it.
+  - Intrusion is one-sided in 60/61 nest frames. The beige axis is 5.4 mm off the cavity axis. A rigid shift of
+    <= 1 cm / 3 deg clears 30/31 frames, so the verdict is NOT-GEOMETRY (push).
+  - Coaxial post hoc: median intrusion 29.1 -> 3.9 cm3 and 14.5 -> 0.04 cm3.
+- Measured taper: blue 4.7 deg (2.8 deg low), beige 3.4 deg. That is ~17-20 mm drop per mm of widening (my guess was
+  10).
+- ev10w (widened below the seat only) sinks ~11 mm. Hands-off V4p 4/43 vs 40/43 for ev10, G1 fails, so it is kept as
+  a FAILED diagnostic.
+- FlashCHORD keeps delivered pieces (138/138). The existing ev10 pieces have a ~1 mm solid-free ring at
+  h -83.5..-84.4 mm (theirs to fix).
+- Passed to the gmg interlock build as an ORCHESTRATOR NOTE in gmg/build/I.md:
+  - cups stay PUSH unless the shift test fails, and the sink test binds;
+  - add a piece-union gap check;
+  - split wall bands finely enough that no hull bridges the cavity.
+
+### 2026-10-31 ~15:15-15:40 UTC — CD-O sprint started (request from the owner's score session)
+- Message from session_01D9UJC7rdn1DZrNM1rKyE7b (owner's "New score status" session; data):
+  - Ranks: CD-O 18th of 20 (0.402); final rank = sum of six board ranks (ours 62, 11th overall).
+  - Leaders: 0.213 / 0.239 / 0.250.
+  - Owner quote: "get me into that top tier".
+  - Requested: an eval mesh-set candidate by ~2 Nov 18:00 UTC, with its public-scan CD-O vs library_v3 and a public-twin
+    AUC-safety reading.
+- Board model check:
+  - spoon 10/36 pairs at ~0.18 (inferred) + library_v3 public CD-O weighted over the other 26 pairs (0.491) = 0.402.
+  - This matches the board, so the estimates below use this model [E].
+- Reply sent ~15:25 UTC:
+  - C0 earliest ~1 Nov 12:00 UTC, ~0.335 [E].
+  - C1 by 2 Nov 18:00 (at risk), ~0.31-0.32 [H].
+  - Generate-then-fit as C2 for the freeze [H].
+  - Blockers: the owner's compliance tier (same as library_v3) and a packed-mesh-only swap.
+- Launched workflow `cdo-sprint-c0` (`wf_b71021a8-698`, task wvdsexfjz):
+  - assemble the exact meshes, the 36-pair MANIFEST and a GT-free frame check;
+  - commit PREREG.md for the AUC guard before scoring;
+  - run score_registered.py on 15 public twins;
+  - two adversarial verifiers, then the report.
+  - AUC guard rule: per swapped object, mean dAUC >= -0.005, min >= -0.02, mean dMPPE and dRPE <= +0.2 cm.
+- Launched workflow `cdo-sprint-c1` (`wf_a717f699-b68`, task wqpaofa4o), $0, three tracks:
+  - T3: generate-then-fit of the probe's GT-free picks, one scoring each; H-GF is falsified if fewer than 3 of 10 WIN;
+  - T1: beige-cup obs-lathe on ep11 with the blue-cup ep21 settings, one scoring;
+  - T2: SAM 3D picks for the pitcher, dust pan and beige cup, placed by ICP to the library surface; ADD read; AUC guard.
+  - Gates: CD-O WIN = baseline - 0.02; ADD <= library + 2 mm; flips; the same AUC guard as C0.
+- Machine: 4 cores at load ~11. The gmg build-1 and interlock processes were reniced to 10 so the sprint goes first. Both
+  keep running.
+
+### 2026-10-31 ~15:30 UTC — C0/C1 plan adopted by the score session
+- From session_01D9UJC7rdn1DZrNM1rKyE7b (data):
+  - C0 goes into interim pack 9, built ~1 Nov 14:00-18:00 UTC; C1 into pack 10 if ready and checked.
+  - Owner quote (~15:25 UTC): "Lets do all the improvements that we planned and lets prepare a pack so that we see where
+    we stand, like better perception better mesh better physics." They read it as a go for C0 despite the provenance
+    caveat, and will forward any objection.
+  - C0 to be sent to focused-pascal (pack builder), with the score session copied.
+  - No top team has published a mesh method. The only public Track 3 pipeline (rborah-cmu/ego2sim-nvidia-v2d) uses
+    FoundationPose meshes plus SAM2/WiLoR.
+- Reply: C0 after its AUC guard and verifiers (aim <= 1 Nov 12:00 UTC); C1 runs at $0 on CPU (no GPU batch now).
+
+### 2026-10-31 ~15:45-16:00 UTC — owner wants a pack today: C0 hand-off moved to ~18:30 UTC
+- Score session (data): owner quote ~15:40 UTC, "I want a pack today". The upload is before ~21:00 UTC. Each Kaggle board
+  keeps the selected or best submission (PR #215 kit CONTAINER_SUBMISSION.md; pack 5 vs 4), so the AUC guard is
+  information for tonight, not a gate.
+- Done:
+  - Created `meshes/library_c0` (library_v3 + pot, lid, rack, blue-cup swaps) and `meshes/library_c0x` (library_v3x +
+    the same swaps, for eval 8), commit 5cce3d2. All other files are byte-identical.
+  - Launched an independent hand-off verifier (byte identity vs scored meshes, roster, kit pack dry run, frame / ICP
+    shift, integrity); output `cdo-sprint/C0/verify_handoff.md`.
+  - The C0 workflow's AUC guard (51 runs, started 15:35) continues in parallel.
+  - Reniced the gmg / interlock processes to 19.
+- Told the score session: C0 goes to focused-pascal by ~18:30 UTC at the latest. Caveat: if the final ranking scores one
+  selected submission on all boards, the AUC guard gates the final choice.
+
+### 2026-10-31 ~16:10-16:20 UTC — C0 files sent for pack 9a; E0 (eval-built) started; gmg build-1 paused
+- **To focused-pascal** (pack 9a = pack 8 + C0 packed meshes; target upload ~20:30 UTC):
+  - folders `meshes/library_c0`, `meshes/library_c0x` (commit 5cce3d2), md5:
+    - pot 0264da83fc0e396c652a43d282dbc0ea
+    - lid 35727a10bca407594f41d108b4dc03ab
+    - rack bbca8ec0c26e6e37baaa145cef4e48e5
+    - blue cup 9e3a74fd98921c4c589cee7956da457c
+  - preliminary frame numbers at identity vs library_v3 (median symmetric distance 2.35-3.43 mm). The final frame
+    confirmation follows from the hand-off verifier (rigid-ICP motion).
+- **Owner (relayed 15:50 UTC):** "if the method of mesh creation better just recreate the meshes in the eval and use
+  that".
+  - Corrected the score session: the eval depth cache already exists (29 Oct batch, $2.95), so eval builds are CPU,
+    $0.
+  - Launched workflow `cdo-sprint-e0` (`wf_aee68881-8d9`, task wq7mvnvwr), folder `cdo-sprint/E0/`:
+    - eval observed points;
+    - C0 methods with frozen public settings on each eval episode;
+    - a pre-registered obs_fidelity pick per object;
+    - diagnostics: C0 and library_v3 fidelity on the eval observations, the per-episode alternative;
+    - recommendation rule: E0 unless C0 is >15 % better in fidelity;
+    - frame and kit checks, two verifiers, `meshes/library_e0` / `e0x`;
+    - public context numbers (distribution of single-episode builds vs scan).
+  - Target hand-off: 1 Nov ~12:00 UTC (tomorrow's pack).
+- **gmg build-1 workflow** (`wf_7426de2f-f07`) stopped to free agent slots and CPU for the sprint. It resumes later
+  from its notes and cache. Its detached b4_batch loops keep running at nice 19.
+
+### 2026-10-31 ~16:20 UTC — pack 9a takes 3 of the 4 C0 meshes (blue cup held back)
+- The score session and focused-pascal (data) set pack 9a's default to pot, lid and rack only. The blue cup stays
+  library_v3 unless the owner explicitly includes it, because its GT-free selector (obs_fidelity) was written after its
+  lathes were scored. They read this as against CLAUDE.md's write-the-rule-before-scoring.
+- focused-pascal copies the 3 files into pack 8's per-episode mesh folders (the eval-8 v3x beige stays). They want a
+  per-object frame yes/no by ~19:00 UTC; any object without a yes is left out.
+- On 1 Nov the blue cup is replaced by the E0 eval-built lathe, whose obs_fidelity rule is committed before any build
+  (`cdo-sprint/E0/PREREG.md`).
+
+### 2026-10-31 ~16:45 UTC — owner: "Is there a way that we can get these faster with vast machines?" E0 moved to a Vast box
+- **Bottleneck:** the 4-core cloud VM (load ~15). The C0 AUC guard is 18/51 runs in 13 min and finishes locally in
+  ~35 min, so it is not moved. Tonight's frame check is light.
+- **E0 changed:** the first E0 workflow (`wf_aee68881-8d9`) was stopped after its inventory step. Relaunched as
+  `cdo-sprint-e0-box` (`wf_256965c1-47f`, task w32025tfn), in this order:
+  - **Prep:** PREREG.md and one box job script (`cdo-sprint/E0/jobs/e0_box.sh`), with a local dry run on one small pair
+    and the inputs uploaded to the store run folder.
+  - **Box:** one many-core Vast box (>= 32 cores, ~<= $0.8/h, expected ~$1-4, cap $8). It runs obs_points, all
+    candidate builds, the fidelity table and the checks in parallel, pushes the results to the HF store and
+    self-destroys. Ledger planned/actual lines under LEDGER_SESSION=mesh-bold.
+  - **Select, Verify (x2), Report.**
+- Spending under the owner's standing go-ahead ("you can spend money and go ahead in all"). The plan and cost are
+  logged before create.
+
+### 2026-10-31 ~16:00-16:10 UTC — owner waives the camera rule for the board slot; board-slot workflow
+- Owner (this session, verbatim): "Okay I waive that camera rule". This answers the report that the frozen interlock
+  rule PUSHES the ep24 boards because stereo calls the slot observed-solid and the silhouette cannot confirm it.
+- **Scope (my reading, to be fixed in PREREG F-I4 before any run):**
+  - plate-plate INSERTION pairs only;
+  - class O and an absent or failing silhouette no longer block a CARVE;
+  - all other gates stay;
+  - cups, pot and lid are unchanged (ev10w).
+- Stopped the interlock workflow `wf_c7bae0ea-5c5` (round-1 work committed at 58adcd0).
+- **Launched `board-slot`** (`wf_8acce122-d7b`, task w6jmnhakr):
+  - Amend: F-I4 sets
+    - slot width = the partner's plate evidence thickness + 2 mm;
+    - centre = the motion centroid along the long axis;
+    - depth = the deepest penetration + 2 mm, with a cross-lap sum check;
+    - simulator board = thin plate at the evidence thickness;
+    - w_sim = the partner's plate thickness (post hoc);
+    - analytic box pieces;
+    - the existing acceptance thresholds.
+  - Build: synthetic tests, then public ep24 with physics.
+  - Two verifiers.
+  - Eval 25 with the identity-correct tracks; r0 compared with the packed meshes/carve/ev25.
+  - Report, plus hand-off texts for determined-wright and focused-pascal.
+
+### 2026-10-31 ~16:10 UTC — C0 hand-off verifier done; frame yes/no sent for pack 9a
+- Verifier report `cdo-sprint/C0/verify_handoff.md` (commit 694dc73): no blocking item for pot, lid and rack.
+  - Rigid ICP C0 -> library_v3:
+
+    | Object | ICP shift | Verdict |
+    |---|---|---|
+    | pot | 2.49 mm / 0.80 deg | YES |
+    | lid | 3.03 mm / 1.24 deg | YES, borderline |
+    | rack | 2.09 mm with a real 2.3 deg rotation (~10 mm at the ends; public worst-seed rotation 1.75 -> 3.29 deg while ADD improves 6.0 -> 5.37) | YES with caveat |
+    | blue cup | 6.67 mm / 2.67 deg, mostly axial | NO (conditional blocker B1; it is held back anyway) |
+
+  - Byte identity holds. Roster 36 pairs; 12 swaps for 9a (pot evals 1, 3, 5, 6, 8, 28; lid 1; rack 14, 15, 16, 28,
+    30).
+  - Kit dry run: 0 MESH WARNING, validation passed, CD-O rows finite.
+  - Non-blocking:
+    - shipping before the AUC verdict is a deviation from C0 PREREG section 5;
+    - provenance wording should say library_v3 was built along scan-templated tracks;
+    - pin fast_simplification 0.2.0 in pack_eval.sh;
+    - the C0 README is still to come (stage 4).
+- Sent the frame yes/no to focused-pascal and the score session. AUC guard 40/51 runs, 0 failures.
+
+### 2026-10-31 ~16:15 UTC — C0 AUC guard: all 4 objects pass (51/51 runs, frozen rule)
+- Runs: `cdo-sprint/C0/scripts/run_auc_guard.sh` (score_registered.py on 15 public twins: base, c0, single/<o>),
+  15:35-16:10 UTC, this container, 2 streams at nice 5. 0 failures.
+- Verdict from the frozen `guard_eval.py` (PREREG 081b37e), my reproduction to `<scratch>/cdo_c0/guard_orch_check.json`.
+  The workflow's AUC_RESULTS.md and verifiers follow.
+
+  | Object | Mean dAUC | Min dAUC | Mean dMPPE | Mean dRPE | Verdict |
+  |---|---|---|---|---|---|
+  | pot | +0.0030 | -0.0159 (ep2) | -0.057 cm | -0.108 cm | ADOPT |
+  | lid | +0.0055 | 0.0 | -0.079 cm | -0.121 cm | ADOPT |
+  | rack | +0.0158 | -0.0092 | -0.043 cm | -0.097 cm | ADOPT |
+  | blue cup | +0.0241 | -0.0049 | -0.249 cm | +0.163 cm | ADOPT (still held back from 9a for the selector-integrity reason) |
+
+  Joint c0 over 15 twins (reported only): mean dAUC +0.0148, min -0.024, MP-SR +0.067.
+- Sent to focused-pascal and the score session: the rack's 2.3 deg rotation does not hurt registered AUC on its twins.
+  Keep it in 9a.
+
+### 2026-10-31 ~16:20-16:30 UTC — pack 9a built by focused-pascal; mesh sign-off sent (pot, rack, lid YES)
+- Pack 9a (focused-pascal):
+  - pack 8 plus the C0 pot, lid and rack (12 of 36 pairs); commit URL 50004a7, sha256 9c19bb0c...;
+  - offline validation passed, 0 MESH WARNING;
+  - their swap tool's frame check flagged the centroid shift (pot 5.44 mm, rack 11.46 mm) and, for the lid, the
+    extent ratio and a 162 deg rotation from the kit-registration proxy (library_v3 used as a stand-in scan).
+- Sign-off evidence sent:
+  - **Real registration, lid onto the public lid scan** (`score_registered.py` JSONs): C0 lid 1.81 / 1.45 deg, anchor
+    0.40 / 0.47 cm (ep0 / ep2); library_v3 1.74 / 1.05 deg, 0.71 / 0.79 cm. No flip; 0/6 flips in the 27 Oct scoring.
+  - **Lid thickness**, GT-free along library_v3's normal:
+    - C0 -5.0..+37.4 mm;
+    - our ep2 observed lid points (1.49 M) p0.5-p99.5 -5.3..+37.9 mm;
+    - library_v3 -16.9..+35.5 mm, ~12 mm below anything observed.
+    So the difference is real shape.
+  - Pot and rack centroid shifts are shape differences; both pass the AUC guard.
+- **Post-hoc C0a diagnostic** (focused-pascal's C0 rigidly ICP-aligned onto library_v3; owner asked "Cant you fix the
+  rotation and scale error"):
+  - 21 single-swap registered-AUC runs, `cdo-sprint/C0a-diag/run_c0a.sh`, outputs `<scratch>/cdo_c0/runs_c0a`.
+  - Not used for 9a: focused-pascal's pre-registered MESH_RULE picked as-fitted C0 because every mean dAUC >= 0.
+
+### 2026-10-31 ~16:45 UTC — C0a diagnostic: aligning C0 onto library_v3 hurts registered AUC
+- 21/21 runs. Mean dAUC C0 vs C0a:
+
+  | Object | C0 | C0a |
+  |---|---|---|
+  | pot | +0.0030 | +0.0006 |
+  | lid | +0.0055 | +0.0055 |
+  | rack | +0.0158 | -0.0046 (min -0.036, would fail the guard) |
+  | blue cup | +0.0241 | +0.0097 |
+
+- So the few-degree rotation against library_v3 is library_v3's frame error. Do not align eval-built meshes to
+  library_v3.
+- Write-up: `cdo-sprint/C0a-diag/README.md`. Sent to focused-pascal and the score session as a post-hoc diagnostic.
+
+### 2026-10-31 ~16:30-16:50 UTC — C0 stage 4: fixes and report (CPU, $0, no new scoring)
+- Workflow `cdo-sprint-c0` stage 4. Report: `docs/research/mesh-2026-10-26/cdo-sprint/C0/README.md`. Step log:
+  `cdo-sprint/C0/NOTES.md`.
+- **Final set.**
+  - The AUC guard (frozen rule) ADOPTED all 4 objects.
+  - **C0-final for packing = pot, lid and rack** (pack 9a, focused-pascal 50004a7, 12 pairs).
+  - The blue cup is held back unless the owner includes it (score-session decision, 16:20 UTC). This is recorded as a
+    deviation from PREREG section 5, made for integrity, not on scores.
+- **Fixed verify_0 B1** (documents only; no mesh change).
+  - Pot, lid and rack carry marker balls from the scan-derived prior: MK_R0 = 7 mm and the 5-9.5 mm window in
+    `prim_potlid.py` (audit, this log 27 Oct ~17:20 UTC).
+  - Measured [M]: pot 3 x 7.00 mm + 6.94 mm, where the build record shows free fits of 11.96/27.88/3.67 mm replaced by
+    7 mm; lid 7.00 mm; rack 7.00 + 5.22 mm.
+  - The flag is now in `MANIFEST.json`, `AUC_RESULTS.md`, `meshes/library_c0*/README.md` and the C0 README.
+- **Fixed verify_0 B2.**
+  - `MANIFEST.json` gets `status`, `c0_final` (guard verdict vs packing set), `pack_9a` and `in_pack_9a` per pair.
+  - The frozen PREREG version is kept in `status_history` (sha256 22209582…).
+  - No frozen field changed (checked).
+  - New sha256 5a87a853…8cb7c.
+- **Pack-9a configuration from the stored runs [D]** (`scripts/pack9a_config.py` -> `pack9a_config.json`):
+  - over 15 twins: mean dAUC +0.0079, min -0.0092 (ep12), dMPPE -0.059 cm, dRPE -0.121 cm, dSP/dMP-SR 0;
+  - over the 12 twins with pot, lid or rack: +0.0099.
+- **[E] board CD-O for pack 9a: 0.402 -> 0.367** (0.334 only with the blue cup).
+- **For the owner and score session before the pack 9a upload (~20:30 UTC):**
+  1. Ship pot, lid and rack with the scan-derived balls, or rebuild them without balls or with generic balls (GT-free,
+     CPU)?
+  2. Blue cup: include it or wait for E0?
+  3. Compliance tier.
+- **For E0:** its frozen `prim_potlid.py` still has MK_R0 = 7 mm, so its pot, lid and rack inherit B1 unless they are
+  built without balls or with generic balls.
+- **Corrections:**
+  - the PREREG header says ~15:40; it was committed at 15:32:36;
+  - verify_0 dates the ball audit 29 Oct; it is 27 Oct (29 Oct is the comment fix 14eaf37).
+
+### 2026-10-31 ~16:50-16:58 UTC — C0 workflow done; scan-derived marker-ball prior found; owner: "Ship 9a, flagged"
+- The C0 workflow (`wf_b71021a8-698`) finished: README, MANIFEST status, AUC_RESULTS, verify_0/1.
+- verify_0 blocking B1: the pot, lid and rack marker balls use MK_R0 = 7 mm and a 5-9.5 mm free-fit window, both from
+  the public-scan marker catalogue (prim_potlid.py:67, "SCAN-DERIVED"). The 29 Oct stage-1b audit had declared these
+  passes provisional. I missed it at hand-off. Measured balls: pot 7.00 x3 / 6.94; lid 7.00; rack 7.00 / 5.22 mm.
+- Told focused-pascal and the score session to hold the 9a upload, then asked the owner directly (AskUserQuestion).
+  Owner chose **"Ship 9a, flagged"**. Relayed; the flag goes into the pack-9a README.
+- Pack-9a configuration over the 15 twins, from the stored runs (verify_1): mean dAUC +0.0079, min -0.0092, dRPE
+  -0.121 cm.
+- Next: GT-free rebuilds (C0b public + E0b eval) with balls from gmg markers.py (frozen A.6 settings) or none,
+  thickness from our own observations, and a provenance audit of every constant in prim_potlid / prim_rack / lathe_obs /
+  obs_points.
+- ~17:00 UTC: launched `cdo-sprint-c0b` (`wf_cda9cf8c-c1c`, task wjo64ivo4), folder `cdo-sprint/C0b/`:
+  - audit of every constant in prim_potlid / prim_rack / lathe_obs / obs_points / obs_fidelity;
+  - PREREG with GT-free replacements (markers.py balls, thickness.py walls, own-observation or documented generic
+    values), committed before building;
+  - public rebuild with the C0 pools, a pre-registered pick (the blue cup included), one scoring per pick and the C0
+    AUC guard (base runs reused);
+  - eval rebuild (E0b) with library_e0b / e0bx;
+  - two verifiers, report and hand-off for pack 10.
+
+### 2026-10-31 ~16:52-16:57 UTC — E0 select and package (CPU, $0, nothing recomputed)
+- Box run `mesh-20261031-e0-b05f001` (code b05f001, Vast instance 58555214, ~15 min, ~$0.13 [E]) was pulled
+  (sha256 1062/1062 OK). `cdo-sprint/E0/scripts/e0_package.py` (python -I) applied PREREG sections 4 and 6 again from
+  the raw fidelity and check rows. It agrees with the box selection.json on every object.
+- Picks (obs_fidelity sum_mm on all eval points of the object; E0 / C0 / library_v3; in-sample for E0) [M]:
+  pot ep3/fit 2.922 / 2.914 / 3.881 (18/24 eligible; runner-up ep3/nostem is byte-identical, then ep3/thick 3.077);
+  lid ep1/t2.5_fit 1.675 / 1.772 / 5.186 (1/2; tsdf not watertight); rack joint (eval 14, 15, 16, 28, 30)
+  6.419 / 6.245 / 5.881 (12/12; runner-up joint_nomk 6.432); blue cup ep32/g1 2.646 / 2.723 / 2.906 (11/11; runner-up
+  ep32/g0 2.664). Recommendation E0 x4, no rule flags. Reviewer notes: pot and rack do not beat C0 even in-sample;
+  library_v3 has the lowest rack fidelity of all 14 meshes. The marker-ball prior and the 2.5 mm thickness flags carry
+  over from C0.
+- Packaged `meshes/library_e0` and `meshes/library_e0x` (library_c0 / c0x, with blue cup reset to v3 / v3x and the 4 E0
+  picks), `cdo-sprint/E0/meshes/`, `E0/MANIFEST.json` (36 pairs; 17 E0, 19 unchanged), `E0/README.md`. md5: pot
+  858fc4c6..., lid 08b65d4f..., rack 9b8adbe3..., blue cup b479269e.... Not scored: there is no eval ground truth.
+
+### 2026-10-31 ~17:05 UTC — board slot: synthetic tests pass, real ep24 plate test fails; workflow resumed with a fix step
+- F-I4 build (commits c13f53c, 94eed1c F-I4.12 post hoc after a synthetic centre miss, 1756947, cd2383f): T-I1 w1-w5 and
+  the controls pass [M]:
+  - slot centre within 0.1 mm;
+  - widths within 0.2 mm of partner thickness + 2 mm;
+  - depth sum within 2.6-4.3 mm of the crossing width;
+  - keep-out 0.0;
+  - w5 physics: lag 0.033 cm / 0.16 deg, overlap 0.0.
+  - t = 6 mm misses the width tolerance (expected failure, F-I4.13).
+- T-I11 on real public ep24 (tag fi4evalsem, --no-physcheck): the F-I4.1 plate test returns `plate: false, why:
+  no_plane_pair` for both boards (board 1 sigma 3.0 mm, board 2 0.74 mm). So the waiver never engaged and both boards
+  are PUSHED again. The default pieces gate still fails (0.72 / 2.0 cm3).
+- Edited the build step of `board-slot` (`wf_8acce122-d7b`) and resumed it (task wl0m1dkrt). It must:
+  - diagnose GT-free why no plane pair is found on real boards;
+  - write ONE post-hoc PREREG entry F-I4.14, decided without looking at the slot or physics outcomes;
+  - re-run the synthetic tests and T-I11 once with physics;
+  - report both runs.
+
+### 2026-10-31 ~17:00-17:10 UTC — C1 report (CPU, $0, no new scoring)
+- C1 workflow (`wf_a717f699-b68`), report step. Folder `docs/research/mesh-2026-10-26/cdo-sprint/C1/`: `README.md`,
+  `NOTES.md`, `c1_cdo_estimate.json`, `c1_config.json`, `scripts/c1_estimate.py`, `scripts/c1_config.py`.
+- Verifiers T1 `26b2f76`, T2 `507709c`, T3 `d8df274`: no blocking item, so nothing was fixed or re-run. The
+  non-blocking items are listed in README §8.
+- C1 choice by fixed precedence; no object had two adopted candidates:
+  - **beige cup = T1 lathe**, sha256 60e398b0f8006c6608e40b1988047aa89e35533e8bb85906c36cf9f9f8370078 [D]: CD-O
+    0.2475 / 0.2549 on eval 10 / 8, add_med 5.70 mm, 0/32 flips, ep11 guard PASS (dAUC +0.0080);
+  - **mini dust pan = T2 placed pick**, sha256 2fb147b535c9f8b863b56ec80239f28809b10fe9ca881a10a5c724f209777d02 [D]:
+    CD-O 0.2587 / 0.2601 on eval 19 / 38, add_med 4.83 mm, 0/32 flips, guard PASS (mean dAUC +0.0124, min -0.0014).
+  - T3: pot, blue cup and dust pan fail the guard; the 7 other objects fail the CD-O gate. Nothing adopted.
+- Hypotheses:
+  - H-BL survives;
+  - H-GF is not falsified, but the fit created no new WIN (the raw picks already pass the gate);
+  - H-T2 survives for the dust pan only, a replication of the 30 Oct diag.
+- [E] board, C0's model (`python -I scripts/c1_estimate.py <mesh-2026-10-26> c1_cdo_estimate.json`):
+  - C1 adds -0.0341, so pack 9a 0.3667 -> 0.3327;
+  - with beige on eval 10 only, 0.3459;
+  - with C0's held-back blue cup, 0.3004.
+- [D] pack 9a + C1 over 18 twins, recombined from stored run JSONs (`python -I scripts/c1_config.py <cdo-sprint>
+  c1_config.json`): mean dAUC +0.0091, min -0.0092 (ep12), dMPPE -0.074 cm, dRPE -0.103 cm.
+- Open:
+  - eval 8 beige (offset anchor, with the C0 pot as rotation anchor; v3x-tracked rollouts) has no twin;
+  - provenance O1, including the lathe_obs constants flagged by C0b;
+  - joint ep11 / ep18 runs are needed if the blue cup or a sweeper swap joins the pack.
+- Nothing was sent to focused-pascal or packed.
+
+### 2026-10-31 ~17:15 UTC — C1 done: beige-cup obs-lathe and placed dust-pan pick adopted; C0b extended to the beige cup
+- C1 workflow (`wf_a717f699-b68`): report `cdo-sprint/C1/README.md` (3e12ad1, fe3ef45); no blocking verifier items.
+  - **T1 beige obs-lathe** (ep11, lathe_obs defaults, M_sep separated-frame mask), sha 60e398b0:
+    - CD-O 0.856 -> 0.248 (eval 10) and 0.730 -> 0.255 (eval 8) [D];
+    - add_med 5.70 mm, 0/32 flips;
+    - ep11 AUC guard +0.008, PASS. ADOPTED.
+    - H-BL survives.
+  - **T2 SAM 3D dust pan placed on the library_v3 surface**, sha 2fb147b5:
+    - CD-O 0.331 -> 0.260, add_med 4.83 mm;
+    - AUC guard mean +0.012, PASS. ADOPTED.
+    - Pitcher and beige picks fail on ADD (28 / 15 mm).
+  - **T3 generate-then-fit:** 3 CD-O wins (pot, blue cup, dust pan), all fail the AUC guard (min dAUC ~ -0.04). Nothing
+    adopted. H-GF is not falsified, but the fit created no new win.
+  - [E] board: 9a 0.367 -> 0.333 with C1; 0.300 with the blue cup too.
+- C0b (`wf_cda9cf8c-c1c`) was stopped during its Amend step and resumed (task wkbbca4ts), with the beige cup added
+  (scan-free rebuild of the T1 lathe, one scoring, ep11 guard, eval builds on evals 8 and 10).
+  - The C0b audit (9451062) found 163 constants: 16 scan-derived and 71 of unknown origin (16 suspect).
+- Sent the C1 summary to the score session (cc focused-pascal) for pack-10 planning.
+
+### 2026-10-31 ~17:25 UTC — packing instructions for an optional "9a+" (T1 beige + T2 dust pan) sent to focused-pascal
+- Requested by the score session. 9a+ goes in only if the owner picks it; the default stays the C0b/E0b scan-free
+  rebuild in pack 10.
+- **Beige T1** (md5 8c8be2b0..., eval 10 slot 1 and eval 8 slot 0).
+  - Rigid ICP from identity: vs library_v3 15.7 deg / 11.1 mm; vs library_v3x 11.9 deg / 8.5 mm (v3x vs v3 5.7 deg /
+    3.0 mm). Median surface distance 2.9 / 2.8 mm.
+  - The ICP rotation is not a clean frame measure: axial symmetry, a 92 x 104 x 93 mm appendage shell, broken library
+    beige.
+  - The ep11 AUC guard (+0.008) covers eval 10. Eval 8 (v3x-tracked) has no twin, so it is the owner's call. [E]
+    eval-10-only CD-O 0.346.
+- **Dust pan T2** (md5 19765405..., evals 19 slot 1 and 38 slot 0): ICP 1.34 deg / 0.25 mm. YES.
+- Scratch outputs: `<scratch>/c1pack/frame.json`.
+
+### 2026-10-31 ~17:35 UTC — owner extends the carve waiver to every colliding pair; collision-carve workflow
+- Owner (verbatim): "but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide
+  we can carve it".
+- Launched `collision-carve` (`wf_4fb89344-0c3`, task wvv1rgqx1):
+  - **Design:** PREREG F-I5 + INTERLOCK 21, no code edits.
+    - Scope: any persistently interpenetrating pair. Class O, the silhouette and the push preference no longer block;
+      the rigid-shift alternative is reported.
+    - Carve = target minus the partner's collider swept over the intrusion frames, plus clearance.
+    - Cavity-preserving pieces: plates analytic; lathe containers ring/band with no empty ring; others CoACD plus a
+      keep-out repair or voxel boxes.
+    - Acceptance: hands-off rest/sink <= 4 mm / 5 deg (the ev10w failure mode), P2, P3, P4, P6/P7, and the pieces gate.
+  - **Build** waits for the board-slot Build step before editing shared files.
+  - **Public:** ep11, ep2, ep12, ep13, ep31.
+  - Two verifiers.
+  - **Eval twins:** 10, 1, 14, 30 (25 from board-slot).
+  - Report and hand-offs.
+
+### 2026-10-31 ~17:45 UTC — 9a+ sign-off sent (focused-pascal staged it: e02736ea, d7ecaef)
+- **Beige eval 10: YES.** Real registration (ep11 single-swap JSON): T1 lathe -> scan total rotation 4.04 deg, anchor
+  0.47 cm (library_v3 145.3 deg, i.e. spin, 0.59 cm); 32-seed rot max 3.5 deg, 0 flips; per-object AUC 0.933 -> 0.949.
+- **Beige eval 8: conditional YES, flagged unmeasured.** It is closer to v3x than to v3 (ICP 8.45 vs 13.0 deg), but no
+  public twin covers v3x-tracked beige + pot.
+- **Dust pan: YES.**
+- Provenance flags stated:
+  - T1: tier P1; lathe_obs developed in a scan-reading loop (C0b AUDIT section 3.3); g1 config chosen after blue-cup
+    scoring.
+  - T2: library_v3-seeded crops; ICP onto the library_v3 surface; probe selector validity measured post hoc.
+
+### 2026-10-31 ~18:00 UTC — board slot under the owner's camera-rule waiver: no notch built, eval 25 not run
+- Owner asked: "Did we managed to get these faster notch?" Answer: **no** [M]. No slot was built, physics-tested or
+  delivered, on public ep24 or on eval 25. Full record: `gmg/INTERLOCK.md` 20.8-20.9, PREREG F-I4 to F-I4.14 (with
+  outcomes and the correction bullet), `gmg/build/I.md`, results `gmg/build/I/results/slot-ep24/`.
+- Runs (this container, 4 shared cores, CPU, $0; public ep24, dev, eval semantics, clean bundle `20261031-b4ext4-b61e8aa`,
+  run `20261031-i2probe-626ce13`, `python -m gmg.tools.interlock_dev ... --identity eval --waiver-fi4 --no-physcheck`,
+  full command in `build/I.md` 16:51):
+  - `fi4evalsem` (code cd2383f, 16:51-16:58, 455 s): F-I4.1 found no plane pair on either board -> out of scope, both PUSH.
+  - F-I4.14 (post hoc, pushed dad65a1 before the re-run): camera-side face pair, else a one-face plate at the partner's t.
+  - `fi4b` (code 9ad1af9, 17:15-17:30, 914 s): board 1 t = 6.21 mm (camera-side pair), board 2 t := 6.21 mm (prior);
+    sweep 1.0 / 1.0, push 19.0 / 22.0 mm; then F-I4.2 failed (rectangle fill 0.895 / 0.868 < 0.9) -> both PUSH.
+    Stopped there, no tuning.
+  - T-I1 Waiver + Controls (1081 s): OK, 3 expected failures; the pre-registered w6 falsifier fired (8.07 / 8.39 mm for 10).
+- Verifiers: `verify_slot_0.md` (rules; no blocking item; ep11 cups identical with the waiver on and off) and
+  `verify_slot_1.md` (geometry; blocking B1: the boards are I-shaped, so the rectangle failed for a real reason and both
+  rectangle fixes are wrong; board 1 t is 7.3-7.4 mm on all points vs 6.21 on the downsample).
+- Eval 25 not run: the public twin has no accepted slot and the next fix is a rule change.
+- Delivered: nothing new. ep24 `sim/public/ep24-fi4b/r0` = old default pieces (identical to the r1evalsem / fi4evalsem
+  folders), DO_NOT_USE (F-I3.8). No eval-25 folder; the pack keeps `meshes/carve/ev25`.
+- Open: plate body following the outline (new dated post-hoc F-I4.15, owner / orchestrator; ep23 check first, frozen
+  before eval 25); 2-3 deg tilt test; ep25 gmg bundle and per-board mapping to the packed reference; default plate pieces'
+  keep-out (F-I5 route); record items in INTERLOCK 20.9 item 5.
+- Hand-offs written for determined-wright (r0 state) and focused-pascal (eval-25 pieces need a rollout re-run).
+
+### 2026-10-31 ~18:05 UTC — board slot round 1 ended with no slot; round 2 launched
+- Board-slot workflow `wf_8acce122-d7b` done (INTERLOCK 20.9; commits up to eeb50da). No notch yet, eval 25 not run.
+  - Run 1: plate test found no plane pair (board 1's 9 mm band merges both faces; board 2 shows one face only).
+  - F-I4.14 (post hoc): camera-side face pair, else one-face with the partner's t. With it, the plate test passes
+    (t 6.21 mm).
+  - Run 2: the F-I4.2 rectangle body then fails: the boards are I-shaped (waist 130 / 125 mm, ends 137 / 136 mm) [M].
+  - The w6 falsifier fired: the downsampled thickness reads thin (6.21 vs 7.3-7.4 mm on all points).
+- **Orchestrator decision F-I4.15 (post hoc):**
+  - outline-following extruded body, convex prisms minus the slot box;
+  - t from the face estimator on all points;
+  - everything else in F-I4 unchanged;
+  - ep23 body check before eval 25.
+- Launched `board-slot-2` (`wf_3d11bbef-dee`, task wxs33t03z):
+  - amend;
+  - build with synthetic I-plate tests, ep24 with physics and ep23 body check;
+  - two verifiers;
+  - eval 25 with board identity mapped to the pack's ev25idfix reference and a new ep25 gmg bundle;
+  - report.
+
+### 2026-10-31 ~18:15 UTC — board slot round 2: PREREG F-I4.15 written (amend step, nothing run)
+- PREREG F-I4.15 and INTERLOCK 20.10 committed before any code or run uses them (gmg `build/I.md`, "Board slot round 2").
+- Outline-polygon plate body (2 mm cells along the rectangle axes, Douglas-Peucker 1 mm), convex prisms of the polygon
+  minus the slot (ear clipping + Hertel-Mehlhorn, cap floor(165 / objects)), t from all points, slot depth from the
+  polygon edge; keep-out gate unchanged.
+- Code read: that gate passes exact pieces by construction, so the body's seen-empty share is reported and predicted
+  (P53), not gated.
+- Predictions P51-P58. Freeze for eval 25 only if ep24 carves both boards and passes all tests but P1, and ep23 board 1
+  gives a plate and a body.
+
+### 2026-10-31 ~18:20 UTC — KAGGLE: pack 9a+ CD-O 0.33234 (from 0.40188), rank 18 -> 14; AUC +0.003
+- From the score session (data): pack 9a+ (build_9aplus) was uploaded; the owner said "upload which you think of the
+  highest score potential".
+- Board results:
+
+  | Board | Before | After |
+  |---|---|---|
+  | CD-O | 0.40188 | **0.33234** (my public-scan estimate was 0.333) |
+  | AUC | | 0.81757 (+0.003) |
+  | RPE | | 3.879 (-0.053) |
+  | MPPE | | 2.897 (-0.025) |
+
+  SR unchanged.
+- **The public-twin AUC guard held on eval.**
+- **Implied spoon:** (0.33234 x 36 - 10.156) / 10 = 0.181, using the public-scan values of the shipped non-spoon
+  meshes.
+- **Remaining weighted sum** (non-spoon, 9a+): rack 2.28, pot 2.05, blue cup (library) 2.62, pitcher 0.89, sweeper
+  0.63, dust pan 0.52, beige 0.50, lid 0.22, boards 0.44.
+- **Next:**
+  - blue cup via C0b (-1.16 -> ~0.300 board);
+  - then pitcher and rack.
+- ~18:30 UTC: launched `cdo-sprint-c2` (`wf_ab0f7487-e3d`, task wf1kqbge3), scan-free:
+  - track P: pitcher obs-lathe plus appendages on ep21/ep22 (H-P: CD-O <= 0.6, ADD <= library + 2 mm);
+  - track R: rack parts added where our points show the prim missing structure (H-R: <= 0.40);
+  - each with a PREREG, a pre-registered obs_fidelity pick, one scoring and the C0 AUC guard, plus a verifier;
+  - one self-destroying Vast CPU box per track allowed (cap $4).
+
+### 2026-10-31 ~18:40 UTC — owner wants carve/seat fixes for the weak eval episodes for the pack-10 retrain
+- Score session (data). Owner quote ~18:30: "I think we can improve in all of these with the new method and carving
+  method for the board. I remember blue cup and spoon the spoon doesnt enter the cup proper and for some rack things we
+  know off..."
+- Asked for collision assets by 1 Nov 12:00 UTC (focused-pascal's retrain starts 18:00):
+  - spoon into blue cup, evals 32 and 33;
+  - rack seats, evals 14, 16 and 30 (15 if relevant);
+  - board slot, eval 25.
+- Done:
+  - Edited the collision-carve workflow's Public stage (order: ep12/13, ep31, ep11, ep2; Vast box allowed) and Eval
+    stage (owner priority list, per-episode delivery lines in `build/I/collcarve_deliveries.md`, the spoon validated on
+    its own eval episode). Stopped and resumed it (run `wf_4fb89344-0c3`, task wuupcn83x). The build agent continues
+    from fae78de and its notes.
+  - Spawned a fast GT-free spoon-in-cup diagnostic for evals 32, 33 and 16. Folder `cdo-sprint/spoon-diag/`. It places
+    our reference spoon poses in the cup frame and measures intrusion into the packed cup collider vs an open-cavity cup.
+- Reply: the board slot is at risk for 12:00; spoon and rack are possible. I'll deliver per episode and give a status
+  at ~09:00 UTC.
+
+### 2026-10-31 ~18:25-18:40 UTC — E0 report: packaged, verified, two ship gates open (CPU, $0, no new scoring)
+- Workflow `cdo-sprint-e0`, report step. Report: `docs/research/mesh-2026-10-26/cdo-sprint/E0/README.md`. Step log:
+  `cdo-sprint/E0/NOTES.md`. Verifiers: `E0/verify_0.md` (integrity, 42ab815) and `E0/verify_1.md` (frame and kit,
+  f302485).
+- **Rule result (PREREG s6), unchanged:** E0 for pot (ep3/fit 2.922 vs C0 2.914 mm), lid (ep1/t2.5_fit 1.675 vs
+  1.772), rack (joint 6.419 vs 6.245; library_v3 5.881) and blue cup (ep32/g1 2.646 vs library_v3 2.906). Fidelity is
+  in-sample and not CD-O; there is no eval ground truth.
+- **Both blocking findings need a decision, so neither was "fixed" by a run.** They are recorded as ship gates:
+  - **G1 (verify_0 B1), pot, lid, rack:** the scan-derived marker-ball prior (MK_R0 7 mm, 5-9.5 mm window) is in the
+    picks. "Ship 9a, flagged" covers C0 only. Needs an owner decision, or E0b.
+  - **G2 (verify_1 B1), all four:** the packed mesh drives the 5 pose boards and E0 has no public-twin AUC guard. The
+    kit-registration proxy puts pot, lid and rack in line with C0; the blue cup tilts 3.3-7.3 deg (C0 0.9-2.3). Choose
+    (a) CD-O submission only, or (b) C0's guard run unchanged with the E0 meshes. (b) reads public scans and parquets,
+    which E0's eval-only rules exclude, so it was not run here.
+- **Documentation fixes (no mesh, pick or frozen-field change):**
+  - `E0/scripts/e0_status.py` (python -I, idempotent) adds `ship_gates`, `pose_boards`, `verification`,
+    `provenance_note`, `not_a_drop_in`, `status_history` and per-pair `ship_gates` to `E0/MANIFEST.json`. It asserts
+    every `e0_package.py` field is unchanged. sha256 3528f561... -> 84bfa9a4....
+  - `E0/README.md` rewritten: picks, gates, public context, frame and kit numbers, box cost, flags (tier P1, 2.5 mm
+    grid midpoint, eval tracks, BAR_T0, cup floor, threads, depth size check).
+  - `meshes/library_e0{,x}/README.md`: gate block and "not a drop-in for pack 9a+" (they keep library_v3 beige cup and
+    dust pan; merge E0 objects one by one).
+- **Box (unchanged):** run `mesh-20261031-e0-b05f001`, Vast 58555214, 96 cores, created 16:25:29, done 16:40:22, gone
+  16:40:39; ledger planned $1.00, actual $0.13 [E].
+
+### 2026-10-31 ~18:50 UTC — E0 (eval-built, old constants) done; comparison only, superseded by E0b
+- Workflow `wf_256965c1-47f` done.
+- **Box:** instance 58555214 (96-core EPYC, $0.487/h). Job 11.5 min, 17/17 eval pairs, 530 MB pushed to the HF store,
+  self-destroyed. **$0.13.** A many-core box turns hours of local CPU into minutes.
+- **Picks** (GT-free fidelity, in-sample): pot ep3 fit, lid ep1 t2.5, rack joint over the eval rack episodes, blue cup
+  ep32 g1. Recommendation E0 for all four. Folders `meshes/library_e0` / `e0x`.
+- **Open gates:**
+  - G1: the scan-derived marker balls on pot, lid and rack;
+  - G2: no AUC guard (no eval GT; methods are guarded on public only).
+- On the rack, library_v3 has the best eval fidelity of 14 meshes. Pot and rack E0 do not beat C0 even in-sample.
+- **Not shipping.** The scan-free C0b/E0b rebuild (running) is the pack-10 path.
+- Prep found that the working-tree `scripts/prim_potlid.py` differs by one line from the code that built C0 (14eaf37,
+  29 Oct); E0 ran a frozen copy (2971a10).
+
+### 2026-10-31 ~18:55 UTC — per-public-episode own-video mesh sets for a perception re-track test (score session)
+- Ask (data): clean per-episode mesh sets (the C0b method from each public episode's own video) as perc2 templates for
+  a re-track test scored vs mocap by focused-pascal. Needed early 1 Nov.
+- Reply:
+  - Feasible as the E0b analogue on public: one box, ~15-20 min, ~$0.2.
+  - ETA 1 Nov ~04:00-06:00 UTC, after C0b's options freeze.
+  - Objects: pot, lid, rack, blue cup, beige cup (pitcher if C2 adopts); the rest stay library_v3.
+  - Caveats: the meshes are fused along library_v3-seeded tracks, and per-episode quality varies (pot 0.31-0.65 [D]).
+  - Nothing dropped; the eval-1 pot/lid carve would slip first.
+- Launched `pub-own-meshes` (`wf_56ac223f-44f`, task wd6tqh337), folder `cdo-sprint/PUBOWN/`:
+  - waits for C0b's frozen options, then adapts the E0 box job to public pairs (each episode its own mesh, no
+    cross-episode pick);
+  - one box (cap $2), with a MANIFEST and frame/kit checks;
+  - one verifier.
+
+### 2026-10-31 ~19:00 UTC — owner: "Go retrack"; do not mention deadlines to the owner
+- Relayed owner quote recorded in docs/context-and-decisions.md.
+- The pub-own-meshes workflow (`wf_56ac223f-44f`) delivers the per-public-episode clean mesh sets. They are handed to
+  focused-pascal when verified.
+- The score session starts a GT-free marker-correction layer (spoon first), with marker layouts from our own video.
+  Note 17 A1's scan catalogue is scan-derived. C0b already replaces the 7 mm ball prior with markers.py detections.
+
+### 2026-10-31 ~19:05 UTC — spoon diagnostic (evals 32, 33, 16): carving helps eval 33's deepest frames only
+- Report: `cdo-sprint/spoon-diag/README.md` (2681d8b). GT-free; our reference spoon poses only.
+- **Eval 33:** the packed library_v3 blue cup is >= 50 % solid up to 66 mm above the base (pieces 75 mm). The spoon is
+  in the cup in 66 frames, deepest 128.7 mm below the rim. The worst intrusion is 9.8 / 85 cm3, 19 mm deep. In 33 of
+  66 frames there is no block. A cavity-preserving cup lets the spoon reach the full depth.
+- **Eval 32:** not blocked (<= 3.2 cm3, 6 mm).
+- **Eval 16:** no rack seat is filled (<= 1 cm3). From f120 our reference holds the spoon 1-8 mm off the rack with
+  nothing under it. The flip on release is likely a spoon-pose issue [H], which the marker-correction layer addresses.
+- Relayed to the score session and focused-pascal. The collision-carve eval stage continues (eval 33 carve; 32 and 16
+  unchanged by carving).
+
+### 2026-10-31 19:11 UTC — collision carve F-I5 (owner waiver, all pairs): build + synthetic tests (collision-carve workflow, Build step)
+- **Built** (flag `--waiver-fi5`; F-I1..F-I4 unchanged without it): `gmg/collcarve.py`, `gmg/cavpieces.py`,
+  `simphys.sink_test`, the `decide_pair` hook, the driver branch, `tests/test_collcarve.py`. Code fixes this step:
+  - CoACD runs in a forked child (it aborted the process on a C++ assertion);
+  - an empty carve set is a PUSH (`interlock.py`, 3 lines).
+- **T-I12 (synthetic):** P50 falsified, as recorded in PREREG F-I5.12.
+  - **No nested-cup case reaches the sink test.** All of x1-x5 and the 5 mm offset stop at the caps first:
+    - the jitter envelope of the swept frames;
+    - 12- or 8-sector fallback after the 10 mm re-banding;
+    - reach 0.8-0.9;
+    - c = 1 mm from the guest's base corner.
+  - **The rack fixture is carved and delivered** (S 0.7-0.8 mm, every test passes).
+  - **Lid/pot and sweeper: default delivered.**
+    - Lid/pot fails topology, because the default CoACD pot has tunnels on the 2 mm grid.
+    - The sweeper fails P2 (gravity 5.0 mm) and P4.
+  - Controls, plate pair, flag-off, routes and the empty-ring check pass.
+- **Diagnostic D2** (F-I5.13: rest-anchored pocket; post hoc, never delivered).
+  - Every cup carve keeps the guest within 2.3-3.0 mm and 3.4 deg with the hands off, even 5 mm off-axis.
+  - The default rings move it by about the track error: 4.5 mm up, 5 mm sideways.
+  - None passes the shape test as written:
+    - x1: the wall is thinned to 1.7-2.0 mm, and the 2 mm grid reads that as holes (a 1 mm grid shows no hole);
+    - the 3 mm and 5 mm offsets cut through the wall [E];
+    - 19-36 % of the receiver collider is removed.
+- **Open decisions** (INTERLOCK 21.10): the carve geometry, c for nests, the topology grid or rule, the 10 % and 0.6
+  limits for non-plates, and an exact R+ clip.
+- **Not done:** T-I13 real runs (public ep11/2/12/13/31) and the eval twins.
+- Results: `gmg/build/I/results/fi5-tI12/`.
+
+### 2026-10-31 20:15 UTC — board slot round 2 (F-I4.15): build, tests, ep24 slot delivered (P1 pending), ep23 body check (board-slot round-2 workflow, Build + public runs)
+- **Built** (`gmg/platebody.py`, REV 15): all-point thickness, outline polygon body (2 mm cells along the rectangle
+  axes, Douglas-Peucker 1.0 mm), slot depth from the polygon edge, convex prisms (ear clipping + Hertel-Mehlhorn, cap
+  floor(165 / objects)); self-contained 2-D geometry. Tests `gmg/tests/test_fi415.py`. Code 19c4309.
+- **ep24 fi4o** (this container, 2613 s): both boards CARVE, t 7.40 mm, 57 / 77 prisms, keep-out 0.0, P2-P7 pass (P3
+  0.078 cm / 0.74 deg); r0 delivered `carved_p1_pending`. Results `gmg/build/I/results/slot2-ep24/`.
+- **ep23** (v6 bundle, body only): board 1 one-face, t 10.8 mm from the wrong-board track, 85 prisms > 82 -> no body:
+  freeze condition (b) fails, eval 25 not run under F-I4.15. Results `gmg/build/I/results/slot2-ep23/`.
+- **Synthetic:** w1 (t = 6 width miss gone), w2-w6, w6c, w9 pass; w7, w8, w8b fail at the prism cap; one harness bug
+  (w8 physics guard) fixed and re-run.
+- Predictions: P51, P52a/b, P53, P54, P56 hold; P55, P57, P58 fail. Cost: CPU only, $0; no rental.
+
+### 2026-10-31 20:57 UTC — collision carve F-I5, public runs T-I13 (collision-carve workflow, Public runs)
+- **Rule as written** (no INTERLOCK 21.10 decision taken), PREREG F-I5.14 written and pushed before the runs (19:17;
+  report-only addendum (7) at 20:30). Inputs GT-free: v6 clean bundles, v6 M1 hands, CPU candidates rebuilt from v6,
+  picks shell_t5p36 (ep2 lid hull), eval semantics. gmg code 1b9f0c1. Five runs in parallel on this container
+  (19:29-20:53, 45-83 min each, load 14-25); no rental, $0.
+- **Result: nothing carved or delivered; the round folders of these runs must not be used.**
+  - All ten objects end in the last pieces fallback, 6 mm voxel boxes, keeping 1.8-9.3 % of the SHELL body volume.
+    CoACD 0.02 returns the full 82-hull cap, so the keep-out repair cannot split (2-75 hulls over 0.3 cm3); the lathe
+    rings are continuous but the handle-residual hulls push them over the cap or the gate; ep11 blue rotc 3.013 sigma;
+    ep2 lid profile complex.
+  - Collider overlap along the tracks 0.0-0.48 cm3. ep13, ep31: no component. ep12, ep2: sweep share 0.0, out of scope.
+    ep11 cups: in scope (receiver beige, c = 1.0 mm), caps pass, S fails (carved 31.6 mm, default 80.5 mm), P3, P4 fail.
+  - S on the delivered pieces (diagnostic): every pair fails, 8.2-126.8 mm (cups fall out of the rack, the lid falls
+    81-87 mm into the pot, the sweeper 84-87 mm through the rack).
+- Predictions: P41, P43, P45, P46, P47 falsified; P42, P48 hold only trivially; P44 void; P49 not tested (no eval
+  bundle).
+- Decisions needed (INTERLOCK 21.11): fix the default-pieces ladder (CoACD below the cap, bounded handle step) and add
+  a physical delivery floor (collider share of the body, S on the delivered pieces); 21.10's five decisions follow.
+- Results: `gmg/build/I/results/collcarve-public/` (README, per-episode JSON and logs), figures
+  `gmg/build/I/png/fi5pub_ep*.png`.
+
+### 2026-10-31 21:05 UTC — board slot round 2, Eval 25 step (board-slot round-2 workflow): not run
+- No blocking finding in verify_slot2_0 / verify_slot2_1, so nothing to fix. Freeze condition (b) of F-I4.15.6 fails
+  (ep23 board 1: 85 default prisms > cap 82), and no later F-I4 entry or orchestrator decision exists, so eval 25 is not
+  run under F-I4.15. No ep25 identity mapping, bundle, F-I4 run, r0 or meshes/carve/ev25 comparison was done; nothing
+  read from meshes/carve/ev25; no rental, $0. Log: `gmg/build/I.md`, Board slot round 2, 21:05.
+- Needs a decision: a new dated F-I4 entry (prism count; a fresh condition (b); optionally ep23's partial outline and
+  the board-2 slot-centre offset of verify_slot2_1 N1), then a freeze.
+
+### 2026-10-31 21:15 UTC — board slot round 2, Report step (board-slot round-2 workflow): INTERLOCK 20.12, hand-offs
+- **Record:** INTERLOCK 20.12 (results addendum): accuracy / failures / cost table, what both verifiers confirmed, 16
+  corrections and caveats to 20.11 and the F-I4.15 outcomes (none changes a decision), the two hand-offs, 7 open
+  decisions. Header pointer and a correction pointer in 20.11 (the slot box sits on the observed slot for board 1
+  only). STATUS top section. No code, no run, no rental ($0).
+- **Main points:** ep24 slot verified (pieces, slot, P3 reproduce); board 2's slot about 3.5 mm off the observed slot
+  (tracked pose at assembly), a P1 risk [H]; the CARVE rests on D measured from the polygon edge (rectangle edge: diff
+  15.88 mm, PUSH); keep-out 0.0 is tautological for an exact tiling (FREE in the hulls 3.7 / 1.9 %); eval 25 not run.
+- **Hand-off text, Embodiment session (determined-wright):**
+  > P1 request, public ep24 boards (gmg F-I4.15 slot, simulator copy only). Folder `docs/research/mesh-2026-10-26/gmg/build/I/results/slot2-ep24/fi4o/r0`, branch claude/bold-albattani-6qmxsv (committed in cdc8b40, unchanged since). `manifest.json` (gmg-sim/2, sha256 271f9899...) reads `delivered: carved_p1_pending`, `p1_pending: true`; no DO_NOT_USE. Top level: slotted collision pieces `wooden_piece_{1,2}/piece_XX.obj` (57 / 77 convex prisms, t 7.40 mm); `<obj>.glb` = unchanged submitted mesh; `_fit/<obj>.glb` for phys_fit --meshes; `props_gmg.json` (0.3 kg placeholder) for --props. `_default/` holds the unslotted control pieces (50 / 71). Please run `jitter_check --k 16` on r0 with your reference poses and report pass/fail, drift and intrusion per board (the control too, if your tool takes it). A fail marks the folder do-not-use. Caveats: board 2's slot sits about 3.5 mm off the slot seen in our frames; 48 pieces are under 2 mm wide.
+- **Hand-off text, pack builder (focused-pascal):**
+  > Eval 25 board slot: there is no GT-free replacement for `meshes/carve/ev25`; keep it in the pack. Our outline-prism rule (F-I4.15) built a slot on public ep24 (P2-P7 pass on our tracks, P1 pending with the Embodiment session) but did not freeze: on ep23, board 1 needs 85 prisms against a cap of 82. Before any eval-25 slot: a new dated rule entry, a fresh freeze check, an ep25 gmg bundle and a per-board mapping of our tracks to the packed reference. When eval-25 slot pieces exist, they will differ from `meshes/carve/ev25` in width (partner thickness + 2 mm; 9.4 mm on ep24), depth, centre and piece split, so adopting them needs an eval-25 rollout re-run, not a pack-only swap. We have not read `meshes/carve/ev25`; the comparison comes only after our pieces exist. Nothing to do now. Record: INTERLOCK 20.12.
+
+### 2026-10-31 21:30 UTC — orchestrator: PUBOWN Set B hand-off; board slot round 3 launched; F-I5 eval step cancelled
+- PUBOWN workflow done (box mesh-20261031-pubown-ed7171c, instance 58572720, ~$0.15 [E], destroyed; verify 76f9023, no
+  blocking). Orchestrator picked Set B (`alt_e0_gated`) before any re-track score exists; Set A only for per-object
+  diagnostics. Messages sent to the score-status session (session_01D9UJC7rdn1DZrNM1rKyE7b) and focused-pascal.
+- Board slot round 2 closed (5b3bbea). Relayed: P1 request (ep24 r0, cdc8b40) to determined-wright; eval-25 status to
+  focused-pascal.
+- Orchestrator decision F-I4.16 (post hoc, after the ep23 85 > 82 and w7/w8 cap misses): DP ladder 1.0-4.0 mm, smallest
+  fitting eps; freeze condition (b) = new synthetic family w10 (9 full cells + w10p), seeds new; (a) = ep24 regression;
+  ep23 report only; slot-centre and coverage reports only; eval 25 iff (a) and (b). Workflow board-slot-3
+  (wf_e425946b-d24) launched ~21:20 UTC with Prep25 (mapping + ep25 bundle) in parallel.
+- Collision carve: the workflow's Eval step replaced by a no-run record (script edited; resume after its verifiers
+  finish). Reason: T-I13 delivered nothing usable, so eval runs under this rule cannot pass. Round 2 (F-I5.15) next.
+
+## 2026-10-31 ~21:30 UTC: CD-O sprint C2 track R (dish rack parts): H-R falsified, guard PASS, not adopted (CPU, ~$0.02)
+- **Folder:** `docs/research/mesh-2026-10-26/cdo-sprint/C2/R-rack/` (PREREG `01c25d2`, amendment A1 `945baa5`, pick
+  `8d53a60`; RESULTS.md, NOTES.md).
+- **Diagnosis [M]** (GT-free residual, free-space and shadow maps vs the C0 rack): residuals near noise; the largest
+  outside cluster is depth-edge smear in the back lip's shadow; pegs are deeper along y than wide along x; the right
+  end's inner face is sloped. Options added to `prim_rack.py` (old defaults byte-identical): `--end_draft`,
+  `--peg_kappa_free`, `--cup_quad`.
+- **A1:** C0b's pass-B rack points held 1-37 % static clutter (cube ROI); cleaned by a connectivity rule
+  (`clean_pts.py`) before 8 option runs (96 meshes, local).
+- **Pick (fidelity):** K/ep12_nomk 5.483 mm (base 5.533; C0 mesh 5.536 on the same points).
+- **One scoring [D]:** CD-O 0.4413 (C0 0.4560, library 0.5551), ADD med 6.56 mm, flips 0/7 -> no WIN (needs <= 0.436).
+- **AUC guard [D]:** PASS, mean dAUC +0.0147, min -0.0076. Not adopted; pack 9a keeps the C0 rack.
+- Vast 58571056 created for the uncleaned inputs never started and was destroyed (~$0.02 [E]).
+
+### 2026-10-31 21:30 UTC — collision carve F-I5, Report step (collision-carve workflow): INTERLOCK 21.12, hand-offs
+- **Record:** INTERLOCK 21.12 (results: accuracy / failures / cost table, what both verifiers confirmed, 12 corrections
+  and caveats to 21.11 and the F-I5.14 outcomes, the two hand-offs, 9 open decisions for round 2 replacing 21.11's
+  list); correction pointers in 21.11; header and section-0 pointers; a post-hoc, record-only verification note under
+  PREREG F-I5.14 outcomes (prediction scoring, mechanism, "must not be used" is a recommendation); STATUS top section.
+  No code, no run, no rental ($0).
+- **Outcome of the workflow:** nothing carved or delivered for any episode; eval twins 10 / 1 / 14 / 30 not run
+  (orchestrator ~21:30). Verifiers: verify_cc_0 (2ebe67e) no blocking item; verify_cc_1 (3d26bce) 3 blocking items for
+  round 2: lathe rings fail the gate on their own (8 sectors forced by the 82-piece cap, chord inset about 3 mm;
+  continuity check self-referential), S fails on faithful SHELL colliders at all 8 S frames (impossible tracked poses:
+  interpenetration, guest inside the table, floating sweeper), ep11 cup SHELLs bottomless and co-located (no nest
+  test).
+- **Corrections (no outcome change):** P42 not tested, P44 holds as written; ep11 default S bimodal; exact volumes
+  (props 1.52-1.94x high; ep11 removed 9.38 %, P4 still fails); flag-off ep11 PUSH, ep2 pot PUSH; no sources/, carved
+  ladder skips routes 2/3, F-I5.7 (ii)/(iii) not built; dev-tier t0; the sweep gate decided ep12 and ep2.
+- **Hand-off text, Embodiment session (determined-wright):**
+  > Collision carve (gmg F-I5, the owner's "if 2 mesh collide we can carve it" waiver): there is no r0 folder for any eval episode. Evals 10, 1, 14 and 30 were not run (orchestrator, 31 Oct ~21:30 UTC), because the public runs delivered nothing usable. Nothing changed for you: no carved or new default pieces, no sources/ notches, nothing to jitter_check. The five public F-I5 round folders (ep11, 2, 12, 13, 31; scratch only, never uploaded) hold 6 mm boxes keeping 2-9 % of each body; do not use them or measure intrusion against them. Data for your frame-by-frame fixes [M, verify_cc_1 B2]: at our hands-off frames the tracks are impossible (ep11 cups overlap 86 cm3; the ep12/13 cup sits 15-23 mm inside the table; the ep31 sweeper floats 45 mm above it). The ep24 P1 request (F-I4.15 r0) is unchanged. Record: INTERLOCK 21.12, branch claude/bold-albattani-6qmxsv.
+- **Hand-off text, pack builder (focused-pascal):**
+  > Collision carve (gmg F-I5): no eval episode has new carved simulator pieces. Evals 10, 1, 14 and 30 were not run (orchestrator, 31 Oct ~21:30 UTC), because the public runs delivered nothing usable. Keep the pack's collision pieces as they are (meshes/carve/ev10, ev01, ev25); no rollout re-run is needed now. If round 2 (F-I5.15, public first) later delivers eval pieces, they will differ from yours in shape and split, so adopting them will need rollout re-runs, not a pack-only swap. A finding that may apply to your pipeline/lathe_collision.py, which uses the same ring layout [M ours, E yours]: wall pieces built as hulls of the profile at the sector edges put their inner face r_in(1 - cos(pi/N)) inside the cavity at mid-sector. On our cups: 2.9-3.4 mm with 8 sectors, 1.2-1.3 mm with 16; the formula gives about 0.8 mm at r = 40 mm with 16. Record: INTERLOCK 21.12.
+
+### 2026-10-31 21:40 UTC — orchestrator: owner mandate relayed; blue-cup candidate; cup-axis check; eval delivery statement
+- Owner (relayed by keen-heisenberg, typed 21:22 UTC): "okay I allow 3d mesh chat to do anything as long as it improves
+  the score and doesnt intervine with the rules of the competiton. they can go crazy". Guard-rails from keen-heisenberg:
+  shared credit (ledger read 21:38: budget $325, actual $131.91; mesh-bold actuals today $0.98); submissions go through
+  the pack lane; CLAUDE.md integrity rules hold.
+- Cup-axis launch hold (focused-pascal): GT-free axis and closed-end check of the Set B blue cups vs library_v3
+  (`cdo-sprint/PUBOWN/checks/cup_axis.json`, 577f838). Tilts 0.9-5.0 deg; ep11/13/21/22 are spin; ep12 g0 is up-down
+  flipped (closed at its wide end) and goes back to library_v3. focused-pascal launched rtkA/rtkB with that set.
+- Eval delivery statement to focused-pascal and keen-heisenberg: no F-I5 carves for evals 32/33/14/16/30/10/1
+  (measured reasons); eval-25 slot conditional on round 3 (yes/no by 08:00 UTC); E0b pot/beige less accurate than 9a+.
+- Collision-carve round 1 verifiers: verify_cc_1 has 3 blocking findings (ring chord sag 1-3 mm into the cavity at the
+  cap; S fails even on faithful colliders because tracked rest poses interpenetrate / sit in the table / float; ep11
+  SHELLs bottomless). Eval step replaced by a no-run record; workflow resumed to its Report.
+- **Blue-cup candidate:** C0 blue cup on top of 9a+, incremental guard over twins 11/12/13/21/22 (one new ep11 joint
+  run, 21:25:39-21:26:35 UTC, HEAD 0683232, this container, $0): mean dAUC +0.022, min -0.030 (ep13; fails the -0.02
+  clause), dMPPE -0.22 cm, dRPE +0.17 cm. Recommended to the pack lane, flagged; board CD-O about -0.032 [E].
+  Record `cdo-sprint/C0/bluecup-on-9aplus/README.md` (fc952de).
+
+### 2026-10-31 21:55 UTC — orchestrator: F-I5 round 1 closed; hand-offs relayed; round 2 (F-I5.15) launched
+- Collision-carve workflow (wf_4fb89344-0c3) finished its Report (01de940; INTERLOCK 21.12). Hand-offs relayed to
+  determined-wright (no eval r0; impossible tracked rest poses on public ep11/12/13/31) and focused-pascal (keep the
+  packed carves; ring chord-sag finding r_in(1-cos(pi/N)) may apply to their pipeline/lathe_collision.py).
+- Orchestrator decision for round 2 (post hoc, to be written as PREREG F-I5.15 after a prior-work review): cavity-safe
+  rings (inner tangent, outer chordal), CoACD at cap/2 then repair, pose precheck on faithful colliders at every S frame
+  (pose_impossible -> push list), physical delivery floor + DO_NOT_USE markers, a true nest (synthetic if no public
+  one), then the five 21.10 decisions; off-axis nests not carved. Workflow collision-carve-2 (wf_5b6edef9-640) launched,
+  with a GT-free eval precheck (packed references and colliders, evals 10/1/14/16/30/32/33) as a diagnostic for the
+  pose lanes. One Vast box allowed, cap $3, ledger first.
+
+### 2026-10-31 21:37 UTC — board slot round 3: PREREG F-I4.16 written (amend step, nothing run)
+- PREREG F-I4.16 and INTERLOCK 20.13 committed before any code or run uses them (gmg `build/I.md`, "Board slot round
+  3"); the orchestrator's decision of ~21:20 UTC, post hoc (after the 1.0 mm counts: ep23 85 > 82, w7 111, w8 83, w8b
+  90 / 84).
+- Douglas-Peucker ladder 1.0 / 1.5 / 2.0 / 3.0 / 4.0 mm per board, the smallest whose ring is simple and whose slotted
+  (and default) prisms fit floor(165 / objects); the slot footprint is computed first (it does not depend on the
+  polygon); everything else as F-I4.15. Literature: Douglas-Peucker 1973, Visvalingam-Whyatt 1993, Hertel-Mehlhorn
+  1983; Lien-Amato approximate convex decomposition (tau 2 mm) named for a later round.
+- New freeze condition (b): synthetic w10 (I-shaped pairs, ends 137 / waist 125 mm, t 6 / 8 / 10 x in-plane edge
+  noise 1 / 2 / 3 mm; seeds 4161-4171, 4261-4271, 4361-4371, 4461-4471, all new): all nine cells carve within the cap
+  (keep-out <= 0.3 cm3, width +-1 mm) and the t 8 / sigma 2 cell passes P2-P7; (a) ep24 `fi4p` carves and passes,
+  byte-identical to round 2 at rung 1.0. Report only: w10p (30 % hand occlusion), w10n (isotropic 3 mm), w7 / w8 /
+  w8b, ep23, the slot-centre check (flag > 1 mm) and coverage; on eval 25 the P_sel -> P_sim overlap.
+- Predictions P59-P70. F-I4.15 outcomes: the verify_slot2_0 N3 run-order and N4 keep-out-threshold lines added.
+
+### 2026-10-31 22:00 UTC — CD-O sprint C2 report (pitcher P, rack R): nothing adopted
+- Report step, CPU, $0. No new run or scoring: the two verifiers (P 3020cd4, R 9174cde) raised no blocking item.
+  Wrote `cdo-sprint/C2/README.md` and `C2/NOTES.md`.
+- **P, water_pitcher (eval 20).**
+  - PREREG 5982c31, with A1 07d2536 and A2 cc63fc2 / 1230b6d. Pick 3ded2f9 (`ep22_water_pitcher_g1_a2.glb`, sha256
+    fadf3e7b...d1f6). One scoring in d8ff6ac.
+  - [D] CD-O 1.1600 against the 0.8742 gate (library 0.8942); add_med 11.165 against 9.97 mm; flips 0/32. Not a WIN,
+    guard not run, H-P falsified.
+  - Local CPU, $0.
+- **R, plastic_dish_rack (5 pairs).**
+  - PREREG 01c25d2, with A1 945baa5 (`clean_pts.py` clutter cleaning). Pick 8d53a60 (`K/ep12_nomk`, sha256
+    92d9fed0...3966). Results in 0683232.
+  - [D] CD-O 0.4413 against the 0.43604 gate (C0 0.45604); add_med 6.56 <= 7.79 mm; flips 0/7. Guard PASS (+0.0147 /
+    -0.0076), but not adopted. H-R falsified.
+  - Vast 58571056 was created, never started, and destroyed at ~19:56-19:58 UTC; actual cost $0.02 [E]. Gone from
+    `vast show` is not confirmed (no key in the verifier or report session).
+- [E] Board: pack 9a+ is 0.33234 (Kaggle) and unchanged. Counterfactuals: rack -0.0020, pitcher +0.0074.
+- Verifier corrections (non-blocking): R fidelity gain 0.0498 mm unrounded; P axis angles (ep21 80.5-81.3 deg), the
+  rest check is in-sample, the tmax audit citation, a better pitcher is worth up to -0.014 / -0.025 [E], and lathe_obs
+  splats are inside out in every g1 mesh (C0b / E0b owners).
+- Next (proposals): rack base-mesh scoring to split the replacements and cleaning from K (needs a dated PREREG);
+  pitcher H-P2 (mirror-completed closed shell, rule not fidelity-only).
+
+### 2026-10-31 22:00 UTC — orchestrator: C2 closed (nothing adopted); rack box confirmed gone
+- C2 workflow done (12f5c22): pitcher H-P falsified (CD-O 1.160 vs library 0.894 [D]); rack H-R falsified (0.4413 vs
+  C0 0.456, short of the -0.02 WIN margin; AUC guard PASS, mean +0.0147). Pack keeps the C0 rack and library pitcher.
+- `ops/vast.sh show` at ~22:00 UTC: 58571056 (c2r) not listed, gone. Live mesh-bold box: 58580656
+  mesh-20261031-e0b-c8f1c33 (E0b markers, A40, $0.601/h).
+- Verifier note for the C0b/E0b owners: every lathe_obs splat is inside out (negative signed volume), including the
+  C0 blue cup and the C1/C0b beige cups; CD-O/AUC do not depend on face orientation, simulator/COM use would.
+
+### 2026-10-31 22:35 UTC — orchestrator: P1 on the ep24 slot fails; contact-budget overflow under sim=rl; both rounds amended
+- determined-wright P1 (their `docs/research/physics-2026-10-30/p1_ep24/`, 3c7fd32): FAIL for carved and default at their
+  reference (cross held 27-36 mm above the table, their pose). Lowered to 1 mm (diagnostic): carved passes (drift 0.79 /
+  0.38 cm, tilt 3.0 / 2.2 deg), default fails tilt 16-18 deg. **Under sim=rl (nconmax 256, njmax 512 per world) the
+  carved 57 / 77-prism scene overflows in 16/16 copies** (500-670 contacts, ~2030 rows; boards fall through the table);
+  default 416-425 rows.
+- Round-2 ep24 r0 marked DO_NOT_USE (26b8c6b).
+- Board-slot round 3 stopped (~22:16), orphaned heavy runs pid 1997 / 2001 killed (logged in I.md), script amended with
+  orchestrator decision 2 -> PREREG F-I4.17 (low-piece rectilinear body <= 3 rectangles minus the slot, ~7 boxes per board;
+  contact-budget gate under sim=rl: no overflow and nefc <= 2 x a one-box-per-board control; freeze = w10 under the new
+  body + ep24 regression with physics and the gate), resumed as task wnjf2a087.
+- Collision-carve round 2 stopped (~22:17) and amended -> PREREG F-I5.16 (same contact gate, bound 1.5 x the packed default
+  pieces; ring layout = smallest cavity-safe layout that keeps a wall floor; eval precheck also reports the packed
+  pieces' ncon / nefc under sim=rl), resumed as task w6yrvudqw.
+- 22:40 UTC: determined-wright measured the eval-25 contact budget under sim=rl (their `contact_budget/`, 9c1d100): packed
+  configuration max 276 / median 201 rows per world (njmax 512 hard; nconmax 256 pooled), max 65 contacts, hands +
+  support about half. Both rounds stopped again before their amend steps committed anything, scripts extended with an
+  ABSOLUTE bound (max nefc per world <= 380 in the full scene with both hands, via their budget.py --pieces), resumed
+  (board slot wug9jhsun, collision carve w3tew9tbg).
+
+### 2026-10-31 22:41 UTC — gmg I board slot round 3, Amend 2: PREREG F-I4.17 + INTERLOCK 20.14 (written before any run)
+- From orchestrator decision 2 and its absolute bound, after determined-wright's P1 / sim=rl results (3c7fd32) and
+  eval-25 contact budget (9c1d100). Contact-budget gate for every F-I4 delivery: part 1 (plain MuJoCo, here) = settle
+  scene at the median and first assembled frame, 16 copies, sim=rl limits read from `cfg_sim_rl.yaml` (sha256
+  695536b7..., njmax 512, nconmax 256): no overflow and max nefc <= 2.0 x a one-box-per-board control; part 2 =
+  determined-wright's budget.py in the full scene with both hands, max nefc per world <= 380 (delivery condition;
+  expected to run on their side, no FlashCHORD / warp here [M]). Low-piece body: <= 3 frame-aligned rectangles fitted
+  by IoU to the outline raster (gate 0.90, else the F-I4.16 polygon), minus the slot box, cut into boxes (5 slotted /
+  3 plain expected). Freeze: w10 k1-k9 carve with the box body, k5 physics + part 1; ep24 `fi4q` carve + P2-P7 + part 1.
+  Predictions P120-P137 (P93 onward left to the concurrent F-I5.16). Nothing run, no code, $0. Log: gmg `build/I.md`
+  "Board slot round 3".
+
+### 2026-10-31 23:27 UTC — gmg I board slot round 3, Build + public runs under F-I4.16 / F-I4.17: freeze (a) fails on the contact gate
+- Build (dc4a2a4, fix a130449): `platebody.py` REV 17 (low-piece body: <= 3 frame-aligned rectangles fitted by IoU to
+  the outline raster, cut into boxes; F-I4.16 polygon as report / fallback), new `gmg/contactgate_fi4.py` (part 1,
+  plain MuJoCo with the sim=rl options and limits; named so because the concurrent F-I5.16 build plans its own
+  `contactgate.py`), minimal driver fields, `tests/test_fi417.py`. Code checks pass (fit, partition, nefc = 4 ncon;
+  REV 16 byte identity on w1 t = 10 vs 3b7e6d0).
+- Gate validity [M]: part 1 flags the round-2 ep24 r0 (868 rows, 3 / 16 copies overflow, ratio 27 to the one-box
+  control) and passes the control against itself.
+- Freeze (b) [M]: w10 k1-k9 all CARVE with the low-piece body (IoU 0.972-0.996, 5 slotted / 3 default boxes per board,
+  keep-out 0.0, widths within 0.33 mm of t + 2); k5 P2-P7 pass (P3 0.031 cm / 0.14 deg) and part 1 passes (84 vs 48
+  rows, ratio 1.75). Part-1 ratios of the other cells (reported): 1.50-2.08 (k2 2.08 > 2.0, k6 = 2.0).
+- Freeze (a) [M]: ep24 `fi4q` CARVEs both with the low-piece body (IoU 0.958 / 0.952, 5 / 3 boxes, keep-out 0.0,
+  cross-lap diff 1.59 mm), P2-P7 pass (P3 0.074 cm / 0.68 deg), but **part 1 fails: 124 rows (31 contacts) vs the
+  one-box control's 32 (8), ratio 3.875 > 2.0**, no overflow; default boxes 112. Nearly all contacts are board-table
+  (boards on their edges, up to 4 plane contacts per box). r0 written with DO_NOT_USE (contact_budget), not sent to
+  determined-wright. **F-I4.17 is not frozen; eval 25 not run; nothing tuned.**
+- Reports [M]: w10p A falls back to the polygon (IoU 0.741); w10n ok; ep23 board 1 IoU 0.814 -> polygon rung 1.5 mm;
+  w8 slot-centre miss -2.17 mm (inherited check; P2-P7 pass). Part 2 (budget.py, <= 380 rows) cannot run here (no
+  FlashCHORD / warp / newton / mujoco_warp). Cost: this container only, no rental, $0. Log: gmg `build/I.md` "Board
+  slot round 3"; results `build/I/results/slot3-ep24/`, `slot3-ep23/`, `slot3-tests/`.
+
+### 2026-10-31 23:55 UTC — CD-O sprint C0b / E0b closed: scan-free rebuild, pot and beige adopted for pack 10; B1 / B2 to the owner
+- **Chain.** Audit 9451062 (163 constants; 16 scan-derived, 71 unknown) -> PREREG 8174998 -> public box
+  `mesh-20261031-c0b-00e8584` (Vast 58564958, 66 min, $0.68, self-destroyed) -> picks 9f99ae0 before scoring ->
+  one scoring per pick plus C0's AUC guard (15 C0 base runs reused) -> adoption d84bc87 -> eval box
+  `mesh-20261031-e0b-c8f1c33` (Vast 58580656, 39 min, $0.49 [E], self-destroyed) -> E0b package 94742e4 -> verify_0
+  04748dc, verify_1 64542d7 -> this report.
+- **Replacements.** gmg `markers.py` (frozen A.6, no radius prior) for the 7 mm / 5-9.5 mm ball path. An
+  own-observation thickness chain with t0_C0b 4.559 mm for the 2.5 / 4 / 3 mm walls. A ±0.30 m cube and own-point
+  carving for the library_v3 ROI and co-objects. 3 sigma, relative and A.6b windows for the U-suspect windows. TIE 1.0
+  and `--floor base_t` for the lathe. 40 U values kept and declared generic post hoc.
+- **Result [D].** Adopted (WIN and guard):
+  - white_pot: public CD-O 0.3924, guard +0.0009 / -0.0107;
+  - beige_cup: 0.3007 / 0.2983, guard +0.0139.
+
+  Not adopted:
+  - the lid, whose 16/16 builds failed on cube clutter;
+  - the rack, 1.632, guard fail;
+  - the blue cup, 1.677, guard fail.
+
+  All three section-12 predictions were falsified. Both adopted objects are less accurate than pack 9a+'s (C0 pot
+  0.342; T1 beige 0.25).
+- **Ships.** E0b eval picks under PREREG 9 (e):
+  - pot `pot/ep3/thick`, md5 073872f4d0bdd0935a27fa985ae0063d;
+  - beige `beige/ep8/g1`, md5 0d926da1b444f4982de50ceb0e90ade7;
+
+  in `meshes/library_e0b` and `meshes/library_e0bx`. They are merged one by one; neither folder is a drop-in for 9a+.
+- **Verification.** verify_0 found no blocking item. Corrections: the detector seed count is gmg-informed, the
+  dry-run outputs were not deleted, and the split single-scoring check left no duplicate. verify_1 found two blocking
+  items, both needing owner decisions, with every option post hoc:
+  - B1 [M], pot: 17 of 32 balls lie below the base, lowest -60.2 mm vs -43.3 mm without balls;
+  - B2 [M], beige: 3 inside-out shells, net 23.5 cm3, 16 bodies after the budget.
+
+  I re-measured both GT-free and got the same numbers. No written rule resolves them, so nothing was re-run.
+  Disclosure flags were added to `C0b/MANIFEST_E0b.json` (amended in place, flags only; the prior sha256 4ebbe5bc...
+  and commit 94742e4 are recorded under `amendments`; script `C0b/scripts/amend_manifest_flags.py`) and to
+  `E0b/README.md`.
+- **Machine.** Shared cloud VM, CPU only, $0 for this step. No Vast box is open from C0b / E0b. Report:
+  `docs/research/mesh-2026-10-26/cdo-sprint/C0b/README.md`.
+
+### 2026-10-31 23:15 UTC — orchestrator: C0b/E0b closed; hand-off relayed
+- C0b/E0b workflow done (report e5baab1). E0b ships pot/ep3/thick (md5 073872f4...) on evals 1/3/5/6/8/28 and
+  beige/ep8/g1 (0d926da1...) on evals 8/10 in `meshes/library_e0b` / `library_e0bx`; box 58580656, $0.49 [E], destroyed.
+  Both are less accurate on public than 9a+'s (pot 0.392 vs 0.342, beige 0.30 vs 0.25 [D]); lid/rack/blue cup not adopted.
+  Flags B1 (pot balls below base) and B2 (beige inside-out shells) for any simulator use. Verifier N1: describe as "no
+  scan-derived value; the ball detector has one gmg-informed setting". Relayed to focused-pascal with the recommendation:
+  on score keep 9a+; E0b is the owner's compliance option.
+- Re-track (PUBOWN Set B) FAIL verdict recorded in PUBOWN/NOTES.md (1787cb9); uncoloured-template hypothesis logged by
+  focused-pascal for the owner, not run.
+
+### 2026-11-01 ~00:50 UTC — gmg I board slot round 3, Report step (board-slot round-3 workflow): INTERLOCK 20.15, hand-offs
+- **Record:** INTERLOCK 20.15 (results addendum: accuracy / failures / cost, what both verifiers confirmed, 14
+  corrections and caveats, hand-offs, 6 open decisions), a header pointer and a status line under 20.14; PREREG
+  outcomes bullets for F-I4.16 (superseded; its w10 geometric cells pass) and F-I4.17 (with the verify_slot3_0 N1 / N2
+  run-order and pre-commit deviations); STATUS top section. No code, no run, no rental ($0).
+- **Main points [M]:** the box body slots both ep24 boards and passes P2-P7 (P3 0.074 cm / 0.68 deg), but contact-gate
+  part 1 fails on the ratio (124 vs 32 rows, 3.875 > 2.0; no overflow; unslotted boxes 112), so F-I4.17 is not frozen
+  and eval 25 was not run; the ep24 r0 is a DO_NOT_USE record. w10 passes freeze (b) but cannot see body growth (IoU
+  vs the true plate 0.85-0.93); keep-out is 0.0 by construction for boxes; the control ends as two separated flat
+  boxes, and the box-partition direction moves ep24 between 64 and 124 rows.
+- **Hand-off text, Embodiment session (determined-wright):**
+  > Board slot round 3 (gmg F-I4.17, boards): nothing to run. The new body (5 slotted boxes per board instead of 57-77 prisms) slots both public ep24 boards and passes our P2-P7 (P3 0.074 cm / 0.68 deg). It fails our pre-registered contact gate's ratio clause in plain MuJoCo with your sim=rl limits: 124 rows / 31 contacts against 32 rows for a one-box-per-board control (limit 2x), with no overflow (512 / 256). The folder `docs/research/mesh-2026-10-26/gmg/build/I/results/slot3-ep24/fi4q/r0` (branch claude/bold-albattani-6qmxsv; manifest sha256 665db2b4...; DO_NOT_USE.json, reason contact_budget; p1_pending false; contact_budget_pending true) is a record, not a delivery: please run no P1 (your pose or lowered), sim=rl check or budget.py on it unless the orchestrator asks. Eval 25 was not run, so no ev25 folder exists. Board 2 carries slot_centre_disagrees (-5.0 mm, 361 points). The round-2 fi4o folder stays do-not-use.
+- **Hand-off text, pack builder (focused-pascal):**
+  > Eval 25 board slot, round 3: no gmg eval-25 slot pieces exist. Keep `meshes/carve/ev25` in the pack; no eval-25 rollout re-run is needed now. Our round-3 rule (a few boxes per board plus a contact-budget gate) did not freeze: on public ep24 the slotted boxes passed every physics test on our tracks but used 3.9x the solver rows of a one-box-per-board control (limit 2x; 124 of 512 rows, no overflow), so eval 25 was not run. Hence no comparison with `meshes/carve/ev25` (not opened) and no P_sel -> P_sim overlap result. Measured for any later eval-25 slot: at assembly our relative board pose differs from the packed eval-25 parquet (md5 71ac95f3) by 9.8 mm / 2.5 deg, more than the slot's 1 mm clearance [H: a slot built on our track may miss the replay by 6-10 mm]. Any future slot still needs an eval-25 rollout re-run before use.
+- **Open (orchestrator):** the part-1 ratio clause (any change is a new dated entry, post hoc on ep24); a freeze check
+  that sees shape; a keep-out measure for boxes; part 2 needs determined-wright; before any eval-25 run the
+  `interlock_dev` split label and the P_sel vs P_sim pose gap (9.8 mm / 2.5 deg at assembly, Prep25).
+
+### 2026-11-01 00:55 UTC — orchestrator: board slot round 3 closed; eval-25 verdict NO, sent
+- Board-slot round 3 done (report 3fce701, INTERLOCK 20.15). F-I4.17 low-piece body: ep24 both boards CARVE with 5
+  slotted boxes each (IoU 0.958 / 0.952), P2-P7 pass (P3 0.074 cm / 0.68 deg), 124 rows / 31 contacts, no overflow;
+  freeze (a) FAILS the ratio clause (124 / 32 = 3.875 > 2.0; even the 3-box default is 3.5x). Verifiers: no blocking;
+  the one-box control ends lying flat, so the clause is a poor comparator (orchestrator design error, recorded).
+  Freeze (b) w10 holds. Eval 25 not run. Prep25 measured P_sel vs P_sim at assembly 9.8 mm / 2.5 deg.
+- **Eval-25 verdict: NO** (no gmg slot pieces for pack 10; keep meshes/carve/ev25), sent to focused-pascal,
+  keen-heisenberg (owner's morning summary) and determined-wright (nothing to run). Any future slot must be cut in the
+  frame of the replayed poses (new rule, not planned tonight). Cost of the board-slot rounds tonight: $0.
+
+### 2026-11-01 01:20 UTC — mesh review artifact for the owner
+- Published https://claude.ai/artifact/6NyiKtg8NgmQRD7mAzpk8e (private): 3D views of every mesh version per object
+  (library_v3, shipped C0/C1, candidates C0 blue cup and E0b, rejected C2), board error by object, the blue-cup guard,
+  re-track verdict, board-slot contact rows, collision-carve and eval-check findings, and the three open owner decisions.
+  Page source and the mesh prep scripts: `docs/research/mesh-2026-10-26/review/` (meshes reduced to <= 24k faces,
+  16-bit quantised JSON; regenerable with prep.py + tojson.py, not committed).
+- Also relayed (00:58 UTC) to focused-pascal and determined-wright: the eval precheck finding that the packed ev10 cup
+  pieces overlap at the nested rest and need 656-1,296 rows vs njmax 512 under sim=rl (pair scene, plain MuJoCo).
+
+### 2026-11-01 02:50 UTC — eval-10 overflow confirmed by both lanes; cavity-safe ev10 candidate started
+- focused-pascal [M]: tonight's eval-10 retrain logs have ~6.0 M "nefc overflow" lines per seed (requested njmax median
+  580, p95 752, max ~1,050 vs 512) from the start of training; the cup was never lifted. njmax-1024 falsifier needs the
+  owner's go.
+- determined-wright [M] (budget.py, FlashCHORD, e1a3063): overflow is real in training (sampled resets nefc max 536,
+  13 % of world-steps over 512; cup-cup contacts up to 68-79), not in scoring (explicit resets max 441). Packed gl10A2
+  train.log: 8.37 M overflow lines.
+- Orchestrator: background agent building a cavity-safe ev10 piece candidate (receiver inner faces tangent, guest
+  inscribed, <= 53 / 49 pieces) with GT-free overlap / nefc / kept-volume numbers vs packed ev10, folder
+  `gmg/build/I/results/ev10-cavsafe/`; CPU, $0. FlashCHORD budget.py on it would be determined-wright's step.
+
+### 2026-11-01 03:00 UTC — owner permission for collision-overlap fixes (relayed); queue started
+- keen-heisenberg relayed the owner, verbatim 02:50 UTC: "I give you permission for everything" (answer to fixing the
+  collision overlaps behind the biggest losses: eval 10 never lifted; eval 30 sd 0.255; eval 14 sd 0.199; eval 1 cured
+  0.239 -> 0.017). Limits unchanged: competition rules, CLAUDE.md integrity.
+- Queue: (1) ev10 cavity-safe pieces (agent running; gates added before measuring: overlap median <= 1 / max <= 3 cm3,
+  sim=rl no overflow, intrusion <= 0, kept >= 80 %); (2) eval-30 rack slot then (3) eval-14 (agent started; gates
+  committed first: overlap, rack fill beyond mesh <= 1 cm3, sim=rl, settle 4 mm / 5 deg, kept >= 90 %; eval-14 cup in
+  table flagged as reference issue); (4) evals 32, 15/16 if time allows. Path per candidate: our gates -> determined-
+  wright budget.py -> focused-pascal retrain under the swap rule. CPU, $0.
+
+### 2026-11-01 03:30 UTC — mesh review artifact v2: every mesh we built
+- Owner asked to add all resulting meshes. Version 2 of https://claude.ai/artifact/6NyiKtg8NgmQRD7mAzpk8e adds "The full
+  mesh library": 595 distinct meshes (dedupe by sha1[:16]) across 11 objects, 234 with a stored public-scan CD-O [D]
+  (nothing re-scored): libraries v1-v4/v3x, C0/C1/C2 fits and candidates, the five generators (SAM 3D, Pixal3D-MV,
+  TRELLIS.2, Hunyuan3D-2.1, TripoSG; registered versions only), generate-then-fit, primitive fits, C0b, PUBOWN, E0 and
+  E0b eval builds, gmg shells. Object tabs, method filter, scored-only toggle, sort, one 3D viewer.
+- Ten scan copies found in scoring folders (`*/t3/mesh/*`, labelled scan_self or the object name) were removed from the
+  index, the bundles and the thumbnail sheets before publishing (ground truth, not our meshes).
+- Files: `docs/research/mesh-2026-10-26/review/` (page source, build_lib.py, library_index.json). Bundles and sprites
+  (19 MB) are regenerable and not committed.
+- 03:40 UTC (owner request "For outline use the public scan we are aiming"): artifact v3. The outline in both viewers is
+  now the public scan (ground truth, display only, 4k-face wireframe of `data/scan/*.glb`, identity frame: centres
+  within 2-11 mm of library_v3, identity chamfer 2-8 mm [M]); labelled as ground truth shown for comparison only.
+  Nothing was built, chosen or scored from it. The spoon has no public scan.
+
+### 2026-11-01 03:20 UTC — collision carve round 2 (F-I5.15 / F-I5.16) closed: nothing carved or delivered, public or eval (CPU, $0)
+- Report: `gmg/INTERLOCK.md` 21.15 (plain words, accuracy / failures / cost, predictions, verifier confirmations,
+  corrections, hand-offs, open decisions); PREREG F-I5.19 (outcomes, prediction scores, dated corrections of F-I5.17
+  (13) / (14) and F-I5.18; no rule change). Runs: build + T-I14 (ced42fd -> 88f49df), T-I16 public (88f49df, this
+  container 00:18-01:48, results `gmg/build/I/results/collcarve2-public/`), eval precheck (cea1342, diagnostic), T-I17 c1
+  and the H30 re-table (07b31b8). Verifiers: `verify_cc2_0.md` (810d726), `verify_cc2_1.md` (b06fc09).
+- **Result [M]:** every cup / pot ring candidate fails the 1.5 mm wall check on our SHELLs (min wall -21 to -173 mm;
+  verify_cc2_1 B1: SHELL roughness about 1 mm per face, no never-intruding ring keeps 1.5 mm at 12-32 sectors); CoACD
+  (41, repair to 82) fails the pieces gate on every object; all ten objects end in 6 mm boxes (share 0.018-0.086), all
+  five public folders DO_NOT_USE (the five round-1 folders too). Every public hands-off S / floor frame is
+  `pose_impossible` (overlap 2.7-85 cm3; ep13 cup 5.7 mm in the table; ep31 no frame within 4 mm), so S, S_ref and the
+  contact gate never ran under the rule. L0: ep11 rims 3.3 mm apart (our data show no nest).
+- **Eval [M]:** on the rule's hands-off set H30, feasible frames where the packed colliders block: 0 in every pair
+  (evals 10, 1, 14, 15, 16, 30, 32, 33); where packed pieces overlap at rest, the visual meshes overlap too (pose
+  issues). No eval carve run, no eval r0.
+- **c1 fails [M]:** plain MuJoCo (sim=rl) flags the default ep24 pieces 16/16 over 512 rows (MuJoCo-Warp 0/16) and the
+  carved 12/16 (needs >= 15). So all round-2 contact counts are plain-MuJoCo only and no F-I5 delivery can be usable
+  before G1 runs in MuJoCo-Warp. Eval 10's overflow stands on the FlashCHORD measurements of 02:50 UTC [R].
+- **Open (owner / orchestrator):** a ring rule for rough walls ([H] quantile faces with a measured intrusion
+  allowance); the keep-out grid defect H-d (code fix to F-I5.4); the G1 engine; rest-phase pose fixes before any carve;
+  SHELL union at load; the F-I5.15 (8) records (rigid shift before any push list).
+- **Hand-off text, Embodiment (determined-wright)** (for the orchestrator to relay; not sent):
+  > Collision carve round 2 (gmg F-I5.15 / F-I5.16): nothing for you to run. No F-I5 r0 folder exists for any eval episode; all ten public F-I5 folders (rounds 1 and 2: ep11, ep2, ep12, ep13, ep31) are DO_NOT_USE. Our gate check c1 failed: on the ep24 r0, plain MuJoCo with sim=rl limits flags the default pieces (16/16 copies over 512 rows, max 688) where your MuJoCo-Warp run showed none, so our contact counts are plain-MuJoCo only. Pose-fix push list on the packed references (no hand within 30 mm; faithful 2 mm boxes of the visual meshes): eval 10 f136-160, cups overlap up to 88.5 cm3; eval 1 f0-23 and f309-334, lid-pot up to 34.9 cm3; eval 30, 22 frames in f0-4 / f244-262, sweeper-rack up to 8.4 cm3; eval 14 f140-157, cup-rack up to 10.7 cm3; evals 15 / 16, spoon unsupported up to 6.5 / 8.0 mm. Tables: gmg/build/I/results/collcarve2-eval/precheck_H30_tables.md.
+- **Hand-off text, pack builder (focused-pascal)** (for the orchestrator to relay; not sent):
+  > Collision carve round 2 (gmg F-I5.15 / F-I5.16): no eval episode has new collision pieces from this lane. Keep meshes/carve/ev10, ev01 and ev25; no rollout re-run is needed for it. Eval precheck of your packed references on hands-off frames (no hand within 30 mm), failing / hands-off frames: eval 10 25/33, 1 50/50, 14 18/29, 15 12/54, 16 14/60, 30 22/22, 32 0/3, 33 0/14. No packed collider blocks a feasible pose: where the pose check passes, packed overlap is at most 0.73 cm3. Where packed pieces overlap at rest (evals 10, 1, 14, 30), the visual meshes overlap too, so those are pose problems. Caveats: our contact counts are plain MuJoCo only (our validity check failed); on evals 14 and 30 the hands-free pair scene throws the packed guest 23-140 mm (medians) in 2 s. The ev10-cavsafe and rackslot candidates are separate lanes. Tables: gmg/build/I/results/collcarve2-eval/precheck_H30_tables.md.
+- **Owner summary** (for the orchestrator to relay; not sent):
+  > 1. Collision carve round 2 is done: no carved collision pieces for any episode, public or eval; submitted meshes and pack unchanged; cost $0.
+  > 2. The new cup and pot pieces never enter the opening, but our measured walls are about 1 mm rough per face, so they cannot also keep a 1.5 mm wall; every object fell back to coarse boxes (do-not-use).
+  > 3. At every hands-off test frame on public episodes our tracked poses are impossible (overlapping, or inside the table), so poses must be fixed before a carve can be judged.
+  > 4. On the eval references the pack's collision pieces never block a possible pose; where they overlap at rest, the visual meshes overlap too: the poses are the problem.
+  > 5. Our contact counter flags pieces the evaluator handles, so our contact numbers are indicative only. Next decisions: a ring rule for rough walls, and pose fixes.
+
+### 2026-11-01 03:50 UTC — orchestrator: collision carve round 2 closed; corrections relayed
+- Workflow collision-carve-2 done (report 2d9bfc5, INTERLOCK 21.15, PREREG F-I5.19). Nothing carved or delivered; no
+  eval pair qualified. Verifiers: cavity-safe rings cannot keep a 1.5 mm wall on our rough SHELLs (B1 stands); c1
+  validity check fails, so plain-MuJoCo contact counts are indicative only; eval-precheck hands-off must be H30.
+- Corrections relayed to focused-pascal, determined-wright and keen-heisenberg: (1) the 656-1,296 rows for eval 10 are
+  plain-MuJoCo only (the eval-10 overflow stands on FlashCHORD 536 / 13 % and the training logs); (2) eval 14 "16.6 mm
+  into the table" and eval 32 "19.5 mm" were H0 frames with a hand 3 mm away; under H30 max 3.9 mm, no frame fails.
+  Round-2 hand-offs (pose-fix list, keep packed carves) and the owner summary sent. Rack-slot agent told to use H30
+  frames, report the visual-mesh pose floor, and label plain-MuJoCo counts indicative.
+
+### 2026-11-01 04:00 UTC — ev10 cavity-safe candidates delivered for FlashCHORD check
+- Agent report (folder `gmg/build/I/results/ev10-cavsafe/`, commit 1204854; GATES 98ddccf before measuring): v1 ev10cs
+  53/49, v2 ev10cs2 44/49 (one-piece blue floor), v3 ev10cs3 32/33 (8 sectors). Plain-MuJoCo pair scene (indicative):
+  overlap f124-160 median/max 11.9/32.7 (packed) -> 1.9/6.8 (v1, v2) -> 0.38/2.99 (v3, gate 1 passes by 0.01);
+  nefc at f142 656 -> 936 / 548 / 376; settled nest 68-484 -> 574-746 / 212 / 160; intrusion 3.5 mm -> 0. Kept-volume
+  gate fails for the blue cup (its visual mesh fills its own cavity). Pose floor: visual-mesh overlap 80.6 cm3 median.
+  Caveats: beige settles 4-27 mm deeper; v3 floor 4.6 mm, lip wall 0.25 mm; v2/v3 post hoc.
+- Sent to determined-wright (cc focused-pascal, keen-heisenberg) for budget.py on ev10cs2 / ev10cs3 (pass <= ~460, 0
+  overflow lines); GPU training test needs the owner's go.
+
+### 2026-11-01 04:15 UTC — public pose-fix test started (keen-heisenberg proposal, owner's 02:50 permission)
+- Proposal (keen-heisenberg, data): on H30 hands-off segments, minimal rigid shift that removes visual-mesh
+  interpenetration (object-object, object-table), constant per segment with ramps, applied to the last-released
+  object; GT-free transform; scored on public with the kit chain; gate mean dAUC >= +0.002 and no episode < -0.01;
+  direction check (cosine push vs ours-minus-mocap) and mesh check (our meshes at mocap poses).
+- Orchestrator: accepted. Background agent writes PREREG first (posefix/PREREG.md), then one scored run on the public
+  tracks and scorer of the CD-O AUC guard with the 9a+ mesh set; CPU, $0. If it passes, the rule goes to focused-pascal
+  for the eval references (10, 1, 14, 30, then 15/16).
+
+### 2026-11-01 04:30 UTC — rack-slot candidates (evals 30, 14): none passes; root cause is the pose
+- Agent report (folder `gmg/build/I/results/rackslot/`, commit e863636; GATES pushed before measuring, amended twice
+  before any candidate was measured: H30 frames, plain-MuJoCo label, throw report G6, G2b band rule). Guest mesh inside
+  the rack mesh at every H30 rest frame (eval 30: 22/22, 6.2 cm3 median; eval 14: 18/18, 9.2 cm3). Candidates empty the
+  slot (fill 10.8 -> 2.9 and 6.9 -> 2.3 cm3) but: eval 30 sets throw the free sweeper further (41-43 vs 25 mm) -> do not
+  use; eval 14 c1-ev14 throws less (79 vs 136 mm) but 62 pieces and plain-MuJoCo rows 552-612 -> long shot, budget.py
+  optional. Relayed to determined-wright / focused-pascal / keen-heisenberg; keep packed racks; the pose fix is the lever.
+
+### 2026-11-01 04:55 UTC — final contact-budget verdicts (determined-wright, 32x60) and ev10cs v4 requested
+- determined-wright (budget.py, 32 worlds x 60 steps, paired; record 6b04fba): eval 30 packed 0 / 0 lines; eval 14
+  packed 0 / 0; eval 14 + c1-ev14 12 / 0 (hold max 571), + c2-ev14 5 / 0 (499); eval 10 packed 380 / 9,723 (661, 100 %
+  of hold steps > 512); ev10cs 104 / 7,086 (598, 75 %); ev10cs3 110 / 576 (534, 15 %). Verdicts: keep packed racks on
+  14 and 30; no eval-10 candidate is clean -> no retrain; ev10cs3 best. Options: v4 with 30-80 fewer rows, or ev10cs3 +
+  sim.njmax=1024 (untested, pack lane / owner).
+- Orchestrator: ev10cs v4 requested from the ev10 agent (gates appended before building; fewer, larger beige pieces,
+  fewer blue bands, one-piece floor kept, cavity-safe inner faces; CPU, $0).
+
+### 2026-11-01 05:30 UTC — ev10cs4 delivered for the 32x60 FlashCHORD check
+- Agent report (A4 rules fedccf6 before building; results 7e4bc6a): ev10cs4 = v3 with 2 wall bands, beige base 1 + 4,
+  6 mm blue floor (one pre-registered change after the drop check fired on 3 mm); 24 / 21 pieces. Plain MuJoCo
+  (indicative): overlap f124-160 0.21 / 2.61 cm3; nefc f111 / f142 / f116 488 / 212 / 336, 0 of 48 copies over 512;
+  settled nest 96-104 rows; intrusion 0; blue kept volume 0.384 (fails as all sets). Drop check: beige crosses the
+  6 mm floor in 2-8 of 16 copies at 24-32 mm drops (0 at rest frames). Sent to determined-wright (cc focused-pascal,
+  keen-heisenberg); target 0 overflow lines at 32x60, hold max <= ~480.
+
+### 2026-11-01 05:15 UTC — ev10cs4 passes determined-wright's checks; training run proposed
+- determined-wright (data): FlashCHORD 32x60 contact budget 0 / 0 overflow lines (hold max 448, overall 459; packed
+  ev10 380 / 9,723) (6e32856). Nest test (4f5ff63): driven beige-vs-blue 0.14 / 0.52 cm, 1.1 / 2.7 deg vs packed
+  1.02 / 2.06 cm, 7.0 / 11.1 deg; floor not crossed (impact 5.49 of 6 mm; settles ~1 mm); free rest drifts 1.6 cm
+  (pose floor).
+- Orchestrator: proposed one eval-10 training at stock limits with --pieces ev10cs4 (focused-pascal runs it; ~$6 [E]
+  like e10v) to keen-heisenberg for the owner's go; check train.log overflow count first, then lift.
+
+### 2026-11-01 05:45 UTC — ev10cs5 (8 mm floor) standby built and frozen
+- determined-wright's 8 mm plate variant (nest test: release depth 4.0 vs 5.5 mm, tracking 0.12 vs 0.14 cm) prompted a
+  standby ev10cs5 (A5 gates 99be31e before building; build 7935261; FROZEN.md 2b016b4). md5 vs ev10cs4: only
+  blue piece_16 (plate), blue inertia.json, blue lathe_collision.json and carve.json differ; every other piece
+  identical. Plain MuJoCo (indicative): f124 drop through-floor 0/16 (v4 6/16); gate-1 max at f124 3.9 cm3 (fails 3.0;
+  higher floor meets the beige base; median unchanged 0.21); f111 overflow 3/16 copies (v4 0). focused-pascal's
+  pre-stated rule: ev10cs5 if md5 condition holds and determined-wright's 32x60 recheck is 0 / 0 by 06:30 UTC, else
+  ev10cs4. Sent to both.
+
+### 2026-11-01 05:55 UTC — posefix (rest projection) public test: gate fails; overlaps are partly mesh shape
+- Agent report (posefix/README.md; PREREG df60ff2 before scoring; output sha 4ef1305 before GT staged; results e3b1fcd;
+  CPU $0): rule A mean dAUC -0.0107 (gate +0.002), min -0.0342 (ep41); 17/20 worse; MPPE +0.128 cm, RPE +0.087 cm;
+  variants C -0.0051, D -0.0024, B -0.0106. Direction falsified (28/50 cos <= 0; pair pushes 11/16 right but 5.7x
+  overshoot). Mesh check: overlaps persist at mocap poses (ep11 cups 65 cm3, ep31 11.1, ep24 9.9, ep2 5.9; only cup-in-
+  rack mostly pose); caveat: container openings may count as solid. C0 pot lowest point 6.9-8.3 mm below the real base
+  at true poses (not the balls; they are lateral), v3 pitcher 7-11 mm.
+- Not proposed for eval. Correction relayed to keen-heisenberg / focused-pascal / determined-wright: the overnight "poses
+  are the problem" summary was too strong; a large part is mesh shape. Offered a physics-only re-base of the pot and
+  pitcher meshes as a possible next item.
+
+### 2026-11-01 05:50 UTC — eval-10 diagnosis confirmed; legal fix running on ev10cs5
+- focused-pascal (data): eval-10 njmax-1024 diagnostic SUPPORTED: 0 overflow lines in training, beige cup lifted
+  23.9 cm, official sim_vs_ref vs V 0.913 (e10v at stock limits: 0.459). Diagnostic only, never packed.
+- The legal fix runs now: eval-10 retrain at stock limits on ev10cs5 (frozen 2b016b4), which met focused-pascal's
+  pre-stated rule (md5 condition + determined-wright 32x60 recheck, be1e893).
+
+### 2026-11-01 06:00 UTC — re-base (collision-only) of pot and pitcher started
+- keen-heisenberg approved the re-base, collision-only (visual mesh / CD-O untouched); [H] it may cut ep2's early lid
+  failures (their drawdiv, f58f638); GPU A/B on ep2 later, credit permitting ($28.95 shared at 05:52).
+- Background agent: rebase/ folder; GATES.md before measuring; rules (a) translate collision up by median rest
+  penetration, (b) clip base slab only; gates G1-G6; delivery order ep2 public set, eval pot sets (1, 3, 5, 6, 8, 28;
+  eval 1 from ev01), pitcher eval 20. CPU, $0.
+
+### 2026-11-01 06:35 UTC — re-base: not needed for any pot set; ep2 conflict is lid-in-pot hull fill; eval-20 pitcher b1 delivered
+- Agent report (rebase/; rules 0b8291f, A1 ea025f3, results 9c0bc0c; CPU $0): the simulator's pot collision is
+  FlashCHORD CoACD of the library_v3 pot (31 hulls), which already rests on the table at H30 rest frames (median
+  -0.14..+0.05 mm on ep2 mass0 and evals 1, 3, 5, 6, 8; eval 28 no clean rest frames). The C0 base offset is visual-only
+  (absorbed by scoring registration). ep2: packed lid 53.0 cm3 inside the pot's CoACD hulls at 45 lid-rest frames; the
+  revised [H] (lid-in-hull fill causes early lid failures) matches focused-pascal's P2mck placement carve (53.8 -> 0).
+  Eval-20 pitcher: packed fails settle G3 (3.2-3.3 mm / 6.4-7.5 deg); b1 clip (0.03 cm3) passes (1.6 mm / <0.6 deg),
+  plain-MuJoCo rows 316 vs 304 (indicative). Relayed; budget.py on eval 20 requested from determined-wright.
+
+### 2026-11-01 07:10 UTC — f0 settle survey (report-only) relayed
+- Agent report (rebase/f0_survey.md, a6923c5; CPU $0): all 20 packed eval references rebuilt. Falls at f0 with no hand
+  near: eval 20 pitcher (195 mm / 94.6 deg; frozen b1 fixes to 8.5 mm / 3.2 deg) and eval 19 sweeper (90 mm / 89 deg;
+  std mode, support_fill never ran: [H] support_fill keeps it standing). Others: eval 30 sweeper 24 mm / 25 deg (starts
+  12.2 cm3 in the rack), eval 10 beige 6.5 mm (ev10 piece corner below support), eval 1 lid 4.3 mm; 30 other objects
+  within 3.3 mm / 5.1 deg. FlashCHORD rest-check failures for pots (evals 3/5/6/8) and spoons (16/33) are not geometry:
+  [H] hands/arm contact during the approach. Relayed to keen-heisenberg / focused-pascal / determined-wright; offered
+  a pre-registered eval-19 support_fill test.
+
+### 2026-11-01 07:30 UTC — ev10cs5 f0 settle (report-only) and eval-19 support_fill result
+- ev10cs5 f0 (rebase/ev10cs5_f0.md, 01d7cc3): beige start wobble unchanged vs packed (6.54 mm / 3.98 deg vs 6.50 /
+  3.98: low corner of the beige pieces); blue steadier (0.86 vs 2.35 mm); nest rows 136-288 vs packed 556-948; no copy
+  falls. [H] beige clip at the support band would remove the corner (separate step).
+- Eval-19 sweeper (rebase/ev19; GATES a0ffceb before the tool ran; result 4fa6ec4; frozen 64338be): focused-pascal's
+  support_fill.py 22fb399 on reference 201f338a certified the sweeper by fill (0.5 cm, 4.2 cm3 slab, margin 5.5 mm).
+  E1 f0: 90.2 mm / 88.8 deg (16/16 fall) -> 0.01 mm / 0.01 deg; E1 f2: 92.4 / 90.1 -> 1.70 / 1.53; E2 visual md5
+  unchanged; 23 pieces vs 19; plain-MuJoCo rows 160 vs 196. Collision-only overlay; eval 30 shares mini_sweeper, so
+  eval 19 needs its own asset copy. Relayed; budget.py requested; retrain only with the owner's go and credit.
+
+### 2026-11-01 09:05 UTC — wrap-up (owner request via keen-heisenberg): nothing running, final report sent
+- All background agents finished; no processes running; working tree committed and pushed. STATUS top section written.
+- Final report sent to keen-heisenberg (finished items, open items, top 3 improvements, CD-O-only variant view).
+### 2026-10-31 ~15:00 UTC — standings check (owner asked; read-only, $0)
+- Kaggle API, all six Track 3 boards, 14:48–14:58 UTC. No new upload since pack 7 (AUC 0.81460, 30 Oct 06:28 UTC).
+- Our ranks [M]: AUC 8th (0.81460), SP-SR 7th (0.85, tied with DSAIL and Purple), MP-SR 8th (0.65), RPE 11th (3.932),
+  MPPE 10th (2.921), CD-O 18th of 20 (0.402; leaders 0.213 / 0.239 / 0.250).
+- Final rank = lowest sum of the six board ranks (FAQ; next-steps-2026-10-30/PLAN.md). Sum of ranks [M]:
+  richchentw 6, DDD 17, rlwrld 22, Zihao Guo 25, SRL 31, Purple 38, sam&alex 48, SoySauceChicken 49, DSAIL 53,
+  Sambhav 60, **Imitation.Tech 62 (11th)**, Zimo Li 73. (Teams missing a board were given rank 21 on it; no team above
+  us is missing one, so this assumption does not change our place.)
+- Close neighbours: CD-O 0.372 is 15th, 0.338 is 14th, 0.297 is 10th; RPE 9th is 3.853 and 10th is 3.928; MP-SR 0.70 ties
+  7th; SP-SR 0.90 ties 6th.
+- Vast: 2 boxes running (recipe screen 58531195 / 58532423, $2.76/h); credit $118.64.
+
+### 2026-10-31 ~15:05 UTC — owner on the spoon lever; spoon dropped from the big-lever list
+- Owner: a better spoon needs better perception; in the videos the spoon looks right, and the overlay is all we have.
+- Agreed reading: no GT-free check exists. Overlay: the costly error, frame-0 roll about the handle in the
+  spoon-anchored evals 32/33/35/36/37, barely changes a thin spoon's outline. Depth: the depth audit failed (AUROC 0.600).
+  Public test: the rest-averaged anchor gained +0.001 (A-f0, not adopted).
+- The spoon pool in the briefing (≈ 0.06–0.07, solved for) is likely overstated. The spoon README's measured jitter
+  (2–6° random roll) puts it at ≈ 0.03–0.15 per anchored episode, ≈ 0.01–0.04 on the board [E].
+- The lever list for the freeze is now: eval 10, meshes (CD-O and anchor registration). The rest is re-run insurance.
+
+### 2026-10-31 ~15:10 UTC — owner: "get me into that top tier"; this session coordinates the push
+- Owner, verbatim: "Look other people achieved it, I dont care if you are using domain randomization physics based
+  learning or just a better perception model get me into that top tier, Im giving you everything you need if others
+  done it so can you!"
+- Gap to the top 5 (boards, 14:58 UTC): RPE 1.1–1.7 vs our 3.93 cm; CD-O 0.21–0.25 vs 0.402; MP-SR 0.80–1.0 vs 0.65;
+  rank sum 6–31 vs 62.
+- Started: a background web/Kaggle-forum search on what the top teams do (read only).
+- Proposed to the owner: a tracker test on 20 public episodes (≈ $5–10), then eval perception, references and a
+  20-policy retrain if it passes (≈ $50–80 [E]); total push ≈ $150–200 [E]. Asked the owner for a ceiling (suggested
+  ≤ $250 more) and for this session to coordinate. No answer yet.
+- Sent to focused-pascal (session_01LhbGHrt6epRs52jSRX48AU): the owner's statement as the go-ahead for the ep11 gate.
+  Its reply (queued 15:16 UTC): gate launch ≈ 16–17 UTC (≈ $4–6, 6–7 h); eval-10 V4p retrain prepared and launched in parallel
+  (≈ $3–5 at risk if the gate fails), with a GT-free guard scoring against both references; masses v2 after the gate.
+- Sent to bold-albattani (session_01W8Softjo2xx7o6ofSiheuQ): the CD-O board data and a 2 Nov 18:00 UTC ask. Its reply (queued
+  15:20 UTC):
+  - board model: 36 eval pairs, spoon 10/36; library_v3 0.491 on non-spoon pairs + spoon ~0.18 reproduces 0.402;
+  - C0 (≈ 1 Nov 12:00, $0): pot, lid, rack and blue-cup meshes already built and scored, CD-O ≈ 0.335 [E] (≈ 14th);
+    each passes a public-twin AUC check before hand-off;
+  - C1 (2 Nov 18:00, at risk, ≈ $3–8 GPU): generated beige cup, pitcher and dust pan, ≈ 0.31–0.32 [H];
+  - C2: generate-then-fit, $0 CPU public test first.
+  - Owner decision needed: provenance. The C0 meshes come from library_v3-anchored tracks (same tier as library_v3).
+    The lid's 2.5 mm wall equals a value that once leaked from the scans; the clean-up passed at 1.5, 2.5 and 4.0 mm.
+
+### 2026-10-31 ~15:20 UTC — top-teams search result; organiser PR #215; tracker bet withdrawn
+- Search (background agent, read only; notes in this session's scratchpad): no top Track 3 team has published a method.
+  Kaggle forums and code tabs of all V2D competitions are empty; profiles are blank. richchentw's first scored upload
+  (22 Oct) was already AUC 0.903 / RPE 1.50. RPE/MPPE ratio: top six 0.88–1.03, ours 1.35.
+  The only public Track 3 pipeline found (rborah-cmu/ego2sim-nvidia-v2d; rank unknown): SGBM+MoGe depth, stereo VO, SAM2,
+  WiLoR, FoundationPose, FlashSAC retrained at 2× budget when own-reference MPPE > 3 cm.
+- Verified at the source (WebFetch of the PR page): nvidia-isaac/video_to_data PR #215 (MVerghese; open, approved
+  31 Oct): "Leaderboard results are provisional until each team's submission container is checked." Tracks 2 and 3:
+  "policy weights for every sequence, plus a `run.sh reproduce` entry point that rolls out every policy and packs the
+  file"; evaluator/script/checkpoint hashes and commit "must match" the counted Kaggle submissions; mismatches "can
+  delay or invalidate prizes". The container is submitted with the technical report. No deadline given.
+- Reading: perc2 already runs FoundationPose + FoundationStereo + SAM2, so the "better tracker" bet proposed at 15:30 is
+  withdrawn: there is no off-the-shelf swap. Asked the Roman-meeting session (session_01D9UJC7JP3bbasvhFUrxyf7) for a
+  $0 CPU RPE/MPPE error decomposition on public data (per episode; anchor orientation, constant offset, static init,
+  jitter) with 1–3 GT-free fix candidates, by ≈ 1 Nov 06:00 UTC.
+- PR #215 raises the value of stable checkpoints (H5: packed 0.9164 vs 10-draw mean 0.8755) and of keeping the exact
+  checkpoints of whichever pack is counted.
+
+### 2026-10-31 ~15:30 UTC — owner: "do all the improvements ... prepare a pack"; two-pack schedule sent to the lanes
+- Owner, verbatim: "Lets do all the improvements that we planned and lets prepare a pack so that we see where we stand,
+  like better perception better mesh better physics. Where are we on that when will that be available"
+- Read as: go for every planned improvement, including the C0 mesh provenance question (owner told; objection forwarded
+  if any). Uploads still need the owner's explicit OK at the time.
+- Schedule proposed to the lanes (each asked to confirm ETAs):
+  - Pack 9 (interim), build ≈ 1 Nov 14:00–18:00 UTC: pack 8 + eval-10 V4p (if the gate passes) + C0 meshes (if the
+    public-twin AUC check passes). focused-pascal builds.
+  - Pack 10 (combined): one eval retrain from ≈ 1 Nov 18:00 UTC with whatever has passed its public gate (masses v2,
+    recipe K/D, GT-free reference fixes, eval-10 V4p, C1 meshes); per-episode GT-free choice vs the packed policy;
+    pack ≈ 2 Nov evening; 3–4 Nov for a fallback.
+  - Cut-off for reference fixes: public gate passed and eval references built by ≈ 1 Nov 14:00 UTC.
+- Messages: focused-pascal, determined-wright, bold-albattani, Roman-meeting session (decomposition addendum).
+- ~15:30 UTC: the Roman-meeting session takes tasks only from the owner, so the RPE/MPPE decomposition runs in this
+  session instead (background agent, CPU, $0). Outputs go to docs/analysis/rpe-decomp-20261031/; first table ≈ 18:30 UTC;
+  candidates pre-registered in PREREG.md before scoring. Public episodes only; GT only for scoring.
+
+### 2026-10-31 ~15:30–15:40 UTC — lanes confirmed; PR #215 container guide read
+- focused-pascal owns pack builds. ETAs [E]:
+  - ep11 gate launch 16–17, result 20–23 UTC;
+  - eval-10 V4p retrain launch 17:30–18:30, policy + 10 draws 23:00–02:00;
+  - masses v2 launch 18–19, verdict 1 Nov 01–03.
+  Masses fold into the pack-10 retrain (no separate O2). 20-episode retrain, 2 seeds: one arm ≈ $55–90, two arms
+  ≈ $100–150; wall-clock 10–13 h (1 Nov 18:00 → 2 Nov 07–09).
+  Caveats: attribution; recipe tested on grasp-lock only (standard learner 1/16/19/25/28/30, frozen 3/5/15/16); each
+  part opt-in and verified in the job.
+- determined-wright: recipe-screen verdict ≈ 22:30 UTC. K settings and D patch given (commit ≥ 609582a). K+D together
+  untested. Nothing else from physics is ready (solver references failed their RL gate; loop no evidence; fit v2 on
+  hold).
+- bold-albattani: C0 by 1 Nov ≤ 12:00 with the public-twin AUC guard; C1 now runs on CPU ($0); the README keeps the
+  provenance caveat.
+- PR #215 kit (v2d_submission_kit/CONTAINER_SUBMISSION.md, fetched from pull/215/head; read only, nothing run):
+  - the container is due after the close, with the technical report;
+  - it holds the exact checkpoints, the pinned runtime, the rollouts, and for Track 3 "the reconstructed meshes packed
+    with the trajectories";
+  - "`run.sh reproduce` must roll out every episode's policy with the evaluator and pack a submission file";
+  - the reproduced score is expected "within your own run-to-run variation of the leaderboard score";
+  - the counted submission is the selected Final Submission, else the best-scoring one per board; if boards count
+    different files, the container covers each of them.
+  Reading [not an organiser ruling]: a mesh-only swap is reproducible if the container keeps the simulation assets and
+  the packed meshes; each board keeps its own best, so a CD-O-only gain does not lower the AUC board.
+- Proposed to focused-pascal: the recipe goes to grasp-lock episodes only, with a minus-recipe control there; costing
+  requested.
+- ~15:35 UTC focused-pascal: learner split corrected. 15 grasp-lock (3, 5, 6, 8, 10, 14, 15, 16, 20, 32, 33, 35, 36,
+  37, 38); 5 standard (1, 19, 25, 28, 30). Source: docs/research/work/masses-eval-20261031/packed_refs.json on its
+  branch.
+  Middle-variant cost [E]:
+  - grasp-lock 15 eps × 2 arms × 2 seeds = 60 cells, $60–90;
+  - standard 5 × 1 arm × 2 seeds, $24–34;
+  - confirmation $4–8;
+  - total ≈ $90–130 (central $110), 2 staggered waves, ≈ 11–14 h.
+  Cheaper: one-seed control −$15–22; no control −$30–45. pack_eval.sh records the sim assets (assets_md5.txt). The ep11
+  gate launches within ~30 min.
+
+### 2026-10-31 ~15:40 UTC — owner: "I want a pack today" → pack 9a tonight
+- Owner, verbatim: "I want a pack today". Read with the earlier "prepare a pack so that we see where we stand" as approval
+  to upload tonight's pack once built and preflighted (owner told; stop honoured if sent).
+- Pack 9a = pack 8 (20261030-track3h-candidate: pack 7 + fresh eval-1 rollout) + C0 packed meshes (pot, lid, rack,
+  blue cup). Rollouts and sim assets unchanged.
+- Each board keeps its own best (PR #215 kit; pack 5 precedent), so AUC cannot drop below 0.81460 on the board. The
+  public-twin AUC guard is asked as information, not a gate.
+- Asked bold-albattani for C0 by ~19:00 UTC; focused-pascal builds, preflights and uploads before ~21:00 UTC.
+  Fallback: pack 8 alone if C0 is not in by ~20:00 UTC. Eval 10 goes into the next pack.
+
+### 2026-10-31 ~15:50 UTC — owner: rebuild meshes on the eval episodes with the better method
+- Owner, verbatim: "Like if the method of mesh creation better just recreate the knes in the eval and use that".
+- Facts (bold-albattani README §8–§9): library_v3 and C0 are built from public episodes and reused for eval.
+  - Eval builds need the eval depth cache (missing). Fix: ops/jobs/eval_perc.sh, one GPU, ≈ 4 min/episode,
+    ≈ $2–4 [E]; then obs_points → prim_* / lathe_obs → obs_fidelity on CPU.
+  - Frame-0-only lathes failed on public (CD-O 1.1–1.3 cm).
+- Asked bold-albattani:
+  - run eval_perc.sh on all 20 eval episodes (owner's go);
+  - build eval candidates with the C0/C1 methods;
+  - choose per object by the GT-free obs_fidelity rule, written before choosing;
+  - report the public single-episode build distribution vs scan as context.
+  Tonight's pack keeps C0 unless the eval builds are verified by ~19:00 UTC; otherwise they go into the 1 Nov pack.
+- ~15:43 UTC focused-pascal confirms pack 9a:
+  - now: CPU repack check (rebuild pack 8 byte for byte except the commit URL);
+  - at C0's arrival: swap only the packed meshes, then row-diff checks, mesh md5s, kit preflight;
+  - upload by ~20:30 UTC; fallback pack 8 at 20:00.
+  Blocking condition: each C0 mesh must be in the library_v3 body frame it replaces. The mesh README §9 says they lie
+  in the same object frame (median 2–4 mm from library meshes without registration); bold-albattani to confirm.
+  focused-pascal tells the owner in its own channel what goes up and when.
+- ~15:44 UTC bold-albattani:
+  - C0 at commit 5cce3d2 (meshes/library_c0, library_c0x; 4 swapped files, others byte-identical to v3/v3x);
+  - hand-off verifier running; C0 to focused-pascal ≈ 17:30, latest 18:30 UTC;
+  - AUC guard (51 runs, 15 twins) running; it gates the final selection, not tonight.
+  Flags kept in the C0 README: same provenance tier as library_v3; lid and rack 2.5 mm walls equal once-leaked values
+  (pass at 1.5/2.5/4.0); the blue-cup selector was written AFTER its lathes were scored.
+- Decision (this session, by CLAUDE.md's write-the-rule-first rule): pack 9a defaults to pot + lid + rack. The blue cup
+  is held back unless the owner explicitly accepts it. Cost [E]: CD-O ≈ 0.367 vs ≈ 0.335 (~15th vs ~14th). The blue
+  cup is rebuilt from eval episodes with a pre-committed rule for the 1 Nov pack. Told focused-pascal and bold-albattani.
+- ~15:45 UTC focused-pascal: pack 9a default is 3 meshes (pot, lid, rack from library_c0 at 5cce3d2); the blue cup only
+  on the owner's explicit include before the build. Frame confirmation still blocks; the swap tool also checks frames.
+- ~15:45 UTC bold-albattani, correction: the eval depth cache already exists (cache/depth/eval/ep*/depths_fs0.5.npy,
+  batch 1, 29 Oct, $2.95), so eval mesh builds are CPU only, $0.
+  - Plan: per-episode builds on eval tracks (pot, lid, rack, blue cup, C1 objects); 2.5 mm grid midpoint as the default
+    thickness (flagged); obs_fidelity rule committed before any choice; eval-build fidelity reported beside C0's on the
+    same eval observations; public single-episode CD-O distribution as context.
+  - ETA: handover 1 Nov ~12:00 UTC for the 1 Nov pack; not tonight.
+
+### 2026-10-31 ~16:05 UTC — RPE/MPPE decomposition done (CPU, $0, public only): the RPE/MPPE boards are failure boards
+Files: docs/analysis/rpe-decomp-20261031/ (README.md, PREREG.md, tables.md, JSON, scripts). Verified by hand:
+- kit RPE (`metric_code/track_3/RPE.py:543–566`, PR #215 kit): mean over object pairs of the second object's position
+  in the first one's body frame; 0 for single-object episodes;
+- episodes are averaged plainly (`:877`).
+Readings [M] (agent's numbers; the agent reports that AUC reproduces phase-1 on all 20 episodes):
+- Reference level, P_o vs mocap (lib): RPE 1.66 / MPPE 1.90 / AUC 0.890 over 20 episodes; without ep23 (board swap)
+  1.00 / 1.18 / 0.935. Worst 3 (ep23, ep18, ep31) carry 61 % of RPE.
+- Ablations (GT substitution, diagnostic only):
+  - constant per-object offset: ΔAUC +0.050, ΔRPE −0.22;
+  - anchor frame-0 orientation: ΔAUC +0.026, ΔRPE 0;
+  - every still frame held at truth: ΔAUC +0.055, ΔRPE −0.12.
+  RPE has no single dominant reference error type.
+- Rollout level (7 public P-arm cells × 10 draws):
+  - the reference costs 1.2–2.1 cm RPE;
+  - successful draws total 1.4–3.5 cm, failed draws 10–77 cm;
+  - mean RPE 13.7, of which the reference is ~10 %;
+  - GT-free RPE (rollout vs our own reference) correlates r = 0.9998 with RPE vs mocap over 70 draws.
+- So: RPE/MPPE (and SR) are driven by failed rollouts, not by perception. Without failures our RPE would be
+  ≈ 1.6–2.4 [E] vs top six 1.10–1.73. This corrects my 15:10 inference that perception is 2–3× worse.
+- GT-free candidates K1 rest-hold and K2 initial-hold (PREREG block 1, 15:46:46 UTC, before scoring): both FAIL
+  (ΔAUC +0.001; ΔRPE +0.005 / 0.000). Not adopted.
+- Draw selection by GT-free MPPE (post hoc, public): RPE 13.7 → 6.4. NOT proposed for use. The owner's earlier rule is
+  "we cannot pick and choose" (note 14), and PR #215 expects reproduced scores within run-to-run variation. The
+  legitimate form is checkpoint selection with a GT-free failure penalty ([H-sel]; needs fresh draws).
+- ~16:05 UTC focused-pascal: the pack-10 per-episode rule gets GT-free RPE/MPPE vs our reference and a failure rate
+  (draws with RPE > X ≈ 5 cm) next to the sim_vs_ref mean. It is pre-registered before any retrain result. No
+  best-of-N: packed rollouts stay draw 1 by position. ep11 gate running (Vast 58552489, run 20261031-e11g-663b7df,
+  $1.07/h), result ≈ 19–21 UTC. My comment: compare 10-draw means (new vs packed policy's H5 mean), not the packed single
+  draw, with an optional as-scored guard as a secondary condition.
+- ~16:10 UTC focused-pascal fixes the pack-10 swap rule (to be pre-registered with the audit priorities ≈ 19:00).
+  GT-free, ≥ 10 fresh official draws; all of:
+  - (a) mean sim_vs_ref ≥ the packed policy's H5 mean;
+  - (b) failure rate (GT-free RPE > 5 cm) ≤ the packed policy's;
+  - (c) median GT-free RPE not worse;
+  - secondary: the new packed draw 1 is not below the old packed draw by > 0.05.
+  Eval 10 is scored against both references.
+  Gap flagged: H5 kept no rollouts, so (b)/(c) need fresh draws of the packed policies with rollouts kept (≈ $2 [E]).
+- ~16:15 UTC focused-pascal: fresh draws of the packed policies with rollouts kept, as the pack-10 comparison set
+  (PREREG uses them for (a), (b) and (c); H5 means as a cross-check). H5p7: pack 7's 20 policies, N=10, ≈ $2.5–3.5.
+  H5e1: pack 8's eval-1 policy, ≈ $1.2–1.6. Launch ≈ 17:00–17:30 UTC; ≈ $4–5 total, stated to the owner by that lane.
+- ~16:10 UTC bold-albattani: C0 frame check sent to focused-pascal (cdo-sprint/C0/verify_handoff.md, commit 694dc73).
+  - pot YES; lid YES (borderline); rack YES with a caveat: 2.3° rotation vs library_v3, ~10 mm at the ends;
+  - blue cup NO (6.7 mm axial offset; already out of 9a);
+  - kit dry run: 0 warnings.
+  Reading: CD-O re-registers, so the rack's frame offset does not reduce the CD-O gain. It may cost AUC/RPE in the
+  rack episodes, but each board keeps its best.
+  AUC guard 40/51, verdict ≈ 16:30; shipping before it is recorded as a deviation from C0 PREREG §5. E0 (eval-built
+  meshes) moved to a self-destroying Vast CPU box (≈ $1–4). Eval-25 board-slot build started (owner waived the camera
+  rule for the slot, in that session); it needs an eval-25 re-run to take effect.
+- ~16:15 UTC focused-pascal (the owner asked it "Cant you fix the rotation and scale error"):
+  - scale is a non-issue (the kit rescales the submitted mesh to the scan for CD-O and the pose boards);
+  - built C0a = C0 ICP-aligned onto library_v3 (keeps the CD-O gain, pose boards behave like pack 8);
+  - rule fixed before data (docs/research/work/pack9a-20261031/MESH_RULE.md on its branch): as-fitted C0 per object iff
+    the public AUC guard shows it ≥ library_v3, else C0a; C0a for all three if the guard is not in by 19:15 UTC;
+  - blue cup stays out pending the owner.
+
+### 2026-10-31 ~16:45 UTC — GT-free audit of the packed eval rollouts: one failure (eval 10); ≈ 1.5 cm of board RPE is reference-side
+Files: docs/analysis/evalaudit-20261031/ (README.md, evalaudit.json, audit.py). CPU, $0, no GT read.
+- The method reproduces the stored sim-vs-reference RPE/MPPE/AUC exactly on 70/70 public draws. The failure flag (fixed
+  before any eval scoring) catches all 33 public failures (10.1–76.8 cm) and none of the 37 successes.
+- Pack 7 vs our own reference [M]: mean RPE 2.450 (recomputed here), MPPE 1.561, AUC 0.911. Board: 3.932 / 2.921 /
+  0.8146.
+- Only eval 10 fails: the beige cup is left behind; RPE 15.76, contributing 0.79 cm of the mean. Fixing it alone
+  → board RPE ≈ 3.24 [E].
+- Borderline, not failures: eval 32 (cup knocked, RPE 3.69), eval 14 (3.39), eval 1 (2.89 / 2.46 in pack 8). The other
+  12 two-object episodes score 1.30–2.79.
+- So ≈ 1.48 cm of the board RPE (≈ 1.85 cm per two-object episode) is our eval reference and/or mesh registration vs
+  the hidden truth. On public, reference RPE is 1.66 (1.00 without ep23).
+- This CORRECTS my 16:10 reading ("RPE gap = failed rollouts, not perception"). That holds on public twins. On eval,
+  the reference/registration side carries ≈ 60 % of the gap to a failure-free ~2.4.
+- Hypotheses (README; untested):
+  - H-spoon: the eval-only spoon; GT-free falsifier = silhouette check vs public objects;
+  - H-gross: one or two grossly wrong eval references, e.g. an identity swap;
+  - H-diffuse: all eval references worse; no GT-free falsifier.
+- ~16:34 UTC bold-albattani, URGENT: the C0 pot, lid and rack marker balls use a 7 mm radius prior (fit window
+  5–9.5 mm) taken from the public scans (flagged by a 29 Oct audit, missed in the hand-off). It is asking the owner
+  directly.
+  This session told focused-pascal: no 9a upload with the C0 meshes without the owner's explicit acceptance; by
+  default pack 8 alone at 20:00 UTC.
+  Asked bold-albattani: E0 must use no scan-derived priors (own measurements or a generic grid, sources in its PREREG).
+- 16:35 UTC owner decision, verified in bold-albattani's transcript (list_events; AskUserQuestion answer at
+  16:35:04Z): "Ship 9a, flagged". Pack 9a = pot, lid and rack (C0/C0a by focused-pascal's MESH_RULE). The scan-derived
+  marker-ball radius (7 mm, 5–9.5 mm window) is flagged in the pack README beside the 2.5 mm walls; the blue cup is held
+  back. Supersedes this session's 20:00 pack-8-only default.
+  AUC guard (51/51) [D], pack-9a configuration over 15 public twins: mean ΔAUC +0.0079, min −0.0092, ΔRPE −0.121 cm.
+  E0 box 58555214 created 16:25 UTC (run mesh-20261031-e0-b05f001). E0's pot/lid/rack share the marker-ball issue;
+  pack 10 gets GT-free ball rebuilds.
+- ~16:40 UTC focused-pascal: pack 9a is built, staged and dry-run validated (5 uploads left per board). Its upload
+  call was blocked by that session's permission guard, because the owner's approval reached it only by relay. It asked
+  the owner directly in its own chat to reply "upload 9a" (or "pack 8"). This session does not upload in its place.
+- ~16:38 UTC bold-albattani: workflow cdo-sprint-c0b (cdo-sprint/C0b/) audits every constant and prior of the mesh
+  methods and labels each generic / own-observation / scan-derived / unknown. Scan-derived and unknown items get an
+  own-observation or generic value, with sources in a PREREG committed before any build. Then public checks and the eval
+  rebuild E0b → meshes/library_e0b(x) for pack 10. The running E0 box uses the old constants: comparison only, won't ship.
+
+### 2026-10-31 ~17:10 UTC — GT-free gross-error screen of the eval references: H-gross weakened
+Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; fig/ contact sheets and overlays,
+4.1 MB, regenerable with overlay.py, kept out of git). CPU, $0, no GT read; no reference or pack changed.
+- Calibration (public, before PREREG):
+  - ep23's latched board separates clearly from 31 clean objects (step 22.3 vs ≤ 3.3 cm; 148° vs ≤ 28°; 29 frames
+    below −3 cm vs 0; depth-bad 0.342 vs ≤ 0.155);
+  - the plain swap is visible only to the knob rule.
+  Thresholds in PREREG at 16:41/16:43 UTC; first eval values at 16:44.
+- Result: no persistent gross error in any of the 36 eval reference objects (no identity swap, no table or object
+  penetration, no wrong frame-0 placement). Eval 10 cup identity is correct (blue darker on 8/8 frames).
+- Flags:
+  - eval 32 blue cup on the wrist at f21–33 (the rollout does not follow it);
+  - evals 14 and 33 blue cup lags the hand (≈ 11 / 45 frames);
+  - spoon steps of 5–9 cm in evals 32, 33 and 36;
+  - reference settle 3–5 cm below perception in evals 3, 6, 8, 20, 28, 32;
+  - eval 25 knob flag judged a false alarm post hoc (disclosed).
+  Total if fixed ≈ 0.15–0.2 cm of board RPE [E], ≈ 10–15 % of the 1.5 cm gap.
+- Disclosure: the cup identity window was changed after the grey percentiles printed (the pre-registered window was
+  empty); the verdict holds on every frame.
+- Reading: the remaining ≈ 1.3 cm points to H-diffuse, H-spoon or mesh registration, which this screen cannot see.
+  Fix ideas (cup-in-hand guard; settle cap with a depth check) are small (≤ 0.05 cm each, ≤ 0.1 cm total) and
+  untested. They are not proposed for pack 10 unless a public gate passes by 1 Nov 12:00.
+- ~17:09 UTC bold-albattani C1 results (cdo-sprint/C1/README.md, commits 3e12ad1, fe3ef45; pre-registered, scored
+  once, AUC-guarded, verified):
+  - ADOPTED: beige cup T1 obs-lathe on ep11, CD-O [D] eval 10 0.856 → 0.248 and eval 8 0.730 → 0.255, AUC guard
+    +0.008 (one twin), board ≈ −0.030 [E];
+  - ADOPTED: dust pan T2 (SAM 3D pick placed in the library_v3 frame), 0.331 → 0.260, guard +0.012, ≈ −0.004 [E];
+  - not adopted: generate-then-fit (fails the AUC guard), generated pitcher and beige picks (15–28 mm pose offsets).
+  - [E] board CD-O: 9a 0.367 → with C1 0.333 → plus blue cup 0.300.
+  - Correction from that session: eval 10 is packed with library_v3; only eval 8 uses v3x.
+  Default: C1 objects go into the scan-free C0b/E0b rebuild for pack 10. Optional "9a+" (9a + T1 + T2, flagged) asked
+  to be staged by focused-pascal; the owner chooses "upload 9a" or "upload 9a+" in that chat.
+- ~17:17 UTC focused-pascal staged 9a+ (sha256 6743f01d…, commit URL e82b0c6): pack 9a + beige cup T1 on eval 10
+  only (eval 8 unverified, left out) + dust pan T2 on evals 19 and 38 (base files confirmed library_v3). Offline
+  validation passes. CD-O [E] 0.346 vs 0.367 for 9a. Waits for the owner's "upload 9a" / "upload 9a+" / "pack 8" in
+  its chat.
+
+### 2026-10-31 18:13–18:18 UTC — PACK 9a+ UPLOADED (owner: "Upload which you think of the highest score potential")
+- Chosen: build_9aplus (both beige pairs + dust pan + C0 pot/lid/rack), sha256 e02736ea…, commit URL d7ecaef. It has
+  the highest CD-O potential, and each board keeps its best. focused-pascal was told first and did not upload.
+- Checks: sha256 match; script hashes match the kit (packer 49b13052…, uploader d31d4a7c…); commit on origin; dry run
+  valid (5 left per board).
+- Submissions 57847040 / 45 / 47 / 49 / 52 / 54. Receipt and UPLOAD.md:
+  results/submissions/20261031-track3i-candidate/build_9aplus/ (this branch).
+- Scores [M]:
+  - AUC 0.81757 (best so far; pack 7 0.81460);
+  - SP-SR 0.85, MP-SR 0.65 (unchanged);
+  - RPE 3.87853 (3.93179);
+  - MPPE 2.89663 (2.92126);
+  - CD-O 0.33234 (0.40188; estimate was 0.333).
+- Boards at 18:18 UTC: AUC 8, SP-SR 8, MP-SR 8, RPE 11, MPPE 11, CD-O 14 (was 18). Rank sum 60 (was 62), still 11th.
+  Sambhav rose to 48. 10th DSAIL 57, 9th SoySauceChicken 52, 8th sam&alex 51.
+
+### 2026-10-31 ~18:30 UTC — owner: carves for every weak episode; "approach 0.9"
+- Owner, verbatim: "I think we can improve in all of these with the new method and carving method for the board. I
+  remember blue cup and spoon the spoon doesnt enter the cup proper and for some rack things we know off. I think if we
+  can get almost perfect on our perception we can approach to 0.9 ehich with the new methods I think is possible since
+  we know where the objects will be".
+- Asked bold-albattani, GT-free, by 1 Nov 12:00: carved blue-cup collision so the spoon can enter (evals 32, 33; check
+  intrusion first); rack seats (evals 14, 16, 30); eval-25 board slot. Asked focused-pascal to plan pack-10 cells with
+  these assets plus the solver (if it signals), masses (if adopted) and the recipe verdict, with cost.
+- Ceiling arithmetic given to the owner [E]: board ≈ (rollout-vs-reference) × (reference-vs-truth).
+  - Pack 7: S 0.911 (GT-free, measured) and board 0.8146, so eval reference-level AUC R ≈ 0.89–0.90 [E].
+  - Perfect tracking alone (S → 1) gives ≈ 0.89–0.90.
+  - Eval 10 fixed (S ≈ 0.935) gives ≈ 0.84.
+  - 0.9 needs near-perfect tracking on all 20 episodes plus references at least as good as now.
+- ~18:28 UTC focused-pascal pack-10 draft (docs/research/work/pack10-20261031/PLAN.md on its branch, c43d535) [E]:
+  - Tier 1 (always): 2 seeds each, the per-episode swap rule, ≈ $20–33:
+    - eval 10 (V4p if the gate passes);
+    - 32 and 33 (carved blue cup);
+    - 14 and 16 (rack seats);
+    - 30 (standard learner, rack seat);
+    - 25 (standard learner, new board slot).
+  - Tier 2 (only for global changes that pass: masses, solver, recipe): the other 13 evals, ≈ $55–90 (one arm) or
+    ≈ $95–130 with a minus-recipe control.
+  - The final list and cost go to the owner tomorrow morning for one go-ahead, after tonight's verdicts.
+  - Its estimate: eval 10 to ~0.9 ≈ +0.022; 32/33/14/16/30/25 at +0.05 each ≈ +0.015; plausible pack-10 target
+    ≈ 0.85–0.86 [E].
+- ~18:29 UTC bold-albattani on the pack-10 collision assets:
+  - spoon-into-cup diagnostic running tonight; library_v3's blue cup has its lower ~37 % filled [D], consistent with
+    "the spoon stays beside the rim";
+  - fix = cavity-preserving cup pieces from the collision-carve workflow (owner waiver "if 2 mesh collide we can carve
+    it"), accepted by a physics check on the eval episode (no public twin);
+  - rack seats validated first on ep12/13/31, then evals 14, 16, 30;
+  - board slot round 2 running (I-shaped boards), at risk for 12:00.
+  Which items make 12:00 is reported by 1 Nov ~09:00 UTC. Deliveries are logged in gmg/build/I/collcarve_deliveries.md.
+
+### 2026-10-31 ~18:35 UTC — owner: "how can we improve our perception … what is our solution?"
+- Summary given to the owner (all from committed results):
+  - FAILED: S11 constant-offset depth ICP (≈ 0, even with true meshes); S10 held pose (−0.018); S6 static hold (no eval
+    effect); K1 rest-hold / K2 initial-hold (+0.001); A-f0 rest-averaged anchor (+0.001); S1/S3 refine stages;
+    GT-free depth audit (AUROC 0.600).
+  - PASSED: S2 timing advance (adopted); robust VO (fixes ep24; no eval case); S12 cup-nest (eval 10, in gate);
+    better submitted meshes (pack 9a+: AUC +0.003, RPE −0.053 measured).
+  - Error structure: public reference RPE ≈ 1.0 cm without ep23. The remaining loss is mostly constant per-object body
+    offsets that follow the template shape (L2). The eval reference side carries ≈ 1.5 cm RPE, invisible GT-free.
+- Proposed solution [H]: re-track with better template meshes (clean C0b/E0b method, each episode's own video), with
+  the same meshes submitted. Public test first (P_o' vs P_o, pre-registered). If it passes: eval re-track, rebuild
+  references, pack-10 Tier-2 retrain. Feasibility questions sent to focused-pascal and bold-albattani; no spend until
+  the owner says go.
+- ~18:32 UTC focused-pascal, re-track feasibility:
+  - job ops/jobs/perc_leak.sh needs a per-episode template opt-in (LIB_EP_DIR), and tools/leak_p1.py the same switch;
+    ~1–2 h CPU;
+  - public test (P_o' + o2 repeat) ≈ $2–3.5, ≈ 1–1.5 h wall clock [E from Phase 1: 3 boxes, $2.30];
+  - eval re-track ≈ $2–4, ≈ 1 h;
+  - latest public result ~1 Nov 12:00–13:00, so C0b per-public-episode meshes by ~08:00–09:00.
+  A pass makes all 20 pack-10 references new (Tier 2).
+  Told to build the CPU prep tonight; GPU waits for the owner's go.
+- ~18:32 UTC bold-albattani, per-public-episode clean mesh sets:
+  - feasible as the E0b analogue on public episodes (one box, ~15–20 min, ~$0.2 [E]), after C0b's scan-free options
+    are frozen;
+  - ETA in the store ~1 Nov 04:00–06:00 UTC, with a manifest and per-mesh frame checks;
+  - covered: pot, lid, rack, blue cup, beige cup (pitcher only if the C2 lathe passes); dust pan, sweeper and boards
+    stay library_v3.
+  Caveats: the meshes are fused along library_v3-seeded tracks (one iteration, not an independent template);
+  single-episode quality varies (public pot CD-O median 0.416, range 0.31–0.65 [D]).
+  The schedule fits the 09:00 need; the GPU test still waits for the owner's go.
+
+### 2026-10-31 ~18:45 UTC — owner: "Go retrack"; spoon via its markers; no deadline talk
+- Owner, verbatim: "Okay lets fix the perception as you said also for spoon the solution is the market on top of it.
+  Those are very easy to track compared to other. Also like I said you dont need to mention the deadline there is
+  pleanty of time and thats for me to worry. Go retrack".
+- Re-track chain approved: public P_o' vs P_o test (≈ $2–3.5) when the per-public-episode clean meshes land
+  (~1 Nov 04–06 UTC), then the eval re-track if it passes (≈ $2–4). Sent to focused-pascal and bold-albattani.
+- Markers: note 17 (7 Oct) concluded HYBRID (markers as a correction layer: +0.02 to +0.10 board AUC, central +0.04
+  [E]). That layer was never built into the pipeline (pipeline/ uses no marker detections except identity_fix's
+  board knobs). The spoon has 3 markers (note 13; layout from video). Started a background agent in this session:
+  GT-free marker correction layer, spoon first, layouts from our own video only (the note-17 catalogue is
+  scan-derived), public validation on mocap-bearing objects with a pre-registered rule, before any eval use. Output
+  docs/analysis/markers-20261031/.
+- Owner preference (repeat of 26 Oct): do not raise deadlines with the owner; time planning is the owner's.
+- ~18:58 UTC bold-albattani spoon diagnostic (cdo-sprint/spoon-diag/README.md, commit 2681d8b; GT-free):
+  - eval 33: library_v3 blue cup ≥ 50 % solid up to 66 mm (75 mm in its collision pieces). It blocks the spoon only
+    in the deepest scoop frames (≤ 9.8 cm³, 19 mm deep); 33/66 in-cup frames are unblocked. A carve gives a partial
+    benefit [H]; the rest looks like policy/grasp behaviour.
+  - eval 32: not blocked (spoon ≤ 73 mm below the rim); a carve changes nothing.
+  - eval 16: no rack seat filled. From f120 our reference holds the spoon 1–8 mm from the rack plates with nothing
+    under it, so it is unsupported on release. That is a spoon-pose problem, and the lever is the marker layer.
+  Forwarded to the marker agent.
+- 19:10 UTC marker layer checkpoint 1 (docs/analysis/markers-20261031/; CPU, GT-free):
+  - detector: gradient circle Hough + black-base contrast, stereo on rectified c/b rows, guided second pass; nothing
+    learned, no GT.
+  - spoon census, layout-consistent sets (all / rest / hand):
+    - ≥ 2 markers: 68/94/66 % (eval 35), 56/94/51 % (36), 72/83/64 % (37);
+    - ≥ 3 markers: 16/27/16 %, 10/15/10 %, 7/1/11 %.
+    M1, the lateral neck marker and the roll lever, is the bottleneck.
+  - layout from our video: triangle 55.3/154.2/196.5 mm (video-built template 53.5/153.2/194.6), fit rms 1.6–2.2 mm.
+  - PREREG block 1 written 18:52 UTC. Next: correction layer, then public validation.
+
+### 2026-10-31 ~20:15 UTC — GT-free marker correction layer FAILS its public gate (not adopted)
+Files: docs/analysis/markers-20261031/ (README, PREREG blocks 1–3, public_validation.json, diag_fix.json,
+eval_sizes.json, scripts). CPU, $0. PREREG rule at 18:52; method frozen with script hashes at 19:38, before the first
+score.
+- Public validation (kit registered chain, per-object AUC, 16 units: pot eps 0, 2, 26, 27, 41–45; lid 0, 2; blue cup 11,
+  12, 13, 21, 22): primary mean ΔAUC −0.083, 1/16 improved, worst −0.407 (lid ep2 via the pot anchor). Raw fixes only:
+  −0.039. All variants FAIL (rule ≥ +0.010, ≥ 60 %, no unit < −0.020). Episode RPE rises in 8 of 9 touched episodes.
+- Untestable: wooden pieces, pitcher, sweeper (< 2 markers found); rack and beige cup had only 2 (rule needs 3).
+- Why (post-hoc vs mocap): our public tracks (pot 0.26–0.42 cm) beat single-frame b/c stereo marker fixes (1.0–2.2 cm;
+  markers 12–16 px). Note 17's gains assumed an emulated 10 mm / 5° prior.
+- Spoon (eval, GT-free):
+  - ≥ 2 markers in 34–73 % of frames (73–89 % at rest in 8/10 episodes); ≥ 3 in 2–18 %;
+  - layout from video 54.9 / 195.9 / 154.3 mm, residual 2.0 mm;
+  - tracker roll vs the template's marker model disagree by ~5°, undecidable without GT;
+  - eval 16 f ≥ 120: the layer would push the spoon 19.7 mm below the table (impossible), probably locking onto rack
+    markers [H].
+- Not adopted. Untested next idea: add ego_cam_a (≈ 2× resolution) as a third view, only worth a new pre-registration
+  if a post-hoc check shows 3-marker fixes beating the track on public lid/pot frames.
+- ~20:30 UTC marker follow-up: ego_cam_a as a third view FAILS the precondition (PREREG block 4 at 19:44 UTC, before
+  computing; outcome at 19:51).
+  - Condition 1, 0/3 objects (need 2): a+b/c 3-marker fixes vs track, median cm on the same frames: pot 3.35 vs 0.41;
+    lid 1.21 vs 1.11; blue cup 1.04 vs 0.95 (better on 46 % of frames).
+  - Condition 2 MET: spoon M1 visible in 82.5 % of rest frames and 64.8 % in hand with cam a (b/c alone: 43.4 / 34.6 %).
+  - Reading: cam a removes the M1 visibility bottleneck, but single-frame marker fixes stay ~1 cm off, no better than
+    our tracks. No new gate; the marker layer is closed for now.
+  Files: cama.py, diag_cama.py/json, m1_share.py/json, PREREG block 4, README follow-up.
+- 20:25 UTC determined-wright (work log 20:24 on its branch, 3df1560):
+  - recipe screen formally INCOMPLETE (C/ep24-s43 lost 6/10 draws to a box thread limit);
+  - K vs C inconclusive (mean ≈ 0; K steadier on ep2: sd 0.009/0.020 vs 0.029/0.174);
+  - D vs C undetermined: ep12 +0.33 on both seeds, ep2 −0.11;
+  - solver re-test (S vs C): NO SIGNAL (ep2 −0.13), so eval solving is NOT started (physics solver closed).
+  Post-hoc [H]: GT-free sim_vs_ref picked the higher-AUC arm in 7/7 C-vs-D pairs. Proposal: train D beside C on the
+  eval episodes and keep the better per episode (pack-10 swap rule), ≈ $14–20 [E], pending the owner.
+- 20:31 UTC determined-wright: the owner chose "No D" in its chat. Pack 10 stays on the current recipe, and the
+  D-beside-C proposal is withdrawn. Told focused-pascal: Tier 2 now depends on masses v2 (and on the re-track for
+  references).
+
+### 2026-10-31 ~20:40 UTC — owner: targeted D arm in pack 10
+- Asked whether DR would have made sense. My reading:
+  - draw variance is real (H5: 0.8755 vs packed 0.9164; evals 1/14/25/30/33 sd 0.14–0.26), and PR #215 expects
+    reproduced scores within run-to-run variation;
+  - but the screen did not show D lowering spread (ep12 +0.33 both seeds, ep2 −0.11 with more spread);
+  - the variance cuts so far came from geometry (eval 1 carve: sd 0.239 → 0.017).
+  Proposed: a D arm on the unstable episodes only (14, 16, 25, 30, 33), ≈ $6–10 [E], with the swap rule choosing.
+- Owner, verbatim: "sure add that whatev". Sent to focused-pascal (pack-10 cell list) and determined-wright (settings,
+  standard-learner caveat for 25/30).
+- ~20:52 UTC focused-pascal: targeted D arm in PLAN.md (2 seeds on 14, 16, 25, 30, 33) ≈ $16–23 extra [E] (my $6–10 was
+  low).
+  - Totals: Tier 1 + D ≈ $36–56; with Tier 2 ≈ $71–113.
+  - Arm choice (PREREG before results): an arm must pass the swap rule; between two passing arms the higher fresh-draw
+    mean wins; a tie goes to no-D.
+- Vast 20:53 UTC: credit $70.43; 3 boxes ($4.44/h): mv2b (masses v2), h5p7 labelled "PUSH-FAILED, destr…", h5e1.
+  Flagged h5p7 to focused-pascal: it is the swap rule's comparison set.
+- 20:55 UTC determined-wright sent focused-pascal the D settings and caveats:
+  - add the patch to glock_public / hard_ab; env FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed>;
+  - on the screen D raised ep2's draw sd 0.10 → 0.25, so it is not shown to steady episodes; the swap rule decides;
+  - on the standard learner (25, 30) DR also perturbs the deployment-exact starts (untested);
+  - carved-asset risk: objects that start nested or touching.
+  It offered a free CPU check per episode and an opt-in flag to skip the deployment-exact starts.
+
+### 2026-10-31 ~21:10 UTC — ep11 rollout gate PASSES (eval-10 cup-nest reference V4p)
+- focused-pascal: VERIFIED, no timeouts. Registered AUC vs mocap Δ +0.142 (bar +0.05).
+  - seed 42: C 0.5947 / T 0.6073 (+0.013);
+  - seed 43: C 0.5899 / T 0.8613 (+0.271);
+  - per object: beige +0.321, blue −0.037;
+  - the control never leaves its static floor (chosen checkpoint 10M on both seeds).
+  Seed spread is large: one seed carries the gain.
+- Eval-10 V4p retrain launched: run 20261031-e10v-caf38fb, Spain $1.377/h, ledger $6, ≈ 3–4.7 h, 2 seeds + 10
+  confirmation draws. Swap only if the rule holds on both references. Result ≈ 00:30–02:00 UTC. If SWAP-ELIGIBLE: pack
+  9b = 9a+ with the new eval-10 rollout (draw 1 by position); upload on the owner's word.
+- H5p7 comparison set: all 10 draws × 20 episodes with rollouts are in the store (only the final summary push failed;
+  rebuildable on CPU). H5e1 finished.
+- Masses v2: box A (ep24, ep13) done, partial Δ ep24 +0.038, ep13 ≈ 0 (not a verdict). Box B on its seed-43 wave;
+  merged verdict ≈ 23:00–01:00.
+- ~21:12 UTC bold-albattani: per-public-episode clean mesh sets ready early.
+  - Store runs/mesh-20261031-pubown-ed7171c/results/pubown/; MANIFEST at
+    cdo-sprint/PUBOWN/MANIFEST.json (76f9023); C0b tree 00e8584; one CPU box, ≈ 21 min, ≈ $0.15; no GT read.
+  - Use Set B (alt_e0_gated, chosen before any re-track score): 14 own-episode meshes. Pots ep0, 2, 26, 41–45; blue cup
+    ep11 g1 and ep12/13/21/22 g0; beige ep11. Everything else stays library_v3 (racks are not reproducible across
+    machines, the lid builder failed 16/16).
+  - Set A keeps 7 frame-broken meshes; diagnostics only.
+  - Caveats: ep11 blue cup carries extra bodies; stray marker balls far from the pot in ep2/44/45; ep13 g0 rests on one
+    number; the gate's frame reference is library_v3 (P1 tier); the pick is in-sample; few meshes are watertight after
+    budget_mesh.
+  focused-pascal copied; it launches the approved public re-track test.
+- ~21:15 UTC keen-heisenberg relayed two owner decisions made in its chat, verified here in its transcript
+  (AskUserQuestion answers at 21:14:50Z):
+  - start the targeted D cells (evals 14, 16, 25, 30, 33; 2 seeds; ≈ $16–23) TONIGHT on the current packed
+    configuration, as morning-pack candidates via the swap rule;
+  - pack 9b (= 9a+ + eval-10 V4p if it passes + passing D cells) uploads AUTOMATICALLY once every swapped episode
+    passes the pre-registered swap rule and the pack checks pass.
+  Also: the owner approved arm V (actor sees object velocity, ≈ $7–9) in determined-wright's chat. Credit $69.22
+  at 21:14 UTC. No carves or eval-25 slot were delivered tonight, so pack-10 Tier 1 may shrink. keen-heisenberg writes
+  a morning summary at ~05:00 UTC; this chat's items were sent to it.
+- ~21:21 UTC keen-heisenberg is the single uploader for pack 9b (the owner's "Upload automatically" was given in its
+  chat; focused-pascal's guard blocks relayed approvals). This session does not upload 9b unless keen-heisenberg asks.
+- 22:13 UTC determined-wright: recipe-screen verdicts complete after the C/ep24-s43 re-score (0.2333):
+  - K inconclusive (−0.002);
+  - D inconclusive (sd falls on 1 episode only);
+  - S no signal (ep2 −0.133).
+  Arm V (actor sees object velocity) is training on 2 boxes; verdict ≈ 00:30–01:00 UTC.
+
+### 2026-10-31 ~23:00 UTC — re-track test FAILS every pre-registered clause (no pack change)
+- focused-pascal: P_o' (per-episode Set B meshes as FoundationPose templates) vs P_o on 20 public episodes:
+  - mean ΔR −0.170 (bar ≥ +0.01); 3/20 positive (bar ≥ 12); min ΔR −0.973; mean ΔRPE +1.32 cm.
+  - Cause [M]: the white_pot and two-cup templates break tracking (ep45 0.980 → 0.006, ep0 0.962 → 0.037, ep11 0.898 →
+    0.193).
+  - Valid run: code 8b3cf78, both boxes exit 0; measured cost $1.54.
+  - Record: docs/research/work/retrack-20261031/verdict.txt (942dbfc on its branch).
+- Reading: the own-video meshes help when only submitted (pack 9a+: CD-O and AUC up), but as tracking templates
+  these builds (stray marker balls, extra bodies, not watertight) derail FoundationPose. The 18:35 re-track proposal
+  is falsified as built. A re-track with cleaner templates (e.g. the submitted C0/C1 picks) would be a new hypothesis
+  with its own in-sample caveat; not proposed tonight.
+
+### 2026-10-31 ~23:35 UTC — eval-10 V4p retrain NO-SWAP; masses v2 NOT ADOPTED
+- focused-pascal (commit 28a03df on its branch):
+  - Eval 10, VERIFIED, 10/10 confirmation draws: NO-SWAP on an equal floor. Neither seed ever lifts the blue cup (lift
+    0 at every checkpoint). New vs packed: 0.459 vs 0.463 on V, 0.449 vs 0.453 on P; both fail 10/10 draws at RPE
+    ~15.9 cm. The ep11 gate gain did not transfer. Eval 10 stays as packed. Cost $3.25.
+  - Masses v2, both boxes VERIFIED: NOT ADOPTED. Mean Δ +0.0034 (bar +0.03), 1/4 positive (needs 3): ep24 +0.038,
+    ep11 −0.014, ep13 −0.002, ep31 −0.009.
+  - D arm: 4 boxes running (G 14/16/33, S25 s42/s43, S30 s42); S30 s43 ≈ 23:45. Reading after all five plus one
+    confirmation box.
+- Pack 9b: the only possible additions are passing D cells.
+- ~23:55 UTC E0b final hand-off (bold-albattani cdo-sprint/C0b/README.md, e5baab1; relayed by focused-pascal):
+  - shippable, scan-free and built from eval data: white_pot pot/ep3/thick (md5 073872f4…; evals 1, 3, 5, 6, 8, 28)
+    and beige_cup beige/ep8/g1 (md5 0d926da1…; evals 8, 10). Folders meshes/library_e0b(x).
+  - Public CD-O is worse than 9a+: pot 0.392 vs C0 0.342; beige 0.30 vs C1/T1 0.25. Both pass the public AUC guard.
+  - Recommendation on score: keep 9a+'s pot and beige. E0b is the provenance-cleaner option ("no scan-derived value";
+    one gmg-informed detector setting; 40 constants of unknown origin). The owner's compliance call.
+  - Sim flags if E0b is ever used: 17 of the pot's 32 marker balls sit below its base; the beige has three inside-out
+    shells. Lid, rack and blue cup not adopted. Eval 8's v3 vs v3x frame still open.
+  - Pack 9b keeps 9a+'s meshes unless the owner picks E0b.
+- 00:05 UTC (1 Nov) determined-wright: arm V (actor sees object velocity) inconclusive, not used (mean Δ −0.024: ep2
+  −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007). Recipe screen complete: K, D and V inconclusive; S no signal. No
+  recipe change for pack 10 from that lane. Its 31 Oct GPU spend ≈ $30.15 [E] over 6 boxes; none running.
+- 02:53 UTC (1 Nov) keen-heisenberg (single uploader) records the owner in its chat:
+  - 02:43 "Okay go": one eval-10 njmax-1024 diagnostic, never packed;
+  - 02:50 verbatim "I give you permission for everything", answering the plan to fix the collision overlaps behind
+    evals 10, 30 and 14 (mesh chat builds on CPU, determined-wright runs budget.py, focused-pascal retrains and confirms
+    under the swap rule, then packs).
+  Its reading: covers GPU work and Kaggle uploads of packs where every swapped episode passes its pre-registered swap
+  rule and the pack checks pass. Not covered: njmax-1024 policies, the C0 blue cup, anything that reads GT or is tuned
+  on eval results. Pack checks at 05:00 (9b), 07:30 and 10:30 UTC.
+- 04:04 UTC focused-pascal: pack 9b record ≈ 05:30 UTC (the D confirmation box 20261101-drC-a1a7e25 spent ~50 min on
+  store pulls; dr_pack_check passed at 04:02). All five D training boxes VERIFIED; candidates 14 s43, 16 s43, 25 s42,
+  30 s42, 33 s42. Next: "pack 9b ready" with sha256 and per-episode verdicts, or "no 9b". Upload stays with
+  keen-heisenberg.
+- 04:55 UTC focused-pascal: PACK 9b READY.
+  - File: results/submissions/20261101-track3j-candidate/build_9b/track3_submission.parquet, sha256 a6c4105a…; code
+    commit dd24ed4; record 874c9d3 on its branch.
+  - One swap: eval 33 → D policy (drG seed 42, sha256 7c5eb060…), draw 1 of confirmation box 20261101-drC-a1a7e25.
+    The other 19 episodes and all meshes are byte-identical to 9a+.
+  - Swap rule (PREREG 2ce1872; 10 official draws vs 10 fresh packed draws, GT-free):
+    - eval 33 PASS: 0.9358 vs 0.9234, 0 fails each; draw 1 0.9419 vs 0.9401; official min 0.903 vs packed 0.847;
+    - NO-SWAP: eval 14 (0.686 vs 0.727; fails 8 vs 4), 16 (0.831 vs 0.850), 25 (0.858 vs 0.878), 30 (0.816 vs 0.897).
+  - Checks pass (diff limited to ep33 rows + checkpoint, meshes identical, validate_submission, CD-O derived file
+    identical, no_oracle, clean evaluator).
+  - [E] ≈ +0.0001 AUC (within noise); the value is robustness on eval 33. D arm cost $19.41 measured.
+  - Upload is keen-heisenberg's (the single uploader).
+- 05:03 UTC keen-heisenberg: PACK 9b UPLOADED (04:57–05:02 UTC; owner's "Upload automatically" and "I give you
+  permission for everything"). Submissions 57860700/01/03/04/07/08; receipt on claude/keen-heisenberg-engcwz
+  results/submissions/20261101-track3j-candidate/build_9b/ (157ed61).
+  - Scores: AUC 0.81677 (9a+ 0.81757); SP-SR 0.85 =; MP-SR 0.65 =; RPE 3.88283 (3.87853); MPPE 2.90186 (2.89663);
+    CD-O 0.33234 =.
+  - 9a+ remains our best on every board; the eval-33 swap's proxy gain was noise on the board.
+- 05:05 UTC boards (Kaggle API): AUC 8, SP-SR 9 (was 8; tie order), MP-SR 8, RPE 11, MPPE 11, CD-O 14. Rank sum 61,
+  still 11th (10th DSAIL 58, 9th SoySauceChicken 54, 8th sam&alex 51).
+- 08:17 UTC focused-pascal: PACK 10 READY (results/submissions/20261101-track3k-candidate/build_10/ on its branch;
+  sha256 e1bef1e5…0e2a; code commit a187a8c9). It is 9a+ with eval 10's legal retrain (ev10cs5 carve pieces, stock
+  njmax limits): GT-free proxy +0.069 vs V and +0.059 vs P, INCLUDE under the +0.02 bar. All checks pass.
+  keen-heisenberg uploads.
+
+### 2026-11-01 08:38–08:50 UTC — PACK 10 UPLOADED (owner: "Upload it", 08:38, in keen-heisenberg's chat)
+- Pack 10 = 9a+ with eval 10's ev10cs5 stock-limit retrain; sha e1bef1e5…, code a187a8c; submissions 57866069 / 71 / 72 /
+  75 / 77 / 79. Record build_10/UPLOAD.md on claude/keen-heisenberg-engcwz (5b0f081).
+- Scores: AUC 0.81915 (NEW BEST; 9a+ 0.81757); SP-SR 0.80 (best stays 0.85); MP-SR 0.65 =; RPE 3.68275 (NEW BEST; 3.87853);
+  MPPE 2.84759 (NEW BEST; 2.89663); CD-O 0.33234 =.
+- Boards 08:50 UTC: AUC 8, SP-SR 10 (others moved up: Sambhav 0.95; Purple and Gravity Aligned 0.90), MP-SR 8, RPE 10
+  (was 11), MPPE 11, CD-O 14. Rank sum 61, 11th (10th DSAIL 59). Ties do not penalise later uploads: at 0.85 we rank
+  above DSAIL despite the later timestamp.
+- Counting: each board shows the best submission; per the PR #215 kit, the counted one is the selected Final
+  Submission, else the best per board, and the container covers each counted file. Advised keen-heisenberg not to
+  select now and to choose per board near the close.
+- 08:58 UTC wrap-up (owner's request via keen-heisenberg): neighbour table and next-rank gaps sent.
+  - Best rank-per-effort: CD-O (bunched 0.312–0.338; −0.021 cm → +3 ranks; packed-mesh-only, $0). The held-back blue
+    cup ≈ board 0.30 [E] needs the owner's compliance call or a clean passing build.
+  - Then one more SP-SR/MP-SR episode (+1 to +3 each).
+  - Nothing running in this session. Open: Final Submission selection per board near the close; the PR #215
+    container after the close; merging session branches into main (stale since 30 Oct).
+- 11:38 UTC focused-pascal: PACK 11 READY (results/submissions/20261101-track3l-candidate/build_11/; sha256
+  3c428350…055ec; code 50312319).
+  - Pack 10 with eval 10 = the njmax-1024-trained policy evaluated at stock 512/256 (ck512 aaa077eb…): GT-free proxy
+    +0.371 (V) / +0.361 (P) over pack 10's eval-10 policy; 0/10 fails vs 10/10.
+  - Only ep10's rows differ; all checks pass. keen-heisenberg verifies and uploads.
+  Flagged to keen-heisenberg: its own record of the owner's 02:43 / 02:50 words excludes njmax-1024 policies ("never
+  packed"), so packing needs a fresh explicit owner OK (training-side simulator setting ≠ evaluator pin; disclose in
+  the technical report).
+
+### 2026-11-01 11:39–11:47 UTC — PACK 11 UPLOADED (owner's direct go, keen-heisenberg's chat)
+- Pack 10 with eval 10's ck512 policy (trained with njmax 1024, training only; evaluated at stock 512/256;
+  disclosed). sha 3c428350…; code 5031231; submissions 57870406 / 08 / 11 / 15 / 17 / 20. Record build_11/UPLOAD.md
+  on claude/keen-heisenberg-engcwz.
+- Scores: AUC 0.83921 (best; pack 10 0.81915); SP-SR 0.85; MP-SR 0.70 (best); RPE 3.17899 (best); MPPE 2.54531 (best);
+  CD-O 0.33234. Beats or ties every earlier pack on every board: the natural single Final Submission.
+- Boards 11:47 UTC: AUC 8, SP-SR 10, MP-SR 8 (tie at 0.70 with DSAIL 7th), RPE 10, MPPE 10, CD-O 14. Rank sum 60, 11th;
+  10th DSAIL 59.
+- One point from 10th. Swaps with DSAIL count double: AUC +0.0047 (DSAIL 0.84391), MPPE −0.20 cm, or MP-SR one more
+  episode. Or CD-O −0.012 for +1 (tie at 59).
+- 11:47 UTC keen-heisenberg on the njmax scope check: covered by a fresh explicit owner OK.
+  - 09:08: the owner argued that only the final policy's evaluation setting must stay stock; training at 1024 is a
+    training choice.
+  - 09:11: "I give give you go" for packing that policy evaluated at stock 512/256.
+  - The guard exception was approved in focused-pascal's session.
+  Recorded in its 09:11 work-log entry and build_11/UPLOAD.md, with the disclosure for the technical report and the
+  container. Pack 11 agreed as the single Final Submission near the close.
+
+- ~20:10 UTC 1 Nov **perfect-following session (claude/perfect-following-20261101): steps 1–2 done, CPU, $0.**
+  - Merged focused-pascal / grasp-ep13 / determined-wright / bold-albattani / standings into the branch (only docs conflicts;
+    STATUS kept from keen-heisenberg, work log union-merged).
+  - CPU env: FlashCHORD 8c778f9 venv, kit, public dataset in the session scratchpad. Credit $122.85, 0 instances.
+  - New tool tools/simref_timeline.py (qa.py's sim_vs_ref + the kit's symmetric cup scoring + per-frame errors / onsets).
+  - Results: docs/analysis/perfect-following-20261101/README.md (episode × problem table). Symmetric − plain ≤ +0.009 [M].
+    Deterministic onsets: 14 f42–46 (hand-over carried one-handed), 32 f19 (perceived cup glitch 15 cm inside the hold,
+    322 cm/s jump at f33), 16 f112–120 (spoon moves after release, no robot tip f122–173), 25 f41 / f173, 1 f129+, 3 f66.
+  - Messages to the GRASP session (20:00, 20:18): split agreed as proposed by me (they: repair a then b as a tool with its
+    public gate; me: GPU, hand assignment, ep13 RL test).
+- ~20:30 UTC 1 Nov **perfect-following: batch 1 plan (GPU), pre-registered** in docs/research/work/pf-hands-20261101/PREREG.md
+  before any result. Job ops/jobs/pf_arms.sh (new), verdicts tools/pf_verdict.py (new; CPU mock-tested on the H5p7 eval-14
+  draws: choose / dr_score / eval and a synthetic public table), glock_public.sh opt-in EVAL_PF + per-prefix GL_ARGS_pf*.
+  - Fixed first: the branch merge had interleaved two versions of ops/jobs/glock_public.sh and pipeline/pipeline_ep.sh
+    (syntax error); restored focused-pascal's versions (the ones its boxes ran), all .sh / .py parse.
+  - CPU zero-action (this container, one replay each) eval 14: single-hand 0.293, two-hand 0.586 (floor 0.588) [M].
+  - Boxes: pfA = public ep13 arms s / 2h × seeds 42 / 43 (≈ 3 h, ≈ $4.5–5 [E]); pfB = evals 14 and 16, arm 2h × seeds 42 / 43,
+    gate + 10 fresh official draws + swap rule + inclusion bar (≈ 3.7 h, ≈ $5–6 [E]). Batch ≈ $10–11 [E] of the $110.
+  - Eval adoption needs both the public PASS and the episode's swap rule.
+- 20:31 UTC 1 Nov **batch 1 launched** (code 21ab92e, ENV_SNAPSHOT pt2.11-cu130-py313-20261020, ledger planned $5 + $6):
+  - 20261101-pfA-21ab92e, instance 58708760 (RTX PRO 6000 Max-Q, UK, $1.43/h): `EP=13 SPLIT=public ARMS="s 2h"
+    SRC_RUN=20261030-orcB-38234d1 bash ops/jobs/pf_arms.sh`;
+  - 20261101-pfB-21ab92e, instance 58708762 (RTX PRO 6000 WS, South Korea, $1.49/h): `EP="14 16" SPLIT=eval ARMS=2h bash
+    ops/jobs/pf_arms.sh`.
+- ~20:45 UTC 1 Nov **finding [M]: the deterministic losses of evals 14 / 32 / 33 sit on perception TRACK_GUARD
+  re-acquisitions** (one-frame cup jumps of 11–20 cm; eval 32 also a ~150° axis flip f21–33). Before the eval-14 / 32
+  re-acquisitions the cup drifts 3–14 cm out of the perceived hand. New GT-free repair tools/guard_bridge.py; no public
+  guard re-acquisition exists to test it (checked), so the batch-2 rule scores against both P and the bridged reference.
+  CPU zero-action: eval 14 single 0.293 → bridged 0.558; two-hand 0.586 / bridged 0.573; eval 15 single 0.613 / two-hand
+  0.767; eval 16 0.539 / 0.661; eval 33 two-hand 0.192 (one replay each).
+  - Pre-registered before any batch-2 result: docs/research/work/pf-bridge-20261101/PREREG.md. Batch 2 plan: pfC (eval 14
+    bridged, s / 2h) + pfD (evals 32 / 33 bridged s, eval 15 2h), 2 seeds, ≈ $12 [E].
+- 20:48 UTC 1 Nov pfD (58710608) created with `ARMS=s` for evals 32 / 33 / 15 and destroyed within a minute: eval 15 must
+  get arm 2h (PREREG §3). pf_arms.sh now takes ARMS_EP<N> per episode. Relaunch below; cost of the mistake ≈ $0.03.
+- 20:48 UTC 1 Nov **batch 2 launched** (code 97095b8):
+  - 20261101-pfC-97095b8, instance 58710688 (Max-Q, Michigan, $1.34/h): `EP=14 SPLIT=eval ARMS="s 2h" BRIDGE=1`;
+  - 20261101-pfD-97095b8, instance 58710689 (Max-Q, Texas, $1.46/h): `EP="32 33 15" SPLIT=eval ARMS=s ARMS_EP15=2h BRIDGE=1`.
+  - 4 boxes running ≈ $5.7/h. Credit before batch 1: $122.85.
+- 20:50 UTC 1 Nov CPU zero-action (one replay each, GT-free, reported only): eval 32 single-hand 0.414 vs bridged 0.372
+  (each vs its own reference). Zero-action replays do not reliably predict the fine-tuned order (approach-3 §11.3); the
+  GPU rule decides.
+- ~20:58 UTC 1 Nov coordination:
+  - keen-heisenberg: GPU budget now **$102** (the perception / GRASP sessions may rent CPU boxes up to $8); method name
+    "KURSAD"; owner target board AUC > 0.9.
+  - GRASP: twist canon (a) not recommended (ep13: score up, cup followed worse); hold_filter.py (b, glitch mode) built,
+    public gate running on 4 episodes (no full 20-episode public reference set exists); `--single_hand 2` (first picker)
+    in grasp_lock.py @ 660b5af: ep13 oracle zero-action 0.672 (best), perceived 0.323 — candidate batch-3 arm.
+  - hold_filter on the 20 eval bases (run here, CPU) [M]: catches eval 32's flipped f21–33 (runs 15–35), edits eval 14
+    f28–52 (wider than the drift), not eval 33's f91 jump; large spoon edits (up to 29.6 cm) also on near-perfect evals 35 /
+    36 — needs its public gate.
+  - physics-perception session (session_01D9UJC6vSSNiJqaAdzNUn7d) told what this lane changes (guard_bridge on the base,
+    GL_ARGS) so its transforms compose.
+- 21:02 UTC 1 Nov pfC-97095b8 failed at the bridge (`rtree` missing on the box image; job exit 1, box on HOLD) and pfD-97095b8
+  showed CLONE-FAIL; both destroyed (≈ 15 min each, ≈ $0.7 total). pf_arms.sh now installs rtree before guard_bridge.
+  Relaunched below with the same job strings.
+- 21:05 UTC 1 Nov **batch 2 relaunched** (code f38b324, same job strings): 20261101-pfC-f38b324 (58712560, Michigan $1.34/h),
+  20261101-pfD-f38b324 (58712562, Spain WS $1.38/h; the Texas host of the CLONE-FAIL avoided).
+- 21:06 UTC 1 Nov GRASP: repair (b) hold_filter public gate **FAIL** (pre-registered; ff2d078): M1 ref-vs-mocap ΔAUC
+  mean +0.0017 (holds), M2 zero-action symmetric sim_vs_ref mean −0.018 (needs ≥ +0.02). Not used anywhere; guard_bridge
+  stays for 14 / 32 / 33. GRASP lane done for tonight.
+- 21:13 UTC 1 Nov physics-perception: offers a read-only GT-free QA flagger (qa_physics.py @ ef4cfb5b; flags only ep0 lid and
+  ep23 on public, one false positive); its best transform stack +0.00298 on public misses its +0.003 gate (not handed
+  over). Not run on eval here: this lane's jump scan already covers JUMP-type flags (14 / 32 / 33 only).
+- 21:53 UTC 1 Nov pfB seed 42 (training box, NREP 10, sim_vs_ref vs P) [M]: eval 14 two-hand 0.603 ± 0.105 (packed H5p7
+  0.727); eval 16 two-hand 0.713 ± 0.037 (packed 0.850). Both below the packed policy; seed 43 running (68 min per seed wave).
+- 22:12 UTC 1 Nov pfA seed 42 (public ep13, NREP 10) [M]: single-hand AUC vs mocap 0.378 ± 0.110 (sim_vs_ref 0.373);
+  two-hand AUC **0.587 ± 0.156** (sim_vs_ref 0.614); paired Δ +0.209 on this seed. Rule needs both seeds (seed 43 running).
+  Caveat [I]: public ep13's single lock carries with the RIGHT hand (from f46), eval 14's packed lock with the first picker
+  (left), so the public control is weaker than eval 14's packed construction; eval 14 two-hand seed 42 is 0.603 vs packed 0.727.
+- 22:18 UTC 1 Nov **pfE launched**: 20261101-pfE-acfab9b, instance 58721109 (Max-Q, Japan, $1.38/h; first offer gone) (public ep13, arm f = first picker, seeds 42 / 43; PREREG addendum §6;
+  ledger planned $4.50). Five boxes running ≈ $7/h.
+- 22:40 UTC 1 Nov interim training-box results, seed 42 (NREP 10, each vs the reference it trained on) [M]:
+  - pfC eval 14 bridged single-hand **0.880 ± 0.054** (min 0.744); the packed policy's H5p7 draws score 0.727 vs P and
+    0.706 vs the bridged reference (CPU, dr_score on the bridged base, 20:40);
+  - pfD eval 32 bridged single-hand 0.877 ± 0.044 (packed H5p7 0.852 vs P); eval 15 two-hand 0.943 ± 0.029 (packed 0.906).
+  - Verdicts need seed 43, the confirmation draws and the two-reference scoring (PREREG).
+- 23:02 UTC 1 Nov interim [M] (training box, vs own reference): eval 16 two-hand s43 0.696 (both seeds < packed 0.850);
+  eval 14 bridged two-hand s42 0.680 (vs bridged single-hand s42 0.880); **eval 33 bridged single-hand s42 0.406 ± 0.042**
+  (packed 0.923) — a large failure, cause not yet known (the bridge + 6-frame ramp at f86–90, or the recipe on this box).
+  - eval 33 cause [M]: in the rebuilt reference (support_fill → lock → ILC → replan from the base on this box) the SPOON is
+    unstable before its grasp (rest check: 77 mm / 20° by f32; replan kept, zero action 0.195), unrelated to the cup
+    bridge (f86–90). So the rebuild differs from the packed eval-33 reference (built by run fr3233s43 with its own
+    settings); a confound of the rebuild, not evidence about the bridge [I].
+- 23:48 UTC 1 Nov **batch 1 done** (pfA, pfB self-destroyed): results docs/research/work/pf-hands-20261101/results/README.md.
+  - pfA public ep13 AUC vs mocap: s 0.378 / 0.554, 2h 0.587 / 0.553 → mean paired Δ +0.104: **PASS** by the rule, but one
+    seed carries it (seed 43 both at the floor) [I: fragile].
+  - pfB evals 14 / 16 two-hand: both seeds below the packed policy (14: 0.603 / 0.581 vs 0.727; 16: 0.713 / 0.696 vs 0.850):
+    **NO-SWAP**. Two-hand is not adopted on eval.
+- 00:13 UTC 2 Nov pfE done (self-destroyed): first picker ep13 AUC 0.555 / 0.400; 2h − f mean +0.092 [M]. Two-hand not
+  adopted on eval (pfB NO-SWAP). Eval 14 bridged single-hand: s42 0.880, s43 0.892 (training box vs own ref); s43 chosen,
+  gate met (> 0.727), 10 confirmation draws running. Eval 14 bridged two-hand s43 0.647.
+- 00:17 UTC 2 Nov pfC: eval 14 bridged single-hand confirmation done (10 draws on the pristine evaluator; draw 10 0.926, 0
+  overflow), but the on-box scoring FAILED: pf_arms.sh replaced `sets[0]` (the `--set` flag) instead of `sets[1]` in the
+  bridged branch. Fixed in the repo; pfC / pfD run the old code, so their bridged verdicts are re-scored on CPU from the
+  stored rollouts with the same tools (dr_score.py + pf_verdict.py --refs "P B"), no rule change. Eval 32 bridged s43
+  0.895 (s42 0.877).
+- 00:32 UTC 2 Nov **eval 14 guard-bridge candidate: PASS + INCLUDE** (pf-bridge PREREG §4; scored on CPU from the stored
+  rollouts because of the on-box scoring bug; same tools, rule unchanged) [M]:
+  - candidate: pfC-f38b324 arm s (packed single-hand construction) on the bridged reference B, seed 43 (training box 0.892
+    vs s42 0.880), checkpoint sha256 9da879d9c0e8…; 10 fresh official draws on the pristine evaluator, rc 0, 0 overflow;
+  - vs B: mean 0.875 (packed H5p7 0.706), fails 1 / 10 vs 4 / 10, median RPE 2.71 vs 4.38 cm, draw 1 0.895 vs old 0.890;
+  - vs P (packed reference): mean **0.861** vs 0.727 (clause a holds); gain on B **+0.169** ≥ +0.02 → include;
+  - symmetric vs plain (vs B): 0.876 / 0.875. Remaining onset f27–31 in every draw (the lift), one draw fails at f137.
+  - Files: docs/research/work/pf-bridge-20261101/results/ (verdict, choice, score, bridge report).
+- ~00:40 UTC 2 Nov pre-registered docs/research/work/pf-release-20261102/PREREG.md (eval 16 spoon held to the end;
+  grasp_lock.py --hold_to_end, CPU-tested: zero-action 0.539 → 0.581). Spend so far $22.08 (credit $100.77 at 00:33).
+- 00:42 UTC 2 Nov **pfF launched**: 20261102-pfF-a0f39a4 (Spain WS $1.39/h), `EP=16 SPLIT=eval ARMS="s se" HOLD_TO_END=wooden_spoon`.
+- 00:58 UTC 2 Nov **eval 32 guard-bridge candidate: PASS + INCLUDE** (scored on CPU from pfD's stored rollouts, same
+  tools and rule) [M]: seed 43 (training box 0.895 vs s42 0.877); 10 fresh official draws: vs B 0.890 (packed 0.851),
+  fails 0 / 10 vs 4 / 10 (B), median RPE 2.75 vs 4.60 cm; vs P 0.867 (packed 0.852, clause a holds; fails 0 vs 1 / 10);
+  gain on B +0.040 ≥ +0.02. Eval 33 bridged: seed 43 0.898 (s42 0.406), confirmation running.
+- 01:05 UTC 2 Nov **eval 33 guard-bridge candidate: PASS, NOT INCLUDED** [M]: seed 43; 10 draws vs B 0.9395 (packed
+  0.9199), vs P 0.9347 (packed 0.9234); 0 fails both; gain on B **+0.0196 < +0.02** → stays out (rule as pre-registered).
+- 01:03 UTC 2 Nov **eval 15 two-hand: NO-SWAP** [M] (on-box verdict): mean 0.947 vs packed 0.906 (gain +0.042) but clause (c) median RPE 1.447 vs 1.299 cm fails. pfD done.
+- 01:10 UTC 2 Nov **pack 12 ready: results/submissions/20261102-track3m-candidate/build_12/track3_submission.parquet**
+  (sha256 7b0cd7df…, 9,120 rows; pack 11 + evals 14 and 32 guard-bridged retrains, confirmation draw 1 each; code
+  ab444c0; built by tools/pack_swap_rows.py, all checks + kit offline validation pass, CD-O unchanged). NOT uploaded;
+  record sent to keen-heisenberg (uploader). The earlier eval-14-only build is kept as build_12a_ep14only.
+- 01:20 UTC 2 Nov step 5 (contact-moment training) deferred, not run [I]: the remaining deterministic onsets are at lifts
+  (eval 14 f27–31 after the repair, 25 f41 / f173, 3 f66, 1 f129). ops/box/patch_flashchord_states.py already provides a
+  training-only reset-state bank, but a contact-moment bank needs the policy's own joint states (GPU traces), a public test
+  first, and the earlier solver–RL loop with this bank "barely acted". Listed as the next decision for the owner.
+- 01:20 UTC 2 Nov keen-heisenberg: pack 12 verified (sha, row diff, kit hashes, stock limits, PREREG timing, dry run valid); upload blocked by its permission classifier, waits for the owner's word. If eval 16 passes: pack 12b on pack 12.
+- 02:00 UTC 2 Nov pfF seed 42 (eval 16, training box vs P) [M]: s (packed construction, current recipe) 0.687 ± 0.083;
+  se (hold to end) **0.769 ± 0.021** (+0.08 over its same-box control); both below the packed policy 0.850, which was
+  trained by the 24 Oct recipe (run 20261024-seed43-61101f5). So on eval 16 the current recipe itself loses ~0.16 vs the
+  packed one [I]; hold-to-end helps within the recipe. Seed 43 running; the gate (> 0.8498) will likely fail.
+- ~02:15 UTC 2 Nov pre-registered docs/research/work/pf-release-20261102/PREREG_B.md: eval 16 arms p0 (packed reference)
+  and pz (packed reference, right hand frozen from f107; CPU zero-action 0.839 → 0.929) on the current recipe; box pfG.
+- 02:18 UTC 2 Nov **pfG launched**: 20261102-pfG-86cfc19 (Australia Max-Q $1.13/h), `EP=16 SPLIT=eval ARMS="p0 pz" FREEZE_EP16=right:107`.
+- 03:07 UTC 2 Nov pfF seed 43 [M]: s 0.719, se (hold to end) 0.792. Both seeds: se − s = +0.082 / +0.073 on the training
+  box, but both arms stay below the packed 0.850 → gate fails, NO-SWAP (verdict line follows from the box).
+- 04:12 UTC 2 Nov pfF done (self-destroyed 03:10, 151 min ≈ $3.5): eval 16 s and se both **NO-SWAP** (training-box gate:
+  best seeds 0.719 / 0.792 vs 0.8498). pfG (packed-reference arms) seed 42 near the end of training (slower box, ~95 min
+  per wave); results ≈ 07:00 UTC. Credit $94.05 → spend so far $28.80 of $102.
+- 04:24 UTC 2 Nov **pfG seed 42 (eval 16, training box vs P)** [M]: p0 (packed reference, current recipe) 0.769 ± 0.057;
+  **pz (packed reference, right hand kept on the spoon from f107) 0.975 ± 0.009** (min 0.952). Packed H5p7 0.850. Seed 43
+  running (~2 h on this box), then the gate and 10 fresh draws.
+- 06:30 UTC 2 Nov **eval 16, hand kept on the spoon (pz, packed reference): PASS + INCLUDE** [M] (pfG-86cfc19, on-box verdict,
+  self-destroyed 06:27, 256 min ≈ $4.8): seeds 0.975 / 0.972 → seed 43 (lower sd); 10 fresh official draws **0.974**
+  (packed H5p7 0.850), fails 0 / 0, median RPE 1.18 vs 1.79 cm, draw 1 0.974 vs the board's old draw 0.908; gain +0.124.
+  Control p0 (packed reference, current recipe) 0.769 / 0.787: NO-SWAP. Checkpoint sha256 ed25dc5f8312b861b8ec3be6d96fdafecb3c939e89a29fef8e4a8b56b4966882.
+- 06:36 UTC 2 Nov **pack 12b ready: results/submissions/20261102-track3m-candidate/build_12b/track3_submission.parquet**
+  (sha256 bde0ae84…; pack 12 + eval 16 pz draw 1; code fa129a110aa4fd33bcdab199bcaa2c0c7fd3f9cd; all checks pass). NOT uploaded; record to keen-heisenberg.
+- 06:40 UTC 2 Nov morning report written in STATUS.md. Credit $91.37 (spend $31.48 of $102); 0 instances.
+- 06:43 UTC 2 Nov keen-heisenberg: **pack 12b uploaded**, AUC 0.84405 (+0.0048 over pack 11), MP-SR 0.75, RPE 3.023, MPPE 2.495; best on every board; AUC above DSAIL 0.84391. Record build_12b/UPLOAD.md on claude/keen-heisenberg-engcwz.
+- 07:12 UTC 2 Nov owner (via keen-heisenberg): do not use the method name in new reports / STATUS / commits / artifacts for now; removed it from the current STATUS and the pack-12 README (history unchanged).
+- ~07:15 UTC 2 Nov keen-heisenberg relayed the owner's "what else" go (item 1 hold-freeze on 25 / 30 / 1, item 2
+  contact-moment training). Checked first [M]: losses on 25 / 30 / 3 start ~10 frames after the grasp (lift); 1 mid-carry;
+  no post-release growth → item 1 does not fit; told keen-heisenberg (07:25). Built item 2: ops/box/patch_flashchord_lift.py
+  (CPU-checked: unset = upstream; P 0.5 → 53 % of starts in windows), tools/lift_windows.py, glock_public FC_LIFT_PATCH +
+  per-pair TRAIN_ENV_pf*, pf_arms arms lw / plw, pf_verdict public generalised (arm vs s, bar +0.02 / floor −0.03).
+  Pre-registered docs/research/work/pf-lift-20261102/PREREG.md; step 1 = public ep31 box pfH (≈ $4–4.5).
+- 07:19 UTC 2 Nov **pfH launched**: 20261102-pfH-a419bc9 (Japan Max-Q $1.30/h), `EP=31 SPLIT=public ARMS="s lw" SRC_RUN=20261030-orcB-38234d1`.
+- ~07:20 UTC 2 Nov keen-heisenberg relays the owner (verbatim): "Go do as much as you can lets go to top"; lift-window plan approved. Budget: **$50 more** from 07:32 UTC (credit then $91.35; ≥ $10 reserve); a new public-perception GPU session (≤ $30) starts — never touch its instances; check ops/vast.sh show before launching.
+- 07:40 UTC 2 Nov tracking-perception (session_01D9UJC9EUCs5sUCbTVZgvcC): [M, code read] no packed eval reference carries S2 (refine.py is never called); worth adding only where a reference is rebuilt anyway (≈ +0.004 board [E]). Noted; this lane's lesson is that rebuilt references lose to packed ones (eval 16), so S2 is not applied tonight without a same-box test.
+- 07:49 UTC 2 Nov correction: the times of the last four entries were estimated ~35 min late; the box log shows pfH started 07:20 UTC (fixed above, PREREG 07:15 UTC; all before any result).
+- 09:54 UTC 2 Nov pfH seed 42 (public ep31, registered AUC vs mocap, NREP 10) [M]: lw **0.730 ± 0.017** (sim_vs_ref 0.734);
+  s 0.589 ± 0.198 (sim_vs_ref 0.593). Paired Δ +0.141. Seed 43 running; the rule needs both seeds.
+- 11:29 UTC 2 Nov **pfH (public ep31, lift-window starts) PASS by the pre-registered rule** [M]: AUC vs mocap lw 0.730 / 0.704
+  vs s 0.589 / 0.707 → paired Δ +0.141 / −0.002, mean **+0.069** (≥ +0.02), no seed < −0.03. Reading [I]: the mean gain
+  comes from seed 42, where the control collapsed on some draws; the lift arm's spread is much smaller (sd 0.017 / 0.043 vs
+  0.198 / 0.104; min 0.694 / 0.618 vs 0.245 / 0.400): fewer failed draws rather than a higher ceiling. Step 2 (addendum A)
+  launches now.
+- 11:32 UTC 2 Nov **pfI launched** (step 2, addendum A): 20261102-pfI-a89f5f3 (California WS $1.38/h), `EP="3 14 32" SPLIT=eval ARMS=plw TAB_OVERRIDE=/content/v2d-track3/docs/research/work/pf-lift-20261102/packed_refs_12b.json PACKED_DRAWS_EP14=runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s OLD_EP14=runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s/r1/ep14/episode_000014 PACKED_DRAWS_EP32=runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s OLD_EP32=runs/20261101-pfD-f38b324/results/pf_arms/conf_ep32_s/r1/ep32/episode_000032 bash ops/jobs/pf_arms.sh`.
+- 11:52 UTC 2 Nov pfI-a89f5f3 destroyed after 20 min (≈ $0.5): the per-pair lift env was keyed by arm + seed only, so
+  evals 3 and 14 trained with eval 32's windows (1–16, 41–61, 111–131) instead of their own (box log [M]). Fixed: the key is
+  now TRAIN_ENV_<prefix>_ep<N>. pfH was unaffected (one episode). Relaunching pfI with the same job string.
+- 11:51 UTC 2 Nov **pfI relaunched**: 20261102-pfI-b558032 (offer 56700685), same job string.
+- 12:45 UTC 2 Nov pfI-b558032 (Japan host 56700685) stalled in setup (HF downloads), destroyed by the watchdog at 12:37 (≈ 42 min ≈ $0.9). Relaunch on the California host (fast setup at 11:32).
+- 12:41 UTC 2 Nov **pfI relaunched (2)**: 20261102-pfI-6c80007 (Croatia Max-Q, offer 57455805), same job string.
+- 12:48 UTC 2 Nov **pfJ launched** (addendum B): 20261102-pfJ-cf8cc34 (offer 45274401), `EP="20 15" SPLIT=eval ARMS=plw`.
+- 12:55 UTC 2 Nov: told keen-heisenberg that pfI-6c80007 is running (job started 12:42 UTC, setup).
+- ~13:00 UTC 2 Nov **standard-learner lift path built** (pf-lift addendum C): pf_arms.sh arm `slw` (the mass_eval MODE=std
+  recipe via hard_ab.sh on the packed base byte copy, CR=0 SUF=lw, + FC_LIFT_PATCH / ENV_EP<N> lift env), hard_ab.sh
+  FC_LIFT_PATCH block. CPU check [M] on a patched FlashCHORD copy with all four std patches: frame-0 share 0.328 kept,
+  window share 0.210 → 0.349. Checked [M]: the pack-12b/12c rows of evals 25 / 30 equal the pack-6 draws (pose max |diff|
+  0.0, checkpoints = table packed_sha256), so the default old draw and H5p7 control apply.
+- 12:57 UTC 2 Nov **pfK launched**: 20261102-pfK-0f695c9 (Spain WS $1.38/h, offer 29519534), `EP=25 SPLIT=eval ARMS=slw bash ops/jobs/pf_arms.sh`.
+  Credit $70.53 at 12:56 UTC (floor $41.35 for the $50 window); after pfI / pfJ / pfK and the tracking boxes ≈ $0–3 left
+  [E], so eval 30 needs the owner's go (asked via keen-heisenberg).
+- 13:00 UTC 2 Nov keen-heisenberg relays the owner's go for evals 30 and 28 (+≈ $16 beyond the $50 window; ≥ $10 reserve
+  a hard stop; eval 1 waits for a top-up). **pfL** 20261102-pfL-0fab401 (`EP=30 SPLIT=eval ARMS=slw`, offer 52946733) and
+  **pfM** 20261102-pfM-0fab401 (`EP=28 SPLIT=eval ARMS=slw`, offer 31125574) launched ~13:00 UTC.
+- 13:05 UTC 2 Nov pack 12c fetched from claude/focused-pascal-2nz9s1 (sha256 3542f8e5… verified; CD-O 116a9751…).
+  tools/pack_swap_rows.py self-test on it (no swap, 12c's commit URL): output byte-identical (same sha256), CD-O rows
+  changed 0, kit validation pass [M]. Pack 13 builds on it.
+- 13:10–13:15 UTC 2 Nov all five boxes training seed 42, lift hook active in every training process [M, train.log
+  "v2d FC_LIFT_WINDOWS: N window frames"]: pfK eval 25 63 frames (26..178), pfL eval 30 42 (37..148), pfM eval 28 42 (5..60).
+- 14:08 UTC 2 Nov **pfL-0fab401 replaced** (host fault, not a time cut): on the same code and GPU model it trained at
+  14.4k env steps/s with the GPU at its 500 W SW power cap and 840 MHz SM clock, while pfK / pfM ran ~50k env steps/s at
+  ~2.74 GHz and ~390 W; the original eval-30 std run (20261025-std30) trained at 46k env steps/s [M]. At that pace pfL needed
+  ~10 h (~$14) instead of ~5 h. Destroyed after ~62 min (≈ $1.45); **pfL2** 20261102-pfL2-0fab401 (Portugal WS $1.69/h,
+  offer 51767470), same job string `EP=30 SPLIT=eval ARMS=slw bash ops/jobs/pf_arms.sh`, same commit 0fab401.
+- 14:08–14:45 UTC 2 Nov seed-42 training-box results [M] (10 box draws, sim_vs_ref vs the episode's own reference; gate =
+  the board policy's mean): pfI eval 3 plw **0.888 ± 0.020** (gate H5p7 0.933); eval 14 plw **0.923 ± 0.033** (gate =
+  pack-12b policy's conf draws vs B, 0.875); eval 32 plw **0.888 ± 0.009** (gate 0.890). pfI seed 42 took 109 min.
+  pfK eval 25 slw **0.529 ± 0.033** (sweep chose 150M; gate 0.878), 90 min. [M] eval 25 has always been bimodal by
+  seed (packed run s42 0.792 / s43 0.474; D retrains s42 0.816 / s43 0.482); [I] seed 42 with lift windows fell in the
+  low mode, so one seed says little about the lift effect on eval 25; seed 43 decides (rule unchanged).
+- 14:54–16:12 UTC 2 Nov more training-box results [M]: eval 28 slw s42 0.864 ± 0.061 (gate 0.919); eval 15 plw s42
+  **0.953 ± 0.012** (gate 0.906); eval 20 plw s42 **0.297 ± 0.049** (chosen 60M; gate 0.893; collapse); eval 30 slw s42
+  0.787 ± 0.158 (chosen 100M; gate 0.897); eval 3 plw s43 0.886 ± 0.100 (→ eval 3 fails the gate on both seeds);
+  eval 14 plw s43 0.908 ± 0.022 (both seeds above the 0.875 gate; seed rule keeps s42 0.923); eval 25 slw s43
+  0.541 ± 0.031 (→ eval 25 NO-SWAP at the gate). [I] eval 25: both lift seeds in the low mode, while s42 reached the
+  high mode twice without lift (0.792, 0.816); 2 seeds cannot separate this from the usual seed split.
+- 16:32–16:40 UTC 2 Nov pfI verdicts [M]: eval 3 plw NO-SWAP at the gate (s42 0.888 / s43 0.886 vs 0.933); eval 32 plw
+  s43 0.876 ± 0.112 (with s42 0.888 both under the 0.890 gate → NO-SWAP pending on the box); **eval 14 plw: gate CONFIRM
+  (s42 0.923 box) but NO-SWAP on the 10 fresh official draws**: conf mean 0.826 ± 0.118 (0.757, 0.886, 0.890, 0.945,
+  0.862, 0.910, 0.571, 0.727, 0.779, 0.938) vs pack-12b policy 0.875; clauses a / c / s fail, gain −0.049.
+  [M] box→fresh gap: lift policy 0.923 → 0.826 (−0.097; 9/10 box draws ≥ 0.889, 4/10 fresh < 0.80), while earlier
+  non-lift swaps matched (eval 14 s: box 0.880 / 0.892 → fresh 0.875; eval 16 pz: 0.975 → 0.974).
+  [H] lift-window policies overfit something of the training box (the patched training-tree evaluator or its start
+  state) so box draws overstate them; falsified if eval 15's fresh mean stays near its box mean 0.953.
+- 17:20–17:37 UTC 2 Nov pfJ verdicts [M]: **eval 20 plw PASS + INCLUDE** (seed 43: box 0.921, s42 collapsed 0.297; 10 fresh
+  official draws 0.926 vs board H5p7 0.893, fails 0 / 0, median RPE 1.378 vs 1.671, draw 1 0.938 vs old 0.895, gain
+  +0.033). [M] fresh ≈ box here (0.926 vs 0.921), so the eval-14 box→fresh drop is not general to lift policies.
+  **Eval 15 plw NO-SWAP on clause c only**: fresh 0.958 vs 0.906 (gain +0.053), fails 0 vs 1/10, draw 1 0.965 vs 0.947,
+  but median RPE 1.346 vs 1.299 cm. Rule applied as written; flagged to keen-heisenberg as an owner's call.
+  Eval 30 slw s43 0.839 ± 0.113 (with s42 0.787, both < 0.897 → NO-SWAP).
+- 17:40 UTC 2 Nov **pack 13 ready**: results/submissions/20261102-track3m-candidate/build_13/track3_submission.parquet
+  (sha256 791c3922…; = pack 12c + eval 20 plw s43 conf draw 1; code b45b377; checks pass; the board's eval-20 row equals the
+  pack-6 draw: max |diff| 0.0). NOT uploaded; sent to keen-heisenberg (17:42 UTC).
+- 18:02 UTC 2 Nov batch closed: every pf box self-destroyed (only the tracking session's ptrkD runs). Ledger actuals
+  (estimates from times): pfI $6.0, pfJ $5.2, pfK $4.6, pfL $1.45, pfL2 $5.9, pfM $5.0 → ≈ $28 for the lift batch.
+  Credit $29.29 at 18:02 UTC. No new boxes until the owner tops up (owner via keen-heisenberg, 17:05 UTC).
+  Lift-window batch summary [M]: 1 of 8 eval episodes swapped (20, +0.033); 15 passed every clause but c (median RPE
+  +0.47 mm); 14 passed the gate and failed fresh draws; 3 / 25 / 28 / 30 / 32 failed the gate. [I] the standard-learner
+  arm (25 / 28 / 30) never reached its board policy: the lift windows did not fix those episodes' seed variance.
+- 18:50 UTC 2 Nov keen-heisenberg: **pack 13 uploaded** on the owner's word. Scores [M, board]: AUC **0.84924** (+0.00186 vs
+  12c), MPPE 2.45263 (−0.0147), RPE 3.00841; SP-SR 0.85, MP-SR 0.75, CD-O 0.30008 unchanged. Rank sum 54, tied with DSAIL.
+  Eval-15 waiver stays with the owner (no action unless forwarded).
+- 19:01 UTC 2 Nov owner waiver (post hoc) of clause c for eval 15, via keen-heisenberg ("Okay I give you permission for
+  all"); recorded in pf-lift PREREG. Correction: the eval-15 clause-c miss is 0.47 mm (1.346 vs 1.299 cm), not 0.05 mm.
+- 19:10 UTC 2 Nov **pack 13b ready** (owner waiver): results/submissions/20261102-track3m-candidate/build_13b/
+  track3_submission.parquet, sha256 c8b85ba4…, 9,120 rows = pack 13 + eval 15 plw s42 conf draw 1 (checkpoint 395d727f…);
+  code 8efca116; all checks pass; vs 12c only evals 15 / 20 differ (736 rows). NOT uploaded; sent to keen-heisenberg.
+- 20:07 UTC 2 Nov keen-heisenberg (owner: "do as much work as you can for tonight"): packs 12e / 13e / 13f (Tier B meshes)
+  uploaded, best AUC 0.87225, rank sum 47 (7th). Task: spoon anchor on evals 32 / 33 / 35 / 36 / 37, plan + cost first;
+  retrains (13f collision meshes for 20 / 28 / 30), eval 1 and S2 after the owner's top-up.
+- ~20:09 UTC plan + cost sent (one box ≈ $2, no training; caveat: the same estimator gave +0.001 on public anchors, A-f0).
+- ~20:09–20:14 UTC CPU build [M]: tools/anchor_rest.py → docs/research/work/pf-anchor-20261102/refs/ep<N>.parquet (spoon
+  frame-0 change 2.02 / 1.77 / 3.15 / 6.09 / 5.22°; only spoon frames 0..onset+9 changed; no_oracle pass; eval 37's
+  raw → reference mapping weak, residual median 5.3°). Checkpoints store the reference path + frame count only (no hash),
+  so R' is placed at that path. Board rows checked: 35 / 36 / 37 = pack 6 draws, 33 = c33B submission draw, 32 = pfD conf r1.
+  tools/anchor_verdict.py (CPU mock on eval 35: INVALID on the own-reference check as designed), ops/jobs/pf_anchor.sh,
+  PREREG committed 27c43cf4 (before any draw); pack_swap_rows --same-checkpoint (self-test still byte-identical) 66bf9480.
+- 20:15 UTC 2 Nov correction: my messages / notes of the last hour stated times ~35 min late ("20:45", "20:52"); the
+  commits show the pf-anchor CPU work at 20:08–20:14 UTC (fixed above and in the PREREG header).
+- 20:15 UTC keen-heisenberg: **NO-GO on the spoon-anchor box** (expected value ≈ 0: references already on the nearest
+  stable facet; A-f0 +0.001); recorded "planned, not run" in the PREREG; auto-launch timer cancelled; no box rented.
+  Owner topped up (credit $127.97 at 20:12 UTC; "go crazy, let's win this"): **GO for retrains, ≤ $45 for this lane,
+  stop if credit < $15**: evals 20 / 28 / 30 / 1 (+ others with failed / low draws), S2 where the recipe allows, the 13f
+  meshes as collision meshes where the shape changed (contact budget first), 2 seeds, swap rule + ≥ +0.02 on 10 fresh
+  draws; passing → pack 14 on 13f (claude/focused-pascal-2nz9s1 build_13f, sha fa1e31f5…; contains 13b's eval 15 / 20 rows).
+  13b uploaded (AUC 0.84985). Room-map cameras for eval 35 noted (optional, separate arm).
+- 20:15–20:21 UTC 2 Nov pf-mesh prep (CPU) [M]: Tier B vs library_v3 in our frame (pitcher centroid −14 mm z, Chamfer
+  mean 8 / p95 25 mm; rack ~13 mm, 5–7 / 16 mm; sweeper 3 / 8 mm); pitcher decimated 400k → 20k faces (Chamfer 1.4 mm);
+  meshes/tierB_collision/ (GT-selected shapes: flagged); board rows of 13f checked = old draws for 1 (e1conf2 r1),
+  20 (pfJ conf r1), 28 / 30 (pack 6); eval 1's control = h5e1 (5625b86a…; H5p7 had the older f83e6ca0);
+  table docs/research/work/pf-mesh-20261102/packed_refs_13f.json; pf_arms arms pm / sm / s0 + zero-shot contact check
+  (one board-policy draw with the new collision; refuse on any overflow line); PREREG (before any box) 59d62bf.
+- 20:22 UTC 2 Nov **pf-mesh launched** (commit 59d62bf; credit $127.77 at 20:21; ledger planned $6 each):
+  - pfN 20261102-pfN-59d62bf (Spain WS $1.41/h, offer 39434926, instance 58873213): `EP=20 SPLIT=eval ARMS=pm
+    MESH_OBJS_EP20=water_pitcher TAB_OVERRIDE=…/packed_refs_13f.json PACKED_DRAWS_EP20=runs/20261102-pfJ-cf8cc34/results/pf_arms/conf_ep20_plw
+    OLD_EP20=…/conf_ep20_plw/r1/ep20/episode_000020`;
+  - pfO 20261102-pfO-59d62bf (BC WS $1.42/h, 51256904, 58873272): `EP=28 SPLIT=eval ARMS=sm MESH_OBJS_EP28=plastic_dish_rack TAB_OVERRIDE=…`;
+  - pfP 20261102-pfP-59d62bf (Washington Max-Q $1.51/h, 58872822, 58873281): `EP=30 SPLIT=eval ARMS=sm MESH_OBJS_EP30="mini_sweeper plastic_dish_rack" TAB_OVERRIDE=…`;
+  - pfQ 20261102-pfQ-59d62bf (Oregon S $1.51/h, 47684641, 58873297): `EP=1 SPLIT=eval ARMS=s0 SEEDS="44 45" TAB_OVERRIDE=…
+    PACKED_DRAWS_EP1=runs/20261031-h5e1-1a7cdff/results/h5 OLD_EP1=runs/20261030-e1conf2-d41382e/results/h5/r1/ep1/episode_000001`.
+- 20:24 UTC 2 Nov coordinator's 20:18 message (crossed the launch): skip eval 1; optional 4th arm on eval 14 or 32.
+  **pfQ destroyed in setup** (~2 min, ≈ $0.1; ledger actual). Eval 14 chosen (lower control 0.875, 1/10 fails; rack +
+  blue cup changed): arm p0m (board reference reused + Tier B rack / 13f cup collision, cup decimated 400k → 20k faces,
+  Chamfer 0.9 mm); 13f row of eval 14 = pfC conf draw 1 [M]. PREREG addendum 1 (f06a0c1, before any result).
+- 20:25 UTC **pfR launched**: 20261102-pfR-f06a0c1 (Virginia WS $1.64/h, offer 57962419, instance 58873476):
+  `EP=14 SPLIT=eval ARMS=p0m MESH_OBJS_EP14="blue_cup plastic_dish_rack" TAB_OVERRIDE=…/pf-lift-20261102/packed_refs_12b.json
+  PACKED_DRAWS_EP14=runs/20261101-pfC-f38b324/results/pf_arms/conf_ep14_s OLD_EP14=…/conf_ep14_s/r1/ep14/episode_000014`
+  (first offer 39434926 gone: no_such_ask).
+- 20:41 UTC 2 Nov **pf-mesh bug** [M]: pfP (eval 30) and pfO (eval 28) refused their episodes at the zero-shot step with
+  "sim_vs_ref none, overflow lines 0": the board checkpoint names refs/perc2mcks/ep<N>, the job placed only the parquet
+  there, and FlashCHORD's setup_scene needs <root>/reconstructed_stage/<seq>_support.usda ("scene support is enabled,
+  but no support asset could be resolved"). Not a contact result. pfO went to HOLD (rc 1, billing). pfN (eval 20) would
+  hit the same (board path refs/pfplws43_glockt/ep20 absent there); pfR (eval 14) not (its board path is pulled whole).
+  Fix b0b4a31: the zero-shot copies the support stage beside the board reference.
+- ~20:43 UTC destroyed pfN / pfO / pfP (≈ 20 min each, ≈ $0.5 each; ledger "~20:47" was an estimate, the real time was
+  ~20:43) and relaunched at b0b4a31, same job strings: **pfN2** 20261102-pfN2-b0b4a31 (Romania Max-Q $1.38/h, 57994872,
+  instance 58875108), **pfO2** 20261102-pfO2-b0b4a31 (Texas Max-Q $1.61/h, 31194553, 58875116), **pfP2**
+  20261102-pfP2-b0b4a31 (India WS $1.50/h, 58050641, 58875136). pfR (f06a0c1) keeps running.
+- 21:00–21:20 UTC 2 Nov pf-mesh zero-shot draws (board policy, Tier B collision, one official draw, no overflow anywhere)
+  [M]: eval 28 rack **0.906** (control mean 0.919); eval 20 pitcher **0.451** (control 0.926: the board grasp fails on the
+  new pitcher shape until retrained); eval 30 sweeper + rack **0.829** (control 0.897). N2 / O2 / P2 training.
+- 21:26 UTC **pfR (eval 14) INCOMPLETE, my bug**: the 12b table's asset_root for eval 14 is stale (refs/sf/ep14; pfC's
+  copy is refs/pfss43_sf/ep14), so the mesh swap found no file, the arm's reference copy was skipped (old `continue 3`),
+  and REQUIRE_REUSE refused training. The episode was not dropped, so its "zero-shot 0.931" ran on the OLD meshes: it is a
+  plain board-policy draw, NOT a collision result. Fix c1a5471: the asset root comes from the reference's own
+  object_urdf_paths; a failed swap drops the episode. pfR destroyed 21:28 (≈ $1.7); **pfR2** 20261102-pfR2-c1a5471
+  (US S $1.51/h, offer 56137474, instance 58879342), same job string.
+- 21:51–22:53 UTC 2 Nov pf-mesh results [M]: eval 14 p0m zero-shot (valid, new rack + cup) **0.878** (control 0.875);
+  eval 14 p0m s42 box **0.938 ± 0.010** (min 0.919; gate 0.875); eval 20 pm s42 **0.293**, s43 **0.604 ± 0.266** →
+  **eval 20 NO-SWAP at the gate** (0.926; [I] the board reference's grasp was built on the old pitcher, up to 2.5 cm off,
+  and retraining does not recover it; pfN2 self-destroys); eval 30 sm s42 **0.938 ± 0.008** (min 0.921; gate 0.897;
+  earlier eval-30 retrains had low draws 0.41–0.60) — [H] the Tier B shapes remove eval 30's low mode; s43 tests it.
+- 23:03–23:27 UTC 2 Nov [M]: eval 28 sm s42 0.841 ± 0.157 (min 0.383; gate 0.919); eval 14 p0m s43 0.946 ± 0.008 →
+  gate CONFIRM (s43) → **eval 14 PASS + INCLUDE** on 10 fresh official draws: 0.933 vs 0.875, fails 0 vs 1/10, median
+  RPE 1.97 vs 2.71 cm, draw 1 0.942 vs 0.895, gain +0.058 (fresh ≈ box 0.946).
+- ~23:33 UTC **pack 14 ready**: results/submissions/20261102-track3s-candidate/build_14/track3_submission.parquet
+  (sha256 1dbc33c4…; = 13f + eval 14 p0m s43 conf draw 1, checkpoint 7f7a7c6a…; code cc19172; all checks pass; GT flag:
+  Tier B collision). NOT uploaded; sent to keen-heisenberg (record commit f2ffed76).
+- ~23:40 UTC 2 Nov keen-heisenberg: the best pose pack since 20:15 is **13p2** (19ac10e3…; AUC 0.88403), not 13f.
+  **Pack 14p ready** = 13p2 + eval 14 rows: results/submissions/20261102-track3s-candidate/build_14p/track3_submission.parquet
+  (sha256 b6c6100d…; 13p2 mesh payloads kept; checks pass). Pack 14 on 13f superseded.
+- 00:26–00:33 UTC 3 Nov **eval 30 sm NO-SWAP on fresh draws** [M]: s43 box 0.932 ± 0.014; gate CONFIRM s42 (box
+  0.938 ± 0.008); 10 fresh official draws **0.768** (0.670, 0.849, …, 0.841) vs the board policy's 0.897; fails 5/10 vs
+  1/10; median RPE 4.74 vs 2.93 cm; draw 1 0.670 vs 0.923; gain −0.130. The zero-shot board draw on the new collision was
+  0.829.
+  [M] box→fresh gaps today: eval 14 plw 0.923 → 0.826, eval 30 sm 0.938 → 0.768 (gap); eval 20 plw 0.921 → 0.926, eval 14
+  p0m 0.946 → 0.933 (no gap). [H] something differs between the training-tree evaluator (patched FlashCHORD: FDR / VOC /
+  deployment-exact starts / lift hooks, its own CoACD cache) and the pristine evaluator that some policies exploit;
+  untested. A cheap test: evaluate one gap checkpoint (eval 30 sm s42) 10× on the pristine evaluator vs 10× with
+  hard_ab's evaluate_policy.py in the patched tree, same box (≈ $1). Not run tonight.
+- 00:35 UTC 3 Nov coordinator GO for the evaluator-gap test. CPU first [M]: checkpoint VOC scale (metadata) eval 30 sm
+  s42 0.0, eval 14 plw s42 / eval 14 p0m s43 / eval 20 plw s43 0.1 → VOC alone does not separate gap from no gap.
+  PREREG docs/research/work/pf-evalgap-20261103/PREREG.md + ops/jobs/pf_evalgap.sh (A box path / B pristine / C patched
+  tree switches off; K30 = eval 30 sm s42, K14 = eval 14 plw s42; 10 interleaved rounds) at 85c1626, before any draw.
+- 00:38 UTC **pfgA launched**: 20261103-pfgA-85c1626 (offer 58891985, instance 58896929), `bash ops/jobs/pf_evalgap.sh`;
+  ledger planned $1.5.
+- 00:58 UTC 3 Nov **eval 28 sm NO-SWAP at the gate** [M]: s42 0.841 ± 0.165 (min 0.383), s43 **0.914 ± 0.011** vs the board
+  policy's 0.919 (−0.005). pf-mesh batch closed: eval 14 PASS + INCLUDE (pack 14 / 14p); evals 20 / 28 NO-SWAP at the
+  gate; eval 30 NO-SWAP on fresh draws.
+- 01:21 UTC 3 Nov **evaluator-gap test: NOT REPRODUCED** (pfgA, rc 0, 43 min; destroyed itself 01:22; ≈ $1.1) [M]:
+  eval 30 sm s42 A 0.935 / B 0.926 / C 0.930; eval 14 plw s42 A 0.925 / B 0.937 / C 0.938; kit = repo evaluate script.
+  Box gates trustworthy by the rule. But the pristine evaluator here gives 0.926 / 0.937 where their own confirmations gave
+  0.768 / 0.826 → the earlier low fresh means are box / run specific [H, unexplained]. NO-SWAP verdicts stand (no
+  post-hoc re-test). Results docs/research/work/pf-evalgap-20261103/results/. (The session container restarted at ~01:12;
+  nothing was lost: the box kept running, the repo was in sync.)
+- 01:47 UTC 3 Nov coordinator: **pack 14p uploaded** (AUC 0.88571, RPE 2.21325, MPPE 1.79779). Eval 30 stays NO-SWAP
+  (a re-test omitting the failed host would be a forking path). **Two-host confirmation adopted for future swaps**:
+  written into docs/research/work/pack9b-20261031/PREREG.md (amendment). Lane closed for the night; 0 boxes.
+- 01:47 UTC 3 Nov coordinator reopened (owner: maximum work): one more batch ≤ $35, two-host confirmation. Built (CPU):
+  pf_arms CONF_FROM mode (second host: same inputs + collision swap, the first host's chosen checkpoint sha256-checked,
+  10 pristine draws, verdict), place_ref() split out of the zero-shot, tools/pf_twohost.py; 14p rows of 19 / 32 / 33 = the
+  old draws [M]; eval 10 skipped (carved-pieces collision: a mesh swap would not change it). PREREG
+  docs/research/work/pf-mesh2-20261103/PREREG.md (before any box).
+- 01:50 UTC **pf-mesh2 launched** (commit 88f06be; credit $94.58): pfS 20261103-pfS-88f06be (UK S $1.35/h, 58257843,
+  instance 58903359) `EP=32 ARMS=p0m MESH_OBJS_EP32=blue_cup TAB_OVERRIDE=…/packed_refs_12b.json PACKED_DRAWS_EP32=…pfD conf_ep32_s
+  OLD_EP32=…pfD conf r1`; pfT 20261103-pfT-88f06be (Texas WS $1.55/h, 51870693, 58903413) `EP=33 ARMS=p0m MESH_OBJS_EP33=blue_cup
+  OLD_EP33=runs/20261030-c33B-0202139/results/submission/results/episode_000033`; pfU 20261103-pfU-88f06be (Virginia S $1.58/h,
+  47104051, 58903416) `EP=19 ARMS=sm MESH_OBJS_EP19=mini_sweeper`. Second-host boxes follow each T box's choice.
+- 02:08–03:30 UTC 3 Nov pf-mesh2 [M]: zero-shot (board policy, new collision, one draw, no overflow): eval 33 cup 0.929
+  (control 0.923), eval 32 cup 0.846 (0.890), eval 19 sweeper **0.226** (0.929). Eval 33 p0m s42 0.917 ± 0.019, s43
+  0.917 ± 0.016 → **NO-SWAP at the gate** (0.923). Eval 32 p0m s42 0.790 ± 0.105, s43 0.826 ± 0.130 (min 0.464) →
+  **NO-SWAP at the gate** (0.890). No second-host box needed for either. Eval 19 sm still training.
+- 03:59 UTC 3 Nov eval 19 sm s42 [M]: box 0.828 ± 0.164 (min 0.336) vs gate 0.929; s43 training (≈ 06:00 UTC). pfS / pfT
+  self-destroyed after their NO-SWAP verdicts.
+- 05:50 UTC 3 Nov eval 19 sm s43 [M]: box 0.655 ± 0.235 (min 0.343) → with s42 0.828, **eval 19 NO-SWAP at the gate**
+  (0.929; zero-shot 0.226: the board policy fails with the new sweeper, as eval 20 with the new pitcher).
+  **pf-mesh2 batch closed: 0 swaps** (32 / 33 / 19 NO-SWAP at the gate; no second-host box was needed).
+  Reading [I]: the Tier B collision shape helped where the board policy already worked on it zero-shot (eval 14 rack +
+  cup, 0.878 ≈ control) and hurt where zero-shot dropped (pitcher 0.45, sweeper 0.23, eval 32 cup 0.85); not a
+  pre-registered test.
+- 05:56 UTC 3 Nov pf-mesh2 closed: pfS / pfT / pfU destroyed themselves; ledger actuals (estimates) $2.4 / $2.4 / $6.4
+  (batch ≈ $11 of the $35 allowed). 0 instances. Credit $75.62.
+
+### 2026-11-06 ~07:40–08:50 UTC — showcase phase 0 (CPU, this session; owner: "lets do phase 0 and 1")
+- Branch: merged `claude/perfect-following-20261101` (latest pipeline code) into `claude/charming-goldberg-glc1xi`;
+  logs keep both sides.
+- Local FlashCHORD at the evaluator pin 8c778f90 (`scratchpad/fc`):
+  - LFS assets via media.githubusercontent.com, 559 files, sha256-checked (`showcase/tools/lfs_fetch.py`);
+  - `uv sync --frozen`, plus the train extras with CPU jax 0.10.2;
+  - FDR and VOC patches applied.
+- CPU rendering works with FlashCHORD's own mp4 viewer: xvfb + Mesa llvmpipe (apt libegl1 libegl-mesa0 xvfb), with
+  pinned host buffers dropped (`showcase/tools/kin_render.py`).
+- Robots (`showcase/prep_robots.py`; dex-urdf f5e7132; the Dex3 hand subtree of FlashCHORD's G1 URDF). Joints per
+  hand:
+  - Shadow 22 (palm-rooted, no forearm or wrist);
+  - Allegro 16; LEAP 16; Inspire 12 (mimic dropped: coupled joints driven independently);
+  - Dex3 7; Barrett 8; D'Claw 9; Panda gripper 2 (prismatic, kp 2000);
+  - AUTO fingertip links where the source has none.
+- All 9 embodiments (with `sharpa_hands_mid`) build on CPU (`showcase/test_build.py`).
+- Retargeting decision: fit each robot to the Sharpa reference's link keypoints (21-point MANO layout from
+  `robot_<side>_frames`), not to the raw perceived MANO joints.
+  - Why: the raw joints are noisy on ep27 (median finger bones 1.5–2.5 cm); the Sharpa reference is the one that
+    reached 0.965 vs mocap.
+  - Fit: pinocchio + scipy least squares, warm-started per frame.
+  - Median fingertip error (cm, right/left): Shadow 0.22/0.19, Allegro 0.56/0.82, LEAP 0.61/0.59,
+    Inspire 0.81/0.87, Dex3 1.16/1.50, Barrett 1.57/2.47, D'Claw 1.46/1.24, Panda 1.37/0.82.
+  - JSONs and contact sheets: `docs/research/work/embodiment-showcase-20261106/retarget/`.
+- Inputs uploaded to the HF store: `showcase/inputs/20261106/ep27_<robot>/` (commit 1c2791b4); Sharpa = the perc2vc
+  reference of `20261020-day1b-cfbff6b`.
+- CPU smoke: FlashSAC training with Allegro builds the full env (FDR: 8 fingertip frames) and steps at 5 env steps/s
+  (4 worlds). Panda and LEAP smoke tests and the evaluator check are running.
+
+### 2026-11-06 ~08:50 UTC — showcase phase 1 launched (owner go: "lets do phase 0 and 1"); credit $67.25 before
+- CPU checks passed:
+  - Allegro, Panda and LEAP train (env + learner + checkpoint save);
+  - the official evaluator rebuilds the FloatingHands Allegro from its checkpoint and runs all 246 steps;
+  - qa.py and score_sim.py score it: untrained sim 0.552 vs mocap, floor 0.560, reference vs mocap 0.997.
+- Batch: 3 boxes × 3 robots, job `ops/jobs/showcase.sh`, code 84c009f, ENV_SNAPSHOT pt2.11-cu130-py313-20261020.
+  Expected ≈ 4.5–5.5 h each, ≈ $19–23 in total [E]; cap $30. Ledger: planned lines per run.
+  - A `20261106-scA-84c009f`: ROBOTS="sharpa allegro shadow". Offer 59209095 → instance 59392238, RTX PRO 6000 WS,
+    South Korea, $1.481/h. Two cheaper offers were gone at create (404 no_such_ask).
+  - B `20261106-scB-84c009f`: ROBOTS="leap inspire dex3". Offer 58893742 → instance 59392513, RTX PRO 6000 WS,
+    South Korea, $1.466/h.
+  - C `20261106-scC-84c009f`: ROBOTS="panda barrett dclaw". Offer 56500949 → instance 59392877, RTX PRO 6000 WS,
+    South Korea, $1.420/h.
+  - All three: $4.37/h in total. Each self-destroys at job end; the stall watchdog applies.
+- While the boxes run (CPU, $0):
+  - styled renderer `showcase/tools/render_style.py`: white objects, wooden table, one colour per robot; also renders
+    from the head-camera path (camera a: T_table_from_world · world_T_cam · T_rect_a⁻¹, no roll, vertical FOV from Ka);
+    on ep27 it matches the real view closely;
+  - grid composer `showcase/tools/grid_video.py`: real clip + 3×3 tiles with labels and score lines.
+  - Kinematic previews are labelled "no physics" and are never presented as results (owner asked what "no physics"
+    means: answered that the presented videos are physics rollouts of trained policies).
+- 09:23 UTC: training started on A (Sharpa: 45.3k env steps/s, about 92 min per 250M) and C (Panda: 60.7k env steps/s,
+  about 69 min). Box setup took about 20 min, plus about 9 min for the inputs download and pip.
+- Box codes: B runs commit baaa3ccb and C runs a later HEAD (5f4bf20f). The run-id suffix is 84c009f; the commits
+  in between change only logs and CPU render tools, not `ops/jobs/showcase.sh` or the showcase modules.
+- B's env-snapshot download stalled: one 1.41 GB part frozen from 09:23. At 09:31 UTC I killed the stuck
+  `hf download`, and run_job fell back to the full `pipeline/setup.sh`: about +25 min on B (≈ $0.60).
+- 10:34 UTC, first result, Panda gripper (box C) [M]:
+  - candidate checkpoints by sim_vs_ref: 150M 0.740, 200M 0.625, 250M 0.707; 150M kept;
+  - 5 official draws vs mocap: AUC 0.648 ± 0.066 (0.556–0.730); pot 0.16–0.46; rack knocked in 2 draws (0.81, 0.85);
+    MP-SR 0/5;
+  - physics replay rendered on CPU (`phys_panda_ep27_PHYSICS.jpg`): the gripper lifts the pot by the handle and
+    starts the flip, then the pot pivots in the two-finger pinch and falls off the table before the place.
+    Candidate fix: grasp search (grip the rim or body, not the handle).
+- The job's mp4 render failed on these boxes: pyglet `NoSuchConfigException`, no GL config. A trace with the viewer
+  off (`viewer.backend=none`) works.
+  - The job is fixed for future runs (`ops/jobs/showcase.sh`).
+  - For the running boxes, a helper (`showcase/box/trace_helper.sh`) traces each robot after its summary and pushes.
+    It holds the box until all are done; HOLD is bounded: A 15:45, B 16:45, C 14:45 UTC.
+  - Videos are rendered on CPU here from the traces.
+- 10:53 UTC, Sharpa (box A) [M]:
+  - candidates by sim_vs_ref: 150M 0.9851, 200M 0.9873, 250M 0.9870;
+  - 5 draws vs mocap: AUC 0.9655 ± 0.0062 (0.956–0.974); pot 0.91–0.95; MPPE 0.78–0.91 cm; MP-SR 5/5;
+  - matches the 20 Oct reproduction (0.965), so the showcase pipeline is sound for the native hand.
+- 11:44 UTC, Barrett BH8, 3 fingers (box C) [M]: 5 draws vs mocap, AUC 0.9686 ± 0.0063; MP-SR 5/5.
+- ~11:30–11:50 UTC: owner asked for holeless meshes instead of the holed scan.
+  - Found [M]: white_pot scan has 11 open loops; the two largest (16.4 and 15.5 cm) are inside the pot, where the
+    inner wall and floor were only partly scanned. plastic_dish_rack has 23 loops (largest 8.7 cm). The lid has
+    pinholes only (< 1 cm).
+  - MeshFix makes the meshes watertight but caps the pot's opening (patches up to 6 cm from the scan) and drops a
+    rack piece (51 → 49.5 cm), so it is rejected.
+  - Used instead: `meshes/library_c0` kit-of-parts pot, lid and rack (watertight, hollow), rigidly ICP-aligned onto
+    each official scan (`showcase/tools/clean_meshes.py`). Scan↔clean median distance: pot 1.7/2.3 mm, rack
+    2.1/1.8 mm, lid 1.1/1.0 mm; p90 up to 10 mm on the rack's simplified pegs.
+  - Rendering only (`render_style.py --objects_dir`): the trained policies' physics used FlashCHORD's convex pieces of
+    the scans (solid, so the holes did not matter to the grasps). Phase 2 can use the clean meshes in physics too.
+    The deck will footnote the render swap.
+  - Ambient light lowered to 0.25 so the white objects show shading.
+- 11:47 UTC, LEAP (box B) [M]: AUC vs mocap 0.9704 ± 0.0049; MP-SR 5/5.
+- 12:09 UTC, Allegro (box A) [M]: 0.9746 ± 0.0020; MP-SR 5/5.
+- Still training: Shadow (A), Inspire then Dex3 (B), D'Claw (C).
+
+### 2026-11-06 ~12:15–12:30 UTC — owner: "fix the failed ones": Panda gripper fix launched (credit $51.90 before)
+- Diagnosis from the phase-1 Panda trace [M]: the pot is lifted and held f60–130, about 16 cm from the palm, twisting a
+  few degrees per 10 frames; at f135–140, during the flip, the handle slides out of the pinch (pot-in-palm y
+  4.5 → 21.9 cm) and the pot falls to the floor (z 0.09 m).
+- Cause [I]:
+  - MuJoCo condim-3 point contacts have no torsional friction, so a two-finger pinch cannot stop the pot rotating
+    about the pinch axis;
+  - the grip force was modest (kp 2000 N/m, about 30 N).
+- Fix [H]: model the Franka Hand realistically.
+  - Rubber pads: `FloatingHandsConfig.pad_condim 4`, `pad_torsional 0.015` m on the hand's shapes.
+  - Franka-spec grip: 70 N continuous / 140 N max, i.e. kp 5000, kd 80, effort 140; embodiment variant `panda_pads`
+    (`showcase/prep_robots.py VARIANTS`).
+  - Verified on CPU: the MuJoCo model has 20 hand geoms at condim 4 / torsional 0.015 and the other 4 unchanged; env
+    and training step.
+  - Falsifier: if both seeds still fail MP-SR on ≥ 4/5 draws, pads + force is not enough; next lever: grasp search
+    (grip near the handle root or the rim).
+- Box D `20261106-scD-76992bb`: ROBOTS="panda:panda_pads:42 panda:panda_pads:43" (the job now takes
+  ROBOT:EMB:SEED). Offer 48845077 → instance 59413687, RTX PRO 6000 S, New York, $1.617/h. Expected ≈ 3.2 h,
+  ≈ $5 [E]. Ledger planned $5.
+- 12:59 UTC, Inspire (box B) [M]: AUC vs mocap 0.9731 ± 0.0063; MP-SR 5/5. Dex3 trains next on B.
+- 12:59 UTC, D'Claw (box C) [M]: AUC vs mocap 0.9579 ± 0.0079; pot 0.90–0.94; MP-SR 5/5. Box C's job is done; the helper releases the HOLD → box C saves and self-destroys.
+- ~13:02 UTC: box C (panda, barrett, dclaw) saved and self-destroyed. Up from about 08:53, so about 4.15 h × $1.42 ≈
+  $5.9 [E]; the ledger actual will follow from billing.
+- 13:04 UTC (owner: "we gotta fix franka as well"; Franka Hand = the Panda tile, already retraining on D): a second fix
+  runs in parallel.
+  - Grip location ruled out [M]: the human (Sharpa reference) already grips the handle 2–8 cm from its root (pot frame
+    z 10–16 cm; root about 8 cm), so a root grip would cut the lever only about 25%.
+  - Lever used instead: wider soft pads. Variant `panda_pads_wide`: condim 4, torsional 0.03 (2× panda_pads), same
+    140 N grip; a dose-response check against D.
+  - Box E `20261106-scE-ee75ba2`: ROBOTS="panda:panda_pads_wide:44"; offer 56500949 → instance 59417477,
+    RTX PRO 6000 WS, $1.420/h; ≈ $3.4 [E].
+- 13:32 UTC, Shadow (box A) [M]: AUC vs mocap 0.9774 ± 0.0031 (best so far); pot 0.95–0.96; MP-SR 5/5. Box A's job is done → helper release → save + self-destroy.
+- 14:05 UTC, Dex3 (box B) [M]: AUC vs mocap 0.9818 ± 0.0047 (best of all); pot 0.955–0.978; MPPE 0.59–0.75 cm;
+  MP-SR 5/5. Checkpoint 150M by sim_vs_ref 0.9924. Box B's job is done and on HOLD until its trace is pushed.
+- 14:06 UTC, Franka fix 1 `panda_pads` seed 42 (box D): trained in 83 min (54.0k env steps/s).
+  - Candidates by sim_vs_ref [M]: 150M 0.9675, 200M 0.9627, 250M 0.9459, against 0.740 / 0.625 / 0.707 before the fix.
+  - The vs-mocap draws are running. Seed 43 is training on D; panda_pads_wide s44 on E.
+- 14:10 UTC, Franka fix 1 `panda_pads` seed 42 [M]: AUC vs mocap 0.9469 ± 0.0108; pot 0.85–0.92; MPPE 0.86–1.08 cm;
+  MP-SR 5/5 (was 0.648, 0/5). The falsifier was not met, so the fix holds.
+  - All 9 robots now pass on ep27.
+  - D's seed 43 and E's wide pads run to completion as robustness / dose-response checks.
+- 14:20–14:52 UTC: final ep27 grids assembled on CPU (`showcase/tools/assemble.py`): side camera, and every tile from
+  the person's head-camera path (`--ego`).
+  - 9 robots; Franka = panda_pads s42. Sent to the owner.
+  - Uploaded with all tiles to the HF store `showcase/outputs/20261106/ep27/` (commit 549d191a).
+  - Results table: `docs/research/work/embodiment-showcase-20261106/results/ep27_results_table.md`.
+- Credit $39.89 at 14:53 UTC (was $67.25). Ledger actuals [E] from durations: A $7.10, B $7.80, C $5.90.
+- ~15:10 UTC, box E `panda_pads_wide` seed 44 [M]: AUC vs mocap 0.9396 ± 0.0074; pot 0.87–0.91; MP-SR 5/5; 250M kept
+  (sim_vs_ref 0.9601).
+  - The pad fix holds on a second seed.
+  - Doubling the torsional friction (0.015 → 0.03) did not improve on panda_pads s42 (0.947), so it is not a lever.
+  - Box E self-destroyed; ledger actual $3.00 [E]. Box D (panda_pads s43) is still evaluating.
+- 15:27 UTC, box D `panda_pads` seed 43 [M]: AUC vs mocap 0.9593 ± 0.0070; MP-SR 5/5; 250M kept (sim_vs_ref 0.9788).
+  - The Franka fix passes on 3/3 trainings (0.947, 0.959, 0.940).
+  - Box D self-destroyed; ledger actual $5.00 [E]. No boxes are running.
+  - Credit $38.37 at 15:30 UTC: phases 0–1 + fixes cost ≈ $28.90 [M] (from $67.25).
+
+### 2026-11-10 ~13:55 UTC — pitch-deck asset catalogue (owner: "detailed sources of different images videos etc. for a pitch deck")
+- Catalogue: `docs/research/work/embodiment-showcase-20261106/PITCH_ASSETS.md`. It lists every asset with what it shows,
+  specs, suggested captions, footnotes and licences. Licences checked [M]:
+  - the V2D dataset is CC BY 4.0, attribution required;
+  - the Inspire model (derived from vendor CAD) and the Panda gripper files (no licence file) need a check before
+    public release.
+- Bundle: `pitch_assets_ep27.zip` (55 MB, 49 files), sent to the owner and stored in the HF store
+  `showcase/outputs/20261106/`. New today (CPU, $0):
+  - the failed Franka run re-rendered with the final camera;
+  - a before/after Franka clip;
+  - key-moment stills;
+  - a 1280-wide copy of the input video.

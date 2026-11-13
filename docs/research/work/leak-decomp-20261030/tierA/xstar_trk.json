@@ -1,0 +1,3677 @@
+{
+ "kind": "trk",
+ "note": "X*_trk: constant body offset per (episode, object) FITTED TO MOCAP for the given track. ORACLE DIAGNOSTIC ONLY: never a default, never for eval inference. X = scan_T_lib.",
+ "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+ "geom": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+ "geom_md5": "919ea341f045d566404cf3951b0056cc",
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "episodes": {
+  "0": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep0/poses_world_vo.npz",
+   "track_md5": "3d60b91413b488ab417d6da8454ecb2f",
+   "frames": 373,
+   "fit": {
+    "frames_used": 187,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "white_pot": {
+      "median": 0.808,
+      "mean": 0.854,
+      "p90": 1.265
+     },
+     "white_pot_lid": {
+      "median": 0.942,
+      "mean": 0.789,
+      "p90": 1.294
+     }
+    },
+    "point_err_cm_trk": {
+     "white_pot": {
+      "median": 0.272,
+      "mean": 0.421,
+      "p90": 0.865
+     },
+     "white_pot_lid": {
+      "median": 0.206,
+      "mean": 0.287,
+      "p90": 0.413
+     }
+    },
+    "track_rot_span_deg": {
+     "white_pot": 15.2,
+     "white_pot_lid": 16.0
+    },
+    "G_mocap_T_perc": [
+     [
+      0.02254,
+      0.646922,
+      -0.762223,
+      0.290009
+     ],
+     [
+      0.996202,
+      -0.078669,
+      -0.037309,
+      -0.032174
+     ],
+     [
+      -0.0841,
+      -0.758487,
+      -0.646239,
+      1.121563
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {
+     "white_pot_lid": 0
+    },
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9938,
+      "soft_auc_end": 0.9946,
+      "nfev": 1289
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9496,
+      "soft_auc_end": 0.9946,
+      "nfev": 1964
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9612,
+     "ls": 0.9951,
+     "opt_from_ls": 0.9956,
+     "opt_from_geom": 0.9959
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 3.152,
+     "opt_from_ls": 3.203,
+     "opt_from_geom": 3.296
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_geom"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9641,
+     "per_obj_AUC": {
+      "white_pot": 0.9918,
+      "white_pot_lid": 0.9363
+     }
+    },
+    "star": {
+     "AUC": 0.9612,
+     "per_obj_AUC": {
+      "white_pot": 0.9926,
+      "white_pot_lid": 0.9298
+     }
+    },
+    "trk": {
+     "AUC": 0.9959,
+     "per_obj_AUC": {
+      "white_pot": 0.9955,
+      "white_pot_lid": 0.9963
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9951,
+     "per_obj_AUC": {
+      "white_pot": 0.9945,
+      "white_pot_lid": 0.9958
+     }
+    }
+   },
+   "objects": {
+    "white_pot": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.99998363,
+       -0.00571159,
+       -0.000343429,
+       -0.007031497
+      ],
+      [
+       0.005696881,
+       0.99942256,
+       -0.033497658,
+       0.002296028
+      ],
+      [
+       0.000534556,
+       0.033495154,
+       0.999438737,
+       -0.02018198
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 2.122,
+      "anchor_shift_cm": 2.528,
+      "sym_add_cm": 2.539
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.64,
+      "anchor_shift_cm": 3.053,
+      "sym_add_cm": 3.063
+     }
+    },
+    "white_pot_lid": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.997869012,
+       -0.050635094,
+       0.041152416,
+       -0.01642077
+      ],
+      [
+       0.051120994,
+       0.998633622,
+       -0.010841341,
+       0.01444772
+      ],
+      [
+       -0.040547234,
+       0.012921991,
+       0.999094061,
+       0.016720918
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 3.419,
+      "anchor_shift_cm": 3.282,
+      "sym_add_cm": 3.296,
+      "axis_tilt_deg": 3.345
+     },
+     "ls_vs_geom": {
+      "rot_deg": 3.395,
+      "anchor_shift_cm": 3.137,
+      "sym_add_cm": 3.152,
+      "axis_tilt_deg": 3.333
+     }
+    }
+   }
+  },
+  "2": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep2/poses_world_vo.npz",
+   "track_md5": "92d1bc124256826ac8254f37757ed98f",
+   "frames": 343,
+   "fit": {
+    "frames_used": 172,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "white_pot": {
+      "median": 0.585,
+      "mean": 0.677,
+      "p90": 0.993
+     },
+     "white_pot_lid": {
+      "median": 0.49,
+      "mean": 0.651,
+      "p90": 1.121
+     }
+    },
+    "point_err_cm_trk": {
+     "white_pot": {
+      "median": 0.37,
+      "mean": 0.453,
+      "p90": 0.789
+     },
+     "white_pot_lid": {
+      "median": 0.175,
+      "mean": 0.266,
+      "p90": 0.5
+     }
+    },
+    "track_rot_span_deg": {
+     "white_pot": 12.4,
+     "white_pot_lid": 30.0
+    },
+    "G_mocap_T_perc": [
+     [
+      0.008107,
+      0.648625,
+      -0.761065,
+      0.321613
+     ],
+     [
+      0.99797,
+      -0.053322,
+      -0.034813,
+      -0.047955
+     ],
+     [
+      -0.063162,
+      -0.759238,
+      -0.64774,
+      1.133561
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {
+     "white_pot_lid": 0
+    },
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9907,
+      "soft_auc_end": 0.9936,
+      "nfev": 2664
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9744,
+      "soft_auc_end": 0.9936,
+      "nfev": 3000
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9792,
+     "ls": 0.9941,
+     "opt_from_ls": 0.9955,
+     "opt_from_geom": 0.9954
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 1.989,
+     "opt_from_ls": 2.577,
+     "opt_from_geom": 1.801
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9823,
+     "per_obj_AUC": {
+      "white_pot": 0.9923,
+      "white_pot_lid": 0.9723
+     }
+    },
+    "star": {
+     "AUC": 0.9792,
+     "per_obj_AUC": {
+      "white_pot": 0.9929,
+      "white_pot_lid": 0.9656
+     }
+    },
+    "trk": {
+     "AUC": 0.9955,
+     "per_obj_AUC": {
+      "white_pot": 0.9938,
+      "white_pot_lid": 0.9973
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9941,
+     "per_obj_AUC": {
+      "white_pot": 0.9933,
+      "white_pot_lid": 0.9949
+     }
+    }
+   },
+   "objects": {
+    "white_pot": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999470692,
+       0.02371469,
+       -0.022269937,
+       0.007961003
+      ],
+      [
+       -0.024504202,
+       0.999055821,
+       -0.035874939,
+       0.01752778
+      ],
+      [
+       0.021398148,
+       0.036401658,
+       0.999108122,
+       -0.000152324
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 2.452,
+      "anchor_shift_cm": 1.715,
+      "sym_add_cm": 1.746
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.081,
+      "anchor_shift_cm": 1.691,
+      "sym_add_cm": 1.714
+     }
+    },
+    "white_pot_lid": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.997411763,
+       -0.033215588,
+       0.063769105,
+       0.007096425
+      ],
+      [
+       0.035201357,
+       0.998921626,
+       -0.030272947,
+       -0.016369278
+      ],
+      [
+       -0.062694804,
+       0.032439353,
+       0.997505413,
+       0.008305992
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 4.162,
+      "anchor_shift_cm": 2.556,
+      "sym_add_cm": 2.577,
+      "axis_tilt_deg": 3.748
+     },
+     "ls_vs_geom": {
+      "rot_deg": 3.343,
+      "anchor_shift_cm": 1.973,
+      "sym_add_cm": 1.989,
+      "axis_tilt_deg": 3.335
+     }
+    }
+   }
+  },
+  "11": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep11/poses_world_vo.npz",
+   "track_md5": "6b5d9f4394d04ec64e42fae606f1c0fc",
+   "frames": 137,
+   "fit": {
+    "frames_used": 137,
+    "stride": 1,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "blue_cup": {
+      "median": 1.648,
+      "mean": 1.559,
+      "p90": 2.219
+     },
+     "beige_cup": {
+      "median": 0.656,
+      "mean": 0.696,
+      "p90": 0.866
+     }
+    },
+    "point_err_cm_trk": {
+     "blue_cup": {
+      "median": 1.584,
+      "mean": 1.485,
+      "p90": 2.205
+     },
+     "beige_cup": {
+      "median": 0.411,
+      "mean": 0.443,
+      "p90": 0.637
+     }
+    },
+    "track_rot_span_deg": {
+     "blue_cup": 32.8,
+     "beige_cup": 22.4
+    },
+    "G_mocap_T_perc": [
+     [
+      0.052553,
+      0.635947,
+      -0.769941,
+      0.267895
+     ],
+     [
+      0.996942,
+      -0.078061,
+      0.003571,
+      -0.016495
+     ],
+     [
+      -0.057832,
+      -0.767774,
+      -0.638105,
+      1.116705
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.8855,
+      "soft_auc_end": 0.929,
+      "nfev": 2210
+     },
+     "from_geom": {
+      "soft_auc_start": 0.8755,
+      "soft_auc_end": 0.929,
+      "nfev": 2243
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.8739,
+     "ls": 0.8891,
+     "opt_from_ls": 0.93,
+     "opt_from_geom": 0.9302
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 0.963,
+     "opt_from_ls": 2.026,
+     "opt_from_geom": 1.694
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_geom"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.8978,
+     "per_obj_AUC": {
+      "blue_cup": 0.8622,
+      "beige_cup": 0.9334
+     }
+    },
+    "star": {
+     "AUC": 0.8739,
+     "per_obj_AUC": {
+      "blue_cup": 0.8618,
+      "beige_cup": 0.8859
+     }
+    },
+    "trk": {
+     "AUC": 0.9302,
+     "per_obj_AUC": {
+      "blue_cup": 0.8636,
+      "beige_cup": 0.9968
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.8891,
+     "per_obj_AUC": {
+      "blue_cup": 0.8627,
+      "beige_cup": 0.9156
+     }
+    }
+   },
+   "objects": {
+    "blue_cup": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.985744008,
+       -0.168206118,
+       0.003930933,
+       -0.002358432
+      ],
+      [
+       0.167931508,
+       0.98503897,
+       0.038694138,
+       -0.003188807
+      ],
+      [
+       -0.010380713,
+       -0.037482388,
+       0.99924337,
+       0.01503599
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 9.989,
+      "anchor_shift_cm": 1.685,
+      "sym_add_cm": 1.694,
+      "axis_tilt_deg": 1.495
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.739,
+      "anchor_shift_cm": 0.571,
+      "sym_add_cm": 0.607,
+      "axis_tilt_deg": 2.739
+     }
+    },
+    "beige_cup": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.218426828,
+       0.975852632,
+       0.001166629,
+       0.001420107
+      ],
+      [
+       -0.972007298,
+       0.217459774,
+       0.088955367,
+       -0.000316799
+      ],
+      [
+       0.086553634,
+       -0.020564211,
+       0.99603493,
+       0.017741758
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 14.219,
+      "anchor_shift_cm": 0.564,
+      "sym_add_cm": 0.847,
+      "axis_tilt_deg": 6.471
+     },
+     "ls_vs_geom": {
+      "rot_deg": 6.567,
+      "anchor_shift_cm": 0.77,
+      "sym_add_cm": 0.963,
+      "axis_tilt_deg": 6.567
+     }
+    }
+   }
+  },
+  "12": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep12/poses_world_vo.npz",
+   "track_md5": "6e0204e7557c50a082570378a1874b32",
+   "frames": 181,
+   "fit": {
+    "frames_used": 181,
+    "stride": 1,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "blue_cup": {
+      "median": 0.882,
+      "mean": 0.922,
+      "p90": 1.318
+     },
+     "plastic_dish_rack": {
+      "median": 0.465,
+      "mean": 0.52,
+      "p90": 0.755
+     }
+    },
+    "point_err_cm_trk": {
+     "blue_cup": {
+      "median": 0.336,
+      "mean": 0.409,
+      "p90": 0.715
+     },
+     "plastic_dish_rack": {
+      "median": 0.258,
+      "mean": 0.282,
+      "p90": 0.477
+     }
+    },
+    "track_rot_span_deg": {
+     "blue_cup": 180.0,
+     "plastic_dish_rack": 3.3
+    },
+    "G_mocap_T_perc": [
+     [
+      0.065106,
+      0.599817,
+      -0.797484,
+      0.287475
+     ],
+     [
+      0.994196,
+      -0.107584,
+      0.000248,
+      -0.098684
+     ],
+     [
+      -0.085648,
+      -0.792871,
+      -0.60334,
+      1.135927
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9942,
+      "soft_auc_end": 0.9979,
+      "nfev": 1826
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9752,
+      "soft_auc_end": 0.9979,
+      "nfev": 3000
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9738,
+     "ls": 0.9974,
+     "opt_from_ls": 0.999,
+     "opt_from_geom": 0.9991
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 1.242,
+     "opt_from_ls": 1.438,
+     "opt_from_geom": 1.479
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_geom"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9662,
+     "per_obj_AUC": {
+      "blue_cup": 0.9327,
+      "plastic_dish_rack": 0.9997
+     }
+    },
+    "star": {
+     "AUC": 0.9738,
+     "per_obj_AUC": {
+      "blue_cup": 0.991,
+      "plastic_dish_rack": 0.9565
+     }
+    },
+    "trk": {
+     "AUC": 0.9991,
+     "per_obj_AUC": {
+      "blue_cup": 0.9983,
+      "plastic_dish_rack": 1.0
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9974,
+     "per_obj_AUC": {
+      "blue_cup": 0.9952,
+      "plastic_dish_rack": 0.9997
+     }
+    }
+   },
+   "objects": {
+    "blue_cup": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.905022457,
+       -0.425358082,
+       -0.002202917,
+       0.003641701
+      ],
+      [
+       0.425276633,
+       0.904720061,
+       0.024927838,
+       0.003723448
+      ],
+      [
+       -0.008610234,
+       -0.023497103,
+       0.999686826,
+       -0.000581311
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 25.35,
+      "anchor_shift_cm": 0.536,
+      "sym_add_cm": 0.536,
+      "axis_tilt_deg": 0.36
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.206,
+      "anchor_shift_cm": 0.275,
+      "sym_add_cm": 0.305,
+      "axis_tilt_deg": 1.206
+     }
+    },
+    "plastic_dish_rack": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.999548701,
+       -0.021008511,
+       -0.021471761,
+       -0.005051083
+      ],
+      [
+       0.021166603,
+       0.999750308,
+       0.007162156,
+       0.008411352
+      ],
+      [
+       0.021315933,
+       -0.007613408,
+       0.999743801,
+       0.002090727
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.601,
+      "anchor_shift_cm": 1.441,
+      "sym_add_cm": 1.479
+     },
+     "ls_vs_geom": {
+      "rot_deg": 3.08,
+      "anchor_shift_cm": 1.136,
+      "sym_add_cm": 1.242
+     }
+    }
+   }
+  },
+  "13": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep13/poses_world_vo.npz",
+   "track_md5": "547b40de990ef0c40c12c673e7db6954",
+   "frames": 190,
+   "fit": {
+    "frames_used": 190,
+    "stride": 1,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "blue_cup": {
+      "median": 1.49,
+      "mean": 1.972,
+      "p90": 3.721
+     },
+     "plastic_dish_rack": {
+      "median": 0.5,
+      "mean": 0.514,
+      "p90": 0.662
+     }
+    },
+    "point_err_cm_trk": {
+     "blue_cup": {
+      "median": 0.815,
+      "mean": 1.122,
+      "p90": 2.417
+     },
+     "plastic_dish_rack": {
+      "median": 0.204,
+      "mean": 0.224,
+      "p90": 0.366
+     }
+    },
+    "track_rot_span_deg": {
+     "blue_cup": 177.3,
+     "plastic_dish_rack": 1.8
+    },
+    "G_mocap_T_perc": [
+     [
+      0.047645,
+      0.630145,
+      -0.775014,
+      0.326286
+     ],
+     [
+      0.993136,
+      -0.112864,
+      -0.030713,
+      -0.041527
+     ],
+     [
+      -0.106825,
+      -0.768231,
+      -0.631197,
+      1.14119
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.97,
+      "soft_auc_end": 0.9745,
+      "nfev": 1775
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9003,
+      "soft_auc_end": 0.9745,
+      "nfev": 2638
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9036,
+     "ls": 0.9722,
+     "opt_from_ls": 0.9748,
+     "opt_from_geom": 0.9748
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 1.423,
+     "opt_from_ls": 1.347,
+     "opt_from_geom": 1.34
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9605,
+     "per_obj_AUC": {
+      "blue_cup": 0.9329,
+      "plastic_dish_rack": 0.9882
+     }
+    },
+    "star": {
+     "AUC": 0.9036,
+     "per_obj_AUC": {
+      "blue_cup": 0.8697,
+      "plastic_dish_rack": 0.9375
+     }
+    },
+    "trk": {
+     "AUC": 0.9748,
+     "per_obj_AUC": {
+      "blue_cup": 0.9497,
+      "plastic_dish_rack": 1.0
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9722,
+     "per_obj_AUC": {
+      "blue_cup": 0.9444,
+      "plastic_dish_rack": 1.0
+     }
+    }
+   },
+   "objects": {
+    "blue_cup": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.998425157,
+       -0.045595987,
+       0.03268351,
+       -0.004091219
+      ],
+      [
+       0.043071365,
+       0.996314429,
+       0.074178273,
+       -0.001009322
+      ],
+      [
+       -0.035945284,
+       -0.072653731,
+       0.996709272,
+       -0.010514895
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 4.999,
+      "anchor_shift_cm": 1.018,
+      "sym_add_cm": 1.097,
+      "axis_tilt_deg": 4.144
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.843,
+      "anchor_shift_cm": 0.678,
+      "sym_add_cm": 0.73,
+      "axis_tilt_deg": 2.843
+     }
+    },
+    "plastic_dish_rack": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.998768736,
+       -0.040152024,
+       -0.029134652,
+       0.002912314
+      ],
+      [
+       0.039698862,
+       0.999084069,
+       -0.015969495,
+       0.007062505
+      ],
+      [
+       0.029749174,
+       0.01479322,
+       0.999447921,
+       -0.002723706
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 2.738,
+      "anchor_shift_cm": 1.296,
+      "sym_add_cm": 1.347
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.718,
+      "anchor_shift_cm": 1.369,
+      "sym_add_cm": 1.423
+     }
+    }
+   }
+  },
+  "18": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep18/poses_world_vo.npz",
+   "track_md5": "7d7795c521abdf5d36fa07b784eec762",
+   "frames": 353,
+   "fit": {
+    "frames_used": 177,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "mini_sweeper": {
+      "median": 0.358,
+      "mean": 0.473,
+      "p90": 0.882
+     },
+     "mini_dust_pan": {
+      "median": 0.291,
+      "mean": 0.36,
+      "p90": 0.654
+     }
+    },
+    "point_err_cm_trk": {
+     "mini_sweeper": {
+      "median": 0.337,
+      "mean": 0.417,
+      "p90": 0.742
+     },
+     "mini_dust_pan": {
+      "median": 0.242,
+      "mean": 0.322,
+      "p90": 0.638
+     }
+    },
+    "track_rot_span_deg": {
+     "mini_sweeper": 50.2,
+     "mini_dust_pan": 63.4
+    },
+    "G_mocap_T_perc": [
+     [
+      0.062994,
+      0.668327,
+      -0.741195,
+      0.292581
+     ],
+     [
+      0.996042,
+      -0.088765,
+      0.004616,
+      -0.069641
+     ],
+     [
+      -0.062707,
+      -0.738552,
+      -0.671274,
+      1.143641
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9903,
+      "soft_auc_end": 0.9958,
+      "nfev": 2043
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9614,
+      "soft_auc_end": 0.9958,
+      "nfev": 2050
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.968,
+     "ls": 0.9944,
+     "opt_from_ls": 0.9971,
+     "opt_from_geom": 0.9971
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 0.814,
+     "opt_from_ls": 0.871,
+     "opt_from_geom": 0.878
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9642,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9952,
+      "mini_dust_pan": 0.9333
+     }
+    },
+    "star": {
+     "AUC": 0.968,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9956,
+      "mini_dust_pan": 0.9403
+     }
+    },
+    "trk": {
+     "AUC": 0.9971,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9965,
+      "mini_dust_pan": 0.9977
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9944,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9961,
+      "mini_dust_pan": 0.9927
+     }
+    }
+   },
+   "objects": {
+    "mini_sweeper": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999909704,
+       0.012302854,
+       -0.005405804,
+       -0.002620443
+      ],
+      [
+       -0.012683359,
+       0.996939444,
+       -0.077141931,
+       -0.001743274
+      ],
+      [
+       0.004440194,
+       0.077203529,
+       0.997005466,
+       -0.005783432
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 4.095,
+      "anchor_shift_cm": 0.814,
+      "sym_add_cm": 0.871
+     },
+     "ls_vs_geom": {
+      "rot_deg": 3.083,
+      "anchor_shift_cm": 0.782,
+      "sym_add_cm": 0.814
+     }
+    },
+    "mini_dust_pan": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.999326971,
+       -0.024926529,
+       0.026912341,
+       0.002377009
+      ],
+      [
+       0.024840016,
+       0.999685157,
+       0.003544222,
+       0.002158082
+      ],
+      [
+       -0.026992214,
+       -0.002873334,
+       0.999631515,
+       -0.00071494
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.566,
+      "anchor_shift_cm": 0.423,
+      "sym_add_cm": 0.435
+     },
+     "ls_vs_geom": {
+      "rot_deg": 0.753,
+      "anchor_shift_cm": 0.635,
+      "sym_add_cm": 0.636
+     }
+    }
+   }
+  },
+  "21": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep21/poses_world_vo.npz",
+   "track_md5": "e30745f58108078734bd9bf90d647ea6",
+   "frames": 186,
+   "fit": {
+    "frames_used": 186,
+    "stride": 1,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "blue_cup": {
+      "median": 0.499,
+      "mean": 0.531,
+      "p90": 0.723
+     },
+     "water_pitcher": {
+      "median": 0.874,
+      "mean": 1.029,
+      "p90": 1.645
+     }
+    },
+    "point_err_cm_trk": {
+     "blue_cup": {
+      "median": 0.29,
+      "mean": 0.324,
+      "p90": 0.492
+     },
+     "water_pitcher": {
+      "median": 0.397,
+      "mean": 0.542,
+      "p90": 1.052
+     }
+    },
+    "track_rot_span_deg": {
+     "blue_cup": 37.9,
+     "water_pitcher": 90.6
+    },
+    "G_mocap_T_perc": [
+     [
+      0.098493,
+      0.698461,
+      -0.708838,
+      0.30377
+     ],
+     [
+      0.992417,
+      -0.121579,
+      0.018098,
+      -0.072048
+     ],
+     [
+      -0.073539,
+      -0.705245,
+      -0.705139,
+      1.137058
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9663,
+      "soft_auc_end": 0.993,
+      "nfev": 2321
+     },
+     "from_geom": {
+      "soft_auc_start": 0.8249,
+      "soft_auc_end": 0.993,
+      "nfev": 2688
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.8313,
+     "ls": 0.9677,
+     "opt_from_ls": 0.9945,
+     "opt_from_geom": 0.9943
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 2.013,
+     "opt_from_ls": 1.872,
+     "opt_from_geom": 1.861
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.8325,
+     "per_obj_AUC": {
+      "blue_cup": 0.9815,
+      "water_pitcher": 0.6835
+     }
+    },
+    "star": {
+     "AUC": 0.8313,
+     "per_obj_AUC": {
+      "blue_cup": 0.9926,
+      "water_pitcher": 0.67
+     }
+    },
+    "trk": {
+     "AUC": 0.9945,
+     "per_obj_AUC": {
+      "blue_cup": 1.0,
+      "water_pitcher": 0.9889
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9677,
+     "per_obj_AUC": {
+      "blue_cup": 1.0,
+      "water_pitcher": 0.9355
+     }
+    }
+   },
+   "objects": {
+    "blue_cup": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.975260657,
+       -0.220569851,
+       0.01468303,
+       0.002328914
+      ],
+      [
+       0.220899592,
+       0.974923803,
+       -0.026961971,
+       0.002403684
+      ],
+      [
+       -0.008367837,
+       0.029538425,
+       0.999528619,
+       -0.004014044
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 13.109,
+      "anchor_shift_cm": 0.445,
+      "sym_add_cm": 0.517,
+      "axis_tilt_deg": 2.568
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.151,
+      "anchor_shift_cm": 0.892,
+      "sym_add_cm": 0.922,
+      "axis_tilt_deg": 2.151
+     }
+    },
+    "water_pitcher": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.99743323,
+       -0.044963974,
+       -0.055724246,
+       0.000317833
+      ],
+      [
+       0.043755901,
+       0.998784014,
+       -0.022713785,
+       -0.004602897
+      ],
+      [
+       0.056677787,
+       0.020217219,
+       0.998187805,
+       -0.003535132
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 4.766,
+      "anchor_shift_cm": 1.754,
+      "sym_add_cm": 1.872
+     },
+     "ls_vs_geom": {
+      "rot_deg": 3.077,
+      "anchor_shift_cm": 1.973,
+      "sym_add_cm": 2.013
+     }
+    }
+   }
+  },
+  "22": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep22/poses_world_vo.npz",
+   "track_md5": "a0ca2f7905cb0c0f08324d03cb3d0af2",
+   "frames": 189,
+   "fit": {
+    "frames_used": 189,
+    "stride": 1,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "blue_cup": {
+      "median": 0.634,
+      "mean": 0.61,
+      "p90": 0.787
+     },
+     "water_pitcher": {
+      "median": 0.888,
+      "mean": 1.074,
+      "p90": 1.765
+     }
+    },
+    "point_err_cm_trk": {
+     "blue_cup": {
+      "median": 0.293,
+      "mean": 0.302,
+      "p90": 0.48
+     },
+     "water_pitcher": {
+      "median": 0.342,
+      "mean": 0.491,
+      "p90": 1.019
+     }
+    },
+    "track_rot_span_deg": {
+     "blue_cup": 29.4,
+     "water_pitcher": 92.1
+    },
+    "G_mocap_T_perc": [
+     [
+      0.017815,
+      0.628935,
+      -0.777253,
+      0.307546
+     ],
+     [
+      0.997335,
+      -0.066186,
+      -0.030696,
+      -0.082121
+     ],
+     [
+      -0.070749,
+      -0.774635,
+      -0.628438,
+      1.143601
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9916,
+      "soft_auc_end": 0.9942,
+      "nfev": 2880
+     },
+     "from_geom": {
+      "soft_auc_start": 0.8646,
+      "soft_auc_end": 0.9942,
+      "nfev": 3000
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.871,
+     "ls": 0.994,
+     "opt_from_ls": 0.995,
+     "opt_from_geom": 0.995
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 2.033,
+     "opt_from_ls": 2.208,
+     "opt_from_geom": 2.205
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.871,
+     "per_obj_AUC": {
+      "blue_cup": 0.9924,
+      "water_pitcher": 0.7497
+     }
+    },
+    "star": {
+     "AUC": 0.871,
+     "per_obj_AUC": {
+      "blue_cup": 0.9997,
+      "water_pitcher": 0.7424
+     }
+    },
+    "trk": {
+     "AUC": 0.995,
+     "per_obj_AUC": {
+      "blue_cup": 1.0,
+      "water_pitcher": 0.9901
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.994,
+     "per_obj_AUC": {
+      "blue_cup": 0.9993,
+      "water_pitcher": 0.9888
+     }
+    }
+   },
+   "objects": {
+    "blue_cup": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.990994458,
+       0.133807922,
+       -0.005042093,
+       0.003313175
+      ],
+      [
+       -0.133901645,
+       0.990120379,
+       -0.041617108,
+       0.008581977
+      ],
+      [
+       -0.000576419,
+       0.041917468,
+       0.99912091,
+       -0.001448375
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 8.081,
+      "anchor_shift_cm": 1.0,
+      "sym_add_cm": 1.011,
+      "axis_tilt_deg": 2.721
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.574,
+      "anchor_shift_cm": 0.68,
+      "sym_add_cm": 0.731,
+      "axis_tilt_deg": 2.574
+     }
+    },
+    "water_pitcher": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.997796366,
+       -0.031346376,
+       -0.058479189,
+       -0.00560052
+      ],
+      [
+       0.03040731,
+       0.999395053,
+       -0.016879676,
+       -0.003579596
+      ],
+      [
+       0.058972928,
+       0.015064285,
+       0.998145912,
+       -0.002508223
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 4.364,
+      "anchor_shift_cm": 2.121,
+      "sym_add_cm": 2.208
+     },
+     "ls_vs_geom": {
+      "rot_deg": 3.985,
+      "anchor_shift_cm": 1.959,
+      "sym_add_cm": 2.033
+     }
+    }
+   }
+  },
+  "23": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep23/poses_world_vo.npz",
+   "track_md5": "0e35400c888e74c6ed2da1004bdbd9fe",
+   "frames": 325,
+   "fit": {
+    "frames_used": 163,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "wooden_piece_1": {
+      "median": 15.258,
+      "mean": 16.053,
+      "p90": 18.493
+     },
+     "wooden_piece_2": {
+      "median": 9.889,
+      "mean": 10.908,
+      "p90": 15.542
+     }
+    },
+    "point_err_cm_trk": {
+     "wooden_piece_1": {
+      "median": 8.425,
+      "mean": 8.987,
+      "p90": 19.465
+     },
+     "wooden_piece_2": {
+      "median": 11.183,
+      "mean": 9.426,
+      "p90": 14.101
+     }
+    },
+    "track_rot_span_deg": {
+     "wooden_piece_1": 114.3,
+     "wooden_piece_2": 102.3
+    },
+    "G_mocap_T_perc": [
+     [
+      -0.050822,
+      -0.829544,
+      0.556124,
+      -0.256967
+     ],
+     [
+      -0.990629,
+      -0.028814,
+      -0.133509,
+      0.225331
+     ],
+     [
+      0.126775,
+      -0.557698,
+      -0.820305,
+      1.164738
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.0424,
+      "soft_auc_end": 0.0484,
+      "nfev": 716
+     },
+     "from_geom": {
+      "soft_auc_start": 0.0418,
+      "soft_auc_end": 0.0529,
+      "nfev": 3000
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.0418,
+     "ls": 0.0428,
+     "opt_from_ls": 0.0479,
+     "opt_from_geom": 0.0528
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 14.568,
+     "opt_from_ls": 26.082,
+     "opt_from_geom": 260.051
+    },
+    "rejected_over_cap": [
+     "ls",
+     "opt_from_ls",
+     "opt_from_geom"
+    ],
+    "picked": "geom"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.0414,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0829,
+      "wooden_piece_2": 0.0
+     }
+    },
+    "star": {
+     "AUC": 0.0418,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0837,
+      "wooden_piece_2": 0.0
+     }
+    },
+    "trk": {
+     "AUC": 0.0418,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0837,
+      "wooden_piece_2": 0.0
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.0428,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0856,
+      "wooden_piece_2": 0.0
+     }
+    }
+   },
+   "objects": {
+    "wooden_piece_1": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999986567,
+       -0.001897946,
+       0.004823138,
+       -0.000593311
+      ],
+      [
+       0.001912907,
+       0.999993368,
+       -0.00309913,
+       0.000418522
+      ],
+      [
+       -0.004817224,
+       0.003108314,
+       0.999983566,
+       0.000278841
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 0.0,
+      "anchor_shift_cm": 0.0,
+      "sym_add_cm": 0.0
+     },
+     "ls_vs_geom": {
+      "rot_deg": 168.109,
+      "anchor_shift_cm": 8.286,
+      "sym_add_cm": 14.568
+     }
+    },
+    "wooden_piece_2": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.999967396,
+       -0.007476087,
+       -0.003052176,
+       -0.001640375
+      ],
+      [
+       0.007511405,
+       0.999903001,
+       0.011728952,
+       -0.001351554
+      ],
+      [
+       0.002964193,
+       -0.011751495,
+       0.999926555,
+       -0.002380973
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 0.0,
+      "anchor_shift_cm": 0.0,
+      "sym_add_cm": 0.0
+     },
+     "ls_vs_geom": {
+      "rot_deg": 72.792,
+      "anchor_shift_cm": 7.053,
+      "sym_add_cm": 9.819
+     }
+    }
+   }
+  },
+  "24": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep24/poses_world_vo.npz",
+   "track_md5": "f8f2222cfff8ef68ca26145af8f13a83",
+   "frames": 275,
+   "fit": {
+    "frames_used": 138,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "wooden_piece_1": {
+      "median": 0.869,
+      "mean": 1.118,
+      "p90": 2.515
+     },
+     "wooden_piece_2": {
+      "median": 0.411,
+      "mean": 0.68,
+      "p90": 2.018
+     }
+    },
+    "point_err_cm_trk": {
+     "wooden_piece_1": {
+      "median": 0.48,
+      "mean": 0.675,
+      "p90": 1.406
+     },
+     "wooden_piece_2": {
+      "median": 0.616,
+      "mean": 0.761,
+      "p90": 1.754
+     }
+    },
+    "track_rot_span_deg": {
+     "wooden_piece_1": 106.8,
+     "wooden_piece_2": 101.6
+    },
+    "G_mocap_T_perc": [
+     [
+      -0.009766,
+      0.690659,
+      -0.723115,
+      0.307329
+     ],
+     [
+      0.995292,
+      -0.063024,
+      -0.073638,
+      -0.098035
+     ],
+     [
+      -0.096432,
+      -0.720429,
+      -0.686792,
+      1.118736
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9582,
+      "soft_auc_end": 0.9775,
+      "nfev": 1573
+     },
+     "from_geom": {
+      "soft_auc_start": 0.8197,
+      "soft_auc_end": 0.9775,
+      "nfev": 1718
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.8105,
+     "ls": 0.9659,
+     "opt_from_ls": 0.9859,
+     "opt_from_geom": 0.9859
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 1.561,
+     "opt_from_ls": 1.813,
+     "opt_from_geom": 1.813
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.8117,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.7764,
+      "wooden_piece_2": 0.847
+     }
+    },
+    "star": {
+     "AUC": 0.8105,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.7736,
+      "wooden_piece_2": 0.8473
+     }
+    },
+    "trk": {
+     "AUC": 0.9859,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.9857,
+      "wooden_piece_2": 0.9861
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9659,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.9718,
+      "wooden_piece_2": 0.96
+     }
+    }
+   },
+   "objects": {
+    "wooden_piece_1": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999977068,
+       -0.00592501,
+       -0.003279685,
+       -0.016955133
+      ],
+      [
+       0.005915801,
+       0.999978552,
+       -0.002810597,
+       0.008229302
+      ],
+      [
+       0.003296267,
+       0.00279113,
+       0.999990672,
+       -0.000524347
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 0.519,
+      "anchor_shift_cm": 1.815,
+      "sym_add_cm": 1.813
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.065,
+      "anchor_shift_cm": 1.558,
+      "sym_add_cm": 1.561
+     }
+    },
+    "wooden_piece_2": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.999453754,
+       -0.032963174,
+       0.002371576,
+       -0.000354259
+      ],
+      [
+       0.032906177,
+       0.999237501,
+       0.021014286,
+       -0.008699371
+      ],
+      [
+       -0.003062465,
+       -0.020924767,
+       0.999776362,
+       -0.013265681
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.585,
+      "anchor_shift_cm": 1.318,
+      "sym_add_cm": 1.321
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.82,
+      "anchor_shift_cm": 1.04,
+      "sym_add_cm": 1.048
+     }
+    }
+   }
+  },
+  "26": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep26/poses_world_vo.npz",
+   "track_md5": "925171163f8f40271e8203a3335a7336",
+   "frames": 158,
+   "fit": {
+    "frames_used": 158,
+    "stride": 1,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "plastic_dish_rack": {
+      "median": 0.62,
+      "mean": 0.645,
+      "p90": 0.876
+     },
+     "white_pot": {
+      "median": 0.977,
+      "mean": 1.01,
+      "p90": 1.574
+     }
+    },
+    "point_err_cm_trk": {
+     "plastic_dish_rack": {
+      "median": 0.392,
+      "mean": 0.402,
+      "p90": 0.593
+     },
+     "white_pot": {
+      "median": 0.491,
+      "mean": 0.576,
+      "p90": 0.921
+     }
+    },
+    "track_rot_span_deg": {
+     "plastic_dish_rack": 4.3,
+     "white_pot": 180.0
+    },
+    "G_mocap_T_perc": [
+     [
+      0.022726,
+      0.631172,
+      -0.77531,
+      0.368968
+     ],
+     [
+      0.997445,
+      -0.066851,
+      -0.025185,
+      -0.046083
+     ],
+     [
+      -0.067727,
+      -0.772757,
+      -0.631078,
+      1.134875
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9833,
+      "soft_auc_end": 0.9875,
+      "nfev": 3000
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9446,
+      "soft_auc_end": 0.9875,
+      "nfev": 1428
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9565,
+     "ls": 0.9933,
+     "opt_from_ls": 0.9947,
+     "opt_from_geom": 0.9947
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 0.956,
+     "opt_from_ls": 1.227,
+     "opt_from_geom": 1.07
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9652,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9937,
+      "white_pot": 0.9367
+     }
+    },
+    "star": {
+     "AUC": 0.9565,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9945,
+      "white_pot": 0.9185
+     }
+    },
+    "trk": {
+     "AUC": 0.9947,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9941,
+      "white_pot": 0.9953
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9933,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9937,
+      "white_pot": 0.9929
+     }
+    }
+   },
+   "objects": {
+    "plastic_dish_rack": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.996708229,
+       -0.064161943,
+       -0.049557566,
+       0.001238741
+      ],
+      [
+       0.063191538,
+       0.997782392,
+       -0.02090764,
+       0.01017047
+      ],
+      [
+       0.050789141,
+       0.017707198,
+       0.998552411,
+       -0.008269364
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 4.538,
+      "anchor_shift_cm": 1.014,
+      "sym_add_cm": 1.227
+     },
+     "ls_vs_geom": {
+      "rot_deg": 4.868,
+      "anchor_shift_cm": 0.806,
+      "sym_add_cm": 0.956
+     }
+    },
+    "white_pot": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.998663612,
+       0.048154873,
+       -0.018764276,
+       0.000881983
+      ],
+      [
+       -0.048067962,
+       0.998831272,
+       0.005055849,
+       -0.001030814
+      ],
+      [
+       0.01898581,
+       -0.004147132,
+       0.999811152,
+       0.007127611
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 2.345,
+      "anchor_shift_cm": 0.936,
+      "sym_add_cm": 0.959
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.604,
+      "anchor_shift_cm": 0.819,
+      "sym_add_cm": 0.851
+     }
+    }
+   }
+  },
+  "27": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep27/poses_world_vo.npz",
+   "track_md5": "037a3139017a1273773e43c48105487a",
+   "frames": 246,
+   "fit": {
+    "frames_used": 123,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "plastic_dish_rack": {
+      "median": 0.645,
+      "mean": 0.644,
+      "p90": 0.721
+     },
+     "white_pot": {
+      "median": 0.996,
+      "mean": 0.967,
+      "p90": 1.251
+     }
+    },
+    "point_err_cm_trk": {
+     "plastic_dish_rack": {
+      "median": 0.209,
+      "mean": 0.213,
+      "p90": 0.333
+     },
+     "white_pot": {
+      "median": 0.53,
+      "mean": 0.584,
+      "p90": 0.895
+     }
+    },
+    "track_rot_span_deg": {
+     "plastic_dish_rack": 1.8,
+     "white_pot": 177.3
+    },
+    "G_mocap_T_perc": [
+     [
+      0.091527,
+      0.723095,
+      -0.684658,
+      0.371825
+     ],
+     [
+      0.993996,
+      -0.107739,
+      0.019093,
+      -0.074212
+     ],
+     [
+      -0.059958,
+      -0.682295,
+      -0.728614,
+      1.118052
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9938,
+      "soft_auc_end": 0.9946,
+      "nfev": 1050
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9283,
+      "soft_auc_end": 0.9946,
+      "nfev": 1224
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9376,
+     "ls": 0.9964,
+     "opt_from_ls": 0.9971,
+     "opt_from_geom": 0.9971
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 0.901,
+     "opt_from_ls": 1.009,
+     "opt_from_geom": 1.011
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9611,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9223
+     }
+    },
+    "star": {
+     "AUC": 0.9376,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.8753
+     }
+    },
+    "trk": {
+     "AUC": 0.9971,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9942
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9964,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9929
+     }
+    }
+   },
+   "objects": {
+    "plastic_dish_rack": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.997595768,
+       -0.052807924,
+       -0.044877687,
+       -0.001780144
+      ],
+      [
+       0.052797661,
+       0.998604229,
+       -0.001414827,
+       0.005876412
+      ],
+      [
+       0.044889761,
+       -0.000958011,
+       0.998991487,
+       -0.005712898
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 3.737,
+      "anchor_shift_cm": 0.758,
+      "sym_add_cm": 1.009
+     },
+     "ls_vs_geom": {
+      "rot_deg": 3.313,
+      "anchor_shift_cm": 0.711,
+      "sym_add_cm": 0.901
+     }
+    },
+    "white_pot": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.998921877,
+       0.04635197,
+       -0.002564915,
+       -0.000584545
+      ],
+      [
+       -0.046372037,
+       0.998888814,
+       -0.00841261,
+       0.001640196
+      ],
+      [
+       0.002172125,
+       0.008522481,
+       0.999961324,
+       0.004770214
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.843,
+      "anchor_shift_cm": 0.582,
+      "sym_add_cm": 0.605
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.505,
+      "anchor_shift_cm": 0.638,
+      "sym_add_cm": 0.657
+     }
+    }
+   }
+  },
+  "31": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep31/poses_world_vo.npz",
+   "track_md5": "db8a0358e8405010c05387e612f0c8e7",
+   "frames": 290,
+   "fit": {
+    "frames_used": 145,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "mini_sweeper": {
+      "median": 0.945,
+      "mean": 1.022,
+      "p90": 1.498
+     },
+     "plastic_dish_rack": {
+      "median": 0.848,
+      "mean": 0.861,
+      "p90": 1.043
+     }
+    },
+    "point_err_cm_trk": {
+     "mini_sweeper": {
+      "median": 0.457,
+      "mean": 0.516,
+      "p90": 0.835
+     },
+     "plastic_dish_rack": {
+      "median": 0.331,
+      "mean": 0.361,
+      "p90": 0.599
+     }
+    },
+    "track_rot_span_deg": {
+     "mini_sweeper": 34.6,
+     "plastic_dish_rack": 3.6
+    },
+    "G_mocap_T_perc": [
+     [
+      0.11815,
+      0.725378,
+      -0.678136,
+      0.280956
+     ],
+     [
+      0.991237,
+      -0.126788,
+      0.03708,
+      -0.0897
+     ],
+     [
+      -0.059083,
+      -0.676574,
+      -0.734001,
+      1.12183
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9616,
+      "soft_auc_end": 0.9947,
+      "nfev": 1271
+     },
+     "from_geom": {
+      "soft_auc_start": 0.8299,
+      "soft_auc_end": 0.9947,
+      "nfev": 2748
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.8391,
+     "ls": 0.9579,
+     "opt_from_ls": 0.9975,
+     "opt_from_geom": 0.9976
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 1.155,
+     "opt_from_ls": 1.429,
+     "opt_from_geom": 1.412
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_geom"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.7999,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9119,
+      "plastic_dish_rack": 0.6879
+     }
+    },
+    "star": {
+     "AUC": 0.8391,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9248,
+      "plastic_dish_rack": 0.7534
+     }
+    },
+    "trk": {
+     "AUC": 0.9976,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9953,
+      "plastic_dish_rack": 1.0
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9579,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9782,
+      "plastic_dish_rack": 0.9375
+     }
+    }
+   },
+   "objects": {
+    "mini_sweeper": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.991746989,
+       -0.103660236,
+       0.075448424,
+       0.003319295
+      ],
+      [
+       0.101347617,
+       0.994274315,
+       0.033871047,
+       0.005486139
+      ],
+      [
+       -0.07852751,
+       -0.025944991,
+       0.996574276,
+       -0.003297304
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 9.482,
+      "anchor_shift_cm": 0.698,
+      "sym_add_cm": 0.842
+     },
+     "ls_vs_geom": {
+      "rot_deg": 5.496,
+      "anchor_shift_cm": 0.84,
+      "sym_add_cm": 0.87
+     }
+    },
+    "plastic_dish_rack": {
+     "slot": 1,
+     "X_scan_T_lib": [
+      [
+       0.99847492,
+       -0.047377624,
+       -0.028340702,
+       -0.00223102
+      ],
+      [
+       0.046636973,
+       0.998566994,
+       -0.026247907,
+       0.010258269
+      ],
+      [
+       0.029543653,
+       0.024886153,
+       0.999253647,
+       -0.000667455
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 3.235,
+      "anchor_shift_cm": 1.305,
+      "sym_add_cm": 1.412
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.678,
+      "anchor_shift_cm": 1.011,
+      "sym_add_cm": 1.155
+     }
+    }
+   }
+  },
+  "39": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep39/poses_world_vo.npz",
+   "track_md5": "b0578d5285fc71ab4ab68f9ae3635d9a",
+   "frames": 319,
+   "fit": {
+    "frames_used": 160,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "mini_dust_pan": {
+      "median": 0.488,
+      "mean": 0.528,
+      "p90": 0.836
+     }
+    },
+    "point_err_cm_trk": {
+     "mini_dust_pan": {
+      "median": 0.426,
+      "mean": 0.483,
+      "p90": 0.775
+     }
+    },
+    "track_rot_span_deg": {
+     "mini_dust_pan": 109.7
+    },
+    "G_mocap_T_perc": [
+     [
+      0.041701,
+      0.76119,
+      -0.647187,
+      0.296381
+     ],
+     [
+      0.995656,
+      -0.085629,
+      -0.036558,
+      -0.093492
+     ],
+     [
+      -0.083245,
+      -0.642851,
+      -0.761454,
+      1.108161
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9899,
+      "soft_auc_end": 0.9924,
+      "nfev": 657
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9772,
+      "soft_auc_end": 0.9924,
+      "nfev": 800
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9804,
+     "ls": 0.9931,
+     "opt_from_ls": 0.9961,
+     "opt_from_geom": 0.9961
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 0.395,
+     "opt_from_ls": 0.406,
+     "opt_from_geom": 0.414
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9602,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9602
+     }
+    },
+    "star": {
+     "AUC": 0.9804,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9804
+     }
+    },
+    "trk": {
+     "AUC": 0.9961,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9961
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9931,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9931
+     }
+    }
+   },
+   "objects": {
+    "mini_dust_pan": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999597402,
+       -0.022398449,
+       0.017416749,
+       0.002389566
+      ],
+      [
+       0.021845895,
+       0.999271471,
+       0.03129353,
+       -0.001269548
+      ],
+      [
+       -0.018104987,
+       -0.030900447,
+       0.99935848,
+       0.002144222
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 2.151,
+      "anchor_shift_cm": 0.379,
+      "sym_add_cm": 0.406
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.054,
+      "anchor_shift_cm": 0.372,
+      "sym_add_cm": 0.395
+     }
+    }
+   }
+  },
+  "40": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep40/poses_world_vo.npz",
+   "track_md5": "0cfc05d0d7ee058fa9840e9c83cb4548",
+   "frames": 260,
+   "fit": {
+    "frames_used": 130,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "mini_dust_pan": {
+      "median": 0.308,
+      "mean": 0.539,
+      "p90": 0.815
+     }
+    },
+    "point_err_cm_trk": {
+     "mini_dust_pan": {
+      "median": 0.31,
+      "mean": 0.492,
+      "p90": 0.728
+     }
+    },
+    "track_rot_span_deg": {
+     "mini_dust_pan": 74.8
+    },
+    "G_mocap_T_perc": [
+     [
+      0.043208,
+      0.745122,
+      -0.665527,
+      0.327949
+     ],
+     [
+      0.997798,
+      -0.065731,
+      -0.008813,
+      -0.055801
+     ],
+     [
+      -0.050313,
+      -0.663681,
+      -0.746322,
+      1.108539
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9844,
+      "soft_auc_end": 0.9848,
+      "nfev": 574
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9703,
+      "soft_auc_end": 0.9848,
+      "nfev": 838
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.974,
+     "ls": 0.9853,
+     "opt_from_ls": 0.9851,
+     "opt_from_geom": 0.9851
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 1.072,
+     "opt_from_ls": 1.096,
+     "opt_from_geom": 1.08
+    },
+    "rejected_over_cap": [],
+    "picked": "ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.957,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.957
+     }
+    },
+    "star": {
+     "AUC": 0.974,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.974
+     }
+    },
+    "trk": {
+     "AUC": 0.9853,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9853
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9853,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9853
+     }
+    }
+   },
+   "objects": {
+    "mini_dust_pan": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999379132,
+       -0.030920279,
+       0.016890469,
+       -0.000856177
+      ],
+      [
+       0.03083016,
+       0.999509117,
+       0.005570136,
+       -0.007482068
+      ],
+      [
+       -0.017054408,
+       -0.005045942,
+       0.999841831,
+       0.00415779
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.775,
+      "anchor_shift_cm": 1.07,
+      "sym_add_cm": 1.072
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.775,
+      "anchor_shift_cm": 1.07,
+      "sym_add_cm": 1.072
+     }
+    }
+   }
+  },
+  "41": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep41/poses_world_vo.npz",
+   "track_md5": "903358bf43ac37f09e0f0d97aac3c559",
+   "frames": 299,
+   "fit": {
+    "frames_used": 150,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "white_pot": {
+      "median": 0.489,
+      "mean": 0.591,
+      "p90": 1.104
+     }
+    },
+    "point_err_cm_trk": {
+     "white_pot": {
+      "median": 0.475,
+      "mean": 0.519,
+      "p90": 0.817
+     }
+    },
+    "track_rot_span_deg": {
+     "white_pot": 68.6
+    },
+    "G_mocap_T_perc": [
+     [
+      0.052431,
+      0.707484,
+      -0.704782,
+      0.339021
+     ],
+     [
+      0.998564,
+      -0.044944,
+      0.029169,
+      -0.062986
+     ],
+     [
+      -0.011039,
+      -0.705299,
+      -0.708824,
+      1.112599
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9883,
+      "soft_auc_end": 0.9913,
+      "nfev": 451
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9843,
+      "soft_auc_end": 0.9913,
+      "nfev": 562
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9881,
+     "ls": 0.9933,
+     "opt_from_ls": 0.9941,
+     "opt_from_geom": 0.9941
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 1.15,
+     "opt_from_ls": 0.994,
+     "opt_from_geom": 0.996
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.991,
+     "per_obj_AUC": {
+      "white_pot": 0.991
+     }
+    },
+    "star": {
+     "AUC": 0.9881,
+     "per_obj_AUC": {
+      "white_pot": 0.9881
+     }
+    },
+    "trk": {
+     "AUC": 0.9941,
+     "per_obj_AUC": {
+      "white_pot": 0.9941
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9933,
+     "per_obj_AUC": {
+      "white_pot": 0.9933
+     }
+    }
+   },
+   "objects": {
+    "white_pot": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999718425,
+       -0.010348781,
+       0.021353552,
+       -0.004362579
+      ],
+      [
+       0.010635403,
+       0.999854281,
+       -0.013353081,
+       -0.00102166
+      ],
+      [
+       -0.021212251,
+       0.013576425,
+       0.99968281,
+       0.011069776
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.865,
+      "anchor_shift_cm": 0.971,
+      "sym_add_cm": 0.994
+     },
+     "ls_vs_geom": {
+      "rot_deg": 2.945,
+      "anchor_shift_cm": 1.107,
+      "sym_add_cm": 1.15
+     }
+    }
+   }
+  },
+  "42": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep42/poses_world_vo.npz",
+   "track_md5": "42b2da76622f5e1522e931fbef95ee4f",
+   "frames": 257,
+   "fit": {
+    "frames_used": 129,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "white_pot": {
+      "median": 0.55,
+      "mean": 0.555,
+      "p90": 0.819
+     }
+    },
+    "point_err_cm_trk": {
+     "white_pot": {
+      "median": 0.421,
+      "mean": 0.457,
+      "p90": 0.718
+     }
+    },
+    "track_rot_span_deg": {
+     "white_pot": 98.5
+    },
+    "G_mocap_T_perc": [
+     [
+      0.09663,
+      0.67434,
+      -0.732071,
+      0.345855
+     ],
+     [
+      0.994575,
+      -0.09387,
+      0.044812,
+      -0.066864
+     ],
+     [
+      -0.038501,
+      -0.73243,
+      -0.679753,
+      1.107737
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9879,
+      "soft_auc_end": 0.9928,
+      "nfev": 548
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9709,
+      "soft_auc_end": 0.9928,
+      "nfev": 630
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.974,
+     "ls": 0.9912,
+     "opt_from_ls": 0.9966,
+     "opt_from_geom": 0.9964
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 0.816,
+     "opt_from_ls": 1.112,
+     "opt_from_geom": 1.114
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9915,
+     "per_obj_AUC": {
+      "white_pot": 0.9915
+     }
+    },
+    "star": {
+     "AUC": 0.974,
+     "per_obj_AUC": {
+      "white_pot": 0.974
+     }
+    },
+    "trk": {
+     "AUC": 0.9966,
+     "per_obj_AUC": {
+      "white_pot": 0.9966
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9912,
+     "per_obj_AUC": {
+      "white_pot": 0.9912
+     }
+    }
+   },
+   "objects": {
+    "white_pot": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999817783,
+       0.004743512,
+       0.01849057,
+       -0.012558339
+      ],
+      [
+       -0.005174108,
+       0.999714909,
+       0.023309457,
+       0.000170866
+      ],
+      [
+       -0.018374729,
+       -0.023400881,
+       0.999557286,
+       0.002146212
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.834,
+      "anchor_shift_cm": 1.084,
+      "sym_add_cm": 1.112
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.573,
+      "anchor_shift_cm": 0.783,
+      "sym_add_cm": 0.816
+     }
+    }
+   }
+  },
+  "43": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep43/poses_world_vo.npz",
+   "track_md5": "25c5727f2c045b6c41a4705167bab14f",
+   "frames": 326,
+   "fit": {
+    "frames_used": 163,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "white_pot": {
+      "median": 0.736,
+      "mean": 0.86,
+      "p90": 1.382
+     }
+    },
+    "point_err_cm_trk": {
+     "white_pot": {
+      "median": 0.441,
+      "mean": 0.486,
+      "p90": 0.844
+     }
+    },
+    "track_rot_span_deg": {
+     "white_pot": 180.0
+    },
+    "G_mocap_T_perc": [
+     [
+      0.07746,
+      0.712868,
+      -0.697007,
+      0.362161
+     ],
+     [
+      0.996707,
+      -0.072178,
+      0.036946,
+      -0.072615
+     ],
+     [
+      -0.023971,
+      -0.697574,
+      -0.716112,
+      1.113494
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9868,
+      "soft_auc_end": 0.9924,
+      "nfev": 733
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9262,
+      "soft_auc_end": 0.9924,
+      "nfev": 615
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9429,
+     "ls": 0.9881,
+     "opt_from_ls": 0.9952,
+     "opt_from_geom": 0.995
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 1.056,
+     "opt_from_ls": 0.906,
+     "opt_from_geom": 0.906
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9482,
+     "per_obj_AUC": {
+      "white_pot": 0.9482
+     }
+    },
+    "star": {
+     "AUC": 0.9429,
+     "per_obj_AUC": {
+      "white_pot": 0.9429
+     }
+    },
+    "trk": {
+     "AUC": 0.9952,
+     "per_obj_AUC": {
+      "white_pot": 0.9952
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9881,
+     "per_obj_AUC": {
+      "white_pot": 0.9881
+     }
+    }
+   },
+   "objects": {
+    "white_pot": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999367645,
+       0.031142993,
+       -0.017158791,
+       0.000654313
+      ],
+      [
+       -0.031331523,
+       0.99945037,
+       -0.010830236,
+       -0.001121368
+      ],
+      [
+       0.016812075,
+       0.011360999,
+       0.99979412,
+       0.004466181
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.583,
+      "anchor_shift_cm": 0.883,
+      "sym_add_cm": 0.906
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.914,
+      "anchor_shift_cm": 1.025,
+      "sym_add_cm": 1.056
+     }
+    }
+   }
+  },
+  "44": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep44/poses_world_vo.npz",
+   "track_md5": "4870508d8e76ca96642e565dce14e6d0",
+   "frames": 249,
+   "fit": {
+    "frames_used": 125,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "white_pot": {
+      "median": 0.278,
+      "mean": 0.299,
+      "p90": 0.446
+     }
+    },
+    "point_err_cm_trk": {
+     "white_pot": {
+      "median": 0.243,
+      "mean": 0.279,
+      "p90": 0.408
+     }
+    },
+    "track_rot_span_deg": {
+     "white_pot": 25.2
+    },
+    "G_mocap_T_perc": [
+     [
+      0.12423,
+      0.703186,
+      -0.700069,
+      0.338579
+     ],
+     [
+      0.991507,
+      -0.115332,
+      0.060101,
+      -0.077057
+     ],
+     [
+      -0.038478,
+      -0.701589,
+      -0.711542,
+      1.120388
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9973,
+      "soft_auc_end": 0.9984,
+      "nfev": 331
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9976,
+      "soft_auc_end": 0.9984,
+      "nfev": 557
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9982,
+     "ls": 0.9982,
+     "opt_from_ls": 0.9987,
+     "opt_from_geom": 0.9987
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 0.738,
+     "opt_from_ls": 1.768,
+     "opt_from_geom": 1.769
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9967,
+     "per_obj_AUC": {
+      "white_pot": 0.9967
+     }
+    },
+    "star": {
+     "AUC": 0.9982,
+     "per_obj_AUC": {
+      "white_pot": 0.9982
+     }
+    },
+    "trk": {
+     "AUC": 0.9987,
+     "per_obj_AUC": {
+      "white_pot": 0.9987
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9982,
+     "per_obj_AUC": {
+      "white_pot": 0.9982
+     }
+    }
+   },
+   "objects": {
+    "white_pot": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999918523,
+       0.006602625,
+       -0.010924861,
+       0.000641748
+      ],
+      [
+       -0.006395474,
+       0.999801133,
+       0.018888965,
+       0.005524201
+      ],
+      [
+       0.011047406,
+       -0.018817555,
+       0.999761899,
+       0.02117107
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.624,
+      "anchor_shift_cm": 1.758,
+      "sym_add_cm": 1.768
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.765,
+      "anchor_shift_cm": 0.701,
+      "sym_add_cm": 0.738
+     }
+    }
+   }
+  },
+  "45": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep45/poses_world_vo.npz",
+   "track_md5": "9b348e578399bb6e234cb3f99386e517",
+   "frames": 290,
+   "fit": {
+    "frames_used": 145,
+    "stride": 2,
+    "f_scale_m": 0.02,
+    "point_err_cm_geom": {
+     "white_pot": {
+      "median": 0.663,
+      "mean": 0.733,
+      "p90": 1.286
+     }
+    },
+    "point_err_cm_trk": {
+     "white_pot": {
+      "median": 0.448,
+      "mean": 0.573,
+      "p90": 1.119
+     }
+    },
+    "track_rot_span_deg": {
+     "white_pot": 94.3
+    },
+    "G_mocap_T_perc": [
+     [
+      0.049061,
+      0.685854,
+      -0.726084,
+      0.353638
+     ],
+     [
+      0.998441,
+      -0.053039,
+      0.017363,
+      -0.070275
+     ],
+     [
+      -0.026602,
+      -0.725804,
+      -0.687387,
+      1.117597
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "lid_flipped_frames": {},
+    "scorer_fit": {
+     "from_ls": {
+      "soft_auc_start": 0.9877,
+      "soft_auc_end": 0.9884,
+      "nfev": 633
+     },
+     "from_geom": {
+      "soft_auc_start": 0.9782,
+      "soft_auc_end": 0.9884,
+      "nfev": 558
+     }
+    },
+    "candidates_AUC": {
+     "geom": 0.9789,
+     "ls": 0.9897,
+     "opt_from_ls": 0.9903,
+     "opt_from_geom": 0.9903
+    },
+    "candidates_max_offset_cm": {
+     "geom": 0.0,
+     "ls": 0.916,
+     "opt_from_ls": 0.742,
+     "opt_from_geom": 0.742
+    },
+    "rejected_over_cap": [],
+    "picked": "opt_from_ls"
+   },
+   "scores": {
+    "lib": {
+     "AUC": 0.9795,
+     "per_obj_AUC": {
+      "white_pot": 0.9795
+     }
+    },
+    "star": {
+     "AUC": 0.9789,
+     "per_obj_AUC": {
+      "white_pot": 0.9789
+     }
+    },
+    "trk": {
+     "AUC": 0.9903,
+     "per_obj_AUC": {
+      "white_pot": 0.9903
+     }
+    },
+    "trk_ls": {
+     "AUC": 0.9897,
+     "per_obj_AUC": {
+      "white_pot": 0.9897
+     }
+    }
+   },
+   "objects": {
+    "white_pot": {
+     "slot": 0,
+     "X_scan_T_lib": [
+      [
+       0.999982658,
+       -0.005214553,
+       0.002737132,
+       -0.000232682
+      ],
+      [
+       0.005283153,
+       0.99965614,
+       -0.02568444,
+       0.002638487
+      ],
+      [
+       -0.002602257,
+       0.025698456,
+       0.999666353,
+       0.009347842
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "trk_vs_geom": {
+      "rot_deg": 1.741,
+      "anchor_shift_cm": 0.709,
+      "sym_add_cm": 0.742
+     },
+     "ls_vs_geom": {
+      "rot_deg": 1.456,
+      "anchor_shift_cm": 0.9,
+      "sym_add_cm": 0.916
+     }
+    }
+   }
+  }
+ },
+ "seconds": 365.2
+}

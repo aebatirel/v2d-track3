@@ -1,0 +1,405 @@
+{
+ "ep": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "a_offset": 1,
+ "video_frames": 137,
+ "depth_frames": 137,
+ "partner_dilate_px_cam_a": 19,
+ "refine": "sam2.1-hiera-tiny",
+ "census": {
+  "blue_cup|beige_cup": {
+   "frames": 69,
+   "contact": 51,
+   "separated": 18,
+   "sep3d": 18,
+   "overlap2d": 50
+  },
+  "beige_cup|blue_cup": {
+   "frames": 69,
+   "contact": 51,
+   "separated": 18,
+   "sep3d": 18,
+   "overlap2d": 50
+  }
+ },
+ "targets": {
+  "blue_cup": {
+   "obj": "blue_cup",
+   "partners": [
+    "beige_cup"
+   ],
+   "mode": "separated",
+   "flags": [
+    "one_view",
+    "mv_skipped"
+   ],
+   "frames": 49,
+   "separated": 18,
+   "separated_in_table": 18,
+   "area_max": 68896,
+   "qualifying": 4,
+   "fail_counts": {
+    "hands": 29,
+    "area": 44,
+    "depth": 16
+   },
+   "pool_span_deg": 1.31,
+   "pool_p90_deg": 0.67,
+   "views": [
+    {
+     "obj": "blue_cup",
+     "k": 6,
+     "j": 7,
+     "mode": "separated",
+     "dir": [
+      0.053189,
+      0.553068,
+      -0.831437
+     ],
+     "area": 68896,
+     "hand_share": 0.0037,
+     "depth_share": 0.894,
+     "partner_share": 0.0,
+     "rank": 0,
+     "min_angle_deg": null
+    }
+   ],
+   "n_views": 1,
+   "views_span_deg": 0.0,
+   "view_angles_deg": [
+    [
+     0.0
+    ]
+   ],
+   "view_results": [
+    {
+     "view": {
+      "k": 6,
+      "j": 7,
+      "mode": "separated",
+      "rank": 0,
+      "min_angle_deg": null,
+      "area": 68896,
+      "hand_share": 0.0037,
+      "depth_share": 0.894,
+      "partner_share": 0.0
+     },
+     "masks": {
+      "k": 6,
+      "j": 7,
+      "projected_area": 68896,
+      "refined": true,
+      "flags": [],
+      "pos": [
+       [
+        930,
+        1087
+       ],
+       [
+        944,
+        1301
+       ],
+       [
+        820,
+        962
+       ],
+       [
+        973,
+        939
+       ],
+       [
+        1021,
+        1189
+       ]
+      ],
+      "neg": [
+       [
+        1338,
+        1038
+       ],
+       [
+        1287,
+        1259
+       ],
+       [
+        1262,
+        879
+       ],
+       [
+        1484,
+        959
+       ],
+       [
+        1383,
+        1164
+       ],
+       [
+        947,
+        1278
+       ],
+       [
+        958,
+        1298
+       ],
+       [
+        940,
+        1277
+       ],
+       [
+        944,
+        1277
+       ],
+       [
+        950,
+        1277
+       ]
+      ],
+      "refine": {
+       "box": [
+        631,
+        824,
+        1211,
+        1404
+       ],
+       "ious": [
+        0.4411,
+        0.8124,
+        0.7969
+       ],
+       "pick": 1,
+       "sam_scores": [
+        0.1846,
+        0.1437,
+        0.3287
+       ],
+       "n_pos": 5,
+       "n_neg": 5
+      },
+      "refined_area": 60625,
+      "refined_gain_partner": 0,
+      "refined_iou_projected": 0.8689,
+      "refined_gain_outside": 409,
+      "fragments_dropped_px": 0,
+      "final_area": 60421
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 534088,
+      "footprint_inside": 0,
+      "min_dist_px": 182.0,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 534088,
+      "footprint_inside": 0,
+      "min_dist_px": 203.79,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": true,
+     "separated_ok": true,
+     "pass_": true
+    }
+   ],
+   "pass": true,
+   "montage": {
+    "path": "ep11_blue_cup.png",
+    "bytes": 61974
+   }
+  },
+  "beige_cup": {
+   "obj": "beige_cup",
+   "partners": [
+    "blue_cup"
+   ],
+   "mode": "separated",
+   "flags": [
+    "one_view",
+    "mv_skipped"
+   ],
+   "frames": 67,
+   "separated": 18,
+   "separated_in_table": 18,
+   "area_max": 70958,
+   "qualifying": 6,
+   "fail_counts": {
+    "hands": 39,
+    "area": 56,
+    "depth": 17
+   },
+   "pool_span_deg": 1.22,
+   "pool_p90_deg": 0.62,
+   "views": [
+    {
+     "obj": "beige_cup",
+     "k": 6,
+     "j": 7,
+     "mode": "separated",
+     "dir": [
+      -0.515274,
+      -0.282237,
+      -0.809219
+     ],
+     "area": 70958,
+     "hand_share": 0.008,
+     "depth_share": 0.8761,
+     "partner_share": 0.0,
+     "rank": 0,
+     "min_angle_deg": null
+    }
+   ],
+   "n_views": 1,
+   "views_span_deg": 0.0,
+   "view_angles_deg": [
+    [
+     0.0
+    ]
+   ],
+   "view_results": [
+    {
+     "view": {
+      "k": 6,
+      "j": 7,
+      "mode": "separated",
+      "rank": 0,
+      "min_angle_deg": null,
+      "area": 70958,
+      "hand_share": 0.008,
+      "depth_share": 0.8761,
+      "partner_share": 0.0
+     },
+     "masks": {
+      "k": 6,
+      "j": 7,
+      "projected_area": 70958,
+      "refined": true,
+      "flags": [],
+      "pos": [
+       [
+        1339,
+        1037
+       ],
+       [
+        1295,
+        1259
+       ],
+       [
+        1262,
+        879
+       ],
+       [
+        1482,
+        956
+       ],
+       [
+        1247,
+        1135
+       ]
+      ],
+      "neg": [
+       [
+        929,
+        1089
+       ],
+       [
+        951,
+        1301
+       ],
+       [
+        824,
+        959
+       ],
+       [
+        980,
+        943
+       ],
+       [
+        1022,
+        1186
+       ],
+       [
+        1315,
+        1242
+       ],
+       [
+        1252,
+        1221
+       ],
+       [
+        1366,
+        1218
+       ],
+       [
+        1275,
+        1262
+       ],
+       [
+        1344,
+        1238
+       ]
+      ],
+      "refine": {
+       "box": [
+        1057,
+        760,
+        1668,
+        1370
+       ],
+       "ious": [
+        0.6942,
+        0.3168,
+        0.2692
+       ],
+       "pick": 0,
+       "sam_scores": [
+        0.0027,
+        0.0019,
+        0.0044
+       ],
+       "n_pos": 5,
+       "n_neg": 5
+      },
+      "refined_area": 57757,
+      "refined_gain_partner": 0,
+      "refined_iou_projected": 0.7402,
+      "refined_gain_outside": 3007,
+      "fragments_dropped_px": 299,
+      "final_area": 60997
+     },
+     "b11_projected": {
+      "points_inside": 0,
+      "points_projected": 259754,
+      "footprint_inside": 0,
+      "min_dist_px": 182.0,
+      "pass": true
+     },
+     "b11_final": {
+      "points_inside": 0,
+      "points_projected": 259754,
+      "footprint_inside": 0,
+      "min_dist_px": 186.0,
+      "pass": true
+     },
+     "hand_px_in_final": 0,
+     "separated_frame": true,
+     "separated_ok": true,
+     "pass_": true
+    }
+   ],
+   "pass": true,
+   "montage": {
+    "path": "ep11_beige_cup.png",
+    "bytes": 64185
+   }
+  }
+ },
+ "sigma_mm": {
+  "blue_cup": 0.7913,
+  "beige_cup": 0.8747
+ },
+ "pass": true
+}

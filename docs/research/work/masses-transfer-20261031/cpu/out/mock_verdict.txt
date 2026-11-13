@@ -1,0 +1,1 @@
+ADOPT: every episode delta >= +0.03 and no seed drop > 0.05 | ep2 mass0 0.7968 mass1 0.8428 delta 0.0461 per seed {'42': 0.0479, '43': 0.0443}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}

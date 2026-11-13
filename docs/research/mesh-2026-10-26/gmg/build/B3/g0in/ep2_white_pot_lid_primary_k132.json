@@ -1,0 +1,91 @@
+{
+ "ep": 2,
+ "obj": "white_pot_lid",
+ "kind": "primary",
+ "k": 132,
+ "j": 133,
+ "mode": "separated",
+ "partners": [
+  "white_pot"
+ ],
+ "seeds": [
+  0,
+  1
+ ],
+ "mask_info": {
+  "projected_area": 91319,
+  "final_area": 84029,
+  "refined": true,
+  "flags": [],
+  "refined_iou_projected": 0.9082
+ },
+ "tag": "ep2_white_pot_lid_primary_k132",
+ "files": {
+  "rgb": "ep2_white_pot_lid_primary_k132.png",
+  "mask": "ep2_white_pot_lid_primary_k132_mask.png",
+  "pointmap": "ep2_white_pot_lid_primary_k132_pointmap.npz"
+ },
+ "sha256": {
+  "rgb": "e905b61ad8b28d8891752e0a970c88ab91b7259885dafdf954d5ad6a0f755919",
+  "mask": "4a55ef187098acfb1af100a1a1f71aa3f49275227fa1de84b2b9bb7918676008",
+  "pointmap": "42af884fd025cdae82ba9ef957fa70edda31d148c00d134d6404d5933b90e447"
+ },
+ "K": [
+  [
+   1149.804931640625,
+   0.0,
+   994.8043212890625
+  ],
+  [
+   0.0,
+   1149.730712890625,
+   767.544677734375
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "camA_T_obj": [
+  [
+   -0.09625078782396364,
+   0.9797027690004813,
+   0.1758331873193523,
+   0.2389386125104688
+  ],
+  [
+   -0.6571754814203375,
+   0.07012637851236667,
+   -0.7504681711295267,
+   0.1164997949859948
+  ],
+  [
+   -0.747566587807089,
+   -0.18778595461947623,
+   0.6370879375167123,
+   0.5687654355906061
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "stats": {
+  "mask_px_distorted": 84029,
+  "mask_px": 103196,
+  "depth_px_in_mask": 98425,
+  "behind_dropped_px": 667,
+  "pointmap_valid_px": 97758,
+  "pointmap_valid_share": 0.9473,
+  "z_median_m": 0.5612,
+  "extent_m": [
+   0.16660000383853912,
+   0.1216999962925911,
+   0.11320000141859055
+  ]
+ },
+ "convention": "pointmap: OpenCV camera (x right, y down, z forward), metres, pinhole K = cam_a K, image undistorted from cam_a with that K; mesh layout -> camA_T_mesh; obj_T_mesh = inv(camA_T_obj) camA_T_mesh"
+}

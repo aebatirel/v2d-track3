@@ -1,0 +1,282 @@
+{
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O1/r1/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 18.73,
+   "const_cm": 8.16,
+   "rms_varying_cm": 16.86,
+   "best_delay_frames": -10.0,
+   "best_delay_ms": -500.0,
+   "moving_rms_no_shift_cm": 18.83,
+   "moving_rms_best_shift_cm": 13.66,
+   "slow_drift_rms_cm": 12.2,
+   "noise_rms_cm": 0.56,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 5.76,
+   "const_cm": 1.09,
+   "rms_varying_cm": 5.66,
+   "best_delay_frames": -1.35,
+   "best_delay_ms": -67.0,
+   "moving_rms_no_shift_cm": 6.98,
+   "moving_rms_best_shift_cm": 6.94,
+   "slow_drift_rms_cm": 5.51,
+   "noise_rms_cm": 0.21,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ },
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O1/r2/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 5.24,
+   "const_cm": 3.07,
+   "rms_varying_cm": 4.24,
+   "best_delay_frames": -0.2,
+   "best_delay_ms": -10.0,
+   "moving_rms_no_shift_cm": 4.47,
+   "moving_rms_best_shift_cm": 4.47,
+   "slow_drift_rms_cm": 4.22,
+   "noise_rms_cm": 0.24,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 23.59,
+   "const_cm": 18.64,
+   "rms_varying_cm": 14.47,
+   "best_delay_frames": -10.0,
+   "best_delay_ms": -500.0,
+   "moving_rms_no_shift_cm": 14.32,
+   "moving_rms_best_shift_cm": 13.53,
+   "slow_drift_rms_cm": 14.06,
+   "noise_rms_cm": 0.41,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ },
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O1/r3/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 5.87,
+   "const_cm": 4.1,
+   "rms_varying_cm": 4.2,
+   "best_delay_frames": -0.65,
+   "best_delay_ms": -32.0,
+   "moving_rms_no_shift_cm": 4.37,
+   "moving_rms_best_shift_cm": 4.33,
+   "slow_drift_rms_cm": 4.16,
+   "noise_rms_cm": 0.19,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 12.92,
+   "const_cm": 4.05,
+   "rms_varying_cm": 12.26,
+   "best_delay_frames": 0.7,
+   "best_delay_ms": 35.0,
+   "moving_rms_no_shift_cm": 13.31,
+   "moving_rms_best_shift_cm": 13.3,
+   "slow_drift_rms_cm": 12.26,
+   "noise_rms_cm": 0.25,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ },
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O1/r4/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 1.43,
+   "const_cm": 0.4,
+   "rms_varying_cm": 1.37,
+   "best_delay_frames": -0.6,
+   "best_delay_ms": -30.0,
+   "moving_rms_no_shift_cm": 1.55,
+   "moving_rms_best_shift_cm": 1.44,
+   "slow_drift_rms_cm": 1.27,
+   "noise_rms_cm": 0.18,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 2.59,
+   "const_cm": 0.49,
+   "rms_varying_cm": 2.54,
+   "best_delay_frames": -0.35,
+   "best_delay_ms": -17.0,
+   "moving_rms_no_shift_cm": 3.1,
+   "moving_rms_best_shift_cm": 3.08,
+   "slow_drift_rms_cm": 2.51,
+   "noise_rms_cm": 0.2,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ },
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O1/r5/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 4.94,
+   "const_cm": 2.91,
+   "rms_varying_cm": 3.99,
+   "best_delay_frames": -10.0,
+   "best_delay_ms": -500.0,
+   "moving_rms_no_shift_cm": 4.54,
+   "moving_rms_best_shift_cm": 4.41,
+   "slow_drift_rms_cm": 3.85,
+   "noise_rms_cm": 0.15,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 3.59,
+   "const_cm": 0.64,
+   "rms_varying_cm": 3.53,
+   "best_delay_frames": -1.2,
+   "best_delay_ms": -60.0,
+   "moving_rms_no_shift_cm": 4.43,
+   "moving_rms_best_shift_cm": 4.36,
+   "slow_drift_rms_cm": 3.41,
+   "noise_rms_cm": 0.19,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ },
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O3/r1/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 1.77,
+   "const_cm": 1.01,
+   "rms_varying_cm": 1.46,
+   "best_delay_frames": -0.5,
+   "best_delay_ms": -25.0,
+   "moving_rms_no_shift_cm": 1.57,
+   "moving_rms_best_shift_cm": 1.49,
+   "slow_drift_rms_cm": 1.37,
+   "noise_rms_cm": 0.22,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 1.69,
+   "const_cm": 0.55,
+   "rms_varying_cm": 1.6,
+   "best_delay_frames": -0.55,
+   "best_delay_ms": -27.0,
+   "moving_rms_no_shift_cm": 1.77,
+   "moving_rms_best_shift_cm": 1.68,
+   "slow_drift_rms_cm": 1.52,
+   "noise_rms_cm": 0.17,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ },
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O3/r2/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 0.89,
+   "const_cm": 0.31,
+   "rms_varying_cm": 0.83,
+   "best_delay_frames": -0.35,
+   "best_delay_ms": -17.0,
+   "moving_rms_no_shift_cm": 0.9,
+   "moving_rms_best_shift_cm": 0.85,
+   "slow_drift_rms_cm": 0.77,
+   "noise_rms_cm": 0.19,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 1.81,
+   "const_cm": 0.99,
+   "rms_varying_cm": 1.52,
+   "best_delay_frames": -0.55,
+   "best_delay_ms": -27.0,
+   "moving_rms_no_shift_cm": 1.64,
+   "moving_rms_best_shift_cm": 1.54,
+   "slow_drift_rms_cm": 1.44,
+   "noise_rms_cm": 0.19,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ },
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O3/r3/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 4.95,
+   "const_cm": 2.27,
+   "rms_varying_cm": 4.4,
+   "best_delay_frames": -0.75,
+   "best_delay_ms": -37.0,
+   "moving_rms_no_shift_cm": 4.75,
+   "moving_rms_best_shift_cm": 4.72,
+   "slow_drift_rms_cm": 4.35,
+   "noise_rms_cm": 0.25,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 13.56,
+   "const_cm": 5.95,
+   "rms_varying_cm": 12.19,
+   "best_delay_frames": 1.6,
+   "best_delay_ms": 80.0,
+   "moving_rms_no_shift_cm": 13.2,
+   "moving_rms_best_shift_cm": 13.17,
+   "slow_drift_rms_cm": 12.19,
+   "noise_rms_cm": 0.16,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ },
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O3/r4/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 1.47,
+   "const_cm": 0.67,
+   "rms_varying_cm": 1.31,
+   "best_delay_frames": -0.35,
+   "best_delay_ms": -17.0,
+   "moving_rms_no_shift_cm": 1.33,
+   "moving_rms_best_shift_cm": 1.28,
+   "slow_drift_rms_cm": 1.23,
+   "noise_rms_cm": 0.27,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 1.73,
+   "const_cm": 0.53,
+   "rms_varying_cm": 1.65,
+   "best_delay_frames": -0.7,
+   "best_delay_ms": -35.0,
+   "moving_rms_no_shift_cm": 1.96,
+   "moving_rms_best_shift_cm": 1.79,
+   "slow_drift_rms_cm": 1.5,
+   "noise_rms_cm": 0.24,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ },
+ "/tmp/claude-0/-home-user-v2d-track3/40ae8bef-a6ac-5623-abee-9e3e721c7845/scratchpad/roman2/data/roll/O3/r5/episode_000002.parquet": {
+  "white_pot": {
+   "rms_total_cm": 0.81,
+   "const_cm": 0.13,
+   "rms_varying_cm": 0.8,
+   "best_delay_frames": -0.3,
+   "best_delay_ms": -15.0,
+   "moving_rms_no_shift_cm": 0.93,
+   "moving_rms_best_shift_cm": 0.87,
+   "slow_drift_rms_cm": 0.71,
+   "noise_rms_cm": 0.23,
+   "frames": 343,
+   "moving_frames": 218
+  },
+  "white_pot_lid": {
+   "rms_total_cm": 1.3,
+   "const_cm": 0.35,
+   "rms_varying_cm": 1.25,
+   "best_delay_frames": -0.55,
+   "best_delay_ms": -27.0,
+   "moving_rms_no_shift_cm": 1.34,
+   "moving_rms_best_shift_cm": 1.23,
+   "slow_drift_rms_cm": 1.18,
+   "noise_rms_cm": 0.15,
+   "frames": 343,
+   "moving_frames": 187
+  }
+ }
+}

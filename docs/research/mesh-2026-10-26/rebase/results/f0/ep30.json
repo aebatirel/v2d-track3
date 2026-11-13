@@ -1,0 +1,157 @@
+{
+ "ep": 30,
+ "mode": "std",
+ "source_run": "20261025-std30-ee7ba8e",
+ "lib": "library_v3",
+ "pieces": null,
+ "md5_listed": "dd464c96184e84400e62ffcfa17a6ac4",
+ "ref": "20261025-std30-ee7ba8e/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+ "ref_md5": "dd464c96184e84400e62ffcfa17a6ac4",
+ "md5_match": true,
+ "names": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "support": {
+  "top_z": 0.6,
+  "md5": "e508bc26e90d62e5040bfaaf8200c995",
+  "radius": 0.251593
+ },
+ "shared_assets": {
+  "lib": "library_v3",
+  "pieces": null,
+  "make_assets": [
+   "mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm",
+   "plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm"
+  ]
+ },
+ "f0_hand_mm": {
+  "mini_sweeper": 260.6,
+  "plastic_dish_rack": 73.6
+ },
+ "first_H30_rest_frame": null,
+ "objects": {
+  "mini_sweeper": {
+   "urdf_md5": "68762128a0acdcc36e8b4c2d6cf2b635",
+   "pieces": 19,
+   "collision": [
+    "mini_sweeper.glb c32f43de -> CoACD 19"
+   ],
+   "mass": 0.3
+  },
+  "plastic_dish_rack": {
+   "urdf_md5": "216eb08d51a9f8c29185e4fb9cf3f63c",
+   "pieces": 43,
+   "collision": [
+    "plastic_dish_rack.glb 99bc3983 -> CoACD 43"
+   ],
+   "mass": 0.3
+  }
+ },
+ "frames": [
+  {
+   "frame": 0,
+   "kind": "start",
+   "hand_mm": {},
+   "objects": {
+    "mini_sweeper": {
+     "pen_mm": 0.58,
+     "com_height_mm": 63.6,
+     "hand_mm": 260.6,
+     "support": {
+      "band1mm": {
+       "points": 57,
+       "com_margin_mm": -1.5
+      },
+      "band3mm": {
+       "points": 177,
+       "com_margin_mm": -0.5
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 0.1,
+     "settle_mm": 23.91,
+     "settle_deg": 25.04,
+     "max_mm": 23.91,
+     "max_deg": 25.04,
+     "falls_over": false,
+     "moved": true,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 25.25,
+       "max": 233.48,
+       "min": 15.77,
+       "q90": 90.565
+      },
+      "deg": {
+       "n": 16,
+       "median": 38.125,
+       "max": 161.24,
+       "min": 22.26,
+       "q90": 118.74
+      },
+      "falls": 13,
+      "nan": 0
+     },
+     "likely_cause": [
+      "overlap 12.15 cm3 with plastic_dish_rack",
+      "COM outside the footprint (1 mm band -1.5 mm, 3 mm band -0.5 mm)"
+     ],
+     "flags": [
+      "overlap 12.15 cm3 with plastic_dish_rack",
+      "COM outside the footprint (1 mm band -1.5 mm, 3 mm band -0.5 mm)"
+     ]
+    },
+    "plastic_dish_rack": {
+     "pen_mm": 0.16,
+     "com_height_mm": 30.2,
+     "hand_mm": 73.6,
+     "support": {
+      "band1mm": {
+       "points": 76,
+       "com_margin_mm": 49.0
+      },
+      "band3mm": {
+       "points": 334,
+       "com_margin_mm": 58.7
+      }
+     },
+     "min_dist_to_partner_mesh_mm": 0.7,
+     "settle_mm": 3.16,
+     "settle_deg": 0.94,
+     "max_mm": 3.86,
+     "max_deg": 1.54,
+     "falls_over": false,
+     "moved": false,
+     "jitter16": {
+      "mm": {
+       "n": 16,
+       "median": 7.65,
+       "max": 41.53,
+       "min": 0.65,
+       "q90": 17.71
+      },
+      "deg": {
+       "n": 16,
+       "median": 1.01,
+       "max": 3.75,
+       "min": 0.35,
+       "q90": 3.515
+      },
+      "falls": 0,
+      "nan": 0
+     },
+     "likely_cause": [],
+     "flags": [
+      "overlap 12.15 cm3 with mini_sweeper"
+     ]
+    }
+   },
+   "pairs": {
+    "mini_sweeper|plastic_dish_rack": 12.15
+   }
+  }
+ ],
+ "status": "ok",
+ "secs": 17.2
+}

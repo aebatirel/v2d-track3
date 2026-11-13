@@ -1,0 +1,70 @@
+{
+ "x11": {
+  "route": "3_coacd",
+  "n": 18,
+  "gate": {
+   "pass_": true,
+   "n": 18,
+   "max_cm3": 0.0,
+   "sum_cm3": 0.0,
+   "over_tol": 0,
+   "keepout_points": 0,
+   "keepout_cm3": 0.0
+  },
+  "opening_point_inside": false,
+  "tried": [
+   {
+    "route": "3_coacd",
+    "gate": {
+     "pass_": true,
+     "n": 18,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "rep": {
+     "steps": 0,
+     "stuck": 0,
+     "pieces": 18,
+     "max_excess_cm3": 0.0,
+     "cap": 82,
+     "coacd_pieces": 18,
+     "sec": 14.9
+    }
+   }
+  ]
+ },
+ "x8_sheet": {
+  "route": "3_coacd",
+  "tried": [
+   {
+    "route": "2_lathe",
+    "gate": {
+     "pass_": false,
+     "n": 53,
+     "max_cm3": 5.696,
+     "sum_cm3": 71.872,
+     "over_tol": 32,
+     "keepout_points": 8869,
+     "keepout_cm3": 70.952
+    },
+    "why": null
+   },
+   {
+    "route": "3_coacd",
+    "gate": {
+     "pass_": true,
+     "n": 2,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "why": null
+   }
+  ]
+ }
+}

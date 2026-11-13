@@ -1,0 +1,230 @@
+{
+ "ep": 14,
+ "rule": "pack-9b PREREG section 4 + pf-hands / pf-bridge PREREG section 4",
+ "refs": [
+  "P",
+  "B"
+ ],
+ "choice": "CONFIRM",
+ "sides": {
+  "conf": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.8607,
+     "sd": 0.0564,
+     "min": 0.7367,
+     "max": 0.912,
+     "median": 0.8833
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 4.3424,
+     "sd": 3.4363,
+     "min": 2.7445,
+     "max": 14.003,
+     "median": 3.1105
+    },
+    "fails": 1
+   },
+   "B": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.875,
+     "sd": 0.0562,
+     "min": 0.752,
+     "max": 0.926,
+     "median": 0.8972
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 3.9433,
+     "sd": 3.4431,
+     "min": 2.357,
+     "max": 13.6292,
+     "median": 2.7047
+    },
+    "fails": 1
+   }
+  },
+  "packed": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.7269,
+     "sd": 0.1752,
+     "min": 0.5107,
+     "max": 0.9116,
+     "median": 0.7625
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 20.9206,
+     "sd": 30.308,
+     "min": 1.6437,
+     "max": 96.1266,
+     "median": 3.7858
+    },
+    "fails": 4
+   },
+   "B": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.7059,
+     "sd": 0.175,
+     "min": 0.4907,
+     "max": 0.8904,
+     "median": 0.7412
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 21.5197,
+     "sd": 30.3022,
+     "min": 2.2396,
+     "max": 96.7129,
+     "median": 4.3819
+    },
+    "fails": 4
+   }
+  },
+  "old": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 1,
+     "mean": 0.9094,
+     "sd": 0.0,
+     "min": 0.9094,
+     "max": 0.9094,
+     "median": 0.9094
+    },
+    "RPE": {
+     "n": 1,
+     "mean": 3.3857,
+     "sd": 0.0,
+     "min": 3.3857,
+     "max": 3.3857,
+     "median": 3.3857
+    },
+    "fails": 0
+   },
+   "B": {
+    "sim_vs_ref": {
+     "n": 1,
+     "mean": 0.8904,
+     "sd": 0.0,
+     "min": 0.8904,
+     "max": 0.8904,
+     "median": 0.8904
+    },
+    "RPE": {
+     "n": 1,
+     "mean": 3.9495,
+     "sd": 0.0,
+     "min": 3.9495,
+     "max": 3.9495,
+     "median": 3.9495
+    },
+    "fails": 0
+   }
+  },
+  "trainB42": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.8704,
+     "sd": 0.0574,
+     "min": 0.7334,
+     "max": 0.9116,
+     "median": 0.8897
+    }
+   },
+   "B": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.8803,
+     "sd": 0.0571,
+     "min": 0.7435,
+     "max": 0.9213,
+     "median": 0.8997
+    }
+   }
+  },
+  "trainB43": {
+   "P": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.8768,
+     "sd": 0.0551,
+     "min": 0.7496,
+     "max": 0.9199,
+     "median": 0.8984
+    }
+   },
+   "B": {
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.8915,
+     "sd": 0.0545,
+     "min": 0.7656,
+     "max": 0.9339,
+     "median": 0.9141
+    }
+   }
+  }
+ },
+ "clauses": {
+  "P": {
+   "a": {
+    "conf": 0.8607,
+    "packed": 0.7269,
+    "holds": true
+   },
+   "b": {
+    "conf": 0.1,
+    "packed": 0.4,
+    "holds": true
+   },
+   "c": {
+    "conf": 3.111,
+    "packed": 3.786,
+    "holds": true
+   },
+   "s": {
+    "conf_draw1": 0.8821,
+    "old": 0.9094,
+    "holds": true
+   },
+   "gain": 0.1338
+  },
+  "B": {
+   "a": {
+    "conf": 0.875,
+    "packed": 0.7059,
+    "holds": true
+   },
+   "b": {
+    "conf": 0.1,
+    "packed": 0.4,
+    "holds": true
+   },
+   "c": {
+    "conf": 2.705,
+    "packed": 4.382,
+    "holds": true
+   },
+   "s": {
+    "conf_draw1": 0.8954,
+    "old": 0.8904,
+    "holds": true
+   },
+   "gain": 0.169
+  }
+ },
+ "label": "PASS",
+ "inclusion": {
+  "bar": 0.02,
+  "on": "B",
+  "gain": 0.169,
+  "include": true
+ }
+}

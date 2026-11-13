@@ -1,0 +1,303 @@
+{
+ "tool": "pipeline/refine.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/refine.py",
+  "--in",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/S6S2_d29",
+  "--steps",
+  "S6,S2",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/screen/dl_depth/ev10_f0_30_60_150.npy"
+ ],
+ "time_utc": "2026-10-31T04:54:47Z",
+ "code": {
+  "refine_sha256": "8c54ec707c8adb1b7cb76d7a5038917713456465454f8c145b0e56a3395439c5",
+  "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+  "commit": "8f17f0a9dc6d9cf8dbc8181d88cfccc807dea2a5"
+ },
+ "steps_requested": [
+  "S6",
+  "S2"
+ ],
+ "steps_order": [
+  "S6",
+  "S2"
+ ],
+ "params": {
+  "inp": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in",
+  "out": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/S6S2_d29",
+  "steps": "S6,S2",
+  "hands": null,
+  "depth": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/screen/dl_depth/ev10_f0_30_60_150.npy",
+  "meshes": "/home/user/v2d-track3/meshes/library_v3",
+  "pieces": null,
+  "calib": null,
+  "table": null,
+  "video": null,
+  "s0_frames": null,
+  "force": false,
+  "ring_in": 10,
+  "ring_out": 90,
+  "plane_thr": 0.006,
+  "plane_iters": 1000,
+  "support_tol": 0.03,
+  "support_max": 0.05,
+  "still_cm": 0.5,
+  "still_deg": 2.0,
+  "move_run": 3,
+  "rest_min": 5,
+  "hand_cm": 5.0,
+  "snap_max": 0.02,
+  "lowest_tol": 0.005,
+  "s1_rest": 1,
+  "s1_rest_min": 10,
+  "s1_rest_hand_free": 0.5,
+  "s1_blend": 10,
+  "s3_min_prefix": 5,
+  "s3_max_tilt": 10.0,
+  "s3_carry": "body",
+  "s3_fade": 10,
+  "s4_blend": 10,
+  "s4_owner": 0,
+  "s4_lift_moving": 0,
+  "s4_deadband": null,
+  "s6_hmax_cm": 2.0,
+  "s6_rmax_deg": 10.0,
+  "s6_axisym": "blue_cup,beige_cup",
+  "s5_min": 10,
+  "s5_blend": 5,
+  "s2_advance": 0.545,
+  "s2_interp": "se3",
+  "s2_hold_f0": 0
+ },
+ "inputs": {
+  "poses.npz": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/poses.npz",
+   "sha256": "fb9103fa60c728083ad1f17b136d63ecde3d34d4a46e3c4a1e5e0ee8637ba0b1"
+  },
+  "vo.json": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/vo.json",
+   "sha256": "efe667709b2b19b01ade765afc4b441e1b850cce8f4074672d658435c175faa2"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in/hands_refined.npz",
+   "sha256": "cdd523863bc43654da8967c68d9fdbf356077d2a24a8efc7d6beeaf9fe272bd1"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/screen/dl_depth/ev10_f0_30_60_150.npy",
+   "sha256": "5f40bd6c65aab193f91190562d07744af637702962986d694c7d8ac398ec98d6"
+  },
+  "mesh blue_cup": {
+   "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+   "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+  },
+  "mesh beige_cup": {
+   "path": "/home/user/v2d-track3/meshes/library_v3/beige_cup.glb",
+   "sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5"
+  }
+ },
+ "T": 161,
+ "names": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "vo": {
+  "keyframes": 3,
+  "fails": 0
+ },
+ "plane": {
+  "source": null,
+  "note": "no plane: not needed"
+ },
+ "labels": {
+  "blue_cup": {
+   "first_move": 7,
+   "liftoff": null,
+   "rest_segments": [
+    [
+     0,
+     7
+    ],
+    [
+     18,
+     30
+    ],
+    [
+     129,
+     161
+    ]
+   ],
+   "moving_frames": 107,
+   "first_hand_near": 14,
+   "hand_f0_cm": 12.87,
+   "h0_cm": null,
+   "table_supported": false,
+   "support_reason": "no plane",
+   "support_f0": null,
+   "com_body": [
+    -0.00034,
+    -0.00014,
+    0.00172
+   ],
+   "com_source": "surface estimate (make_assets.py)"
+  },
+  "beige_cup": {
+   "first_move": 1,
+   "liftoff": null,
+   "rest_segments": [
+    [
+     22,
+     32
+    ],
+    [
+     55,
+     72
+    ],
+    [
+     78,
+     85
+    ],
+    [
+     104,
+     112
+    ],
+    [
+     126,
+     133
+    ],
+    [
+     136,
+     161
+    ]
+   ],
+   "moving_frames": 76,
+   "first_hand_near": 16,
+   "hand_f0_cm": 31.86,
+   "h0_cm": null,
+   "table_supported": false,
+   "support_reason": "no plane",
+   "support_f0": null,
+   "com_body": [
+    -0.0018,
+    0.00318,
+    -0.01622
+   ],
+   "com_source": "surface estimate (make_assets.py)"
+  }
+ },
+ "steps": {
+  "S6": {
+   "plane": {
+    "source": "det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)",
+    "n": [
+     -0.10075,
+     -0.791751,
+     -0.602479
+    ],
+    "d": 0.530909
+   },
+   "hmax_cm": 2.0,
+   "rmax_deg": 10.0,
+   "axisymmetric": [
+    "beige_cup",
+    "blue_cup"
+   ],
+   "frozen": [],
+   "objects": {
+    "blue_cup": {
+     "frozen": false,
+     "axisymmetric": true,
+     "hmax_cm": 4.907,
+     "hmax_frame": 52,
+     "vmax_cm": 3.707,
+     "v_peak_cm": 3.707,
+     "v_peak_frame": 117,
+     "v_end_cm": 1.789,
+     "rmax_deg": 34.16,
+     "reason": "horizontal travel 4.91 cm >= 2"
+    },
+    "beige_cup": {
+     "frozen": false,
+     "axisymmetric": true,
+     "hmax_cm": 15.411,
+     "hmax_frame": 92,
+     "vmax_cm": 23.017,
+     "v_peak_cm": 23.017,
+     "v_peak_frame": 46,
+     "v_end_cm": 2.849,
+     "rmax_deg": 36.421,
+     "reason": "horizontal travel 15.41 cm >= 2"
+    }
+   },
+   "delta": {
+    "blue_cup": {
+     "frames_changed": 0,
+     "max_cm": 0.0,
+     "max_deg": 0.0,
+     "f0_cm": 0.0,
+     "f0_deg": 0.0
+    },
+    "beige_cup": {
+     "frames_changed": 0,
+     "max_cm": 0.0,
+     "max_deg": 0.0,
+     "f0_cm": 0.0,
+     "f0_deg": 0.0
+    }
+   }
+  },
+  "S2": {
+   "advance_frames": 0.545,
+   "interp": "se3",
+   "hold_f0": false,
+   "last_frame": "held",
+   "delta": {
+    "blue_cup": {
+     "frames_changed": 160,
+     "max_cm": 0.598,
+     "max_deg": 10.045,
+     "f0_cm": 0.0634,
+     "f0_deg": 0.5186
+    },
+    "beige_cup": {
+     "frames_changed": 160,
+     "max_cm": 2.148,
+     "max_deg": 6.061,
+     "f0_cm": 0.0409,
+     "f0_deg": 2.8763
+    }
+   }
+  }
+ },
+ "checks": {
+  "world_T_cam_byte_identical": true,
+  "keys": [
+   "world_T_cam",
+   "cam_T_blue_cup",
+   "cam_T_beige_cup"
+  ],
+  "keys_ok": true,
+  "frames_ok": true,
+  "finite": true,
+  "frame0_byte_identical": {
+   "blue_cup": false,
+   "beige_cup": false
+  },
+  "frames_changed": {
+   "blue_cup": 160,
+   "beige_cup": 160
+  }
+ },
+ "log": [
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/t1/eval10/in: T=161, objects ['blue_cup', 'beige_cup'], steps ['S6', 'S2'], hands yes",
+  "plane: {\"source\": null, \"note\": \"no plane: not needed\"}",
+  "labels blue_cup: first_move 7, liftoff None, first hand<5cm 14, rest segs [(0, 7), (18, 30), (129, 161)], h0 None cm, support: no plane",
+  "labels beige_cup: first_move 1, liftoff None, first hand<5cm 16, rest segs [(22, 32), (55, 72), (78, 85), (104, 112), (126, 133), (136, 161)], h0 None cm, support: no plane",
+  "S6 blue_cup: kept; horizontal 4.91 cm, vertical peak +3.71 cm at f117 (end +1.79), rotation 34.2 deg (axisymmetric)",
+  "S6 beige_cup: kept; horizontal 15.41 cm, vertical peak +23.02 cm at f46 (end +2.85), rotation 36.4 deg (axisymmetric)",
+  "S6: {\"plane\": {\"source\": \"det_rules.table_plane on the frame-0 depth (half resolution, as perc2 TRACK_GUARD)\", \"n\": [-0.10075, -0.791751, -0.602479], \"d\": 0.530909}, \"hmax_cm\": 2.0, \"rmax_deg\": 10.0, \"axisymmetric\": [\"beige_cup\", \"blue_cup\"], \"frozen\": [], \"objects\": {\"blue_cup\": {\"frozen\": false, \"axisymmetric\": true, \"hmax_cm\": 4.907, \"hmax_frame\": 52, \"vmax_cm\": 3.707, \"v_peak_cm\": 3.707, \"v_peak_frame\": 117, \"v_end_cm\": 1.789, \"rmax_deg\": 34.16, \"reason\": \"horizontal travel 4.91 cm >= 2\"}, \"beige_cup\": {\"frozen\": false, \"axisymmetric\": true, \"hmax_cm\": 15.411, \"hmax_frame\": 92, \"vmax_cm\": 23.0",
+  "S2: {\"advance_frames\": 0.545, \"interp\": \"se3\", \"hold_f0\": false, \"last_frame\": \"held\"}"
+ ]
+}

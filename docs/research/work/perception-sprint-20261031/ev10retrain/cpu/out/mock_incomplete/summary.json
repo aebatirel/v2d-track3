@@ -1,0 +1,207 @@
+{
+ "label": "INCOMPLETE",
+ "why": [
+  "no chosen seed (seeds without 8 scored training-box rollouts: ['43'])",
+  "0 scored confirmation draws (< 10)",
+  "confirmation draw 1 not scored"
+ ],
+ "clauses": {},
+ "sides": {
+  "V": {
+   "new": {
+    "n": 0,
+    "sim_vs_ref": null,
+    "RPE": null,
+    "MPPE": null,
+    "AUC": null,
+    "fail_rate": null,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {}
+   },
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4555,
+     "sd": 0.0017,
+     "min": 0.4523,
+     "max": 0.4583,
+     "median": 0.4556
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.835,
+     "sd": 0.0055,
+     "min": 15.8278,
+     "max": 15.8466,
+     "median": 15.8355
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4258,
+     "sd": 0.0163,
+     "min": 8.4044,
+     "max": 8.4563,
+     "median": 8.4218
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.4572,
+     "sd": 0.0012,
+     "min": 0.4554,
+     "max": 0.4598,
+     "median": 0.4569
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6779,
+     "beige_cup": 0.2365
+    }
+   }
+  },
+  "P": {
+   "new": {
+    "n": 0,
+    "sim_vs_ref": null,
+    "RPE": null,
+    "MPPE": null,
+    "AUC": null,
+    "fail_rate": null,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {}
+   },
+   "packed": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.4474,
+     "sd": 0.0025,
+     "min": 0.4431,
+     "max": 0.4523,
+     "median": 0.4471
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 15.7978,
+     "sd": 0.0055,
+     "min": 15.7886,
+     "max": 15.8078,
+     "median": 15.799
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 8.4511,
+     "sd": 0.0167,
+     "min": 8.4305,
+     "max": 8.4824,
+     "median": 8.4469
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.45,
+     "sd": 0.0016,
+     "min": 0.447,
+     "max": 0.4524,
+     "median": 0.4499
+    },
+    "fail_rate": 1.0,
+    "fails": 10,
+    "audit_fails": 10,
+    "objects": {
+     "blue_cup": 0.6599,
+     "beige_cup": 0.24
+    }
+   }
+  }
+ },
+ "secondary_literal_own_reference": {
+  "new_draw1_vs_V": null,
+  "old_packed_draw_vs_P": 0.4563,
+  "holds": false
+ },
+ "equal_floor_note": null,
+ "gate_prereg_s5_crosscheck": {
+  "new_mean_vs_V": null,
+  "bar": 0.456,
+  "holds": false
+ },
+ "choice": {
+  "chosen": null,
+  "checkpoint": null,
+  "sha256": null,
+  "seeds": {
+   "42": {
+    "n": 10,
+    "results": "<MR>/content/results/perc2e10vs42_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10vs42_glock_public/ep10/best/policy.safetensors",
+    "sha256": "abe65f55b8fe62517288460d17e2fb33fb1985aac28cef29ca77e0f4de267a3b",
+    "chosen_by_curve": "<MR>/content/runs/perc2e10vs42_glock/ep10-s42/policy_29999104.safetensors",
+    "mean": 0.9995,
+    "sd": 0.0015,
+    "min": 0.9953,
+    "max": 1.0,
+    "values": [
+     0.9996,
+     1.0,
+     1.0,
+     0.9953,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ]
+   },
+   "43": {
+    "n": 0,
+    "missing": true,
+    "results": "<MR>/content/results/perc2e10vs43_glock_public/ep10"
+   }
+  },
+  "incomplete_seeds": [
+   "43"
+  ]
+ },
+ "verify": {
+  "ok": true,
+  "failures": [],
+  "confirmation": {
+   "draws": 0,
+   "checked": 0
+  },
+  "b0_band": "IDENTICAL"
+ },
+ "counts": {
+  "conf": {
+   "own": "V",
+   "n_files": 0,
+   "n_scored": 0
+  },
+  "old": {
+   "own": "P",
+   "n_files": 1,
+   "n_scored": 1
+  },
+  "packed": {
+   "own": "P",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train42": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train43": {
+   "own": "V",
+   "n_files": 0,
+   "n_scored": 0
+  }
+ },
+ "rule": "docs/research/work/perception-sprint-20261031/ev10retrain/PREREG.md section 5"
+}

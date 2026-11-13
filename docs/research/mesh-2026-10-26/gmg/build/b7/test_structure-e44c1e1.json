@@ -1,0 +1,119 @@
+{
+ "lathe": {
+  "timing": {
+   "render_s": 3.7,
+   "hypotheses_s": 182.2,
+   "n_points": 28263
+  },
+  "accepted": true,
+  "rotc_sigma": 1.0442,
+  "lathe_mad_sigma": 0.2137,
+  "source": "axis_search",
+  "angle_deg": 0.1701,
+  "end_err_mm": [
+   0.5699,
+   0.3353
+  ],
+  "sigma_mm": 1.0,
+  "accepted_repeats": [
+   2,
+   3,
+   4,
+   5,
+   6
+  ]
+ },
+ "mirror": {
+  "timing": {
+   "render_s": 2.8,
+   "hypotheses_s": 242.5,
+   "n_points": 23931
+  },
+  "mirrors": [
+   {
+    "accepted": false,
+    "resid_sigma": 1.0852,
+    "observed": 0.9545,
+    "free_viol": 0.11453,
+    "moved": 0.9625,
+    "refined_by": "nelder-mead (114 evaluations)",
+    "angle_to_true_deg": 89.7942,
+    "plane_err_mm": 50.5093,
+    "angle_to_broken_deg": [
+     89.845,
+     0.258
+    ]
+   },
+   {
+    "accepted": true,
+    "resid_sigma": 0.9836,
+    "observed": 0.9866,
+    "free_viol": 0.03068,
+    "moved": 0.9569,
+    "refined_by": "nelder-mead (100 evaluations)",
+    "angle_to_true_deg": 0.2012,
+    "plane_err_mm": 0.6402,
+    "angle_to_broken_deg": [
+     89.875,
+     89.842
+    ]
+   },
+   {
+    "accepted": false,
+    "resid_sigma": 0.9778,
+    "observed": 0.9938,
+    "free_viol": 0.10855,
+    "moved": 0.9762,
+    "refined_by": "nelder-mead (87 evaluations)",
+    "angle_to_true_deg": 89.8373,
+    "plane_err_mm": 102.0967,
+    "angle_to_broken_deg": [
+     0.163,
+     89.985
+    ]
+   }
+  ],
+  "lathe_accepted": false,
+  "lathe_rotc_sigma": 3.1515,
+  "sigma_mm": 1.0
+ },
+ "plate": {
+  "timing": {
+   "render_s": 2.1,
+   "hypotheses_s": 212.0,
+   "n_points": 12083
+  },
+  "pairs": [
+   {
+    "thickness_mm": 10.0795,
+    "overlap": 0.9922,
+    "parallel_deg": 0.041,
+    "angle_to_true_deg": 0.0359,
+    "mid_err_mm": 0.0584
+   }
+  ],
+  "planes": 4,
+  "mirrors": [
+   {
+    "accepted": true,
+    "angle_to_mid_deg": 89.482,
+    "plane_err_mm": 35.2397
+   },
+   {
+    "accepted": true,
+    "angle_to_mid_deg": 89.994,
+    "plane_err_mm": 65.047
+   },
+   {
+    "accepted": true,
+    "angle_to_mid_deg": 0.305,
+    "plane_err_mm": 0.2283
+   }
+  ],
+  "lathe_accepted": true,
+  "lathe_rotc_sigma": 2.8023,
+  "rot_free_viol": 0.38772,
+  "sigma_mm": 1.0,
+  "true_thickness_mm": 10.0
+ }
+}

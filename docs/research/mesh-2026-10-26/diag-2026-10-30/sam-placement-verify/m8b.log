@@ -1,0 +1,6 @@
+ep24 points -> scan local rigid: rot 0.5 deg, centroid move 2.3 mm, along scan PCA L/M/S [1.2 0.7 1.8]; obs extent along L/M/S (mm) [245. 153.  57.] vs scan [226. 137.  26.]
+   SAM s42 fitted to ep24: offset L/M/S [24.6 -3.8  1.5] mm; placed-mesh extent L/M/S [237. 149.  32.]
+   SAM s7 fitted to ep24: offset L/M/S [28.5  1.6  2. ] mm; placed-mesh extent L/M/S [225. 138.  42.]
+ep23 points -> scan local rigid: rot 6.2 deg, centroid move 6.1 mm, along scan PCA L/M/S [-1.9 -0.8 -5.8]; obs extent along L/M/S (mm) [223. 121.  24.] vs scan [226. 137.  26.]
+   SAM s42 fitted to ep23: offset L/M/S [  9.2 -19.5  -5.4] mm; placed-mesh extent L/M/S [220. 157.  37.]
+   SAM s7 fitted to ep23: offset L/M/S [ 10.4 -19.4  -6.1] mm; placed-mesh extent L/M/S [208. 157.  47.]

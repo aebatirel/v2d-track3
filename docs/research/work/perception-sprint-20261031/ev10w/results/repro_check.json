@@ -1,0 +1,9 @@
+{
+ "frames": 161,
+ "max_abs_diff_beige_in_blue_cm3": 1.6880482434089572e-06,
+ "max_abs_diff_blue_in_beige_cm3": 1.5267096458160268e-06,
+ "floor_gap_nan_pattern_equal": true,
+ "floor_gap_max_abs_diff_mm": 0.005000000000009663,
+ "depth_max_theirs_A_mm": 4.912,
+ "depth_max_mine_mm": 4.91
+}

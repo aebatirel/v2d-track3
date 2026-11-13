@@ -1,0 +1,2539 @@
+{
+ "rule": "C0b PREREG 9 (c)-(e): exclusions (watertight raw, kit budget, frame vs C0b public pick); lowest obs_fidelity sum_mm on ALL eval points; ties fewer raw faces, then label; ship rule (e) for adopted objects",
+ "adopted": [
+  "white_pot",
+  "beige_cup"
+ ],
+ "selection": {
+  "white_pot": {
+   "n_candidates": 24,
+   "n_eligible": 24,
+   "c0b_public_pick": {
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/white_pot_c0b_pot_ep43_fit.glb",
+    "fid_all_sum_mm": 3.602,
+    "fid_per_episode_sum_mm": {
+     "ep1": 5.755,
+     "ep28": 3.399,
+     "ep3": 5.034,
+     "ep5": 4.335,
+     "ep6": 4.475,
+     "ep8": 11.922
+    }
+   },
+   "frame_thresholds": {
+    "pick": "pot/ep43/fit",
+    "n_references": 28,
+    "excludes": true,
+    "pick_pca_sd_mm": [
+     81.99874437328614,
+     53.39305489782682,
+     33.90990877412944
+    ],
+    "eigen_ratios_neighbour": [
+     0.42398953298002146,
+     0.40335152489476245
+    ],
+    "axis_checked": [
+     true,
+     true,
+     true
+    ],
+    "ref_max_centroid_offset_mm": 36.18525142256214,
+    "ref_max_surf_symmetric_median_mm": 4.306122879207284,
+    "ref_max_axis_angle_deg": [
+     14.04983824765536,
+     8.8579883828214,
+     12.054936248320889
+    ],
+    "max_centroid_offset_mm": 108.55575426768641,
+    "max_surf_symmetric_median_mm": 12.918368637621853,
+    "max_axis_angle_deg": [
+     42.14951474296608,
+     26.5739651484642,
+     36.16480874496267
+    ],
+    "references": [
+     {
+      "label": "pot/ep2/fit",
+      "centroid_offset_mm": 7.389524003987449,
+      "surf_symmetric_median_mm": 2.3444449526298703,
+      "axis_angle_deg": [
+       9.214255024933173,
+       8.850699570479037,
+       2.7790322485529018
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep2/nomk",
+      "centroid_offset_mm": 11.87370984950183,
+      "surf_symmetric_median_mm": 2.3041205083335194,
+      "axis_angle_deg": [
+       4.857462059040404,
+       1.9159051403718026,
+       4.550671587373283
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep2/nostem",
+      "centroid_offset_mm": 4.919463144235612,
+      "surf_symmetric_median_mm": 2.329853665608419,
+      "axis_angle_deg": [
+       8.730296719655593,
+       8.15503270809279,
+       3.2480231168424814
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep2/thick",
+      "centroid_offset_mm": 5.666170468976947,
+      "surf_symmetric_median_mm": 2.756199452565957,
+      "axis_angle_deg": [
+       9.454579870172974,
+       8.8579883828214,
+       3.637220654385567
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep26/fit",
+      "centroid_offset_mm": 12.402974669623516,
+      "surf_symmetric_median_mm": 1.6022870207057518,
+      "axis_angle_deg": [
+       5.41775201850515,
+       3.4407381708428324,
+       4.367985748693299
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep26/nomk",
+      "centroid_offset_mm": 13.208426693552365,
+      "surf_symmetric_median_mm": 1.4801378689567233,
+      "axis_angle_deg": [
+       6.467579658769381,
+       2.3785111136959234,
+       6.294848811601311
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep26/nostem",
+      "centroid_offset_mm": 12.551015019503888,
+      "surf_symmetric_median_mm": 1.607679473313346,
+      "axis_angle_deg": [
+       5.530994362627697,
+       3.501688159168176,
+       4.4642803788767385
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep26/thick",
+      "centroid_offset_mm": 12.290259284688696,
+      "surf_symmetric_median_mm": 2.999836124243393,
+      "axis_angle_deg": [
+       5.531299083232525,
+       3.0813180940026683,
+       5.059278287053724
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep27/fit",
+      "centroid_offset_mm": 36.108669675198236,
+      "surf_symmetric_median_mm": 3.1273698394162497,
+      "axis_angle_deg": [
+       11.203025782836297,
+       7.208551364389748,
+       10.614247713424573
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep27/nomk",
+      "centroid_offset_mm": 27.7420079196217,
+      "surf_symmetric_median_mm": 3.348090355468143,
+      "axis_angle_deg": [
+       14.04983824765536,
+       7.35912358892554,
+       12.054936248320889
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep27/nostem",
+      "centroid_offset_mm": 36.02909599358081,
+      "surf_symmetric_median_mm": 3.131400359724652,
+      "axis_angle_deg": [
+       11.193727626135205,
+       7.244559173612378,
+       10.630877432840288
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep27/thick",
+      "centroid_offset_mm": 36.18525142256214,
+      "surf_symmetric_median_mm": 3.0401201716175557,
+      "axis_angle_deg": [
+       11.344169386598244,
+       7.338773011464066,
+       10.693803957235774
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep41/fit",
+      "centroid_offset_mm": 5.120593186005912,
+      "surf_symmetric_median_mm": 1.3675122695303048,
+      "axis_angle_deg": [
+       4.749262237983671,
+       4.483159811582203,
+       3.121184671343567
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep41/nomk",
+      "centroid_offset_mm": 7.401062358024559,
+      "surf_symmetric_median_mm": 1.3095760643364471,
+      "axis_angle_deg": [
+       5.190507896973241,
+       4.241321313614004,
+       4.084299710629557
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep41/nostem",
+      "centroid_offset_mm": 5.120593186005912,
+      "surf_symmetric_median_mm": 1.3675122695303048,
+      "axis_angle_deg": [
+       4.749262237983671,
+       4.483159811582203,
+       3.121184671343567
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep41/thick",
+      "centroid_offset_mm": 5.274218147832778,
+      "surf_symmetric_median_mm": 2.6123033450668665,
+      "axis_angle_deg": [
+       4.897782415398678,
+       4.583496053541175,
+       3.855470049689109
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep42/fit",
+      "centroid_offset_mm": 7.534573924615537,
+      "surf_symmetric_median_mm": 1.2448553700257903,
+      "axis_angle_deg": [
+       2.2346535606183218,
+       2.1994679924971448,
+       0.6396659257945541
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep42/nomk",
+      "centroid_offset_mm": 10.869084724647108,
+      "surf_symmetric_median_mm": 1.1487984361560724,
+      "axis_angle_deg": [
+       4.510052917795544,
+       3.5894639670421715,
+       2.7823784337721618
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep42/nostem",
+      "centroid_offset_mm": 7.534573924615537,
+      "surf_symmetric_median_mm": 1.2448553700257903,
+      "axis_angle_deg": [
+       2.2346535606183218,
+       2.1994679924971448,
+       0.6396659257945541
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep42/thick",
+      "centroid_offset_mm": 5.817510264039527,
+      "surf_symmetric_median_mm": 2.9953188021948436,
+      "axis_angle_deg": [
+       2.6903632459672364,
+       2.387748921693926,
+       1.2531140245079102
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep44/fit",
+      "centroid_offset_mm": 21.30922476352854,
+      "surf_symmetric_median_mm": 2.478649569569194,
+      "axis_angle_deg": [
+       7.743436904132149,
+       5.998066095225189,
+       5.49644064958224
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep44/nomk",
+      "centroid_offset_mm": 12.293154260967363,
+      "surf_symmetric_median_mm": 2.270562785860789,
+      "axis_angle_deg": [
+       6.8468930051905,
+       3.116360615276595,
+       6.472164933266995
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep44/nostem",
+      "centroid_offset_mm": 5.045690523020588,
+      "surf_symmetric_median_mm": 2.3470674393286397,
+      "axis_angle_deg": [
+       7.453768965128373,
+       5.2816313615575305,
+       6.040822875566327
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep44/thick",
+      "centroid_offset_mm": 13.980533181737693,
+      "surf_symmetric_median_mm": 2.285968601811251,
+      "axis_angle_deg": [
+       6.362356425282009,
+       3.393898493909835,
+       5.676784353201132
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep45/fit",
+      "centroid_offset_mm": 17.346790945089356,
+      "surf_symmetric_median_mm": 2.3861477371745825,
+      "axis_angle_deg": [
+       5.624618746557072,
+       5.98183483721444,
+       2.3723665935210443
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep45/nomk",
+      "centroid_offset_mm": 15.51055378902132,
+      "surf_symmetric_median_mm": 2.251419476684144,
+      "axis_angle_deg": [
+       4.193493246359152,
+       3.131940220833863,
+       2.8258274535018346
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep45/nostem",
+      "centroid_offset_mm": 17.346790945089356,
+      "surf_symmetric_median_mm": 2.3861477371745825,
+      "axis_angle_deg": [
+       5.624618746557072,
+       5.98183483721444,
+       2.3723665935210443
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     },
+     {
+      "label": "pot/ep45/thick",
+      "centroid_offset_mm": 13.626031846240119,
+      "surf_symmetric_median_mm": 4.306122879207284,
+      "axis_angle_deg": [
+       5.27691491763812,
+       5.962605360868185,
+       2.7756438284317397
+      ],
+      "pick_pca_sd_mm": [
+       81.99874437328614,
+       53.39305489782682,
+       33.90990877412944
+      ]
+     }
+    ]
+   },
+   "frame_check": "excludes",
+   "excluded": {},
+   "pick": "pot/ep3/thick",
+   "path": "/content/results/e0b/cand/white_pot/white_pot_ep3_thick.glb",
+   "sha256": "265ab3410fac9e42a7dc3b40112b98a0d326cc685a40a190625cacc628f7768c",
+   "sha1_16": "a9b67813f819ff19",
+   "fid_all_sum_mm": 3.275,
+   "faces_raw": 28650,
+   "ties_at_3_decimals": [],
+   "runner_up": "pot/ep3/fit",
+   "runner_up_fid": 3.319,
+   "c0b_public_over_e0b_pick": 1.099847328244275,
+   "rule_e_result": "e0b",
+   "adopted": true,
+   "ships": "e0b",
+   "flags": []
+  },
+  "white_pot_lid": {
+   "n_candidates": 8,
+   "n_eligible": 8,
+   "c0b_public_pick": null,
+   "frame_thresholds": null,
+   "frame_check": "not possible (no C0b public pick)",
+   "excluded": {},
+   "pick": "lid/ep1/a6b2_nomk",
+   "path": "/content/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b2_nomk.glb",
+   "sha256": "70f877f1fd3964c845d5df315b36fa9854e715a5b30fade10e12140174236028",
+   "sha1_16": "d590bd2766ce6cc6",
+   "fid_all_sum_mm": 2.976,
+   "faces_raw": 9170,
+   "ties_at_3_decimals": [],
+   "runner_up": "lid/ep1/a6b1_nomk",
+   "runner_up_fid": 2.979,
+   "c0b_public_over_e0b_pick": null,
+   "rule_e_result": "e0b",
+   "adopted": false,
+   "ships": "library_v3 (not adopted, C0b PREREG 8)",
+   "flags": []
+  },
+  "plastic_dish_rack": {
+   "n_candidates": 0,
+   "n_eligible": 0,
+   "c0b_public_pick": {
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/plastic_dish_rack_c0b_rack_ep13_full.glb",
+    "fid_all_sum_mm": 19.067,
+    "fid_per_episode_sum_mm": {
+     "ep14": 24.126,
+     "ep15": 22.683,
+     "ep16": 22.903,
+     "ep28": 24.338,
+     "ep30": 25.218
+    }
+   },
+   "frame_thresholds": {
+    "pick": "rack/ep13/full",
+    "n_references": 8,
+    "excludes": true,
+    "pick_pca_sd_mm": [
+     138.2478621235729,
+     71.73886162310106,
+     34.2658497864865
+    ],
+    "eigen_ratios_neighbour": [
+     0.269272568899477,
+     0.22814662663137755
+    ],
+    "axis_checked": [
+     true,
+     true,
+     true
+    ],
+    "ref_max_centroid_offset_mm": 6512.4504906456605,
+    "ref_max_surf_symmetric_median_mm": 277.0181169060247,
+    "ref_max_axis_angle_deg": [
+     81.77000043033216,
+     77.87321749086756,
+     89.69143476778218
+    ],
+    "max_centroid_offset_mm": 19537.35147193698,
+    "max_surf_symmetric_median_mm": 831.0543507180741,
+    "max_axis_angle_deg": [
+     245.31000129099647,
+     233.6196524726027,
+     269.07430430334654
+    ],
+    "references": [
+     {
+      "label": "rack/ep12/full",
+      "centroid_offset_mm": 6492.195887999325,
+      "surf_symmetric_median_mm": 46.93272335420228,
+      "axis_angle_deg": [
+       81.77000043033216,
+       77.87321749086756,
+       89.69143476778218
+      ],
+      "pick_pca_sd_mm": [
+       138.2478621235729,
+       71.73886162310106,
+       34.2658497864865
+      ]
+     },
+     {
+      "label": "rack/ep12/nomk",
+      "centroid_offset_mm": 6512.4504906456605,
+      "surf_symmetric_median_mm": 185.16201490706686,
+      "axis_angle_deg": [
+       81.76241160868634,
+       77.79100596146395,
+       89.66990412606907
+      ],
+      "pick_pca_sd_mm": [
+       138.2478621235729,
+       71.73886162310106,
+       34.2658497864865
+      ]
+     },
+     {
+      "label": "rack/ep26/full",
+      "centroid_offset_mm": 2843.2111205872484,
+      "surf_symmetric_median_mm": 39.54683731621496,
+      "axis_angle_deg": [
+       12.425283776177409,
+       11.794147019221331,
+       6.684995894834848
+      ],
+      "pick_pca_sd_mm": [
+       138.2478621235729,
+       71.73886162310106,
+       34.2658497864865
+      ]
+     },
+     {
+      "label": "rack/ep26/nomk",
+      "centroid_offset_mm": 2869.8339087635513,
+      "surf_symmetric_median_mm": 49.90964278354016,
+      "axis_angle_deg": [
+       12.454853088653444,
+       11.733709805056371,
+       6.63986936388261
+      ],
+      "pick_pca_sd_mm": [
+       138.2478621235729,
+       71.73886162310106,
+       34.2658497864865
+      ]
+     },
+     {
+      "label": "rack/ep27/full",
+      "centroid_offset_mm": 86.01564188712902,
+      "surf_symmetric_median_mm": 23.21804006902073,
+      "axis_angle_deg": [
+       20.48349523884526,
+       14.24591316388047,
+       19.262473556842835
+      ],
+      "pick_pca_sd_mm": [
+       138.2478621235729,
+       71.73886162310106,
+       34.2658497864865
+      ]
+     },
+     {
+      "label": "rack/ep27/nomk",
+      "centroid_offset_mm": 96.20276159091601,
+      "surf_symmetric_median_mm": 27.190028631333234,
+      "axis_angle_deg": [
+       21.02643818730399,
+       16.795644916977466,
+       21.14053611721093
+      ],
+      "pick_pca_sd_mm": [
+       138.2478621235729,
+       71.73886162310106,
+       34.2658497864865
+      ]
+     },
+     {
+      "label": "rack/ep31/full",
+      "centroid_offset_mm": 2507.4417018449158,
+      "surf_symmetric_median_mm": 46.76235646210961,
+      "axis_angle_deg": [
+       56.25522169765131,
+       74.91032695025258,
+       87.43260980456552
+      ],
+      "pick_pca_sd_mm": [
+       138.2478621235729,
+       71.73886162310106,
+       34.2658497864865
+      ]
+     },
+     {
+      "label": "rack/ep31/nomk",
+      "centroid_offset_mm": 2512.352357952365,
+      "surf_symmetric_median_mm": 277.0181169060247,
+      "axis_angle_deg": [
+       56.30671153644883,
+       74.99253117204822,
+       87.4729571961498
+      ],
+      "pick_pca_sd_mm": [
+       138.2478621235729,
+       71.73886162310106,
+       34.2658497864865
+      ]
+     }
+    ]
+   },
+   "frame_check": "excludes",
+   "excluded": {},
+   "pick": null,
+   "reason": "no E0b candidate built",
+   "c0b_public_over_e0b_pick": null,
+   "rule_e_result": "c0b_public",
+   "adopted": false,
+   "ships": "library_v3 (not adopted, C0b PREREG 8)",
+   "flags": [
+    "no eligible E0b candidate: C0b public pick"
+   ]
+  },
+  "blue_cup": {
+   "n_candidates": 11,
+   "n_eligible": 9,
+   "c0b_public_pick": {
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/blue_cup_c0b_cup_ep21_g1.glb",
+    "fid_all_sum_mm": 5.181,
+    "fid_per_episode_sum_mm": {
+     "ep10": 8.848,
+     "ep14": 5.214,
+     "ep20": 30.854,
+     "ep32": 4.276,
+     "ep33": 3.63
+    }
+   },
+   "frame_thresholds": {
+    "pick": "cup/ep21/g1",
+    "n_references": 2,
+    "excludes": true,
+    "pick_pca_sd_mm": [
+     83.76253465948375,
+     43.793425584166215,
+     25.96192294213387
+    ],
+    "eigen_ratios_neighbour": [
+     0.2733494560540284,
+     0.35144379326955855
+    ],
+    "axis_checked": [
+     true,
+     true,
+     true
+    ],
+    "ref_max_centroid_offset_mm": 29.727708005927568,
+    "ref_max_surf_symmetric_median_mm": 1.8032182680610367,
+    "ref_max_axis_angle_deg": [
+     76.16193599135462,
+     87.05649926931522,
+     81.66210390645017
+    ],
+    "max_centroid_offset_mm": 89.1831240177827,
+    "max_surf_symmetric_median_mm": 5.40965480418311,
+    "max_axis_angle_deg": [
+     228.48580797406387,
+     261.1694978079457,
+     244.9863117193505
+    ],
+    "references": [
+     {
+      "label": "cup/ep22/g0",
+      "centroid_offset_mm": 29.727708005927568,
+      "surf_symmetric_median_mm": 1.6791150001804795,
+      "axis_angle_deg": [
+       76.16193599135462,
+       87.05649926931522,
+       81.66210390645017
+      ],
+      "pick_pca_sd_mm": [
+       83.76253465948375,
+       43.793425584166215,
+       25.96192294213387
+      ]
+     },
+     {
+      "label": "cup/ep22/g1",
+      "centroid_offset_mm": 5.962567446384707,
+      "surf_symmetric_median_mm": 1.8032182680610367,
+      "axis_angle_deg": [
+       7.030266368292516,
+       5.653627568505352,
+       5.063984940008254
+      ],
+      "pick_pca_sd_mm": [
+       83.76253465948375,
+       43.793425584166215,
+       25.96192294213387
+      ]
+     }
+    ]
+   },
+   "frame_check": "excludes",
+   "excluded": {
+    "cup/ep20/g1": [
+     "frame: median dist 7.28 > 5.41 mm"
+    ],
+    "cup/ep20/g0": [
+     "frame: median dist 16.61 > 5.41 mm"
+    ]
+   },
+   "pick": "cup/merged/g1",
+   "path": "/content/results/e0b/cand/blue_cup/merged_blue_cup_g1.glb",
+   "sha256": "7d995e572519e55fce45ac179762dea28301054da3d77361fcb1c3da015827a9",
+   "sha1_16": "8616a073feb8e2da",
+   "fid_all_sum_mm": 5.033,
+   "faces_raw": 97344,
+   "ties_at_3_decimals": [],
+   "runner_up": "cup/ep33/g1",
+   "runner_up_fid": 5.154,
+   "c0b_public_over_e0b_pick": 1.0294059209219153,
+   "rule_e_result": "e0b",
+   "adopted": false,
+   "ships": "library_v3 (not adopted, C0b PREREG 8)",
+   "flags": []
+  },
+  "beige_cup": {
+   "n_candidates": 5,
+   "n_eligible": 5,
+   "c0b_public_pick": {
+    "path": "docs/research/mesh-2026-10-26/cdo-sprint/C0b/meshes/beige_cup_c0b_beige_ep11_g1.glb",
+    "fid_all_sum_mm": 3.277,
+    "fid_per_episode_sum_mm": {
+     "ep10": 4.146,
+     "ep8": 4.526
+    }
+   },
+   "frame_thresholds": {
+    "pick": "beige/ep11/g1",
+    "n_references": 0,
+    "excludes": false,
+    "note": "no reference candidate from another public episode: frame check reported only"
+   },
+   "frame_check": "reported only (no reference from another public episode)",
+   "excluded": {},
+   "pick": "beige/ep8/g1",
+   "path": "/content/results/e0b/cand/beige_cup/ep8_beige_cup_sep_g1.glb",
+   "sha256": "aa3d87995e15c343b937e38492055439a0f9b8aeecc0718b8de0147049f28359",
+   "sha1_16": "5a63304ded3a0e06",
+   "fid_all_sum_mm": 3.322,
+   "faces_raw": 46426,
+   "ties_at_3_decimals": [],
+   "runner_up": "beige/merged/g1",
+   "runner_up_fid": 3.403,
+   "c0b_public_over_e0b_pick": 0.9864539434075859,
+   "rule_e_result": "e0b",
+   "adopted": true,
+   "ships": "e0b",
+   "flags": []
+  }
+ },
+ "table": {
+  "white_pot": [
+   {
+    "label": "pot/ep1/fit",
+    "object": "white_pot",
+    "episode": "1",
+    "variant": "fit",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep1_fit.glb",
+    "sha256": "2e3c96aeacc9439ef25f36735fa478833df81a18d13f8ac35d233a879eec903e",
+    "sha1_16": "f0d98b944eee455d",
+    "faces_raw": 28444,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.779,
+    "fid_all_obs_to_mesh_mm": 2.617,
+    "fid_all_mesh_to_obs_mm": 1.163,
+    "fid_per_episode_sum_mm": {
+     "ep1": 4.598,
+     "ep28": 4.494,
+     "ep3": 4.412,
+     "ep5": 3.761,
+     "ep6": 4.064,
+     "ep8": 7.713
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 7.702907907550981,
+     "surf_symmetric_median_mm": 2.383650803063756,
+     "axis_angle_deg": [
+      10.325380745918574,
+      9.508698699990408,
+      4.429390415235926
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep1/nostem",
+    "object": "white_pot",
+    "episode": "1",
+    "variant": "nostem",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep1_nostem.glb",
+    "sha256": "3199cfe62e66383647401d1927e7c233778af298eb741c8f4a997bb487fc356f",
+    "sha1_16": "82d2e2be776b7daa",
+    "faces_raw": 27948,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2062,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.743,
+    "fid_all_obs_to_mesh_mm": 2.623,
+    "fid_all_mesh_to_obs_mm": 1.12,
+    "fid_per_episode_sum_mm": {
+     "ep1": 4.49,
+     "ep28": 4.426,
+     "ep3": 4.338,
+     "ep5": 3.757,
+     "ep6": 4.057,
+     "ep8": 7.683
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 5.193797491242845,
+     "surf_symmetric_median_mm": 2.3181693266854433,
+     "axis_angle_deg": [
+      10.36318771998962,
+      9.499455212704508,
+      4.685688002719369
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep1/nomk",
+    "object": "white_pot",
+    "episode": "1",
+    "variant": "nomk",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep1_nomk.glb",
+    "sha256": "5b0d1f25e33cbbe06bfa86b6034c996d23539819eef8d4967662b66e298bb0dc",
+    "sha1_16": "b0e2044cd85dc141",
+    "faces_raw": 14764,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 4.161,
+    "fid_all_obs_to_mesh_mm": 3.164,
+    "fid_all_mesh_to_obs_mm": 0.997,
+    "fid_per_episode_sum_mm": {
+     "ep1": 4.99,
+     "ep28": 4.748,
+     "ep3": 4.468,
+     "ep5": 4.018,
+     "ep6": 4.37,
+     "ep8": 11.455
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 9.11791648771968,
+     "surf_symmetric_median_mm": 2.346855307687946,
+     "axis_angle_deg": [
+      4.689723397002289,
+      1.9753330449839512,
+      4.78519571027626
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep1/thick",
+    "object": "white_pot",
+    "episode": "1",
+    "variant": "thick",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep1_thick.glb",
+    "sha256": "152d3cc8f551ef25a9823471a97dc452b3ddc3abc35f802ad2b360287d146479",
+    "sha1_16": "414fbf297ebfd791",
+    "faces_raw": 28042,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.528,
+    "fid_all_obs_to_mesh_mm": 2.305,
+    "fid_all_mesh_to_obs_mm": 1.223,
+    "fid_per_episode_sum_mm": {
+     "ep1": 4.449,
+     "ep28": 4.177,
+     "ep3": 4.21,
+     "ep5": 3.558,
+     "ep6": 3.834,
+     "ep8": 7.449
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 7.6462162792222195,
+     "surf_symmetric_median_mm": 2.192922070302725,
+     "axis_angle_deg": [
+      10.568326985855517,
+      9.700142722033513,
+      4.636597868126934
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep3/fit",
+    "object": "white_pot",
+    "episode": "3",
+    "variant": "fit",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep3_fit.glb",
+    "sha256": "3d0133c58cc522e8157a7f33dd77316bc55d2e65e38f2def540bc3f1bc7a2056",
+    "sha1_16": "3e33bc3ede0cfb20",
+    "faces_raw": 29732,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.319,
+    "fid_all_obs_to_mesh_mm": 2.134,
+    "fid_all_mesh_to_obs_mm": 1.185,
+    "fid_per_episode_sum_mm": {
+     "ep1": 4.362,
+     "ep28": 3.809,
+     "ep3": 3.861,
+     "ep5": 3.394,
+     "ep6": 3.648,
+     "ep8": 10.663
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 10.582409142793267,
+     "surf_symmetric_median_mm": 2.174713648396649,
+     "axis_angle_deg": [
+      1.930759828275953,
+      3.3329483807473292,
+      3.1325304476760194
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep3/nostem",
+    "object": "white_pot",
+    "episode": "3",
+    "variant": "nostem",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep3_nostem.glb",
+    "sha256": "3d0133c58cc522e8157a7f33dd77316bc55d2e65e38f2def540bc3f1bc7a2056",
+    "sha1_16": "3e33bc3ede0cfb20",
+    "faces_raw": 29732,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.319,
+    "fid_all_obs_to_mesh_mm": 2.134,
+    "fid_all_mesh_to_obs_mm": 1.185,
+    "fid_per_episode_sum_mm": {
+     "ep1": 4.362,
+     "ep28": 3.809,
+     "ep3": 3.861,
+     "ep5": 3.394,
+     "ep6": 3.648,
+     "ep8": 10.663
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 10.582409142793267,
+     "surf_symmetric_median_mm": 2.174713648396649,
+     "axis_angle_deg": [
+      1.930759828275953,
+      3.3329483807473292,
+      3.1325304476760194
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep3/nomk",
+    "object": "white_pot",
+    "episode": "3",
+    "variant": "nomk",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep3_nomk.glb",
+    "sha256": "e61f7ad5b2918665c2028d5862b297e986258fdaf3320400191d868b7d2a93be",
+    "sha1_16": "04cb906c0ad4c94e",
+    "faces_raw": 14992,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 3.377,
+    "fid_all_obs_to_mesh_mm": 2.419,
+    "fid_all_mesh_to_obs_mm": 0.958,
+    "fid_per_episode_sum_mm": {
+     "ep1": 3.983,
+     "ep28": 3.758,
+     "ep3": 3.598,
+     "ep5": 3.301,
+     "ep6": 3.438,
+     "ep8": 10.331
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 6.811213432991581,
+     "surf_symmetric_median_mm": 2.0919346906632272,
+     "axis_angle_deg": [
+      3.8854356085181996,
+      3.478430001168882,
+      3.6687281191693835
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep3/thick",
+    "object": "white_pot",
+    "episode": "3",
+    "variant": "thick",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep3_thick.glb",
+    "sha256": "265ab3410fac9e42a7dc3b40112b98a0d326cc685a40a190625cacc628f7768c",
+    "sha1_16": "a9b67813f819ff19",
+    "faces_raw": 28650,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.275,
+    "fid_all_obs_to_mesh_mm": 1.986,
+    "fid_all_mesh_to_obs_mm": 1.29,
+    "fid_per_episode_sum_mm": {
+     "ep1": 4.512,
+     "ep28": 3.767,
+     "ep3": 3.968,
+     "ep5": 3.469,
+     "ep6": 3.75,
+     "ep8": 10.706
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 9.532467201750178,
+     "surf_symmetric_median_mm": 2.1741991867364625,
+     "axis_angle_deg": [
+      2.2166898269769892,
+      3.499695800231947,
+      3.227756459554142
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep5/fit",
+    "object": "white_pot",
+    "episode": "5",
+    "variant": "fit",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep5_fit.glb",
+    "sha256": "a9b6639d0038e9fc2341cc37d80beb94944f696a48faf41c0204444d09354458",
+    "sha1_16": "e57cc225224b3227",
+    "faces_raw": 23338,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 4.164,
+    "fid_all_obs_to_mesh_mm": 2.643,
+    "fid_all_mesh_to_obs_mm": 1.521,
+    "fid_per_episode_sum_mm": {
+     "ep1": 5.638,
+     "ep28": 4.169,
+     "ep3": 5.331,
+     "ep5": 4.39,
+     "ep6": 4.629,
+     "ep8": 12.075
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 5.638002560011278,
+     "surf_symmetric_median_mm": 2.354492970054154,
+     "axis_angle_deg": [
+      2.2906336008519763,
+      2.4068603803618274,
+      1.5842897360265527
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep5/nostem",
+    "object": "white_pot",
+    "episode": "5",
+    "variant": "nostem",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep5_nostem.glb",
+    "sha256": "a9b6639d0038e9fc2341cc37d80beb94944f696a48faf41c0204444d09354458",
+    "sha1_16": "e57cc225224b3227",
+    "faces_raw": 23338,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 4.164,
+    "fid_all_obs_to_mesh_mm": 2.643,
+    "fid_all_mesh_to_obs_mm": 1.521,
+    "fid_per_episode_sum_mm": {
+     "ep1": 5.638,
+     "ep28": 4.169,
+     "ep3": 5.331,
+     "ep5": 4.39,
+     "ep6": 4.629,
+     "ep8": 12.075
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 5.638002560011278,
+     "surf_symmetric_median_mm": 2.354492970054154,
+     "axis_angle_deg": [
+      2.2906336008519763,
+      2.4068603803618274,
+      1.5842897360265527
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep5/nomk",
+    "object": "white_pot",
+    "episode": "5",
+    "variant": "nomk",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep5_nomk.glb",
+    "sha256": "f6bd2f6d9a84dd1990bccf200f45ae467826656b7bcefb2a754f8415a334040d",
+    "sha1_16": "9b894e8afec01d0d",
+    "faces_raw": 15248,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 4.286,
+    "fid_all_obs_to_mesh_mm": 2.914,
+    "fid_all_mesh_to_obs_mm": 1.371,
+    "fid_per_episode_sum_mm": {
+     "ep1": 5.732,
+     "ep28": 4.071,
+     "ep3": 5.225,
+     "ep5": 4.405,
+     "ep6": 4.601,
+     "ep8": 11.952
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 8.215824213097488,
+     "surf_symmetric_median_mm": 2.342606466554075,
+     "axis_angle_deg": [
+      1.927647917145983,
+      0.895551956069146,
+      2.014959958040971
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep5/thick",
+    "object": "white_pot",
+    "episode": "5",
+    "variant": "thick",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep5_thick.glb",
+    "sha256": "22513256cf275da7da99ef35686ec977f21648e25e133d3a26942b296e193f1a",
+    "sha1_16": "8a7add531f2dfe6a",
+    "faces_raw": 22370,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 4.634,
+    "fid_all_obs_to_mesh_mm": 2.61,
+    "fid_all_mesh_to_obs_mm": 2.024,
+    "fid_per_episode_sum_mm": {
+     "ep1": 6.507,
+     "ep28": 5.041,
+     "ep3": 5.834,
+     "ep5": 5.067,
+     "ep6": 5.371,
+     "ep8": 12.56
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 7.005494663450135,
+     "surf_symmetric_median_mm": 2.6734026800777517,
+     "axis_angle_deg": [
+      2.7259665190476157,
+      3.382475601244227,
+      2.0109626015712943
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep6/fit",
+    "object": "white_pot",
+    "episode": "6",
+    "variant": "fit",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep6_fit.glb",
+    "sha256": "9332a81c210b78fde9811ad36e9d9f90da8347e5729e53a54cdd802fa1a6115c",
+    "sha1_16": "d01aa2b16004b583",
+    "faces_raw": 28550,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 4.497,
+    "fid_all_obs_to_mesh_mm": 2.64,
+    "fid_all_mesh_to_obs_mm": 1.857,
+    "fid_per_episode_sum_mm": {
+     "ep1": 6.333,
+     "ep28": 4.535,
+     "ep3": 5.855,
+     "ep5": 4.858,
+     "ep6": 5.114,
+     "ep8": 12.821
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 11.017427734771818,
+     "surf_symmetric_median_mm": 2.747123423219036,
+     "axis_angle_deg": [
+      2.7145821196155935,
+      3.3991715478568953,
+      2.1304279927944907
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep6/nostem",
+    "object": "white_pot",
+    "episode": "6",
+    "variant": "nostem",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep6_nostem.glb",
+    "sha256": "9332a81c210b78fde9811ad36e9d9f90da8347e5729e53a54cdd802fa1a6115c",
+    "sha1_16": "d01aa2b16004b583",
+    "faces_raw": 28550,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 4.497,
+    "fid_all_obs_to_mesh_mm": 2.64,
+    "fid_all_mesh_to_obs_mm": 1.857,
+    "fid_per_episode_sum_mm": {
+     "ep1": 6.333,
+     "ep28": 4.535,
+     "ep3": 5.855,
+     "ep5": 4.858,
+     "ep6": 5.114,
+     "ep8": 12.821
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 11.017427734771818,
+     "surf_symmetric_median_mm": 2.747123423219036,
+     "axis_angle_deg": [
+      2.7145821196155935,
+      3.3991715478568953,
+      2.1304279927944907
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep6/nomk",
+    "object": "white_pot",
+    "episode": "6",
+    "variant": "nomk",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep6_nomk.glb",
+    "sha256": "157fedb6085c080f4c4b6a0c38a37a2161bb4326bccb973a059fbdeeb28b9115",
+    "sha1_16": "e286525447dfb383",
+    "faces_raw": 15284,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 4.634,
+    "fid_all_obs_to_mesh_mm": 3.043,
+    "fid_all_mesh_to_obs_mm": 1.59,
+    "fid_per_episode_sum_mm": {
+     "ep1": 6.437,
+     "ep28": 4.19,
+     "ep3": 5.752,
+     "ep5": 4.859,
+     "ep6": 5.062,
+     "ep8": 12.948
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 14.528078472313872,
+     "surf_symmetric_median_mm": 2.6518004253227074,
+     "axis_angle_deg": [
+      5.55337364244833,
+      2.438669967001491,
+      5.414623145527128
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep6/thick",
+    "object": "white_pot",
+    "episode": "6",
+    "variant": "thick",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep6_thick.glb",
+    "sha256": "588c41b21311d5453483b85d1bfc491cd032e92f6c54f59c3c3959ab087b38cb",
+    "sha1_16": "b94aea4d66e78a4a",
+    "faces_raw": 25314,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 6.012,
+    "fid_all_obs_to_mesh_mm": 3.133,
+    "fid_all_mesh_to_obs_mm": 2.879,
+    "fid_per_episode_sum_mm": {
+     "ep1": 8.114,
+     "ep28": 6.717,
+     "ep3": 7.238,
+     "ep5": 6.549,
+     "ep6": 6.916,
+     "ep8": 13.999
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 8.323761303872052,
+     "surf_symmetric_median_mm": 3.6398931460803974,
+     "axis_angle_deg": [
+      2.7115757010960304,
+      3.0613487911730526,
+      2.1363355518671456
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep8/fit",
+    "object": "white_pot",
+    "episode": "8",
+    "variant": "fit",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep8_fit.glb",
+    "sha256": "98bdbda6cda74fdb96b549860c207ca31b358e3bb996a5597a2e90994cde4199",
+    "sha1_16": "a9f1ae12144d298b",
+    "faces_raw": 28238,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.532,
+    "fid_all_obs_to_mesh_mm": 2.139,
+    "fid_all_mesh_to_obs_mm": 1.393,
+    "fid_per_episode_sum_mm": {
+     "ep1": 5.026,
+     "ep28": 4.289,
+     "ep3": 4.377,
+     "ep5": 3.591,
+     "ep6": 3.875,
+     "ep8": 5.177
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 14.832345505352205,
+     "surf_symmetric_median_mm": 2.2532750333851785,
+     "axis_angle_deg": [
+      11.295914155108628,
+      11.5235651667643,
+      4.744094018614438
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep8/nostem",
+    "object": "white_pot",
+    "episode": "8",
+    "variant": "nostem",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep8_nostem.glb",
+    "sha256": "6f19fe6366b84ccea38c38466e2e41502db7e32849d0e357352b15fb158fe2e1",
+    "sha1_16": "6deebcb22c29e26c",
+    "faces_raw": 27710,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2060,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.567,
+    "fid_all_obs_to_mesh_mm": 2.169,
+    "fid_all_mesh_to_obs_mm": 1.398,
+    "fid_per_episode_sum_mm": {
+     "ep1": 5.08,
+     "ep28": 4.318,
+     "ep3": 4.411,
+     "ep5": 3.609,
+     "ep6": 3.905,
+     "ep8": 5.2
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 14.314681939929088,
+     "surf_symmetric_median_mm": 2.2705277006255296,
+     "axis_angle_deg": [
+      11.459362068500802,
+      11.736629541864556,
+      4.982008838953017
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep8/nomk",
+    "object": "white_pot",
+    "episode": "8",
+    "variant": "nomk",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep8_nomk.glb",
+    "sha256": "43afd2eb7e613e6d64976c8d5c2dce8b4e5a0ede0ee3398146961d479d6404b3",
+    "sha1_16": "50066c8759574c35",
+    "faces_raw": 14920,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 4.35,
+    "fid_all_obs_to_mesh_mm": 3.106,
+    "fid_all_mesh_to_obs_mm": 1.244,
+    "fid_per_episode_sum_mm": {
+     "ep1": 6.863,
+     "ep28": 4.655,
+     "ep3": 4.929,
+     "ep5": 4.049,
+     "ep6": 4.461,
+     "ep8": 6.008
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 9.869288376648665,
+     "surf_symmetric_median_mm": 2.1755933583986033,
+     "axis_angle_deg": [
+      13.18284715373164,
+      13.064864428791017,
+      6.583102204263192
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep8/thick",
+    "object": "white_pot",
+    "episode": "8",
+    "variant": "thick",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep8_thick.glb",
+    "sha256": "768e595986c26a0408abcdb40358fe9822df78200241ad6f843988972719672c",
+    "sha1_16": "c9b670ed188aa483",
+    "faces_raw": 26136,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 4.44,
+    "fid_all_obs_to_mesh_mm": 2.565,
+    "fid_all_mesh_to_obs_mm": 1.875,
+    "fid_per_episode_sum_mm": {
+     "ep1": 6.398,
+     "ep28": 5.156,
+     "ep3": 5.697,
+     "ep5": 4.867,
+     "ep6": 5.092,
+     "ep8": 6.109
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 16.150037092981318,
+     "surf_symmetric_median_mm": 2.645529012039896,
+     "axis_angle_deg": [
+      11.532638550663526,
+      11.734858473229977,
+      5.128084244378444
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep28/fit",
+    "object": "white_pot",
+    "episode": "28",
+    "variant": "fit",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep28_fit.glb",
+    "sha256": "2217966393f7672163ec6a6565719949277357dcd5790d079a6f1c3ee06510af",
+    "sha1_16": "37964a7b4324b683",
+    "faces_raw": 28152,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.966,
+    "fid_all_obs_to_mesh_mm": 2.828,
+    "fid_all_mesh_to_obs_mm": 1.137,
+    "fid_per_episode_sum_mm": {
+     "ep1": 6.153,
+     "ep28": 2.654,
+     "ep3": 5.681,
+     "ep5": 4.937,
+     "ep6": 4.876,
+     "ep8": 12.848
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 4.832434695744201,
+     "surf_symmetric_median_mm": 2.0820918373462964,
+     "axis_angle_deg": [
+      2.4472223618044904,
+      2.1583338330166315,
+      1.5531200646440673
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep28/nostem",
+    "object": "white_pot",
+    "episode": "28",
+    "variant": "nostem",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep28_nostem.glb",
+    "sha256": "2217966393f7672163ec6a6565719949277357dcd5790d079a6f1c3ee06510af",
+    "sha1_16": "37964a7b4324b683",
+    "faces_raw": 28152,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.966,
+    "fid_all_obs_to_mesh_mm": 2.828,
+    "fid_all_mesh_to_obs_mm": 1.137,
+    "fid_per_episode_sum_mm": {
+     "ep1": 6.153,
+     "ep28": 2.654,
+     "ep3": 5.681,
+     "ep5": 4.937,
+     "ep6": 4.876,
+     "ep8": 12.848
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 4.832434695744201,
+     "surf_symmetric_median_mm": 2.0820918373462964,
+     "axis_angle_deg": [
+      2.4472223618044904,
+      2.1583338330166315,
+      1.5531200646440673
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep28/nomk",
+    "object": "white_pot",
+    "episode": "28",
+    "variant": "nomk",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep28_nomk.glb",
+    "sha256": "bd58ef1c7ce4dd69249755713bea6bb997b99d18274520037d61e179dbaf94de",
+    "sha1_16": "9396b8f5fb06660f",
+    "faces_raw": 15270,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 3.959,
+    "fid_all_obs_to_mesh_mm": 2.967,
+    "fid_all_mesh_to_obs_mm": 0.992,
+    "fid_per_episode_sum_mm": {
+     "ep1": 5.551,
+     "ep28": 2.552,
+     "ep3": 5.252,
+     "ep5": 4.784,
+     "ep6": 4.478,
+     "ep8": 12.158
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 5.27094480878466,
+     "surf_symmetric_median_mm": 2.119813704270586,
+     "axis_angle_deg": [
+      4.579079921782265,
+      3.8389414812400435,
+      2.527976181472343
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "pot/ep28/thick",
+    "object": "white_pot",
+    "episode": "28",
+    "variant": "thick",
+    "path": "/content/results/e0b/cand/white_pot/white_pot_ep28_thick.glb",
+    "sha256": "adc839e6e8ea167dd37299260487c98a2d82fecd22b948efef157d9000f0aba2",
+    "sha1_16": "4f325eab936bc848",
+    "faces_raw": 27446,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 3.681,
+    "fid_all_obs_to_mesh_mm": 2.472,
+    "fid_all_mesh_to_obs_mm": 1.21,
+    "fid_per_episode_sum_mm": {
+     "ep1": 5.897,
+     "ep28": 2.628,
+     "ep3": 5.379,
+     "ep5": 4.59,
+     "ep6": 4.589,
+     "ep8": 12.528
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 4.464689082012748,
+     "surf_symmetric_median_mm": 2.0117924433993823,
+     "axis_angle_deg": [
+      2.8000372552266577,
+      2.466058654910044,
+      1.7944776572900583
+     ]
+    },
+    "excluded": null
+   }
+  ],
+  "white_pot_lid": [
+   {
+    "label": "lid/ep1/a6b1_fit",
+    "object": "white_pot_lid",
+    "episode": "1",
+    "variant": "a6b1_fit",
+    "path": "/content/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b1_fit.glb",
+    "sha256": "2985451013cea870960e1e8e7f2acb97f54bb83ee1a10ae76416f4b730c8af16",
+    "sha1_16": "935d6e2ff64b4fd8",
+    "faces_raw": 18492,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.52,
+    "fid_all_obs_to_mesh_mm": 1.102,
+    "fid_all_mesh_to_obs_mm": 2.419,
+    "fid_per_episode_sum_mm": {
+     "ep1": 3.52
+    },
+    "frame_vs_c0b_pick": null,
+    "excluded": null
+   },
+   {
+    "label": "lid/ep1/a6b1_nostem",
+    "object": "white_pot_lid",
+    "episode": "1",
+    "variant": "a6b1_nostem",
+    "path": "/content/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b1_nostem.glb",
+    "sha256": "bfbec18056df98f5cd8a73b59f4e5e8c5e9d74200c2ee759cf81a5a45c19ad0d",
+    "sha1_16": "5208bf09542ca3a8",
+    "faces_raw": 18492,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.52,
+    "fid_all_obs_to_mesh_mm": 1.102,
+    "fid_all_mesh_to_obs_mm": 2.419,
+    "fid_per_episode_sum_mm": {
+     "ep1": 3.52
+    },
+    "frame_vs_c0b_pick": null,
+    "excluded": null
+   },
+   {
+    "label": "lid/ep1/a6b1_nomk",
+    "object": "white_pot_lid",
+    "episode": "1",
+    "variant": "a6b1_nomk",
+    "path": "/content/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b1_nomk.glb",
+    "sha256": "1e15dabc68c2410b45ed05ff866f12468db87aa3ce80d939f2b830557602c784",
+    "sha1_16": "d1f251b86de6e4d8",
+    "faces_raw": 9166,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 2.979,
+    "fid_all_obs_to_mesh_mm": 1.341,
+    "fid_all_mesh_to_obs_mm": 1.638,
+    "fid_per_episode_sum_mm": {
+     "ep1": 2.979
+    },
+    "frame_vs_c0b_pick": null,
+    "excluded": null
+   },
+   {
+    "label": "lid/ep1/a6b1_thick",
+    "object": "white_pot_lid",
+    "episode": "1",
+    "variant": "a6b1_thick",
+    "path": "/content/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b1_thick.glb",
+    "sha256": "340906ea99bdd08f110a53dcc0a0e09bff895a6f10b224c1ad222f7ff76012d5",
+    "sha1_16": "6aece91f2862024a",
+    "faces_raw": 17242,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 4.899,
+    "fid_all_obs_to_mesh_mm": 1.236,
+    "fid_all_mesh_to_obs_mm": 3.664,
+    "fid_per_episode_sum_mm": {
+     "ep1": 4.899
+    },
+    "frame_vs_c0b_pick": null,
+    "excluded": null
+   },
+   {
+    "label": "lid/ep1/a6b2_fit",
+    "object": "white_pot_lid",
+    "episode": "1",
+    "variant": "a6b2_fit",
+    "path": "/content/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b2_fit.glb",
+    "sha256": "a95532ca5ba2554ad54d653d5eb03aaa12b226f0b2012ef08c5f26ba89e599c1",
+    "sha1_16": "4e7900d793f00f0c",
+    "faces_raw": 18490,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.517,
+    "fid_all_obs_to_mesh_mm": 1.102,
+    "fid_all_mesh_to_obs_mm": 2.415,
+    "fid_per_episode_sum_mm": {
+     "ep1": 3.517
+    },
+    "frame_vs_c0b_pick": null,
+    "excluded": null
+   },
+   {
+    "label": "lid/ep1/a6b2_nostem",
+    "object": "white_pot_lid",
+    "episode": "1",
+    "variant": "a6b2_nostem",
+    "path": "/content/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b2_nostem.glb",
+    "sha256": "42ded7816f54b0e07f8dee5bc49678816a7106b94d14c5ff472efdaf42f87070",
+    "sha1_16": "942f22e3e368df4c",
+    "faces_raw": 18490,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.517,
+    "fid_all_obs_to_mesh_mm": 1.102,
+    "fid_all_mesh_to_obs_mm": 2.415,
+    "fid_per_episode_sum_mm": {
+     "ep1": 3.517
+    },
+    "frame_vs_c0b_pick": null,
+    "excluded": null
+   },
+   {
+    "label": "lid/ep1/a6b2_nomk",
+    "object": "white_pot_lid",
+    "episode": "1",
+    "variant": "a6b2_nomk",
+    "path": "/content/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b2_nomk.glb",
+    "sha256": "70f877f1fd3964c845d5df315b36fa9854e715a5b30fade10e12140174236028",
+    "sha1_16": "d590bd2766ce6cc6",
+    "faces_raw": 9170,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 2.976,
+    "fid_all_obs_to_mesh_mm": 1.342,
+    "fid_all_mesh_to_obs_mm": 1.634,
+    "fid_per_episode_sum_mm": {
+     "ep1": 2.976
+    },
+    "frame_vs_c0b_pick": null,
+    "excluded": null
+   },
+   {
+    "label": "lid/ep1/a6b2_thick",
+    "object": "white_pot_lid",
+    "episode": "1",
+    "variant": "a6b2_thick",
+    "path": "/content/results/e0b/cand/white_pot_lid/white_pot_lid_ep1_a6b2_thick.glb",
+    "sha256": "7f00d589f140cd55418a393f676ee25b951d7f7aeb25ee8718b1194d0855bae8",
+    "sha1_16": "2aae243ab75bcc4a",
+    "faces_raw": 17262,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 4.901,
+    "fid_all_obs_to_mesh_mm": 1.233,
+    "fid_all_mesh_to_obs_mm": 3.668,
+    "fid_per_episode_sum_mm": {
+     "ep1": 4.901
+    },
+    "frame_vs_c0b_pick": null,
+    "excluded": null
+   }
+  ],
+  "blue_cup": [
+   {
+    "label": "cup/ep10/g1",
+    "object": "blue_cup",
+    "episode": "10",
+    "variant": "g1",
+    "path": "/content/results/e0b/cand/blue_cup/ep10_blue_cup_g1.glb",
+    "sha256": "94493f4a9a4fa1c776d29e2277878fc4c04c84e8aad3a8e8726f71b91f6284cf",
+    "sha1_16": "e3df4b9e73c1a0f2",
+    "faces_raw": 24280,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2053,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 14.738,
+    "fid_all_obs_to_mesh_mm": 13.32,
+    "fid_all_mesh_to_obs_mm": 1.418,
+    "fid_per_episode_sum_mm": {
+     "ep10": 5.435,
+     "ep14": 4.638,
+     "ep20": 85.324,
+     "ep32": 6.859,
+     "ep33": 6.436
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 32.93570119603024,
+     "surf_symmetric_median_mm": 2.087940853741525,
+     "axis_angle_deg": [
+      73.6463973610612,
+      76.71716095915562,
+      24.723901171415562
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "cup/ep10/g0",
+    "object": "blue_cup",
+    "episode": "10",
+    "variant": "g0",
+    "path": "/content/results/e0b/cand/blue_cup/ep10_blue_cup_g0.glb",
+    "sha256": "4fc87f0350651fa382f475abe69986a1ba4e4d8ace64b66d26e74a402286c16f",
+    "sha1_16": "47b4576b872ecae9",
+    "faces_raw": 20928,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 14.765,
+    "fid_all_obs_to_mesh_mm": 13.321,
+    "fid_all_mesh_to_obs_mm": 1.444,
+    "fid_per_episode_sum_mm": {
+     "ep10": 5.762,
+     "ep14": 4.684,
+     "ep20": 85.536,
+     "ep32": 6.867,
+     "ep33": 6.484
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 31.24342321798122,
+     "surf_symmetric_median_mm": 2.093297780840428,
+     "axis_angle_deg": [
+      73.86279697640802,
+      74.83473471588539,
+      11.088190817232288
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "cup/ep14/g1",
+    "object": "blue_cup",
+    "episode": "14",
+    "variant": "g1",
+    "path": "/content/results/e0b/cand/blue_cup/ep14_blue_cup_g1.glb",
+    "sha256": "3c86a0a80a488c3f1eae87cc76a15939417551cc8c25914d358656242a626bae",
+    "sha1_16": "2f82a0e4ea3ad941",
+    "faces_raw": 41250,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 13.773,
+    "fid_all_obs_to_mesh_mm": 12.297,
+    "fid_all_mesh_to_obs_mm": 1.477,
+    "fid_per_episode_sum_mm": {
+     "ep10": 8.186,
+     "ep14": 3.801,
+     "ep20": 85.719,
+     "ep32": 6.368,
+     "ep33": 5.914
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 30.30193024546189,
+     "surf_symmetric_median_mm": 2.6663137766302993,
+     "axis_angle_deg": [
+      78.52652423011908,
+      80.144881938416,
+      17.302656616180276
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "cup/ep14/g0",
+    "object": "blue_cup",
+    "episode": "14",
+    "variant": "g0",
+    "path": "/content/results/e0b/cand/blue_cup/ep14_blue_cup_g0.glb",
+    "sha256": "6f4552b71463b750da0888d1dee3c83ec36b796707e3ba30bdf973008e540f04",
+    "sha1_16": "3c76b29863bf295f",
+    "faces_raw": 22656,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 13.757,
+    "fid_all_obs_to_mesh_mm": 12.403,
+    "fid_all_mesh_to_obs_mm": 1.353,
+    "fid_per_episode_sum_mm": {
+     "ep10": 8.631,
+     "ep14": 4.251,
+     "ep20": 84.363,
+     "ep32": 5.783,
+     "ep33": 5.056
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 28.292965731912304,
+     "surf_symmetric_median_mm": 2.571910771826114,
+     "axis_angle_deg": [
+      73.29475347249931,
+      88.4396503285139,
+      73.06202636803962
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "cup/ep20/g1",
+    "object": "blue_cup",
+    "episode": "20",
+    "variant": "g1",
+    "path": "/content/results/e0b/cand/blue_cup/ep20_blue_cup_g1.glb",
+    "sha256": "5f596d183a4e812d1786f155dd3e3526d5fb9141d055df96640660d3227f9b99",
+    "sha1_16": "e8d582ca0531d8f0",
+    "faces_raw": 74468,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2053,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 6.11,
+    "fid_all_obs_to_mesh_mm": 2.925,
+    "fid_all_mesh_to_obs_mm": 3.185,
+    "fid_per_episode_sum_mm": {
+     "ep10": 11.429,
+     "ep14": 13.252,
+     "ep20": 6.98,
+     "ep32": 6.409,
+     "ep33": 8.211
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 41.66957941391388,
+     "surf_symmetric_median_mm": 7.2762191725939935,
+     "axis_angle_deg": [
+      23.54119035459079,
+      21.304753336143683,
+      31.017128704539118
+     ]
+    },
+    "excluded": [
+     "frame: median dist 7.28 > 5.41 mm"
+    ]
+   },
+   {
+    "label": "cup/ep20/g0",
+    "object": "blue_cup",
+    "episode": "20",
+    "variant": "g0",
+    "path": "/content/results/e0b/cand/blue_cup/ep20_blue_cup_g0.glb",
+    "sha256": "8b80eba875c13b27f5243016d9fd07ec9dbe1701aea57a0cafdceb5457c4ccc5",
+    "sha1_16": "bd3c07aa409ba0da",
+    "faces_raw": 44352,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2051,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 12.284,
+    "fid_all_obs_to_mesh_mm": 7.661,
+    "fid_all_mesh_to_obs_mm": 4.623,
+    "fid_per_episode_sum_mm": {
+     "ep10": 15.993,
+     "ep14": 33.502,
+     "ep20": 11.004,
+     "ep32": 12.394,
+     "ep33": 16.027
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 55.00261877018342,
+     "surf_symmetric_median_mm": 16.60916779086397,
+     "axis_angle_deg": [
+      23.844073142282166,
+      53.665175119830316,
+      52.268572191975785
+     ]
+    },
+    "excluded": [
+     "frame: median dist 16.61 > 5.41 mm"
+    ]
+   },
+   {
+    "label": "cup/ep32/g1",
+    "object": "blue_cup",
+    "episode": "32",
+    "variant": "g1",
+    "path": "/content/results/e0b/cand/blue_cup/ep32_blue_cup_g1.glb",
+    "sha256": "3c7eb64f73872c5823240a2095d81a9902f73ce08d6f1eeede2cefd12c1b6bda",
+    "sha1_16": "ae36cca7f425cee6",
+    "faces_raw": 23308,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 13.762,
+    "fid_all_obs_to_mesh_mm": 12.492,
+    "fid_all_mesh_to_obs_mm": 1.27,
+    "fid_per_episode_sum_mm": {
+     "ep10": 7.96,
+     "ep14": 4.26,
+     "ep20": 85.705,
+     "ep32": 5.468,
+     "ep33": 4.93
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 29.70303758466615,
+     "surf_symmetric_median_mm": 1.761068583527936,
+     "axis_angle_deg": [
+      74.32930419955554,
+      83.58673572670605,
+      60.29400398210131
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "cup/ep32/g0",
+    "object": "blue_cup",
+    "episode": "32",
+    "variant": "g0",
+    "path": "/content/results/e0b/cand/blue_cup/ep32_blue_cup_g0.glb",
+    "sha256": "46575046a09e6a557e06f4eb48b2baca38a45fca1705b54751eb55f383ff2b8c",
+    "sha1_16": "e29c44be2c2906ac",
+    "faces_raw": 22464,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 13.796,
+    "fid_all_obs_to_mesh_mm": 12.525,
+    "fid_all_mesh_to_obs_mm": 1.271,
+    "fid_per_episode_sum_mm": {
+     "ep10": 7.67,
+     "ep14": 4.314,
+     "ep20": 85.852,
+     "ep32": 5.524,
+     "ep33": 5.004
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 29.86557466153124,
+     "surf_symmetric_median_mm": 1.781440706507781,
+     "axis_angle_deg": [
+      74.76689877263733,
+      87.8287510139883,
+      88.36145058766688
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "cup/ep33/g1",
+    "object": "blue_cup",
+    "episode": "33",
+    "variant": "g1",
+    "path": "/content/results/e0b/cand/blue_cup/ep33_blue_cup_g1.glb",
+    "sha256": "8a7bde7f43dee4790f0d098f727374e72d551c029a5c9b7739f2aa332615487e",
+    "sha1_16": "fe010750b1a334a3",
+    "faces_raw": 41346,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2057,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 5.154,
+    "fid_all_obs_to_mesh_mm": 3.726,
+    "fid_all_mesh_to_obs_mm": 1.428,
+    "fid_per_episode_sum_mm": {
+     "ep10": 9.311,
+     "ep14": 4.441,
+     "ep20": 28.91,
+     "ep32": 4.907,
+     "ep33": 3.847
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 15.125709267742927,
+     "surf_symmetric_median_mm": 1.370820543459795,
+     "axis_angle_deg": [
+      34.53233466901351,
+      33.4061330185901,
+      8.674568176401799
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "cup/ep33/g0",
+    "object": "blue_cup",
+    "episode": "33",
+    "variant": "g0",
+    "path": "/content/results/e0b/cand/blue_cup/ep33_blue_cup_g0.glb",
+    "sha256": "981ea9e7fc455c40abdbc8ec833cd4705b77e1c02a38259c92bc8ba9064d737b",
+    "sha1_16": "d5d6d28dfe7754b0",
+    "faces_raw": 21696,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 14.198,
+    "fid_all_obs_to_mesh_mm": 12.843,
+    "fid_all_mesh_to_obs_mm": 1.355,
+    "fid_per_episode_sum_mm": {
+     "ep10": 8.367,
+     "ep14": 4.833,
+     "ep20": 84.558,
+     "ep32": 5.051,
+     "ep33": 4.677
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 29.143776633394964,
+     "surf_symmetric_median_mm": 1.382442698596272,
+     "axis_angle_deg": [
+      70.86597983898524,
+      81.59252926078376,
+      55.120087908713536
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "cup/merged/g1",
+    "object": "blue_cup",
+    "episode": "merged",
+    "variant": "g1",
+    "path": "/content/results/e0b/cand/blue_cup/merged_blue_cup_g1.glb",
+    "sha256": "7d995e572519e55fce45ac179762dea28301054da3d77361fcb1c3da015827a9",
+    "sha1_16": "8616a073feb8e2da",
+    "faces_raw": 97344,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 5.033,
+    "fid_all_obs_to_mesh_mm": 2.679,
+    "fid_all_mesh_to_obs_mm": 2.354,
+    "fid_per_episode_sum_mm": {
+     "ep10": 10.428,
+     "ep14": 5.291,
+     "ep20": 13.451,
+     "ep32": 7.417,
+     "ep33": 7.021
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 13.069529063275084,
+     "surf_symmetric_median_mm": 3.234411801172152,
+     "axis_angle_deg": [
+      19.808116040386672,
+      2.9086094819450268,
+      19.592826896074715
+     ]
+    },
+    "excluded": null
+   }
+  ],
+  "beige_cup": [
+   {
+    "label": "beige/ep8/g1",
+    "object": "beige_cup",
+    "episode": "8",
+    "variant": "g1",
+    "path": "/content/results/e0b/cand/beige_cup/ep8_beige_cup_sep_g1.glb",
+    "sha256": "aa3d87995e15c343b937e38492055439a0f9b8aeecc0718b8de0147049f28359",
+    "sha1_16": "5a63304ded3a0e06",
+    "faces_raw": 46426,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2043,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.322,
+    "fid_all_obs_to_mesh_mm": 1.239,
+    "fid_all_mesh_to_obs_mm": 2.083,
+    "fid_per_episode_sum_mm": {
+     "ep10": 4.46,
+     "ep8": 4.275
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 2.917666951537312,
+     "surf_symmetric_median_mm": 0.8284381008967673,
+     "axis_angle_deg": [
+      1.2673380790373943,
+      18.49891118098295,
+      18.46663585341355
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "beige/ep8/g0",
+    "object": "beige_cup",
+    "episode": "8",
+    "variant": "g0",
+    "path": "/content/results/e0b/cand/beige_cup/ep8_beige_cup_sep_g0.glb",
+    "sha256": "1a86857538d4ca64b27eacac39ac5bb05eb22ac3edcda6d54cd5c064d0d7e593",
+    "sha1_16": "d2c8d2eed6a6eca2",
+    "faces_raw": 22080,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 4.343,
+    "fid_all_obs_to_mesh_mm": 1.427,
+    "fid_all_mesh_to_obs_mm": 2.915,
+    "fid_per_episode_sum_mm": {
+     "ep10": 5.502,
+     "ep8": 5.945
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 3.4464572681876064,
+     "surf_symmetric_median_mm": 0.838800021633973,
+     "axis_angle_deg": [
+      3.0969497105121757,
+      50.22817485100543,
+      50.12351961851399
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "beige/ep10/g1",
+    "object": "beige_cup",
+    "episode": "10",
+    "variant": "g1",
+    "path": "/content/results/e0b/cand/beige_cup/ep10_beige_cup_sep_g1.glb",
+    "sha256": "022538e96dd9569fb60b45d38d47916375d6f2cfcfa9e9f90f403c6c357cf6ad",
+    "sha1_16": "de15352c6ed654c0",
+    "faces_raw": 49980,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2061,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 4.006,
+    "fid_all_obs_to_mesh_mm": 1.352,
+    "fid_all_mesh_to_obs_mm": 2.655,
+    "fid_per_episode_sum_mm": {
+     "ep10": 4.654,
+     "ep8": 5.619
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 15.089302878781393,
+     "surf_symmetric_median_mm": 1.3604355769662404,
+     "axis_angle_deg": [
+      40.19081370385277,
+      86.666684944699,
+      77.00568783875615
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "beige/ep10/g0",
+    "object": "beige_cup",
+    "episode": "10",
+    "variant": "g0",
+    "path": "/content/results/e0b/cand/beige_cup/ep10_beige_cup_sep_g0.glb",
+    "sha256": "41f8d9bef53d8d51ac3a1de435053cae476ec6d3e2962d2455fa1a0c96052496",
+    "sha1_16": "9a6f71797d7fd2d4",
+    "faces_raw": 22656,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true
+    },
+    "fid_all_sum_mm": 5.566,
+    "fid_all_obs_to_mesh_mm": 1.757,
+    "fid_all_mesh_to_obs_mm": 3.81,
+    "fid_per_episode_sum_mm": {
+     "ep10": 6.716,
+     "ep8": 7.234
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 6.738715126163581,
+     "surf_symmetric_median_mm": 1.3781075163843337,
+     "axis_angle_deg": [
+      7.421895196063459,
+      63.96485109869995,
+      63.4322124809561
+     ]
+    },
+    "excluded": null
+   },
+   {
+    "label": "beige/merged/g1",
+    "object": "beige_cup",
+    "episode": "merged",
+    "variant": "g1",
+    "path": "/content/results/e0b/cand/beige_cup/merged_beige_cup_sep_g1.glb",
+    "sha256": "a29f39872caeb60df6c5d0788f2d96108853faa3939df8ce22844b4ab8464302",
+    "sha1_16": "a1fff41fba86f2a0",
+    "faces_raw": 64714,
+    "watertight_raw": true,
+    "budget": {
+     "ok": true,
+     "faces": 4096,
+     "vertices": 2051,
+     "watertight": false
+    },
+    "fid_all_sum_mm": 3.403,
+    "fid_all_obs_to_mesh_mm": 1.285,
+    "fid_all_mesh_to_obs_mm": 2.117,
+    "fid_per_episode_sum_mm": {
+     "ep10": 4.088,
+     "ep8": 4.878
+    },
+    "frame_vs_c0b_pick": {
+     "centroid_offset_mm": 20.530562894059234,
+     "surf_symmetric_median_mm": 0.9896861245902021,
+     "axis_angle_deg": [
+      40.46163903606916,
+      87.40595779823936,
+      77.41942669715361
+     ]
+    },
+    "excluded": null
+   }
+  ]
+ }
+}

@@ -1,0 +1,426 @@
+{
+ "ok": true,
+ "failures": [],
+ "missing": [],
+ "allowed_config_differences": [
+  "output_dir",
+  "reference.parquet",
+  "task.parquet"
+ ],
+ "pair_config_differences": {
+  "ep2/s42": {
+   "ep2/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep2/s43": {
+   "ep2/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s42": {
+   "ep12/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s43": {
+   "ep12/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "pair_config_equal_after_arm_name": {
+  "ep2/s42": {
+   "ep2/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep2/s43": {
+   "ep2/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s42": {
+   "ep12/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s43": {
+   "ep12/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "eval_timeouts": {},
+ "cells": {
+  "ep2/mass0/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/mass0s42_glock/ep2-s42/policy_70004736.safetensors",
+   "checkpoint_steps": "70004736",
+   "curriculum_stage": "4",
+   "task_parquet": "/workspace/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "e22747bfe18c44cbf26a42fc734ae298",
+   "traj_fingerprint": "af6b11101ba5c0bc94d363ec4ae5d4b2",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "/content/refs/mass0_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00279907252
+    },
+    "white_pot_lid": {
+     "urdf": "/content/refs/mass0_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.00124525615
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "ae600dba573dc1b17f368d7379b95d57a878751d28e3cabc78d2368ce14459f6"
+  },
+  "ep2/mass0/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/mass0s43_glock/ep2-s43/policy_60002304.safetensors",
+   "checkpoint_steps": "60002304",
+   "curriculum_stage": "3",
+   "task_parquet": "/workspace/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "e22747bfe18c44cbf26a42fc734ae298",
+   "traj_fingerprint": "af6b11101ba5c0bc94d363ec4ae5d4b2",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "/content/refs/mass0_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00279907252
+    },
+    "white_pot_lid": {
+     "urdf": "/content/refs/mass0_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.00124525615
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "c6554416015dec15374d1d86978af3e9d178422ff42d9906479d36cbce9cdbd0"
+  },
+  "ep2/mass1/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/mass1s42_glock/ep2-s42/policy_70004736.safetensors",
+   "checkpoint_steps": "70004736",
+   "curriculum_stage": "4",
+   "task_parquet": "/workspace/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "b415c9041269dbb9f66bb3aa4c0c61e8",
+   "traj_fingerprint": "af6b11101ba5c0bc94d363ec4ae5d4b2",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "/content/refs/mass1_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.2771,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00258540998
+    },
+    "white_pot_lid": {
+     "urdf": "/content/refs/mass1_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.0882,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.000366105308
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "34a509c3afa5b93170176bc5000fdb98279c7550eff2010127678cc01b35e68a"
+  },
+  "ep2/mass1/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/mass1s43_glock/ep2-s43/policy_70004736.safetensors",
+   "checkpoint_steps": "70004736",
+   "curriculum_stage": "4",
+   "task_parquet": "/workspace/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "b415c9041269dbb9f66bb3aa4c0c61e8",
+   "traj_fingerprint": "af6b11101ba5c0bc94d363ec4ae5d4b2",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "/content/refs/mass1_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.2771,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00258540998
+    },
+    "white_pot_lid": {
+     "urdf": "/content/refs/mass1_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.0882,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.000366105308
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "0670b2ead453bc82f43f4a6aba6a58f72d0eba8e70bd556defe63e9889cb1fc6"
+  },
+  "ep12/mass0/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/mass0s42_glock/ep12-s42/policy_60002304.safetensors",
+   "checkpoint_steps": "60002304",
+   "curriculum_stage": "3",
+   "task_parquet": "/workspace/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "a6da74f1aecf5ee84c2088a6fe060a8c",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/refs/mass0_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000915149943
+    },
+    "plastic_dish_rack": {
+     "urdf": "/content/refs/mass0_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00770560679
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "c09d36bb8686cfa640bc355312169163fe925f6dc6f0ea5a73e2bd7d0de0b7b7"
+  },
+  "ep12/mass0/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/mass0s43_glock/ep12-s43/policy_40001536.safetensors",
+   "checkpoint_steps": "40001536",
+   "curriculum_stage": "2",
+   "task_parquet": "/workspace/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "a6da74f1aecf5ee84c2088a6fe060a8c",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/refs/mass0_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000915149943
+    },
+    "plastic_dish_rack": {
+     "urdf": "/content/refs/mass0_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00770560679
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "b0437bfe39562a578dd735d52b45f1a10c0c140cb9205cf59e9014eab245de91"
+  },
+  "ep12/mass1/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/mass1s42_glock/ep12-s42/policy_50003968.safetensors",
+   "checkpoint_steps": "50003968",
+   "curriculum_stage": "3",
+   "task_parquet": "/workspace/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "503dceb2c88b8327e044817e94c85628",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.128,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000390463976
+    },
+    "plastic_dish_rack": {
+     "urdf": "/content/refs/mass1_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3865,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00992739008
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "3f342ccfe039721d6a0748b91d6931c2ee296b16f44bfb0a79c486a111e2b7d0"
+  },
+  "ep12/mass1/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "checkpoint": "/content/runs/mass1s43_glock/ep12-s43/policy_50003968.safetensors",
+   "checkpoint_steps": "50003968",
+   "curriculum_stage": "3",
+   "task_parquet": "/workspace/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_file": "/workspace/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "503dceb2c88b8327e044817e94c85628",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.128,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000390463976
+    },
+    "plastic_dish_rack": {
+     "urdf": "/content/refs/mass1_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3865,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00992739008
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
+   "evaluations": 10,
+   "checkpoint_sha256": "c340048cec185a01bbbf9cae3f43e19c09df351320ef1d913643a66bfb6bec62"
+  }
+ },
+ "rule": "docs/research/work/masses-transfer-20261031/PREREG.md"
+}

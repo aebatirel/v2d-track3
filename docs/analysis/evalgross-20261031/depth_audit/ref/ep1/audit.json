@@ -1,0 +1,175 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/perc2/ep1/poses.npz",
+  "--ref",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+  "--table",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mcks/ep1/table_frame.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep1/cache/depth/eval/ep1/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep1/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/depth/ref/ep1",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/pylib",
+  "--no_rest",
+  "--force"
+ ],
+ "time_utc": "2026-10-31T16:49:01Z",
+ "mode": "reference",
+ "code": {
+  "refine_sha256": "1f6a2adfc4dbbdd058d294c78a9a9a59a74c97d2975decdce48a3c8f2c652e54",
+  "branch": "refs/heads/claude/standings-20261031",
+  "commit": "ca853eaaf896511045b6fa0243f8eb28b02164e1",
+  "depth_audit_sha256": "53fc8abf05e689d8242adb3695f999293b5de71687f1ef8ec0377a12467516f0"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/perc2/ep1/poses.npz",
+   "sha256": "4c6917db187faeeb2c17669f1ba91039495be685735f7751b8b9c70bfa7d1262"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep1/cache/depth/eval/ep1/depths_fs0.5.npy",
+   "sha256": "36519f679fe8e5e22af319b818a6b4174c4167f802b18e420f2c3bd34e51e2fb"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep1/hands_refined.npz",
+   "sha256": "280917b24b8b0b4d94e0b2b51ea148e428f60abe055b0504d3da8a8a8174eccc"
+  },
+  "ref": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+   "sha256": "e2f4b88cdb43b1242750d411a9f878cfa7f6e4d44bf31edffeebec4eede0b297"
+  },
+  "table": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mcks/ep1/table_frame.npz",
+   "sha256": "2fd2a639b5d1cb43c0ef650b9e88cbbc47982887533db77d581d89a8afbade84"
+  },
+  "meshes": {
+   "white_pot": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+    "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+   },
+   "white_pot_lid": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/white_pot_lid.glb",
+    "sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37"
+   }
+  }
+ },
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "T": 335,
+ "frames_audited": 335,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  335,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.015,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": null,
+ "selftest": null,
+ "summary": {
+  "white_pot": {
+   "frames": 335,
+   "valid": 335,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0059,
+    0.0186,
+    0.0504
+   ],
+   "behind_mean": 0.0239,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0184,
+    0.0418,
+    0.0961
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.3015,
+    -0.0564,
+    0.2253
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.3824,
+    0.9012,
+    0.9685
+   ],
+   "hand_frac_mean": 0.1906,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 89
+  },
+  "white_pot_lid": {
+   "frames": 335,
+   "valid": 335,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0001,
+    0.0194,
+    0.249
+   ],
+   "behind_mean": 0.0803,
+   "share_behind_gt_0p2": 0.1493,
+   "front_p10_p50_p90": [
+    0.0,
+    0.0051,
+    0.0173
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.0233,
+    0.5256,
+    1.3305
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.8232,
+    0.9648,
+    0.9967
+   ],
+   "hand_frac_mean": 0.0725,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 47
+  }
+ },
+ "seconds": 23.9
+}
