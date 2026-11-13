@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13 01:57 UTC: test A: gA1 lost to a watchdog false positive in setup, re-run as gA1b (60434477)
+- gA2–gA4 training (ends ≈ 03:45–04:40 UTC); gA1b started 01:57 (ends ≈ 05:15–06:00 UTC). Spent $8.05 so far;
+  batch estimate $24–26, cap $30.
+
 ## 2026-11-13 00:26 UTC: TEST A RUNNING on 4 Vast boxes ($6.01/h; cap $30; expected end ≈ 03:45–04:40 UTC)
 - Runs 20261113-gA1..gA4-25cb421 (instances 60424679, 60424841, 60425356, 60425291), 8 public episodes. Each box
   self-destroys after pushing to the store. Label rollouts: runs/<run>/results/hard_ab/ep<N>/s-s42/r1/.

@@ -5811,3 +5811,16 @@ arm and a no-policy replay floor to stage B.
   - Expected extra cost of the delay: about $1–1.5 [E].
 - Spend so far: $33.98 − $29.52 = $4.46 in about 50 min, matching $6.01/h.
 
+### 2026-11-13 01:57 UTC — test A check-in 2: gA1 self-destroyed by its watchdog in setup; re-created as gA1b
+- gA1 (60424679): the box's stall watchdog fired at 01:11:52 UTC ("stalled: no progress for 30 min", watchdog.log)
+  and destroyed it, 2 min after check-in 1 had seen dpkg still progressing.
+  - The watchdog counts job-log lines. The slow apt step (libboost on a slow XFS disk) wrote none for 30 min, so it
+    read as a stall: a false positive during setup.
+  - No results; cost about $1.3 (52 min × $1.508).
+- Re-created at 01:57 as **gA1b**: run 20261113-gA1b-25cb421, instance 60434477, offer 28746313, RTX PRO 6000 WS,
+  Spain, $1.508/h. Same commit 25cb421, same `gA1.job` (sha256 OK), episodes ep12, ep31.
+- gA2, gA3, gA4 still in the training job. Credit $25.93 at 01:56; spent $8.05.
+- Updated estimate [E]: about $24–26 for the batch with the re-run; cap $30.
+- Watchdog false positive noted for later: the setup stage should write heartbeat lines while apt runs. Not changed
+  now, to keep the box code identical to the dry run.
+
