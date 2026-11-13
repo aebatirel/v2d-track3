@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-13: winner's talk analysed (team richchentw, first 16 slides); no runs, $0
+Notes: `docs/analysis/winner-richchentw-20261113/README.md`. Their pipeline is ours in outline: FoundationStereo,
+FoundationPose, MediaPipe to Sharpa, SAC in Newton, one policy per episode. They differ in four places:
+- reference made physically consistent: rest level on its support, release delayed where it would drop the object;
+- object reward on 0.1 m centroid keypoints with σ 3 cm plus reward centering (ours: FDR match, σ 10 cm);
+- meshes fitted per eval video by nvdiffrast, plus RecGen (RGB-D, outputs pose) for the pitcher;
+- key-frame-map head pose and masks in every frame.
+
+All four are hypotheses H-W1..W4, each with a falsifier in the notes. Remaining slides (Select, Results, Lessons) are
+pending from the owner.
+
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
 - Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:

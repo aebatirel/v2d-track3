@@ -5389,3 +5389,16 @@ arm and a no-policy replay floor to stage B.
 - Every submission's code commit (6f1aea3, 46b8389, 3758189, f7a49a9, 526918b, 5203d42, 465320b) is reachable from `main`.
 - Code merged without conflicts. STATUS.md and this log conflicted only where sessions appended entries; both sides kept.
 - Sessions still running push to their own branches; merge them into `main` again when they finish.
+
+### 2026-11-13 — Track 3 winner's talk (team richchentw), first 16 slides
+- Owner shared 16 photos of the winner's CoRL tutorial talk (stages 1 Perceive to 4 Learn). Transcribed and compared
+  with our pipeline in `docs/analysis/winner-richchentw-20261113/README.md`. Photos are not committed (people's faces).
+- Same building blocks as ours. They differ in four places:
+  - a physically consistent reference: support-aware rest, release delayed where it would drop the object;
+  - object reward with σ = 3 cm on 0.1 m centroid keypoints plus reward centering (ours: σ = 10 cm FDR match; at
+    9 cm error ours still pays 0.41, theirs 0.05);
+  - nvdiffrast-fitted parametric meshes from eval videos, and RecGen (TRI, arXiv 2604.27106: RGB-D in, mesh + pose
+    out) for the pitcher;
+  - SIFT + PnP key-frame-map head pose.
+- Our 22 Oct keypoint-scale test (0.15 m) was confounded by broken references on ep18/ep24, so it does not falsify
+  their reward. Hypotheses H-W1..W4 with falsifiers are in the notes. Nothing rented, $0.
