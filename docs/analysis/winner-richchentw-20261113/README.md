@@ -126,8 +126,9 @@ the spoon tip is about 12 cm out.
   | MP-SR | 1.00 (tied 1st) | 1.00 | 0.65 |
   | CD-O | 0.217 cm (2nd) | 0.207 | 0.402 |
 
-  Their episode tiles use our numbering (ep8 pot + cup, ep10 two cups, ep14 cup + rack, ep15 rack + spoon). The ep10
-  tile shows the cups nested. Every episode is "solved by its own policy".
+  Their episode tiles use our numbering (ep8 pot + cup, ep10 two cups, ep14 cup + rack, ep15 rack + spoon). The tiles
+  show mostly the real video beside a thin strip of simulation, so whether ep10's cups nest in their rollout cannot be
+  seen. The caption says every episode is "solved by its own policy".
 - **Score history on the hidden set** (AUC; RPE / MPPE cm):
 
   | Step | AUC | RPE | MPPE |
