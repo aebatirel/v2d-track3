@@ -5584,3 +5584,6 @@ arm and a no-policy replay floor to stage B.
   K = our K (192.064, 192.064, 241.831, 155.298) on the unchanged 320 × 512 raster; `depth/dav3` model built.
   GT-free convention check vs perc2's camera: median rotation gap 0.10° as written (3.35° flipped, so no flip),
   median translation gap 2.3 mm.
+- 12:17 UTC: MetricTrail arms done: VD / VD2 / VM / VDH / VS each 20/20 rc=0 (18–49 s per clip). Camera conversion
+  and SD (perc2 on DA3 depth) now run per episode; ep12 conversions: no flip, rotation gap to perc2's camera
+  0.09–0.37° median (VDH the largest). Scoring follows SD (ETA ≈ 13:15 UTC).
