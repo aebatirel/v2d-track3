@@ -5542,3 +5542,8 @@ arm and a no-policy replay floor to stage B.
   `cam_arms_score.py` on synthetic (non-GT) tracks with the kit's metric code (M = C gives ΔAUC 0 exactly).
 - Plan and cost to the owner: one RTX PRO 6000 (≈ $1.45/h on 19 Nov), ≈ 2.5–3.5 h, ≈ $4–5, cap $8. Not rented.
 - Account note: 8 RTX 3090 instances labelled `v2test-*` are running (not from this session); left untouched.
+- 09:25 UTC: owner asked "do you need that strong of a machine? its perception only". No: the 96 GB card was the
+  training default. Our env snapshot is compiled for sm_120 only (`setup.sh` TORCH_CUDA_ARCH_LIST=12.0), so a 4090/3090
+  would need a from-scratch setup; an RTX 5090 (32 GB, sm_120) restores it at ≈ $0.55–0.75/h. `cam_arms.sh` now runs
+  MetricTrail after perc2 on cards under 60 GB (perc2 OOMed on a 5090 on 2 Nov only with extra models loaded).
+  Revised plan ≈ 3–4 h, ≈ $2–3, cap $5 (PREREG cost section updated before any run).

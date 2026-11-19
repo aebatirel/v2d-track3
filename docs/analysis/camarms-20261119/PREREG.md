@@ -78,7 +78,9 @@ What a pass would and would not show: a better camera for our pipeline on public
 board gain (the competition is over), and not that it beats the room map.
 
 ## Cost plan
-One RTX PRO 6000 (96 GB) on Vast, on-demand ≈ $1.45/h (19 Nov market). Setup ≈ 15 min; perc2 S ≈ 35 min; ViPE install
-≈ 30–45 min in parallel; 5 MetricTrail arms × 20 clips ≈ 60–90 min [E]; SD ≈ 35 min; scoring ≈ 5 min.
-≈ 2.5–3.5 h ≈ **$4–5, cap $8**. The box destroys itself when the job ends; the stall watchdog stops it after 30 min
-without progress.
+One **RTX 5090** (32 GB, same Blackwell sm_120 as the PRO 6000 that our environment snapshot was compiled for) on Vast,
+on-demand ≈ $0.55–0.75/h (19 Nov market); perc2 and MetricTrail run one after the other on a card under 60 GB.
+(Changed from one RTX PRO 6000 at the owner's question "do you need that strong of a machine?", before any run.)
+Setup ≈ 15 min; perc2 S ≈ 35–45 min (ViPE install ≈ 30–45 min in parallel, CPU); 5 MetricTrail arms × 20 clips ≈
+60–90 min [E]; SD ≈ 35–45 min; scoring ≈ 5 min. ≈ 3–4 h ≈ **$2–3, cap $5**. The box destroys itself when the job ends;
+the stall watchdog stops it after 30 min without progress.

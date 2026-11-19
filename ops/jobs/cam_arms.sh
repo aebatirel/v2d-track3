@@ -68,7 +68,7 @@ run_perc() {   # run_perc <arm> <ep> <depth file>
   return $rc
 }
 
-# 5. MetricTrail arms (start as soon as the install is ready; they share the 96 GB GPU with perc2)
+# 5. MetricTrail arms (on a 96 GB card they start as soon as the install is ready and share the GPU with perc2)
 run_vipe() {   # run_vipe <arm> <ep>
   local arm=$1 ep=$2 F=$VW/ep$2 ART=$VW/ep$2/art_$1 L=$O/V/$1/ep$2.log; mkdir -p $O/V/$arm
   [ -s $ART/pose/c.npz ] && return 0
@@ -103,8 +103,10 @@ vipe_loop() {
   done
   log "cam_arms: MetricTrail arms done" >> $J
 }
-vipe_loop &
-VLOOP_PID=$!
+# a 32 GB card (RTX 5090) runs perc2 and MetricTrail one after the other; a 96 GB card runs them side by side
+GPU_MB=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits 2> /dev/null | head -1)
+if [ "${GPU_MB:-0}" -ge 60000 ]; then vipe_loop & VLOOP_PID=$!; log "cam_arms: ${GPU_MB} MiB GPU, MetricTrail alongside perc2" >> $J
+else VLOOP_PID=; log "cam_arms: ${GPU_MB} MiB GPU, MetricTrail after perc2" >> $J; fi
 
 for ep in $EPS; do
   [ -s /content/cache/depth/ep$ep/depths_fs0.5.npy ] || bash $OPS/store.sh pull-depth $ep public > /dev/null 2>&1 || log "camarms ep$ep: no cached depth (computed here)" >> $J
@@ -112,7 +114,7 @@ for ep in $EPS; do
 done
 log "cam_arms: S tracks done" >> $J
 bash $OPS/store.sh push-run > /dev/null 2>&1 || true
-wait $VLOOP_PID
+if [ -n "$VLOOP_PID" ]; then wait $VLOOP_PID; else vipe_loop; fi
 
 # 6. cameras -> perc2 convention; VD depth -> perc2 grid; then arm SD (perc2 on DA3 depth)
 for ep in $EPS; do

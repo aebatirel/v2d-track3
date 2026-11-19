@@ -9,7 +9,8 @@
   owner's recipe, gated) / VD2 / VM / VDH / VS / M, plus SD (perc2 on DA3 depth instead of stereo).
 - Code: `ops/jobs/cam_arms.sh`, `ops/box/vipe_setup.sh`, `pipeline/vipe_prep.py`, `pipeline/vipe_cam.py`,
   `tools/cam_arms_score.py`. CPU dry runs on ep12 pass (frames, converters, scoring on synthetic tracks; $0).
-- Plan: one RTX PRO 6000, ≈ 2.5–3.5 h, ≈ $4–5, cap $8. **Waiting for the owner's go-ahead.** Vast credit $32.95;
+- Plan (revised at the owner's question about machine size): one RTX 5090 (same sm_120 as our env snapshot), perc2 and
+  MetricTrail run in sequence, ≈ 3–4 h, ≈ $2–3, cap $5. **Waiting for the owner's go-ahead.** Vast credit $32.95;
   8 RTX 3090 boxes labelled `v2test-*` (started 19 Nov 07:55–08:57 UTC, ≈ $2.9/h) are on the account and are not
   from this session.
 - Branch `claude/modest-brown-ds44th` = `claude/jolly-turing-yqxcxn` (newest perc2) + this work.
