@@ -5570,3 +5570,10 @@ arm and a no-policy replay floor to stage B.
   models loaded. Plan: move to a 48 GB RTX PRO 5000 (Blackwell sm_120, ≈ $0.69–0.73/h, about the 5090's price) once
   the MetricTrail install is confirmed on this box; the job now also sets `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`
   for perc2 (allocator only, no numerical change).
+- 10:26 UTC: MetricTrail install verified end to end on the 5090 (mono + stereo kernels import; DINO-DPVO digest ok;
+  DINOv3 mirror sha256 08c60483bc63c04f533611e34bf70b120eedb7240f469bc16e9e20bf344b941d matches the checkpoint's
+  recorded digest; READY at 919 s). Logs pushed to the store run folder (11 MB), box 61419634 destroyed at ~10:28
+  (≈ 50 min × $0.642 ≈ $0.53 [E]). Credit $27.32 at 10:28 (the 8 `v2test-*` boxes are also drawing on it).
+- 10:30 UTC: re-launched on a 48 GB **RTX PRO 5000** (Blackwell): box **61427848** (Alberta, $0.723/h, 16 CPU, 125 GB
+  RAM) on offer 60950676, same run id, code cd170210,
+  `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 ops/vast.sh create 60950676 20261119-camarms-d32a7a8 'bash ops/jobs/cam_arms.sh'`.
