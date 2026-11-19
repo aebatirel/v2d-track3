@@ -5579,3 +5579,8 @@ arm and a no-policy replay floor to stage B.
   `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 ops/vast.sh create 60950676 20261119-camarms-d32a7a8 'bash ops/jobs/cam_arms.sh'`.
 - 10:57 UTC job started on 61427848 (48,935 MiB GPU, sequential mode). 11:03 ep12 S rc=0 in 139 s: perc2's own
   diagnostic score with its own camera and the welded scans, AUC 0.996 (blue cup 0.995, rack 0.998) [D]. So 48 GB fits.
+- 11:25 UTC: all 20 S tracks done on 61427848 (no failure); ViPE ready (install verified again). First MetricTrail run,
+  ep12 VD rc=0 in 35 s (28.3 s runtime): 181/181 frames posed, 8 keyframes; run record `intrinsics_source: known`,
+  K = our K (192.064, 192.064, 241.831, 155.298) on the unchanged 320 × 512 raster; `depth/dav3` model built.
+  GT-free convention check vs perc2's camera: median rotation gap 0.10° as written (3.35° flipped, so no flip),
+  median translation gap 2.3 mm.
