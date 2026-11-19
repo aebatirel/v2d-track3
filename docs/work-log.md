@@ -5555,3 +5555,12 @@ arm and a no-policy replay floor to stage B.
   tried; then destroyed (no job ran; GPU time not billed, only minutes of storage). Re-created on offer 61229316:
   box **61419634** (RTX 5090, South Korea, $0.642/h, 72 CPU), same run id and job, code c100564 (= d32a7a8 plus
   STATUS/work-log lines only). Image pulled, running 09:38 UTC.
+- 10:00–10:10 UTC: two start-up failures on box 61419634, both fixed blind to scores (PREREG fix rule):
+  - **perc2 OOM on the RTX 5090** (ep12 S, register: 30.7 GB in use). The public scans store every face's corners
+    separately (blue cup 298,377 vertices / 99,487 faces; library_v3 meshes have 2–16k vertices). New perc2 option
+    `MESH_WELD=1` (default off) merges duplicate vertices after the colour conversion: blue cup and rack 298k → 50k
+    vertices, faces, area and bounds identical (CPU check). The job sets it for S and SD.
+  - **ViPE build failed**: uv picked the image's system Python 3.12, whose `pyconfig.h` points to a missing
+    `x86_64-linux-gnu/python3.12/pyconfig.h`. `UV_PYTHON_PREFERENCE=only-managed` fixes it (rebuilt on the box:
+    `SYNC rc=0 190s`, Python 3.12.16, torch 2.9.0+cu128, CUDA available).
+  - The job was stopped (box held) while fixing; it restarts in place on the new commit with `ops/box/restart_job.sh`.

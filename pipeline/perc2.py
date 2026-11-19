@@ -188,6 +188,14 @@ def load_mesh(n):
         vc = np.asarray(m.visual.vertex_colors).copy()
         vc[:, :3] = (0.299 * vc[:, 0] + 0.587 * vc[:, 1] + 0.114 * vc[:, 2]).astype(np.uint8)[:, None]
         m.visual.vertex_colors = vc
+    return weld(m, n)
+# MESH_WELD=1 (2026-11-19, camera-arms test, docs/analysis/camarms-20261119/PREREG.md; default off, so earlier runs
+# reproduce): merge duplicate vertices after the colour conversion. The public scans store every face's corners
+# separately (~300k vertices for ~100k faces), which ran FoundationPose out of memory on a 32 GB card; welding keeps the
+# faces, area and bounds exactly (blue cup / rack: 298k -> 50k vertices) and changes only shared-vertex colours.
+def weld(m, n):
+    if os.environ.get('MESH_WELD', '0') == '1':
+        v0 = len(m.vertices); m.merge_vertices(merge_tex=True, merge_norm=True); log('welded', n, v0, '->', len(m.vertices))
     return m
 meshes = {n: load_mesh(n) for n in names}
 # TRACK_CAM / TRACK_MESH_DIR (2026-11-09, colour-camera test, docs/analysis/colourcam-20261109/PREREG.md; both default
@@ -207,7 +215,7 @@ def load_track_mesh(n):
         vc = np.asarray(m.visual.vertex_colors).copy()
         vc[:, :3] = (0.299 * vc[:, 0] + 0.587 * vc[:, 1] + 0.114 * vc[:, 2]).astype(np.uint8)[:, None]
         m.visual.vertex_colors = vc
-    return m
+    return weld(m, n)
 tmeshes = {n: load_track_mesh(n) for n in names} if (TRACK_MESH_DIR or TRACK_CAM == 'a') else meshes
 if tmeshes is not meshes:
     for n in names:

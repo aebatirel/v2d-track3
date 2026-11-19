@@ -54,13 +54,14 @@ for ep in $EPS; do
   [ -s $VW/ep$ep/K.json ] || python $P/vipe_prep.py $ep $VW/ep$ep >> $J 2>&1 || log "cam_arms ep$ep: frame prep FAILED" >> $J
 done
 
-# 4. arm S: perc2 with the public scans (MESH_DIR unset), today's eval defaults otherwise
+# 4. arm S: perc2 with the public scans (MESH_DIR unset), today's eval defaults otherwise; MESH_WELD=1 merges the scans'
+#    duplicate vertices (same faces; 300k -> 50k vertices) so FoundationPose fits a 32 GB card (19 Nov: OOM without it)
 run_perc() {   # run_perc <arm> <ep> <depth file>
   local name=$1 ep=$2 dep=$3 D=$O/$1/ep$2; mkdir -p $D
   [ -s $D/poses.npz ] && return 0
   [ -s "$dep" ] && ln -sf "$dep" $D/depths_fs0.5.npy
   label "camarms ep$ep $name"; local t0=$(date +%s)
-  ( unset MESH_DIR TRACK_MESH_DIR; KF_MIN=120 EP=$ep OUT=$D SPLIT=public TRACK_CAM=c python $P/perc2.py > $D/log.txt 2>&1 )
+  ( unset MESH_DIR TRACK_MESH_DIR; MESH_WELD=1 KF_MIN=120 EP=$ep OUT=$D SPLIT=public TRACK_CAM=c python $P/perc2.py > $D/log.txt 2>&1 )
   local rc=$?
   log "camarms ep$ep $name rc=$rc $(( $(date +%s) - t0 ))s: $(grep -a 'vo keyframes\|^\[.*\] vo  ' $D/log.txt | tail -2 | cut -c1-200 | tr '\n' ' ')" >> $J
   [ $rc = 0 ] || tail -5 $D/log.txt >> $J

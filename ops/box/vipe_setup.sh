@@ -27,7 +27,9 @@ if [ ! -d $MF/envs/cu128 ]; then
   $MF/bin/conda env create -q -p $MF/envs/cu128 -f $VR/envs/cu128.yml > /dev/null
 fi
 source $MF/bin/activate $MF/envs/cu128
-export CUDA_HOME=$CONDA_PREFIX TORCH_CUDA_ARCH_LIST=${TORCH_CUDA_ARCH_LIST:-12.0} MAX_JOBS=${MAX_JOBS:-$(nproc)}
+# UV_PYTHON_PREFERENCE=only-managed (19 Nov): uv otherwise picks the image's system Python 3.12, whose headers are
+# incomplete (pyconfig.h -> missing x86_64-linux-gnu/python3.12/pyconfig.h), and every CUDA extension fails to compile.
+export CUDA_HOME=$CONDA_PREFIX TORCH_CUDA_ARCH_LIST=${TORCH_CUDA_ARCH_LIST:-12.0} MAX_JOBS=${MAX_JOBS:-$(nproc)} UV_PYTHON_PREFERENCE=only-managed
 nvcc --version | tail -2
 cd $VR
 say "uv sync (builds ViPE's CUDA extensions for sm ${TORCH_CUDA_ARCH_LIST})"
