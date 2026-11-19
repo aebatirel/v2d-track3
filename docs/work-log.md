@@ -5547,3 +5547,6 @@ arm and a no-policy replay floor to stage B.
   would need a from-scratch setup; an RTX 5090 (32 GB, sm_120) restores it at ≈ $0.55–0.75/h. `cam_arms.sh` now runs
   MetricTrail after perc2 on cards under 60 GB (perc2 OOMed on a 5090 on 2 Nov only with extra models loaded).
   Revised plan ≈ 3–4 h, ≈ $2–3, cap $5 (PREREG cost section updated before any run).
+- 09:16 UTC: **launched** (owner: "Yes, rent the 5090"). Ledger `planned` $3. Box **61417362** (RTX 5090, US, $0.628/h,
+  24 CPU, 63 GB RAM) on offer 57312941, run `20261119-camarms-d32a7a8`, code d32a7a8c,
+  `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 ops/vast.sh create 57312941 20261119-camarms-d32a7a8 'bash ops/jobs/cam_arms.sh'`.

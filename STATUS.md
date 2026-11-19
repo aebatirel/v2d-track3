@@ -1,6 +1,6 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-19 ~09:15 UTC: camera-arms test BUILT and pre-registered (owner's SLAM recipe = ViPE MetricTrail); not rented yet
+## 2026-11-19 ~09:16 UTC: camera-arms test RUNNING on an RTX 5090 (owner's SLAM recipe = ViPE MetricTrail)
 - Owner asked whether their SLAM recipe (ViPE MetricTrail: DPVO + DINOv3, DA3METRIC-LARGE metric depth, sliding-window
   BA) gives better perception on the public episodes with the scanned meshes.
 - Prior evidence (branch `claude/room-map-20261102`): a drift-free room-map camera gave only +0.0070 mean on public,
@@ -10,7 +10,8 @@
 - Code: `ops/jobs/cam_arms.sh`, `ops/box/vipe_setup.sh`, `pipeline/vipe_prep.py`, `pipeline/vipe_cam.py`,
   `tools/cam_arms_score.py`. CPU dry runs on ep12 pass (frames, converters, scoring on synthetic tracks; $0).
 - Plan (revised at the owner's question about machine size): one RTX 5090 (same sm_120 as our env snapshot), perc2 and
-  MetricTrail run in sequence, ≈ 3–4 h, ≈ $2–3, cap $5. **Waiting for the owner's go-ahead.** Vast credit $32.95;
+  MetricTrail run in sequence, ≈ 3–4 h, ≈ $2–3, cap $5. **RUNNING** (owner go-ahead): box 61417362, run
+  `20261119-camarms-d32a7a8`, launched 09:16 UTC. Vast credit $32.95;
   8 RTX 3090 boxes labelled `v2test-*` (started 19 Nov 07:55–08:57 UTC, ≈ $2.9/h) are on the account and are not
   from this session.
 - Branch `claude/modest-brown-ds44th` = `claude/jolly-turing-yqxcxn` (newest perc2) + this work.
