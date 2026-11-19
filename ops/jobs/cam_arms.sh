@@ -61,7 +61,7 @@ run_perc() {   # run_perc <arm> <ep> <depth file>
   [ -s $D/poses.npz ] && return 0
   [ -s "$dep" ] && ln -sf "$dep" $D/depths_fs0.5.npy
   label "camarms ep$ep $name"; local t0=$(date +%s)
-  ( unset MESH_DIR TRACK_MESH_DIR; MESH_WELD=1 KF_MIN=120 EP=$ep OUT=$D SPLIT=public TRACK_CAM=c python $P/perc2.py > $D/log.txt 2>&1 )
+  ( unset MESH_DIR TRACK_MESH_DIR; PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True MESH_WELD=1 KF_MIN=120 EP=$ep OUT=$D SPLIT=public TRACK_CAM=c python $P/perc2.py > $D/log.txt 2>&1 )
   local rc=$?
   log "camarms ep$ep $name rc=$rc $(( $(date +%s) - t0 ))s: $(grep -a 'vo keyframes\|^\[.*\] vo  ' $D/log.txt | tail -2 | cut -c1-200 | tr '\n' ' ')" >> $J
   [ $rc = 0 ] || tail -5 $D/log.txt >> $J

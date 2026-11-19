@@ -5564,3 +5564,9 @@ arm and a no-policy replay floor to stage B.
     `x86_64-linux-gnu/python3.12/pyconfig.h`. `UV_PYTHON_PREFERENCE=only-managed` fixes it (rebuilt on the box:
     `SYNC rc=0 190s`, Python 3.12.16, torch 2.9.0+cu128, CUDA available).
   - The job was stopped (box held) while fixing; it restarts in place on the new commit with `ops/box/restart_job.sh`.
+- 10:12 UTC: after the restart, ep12 S still OOMs on the 5090, now in FoundationPose register's scorer
+  (`transform_depth_to_xyzmap`: 252 hypotheses warped to the full 1600 × 1000 image; 30.9 GB in use, +1.5 GB asked).
+  Welding helped the render step but the peak is resolution-driven: 32 GB is not enough for this tracker with all its
+  models loaded. Plan: move to a 48 GB RTX PRO 5000 (Blackwell sm_120, ≈ $0.69–0.73/h, about the 5090's price) once
+  the MetricTrail install is confirmed on this box; the job now also sets `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`
+  for perc2 (allocator only, no numerical change).
