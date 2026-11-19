@@ -5594,3 +5594,6 @@ arm and a no-policy replay floor to stage B.
   0.05–0.08° after (ours 0.03–0.10°). Ledger actual ≈ $2.90 [E]. During the run I saw perc2's built-in per-episode
   diagnostic score in the SD log lines (ep22 0.165, ep23 0.357) before final scoring; SD is report-only and nothing was
   changed after seeing them.
+- 13:55 UTC: owner asked "how do we make our perception perfect". Loss breakdown of today's C arm (scans) added to the
+  camarms README: ep0 65 % of the loss = symmetry flips (lid upside-down from f0, 179.4°; pot track flips 180° between
+  f60 and f100), then ep24 (camera), ep31 (rack bias), ep11 (cup, nested). Diagnostic reads mocap after inference only.

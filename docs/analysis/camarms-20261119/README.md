@@ -72,3 +72,13 @@ Median rotation / translation gap to the map camera, 18 episodes (ep12 and ep24 
   d0aa57e1…; DINOv3 ViT-S/16 sha256 08c60483bc63c04f… (verified by MetricTrail's loader).
 - Also seen (not in the gate): ep0 scores 0.076 under every camera arm, so its loss is object tracking (the known
   lid flip), not the camera.
+
+## Where the remaining loss sits (our camera, scans; added 19 Nov after the verdict) [D]
+Total loss 1.43 AUC-points over 20 episodes (mean 0.9285). By episode: ep0 0.924 (65 %), ep24 0.135 (9 %), ep31 0.124
+(9 %), ep11 0.106 (7 %), ep18 0.038; the other 15 episodes lose ≤ 0.023 each (12 of them ≤ 0.011).
+- **ep0 is symmetry flips** (diagnostic vs mocap after inference): the lid is registered upside-down from frame 0
+  (179.4°, origin 9.1 cm off), and the pot's track flips 180° between frames 60 and 100 (6.3° at f60, 179.6° at f100),
+  i.e. a jump no hand makes in 2 s of tracking at that point. The 2 Nov run with library_v3 templates scored ep0 0.994,
+  so with scans the flip is template-dependent (the 13 Oct scan run also flipped the lid, 0.179).
+- ep24: camera drift (map camera 0.977). ep31: dish rack 0.81 (1.9 cm median). ep11: blue cup 0.79 (2.1 cm, nested
+  cups). These match the 2 Nov rest-frame oracle's list (ep24, ep31, ep11, ep21).
