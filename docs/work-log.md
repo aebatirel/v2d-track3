@@ -5577,3 +5577,5 @@ arm and a no-policy replay floor to stage B.
 - 10:30 UTC: re-launched on a 48 GB **RTX PRO 5000** (Blackwell): box **61427848** (Alberta, $0.723/h, 16 CPU, 125 GB
   RAM) on offer 60950676, same run id, code cd170210,
   `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 ops/vast.sh create 60950676 20261119-camarms-d32a7a8 'bash ops/jobs/cam_arms.sh'`.
+- 10:57 UTC job started on 61427848 (48,935 MiB GPU, sequential mode). 11:03 ep12 S rc=0 in 139 s: perc2's own
+  diagnostic score with its own camera and the welded scans, AUC 0.996 (blue cup 0.995, rack 0.998) [D]. So 48 GB fits.
