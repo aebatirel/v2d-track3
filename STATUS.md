@@ -10,7 +10,8 @@
 - Code: `ops/jobs/cam_arms.sh`, `ops/box/vipe_setup.sh`, `pipeline/vipe_prep.py`, `pipeline/vipe_cam.py`,
   `tools/cam_arms_score.py`. CPU dry runs on ep12 pass (frames, converters, scoring on synthetic tracks; $0).
 - Plan (revised at the owner's question about machine size): one RTX 5090 (same sm_120 as our env snapshot), perc2 and
-  MetricTrail run in sequence, ≈ 3–4 h, ≈ $2–3, cap $5. **RUNNING** (owner go-ahead): box 61417362, run
+  MetricTrail run in sequence, ≈ 3–4 h, ≈ $2–3, cap $5. **RUNNING** (owner go-ahead): box 61419634 (first box
+  61417362 failed its image pull and was destroyed), run
   `20261119-camarms-d32a7a8`, launched 09:16 UTC. Vast credit $32.95;
   8 RTX 3090 boxes labelled `v2test-*` (started 19 Nov 07:55–08:57 UTC, ≈ $2.9/h) are on the account and are not
   from this session.

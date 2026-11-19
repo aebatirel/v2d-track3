@@ -5550,3 +5550,8 @@ arm and a no-policy replay floor to stage B.
 - 09:16 UTC: **launched** (owner: "Yes, rent the 5090"). Ledger `planned` $3. Box **61417362** (RTX 5090, US, $0.628/h,
   24 CPU, 63 GB RAM) on offer 57312941, run `20261119-camarms-d32a7a8`, code d32a7a8c,
   `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 ops/vast.sh create 57312941 20261119-camarms-d32a7a8 'bash ops/jobs/cam_arms.sh'`.
+- 09:19–09:30 UTC: box 61417362 never started: the host's image pull failed twice ("error from registry: service
+  temporarily unavailable", then "retries exceeded"; Docker Hub status page: operational, so host-side). One restart
+  tried; then destroyed (no job ran; GPU time not billed, only minutes of storage). Re-created on offer 61229316:
+  box **61419634** (RTX 5090, South Korea, $0.642/h, 72 CPU), same run id and job, code c100564 (= d32a7a8 plus
+  STATUS/work-log lines only). Image pulled, running 09:38 UTC.
