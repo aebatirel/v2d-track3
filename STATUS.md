@@ -1,5 +1,19 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-19 ~09:15 UTC: camera-arms test BUILT and pre-registered (owner's SLAM recipe = ViPE MetricTrail); not rented yet
+- Owner asked whether their SLAM recipe (ViPE MetricTrail: DPVO + DINOv3, DA3METRIC-LARGE metric depth, sliding-window
+  BA) gives better perception on the public episodes with the scanned meshes.
+- Prior evidence (branch `claude/room-map-20261102`): a drift-free room-map camera gave only +0.0070 mean on public,
+  all from ep24. So a camera swap can add about +0.007 at most [E].
+- PREREG `docs/analysis/camarms-20261119/PREREG.md`: perc2 with public scans (S), then camera arms C / VD (the
+  owner's recipe, gated) / VD2 / VM / VDH / VS / M, plus SD (perc2 on DA3 depth instead of stereo).
+- Code: `ops/jobs/cam_arms.sh`, `ops/box/vipe_setup.sh`, `pipeline/vipe_prep.py`, `pipeline/vipe_cam.py`,
+  `tools/cam_arms_score.py`. CPU dry runs on ep12 pass (frames, converters, scoring on synthetic tracks; $0).
+- Plan: one RTX PRO 6000, ≈ 2.5–3.5 h, ≈ $4–5, cap $8. **Waiting for the owner's go-ahead.** Vast credit $32.95;
+  8 RTX 3090 boxes labelled `v2test-*` (started 19 Nov 07:55–08:57 UTC, ≈ $2.9/h) are on the account and are not
+  from this session.
+- Branch `claude/modest-brown-ds44th` = `claude/jolly-turing-yqxcxn` (newest perc2) + this work.
+
 ## 2026-11-10 ~09:00 UTC: Discord rulings read; one real compliance problem (public data), one small one
 - `docs/analysis/compliance-20261110.md`: (1) public data in the submitted pipeline (library_v3 templates and meshes
   from public videos; GT-informed mesh choices), which the organisers ruled out for the final pipeline and the container

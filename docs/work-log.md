@@ -5521,3 +5521,24 @@ arm and a no-policy replay floor to stage B.
   the final three (3) days". Recounted: only the week of 25-31 Oct is over (7 vs 5: packs 9a+ and 9b); the week of
   1-7 Nov has 2-3 uploads before the window; 14p and 13j are inside it. The strict-counting estimate is withdrawn.
 
+
+### 2026-11-19 ~09:15 UTC — camera-arms test (owner's SLAM recipe on public episodes, scanned meshes)
+- Owner asked whether their SLAM architecture from another project helps our perception, then: "for the public
+  episodes and using the scanned public meshes can we see if we have better perception with these methods".
+- Correction to my first answer in chat: I said our camera tracker had never been measured. It had: the 2 Nov room-map
+  test (branch `claude/room-map-20261102`, not merged into main) found perc2's camera within 2–9 mm on 19/20 eval
+  clips and a public map-camera gain of +0.0070 mean, all from ep24.
+- The recipe is ViPE's `metrictrail` pipeline (nv-tlabs/vipe, added Nov 2026): DINO-DPVO (DINOv3-S/16 fused patch
+  features), local BA window, MoGe-2 keyframe depth by default; `pipeline.slam.keyframe_depth=dav3` loads
+  `depth-anything/DA3METRIC-LARGE` and rescales by focal (`vipe/priors/depth/dav3/__init__.py`). Known K via
+  `pipeline.optional.intrinsics`; dynamic masking via `pipeline.init.instance` (off by default); stereo runner
+  `python -m vipe.metrictrail.stereo`. Output pose = OpenCV camera-to-world per frame (`pose/<name>.npz`).
+- Weights: `nvidia/MetricTrail` `dino_dpvo.pth` (sha256 d0aa57e1…, NVIDIA One-Way Noncommercial licence: research
+  only), DINOv3 ViT-S/16 original .pth from the public mirror `xysun917/dinov3-vits16` (sha256 prefix 08c60483, the
+  name's hash; MetricTrail verifies the full digest at load). Our HF token also reaches the gated facebook/ repo.
+- Pre-registration `docs/analysis/camarms-20261119/PREREG.md` (pushed before any run). Code listed in STATUS.
+- CPU dry runs on ep12 ($0, this container): `vipe_prep.py` (181 frames, 512 × 320, fx 192.06, baseline 0.0755 m,
+  rectified rows line up), `vipe_cam.py` pose and depth modes on ViPE-format files (OpenEXR 3.2.9 as ViPE pins),
+  `cam_arms_score.py` on synthetic (non-GT) tracks with the kit's metric code (M = C gives ΔAUC 0 exactly).
+- Plan and cost to the owner: one RTX PRO 6000 (≈ $1.45/h on 19 Nov), ≈ 2.5–3.5 h, ≈ $4–5, cap $8. Not rented.
+- Account note: 8 RTX 3090 instances labelled `v2test-*` are running (not from this session); left untouched.
