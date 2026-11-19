@@ -5587,3 +5587,10 @@ arm and a no-policy replay floor to stage B.
 - 12:17 UTC: MetricTrail arms done: VD / VD2 / VM / VDH / VS each 20/20 rc=0 (18–49 s per clip). Camera conversion
   and SD (perc2 on DA3 depth) now run per episode; ep12 conversions: no flip, rotation gap to perc2's camera
   0.09–0.37° median (VDH the largest). Scoring follows SD (ETA ≈ 13:15 UTC).
+- 13:38 UTC: SD done (20/20), scored, box 61427848 self-destroyed after pushing. **Result** (`docs/analysis/camarms-20261119/README.md`):
+  VD 0.9099 vs C 0.9285 (ΔAUC −0.0186, 2/18, ΔMPPE +0.272, > 3 cm frames 682 vs 554): gate FAIL on all four
+  conditions, falsified. VD2 noise 0.0007. VM −0.0212, VDH −0.0160, VS −0.0057, M +0.0048 (7/6; ep24 +0.112), SD 0.194.
+  GT-free diagnosis: MetricTrail's rotation gap to the map is 0.47–0.91° over frames 1–80 (mono and stereo identical),
+  0.05–0.08° after (ours 0.03–0.10°). Ledger actual ≈ $2.90 [E]. During the run I saw perc2's built-in per-episode
+  diagnostic score in the SD log lines (ep22 0.165, ep23 0.357) before final scoring; SD is report-only and nothing was
+  changed after seeing them.

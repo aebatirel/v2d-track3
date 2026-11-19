@@ -1,0 +1,293 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[2026-11-19T10:57:16Z] cam_arms code cd170210, episodes [12 0 2 11 13 18 21 22 23 24 26 27 31 39 40 41 42 43 44 45], MetricTrail arms [VD VD2 VM VDH VS], tracks: public scans
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[2026-11-19T10:57:23Z] installed transformers 5.20.2 (Grounding DINO)
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+prefetch: ['ep12 depth ok map ok', 'ep0 depth ok map ok', 'ep2 depth ok map ok', 'ep11 depth ok map ok', 'ep13 depth ok map ok', 'ep18 depth ok map ok', 'ep21 depth ok map ok', 'ep22 depth ok map ok', 'ep23 depth ok map ok', 'ep24 depth ok map ok', 'ep26 depth ok map ok', 'ep27 depth ok map ok', 'ep31 depth ok map ok', 'ep39 depth ok map ok', 'ep40 depth ok map ok', 'ep41 depth ok map ok', 'ep42 depth ok map ok', 'ep43 depth ok map ok', 'ep44 depth ok map ok', 'ep45 depth ok map ok']
+ep12: 181 frames -> /content/vwork/ep12 (512x320), fx 192.06, baseline 0.0755 m
+ep0: 373 frames -> /content/vwork/ep0 (512x320), fx 192.06, baseline 0.0755 m
+ep2: 343 frames -> /content/vwork/ep2 (512x320), fx 192.06, baseline 0.0755 m
+ep11: 137 frames -> /content/vwork/ep11 (512x320), fx 192.06, baseline 0.0755 m
+ep13: 190 frames -> /content/vwork/ep13 (512x320), fx 192.06, baseline 0.0755 m
+ep18: 353 frames -> /content/vwork/ep18 (512x320), fx 192.06, baseline 0.0755 m
+ep21: 186 frames -> /content/vwork/ep21 (512x320), fx 192.06, baseline 0.0755 m
+ep22: 189 frames -> /content/vwork/ep22 (512x320), fx 192.06, baseline 0.0755 m
+ep23: 325 frames -> /content/vwork/ep23 (512x320), fx 192.06, baseline 0.0755 m
+ep24: 275 frames -> /content/vwork/ep24 (512x320), fx 192.06, baseline 0.0755 m
+ep26: 158 frames -> /content/vwork/ep26 (512x320), fx 192.06, baseline 0.0755 m
+ep27: 246 frames -> /content/vwork/ep27 (512x320), fx 192.06, baseline 0.0755 m
+ep31: 290 frames -> /content/vwork/ep31 (512x320), fx 192.06, baseline 0.0755 m
+ep39: 319 frames -> /content/vwork/ep39 (512x320), fx 192.06, baseline 0.0755 m
+ep40: 260 frames -> /content/vwork/ep40 (512x320), fx 192.06, baseline 0.0755 m
+ep41: 299 frames -> /content/vwork/ep41 (512x320), fx 192.06, baseline 0.0755 m
+ep42: 257 frames -> /content/vwork/ep42 (512x320), fx 192.06, baseline 0.0755 m
+ep43: 326 frames -> /content/vwork/ep43 (512x320), fx 192.06, baseline 0.0755 m
+ep44: 249 frames -> /content/vwork/ep44 (512x320), fx 192.06, baseline 0.0755 m
+ep45: 290 frames -> /content/vwork/ep45 (512x320), fx 192.06, baseline 0.0755 m
+[2026-11-19T11:00:47Z] cam_arms: 48935 MiB GPU, MetricTrail after perc2
+[2026-11-19T11:03:06Z] camarms ep12 S rc=0 139s: [   35.7s] vo keyframes 3 fails 0 median inliers 193 min 120 [  130.6s] vo                           AUC 0.996 SP 1.00 MP 1.00 MPPE 0.52 RPE 0.80 {'blue_cup': 0.995, 'plastic_dish_rack': 0.998} 
+[2026-11-19T11:05:00Z] camarms ep0 S rc=0 114s: [   44.4s] vo keyframes 9 fails 0 median inliers 184 min 120 [  110.2s] vo                           AUC 0.076 SP 0.00 MP 0.00 MPPE 10.24 RPE 2.35 {'white_pot': 0.152, 'white_pot_lid': 0.001} 
+[2026-11-19T11:06:32Z] camarms ep2 S rc=0 92s: [   35.8s] vo keyframes 5 fails 0 median inliers 188 min 120 [   87.9s] vo                           AUC 0.992 SP 1.00 MP 1.00 MPPE 0.57 RPE 0.72 {'white_pot': 0.993, 'white_pot_lid': 0.99} 
+[2026-11-19T11:07:29Z] camarms ep11 S rc=0 57s: [   15.3s] vo keyframes 4 fails 0 median inliers 179 min 124 [   53.3s] vo                           AUC 0.894 SP 1.00 MP 1.00 MPPE 1.62 RPE 3.32 {'blue_cup': 0.794, 'beige_cup': 0.993} 
+[2026-11-19T11:08:37Z] camarms ep13 S rc=0 68s: [   20.7s] vo keyframes 3 fails 0 median inliers 187 min 121 [   63.7s] vo                           AUC 0.998 SP 1.00 MP 1.00 MPPE 0.43 RPE 0.90 {'blue_cup': 0.995, 'plastic_dish_rack': 1.0} 
+[2026-11-19T11:10:05Z] camarms ep18 S rc=0 88s: [   31.6s] vo keyframes 2 fails 0 median inliers 153 min 121 [   83.9s] vo                           AUC 0.962 SP 1.00 MP 1.00 MPPE 1.05 RPE 1.42 {'mini_sweeper': 0.995, 'mini_dust_pan': 0.93} 
+[2026-11-19T11:11:08Z] camarms ep21 S rc=0 63s: [   17.9s] vo keyframes 6 fails 0 median inliers 166 min 120 [   59.5s] vo                           AUC 0.977 SP 1.00 MP 1.00 MPPE 0.77 RPE 1.00 {'blue_cup': 1.0, 'water_pitcher': 0.954} 
+[2026-11-19T11:12:12Z] camarms ep22 S rc=0 62s: [   17.2s] vo keyframes 7 fails 0 median inliers 197 min 120 [   58.8s] vo                           AUC 0.983 SP 1.00 MP 1.00 MPPE 0.73 RPE 1.01 {'blue_cup': 0.999, 'water_pitcher': 0.968} 
+[2026-11-19T11:13:33Z] camarms ep23 S rc=0 80s: [   28.0s] vo keyframes 4 fails 0 median inliers 165 min 120 [   76.5s] vo                           AUC 0.998 SP 1.00 MP 1.00 MPPE 0.43 RPE 0.58 {'wooden_piece_1': 0.999, 'wooden_piece_2': 0.997} 
+[2026-11-19T11:14:47Z] camarms ep24 S rc=0 74s: [   25.0s] vo keyframes 17 fails 0 median inliers 183 min 120 [   70.1s] vo                           AUC 0.865 SP 1.00 MP 1.00 MPPE 1.97 RPE 0.65 {'wooden_piece_1': 0.848, 'wooden_piece_2': 0.882} 
+[2026-11-19T11:15:46Z] camarms ep26 S rc=0 59s: [   13.8s] vo keyframes 4 fails 0 median inliers 210 min 121 [   55.6s] vo                           AUC 0.994 SP 1.00 MP 1.00 MPPE 0.60 RPE 0.93 {'plastic_dish_rack': 0.998, 'white_pot': 0.991} 
+[2026-11-19T11:16:58Z] camarms ep27 S rc=0 71s: [   23.8s] vo keyframes 5 fails 0 median inliers 153 min 124 [   67.5s] vo                           AUC 0.995 SP 1.00 MP 1.00 MPPE 0.54 RPE 0.98 {'plastic_dish_rack': 1.0, 'white_pot': 0.989} 
+[2026-11-19T11:18:24Z] camarms ep31 S rc=0 86s: [   33.6s] vo keyframes 6 fails 0 median inliers 192 min 120 [   82.2s] vo                           AUC 0.876 SP 1.00 MP 1.00 MPPE 1.59 RPE 1.37 {'mini_sweeper': 0.941, 'plastic_dish_rack': 0.81} 
+[2026-11-19T11:19:25Z] camarms ep39 S rc=0 61s: [   27.0s] vo keyframes 8 fails 0 median inliers 179 min 120 [   57.7s] vo                           AUC 0.998 SP 1.00 MP 1.00 MPPE 0.50 RPE 0.00 {'mini_dust_pan': 0.998} 
+[2026-11-19T11:20:21Z] camarms ep40 S rc=0 56s: [   22.7s] vo keyframes 3 fails 0 median inliers 169 min 128 [   52.4s] vo                           AUC 0.997 SP 1.00 MP 1.00 MPPE 0.53 RPE 0.00 {'mini_dust_pan': 0.997} 
+[2026-11-19T11:21:20Z] camarms ep41 S rc=0 59s: [   24.3s] vo keyframes 16 fails 0 median inliers 156 min 120 [   55.6s] vo                           AUC 0.998 SP 1.00 MP 1.00 MPPE 0.48 RPE 0.00 {'white_pot': 0.998} 
+[2026-11-19T11:22:13Z] camarms ep42 S rc=0 52s: [   19.8s] vo keyframes 8 fails 0 median inliers 168 min 123 [   48.7s] vo                           AUC 0.989 SP 1.00 MP 1.00 MPPE 0.47 RPE 0.00 {'white_pot': 0.989} 
+[2026-11-19T11:23:11Z] camarms ep43 S rc=0 58s: [   24.2s] vo keyframes 10 fails 0 median inliers 154 min 120 [   54.5s] vo                           AUC 0.991 SP 1.00 MP 1.00 MPPE 0.60 RPE 0.00 {'white_pot': 0.991} 
+[2026-11-19T11:24:04Z] camarms ep44 S rc=0 53s: [   20.7s] vo keyframes 7 fails 0 median inliers 165 min 120 [   49.0s] vo                           AUC 0.999 SP 1.00 MP 1.00 MPPE 0.41 RPE 0.00 {'white_pot': 0.999} 
+[2026-11-19T11:25:04Z] camarms ep45 S rc=0 60s: [   25.0s] vo keyframes 13 fails 0 median inliers 150 min 120 [   55.9s] vo                           AUC 0.992 SP 1.00 MP 1.00 MPPE 0.58 RPE 0.00 {'white_pot': 0.992} 
+[2026-11-19T11:25:04Z] cam_arms: S tracks done
+[2026-11-19T11:25:11Z] cam_arms: ViPE ready
+[2026-11-19T11:25:46Z] camarms ep12 VD rc=0 35s
+[2026-11-19T11:26:09Z] camarms ep12 VD2 rc=0 23s
+[2026-11-19T11:26:38Z] camarms ep12 VM rc=0 29s
+[2026-11-19T11:27:27Z] camarms ep12 VDH rc=0 49s
+[2026-11-19T11:27:49Z] camarms ep12 VS rc=0 22s
+[2026-11-19T11:28:27Z] camarms ep0 VD rc=0 38s
+[2026-11-19T11:29:05Z] camarms ep0 VD2 rc=0 38s
+[2026-11-19T11:29:40Z] camarms ep0 VM rc=0 35s
+[2026-11-19T11:30:31Z] camarms ep0 VDH rc=0 51s
+[2026-11-19T11:31:06Z] camarms ep0 VS rc=0 35s
+[2026-11-19T11:31:42Z] camarms ep2 VD rc=0 36s
+[2026-11-19T11:32:16Z] camarms ep2 VD2 rc=0 34s
+[2026-11-19T11:32:50Z] camarms ep2 VM rc=0 34s
+[2026-11-19T11:33:37Z] camarms ep2 VDH rc=0 47s
+[2026-11-19T11:34:10Z] camarms ep2 VS rc=0 33s
+[2026-11-19T11:34:29Z] camarms ep11 VD rc=0 19s
+[2026-11-19T11:34:48Z] camarms ep11 VD2 rc=0 19s
+[2026-11-19T11:35:08Z] camarms ep11 VM rc=0 20s
+[2026-11-19T11:35:36Z] camarms ep11 VDH rc=0 28s
+[2026-11-19T11:35:54Z] camarms ep11 VS rc=0 18s
+[2026-11-19T11:36:18Z] camarms ep13 VD rc=0 24s
+[2026-11-19T11:36:41Z] camarms ep13 VD2 rc=0 23s
+[2026-11-19T11:37:05Z] camarms ep13 VM rc=0 24s
+[2026-11-19T11:37:37Z] camarms ep13 VDH rc=0 32s
+[2026-11-19T11:37:59Z] camarms ep13 VS rc=0 22s
+[2026-11-19T11:38:35Z] camarms ep18 VD rc=0 36s
+[2026-11-19T11:39:11Z] camarms ep18 VD2 rc=0 36s
+[2026-11-19T11:39:46Z] camarms ep18 VM rc=0 35s
+[2026-11-19T11:40:34Z] camarms ep18 VDH rc=0 48s
+[2026-11-19T11:41:08Z] camarms ep18 VS rc=0 34s
+[2026-11-19T11:41:31Z] camarms ep21 VD rc=0 23s
+[2026-11-19T11:41:55Z] camarms ep21 VD2 rc=0 24s
+[2026-11-19T11:42:19Z] camarms ep21 VM rc=0 24s
+[2026-11-19T11:42:52Z] camarms ep21 VDH rc=0 33s
+[2026-11-19T11:43:15Z] camarms ep21 VS rc=0 22s
+[2026-11-19T11:43:39Z] camarms ep22 VD rc=0 24s
+[2026-11-19T11:44:03Z] camarms ep22 VD2 rc=0 24s
+[2026-11-19T11:44:28Z] camarms ep22 VM rc=0 25s
+[2026-11-19T11:45:01Z] camarms ep22 VDH rc=0 33s
+[2026-11-19T11:45:24Z] camarms ep22 VS rc=0 23s
+[2026-11-19T11:45:58Z] camarms ep23 VD rc=0 34s
+[2026-11-19T11:46:33Z] camarms ep23 VD2 rc=0 35s
+[2026-11-19T11:47:06Z] camarms ep23 VM rc=0 33s
+[2026-11-19T11:47:54Z] camarms ep23 VDH rc=0 48s
+[2026-11-19T11:48:25Z] camarms ep23 VS rc=0 31s
+[2026-11-19T11:48:55Z] camarms ep24 VD rc=0 30s
+[2026-11-19T11:49:26Z] camarms ep24 VD2 rc=0 31s
+[2026-11-19T11:49:55Z] camarms ep24 VM rc=0 29s
+[2026-11-19T11:50:37Z] camarms ep24 VDH rc=0 41s
+[2026-11-19T11:51:05Z] camarms ep24 VS rc=0 28s
+[2026-11-19T11:51:27Z] camarms ep26 VD rc=0 22s
+[2026-11-19T11:51:54Z] camarms ep26 VD2 rc=0 27s
+[2026-11-19T11:52:16Z] camarms ep26 VM rc=0 22s
+[2026-11-19T11:52:45Z] camarms ep26 VDH rc=0 29s
+[2026-11-19T11:53:10Z] camarms ep26 VS rc=0 25s
+[2026-11-19T11:53:38Z] camarms ep27 VD rc=0 27s
+[2026-11-19T11:54:07Z] camarms ep27 VD2 rc=0 28s
+[2026-11-19T11:54:34Z] camarms ep27 VM rc=0 27s
+[2026-11-19T11:55:12Z] camarms ep27 VDH rc=0 38s
+[2026-11-19T11:55:39Z] camarms ep27 VS rc=0 27s
+[2026-11-19T11:56:09Z] camarms ep31 VD rc=0 30s
+[2026-11-19T11:56:40Z] camarms ep31 VD2 rc=0 31s
+[2026-11-19T11:57:10Z] camarms ep31 VM rc=0 30s
+[2026-11-19T11:57:52Z] camarms ep31 VDH rc=0 42s
+[2026-11-19T11:58:20Z] camarms ep31 VS rc=0 28s
+[2026-11-19T11:58:54Z] camarms ep39 VD rc=0 33s
+[2026-11-19T11:59:27Z] camarms ep39 VD2 rc=0 33s
+[2026-11-19T11:59:59Z] camarms ep39 VM rc=0 32s
+[2026-11-19T12:00:44Z] camarms ep39 VDH rc=0 45s
+[2026-11-19T12:01:15Z] camarms ep39 VS rc=0 30s
+[2026-11-19T12:01:44Z] camarms ep40 VD rc=0 28s
+[2026-11-19T12:02:13Z] camarms ep40 VD2 rc=0 29s
+[2026-11-19T12:02:41Z] camarms ep40 VM rc=0 28s
+[2026-11-19T12:03:21Z] camarms ep40 VDH rc=0 40s
+[2026-11-19T12:03:47Z] camarms ep40 VS rc=0 26s
+[2026-11-19T12:04:19Z] camarms ep41 VD rc=0 32s
+[2026-11-19T12:04:51Z] camarms ep41 VD2 rc=0 32s
+[2026-11-19T12:05:22Z] camarms ep41 VM rc=0 31s
+[2026-11-19T12:06:05Z] camarms ep41 VDH rc=0 43s
+[2026-11-19T12:06:35Z] camarms ep41 VS rc=0 30s
+[2026-11-19T12:07:03Z] camarms ep42 VD rc=0 28s
+[2026-11-19T12:07:32Z] camarms ep42 VD2 rc=0 29s
+[2026-11-19T12:08:00Z] camarms ep42 VM rc=0 28s
+[2026-11-19T12:08:39Z] camarms ep42 VDH rc=0 39s
+[2026-11-19T12:09:06Z] camarms ep42 VS rc=0 27s
+[2026-11-19T12:09:39Z] camarms ep43 VD rc=0 33s
+[2026-11-19T12:10:13Z] camarms ep43 VD2 rc=0 34s
+[2026-11-19T12:10:45Z] camarms ep43 VM rc=0 32s
+[2026-11-19T12:11:31Z] camarms ep43 VDH rc=0 45s
+[2026-11-19T12:12:03Z] camarms ep43 VS rc=0 32s
+[2026-11-19T12:12:31Z] camarms ep44 VD rc=0 28s
+[2026-11-19T12:12:59Z] camarms ep44 VD2 rc=0 28s
+[2026-11-19T12:13:27Z] camarms ep44 VM rc=0 28s
+[2026-11-19T12:14:06Z] camarms ep44 VDH rc=0 39s
+[2026-11-19T12:14:31Z] camarms ep44 VS rc=0 25s
+[2026-11-19T12:15:03Z] camarms ep45 VD rc=0 32s
+[2026-11-19T12:15:34Z] camarms ep45 VD2 rc=0 31s
+[2026-11-19T12:16:05Z] camarms ep45 VM rc=0 31s
+[2026-11-19T12:16:47Z] camarms ep45 VDH rc=0 42s
+[2026-11-19T12:17:17Z] camarms ep45 VS rc=0 29s
+[2026-11-19T12:17:17Z] cam_arms: MetricTrail arms done
+[2026-11-19T12:17:17Z] camarms ep12 VD camera: {"frames": 181, "have": 181, "n_keyframes": 8, "runtime_s": 28.319945961993653, "flip": false, "rot_gap_deg_as_written": 0.10092411667862448, "rot_gap_deg_flipped": 3.347398423791163, "trans_gap_mm_median_vs_perc2": 2.2934544641763766}
+[2026-11-19T12:17:18Z] camarms ep12 VD2 camera: {"frames": 181, "have": 181, "n_keyframes": 8, "runtime_s": 19.10802027300815, "flip": false, "rot_gap_deg_as_written": 0.10089750065283669, "rot_gap_deg_flipped": 3.3473545814652588, "trans_gap_mm_median_vs_perc2": 2.292774235537827}
+[2026-11-19T12:17:18Z] camarms ep12 VM camera: {"frames": 181, "have": 181, "n_keyframes": 8, "runtime_s": 24.927381863992196, "flip": false, "rot_gap_deg_as_written": 0.09295675335140535, "rot_gap_deg_flipped": 3.359145459933281, "trans_gap_mm_median_vs_perc2": 3.148659974104477}
+[2026-11-19T12:17:18Z] camarms ep12 VDH camera: {"frames": 181, "have": 181, "n_keyframes": 8, "runtime_s": 22.122110572992824, "flip": false, "rot_gap_deg_as_written": 0.3680713317955075, "rot_gap_deg_flipped": 3.363150150731073, "trans_gap_mm_median_vs_perc2": 2.171443265316127}
+[2026-11-19T12:17:18Z] camarms ep12 VS camera: {"frames": 181, "have": 181, "n_keyframes": 8, "runtime_s": 18.529639204003615, "flip": false, "rot_gap_deg_as_written": 0.08907166237094324, "rot_gap_deg_flipped": 3.347815255999408, "trans_gap_mm_median_vs_perc2": 1.8992771159801973}
+{"frames": 181, "depth_frames": 181, "valid_frac": 0.6602217886740331}
+[2026-11-19T12:20:11Z] camarms ep12 SD rc=0 171s: [   19.6s] vo keyframes 1 fails 0 median inliers 197 min 124 [  167.6s] vo                           AUC 0.006 SP 0.00 MP 0.00 MPPE 17.52 RPE 23.87 {'blue_cup': 0.011, 'plastic_dish_rack': 0.0} 
+[2026-11-19T12:20:12Z] camarms ep0 VD camera: {"frames": 373, "have": 373, "n_keyframes": 8, "runtime_s": 33.64222397902631, "flip": false, "rot_gap_deg_as_written": 0.1755485185884272, "rot_gap_deg_flipped": 4.5725292001448965, "trans_gap_mm_median_vs_perc2": 3.4263853044319426}
+[2026-11-19T12:20:12Z] camarms ep0 VD2 camera: {"frames": 373, "have": 373, "n_keyframes": 8, "runtime_s": 33.245398341008695, "flip": false, "rot_gap_deg_as_written": 0.17554516597064182, "rot_gap_deg_flipped": 4.572486148834631, "trans_gap_mm_median_vs_perc2": 3.4244956618071702}
+[2026-11-19T12:20:12Z] camarms ep0 VM camera: {"frames": 373, "have": 373, "n_keyframes": 8, "runtime_s": 31.270326839992777, "flip": false, "rot_gap_deg_as_written": 0.15884068242865346, "rot_gap_deg_flipped": 4.559326552241644, "trans_gap_mm_median_vs_perc2": 5.097524883324111}
+[2026-11-19T12:20:12Z] camarms ep0 VDH camera: {"frames": 373, "have": 373, "n_keyframes": 8, "runtime_s": 39.728093067999, "flip": false, "rot_gap_deg_as_written": 0.189654661730209, "rot_gap_deg_flipped": 4.691431157428286, "trans_gap_mm_median_vs_perc2": 3.8852446568311576}
+[2026-11-19T12:20:12Z] camarms ep0 VS camera: {"frames": 373, "have": 373, "n_keyframes": 8, "runtime_s": 32.01347413001349, "flip": false, "rot_gap_deg_as_written": 0.16189626819523334, "rot_gap_deg_flipped": 4.588297808567271, "trans_gap_mm_median_vs_perc2": 3.2715713128682027}
+{"frames": 373, "depth_frames": 373, "valid_frac": 0.7030180395442359}
+[2026-11-19T12:31:55Z] camarms ep0 SD rc=0 699s: [   40.0s] vo keyframes 6 fails 0 median inliers 242 min 120 [  695.0s] vo                           AUC 0.002 SP 0.00 MP 0.00 MPPE 27.83 RPE 32.95 {'white_pot': 0.005, 'white_pot_lid': 0.0} 
+[2026-11-19T12:31:55Z] camarms ep2 VD camera: {"frames": 343, "have": 343, "n_keyframes": 8, "runtime_s": 31.363240576989483, "flip": false, "rot_gap_deg_as_written": 0.18866539957062192, "rot_gap_deg_flipped": 4.130911398013636, "trans_gap_mm_median_vs_perc2": 3.0780690480688584}
+[2026-11-19T12:31:55Z] camarms ep2 VD2 camera: {"frames": 343, "have": 343, "n_keyframes": 8, "runtime_s": 30.62161336801364, "flip": false, "rot_gap_deg_as_written": 0.18860821741673842, "rot_gap_deg_flipped": 4.130945111351492, "trans_gap_mm_median_vs_perc2": 3.0797885596704573}
+[2026-11-19T12:31:55Z] camarms ep2 VM camera: {"frames": 343, "have": 343, "n_keyframes": 8, "runtime_s": 29.712803586997325, "flip": false, "rot_gap_deg_as_written": 0.15414233448732367, "rot_gap_deg_flipped": 4.142995226065418, "trans_gap_mm_median_vs_perc2": 3.957189357609123}
+[2026-11-19T12:31:55Z] camarms ep2 VDH camera: {"frames": 343, "have": 343, "n_keyframes": 8, "runtime_s": 35.37795712100342, "flip": false, "rot_gap_deg_as_written": 0.4149177543386404, "rot_gap_deg_flipped": 4.098537766566227, "trans_gap_mm_median_vs_perc2": 4.45115941028825}
+[2026-11-19T12:31:56Z] camarms ep2 VS camera: {"frames": 343, "have": 343, "n_keyframes": 8, "runtime_s": 29.600788559007924, "flip": false, "rot_gap_deg_as_written": 0.17020546345595752, "rot_gap_deg_flipped": 4.146909749890003, "trans_gap_mm_median_vs_perc2": 3.0642164206354248}
+{"frames": 343, "depth_frames": 343, "valid_frac": 0.7228078516763848}
+[2026-11-19T12:44:16Z] camarms ep2 SD rc=0 737s: [   34.2s] vo keyframes 3 fails 0 median inliers 210 min 122 [  733.4s] vo                           AUC 0.011 SP 0.00 MP 0.00 MPPE 30.00 RPE 21.23 {'white_pot': 0.022, 'white_pot_lid': 0.0} 
+[2026-11-19T12:44:17Z] camarms ep11 VD camera: {"frames": 137, "have": 137, "n_keyframes": 7, "runtime_s": 15.308576379000442, "flip": false, "rot_gap_deg_as_written": 0.7774130742072296, "rot_gap_deg_flipped": 4.229792739721121, "trans_gap_mm_median_vs_perc2": 7.827359336061681}
+[2026-11-19T12:44:17Z] camarms ep11 VD2 camera: {"frames": 137, "have": 137, "n_keyframes": 7, "runtime_s": 15.255979340989143, "flip": false, "rot_gap_deg_as_written": 0.7774166448110381, "rot_gap_deg_flipped": 4.229796318331221, "trans_gap_mm_median_vs_perc2": 7.802201708241282}
+[2026-11-19T12:44:17Z] camarms ep11 VM camera: {"frames": 137, "have": 137, "n_keyframes": 7, "runtime_s": 15.898609444993781, "flip": false, "rot_gap_deg_as_written": 0.7848694605451276, "rot_gap_deg_flipped": 4.230759157020743, "trans_gap_mm_median_vs_perc2": 7.945732173990059}
+[2026-11-19T12:44:17Z] camarms ep11 VDH camera: {"frames": 137, "have": 137, "n_keyframes": 6, "runtime_s": 17.152137239987496, "flip": false, "rot_gap_deg_as_written": 0.9876691042139211, "rot_gap_deg_flipped": 3.990838697016146, "trans_gap_mm_median_vs_perc2": 5.990772231900412}
+[2026-11-19T12:44:17Z] camarms ep11 VS camera: {"frames": 137, "have": 137, "n_keyframes": 7, "runtime_s": 14.422542145010084, "flip": false, "rot_gap_deg_as_written": 0.7698220207949947, "rot_gap_deg_flipped": 4.246877500697077, "trans_gap_mm_median_vs_perc2": 5.614507656149156}
+{"frames": 137, "depth_frames": 137, "valid_frac": 0.6964657436131387}
+[2026-11-19T12:46:25Z] camarms ep11 SD rc=0 126s: [   14.3s] vo keyframes 3 fails 0 median inliers 310 min 120 [  122.9s] vo                           AUC 0.206 SP 0.00 MP 0.00 MPPE 11.11 RPE 14.73 {'blue_cup': 0.243, 'beige_cup': 0.168} 
+[2026-11-19T12:46:26Z] camarms ep13 VD camera: {"frames": 190, "have": 190, "n_keyframes": 8, "runtime_s": 19.693791851983406, "flip": false, "rot_gap_deg_as_written": 0.7664000101869295, "rot_gap_deg_flipped": 4.585890858627434, "trans_gap_mm_median_vs_perc2": 6.526939023988493}
+[2026-11-19T12:46:26Z] camarms ep13 VD2 camera: {"frames": 190, "have": 190, "n_keyframes": 8, "runtime_s": 19.054702280001948, "flip": false, "rot_gap_deg_as_written": 0.76511610084396, "rot_gap_deg_flipped": 4.586188031132407, "trans_gap_mm_median_vs_perc2": 6.102690222313793}
+[2026-11-19T12:46:26Z] camarms ep13 VM camera: {"frames": 190, "have": 190, "n_keyframes": 8, "runtime_s": 19.969182896020357, "flip": false, "rot_gap_deg_as_written": 0.7707557280022926, "rot_gap_deg_flipped": 4.585183662295891, "trans_gap_mm_median_vs_perc2": 6.085853466071342}
+[2026-11-19T12:46:26Z] camarms ep13 VDH camera: {"frames": 190, "have": 190, "n_keyframes": 8, "runtime_s": 22.293051518994616, "flip": false, "rot_gap_deg_as_written": 0.8832139716805325, "rot_gap_deg_flipped": 4.619776813519097, "trans_gap_mm_median_vs_perc2": 10.64641967746624}
+[2026-11-19T12:46:26Z] camarms ep13 VS camera: {"frames": 190, "have": 190, "n_keyframes": 8, "runtime_s": 18.352146752004046, "flip": false, "rot_gap_deg_as_written": 0.745109678075093, "rot_gap_deg_flipped": 4.578137131182656, "trans_gap_mm_median_vs_perc2": 4.121203721100194}
+{"frames": 190, "depth_frames": 190, "valid_frac": 0.673287197368421}
+[2026-11-19T12:49:27Z] camarms ep13 SD rc=0 179s: [   18.5s] vo keyframes 2 fails 0 median inliers 220 min 124 [  175.4s] vo                           AUC 0.042 SP 0.00 MP 0.00 MPPE 27.13 RPE 24.54 {'blue_cup': 0.083, 'plastic_dish_rack': 0.0} 
+[2026-11-19T12:49:28Z] camarms ep18 VD camera: {"frames": 353, "have": 353, "n_keyframes": 8, "runtime_s": 31.86546229198575, "flip": false, "rot_gap_deg_as_written": 0.1426859553626104, "rot_gap_deg_flipped": 8.032747023227323, "trans_gap_mm_median_vs_perc2": 3.7499134733040473}
+[2026-11-19T12:49:28Z] camarms ep18 VD2 camera: {"frames": 353, "have": 353, "n_keyframes": 8, "runtime_s": 32.225557917001424, "flip": false, "rot_gap_deg_as_written": 0.142623699697594, "rot_gap_deg_flipped": 8.032745917596634, "trans_gap_mm_median_vs_perc2": 3.747491574121887}
+[2026-11-19T12:49:28Z] camarms ep18 VM camera: {"frames": 353, "have": 353, "n_keyframes": 8, "runtime_s": 30.74266970998724, "flip": false, "rot_gap_deg_as_written": 0.11941633801715776, "rot_gap_deg_flipped": 8.04564570709559, "trans_gap_mm_median_vs_perc2": 6.907468063404723}
+[2026-11-19T12:49:28Z] camarms ep18 VDH camera: {"frames": 353, "have": 353, "n_keyframes": 8, "runtime_s": 36.64966556002037, "flip": false, "rot_gap_deg_as_written": 0.1601452695728002, "rot_gap_deg_flipped": 8.02945345970143, "trans_gap_mm_median_vs_perc2": 4.174112178213465}
+[2026-11-19T12:49:28Z] camarms ep18 VS camera: {"frames": 353, "have": 353, "n_keyframes": 8, "runtime_s": 30.485931786010042, "flip": false, "rot_gap_deg_as_written": 0.09629710834549061, "rot_gap_deg_flipped": 8.051507754708151, "trans_gap_mm_median_vs_perc2": 2.0534252444737837}
+{"frames": 353, "depth_frames": 353, "valid_frac": 0.7433782259206799}
+[2026-11-19T12:53:31Z] camarms ep18 SD rc=0 239s: [   30.9s] vo keyframes 2 fails 0 median inliers 182 min 124 [  235.6s] vo                           AUC 0.023 SP 0.00 MP 0.00 MPPE 26.26 RPE 28.92 {'mini_sweeper': 0.047, 'mini_dust_pan': 0.0} 
+[2026-11-19T12:53:31Z] camarms ep21 VD camera: {"frames": 186, "have": 186, "n_keyframes": 8, "runtime_s": 19.25939145902521, "flip": false, "rot_gap_deg_as_written": 0.19334065662133507, "rot_gap_deg_flipped": 6.048111074898637, "trans_gap_mm_median_vs_perc2": 4.369547542731603}
+[2026-11-19T12:53:31Z] camarms ep21 VD2 camera: {"frames": 186, "have": 186, "n_keyframes": 8, "runtime_s": 19.463918913999805, "flip": false, "rot_gap_deg_as_written": 0.1933410801320008, "rot_gap_deg_flipped": 6.048100525619419, "trans_gap_mm_median_vs_perc2": 4.3692056665882095}
+[2026-11-19T12:53:31Z] camarms ep21 VM camera: {"frames": 186, "have": 186, "n_keyframes": 8, "runtime_s": 20.057298111001728, "flip": false, "rot_gap_deg_as_written": 0.1793224585464533, "rot_gap_deg_flipped": 6.066222569923261, "trans_gap_mm_median_vs_perc2": 6.614421798418327}
+[2026-11-19T12:53:32Z] camarms ep21 VDH camera: {"frames": 186, "have": 186, "n_keyframes": 8, "runtime_s": 22.01158775400836, "flip": false, "rot_gap_deg_as_written": 0.20686291937347343, "rot_gap_deg_flipped": 6.29300288443462, "trans_gap_mm_median_vs_perc2": 5.03476849965281}
+[2026-11-19T12:53:32Z] camarms ep21 VS camera: {"frames": 186, "have": 186, "n_keyframes": 8, "runtime_s": 19.546691624011146, "flip": false, "rot_gap_deg_as_written": 0.15863465372076485, "rot_gap_deg_flipped": 6.075687537046294, "trans_gap_mm_median_vs_perc2": 3.344692143831744}
+{"frames": 186, "depth_frames": 186, "valid_frac": 0.8009102049731183}
+[2026-11-19T12:56:40Z] camarms ep21 SD rc=0 186s: [   16.6s] vo keyframes 1 fails 0 median inliers 299 min 151 [  183.0s] vo                           AUC 0.020 SP 0.00 MP 0.00 MPPE 40.29 RPE 49.76 {'blue_cup': 0.014, 'water_pitcher': 0.027} 
+[2026-11-19T12:56:41Z] camarms ep22 VD camera: {"frames": 189, "have": 189, "n_keyframes": 8, "runtime_s": 19.742306022992125, "flip": false, "rot_gap_deg_as_written": 0.08009545744580097, "rot_gap_deg_flipped": 11.901923938299026, "trans_gap_mm_median_vs_perc2": 2.268687005600572}
+[2026-11-19T12:56:41Z] camarms ep22 VD2 camera: {"frames": 189, "have": 189, "n_keyframes": 8, "runtime_s": 19.877112733985996, "flip": false, "rot_gap_deg_as_written": 0.08002426469281687, "rot_gap_deg_flipped": 11.902073044618952, "trans_gap_mm_median_vs_perc2": 2.268998327975982}
+[2026-11-19T12:56:41Z] camarms ep22 VM camera: {"frames": 189, "have": 189, "n_keyframes": 8, "runtime_s": 20.38091817102395, "flip": false, "rot_gap_deg_as_written": 0.09067007697100525, "rot_gap_deg_flipped": 11.956291994003124, "trans_gap_mm_median_vs_perc2": 3.1067522864891064}
+[2026-11-19T12:56:41Z] camarms ep22 VDH camera: {"frames": 189, "have": 189, "n_keyframes": 8, "runtime_s": 22.49395381801878, "flip": false, "rot_gap_deg_as_written": 0.08062426776846944, "rot_gap_deg_flipped": 11.942925321462972, "trans_gap_mm_median_vs_perc2": 2.318784188819859}
+[2026-11-19T12:56:41Z] camarms ep22 VS camera: {"frames": 189, "have": 189, "n_keyframes": 8, "runtime_s": 19.819734736985993, "flip": false, "rot_gap_deg_as_written": 0.08598136402655532, "rot_gap_deg_flipped": 11.926068640156975, "trans_gap_mm_median_vs_perc2": 1.9452350934604228}
+{"frames": 189, "depth_frames": 189, "valid_frac": 0.8581602248677249}
+[2026-11-19T12:58:35Z] camarms ep22 SD rc=0 111s: [   16.0s] vo keyframes 3 fails 0 median inliers 215 min 123 [  108.0s] vo                           AUC 0.165 SP 0.00 MP 0.00 MPPE 12.48 RPE 28.52 {'blue_cup': 0.33, 'water_pitcher': 0.0} 
+[2026-11-19T12:58:35Z] camarms ep23 VD camera: {"frames": 325, "have": 325, "n_keyframes": 8, "runtime_s": 29.65209789099754, "flip": false, "rot_gap_deg_as_written": 0.11967806171167608, "rot_gap_deg_flipped": 4.069594335446937, "trans_gap_mm_median_vs_perc2": 2.4782846446467763}
+[2026-11-19T12:58:35Z] camarms ep23 VD2 camera: {"frames": 325, "have": 325, "n_keyframes": 8, "runtime_s": 30.592618661001325, "flip": false, "rot_gap_deg_as_written": 0.11948660990438675, "rot_gap_deg_flipped": 4.069532539141427, "trans_gap_mm_median_vs_perc2": 2.494443392371533}
+[2026-11-19T12:58:35Z] camarms ep23 VM camera: {"frames": 325, "have": 325, "n_keyframes": 8, "runtime_s": 29.094701343012275, "flip": false, "rot_gap_deg_as_written": 0.10510480426747519, "rot_gap_deg_flipped": 4.076172087231708, "trans_gap_mm_median_vs_perc2": 3.5045974690837762}
+[2026-11-19T12:58:36Z] camarms ep23 VDH camera: {"frames": 325, "have": 325, "n_keyframes": 8, "runtime_s": 36.877054394979496, "flip": false, "rot_gap_deg_as_written": 0.12031181971765047, "rot_gap_deg_flipped": 4.093575460937574, "trans_gap_mm_median_vs_perc2": 2.591985402499518}
+[2026-11-19T12:58:36Z] camarms ep23 VS camera: {"frames": 325, "have": 325, "n_keyframes": 8, "runtime_s": 28.312804656015942, "flip": false, "rot_gap_deg_as_written": 0.0875420417793919, "rot_gap_deg_flipped": 4.088914427994536, "trans_gap_mm_median_vs_perc2": 2.0207182923639935}
+{"frames": 325, "depth_frames": 325, "valid_frac": 0.861102801923077}
+[2026-11-19T13:00:32Z] camarms ep23 SD rc=0 113s: [   29.3s] vo keyframes 3 fails 0 median inliers 328 min 124 [  109.6s] vo                           AUC 0.357 SP 0.00 MP 0.00 MPPE 9.06 RPE 12.57 {'wooden_piece_1': 0.666, 'wooden_piece_2': 0.047} 
+[2026-11-19T13:00:32Z] camarms ep24 VD camera: {"frames": 275, "have": 275, "n_keyframes": 9, "runtime_s": 25.917717750009615, "flip": false, "rot_gap_deg_as_written": 1.299945143410171, "rot_gap_deg_flipped": 10.27295170348974, "trans_gap_mm_median_vs_perc2": 31.16547015502033}
+[2026-11-19T13:00:33Z] camarms ep24 VD2 camera: {"frames": 275, "have": 275, "n_keyframes": 9, "runtime_s": 26.38675871299347, "flip": false, "rot_gap_deg_as_written": 1.2998929409965592, "rot_gap_deg_flipped": 10.272928783905119, "trans_gap_mm_median_vs_perc2": 31.1630431807139}
+[2026-11-19T13:00:33Z] camarms ep24 VM camera: {"frames": 275, "have": 275, "n_keyframes": 9, "runtime_s": 25.557764499011682, "flip": false, "rot_gap_deg_as_written": 1.3142997092751199, "rot_gap_deg_flipped": 10.351754389418021, "trans_gap_mm_median_vs_perc2": 30.851251291158835}
+[2026-11-19T13:00:33Z] camarms ep24 VDH camera: {"frames": 275, "have": 275, "n_keyframes": 8, "runtime_s": 30.35880480601918, "flip": false, "rot_gap_deg_as_written": 1.2666964301909305, "rot_gap_deg_flipped": 10.239572603347133, "trans_gap_mm_median_vs_perc2": 28.949335109444274}
+[2026-11-19T13:00:33Z] camarms ep24 VS camera: {"frames": 275, "have": 275, "n_keyframes": 9, "runtime_s": 24.908308979996946, "flip": false, "rot_gap_deg_as_written": 1.2921188563203196, "rot_gap_deg_flipped": 10.302137392620299, "trans_gap_mm_median_vs_perc2": 30.394897962560634}
+{"frames": 275, "depth_frames": 275, "valid_frac": 0.8018044204545455}
+[2026-11-19T13:06:38Z] camarms ep24 SD rc=0 362s: [   24.6s] vo keyframes 8 fails 0 median inliers 234 min 120 [  358.2s] vo                           AUC 0.183 SP 0.00 MP 0.00 MPPE 16.28 RPE 17.39 {'wooden_piece_1': 0.314, 'wooden_piece_2': 0.053} 
+[2026-11-19T13:06:38Z] camarms ep26 VD camera: {"frames": 158, "have": 158, "n_keyframes": 8, "runtime_s": 17.43293713100138, "flip": false, "rot_gap_deg_as_written": 0.14783808586772826, "rot_gap_deg_flipped": 6.234810343386362, "trans_gap_mm_median_vs_perc2": 4.411200434633928}
+[2026-11-19T13:06:38Z] camarms ep26 VD2 camera: {"frames": 158, "have": 158, "n_keyframes": 8, "runtime_s": 22.879560052999295, "flip": false, "rot_gap_deg_as_written": 0.14783263779953404, "rot_gap_deg_flipped": 6.234895401789281, "trans_gap_mm_median_vs_perc2": 4.414884758569483}
+[2026-11-19T13:06:38Z] camarms ep26 VM camera: {"frames": 158, "have": 158, "n_keyframes": 8, "runtime_s": 18.22479725701851, "flip": false, "rot_gap_deg_as_written": 0.19609002097974576, "rot_gap_deg_flipped": 6.262035645309876, "trans_gap_mm_median_vs_perc2": 6.168561791123185}
+[2026-11-19T13:06:38Z] camarms ep26 VDH camera: {"frames": 158, "have": 158, "n_keyframes": 8, "runtime_s": 19.196837055002106, "flip": false, "rot_gap_deg_as_written": 0.15508656011013108, "rot_gap_deg_flipped": 6.256845057907232, "trans_gap_mm_median_vs_perc2": 4.062495816387067}
+[2026-11-19T13:06:39Z] camarms ep26 VS camera: {"frames": 158, "have": 158, "n_keyframes": 8, "runtime_s": 21.750451328989584, "flip": false, "rot_gap_deg_as_written": 0.17855691176442906, "rot_gap_deg_flipped": 6.266899087932011, "trans_gap_mm_median_vs_perc2": 4.677738138048099}
+{"frames": 158, "depth_frames": 158, "valid_frac": 0.7539611075949367}
+[2026-11-19T13:13:42Z] camarms ep26 SD rc=0 421s: [   14.3s] vo keyframes 2 fails 0 median inliers 187 min 124 [  418.0s] vo                           AUC 0.196 SP 0.00 MP 0.00 MPPE 32.76 RPE 36.01 {'plastic_dish_rack': 0.278, 'white_pot': 0.114} 
+[2026-11-19T13:13:42Z] camarms ep27 VD camera: {"frames": 246, "have": 246, "n_keyframes": 8, "runtime_s": 23.92550251999637, "flip": false, "rot_gap_deg_as_written": 0.07367044493280121, "rot_gap_deg_flipped": 3.7514145252687072, "trans_gap_mm_median_vs_perc2": 1.8515038251014568}
+[2026-11-19T13:13:43Z] camarms ep27 VD2 camera: {"frames": 246, "have": 246, "n_keyframes": 8, "runtime_s": 24.13125184501405, "flip": false, "rot_gap_deg_as_written": 0.0736631591229476, "rot_gap_deg_flipped": 3.7514297194927657, "trans_gap_mm_median_vs_perc2": 1.8508961251482556}
+[2026-11-19T13:13:43Z] camarms ep27 VM camera: {"frames": 246, "have": 246, "n_keyframes": 8, "runtime_s": 23.073746453999775, "flip": false, "rot_gap_deg_as_written": 0.08087850957852749, "rot_gap_deg_flipped": 3.7470627100264657, "trans_gap_mm_median_vs_perc2": 2.6644153293671176}
+[2026-11-19T13:13:43Z] camarms ep27 VDH camera: {"frames": 246, "have": 246, "n_keyframes": 8, "runtime_s": 27.989737202005927, "flip": false, "rot_gap_deg_as_written": 0.9138684043643817, "rot_gap_deg_flipped": 3.799880774195429, "trans_gap_mm_median_vs_perc2": 3.8866168929631653}
+[2026-11-19T13:13:43Z] camarms ep27 VS camera: {"frames": 246, "have": 246, "n_keyframes": 8, "runtime_s": 22.803269733994966, "flip": false, "rot_gap_deg_as_written": 0.0723012854099554, "rot_gap_deg_flipped": 3.747046004331124, "trans_gap_mm_median_vs_perc2": 1.6347206520841495}
+{"frames": 246, "depth_frames": 246, "valid_frac": 0.8628868216463415}
+[2026-11-19T13:18:32Z] camarms ep27 SD rc=0 286s: [   22.2s] vo keyframes 1 fails 0 median inliers 332 min 223 [  283.0s] vo                           AUC 0.229 SP 0.00 MP 0.00 MPPE 24.18 RPE 20.65 {'plastic_dish_rack': 0.247, 'white_pot': 0.21} 
+[2026-11-19T13:18:33Z] camarms ep31 VD camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 26.763775179017102, "flip": false, "rot_gap_deg_as_written": 0.3814716797428431, "rot_gap_deg_flipped": 10.049180008890378, "trans_gap_mm_median_vs_perc2": 3.6004572342761483}
+[2026-11-19T13:18:33Z] camarms ep31 VD2 camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 26.639406558999326, "flip": false, "rot_gap_deg_as_written": 0.381484259368456, "rot_gap_deg_flipped": 10.049123080504819, "trans_gap_mm_median_vs_perc2": 3.601314723419329}
+[2026-11-19T13:18:33Z] camarms ep31 VM camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 25.90804191501229, "flip": false, "rot_gap_deg_as_written": 0.3916042501502389, "rot_gap_deg_flipped": 10.025377042152916, "trans_gap_mm_median_vs_perc2": 10.38797797558337}
+[2026-11-19T13:18:33Z] camarms ep31 VDH camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 31.162708086019848, "flip": false, "rot_gap_deg_as_written": 0.3061364942901377, "rot_gap_deg_flipped": 10.688689279912655, "trans_gap_mm_median_vs_perc2": 3.4686925535584114}
+[2026-11-19T13:18:33Z] camarms ep31 VS camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 25.077549048990477, "flip": false, "rot_gap_deg_as_written": 0.39294470502000667, "rot_gap_deg_flipped": 10.037009631630362, "trans_gap_mm_median_vs_perc2": 3.532324805458022}
+{"frames": 290, "depth_frames": 290, "valid_frac": 0.8374259181034482}
+[2026-11-19T13:24:24Z] camarms ep31 SD rc=0 348s: [   34.4s] vo keyframes 7 fails 0 median inliers 192 min 120 [  344.0s] vo                           AUC 0.048 SP 0.00 MP 0.00 MPPE 23.68 RPE 31.69 {'mini_sweeper': 0.096, 'plastic_dish_rack': 0.0} 
+[2026-11-19T13:24:24Z] camarms ep39 VD camera: {"frames": 319, "have": 319, "n_keyframes": 8, "runtime_s": 29.20462429098552, "flip": false, "rot_gap_deg_as_written": 0.3685838146446678, "rot_gap_deg_flipped": 13.472455228880166, "trans_gap_mm_median_vs_perc2": 5.71719606139126}
+[2026-11-19T13:24:24Z] camarms ep39 VD2 camera: {"frames": 319, "have": 319, "n_keyframes": 8, "runtime_s": 28.805892020987812, "flip": false, "rot_gap_deg_as_written": 0.3686770037873444, "rot_gap_deg_flipped": 13.472404325943565, "trans_gap_mm_median_vs_perc2": 5.71719606139126}
+[2026-11-19T13:24:24Z] camarms ep39 VM camera: {"frames": 319, "have": 319, "n_keyframes": 8, "runtime_s": 28.55888398300158, "flip": false, "rot_gap_deg_as_written": 0.33319141340068065, "rot_gap_deg_flipped": 13.454390435720478, "trans_gap_mm_median_vs_perc2": 15.45360149463072}
+[2026-11-19T13:24:25Z] camarms ep39 VDH camera: {"frames": 319, "have": 319, "n_keyframes": 8, "runtime_s": 34.15471408198937, "flip": false, "rot_gap_deg_as_written": 0.3298598707057326, "rot_gap_deg_flipped": 13.44338988510228, "trans_gap_mm_median_vs_perc2": 5.48537102399443}
+[2026-11-19T13:24:25Z] camarms ep39 VS camera: {"frames": 319, "have": 319, "n_keyframes": 8, "runtime_s": 27.591194137989078, "flip": false, "rot_gap_deg_as_written": 0.3153911137140484, "rot_gap_deg_flipped": 13.438000107802877, "trans_gap_mm_median_vs_perc2": 5.667235321347666}
+{"frames": 319, "depth_frames": 319, "valid_frac": 0.8350648510971787}
+[2026-11-19T13:26:46Z] camarms ep39 SD rc=0 138s: [   27.0s] vo keyframes 5 fails 0 median inliers 188 min 121 [  134.7s] vo                           AUC 0.377 SP 0.00 MP 0.00 MPPE 12.99 RPE 0.00 {'mini_dust_pan': 0.377} 
+[2026-11-19T13:26:46Z] camarms ep40 VD camera: {"frames": 260, "have": 260, "n_keyframes": 8, "runtime_s": 24.673101652006153, "flip": false, "rot_gap_deg_as_written": 0.3865775805693156, "rot_gap_deg_flipped": 3.431586940739506, "trans_gap_mm_median_vs_perc2": 3.1375734463174982}
+[2026-11-19T13:26:47Z] camarms ep40 VD2 camera: {"frames": 260, "have": 260, "n_keyframes": 8, "runtime_s": 24.59767901300802, "flip": false, "rot_gap_deg_as_written": 0.3865636309937686, "rot_gap_deg_flipped": 3.431535886608048, "trans_gap_mm_median_vs_perc2": 3.1878885339099385}
+[2026-11-19T13:26:47Z] camarms ep40 VM camera: {"frames": 260, "have": 260, "n_keyframes": 8, "runtime_s": 24.043681317998562, "flip": false, "rot_gap_deg_as_written": 0.3982912343276551, "rot_gap_deg_flipped": 3.4354319184052855, "trans_gap_mm_median_vs_perc2": 3.7658994730242314}
+[2026-11-19T13:26:47Z] camarms ep40 VDH camera: {"frames": 260, "have": 260, "n_keyframes": 8, "runtime_s": 28.828782302007312, "flip": false, "rot_gap_deg_as_written": 0.7686988910433299, "rot_gap_deg_flipped": 3.5880077217196504, "trans_gap_mm_median_vs_perc2": 3.781647585158206}
+[2026-11-19T13:26:47Z] camarms ep40 VS camera: {"frames": 260, "have": 260, "n_keyframes": 8, "runtime_s": 22.86557423399063, "flip": false, "rot_gap_deg_as_written": 0.39247923815840013, "rot_gap_deg_flipped": 3.4361593231184493, "trans_gap_mm_median_vs_perc2": 2.7021727781666365}
+{"frames": 260, "depth_frames": 260, "valid_frac": 0.8020689158653846}
+[2026-11-19T13:28:08Z] camarms ep40 SD rc=0 78s: [   23.4s] vo keyframes 1 fails 0 median inliers 172 min 122 [   74.9s] vo                           AUC 0.287 SP 0.00 MP 0.00 MPPE 16.03 RPE 0.00 {'mini_dust_pan': 0.287} 
+[2026-11-19T13:28:08Z] camarms ep41 VD camera: {"frames": 299, "have": 299, "n_keyframes": 8, "runtime_s": 27.741090711992, "flip": false, "rot_gap_deg_as_written": 0.20607827050046781, "rot_gap_deg_flipped": 5.459825688406876, "trans_gap_mm_median_vs_perc2": 5.023292850176568}
+[2026-11-19T13:28:09Z] camarms ep41 VD2 camera: {"frames": 299, "have": 299, "n_keyframes": 8, "runtime_s": 27.915550970996264, "flip": false, "rot_gap_deg_as_written": 0.20850731873075004, "rot_gap_deg_flipped": 5.505507737342721, "trans_gap_mm_median_vs_perc2": 5.033486113724554}
+[2026-11-19T13:28:09Z] camarms ep41 VM camera: {"frames": 299, "have": 299, "n_keyframes": 8, "runtime_s": 27.131362009007717, "flip": false, "rot_gap_deg_as_written": 0.19454183716761556, "rot_gap_deg_flipped": 5.490401158929588, "trans_gap_mm_median_vs_perc2": 5.575295571330545}
+[2026-11-19T13:28:09Z] camarms ep41 VDH camera: {"frames": 299, "have": 299, "n_keyframes": 8, "runtime_s": 32.066886101994896, "flip": false, "rot_gap_deg_as_written": 0.2117497217114708, "rot_gap_deg_flipped": 5.4299037475004885, "trans_gap_mm_median_vs_perc2": 5.612193749325897}
+[2026-11-19T13:28:09Z] camarms ep41 VS camera: {"frames": 299, "have": 299, "n_keyframes": 8, "runtime_s": 26.82137188699562, "flip": false, "rot_gap_deg_as_written": 0.19340899829814598, "rot_gap_deg_flipped": 5.479806502219979, "trans_gap_mm_median_vs_perc2": 4.947392142837475}
+{"frames": 299, "depth_frames": 299, "valid_frac": 0.8122270735785954}
+[2026-11-19T13:30:25Z] camarms ep41 SD rc=0 133s: [   23.5s] vo keyframes 1 fails 0 median inliers 399 min 250 [  129.2s] vo                           AUC 0.406 SP 1.00 MP 0.00 MPPE 5.87 RPE 0.00 {'white_pot': 0.406} 
+[2026-11-19T13:30:25Z] camarms ep42 VD camera: {"frames": 257, "have": 257, "n_keyframes": 8, "runtime_s": 24.536995239002863, "flip": false, "rot_gap_deg_as_written": 0.08670674283321442, "rot_gap_deg_flipped": 3.699500240506482, "trans_gap_mm_median_vs_perc2": 2.380082319351215}
+[2026-11-19T13:30:25Z] camarms ep42 VD2 camera: {"frames": 257, "have": 257, "n_keyframes": 8, "runtime_s": 24.104461507988162, "flip": false, "rot_gap_deg_as_written": 0.08798897823375465, "rot_gap_deg_flipped": 3.6979570189488205, "trans_gap_mm_median_vs_perc2": 2.406164078020906}
+[2026-11-19T13:30:25Z] camarms ep42 VM camera: {"frames": 257, "have": 257, "n_keyframes": 8, "runtime_s": 24.157604487001663, "flip": false, "rot_gap_deg_as_written": 0.08633238635503171, "rot_gap_deg_flipped": 3.707400288070951, "trans_gap_mm_median_vs_perc2": 5.116192249942485}
+[2026-11-19T13:30:25Z] camarms ep42 VDH camera: {"frames": 257, "have": 257, "n_keyframes": 8, "runtime_s": 28.289869639003882, "flip": false, "rot_gap_deg_as_written": 0.11964384673303433, "rot_gap_deg_flipped": 3.7041981670407034, "trans_gap_mm_median_vs_perc2": 4.146137092905415}
+[2026-11-19T13:30:26Z] camarms ep42 VS camera: {"frames": 257, "have": 257, "n_keyframes": 8, "runtime_s": 23.711678060004488, "flip": false, "rot_gap_deg_as_written": 0.0740679981144949, "rot_gap_deg_flipped": 3.71145975613452, "trans_gap_mm_median_vs_perc2": 2.2305906907021913}
+{"frames": 257, "depth_frames": 257, "valid_frac": 0.8244345233463035}
+[2026-11-19T13:32:41Z] camarms ep42 SD rc=0 132s: [   20.7s] vo keyframes 2 fails 0 median inliers 249 min 140 [  128.6s] vo                           AUC 0.484 SP 0.00 MP 0.00 MPPE 7.09 RPE 0.00 {'white_pot': 0.484} 
+[2026-11-19T13:32:41Z] camarms ep43 VD camera: {"frames": 326, "have": 326, "n_keyframes": 8, "runtime_s": 29.256978887016885, "flip": false, "rot_gap_deg_as_written": 0.13688694788535308, "rot_gap_deg_flipped": 4.145638095671451, "trans_gap_mm_median_vs_perc2": 2.9949369402842585}
+[2026-11-19T13:32:41Z] camarms ep43 VD2 camera: {"frames": 326, "have": 326, "n_keyframes": 8, "runtime_s": 29.84520941899973, "flip": false, "rot_gap_deg_as_written": 0.13689645596349803, "rot_gap_deg_flipped": 4.14568233537192, "trans_gap_mm_median_vs_perc2": 2.9957973786350722}
+[2026-11-19T13:32:41Z] camarms ep43 VM camera: {"frames": 326, "have": 326, "n_keyframes": 8, "runtime_s": 28.342059526999947, "flip": false, "rot_gap_deg_as_written": 0.13153940877263756, "rot_gap_deg_flipped": 4.1389054794979705, "trans_gap_mm_median_vs_perc2": 4.581356988297019}
+[2026-11-19T13:32:41Z] camarms ep43 VDH camera: {"frames": 326, "have": 326, "n_keyframes": 8, "runtime_s": 34.86907386299572, "flip": false, "rot_gap_deg_as_written": 0.603119841550765, "rot_gap_deg_flipped": 4.254307460846119, "trans_gap_mm_median_vs_perc2": 3.5020738037471277}
+[2026-11-19T13:32:41Z] camarms ep43 VS camera: {"frames": 326, "have": 326, "n_keyframes": 8, "runtime_s": 28.165971952024847, "flip": false, "rot_gap_deg_as_written": 0.12114989220166578, "rot_gap_deg_flipped": 4.150144537692125, "trans_gap_mm_median_vs_perc2": 3.036651017355389}
+{"frames": 326, "depth_frames": 326, "valid_frac": 0.7701292062883436}
+[2026-11-19T13:33:43Z] camarms ep43 SD rc=0 58s: [   24.6s] vo keyframes 1 fails 0 median inliers 290 min 166 [   54.8s] vo                           AUC 0.625 SP 1.00 MP 0.00 MPPE 5.90 RPE 0.00 {'white_pot': 0.625} 
+[2026-11-19T13:33:43Z] camarms ep44 VD camera: {"frames": 249, "have": 249, "n_keyframes": 8, "runtime_s": 24.033429380011512, "flip": false, "rot_gap_deg_as_written": 0.21505474267744026, "rot_gap_deg_flipped": 2.3084089412605433, "trans_gap_mm_median_vs_perc2": 5.174749348116269}
+[2026-11-19T13:33:43Z] camarms ep44 VD2 camera: {"frames": 249, "have": 249, "n_keyframes": 8, "runtime_s": 24.014703422988532, "flip": false, "rot_gap_deg_as_written": 0.21502647410640754, "rot_gap_deg_flipped": 2.3082955829551755, "trans_gap_mm_median_vs_perc2": 5.174774517900774}
+[2026-11-19T13:33:44Z] camarms ep44 VM camera: {"frames": 249, "have": 249, "n_keyframes": 8, "runtime_s": 23.759779287996935, "flip": false, "rot_gap_deg_as_written": 0.1969982424565686, "rot_gap_deg_flipped": 2.3102166398340906, "trans_gap_mm_median_vs_perc2": 5.959134774212557}
+[2026-11-19T13:33:44Z] camarms ep44 VDH camera: {"frames": 249, "have": 249, "n_keyframes": 8, "runtime_s": 27.549041381978896, "flip": false, "rot_gap_deg_as_written": 0.2705685096802548, "rot_gap_deg_flipped": 1.5899079589394995, "trans_gap_mm_median_vs_perc2": 4.471110415566955}
+[2026-11-19T13:33:44Z] camarms ep44 VS camera: {"frames": 249, "have": 249, "n_keyframes": 8, "runtime_s": 22.3017630839895, "flip": false, "rot_gap_deg_as_written": 0.20520762161546027, "rot_gap_deg_flipped": 2.328721622029042, "trans_gap_mm_median_vs_perc2": 4.31228198350374}
+{"frames": 249, "depth_frames": 249, "valid_frac": 0.80010703062249}
+[2026-11-19T13:36:47Z] camarms ep44 SD rc=0 180s: [   20.4s] vo keyframes 3 fails 0 median inliers 243 min 124 [  176.9s] vo                           AUC 0.008 SP 0.00 MP 0.00 MPPE 7.61 RPE 0.00 {'white_pot': 0.008} 
+[2026-11-19T13:36:48Z] camarms ep45 VD camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 27.152042344998335, "flip": false, "rot_gap_deg_as_written": 0.13471550254017464, "rot_gap_deg_flipped": 5.218158053889113, "trans_gap_mm_median_vs_perc2": 3.865169738752717}
+[2026-11-19T13:36:48Z] camarms ep45 VD2 camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 27.102558327984298, "flip": false, "rot_gap_deg_as_written": 0.13468774356511307, "rot_gap_deg_flipped": 5.217840356830834, "trans_gap_mm_median_vs_perc2": 3.8711735081562995}
+[2026-11-19T13:36:48Z] camarms ep45 VM camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 26.774915651010815, "flip": false, "rot_gap_deg_as_written": 0.1498395569839681, "rot_gap_deg_flipped": 5.225899172939633, "trans_gap_mm_median_vs_perc2": 4.2070343680060684}
+[2026-11-19T13:36:48Z] camarms ep45 VDH camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 32.00110948999645, "flip": false, "rot_gap_deg_as_written": 0.12321188060061564, "rot_gap_deg_flipped": 5.169285406587189, "trans_gap_mm_median_vs_perc2": 3.042056334483489}
+[2026-11-19T13:36:48Z] camarms ep45 VS camera: {"frames": 290, "have": 290, "n_keyframes": 8, "runtime_s": 26.213551568012917, "flip": false, "rot_gap_deg_as_written": 0.12249112677340684, "rot_gap_deg_flipped": 5.221251445710688, "trans_gap_mm_median_vs_perc2": 3.7154940280201356}
+{"frames": 290, "depth_frames": 290, "valid_frac": 0.7297451487068966}
+[2026-11-19T13:38:14Z] camarms ep45 SD rc=0 83s: [   24.3s] vo keyframes 4 fails 0 median inliers 220 min 120 [   79.0s] vo                           AUC 0.210 SP 0.00 MP 0.00 MPPE 19.03 RPE 0.00 {'white_pot': 0.21} 
+[2026-11-19T13:38:14Z] cam_arms: SD done
+[2026-11-19T13:38:34Z] cam_arms scored:  "mean_AUC": { "C": 0.9285190018092336, "VD": 0.909905899386805, "VD2": 0.9105182219202976, "VM": 0.907283636874058, "VDH": 0.912502298487157, "VS": 0.9228402757382714, "M": 0.9332891860515092, "SD": 0.19415779158874213 }, 
+[2026-11-19T13:38:34Z] cam_arms done

@@ -1,5 +1,17 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-19 ~13:45 UTC: CAMERA-ARMS DONE: the owner's SLAM recipe (MetricTrail) does not help; gate FAILED, falsified
+- Report: `docs/analysis/camarms-20261119/README.md` (PREREG 63d3f262). 20 public episodes, public scans, same object
+  tracks for every camera [D]:
+  - our camera C 0.9285; **MetricTrail mono + DA3 (VD) 0.9099, ΔAUC −0.0186, 2 better / 18 worse**; MoGe-2 −0.0212;
+    hand masking −0.0160; MetricTrail stereo −0.0057; room map **+0.0048** (ep24 +0.112, as on 2 Nov).
+  - MetricTrail is deterministic (repeat |ΔAUC| 0.0007). Its only win is ep24, where our camera drifts.
+  - Monocular DA3 depth instead of stereo for object tracking: 0.194 (20/20 worse).
+- Why [M, GT-free vs the map]: MetricTrail is off by 0.5–0.9° in the first ~80 frames (start-up), then as good as or
+  better than ours (0.05–0.08° vs 0.10°). The scorer anchors at frame 0, so the start-up error costs AUC.
+- Spend ≈ $2.9 [E] (3 boxes: image-pull failure, 32 GB OOM, 48 GB full run), cap $5. All our boxes destroyed. Other
+  instances on the account (`v2test-*`, `prec-sweep`) are not from this session.
+
 ## 2026-11-19 ~09:16 UTC: camera-arms test RUNNING on an RTX 5090 (owner's SLAM recipe = ViPE MetricTrail)
 - Owner asked whether their SLAM recipe (ViPE MetricTrail: DPVO + DINOv3, DA3METRIC-LARGE metric depth, sliding-window
   BA) gives better perception on the public episodes with the scanned meshes.
