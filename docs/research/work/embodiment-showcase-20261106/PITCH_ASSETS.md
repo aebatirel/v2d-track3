@@ -1,4 +1,4 @@
-# Pitch-deck assets: what we have (as of 10 Nov 2026)
+# Pitch-deck assets: what we have (as of 27 Nov 2026; renders v2)
 
 Product: one egocentric (head-camera) video → a trainable robot policy, for many robot embodiments.
 Everything below exists today. Labels: [M] measured, [E] estimate. "Physics" means a closed-loop policy trained
@@ -16,6 +16,43 @@ means an animation of a reference; never present one of these as a result.
   - raw run outputs: `runs/20261106-sc{A,B,C,D,E}-*`.
 
 ---
+
+
+## 0. Render v2 (27 Nov 2026): real-size table, flat-bottomed pot, D'Claw replay
+
+The owner noticed that the table was too large compared with the real one, that hands seemed to go into it, and that
+the pot had a brown spot and sank into the table. Fixed in the renders only: every tile still shows the same physics
+rollouts and the scores are unchanged.
+
+- **Table.** The renders used the simulator's default 90 cm disc. The real round table, measured from the video, is
+  46 cm across:
+  - method: wood-coloured rim pixels, back-projected onto the table plane with the calibrated head camera, circle fit;
+  - radius 0.230 m, centre (0.023, 0.000); rim residual median 1.0 mm;
+  - `render_fixes/ep27_table_measured_vs_old.jpg`: green = measured table, red = old disc;
+  - the person's resting hands were outside the real table but inside the old disc, which is why the hands "went
+    into the table";
+  - the pedestal and foot are illustrative, since the real table's base is not visible in the video.
+- **Hands below the tabletop** [M], counted on robot link origins inside the real table:
+  - none for Sharpa, Shadow, Inspire, LEAP, Dex3 and both Franka runs (against 140–246 frames on the old disc);
+  - small dips remain for Allegro (22 frames, up to 1.5 cm), Barrett (9 frames, 1.3 cm) and D'Claw (3 frames,
+    0.1 cm), because training ran without hand–table collision.
+- **Pot.** The brown spot was the tabletop showing through the floor of the earlier clean pot.
+  - Cause: that pot was turned around the scan's x axis, but in the scan's frame the real pot axis is tilted 12.5°,
+    so at rest its floor centre sat up to 8 mm below the tabletop (`render_fixes/brown_spot_diagnosis.jpg`).
+  - New pot (`showcase/tools/build_flat_pot.py`): a flat-bottomed saucepan.
+    - Axis taken from the resting pose; flat base exactly on the tabletop at rest (lowest point 0.6011 m, the same
+      as the scan).
+    - Height 10.0 cm; outer radius 7.8 → 8.7 cm, measured from the scan; 3 mm wall, 4 mm floor.
+    - Handle and 3 marker balls from our clean kit-of-parts pot.
+  - Check: `render_fixes/flat_pot_check.jpg`, the real frame next to the head-camera render.
+- **D'Claw.** The replay first recorded for D'Claw's video dropped the pot (frame 142), although all 5 scored runs
+  passed.
+  - The D'Claw tiles now use a fresh replay of the same trained policy recorded on CPU, which keeps the pot: mean
+    1.4 cm from the reference. Repeat CPU runs are identical.
+  - Honest count: D'Claw kept the pot in 6 of 7 runs (5 scored + this replay; the earlier video replay failed).
+    Say "6/7" if asked.
+  - All other robots' video replays track their reference within 1.0–2.0 cm on average [M]
+    (`showcase/tools/score_trace.py`).
 
 ## 1. Hero videos (lead slide)
 
@@ -108,8 +145,9 @@ Message: failures are visible, measured and fixable; the fix held on 3 of 3 inde
    research. Physics: NVIDIA FlashCHORD (Newton / MuJoCo-Warp).
 2. Scores are vs motion capture on a public development episode (ep27). The challenge's hidden eval videos have no
    public ground truth; they are scored by NVIDIA.
-3. The videos draw clean closed object meshes (our own, aligned to the official scans within about 1–2 mm). The
-   physics used the official scans.
+3. The videos draw clean closed object meshes, aligned to the official scans: our flat-bottomed pot built to the
+   scan's measurements; the kit-of-parts rack, within about 2 mm. The physics used the official scans. The table is
+   drawn at its real size, measured from the video (46 cm); the simulation's own support disc was 90 cm.
 4. Each robot's starting hand motion comes from the human motion via NVIDIA's Sharpa retargeter and our
    robot-to-robot fit. Each robot then learns its own grip with RL in physics, and only the object's motion is
    required to match the video.

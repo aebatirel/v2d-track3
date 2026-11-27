@@ -18,17 +18,34 @@ p.add_argument('--ground_rgb', default='0.82,0.83,0.85'); p.add_argument('--bg_r
 p.add_argument('--ego', default='', help='REFDIR,PERCDIR: render from the head camera (camera a) path of the video')
 p.add_argument('--ego_fov', type=float, default=72.65, help='vertical FOV (deg) of camera a after undistortion (ep27 calibration: 72.65; pinhole 66.9)')
 p.add_argument('--objects_dir', default='', help='render-only object swap: DIR/urdf/<name>_rigid.urdf (showcase/tools/clean_meshes.py)')
+p.add_argument('--table', default='', help='render-only table: "R,CX,CY" = top radius and centre (m) in the scene frame, drawn with a pedestal '
+               '(ep27 measured from the video: 0.230,0.023,0.0005; showcase/tools/fit_table.py). Default: the reference support as is')
 p.add_argument('--ambient', type=float, default=0.25, help='ambient light level (lower = more shading on white objects); -1 keeps the viewer default')
 p.add_argument('--device', default='cpu'); a = p.parse_args()
 rgb = lambda s: tuple(float(x) for x in s.split(','))
 
-if a.objects_dir:                         # render-only copy of the reference whose objects point at the clean meshes
+if a.objects_dir or a.table:              # render-only copy of the reference (clean meshes and/or the measured table)
     import shutil, tempfile
     import pyarrow as pa, pyarrow.parquet as pq
     hive = os.path.dirname(os.path.abspath(a.parquet)); root = os.path.dirname(os.path.dirname(os.path.dirname(hive)))
     tmp = tempfile.mkdtemp(prefix='render_ref_'); rel = os.path.relpath(hive, root)
     os.makedirs(os.path.join(tmp, rel)); shutil.copytree(os.path.join(root, 'reconstructed_stage'), os.path.join(tmp, 'reconstructed_stage'))
     t = pq.ParquetFile(a.parquet).read(); row = t.to_pylist()[0]
+    if a.table:                           # replace the support disc: measured top + pedestal + foot (all static, render only)
+        import glob, re
+        R, CX, CY = [float(v) for v in a.table.split(',')]
+        for us in glob.glob(os.path.join(tmp, 'reconstructed_stage', '*.usda')):
+            txt = open(us).read()
+            zt = float(re.search(r'xformOp:translate = \(([-\d.e]+), ([-\d.e]+), ([-\d.e]+)\)', txt).group(3))
+            hh = float(re.search(r'double height = ([-\d.e]+)', txt).group(1)); top = zt + hh / 2
+            def cyl(name, r, h, z):
+                return (f'    def Cylinder "{name}" (\n        prepend apiSchemas = ["PhysicsCollisionAPI"]\n    )\n    {{\n'
+                        f'        uniform token axis = "Z"\n        double height = {h:.6f}\n        double radius = {r:.6f}\n'
+                        f'        double3 xformOp:translate = ({CX:.6f}, {CY:.6f}, {z:.6f})\n        uniform token[] xformOpOrder = ["xformOp:translate"]\n    }}\n')
+            body = cyl('table', R, 0.025, top - 0.0125) + cyl('pedestal', 0.035, top - 0.04, (top - 0.04) / 2 + 0.015) + cyl('foot', 0.20, 0.015, 0.0075)
+            head = txt[:txt.index('def Xform')]
+            open(us, 'w').write(head + 'def Xform "support_surfaces"\n{\n' + body + '}\n')
+            print('render-only table:', a.table, 'top z', round(top, 4), flush=True)
     for k, sub in (('object_urdf_paths', 'urdf'), ('object_mesh_paths', 'mesh')):
         new = []
         for pth in row[k]:

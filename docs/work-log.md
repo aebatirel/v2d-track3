@@ -12431,3 +12431,30 @@ score.
   - a before/after Franka clip;
   - key-moment stills;
   - a 1280-wide copy of the input video.
+
+### 2026-11-27 ~07:00–07:40 UTC — render v2 for the deck (owner: table too large, hands into the table, brown spot in the pot, flat-bottomed pot)
+All fixes are render-only (CPU, $0); physics rollouts and scores are unchanged.
+- **Real table measured from the video** (`showcase/tools/fit_table.py`): wood rim pixels, back-projected onto the
+  z = 0.60 plane with camera a (Ka, Da, T_rect_a; VO pose; T_table_from_world), robust circle fit.
+  - Result [M]: radius 0.230 m, centre (0.023, 0.0005); rim residual median 1.0 mm.
+  - The circle projected back onto the video traces the real rim (`render_fixes/ep27_table_measured_vs_old.jpg`).
+  - The simulator's support disc was 0.45 m.
+  - `render_style.py --table R,CX,CY` draws it with an illustrative pedestal and foot.
+- **Hands below the tabletop** inside the real table [M]: 0 frames for 7 of 10 replays (against 140–246 on the old
+  disc). Allegro 22 frames (≤ 1.5 cm), Barrett 9 (≤ 1.3 cm), D'Claw 3 (0.1 cm): training had robot–table collision off.
+- **Brown spot** = the tabletop drawn through the floor of the library_c0 pot.
+  - Diagnosed: with the tabletop removed the floor renders fully.
+  - Cause: in the scan frame the pot axis is tilted 12.46° from x (axis [0.976, 0.038, 0.213], from the resting
+    pose), so the c0 lathe's floor centre sat up to 8 mm below z = 0.60 at rest.
+  - New pot (`showcase/tools/build_flat_pot.py`, the owner's suggestion):
+    - lathe around the true axis, flat base on the scan's support plane;
+    - height 10.0 cm, outer radius 7.8 → 8.7 cm (scan p80 per height band), 3 mm wall, 4 mm floor, rolled rim;
+    - c0 handle (box-clipped) and 3 of 4 c0 marker balls, manifold union, watertight;
+    - rests at 0.6011, the same as the scan (`render_fixes/flat_pot_check.jpg`).
+- **Found while checking:** the D'Claw video replay (GPU, box C) dropped the pot at f142.
+  - Its 5 scored runs had passed; the tiles shipped on 6 Nov showed the failing replay.
+  - Re-recorded on CPU from the same checkpoint (`policy_250003456`): pot error vs reference mean 1.44 cm, AUC-like
+    0.932; deterministic (2 identical runs). The D'Claw tiles now use it.
+  - Honest count: 6 of 7 D'Claw runs kept the pot.
+  - All other video replays track their reference: mean 1.0–2.0 cm (`showcase/tools/score_trace.py`).
+- The grids and tiles are being re-rendered (asm3); the bundle follows.
