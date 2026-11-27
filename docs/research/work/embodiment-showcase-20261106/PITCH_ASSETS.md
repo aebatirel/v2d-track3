@@ -6,13 +6,15 @@ with RL and run in simulation with no assistance (VOC 0, as the official evaluat
 means an animation of a reference; never present one of these as a result.
 
 **Where the files are:**
-- **Bundle** (all files below, ready to drop into slides): `pitch_assets_ep27.zip` (55 MB).
-  - Sent in chat.
-  - HF store: `showcase/outputs/20261106/pitch_assets_ep27.zip`.
+- **Bundle v2** (all files below, ready to drop into slides): `pitch_assets_ep27_v2.zip`.
+  - Sent in chat on 27 Nov 2026.
+  - HF store: `showcase/outputs/20261127/pitch_assets_ep27_v2.zip`.
   - The folder paths in this document are paths inside the bundle.
+  - The first bundle, `showcase/outputs/20261106/pitch_assets_ep27.zip` (10 Nov), is kept but superseded: its
+    renders show the oversized table and the old pot (section 0).
 - **Repo** (stills, tables, code): `docs/research/work/embodiment-showcase-20261106/`, branch `claude/charming-goldberg-glc1xi`.
 - **HF store** (private dataset `aebatirel/v2d-store`):
-  - grid videos and tiles: `showcase/outputs/20261106/ep27/`;
+  - grid videos and tiles, v2: `showcase/outputs/20261127/ep27/` (v1: `showcase/outputs/20261106/ep27/`);
   - raw run outputs: `runs/20261106-sc{A,B,C,D,E}-*`.
 
 ---
@@ -45,6 +47,11 @@ rollouts and the scores are unchanged.
     - Height 10.0 cm; outer radius 7.8 → 8.7 cm, measured from the scan; 3 mm wall, 4 mm floor.
     - Handle and 3 marker balls from our clean kit-of-parts pot.
   - Check: `render_fixes/flat_pot_check.jpg`, the real frame next to the head-camera render.
+- **Last frame.** Every recorded replay ends with one frame of the simulator's automatic reset back to the start
+  pose. The grids already stopped one frame earlier, at the end of the real clip. The single tiles and the Franka
+  before/after clip are now trimmed to the same 246 frames (12.3 s).
+- **In the bundle:** `render_fixes/` holds the table fit (`ep27_table_fit.json`), the measured-vs-old table overlay,
+  the brown-spot diagnosis, the flat-pot check and `real_size_table.jpg` (before/after of the table).
 - **D'Claw.** The replay first recorded for D'Claw's video dropped the pot (frame 142), although all 5 scored runs
   passed.
   - The D'Claw tiles now use a fresh replay of the same trained policy recorded on CPU, which keeps the pot: mean
@@ -58,8 +65,8 @@ rollouts and the scores are unchanged.
 
 | File (bundle) | What it shows | Specs | Suggested caption |
 |---|---|---|---|
-| `videos/01_hero_side_9robots.mp4` | Real head-camera clip (left) next to 9 robot hands (3×3), all doing the same task: lift the pot by its handle, flip it, set it upside-down on the dish rack. Each tile shows the robot name, fingers / joints and its score vs motion capture. | 1920×1080, 20 fps, 12.3 s, H.264, 4.0 MB | "One video in. Nine robots out. Each tile is a separate policy trained in physics from the same 12-second clip." |
-| `videos/02_hero_headcam_9robots.mp4` | The same 9 physics rollouts, each rendered from the person's own head-camera path. Every robot holds the pot where the real hand did, in the same view as the footage. | 1920×1080, 20 fps, 12.3 s, 7.1 MB | "Same viewpoint, different bodies: the robot takes the human's place." |
+| `videos/01_hero_side_9robots.mp4` | Real head-camera clip (left) next to 9 robot hands (3×3), all doing the same task: lift the pot by its handle, flip it, set it upside-down on the dish rack. Each tile shows the robot name, fingers / joints and its score vs motion capture. | 1920×1080, 20 fps, 12.3 s, H.264, 4.1 MB | "One video in. Nine robots out. Each tile is a separate policy trained in physics from the same 12-second clip." |
+| `videos/02_hero_headcam_9robots.mp4` | The same 9 physics rollouts, each rendered from the person's own head-camera path. Every robot holds the pot where the real hand did, in the same view as the footage. | 1920×1080, 20 fps, 12.3 s, 7.2 MB | "Same viewpoint, different bodies: the robot takes the human's place." |
 | `videos/03_real_input_ep27.mp4` | The input: NVIDIA V2D Track 3 public episode 27, colour camera (ego_cam_a), re-encoded. | 1280×960, 20 fps, 12.3 s | "The only input: a head-mounted camera recording." |
 
 Stills at three key moments (PNG, 1920×1080):
@@ -70,7 +77,7 @@ Stills at three key moments (PNG, 1920×1080):
 ## 2. Per-robot clips (one slide per robot family, or a custom layout)
 
 `videos/tiles_side/<robot>.mp4` (side camera) and `videos/tiles_headcam/<robot>.mp4` (head-camera path): 772×680,
-20 fps, 12.35 s, physics rollouts with no labels.
+20 fps, 12.3 s, physics rollouts with no labels.
 
 | Robot | Type | Fingers / joints per hand | AUC vs mocap, 5 runs [M] | Runs within 3 cm [M] |
 |---|---|---|---|---|
@@ -95,7 +102,7 @@ Stills at three key moments (PNG, 1920×1080):
 
 | File | What it shows |
 |---|---|
-| `videos/04_franka_before_after.mp4` (1544×680, 12.35 s) and `stills/franka_before_after.jpg` | Left: the first Franka policy drops the pot off the table mid-flip (AUC 0.65, 0/5). Right: after modelling the gripper's rubber pads and rated grip it completes the task (AUC 0.95, 5/5). |
+| `videos/04_franka_before_after.mp4` (1544×680, 12.3 s) and `stills/franka_before_after.jpg` | Left: the first Franka policy drops the pot off the table mid-flip (AUC 0.65, 0/5). Right: after modelling the gripper's rubber pads and rated grip it completes the task (AUC 0.95, 5/5). |
 | `stills/physics_franka_failure_frames.jpg` | Six frames of the failed run (diagnosis view). |
 
 Message: failures are visible, measured and fixable; the fix held on 3 of 3 independent trainings (0.947, 0.959,

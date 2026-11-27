@@ -12458,3 +12458,17 @@ All fixes are render-only (CPU, $0); physics rollouts and scores are unchanged.
   - Honest count: 6 of 7 D'Claw runs kept the pot.
   - All other video replays track their reference: mean 1.0–2.0 cm (`showcase/tools/score_trace.py`).
 - The grids and tiles are being re-rendered (asm3); the bundle follows.
+
+### 2026-11-27 ~07:30–07:45 UTC — render v2 finished and delivered (CPU, $0)
+- `showcase/tools/assemble.py` (code at 3fb2071e) into the scratch dir `asm3`, side and ego grids, defaults
+  objects_clean2 (flat pot) and table 0.230,0.023,0.0005, `--trace_override dclaw=<CPU replay>`, order
+  sharpa,shadow,inspire,allegro,leap,dex3,barrett,dclaw,panda_pads. 21 mp4s, all checked on stills (grids at 1, 2.6,
+  5.6, 6, 10.4 s; last frames).
+- Found: every recorded replay's last frame (247th) is the simulator's auto-reset to the start pose (pot jumps back).
+  The grids already stop at 246 frames (the real clip); the single tiles and the Franka before/after clip are now
+  trimmed to 246 frames too.
+- Franka before/after rebuilt with the new table and pot; same labels ("hard point contacts" / "rubber-pad contacts,
+  Franka-rated grip"). The failed run's pot lands on the floor (z 0.088), so the smaller table shows no floating pot.
+- Bundle v2: `pitch_assets_ep27_v2.zip` (65 MB, 54 files; new `render_fixes/` folder). HF store
+  `showcase/outputs/20261127/` (zip + `ep27/` videos + tiles/results json, 28 files), commit 3265c01f. v1 kept.
+- Stills in the repo: `docs/research/work/embodiment-showcase-20261106/results/v2/`.

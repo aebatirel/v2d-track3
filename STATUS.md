@@ -1,5 +1,19 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-27 ~07:40 UTC (10:40 TRT): showcase render v2 delivered (CPU, $0); no boxes running
+- Owner: the table was too large next to the real one, hands seemed to go into it, and the pot showed a brown spot;
+  asked for a flat-bottomed pot. Fixed in the renders only; same physics rollouts, same scores.
+  - Table drawn at its real size measured from the video: radius 0.230 m (the sim disc was 0.45 m).
+  - New flat-bottomed pot on the true axis (`showcase/tools/build_flat_pot.py`); no brown spot.
+  - D'Claw tiles now use a CPU re-replay that keeps the pot; the shipped GPU replay had dropped it (6/7 runs pass).
+  - Each replay's last frame (the simulator's reset) is trimmed; all videos are 246 frames.
+- Deliverables: bundle `pitch_assets_ep27_v2.zip` (65 MB, 54 files) and the videos, HF store
+  `showcase/outputs/20261127/`; catalogue `docs/research/work/embodiment-showcase-20261106/PITCH_ASSETS.md`;
+  stills in `results/v2/` and `render_fixes/`. The v1 bundle (`showcase/outputs/20261106/`) is kept, superseded.
+- Remaining visual caveat: small hand dips below the tabletop for Allegro (≤ 1.5 cm, 22 frames), Barrett
+  (≤ 1.3 cm, 9 frames) and D'Claw (0.1 cm, 3 frames); training had hand–table collision off.
+- Next (owner decides): phase 2 (more episodes; needs rental, credit $38.37 at last check) or the deck (phase 3).
+
 ## 2026-11-06 ~15:30 UTC: SHOWCASE PHASE 1 DONE: 9 robots succeed on ep27 (videos delivered); no boxes running
 - Owner asked for phases 0 and 1; then "fix the failed ones" / "fix franka"; then holeless meshes.
 - Results, ep27 (pot flipped into the dish rack), 5 official runs each vs mocap [M]:
