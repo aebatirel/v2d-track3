@@ -12497,3 +12497,14 @@ All fixes are render-only (CPU, $0); physics rollouts and scores are unchanged.
   0.1–1.5 mm of the tabletop, the c0 pot sat 7–8 mm into it), other objects the simulator's own meshes. Shape check vs
   each episode's simulator mesh: same meshes ≈ 1 mm (sampling), clean pot / rack median 3.5–4.4 mm.
 - `render_style.py`: `--palette` / `--object_colors` (per-object colours like the real objects) and a body-count check.
+
+### 2026-11-27 ~11:10–12:00 UTC — eval videos rendered, composed and delivered
+- `render_all.sh` (40 renders, 660x496, ~1 min each with 3 in parallel; 0 failures), `compose_eval.py` (per-episode
+  1920x1080 clips, 7.6–21 s; grid 4 x 5, 21 s, shorter clips hold their last frame), `make_bundle.sh`.
+- Clean rack lifted 4.1 mm along its rest-up axis (`showcase/tools/lift_to_rest.py`; dips were 2.6–4.1 mm, the table
+  showed through its cup-holder well); after: 0–1.5 mm above the tabletop in the 5 rack episodes.
+- Checked stills: grid at 3 / 7 / 11 s, every episode at 55 % of its length, eval 15 and eval 1 in detail.
+- Bundle `pitch_assets_eval20.zip` (279 MB, 47 files) uploaded with the unzipped folder to HF store
+  `showcase/outputs/20261127/` (commit b6fbb698). Repo stills: `docs/research/work/embodiment-showcase-20261106/results/eval20/`.
+- Wording on the videos: "no motion capture was used" (not "no ground truth": some object shapes, e.g. eval 14's
+  collision shapes, were chosen with the organisers' public object scans).

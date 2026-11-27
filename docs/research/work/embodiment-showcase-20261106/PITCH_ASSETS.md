@@ -74,6 +74,36 @@ Stills at three key moments (PNG, 1920×1080):
 - `stills/hero_headcam_{grasp,flip,place}.png`;
 - the matching input frames `stills/real_input_{grasp,flip,place}.png`.
 
+## 1b. The challenge submission: our policies on the 20 hidden test videos (27 Nov 2026; separate bundle)
+
+Bundle `pitch_assets_eval20.zip` (sent in chat; HF store `showcase/outputs/20261127/eval20/`). Same look as the ep27
+videos (real-size table, clean meshes, per-object colours), but here each video has ONE robot (Sharpa Wave, the
+challenge hand) and the input is a **hidden test video** of NVIDIA's benchmark, with no public ground truth.
+
+| File (eval bundle) | What it shows | Specs | Suggested caption |
+|---|---|---|---|
+| `videos/01_grid_eval20_real_vs_policy.mp4` | All 20 hidden test episodes, 4 × 5. In each pair: the real head-camera video (left) and our policy for that video in physics, from the same head path (right). | 1920×1080, 20 fps, 21 s (clips end at their own length and hold their last frame) | "20 hidden test videos in, 20 robot policies out. Validated on NVIDIA's benchmark." |
+| `videos/eval_<N>.mp4` (20 files) | One hidden test episode: real video (large, left); the policy from the head-camera path (top right) and from the side (bottom right). Footer: what was used and how close this replay is to the rollout we submitted. | 1920×1080, 20 fps, 7.5–21 s | "A video NVIDIA held back. Our pipeline turned it into a policy for a robot hand." |
+| `stills/grid_eval20_*.png`, `stills/eval_<N>.png` | Key frames of the above. | 1920×1080 | |
+
+**What the videos are (say it this way):**
+- Each policy is the exact checkpoint we submitted for that episode (sha256 matched to the submitted rows) in the
+  simulator setup it was evaluated in (reference and object assets rebuilt from our store; `showcase/final_eval/`).
+- The submission file stores object poses only, not the hands, so the hands come from a fresh replay of that policy
+  (CPU, evaluator settings). For 19 of 20 episodes the replay's objects are 0.3–2.2 cm (mean) from the submitted
+  rollout [M] (`showcase/final_eval/results/replay_vs_packed_cpu.json`).
+- **Eval 15 is the exception:** the CPU replay drops the spoon at 6.5 s, while the rollout we submitted (GPU) kept it, as
+  did all 10 official GPU runs of that policy. Its video and grid cell say so. Leave eval 15 out of a highlight reel, or
+  replace it after a GPU replay (≈ $0.5 rental; owner's call).
+- Score to quote: leaderboard AUC 0.886 over these 20 episodes [M] (Kaggle board, read 6 Nov; NVIDIA scores against
+  hidden motion capture). Per-episode official scores are not public.
+- No motion capture was used anywhere. Caveat for strict audiences: some object shapes were chosen with the organisers'
+  public object scans (e.g. eval 14's collision shapes; see the challenge records).
+- Rendering only: the table is the real 46 cm table, fitted per episode from the video (centre by projected-disc overlap,
+  radius = the ep27 measurement; `showcase/final_eval/results/table_fits.json`); pot, lid and rack are drawn with clean
+  meshes (median 3.5–4.4 mm from the simulated shapes; the pot is rebuilt flat-bottomed and the rack lifted 4 mm so
+  neither sinks into the tabletop); other objects are the simulator's own meshes.
+
 ## 2. Per-robot clips (one slide per robot family, or a custom layout)
 
 `videos/tiles_side/<robot>.mp4` (side camera) and `videos/tiles_headcam/<robot>.mp4` (head-camera path): 772×680,

@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-27 ~12:00 UTC (15:00 TRT): final-submission eval videos delivered (CPU, $0); no boxes running
+- Owner: "render the v2d challenge final videos like this as well". Done for all 20 hidden test episodes of the final
+  pack (14p): per-episode clips (real video | policy from the head-camera path | side view) and a 4 x 5 grid.
+  - Hands come from CPU replays of the exact submitted checkpoints (sha256-matched) in their rebuilt eval setups
+    (`showcase/final_eval/`); 19/20 replays are 0.3–2.2 cm (mean) from the packed rollouts. **Eval 15's replay knocks
+    the rack and drops the spoon** (the submitted GPU rollout and 10/10 official GPU draws did not); flagged in its
+    clip and grid cell. A GPU replay (~$0.5) would need the owner's go.
+  - Render-only: the real 46 cm table fitted per episode, clean pot / lid / rack (flat pot, rack lifted 4 mm), colours.
+- Bundle `pitch_assets_eval20.zip` (279 MB, 47 files), HF store `showcase/outputs/20261127/` (+ unzipped `eval20/`);
+  catalogue section 1b in `docs/research/work/embodiment-showcase-20261106/PITCH_ASSETS.md`.
+
 ## 2026-11-27 ~07:40 UTC (10:40 TRT): showcase render v2 delivered (CPU, $0); no boxes running
 - Owner: the table was too large next to the real one, hands seemed to go into it, and the pot showed a brown spot;
   asked for a flat-bottomed pot. Fixed in the renders only; same physics rollouts, same scores.
