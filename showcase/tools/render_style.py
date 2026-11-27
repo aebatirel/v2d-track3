@@ -21,7 +21,13 @@ p.add_argument('--objects_dir', default='', help='render-only object swap: DIR/u
 p.add_argument('--table', default='', help='render-only table: "R,CX,CY" = top radius and centre (m) in the scene frame, drawn with a pedestal '
                '(ep27 measured from the video: 0.230,0.023,0.0005; showcase/tools/fit_table.py). Default: the reference support as is')
 p.add_argument('--ambient', type=float, default=0.25, help='ambient light level (lower = more shading on white objects); -1 keeps the viewer default')
+p.add_argument('--palette', action='store_true', help='colour objects by name like the real ones (PALETTE), others --object_rgb')
+p.add_argument('--object_colors', default='', help='"name=r,g,b;name2=r,g,b": per-object colours (override the palette)')
 p.add_argument('--device', default='cpu'); a = p.parse_args()
+PALETTE = {'white_pot': '0.88,0.88,0.86', 'white_pot_lid': '0.88,0.88,0.86', 'plastic_dish_rack': '0.90,0.90,0.88',
+           'water_pitcher': '0.90,0.90,0.88', 'blue_cup': '0.20,0.26,0.48', 'beige_cup': '0.86,0.81,0.69',
+           'wooden_spoon': '0.86,0.68,0.48', 'wooden_piece_1': '0.86,0.70,0.50', 'wooden_piece_2': '0.86,0.70,0.50',
+           'mini_dust_pan': '0.72,0.84,0.18', 'mini_sweeper': '0.72,0.84,0.18'}   # 2026-11-27, eval episodes
 rgb = lambda s: tuple(float(x) for x in s.split(','))
 
 if a.objects_dir or a.table:              # render-only copy of the reference (clean meshes and/or the measured table)
@@ -79,6 +85,7 @@ with wp.ScopedDevice(a.device):
                      collision=instantiate_typed(cfg.collision, CollisionPolicy), world_count=1, include_support=True, decompose_objects=False)
     sc = st.scene; m = sc.model
     Q = np.load(a.trace)['q'] if a.trace else None
+    assert Q is None or Q.shape[1] == m.body_count, f'trace has {Q.shape[1]} bodies, the model {m.body_count}'
     n_all = len(Q) if Q is not None else st.reference.num_frames
     f0, f1 = (0, n_all) if not a.frames else [int(x) for x in a.frames.split(':')]
     vc = ViewerConfig(backend='mp4', output_path=a.out, num_frames=f1 - f0, headless=True, realtime=False, width=W, height=H,
@@ -89,11 +96,14 @@ with wp.ScopedDevice(a.device):
     configure_render_style(viewer, vc, sc)
     col = m.shape_color.numpy().copy(); body = m.shape_body.numpy()
     obj_bodies = {int(bb.body_id) for ob in sc.objects for bb in ob.bodies}   # visual and collision shapes alike
+    cols = dict(PALETTE) if a.palette else {}
+    cols.update(dict(x.split('=') for x in a.object_colors.split(';') if x))
+    obj_col = {int(bb.body_id): rgb(cols.get(ob.name.split('/')[-1].replace('track3_', ''), a.object_rgb)) for ob in sc.objects for bb in ob.bodies}
     labels = list(getattr(m, 'body_label', []) or [])
     for s in range(len(col)):
         b = int(body[s])
         if b in obj_bodies:
-            col[s] = rgb(a.object_rgb)
+            col[s] = obj_col[b]
         elif b >= 0 and b < len(labels) and str(labels[b]).split('/')[-1].startswith(('left_', 'right_')):
             col[s] = rgb(a.robot_rgb)
     m.shape_color.assign(wp.array(col, dtype=wp.vec3))

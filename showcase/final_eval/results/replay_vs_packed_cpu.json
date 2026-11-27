@@ -1,0 +1,482 @@
+{
+ "1": {
+  "frames_packed": 335,
+  "frames_replay": 335,
+  "objects": {
+   "white_pot": {
+    "slot": 0,
+    "mean_cm": 1.1186048103291926,
+    "p95_cm": 2.526904053175285,
+    "max_cm": 3.3318090682867374,
+    "rot_mean_deg": 3.858321428312427,
+    "within_2cm": 0.8985074626865671,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "white_pot_lid": {
+    "slot": 1,
+    "mean_cm": 1.1380419444812013,
+    "p95_cm": 2.7686600838386584,
+    "max_cm": 4.622276583937122,
+    "rot_mean_deg": 3.5298915134565316,
+    "within_2cm": 0.8626865671641791,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "3": {
+  "frames_packed": 313,
+  "frames_replay": 313,
+  "objects": {
+   "white_pot": {
+    "slot": 0,
+    "mean_cm": 1.2490372971376091,
+    "p95_cm": 4.727559271465728,
+    "max_cm": 7.02581500565901,
+    "rot_mean_deg": 5.8006908177447984,
+    "within_2cm": 0.8594249201277955,
+    "first_gt5cm": 134,
+    "slot_matches_order": true
+   },
+   "wooden_spoon": {
+    "slot": 1,
+    "mean_cm": 1.0888702931936796,
+    "p95_cm": 2.547176541601056,
+    "max_cm": 3.8092871523502527,
+    "rot_mean_deg": 5.5272949350931855,
+    "within_2cm": 0.8817891373801917,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "5": {
+  "frames_packed": 288,
+  "frames_replay": 288,
+  "objects": {
+   "white_pot": {
+    "slot": 0,
+    "mean_cm": 1.3828320305765098,
+    "p95_cm": 3.4588408645548943,
+    "max_cm": 5.1075306033926475,
+    "rot_mean_deg": 7.214406092993877,
+    "within_2cm": 0.7708333333333334,
+    "first_gt5cm": 101,
+    "slot_matches_order": true
+   },
+   "wooden_spoon": {
+    "slot": 1,
+    "mean_cm": 1.3729584645151256,
+    "p95_cm": 2.7843417950587175,
+    "max_cm": 3.754745275905475,
+    "rot_mean_deg": 6.713386801169585,
+    "within_2cm": 0.7777777777777778,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "6": {
+  "frames_packed": 243,
+  "frames_replay": 243,
+  "objects": {
+   "white_pot": {
+    "slot": 0,
+    "mean_cm": 1.0960907729723561,
+    "p95_cm": 3.1320496906571282,
+    "max_cm": 3.980758979273244,
+    "rot_mean_deg": 5.806505479835935,
+    "within_2cm": 0.823045267489712,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "wooden_spoon": {
+    "slot": 1,
+    "mean_cm": 1.3068152370751087,
+    "p95_cm": 2.699409792476124,
+    "max_cm": 4.090606594706008,
+    "rot_mean_deg": 7.25978442232544,
+    "within_2cm": 0.8065843621399177,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "8": {
+  "frames_packed": 219,
+  "frames_replay": 219,
+  "objects": {
+   "beige_cup": {
+    "slot": 0,
+    "mean_cm": 1.2078212449760994,
+    "p95_cm": 2.788888375922597,
+    "max_cm": 4.929216427288858,
+    "rot_mean_deg": 8.608562493959921,
+    "within_2cm": 0.8082191780821918,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "white_pot": {
+    "slot": 1,
+    "mean_cm": 1.2084955001924846,
+    "p95_cm": 3.825789267717532,
+    "max_cm": 6.869217079887263,
+    "rot_mean_deg": 5.743549771408916,
+    "within_2cm": 0.8401826484018264,
+    "first_gt5cm": 110,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "10": {
+  "frames_packed": 161,
+  "frames_replay": 161,
+  "objects": {
+   "blue_cup": {
+    "slot": 0,
+    "mean_cm": 0.6617175680961714,
+    "p95_cm": 1.518377206172615,
+    "max_cm": 1.6980040264136558,
+    "rot_mean_deg": 3.0859326328674213,
+    "within_2cm": 1.0,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "beige_cup": {
+    "slot": 1,
+    "mean_cm": 1.0345992364404488,
+    "p95_cm": 2.085217125210237,
+    "max_cm": 6.134315474032937,
+    "rot_mean_deg": 4.755032088162512,
+    "within_2cm": 0.9254658385093167,
+    "first_gt5cm": 38,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "14": {
+  "frames_packed": 158,
+  "frames_replay": 158,
+  "objects": {
+   "blue_cup": {
+    "slot": 0,
+    "mean_cm": 1.1376224676408246,
+    "p95_cm": 2.490973997486557,
+    "max_cm": 4.3830363352715604,
+    "rot_mean_deg": 5.9545503427303945,
+    "within_2cm": 0.9050632911392406,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "plastic_dish_rack": {
+    "slot": 1,
+    "mean_cm": 0.2933751512064617,
+    "p95_cm": 0.9850627652969748,
+    "max_cm": 1.0557536486517818,
+    "rot_mean_deg": 0.2005147575476253,
+    "within_2cm": 1.0,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "15": {
+  "frames_packed": 166,
+  "frames_replay": 166,
+  "objects": {
+   "plastic_dish_rack": {
+    "slot": 0,
+    "mean_cm": 1.9220026247989566,
+    "p95_cm": 8.086297177270238,
+    "max_cm": 10.016968056517083,
+    "rot_mean_deg": 21.509374279663874,
+    "within_2cm": 0.7771084337349398,
+    "first_gt5cm": 132,
+    "slot_matches_order": true
+   },
+   "wooden_spoon": {
+    "slot": 1,
+    "mean_cm": 7.3871042412317465,
+    "p95_cm": 33.535280784785684,
+    "max_cm": 33.84827994595494,
+    "rot_mean_deg": 37.90005450449078,
+    "within_2cm": 0.6445783132530121,
+    "first_gt5cm": 129,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "16": {
+  "frames_packed": 173,
+  "frames_replay": 173,
+  "objects": {
+   "plastic_dish_rack": {
+    "slot": 0,
+    "mean_cm": 0.37697515408900567,
+    "p95_cm": 0.8766639510107221,
+    "max_cm": 1.2097386136393895,
+    "rot_mean_deg": 1.1738476629763486,
+    "within_2cm": 1.0,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "wooden_spoon": {
+    "slot": 1,
+    "mean_cm": 0.790484262041974,
+    "p95_cm": 2.3019948818964924,
+    "max_cm": 3.1077090635469364,
+    "rot_mean_deg": 3.766503935436335,
+    "within_2cm": 0.9132947976878613,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "19": {
+  "frames_packed": 235,
+  "frames_replay": 235,
+  "objects": {
+   "mini_sweeper": {
+    "slot": 0,
+    "mean_cm": 1.8009804656332893,
+    "p95_cm": 4.681985415204363,
+    "max_cm": 5.831919369814038,
+    "rot_mean_deg": 8.18315275548884,
+    "within_2cm": 0.625531914893617,
+    "first_gt5cm": 61,
+    "slot_matches_order": true
+   },
+   "mini_dust_pan": {
+    "slot": 1,
+    "mean_cm": 1.7017998382561348,
+    "p95_cm": 4.915930552400424,
+    "max_cm": 6.445129155060281,
+    "rot_mean_deg": 13.52221185621285,
+    "within_2cm": 0.6340425531914894,
+    "first_gt5cm": 131,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "20": {
+  "frames_packed": 202,
+  "frames_replay": 202,
+  "objects": {
+   "blue_cup": {
+    "slot": 0,
+    "mean_cm": 0.6295002530610994,
+    "p95_cm": 1.1812936061866066,
+    "max_cm": 2.3692848842357788,
+    "rot_mean_deg": 2.296775999289956,
+    "within_2cm": 0.9851485148514851,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "water_pitcher": {
+    "slot": 1,
+    "mean_cm": 1.077127096849122,
+    "p95_cm": 2.3940333024700235,
+    "max_cm": 3.0698635263731218,
+    "rot_mean_deg": 3.8822682202585552,
+    "within_2cm": 0.900990099009901,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "25": {
+  "frames_packed": 356,
+  "frames_replay": 356,
+  "objects": {
+   "wooden_piece_1": {
+    "slot": 0,
+    "mean_cm": 1.0294180272602809,
+    "p95_cm": 2.1568911046814785,
+    "max_cm": 3.0647304462024207,
+    "rot_mean_deg": 7.293308620423469,
+    "within_2cm": 0.9325842696629213,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "wooden_piece_2": {
+    "slot": 1,
+    "mean_cm": 1.0582437841777026,
+    "p95_cm": 2.8847975335437623,
+    "max_cm": 4.966212025827556,
+    "rot_mean_deg": 7.216326023993459,
+    "within_2cm": 0.7893258426966292,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "28": {
+  "frames_packed": 220,
+  "frames_replay": 220,
+  "objects": {
+   "plastic_dish_rack": {
+    "slot": 0,
+    "mean_cm": 0.4641165250258966,
+    "p95_cm": 0.8112725205871003,
+    "max_cm": 0.8573536791405432,
+    "rot_mean_deg": 1.0596061079809982,
+    "within_2cm": 1.0,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "white_pot": {
+    "slot": 1,
+    "mean_cm": 1.6359949790331143,
+    "p95_cm": 4.834318038337566,
+    "max_cm": 7.394892530171628,
+    "rot_mean_deg": 7.436161686305002,
+    "within_2cm": 0.7954545454545454,
+    "first_gt5cm": 48,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "30": {
+  "frames_packed": 263,
+  "frames_replay": 263,
+  "objects": {
+   "mini_sweeper": {
+    "slot": 0,
+    "mean_cm": 2.1707307048926534,
+    "p95_cm": 4.501629591529043,
+    "max_cm": 9.725770555631998,
+    "rot_mean_deg": 12.712641082122467,
+    "within_2cm": 0.5285171102661597,
+    "first_gt5cm": 61,
+    "slot_matches_order": true
+   },
+   "plastic_dish_rack": {
+    "slot": 1,
+    "mean_cm": 1.9129388742000666,
+    "p95_cm": 2.740386483732288,
+    "max_cm": 3.1175111225729046,
+    "rot_mean_deg": 2.00091719964463,
+    "within_2cm": 0.27756653992395436,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "32": {
+  "frames_packed": 259,
+  "frames_replay": 259,
+  "objects": {
+   "blue_cup": {
+    "slot": 0,
+    "mean_cm": 1.7048332670808788,
+    "p95_cm": 3.869207908399782,
+    "max_cm": 4.467527825955816,
+    "rot_mean_deg": 13.050676331307546,
+    "within_2cm": 0.6795366795366795,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   },
+   "wooden_spoon": {
+    "slot": 1,
+    "mean_cm": 1.3053041652141375,
+    "p95_cm": 3.0486976332993576,
+    "max_cm": 7.486133342484284,
+    "rot_mean_deg": 6.642721062421904,
+    "within_2cm": 0.8146718146718147,
+    "first_gt5cm": 93,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "33": {
+  "frames_packed": 348,
+  "frames_replay": 348,
+  "objects": {
+   "blue_cup": {
+    "slot": 0,
+    "mean_cm": 0.8289441373043495,
+    "p95_cm": 2.067013222697961,
+    "max_cm": 5.283895591365775,
+    "rot_mean_deg": 5.298984074745065,
+    "within_2cm": 0.9454022988505747,
+    "first_gt5cm": 91,
+    "slot_matches_order": true
+   },
+   "wooden_spoon": {
+    "slot": 1,
+    "mean_cm": 1.1968870537497298,
+    "p95_cm": 3.3363111810906756,
+    "max_cm": 6.1924654610241765,
+    "rot_mean_deg": 8.612119501087113,
+    "within_2cm": 0.853448275862069,
+    "first_gt5cm": 172,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "35": {
+  "frames_packed": 421,
+  "frames_replay": 421,
+  "objects": {
+   "wooden_spoon": {
+    "slot": 0,
+    "mean_cm": 0.6038588466258584,
+    "p95_cm": 1.446083167396162,
+    "max_cm": 2.0756574942478547,
+    "rot_mean_deg": 4.982486124461139,
+    "within_2cm": 0.9928741092636579,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "36": {
+  "frames_packed": 407,
+  "frames_replay": 407,
+  "objects": {
+   "wooden_spoon": {
+    "slot": 0,
+    "mean_cm": 0.7200624746371399,
+    "p95_cm": 1.7660206733382386,
+    "max_cm": 2.471247562044988,
+    "rot_mean_deg": 6.004457440233165,
+    "within_2cm": 0.972972972972973,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "37": {
+  "frames_packed": 151,
+  "frames_replay": 151,
+  "objects": {
+   "wooden_spoon": {
+    "slot": 0,
+    "mean_cm": 0.5545085896897617,
+    "p95_cm": 2.327312359797051,
+    "max_cm": 2.8199015057188705,
+    "rot_mean_deg": 2.505242414349105,
+    "within_2cm": 0.9205298013245033,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ },
+ "38": {
+  "frames_packed": 263,
+  "frames_replay": 263,
+  "objects": {
+   "mini_dust_pan": {
+    "slot": 0,
+    "mean_cm": 0.7941442335505899,
+    "p95_cm": 1.875035845946348,
+    "max_cm": 2.734633331181314,
+    "rot_mean_deg": 4.048007078250981,
+    "within_2cm": 0.9695817490494296,
+    "first_gt5cm": -1,
+    "slot_matches_order": true
+   }
+  }
+ }
+}

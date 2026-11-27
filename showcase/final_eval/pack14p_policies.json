@@ -1,0 +1,246 @@
+{
+ "pack": "14p",
+ "pack_file": "results/submissions/20261102-track3s-candidate/build_14p/track3_submission.parquet",
+ "pack_sha256": "b6c6100d57d18dc2ae22ec7bda238d599e753e4344c417926b787595997d7d70",
+ "note": "Per eval episode: the checkpoint the submitted rows name (matched by sha256 to the HF store LFS metadata), the reference stored in that checkpoint config, and the object assets the evaluation used: either the reference asset copy stored with the training run (refs/.../assets) or make_assets.py at the training commit (library_v3 + carve pieces, 0.3 kg), as the training job logs record.",
+ "episodes": {
+  "1": {
+   "checkpoint_sha256": "5625b86a5118426770358c5fd9a6cc65ad30038c44eb5502630cddd917e66521",
+   "checkpoint": "runs/20261030-c01s43-328139c/runs/perc2mcks/ep1-s43/policy_250003456.safetensors",
+   "train_run": "20261030-c01s43-328139c",
+   "reference": "runs/20261030-c01s43-328139c/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+   "reference_root": "runs/20261030-c01s43-328139c/refs/perc2mcks/ep1",
+   "assets": {
+    "kind": "make_assets",
+    "commit": "328139c",
+    "library": "meshes/library_v3",
+    "pieces": "meshes/carve/ev01",
+    "mass": 0.3
+   }
+  },
+  "3": {
+   "checkpoint_sha256": "737c7b9eb8bc36bb191cbe65c5e3ed07973a1e06b6b20c63f7cd2502b223ad67",
+   "checkpoint": "runs/20261024-seed43-61101f5/results/glock_public/ep3/best/policy.safetensors",
+   "train_run": "20261024-seed43-61101f5",
+   "reference": "runs/20261024-seed43-61101f5/refs/glockt/ep3/processed/sequence_id=t3_ep003/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261024-seed43-61101f5/refs/glockt/ep3",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261024-seed43-61101f5/refs/sf/ep3/assets"
+   }
+  },
+  "5": {
+   "checkpoint_sha256": "cd7594a8c751b9e7fa11e4a752259d6ddb85fda92c6569553b9a69ae86e9c82f",
+   "checkpoint": "runs/20261024-seed43-61101f5/results/glock_public/ep5/best/policy.safetensors",
+   "train_run": "20261024-seed43-61101f5",
+   "reference": "runs/20261024-seed43-61101f5/refs/glockt/ep5/processed/sequence_id=t3_ep005/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261024-seed43-61101f5/refs/glockt/ep5",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261024-seed43-61101f5/refs/sf/ep5/assets"
+   }
+  },
+  "6": {
+   "checkpoint_sha256": "020e75dd4447270ae092269ba6199f68b712b8989d436d82263cfcf5c1a9b2eb",
+   "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep6/best/policy.safetensors",
+   "train_run": "20261024-pack-31ef267",
+   "reference": "runs/20261024-pack-31ef267/refs/glockt/ep6/processed/sequence_id=t3_ep006/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261024-pack-31ef267/refs/glockt/ep6",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261024-pack-31ef267/refs/sf/ep6/assets"
+   }
+  },
+  "8": {
+   "checkpoint_sha256": "cb6277bfc3b7f37d499ed7af262ebe1407f434dd0f778ef29d235cb59b5fa500",
+   "checkpoint": "runs/20261025-evb0810-ee7ba8e/results/final_eval/ep8/policy.safetensors",
+   "train_run": "20261025-evb0810-ee7ba8e",
+   "reference": "runs/20261025-evb0810-ee7ba8e/refs/glockt/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261025-evb0810-ee7ba8e/refs/glockt/ep8",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261025-evb0810-ee7ba8e/refs/sf/ep8/assets"
+   }
+  },
+  "10": {
+   "checkpoint_sha256": "aaa077ebae863650c926d13550d368704889d445bcfc96ef9e4773f17c04d55f",
+   "checkpoint": "runs/20261101-e10nj-451b82d/results/ev10_nj/ck512/policy.safetensors",
+   "train_run": "20261101-e10nj-451b82d",
+   "reference": "runs/20261101-e10nj-451b82d/refs/perc2e10njs43_glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261101-e10nj-451b82d/refs/perc2e10njs43_glockt/ep10",
+   "assets": {
+    "kind": "make_assets",
+    "commit": "451b82d",
+    "library": "meshes/library_v3",
+    "pieces": "meshes/carve/ev10",
+    "mass": 0.3
+   }
+  },
+  "14": {
+   "checkpoint_sha256": "7f7a7c6a8fb989f2c6fc5a169ac059cc486fbea873a27c2227e588eeac73105e",
+   "checkpoint": "runs/20261102-pfR2-c1a5471/results/pfp0ms43_glock_public/ep14/best/policy.safetensors",
+   "train_run": "20261102-pfR2-c1a5471",
+   "reference": "runs/20261102-pfR2-c1a5471/refs/pfp0ms43_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261102-pfR2-c1a5471/refs/pfp0ms43_glockt/ep14",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261102-pfR2-c1a5471/refs/pfss43_sf/ep14/assets"
+   }
+  },
+  "15": {
+   "checkpoint_sha256": "395d727f8de433e1abdd81ce5070e93c6caa838d3d5f8afeffe23907386bb705",
+   "checkpoint": "runs/20261102-pfJ-cf8cc34/results/pfplws42_glock_public/ep15/best/policy.safetensors",
+   "train_run": "20261102-pfJ-cf8cc34",
+   "reference": "runs/20261102-pfJ-cf8cc34/refs/pfplws42_glockt/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261102-pfJ-cf8cc34/refs/pfplws42_glockt/ep15",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261102-pfJ-cf8cc34/refs/sf/ep15/assets"
+   }
+  },
+  "16": {
+   "checkpoint_sha256": "ed25dc5f8312b861b8ec3be6d96fdafecb3c939e89a29fef8e4a8b56b4966882",
+   "checkpoint": "runs/20261102-pfG-86cfc19/results/pfpzs43_glock_public/ep16/best/policy.safetensors",
+   "train_run": "20261102-pfG-86cfc19",
+   "reference": "runs/20261102-pfG-86cfc19/refs/pfpzs43_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261102-pfG-86cfc19/refs/pfpzs43_glockt/ep16",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261102-pfG-86cfc19/refs/sf/ep16/assets"
+   }
+  },
+  "19": {
+   "checkpoint_sha256": "fdc4c491e2d457a2d385d39be17f8223a90b0621f5c1d388b530567b9294e486",
+   "checkpoint": "runs/20261025-std1928-ee7ba8e/results/final_eval/ep19/policy.safetensors",
+   "train_run": "20261025-std1928-ee7ba8e",
+   "reference": "runs/20261025-std1928-ee7ba8e/refs/perc2mcks/ep19/processed/sequence_id=t3_ep019/robot_name=sharpa_wave/afc53914ae7542d7b565119fc4892688-0.parquet",
+   "reference_root": "runs/20261025-std1928-ee7ba8e/refs/perc2mcks/ep19",
+   "assets": {
+    "kind": "make_assets",
+    "commit": "ee7ba8e",
+    "library": "meshes/library_v3",
+    "pieces": "",
+    "mass": 0.3
+   }
+  },
+  "20": {
+   "checkpoint_sha256": "1e08b92ff96d076d48fe58ea02d5006aa4ebed4a3767b82fc60f3a99f0763c66",
+   "checkpoint": "runs/20261102-pfJ-cf8cc34/results/pfplws43_glock_public/ep20/best/policy.safetensors",
+   "train_run": "20261102-pfJ-cf8cc34",
+   "reference": "runs/20261102-pfJ-cf8cc34/refs/pfplws43_glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261102-pfJ-cf8cc34/refs/pfplws43_glockt/ep20",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261102-pfJ-cf8cc34/refs/sf/ep20/assets"
+   }
+  },
+  "25": {
+   "checkpoint_sha256": "7edd445b741f206e79bcab18f7f2a3d6b971e2b0172eaef181255c639a385ce3",
+   "checkpoint": "runs/20261026-c25s42-feb0407/runs/perc2mcks/ep25-s42/policy_250003456.safetensors",
+   "train_run": "20261026-c25s42-feb0407",
+   "reference": "runs/20261026-c25s42-feb0407/refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+   "reference_root": "runs/20261026-c25s42-feb0407/refs/perc2mcks/ep25",
+   "assets": {
+    "kind": "make_assets",
+    "commit": "feb0407",
+    "library": "meshes/library_v3",
+    "pieces": "meshes/carve/ev25",
+    "mass": 0.3
+   }
+  },
+  "28": {
+   "checkpoint_sha256": "09b3ec5d532309746c30e93b93ec8e6c39282aeefd75c702ebae8cbfd7ec5e2f",
+   "checkpoint": "runs/20261025-std1928-ee7ba8e/results/final_eval/ep28/policy.safetensors",
+   "train_run": "20261025-std1928-ee7ba8e",
+   "reference": "runs/20261025-std1928-ee7ba8e/refs/perc2mcks/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet",
+   "reference_root": "runs/20261025-std1928-ee7ba8e/refs/perc2mcks/ep28",
+   "assets": {
+    "kind": "make_assets",
+    "commit": "ee7ba8e",
+    "library": "meshes/library_v3",
+    "pieces": "",
+    "mass": 0.3
+   }
+  },
+  "30": {
+   "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+   "checkpoint": "runs/20261025-std30-ee7ba8e/results/final_eval/ep30/policy.safetensors",
+   "train_run": "20261025-std30-ee7ba8e",
+   "reference": "runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+   "reference_root": "runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30",
+   "assets": {
+    "kind": "make_assets",
+    "commit": "ee7ba8e",
+    "library": "meshes/library_v3",
+    "pieces": "",
+    "mass": 0.3
+   }
+  },
+  "32": {
+   "checkpoint_sha256": "9a2c2f7ccf422b1890a77df461fd804049c6cbcf3fa5a34640baf4b8ed1f87ce",
+   "checkpoint": "runs/20261101-pfD-f38b324/results/pfss43_glock_public/ep32/best/policy.safetensors",
+   "train_run": "20261101-pfD-f38b324",
+   "reference": "runs/20261101-pfD-f38b324/refs/pfss43_glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261101-pfD-f38b324/refs/pfss43_glockt/ep32",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261101-pfD-f38b324/refs/pfss43_sf/ep32/assets"
+   }
+  },
+  "33": {
+   "checkpoint_sha256": "df90b2162885a17c83ea69ce90067ec567b89434adbcdedc0fba19d4b0c07ccb",
+   "checkpoint": "runs/20261029-rcB-34bf6ae/results/glock_public/ep33/best/policy.safetensors",
+   "train_run": "20261029-rcB-34bf6ae",
+   "reference": "runs/20261029-rcB-34bf6ae/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261029-rcB-34bf6ae/refs/glockt/ep33",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261029-rcB-34bf6ae/refs/sf/ep33/assets"
+   }
+  },
+  "35": {
+   "checkpoint_sha256": "e0515c33783b740c7e6b94b066d4199710752c2d2e6d1f192ae05c6175720061",
+   "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep35/best/policy.safetensors",
+   "train_run": "20261024-pack-31ef267",
+   "reference": "runs/20261024-pack-31ef267/refs/glockt/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261024-pack-31ef267/refs/glockt/ep35",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261024-pack-31ef267/refs/sf/ep35/assets"
+   }
+  },
+  "36": {
+   "checkpoint_sha256": "d1b402c803398aeae8bf0effaf8e1026a6d637770a762b1571cdcb90f6527076",
+   "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep36/best/policy.safetensors",
+   "train_run": "20261024-pack-31ef267",
+   "reference": "runs/20261024-pack-31ef267/refs/glockt/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261024-pack-31ef267/refs/glockt/ep36",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261024-pack-31ef267/refs/sf/ep36/assets"
+   }
+  },
+  "37": {
+   "checkpoint_sha256": "ec709d3d50fd84ce352d59c867cbcd648c70b12b9d91e3933510dbe6652bd25e",
+   "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep37/best/policy.safetensors",
+   "train_run": "20261024-pack-31ef267",
+   "reference": "runs/20261024-pack-31ef267/refs/glockt/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261024-pack-31ef267/refs/glockt/ep37",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261024-pack-31ef267/refs/sf/ep37/assets"
+   }
+  },
+  "38": {
+   "checkpoint_sha256": "6c0aa63e7a24df26e94cb63e4a0d021ed66779be0df5ef26d42625ce4d954bfe",
+   "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep38/best/policy.safetensors",
+   "train_run": "20261024-pack-31ef267",
+   "reference": "runs/20261024-pack-31ef267/refs/glockt/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_root": "runs/20261024-pack-31ef267/refs/glockt/ep38",
+   "assets": {
+    "kind": "stored",
+    "path": "runs/20261024-pack-31ef267/refs/sf/ep38/assets"
+   }
+  }
+ }
+}

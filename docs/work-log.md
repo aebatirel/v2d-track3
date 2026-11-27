@@ -12472,3 +12472,28 @@ All fixes are render-only (CPU, $0); physics rollouts and scores are unchanged.
 - Bundle v2: `pitch_assets_ep27_v2.zip` (65 MB, 54 files; new `render_fixes/` folder). HF store
   `showcase/outputs/20261127/` (zip + `ep27/` videos + tiles/results json, 28 files), commit 3265c01f. v1 kept.
 - Stills in the repo: `docs/research/work/embodiment-showcase-20261106/results/v2/`.
+
+### 2026-11-27 ~10:30–11:50 UTC — final-pack (14p) eval videos in the showcase style (owner: "render the v2d challenge final videos like this as well"; CPU, $0)
+- The submission rows hold object poses only, so hands need a replay. Rebuilt the evaluation setup of all 20 submitted
+  policies on this machine (`showcase/final_eval/setup_replays.py`, manifest `pack14p_policies.json`):
+  - checkpoints matched to the packed rows' `checkpoint_sha256` through the HF store LFS hashes (20/20, downloaded and
+    re-hashed);
+  - the reference named in each checkpoint config (stored with its training run);
+  - object assets as the evaluation used them: the stored reference asset copy (14 episodes), or `make_assets.py` at the
+    training commit with library_v3 (+ carve pieces ev01 / ev10 / ev25) for evals 1, 10, 19, 25, 28, 30 (job logs).
+- CPU replays (`replay_all.sh`, evaluator-style, VOC 0, no termination; 33–111 s each) vs the packed rows
+  (`compare_packed.py`, our own outputs, no GT): 19/20 track the submitted rollout, mean object distance 0.3–2.2 cm.
+  **Eval 15 diverges**: the replay drops the spoon from frame 129 (mean 7.4 cm, max 34 cm); its 10 official GPU draws
+  had all kept it. CPU vs GPU numerics; a GPU replay would need a rental (owner's call). Results:
+  `showcase/final_eval/results/replay_vs_packed_cpu.json`.
+- Eval videos (cam a) from the public dataset; perception files for the head-camera path matched by hash to each
+  reference's table frame (camera paths are identical across perception re-runs; only table frames / object tracks differ).
+- Table: the same 46 cm table in all 20 eval scenes. `showcase/tools/fit_table_ep.py` (generalised ep27 fit): the rim fit
+  failed on evals 10 / 14 / 15 / 16 (rim swallowed by the skin mask), so the centre is fitted by projected-disc overlap with
+  the wood pixels (`--area`, radius fixed at 0.230 m); it agrees with the rim fit within 0.7 cm on 15 episodes.
+  `showcase/final_eval/results/table_fits.json`.
+- Render meshes (render only; physics used the simulator assets): library_c0 lid and rack, a flat-bottomed pot rebuilt in
+  our template frame (`build_flat_pot.py` now takes arguments; axis = mean rest axis of 6 pot replays; rests within
+  0.1–1.5 mm of the tabletop, the c0 pot sat 7–8 mm into it), other objects the simulator's own meshes. Shape check vs
+  each episode's simulator mesh: same meshes ≈ 1 mm (sampling), clean pot / rack median 3.5–4.4 mm.
+- `render_style.py`: `--palette` / `--object_colors` (per-object colours like the real objects) and a body-count check.

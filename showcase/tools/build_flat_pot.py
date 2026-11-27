@@ -15,20 +15,31 @@ The handle is library_c0's (already ICP-aligned onto the scan), cut where it lea
 library_c0's marker balls are kept where they still sit on the new surface. Output in the scan's frame, so the
 recorded body poses apply unchanged. Rendering only; the physics used the official scan.
   build_flat_pot.py TRACE.npz OUT_DIR   (OUT_DIR/mesh/white_pot/white_pot.glb + OUT_DIR/urdf/white_pot_rigid.urdf)
+2026-11-27, eval renders: the same build in our template frame (library_v3 / library_c0) with
+  build_flat_pot.py T1.npz,T2.npz,... OUT --frame 0 --scan meshes/library_v3/white_pot.glb --c0 meshes/library_c0/white_pot.glb
+                    --urdf_src <make_assets urdf>
+the rest axis is the mean over the listed replays (frame --frame of each).
 """
-import os, sys
+import argparse, os
 
 import numpy as np
 import trimesh
 from scipy.spatial.transform import Rotation as R
 
-trace, out = sys.argv[1], sys.argv[2]
-scan = trimesh.load('/content/t3/mesh/white_pot/white_pot.glb', force='mesh'); V = np.asarray(scan.vertices)
-c0 = trimesh.load('/content/showcase/objects_clean/mesh/white_pot/white_pot.glb', force='mesh')   # ICP-aligned library_c0
-d = np.load(trace); Q = d['q']; L = [str(x) for x in d['labels']]
-i = [k for k, l in enumerate(L) if 'white_pot' in l][0]
-q = Q[5, i]                                               # resting on the table (frame 5)
-u = R.from_quat(q[3:]).inv().apply([0, 0, 1.0]); u /= np.linalg.norm(u)
+ap = argparse.ArgumentParser(); ap.add_argument('traces'); ap.add_argument('out'); ap.add_argument('--frame', type=int, default=5)
+ap.add_argument('--scan', default='/content/t3/mesh/white_pot/white_pot.glb')
+ap.add_argument('--c0', default='/content/showcase/objects_clean/mesh/white_pot/white_pot.glb')   # ICP-aligned library_c0 (ep27)
+ap.add_argument("--urdf_src", default="/content/t3/urdf/white_pot_rigid.urdf"); ARGS = ap.parse_args()
+out = ARGS.out
+scan = trimesh.load(ARGS.scan, force='mesh'); V = np.asarray(scan.vertices)
+c0 = trimesh.load(ARGS.c0, force='mesh')
+us = []
+for trace in ARGS.traces.split(','):
+    d = np.load(trace); Q = d['q']; L = [str(x) for x in d['labels']]
+    i = [k for k, l in enumerate(L) if 'white_pot' in l and 'lid' not in l][0]
+    q = Q[ARGS.frame, i]                                     # resting on the table (ep27: frame 5)
+    us.append(R.from_quat(q[3:]).inv().apply([0, 0, 1.0]))
+u = np.mean(us, 0); u /= np.linalg.norm(u)
 print('pot axis in the scan frame', np.round(u, 4), 'tilt from x', round(float(np.degrees(np.arccos(abs(u[0])))), 2), 'deg')
 # orthonormal frame (u, e1, e2); e1 toward the handle (scan +z side, projected)
 hv = np.array([0, 0, 1.0]); e1 = hv - u * (u @ hv); e1 /= np.linalg.norm(e1); e2 = np.cross(u, e1)
@@ -96,7 +107,7 @@ if keep:
 print('pot watertight', pot.is_watertight, 'faces', len(pot.faces), 'marker balls kept', len(keep), 'of', len(balls))
 os.makedirs(f'{out}/mesh/white_pot', exist_ok=True); os.makedirs(f'{out}/urdf', exist_ok=True)
 pot.export(f'{out}/mesh/white_pot/white_pot.glb')
-u_txt = open('/content/t3/urdf/white_pot_rigid.urdf').read().replace('../mesh/white_pot/white_pot.glb', os.path.abspath(f'{out}/mesh/white_pot/white_pot.glb'))
+u_txt = open(ARGS.urdf_src).read().replace('../mesh/white_pot/white_pot.glb', os.path.abspath(f'{out}/mesh/white_pot/white_pot.glb'))
 open(f'{out}/urdf/white_pot_rigid.urdf', 'w').write(u_txt)
 # resting check: lowest point at the rest pose vs the tabletop (0.60)
 W = R.from_quat(q[3:]).apply(np.asarray(pot.vertices)) + q[:3]
